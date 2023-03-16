@@ -1,5 +1,5 @@
 //=============================================================================
-// BallisticTab_SwappingsPro.
+// ConfigTab_Swappings.
 //
 // This page is used to configure the swapping lists for the Ballistic mutators
 // Includes:
@@ -12,19 +12,16 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTab_SwappingsPro extends UT2K4TabPanel config(BallisticProV55);
+class ConfigTab_Swappings extends ConfigTabBase config(BallisticProV55);
 
-var BallisticConfigMenuPro		p_Anchor;
-var bool					bInitialized;
-
-var automated GUIListBox		lb_OldWeapons;
+var automated GUIListBox			lb_OldWeapons;
 var automated BC_GUICheckListBox	lb_NewWeapons;
-var Automated GUIImage			Box_Old, Box_New;
-var Automated GUIButton			BAddAll, BRemoveAll, BSavePreset, BDeletePreset;
-var automated moComboBox		cb_Presets;
-var automated moCheckbox		ch_Independant;
-var automated moNumericEdit		nu_SwitchTime;
-var automated GUILabel   		l_OldList, l_NewList;
+var Automated GUIImage				Box_Old, Box_New;
+var Automated GUIButton				BAddAll, BRemoveAll, BSavePreset, BDeletePreset;
+var automated moComboBox			cb_Presets;
+var automated moCheckbox			ch_Independent;
+var automated moNumericEdit			nu_SwitchTime;
+var automated GUILabel   			l_OldList, l_NewList;
 
 struct Swap					// Holds info about the replacments for an old item
 {
@@ -39,25 +36,15 @@ struct SwapPreset			// A single preset
 	var() config array<Swap>	Swaps;			// Big block of swap info(a swap for each old weapon)
 };
 
-var() config array<Swap>	DefaultSwaps;			// The default replacements for the old items
+var() config array<Swap>		DefaultSwaps;			// The default replacements for the old items
 var() config bool				bDefaultsWritten;		// The defaults have been written to the ini file. Don't do it again
 
-function InitComponent(GUIController MyController, GUIComponent MyOwner)
-{
-	Super.InitComponent(MyController, MyOwner);
-	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
-}
-function ShowPanel(bool bShow)
+function InitializeConfigTab()
 {
 	local int i, j;
 	local array<CacheManager.WeaponRecord> Recs;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	local array<String> PresetNames;
-
-	super.ShowPanel(bShow);
-	if (bInitialized)
-		return;
 
 	// Fill old items list
 	for (i=0;i<class'Mut_BallisticSwap'.static.GetNumWeapons();i++)
@@ -90,10 +77,7 @@ function ShowPanel(bool bShow)
 	cb_Presets.SetIndex(0);
 	cb_Presets.SetText("");
 
-	ch_Independant.MyCheckBox.OnClick = InternalOnClick;
-
-	LoadSettings();
-	bInitialized = true;
+	ch_Independent.MyCheckBox.OnClick = InternalOnClick;
 }
 
 function InternalOnChange(GUIComponent Sender)
@@ -122,7 +106,7 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 		lb_OldWeapons.List.InternalOnClick(Sender);
 		UpdateReplacementsList(lb_OldWeapons.List.Index);
-		ch_Independant.Checked(Swaps[lb_OldWeapons.List.Index].R);
+		ch_Independent.Checked(Swaps[lb_OldWeapons.List.Index].R);
 	}
 	// FILL
 	else if (Sender == BAddAll)
@@ -166,11 +150,11 @@ function bool InternalOnClick(GUIComponent Sender)
 		cb_Presets.GetObject().ClearConfig();
 		cb_Presets.RemoveItem(cb_Presets.GetIndex(), 0);
 	}
-	// Independant Spawning CheckBox
-	else if (Sender == ch_Independant.MyCheckBox)
+	// Independent Spawning CheckBox
+	else if (Sender == ch_Independent.MyCheckBox)
 	{
-		ch_Independant.MyCheckBox.InternalOnClick(Sender);
-		Swaps[lb_OldWeapons.List.Index].R = ch_Independant.IsChecked();
+		ch_Independent.MyCheckBox.InternalOnClick(Sender);
+		Swaps[lb_OldWeapons.List.Index].R = ch_Independent.IsChecked();
 	}
 	return true;
 }
@@ -282,7 +266,7 @@ defaultproperties
          RenderWeight=0.520000
          TabOrder=1
      End Object
-     lb_OldWeapons=GUIListBox'BallisticProV55.BallisticTab_SwappingsPro.lb_OldWeaponsList'
+     lb_OldWeapons=GUIListBox'BallisticProV55.ConfigTab_Swappings.lb_OldWeaponsList'
 
      Begin Object Class=BC_GUICheckListBox Name=lb_NewWeaponsList
          bVisibleWhenEmpty=True
@@ -296,7 +280,7 @@ defaultproperties
          RenderWeight=0.520000
          TabOrder=1
      End Object
-     lb_NewWeapons=BC_GUICheckListBox'BallisticProV55.BallisticTab_SwappingsPro.lb_NewWeaponsList'
+     lb_NewWeapons=BC_GUICheckListBox'BallisticProV55.ConfigTab_Swappings.lb_NewWeaponsList'
 
      Begin Object Class=GUIImage Name=Box_OldImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -307,7 +291,7 @@ defaultproperties
          WinHeight=0.675000
          RenderWeight=0.002000
      End Object
-     Box_Old=GUIImage'BallisticProV55.BallisticTab_SwappingsPro.Box_OldImg'
+     Box_Old=GUIImage'BallisticProV55.ConfigTab_Swappings.Box_OldImg'
 
      Begin Object Class=GUIImage Name=Box_NewImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -318,7 +302,7 @@ defaultproperties
          WinHeight=0.675000
          RenderWeight=0.002000
      End Object
-     Box_New=GUIImage'BallisticProV55.BallisticTab_SwappingsPro.Box_NewImg'
+     Box_New=GUIImage'BallisticProV55.ConfigTab_Swappings.Box_NewImg'
 
      Begin Object Class=GUIButton Name=AddAllButton
          Caption="FILL"
@@ -327,10 +311,10 @@ defaultproperties
          WinLeft=0.550000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_SwappingsPro.InternalOnClick
+         OnClick=ConfigTab_Swappings.InternalOnClick
          OnKeyEvent=AddAllButton.InternalOnKeyEvent
      End Object
-     BAddAll=GUIButton'BallisticProV55.BallisticTab_SwappingsPro.AddAllButton'
+     BAddAll=GUIButton'BallisticProV55.ConfigTab_Swappings.AddAllButton'
 
      Begin Object Class=GUIButton Name=RemoveAllButton
          Caption="EMPTY"
@@ -339,10 +323,10 @@ defaultproperties
          WinLeft=0.750000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_SwappingsPro.InternalOnClick
+         OnClick=ConfigTab_Swappings.InternalOnClick
          OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
      End Object
-     BRemoveAll=GUIButton'BallisticProV55.BallisticTab_SwappingsPro.RemoveAllButton'
+     BRemoveAll=GUIButton'BallisticProV55.ConfigTab_Swappings.RemoveAllButton'
 
      Begin Object Class=GUIButton Name=BSavePresetButton
          Caption="Save"
@@ -351,10 +335,10 @@ defaultproperties
          WinLeft=0.100000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_SwappingsPro.InternalOnClick
+         OnClick=ConfigTab_Swappings.InternalOnClick
          OnKeyEvent=BSavePresetButton.InternalOnKeyEvent
      End Object
-     BSavePreset=GUIButton'BallisticProV55.BallisticTab_SwappingsPro.BSavePresetButton'
+     BSavePreset=GUIButton'BallisticProV55.ConfigTab_Swappings.BSavePresetButton'
 
      Begin Object Class=GUIButton Name=BDeletePresetButton
          Caption="Delete"
@@ -363,10 +347,10 @@ defaultproperties
          WinLeft=0.300000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_SwappingsPro.InternalOnClick
+         OnClick=ConfigTab_Swappings.InternalOnClick
          OnKeyEvent=BDeletePresetButton.InternalOnKeyEvent
      End Object
-     BDeletePreset=GUIButton'BallisticProV55.BallisticTab_SwappingsPro.BDeletePresetButton'
+     BDeletePreset=GUIButton'BallisticProV55.ConfigTab_Swappings.BDeletePresetButton'
 
      Begin Object Class=moComboBox Name=co_PresetsCB
          ComponentJustification=TXTA_Left
@@ -378,15 +362,15 @@ defaultproperties
          WinTop=0.750000
          WinLeft=0.100000
          WinWidth=0.350000
-         OnChange=BallisticTab_SwappingsPro.InternalOnChange
+         OnChange=ConfigTab_Swappings.InternalOnChange
      End Object
-     cb_Presets=moComboBox'BallisticProV55.BallisticTab_SwappingsPro.co_PresetsCB'
+     cb_Presets=moComboBox'BallisticProV55.ConfigTab_Swappings.co_PresetsCB'
 
-     Begin Object Class=moCheckBox Name=ch_IndependantCheck
+     Begin Object Class=moCheckBox Name=ch_IndependentCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Independant Spawning"
-         OnCreateComponent=ch_IndependantCheck.InternalOnCreateComponent
+         Caption="Independent Spawning"
+         OnCreateComponent=ch_IndependentCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="When several weapons replace one original, this prevents ammo and same-type weapon pickups from being forced to match each other."
          WinTop=0.750000
@@ -394,7 +378,7 @@ defaultproperties
          WinWidth=0.350000
          WinHeight=0.040000
      End Object
-     ch_Independant=moCheckBox'BallisticProV55.BallisticTab_SwappingsPro.ch_IndependantCheck'
+     ch_Independent=moCheckBox'BallisticProV55.ConfigTab_Swappings.ch_IndependentCheck'
 
      Begin Object Class=moNumericEdit Name=nu_SwitchTimeEdit
          MinValue=1
@@ -410,7 +394,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     nu_SwitchTime=moNumericEdit'BallisticProV55.BallisticTab_SwappingsPro.nu_SwitchTimeEdit'
+     nu_SwitchTime=moNumericEdit'BallisticProV55.ConfigTab_Swappings.nu_SwitchTimeEdit'
 
      Begin Object Class=GUILabel Name=l_OldListlabel
          Caption="Original Weapons"
@@ -421,7 +405,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.050000
      End Object
-     l_OldList=GUILabel'BallisticProV55.BallisticTab_SwappingsPro.l_OldListlabel'
+     l_OldList=GUILabel'BallisticProV55.ConfigTab_Swappings.l_OldListlabel'
 
      Begin Object Class=GUILabel Name=l_NewListlabel
          Caption="Replace with..."
@@ -432,7 +416,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.050000
      End Object
-     l_NewList=GUILabel'BallisticProV55.BallisticTab_SwappingsPro.l_NewListlabel'
+     l_NewList=GUILabel'BallisticProV55.ConfigTab_Swappings.l_NewListlabel'
 
      DefaultSwaps(0)=(NIs=("BallisticProV55.X3Knife","BallisticProV55.A909SkrithBlades","BallisticProV55.EKS43katana"))
      DefaultSwaps(1)=(NIs=("BallisticProV55.M806Pistol","BallisticProV55.MRT6Shotgun","BallisticProV55.A42SkrithPistol","BallisticProV55.D49Revolver","BallisticProV55.AM67Pistol","BallisticProV55.Fifty9MachinePistol","BallisticProV55.XK2SubMachinegun","BallisticProV55.RS8Pistol","BallisticProV55.XRS10Submachinegun"))

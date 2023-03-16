@@ -1,5 +1,5 @@
 //=============================================================================
-// BallisticTab_Crosshairs.
+// ConfigTab_Crosshairs.
 //
 // This page is used to configure the Ballistic Weapons crosshairs.
 // It includes:
@@ -15,9 +15,8 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTab_Crosshairs extends UT2K4TabPanel;
+class ConfigTab_Crosshairs extends ConfigTabBase;
 
-var BallisticConfigMenuPro		p_Anchor;
 var bool					bLoadInitialized;
 
 var automated moSlider		sl_GlobalScale, sl_CrossGrow;
@@ -28,27 +27,17 @@ var automated GUIListBox	lb_Weapons;
 var automated GUIComboBox	cb_CrossList1, cb_CrossList2;
 var automated moCheckbox	ch_OldCross, ch_UniCross;
 
-var bool					bInitialized;
 
 var() array<BallisticWeapon.NonDefCrosshairCfg>		Crosshairs;
 
-function InitComponent(GUIController MyController, GUIComponent MyOwner)
-{
-	Super.InitComponent(MyController, MyOwner);
-	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
-}
-function ShowPanel(bool bShow)
+function InitializeConfigTab()
 {
 	local array<CacheManager.WeaponRecord> Recs;
 	local class<Weapon> Weap;
-//	local class<BallisticWeapon> Weap;
 	local int i, j;
 	local array<string> CHClassNames;
 	local class<BallisticCrosshairPack>	CHClass;
-//	local BC_WeaponInfoCache.WeaponInfo WI;
 
-	super.ShowPanel(bShow);
 	if (bLoadInitialized)
 		return;
 
@@ -287,7 +276,7 @@ defaultproperties
          WinWidth=0.470000
          WinHeight=0.037833
      End Object
-     sl_GlobalScale=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_GlobalScaleSlider'
+     sl_GlobalScale=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_GlobalScaleSlider'
 
      Begin Object Class=moSlider Name=sl_CrossGrowSlider
          MaxValue=2.000000
@@ -299,7 +288,7 @@ defaultproperties
          WinWidth=0.470000
          WinHeight=0.037833
      End Object
-     sl_CrossGrow=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_CrossGrowSlider'
+     sl_CrossGrow=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_CrossGrowSlider'
 
      Begin Object Class=moSlider Name=sl_Red1Slider
          MaxValue=255.000000
@@ -312,9 +301,9 @@ defaultproperties
          WinLeft=0.050000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Red1=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Red1Slider'
+     sl_Red1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Red1Slider'
 
      Begin Object Class=moSlider Name=sl_Green1Slider
          MaxValue=255.000000
@@ -327,9 +316,9 @@ defaultproperties
          WinLeft=0.050000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Green1=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Green1Slider'
+     sl_Green1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Green1Slider'
 
      Begin Object Class=moSlider Name=sl_Blue1Slider
          MaxValue=255.000000
@@ -342,9 +331,9 @@ defaultproperties
          WinLeft=0.050000
          WinWidth=0.400000
          WinHeight=10.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Blue1=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Blue1Slider'
+     sl_Blue1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Blue1Slider'
 
      Begin Object Class=moSlider Name=sl_Alpha1Slider
          MaxValue=255.000000
@@ -358,9 +347,9 @@ defaultproperties
          WinLeft=0.050000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Alpha1=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Alpha1Slider'
+     sl_Alpha1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Alpha1Slider'
 
      Begin Object Class=moSlider Name=sl_Size1Slider
          MaxValue=512.000000
@@ -374,9 +363,9 @@ defaultproperties
          WinLeft=0.050000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Size1=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Size1Slider'
+     sl_Size1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Size1Slider'
 
      Begin Object Class=moSlider Name=sl_Red2Slider
          MaxValue=255.000000
@@ -389,9 +378,9 @@ defaultproperties
          WinLeft=0.539000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Red2=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Red2Slider'
+     sl_Red2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Red2Slider'
 
      Begin Object Class=moSlider Name=sl_Green2Slider
          MaxValue=255.000000
@@ -404,9 +393,9 @@ defaultproperties
          WinLeft=0.539000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Green2=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Green2Slider'
+     sl_Green2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Green2Slider'
 
      Begin Object Class=moSlider Name=sl_Blue2Slider
          MaxValue=255.000000
@@ -419,9 +408,9 @@ defaultproperties
          WinLeft=0.539000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Blue2=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Blue2Slider'
+     sl_Blue2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Blue2Slider'
 
      Begin Object Class=moSlider Name=sl_Alpha2Slider
          MaxValue=255.000000
@@ -434,9 +423,9 @@ defaultproperties
          WinLeft=0.539000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Alpha2=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Alpha2Slider'
+     sl_Alpha2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Alpha2Slider'
 
      Begin Object Class=moSlider Name=sl_Size2Slider
          MaxValue=512.000000
@@ -450,9 +439,9 @@ defaultproperties
          WinLeft=0.539000
          WinWidth=0.400000
          WinHeight=0.038400
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     sl_Size2=moSlider'BallisticProV55.BallisticTab_Crosshairs.sl_Size2Slider'
+     sl_Size2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Size2Slider'
 
      Begin Object Class=GUIImage Name=Box_WeapListImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -463,7 +452,7 @@ defaultproperties
          WinHeight=0.575000
          RenderWeight=0.002000
      End Object
-     Box_WeapList=GUIImage'BallisticProV55.BallisticTab_Crosshairs.Box_WeapListImg'
+     Box_WeapList=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_WeapListImg'
 
      Begin Object Class=GUIImage Name=Img_Cross1Img
          Image=Texture'BW_Core_WeaponTex.Crosshairs.M50Out'
@@ -474,7 +463,7 @@ defaultproperties
          WinHeight=0.266600
          RenderWeight=0.002000
      End Object
-     Img_Cross1=GUIImage'BallisticProV55.BallisticTab_Crosshairs.Img_Cross1Img'
+     Img_Cross1=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Img_Cross1Img'
 
      Begin Object Class=GUIImage Name=Img_Cross2Img
          Image=Texture'BW_Core_WeaponTex.Crosshairs.M50In'
@@ -485,7 +474,7 @@ defaultproperties
          WinHeight=0.266600
          RenderWeight=0.003000
      End Object
-     Img_Cross2=GUIImage'BallisticProV55.BallisticTab_Crosshairs.Img_Cross2Img'
+     Img_Cross2=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Img_Cross2Img'
 
      Begin Object Class=GUIImage Name=Img_BackShotImg
          Image=MaterialSequence'BW_Core_WeaponTex.Misc.MenuSequence'
@@ -496,7 +485,7 @@ defaultproperties
          WinHeight=0.550000
          RenderWeight=0.001500
      End Object
-     Img_BackShot=GUIImage'BallisticProV55.BallisticTab_Crosshairs.Img_BackShotImg'
+     Img_BackShot=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Img_BackShotImg'
 
      Begin Object Class=GUIImage Name=Box_ShotImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -507,7 +496,7 @@ defaultproperties
          WinHeight=0.580000
          RenderWeight=0.001000
      End Object
-     Box_Shot=GUIImage'BallisticProV55.BallisticTab_Crosshairs.Box_ShotImg'
+     Box_Shot=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_ShotImg'
 
      Begin Object Class=GUIImage Name=Box_InnerImg
          Image=Texture'2K4Menus.Controls.thinpipe_b'
@@ -518,7 +507,7 @@ defaultproperties
          WinHeight=0.265000
          RenderWeight=0.002000
      End Object
-     Box_Inner=GUIImage'BallisticProV55.BallisticTab_Crosshairs.Box_InnerImg'
+     Box_Inner=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_InnerImg'
 
      Begin Object Class=GUIImage Name=Box_OuterImg
          Image=Texture'2K4Menus.Controls.thinpipe_b'
@@ -529,7 +518,7 @@ defaultproperties
          WinHeight=0.265000
          RenderWeight=0.002000
      End Object
-     Box_Outer=GUIImage'BallisticProV55.BallisticTab_Crosshairs.Box_OuterImg'
+     Box_Outer=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_OuterImg'
 
      Begin Object Class=GUILabel Name=l_WeaponsListlabel
          Caption="Weapons"
@@ -540,7 +529,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.050000
      End Object
-     l_WeaponsList=GUILabel'BallisticProV55.BallisticTab_Crosshairs.l_WeaponsListlabel'
+     l_WeaponsList=GUILabel'BallisticProV55.ConfigTab_Crosshairs.l_WeaponsListlabel'
 
      Begin Object Class=GUILabel Name=l_Innerlab
          Caption="Inner"
@@ -553,7 +542,7 @@ defaultproperties
          WinWidth=0.215000
          WinHeight=0.030000
      End Object
-     l_Inner=GUILabel'BallisticProV55.BallisticTab_Crosshairs.l_Innerlab'
+     l_Inner=GUILabel'BallisticProV55.ConfigTab_Crosshairs.l_Innerlab'
 
      Begin Object Class=GUILabel Name=l_Outerlab
          Caption="Outer"
@@ -566,7 +555,7 @@ defaultproperties
          WinWidth=0.215000
          WinHeight=0.030000
      End Object
-     l_Outer=GUILabel'BallisticProV55.BallisticTab_Crosshairs.l_Outerlab'
+     l_Outer=GUILabel'BallisticProV55.ConfigTab_Crosshairs.l_Outerlab'
 
      Begin Object Class=GUIListBox Name=lb_WeaponsList
          bVisibleWhenEmpty=True
@@ -580,7 +569,7 @@ defaultproperties
          RenderWeight=0.520000
          TabOrder=1
      End Object
-     lb_Weapons=GUIListBox'BallisticProV55.BallisticTab_Crosshairs.lb_WeaponsList'
+     lb_Weapons=GUIListBox'BallisticProV55.ConfigTab_Crosshairs.lb_WeaponsList'
 
      Begin Object Class=GUIComboBox Name=cb_CrossList1ComBox
          MaxVisibleItems=16
@@ -590,10 +579,10 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.038400
          TabOrder=0
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
          OnKeyEvent=cb_CrossList1ComBox.InternalOnKeyEvent
      End Object
-     cb_CrossList1=GUIComboBox'BallisticProV55.BallisticTab_Crosshairs.cb_CrossList1ComBox'
+     cb_CrossList1=GUIComboBox'BallisticProV55.ConfigTab_Crosshairs.cb_CrossList1ComBox'
 
      Begin Object Class=GUIComboBox Name=cb_CrossList2ComBox
          MaxVisibleItems=16
@@ -603,10 +592,10 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.038400
          TabOrder=0
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
          OnKeyEvent=cb_CrossList2ComBox.InternalOnKeyEvent
      End Object
-     cb_CrossList2=GUIComboBox'BallisticProV55.BallisticTab_Crosshairs.cb_CrossList2ComBox'
+     cb_CrossList2=GUIComboBox'BallisticProV55.ConfigTab_Crosshairs.cb_CrossList2ComBox'
 
      Begin Object Class=moCheckBox Name=ch_OldCrossCheck
          ComponentJustification=TXTA_Left
@@ -620,7 +609,7 @@ defaultproperties
          WinWidth=0.470000
          WinHeight=0.037833
      End Object
-     ch_OldCross=moCheckBox'BallisticProV55.BallisticTab_Crosshairs.ch_OldCrossCheck'
+     ch_OldCross=moCheckBox'BallisticProV55.ConfigTab_Crosshairs.ch_OldCrossCheck'
 
      Begin Object Class=moCheckBox Name=ch_UniCrossCheck
          ComponentJustification=TXTA_Left
@@ -633,9 +622,9 @@ defaultproperties
          WinLeft=0.010000
          WinWidth=0.470000
          WinHeight=0.037833
-         OnChange=BallisticTab_Crosshairs.InternalOnChange
+         OnChange=ConfigTab_Crosshairs.InternalOnChange
      End Object
-     ch_UniCross=moCheckBox'BallisticProV55.BallisticTab_Crosshairs.ch_UniCrossCheck'
+     ch_UniCross=moCheckBox'BallisticProV55.ConfigTab_Crosshairs.ch_UniCrossCheck'
 
-     OnPreDraw=BallisticTab_Crosshairs.InternalOnPreDraw
+     OnPreDraw=ConfigTab_Crosshairs.InternalOnPreDraw
 }

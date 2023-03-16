@@ -11,213 +11,273 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticReplicationInfo extends LinkedReplicationInfo config(BallisticProV55);
-
-var() string		ModString;
-
-enum EGameStyle
-{
-	Arena,		// BallisticPro
-	Legacy,		// BallisticV25
-	Realism,	// Kab
-	Tactical	// PvE
-};
+class BallisticReplicationInfo extends ReplicationInfo 
+	DependsOn(BC_GameStyle)
+    config(BallisticProV55);
 
 //=============================================================================
-// CONFIG VARIABLES
+// STYLE
 //=============================================================================
-var() globalconfig EGameStyle	GameStyle;				
-var() globalconfig float		AccuracyScale;			// Used for scaling general weapon accuracy.
-var() globalconfig float		RecoilScale;			// Used for scaling general weapon recoil.
-var() globalconfig bool		    bNoJumpOffset;			// Prevents weapons shifting and being offset when jumping or sprinting
-var() globalconfig bool		    bNoLongGun;				// Disable 'long gun' features
-var() globalconfig bool		    bNoReloading;			// Disables reloading and weapons use boring old style ammo handling...
-var() globalconfig float      	ReloadSpeedScale;   	// Buff reload speeds
-var() globalconfig bool         bAlternativePickups;	// Press Use to Pickup Weapon
-var() globalconfig float		PlayerADSMoveSpeedFactor;
-var() globalconfig float		PlayerCrouchSpeedFactor;
-// LDG TEST ONLY
-var() globalconfig bool         bUseFixedModifiers;                      // Testing - use fixed modifiers for various aspects - Arena only!
-var() globalconfig float        SightingTimeScale;
-var() globalconfig int          ChaosSpeedThresholdOverride;
+var BC_GameStyle.EGameStyle	GameStyle;				
+
+//=============================================================================
+// WEAPONS
+//=============================================================================
+var float					AccuracyScale;				// Used for scaling general weapon accuracy.
+var float					RecoilScale;				// Used for scaling general weapon recoil.
+var float					DamageScale;				// Scales anti-player weapon damage
+var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
+var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
+var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
+var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
+var int						MaxInventoryCapacity;		// Maximum inventory size player can hold
+
+//=============================================================================
+// GAMEPLAY
+//=============================================================================
+var bool         			bAlternativePickups;		// Press Use to Pickup Weapon
+var bool					bUniversalMineLights;   	// All BX5 mines are lit.
 
 //=============================================================================
 // PAWN
 //=============================================================================
-var() config bool		bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
-var() config bool		bNoDodging;			    // Disables dodging.
-var() config bool		bNoDoubleJump;	        // Disables double jump.
-var() config bool 		bUseRunningAnims;       // Pawns will use running anims for walking.
-var() config bool		bUniversalMineLights;   // All BX-5 mines are lit.
-
-//=============================================================================
-// PLAYER
-//=============================================================================
-var() config bool		bCustomStats;			// Enables Custom Health, Shield & Adren Stats.
-var() config int 		playerHealth;           // health the player starts with
-var() config int 		playerHealthCap;        // maximum health a player can have
-var() config int 		playerSuperHealthCap;   // maximum superhealth a player can have
-var() config int 		iAdrenaline;            // maximum adrenaline a player starts with
-var() config int 		iAdrenalineCap;         // maximum adrenaline a player can have
-var() config int 		iArmor;                 // armor the player starts with
-var() config int 		iArmorCap;              // maximum armor the player can have
+var bool					bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
+var int						StartingHealth;           	// health the player starts with
+var int						PlayerHealthMax;        	// maximum health a player can have
+var int						PlayerSuperHealthMax;   	// maximum superhealth a player can have
+var int						StartingShield;           	// armor the player starts with
+var int						PlayerShieldMax;        	// maximum armor the player can have
 
 //=============================================================================
 // MOVEMENT OVERRIDE
 //=============================================================================
-var() config bool           bOverrideMovement; // valid for classic and realism, comp and tactical will always ignore
-var() config float          PlayerStrafeScale;
-var() config float          PlayerBackpedalScale;
-var() config float          PlayerGroundSpeed;
-var() config float          PlayerAirSpeed;
-var() config float          PlayerAccelRate;
-var() config float          PlayerJumpZ;
-var() config float          PlayerDodgeZ;
-
-// NOT REPLICATED
-
-var() globalconfig float		DamageScale, DamageModHead, DamageModLimb; 	// Configurable damage modifiers
+var bool					bPlayerDeceleration;		// Decel mechanics when stopping
+var bool					bAllowDodging;				// Enables dodging.
+var bool					bAllowDoubleJump;			// Enables double jump.
+var float					PlayerWalkSpeedFactor;
+var float					PlayerCrouchSpeedFactor;
+var float					PlayerStrafeScale;
+var float					PlayerBackpedalScale;
+var float					PlayerGroundSpeed;
+var float					PlayerAirSpeed;
+var float					PlayerAccelRate;
+var float					PlayerJumpZ;
+var float					PlayerDodgeZ;
 //=============================================================================
-// KILL REWARD (why is this here? it doesn't need to be replicated)
+// SPRINT
 //=============================================================================
-var() config int 		killrewardArmor;  // armor points for a kill
-var() config int 		killrewardArmorCap;  // Limiter, the additional armor points will not exceel this value
-var() config int 		killRewardHealthpoints; // the amount of healthpoints a player gets for a kill
-var() config int 		killRewardHealthcap;  // Limiter, The additional healthpoints wont exceel this value
-var() config int 		ADRKill;  // adrenaline for normal kill
-var() config int		ADRMajorKill;   // adrenaline for major kill
-var() config int 		ADRMinorBonus;   // adrenaline for minor bonus
-var() config int 		ADRKillTeamMate;   // adrenaline for killing a teammate
-var() config int 		ADRMinorError;    // adrenaline for a minor error
-// ----------------------------------------------------------------------------
-var struct RepInfo_BCore
-{
-	var EGameStyle 	GameStyle;
-	var float		AccuracyScale;
-	var float		RecoilScale;
-	var float       ReloadSpeedScale;
-	var bool		bNoJumpOffset;
-	var bool		bNoLongGun;
-	var bool		bNoReloading;
-	var bool        bAlternativePickups;
-    var bool        bUseFixedModifiers;
-    var float       SightingTimeScale;
-    var float       ChaosSpeedThresholdOverride;
-} BCoreRep;
+var() config bool			bEnableSprint;
+var() config int			StaminaChargeRate;
+var() config int			StaminaDrainRate;
+var() config float			SprintSpeedFactor;
+var() config float			JumpDrainFactor;
 
-var struct RepInfo_BW
-{
-	var bool		bBrightPlayers;
-	var bool		bNoDodging;
-	var bool		bNoDoubleJump;
-	var bool		bUseRunningAnims;
-	var bool		bUniversalMineLights;
-	
-	//Player
-	var bool		bCustomStats;
-	var int 		playerHealth;  // health the player starts with
-    var int 		playerHealthCap; // maximum health a player can have
-    var int 		playerSuperHealthCap; // maximum superhealth a player can have
-    var int 		iAdrenaline;  // maximum adrenaline a player starts with
-    var int 		iAdrenalineCap;  // maximum adrenaline a player can have
-    var int 		iArmor;  // armor the player starts with
-    var int 		iArmorCap;  // maximum armor the player can have
-    //var float 	dieSoundAmplifier;  // amplifies the die sound
-    //var float 	dieSoundRangeAmplifier; // amplifies the range
-    //var float 	hitSoundAmplifier;  // amplifies the hit sound
-    //var float 	hitSoundRangeAmplifier;  // amplifies the range
-    //var float 	jumpDamageAmplifier;  // amplifies the jump damage
-	
-	//Kill Rewards
-	var int killrewardArmor;  // armor points for a kill
-    var int killrewardArmorCap;  // Limiter, the additional armor points will not exceel this value
-    var int killRewardHealthpoints; // the amount of healthpoints a player gets for a kill
-    var int killRewardHealthcap;  // Limiter, The additional healthpoints wont exceel this value
-    //var float MaxFallSpeed;  // beyond this speed, players will take damage when landing on a surface
-    var int ADRKill;  // adrenaline for normal kill
-    var int ADRMajorKill;   // adrenaline for major kill
-    var int ADRMinorBonus;   // adrenaline for minor bonus
-    var int ADRKillTeamMate;   // adrenaline for killing a teammate
-    var int ADRMinorError;    // adrenaline for a minor error
+//=============================================================================
+// HEALTH/ARMOR - NO REP
+//=============================================================================
+var bool					bHealthRegeneration;
+var bool					bShieldRegeneration;
+var int						HealthKillReward; // the amount of healthpoints a player gets for a kill
+var int						KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceel this value
+var int						ShieldKillReward;  // armor points for a kill
+var int						KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
+//=============================================================================
+// STYLE - NO REP
+//=============================================================================
+var bool					bKillstreaks;
 
-}BWRep;
+//=============================================================================
+// REPLICATION STRUCTURES
+// to avoid the default comparison skipping the rep
+//=============================================================================
 
-var struct RepInfo_BW_Move
+//=============================================================================
+// STYLE
+//=============================================================================
+var struct GeneralRep
 {
-    var bool           bOverrideMovement;
-    var float		   PlayerADSMoveSpeedFactor;
-    var float		   PlayerCrouchSpeedFactor;
-    var float          PlayerStrafeScale;
-    var float          PlayerBackpedalScale;
-    var float          PlayerGroundSpeed;
-    var float          PlayerAirSpeed;
-    var float          PlayerAccelRate;
-    var float          PlayerJumpZ;
-    var float          PlayerDodgeZ;
-} BWRepMove;
+	var BC_GameStyle.EGameStyle	GameStyle;				
+	var float					AccuracyScale;				// Used for scaling general weapon accuracy.
+	var float					RecoilScale;				// Used for scaling general weapon recoil.
+	var float					DamageScale;				// Scales anti-player weapon damage
+	var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
+	var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
+	var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
+	var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
+	var int						MaxInventoryCapacity;		// Maximum inventory size player can hold
+	var bool         			bAlternativePickups;		// Press Use to Pickup Weapon
+	var bool					bUniversalMineLights;   	// All BX5 mines are lit.
+} GRep;
+
+var struct PawnRep
+{
+	var bool					bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
+	var int						StartingHealth;           	// health the player starts with
+	var int						PlayerHealthMax;        	// maximum health a player can have
+	var int						PlayerSuperHealthMax;   	// maximum superhealth a player can have
+	var int						StartingShield;           	// armor the player starts with
+	var int						PlayerShieldMax;        	// maximum armor the player can have
+} PRep;
+
+var struct MoveRep
+{
+	var bool					bPlayerDeceleration;		// Decel mechanics when stopping
+	var bool					bAllowDodging;				// Enables dodging.
+	var bool					bAllowDoubleJump;			// Enables double jump.
+	var float					PlayerWalkSpeedFactor;
+	var float					PlayerCrouchSpeedFactor;
+	var float					PlayerStrafeScale;
+	var float					PlayerBackpedalScale;
+	var float					PlayerGroundSpeed;
+	var float					PlayerAirSpeed;
+	var float					PlayerAccelRate;
+	var float					PlayerJumpZ;
+	var float					PlayerDodgeZ;
+} MRep;
+
+var struct SprintRep
+{
+	var() config bool			bEnableSprint;
+	var() config int			StaminaChargeRate;
+	var() config int			StaminaDrainRate;
+	var() config float			SprintSpeedFactor;
+	var() config float			JumpDrainFactor;
+} SRep;
 
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		BCoreRep, BWRep, BWRepMove;
+		GRep, PRep, MRep, SRep;
+}
+
+final function BindToReplication()
+{
+	Log("BallisticReplicationInfo: BindToReplication");
+
+	GRep.GameStyle 						= GameStyle;
+
+	GRep.AccuracyScale			        = AccuracyScale;
+	GRep.RecoilScale			        = RecoilScale;
+	GRep.DamageScale					= DamageScale;
+	GRep.VehicleDamageScale				= VehicleDamageScale;
+	
+	GRep.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
+	GRep.bLongWeaponOffsetting			= bLongWeaponOffsetting;
+	GRep.bNoReloading					= bNoReloading;
+	GRep.MaxInventoryCapacity			= MaxInventoryCapacity;
+	GRep.bAlternativePickups 	        = bAlternativePickups;
+	GRep.bUniversalMineLights          	= bUniversalMineLights;
+
+	PRep.bBrightPlayers	            	= bBrightPlayers;
+    PRep.StartingHealth      			= StartingHealth;
+	PRep.PlayerHealthMax      			= PlayerHealthMax;
+	PRep.PlayerSuperHealthMax      		= PlayerSuperHealthMax;
+	PRep.StartingShield      			= StartingShield;
+	PRep.PlayerShieldMax      			= PlayerShieldMax;
+
+	MRep.bPlayerDeceleration			= bPlayerDeceleration;
+    MRep.bAllowDodging		            = bAllowDodging;
+	MRep.bAllowDoubleJump				= bAllowDoubleJump;
+    MRep.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
+	MRep.PlayerCrouchSpeedFactor      	= PlayerCrouchSpeedFactor;
+    MRep.PlayerStrafeScale             	= PlayerStrafeScale;
+	MRep.PlayerBackpedalScale          	= PlayerBackpedalScale;
+	MRep.PlayerGroundSpeed            	= PlayerGroundSpeed;
+	MRep.PlayerAirSpeed                	= PlayerAirSpeed;
+	MRep.PlayerAccelRate               	= PlayerAccelRate;
+    MRep.PlayerJumpZ                   	= PlayerJumpZ;
+	MRep.PlayerDodgeZ                  	= PlayerDodgeZ;
+
+	SRep.bEnableSprint					= true;
+	SRep.StaminaChargeRate				= StaminaChargeRate;
+	SRep.StaminaDrainRate				= StaminaDrainRate;
+    SRep.SprintSpeedFactor				= SprintSpeedFactor;
+	SRep.JumpDrainFactor				= JumpDrainFactor;
 }
 
 // Set all defaults to match server vars here
-simulated function InitClientVars()
+simulated function PostNetBeginPlay()
 {
-	GameStyle 			= BCoreRep.GameStyle;
-	AccuracyScale		= BCoreRep.AccuracyScale;
-	RecoilScale			= BCoreRep.RecoilScale;
-	ReloadSpeedScale 	= BCoreRep.ReloadSpeedScale;
-	bNoJumpOffset		= BCoreRep.bNoJumpOffset;
-	bNoLongGun			= BCoreRep.bNoLongGun;
-	bNoReloading		= BCoreRep.bNoReloading;
-	bAlternativePickups = BCoreRep.bAlternativePickups;
-    bUseFixedModifiers  = BCoreRep.bUseFixedModifiers;
-    SightingTimeScale   = BCoreRep.SightingTimeScale;
-    ChaosSpeedThresholdOverride = BCoreRep.ChaosSpeedThresholdOverride;
+	if (Role == ROLE_Authority)
+		return;
 
-	bBrightPlayers		= BWRep.bBrightPlayers;
-	bNoDodging			= BWRep.bNoDodging;
-	bNoDoubleJump	    = BWRep.bNoDoubleJump;
+	BindFromReplication();
 
-	bUniversalMineLights = BWRep.bUniversalMineLights;
-	bUseRunningAnims = BWRep.bUseRunningAnims;
+	BindDefaults();
+}
 
-    bOverrideMovement = BWRepMove.bOverrideMovement;
-    PlayerADSMoveSpeedFactor = BWRepMove.PlayerADSMoveSpeedFactor;
-	PlayerCrouchSpeedFactor = BWRepMove.PlayerCrouchSpeedFactor;
-    PlayerStrafeScale = BWRepMove.PlayerStrafeScale;
-	PlayerBackpedalScale = BWRepMove.PlayerBackpedalScale;
-	PlayerGroundSpeed = BWRepMove.PlayerGroundSpeed;
-	PlayerAirSpeed = BWRepMove.PlayerAirSpeed;
-	PlayerAccelRate = BWRepMove.PlayerAccelRate;
-    PlayerJumpZ = BWRepMove.PlayerJumpZ;
-    PlayerDodgeZ = BWRepMove.PlayerDodgeZ;
+simulated final function BindFromReplication()
+{
+	Log("BallisticReplicationInfo: BindFromReplication");
 
-    class.default.GameStyle 			= GameStyle;
+	GameStyle 					= GRep.GameStyle;
 
-    // settings here can be guarded later
+	AccuracyScale			    = GRep.AccuracyScale;
+	RecoilScale			        = GRep.RecoilScale;
+	DamageScale					= GRep.DamageScale;
+	VehicleDamageScale			= GRep.VehicleDamageScale;
+	
+	bWeaponJumpOffsetting			= GRep.bWeaponJumpOffsetting;
+	bLongWeaponOffsetting			= GRep.bLongWeaponOffsetting;
+	bNoReloading					= GRep.bNoReloading;
+	MaxInventoryCapacity			= GRep.MaxInventoryCapacity;
+	bAlternativePickups 	        = GRep.bAlternativePickups;
+	bUniversalMineLights          = GRep.bUniversalMineLights;
+
+	bBrightPlayers	            = PRep.bBrightPlayers;
+    StartingHealth      			= PRep.StartingHealth;
+	PlayerHealthMax      			= PRep.PlayerHealthMax;
+	PlayerSuperHealthMax      	= PRep.PlayerSuperHealthMax;
+	StartingShield      			= PRep.StartingShield;
+	PlayerShieldMax      			= PRep.PlayerShieldMax;
+
+	bPlayerDeceleration			= MRep.bPlayerDeceleration;
+    bAllowDodging		            = MRep.bAllowDodging;
+	bAllowDoubleJump				= MRep.bAllowDoubleJump;
+    PlayerWalkSpeedFactor      	= MRep.PlayerWalkSpeedFactor;
+	PlayerCrouchSpeedFactor       = MRep.PlayerCrouchSpeedFactor;
+    PlayerStrafeScale             = MRep.PlayerStrafeScale;
+	PlayerBackpedalScale          = MRep.PlayerBackpedalScale;
+	PlayerGroundSpeed             = MRep.PlayerGroundSpeed;
+	PlayerAirSpeed                = MRep.PlayerAirSpeed;
+	PlayerAccelRate               = MRep.PlayerAccelRate;
+    PlayerJumpZ                   = MRep.PlayerJumpZ;
+	PlayerDodgeZ                  = MRep.PlayerDodgeZ;
+
+	bEnableSprint					= true;
+	StaminaChargeRate				= SRep.StaminaChargeRate;
+	StaminaDrainRate				= SRep.StaminaDrainRate;
+    SprintSpeedFactor				= SRep.SprintSpeedFactor;
+	JumpDrainFactor				= SRep.JumpDrainFactor;
+}
+
+simulated final function BindDefaults()
+{
+	class.default.GameStyle 					= GameStyle;
+
 	class.default.AccuracyScale			        = AccuracyScale;
 	class.default.RecoilScale			        = RecoilScale;
-	class.default.ReloadSpeedScale 		        = ReloadSpeedScale;
-	class.default.bNoJumpOffset			        = bNoJumpOffset;
-	class.default.bNoLongGun			        = bNoLongGun;
-	class.default.bNoReloading			        = bNoReloading;
-    class.default.bNoDodging		            = bNoDodging;
-	class.default.bNoDoubleJump	                = bNoDoubleJump;
-
+	class.default.DamageScale					= DamageScale;
+	class.default.VehicleDamageScale			= VehicleDamageScale;
+	
+	class.default.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
+	class.default.bLongWeaponOffsetting			= bLongWeaponOffsetting;
+	class.default.bNoReloading					= bNoReloading;
+	class.default.MaxInventoryCapacity			= MaxInventoryCapacity;
 	class.default.bAlternativePickups 	        = bAlternativePickups;
-    class.default.SightingTimeScale             = SightingTimeScale;
-    class.default.ReloadSpeedScale              = ReloadSpeedScale;
-    class.default.ChaosSpeedThresholdOverride   = ChaosSpeedThresholdOverride;
+	class.default.bUniversalMineLights          = bUniversalMineLights;
 
 	class.default.bBrightPlayers	            = bBrightPlayers;
-	class.default.bUniversalMineLights          = bUniversalMineLights;
-	class.default.bUseRunningAnims              = bUseRunningAnims;
+    class.default.StartingHealth      			= StartingHealth;
+	class.default.PlayerHealthMax      			= PlayerHealthMax;
+	class.default.PlayerSuperHealthMax      	= PlayerSuperHealthMax;
+	class.default.StartingShield      			= StartingShield;
+	class.default.PlayerShieldMax      			= PlayerShieldMax;
 
-    class.default.bOverrideMovement             = bOverrideMovement;
-    class.default.PlayerADSMoveSpeedFactor      = PlayerADSMoveSpeedFactor;
+	class.default.bPlayerDeceleration			= bPlayerDeceleration;
+    class.default.bAllowDodging		            = bAllowDodging;
+	class.default.bAllowDoubleJump				= bAllowDoubleJump;
+    class.default.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
 	class.default.PlayerCrouchSpeedFactor       = PlayerCrouchSpeedFactor;
     class.default.PlayerStrafeScale             = PlayerStrafeScale;
 	class.default.PlayerBackpedalScale          = PlayerBackpedalScale;
@@ -227,111 +287,34 @@ simulated function InitClientVars()
     class.default.PlayerJumpZ                   = PlayerJumpZ;
 	class.default.PlayerDodgeZ                  = PlayerDodgeZ;
 
-	// Player
-    if (bCustomStats)
-	{
-		playerHealth = BWRep.playerHealth;
-		playerHealthCap = BWRep.playerHealthCap;
-		playerSuperHealthCap = BWRep.playerSuperHealthCap;
-		iAdrenaline = BWRep.iAdrenaline;
-		iAdrenalineCap = BWRep.iAdrenalineCap;
-		iArmor = BWRep.iArmor;
-		iArmorCap = BWRep.iArmorCap;
-	}
-		
-	killrewardArmor = BWRep.killrewardArmor;
-    killrewardArmorCap = BWRep.killrewardArmorCap;
-    killRewardHealthpoints = BWRep.killRewardHealthpoints;
-    killRewardHealthcap = BWRep.killRewardHealthcap;
-    ADRKill = BWRep.ADRKill;  // adrenaline for normal kill
-    ADRMajorKill = BWRep.ADRMajorKill;   // adrenaline for major kill
-    ADRMinorBonus = BWRep.ADRMinorBonus;   // adrenaline for minor bonus
-    ADRKillTeamMate = BWRep.ADRKillTeamMate;   // adrenaline for killing a teammate
-    ADRMinorError = BWRep.ADRMinorError;    // adrenaline for a minor error
+	class.default.bEnableSprint					= true;
+	class.default.StaminaChargeRate				= StaminaChargeRate;
+	class.default.StaminaDrainRate				= StaminaDrainRate;
+    class.default.SprintSpeedFactor				= SprintSpeedFactor;
+	class.default.JumpDrainFactor				= JumpDrainFactor;
 
-	class.default.killrewardArmor = killrewardArmor;
-    class.default.killrewardArmorCap = killrewardArmorCap;
-    class.default.killRewardHealthpoints = killRewardHealthpoints;
-    class.default.killRewardHealthcap = killRewardHealthcap;
-    class.default.ADRKill = ADRKill;  // adrenaline for normal kill
-    class.default.ADRMajorKill = ADRMajorKill;   // adrenaline for major kill
-    class.default.ADRMinorBonus = ADRMinorBonus;   // adrenaline for minor bonus
-    class.default.ADRKillTeamMate = ADRKillTeamMate;   // adrenaline for killing a teammate
-    class.default.ADRMinorError = ADRMinorError;    // adrenaline for a minor error
+	class.default.bHealthRegeneration			= bHealthRegeneration;
+	class.default.bShieldRegeneration			= bShieldRegeneration;
+	class.default.HealthKillReward				= HealthKillReward;
+	class.default.KillRewardHealthMax			= KillRewardHealthMax;
+	class.default.ShieldKillReward				= ShieldKillReward;
+	class.default.KillRewardShieldMax			= KillRewardShieldMax;
 
-	Log("InitClientVars: "$ModString);
+	class.default.bKillstreaks					= bKillstreaks;
 
-	Log("AccuracyScale: "$AccuracyScale);
-	Log("RecoilScale: "$RecoilScale);
-	Log("No Jump Offset: "$bNoJumpOffset);
-	Log("bNoLongGun: "$bNoLongGun);
-	Log("bNoReloading: "$bNoReloading);
-	Log("bBrightPlayers: "$bBrightPlayers);
-	Log("bNoDodging: "$bNoDodging);
-	Log("bNoDoubleJump: "$bNoDoubleJump);
-}
+	Log("BallisticReplicationInfo: BindDefaults");
 
-function ServerInitialize()
-{
-	BCoreRep.GameStyle				= GameStyle;
-	BCoreRep.AccuracyScale			= AccuracyScale;
-	BCoreRep.RecoilScale			= RecoilScale;
-	BCoreRep.ReloadSpeedScale 		= ReloadSpeedScale;
-	BCoreRep.bNoJumpOffset			= bNoJumpOffset;
-	BCoreRep.bNoLongGun				= bNoLongGun;
-	BCoreRep.bNoReloading			= bNoReloading;
-	BCoreRep.bAlternativePickups 	= bAlternativePickups;
-    BCoreRep.bUseFixedModifiers     = bUseFixedModifiers;
-    BCoreRep.SightingTimeScale      = SightingTimeScale;
-    BCoreRep.ChaosSpeedThresholdOverride = ChaosSpeedThresholdOverride;
+	Log("Accuracy Scale: "$AccuracyScale);
+	Log("Recoil Scale: "$RecoilScale);
+	Log("Sprint/Jump Weapon Offsetting: "$bWeaponJumpOffsetting);
+	Log("Long Weapon Offsetting: "$bLongWeaponOffsetting);
+	Log("Reloading: "$ !bNoReloading);
+	Log("Bright Players: "$bBrightPlayers);
+	Log("Dodging: "$bAllowDodging);
+	Log("Double Jumping: "$bAllowDoubleJump);
 
-    BWRep.bBrightPlayers	= bBrightPlayers;
-	BWRep.bNoDodging		= bNoDodging;
-	BWRep.bNoDoubleJump	= bNoDoubleJump;
-	BWRep.bUniversalMineLights = bUniversalMineLights;
-	BWRep.bUseRunningAnims = bUseRunningAnims;
-
-    BWRepMove.bOverrideMovement = bOverrideMovement;
-    BWRepMove.PlayerADSMoveSpeedFactor = PlayerADSMoveSpeedFactor;
-    BWRepMove.PlayerCrouchSpeedFactor = PlayerCrouchSpeedFactor;
-    BWRepMove.PlayerStrafeScale = PlayerStrafeScale;
-	BWRepMove.PlayerBackpedalScale = PlayerBackpedalScale;
-	BWRepMove.PlayerGroundSpeed = PlayerGroundSpeed;
-	BWRepMove.PlayerAirSpeed = PlayerAirSpeed;
-	BWRepMove.PlayerAccelRate = PlayerAccelRate;
-    BWRepMove.PlayerJumpZ = PlayerJumpZ;
-    BWRepMove.PlayerDodgeZ = PlayerDodgeZ;
-
-	// Player
-    if (bCustomStats)
-	{
-		BWRep.playerHealth = playerHealth;
-		BWRep.playerHealthCap = playerHealthCap;
-		BWRep.playerSuperHealthCap = playerSuperHealthCap;
-		BWRep.iAdrenaline = iAdrenaline;
-		BWRep.iAdrenalineCap = iAdrenalineCap;
-		BWRep.iArmor = iArmor;
-		BWRep.iArmorCap = iArmorCap;
-	}
-	
-    //BWRep.dieSoundAmplifier = dieSoundAmplifier;
-    //BWRep.dieSoundRangeAmplifier = dieSoundRangeAmplifier;
-    //BWRep.hitSoundAmplifier = hitSoundAmplifier;
-    //BWRep.hitSoundRangeAmplifier = hitSoundRangeAmplifier;
-    //BWRep.jumpDamageAmplifier = jumpDamageAmplifier;
-	
-	//Kill Rewards
-	BWRep.killrewardArmor = killrewardArmor;
-    BWRep.killrewardArmorCap = killrewardArmorCap;
-    BWRep.killRewardHealthpoints = killRewardHealthpoints;
-    BWRep.killRewardHealthcap = killRewardHealthcap;
-    BWRep.ADRKill = ADRKill;
-    BWRep.ADRMajorKill = ADRMajorKill;
-    BWRep.ADRMinorBonus = ADRMinorBonus;
-    BWRep.ADRKillTeamMate = ADRKillTeamMate;
-    BWRep.ADRMinorError = ADRMinorError;
-
-	Log("ServerInitialize: "$ModString);
+	if (Role == ROLE_Authority)
+		BindToReplication();
 }
 
 static function BallisticReplicationInfo GetInstance(actor A)
@@ -346,30 +329,24 @@ static function BallisticReplicationInfo GetInstance(actor A)
 	return None;
 }
 
-simulated event PostNetBeginPlay()
-{
-	if (Role < ROLE_Authority)
-		InitClientVars();
-}
-
 static final function bool IsArena()
 {
-    return default.GameStyle == EGameStyle.Arena;
+    return default.GameStyle == GS_Pro;
 }
 
 static final function bool IsClassic()
 {
-    return default.GameStyle == EGameStyle.Legacy;
+    return default.GameStyle == GS_Classic;
 }
 
 static final function bool IsRealism()
 {
-    return default.GameStyle == EGameStyle.Realism;
+    return default.GameStyle == GS_Realism;
 }
 
 static final function bool IsTactical()
 {
-    return default.GameStyle == EGameStyle.Tactical;
+    return default.GameStyle == GS_Tactical;
 }
 
 static final function bool IsClassicOrRealism()
@@ -382,86 +359,40 @@ static final function bool IsArenaOrTactical()
     return IsArena() || IsTactical();
 }
 
-static final function bool UseFixedModifiers()
-{
-    return default.GameStyle == EGameStyle.Arena && default.bUseFixedModifiers;
-}
-
-static final function float GetADSMoveSpeedMultiplier()
-{
-    if (IsArenaOrTactical())
-        return 1.0f;
-
-    return default.PlayerADSMoveSpeedFactor;
-}
-
-static function BallisticReplicationInfo GetOrCreateInstance(actor A)
-{
-	local BallisticReplicationInfo BRI;
-
-	BRI = GetInstance(A);
-
-	if (BRI == None)
-	{
-		BRI = A.Spawn(class'BallisticReplicationInfo');
-		BRI.ServerInitialize();
-	}
-
-	return BRI;
-}
-
 defaultproperties
 {
-    bOnlyDirtyReplication=False
-    bUseFixedModifiers=False
+    RemoteRole=ROLE_SimulatedProxy
+	bAlwaysRelevant=True
 
-    ModString="Ballistic Weapons Pro"
+	// defaults used from pro, config styles will override them directly
+	AccuracyScale=1
+	RecoilScale=1
+	DamageScale=1
+	VehicleDamageScale=1
 
-    AccuracyScale=1.000000
-    RecoilScale=1.000000
-    ReloadSpeedScale=1.000000
-    bAlternativePickups=False
+	bWeaponJumpOffsetting=True
+	bLongWeaponOffsetting=False
+	bNoReloading=False
 
-    DamageScale=1.0f
-    DamageModHead=1.5f
-    DamageModLimb=0.7f
-    SightingTimeScale=1.0f
-    PlayerADSMoveSpeedFactor=0.9
-    PlayerCrouchSpeedFactor=0.45
+	bAlternativePickups=False
+	bUniversalMineLights=True
 
-	 // Movement rate
-    bOverrideMovement=False
+	bBrightPlayers=True
+    StartingHealth=100
+	PlayerHealthMax=100
+	PlayerSuperHealthMax=200
+	StartingShield=100
+	PlayerShieldMax=200
+
+    bAllowDodging=True
+	bAllowDoubleJump=True
+    PlayerWalkSpeedFactor=0.9
+	PlayerCrouchSpeedFactor=0.45
     PlayerStrafeScale=1
-    PlayerBackpedalScale=1
-    PlayerGroundSpeed=260.000000
-    PlayerAirSpeed=260.000000
-    PlayerAccelRate=2048.000000
-    PlayerJumpZ=256
-    PlayerDodgeZ=170
-
-    //Player
-    //PlayerSpeedScale=1.000000
-    bCustomStats=False
-    PlayerHealth=100
-    PlayerHealthCap=100
-    PlayerSuperHealthCap=150
-    iAdrenaline=0
-    iAdrenalineCap=100
-    iArmor=100
-    iArmorCap=100
-    //dieSoundAmplifier=6.500000
-    //dieSoundRangeAmplifier=1.000000
-    //hitSoundAmplifier=8.000000
-    //hitSoundRangeAmplifier=1.500000
-    //JumpDamageAmplifier=80.000000
-    //MaxFallSpeed=800.000000
-    
-    //Kill Rewards
-    KillrewardArmor=10
-    KillRewardHealthpoints=20
-    ADRKill=10
-    ADRMajorKill=15
-    ADRMinorBonus=5
-    ADRKillTeamMate=-10
-    ADRMinorError=-5
+	PlayerBackpedalScale=1
+	PlayerGroundSpeed=260
+	PlayerAirSpeed=260
+	PlayerAccelRate=2048
+    PlayerJumpZ=294
+	PlayerDodgeZ=210
 }

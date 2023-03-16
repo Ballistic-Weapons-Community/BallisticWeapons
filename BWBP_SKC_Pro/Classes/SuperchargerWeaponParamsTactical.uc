@@ -140,7 +140,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		InventorySize=8
-		SightMoveSpeedFactor=0.75
+		SightMoveSpeedFactor=0.5
 		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightingTime=0.5
 		SightPivot=(Pitch=64)

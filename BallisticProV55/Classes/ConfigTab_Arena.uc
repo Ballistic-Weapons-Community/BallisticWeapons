@@ -1,10 +1,10 @@
 //=============================================================================
-// BallisticTab_Player.
+// ConfigTab_Player.
 //
 // by Paul "Grum" Haack.
 // Copyright(c) 2012 Crazy-Froggers.com. All Rights Reserved.
 //=============================================================================
-class BallisticTab_Arena extends UT2K4TabPanel;
+class ConfigTab_Arena extends ConfigTabBase;
 
 var Automated GUIImage		Box_Unused;			// Unselected Weapons Image
 var Automated GUIImage		Box_Used;			// Selected Weapons Image
@@ -21,9 +21,6 @@ var automated moCheckbox	ch_Random;			// One Random Weapon
 var automated moCheckbox	ch_PerSpawn;		// Random Per Spawn
 var automated GUIComboBox	cb_Presets;			// Presets
 var automated GUILabel   	l_PresetLabel;		// Presets Lable
-
-var BallisticConfigMenuPro         p_Anchor;
-var bool                        bInitialized;
 
 //==================================================================
 // Ballistic Arena Menu & General Menu Code
@@ -162,9 +159,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	local int i, j;
 
 	Super.InitComponent(MyController, MyOwner);
-	
-	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-        p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
 
 	for(i=0;i<Presets.length;i++)
 	    cb_Presets.AddItem(Presets[i].PresetName,,string(i));
@@ -354,7 +348,7 @@ defaultproperties
          WinHeight=0.675000
          RenderWeight=0.002000
      End Object
-     Box_Unused=GUIImage'BallisticProV55.BallisticTab_Arena.ImageBoxUnused'
+     Box_Unused=GUIImage'BallisticProV55.ConfigTab_Arena.ImageBoxUnused'
 
      Begin Object Class=GUIImage Name=ImageBoxUsed
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -365,7 +359,7 @@ defaultproperties
          WinHeight=0.675000
          RenderWeight=0.002000
      End Object
-     Box_Used=GUIImage'BallisticProV55.BallisticTab_Arena.ImageBoxUsed'
+     Box_Used=GUIImage'BallisticProV55.ConfigTab_Arena.ImageBoxUsed'
 
      Begin Object Class=GUIButton Name=AddButton
          Caption="ADD"
@@ -373,10 +367,10 @@ defaultproperties
          WinLeft=0.450000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=BallisticTab_Arena.InternalOnClick
+         OnClick=ConfigTab_Arena.InternalOnClick
          OnKeyEvent=AddButton.InternalOnKeyEvent
      End Object
-     bAdd=GUIButton'BallisticProV55.BallisticTab_Arena.AddButton'
+     bAdd=GUIButton'BallisticProV55.ConfigTab_Arena.AddButton'
 
      Begin Object Class=GUIButton Name=RemoveButton
          Caption="REMOVE"
@@ -384,10 +378,10 @@ defaultproperties
          WinLeft=0.450000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=BallisticTab_Arena.InternalOnClick
+         OnClick=ConfigTab_Arena.InternalOnClick
          OnKeyEvent=RemoveButton.InternalOnKeyEvent
      End Object
-     bRemove=GUIButton'BallisticProV55.BallisticTab_Arena.RemoveButton'
+     bRemove=GUIButton'BallisticProV55.ConfigTab_Arena.RemoveButton'
 
      Begin Object Class=GUIButton Name=SaveButton
          Caption="SAVE"
@@ -395,10 +389,10 @@ defaultproperties
          WinLeft=0.725000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=BallisticTab_Arena.InternalOnClick
+         OnClick=ConfigTab_Arena.InternalOnClick
          OnKeyEvent=SaveButton.InternalOnKeyEvent
      End Object
-     bSave=GUIButton'BallisticProV55.BallisticTab_Arena.SaveButton'
+     bSave=GUIButton'BallisticProV55.ConfigTab_Arena.SaveButton'
 
      Begin Object Class=GUIButton Name=DeleteButton
          Caption="DELETE"
@@ -406,10 +400,10 @@ defaultproperties
          WinLeft=0.825000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=BallisticTab_Arena.InternalOnClick
+         OnClick=ConfigTab_Arena.InternalOnClick
          OnKeyEvent=DeleteButton.InternalOnKeyEvent
      End Object
-     BDelete=GUIButton'BallisticProV55.BallisticTab_Arena.DeleteButton'
+     BDelete=GUIButton'BallisticProV55.ConfigTab_Arena.DeleteButton'
 
      Begin Object Class=GUIButton Name=AddAllButton
          Caption="FILL"
@@ -417,10 +411,10 @@ defaultproperties
          WinLeft=0.450000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=BallisticTab_Arena.InternalOnClick
+         OnClick=ConfigTab_Arena.InternalOnClick
          OnKeyEvent=AddAllButton.InternalOnKeyEvent
      End Object
-     BAddAll=GUIButton'BallisticProV55.BallisticTab_Arena.AddAllButton'
+     BAddAll=GUIButton'BallisticProV55.ConfigTab_Arena.AddAllButton'
 
      Begin Object Class=GUIButton Name=RemoveAllButton
          Caption="EMPTY"
@@ -428,10 +422,10 @@ defaultproperties
          WinLeft=0.450000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=BallisticTab_Arena.InternalOnClick
+         OnClick=ConfigTab_Arena.InternalOnClick
          OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
      End Object
-     BRemoveAll=GUIButton'BallisticProV55.BallisticTab_Arena.RemoveAllButton'
+     BRemoveAll=GUIButton'BallisticProV55.ConfigTab_Arena.RemoveAllButton'
 
      Begin Object Class=GUIListBox Name=UsedWeaponList
          bVisibleWhenEmpty=True
@@ -445,7 +439,7 @@ defaultproperties
          RenderWeight=0.510000
          TabOrder=1
      End Object
-     lb_UsedWeapons=GUIListBox'BallisticProV55.BallisticTab_Arena.UsedWeaponList'
+     lb_UsedWeapons=GUIListBox'BallisticProV55.ConfigTab_Arena.UsedWeaponList'
 
      Begin Object Class=GUIListBox Name=UnusedWeaponList
          bVisibleWhenEmpty=True
@@ -460,7 +454,7 @@ defaultproperties
          RenderWeight=0.510000
          TabOrder=1
      End Object
-     lb_UnusedWeapons=GUIListBox'BallisticProV55.BallisticTab_Arena.UnusedWeaponList'
+     lb_UnusedWeapons=GUIListBox'BallisticProV55.ConfigTab_Arena.UnusedWeaponList'
 
      Begin Object Class=moCheckBox Name=RandomCheck
          ComponentJustification=TXTA_Left
@@ -474,7 +468,7 @@ defaultproperties
          WinWidth=0.350000
          WinHeight=0.040000
      End Object
-     ch_Random=moCheckBox'BallisticProV55.BallisticTab_Arena.RandomCheck'
+     ch_Random=moCheckBox'BallisticProV55.ConfigTab_Arena.RandomCheck'
 
      Begin Object Class=moCheckBox Name=PerSpawnCheck
          ComponentJustification=TXTA_Left
@@ -488,7 +482,7 @@ defaultproperties
          WinWidth=0.350000
          WinHeight=0.040000
      End Object
-     ch_PerSpawn=moCheckBox'BallisticProV55.BallisticTab_Arena.PerSpawnCheck'
+     ch_PerSpawn=moCheckBox'BallisticProV55.ConfigTab_Arena.PerSpawnCheck'
 
      Begin Object Class=GUIComboBox Name=PresetsComboBox
          Hint="Pick a preset list of weapons."
@@ -497,10 +491,10 @@ defaultproperties
          WinWidth=0.300000
          WinHeight=0.030000
          TabOrder=0
-         OnChange=BallisticTab_Arena.InternalOnChange
+         OnChange=ConfigTab_Arena.InternalOnChange
          OnKeyEvent=PresetsComboBox.InternalOnKeyEvent
      End Object
-     cb_Presets=GUIComboBox'BallisticProV55.BallisticTab_Arena.PresetsComboBox'
+     cb_Presets=GUIComboBox'BallisticProV55.ConfigTab_Arena.PresetsComboBox'
 
      Begin Object Class=GUILabel Name=PresetLabel
          Caption="Presets"
@@ -513,7 +507,7 @@ defaultproperties
          WinWidth=0.275000
          WinHeight=0.030000
      End Object
-     l_PresetLabel=GUILabel'BallisticProV55.BallisticTab_Arena.PresetLabel'
+     l_PresetLabel=GUILabel'BallisticProV55.ConfigTab_Arena.PresetLabel'
 
 	 Presets(0)=(PresetName="Sidearm Shootout",WeaponClassNames=("BallisticProV55.M806Pistol","BallisticProV55.A42SkrithPistol","BallisticProV55.XK2SubMachinegun","BallisticProV55.MRT6Shotgun","BallisticProV55.AM67Pistol","BallisticProV55.D49Revolver","BallisticProV55.Fifty9MachinePistol","BallisticProV55.RS8Pistol","BallisticProV55.XRS10SubMachinegun"))
      Presets(1)=(PresetName="Monster Weapons",WeaponClassNames=("BallisticProV55.G5Bazooka","BallisticProV55.HVCMk9LightningGun","BallisticProV55.M75Railgun","BallisticProV55.RX22AFlamer","BallisticProV55.XMV850Minigun"))

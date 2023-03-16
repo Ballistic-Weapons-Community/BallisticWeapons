@@ -1,5 +1,5 @@
 //=============================================================================
-// BallisticTab_Killstreaks
+// MidGameTab_Killstreaks
 
 //
 // Menu for selecting weapon loadout. Consists of several categories, user can
@@ -9,27 +9,27 @@
 // Modified by Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTab_Killstreaks extends MidGamePanel;
+class MidGameTab_Killstreaks extends MidGamePanel;
 
-var bool					bInitialized; // showpanel
-var bool					bLoadInitialized;
+var bool						bInitialized;
+var bool						bLoadInitialized;
 
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
-var automated GUILoadOutItem Item_Streak1, Item_Streak2;
-var automated GUIComboBox	 cb_Streak1, cb_Streak2;
-var Automated GUIImage MyBack, Box_Streak1, Box_Streak2, Streak1Back, Streak2Back;
-var automated GUIHeader MyHeader;
-var automated GUILabel	l_Receiving;
+var automated GUILoadOutItem 	Item_Streak1, Item_Streak2;
+var automated GUIComboBox	 	cb_Streak1, cb_Streak2;
+var automated GUIImage 			MyBack, Box_Streak1, Box_Streak2, Streak1Back, Streak2Back;
+var automated GUIHeader 		MyHeader;
+var automated GUILabel			l_Receiving;
 
-var bool bWeaponsLoaded;
+var bool 						bWeaponsLoaded;
 
-var() array<String>								DefaultStreaks;
+var() array<String>				DefaultStreaks;
 
-var() localized string QuickListText;
+var() localized string 			QuickListText;
 
-var localized string ReceivingText[2];
+var localized string 			ReceivingText[2];
 
-var KillstreakLRI KLRI;
+var KillstreakLRI 				KLRI;
 
 function InitPanel()
 {
@@ -239,7 +239,7 @@ defaultproperties
          OnClick=Streak1Image.InternalOnClick
          OnRightClick=Streak1Image.InternalOnRightClick
      End Object
-     Item_Streak1=GUILoadOutItem'BallisticProV55.BallisticTab_Killstreaks.Streak1Image'
+     Item_Streak1=GUILoadOutItem'BallisticProV55.MidGameTab_Killstreaks.Streak1Image'
 
      Begin Object Class=GUILoadOutItem Name=Streak2Image
          NAImage=Texture'BW_Core_WeaponTex.Icons.BigIcon_NA'
@@ -252,7 +252,7 @@ defaultproperties
          OnClick=Streak2Image.InternalOnClick
          OnRightClick=Streak2Image.InternalOnRightClick
      End Object
-     Item_Streak2=GUILoadOutItem'BallisticProV55.BallisticTab_Killstreaks.Streak2Image'
+     Item_Streak2=GUILoadOutItem'BallisticProV55.MidGameTab_Killstreaks.Streak2Image'
 
      Begin Object Class=GUIComboBox Name=cb_Streak1ComBox
          MaxVisibleItems=16
@@ -262,10 +262,10 @@ defaultproperties
          WinWidth=0.196094
          WinHeight=0.040000
          TabOrder=0
-         OnChange=BallisticTab_Killstreaks.InternalOnChange
+         OnChange=MidGameTab_Killstreaks.InternalOnChange
          OnKeyEvent=cb_Streak1ComBox.InternalOnKeyEvent
      End Object
-     cb_Streak1=GUIComboBox'BallisticProV55.BallisticTab_Killstreaks.cb_Streak1ComBox'
+     cb_Streak1=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak1ComBox'
 
      Begin Object Class=GUIComboBox Name=cb_Streak2Box
          MaxVisibleItems=16
@@ -275,10 +275,10 @@ defaultproperties
          WinWidth=0.196094
          WinHeight=0.040000
          TabOrder=0
-         OnChange=BallisticTab_Killstreaks.InternalOnChange
+         OnChange=MidGameTab_Killstreaks.InternalOnChange
          OnKeyEvent=cb_Streak2Box.InternalOnKeyEvent
      End Object
-     cb_Streak2=GUIComboBox'BallisticProV55.BallisticTab_Killstreaks.cb_Streak2Box'
+     cb_Streak2=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak2Box'
 
      Begin Object Class=GUIImage Name=ImageBoxStreak1
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -289,7 +289,7 @@ defaultproperties
          WinHeight=0.240000
          RenderWeight=0.002000
      End Object
-     Box_Streak1=GUIImage'BallisticProV55.BallisticTab_Killstreaks.ImageBoxStreak1'
+     Box_Streak1=GUIImage'BallisticProV55.MidGameTab_Killstreaks.ImageBoxStreak1'
 
      Begin Object Class=GUIImage Name=ImageBoxStreak2
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -300,7 +300,7 @@ defaultproperties
          WinHeight=0.240000
          RenderWeight=0.002000
      End Object
-     Box_Streak2=GUIImage'BallisticProV55.BallisticTab_Killstreaks.ImageBoxStreak2'
+     Box_Streak2=GUIImage'BallisticProV55.MidGameTab_Killstreaks.ImageBoxStreak2'
 
      Begin Object Class=GUIImage Name=Streak1BackImage
          Image=Texture'Engine.MenuBlack'
@@ -311,7 +311,7 @@ defaultproperties
          WinHeight=0.200000
          RenderWeight=0.003000
      End Object
-     Streak1Back=GUIImage'BallisticProV55.BallisticTab_Killstreaks.Streak1BackImage'
+     Streak1Back=GUIImage'BallisticProV55.MidGameTab_Killstreaks.Streak1BackImage'
 
      Begin Object Class=GUIImage Name=Streak2BackImage
          Image=Texture'Engine.MenuBlack'
@@ -322,7 +322,7 @@ defaultproperties
          WinHeight=0.200000
          RenderWeight=0.003000
      End Object
-     Streak2Back=GUIImage'BallisticProV55.BallisticTab_Killstreaks.Streak2BackImage'
+     Streak2Back=GUIImage'BallisticProV55.MidGameTab_Killstreaks.Streak2BackImage'
 	 
      Begin Object Class=GUILabel Name=l_Receivinglabel
          TextAlign=TXTA_Center
@@ -333,7 +333,7 @@ defaultproperties
          WinWidth=0.900000
          WinHeight=0.040000
      End Object
-     l_Receiving=GUILabel'BallisticProV55.BallisticTab_Killstreaks.l_Receivinglabel'
+     l_Receiving=GUILabel'BallisticProV55.MidGameTab_Killstreaks.l_Receivinglabel'
 
      DefaultStreaks(0)="BallisticProV55.MRocketLauncher"
      DefaultStreaks(1)="BallisticProV55.RX22AFlamer"

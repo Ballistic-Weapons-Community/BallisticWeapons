@@ -131,7 +131,7 @@ defaultproperties
 		PlayerSpeedFactor=0.95
         SightMoveSpeedFactor=0.5
 		MagAmmo=50
-		SightingTime=0.4
+		SightingTime=0.45
 		DisplaceDurationMult=1.4
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

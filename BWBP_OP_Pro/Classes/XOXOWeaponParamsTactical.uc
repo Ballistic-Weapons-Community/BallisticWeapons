@@ -235,7 +235,7 @@ defaultproperties
 		SightPivot=(Pitch=768)
 		InventorySize=6
 		SightMoveSpeedFactor=0.75
-		SightingTime=0.2
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=70
 		WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")

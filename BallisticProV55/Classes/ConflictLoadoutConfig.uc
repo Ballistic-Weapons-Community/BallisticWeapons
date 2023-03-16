@@ -1,12 +1,12 @@
 class ConflictLoadoutConfig extends Object
-	DependsOn(BallisticTab_ConflictLoadoutPro)
+	DependsOn(MidGameTab_Conflict)
 	config(BallisticProV55);
 
 var globalconfig array<string> 		SavedInventory;
 var globalconfig int                InitialWeaponIndex;
 var globalconfig bool 				HasPrompted;
 
-static function UpdateSavedInventory(array<BallisticTab_ConflictLoadoutPro.Item> inventory)
+static function UpdateSavedInventory(array<MidGameTab_Conflict.Item> inventory)
 {
 	local int i;
 	

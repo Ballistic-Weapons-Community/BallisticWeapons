@@ -67,7 +67,7 @@ defaultproperties
 		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.75
-		SightingTime=0.2
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=25
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

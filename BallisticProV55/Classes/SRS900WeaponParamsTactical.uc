@@ -69,7 +69,7 @@ defaultproperties
 		SightOffset=(X=20.000000,Z=11.750000)
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 		MagAmmo=20
-		SightingTime=0.4
+		SightingTime=0.5
 		SightMoveSpeedFactor=0.5
         InventorySize=6
         ZoomType=ZT_Logarithmic

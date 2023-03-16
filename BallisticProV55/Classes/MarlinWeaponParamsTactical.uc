@@ -105,7 +105,7 @@ defaultproperties
 		ReloadAnimRate=2.000000
 		SightOffset=(X=4.000000,Y=-0.100000,Z=9.100000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
-		SightingTime=0.25
+		SightingTime=0.35
         SightMoveSpeedFactor=0.75
 		MagAmmo=8
         InventorySize=5

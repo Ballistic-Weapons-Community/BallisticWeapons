@@ -1,5 +1,5 @@
 //=============================================================================
-// BallisticTab_LoadoutPro.
+// ConfigTab_Loadout.
 //
 // This tab is used to configure loadout boxes for Ballistic Loadout mutator
 // Includes:
@@ -16,11 +16,11 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTab_LoadoutPro extends UT2K4TabPanel config(BallisticProV55) DependsOn(Mut_Loadout);
+class ConfigTab_Loadout extends ConfigTabBase 
+	DependsOn(Mut_Loadout)
+	config(BallisticProV55);
 
-var BallisticConfigMenuPro		p_Anchor;
-var bool					bInitialized;
-var config bool				bUseAllWeapons;
+var config bool						bUseAllWeapons;
 
 var automated GUIImage				Box_New, Box_WeapIcon, Pic_Weapon;
 var automated GUILabel				l_NewList, l_WeapTitle;
@@ -31,13 +31,13 @@ var automated moFloatEdit			fl_RequiredTime, fl_RequiredFrags, fl_RequiredEffici
 
 struct LoadOutBox
 {
-	var array<string>	WeaponNames;
+	var array<string>		WeaponNames;
 };
-var LoadoutBox	Boxes[5];
+var LoadoutBox				Boxes[5];
 var localized string		BoxNames[5];
-var int			SelectedBox;
+var int						SelectedBox;
 
-var() localized string Headings[12];
+var() localized string 		Headings[12];
 
 struct LOWeapInfo
 {
@@ -56,19 +56,8 @@ struct LOWeapInfo
 };
 var   array<LOWeapInfo> WeaponInfo;
 
-function InitComponent(GUIController MyController, GUIComponent MyOwner)
+function InitializeConfigTab()
 {
-	Super.InitComponent(MyController, MyOwner);
-	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
-}
-
-function ShowPanel(bool bShow)
-{
-	super.ShowPanel(bShow);
-	if (bInitialized)
-		return;
-
 	lb_NewWeapons.CheckList.OnClick = InternalOnClick;
 	lb_NewWeapons.CheckList.OnRightClick = InternalOnRightClick;
 	ch_AllWeaps.MyCheckBox.OnClick = InternalOnClick;
@@ -79,7 +68,6 @@ function ShowPanel(bool bShow)
 
 	LoadBoxesFromMutator();
 	LoadBox(0);
-	bInitialized = true;
 }
 
 function LoadList()
@@ -582,7 +570,7 @@ defaultproperties
          WinHeight=0.800000
          RenderWeight=0.002000
      End Object
-     Box_New=GUIImage'BallisticProV55.BallisticTab_LoadoutPro.Box_NewImg'
+     Box_New=GUIImage'BallisticProV55.ConfigTab_Loadout.Box_NewImg'
 
      Begin Object Class=GUIImage Name=Box_WeapIconImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -593,7 +581,7 @@ defaultproperties
          WinHeight=0.800000
          RenderWeight=0.002000
      End Object
-     Box_WeapIcon=GUIImage'BallisticProV55.BallisticTab_LoadoutPro.Box_WeapIconImg'
+     Box_WeapIcon=GUIImage'BallisticProV55.ConfigTab_Loadout.Box_WeapIconImg'
 
      Begin Object Class=GUIImage Name=Pic_WeaponImg
          ImageStyle=ISTY_Scaled
@@ -603,7 +591,7 @@ defaultproperties
          WinHeight=0.279000
          RenderWeight=0.004000
      End Object
-     Pic_Weapon=GUIImage'BallisticProV55.BallisticTab_LoadoutPro.Pic_WeaponImg'
+     Pic_Weapon=GUIImage'BallisticProV55.ConfigTab_Loadout.Pic_WeaponImg'
 
      Begin Object Class=GUILabel Name=l_NewListlabel
          Caption="Weapons"
@@ -614,7 +602,7 @@ defaultproperties
          WinWidth=0.450000
          WinHeight=0.050000
      End Object
-     l_NewList=GUILabel'BallisticProV55.BallisticTab_LoadoutPro.l_NewListlabel'
+     l_NewList=GUILabel'BallisticProV55.ConfigTab_Loadout.l_NewListlabel'
 
      Begin Object Class=GUILabel Name=l_WeapTitlelabel
          TextAlign=TXTA_Center
@@ -624,7 +612,7 @@ defaultproperties
          WinWidth=0.430000
          WinHeight=0.050000
      End Object
-     l_WeapTitle=GUILabel'BallisticProV55.BallisticTab_LoadoutPro.l_WeapTitlelabel'
+     l_WeapTitle=GUILabel'BallisticProV55.ConfigTab_Loadout.l_WeapTitlelabel'
 
      Begin Object Class=BC_GUICheckListBox Name=lb_NewWeaponsList
          bVisibleWhenEmpty=True
@@ -638,7 +626,7 @@ defaultproperties
          RenderWeight=0.520000
          TabOrder=1
      End Object
-     lb_NewWeapons=BC_GUICheckListBox'BallisticProV55.BallisticTab_LoadoutPro.lb_NewWeaponsList'
+     lb_NewWeapons=BC_GUICheckListBox'BallisticProV55.ConfigTab_Loadout.lb_NewWeaponsList'
 
      Begin Object Class=GUIButton Name=AddAllButton
          Caption="ALL"
@@ -647,10 +635,10 @@ defaultproperties
          WinLeft=0.580000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_LoadoutPro.InternalOnClick
+         OnClick=ConfigTab_Loadout.InternalOnClick
          OnKeyEvent=AddAllButton.InternalOnKeyEvent
      End Object
-     BAddAll=GUIButton'BallisticProV55.BallisticTab_LoadoutPro.AddAllButton'
+     BAddAll=GUIButton'BallisticProV55.ConfigTab_Loadout.AddAllButton'
 
      Begin Object Class=GUIButton Name=RemoveAllButton
          Caption="NONE"
@@ -659,10 +647,10 @@ defaultproperties
          WinLeft=0.780000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_LoadoutPro.InternalOnClick
+         OnClick=ConfigTab_Loadout.InternalOnClick
          OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
      End Object
-     BRemoveAll=GUIButton'BallisticProV55.BallisticTab_LoadoutPro.RemoveAllButton'
+     BRemoveAll=GUIButton'BallisticProV55.ConfigTab_Loadout.RemoveAllButton'
 
      Begin Object Class=GUIButton Name=BBox1Button
          Caption="Melee"
@@ -671,10 +659,10 @@ defaultproperties
          WinLeft=0.025000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_LoadoutPro.InternalOnClick
+         OnClick=ConfigTab_Loadout.InternalOnClick
          OnKeyEvent=BBox1Button.InternalOnKeyEvent
      End Object
-     BBox1=GUIButton'BallisticProV55.BallisticTab_LoadoutPro.BBox1Button'
+     BBox1=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox1Button'
 
      Begin Object Class=GUIButton Name=BBox2Button
          Caption="Sidearm"
@@ -683,10 +671,10 @@ defaultproperties
          WinLeft=0.225000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_LoadoutPro.InternalOnClick
+         OnClick=ConfigTab_Loadout.InternalOnClick
          OnKeyEvent=BBox2Button.InternalOnKeyEvent
      End Object
-     BBox2=GUIButton'BallisticProV55.BallisticTab_LoadoutPro.BBox2Button'
+     BBox2=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox2Button'
 
      Begin Object Class=GUIButton Name=BBox3Button
          Caption="Primary"
@@ -695,10 +683,10 @@ defaultproperties
          WinLeft=0.425000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_LoadoutPro.InternalOnClick
+         OnClick=ConfigTab_Loadout.InternalOnClick
          OnKeyEvent=BBox3Button.InternalOnKeyEvent
      End Object
-     BBox3=GUIButton'BallisticProV55.BallisticTab_LoadoutPro.BBox3Button'
+     BBox3=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox3Button'
 
      Begin Object Class=GUIButton Name=BBox4Button
          Caption="Secondary"
@@ -707,10 +695,10 @@ defaultproperties
          WinLeft=0.625000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_LoadoutPro.InternalOnClick
+         OnClick=ConfigTab_Loadout.InternalOnClick
          OnKeyEvent=BBox4Button.InternalOnKeyEvent
      End Object
-     BBox4=GUIButton'BallisticProV55.BallisticTab_LoadoutPro.BBox4Button'
+     BBox4=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox4Button'
 
      Begin Object Class=GUIButton Name=BBox5Button
          Caption="Grenade"
@@ -719,10 +707,10 @@ defaultproperties
          WinLeft=0.825000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_LoadoutPro.InternalOnClick
+         OnClick=ConfigTab_Loadout.InternalOnClick
          OnKeyEvent=BBox5Button.InternalOnKeyEvent
      End Object
-     BBox5=GUIButton'BallisticProV55.BallisticTab_LoadoutPro.BBox5Button'
+     BBox5=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox5Button'
 
      Begin Object Class=moCheckBox Name=ch_AllWeapsCheck
          ComponentJustification=TXTA_Left
@@ -736,7 +724,7 @@ defaultproperties
          WinWidth=0.450000
          WinHeight=0.040000
      End Object
-     ch_AllWeaps=moCheckBox'BallisticProV55.BallisticTab_LoadoutPro.ch_AllWeapsCheck'
+     ch_AllWeaps=moCheckBox'BallisticProV55.ConfigTab_Loadout.ch_AllWeapsCheck'
 
      Begin Object Class=moFloatEdit Name=RequirementTimeEdit
          MinValue=0.000000
@@ -752,7 +740,7 @@ defaultproperties
          WinWidth=0.420000
          WinHeight=0.040000
      End Object
-     fl_RequiredTime=moFloatEdit'BallisticProV55.BallisticTab_LoadoutPro.RequirementTimeEdit'
+     fl_RequiredTime=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementTimeEdit'
 
      Begin Object Class=moFloatEdit Name=RequirementFragsEdit
          MaxValue=999999.000000
@@ -767,7 +755,7 @@ defaultproperties
          WinWidth=0.420000
          WinHeight=0.040000
      End Object
-     fl_RequiredFrags=moFloatEdit'BallisticProV55.BallisticTab_LoadoutPro.RequirementFragsEdit'
+     fl_RequiredFrags=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementFragsEdit'
 
      Begin Object Class=moFloatEdit Name=RequirementEffEdit
          MaxValue=999999.000000
@@ -782,7 +770,7 @@ defaultproperties
          WinWidth=0.420000
          WinHeight=0.040000
      End Object
-     fl_RequiredEfficiency=moFloatEdit'BallisticProV55.BallisticTab_LoadoutPro.RequirementEffEdit'
+     fl_RequiredEfficiency=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementEffEdit'
 
      Begin Object Class=moFloatEdit Name=RequirementDmgRtEdit
          MaxValue=999999.000000
@@ -797,7 +785,7 @@ defaultproperties
          WinWidth=0.420000
          WinHeight=0.040000
      End Object
-     fl_RequiredDmgRate=moFloatEdit'BallisticProV55.BallisticTab_LoadoutPro.RequirementDmgRtEdit'
+     fl_RequiredDmgRate=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementDmgRtEdit'
 
      Begin Object Class=moFloatEdit Name=fl_RequiredSnprEffEdit
          MaxValue=999999.000000
@@ -812,7 +800,7 @@ defaultproperties
          WinWidth=0.420000
          WinHeight=0.040000
      End Object
-     fl_RequiredSnprEff=moFloatEdit'BallisticProV55.BallisticTab_LoadoutPro.fl_RequiredSnprEffEdit'
+     fl_RequiredSnprEff=moFloatEdit'BallisticProV55.ConfigTab_Loadout.fl_RequiredSnprEffEdit'
 
      Begin Object Class=moFloatEdit Name=fl_RequiredStgnEffEdit
          MaxValue=999999.000000
@@ -827,7 +815,7 @@ defaultproperties
          WinWidth=0.420000
          WinHeight=0.040000
      End Object
-     fl_RequiredStgnEff=moFloatEdit'BallisticProV55.BallisticTab_LoadoutPro.fl_RequiredStgnEffEdit'
+     fl_RequiredStgnEff=moFloatEdit'BallisticProV55.ConfigTab_Loadout.fl_RequiredStgnEffEdit'
 
      Begin Object Class=moFloatEdit Name=fl_RequiredHzrdEffEdit
          MaxValue=999999.000000
@@ -842,7 +830,7 @@ defaultproperties
          WinWidth=0.420000
          WinHeight=0.040000
      End Object
-     fl_RequiredHzrdEff=moFloatEdit'BallisticProV55.BallisticTab_LoadoutPro.fl_RequiredHzrdEffEdit'
+     fl_RequiredHzrdEff=moFloatEdit'BallisticProV55.ConfigTab_Loadout.fl_RequiredHzrdEffEdit'
 
      BoxNames(0)="Melee"
      BoxNames(1)="Sidearm"

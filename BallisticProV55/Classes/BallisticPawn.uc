@@ -179,8 +179,10 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-    // replace walk animations if ADS multipliers tend to be high
-	if (class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() >= 0.75)
+    ApplyMovementOverrides();
+
+	// replace walk animations if ADS multipliers tend to be high
+	if (class'BallisticGameStyles'.static.GetReplicatedStyle().default.bRunInADS)
 	{
 		WalkAnims[0]='RunF';
 		WalkAnims[1]='RunB';
@@ -188,65 +190,16 @@ simulated event PostNetBeginPlay()
 		WalkAnims[3]='RunR';
 	}
 
-    // override movement if needed
-    // do not accept user interference with Pro or Tactical
-    if (class'BallisticReplicationInfo'.static.IsArena())
-        ApplyProMovement();
-    else if (class'BallisticReplicationInfo'.static.IsTactical())
-        ApplyTacticalMovement();
-    else
-        ApplyMovementOverrides();
-	
+	// FIXME: why is this here? this function is the definition of net init
 	if(!pawnNetInit)
     {
         pawnNetInit = true;
-        if(Controller != none)
+
+        if (Controller != None)
         {
-            if(Controller.Adrenaline < Class'BallisticReplicationInfo'.default.iAdrenaline) Controller.Adrenaline = Class'BallisticReplicationInfo'.default.iAdrenaline;
-            Controller.AdrenalineMax = Class'BallisticReplicationInfo'.default.iAdrenalineCap;
             BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
         }
     }
-}
-
-simulated function ApplyProMovement()
-{
-    bCanWallDodge = True;
-    bCanDodge = True;
-    bCanDoubleJump = True;
-
-    WalkingPct=1; // highest ADS movement mult seen in Pro - NOT used as a multiplier, just an initial setting
-    CrouchedPct=0.45;
-
-    StrafeScale = 1;
-    BackpedalScale = 1;
-    GroundSpeed = 260;
-    AirSpeed = 260;
-    AccelRate = 2048;
-    JumpZ = 294;
-    DodgeSpeedZ = 210;
-
-    BindDefaultMovement();
-}
-
-simulated function ApplyTacticalMovement()
-{
-    bCanWallDodge = True;
-    bCanDodge = True;
-    bCanDoubleJump = False;
-
-    WalkingPct=0.85; // highest ADS movement mult seen in Arena
-    CrouchedPct=0.35;
-
-    StrafeScale = 1;
-    BackpedalScale = 1;
-    GroundSpeed = 200; // x1.1 because of UT -> effective 220
-    AirSpeed = 200;
-    AccelRate = 1792;
-    JumpZ = 294;
-    DodgeSpeedZ = 170;
-
-    BindDefaultMovement();
 }
 
 simulated final function BindDefaultMovement()
@@ -257,6 +210,7 @@ simulated final function BindDefaultMovement()
     default.BackpedalScale = BackpedalScale;
     default.GroundSpeed = GroundSpeed;
     default.AirSpeed = AirSpeed;
+	default.LadderSpeed = LadderSpeed;
     default.AccelRate = AccelRate;
     default.JumpZ = JumpZ;
     default.DodgeSpeedZ = DodgeSpeedZ;
@@ -269,33 +223,29 @@ simulated final function BindDefaultMovement()
 
 simulated function ApplyMovementOverrides()
 { 
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
+	if (!class'BallisticReplicationInfo'.default.bAllowDodging)
     {
 		bCanWallDodge = false;
         bCanDodge = false;
     }
 
-    if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
+    if (!class'BallisticReplicationInfo'.default.bAllowDoubleJump)
     {
         bCanDoubleJump = false;
     }
 
-	if (class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() != WalkingPct)
-		WalkingPct = class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier();
-	
-	if (class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor != CrouchedPct)
-		CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
+	WalkingPct = class'BallisticReplicationInfo'.default.PlayerWalkSpeedFactor;
+	CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
+	StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+	BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+	GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+	AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+	LadderSpeed = GroundSpeed * 0.65f;
+	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+	JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+	DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
 
-    if (class'BallisticReplicationInfo'.default.bOverrideMovement)
-    {
-        StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
-        BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
-        GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-        AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
-        AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
-        JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
-        DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
-    }
+	BindDefaultMovement();
 }
 
 simulated function CreateColorStyle()
@@ -540,22 +490,25 @@ function CheckBob(float DeltaTime, vector Y)
 	local float OldBobTime;
 	local int m,n;
 
-    DeltaTime *= GroundSpeed / 360;
+    DeltaTime *= GroundSpeed / 300;
 
 	OldBobTime = BobTime;
 
-	Super.CheckBob(DeltaTime,Y);
+	Super(Pawn).CheckBob(DeltaTime,Y);
 
-	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10)
-		|| ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
+	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10) || ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
 		return;
 
+	// BobTime is an accumulator and is never reset.
 	m = int(0.5 * Pi + 9.0 * OldBobTime/Pi);
 	n = int(0.5 * Pi + 9.0 * BobTime/Pi);
 
 	if (m != n)
+	{
 		FootStepping(0);
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.5 * (360.0f / GroundSpeed)) )
+	}
+
+	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) )
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
@@ -570,7 +523,11 @@ simulated function FootStepping(int Side)
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
 	local float SoundScale;
 	
-	SoundScale = GroundSpeed / default.GroundSpeed;
+	// sprint - louder footsteps
+	if (GroundSpeed > default.GroundSpeed)
+		SoundScale = 2;
+	else
+		SoundScale = GroundSpeed / default.GroundSpeed;
 
     SurfaceNum = 0;
 
@@ -713,7 +670,7 @@ simulated event SetAnimAction(name NewAction)
 			if (ReloadAnim != '')
 			{
 				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
-				PlayAnim(ReloadAnim, ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale, 0.25 / class'BallisticReplicationInfo'.default.ReloadSpeedScale, 1);
+				PlayAnim(ReloadAnim, ReloadAnimRate, 0.25, 1);
 				FireState=FS_PlayOnce;
 				bResetAnimationAction=True;
 			}
@@ -2368,30 +2325,25 @@ function bool DoJump( bool bUpdating )
     return false;
 }
 
+//========================================================================
+// AddShieldStrength
+//
+// Create an armor to do hit effects, if none exists
+//========================================================================
 function bool AddShieldStrength(int ShieldAmount)
 {
 	local BallisticArmor BA;
-	local int OldShieldStrength;
 
 	BA = BallisticArmor(FindInventoryType(class'BallisticArmor'));
-	if (BA != None)
-	{
-		OldShieldStrength = BA.Charge;
-		BA.Charge = Min(BA.Charge + ShieldAmount, BA.MaxCharge);
-		BA.SetShieldDisplay(BA.Charge);
-	}
-	else
+	
+	if (BA == None)
 	{
 		BA = spawn(class'BallisticArmor',self);
-		BA.Charge = ShieldAmount;
-		BA.GiveTo (self, none);
+		BA.GiveTo(self, none);
 	}
-	if (BA == None)
-		return super.AddShieldStrength(ShieldAmount);
 
-	return (BA.Charge != OldShieldStrength);
+	return super.AddShieldStrength(ShieldAmount);
 }
-
 
 function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector Cross)
 {
@@ -2656,6 +2608,26 @@ function RemoveCoverAnchor(Actor A)
 	
 	if (i < CoverAnchors.Length)
 		CoverAnchors.Remove(i, 1);
+}
+//===========================================================================
+// ShieldAbsorb
+//
+// Armor stops full damage
+// Don't play hit effects (BallisticArmor will do it)
+//===========================================================================
+function int ShieldAbsorb( int dam )
+{
+    local float Absorption;
+
+    if (ShieldStrength == 0)
+        return dam;
+
+    Absorption = FMin(ShieldStrength, dam);
+    
+    dam -= Absorption;
+    ShieldStrength -= Absorption;
+
+    return dam;
 }
  
 function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector momentum, class<DamageType> damageType)
@@ -2932,61 +2904,61 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 {
-	
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-    if (class'BallisticReplicationInfo'.static.IsArena())
-        return;
+	if (Physics != PHYS_Walking)
+		return;
 
-	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.default.bOverrideMovement)
+	// constrains strafe move
+	if (StrafeScale < 1f || BackpedalScale < 1f)
 	{
-		//Scaling movement speed
-		if (Physics == PHYS_Walking)
-		{
-			GetAxes(GetViewRotation(),X,Y,Z);
-			MaxStrafeSpeed = GroundSpeed * StrafeScale;
-			MaxBackSpeed = GroundSpeed * BackpedalScale;
-			XSpeed = Abs(X dot Velocity);
-			
-			if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
-			{
-				//limiting backspeed
-				dir = Normal(Velocity);
-				CosAngle = Abs(X dot dir);
-				Velocity = dir * (MaxBackSpeed / CosAngle);
-			}
-			
-			YSpeed = Abs(Y dot velocity);
-			if (YSpeed > MaxStrafeSpeed)
-			{
-				//limiting strafespeed
-				dir = Normal(Velocity);
-				CosAngle = Abs(Y dot dir);
-				Velocity = dir * (MaxStrafeSpeed / CosAngle);
-			}
+		GetAxes(GetViewRotation(),X,Y,Z);
+		MaxStrafeSpeed = GroundSpeed * StrafeScale;
+		MaxBackSpeed = GroundSpeed * BackpedalScale;
 
-			//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+		// backwards speed limit
+		XSpeed = Abs(X dot Velocity);
+		
+		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+		{
+			//limiting backspeed
+			dir = Normal(Velocity);
+			CosAngle = Abs(X dot dir);
+			Velocity = dir * (MaxBackSpeed / CosAngle);
 		}
-		 
-		if (Physics==PHYS_Walking)
-		{
-			FSpeed = Vsize(Velocity);
-			 
-			if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
-			{
-				Control = FMin(100, FSpeed);
-					
-				Drop = Control * DeltaTime * MyFriction;
-				NewSpeed = FSpeed + drop;
-				NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
-				Velocity *= NewSpeed;
+		
+		// strafe speed limit
+		YSpeed = Abs(Y dot velocity);
 
-			}
-			
-			OldMovementSpeed = Vsize(Velocity);
+		if (YSpeed > MaxStrafeSpeed)
+		{
+			//limiting strafespeed
+			dir = Normal(Velocity);
+			CosAngle = Abs(Y dot dir);
+			Velocity = dir * (MaxStrafeSpeed / CosAngle);
 		}
 	}
+
+	//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+		
+	// Applies decelerative friction
+	if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
+	{
+		FSpeed = VSize(Velocity);
+			
+		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+		{
+			Control = FMin(100, FSpeed);
+				
+			Drop = Control * DeltaTime * MyFriction;
+			NewSpeed = FSpeed + drop;
+			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
+			Velocity *= NewSpeed;
+		}
+	}
+	
+	OldMovementSpeed = VSize(Velocity);
 }
 
 defaultproperties
@@ -3023,9 +2995,10 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.350000
-     FootstepRadius=400.000000
+     FootstepVolume=0.20000
+     FootstepRadius=256.000000
 
+	 BaseEyeHeight=36
      CollisionRadius=19.000000
 
      GruntVolume=0.2

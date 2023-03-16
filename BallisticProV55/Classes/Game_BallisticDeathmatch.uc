@@ -122,7 +122,7 @@ static function FillBallisticPlayInfo(PlayInfo PlayInfo)
 
 	PlayInfo.AddSetting(default.BallisticGroup, "InventoryMode", default.ModeDisplayText, 0, 1, "Select", s);
 	PlayInfo.AddSetting(default.BallisticGroup, "ArenaConfigVar", default.ArenaConfigDisplayText, 60, 2, "Custom", ";;BallisticProV55.BallisticArenaMenu");
-	PlayInfo.AddSetting(default.BallisticGroup, "BWConfigVar", default.BWConfigDisplayText, 60, 2, "Custom", ";;BallisticProV55.BallisticConfigMenuPro");
+	PlayInfo.AddSetting(default.BallisticGroup, "BWConfigVar", default.BWConfigDisplayText, 60, 2, "Custom", ";;BallisticProV55.ConfigMenu_Rules");
 //	Playinfo.AddSetting("Group", "Prop", "Description", SecLevel, Weight, "RenderType", "Extras", "ExtraPrivs", bMultiOnly, bAdvanced);
 }
 
@@ -131,8 +131,8 @@ static function string GetBallisticDescriptionText(string PropName)
 	switch (PropName)
 	{
 		case "InventoryMode":		return default.ModeDescText;
-		case "ArenaConfigVar":				return default.ArenaConfigDescText;
-		case "BWConfigVar":				return default.BWConfigDescText;
+		case "ArenaConfigVar":		return default.ArenaConfigDescText;
+		case "BWConfigVar":			return default.BWConfigDescText;
 	}
 	return "";
 }

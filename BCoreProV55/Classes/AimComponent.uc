@@ -256,11 +256,7 @@ final simulated function Recalculate()
     AimAdjustTime       = Params.AimAdjustTime;
     ChaosDeclineTime    = Params.ChaosDeclineTime;
     ChaosSpeedThreshold = Params.ChaosSpeedThreshold;
-
-    if (class'BallisticReplicationInfo'.static.UseFixedModifiers())
-        ChaosSpeedThreshold = FMin(ChaosSpeedThreshold, class'BallisticReplicationInfo'.default.ChaosSpeedThresholdOverride);
-
-    ChaosTurnThreshold = Params.ChaosTurnThreshold;
+    ChaosTurnThreshold	= Params.ChaosTurnThreshold;
 	CrouchMultiplier    = Params.CrouchMultiplier;
 
 	if (ViewBindFactor == 0)
@@ -500,7 +496,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 
 	//Changed how this is worked out.
 	//Uses ChaosSpeedThreshold (VResult) to provide a basic movement penalty.
-	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 	{
 		Chaos = FClamp(VResult, 0, 1 );
 		NewChaos = Chaos;
@@ -588,7 +584,7 @@ final simulated function ZeroAim(float TimeMod)
 
 final simulated function UpdateDisplacements(float delta)
 {
-	if (!class'BallisticReplicationInfo'.default.bNoLongGun && GunLength > 0)
+	if (class'BallisticReplicationInfo'.default.bLongWeaponOffsetting && GunLength > 0)
         TickLongGun(delta);
         
 	if (IsDisplaced())

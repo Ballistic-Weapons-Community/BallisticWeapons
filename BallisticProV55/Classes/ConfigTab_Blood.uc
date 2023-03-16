@@ -1,35 +1,16 @@
 //=============================================================================
-// BallisticTab_BloodPro.
+// ConfigTab_Blood.
 //
 // Settings for the Ballistic blood and gore system
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTab_BloodPro extends UT2K4TabPanel;
+class ConfigTab_Blood extends ConfigTabBase;
 
 var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX;
 var automated moFloatEdit	fl_BloodTimeScale;
 var automated moSlider		sl_GibMulti;
-
-var BallisticConfigMenuPro		p_Anchor;
-var bool					bInitialized;
-
-function InitComponent(GUIController MyController, GUIComponent MyOwner)
-{
-	Super.InitComponent(MyController, MyOwner);
-	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
-}
-
-function ShowPanel(bool bShow)
-{
-	super.ShowPanel(bShow);
-	if (bInitialized)
-		return;
-	LoadSettings();
-	bInitialized = true;
-}
 
 function LoadSettings()
 {
@@ -96,11 +77,11 @@ defaultproperties
          OnCreateComponent=ch_BloodFXCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood effects when damaging players."
-         WinTop=0.050000
+         WinTop=0.10000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BloodFX=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_BloodFXCheck'
+     ch_BloodFX=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_BloodFXCheck'
 	 
 	 Begin Object Class=moCheckBox Name=ch_BloodDragsCheck
          ComponentJustification=TXTA_Left
@@ -109,11 +90,11 @@ defaultproperties
          OnCreateComponent=ch_BloodDragsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles dead bodies leaving blood trails when they slide across surfaces."
-         WinTop=0.100000
+         WinTop=0.150000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BloodDrags=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_BloodDragsCheck'
+     ch_BloodDrags=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_BloodDragsCheck'
 
      Begin Object Class=moCheckBox Name=ch_BloodImpactsCheck
          ComponentJustification=TXTA_Left
@@ -122,11 +103,11 @@ defaultproperties
          OnCreateComponent=ch_BloodImpactsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood marks caused by bodies impacting with surfaces at high speed."
-         WinTop=0.150000
+         WinTop=0.20000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BloodImpacts=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_BloodImpactsCheck'
+     ch_BloodImpacts=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_BloodImpactsCheck'
 
      Begin Object Class=moCheckBox Name=ch_BloodPoolsCheck
          ComponentJustification=TXTA_Left
@@ -135,11 +116,11 @@ defaultproperties
          OnCreateComponent=ch_BloodPoolsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles dead bodies leaving pools when they are stationary."
-         WinTop=0.200000
+         WinTop=0.250000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BloodPools=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_BloodPoolsCheck'
+     ch_BloodPools=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_BloodPoolsCheck'
 
      Begin Object Class=moCheckBox Name=ch_BloodSplatsCheck
          ComponentJustification=TXTA_Left
@@ -148,11 +129,11 @@ defaultproperties
          OnCreateComponent=ch_BloodSplatsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood spatter marks appearing on surfaces when players are damaged."
-         WinTop=0.250000
+         WinTop=0.30000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BloodSplats=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_BloodSplatsCheck'
+     ch_BloodSplats=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_BloodSplatsCheck'
 
      Begin Object Class=moCheckBox Name=ch_BloodExplodesCheck
          ComponentJustification=TXTA_Left
@@ -161,11 +142,11 @@ defaultproperties
          OnCreateComponent=ch_BloodExplodesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles horrendous blood effects when players are blown up."
-         WinTop=0.300000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BloodExplodes=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_BloodExplodesCheck'
+     ch_BloodExplodes=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_BloodExplodesCheck'
 
      Begin Object Class=moCheckBox Name=ch_ChunksCheck
          ComponentJustification=TXTA_Left
@@ -174,11 +155,11 @@ defaultproperties
          OnCreateComponent=ch_ChunksCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles gibs for dismemberment."
-         WinTop=0.350000
+         WinTop=0.40000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_Chunks=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_ChunksCheck'
+     ch_Chunks=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_ChunksCheck'
 	 
 	 Begin Object Class=moCheckBox Name=ch_StmupsCheck
          ComponentJustification=TXTA_Left
@@ -187,11 +168,11 @@ defaultproperties
          OnCreateComponent=ch_StmupsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles spawning of stumps on severed limbs."
-         WinTop=0.400000
+         WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_Stmups=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_StmupsCheck'
+     ch_Stmups=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_StmupsCheck'
 
      Begin Object Class=moCheckBox Name=ch_ScreenFXCheck
          ComponentJustification=TXTA_Left
@@ -200,11 +181,11 @@ defaultproperties
          OnCreateComponent=ch_ScreenFXCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood splashes and effects applied to the screen."
-         WinTop=0.450000
+         WinTop=0.50000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_ScreenFX=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_ScreenFXCheck'
+     ch_ScreenFX=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_ScreenFXCheck'
 
      Begin Object Class=moFloatEdit Name=fl_BloodTimeScaleFloat
          MinValue=0.000000
@@ -215,11 +196,11 @@ defaultproperties
          OnCreateComponent=fl_BloodTimeScaleFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the life time of blood effects. 0 = Forever."
-         WinTop=0.500000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fl_BloodTimeScale=moFloatEdit'BallisticProV55.BallisticTab_BloodPro.fl_BloodTimeScaleFloat'
+     fl_BloodTimeScale=moFloatEdit'BallisticProV55.ConfigTab_Blood.fl_BloodTimeScaleFloat'
 
      Begin Object Class=moSlider Name=sl_GibMultiSlider
          MaxValue=20.000000
@@ -227,10 +208,10 @@ defaultproperties
          Caption="Gib Multiplier"
          OnCreateComponent=sl_GibMultiSlider.InternalOnCreateComponent
          Hint="Multiplies number of gibs spawned. 1 = Normal, 0 = None. WARNING: Higher than 1 may kill performance!"
-         WinTop=0.550000
+         WinTop=0.60000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     sl_GibMulti=moSlider'BallisticProV55.BallisticTab_BloodPro.sl_GibMultiSlider'
+     sl_GibMulti=moSlider'BallisticProV55.ConfigTab_Blood.sl_GibMultiSlider'
 
 }

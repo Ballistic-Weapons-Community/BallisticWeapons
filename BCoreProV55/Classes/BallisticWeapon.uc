@@ -571,13 +571,6 @@ simulated function PostNetBeginPlay()
     if (NetInventoryGroup != 255)
         InventoryGroup = NetInventoryGroup;
 
-	if (class'BallisticReplicationInfo'.default.ReloadSpeedScale != 1)
-    {
-        CockAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
-        ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
-        StartShovelAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
-        EndShovelAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
-    }
 
     bDeferInitialSwitch = bServerDeferInitialSwitch;
 
@@ -695,12 +688,6 @@ simulated function OnWeaponParamsChanged()
 		}
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
-
-    if (class'BallisticReplicationInfo'.static.UseFixedModifiers())
-    {
-        SightingTime *= class'BallisticReplicationInfo'.default.SightingTimeScale;
-        default.SightingTime = SightingTime;
-    }
 }
 
 simulated final function CreateRecoilComponent()
@@ -924,8 +911,8 @@ simulated function StartBerserk()
 	bBerserk = true;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = (default.ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale) / 0.75;
-    CockAnimRate = (default.CockAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale) / 0.75;
+	ReloadAnimRate = default.ReloadAnimRate / 0.75;
+    CockAnimRate = default.CockAnimRate / 0.75;
     
     if (FireMode[0] != None)
         FireMode[0].StartBerserk();
@@ -938,8 +925,8 @@ simulated function StopBerserk()
 	bBerserk = false;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = default.ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale;
-    CockAnimRate = default.CockAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale;
+	ReloadAnimRate = default.ReloadAnimRate;
+    CockAnimRate = default.CockAnimRate;
     
     if ( (Level.GRI != None) && Level.GRI.WeaponBerserk > 1.0 )
 		return;
@@ -2607,7 +2594,7 @@ simulated final function bool IsHoldingMelee()
 
 simulated final function bool SprintActive()
 {
-	return (!class'BallisticReplicationInfo'.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting);
+	return class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && SprintControl != None && SprintControl.bSprinting;
 }
 
 //===========================================================================
@@ -2999,7 +2986,6 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	local int mode, i;
-	local Inventory Inv;
 	local float NewSpeed;
 	
 	// Set ambient sound when gun is held
@@ -3030,7 +3016,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
-	Instigator.WalkingPct = class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() * WeaponParams.SightMoveSpeedFactor;
+	Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
 
 	if (Role == ROLE_Authority)
 	{
@@ -4495,7 +4481,7 @@ function OwnerEvent(name EventName)
 			AimComponent.OnPlayerJumped();
 			NextCheckScopeTime = Level.TimeSeconds + 0.5;
 		}
-		else if ((EventName == 'Jumped' || EventName == 'Dodged') && !class'BallisticReplicationInfo'.default.bNoJumpOffset && !AimComponent.PendingForcedReaim())
+		else if ((EventName == 'Jumped' || EventName == 'Dodged') && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && !AimComponent.PendingForcedReaim())
 		{
 			AimComponent.OnPlayerJumped();
 		}
@@ -4517,7 +4503,7 @@ function OwnerEvent(name EventName)
 
 simulated function PlayerSprint (bool bSprinting)
 {
-	if (class'BallisticReplicationInfo'.default.bNoJumpOffset)
+	if (!class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting)
 		return;
 
 	if (bScopeView && Instigator.IsLocallyControlled())

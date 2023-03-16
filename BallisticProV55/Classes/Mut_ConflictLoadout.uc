@@ -85,8 +85,6 @@ function PostBeginPlay()
 	}
 }
 
-		
-
 //==================================================
 // Mutate
 // Convenience editing function for servers
@@ -646,7 +644,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			xPickupBase(Other).myEmitter.Destroy();
 	}
 	
-	else if (JumpSpot(Other) != None && BallisticRep != None && BallisticRep.bNoDodging)
+	else if (JumpSpot(Other) != None && BallisticRep != None && !BallisticRep.bAllowDodging)
 	{
 		JumpSpot(Other).bDodgeUp = false;
 	}
@@ -827,7 +825,7 @@ defaultproperties
 	 ConflictWeapons(105)=(ClassName="BWBPAirstrikesPro.TargetDesignator",bRed=False,bBlue=False)
 	 ConflictWeapons(106)=(ClassName="BWBPAirstrikesPro.X93Painter",bRed=False,bBlue=False)
 	 ConflictWeapons(107)=(ClassName="BWBP_OP_Pro.ARShotgun",bRed=True,bBlue=True)
-     ConfigMenuClassName="BallisticProV55.BallisticConfigMenuPro"
+     ConfigMenuClassName="BallisticProV55.ConfigMenu_Inventory"
      FriendlyName="BallisticPro: Conflict Loadout"
      Description="Play Ballistic Weapons with an expanded loadout system supporting Evolution configuration and inventory space."
 }

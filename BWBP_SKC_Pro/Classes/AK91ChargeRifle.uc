@@ -191,8 +191,8 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 			dir = Victims.Location - Location;
 			dist = FMax(1,VSize(dir));
 
-			log("HeatLevel is  "$HeatLevel);
-			log("HeatLevel int is  "$int(HeatLevel));
+			//log("HeatLevel is  "$HeatLevel);
+			//log("HeatLevel int is  "$int(HeatLevel));
 			dir = dir/dist;
 			//damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
 			class'BallisticDamageType'.static.GenericHurt

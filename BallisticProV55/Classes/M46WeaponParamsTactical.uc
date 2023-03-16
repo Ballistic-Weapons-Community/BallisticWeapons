@@ -95,7 +95,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams
         CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightingTime=0.350000
+		SightingTime=0.5
         SightMoveSpeedFactor=0.5
         MagAmmo=24
         InventorySize=6
@@ -110,7 +110,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalRDSParams
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightingTime=0.20000
+		SightingTime=0.35000
         SightMoveSpeedFactor=0.75
         MagAmmo=24
         InventorySize=6

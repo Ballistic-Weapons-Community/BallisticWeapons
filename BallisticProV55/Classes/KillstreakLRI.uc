@@ -162,7 +162,7 @@ final private simulated function ModifyMenu()
 
 protected simulated function class GetMenuClass()
 {
-	return class'BallisticTab_Killstreaks';
+	return class'MidGameTab_Killstreaks';
 }
 
 function ServerGetStreakList()

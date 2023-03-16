@@ -63,7 +63,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-     ConfigMenuClassName="BallisticProV55.BallisticConfigMenuPro"
+     ConfigMenuClassName="BallisticProV55.ConfigMenu_Preferences"
      GroupName="Blood"
      FriendlyName="BallisticPro: Bloody Hell"
      Description="Adds horrific blood effects for dead bodies, including: blood trails, corpse impact marks, blood pools and under water blood. The pinnacle of horrendousness...||http://www.runestorm.com"

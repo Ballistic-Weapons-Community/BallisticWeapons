@@ -1,10 +1,9 @@
 //=============================================================================
-// CFTab_Packs.
+// ConfigTab_PickupRules
 //
-// by Paul "Grum" Haack.
-// Copyright(c) 2012 Crazy-Froggers.com. All Rights Reserved.
+// by Paul "Grum" Haack and Azarael
 //=============================================================================
-class BallisticTab_Pickups extends UT2K4TabPanel;
+class ConfigTab_PickupRules extends ConfigTabBase;
 
 var automated moFloatEdit	fl_NadePct;					//Swap Ammo For Grenade Percentage
 var automated moCheckbox	ch_BrightPickups;			//Bright Pickups Toggle
@@ -21,30 +20,7 @@ var automated moCheckBox    chk_bRemoveBandages;		//Toggle Bandages
 var automated moCheckBox    chk_bRemoveHealthPack;		//Toggle Health Pack
 var automated moCheckBox    chk_bRemoveSuperHealthPack;	//Toggle Super Health Pack
 var automated moCheckBox    chk_bRemoveAdrenaline;		//Toggle Adrenaline
-var automated moCheckBox    chk_AlterantivePickups;		//Press USE to Pickup Weapons
-
-var BallisticConfigMenuPro	p_Anchor;
-var bool                    bInitialized;
-
-//==================================================================
-// General Menu Code
-//==================================================================
-
-function InitComponent(GUIController MyController, GUIComponent MyOwner)
-{
-    Super.InitComponent(MyController, MyOwner);
-    if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-        p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
-}
-
-function ShowPanel(bool bShow)
-{
-    super.ShowPanel(bShow);
-    if (bInitialized)
-        return;
-    LoadSettings();
-    bInitialized = true;
-}
+var automated moCheckBox    chk_AlternativePickups;		//Press USE to Pickup Weapons
 
 //==================================================================
 // Settings & Defaults
@@ -52,6 +28,8 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     fl_NadePct.SetValue(class'Mut_BallisticSwap'.default.NadeReplacePercent);
 	ch_BrightPickups.Checked(class'Mut_Ballistic'.default.bBrightPickups);
 	ch_PickupsChange.Checked(class'Mut_Ballistic'.default.bPickupsChange);
@@ -67,7 +45,13 @@ function LoadSettings()
     chk_bRemoveHealthPack.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveHealthPack);
     chk_bRemoveSuperHealthPack.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveSuperHealthPack);
     chk_bRemoveAdrenaline.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline);
-    chk_AlterantivePickups.Checked(class'BallisticReplicationInfo'.default.bAlternativePickups);
+
+	style = BaseMenu.GetConfigStyle();
+
+	if (style != None)
+	{
+    	chk_AlternativePickups.Checked(style.default.bAlternativePickups);
+	}
 }
 
 function DefaultSettings()
@@ -80,7 +64,8 @@ function DefaultSettings()
     chk_bRemoveHealthPack.Checked(true);
     chk_bRemoveSuperHealthPack.Checked(true);
     chk_bRemoveAdrenaline.Checked(true);
-    chk_AlterantivePickups.Checked(true);
+
+    chk_AlternativePickups.Checked(true);
 	
 	fl_NadePct.SetValue(15);
 	ch_BrightPickups.Checked(false);
@@ -92,16 +77,20 @@ function DefaultSettings()
 
 function SaveSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     if (!bInitialized)
         return;
 
-    class'Mut_BallisticSwap'.default.NadeReplacePercent = fl_NadePct.GetValue();
+    class'Mut_BallisticSwap'.default.NadeReplacePercent 	= fl_NadePct.GetValue();
 	class'Mut_Ballistic'.default.bBrightPickups		 		= ch_BrightPickups.IsChecked();
 	class'Mut_Ballistic'.default.bPickupsChange 			= ch_PickupsChange.IsChecked();
 	class'Mut_Ballistic'.default.bSpawnUniqueItems 			= ch_SpawnUnique.IsChecked();
 	class'Mut_Ballistic'.default.bKillRogueWeaponPickups	= ch_KillRogueWPs.IsChecked();
 	class'Mut_Ballistic'.default.bLeaveSuper 				= ch_LeaveSuper.IsChecked();
-	
+	class'Mut_BallisticSwap'.static.StaticSaveConfig();
+	class'Mut_Ballistic'.static.StaticSaveConfig();
+
 	class'BallisticProV55.Mut_Pickups'.default.bRemoveAmmoPacks = chk_bRemoveAmmoPacks.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveUDamage = chk_bRemoveUDamage.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveShieldPack = chk_bRemoveShieldPack.IsChecked();
@@ -110,10 +99,15 @@ function SaveSettings()
     class'BallisticProV55.Mut_Pickups'.default.bRemoveHealthPack = chk_bRemoveHealthPack.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveSuperHealthPack = chk_bRemoveSuperHealthPack.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline = chk_bRemoveAdrenaline.IsChecked();
-    class'BallisticReplicationInfo'.default.bAlternativePickups = chk_AlterantivePickups.IsChecked();
-
-    class'BallisticReplicationInfo'.static.StaticSaveConfig();
     class'BallisticProV55.Mut_Pickups'.static.StaticSaveConfig();
+
+	style = BaseMenu.GetConfigStyle();
+
+	if (style != None)
+	{    
+		style.default.bAlternativePickups = chk_AlternativePickups.IsChecked();
+    	style.static.StaticSaveConfig();
+	}
 }
 
 defaultproperties
@@ -127,11 +121,11 @@ defaultproperties
          OnCreateComponent=fl_NadePctFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Percentage chance of replacing an ammo pickup with a grenade."
-         WinTop=0.050000
+         WinTop=0.10000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fl_NadePct=moFloatEdit'BallisticProV55.BallisticTab_Pickups.fl_NadePctFloat'
+     fl_NadePct=moFloatEdit'fl_NadePctFloat'
 	 
 	 Begin Object Class=moCheckBox Name=ch_BrightPickupsCheck
          ComponentJustification=TXTA_Left
@@ -140,11 +134,11 @@ defaultproperties
          OnCreateComponent=ch_BrightPickupsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable to make pickups bright and easier to see. Does not affect multiplayer."
-         WinTop=0.100000
+         WinTop=0.150000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BrightPickups=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_BrightPickupsCheck'
+     ch_BrightPickups=moCheckBox'ch_BrightPickupsCheck'
 
 	 Begin Object Class=moCheckBox Name=ch_PickupsChangeCheck
          ComponentJustification=TXTA_Left
@@ -153,11 +147,11 @@ defaultproperties
          OnCreateComponent=ch_PickupsChangeCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Pickups randomly change after they have been picked up."
-         WinTop=0.150000
+         WinTop=0.20000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_PickupsChange=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_PickupsChangeCheck'
+     ch_PickupsChange=moCheckBox'ch_PickupsChangeCheck'
 	 
 	 Begin Object Class=moCheckBox Name=ch_SpawnUniqueCheck
          ComponentJustification=TXTA_Left
@@ -166,11 +160,11 @@ defaultproperties
          OnCreateComponent=ch_SpawnUniqueCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Game will prefer to spawn pickups that are the least common at the time."
-         WinTop=0.200000
+         WinTop=0.250000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_SpawnUnique=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_SpawnUniqueCheck'
+     ch_SpawnUnique=moCheckBox'ch_SpawnUniqueCheck'
 	 
 	 Begin Object Class=moCheckBox Name=ch_KillRogueWPsCheck
          ComponentJustification=TXTA_Left
@@ -179,11 +173,11 @@ defaultproperties
          OnCreateComponent=ch_KillRogueWPsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="BW mutators will remove/replace unlisted weapon pickups. (e.g. In-map Instagib rifles)"
-         WinTop=0.250000
+         WinTop=0.30000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_KillRogueWPs=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_KillRogueWPsCheck'
+     ch_KillRogueWPs=moCheckBox'ch_KillRogueWPsCheck'
 
 	 Begin Object Class=moCheckBox Name=ch_LeaveSuperCheck
          ComponentJustification=TXTA_Left
@@ -192,11 +186,11 @@ defaultproperties
          OnCreateComponent=ch_LeaveSuperCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable to leave super weapons in."
-         WinTop=0.300000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_LeaveSuper=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_LeaveSuperCheck'
+     ch_LeaveSuper=moCheckBox'ch_LeaveSuperCheck'
 	 
 	 Begin Object Class=moCheckBox Name=chk_bRemoveAmmoPacksC
          ComponentJustification=TXTA_Left
@@ -205,11 +199,11 @@ defaultproperties
          OnCreateComponent=chk_bRemoveAmmoPacksC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all ammo packs from the game."
-         WinTop=0.40000
+         WinTop=0.45000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveAmmoPacks=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveAmmoPacksC'
+     chk_bRemoveAmmoPacks=moCheckBox'chk_bRemoveAmmoPacksC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveUDamageC
          ComponentJustification=TXTA_Left
@@ -218,11 +212,11 @@ defaultproperties
          OnCreateComponent=chk_bRemoveUDamageC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all damage amplifiers from the game."
-         WinTop=0.450000
+         WinTop=0.50000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveUDamage=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveUDamageC'
+     chk_bRemoveUDamage=moCheckBox'chk_bRemoveUDamageC'
 
      Begin Object Class=moCheckBox Name=bRemoveShieldPackC
          ComponentJustification=TXTA_Left
@@ -231,11 +225,11 @@ defaultproperties
          OnCreateComponent=bRemoveShieldPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all armors from the game except super armor."
-         WinTop=0.500000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveShieldPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.bRemoveShieldPackC'
+     chk_bRemoveShieldPack=moCheckBox'bRemoveShieldPackC'
 
      Begin Object Class=moCheckBox Name=bRemoveSuperShieldPackC
          ComponentJustification=TXTA_Left
@@ -244,11 +238,11 @@ defaultproperties
          OnCreateComponent=bRemoveSuperShieldPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all super armors from the game."
-         WinTop=0.550000
+         WinTop=0.60000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveSuperShieldPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.bRemoveSuperShieldPackC'
+     chk_bRemoveSuperShieldPack=moCheckBox'bRemoveSuperShieldPackC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveBandagesC
          ComponentJustification=TXTA_Left
@@ -257,11 +251,11 @@ defaultproperties
          OnCreateComponent=chk_bRemoveBandagesC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all bandages from the game."
-         WinTop=0.600000
+         WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveBandages=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveBandagesC'
+     chk_bRemoveBandages=moCheckBox'chk_bRemoveBandagesC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveHealthPackC
          ComponentJustification=TXTA_Left
@@ -270,11 +264,11 @@ defaultproperties
          OnCreateComponent=chk_bRemoveHealthPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all health packs from the game."
-         WinTop=0.650000
+         WinTop=0.70000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveHealthPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveHealthPackC'
+     chk_bRemoveHealthPack=moCheckBox'chk_bRemoveHealthPackC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveSuperHealthPackC
          ComponentJustification=TXTA_Left
@@ -283,11 +277,11 @@ defaultproperties
          OnCreateComponent=chk_bRemoveSuperHealthPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all super health packs from the game."
-         WinTop=0.700000
+         WinTop=0.750000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveSuperHealthPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveSuperHealthPackC'
+     chk_bRemoveSuperHealthPack=moCheckBox'chk_bRemoveSuperHealthPackC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveAdrenalineC
          ComponentJustification=TXTA_Left
@@ -296,23 +290,23 @@ defaultproperties
          OnCreateComponent=chk_bRemoveAdrenalineC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all adrenaline from the game."
-         WinTop=0.750000
+         WinTop=0.80000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveAdrenaline=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveAdrenalineC'
+     chk_bRemoveAdrenaline=moCheckBox'chk_bRemoveAdrenalineC'
 
-     Begin Object Class=moCheckBox Name=chk_AlterantivePickupsC
+     Begin Object Class=moCheckBox Name=chk_AlternativePickupsC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Manual Pickups"
-         OnCreateComponent=chk_AlterantivePickupsC.InternalOnCreateComponent
+         OnCreateComponent=chk_AlternativePickupsC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Press the use key to pickup weapons."
-         WinTop=0.800000
+         WinTop=0.850000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_AlterantivePickups=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_AlterantivePickupsC'
+     chk_AlternativePickups=moCheckBox'chk_AlternativePickupsC'
 
 }

@@ -22,7 +22,7 @@ var() localized string StatSnprEffCaption;
 var() localized string StatStgnEffCaption;
 var() localized string StatHzrdEffCaption;
 
-var BallisticTab_ConflictLoadoutPro ConflictMenu;
+var MidGameTab_Conflict ConflictMenu;
 
 struct s_WeaponInfo
 {
@@ -39,7 +39,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Super.InitComponent(MyController, MyOwner);
 }
 
-function LoadWeapons(BallisticTab_ConflictLoadoutPro Source)
+function LoadWeapons(MidGameTab_Conflict Source)
 {
 	local int i;
 	local s_WeaponInfo WI;

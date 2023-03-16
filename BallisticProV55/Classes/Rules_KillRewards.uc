@@ -8,47 +8,44 @@ class Rules_KillRewards extends GameRules;
 
 function ScoreKill(Controller Killer, Controller Killed)
 {
-    local int healthCap, shieldCap, armorStrength;
-    super.ScoreKill(Killer,Killed);
+    local int RewardHealthMax, RewardShieldMax, armorStrength;
+	local xPawn KillerPawn;
 
-    if(Killed != None && Killer != None && Killer.Pawn != None)
-    {
-        if(Killer.Pawn.Health > 0 && Killer.Pawn.Health < class'BallisticReplicationInfo'.default.killRewardHealthcap || class'BallisticReplicationInfo'.default.killRewardHealthcap == 0)
-        {
-            healthCap = class'BallisticReplicationInfo'.default.killRewardHealthcap;
-            if(Vehicle(Killer.Pawn) == None)
-            {
-                if(healthCap == 0)
-                    healthCap = Killer.Pawn.SuperHealthMax;
-                Killer.Pawn.Health = Clamp(Killer.Pawn.Health+class'BallisticReplicationInfo'.default.killRewardHealthpoints,0,healthCap);
-            }else
-            {
-                if(healthCap == 0)
-                    healthCap = Vehicle(Killer.Pawn).Driver.SuperHealthMax;
-                Vehicle(Killer.Pawn).Driver.Health = Clamp(Vehicle(Killer.Pawn).Driver.Health+class'BallisticReplicationInfo'.default.killRewardHealthpoints,0,healthCap);
-            }
-        }
+    super.ScoreKill(Killer, Killed);
 
-        if(Killer.Pawn.Health > 0 && Killer.Pawn.ShieldStrength < class'BallisticReplicationInfo'.default.killrewardArmorCap || class'BallisticReplicationInfo'.default.killrewardArmorCap == 0)
-        {
-            shieldCap = class'BallisticReplicationInfo'.default.killrewardArmorCap;
-            if(Vehicle(Killer.Pawn) == None && xPawn(Killer.Pawn) != none)
-            {
-                if(shieldCap == 0)
-                    shieldCap = xPawn(Killer.Pawn).ShieldStrengthMax;
-                armorStrength = Clamp(class'BallisticReplicationInfo'.default.killrewardArmor,0,shieldCap);
+    if (Killed == None || Killer == None)
+		return;
 
-                xPawn(Killer.Pawn).AddShieldStrength(armorStrength);
-            }else if(xPawn(Vehicle(Killer.Pawn).Driver) != none)
-            {
-                if(shieldCap == 0)
-                    shieldCap = xPawn(Vehicle(Killer.Pawn).Driver).ShieldStrengthMax;
+	if (Vehicle(Killer.Pawn) != None)
+		KillerPawn = xPawn(Vehicle(Killer.Pawn).Driver);
+	else 
+		KillerPawn = xPawn(Killer.Pawn);
 
-                armorStrength = Clamp(class'BallisticReplicationInfo'.default.killrewardArmor,0,shieldCap);
-                xPawn(Vehicle(Killer.Pawn).Driver).AddShieldStrength(armorStrength);
-            }
-        }
-    }
+	if (KillerPawn == None || KillerPawn.Health <= 0)
+		return;
+
+	RewardHealthMax = class'BallisticReplicationInfo'.default.KillRewardHealthMax;
+
+	if (RewardHealthMax == 0)
+		RewardHealthMax = KillerPawn.SuperHealthMax;
+
+	RewardShieldMax = class'BallisticReplicationInfo'.default.KillRewardShieldMax;
+
+	if (RewardShieldMax == 0)
+		RewardShieldMax = KillerPawn.ShieldStrengthMax;
+    
+	if(KillerPawn.Health < RewardHealthMax)
+	{
+		KillerPawn.Health = Clamp(KillerPawn.Health + class'BallisticReplicationInfo'.default.HealthKillReward, 0, RewardHealthMax);
+	}
+
+	if(KillerPawn.ShieldStrength < RewardShieldMax)
+	{
+		ArmorStrength = Min(class'BallisticReplicationInfo'.default.ShieldKillReward, RewardShieldMax - KillerPawn.ShieldStrength);
+
+		if (ArmorStrength > 0)
+			xPawn(Killer.Pawn).AddShieldStrength(ArmorStrength);
+	}
 }
 
 defaultproperties

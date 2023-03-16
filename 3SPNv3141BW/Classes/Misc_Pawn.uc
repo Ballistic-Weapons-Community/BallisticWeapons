@@ -89,8 +89,8 @@ function int ShieldAbsorb(int dam)
     if(ShieldStrength == 0)
         return dam;
 
-    SetOverlayMaterial(ShieldHitMat, ShieldHitMatTime, false);
-    PlaySound(Sound'WeaponSounds.ArmorHit', SLOT_Pain, 2 * TransientSoundVolume,, 400);
+    //SetOverlayMaterial(ShieldHitMat, ShieldHitMatTime, false);
+    //PlaySound(Sound'WeaponSounds.ArmorHit', SLOT_Pain, 2 * TransientSoundVolume,, 400);
 
     Absorption = FMin(ShieldStrength, dam);
     
