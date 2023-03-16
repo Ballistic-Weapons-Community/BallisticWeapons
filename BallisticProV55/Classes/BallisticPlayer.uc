@@ -684,34 +684,42 @@ exec function SwitchToBestWeapon()
 		Pawn.Weapon.PutDown();
 }
 
+exec simulated function Preferences()
+{
+	ClientOpenMenu("BallisticProV55.ConfigMenu_Preferences");
+}
+
+exec simulated function Options()
+{
+	Preferences();
+}
+
 // Command to access the ballistic config menu
 exec simulated function Ballistic()
 {
-	ClientOpenMenu ("BallisticProV55.BallisticConfigMenuPro");
-}
-
-// Weapon stats
-exec simulated function BWStats()
-{
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
-}
-
-// Weapon stats
-exec simulated function Stats()
-{
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+	Preferences();
 }
 
 // Weapon stats
 exec simulated function Manual()
 {
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+	ClientOpenMenu ("BallisticProV55.GameMenu_WeaponStats");
+}
+
+exec simulated function BWManual()
+{
+	Manual();
+}
+
+exec simulated function BWStats()
+{
+	Manual();
 }
 
 // Weapon stats
-exec simulated function BWManual()
+exec simulated function Stats()
 {
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+	Manual();
 }
 
 // Cheat to get all BW weapons...

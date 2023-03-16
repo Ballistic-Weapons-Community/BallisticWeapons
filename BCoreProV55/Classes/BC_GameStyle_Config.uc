@@ -10,11 +10,6 @@ class BC_GameStyle_Config extends BC_GameStyle
     config(BallisticProV55);
 
 //=============================================================================
-// INVENTORY
-//=============================================================================	
-var() config int			MaxInventoryCapacity;
-
-//=============================================================================
 // WEAPONS
 //=============================================================================	
 var() config bool		    bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
@@ -32,7 +27,7 @@ var() config bool			bUniversalMineLights;   // All BX-5 mines are lit.
 // HEALTH
 //=============================================================================
 var() config bool			bHealthRegeneration;	// whether health regenerates
-var() config int			PlayerHealth;           // health the player starts with
+var() config int			StartingHealth;           // health the player starts with
 var() config int			PlayerHealthMax;        // maximum health a player can have
 var() config int			PlayerSuperHealthMax;   // maximum superhealth a player can have
 
@@ -40,7 +35,7 @@ var() config int			PlayerSuperHealthMax;   // maximum superhealth a player can h
 // SHIELDS
 //=============================================================================
 var() config bool			bShieldRegeneration;	// whether shields regenerate
-var() config int			PlayerShield;           // armor the player starts with
+var() config int			StartingShield;           // armor the player starts with
 var() config int			PlayerShieldMax;        // maximum armor the player can have
 
 //=============================================================================
@@ -49,8 +44,6 @@ var() config int			PlayerShieldMax;        // maximum armor the player can have
 var() config bool			bPlayerDeceleration;		// Decel mechanics when stopping
 var() config bool			bAllowDodging;			    // Disables dodging.
 var() config bool			bAllowDoubleJump;	        // Disables double jump.
-var() config float			PlayerWalkSpeedFactor;
-var() config float			PlayerCrouchSpeedFactor;
 var() config float			PlayerStrafeScale;
 var() config float			PlayerBackpedalScale;
 var() config float			PlayerGroundSpeed;
@@ -58,6 +51,15 @@ var() config float			PlayerAirSpeed;
 var() config float			PlayerAccelRate;
 var() config float			PlayerJumpZ;
 var() config float			PlayerDodgeZ;
+
+//=============================================================================
+// SPRINT
+//=============================================================================
+var() config bool			bEnableSprint;
+var() config int			StaminaChargeRate;
+var() config int			StaminaDrainRate;
+var() config float			SprintSpeedFactor;
+var() config float			JumpDrainFactor;
 
 //=============================================================================
 // KILL REWARD
@@ -68,9 +70,7 @@ var() config int			ShieldKillReward;  // armor points for a kill
 var() config int			KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
 
 static protected function FillReplicationInfo(BallisticReplicationInfo rep)
-
-{	rep.MaxInventoryCapacity		= default.MaxInventoryCapacity;
-
+{	
 	rep.bWeaponJumpOffsetting		= default.bWeaponJumpOffsetting;
 	rep.bLongWeaponOffsetting		= default.bLongWeaponOffsetting;
 	rep.bNoReloading				= default.bNoReloading;
@@ -81,19 +81,17 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.bUniversalMineLights 		= default.bUniversalMineLights;
 
 	rep.bHealthRegeneration			= default.bHealthRegeneration;
-	rep.PlayerHealth 				= default.PlayerHealth;
+	rep.StartingHealth 				= default.StartingHealth;
 	rep.PlayerHealthMax 			= default.PlayerHealthMax;
 	rep.PlayerSuperHealthMax 		= default.playerSuperHealthMax;
 
 	rep.bShieldRegeneration			= default.bShieldRegeneration;
-	rep.PlayerShield 				= default.PlayerShield;
+	rep.StartingShield 				= default.StartingShield;
 	rep.PlayerShieldMax 			= default.PlayerShieldMax;
 
 	rep.bPlayerDeceleration			= default.bPlayerDeceleration;
 	rep.bAllowDodging				= default.bAllowDodging;
 	rep.bAllowDoubleJump			= default.bAllowDoubleJump;
-    rep.PlayerWalkSpeedFactor 		= default.PlayerWalkSpeedFactor;
-    rep.PlayerCrouchSpeedFactor 	= default.PlayerCrouchSpeedFactor;
     rep.PlayerStrafeScale 			= default.PlayerStrafeScale;
 	rep.PlayerBackpedalScale 		= default.PlayerBackpedalScale;
 	rep.PlayerGroundSpeed 			= default.PlayerGroundSpeed;
@@ -101,6 +99,12 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.PlayerAccelRate 			= default.PlayerAccelRate;
     rep.PlayerJumpZ 				= default.PlayerJumpZ;
     rep.PlayerDodgeZ 				= default.PlayerDodgeZ;
+
+	rep.bEnableSprint				= default.bEnableSprint;
+	rep.StaminaChargeRate			= default.StaminaChargeRate;
+	rep.StaminaDrainRate 			= default.StaminaChargeRate;
+	rep.SprintSpeedFactor 			= default.StaminaChargeRate;
+	rep.JumpDrainFactor 			= default.StaminaChargeRate;
 
 	rep.HealthKillReward			= default.HealthKillReward;
 	rep.KillRewardHealthMax			= default.KillRewardHealthMax;
@@ -116,16 +120,16 @@ defaultproperties
 	bRunInADS=False
 
 	// General
-	MaxInventoryCapacity=12
+	MaxInventoryCapacity=0
     bAlternativePickups=False
 	bUniversalMineLights=False
 
 	// Pawn
 	bBrightPlayers=False
-    PlayerHealth=100
+    StartingHealth=100
     PlayerHealthMax=100
     PlayerSuperHealthMax=200
-    PlayerShield=0
+    StartingShield=0
 	PlayerShieldMax=200
 
 	// Movement

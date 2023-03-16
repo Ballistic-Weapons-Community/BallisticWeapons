@@ -14,80 +14,70 @@ class Mut_Ballistic extends Mutator
 
 #exec OBJ LOAD File=BW_Core_WeaponSound.uax
 
-var globalconfig bool bLogCheckReplacement;
+var   BallisticReplicationInfo	BallisticRep;
 
 struct ItemSwitch
 {
-	var() string			OldItemName;	// Names of Old item to replace (can be Inventory, Weapon, WeaponPickup, Pickup, etc)
-	var   class<Actor>		OldItem;		// Old item class. This is set using OldItemName
-	var() bool				bUseBase;		// Leave base and merely change the item
-	var() bool				bSuper;			// Old item is a super weapon
-	var() array<string>		NewItemNames;	// Names of New items to replace it with (can be Inventory, Weapon, WeaponPickup, Pickup, etc)
-	var   Array<class<Actor> > NewItems;	// New Item classes. These are set using NewItemNames
+	var() string				OldItemName;	// Names of Old item to replace (can be Inventory, Weapon, WeaponPickup, Pickup, etc)
+	var   class<Actor>			OldItem;		// Old item class. This is set using OldItemName
+	var() bool					bUseBase;		// Leave base and merely change the item
+	var() bool					bSuper;			// Old item is a super weapon
+	var() array<string>			NewItemNames;	// Names of New items to replace it with (can be Inventory, Weapon, WeaponPickup, Pickup, etc)
+	var   Array<class<Actor> > 	NewItems;		// New Item classes. These are set using NewItemNames
 };
 
-var() array<ItemSwitch> Replacements;			// List of items and what to replace them with
-var() Sound				UDamageSnd;				// Different sound UDamage firing
+var() array<ItemSwitch> 		Replacements;			// List of items and what to replace them with
+var() Sound						UDamageSnd;				// Different sound UDamage firing
+
 struct DoomedItem
 {
 	var() Actor OldItem;
 	var() class<Actor> NewClass;
 	var() Pawn Instigator;
 };
-var   array<DoomedItem>	DoomedItems;				// Items that will be replaced after some time has passed
+var   array<DoomedItem>			DoomedItems;				// Items that will be replaced after some time has passed
 
 struct PickupSwap
 {
 	var() Pickup Old;
 	var() int	 NewIndex;
 };
-var   array<PickupSwap> PickupSwaps;				// Pickups waiting to be swapped
+var   array<PickupSwap> 		PickupSwaps;				// Pickups waiting to be swapped
 
-var   globalconfig bool		bRegeneration;			// Enables Regeneration
-var   globalconfig bool		bShieldRegeneration;	// Enables Shield Regeneration
-var   globalconfig bool		bPreloadMeshes;			// Enables Mesh Preloader
-var   globalconfig bool		bKillStreaks;			// Enables KillStreaks
+var	  globalconfig bool 		bLogCheckReplacement;	// debugging
+var   globalconfig bool			bPreloadMeshes;			// Enables Mesh Preloader
+var   globalconfig bool			bUseItemizer;			// Should extra items be spawned using the Itemizer system
+var   globalconfig string		ItemGroup;				// Group to use for Itemizer. Only items of this group will spawned by Itemizer.
+var   globalconfig bool			bLeaveSuper;			// Don't replace super weapons
+var   globalconfig bool			bBrightPickups;			// Pickups have ambient glow
+var   globalconfig bool			bSpawnUniqueItems;		// Game will try to spawn items that are the least common at the time
+var   globalconfig bool			bPickupsChange;			// Pickups can change into another random type after they are picked up
+var   globalconfig bool			bRandomDefaultWeapons;	// Random initial weapons instead of standard "NewItems[0]"
+var   globalconfig string		CamUpdateRate;			// Rate level at which the M50 camera's scripted texture should update
+var   globalconfig bool			bKillRogueWeaponPickups;// Get rid of non-standard weapon pickups that are not listed and not replaced
+var   globalconfig bool			bForceBallisticPawn;	// Force use of BallisticPawn, even when old pawn was not xPawn (Will cause bugs in some gametypes)
 
-var   globalconfig bool		bUseItemizer;			// Should extra items be spawned using the Itemizer system
-var   globalconfig string	ItemGroup;				// Group to use for Itemizer. Only items of this group will spawned by Itemizer.
-var   globalconfig bool		bLeaveSuper;			// Don't replace super weapons
-var   globalconfig bool		bBrightPickups;			// Pickups have ambient glow
-var   globalconfig bool		bSpawnUniqueItems;		// Game will try to spawn items that are the least common at the time
-var   globalconfig bool		bPickupsChange;			// Pickups can change into another random type after they are picked up
-var   globalconfig bool		bRandomDefaultWeapons;	// Random initial weapons instead of standard "NewItems[0]"
-var   globalconfig string	CamUpdateRate;			// Rate level at which the M50 camera's scripted texture should update
-var   globalconfig bool		bKillRogueWeaponPickups;// Get rid of non-standard weapon pickups that are not listed and not replaced
-var   globalconfig bool		bForceBallisticPawn;	// Force use of BallisticPawn, even when old pawn was not xPawn (Will cause bugs in some gametypes)
-var   localized string		LeaveSuperDisplayText,LeaveSuperDescText,
-							BrightPickDisplayText,BrightPickDescText,
-							DarkSkinsDisplayText,DarkSkinsDescText,
-							PChangeDisplayText,PChangeDescText,
-							UniqueDisplayText,UniqueDescText,
-							RandDefDisplayText,RandDefDescText,
-							ItemizerDescText,ItemizerDisplayText,
-							GroupDisplayText,GroupDescText;
-var() bool					DMMode;				// Disables stuff to work with Ballistic Game types
-var() bool					bHideLockers;		// Does this mutator hide lockers?
-var   bool					bLWsInitialized;	// Locker weapons have been changed
-var() localized Array<string> CamRateOptions;	// List of camera update rate options
+var   localized string			LeaveSuperDisplayText,LeaveSuperDescText,
+								BrightPickDisplayText,BrightPickDescText,
+								DarkSkinsDisplayText,DarkSkinsDescText,
+								PChangeDisplayText,PChangeDescText,
+								UniqueDisplayText,UniqueDescText,
+								RandDefDisplayText,RandDefDescText,
+								ItemizerDescText,ItemizerDisplayText,
+								GroupDisplayText,GroupDescText;
 
-var   bool 					bSpawnedIA;		//Interaction has been spawnd for local player.
-var   bool					bDoItemize;		//Spawn itemizer items next tick
+var() bool						DMMode;				// Disables stuff to work with Ballistic Game types
+var() bool						bHideLockers;		// Does this mutator hide lockers?
+var   bool						bLWsInitialized;	// Locker weapons have been changed
+var() localized Array<string> 	CamRateOptions;	// List of camera update rate options
 
-//PlayerChangedClass
-var   globalconfig float    FootstepAmplifier;
+var   bool 						bSpawnedIA;		//Interaction has been spawnd for local player.
+var   bool						bDoItemize;		//Spawn itemizer items next tick
 
 // Sprint
 var   Array<BCSprintControl> 	Sprinters;
-var   globalconfig bool     	bUseSprint;
-var   globalconfig float    	InitStaminaDrainRate;
-var   globalconfig float    	InitStaminaChargeRate;
-var   globalconfig float    	InitSpeedFactor;
-var   globalconfig float    	JumpDrainFactor;
 
-var   BallisticReplicationInfo	BallisticRep;
-
-var	int						CRCount;
+var	int							CRCount;
 
 replication
 {
@@ -95,58 +85,99 @@ replication
 		ClientModifyPlayer;
 }
 
-//return Ballistic PRI (Izumo)
-static function BallisticPlayerReplicationInfo GetBPRI(PlayerReplicationInfo PRI)
+simulated function PreBeginPlay()
 {
-	local LinkedReplicationInfo lPRI;
-	
-	if(PRI.CustomReplicationInfo==None)
+	if (Role == ROLE_Authority)
 	{
-		log("No Custom PRI");
-		return None;  //shouldn't happen
+		BallisticRep = Spawn(class'BallisticReplicationInfo');
+		class'BallisticGameStyles'.static.GetLocalStyle().static.InitializeReplicationInfo(BallisticRep);
 	}
-
-	if(BallisticPlayerReplicationInfo(PRI.CustomReplicationInfo) !=None)
-		return BallisticPlayerReplicationInfo(PRI.CustomReplicationInfo);
 	
-	for(lPRI = PRI.CustomReplicationInfo.NextReplicationInfo; lPRI != None; lPRI=lPRI.NextReplicationInfo)
+	if (BallisticRep.default.bHealthRegeneration)
+		Level.Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
+	
+	if (BallisticRep.default.bShieldRegeneration)
+		Level.Game.AddMutator("BallisticProV55.Mut_ShieldRegeneration", false);
+
+	if (bPreloadMeshes)
+		Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
+
+	if (BallisticRep.default.bKillStreaks)
+		Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
+
+	if (BallisticRep.default.HealthKillReward > 0 || BallisticRep.default.ShieldKillReward > 0)
+		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
+
+	if (Invasion(Level.Game) != None)
+		Level.Game.AddGameModifier(spawn(class'Rules_Invasion'));
+	else 
+		Level.Game.AddGameModifier(spawn(class'Rules_Ballistic'));
+			
+	if (Level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
+		Level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
+
+	if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
+		Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
+	
+	LoadItemClasses();
+
+	super.PreBeginPlay();
+}
+
+//simulated function PostNetBeginPlay()
+simulated function BeginPlay()
+{
+	local xPickupBase PB;
+	local WeaponLocker W;
+	local int i, j;
+
+	if (Level.NetMode == NM_Client)
 	{
-		if(BallisticPlayerReplicationInfo(lPRI)!=None)
-			return BallisticPlayerReplicationInfo(lPRI);
-		if (lPRI == lPRI.NextReplicationInfo)
+		// Remove all pads...
+	    foreach AllActors(class'xPickupBase', PB)
 		{
-			log("A LinkedReplicationInfo links to itself, aborting");
-			break;
+			// Why the hell are these things so tough?
+		    PB.bHidden=true;
+			PB.SetDrawType(DT_None);
+			if (PB.myEmitter != None)
+				PB.myEmitter.Destroy();
+		}
+
+	    foreach AllActors(class'WeaponLocker', W)
+		{
+			if (bHideLockers)
+			{
+				W.GotoState('Disabled');
+				continue;
+			}
+
+			for (i=0;i<Replacements.Length;i++)
+			{
+				for (j=0;j<W.Weapons.Length;j++)
+					if (W.Weapons[j].WeaponClass == GetInventoryFor(Replacements[i].OldItem))
+					{
+//							W.Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(GetNewItem(i, true)));
+						W.Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(Replacements[i].NewItems[0]));
+					}
+			}
 		}
 	}
+
+	// Stuff won't be ready now, do it after its had a chance to init...
+	SetTimer(0.05, false);
 	
-	log("Couldn't find a BPRI");
-	return None;
+	Super.BeginPlay();
 }
 
-// Returns the inventory class for input pickup or inventory
-static function class<inventory> GetInventoryFor(class<Actor> A)
+function PostBeginPlay()
 {
-	if (A == None)
-		return None;
-	else if (class<Inventory>(A) != None)
-		return class<Inventory>(A);
-	else if (class<Pickup>(A) != None && class<Pickup>(A).default.InventoryType != None)
-		return class<Pickup>(A).default.InventoryType;
-	return None;
+	super.PostBeginPlay();
+
+	// Use Itemizer to spawn extra Ballistic Pickups
+	if (bUseItemizer && Role == ROLE_Authority)
+		bDoItemize=true;
 }
 
-// Returns the pickup class for the input pickup or inventory
-static function class<pickup> GetPickupFor(class<Actor> A)
-{
-	if (A == None)
-		return None;
-	else if (class<pickup>(A) != None)
-		return class<pickup>(A);
-	else if (class<inventory>(A) != None && class<inventory>(A).default.PickupClass != None)
-		return class<inventory>(A).default.PickupClass;
-	return None;
-}
 // This picks one of the new items from one of the possible replacements
 function class<Actor> GetNewItem(int Index, optional bool bNoUnique, optional class<actor> OldItem)
 {
@@ -205,16 +236,6 @@ function class<Actor> GetNewItem(int Index, optional bool bNoUnique, optional cl
 }
 
 
-function CreateSprintControl(xPawn P)
-{	
-    local BCSprintControl SC;
-
-    SC = Spawn(class'BWRechargeSprintControl', P);
-
-    SC.GiveTo(P);
-    Sprinters[Sprinters.length] = SC;
-}
-
 // Modify players and bots a bit
 function ModifyPlayer(Pawn Other)
 {
@@ -225,7 +246,7 @@ function ModifyPlayer(Pawn Other)
     BPawn = BallisticPawn(Other);
 
 	//adds sprint support to mutator
-    if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
+    if (xPawn(Other) != None && class'BallisticReplicationInfo'.default.bEnableSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
 	{
         CreateSprintControl(xPawn(Other));
 	}
@@ -251,12 +272,10 @@ function ModifyPlayer(Pawn Other)
     {
 		Other.SuperHealthMax = class'BallisticReplicationInfo'.default.PlayerSuperHealthMax; // maximum superhealth a player can have
 		Other.HealthMax = class'BallisticReplicationInfo'.default.PlayerHealthMax; // maximum health a player can have
-		Other.Health = class'BallisticReplicationInfo'.default.PlayerHealth;  // health the player starts with
+		Other.Health = class'BallisticReplicationInfo'.default.StartingHealth;  // health the player starts with
 
 		xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.PlayerShieldMax;
-		Other.AddShieldStrength(class'BallisticReplicationInfo'.default.PlayerShield);
-
-		xPawn(Other).FootstepVolume *= FootstepAmplifier;
+		Other.AddShieldStrength(class'BallisticReplicationInfo'.default.StartingShield);
 
         if(BPawn != none)
         {
@@ -528,6 +547,7 @@ function AddPickupSwap (Pickup Old, int NewIndex)
 function PlayerChangedClass(Controller C)
 {
 	super.PlayerChangedClass (C);
+	
 	if (Bot(C) != None && (C.PawnClass	== None || C.PawnClass == class'xPawn' || bForceBallisticPawn) )
 		Bot(C).PawnClass = class'BallisticPawn';
 }
@@ -747,50 +767,6 @@ simulated event Tick(float DT)
 	}
 }
 
-simulated function PreBeginPlay()
-{
-	if (Role == ROLE_Authority)
-	{
-		BallisticRep = Spawn(class'BallisticReplicationInfo');
-		class'BallisticGameStyles'.static.GetLocalStyle().static.InitializeReplicationInfo(BallisticRep);
-	}
-	
-	if (BallisticRep.default.bHealthRegeneration)
-	{
-		Level.Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
-	}
-	
-	if (BallisticRep.default.bShieldRegeneration)
-	{
-		Level.Game.AddMutator("BallisticProV55.Mut_ShieldRegeneration", false);
-	}
-
-	if (bPreloadMeshes)
-	{
-		Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
-	}
-
-	if (BallisticRep.default.bKillStreaks)
-	{
-		Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
-	}
-
-	if (Level.Game != None)
-	{
-		if (BallisticRep.default.HealthKillReward > 0 || BallisticRep.default.ShieldKillReward > 0)
-			Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
-				
-		if (Level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
-			Level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
-
-		if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
-			Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
-	}
-	
-	LoadItemClasses();
-	super.PreBeginPlay();
-}
-
 simulated function LoadItemClasses()
 {
 	local int i, j;
@@ -814,67 +790,6 @@ simulated function LoadItemClasses()
 					if (Replacements[i].NewItems[j] == None)
 						log("Mut_Balistic::LoadItemClasses: Bad new item class name "$Replacements[i].NewItemNames[j]$" in Replacements["$i$"]", 'Warning');
 				}
-}
-
-function PostBeginPlay()
-{
-	local GameRules GR;
-
-	super.PostBeginPlay();
-
-	// Use Itemizer to spawn extra Ballistic Pickups
-	if (bUseItemizer && Role==ROLE_Authority)
-		bDoItemize=true;
-
-	if (Invasion(Level.Game) != None)
-		GR = spawn(class'Rules_Invasion');
-	else 
-		GR = spawn(class'Rules_Ballistic');
-
-	if ( Level.Game.GameRulesModifiers == None )
-		Level.Game.GameRulesModifiers = GR;
-	else
-		Level.Game.GameRulesModifiers.AddGameRules(GR);
-}
-
-//simulated function PostNetBeginPlay()
-simulated function BeginPlay()
-{
-	local xPickupBase PB;
-	local WeaponLocker W;
-	local int i, j;
-
-	if (Level.NetMode == NM_Client)
-	{
-		// Remove all pads...
-	    ForEach AllActors(class'xPickupBase', PB)
-		{
-			// Why the hell are these things so tough?
-		    PB.bHidden=true;
-			PB.SetDrawType(DT_None);
-			if (PB.myEmitter != None)
-				PB.myEmitter.Destroy();
-		}
-	    ForEach AllActors(class'WeaponLocker', W)
-		{
-			if (bHideLockers)
-				W.GotoState('Disabled');
-			else
-			{
-				for (i=0;i<Replacements.Length;i++)
-					for (j=0;j<W.Weapons.Length;j++)
-						if (W.Weapons[j].WeaponClass == GetInventoryFor(Replacements[i].OldItem))
-						{
-//							W.Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(GetNewItem(i, true)));
-							W.Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(Replacements[i].NewItems[0]));
-						}
-			}
-		}
-	}
-	// Stuff won't be ready now, do it after its had a chance to init...
-	SetTimer(0.05, false);
-	
-	Super.BeginPlay();
 }
 
 simulated function AdjustLockerWeapons()
@@ -946,6 +861,20 @@ function Array<Class<Weapon> > GetAllWeaponClasses()
 	return Weaps;
 }
 
+//===================================================================
+// SPRINT
+//===================================================================
+
+function CreateSprintControl(xPawn P)
+{	
+    local BCSprintControl SC;
+
+    SC = Spawn(class'BWRechargeSprintControl', P);
+
+    SC.GiveTo(P);
+    Sprinters[Sprinters.length] = SC;
+}
+
 function BCSprintControl GetSprintControl(PlayerController Sender)
 {
     local int i;
@@ -960,13 +889,13 @@ function Mutate(string MutateString, PlayerController Sender)
 {
     local BCSprintControl SC;
 
-    if (MutateString ~= "BStartSprint" && bUseSprint)
+    if (MutateString ~= "BStartSprint" && class'BallisticReplicationInfo'.default.bEnableSprint)
     {
         SC = GetSprintControl(Sender);
         if (SC != None)
             SC.StartSprint();
     }
-    else if (MutateString ~= "BStopSprint" && bUseSprint)
+    else if (MutateString ~= "BStopSprint" && class'BallisticReplicationInfo'.default.bEnableSprint)
     {
         SC = GetSprintControl(Sender);
         if (SC != None)
@@ -974,6 +903,64 @@ function Mutate(string MutateString, PlayerController Sender)
     }
 
     super.Mutate(MutateString, Sender);
+}
+
+//===================================================================
+// UTILITY
+//===================================================================
+
+// return Ballistic PRI (Izumo)
+// this does not belong here, like most of the rest of the class, but I can't move it without tackling later dependencies first
+static function BallisticPlayerReplicationInfo GetBPRI(PlayerReplicationInfo PRI)
+{
+	local LinkedReplicationInfo lPRI;
+	
+	if(PRI.CustomReplicationInfo==None)
+	{
+		log("No Custom PRI");
+		return None;  //shouldn't happen
+	}
+
+	if(BallisticPlayerReplicationInfo(PRI.CustomReplicationInfo) !=None)
+		return BallisticPlayerReplicationInfo(PRI.CustomReplicationInfo);
+	
+	for(lPRI = PRI.CustomReplicationInfo.NextReplicationInfo; lPRI != None; lPRI=lPRI.NextReplicationInfo)
+	{
+		if(BallisticPlayerReplicationInfo(lPRI)!=None)
+			return BallisticPlayerReplicationInfo(lPRI);
+		if (lPRI == lPRI.NextReplicationInfo)
+		{
+			log("A LinkedReplicationInfo links to itself, aborting");
+			break;
+		}
+	}
+	
+	log("Couldn't find a BPRI");
+	return None;
+}
+
+// Returns the inventory class for input pickup or inventory
+static function class<inventory> GetInventoryFor(class<Actor> A)
+{
+	if (A == None)
+		return None;
+	else if (class<Inventory>(A) != None)
+		return class<Inventory>(A);
+	else if (class<Pickup>(A) != None && class<Pickup>(A).default.InventoryType != None)
+		return class<Pickup>(A).default.InventoryType;
+	return None;
+}
+
+// Returns the pickup class for the input pickup or inventory
+static function class<pickup> GetPickupFor(class<Actor> A)
+{
+	if (A == None)
+		return None;
+	else if (class<pickup>(A) != None)
+		return class<pickup>(A);
+	else if (class<inventory>(A) != None && class<inventory>(A).default.PickupClass != None)
+		return class<inventory>(A).default.PickupClass;
+	return None;
 }
 
 defaultproperties
@@ -1014,20 +1001,13 @@ defaultproperties
      Replacements(33)=(OldItemName="XPickups.SuperShieldPack",NewItemNames=("BallisticProV55.IP_BigArmor"))
      Replacements(34)=(OldItemName="XPickups.ShieldPack",NewItemNames=("BallisticProV55.IP_SmallArmor"))
      UDamageSnd=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
-     
-	 bUseSprint=True
-     InitStaminaDrainRate=15.000000
-     InitStaminaChargeRate=20.000000
-     InitSpeedFactor=1.350000
-     JumpDrainFactor=2.000000
-	 
+     	 
 	 bPreloadMeshes=True
 	 
 	 ItemGroup="Ballistic"
      bSpawnUniqueItems=True
      bPickupsChange=True
      bRandomDefaultWeapons=True
-     footstepAmplifier=1.500000
 	 CamUpdateRate="1"
      CamRateOptions(0)="No Update"
      CamRateOptions(1)="Slow 2 FPS"
@@ -1035,7 +1015,7 @@ defaultproperties
      CamRateOptions(3)="Fast 10 FPS"
      CamRateOptions(4)="Super 15 FPS"
      bAddToServerPackages=True
-     ConfigMenuClassName="BallisticProV55.BallisticConfigMenuPro"
+     ConfigMenuClassName="BallisticProV55.ConfigMenu_Rules"
      GroupName="Arena"
      FriendlyName="BallisticPro"
      Description="Replaces all the original weapons and items in the game with new, realistic Ballistic weapons and items. Adds reloading, fire modes, special weapon functions, real accuracy, realistic damage, special features like laser sights and tactical cameras, new effects and much much more...||http://www.runestorm.com"

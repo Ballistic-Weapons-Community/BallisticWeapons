@@ -234,7 +234,7 @@ final private simulated function ModifyMenu()
    {
 	  // You can use the panel reference to do the modifications to the tab etc.
 	  // conflict tab is always first
-      Panel = Menu.c_Main.InsertTab(0, MenuName, string( class'BallisticTab_ConflictLoadoutPro' ),, MenuHelp);
+      Panel = Menu.c_Main.InsertTab(0, MenuName, string( class'MidGameTab_Conflict' ),, MenuHelp);
 	  bMenuModified=True;
 	  Disable('Tick');
    }

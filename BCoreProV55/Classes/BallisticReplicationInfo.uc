@@ -41,10 +41,10 @@ var bool					bUniversalMineLights;   	// All BX5 mines are lit.
 // PAWN
 //=============================================================================
 var bool					bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
-var int						PlayerHealth;           	// health the player starts with
+var int						StartingHealth;           	// health the player starts with
 var int						PlayerHealthMax;        	// maximum health a player can have
 var int						PlayerSuperHealthMax;   	// maximum superhealth a player can have
-var int						PlayerShield;           	// armor the player starts with
+var int						StartingShield;           	// armor the player starts with
 var int						PlayerShieldMax;        	// maximum armor the player can have
 
 //=============================================================================
@@ -63,21 +63,27 @@ var float					PlayerAccelRate;
 var float					PlayerJumpZ;
 var float					PlayerDodgeZ;
 //=============================================================================
+// SPRINT
+//=============================================================================
+var() config bool			bEnableSprint;
+var() config int			StaminaChargeRate;
+var() config int			StaminaDrainRate;
+var() config float			SprintSpeedFactor;
+var() config float			JumpDrainFactor;
+
+//=============================================================================
 // HEALTH/ARMOR - NO REP
 //=============================================================================
 var bool					bHealthRegeneration;
 var bool					bShieldRegeneration;
-//=============================================================================
-// STYLE - NO REP
-//=============================================================================
-var bool					bKillstreaks;
-//=============================================================================
-// KILL REWARD - NO REP
-//=============================================================================
 var int						HealthKillReward; // the amount of healthpoints a player gets for a kill
 var int						KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceel this value
 var int						ShieldKillReward;  // armor points for a kill
 var int						KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
+//=============================================================================
+// STYLE - NO REP
+//=============================================================================
+var bool					bKillstreaks;
 
 replication
 {
@@ -85,10 +91,11 @@ replication
 		GameStyle,
 		AccuracyScale, RecoilScale, bWeaponJumpOffsetting, bLongWeaponOffsetting, bNoReloading, MaxInventoryCapacity,
 		bAlternativePickups, bUniversalMineLights,
-		bBrightPlayers, PlayerHealth, PlayerHealthMax, PlayerSuperHealthMax, PlayerShield, PlayerShieldMax,
+		bBrightPlayers, StartingHealth, PlayerHealthMax, PlayerSuperHealthMax, StartingShield, PlayerShieldMax,
 		bPlayerDeceleration, bAllowDodging, bAllowDoubleJump, PlayerWalkSpeedFactor, PlayerCrouchSpeedFactor, 
 		PlayerStrafeScale, PlayerBackpedalScale, PlayerGroundSpeed, PlayerAirSpeed, PlayerAccelRate,
-		PlayerJumpZ, PlayerDodgeZ;
+		PlayerJumpZ, PlayerDodgeZ,
+		StaminaChargeRate, StaminaDrainRate, SprintSpeedFactor, JumpDrainFactor;
 		
 }
 
@@ -115,10 +122,10 @@ simulated final function BindDefaults()
 	class.default.bUniversalMineLights          = bUniversalMineLights;
 
 	class.default.bBrightPlayers	            = bBrightPlayers;
-    class.default.PlayerHealth      			= PlayerHealth;
+    class.default.StartingHealth      			= StartingHealth;
 	class.default.PlayerHealthMax      			= PlayerHealthMax;
 	class.default.PlayerSuperHealthMax      	= PlayerSuperHealthMax;
-	class.default.PlayerShield      			= PlayerShield;
+	class.default.StartingShield      			= StartingShield;
 	class.default.PlayerShieldMax      			= PlayerShieldMax;
 
 	class.default.bPlayerDeceleration			= bPlayerDeceleration;
@@ -133,6 +140,11 @@ simulated final function BindDefaults()
 	class.default.PlayerAccelRate               = PlayerAccelRate;
     class.default.PlayerJumpZ                   = PlayerJumpZ;
 	class.default.PlayerDodgeZ                  = PlayerDodgeZ;
+
+	class.default.StaminaChargeRate				= StaminaChargeRate;
+	class.default.StaminaDrainRate				= StaminaDrainRate;
+    class.default.SprintSpeedFactor				= SprintSpeedFactor;
+	class.default.JumpDrainFactor				= JumpDrainFactor;
 
 	class.default.HealthKillReward				= HealthKillReward;
 	class.default.KillRewardHealthMax			= KillRewardHealthMax;
@@ -212,10 +224,10 @@ defaultproperties
 	bUniversalMineLights=True
 
 	bBrightPlayers=True
-    PlayerHealth=100
+    StartingHealth=100
 	PlayerHealthMax=100
 	PlayerSuperHealthMax=200
-	PlayerShield=100
+	StartingShield=100
 	PlayerShieldMax=200
 
     bAllowDodging=True

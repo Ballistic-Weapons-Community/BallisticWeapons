@@ -1,5 +1,4 @@
 class KillstreakConfig extends Object
-	DependsOn(BallisticTab_Killstreaks)
 	config(BallisticProV55);
 
 var() globalconfig string		Killstreaks[2];

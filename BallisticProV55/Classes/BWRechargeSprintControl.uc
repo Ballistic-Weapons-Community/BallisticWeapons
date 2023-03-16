@@ -22,31 +22,10 @@ simulated function PostBeginPlay()
 
     if (Role == ROLE_Authority)
     {
-        // arena - limited run - mostly uses sprint boost dodge jump
-        if (class'BallisticReplicationInfo'.static.IsArena())
-        {
-            StaminaDrainRate = 10;
-            StaminaChargeRate = 10;
-            SpeedFactor = 1.4;
-            JumpDrainFactor = 0;
-        }
-
-        // tactical - infinite run, to stop you constantly wanting to dodge jump
-        else if (class'BallisticReplicationInfo'.static.IsTactical())
-        {
-            StaminaDrainRate = 0;
-            StaminaChargeRate = 0;
-            SpeedFactor = 1.4;
-            JumpDrainFactor = 0;
-        }
-
-        else
-        {
-            StaminaDrainRate = class'Mut_Ballistic'.default.InitStaminaDrainRate;
-            StaminaChargeRate = class'Mut_Ballistic'.default.InitStaminaChargeRate;
-            SpeedFactor = class'Mut_Ballistic'.default.InitSpeedFactor;
-            JumpDrainFactor = class'Mut_Ballistic'.default.JumpDrainFactor;
-        }
+		StaminaDrainRate = class'BallisticReplicationInfo'.default.StaminaDrainRate;
+		StaminaChargeRate = class'BallisticReplicationInfo'.default.StaminaChargeRate;
+		SpeedFactor = class'BallisticReplicationInfo'.default.SprintSpeedFactor;
+		JumpDrainFactor = class'BallisticReplicationInfo'.default.JumpDrainFactor;
     }
 }
 

@@ -1,5 +1,5 @@
 //=============================================================================
-// BallisticWeaponStatsMenu.
+// GameMenu_WeaponStats.
 //
 // A menu accessible by the BWStats command. Dynamically loads the requested weapon and
 // shows relevant information for it.
@@ -7,7 +7,7 @@
 // by Azarael
 // based on code by Nolan "Dark Carnivour" Richert
 //=============================================================================
-class BallisticWeaponStatsMenu extends UT2K4GUIPage;
+class GameMenu_WeaponStats extends UT2K4GUIPage;
 
 var float BaselineDPS;
 var float BaselineTTK;
@@ -484,7 +484,7 @@ defaultproperties
          WinHeight=1.000000
          RenderWeight=0.001000
      End Object
-     MyBack=GUIImage'BallisticProV55.BallisticWeaponStatsMenu.BackImage'
+     MyBack=GUIImage'BallisticProV55.GameMenu_WeaponStats.BackImage'
 
      Begin Object Class=GUIImage Name=ImageBoxWeapons
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -495,7 +495,7 @@ defaultproperties
          WinHeight=0.535937
          RenderWeight=0.002000
      End Object
-     Box_WeaponList=GUIImage'BallisticProV55.BallisticWeaponStatsMenu.ImageBoxWeapons'
+     Box_WeaponList=GUIImage'BallisticProV55.GameMenu_WeaponStats.ImageBoxWeapons'
 
      Begin Object Class=GUIImage Name=ImageBoxDesc
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -506,7 +506,7 @@ defaultproperties
          WinHeight=0.860000
          RenderWeight=0.002000
      End Object
-     Box_Desc=GUIImage'BallisticProV55.BallisticWeaponStatsMenu.ImageBoxDesc'
+     Box_Desc=GUIImage'BallisticProV55.GameMenu_WeaponStats.ImageBoxDesc'
 
      Begin Object Class=GUIImage Name=ImageBox_WeaponIcon
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -517,7 +517,7 @@ defaultproperties
          WinHeight=0.200000
          RenderWeight=0.002000
      End Object
-     Box_WeaponIcon=GUIImage'BallisticProV55.BallisticWeaponStatsMenu.ImageBox_WeaponIcon'
+     Box_WeaponIcon=GUIImage'BallisticProV55.GameMenu_WeaponStats.ImageBox_WeaponIcon'
 
      Begin Object Class=GUIImage Name=WeaponIconImage
          Image=Texture'Engine.MenuBlack'
@@ -528,7 +528,7 @@ defaultproperties
          WinHeight=0.150000
          RenderWeight=0.004000
      End Object
-     WeaponIcon=GUIImage'BallisticProV55.BallisticWeaponStatsMenu.WeaponIconImage'
+     WeaponIcon=GUIImage'BallisticProV55.GameMenu_WeaponStats.WeaponIconImage'
 
      Begin Object Class=GUISectionBackground Name=GenBackImage
          Caption="General Statistics"
@@ -541,7 +541,7 @@ defaultproperties
          WinHeight=0.850000
          OnPreDraw=GenBackImage.InternalPreDraw
      End Object
-     GenBack=GUISectionBackground'BallisticProV55.BallisticWeaponStatsMenu.GenBackImage'
+     GenBack=GUISectionBackground'BallisticProV55.GameMenu_WeaponStats.GenBackImage'
 
      Begin Object Class=GUISectionBackground Name=PriBackImage
          Caption="Primary Fire Statistics"
@@ -554,7 +554,7 @@ defaultproperties
          WinHeight=0.850000
          OnPreDraw=PriBackImage.InternalPreDraw
      End Object
-     PriBack=GUISectionBackground'BallisticProV55.BallisticWeaponStatsMenu.PriBackImage'
+     PriBack=GUISectionBackground'BallisticProV55.GameMenu_WeaponStats.PriBackImage'
 
      Begin Object Class=GUISectionBackground Name=AltBackImage
          Caption="Alt Fire Statistics"
@@ -567,7 +567,7 @@ defaultproperties
          WinHeight=0.850000
          OnPreDraw=AltBackImage.InternalPreDraw
      End Object
-     AltBack=GUISectionBackground'BallisticProV55.BallisticWeaponStatsMenu.AltBackImage'
+     AltBack=GUISectionBackground'BallisticProV55.GameMenu_WeaponStats.AltBackImage'
 
      Begin Object Class=GUIButton Name=DoneButton
          Caption="DONE"
@@ -575,17 +575,17 @@ defaultproperties
          WinLeft=0.400000
          WinWidth=0.200000
          TabOrder=0
-         OnClick=BallisticWeaponStatsMenu.InternalOnClick
+         OnClick=GameMenu_WeaponStats.InternalOnClick
          OnKeyEvent=DoneButton.InternalOnKeyEvent
      End Object
-     bDone=GUIButton'BallisticProV55.BallisticWeaponStatsMenu.DoneButton'
+     bDone=GUIButton'BallisticProV55.GameMenu_WeaponStats.DoneButton'
 
      Begin Object Class=GUIHeader Name=DaBeegHeader
          bUseTextHeight=True
          Caption="Ballistic Weapon Statistics"
          WinHeight=0.031250
      End Object
-     MyHeader=GUIHeader'BallisticProV55.BallisticWeaponStatsMenu.DaBeegHeader'
+     MyHeader=GUIHeader'BallisticProV55.GameMenu_WeaponStats.DaBeegHeader'
 
      Begin Object Class=GUIListBox Name=WeaponList
          bVisibleWhenEmpty=True
@@ -599,7 +599,7 @@ defaultproperties
          RenderWeight=0.510000
          TabOrder=1
      End Object
-     lb_Weapons=GUIListBox'BallisticProV55.BallisticWeaponStatsMenu.WeaponList'
+     lb_Weapons=GUIListBox'BallisticProV55.GameMenu_WeaponStats.WeaponList'
 
      Begin Object Class=GUILabel Name=WeaponCaption
          TextAlign=TXTA_Center
@@ -610,7 +610,7 @@ defaultproperties
          WinWidth=0.265000
          WinHeight=0.065000
      End Object
-     l_WeaponCaption=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.WeaponCaption'
+     l_WeaponCaption=GUILabel'BallisticProV55.GameMenu_WeaponStats.WeaponCaption'
 
      Begin Object Class=GUILabel Name=myCaption
          TextAlign=TXTA_Center
@@ -621,51 +621,51 @@ defaultproperties
          WinHeight=0.030000
      End Object
 
-     lb_DShot=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_DShot=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_DPS=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_DPS=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_TTK=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_TTK=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_RPM=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_RPM=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_Recoil=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_Recoil=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_RPS=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_RPS=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_DShotAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_DShotAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_DPSAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_DPSAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_TTKAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_TTKAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_RPMAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_RPMAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_RecoilAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_RecoilAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_RPSAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_RPSAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_Raise=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_Raise=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_MoveSpeed=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_MoveSpeed=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_ADSMoveSpeed=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_ADSMoveSpeed=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_Displacement=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_Displacement=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_ViewRecoilFactor=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_ViewRecoilFactor=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_Mag=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_Mag=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_DPM=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_DPM=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_Range=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_Range=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_RangeAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_RangeAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_ADSMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_ADSMultiplier=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
-     lb_CrouchMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_CrouchMultiplier=GUILabel'BallisticProV55.GameMenu_WeaponStats.myCaption'
 
      Begin Object Class=GUILabel Name=MyData
          TextAlign=TXTA_Center
@@ -676,35 +676,35 @@ defaultproperties
          WinHeight=0.030000
      End Object
 
-     db_Dshot=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_HeadMult=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_LimbMult=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_Dshot=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_HeadMult=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_LimbMult=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_RPM=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RPM=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_Recoil=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_Recoil=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_DshotAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_HeadMultAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_LimbMultAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_DshotAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_HeadMultAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_LimbMultAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_RPMAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RPMAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_RecoilAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RecoilAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_Mag=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_Mag=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_RangeOpt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_RangeDecayed=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_RangeMax=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeOpt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_RangeDecayed=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_RangeMax=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_RangeOptAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_RangeDecayedAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-     db_RangeMaxAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeOptAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_RangeDecayedAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
+     db_RangeMaxAlt=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_ADSMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_ADSMultiplier=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
-     db_CrouchMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_CrouchMultiplier=GUILabel'BallisticProV55.GameMenu_WeaponStats.MyData'
 
      Begin Object Class=moComboBox Name=co_DisplayCB
          ComponentJustification=TXTA_Left
@@ -716,9 +716,9 @@ defaultproperties
          WinTop=0.310000
          WinLeft=0.043000
          WinWidth=0.250000
-         OnChange=BallisticWeaponStatsMenu.InternalOnChange
+         OnChange=GameMenu_WeaponStats.InternalOnChange
      End Object
-     cb_Display=moComboBox'BallisticProV55.BallisticWeaponStatsMenu.co_DisplayCB'
+     cb_Display=moComboBox'BallisticProV55.GameMenu_WeaponStats.co_DisplayCB'
 
      Begin Object Class=GUIScrollTextBox Name=WeaponDescription
          CharDelay=0.001000
@@ -735,7 +735,7 @@ defaultproperties
          bAcceptsInput=False
          bNeverFocus=True
      End Object
-     sb_Desc=GUIScrollTextBox'BallisticProV55.BallisticWeaponStatsMenu.WeaponDescription'
+     sb_Desc=GUIScrollTextBox'BallisticProV55.GameMenu_WeaponStats.WeaponDescription'
 
      Begin Object Class=GUIProgressBar Name=myPB
          BarBack=Texture'2K4Menus.NewControls.NewStatusBar'
@@ -750,29 +750,29 @@ defaultproperties
          WinHeight=0.030000
          RenderWeight=1.200000
      End Object
-     pb_DPS=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_DPS=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_TTK=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_TTK=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_RPS=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_RPS=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_DPSAlt=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_DPSAlt=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_TTKAlt=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_TTKAlt=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_RPSAlt=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_RPSAlt=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_Raise=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_Raise=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_ViewRecoilFactor=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_ViewRecoilFactor=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_MoveSpeed=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_MoveSpeed=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_ADSMoveSpeed=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_ADSMoveSpeed=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_Displacement=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_Displacement=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
-     pb_DPM=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_DPM=GUIProgressBar'BallisticProV55.GameMenu_WeaponStats.myPB'
 
      Headings(0)="Melee"
      Headings(1)="Sidearms"
@@ -786,8 +786,8 @@ defaultproperties
      Headings(9)="Grenades"
      bRenderWorld=True
      bAllowedAsLast=True
-     OnClose=BallisticWeaponStatsMenu.InternalOnClose
-     OnKeyEvent=BallisticWeaponStatsMenu.InternalOnKeyEvent
+     OnClose=GameMenu_WeaponStats.InternalOnClose
+     OnKeyEvent=GameMenu_WeaponStats.InternalOnKeyEvent
 
     BaselineClass=class'M50AssaultRifle'
 }

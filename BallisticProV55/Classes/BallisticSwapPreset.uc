@@ -9,9 +9,9 @@
 class BallisticSwapPreset extends Object
 	config(BallisticProV55) 
 	perobjectconfig
-	DependsOn(BallisticTab_SwappingsPro);
+	DependsOn(ConfigTab_Swappings);
 	
-var	config	array<BallisticTab_SwappingsPro.Swap>	Swaps;
+var	config	array<ConfigTab_Swappings.Swap>	Swaps;
 
 defaultproperties
 {

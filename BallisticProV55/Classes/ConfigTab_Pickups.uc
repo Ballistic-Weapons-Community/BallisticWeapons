@@ -4,7 +4,7 @@
 // by Paul "Grum" Haack.
 // Copyright(c) 2012 Crazy-Froggers.com. All Rights Reserved.
 //=============================================================================
-class BallisticTab_Pickups extends UT2K4TabPanel;
+class ConfigTab_Pickups extends ConfigTabBase;
 
 var automated moFloatEdit	fl_NadePct;					//Swap Ammo For Grenade Percentage
 var automated moCheckbox	ch_BrightPickups;			//Bright Pickups Toggle
@@ -22,32 +22,6 @@ var automated moCheckBox    chk_bRemoveHealthPack;		//Toggle Health Pack
 var automated moCheckBox    chk_bRemoveSuperHealthPack;	//Toggle Super Health Pack
 var automated moCheckBox    chk_bRemoveAdrenaline;		//Toggle Adrenaline
 var automated moCheckBox    chk_AlternativePickups;		//Press USE to Pickup Weapons
-
-var BallisticConfigMenuPro	p_Anchor;
-var bool                    bInitialized;
-
-//==================================================================
-// General Menu Code
-//==================================================================
-
-function InitComponent(GUIController MyController, GUIComponent MyOwner)
-{
-    Super.InitComponent(MyController, MyOwner);
-    if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-        p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
-}
-
-function ShowPanel(bool bShow)
-{
-    super.ShowPanel(bShow);
-
-    if (bInitialized)
-        return;
-
-    LoadSettings();
-
-    bInitialized = true;
-}
 
 //==================================================================
 // Settings & Defaults
@@ -73,7 +47,7 @@ function LoadSettings()
     chk_bRemoveSuperHealthPack.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveSuperHealthPack);
     chk_bRemoveAdrenaline.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline);
 
-	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
+	style = BaseMenu.GetConfigStyle();
 
 	if (style != None)
 	{
@@ -128,7 +102,7 @@ function SaveSettings()
     class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline = chk_bRemoveAdrenaline.IsChecked();
     class'BallisticProV55.Mut_Pickups'.static.StaticSaveConfig();
 
-	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
+	style = BaseMenu.GetConfigStyle();
 
 	if (style != None)
 	{    
@@ -152,7 +126,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fl_NadePct=moFloatEdit'BallisticProV55.BallisticTab_Pickups.fl_NadePctFloat'
+     fl_NadePct=moFloatEdit'BallisticProV55.ConfigTab_Pickups.fl_NadePctFloat'
 	 
 	 Begin Object Class=moCheckBox Name=ch_BrightPickupsCheck
          ComponentJustification=TXTA_Left
@@ -165,7 +139,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BrightPickups=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_BrightPickupsCheck'
+     ch_BrightPickups=moCheckBox'BallisticProV55.ConfigTab_Pickups.ch_BrightPickupsCheck'
 
 	 Begin Object Class=moCheckBox Name=ch_PickupsChangeCheck
          ComponentJustification=TXTA_Left
@@ -178,7 +152,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_PickupsChange=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_PickupsChangeCheck'
+     ch_PickupsChange=moCheckBox'BallisticProV55.ConfigTab_Pickups.ch_PickupsChangeCheck'
 	 
 	 Begin Object Class=moCheckBox Name=ch_SpawnUniqueCheck
          ComponentJustification=TXTA_Left
@@ -191,7 +165,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_SpawnUnique=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_SpawnUniqueCheck'
+     ch_SpawnUnique=moCheckBox'BallisticProV55.ConfigTab_Pickups.ch_SpawnUniqueCheck'
 	 
 	 Begin Object Class=moCheckBox Name=ch_KillRogueWPsCheck
          ComponentJustification=TXTA_Left
@@ -204,7 +178,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_KillRogueWPs=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_KillRogueWPsCheck'
+     ch_KillRogueWPs=moCheckBox'BallisticProV55.ConfigTab_Pickups.ch_KillRogueWPsCheck'
 
 	 Begin Object Class=moCheckBox Name=ch_LeaveSuperCheck
          ComponentJustification=TXTA_Left
@@ -217,7 +191,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_LeaveSuper=moCheckBox'BallisticProV55.BallisticTab_Pickups.ch_LeaveSuperCheck'
+     ch_LeaveSuper=moCheckBox'BallisticProV55.ConfigTab_Pickups.ch_LeaveSuperCheck'
 	 
 	 Begin Object Class=moCheckBox Name=chk_bRemoveAmmoPacksC
          ComponentJustification=TXTA_Left
@@ -230,7 +204,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveAmmoPacks=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveAmmoPacksC'
+     chk_bRemoveAmmoPacks=moCheckBox'BallisticProV55.ConfigTab_Pickups.chk_bRemoveAmmoPacksC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveUDamageC
          ComponentJustification=TXTA_Left
@@ -243,7 +217,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveUDamage=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveUDamageC'
+     chk_bRemoveUDamage=moCheckBox'BallisticProV55.ConfigTab_Pickups.chk_bRemoveUDamageC'
 
      Begin Object Class=moCheckBox Name=bRemoveShieldPackC
          ComponentJustification=TXTA_Left
@@ -256,7 +230,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveShieldPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.bRemoveShieldPackC'
+     chk_bRemoveShieldPack=moCheckBox'BallisticProV55.ConfigTab_Pickups.bRemoveShieldPackC'
 
      Begin Object Class=moCheckBox Name=bRemoveSuperShieldPackC
          ComponentJustification=TXTA_Left
@@ -269,7 +243,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveSuperShieldPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.bRemoveSuperShieldPackC'
+     chk_bRemoveSuperShieldPack=moCheckBox'BallisticProV55.ConfigTab_Pickups.bRemoveSuperShieldPackC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveBandagesC
          ComponentJustification=TXTA_Left
@@ -282,7 +256,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveBandages=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveBandagesC'
+     chk_bRemoveBandages=moCheckBox'BallisticProV55.ConfigTab_Pickups.chk_bRemoveBandagesC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveHealthPackC
          ComponentJustification=TXTA_Left
@@ -295,7 +269,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveHealthPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveHealthPackC'
+     chk_bRemoveHealthPack=moCheckBox'BallisticProV55.ConfigTab_Pickups.chk_bRemoveHealthPackC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveSuperHealthPackC
          ComponentJustification=TXTA_Left
@@ -308,7 +282,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveSuperHealthPack=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveSuperHealthPackC'
+     chk_bRemoveSuperHealthPack=moCheckBox'BallisticProV55.ConfigTab_Pickups.chk_bRemoveSuperHealthPackC'
 
      Begin Object Class=moCheckBox Name=chk_bRemoveAdrenalineC
          ComponentJustification=TXTA_Left
@@ -321,7 +295,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_bRemoveAdrenaline=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveAdrenalineC'
+     chk_bRemoveAdrenaline=moCheckBox'BallisticProV55.ConfigTab_Pickups.chk_bRemoveAdrenalineC'
 
      Begin Object Class=moCheckBox Name=chk_AlternativePickupsC
          ComponentJustification=TXTA_Left
@@ -334,6 +308,6 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_AlternativePickups=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_AlternativePickupsC'
+     chk_AlternativePickups=moCheckBox'BallisticProV55.ConfigTab_Pickups.chk_AlternativePickupsC'
 
 }

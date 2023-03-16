@@ -1,5 +1,5 @@
 //=============================================================================
-// BallisticTab_OutfittingPro.
+// ConfigTab_Outfitting.
 //
 // This tab is used to configure loadout boxes for Ballistic Loadout mutator
 // Includes:
@@ -18,32 +18,30 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTab_OutfittingPro extends UT2K4TabPanel config(BallisticProV55);
+class ConfigTab_Outfitting extends ConfigTabBase config(BallisticProV55);
 
 const NUM_BOXES=7;
 const NUM_BOXES_TOTAL=21;
 
-var BallisticConfigMenuPro		p_Anchor;
-var bool							bInitialized;
-var config bool				bUseAllWeapons;
+var config bool							bUseAllWeapons;
 
-var automated GUIImage						Box_New, Box_WeapIcon, Pic_Weapon;
-var automated GUILabel						l_NewList, l_WeapTitle;
+var automated GUIImage					Box_New, Box_WeapIcon, Pic_Weapon;
+var automated GUILabel					l_NewList, l_WeapTitle;
 var automated BC_GUICheckListMultiBox	lb_NewWeapons;
-var automated GUIButton						BAddAll, BRemoveAll, BBox1, BBox2, BBox3, BBox4, BBox5, BBox6, BBox7;
-var automated GUIScrollTextBox				lb_Desc;
-var automated moCheckbox					ch_AllWeaps;
-var automated moFloatEdit					fl_ChangeInterval;
+var automated GUIButton					BAddAll, BRemoveAll, BBox1, BBox2, BBox3, BBox4, BBox5, BBox6, BBox7;
+var automated GUIScrollTextBox			lb_Desc;
+var automated moCheckbox				ch_AllWeaps;
+var automated moFloatEdit				fl_ChangeInterval;
 
 struct LoadOutBox
 {
 	var array<string>	WeaponNames;
 };
 
-var LoadoutBox	Boxes[NUM_BOXES_TOTAL]; //DM, and the two teams
+var LoadoutBox				Boxes[NUM_BOXES_TOTAL]; //DM, and the two teams
 var localized string		BoxNames[NUM_BOXES];
-var int			SelectedBox;
-var() localized string Headings[12];
+var int						SelectedBox;
+var() localized string 		Headings[12];
 
 struct LOWeapInfo
 {
@@ -52,21 +50,10 @@ struct LOWeapInfo
 	var Material	Icon;
 	var IntBox		IconCoords;
 };
-var   array<LOWeapInfo> WeaponInfo;
+var   array<LOWeapInfo> 	WeaponInfo;
 
-function InitComponent(GUIController MyController, GUIComponent MyOwner)
+function InitializeConfigTab()
 {
-	Super.InitComponent(MyController, MyOwner);
-	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
-		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
-}
-
-function ShowPanel(bool bShow)
-{
-	super.ShowPanel(bShow);
-	if (bInitialized)
-		return;
-
 	lb_NewWeapons.CheckList.OnClick = InternalOnClick;
 	lb_NewWeapons.CheckList.OnRightClick = InternalOnRightClick;
 	ch_AllWeaps.MyCheckBox.OnClick = InternalOnClick;
@@ -78,7 +65,6 @@ function ShowPanel(bool bShow)
 
 	LoadBoxesFromMutator();
 	LoadBox(0);
-	bInitialized = true;
 }
 
 //===========================================================================
@@ -587,7 +573,7 @@ defaultproperties
          WinHeight=0.800000
          RenderWeight=0.002000
      End Object
-     Box_New=GUIImage'BallisticProV55.BallisticTab_OutfittingPro.Box_NewImg'
+     Box_New=GUIImage'BallisticProV55.ConfigTab_Outfitting.Box_NewImg'
 
      Begin Object Class=GUIImage Name=Box_WeapIconImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -598,7 +584,7 @@ defaultproperties
          WinHeight=0.800000
          RenderWeight=0.002000
      End Object
-     Box_WeapIcon=GUIImage'BallisticProV55.BallisticTab_OutfittingPro.Box_WeapIconImg'
+     Box_WeapIcon=GUIImage'BallisticProV55.ConfigTab_Outfitting.Box_WeapIconImg'
 
      Begin Object Class=GUIImage Name=Pic_WeaponImg
          ImageStyle=ISTY_Scaled
@@ -608,7 +594,7 @@ defaultproperties
          WinHeight=0.279000
          RenderWeight=0.004000
      End Object
-     Pic_Weapon=GUIImage'BallisticProV55.BallisticTab_OutfittingPro.Pic_WeaponImg'
+     Pic_Weapon=GUIImage'BallisticProV55.ConfigTab_Outfitting.Pic_WeaponImg'
 
      Begin Object Class=GUILabel Name=l_NewListlabel
          Caption="Weapons"
@@ -619,7 +605,7 @@ defaultproperties
          WinWidth=0.450000
          WinHeight=0.050000
      End Object
-     l_NewList=GUILabel'BallisticProV55.BallisticTab_OutfittingPro.l_NewListlabel'
+     l_NewList=GUILabel'BallisticProV55.ConfigTab_Outfitting.l_NewListlabel'
 
      Begin Object Class=GUILabel Name=l_WeapTitlelabel
          TextAlign=TXTA_Center
@@ -629,7 +615,7 @@ defaultproperties
          WinWidth=0.430000
          WinHeight=0.050000
      End Object
-     l_WeapTitle=GUILabel'BallisticProV55.BallisticTab_OutfittingPro.l_WeapTitlelabel'
+     l_WeapTitle=GUILabel'BallisticProV55.ConfigTab_Outfitting.l_WeapTitlelabel'
 
      Begin Object Class=BC_GUICheckListMultiBox Name=lb_NewWeaponsList
          bVisibleWhenEmpty=True
@@ -643,7 +629,7 @@ defaultproperties
          RenderWeight=0.520000
          TabOrder=1
      End Object
-     lb_NewWeapons=BC_GUICheckListMultiBox'BallisticProV55.BallisticTab_OutfittingPro.lb_NewWeaponsList'
+     lb_NewWeapons=BC_GUICheckListMultiBox'BallisticProV55.ConfigTab_Outfitting.lb_NewWeaponsList'
 
      Begin Object Class=GUIButton Name=AddAllButton
          Caption="ALL"
@@ -652,10 +638,10 @@ defaultproperties
          WinLeft=0.580000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=AddAllButton.InternalOnKeyEvent
      End Object
-     BAddAll=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.AddAllButton'
+     BAddAll=GUIButton'BallisticProV55.ConfigTab_Outfitting.AddAllButton'
 
      Begin Object Class=GUIButton Name=RemoveAllButton
          Caption="NONE"
@@ -664,10 +650,10 @@ defaultproperties
          WinLeft=0.780000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
      End Object
-     BRemoveAll=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.RemoveAllButton'
+     BRemoveAll=GUIButton'BallisticProV55.ConfigTab_Outfitting.RemoveAllButton'
 
      Begin Object Class=GUIButton Name=BBox1Button
          Caption="Melee"
@@ -676,10 +662,10 @@ defaultproperties
          WinLeft=0.025000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=BBox1Button.InternalOnKeyEvent
      End Object
-     BBox1=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.BBox1Button'
+     BBox1=GUIButton'BallisticProV55.ConfigTab_Outfitting.BBox1Button'
 
      Begin Object Class=GUIButton Name=BBox2Button
          Caption="Sidearm"
@@ -688,10 +674,10 @@ defaultproperties
          WinLeft=0.225000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=BBox2Button.InternalOnKeyEvent
      End Object
-     BBox2=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.BBox2Button'
+     BBox2=GUIButton'BallisticProV55.ConfigTab_Outfitting.BBox2Button'
 
      Begin Object Class=GUIButton Name=BBox3Button
          Caption="Primary"
@@ -700,10 +686,10 @@ defaultproperties
          WinLeft=0.425000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=BBox3Button.InternalOnKeyEvent
      End Object
-     BBox3=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.BBox3Button'
+     BBox3=GUIButton'BallisticProV55.ConfigTab_Outfitting.BBox3Button'
 
      Begin Object Class=GUIButton Name=BBox4Button
          Caption="Secondary"
@@ -712,10 +698,10 @@ defaultproperties
          WinLeft=0.625000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=BBox4Button.InternalOnKeyEvent
      End Object
-     BBox4=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.BBox4Button'
+     BBox4=GUIButton'BallisticProV55.ConfigTab_Outfitting.BBox4Button'
 
      Begin Object Class=GUIButton Name=BBox5Button
          Caption="Grenade"
@@ -724,10 +710,10 @@ defaultproperties
          WinLeft=0.825000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=BBox5Button.InternalOnKeyEvent
      End Object
-     BBox5=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.BBox5Button'
+     BBox5=GUIButton'BallisticProV55.ConfigTab_Outfitting.BBox5Button'
 
      Begin Object Class=GUIButton Name=BBox6Button
          Caption="Streak 1"
@@ -736,10 +722,10 @@ defaultproperties
          WinLeft=0.225000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=BBox6Button.InternalOnKeyEvent
      End Object
-     BBox6=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.BBox6Button'
+     BBox6=GUIButton'BallisticProV55.ConfigTab_Outfitting.BBox6Button'
 
      Begin Object Class=GUIButton Name=BBox7Button
          Caption="Streak 2"
@@ -748,10 +734,10 @@ defaultproperties
          WinLeft=0.625000
          WinWidth=0.150000
          TabOrder=0
-         OnClick=BallisticTab_OutfittingPro.InternalOnClick
+         OnClick=ConfigTab_Outfitting.InternalOnClick
          OnKeyEvent=BBox7Button.InternalOnKeyEvent
      End Object
-     BBox7=GUIButton'BallisticProV55.BallisticTab_OutfittingPro.BBox7Button'
+     BBox7=GUIButton'BallisticProV55.ConfigTab_Outfitting.BBox7Button'
 
      Begin Object Class=GUIScrollTextBox Name=WeaponDescription
          CharDelay=0.001500
@@ -768,7 +754,7 @@ defaultproperties
          bAcceptsInput=False
          bNeverFocus=True
      End Object
-     lb_Desc=GUIScrollTextBox'BallisticProV55.BallisticTab_OutfittingPro.WeaponDescription'
+     lb_Desc=GUIScrollTextBox'BallisticProV55.ConfigTab_Outfitting.WeaponDescription'
 
      Begin Object Class=moCheckBox Name=ch_AllWeapsCheck
          ComponentJustification=TXTA_Left
@@ -782,7 +768,7 @@ defaultproperties
          WinWidth=0.450000
          WinHeight=0.040000
      End Object
-     ch_AllWeaps=moCheckBox'BallisticProV55.BallisticTab_OutfittingPro.ch_AllWeapsCheck'
+     ch_AllWeaps=moCheckBox'BallisticProV55.ConfigTab_Outfitting.ch_AllWeapsCheck'
 
      Begin Object Class=moFloatEdit Name=fl_ChangeIntervalFloat
          MinValue=0.000000
@@ -798,7 +784,7 @@ defaultproperties
          WinWidth=0.450000
          WinHeight=0.040000
      End Object
-     fl_ChangeInterval=moFloatEdit'BallisticProV55.BallisticTab_OutfittingPro.fl_ChangeIntervalFloat'
+     fl_ChangeInterval=moFloatEdit'BallisticProV55.ConfigTab_Outfitting.fl_ChangeIntervalFloat'
 
      BoxNames(0)="Melee"
      BoxNames(1)="Sidearm"
