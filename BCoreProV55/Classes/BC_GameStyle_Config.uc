@@ -101,9 +101,9 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 
 	rep.bEnableSprint				= default.bEnableSprint;
 	rep.StaminaChargeRate			= default.StaminaChargeRate;
-	rep.StaminaDrainRate 			= default.StaminaChargeRate;
-	rep.SprintSpeedFactor 			= default.StaminaChargeRate;
-	rep.JumpDrainFactor 			= default.StaminaChargeRate;
+	rep.StaminaDrainRate 			= default.StaminaDrainRate;
+	rep.SprintSpeedFactor 			= default.SprintSpeedFactor;
+	rep.JumpDrainFactor 			= default.JumpDrainFactor;
 
 	rep.HealthKillReward			= default.HealthKillReward;
 	rep.KillRewardHealthMax			= default.KillRewardHealthMax;
