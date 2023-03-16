@@ -640,7 +640,8 @@ simulated function GenerateLayout(byte Index)
 	}
 }
 
-//Take a camo from a pickup or mutator via GiveTo. If default (255), generate a random camo if applicable
+//Take a camo from a pickup or mutator via GiveTo. 
+//If default (255), generate a random camo if applicable. If a default fails to generate, pass 255 to abort load
 //Builds a sublist of acceptable camos based on our layout
 simulated function GenerateCamo(byte Index)
 {
@@ -658,7 +659,8 @@ simulated function GenerateCamo(byte Index)
 	//No camos, disable load
 	if (Camos.length == 0)
 	{
-		SetCamoIndex(-1); //-1 aborts load
+		//log("set index to -1, camos length is 0");
+		SetCamoIndex(255); //A passed 255 aborts load
 		return;
 	}
 	
@@ -707,7 +709,8 @@ simulated function GenerateCamo(byte Index)
 		}
 		else if (CamoSublist.length == 0) //No camos allowed, abort load
 		{
-			SetCamoIndex(-1);
+			//log("set index to -1, our sublist length is 0");
+			SetCamoIndex(255);
 		}
 		else
 		{
@@ -844,8 +847,8 @@ simulated function OnWeaponParamsChanged()
 		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
 	}
 	
-	log("Camo Index is "$CamoIndex);
-	log("Weapon Camo is "$WeaponCamo);
+	//log("Camo Index is "$CamoIndex);
+	//log("Weapon Camo is "$WeaponCamo);
 	
 	//Weapon Modes
 	if (WeaponParams.WeaponModes.Length != 0)

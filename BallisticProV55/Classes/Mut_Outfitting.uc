@@ -18,6 +18,7 @@ class Mut_Outfitting extends Mut_Ballistic
 
 var() globalconfig string 			LoadOut[5];			// Loadout info saved seperately on each client
 var() globalconfig int 				Layout[5];			// Layout number saved seperately on each client
+var() globalconfig int 				Camo[5];			// Camo number saved seperately on each client
 var() globalconfig bool				bDebugMode;
 
 var   Array<ClientOutfittingInterface>	COIPond;	// Jump right in, they won't bite - probably...
@@ -141,7 +142,7 @@ function ModifyPlayer(Pawn Other)
 					i--;
 				continue;
 			}
-			SpawnWeaponLayout(W, Other, -1);
+			SpawnWeaponLayout(W, Other, 255, 255);
 			if (i == 0)
 				i = 4;
 			else if (i == 3)
@@ -373,7 +374,7 @@ function ChangeLoadout (Pawn P, out string Stuff[NUM_GROUPS], optional string Ol
 }
 
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
-function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS], optional int Layouts[NUM_GROUPS])
+function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS], optional int Layouts[NUM_GROUPS], optional int Camos[NUM_GROUPS])
 {
 	local byte i, j, k, m, DummyFlags;
 	local bool bMatch;
@@ -448,7 +449,7 @@ function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldS
 				if (W == None)
 					log("Could not load outfitted weapon "$Stuff[i]);
 				else
-					SpawnWeaponLayout(W, Other, Layouts[i]);
+					SpawnWeaponLayout(W, Other, Layouts[i], Camos[i]);
 			}
 		}
 		if (i == 0)
@@ -525,7 +526,7 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 }
 
 //Spawn a weapon but set a layout if available
-static function Weapon SpawnWeaponLayout(class<weapon> newClass, Pawn P, int LayoutIndex)
+static function Weapon SpawnWeaponLayout(class<weapon> newClass, Pawn P, int LayoutIndex, int CamoIndex)
 {
 	local Weapon newWeapon;
 	//local BallisticPlayerReplicationInfo BPRI;
@@ -541,7 +542,10 @@ static function Weapon SpawnWeaponLayout(class<weapon> newClass, Pawn P, int Lay
 			if( newWeapon != None )
 			{
 				if (BallisticWeapon(newWeapon) != None)
+				{
 					BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+					BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
+				}
 				newWeapon.GiveTo(P);
 			}
 			//Hack for bots - stops them complaining
@@ -666,6 +670,11 @@ defaultproperties
 	 Layout(2)=0
 	 Layout(3)=0
 	 Layout(4)=0
+	 Camo(0)=0
+	 Camo(1)=0
+	 Camo(2)=0
+	 Camo(3)=0
+	 Camo(4)=0
 	 LoadOut(0)="BallisticProV55.X3Knife"
      LoadOut(1)="BallisticProV55.M806Pistol"
      LoadOut(2)="BallisticProV55.M763Shotgun"

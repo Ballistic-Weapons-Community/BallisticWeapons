@@ -268,7 +268,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ZoomType=ZT_Irons
+		ZoomType=ZT_Logarithmic
 		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
