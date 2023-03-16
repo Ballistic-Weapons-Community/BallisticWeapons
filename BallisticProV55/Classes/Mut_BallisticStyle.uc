@@ -27,6 +27,9 @@ simulated function PreBeginPlay()
 	// and thereafter it will be read from there
 	class'BallisticGameStyles'.default.CurrentStyle = OverrideStyle;
 
+	Log("Mut_BallisticStyle: Overriding game style with "$GetEnum(enum'EGameStyle', class'BallisticGameStyles'.default.CurrentStyle));
+	Log("Mut_BallisticStyle: Spawning mutator "$InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName);
+
 	Level.Game.AddMutator(InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName, false);
 }
 

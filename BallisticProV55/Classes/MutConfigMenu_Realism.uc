@@ -5,5 +5,5 @@ class MutConfigMenu_Realism extends ConfigMenu_Rules;
 
 defaultproperties
 { 
-	ConfiguredStyle=class'BC_GameStyle_Config'
+	ConfiguredStyle=class'GameStyle_Realism'
 }

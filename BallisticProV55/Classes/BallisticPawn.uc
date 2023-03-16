@@ -222,6 +222,8 @@ simulated final function BindDefaultMovement()
 
 simulated function ApplyMovementOverrides()
 { 
+	Log("BallisticPawn::ApplyMovementOverrides: Ground speed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
+
 	if (!class'BallisticReplicationInfo'.default.bAllowDodging)
     {
 		bCanWallDodge = false;
@@ -242,6 +244,8 @@ simulated function ApplyMovementOverrides()
 	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
 	JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
 	DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
+
+	BindDefaultMovement();
 }
 
 simulated function CreateColorStyle()

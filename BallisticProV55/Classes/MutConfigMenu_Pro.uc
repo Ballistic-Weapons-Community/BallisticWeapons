@@ -5,5 +5,5 @@ class MutConfigMenu_Pro extends ConfigMenu_Inventory;
 
 defaultproperties
 { 
-	ConfiguredStyle=class'BC_GameStyle'
+	ConfiguredStyle=class'GameStyle_Pro'
 }
