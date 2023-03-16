@@ -11,5 +11,5 @@ defaultproperties
      OverrideStyle=GS_Tactical
 	 ConfigMenuClassName="BallisticProV55.MutConfigMenu_Tactical"
      FriendlyName="Ballistic Weapons: Tactical Style"
-     Description="Replaces all the original weapons and items in the game with new, realistic Ballistic weapons and items. Adds reloading, fire modes, special weapon functions, real accuracy, realistic damage, special features like laser sights and tactical cameras, new effects and much much more...||http://www.runestorm.com"
+     Description="Applies the Tactical style of the Ballistic Weapons mod, which replaces the game's weaponset and behaviours with more realistic ones.||This style is based around tactical shooter style play, with slower movement and very high weapon damage.||This style is standardized, and allows only for very limited configuration from the Mutator menu."
 }

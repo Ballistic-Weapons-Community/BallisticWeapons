@@ -155,6 +155,8 @@ simulated final function BindDefaults()
 	class.default.ShieldKillReward				= ShieldKillReward;
 	class.default.KillRewardShieldMax			= KillRewardShieldMax;
 
+	class.default.bKillstreaks					= bKillstreaks;
+
 	Log("BallisticReplicationInfo: PostNetBeginPlay");
 
 	Log("Accuracy Scale: "$AccuracyScale);

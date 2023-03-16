@@ -25,9 +25,6 @@ function LoadSettings()
 {
 	local class<BC_GameStyle_Config> style;
 
-	// gamestyle... all of them...
-
-
 	style = BaseMenu.GetConfigStyle();
 
 	if (style != None)
@@ -98,17 +95,6 @@ function SaveSettings()
 
 defaultproperties
 {	 
-	 Begin Object Class=moCheckBox Name=cb_bPlayerDecelerationC
-         ComponentWidth=0.175000
-         Caption="Adjust Movement"
-         OnCreateComponent=cb_bPlayerDecelerationC.InternalOnCreateComponent
-         Hint="Overrides default movement with the settings below."
-         WinTop=0.10000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     cb_bPlayerDeceleration=moCheckBox'cb_bPlayerDecelerationC'
-
      Begin Object Class=moNumericEdit Name=ne_PlayerGroundSpeedC
          MinValue=160
          MaxValue=440
@@ -117,7 +103,7 @@ defaultproperties
          Caption="Movement Speed"
          OnCreateComponent=ne_PlayerGroundSpeedC.InternalOnCreateComponent
          Hint="Player ground and air speed. 160 - 440. 440 is UT2004 default."
-         WinTop=0.150000
+         WinTop=0.10000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -131,11 +117,22 @@ defaultproperties
          Caption="Acceleration Rate"
          OnCreateComponent=ne_PlayerAccelRateC.InternalOnCreateComponent
          Hint="Scales player acceleration. 1024 - 2048. UT2004 is 2048."
-         WinTop=0.20000
+         WinTop=0.15000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ne_PlayerAccelRate=moNumericEdit'ne_PlayerAccelRateC'
+
+	Begin Object Class=moCheckBox Name=cb_bPlayerDecelerationC
+         ComponentWidth=0.175000
+         Caption="Player Deceleration"
+         OnCreateComponent=cb_bPlayerDecelerationC.InternalOnCreateComponent
+         Hint="Players will decelerate gradually when movement stops."
+         WinTop=0.2000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     cb_bPlayerDeceleration=moCheckBox'cb_bPlayerDecelerationC'
 
      Begin Object Class=moFloatEdit Name=fe_PlayerStrafeScaleC
          MinValue=0.80000

@@ -12,7 +12,7 @@ var automated moCheckbox	ch_BrightPlayers;			//Bright Players
 var automated moCheckbox	ch_ForceBWPawn;				//Force Ballistic Pawn
 var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
 var automated moCheckbox	ch_KillStreaks;				//Killstreaks
-
+var automated GUIButton		bn_ClientSettings;
 //==================================================================
 // Settings & Defaults
 //==================================================================
@@ -82,6 +82,14 @@ function DefaultSettings()
 	ch_KillStreaks.Checked(false);
 }
 
+function bool InternalOnClick(GUIComponent Sender)
+{
+	if (Sender==bn_ClientSettings) // DONE
+	{
+		Controller.OpenMenu("BallisticProV55.ConfigMenu_Preferences");
+	}
+}
+
 defaultproperties
 {	 
 	 Begin Object Class=moComboBox Name=co_InventoryModeCombo
@@ -149,4 +157,17 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_KillStreaks=moCheckBox'BallisticProV55.ConfigTab_GameRules.ch_KillStreaksCheck'
+
+	Begin Object Class=GUIButton Name=ClientSettingsButton
+         Caption="Preferences"
+         Hint="Edit preferences."
+         WinTop=0.450000
+		 WinHeight=0.1
+         WinLeft=0.250000
+         WinWidth=0.50000
+         TabOrder=0
+         OnClick=ConfigTab_GameRules.InternalOnClick
+         OnKeyEvent=ClientSettingsButton.InternalOnKeyEvent
+     End Object
+     bn_ClientSettings=GUIButton'ClientSettingsButton'
 }

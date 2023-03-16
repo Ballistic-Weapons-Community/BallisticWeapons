@@ -11,5 +11,5 @@ defaultproperties
      OverrideStyle=GS_Classic
 	 ConfigMenuClassName="BallisticProV55.MutConfigMenu_Classic"
      FriendlyName="Ballistic Weapons: Classic Style"
-     Description="Replaces all the original weapons and items in the game with new, realistic Ballistic weapons and items. Adds reloading, fire modes, special weapon functions, real accuracy, realistic damage, special features like laser sights and tactical cameras, new effects and much much more...||http://www.runestorm.com"
+     Description="Applies the Classic style of the Ballistic Weapons mod, which replaces the game's weaponset and behaviours with more realistic ones.||This style is based around how Ballistic V2.5, the last official Runestorm version, plays..||This style can be configured extensively using the Mutator menu."
 }
