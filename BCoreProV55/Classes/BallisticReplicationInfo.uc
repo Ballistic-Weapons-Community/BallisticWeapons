@@ -118,6 +118,7 @@ simulated final function BindDefaults()
 	class.default.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	class.default.bLongWeaponOffsetting			= bLongWeaponOffsetting;
 	class.default.bNoReloading					= bNoReloading;
+	class.default.MaxInventoryCapacity			= MaxInventoryCapacity;
 	class.default.bAlternativePickups 	        = bAlternativePickups;
 	class.default.bUniversalMineLights          = bUniversalMineLights;
 
@@ -141,17 +142,19 @@ simulated final function BindDefaults()
     class.default.PlayerJumpZ                   = PlayerJumpZ;
 	class.default.PlayerDodgeZ                  = PlayerDodgeZ;
 
+	class.default.bEnableSprint					= true;
 	class.default.StaminaChargeRate				= StaminaChargeRate;
 	class.default.StaminaDrainRate				= StaminaDrainRate;
     class.default.SprintSpeedFactor				= SprintSpeedFactor;
 	class.default.JumpDrainFactor				= JumpDrainFactor;
 
+	class.default.bHealthRegeneration			= bHealthRegeneration;
+	class.default.bShieldRegeneration			= bShieldRegeneration;
 	class.default.HealthKillReward				= HealthKillReward;
 	class.default.KillRewardHealthMax			= KillRewardHealthMax;
 	class.default.ShieldKillReward				= ShieldKillReward;
 	class.default.KillRewardShieldMax			= KillRewardShieldMax;
 
-		
 	Log("BallisticReplicationInfo: PostNetBeginPlay");
 
 	Log("Accuracy Scale: "$AccuracyScale);

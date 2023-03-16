@@ -1,11 +1,7 @@
 //=============================================================================
 // ConfigMenuBase
 //
-// This menu is like an options menu for the Ballistic Weapons mod.
-// It has settings for the mutator and game like rules and so on which are kept
-// server side and preference type options that are kept client side.
-// OK: saves and exits, Cancel: exits without save, Reset: undoes all changes
-// Defaults: resets everything to default
+// Rules / inventory configuration menu for configurable game styles.
 //
 // by Nolan "Dark Carnivour" Richert and Azarael
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -16,9 +12,8 @@ class ConfigMenu_Rules extends ConfigMenuBase;
 var() localized string		GameTabLabel,GameTabHint;
 var() localized string		WeaponsTabLabel,WeaponsTabHint;
 var() localized string		PlayerTabLabel,PlayerTabHint;
+var() localized string		MovementTabLabel,MovementTabHint;
 var() localized string		PickupsTabLabel,PickupsTabHint;
-var() localized string		SprintTabLabel,SprintTabHint;
-var() localized string		KillRewardsTabLabel,KillRewardsTabHint;
 
 var() localized string		ConflictTabLabel, ConflictTabHint;
 var() localized string		LoadoutTabLabel,LoadoutTabHint;
@@ -31,10 +26,9 @@ function AddTabs()
 	//WIP
 	c_Tabs.AddTab(GameTabLabel,"BallisticProV55.ConfigTab_GameRules",,GameTabHint);
 	c_Tabs.AddTab(WeaponsTabLabel,"BallisticProV55.ConfigTab_WeaponRules",,WeaponsTabHint);
-	c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.ConfigTab_Player",,PlayerTabHint);
-	c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.ConfigTab_Pickups",,PickupsTabHint);
-	c_Tabs.AddTab(SprintTabLabel,"BallisticProV55.ConfigTab_Sprint",,SprintTabHint);	
-	c_Tabs.AddTab(KillRewardsTabLabel,"BallisticProV55.ConfigTab_KillRewards",,KillRewardsTabHint); 
+	c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.ConfigTab_PlayerRules",,PlayerTabHint);
+	c_Tabs.AddTab(MovementTabLabel,"BallisticProV55.ConfigTab_MovementRules",,MovementTabHint);	
+	c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.ConfigTab_PickupRules",,PickupsTabHint);
 
 	//Inventory
 	c_Tabs.AddTab(ConflictTabLabel,"BallisticProV55.ConfigTab_Conflict",,ConflictTabHint);
@@ -46,23 +40,19 @@ function AddTabs()
 
 defaultproperties
 { 
-	ConfiguredStyle=class'BC_GameStyle'
-
-	HeaderCaption="Ballistic Rules"
+	HeaderCaption="Ballistic Configuration"
 	
 	// rules
 	GameTabLabel="Game"
-	GameTabHint="Adjust rules and settings that affect the behaviour of the game."
+	GameTabHint="General game rules and settings."
 	WeaponsTabLabel="Weapons"
-	WeaponsTabHint="Adjust rules and settings that affect the behaviour of the Weapons."
+	WeaponsTabHint="Weapon rules and settings."
 	PlayerTabLabel="Player"
-	PlayerTabHint="Adjust rules and settings that affect the Player Settings"
+	PlayerTabHint="Player character rules and settings."
 	PickupsTabLabel="Pickups"
-	PickupsTabHint="Adjust rules and settings that affect the Equipment Pickup Settings"
-	KillRewardsTabLabel="Kill Rewards"
-	KillRewardsTabHint="Adjust rules and settings that affect Kill Rewards"
-	SprintTabLabel="Movement"
-	SprintTabHint="Adjust rules and settings that affect Movement"
+	PickupsTabHint="Pickup rules and settings."
+	MovementTabLabel="Movement"
+	MovementTabHint="Movement rules and settings."
 
 	// inventory
 	ConflictTabLabel="Conflict Loadout"

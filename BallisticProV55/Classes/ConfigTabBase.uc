@@ -1,6 +1,10 @@
 //=============================================================================
-// Base class of configuration menu tabs.
+// ConfigTabBase
+//
+// Base class of configuration menu tabs for BW.
 // Provides the save/load interface.
+//
+// by Azarael
 //=============================================================================
 class ConfigTabBase extends UT2K4TabPanel;
 

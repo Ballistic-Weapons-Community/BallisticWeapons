@@ -1,7 +1,7 @@
 //=============================================================================
-// ConfigTab_Movement
+// ConfigTab_MovementRules
 //=============================================================================
-class ConfigTab_Movement extends ConfigTabBase;
+class ConfigTab_MovementRules extends ConfigTabBase;
 
 var automated moNumericEdit     ne_PlayerGroundSpeed;		// Ground Speed Scale
 var automated moNumericEdit     ne_PlayerAccelRate;			// Acceleration Scale

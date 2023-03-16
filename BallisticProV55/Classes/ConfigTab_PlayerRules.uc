@@ -1,10 +1,9 @@
 //=============================================================================
-// ConfigTab_Player.
+// ConfigTab_PlayerRules.
 //
-// by Paul "Grum" Haack.
-// Copyright(c) 2012 Crazy-Froggers.com. All Rights Reserved.
+// by Paul "Grum" Haack and Azarael
 //=============================================================================
-class ConfigTab_Player extends ConfigTabBase;
+class ConfigTab_PlayerRules extends ConfigTabBase;
 
 var automated moNumericEdit     ne_StartingHealth;			//Starting Health
 var automated moNumericEdit     ne_PlayerHealthMax;			//Health Cap

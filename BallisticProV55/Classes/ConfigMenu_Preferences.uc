@@ -61,16 +61,16 @@ defaultproperties
 	 HeaderCaption="Ballistic Preferences"
 
      GameplayTabLabel="Gameplay"
-     GameplayTabHint="Configure gamepaly preferences."
+     GameplayTabHint="Configure gameplay preferences."
 
      VisualTabLabel="Visual"
      VisualTabHint="Configure visual preferences."
 
 	 BloodTabLabel="Blood"
-     BloodTabHint="Configure Ballistic blood and gore settings."
+     BloodTabHint="Configure blood and gore settings."
 	 
      CrossTabLabel="Crosshairs"
-     CrossTabHint="Configure the Ballistic crosshair styles, colours, sizes, etc"
+     CrossTabHint="Configure crosshairs."
 
 	 DetailSettings(0)="UltraLow"
      DetailSettings(1)="VeryLow"

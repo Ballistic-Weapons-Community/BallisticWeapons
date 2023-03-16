@@ -1,11 +1,7 @@
 //=============================================================================
 // ConfigMenu_Inventory
 //
-// This menu is like an options menu for the Ballistic Weapons mod.
-// It has settings for the mutator and game like rules and so on which are kept
-// server side and preference type options that are kept client side.
-// OK: saves and exits, Cancel: exits without save, Reset: undoes all changes
-// Defaults: resets everything to default
+// Configuration menu used for fixed game styles.
 //
 // by Nolan "Dark Carnivour" Richert and Azarael
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -35,7 +31,7 @@ function AddTabs()
 
 defaultproperties
 {
-	HeaderCaption="Ballistic Rules"
+	HeaderCaption="Ballistic Configuration"
 
 	GameTabLabel="Game"
 	GameTabHint="Adjust rules and settings that affect the behaviour of the game."

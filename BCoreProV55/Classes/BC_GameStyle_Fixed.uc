@@ -19,7 +19,6 @@ var() bool          bAlternativePickups;	    // Press Use to Pickup Weapon
 //=============================================================================
 // PAWN
 //=============================================================================
-var() bool			bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
 var() bool			bUniversalMineLights;   // All BX-5 mines are lit.
 
 //=============================================================================

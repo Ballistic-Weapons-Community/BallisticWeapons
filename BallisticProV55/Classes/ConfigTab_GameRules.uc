@@ -1,13 +1,9 @@
 //=============================================================================
 // ConfigTab_WeaponRules.
 //
-// Server side options like rules that change the behaviour of the game and
-// affect all players. These are used when hosting an MP or SP game.
+// Server side options which are used by all styles, even the fixed ones.
 //
-// Edit By OJMoody
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2006 RuneStorm. All Rights Reserved.
+// by DarkCarnivour and Azarael
 //=============================================================================
 class ConfigTab_GameRules extends ConfigTabBase;
 
@@ -23,22 +19,26 @@ var automated moCheckbox	ch_KillStreaks;				//Killstreaks
 
 function LoadSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle> style;
 
-	co_InventoryMode.AddItem("Pickups" ,,string(0));
+	co_InventoryMode.AddItem("Conflict Loadout" ,,string(0));
 	co_InventoryMode.AddItem("Outfitting Loadout" ,,string(1));
-	co_InventoryMode.AddItem("Conflict Loadout" ,,string(2));
-	co_InventoryMode.AddItem("Evolution Loadout" ,,string(3));
+	co_InventoryMode.AddItem("Evolution Loadout",,string(2));
+	co_InventoryMode.AddItem("Pickups" ,,string(3));
 	co_InventoryMode.AddItem("Arena" ,,string(4));
-	co_InventoryMode.AddItem("Melee" ,,string(4));
+	co_InventoryMode.AddItem("Melee" ,,string(5));
 	co_InventoryMode.ReadOnly(True);
 
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
 
-	style = BaseMenu.GetConfigStyle();
+	style = BaseMenu.GetGameStyle();
 
-	if (style != None)
+	if (style == None)
+	{
+		Log("ConfigTab_GameRules: Couldn't load: No compatible style found");
+	}
+	else 
 	{
 		co_InventoryMode.SetIndex(style.default.InventoryModeIndex);
 		ch_KillStreaks.Checked(style.default.bKillstreaks);
@@ -48,7 +48,7 @@ function LoadSettings()
 
 function SaveSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle> style;
 
 	if (!bInitialized)
 		return;
@@ -58,9 +58,13 @@ function SaveSettings()
     class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
 
-	style = BaseMenu.GetConfigStyle();
+	style = BaseMenu.GetGameStyle();
 
-	if (style != None)
+	if (style == None)
+	{
+		Log("ConfigTab_GameRules: Couldn't save: No compatible style found");
+	}
+	else 
 	{
 		style.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
 		style.default.bBrightPlayers			= ch_BrightPlayers.IsChecked();

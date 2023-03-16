@@ -32,7 +32,7 @@ var() config float		RecoilScale;			    // Scales weapon recoil
 var() config int		InventoryModeIndex;			// Inventory mode used in this style - server only
 var() config int		MaxInventoryCapacity;		// Maximum carrying capacity
 var() config bool		bKillstreaks;				// Use killstreaks in this style - server only
-
+var() config bool		bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
 //=============================================================================
 // NON-CONFIG VARIABLES
 //=============================================================================	
@@ -66,11 +66,12 @@ defaultproperties
 	DamageScale=1.0f
     RecoilScale=1.0f
 
-	InventoryModeIndex=2
+	InventoryModeIndex=0
 	MaxInventoryCapacity=0
 
 	PlayerWalkSpeedFactor=0.9
 	PlayerCrouchSpeedFactor=0.45
 
+	bBrightPlayers=False
 	bKillstreaks=True
 }

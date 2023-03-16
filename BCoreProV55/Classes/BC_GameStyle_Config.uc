@@ -20,7 +20,6 @@ var() config bool           bAlternativePickups;	    // Press Use to Pickup Weap
 //=============================================================================
 // PAWN
 //=============================================================================
-var() config bool			bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
 var() config bool			bUniversalMineLights;   // All BX-5 mines are lit.
 
 //=============================================================================

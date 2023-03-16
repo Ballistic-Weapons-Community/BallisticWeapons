@@ -1,14 +1,9 @@
 //=============================================================================
 // ConfigMenuBase
 //
-// This menu is like an options menu for the Ballistic Weapons mod.
-// It has settings for the mutator and game like rules and so on which are kept
-// server side and preference type options that are kept client side.
-// OK: saves and exits, Cancel: exits without save, Reset: undoes all changes
-// Defaults: resets everything to default
+// Base class of configuration menus for BW.
 //
-// by Nolan "Dark Carnivour" Richert and Azarael
-// Copyright(c) 2006 RuneStorm. All Rights Reserved.
+// by DarkCarnivour and Azarael
 //=============================================================================
 class ConfigMenuBase extends UT2K4GUIPage;
 
