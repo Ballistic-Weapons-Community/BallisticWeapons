@@ -56,6 +56,7 @@ var bool					bAllowDodging;				// Enables dodging.
 var bool					bAllowDoubleJump;			// Enables double jump.
 var float					PlayerWalkSpeedFactor;
 var float					PlayerCrouchSpeedFactor;
+var float					PlayerAnimationGroundSpeed;
 var float					PlayerStrafeScale;
 var float					PlayerBackpedalScale;
 var float					PlayerGroundSpeed;
@@ -126,6 +127,7 @@ var struct MoveRep
 	var bool					bAllowDoubleJump;			// Enables double jump.
 	var float					PlayerWalkSpeedFactor;
 	var float					PlayerCrouchSpeedFactor;
+	var float					PlayerAnimationGroundSpeed;
 	var float					PlayerStrafeScale;
 	var float					PlayerBackpedalScale;
 	var float					PlayerGroundSpeed;
@@ -180,6 +182,7 @@ final function BindToReplication()
 	MRep.bAllowDoubleJump				= bAllowDoubleJump;
     MRep.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
 	MRep.PlayerCrouchSpeedFactor      	= PlayerCrouchSpeedFactor;
+	MRep.PlayerAnimationGroundSpeed		= PlayerAnimationGroundSpeed;
     MRep.PlayerStrafeScale             	= PlayerStrafeScale;
 	MRep.PlayerBackpedalScale          	= PlayerBackpedalScale;
 	MRep.PlayerGroundSpeed            	= PlayerGroundSpeed;
@@ -210,45 +213,46 @@ simulated final function BindFromReplication()
 {
 	Log("BallisticReplicationInfo: BindFromReplication");
 
-	GameStyle 					= GRep.GameStyle;
+	GameStyle 						= GRep.GameStyle;
 
-	AccuracyScale			    = GRep.AccuracyScale;
-	RecoilScale			        = GRep.RecoilScale;
-	DamageScale					= GRep.DamageScale;
-	VehicleDamageScale			= GRep.VehicleDamageScale;
+	AccuracyScale			    	= GRep.AccuracyScale;
+	RecoilScale			        	= GRep.RecoilScale;
+	DamageScale						= GRep.DamageScale;
+	VehicleDamageScale				= GRep.VehicleDamageScale;
 	
 	bWeaponJumpOffsetting			= GRep.bWeaponJumpOffsetting;
 	bLongWeaponOffsetting			= GRep.bLongWeaponOffsetting;
 	bNoReloading					= GRep.bNoReloading;
 	MaxInventoryCapacity			= GRep.MaxInventoryCapacity;
 	bAlternativePickups 	        = GRep.bAlternativePickups;
-	bUniversalMineLights          = GRep.bUniversalMineLights;
+	bUniversalMineLights          	= GRep.bUniversalMineLights;
 
-	bBrightPlayers	            = PRep.bBrightPlayers;
+	bBrightPlayers	            	= PRep.bBrightPlayers;
     StartingHealth      			= PRep.StartingHealth;
 	PlayerHealthMax      			= PRep.PlayerHealthMax;
-	PlayerSuperHealthMax      	= PRep.PlayerSuperHealthMax;
+	PlayerSuperHealthMax      		= PRep.PlayerSuperHealthMax;
 	StartingShield      			= PRep.StartingShield;
 	PlayerShieldMax      			= PRep.PlayerShieldMax;
 
-	bPlayerDeceleration			= MRep.bPlayerDeceleration;
+	bPlayerDeceleration				= MRep.bPlayerDeceleration;
     bAllowDodging		            = MRep.bAllowDodging;
 	bAllowDoubleJump				= MRep.bAllowDoubleJump;
-    PlayerWalkSpeedFactor      	= MRep.PlayerWalkSpeedFactor;
-	PlayerCrouchSpeedFactor       = MRep.PlayerCrouchSpeedFactor;
-    PlayerStrafeScale             = MRep.PlayerStrafeScale;
-	PlayerBackpedalScale          = MRep.PlayerBackpedalScale;
-	PlayerGroundSpeed             = MRep.PlayerGroundSpeed;
-	PlayerAirSpeed                = MRep.PlayerAirSpeed;
-	PlayerAccelRate               = MRep.PlayerAccelRate;
-    PlayerJumpZ                   = MRep.PlayerJumpZ;
-	PlayerDodgeZ                  = MRep.PlayerDodgeZ;
+    PlayerWalkSpeedFactor      		= MRep.PlayerWalkSpeedFactor;
+	PlayerCrouchSpeedFactor       	= MRep.PlayerCrouchSpeedFactor;
+	PlayerAnimationGroundSpeed		= MRep.PlayerAnimationGroundSpeed;
+    PlayerStrafeScale             	= MRep.PlayerStrafeScale;
+	PlayerBackpedalScale          	= MRep.PlayerBackpedalScale;
+	PlayerGroundSpeed             	= MRep.PlayerGroundSpeed;
+	PlayerAirSpeed                	= MRep.PlayerAirSpeed;
+	PlayerAccelRate               	= MRep.PlayerAccelRate;
+    PlayerJumpZ                   	= MRep.PlayerJumpZ;
+	PlayerDodgeZ                  	= MRep.PlayerDodgeZ;
 
 	bEnableSprint					= true;
 	StaminaChargeRate				= SRep.StaminaChargeRate;
 	StaminaDrainRate				= SRep.StaminaDrainRate;
     SprintSpeedFactor				= SRep.SprintSpeedFactor;
-	JumpDrainFactor				= SRep.JumpDrainFactor;
+	JumpDrainFactor					= SRep.JumpDrainFactor;
 }
 
 simulated final function BindDefaults()
@@ -279,6 +283,7 @@ simulated final function BindDefaults()
 	class.default.bAllowDoubleJump				= bAllowDoubleJump;
     class.default.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
 	class.default.PlayerCrouchSpeedFactor       = PlayerCrouchSpeedFactor;
+	class.default.PlayerAnimationGroundSpeed	= PlayerAnimationGroundSpeed;
     class.default.PlayerStrafeScale             = PlayerStrafeScale;
 	class.default.PlayerBackpedalScale          = PlayerBackpedalScale;
 	class.default.PlayerGroundSpeed             = PlayerGroundSpeed;

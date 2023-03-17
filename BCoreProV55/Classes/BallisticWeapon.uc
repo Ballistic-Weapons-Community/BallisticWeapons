@@ -2476,8 +2476,8 @@ function UpdateSpeed()
 {
 	local float NewSpeed;
 
-	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
-    //log("BW UpdateSpeed: "$Instigator.default.GroundSpeed$" * "$PlayerSpeedFactor);
+	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
+    //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
 	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
     {
@@ -3023,7 +3023,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		// If factor differs from previous wep, or no previous wep, set groundspeed anew
 		if (BallisticWeapon(PrevWeapon) == None || BallisticWeapon(PrevWeapon).PlayerSpeedFactor != PlayerSpeedFactor)
 		{
-			NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
+			NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
 
 			if (SprintControl != None && SprintControl.bSprinting)
 				NewSpeed *= SprintControl.SpeedFactor;
@@ -3717,7 +3717,7 @@ simulated function Destroyed()
 	{
 		if (PlayerSpeedUp)
 		{
-			Instigator.GroundSpeed = Instigator.default.GroundSpeed;
+			Instigator.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 			if (SprintControl != None && SprintControl.bSprinting)
 				Instigator.GroundSpeed *= SprintControl.SpeedFactor;
 			PlayerSpeedUp=false;

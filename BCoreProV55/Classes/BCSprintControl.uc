@@ -55,12 +55,12 @@ function UpdateSpeed()
 {
 	local float NewSpeed;
 
-	NewSpeed = Instigator.default.GroundSpeed;
+	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
     
 	if (BallisticWeapon(Instigator.Weapon) != None)
     {
         NewSpeed *= BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor;
-        //log("SC UpdateSpeed: "$Instigator.default.GroundSpeed$" * "$BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor);
+        //log("SC UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor);
     }
 
 	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
@@ -153,7 +153,7 @@ simulated event Tick(float DT)
 		}
 	}
 	// Stamina charges when not sprinting
-	else if (Instigator.Physics != PHYS_Falling) // if (VSize(RV) < Instigator.default.GroundSpeed * 0.8)
+	else if (Instigator.Physics != PHYS_Falling) // if (VSize(RV) < class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 0.8)
 	{
 		if (bSprinting)
 		{

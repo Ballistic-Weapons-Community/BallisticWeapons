@@ -37,6 +37,7 @@ defaultproperties
     PlayerBackpedalScale=1
     PlayerGroundSpeed=360.000000
     PlayerAirSpeed=360.000000
+	PlayerAnimationGroundSpeed=440
     PlayerAccelRate=2048.000000
     PlayerJumpZ=294
     PlayerDodgeZ=210

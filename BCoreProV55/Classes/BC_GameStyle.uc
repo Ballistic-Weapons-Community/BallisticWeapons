@@ -40,6 +40,7 @@ var() config bool		bBrightPlayers;		    	// Players have ambient glow to glow in
 var() bool				bRunInADS;					// Use run anims in ADS (because gametype has fast ADS move speed)
 var() float				PlayerWalkSpeedFactor;		// sane default for use for ADS speed for your style (ADS speed is controlled by the weapons, so there's no point having this config)
 var() float				PlayerCrouchSpeedFactor;
+var() float				PlayerAnimationGroundSpeed;	// sets default.GroundSpeed - used for dealing with animations in C++ code
 
 static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 {
@@ -53,6 +54,7 @@ static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 	rep.bKillstreaks			= default.bKillstreaks;
 	rep.PlayerWalkSpeedFactor	= default.PlayerWalkSpeedFactor;
 	rep.PlayerCrouchSpeedFactor = default.PlayerCrouchSpeedFactor;
+	rep.PlayerAnimationGroundSpeed = default.PlayerAnimationGroundSpeed;
 
 	// style-specific properties here
 	FillReplicationInfo(rep);

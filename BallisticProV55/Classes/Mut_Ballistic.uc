@@ -257,7 +257,6 @@ function ModifyPlayer(Pawn Other)
 
 		// Make players a bit crap
 		Other.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-		Other.default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed; //required as Ballistic keeps resetting it
 		
 		Other.WalkingPct=class'BallisticReplicationInfo'.default.PlayerWalkSpeedFactor;
 		Other.CrouchedPct=class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;

@@ -123,16 +123,16 @@ var array<FinalBlend>	NewDeResFinalBlends;// FinalBlends' alpha ref is used to c
 //Player
 var     BallisticPlayerReplicationInfo BPRI;
 var     BallisticReplicationInfo BRI;
-var     bool            pawnNetInit;
+var     bool            	pawnNetInit;
 
 // Animations -------------------------------------------
-var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim, StaggerAnim;
+var 	name 				ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim, StaggerAnim;
 var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate, StaggerRate;
 var 	bool				bOffhandStrike;
 
 //Sound -------------------------------
-var()   float            GruntRadius;
-var()   float            FootstepRadius;
+var()   float            	GruntRadius;
+var()   float            	FootstepRadius;
 // Cover from decorations -----------------------------
 var 	array<Actor>		CoverAnchors;
 
@@ -147,7 +147,7 @@ var 	bool                bTransparencyInitialized;
 var 	bool				bTransparencyOn, bOldTransparency;
 	
 //Killstreak -----------------------------------------------
-var 	bool				bActiveKillstreak; // FIXME REMOVE?
+var 	bool				bActiveKillstreak; // still used - look to deprecate this.
 //Healing------------------------------------------------
 var 	float 				NextHealMessageTime;
 var		bool				bPreventHealing;
@@ -208,7 +208,8 @@ simulated final function BindDefaultMovement()
     default.CrouchedPct = CrouchedPct;
     default.StrafeScale = StrafeScale;
     default.BackpedalScale = BackpedalScale;
-    default.GroundSpeed = GroundSpeed;
+	// used for animations in C++. do not change
+	default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerAnimationGroundSpeed;
     default.AirSpeed = AirSpeed;
 	default.LadderSpeed = LadderSpeed;
     default.AccelRate = AccelRate;
@@ -524,10 +525,10 @@ simulated function FootStepping(int Side)
 	local float SoundScale;
 	
 	// sprint - louder footsteps
-	if (GroundSpeed > default.GroundSpeed)
+	if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
 		SoundScale = 2;
 	else
-		SoundScale = GroundSpeed / default.GroundSpeed;
+		SoundScale = GroundSpeed / class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 
     SurfaceNum = 0;
 
@@ -2376,9 +2377,9 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     DodgeGroundSpeed = GroundSpeed;
 
     // arena allows increased dodge distance when sprint is on
-    if (!class'BallisticReplicationInfo'.static.IsArena() && default.GroundSpeed < GroundSpeed)
+    if (!class'BallisticReplicationInfo'.static.IsArena() && class'BallisticReplicationInfo'.default.PlayerGroundSpeed < GroundSpeed)
     {
-        DodgeGroundSpeed = default.GroundSpeed;
+        DodgeGroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
     }
 
     Velocity = DodgeSpeedFactor*DodgeGroundSpeed*Dir + (Velocity Dot Cross)*Cross;
@@ -2400,7 +2401,7 @@ function CalcSpeedUp(float SpeedFactor)
 {
 	local float NewSpeed;
 	
-	NewSpeed = Instigator.default.GroundSpeed * SpeedFactor;
+	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * SpeedFactor;
 
 	if (ComboSpeed(CurrentCombo) != None)
 		NewSpeed *= 1.4;
@@ -3001,6 +3002,8 @@ defaultproperties
 	 BaseEyeHeight=36
      CollisionRadius=19.000000
 
+	 CrouchHeight=32
+
      GruntVolume=0.2
      GruntRadius=300.000000
      DeResTime=4.000000
@@ -3015,7 +3018,12 @@ defaultproperties
      BackpedalScale=1.000000
      //MyFriction=4.000000
      RagdollLifeSpan=20.000000
+
+	// the default value of this variable is used by C++ to work out move animation rates.
+	// do not use or change the default in code - use class'BallisticReplicationInfo'.default.PlayerGroundSpeed instead.
+	// the default value is assigned from game styles as PlayerAnimationGroundSpeed
      GroundSpeed=360.000000
+
 	 LadderSpeed=280.000000
      WaterSpeed=150.000000
      //AirSpeed=270.000000

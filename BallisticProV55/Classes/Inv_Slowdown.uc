@@ -48,7 +48,7 @@ function CalcNewMoveSpeed(optional bool bReset)
 {
 	local float NewSpeed;
 	
-	NewSpeed = Instigator.default.GroundSpeed;
+	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 	
 	if (!bReset)
 		NewSpeed *= CurrentSlowFactor;

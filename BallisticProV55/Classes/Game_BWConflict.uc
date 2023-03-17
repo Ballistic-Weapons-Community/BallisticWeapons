@@ -92,7 +92,7 @@ function BeginRound ()
 		if ( P.bIsPlayer && !P.PlayerReplicationInfo.bOnlySpectator && P.Pawn != None)
 		{
  			P.Pawn.bNoWeaponFiring = false;
-			P.Pawn.GroundSpeed=P.Pawn.default.GroundSpeed;
+			P.Pawn.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 			P.Pawn.WaterSpeed=P.Pawn.default.WaterSpeed;
 			P.Pawn.AirSpeed=P.Pawn.default.AirSpeed;
 			P.Pawn.LadderSpeed=P.Pawn.default.LadderSpeed;
