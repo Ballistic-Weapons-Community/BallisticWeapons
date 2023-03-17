@@ -11,14 +11,12 @@
 class LonghornClusterGrenadeDud extends BallisticGrenade;
 
 var	Emitter				Flare;
-var	class<Emitter> 	FlareClass;
-var	bool					bFlareKilled;
+var	class<Emitter> 	    FlareClass;
+var	bool				bFlareKilled;
 
 simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
-	
-    Acceleration = Normal(Velocity) * AccelSpeed;
 	
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
@@ -39,11 +37,6 @@ simulated function PostNetBeginPlay()
 			LightType = LT_None;
 		}
 	}
-}
-
-simulated function InitProjectile ()
-{
-	Velocity = Speed * Vector(VelocityDir);
 }
 
 simulated function InitEffects ()
@@ -142,6 +135,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
      DetonateOn=DT_None
      DampenFactor=0.120000

@@ -28,7 +28,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[1]=Class'BallisticProV55.GRS9SecondaryFlashFire';
 	}
@@ -424,7 +424,7 @@ simulated function PlayReload()
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && BCRepClass.default.GameStyle != 2/* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
+	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && !class'BallisticReplicationInfo'.static.IsRealism() /* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
 	{
 		ClientWeaponSpecial(i);
 		CommonWeaponSpecial(i);
@@ -472,7 +472,7 @@ simulated function CommonWeaponSpecial(optional byte i)
 
 simulated function float ChargeBar()
 {
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		if (level.TimeSeconds >= FireMode[1].NextFireTime)
 		{
@@ -560,7 +560,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Glock.BigIcon_Glock'
 	BigIconCoords=(Y1=30,Y2=230)
 	SightFXBone="SightBone"
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Automatic fire. Short ranged, but has higher DPS than most pistols. Recoil is moderate."
 	ManualLines(1)="Projects a laser beam. Has extremely low DPS, but consistent damage over range and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing good damage. The GRS-9 is effective at close range."
@@ -578,7 +578,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Z=5.900000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'GRS9WeaponParams'
+	ParamsClasses(0)=Class'GRS9WeaponParamsComp'
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
 	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
     ParamsClasses(3)=Class'GRS9WeaponParamsTactical'

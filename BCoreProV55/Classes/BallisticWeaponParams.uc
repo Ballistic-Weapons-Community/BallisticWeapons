@@ -104,46 +104,46 @@ static simulated final function SetAimParams(BallisticWeapon BW)
 	BW.AimComponent.Recalculate();
 }
 
-static simulated final function SetProjectileParams(BallisticWeapon BW, BallisticProjectile proj)
+static simulated final function SetProjectileParams(BallisticProjectile proj)
 {
 	if (!proj.bApplyParams)
 		return;
 
     if (proj.ModeIndex == 0)
     {
-        if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
+        if (default.Layouts[proj.LayoutIndex].FireParams.Length > 0)
         {
             proj.ApplyParams
             (
                 ProjectileEffectParams
                 (
-                    default.Layouts[BW.LayoutIndex].FireParams
+                    default.Layouts[proj.LayoutIndex].FireParams
                     [
                         Min
                         (
-                            BW.CurrentWeaponMode, 
-                            default.Layouts[BW.LayoutIndex].FireParams.Length - 1
+                            proj.CurrentWeaponMode, 
+                            default.Layouts[proj.LayoutIndex].FireParams.Length - 1
                         )
-                    ].FireEffectParams[BW.AmmoIndex]
+                    ].FireEffectParams[0]
                 )
             );
         }
     }
     
-    else if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
+    else if (default.Layouts[proj.LayoutIndex].AltFireParams.Length > 0)
     {
         proj.ApplyParams
         (
             ProjectileEffectParams
             (
-                default.Layouts[BW.LayoutIndex].AltFireParams
+                default.Layouts[proj.LayoutIndex].AltFireParams
                 [
                     Min
                     (
-                        BW.CurrentWeaponMode, 
-                        default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
+                        proj.CurrentWeaponMode, 
+                        default.Layouts[proj.LayoutIndex].AltFireParams.Length - 1
                     )
-                ].FireEffectParams[BW.AmmoIndex]
+                ].FireEffectParams[0]
             )
         );
     }
@@ -180,43 +180,43 @@ static simulated final function OverrideFireParams(BallisticWeapon BW, int newIn
     }
 }
 
-static simulated final function OverrideProjectileParams(BallisticWeapon BW, BallisticProjectile proj, int newIndex)
+static simulated final function OverrideProjectileParams(BallisticProjectile proj, int newIndex)
 {
     if (proj.ModeIndex == 0)
     {
-        if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
+        if (default.Layouts[proj.LayoutIndex].FireParams.Length > 0)
         {
             proj.ApplyParams
             (
                 ProjectileEffectParams
                 (
-                    default.Layouts[BW.LayoutIndex].FireParams
+                    default.Layouts[proj.LayoutIndex].FireParams
                     [
                         Min
                         (
                             newIndex, 
-                            default.Layouts[BW.LayoutIndex].FireParams.Length - 1
+                            default.Layouts[proj.LayoutIndex].FireParams.Length - 1
                         )
-                    ].FireEffectParams[BW.AmmoIndex]
+                    ].FireEffectParams[0]
                 )
             );
         }
     }
     
-    else if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
+    else if (default.Layouts[proj.LayoutIndex].AltFireParams.Length > 0)
     {
         proj.ApplyParams
         (
             ProjectileEffectParams
             (
-                default.Layouts[BW.LayoutIndex].AltFireParams
+                default.Layouts[proj.LayoutIndex].AltFireParams
                 [
                     Min
                     (
                         newIndex, 
-                        default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
+                        default.Layouts[proj.LayoutIndex].AltFireParams.Length - 1
                     )
-                ].FireEffectParams[BW.AmmoIndex]
+                ].FireEffectParams[0]
             )
         );
     }

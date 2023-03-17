@@ -8,6 +8,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalStandardEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=52
         HeadMult=2.5
@@ -35,6 +36,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalExplosiveEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=75
         HeadMult=2.5
@@ -62,6 +64,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalAcidEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=40
         HeadMult=2.5
@@ -155,12 +158,13 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
 		CockAnimRate=1.200000
-        SightingTime=0.25
+        SightingTime=0.35
 		SightPivot=(Pitch=-128,Yaw=16)
 		SightOffset=(X=-10.000000,Y=-0.67,Z=27.200000)
 		ViewOffset=(X=-2.000000,Y=10.000000,Z=-20.000000)
 		MagAmmo=20
-        InventorySize=20
+        InventorySize=6
+        SightMoveSpeedFactor=0.75
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalExplosiveRecoilParams'
 		RecoilParams(2)=RecoilParams'TacticalAcidRecoilParams'

@@ -14,7 +14,7 @@ var float		lastModeChangeTime;
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		VSKPrimaryFire(FireMode[0]).bDOT = true;
 	}
@@ -107,7 +107,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_SKC_Tex.VSKS.BigIcon_VSK'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Draw')

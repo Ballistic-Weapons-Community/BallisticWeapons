@@ -95,7 +95,7 @@ simulated function PostNetReceive()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		RocketActiveReloadRate = 0.0833;
 		MRLSecondaryFire(FireMode[1]).RocketMultiplier = 60;
@@ -497,7 +497,7 @@ defaultproperties
 	BigMagAmmo=72
 	BigIconMaterial=Texture'BW_Core_WeaponTex.MRL.BigIcon_MRL'
 	BigIconCoords=(Y1=30,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_RapidProj=True
@@ -521,7 +521,7 @@ defaultproperties
 	SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
 	SightDisplayFOV=50.000000
 	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
-	ParamsClasses(0)=Class'MRLWeaponParams'
+	ParamsClasses(0)=Class'MRLWeaponParamsComp'
 	ParamsClasses(1)=Class'MRLWeaponParamsClassic'
 	ParamsClasses(2)=Class'MRLWeaponParamsRealistic'
     ParamsClasses(3)=Class'MRLWeaponParamsTactical'

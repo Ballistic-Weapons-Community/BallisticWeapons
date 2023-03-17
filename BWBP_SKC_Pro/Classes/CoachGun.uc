@@ -31,7 +31,7 @@ var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		FireModeClass[1]=Class'BWBP_SKC_Pro.CoachGunSecondaryFire';
 	}
@@ -40,7 +40,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CoachGunPrimaryFire(FireMode[0]).bFireOnRelease = false;
 	}
@@ -473,7 +473,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Shotgun=True
      ManualLines(0)="Shot mode fires two shots with high power and moderate spread. Enemies hit by the shot bleed, dealing damage over time. Bleed duration is proportional to the number of pellets which struck the target.|Slug mode fires two slugs with long range and penetration. Recoil is moderate with both modes."
      ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
@@ -498,7 +498,7 @@ defaultproperties
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	 ParamsClasses(0)=Class'CoachWeaponParams'
+	 ParamsClasses(0)=Class'CoachWeaponParamsComp'
 	 ParamsClasses(1)=Class'CoachWeaponParamsClassic'
 	 ParamsClasses(2)=Class'CoachWeaponParamsRealistic' 
      ParamsClasses(3)=Class'CoachWeaponParamsTactical'

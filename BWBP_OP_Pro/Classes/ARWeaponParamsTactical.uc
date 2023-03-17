@@ -14,8 +14,8 @@ defaultproperties
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=9
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.0f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DT_ARShotgun'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_ARShotgunHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_ARShotgun'
@@ -106,10 +106,10 @@ defaultproperties
 		ReloadAnimRate=0.750000
 		SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
 		ViewOffset=(Y=16.000000,Z=-25.000000)
-		PlayerSpeedFactor=0.90000
-		InventorySize=20
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.35
+		PlayerSpeedFactor=0.95
+		InventorySize=6
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.45
 		DisplaceDurationMult=1
 		MagAmmo=15
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

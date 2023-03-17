@@ -89,11 +89,10 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_Burst",Value=5.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-		PlayerSpeedFactor=0.950000
-        SightMoveSpeedFactor=0.8
+        SightMoveSpeedFactor=0.5
 		MagAmmo=100
-		SightingTime=0.55
-        InventorySize=20
+		SightingTime=0.45
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

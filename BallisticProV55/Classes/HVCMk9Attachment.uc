@@ -392,7 +392,7 @@ simulated function InstantFireEffects(byte Mode)
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
 
-	if (Mode == 0 && class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (Mode == 0 && class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 		return;
 	if (mHitLocation == vect(0,0,0))
 		return;
@@ -423,7 +423,7 @@ simulated function InstantFireEffects(byte Mode)
 		
 	if (Mode == 0)
 	{
-		if (ImpactManager != None && (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical()))
+		if (ImpactManager != None && (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()))
 			ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	}
 	else if (ImpactManagerAlt != None)
@@ -435,7 +435,7 @@ simulated function Tick(float DT)
 {
 	super.Tick(DT);
 
-	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 	{
 		if (Level.NetMode == NM_DedicatedServer)
 			return;

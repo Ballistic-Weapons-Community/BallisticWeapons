@@ -29,8 +29,6 @@ simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
 		
@@ -77,11 +75,10 @@ simulated function InitEffects ()
 
 simulated function InitProjectile ()
 {
-		Velocity = Speed * Vector(VelocityDir);
-		if (RandomSpin != 0 && !bNoInitialSpin)
-			RandSpin(RandomSpin);
-		if (DetonateOn == DT_Timer)
-			SetTimer(DetonateDelay, false);
+	if (RandomSpin != 0 && !bNoInitialSpin)
+		RandSpin(RandomSpin);
+	if (DetonateOn == DT_Timer)
+		SetTimer(DetonateDelay, false);
 }
 
 simulated event TornOff()
@@ -287,6 +284,7 @@ function BlowUp(vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      bAlignToVelocity=True
      bDynamicLight=True
      bNetTemporary=False

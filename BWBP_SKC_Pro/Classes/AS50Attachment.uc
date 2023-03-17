@@ -13,7 +13,7 @@ var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for instant
 simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		ImpactManager=Class'IM_IncendiaryHMGBullet';
 	}

@@ -44,8 +44,8 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.XOXOBomb'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
 		Speed=2500.000000
-		MaxSpeed=0000.000000
-		AccelSpeed=100000.000000
+		MaxSpeed=2500.000000
+		AccelSpeed=0.000000
 		Damage=150
 		DamageRadius=768.000000
 		MomentumTransfer=-30000.000000
@@ -233,9 +233,9 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
 		SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
 		SightPivot=(Pitch=768)
-		InventorySize=20
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.2
+		InventorySize=6
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=70
 		WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")

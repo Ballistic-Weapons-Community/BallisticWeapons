@@ -95,10 +95,10 @@ defaultproperties
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=3
         DisplaceDurationMult=1.25
-        SightMoveSpeedFactor=0.8
+        SightMoveSpeedFactor=0.5
 		MagAmmo=100
-		SightingTime=0.3
-        InventorySize=24
+		SightingTime=0.45
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

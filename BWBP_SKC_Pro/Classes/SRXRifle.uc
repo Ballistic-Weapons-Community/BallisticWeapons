@@ -512,7 +512,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.SRX.BigIcon_SRXRifle'
 	BigIconCoords=(Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="7.62mm Fire"
 	ManualLines(1)="Attach/Detach AMP. Corrosive does extra damage to shield while Explosive damage does radius damage."
@@ -535,7 +535,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
-	ParamsClasses(0)=Class'SRXWeaponParams'
+	ParamsClasses(0)=Class'SRXWeaponParamsComp'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'
 	ParamsClasses(2)=Class'SRXWeaponParamsRealistic'
     ParamsClasses(3)=Class'SRXWeaponParamsTactical'

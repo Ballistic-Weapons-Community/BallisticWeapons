@@ -13,9 +13,9 @@ defaultproperties
         TraceCount=7
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
         ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
-        Damage=9
-        HeadMult=2
-        LimbMult=0.67f
+        Damage=10
+        HeadMult=2.0f
+        LimbMult=0.75f
         DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
@@ -101,9 +101,9 @@ defaultproperties
 		SightPivot=(Pitch=150)
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
 		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-		InventorySize=20
-		SightMoveSpeedFactor=1
-		SightingTime=0.2
+		InventorySize=5
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.3
 		DisplaceDurationMult=0.75
 		MagAmmo=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

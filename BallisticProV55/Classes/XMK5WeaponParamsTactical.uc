@@ -10,8 +10,8 @@ defaultproperties
 		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		Damage=27
-        HeadMult=2.75
+		Damage=24
+        HeadMult=2.75f
         LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
 		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.085000
+		FireInterval=0.08000
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -95,9 +95,10 @@ defaultproperties
 		SightOffset=(X=1.000000,Z=17.750000)
 		ViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
 		DisplaceDurationMult=0.75
+        SightMoveSpeedFactor=0.75
 		MagAmmo=32
-		SightingTime=0.20000
-        InventorySize=12
+		SightingTime=0.25
+        InventorySize=4
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

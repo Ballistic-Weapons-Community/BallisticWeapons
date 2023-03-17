@@ -14,7 +14,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (PD97Bloodhound(Instigator.Weapon).BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		bShotgunMode=true;
 		InstantMode=MU_Primary;

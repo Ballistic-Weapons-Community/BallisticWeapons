@@ -206,7 +206,6 @@ simulated function bool HasAmmo()
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -245,17 +244,6 @@ simulated function bool HasAmmo()
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
-			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
@@ -620,7 +608,6 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_OP_Tex.M575.BigIcon_M575'
      BigIconCoords=(Y1=50,Y2=240)
      SightFXClass=Class'BWBP_OP_Pro.M575SightLEDs'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Machinegun=True
      ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
@@ -678,9 +665,10 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-	 ParamsClasses(0)=Class'M575MachinegunWeaponParamsArena'
+	 ParamsClasses(0)=Class'M575MachinegunWeaponParamsComp'
 	 ParamsClasses(1)=Class'M575MachinegunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'M575MachinegunWeaponParamsRealistic'
+     ParamsClasses(3)=Class'M575MachinegunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_M575'
      DrawScale=1.000000
 }

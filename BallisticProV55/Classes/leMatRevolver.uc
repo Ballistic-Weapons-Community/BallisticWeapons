@@ -596,7 +596,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.leMat.BigIcon_Wilson41DB'
 	BigIconCoords=(X1=48,Y1=40,X2=459)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="High damage bullet fire. Good range for a handgun and high ammo capacity."
 	ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
@@ -622,7 +622,7 @@ defaultproperties
 	SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	ParamsClasses(0)=Class'leMatWeaponParams'
+	ParamsClasses(0)=Class'leMatWeaponParamsComp'
 	ParamsClasses(1)=Class'leMatWeaponParamsClassic'
 	ParamsClasses(2)=Class'leMatWeaponParamsRealistic'
     ParamsClasses(3)=Class'leMatWeaponParamsTactical'

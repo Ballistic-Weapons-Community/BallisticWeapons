@@ -23,14 +23,14 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	
-	bShowChargingBar = (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical());
+	bShowChargingBar = (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical());
 	
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
 		A500PrimaryFire(FireMode[0]).ProjectileCount = 10;
 	}
-	else if (BCRepClass.static.IsRealism())
+	else if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
 		A500PrimaryFire(FireMode[0]).ProjectileCount = 12;
@@ -214,7 +214,7 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 simulated function float ChargeBar()
 {
-	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 		return FMax(0, BFireMode[1].HoldTime / BFireMode[1].MaxHoldTime);
 		
 	return 0;
@@ -225,7 +225,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Reptile.BigIcon_Reptile'
 	BigIconCoords=(Y1=30,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	bWT_Hazardous=True
 	bWT_Projectile=True
@@ -251,7 +251,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
 	SightDisplayFOV=40.000000
 	GunLength=48.000000
-	ParamsClasses(0)=Class'A500WeaponParams'
+	ParamsClasses(0)=Class'A500WeaponParamsComp'
 	ParamsClasses(1)=Class'A500WeaponParamsClassic'
 	ParamsClasses(2)=Class'A500WeaponParamsRealistic'
     ParamsClasses(3)=Class'A500WeaponParamsTactical'

@@ -28,7 +28,7 @@ function PlayFiring()
 	Super.PlayFiring();
 	Weapon.SoundPitch = Min(150, Weapon.SoundPitch + 8);
 	
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 		AK91ChargeRifle(BW).AddHeat(0.45);
 	else
 		AK91ChargeRifle(BW).AddHeat(0.15);
@@ -85,7 +85,7 @@ function DoFireEffect()
 	
 	if (level.Netmode == NM_DedicatedServer)
 	{
-		if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+		if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 			AK91ChargeRifle(Weapon).AddHeat(0.45);
 		else
 			AK91ChargeRifle(Weapon).AddHeat(0.15);
@@ -166,7 +166,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
-	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 		AK91ChargeRifle(BW).AddHeat(0.67);
 }
 

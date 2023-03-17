@@ -71,8 +71,8 @@ function Timer()
 function OwnerFroze()
 { 
     FrozeTime = Level.TimeSeconds;
-	if (LDGBallisticFRTracked(Level.Game) != None && PawnOwner.Controller != None)
-		SkillThawAdjustment = LDGBallisticFRTracked(Level.Game).GetAutoThawRate(PawnOwner.Controller);
+	if (Game_Freon_Tracked(Level.Game) != None && PawnOwner.Controller != None)
+		SkillThawAdjustment = Game_Freon_Tracked(Level.Game).GetAutoThawRate(PawnOwner.Controller);
 	else log("Skill thaw adjustment failed!",'Freon');
     GotoState('PawnFrozen');
 }

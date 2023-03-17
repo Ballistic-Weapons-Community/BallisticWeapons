@@ -33,7 +33,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (XM20Carbine(Instigator.Weapon).BCRepClass.default.GameStyle != 1)
+	if (!class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20P';
 	}

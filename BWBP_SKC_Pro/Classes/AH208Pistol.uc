@@ -147,7 +147,7 @@ defaultproperties
     AIReloadTime=1.500000
     BigIconMaterial=Texture'BWBP_SKC_Tex.Eagle.BigIcon_EagleGold'
     BigIconCoords=(X1=47,Y1=16,X2=455,Y2=245)
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Bullet=True
     ManualLines(0)="Powerful .44 fire. High damage and long range."
     ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
@@ -170,7 +170,7 @@ defaultproperties
     SightOffset=(X=20.000000,Y=-7.350000,Z=45.400002)
     SightDisplayFOV=40.000000
     GunLength=4.000000
-    ParamsClasses(0)=Class'AH208WeaponParams'
+    ParamsClasses(0)=Class'AH208WeaponParamsComp'
     ParamsClasses(1)=Class'AH208WeaponParamsClassic'
     ParamsClasses(2)=Class'AH208WeaponParamsRealistic'
     ParamsClasses(3)=Class'AH208WeaponParamsTactical'

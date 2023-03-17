@@ -96,9 +96,9 @@ defaultproperties
 		SightPivot=(Pitch=600)
 		SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
 		ViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
-		InventorySize=20
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.3
+		InventorySize=6
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.5
 		DisplaceDurationMult=1
 		MagAmmo=50
         ZoomType=ZT_Smooth

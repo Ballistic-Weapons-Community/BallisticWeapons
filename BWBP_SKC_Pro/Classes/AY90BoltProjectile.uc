@@ -25,7 +25,7 @@ simulated function PreBeginPlay()
     if (BW == None)
         return;
 
-    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(BW, self, 0);
+    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(self, 0);
 }
 
 simulated event ProcessTouch(Actor Other, vector HitLocation )

@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
         TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
         RangeAtten=0.5
         Damage=24
         HeadMult=2.75f
@@ -21,7 +21,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
         FlashScaleFactor=2.500000
-        Recoil=72.000000
+        Recoil=140.000000
         Chaos=0.120000
         BotRefireRate=0.99
         WarnTargetPct=0.2
@@ -29,7 +29,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-        FireInterval=0.050000
+        FireInterval=0.055000
         FireEndAnim=
         AimedFireAnim='SightFire'
         FireAnimRate=1.700000	
@@ -103,9 +103,10 @@ defaultproperties
         SightOffset=(X=-15.000000,Z=5.900000)
 		ViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
         DisplaceDurationMult=0.5
-        SightingTime=0.200000
+        SightingTime=0.250000
+        SightMoveSpeedFactor=0.75
         MagAmmo=18
-        InventorySize=12
+        InventorySize=3
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

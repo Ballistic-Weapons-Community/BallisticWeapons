@@ -348,7 +348,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M806'
 	SightFXClass=Class'BallisticProV55.M806SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bShouldDualInLoadout=True
 	SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
@@ -364,7 +364,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'M806WeaponParams'
+	ParamsClasses(0)=Class'M806WeaponParamsComp'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'
     ParamsClasses(3)=Class'M806WeaponParamsTactical'

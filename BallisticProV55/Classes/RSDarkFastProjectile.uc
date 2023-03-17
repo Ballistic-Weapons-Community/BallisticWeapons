@@ -239,6 +239,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.RSDarkStar'
      ImpactManager=Class'BallisticProV55.IM_RSDarkProjectile'
      PenetrateManager=Class'BallisticProV55.IM_RSDarkProjectile'
      bRandomStartRotation=False

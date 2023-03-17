@@ -684,7 +684,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_OP_Tex.Wrench.BigIcon_Wrench'
      BigIconCoords=(Y2=240)
      bAllowWeaponInfoOverride=False
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Constructs various deployables. Will deploy to the aim point. A description of each deployable is given underneath the fire mode text. Holding Weapon Function allows the user to scroll through the modes."
      ManualLines(1)="Constructs an energy barrier, regardless of the currently active mode."
      ManualLines(2)="Grants a 10% speed increase."
@@ -701,7 +701,7 @@ defaultproperties
      WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
      GunLength=0.000000
      bAimDisabled=True
-	 ParamsClasses(0)=Class'WrenchWeaponParams'
+	 ParamsClasses(0)=Class'WrenchWeaponParamsComp'
      FireModeClass(0)=Class'WrenchPrimaryFire'
      FireModeClass(1)=Class'WrenchSecondaryFire'
 	 PutDownTime=1.750000

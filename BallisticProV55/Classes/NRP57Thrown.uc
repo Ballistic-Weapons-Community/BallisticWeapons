@@ -31,21 +31,9 @@ simulated function DestroyEffects()
 		PATrail.Kill();
 }
 
-function InitProPineapple(float PSpeed, float PDelay)
-{
-	PDelay = FMax(PDelay + (0.5 - FRand()) * 0.5, 0.1);
-	
-	Speed = PSpeed;
-
-	DetonateDelay = PDelay;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.NRP57Grenade'
      DampenFactor=0.050000
      DampenFactorParallel=0.350000
      DetonateDelay=3.000000

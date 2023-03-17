@@ -181,6 +181,7 @@ function ApplySlowdown(pawn Other, float Damage)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.F2000AssaultRifle'
      ModeIndex=1
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate

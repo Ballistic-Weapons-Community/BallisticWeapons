@@ -119,6 +119,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.XM84Flashbang'
      DetonateDelay=2.000000
      ImpactDamage=15
      ImpactDamageType=Class'BWBP_SKC_Pro.DTXM84Hit'

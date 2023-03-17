@@ -75,7 +75,6 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000Ice'
 	BigIconCoords=(X1=32,Y1=40,X2=475)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)=""
 	ManualLines(1)=""

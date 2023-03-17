@@ -305,7 +305,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BWBP_CC_Tex.GASC.BigIcon_GASC'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      ManualLines(0)="High Fire Rate Burst Pistol and Dagger. 4 Round Burst. Low Recoil."
      ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. This attack inflicts more damage from behind."

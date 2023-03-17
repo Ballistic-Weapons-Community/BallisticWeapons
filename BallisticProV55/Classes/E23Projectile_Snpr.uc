@@ -54,6 +54,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.E23PlasmaRifle'
     ImpactManager=Class'BallisticProV55.IM_E23Projectile'
     bRandomStartRotation=False
     MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'

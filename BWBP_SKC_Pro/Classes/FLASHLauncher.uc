@@ -207,7 +207,7 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Flash.BigIcon_FLASH'
 	BigIconCoords=(Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -233,7 +233,7 @@ defaultproperties
 	FullZoomFOV=90.000000
 	bNoCrosshairInScope=True
 	SightOffset=(Y=5.300000,Z=23.299999)
-	ParamsClasses(0)=Class'FLASHWeaponParams'
+	ParamsClasses(0)=Class'FLASHWeaponParamsComp'
 	ParamsClasses(1)=Class'FLASHWeaponParamsClassic'
 	ParamsClasses(2)=Class'FLASHWeaponParamsRealistic'
     ParamsClasses(3)=Class'FLASHWeaponParamsTactical'

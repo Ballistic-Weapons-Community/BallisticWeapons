@@ -81,12 +81,12 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		ReloadAnimRate=2.250000
 		DisplaceDurationMult=1.25
-		PlayerSpeedFactor=0.80000
-		PlayerJumpFactor=0.80000
-		SightMoveSpeedFactor=0.8
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.5
 		SightingTime=0.10000
 		MagAmmo=5
-        InventorySize=35
+        InventorySize=8
 		ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

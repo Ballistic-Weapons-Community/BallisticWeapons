@@ -34,7 +34,6 @@ simulated event Timer() //Timer will handle remote det lock
 simulated function InitProjectile ()
 {
 	InitEffects();
-	Velocity = Speed * Vector(VelocityDir);
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
 	SetTimer(DetonateDelay, false);
@@ -48,6 +47,7 @@ function RemoteDetonate()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'
      ModeIndex=1
      DetonateOn=DT_None
      PlayerImpactType=PIT_Detonate

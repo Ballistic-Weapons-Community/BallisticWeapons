@@ -76,14 +76,15 @@ defaultproperties
 		SightOffset=(X=-18.000000,Z=7.200000)
 		ViewOffset=(X=9.000000,Y=5.000000,Z=-7.000000)
 		DisplaceDurationMult=1.4
-		PlayerSpeedFactor=0.95
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.4
+		PlayerSpeedFactor=0.9
+        PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.65
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		MagAmmo=50
-        InventorySize=20
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

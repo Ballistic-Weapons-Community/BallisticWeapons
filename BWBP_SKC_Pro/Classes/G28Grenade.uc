@@ -108,7 +108,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.G28.BigIcon_G28'
      BigIconCoords=(Y1=12,Y2=245)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Splash=True
      bWT_Grenade=True
      bWT_Heal=True
@@ -119,10 +119,10 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 CurrentWeaponMode=2
-	 ParamsClasses(0)=Class'G28WeaponParamsArena'
+	 ParamsClasses(0)=Class'G28WeaponParamsComp'
 	 ParamsClasses(1)=Class'G28WeaponParamsClassic'
 	 ParamsClasses(2)=Class'G28WeaponParamsClassic'
-     ParamsClasses(3)=Class'G28WeaponParamsArena'
+     ParamsClasses(3)=Class'G28WeaponParamsComp'
      FireModeClass(0)=Class'BWBP_SKC_Pro.G28PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.G28SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=255,A=128),Color2=(B=0,G=0,R=255,A=165),StartSize1=98,StartSize2=54)

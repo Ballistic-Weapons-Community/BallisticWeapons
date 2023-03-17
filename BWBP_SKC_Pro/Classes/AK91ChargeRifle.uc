@@ -191,8 +191,8 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 			dir = Victims.Location - Location;
 			dist = FMax(1,VSize(dir));
 
-			log("HeatLevel is  "$HeatLevel);
-			log("HeatLevel int is  "$int(HeatLevel));
+			//log("HeatLevel is  "$HeatLevel);
+			//log("HeatLevel int is  "$int(HeatLevel));
 			dir = dir/dist;
 			//damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
 			class'BallisticDamageType'.static.GenericHurt
@@ -397,7 +397,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_SKC_Tex.AK91.BigIcon_AK91'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      BulletBone="Bullet1"
      BulletBone2="Bullet2"
      bWT_Bullet=True
@@ -420,7 +420,7 @@ defaultproperties
      SightPivot=(Pitch=64)
      SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
      SightDisplayFOV=20.000000
-	 ParamsClasses(0)=Class'AK91WeaponParamsArena'
+	 ParamsClasses(0)=Class'AK91WeaponParamsComp'
 	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AK91WeaponParamsRealistic'
      ParamsClasses(3)=Class'AK91WeaponParamsTactical'

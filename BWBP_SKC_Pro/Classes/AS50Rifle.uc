@@ -57,12 +57,12 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		FireModeClass[0]=Class'BWBP_SKC_Pro.AS50SecondaryFire';
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
 	}
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BWBP_SKC_Pro.AS50SecondaryFire';
 		FireModeClass[1]=Class'BWBP_SKC_Pro.AS50DeployFire';
@@ -753,7 +753,7 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_SKC_Pro.AS50MeleeFire'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.FSG50.BigIcon_FSG50'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic .50 cal fire. Extremely unpredictable recoil, but good damage per shot and excellent theoretical sustained damage output."
 	ManualLines(1)="Incendiary shot. Deals moderate damage and ignites struck targets, causing them to burn brightly, emit smoke, suffer view flash and take damage over time. Further hits extend the duration of this effect."
@@ -783,7 +783,7 @@ defaultproperties
 	MaxZoom=16.000000
 	ZoomStages=2
 	GunLength=80.000000
-	ParamsClasses(0)=Class'AS50WeaponParams'	 
+	ParamsClasses(0)=Class'AS50WeaponParamsComp'	 
 	ParamsClasses(1)=Class'AS50WeaponParamsClassic'	 
 	ParamsClasses(2)=Class'AS50WeaponParamsRealistic'	 
     ParamsClasses(3)=Class'AS50WeaponParamsTactical'

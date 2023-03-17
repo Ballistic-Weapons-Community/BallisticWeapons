@@ -22,6 +22,7 @@ simulated event Landed( vector HitNormal )
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LS14Carbine'
      ImpactManager=Class'BallisticProV55.IM_MRLRocket'
      bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'

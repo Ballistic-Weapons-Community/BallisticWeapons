@@ -81,6 +81,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.Supercharger_AssaultWeapon'
 	 bApplyParams=False
      bPenetrate=True
      StartDelay=0.050000

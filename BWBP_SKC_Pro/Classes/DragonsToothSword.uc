@@ -134,7 +134,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.DragonToothSword.BigIcon_DTS'
 	BigIconCoords=(Y1=40,Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Strikes once for fatal damage. Has a good range but a very slow swing rate."
 	ManualLines(1)="Strikes twice consecutively for good damage. Good for baiting block."
 	ManualLines(2)="The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Devastating at close range."
@@ -143,7 +143,7 @@ defaultproperties
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClasses(0)=Class'DragonsToothWeaponParams'
+	ParamsClasses(0)=Class'DragonsToothWeaponParamsComp'
 	ParamsClasses(1)=Class'DragonsToothWeaponParamsClassic'
 	ParamsClasses(2)=Class'DragonsToothWeaponParamsRealistic'
     ParamsClasses(3)=Class'DragonsToothWeaponParamsTactical'

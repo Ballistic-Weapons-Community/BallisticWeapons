@@ -277,7 +277,6 @@ defaultproperties
      ClipInSoundEmpty=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty'
      SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;0.8;0.7;0.2")
      AIReloadTime=1.000000
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_CC_Tex.SPXSmg.BigIcon_SPXSmg'
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)

@@ -58,6 +58,7 @@ simulated function Explode(vector a, vector b)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.CX61AssaultRifle'
 	 bApplyParams=False
      ModeIndex=1
      bPenetrate=True

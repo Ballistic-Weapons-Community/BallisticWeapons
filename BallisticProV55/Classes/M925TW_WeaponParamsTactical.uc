@@ -69,14 +69,14 @@ defaultproperties
 		ReloadAnimRate=1.150000
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9
-		PlayerJumpFactor=0.9
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.700000
+        PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.65
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		MagAmmo=50
-        InventorySize=20
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

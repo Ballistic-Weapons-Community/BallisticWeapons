@@ -199,7 +199,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MRDR.BigIcon_MRDR'
 	BigIconCoords=(X1=64,Y1=0,Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic pistol fire. Good strength and low recoil."
@@ -226,7 +226,7 @@ defaultproperties
 	GunLength=0.100000
 	AIRating=0.6
 	CurrentRating=0.6
-	ParamsClasses(0)=Class'MRDRWeaponParams'
+	ParamsClasses(0)=Class'MRDRWeaponParamsComp'
 	ParamsClasses(1)=Class'MRDRWeaponParamsClassic'
 	ParamsClasses(2)=Class'MRDRWeaponParamsRealistic'
     ParamsClasses(3)=Class'MRDRWeaponParamsTactical'

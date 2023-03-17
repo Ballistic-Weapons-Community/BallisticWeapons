@@ -58,7 +58,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_NRP57'
      BigIconCoords=(Y1=16,Y2=245)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -69,7 +69,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
-     ParamsClasses(0)=Class'NRP57WeaponParams'
+     ParamsClasses(0)=Class'NRP57WeaponParamsComp'
      ParamsClasses(1)=Class'NRP57WeaponParamsClassic'
      ParamsClasses(2)=Class'NRP57WeaponParamsRealistic'
      ParamsClasses(3)=Class'NRP57WeaponParamsTactical'

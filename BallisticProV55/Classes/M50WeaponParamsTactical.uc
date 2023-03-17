@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
 		Damage=34
-        HeadMult=2.75
+        HeadMult=2.75f
         LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTM50Assault'
 		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
@@ -94,10 +94,11 @@ defaultproperties
 		CockAnimRate=1.250000
 		SightPivot=(Pitch=200)
 		SightOffset=(Y=0.050000,Z=12.130000)
-        SightingTime=0.2
+        SightingTime=0.35
+        SightMoveSpeedFactor=0.75
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
         MagAmmo=30
-        InventorySize=20
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

@@ -29,6 +29,7 @@ function DoDamage (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.PS9mPistol'
 	ModeIndex=1
 	ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
 	TrailClass=Class'BallisticProV55.PineappleTrail'

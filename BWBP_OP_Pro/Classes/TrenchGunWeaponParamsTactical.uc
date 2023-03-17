@@ -129,9 +129,9 @@ defaultproperties
 		ViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
 		SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
 		SightPivot=(Pitch=256)
-		InventorySize=20
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.2
+		InventorySize=5
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.3
 		DisplaceDurationMult=1
 		MagAmmo=2
 		WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)

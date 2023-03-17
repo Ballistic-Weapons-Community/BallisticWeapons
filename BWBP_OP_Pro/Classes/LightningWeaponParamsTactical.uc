@@ -8,8 +8,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=200
-        HeadMult=2.25f
+		Damage=90
+        HeadMult=2f
         LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DT_LightningRifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_LightningHead'
@@ -94,10 +94,10 @@ defaultproperties
 		ReloadAnimRate=0.9
 		ViewOffset=(X=20.000000,Y=16.000000,Z=-30.000000)
 		SightOffset=(Z=51.000000)
-		PlayerSpeedFactor=0.800000
-		PlayerJumpFactor=0.800000
-		InventorySize=20
-		SightMoveSpeedFactor=0.8
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+		InventorySize=7
+		SightMoveSpeedFactor=0.5
 		SightingTime=0.450000
 		DisplaceDurationMult=1.25
 		MagAmmo=20

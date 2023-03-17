@@ -23,7 +23,7 @@ simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
 	
-	if (HKMKSpecPistol(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse';
 		ImpactManager=Class'BWBP_SKC_Pro.IM_LS14Impacted';

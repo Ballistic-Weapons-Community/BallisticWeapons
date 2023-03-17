@@ -583,7 +583,6 @@ defaultproperties
 	 TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_LargeIcon'
      BigIconCoords=(Y1=36,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')

@@ -12,7 +12,7 @@ defaultproperties
         DecayRange=(Min=2363,Max=6000)
 		RangeAtten=0.75
 		Damage=46
-        HeadMult=2.75
+        HeadMult=2.75f
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
@@ -91,9 +91,9 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		ReloadAnimRate=1.250000
-		InventorySize=24
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.2
+		InventorySize=6
+        SightMoveSpeedFactor=0.75
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=25
 		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)

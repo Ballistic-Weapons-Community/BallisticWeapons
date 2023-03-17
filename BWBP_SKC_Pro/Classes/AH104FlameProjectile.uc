@@ -81,6 +81,7 @@ simulated function Penetrate(Actor Other, Vector HitLocation)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.AH104Pistol'
      ModeIndex=1
      bPenetrate=True
 	 MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_AH104Burned'

@@ -34,6 +34,7 @@ simulated function InitEffects ()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.HVPCMk66PlasmaCannon'
      ImpactManager=Class'BWBP_SKC_Pro.IM_HVPCMk66Projectile'
      TrailClass=Class'BWBP_SKC_Pro.HVPCMk66BFGTrail'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_BFGCharge'

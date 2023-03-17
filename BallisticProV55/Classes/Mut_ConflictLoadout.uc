@@ -12,7 +12,7 @@ class Mut_ConflictLoadout extends Mut_Ballistic
 	config(BallisticProV55)
 	DependsOn(Mut_Loadout);
 	
-const INVENTORY_SIZE_MAX = 35;
+const INVENTORY_SIZE_MAX = 12;
 	
 var() globalconfig byte	LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
 var 		  array<string> 	LoadoutOptionText;
@@ -84,8 +84,6 @@ function PostBeginPlay()
 		FullRequirementsList[i].HazardEff	*= class'Mut_LoadoutConfig'.default.HzEfScale;
 	}
 }
-
-		
 
 //==================================================
 // Mutate
@@ -523,7 +521,7 @@ function Class<Inventory> GetInventoryClass(string InventoryClassName)
 function int GetItemSize(class<Inventory> Item)
 {
 	if (class<BallisticWeapon>(Item) != None)
-		return class<BallisticWeapon>(Item).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
+		return class<BallisticWeapon>(Item).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
 	return 7;
 }
 
@@ -657,7 +655,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			xPickupBase(Other).myEmitter.Destroy();
 	}
 	
-	else if (JumpSpot(Other) != None && BallisticReplicationInfo(BallisticReplicationInfo) != None && BallisticReplicationInfo(BallisticReplicationInfo).bNoDodging)
+	else if (JumpSpot(Other) != None && BallisticRep != None && !BallisticRep.bAllowDodging)
 	{
 		JumpSpot(Other).bDodgeUp = false;
 	}
@@ -838,7 +836,7 @@ defaultproperties
 	 ConflictWeapons(105)=(ClassName="BWBPAirstrikesPro.TargetDesignator",bRed=False,bBlue=False)
 	 ConflictWeapons(106)=(ClassName="BWBPAirstrikesPro.X93Painter",bRed=False,bBlue=False)
 	 ConflictWeapons(107)=(ClassName="BWBP_OP_Pro.ARShotgun",bRed=True,bBlue=True)
-     ConfigMenuClassName="BallisticProV55.BallisticConfigMenuPro"
+     ConfigMenuClassName="BallisticProV55.ConfigMenu_Inventory"
      FriendlyName="BallisticPro: Conflict Loadout"
      Description="Play Ballistic Weapons with an expanded loadout system supporting Evolution configuration and inventory space."
 }

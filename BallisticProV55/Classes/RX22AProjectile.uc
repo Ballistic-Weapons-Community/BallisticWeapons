@@ -92,7 +92,7 @@ defaultproperties
 {
 	 bApplyParams=False
      bPenetrate=True
-     StartDelay=0.030000
+     StartDelay=0.000000
      Speed=3000.000000
      Damage=18.000000
      MyDamageType=Class'BallisticProV55.DTRX22ABurned'

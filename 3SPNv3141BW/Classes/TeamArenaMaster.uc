@@ -515,4 +515,5 @@ defaultproperties
      GameReplicationInfoClass=Class'3SPNv3141BW.TAM_GRI'
      GameName="BallisticPro: Team ArenaMaster"
      Acronym="TAM"
+	 MapListType="3SPNv3141BW.TAM_MapList"
 }

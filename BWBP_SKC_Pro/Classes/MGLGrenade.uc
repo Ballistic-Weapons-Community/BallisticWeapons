@@ -86,6 +86,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
      DampenFactor=0.050000

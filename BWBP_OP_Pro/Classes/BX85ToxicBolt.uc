@@ -11,6 +11,7 @@ class BX85ToxicBolt extends BallisticProjectile;
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.BX85Crossbow'
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BallisticProV55.PineappleTrail'
      MyRadiusDamageType=Class'BWBP_OP_Pro.DT_BX85Bolt'

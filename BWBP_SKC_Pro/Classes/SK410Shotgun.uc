@@ -157,7 +157,7 @@ defaultproperties
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BWBP_SKC_Tex.SK410.BigIcon_SK410'
     BigIconCoords=(Y1=40)
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Shotgun=True
     bWT_Machinegun=True
     ManualLines(0)="Rapid fire shotgun blasts with wide spread. Short range, but high sustained damage output."
@@ -183,7 +183,7 @@ defaultproperties
     GunLength=48.000000
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(G=0,A=192),StartSize1=113,StartSize2=120)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
-    ParamsClasses(0)=Class'SK410WeaponParams'
+    ParamsClasses(0)=Class'SK410WeaponParamsComp'
     ParamsClasses(1)=Class'SK410WeaponParamsClassic'
     ParamsClasses(2)=Class'SK410WeaponParamsRealistic'
     ParamsClasses(3)=Class'SK410WeaponParamsTactical'

@@ -164,7 +164,7 @@ simulated event Tick (float DT)
 	super.Tick(DT);
 	if (StoredGas < default.StoredGas && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
 	{
-		if (BCRepClass.static.IsClassic())
+		if (class'BallisticReplicationInfo'.static.IsClassic())
 			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 10) * (1 + StoredGas/default.StoredGas) );
 		else
 			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 20));
@@ -260,7 +260,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_OP_Tex.CX61.BigIcon_CX61'
 	BigIconCoords=(Y1=12,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	bWT_Heal=True
@@ -288,7 +288,7 @@ defaultproperties
 	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-	ParamsClasses(0)=Class'CX61WeaponParams'
+	ParamsClasses(0)=Class'CX61WeaponParamsComp'
 	ParamsClasses(1)=Class'CX61WeaponParamsClassic'
 	ParamsClasses(2)=Class'CX61WeaponParamsRealistic'
 	ParamsClasses(3)=Class'CX61WeaponParamsTactical'

@@ -111,9 +111,10 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		PlayerSpeedFactor=0.9
-		InventorySize=20
-		SightMoveSpeedFactor=0.800000
-		SightingTime=0.550000
+        PlayerJumpFactor=0.9
+		InventorySize=6
+        SightMoveSpeedFactor=0.5
+		SightingTime=0.65000
 		DisplaceDurationMult=1.2
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=2,Scale=0f)

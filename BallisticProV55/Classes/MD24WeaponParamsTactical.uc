@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
 		RangeAtten=0.5
 		Damage=24
         HeadMult=3.0f
@@ -69,9 +69,9 @@ defaultproperties
 		ViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
 		SightingTime=0.200000
         DisplaceDurationMult=0.33
-        SightMoveSpeedFactor=1
+        SightMoveSpeedFactor=0.75
 		MagAmmo=16
-        InventorySize=6
+        InventorySize=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

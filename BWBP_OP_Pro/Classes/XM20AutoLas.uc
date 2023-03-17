@@ -433,7 +433,7 @@ defaultproperties
 	ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.XM20P.BigIcon_XM20P'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Energy=True
 	bNoCrosshairInScope=True
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
@@ -450,7 +450,7 @@ defaultproperties
 	SightDisplayFOV=15
 	GunLength=80.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(B=158,G=150,R=0,A=124),StartSize1=54,StartSize2=59)
-    ParamsClasses(0)=Class'XM20WeaponParams'
+    ParamsClasses(0)=Class'XM20WeaponParamsComp'
 	FireModeClass(0)=Class'BWBP_OP_Pro.XM20PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.XM20SecondaryFire'
 	SelectAnimRate=1.500000

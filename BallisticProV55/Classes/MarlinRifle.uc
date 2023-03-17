@@ -319,7 +319,7 @@ defaultproperties
 	MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Marlin.BigIcon_Marlin'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Lever-action rifle fire. High damage per shot with modest recoil and good penetration. Good shoulder fire properties. This mode fires more quickly when the weapon is aimed."
 	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
@@ -351,7 +351,7 @@ defaultproperties
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
 	SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
-	ParamsClasses(0)=Class'MarlinWeaponParams'	 
+	ParamsClasses(0)=Class'MarlinWeaponParamsComp'	 
 	ParamsClasses(1)=Class'MarlinWeaponParamsClassic'	
 	ParamsClasses(2)=Class'MarlinWeaponParamsRealistic'	
     ParamsClasses(3)=Class'MarlinWeaponParamsTactical' 

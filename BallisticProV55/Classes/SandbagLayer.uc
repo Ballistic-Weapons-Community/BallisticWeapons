@@ -226,7 +226,7 @@ defaultproperties
 	DropSound=Sound'PlayerSounds.BFootsteps.BFootstepSnow5'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Sandbags.Icon_Sandbags'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
@@ -236,10 +236,10 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(ModeName="Place")
 	GunLength=0.000000
-	ParamsClasses(0)=Class'SandbagWeaponParams'
-	ParamsClasses(1)=Class'SandbagWeaponParams'
-	ParamsClasses(2)=Class'SandbagWeaponParams'
-    ParamsClasses(3)=Class'SandbagWeaponParams'
+	ParamsClasses(0)=Class'SandbagWeaponParamsComp'
+	ParamsClasses(1)=Class'SandbagWeaponParamsComp'
+	ParamsClasses(2)=Class'SandbagWeaponParamsComp'
+    ParamsClasses(3)=Class'SandbagWeaponParamsComp'
 	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
 	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
 	PutDownTime=0.900000

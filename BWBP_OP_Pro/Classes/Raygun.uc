@@ -522,7 +522,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=6)
 	BigIconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_512'
 	BigIconCoords=(Y1=32,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
@@ -544,7 +544,7 @@ defaultproperties
 	SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
 	SightDisplayFOV=25.000000
 	SightZoomFactor=0.85
-	ParamsClasses(0)=Class'RaygunWeaponParams'
+	ParamsClasses(0)=Class'RaygunWeaponParamsComp'
 	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
 	ParamsClasses(2)=Class'RaygunWeaponParamsRealistic'
     ParamsClasses(3)=Class'RaygunWeaponParamsTactical'

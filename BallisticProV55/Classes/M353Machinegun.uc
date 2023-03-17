@@ -149,7 +149,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -188,18 +187,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
 			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
-		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
 
@@ -250,7 +238,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M353'
 	BigIconCoords=(Y1=50,Y2=240)
 	SightFXClass=Class'BallisticProV55.M353SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
@@ -278,7 +266,7 @@ defaultproperties
 	CurrentWeaponMode=3
 	bNoCrosshairInScope=True
 	SightOffset=(X=-6.000000,Z=5.30000)
-	ParamsClasses(0)=Class'M353WeaponParams'
+	ParamsClasses(0)=Class'M353WeaponParamsComp'
 	ParamsClasses(1)=Class'M353WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M353WeaponParamsRealistic' //todo: turret
     ParamsClasses(3)=Class'M353WeaponParamsTactical'

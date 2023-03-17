@@ -97,11 +97,12 @@ defaultproperties
 		SightOffset=(X=-24.000000,Z=24.700000)
 		ViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
 		DisplaceDurationMult=1.25
-		PlayerSpeedFactor=0.80000
-		SightMoveSpeedFactor=0.8
-        SightingTime=0.6
+		PlayerSpeedFactor=0.9
+        PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.5
+        SightingTime=0.8
         MagAmmo=5
-        InventorySize=24
+        InventorySize=7
         ZoomType=ZT_Logarithmic
 		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

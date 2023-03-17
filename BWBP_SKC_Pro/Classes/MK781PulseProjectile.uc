@@ -14,17 +14,7 @@ var int ImpactDamage;
 
 simulated function InitParams()
 {
-    local BallisticWeapon BW;
-
-    if (Instigator == None)
-        return;
-
-    BW = BallisticWeapon(Instigator.Weapon);
-
-    if (BW == None)
-        return;
-
-    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(BW, self, 3);
+    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 3);
 }
 
 simulated function PostBeginPlay()
@@ -62,6 +52,7 @@ simulated event Timer()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.MK781Shotgun'
      ImpactDamage=100
      ImpactManager=Class'BWBP_SKC_Pro.IM_EMPRocketAlt'
      bCheckHitSurface=True

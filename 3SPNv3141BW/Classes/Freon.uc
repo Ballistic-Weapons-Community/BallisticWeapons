@@ -527,6 +527,7 @@ defaultproperties
      DefaultPlayerClassName="3SPNv3141BW.Freon_Pawn"
      ScoreBoardType="3SPNv3141BW.Freon_Scoreboard"
      HUDType="3SPNv3141BW.Freon_HUD"
+	 MapListType="3SPNv3141BW.Freon_MapList"
      GoalScore=6
      PlayerControllerClassName="3SPNv3141BW.Freon_Player"
      GameReplicationInfoClass=Class'3SPNv3141BW.Freon_GRI'

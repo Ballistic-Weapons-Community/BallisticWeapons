@@ -8,14 +8,14 @@ defaultproperties
 	
     Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
         TraceRange=(Min=2048.000000,Max=2048.000000)
-        DecayRange=(Min=500,Max=2000)
+        DecayRange=(Min=525,Max=1838)
         RangeAtten=0.2
         TraceCount=20
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=9
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.0f
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTMRT6Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
         DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
@@ -43,7 +43,7 @@ defaultproperties
 	
     Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
         TraceRange=(Min=5000.000000,Max=5000.000000)
-        DecayRange=(Min=500,Max=2000)
+        DecayRange=(Min=525,Max=1838)
         RangeAtten=0.2
         TraceCount=10
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
@@ -106,9 +106,10 @@ defaultproperties
 		SightOffset=(X=-30.000000,Z=11.000000)
 		ViewOffset=(X=12.000000,Y=3.000000,Z=-8.500000)
 		DisplaceDurationMult=0.33
-		SightingTime=0.25
+		SightingTime=0.2
+        SightMoveSpeedFactor=0.75
 		MagAmmo=8
-        InventorySize=5
+        InventorySize=3
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

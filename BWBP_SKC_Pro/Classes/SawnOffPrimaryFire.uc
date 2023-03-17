@@ -165,7 +165,7 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
-	if (SawnOffShotgun(BW).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		if (SawnOffShotgun(Weapon).MagAmmo == 1)
 		{

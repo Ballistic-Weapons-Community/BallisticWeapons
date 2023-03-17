@@ -23,7 +23,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		A73PrimaryFire(FireMode[0]).HeatPerShot = 0;
 		A73SecondaryFire(FireMode[1]).HeatPerShot = 0;
@@ -294,7 +294,7 @@ defaultproperties
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A73'
 	BigIconCoords=(Y1=32,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_RapidProj=True
 	bWT_Energy=True
 	ManualLines(0)="Launches a torrent of energy projectiles. The damage of these projectiles increases at range.||This attack generates heat, and if the weapon overheats, the fire rate is reduced and the player will take damage."
@@ -320,7 +320,7 @@ defaultproperties
 	SightPivot=(Pitch=450)
 	SightOffset=(X=10.000000,Z=12.150000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'A73WeaponParams'
+	ParamsClasses(0)=Class'A73WeaponParamsComp'
 	ParamsClasses(1)=Class'A73WeaponParamsClassic'
 	ParamsClasses(2)=Class'A73WeaponParamsRealistic'
     ParamsClasses(3)=Class'A73WeaponParamsTactical'

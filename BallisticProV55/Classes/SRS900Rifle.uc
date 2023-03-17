@@ -157,8 +157,13 @@ function ServerSwitchSilencer(bool bDetachSuppressor)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
+    // too strong
+    if (class'BallisticReplicationInfo'.static.IsTactical())
+        return;
+
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
+        
 	TemporaryScopeDown(0.5);
 	ServerSwitchSilencer(bSilenced);
 	SwitchSilencer(bSilenced);
@@ -281,7 +286,7 @@ simulated event RenderOverlays (Canvas C)
 		if (SightFX != None)
 			RenderSightFX(C);
 	}
-	else if (BCRepClass.default.GameStyle != 1)
+	else if (!class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
 		SetRotation(Instigator.GetViewRotation());
@@ -602,7 +607,7 @@ defaultproperties
 	StabCurveTex=FinalBlend'BW_Core_WeaponTex.SRS900-UI.StabilityCurve-FB'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_SRS900'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="High-powered battle rifle fire. Long range, good penetration and high per-shot damage. Recoil is significant."
@@ -638,7 +643,7 @@ defaultproperties
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	ParamsClasses(0)=Class'SRS900WeaponParams'
+	ParamsClasses(0)=Class'SRS900WeaponParamsComp'
 	ParamsClasses(1)=Class'SRS900WeaponParamsClassic'
 	ParamsClasses(2)=Class'SRS900WeaponParamsRealistic'
     ParamsClasses(3)=Class'SRS900WeaponParamsTactical'

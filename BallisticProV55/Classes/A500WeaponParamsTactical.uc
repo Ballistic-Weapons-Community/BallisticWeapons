@@ -9,10 +9,10 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalMultiEffectParams
         ProjectileClass=Class'BallisticProV55.A500Projectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'  
-        Speed=5500.000000
-        AccelSpeed=100000.000000
-        MaxSpeed=14000.000000
-        Damage=35.000000
+        Speed=3500.000000
+        AccelSpeed=0.000000
+        MaxSpeed=3500.000000
+        Damage=50.000000
         HeadMult=2
         LimbMult=0.8
         MomentumTransfer=1000.000000
@@ -101,9 +101,10 @@ defaultproperties
 		SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
 		ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
 		ViewPivot=(Pitch=600)
-        InventorySize=20
+        SightMoveSpeedFactor=0.75
+        InventorySize=5
 		MagAmmo=5
-        SightingTime=0.2
+        SightingTime=0.3
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalMultiFireParams'

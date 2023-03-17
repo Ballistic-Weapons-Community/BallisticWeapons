@@ -572,7 +572,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.M2020.BigIcon_M2020'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Power mode fires a single powerful shot with high recoil and damage. Fire rate is poor.|Recharge mode fires more quickly for greater sustained DPS but lower individual shot power.|Offline mode (or Deflecting mode when the shield is active) has the lowest power, but does not generate a bullet trail."
 	ManualLines(1)="Raises the scope."
@@ -604,7 +604,7 @@ defaultproperties
 	MaxZoom=16.000000
 	ZoomStages=8
 	GunLength=80.000000
-	ParamsClasses(0)=Class'M2020WeaponParams'
+	ParamsClasses(0)=Class'M2020WeaponParamsComp'
 	ParamsClasses(1)=Class'M2020WeaponParamsClassic'
 	ParamsClasses(2)=Class'M2020WeaponParamsRealistic'
     ParamsClasses(3)=Class'M2020WeaponParamsTactical'

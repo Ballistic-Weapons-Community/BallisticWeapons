@@ -121,10 +121,8 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=UniversalParams
         ViewOffset=(X=10.000000,Z=-7.000000)
-		PlayerSpeedFactor=0.8
-        PlayerJumpFactor=0.8
         MagAmmo=1
-        InventorySize=20
+        InventorySize=2
 		WeaponModes(0)=(ModeName="Boost Pad",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Teleporter",ModeID="WM_SemiAuto")
 		WeaponModes(2)=(ModeName="Sandbag Stack")

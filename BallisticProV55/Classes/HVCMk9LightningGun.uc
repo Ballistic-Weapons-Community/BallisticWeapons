@@ -58,7 +58,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 		HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
 	else
 		HVCMk9PrimaryFire(FireMode[0]).GotoState('DirectFire');
@@ -145,7 +145,7 @@ simulated event Tick (float DT)
 {
 	local int i;
 	
-	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 	{
 		if (HeatLevel > 0)
 		{
@@ -319,7 +319,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if (((class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical()) && GetTargetZap() != None) || FireMode[1].bIsFiring)	
+	if (((class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()) && GetTargetZap() != None) || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{
@@ -390,7 +390,7 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 	
 	
-	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 	{
 		if (StreamEffect != None)
 		{
@@ -816,7 +816,7 @@ defaultproperties
 	AIReloadTime=0.200000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_HVCMk9'
 	BigIconCoords=(Y1=32,Y2=223)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Energy=True
 	bWT_Super=True
@@ -835,7 +835,7 @@ defaultproperties
 	SightPivot=(Pitch=1024)
 	SightOffset=(X=-12.000000,Z=26.000000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'HVCMk9WeaponParams'
+	ParamsClasses(0)=Class'HVCMk9WeaponParamsComp'
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	ParamsClasses(2)=Class'HVCMk9WeaponParamsRealistic' \\todo: lots of state code
     ParamsClasses(3)=Class'HVCMk9WeaponParamsTactical'

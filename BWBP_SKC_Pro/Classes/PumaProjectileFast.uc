@@ -91,6 +91,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.PumaRepeater'
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True

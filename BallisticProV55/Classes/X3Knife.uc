@@ -150,17 +150,17 @@ defaultproperties
 	CurrentRating=0.6
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_X3'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Slashes with the knife. Short range and less damage than other melee weapons."
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
-     ManualLines(2)="The Weapon Function key throws a knife, dealing good damage. Thrown knives have a very short range.||The user's movement speed improves with this weapon active."
+     ManualLines(2)="The Weapon Function key throws a knife, dealing good damage. Thrown knives have a very short range."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
      bNoMag=True
      GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClasses(0)=Class'X3WeaponParams'
+	 ParamsClasses(0)=Class'X3WeaponParamsComp'
 	 ParamsClasses(1)=Class'X3WeaponParamsClassic'
 	 ParamsClasses(2)=Class'X3WeaponParamsRealistic'
      ParamsClasses(3)=Class'X3WeaponParamsTactical'

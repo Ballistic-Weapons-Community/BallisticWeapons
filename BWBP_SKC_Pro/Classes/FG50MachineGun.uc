@@ -55,12 +55,12 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
 	}
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
 		FireModeClass[1]=Class'BWBP_SKC_Pro.FG50DeployFire';
@@ -72,7 +72,7 @@ simulated function PostNetBeginPlay()
 	local Actor A;
 	
 	Super.PostNetBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		bDecorativeHeat=true;
 		FG50SecondaryFire(FireMode[0]).HeatPerShot=0.25;
@@ -658,7 +658,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=67,G=66,R=58,A=255),StartSize1=99,StartSize2=86)
 	BigIconMaterial=Texture'BWBP_SKC_Tex.FG50.BigIcon_FG50'
 	BigIconCoords=(Y1=36,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Fires powerful explosive rounds. Upon impact with the enemy, these rounds explode, dealing heavy damage to nearby targets. Sustained DPS is massive. Has no penetration ability.|Controlled mode dramatically improves the hipfire at the cost of fire rate. A laser is projected which may give away the user's position."
 	ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."

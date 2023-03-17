@@ -140,6 +140,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.Z250Minigun'
      ModeIndex=1
      DetonateOn=DT_Impact
      PlayerImpactType=PIT_Detonate

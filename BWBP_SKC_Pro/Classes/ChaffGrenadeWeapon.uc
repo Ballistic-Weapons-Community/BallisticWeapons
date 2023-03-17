@@ -245,7 +245,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.M4A1.BigIcon_MOAC'
      BigIconCoords=(Y1=16,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -255,7 +255,7 @@ defaultproperties
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
 	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-	 ParamsClasses(0)=Class'ChaffWeaponParams'
+	 ParamsClasses(0)=Class'ChaffWeaponParamsComp'
 	 ParamsClasses(1)=Class'ChaffWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ChaffWeaponParamsRealistic'
      ParamsClasses(3)=Class'ChaffWeaponParamsTactical'

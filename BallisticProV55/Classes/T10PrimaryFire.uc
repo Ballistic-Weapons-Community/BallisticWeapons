@@ -39,7 +39,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 		else
 			DetonateDelay = BallisticProPineapple(Proj).DetonateDelay;
             
-		BallisticProPineapple(Proj).InitProPineapple(Speed, DetonateDelay);
+		BallisticProPineapple(Proj).SetThrowPowerAndDelay(Speed, DetonateDelay);
 	}
 }
 

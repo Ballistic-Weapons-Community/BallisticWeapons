@@ -706,7 +706,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.TacBuster.BigIcon_AA12'
 	BigIconCoords=(Y1=40)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	bWT_Machinegun=True
 	bWT_Projectile=True
@@ -734,7 +734,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightDisplayFOV=40.000000
 	GunLength=48.000000
-	ParamsClasses(0)=Class'ARWeaponParams'
+	ParamsClasses(0)=Class'ARWeaponParamsComp'
 	ParamsClasses(1)=Class'ARWeaponParamsClassic'
 	ParamsClasses(2)=Class'ARWeaponParamsRealistic'
 	ParamsClasses(3)=Class'ARWeaponParamsTactical'

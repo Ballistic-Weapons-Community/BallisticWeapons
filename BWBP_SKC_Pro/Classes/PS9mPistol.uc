@@ -342,7 +342,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Stealth.BigIcon_PS9M'
 	BigIconCoords=(X1=96,Y1=16,X2=418,Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Heal=True
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
@@ -359,7 +359,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'PS9mWeaponParams'
+	ParamsClasses(0)=Class'PS9mWeaponParamsComp'
 	ParamsClasses(1)=Class'PS9mWeaponParamsClassic'
 	ParamsClasses(2)=Class'PS9mWeaponParamsRealistic'
     ParamsClasses(3)=Class'PS9mWeaponParamsTactical'

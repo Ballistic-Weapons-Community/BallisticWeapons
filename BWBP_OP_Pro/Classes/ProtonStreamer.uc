@@ -357,7 +357,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.ProtonPack.BigIcon_ProtonPack'
 	BigIconCoords=(Y1=32,X2=512,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Energy=True
 	bWT_Heal=True
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
@@ -374,8 +374,8 @@ defaultproperties
 	SightPivot=(Pitch=1024,Roll=-768)
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'ProtonWeaponParams'
-	ParamsClasses(1)=Class'ProtonWeaponParams'
+	ParamsClasses(0)=Class'ProtonWeaponParamsComp'
+	ParamsClasses(1)=Class'ProtonWeaponParamsComp'
 	FireModeClass(0)=Class'BWBP_OP_Pro.ProtonStreamPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.ProtonStreamSecondaryFire'
 	SelectAnimRate=1.250000

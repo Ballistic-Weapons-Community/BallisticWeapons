@@ -7,8 +7,8 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
-        TraceRange=(Min=2560.000000,Max=2560.000000)
-        DecayRange=(Min=788,Max=1838)
+		TraceRange=(Min=3072.000000,Max=3072.000000)
+        DecayRange=(Min=1250,Max=3000)
         RangeAtten=0.25
         TraceCount=10
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
@@ -16,7 +16,7 @@ defaultproperties
         MaxHits=10
         Damage=20
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		PushbackForce=1000.000000
         DamageType=Class'BallisticProV55.DTM290Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
@@ -43,15 +43,15 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
-        TraceRange=(Min=2560.000000,Max=2560.000000)
-        DecayRange=(Min=788,Max=1838)
+		TraceRange=(Min=3072.000000,Max=3072.000000)
+        DecayRange=(Min=1250,Max=3000)
         RangeAtten=0.25
         TraceCount=10
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=10
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.0f
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTM290Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
         DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
@@ -113,9 +113,10 @@ defaultproperties
 		SightPivot=(Pitch=256)
 		SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
 		ViewOffset=(X=20.000000,Y=10.000000,Z=-13.000000)
+        SightMoveSpeedFactor=0.75
 		MagAmmo=6
-		SightingTime=0.25
-        InventorySize=26
+		SightingTime=0.3
+        InventorySize=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

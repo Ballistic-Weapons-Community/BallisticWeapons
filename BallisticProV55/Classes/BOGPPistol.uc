@@ -269,7 +269,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.BOGP.BigIcon_BOGP'
 	BigIconCoords=(Y1=32,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Splash=True
 	bWT_Projectile=True
 	ManualLines(0)="Grenade mode launches a grenade with good damage and blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
@@ -294,7 +294,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=300)
 	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
-	ParamsClasses(0)=Class'BOGPWeaponParams'
+	ParamsClasses(0)=Class'BOGPWeaponParamsComp'
 	ParamsClasses(1)=Class'BOGPWeaponParamsClassic'
 	ParamsClasses(2)=Class'BOGPWeaponParamsRealistic'
     ParamsClasses(3)=Class'BOGPWeaponParamsTactical'

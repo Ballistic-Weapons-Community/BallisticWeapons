@@ -145,7 +145,7 @@ defaultproperties
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRT6'
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Shotgun=True
     bWT_Sidearm=True
     SpecialInfo(0)=(Info="180.0;10.0;-999.0;25.0;0.0;0.8;-999.0")
@@ -165,7 +165,7 @@ defaultproperties
     SightOffset=(X=-30.000000,Z=11.000000)
     SightZoomFactor=0.85
     GunLength=24.000000
-    ParamsClasses(0)=Class'MRT6WeaponParams'
+    ParamsClasses(0)=Class'MRT6WeaponParamsComp'
     ParamsClasses(1)=Class'MRT6WeaponParamsClassic'
     ParamsClasses(2)=Class'MRT6WeaponParamsRealistic'
     ParamsClasses(3)=Class'MRT6WeaponParamsTactical'

@@ -98,9 +98,9 @@ defaultproperties
 		ViewOffset=(X=-30.000000,Y=5.000000,Z=-20.000000)
 		SightPivot=(Pitch=150)
 		SightOffset=(Y=19.600000,Z=26.400000)
-		InventorySize=20
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.25
+		InventorySize=6
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.3
 		DisplaceDurationMult=1
 		MagAmmo=4
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

@@ -89,7 +89,7 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	LS14PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		LS14PrimaryFire(FireMode[0]).default.HeatPerShot = 0;
 		LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
@@ -231,7 +231,7 @@ simulated function AddHeat(float Amount, float OverrideAmount, float DeclineTime
 	SelfHeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, SelfHeatDeclineTime);
 	
 	//arena heat
-	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 	{
 		if (SelfHeatLevel >= 9.75)
 		{
@@ -1034,7 +1034,7 @@ defaultproperties
 	Shells(2)=(ShellName="RocketOne")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.LS14.BigIcon_LS14'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Hazardous=True
 	bWT_Splash=True
@@ -1068,7 +1068,7 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	GunLength=80.000000
-	ParamsClasses(0)=Class'LS14WeaponParams'
+	ParamsClasses(0)=Class'LS14WeaponParamsComp'
 	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	ParamsClasses(2)=Class'LS14WeaponParamsRealistic'
     ParamsClasses(3)=Class'LS14WeaponParamsTactical'

@@ -7,7 +7,7 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=BurstFireEffect
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
         PenetrationEnergy=8
         TraceRange=(Min=3072,Max=3072)
         Damage=26.000000
@@ -21,7 +21,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
         FlashScaleFactor=0.400000
-        Recoil=160.000000
+        Recoil=144.000000
         Inaccuracy=(X=72,Y=72)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 	    SplashDamage=False
@@ -31,10 +31,10 @@ defaultproperties
     End Object
 
     Begin Object Class=InstantEffectParams Name=AutoFireEffect
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
         PenetrationEnergy=8
         TraceRange=(Min=3072,Max=3072)
-        Damage=22.000000
+        Damage=26.000000
         HeadMult=2.75
         LimbMult=0.67f
         RangeAtten=0.5
@@ -56,14 +56,13 @@ defaultproperties
 
     Begin Object Class=FireParams Name=BurstFireParams
         AimedFireAnim="SightFire"
-        FireInterval=0.09
-        BurstFireRateFactor=0.55
+        FireInterval=0.072
         FireEffectParams(0)=InstantEffectParams'BurstFireEffect'
     End Object
 
     Begin Object Class=FireParams Name=AutoFireParams
         AimedFireAnim="SightFire"
-        FireInterval=0.0675
+        FireInterval=0.072
         FireEffectParams(0)=InstantEffectParams'AutoFireEffect'
     End Object
 
@@ -144,8 +143,9 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams
 		DisplaceDurationMult=0.5
         MagAmmo=25        
-		InventorySize=9
+		InventorySize=3
         SightingTime=0.2
+        SightMoveSpeedFactor=0.75
 		SightPivot=(Pitch=512)
 		SightOffset=(X=-10.000000,Z=12.00000)
 		ViewOffset=(X=14.000000,Y=8.000000,Z=-10.000000)

@@ -11,19 +11,20 @@
 class BallisticOutfittingWeaponsTab extends UT2K4TabPanel config(BallisticProV55);
 
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
-var automated GUILoadOutItem Item_Melee, Item_SideArm, Item_Primary, Item_Secondary, Item_Grenade;
-var automated GUIComboBox	 cb_Melee, cb_SideArm, cb_Primary, cb_Secondary, cb_Grenade;
-var automated GUIComboBox	 cb_Melee_LI, cb_SideArm_LI, cb_Primary_LI, cb_Secondary_LI, cb_Grenade_LI;
-var automated GUIComboBox	 cb_Melee_CI, cb_SideArm_CI, cb_Primary_CI, cb_Secondary_CI, cb_Grenade_CI;
-var automated moComboBox		cb_Presets;
-var Automated GUIImage Box_Melee, Box_SideArm, Box_Primary, Box_Secondary, Box_Grenade, Box_Streak1, Box_Streak2, Box_Streak3, MeleeBack, SideArmBack, PrimaryBack, SecondaryBack, GrenadeBack;
-var Automated GUIButton BDone, BCancel, BSavePreset;
-var automated GUILabel	l_Receiving;
-var BallisticOutfittingMenu p_Anchor;
 
-var config int CurrentIndex;
-var config bool bInitialised;
-var bool bWeaponsLoaded;
+var automated GUILoadOutItem 		Item_Melee, Item_SideArm, Item_Primary, Item_Secondary, Item_Grenade;
+var automated GUIComboBox	 		cb_Melee, cb_SideArm, cb_Primary, cb_Secondary, cb_Grenade;
+var automated GUIComboBox	 		cb_Melee_LI, cb_SideArm_LI, cb_Primary_LI, cb_Secondary_LI, cb_Grenade_LI;
+var automated GUIComboBox	 		cb_Melee_CI, cb_SideArm_CI, cb_Primary_CI, cb_Secondary_CI, cb_Grenade_CI;
+var automated moComboBox			cb_Presets;
+var Automated GUIImage 				Box_Melee, Box_SideArm, Box_Primary, Box_Secondary, Box_Grenade, Box_Streak1, Box_Streak2, Box_Streak3, MeleeBack, SideArmBack, PrimaryBack, SecondaryBack, GrenadeBack;
+var Automated GUIButton 			BDone, BCancel, BSavePreset;
+var automated GUILabel				l_Receiving;
+var BallisticOutfittingMenu 		p_Anchor;
+
+var config int						CurrentIndex;
+var config bool 					bInitialized;
+var bool 							bWeaponsLoaded;
 
 struct LoadoutWeapons
 {
@@ -33,7 +34,7 @@ struct LoadoutWeapons
 	var int Camos[5];
 };
 
-var() config array<LoadoutWeapons>			SavedLoadouts[5];  //Saved loadouts
+var() config array<LoadoutWeapons>	SavedLoadouts[5];  //Saved loadouts
 
 struct WeaponItemInfo
 {
@@ -45,16 +46,16 @@ struct WeaponItemInfo
 	var byte Index;
 };
 
-var array<WeaponItemInfo> sortedPrimaries;
-var array<WeaponItemInfo> sortedSecondaries;
+var array<WeaponItemInfo> 			sortedPrimaries;
+var array<WeaponItemInfo> 			sortedSecondaries;
 
 var int NumPresets;
 
-var() localized string QuickListText;
+var() localized string 				QuickListText;
 
-var localized string ReceivingText[2];
+var localized string 				ReceivingText[2];
 
-var ClientOutfittinginterface COI;	// The ClientOutfittingInterface actor we can use to comunicate with the mutator
+var ClientOutfittingInterface 		COI;	// The ClientOutfittingInterface actor we can use to communicate with the mutator
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
@@ -76,13 +77,13 @@ function ShowPanel(bool bShow)
 	
 	super.ShowPanel(bShow);
 	
-	if (!bInitialised)
+	if (!bInitialized)
 	{
 		for(i=0;i<5;i++)
 		SavedLoadouts[0].Weapons[i] = class'Mut_Outfitting'.default.LoadOut[i];
 		SavedLoadouts[0].Layouts[i] = class'Mut_Outfitting'.default.Layout[i];
 		SavedLoadouts[0].Camos[i] = class'Mut_Outfitting'.default.Camo[i];
-		bInitialised=True;
+		bInitialized=True;
 		SaveConfig();
 	}
 	

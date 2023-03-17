@@ -14,8 +14,8 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=15
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.0f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'
@@ -95,9 +95,10 @@ defaultproperties
 		SightOffset=(X=15,Z=21.500000)
 		SightPivot=(Pitch=256)
 		ViewOffset=(Y=10.000000,Z=-14.000000)
-		SightingTime=0.2
+		SightingTime=0.3
+        SightMoveSpeedFactor=0.75
 		MagAmmo=6
-        InventorySize=20
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

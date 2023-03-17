@@ -285,7 +285,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_BX5'
 	BigIconCoords=(Y1=24,Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Trap=True
@@ -303,7 +303,7 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClasses(0)=Class'BX5WeaponParams'
+	ParamsClasses(0)=Class'BX5WeaponParamsComp'
 	ParamsClasses(1)=Class'BX5WeaponParamsClassic' //todo: state to properly set spring mine dmg
 	ParamsClasses(2)=Class'BX5WeaponParamsRealistic' //todo: state to properly set spring mine dmg
     ParamsClasses(3)=Class'BX5WeaponParamsTactical'

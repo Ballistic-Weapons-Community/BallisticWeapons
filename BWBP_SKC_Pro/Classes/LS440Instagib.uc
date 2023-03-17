@@ -333,7 +333,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
      BigIconMaterial=Texture'BWBP_SKC_Tex.LS440M.BigIcon_LS440'
      //BallisticInventoryGroup=7
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Hazardous=True
      bWT_Splash=True

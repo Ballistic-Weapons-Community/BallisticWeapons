@@ -93,9 +93,10 @@ defaultproperties
 		CockAnimRate=1.250000
         DisplaceDurationMult=0.75
         MagAmmo=6
-        InventorySize=12
+        InventorySize=4
 		SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
         SightingTime=0.2
+        SightMoveSpeedFactor=0.75
 		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

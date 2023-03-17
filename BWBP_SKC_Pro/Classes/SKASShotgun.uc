@@ -32,7 +32,7 @@ function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		SKASPrimaryFire(FireMode[0]).bRequireSpool=true;
 	}
@@ -53,7 +53,7 @@ simulated function float GetRampUpSpeed()
 	
 	mult = 1 - (BarrelSpeed / MaxRotationSpeed);
 	
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 		return 0.075f + (3.0 * mult * (1 + 0.25*int(bBerserk)));
 	else
 		return 0.075f + (mult * (1 + 0.25*int(bBerserk)));
@@ -68,7 +68,7 @@ simulated event WeaponTick (float DT)
 
 	super.WeaponTick(DT);
 
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 		return;
 	
 	BT.Pitch = BarrelTurn;
@@ -93,7 +93,7 @@ simulated event Tick (float DT)
 
 	super.Tick(DT);
 
-	if (BCRepClass.static.IsClassic() || CurrentWeaponMode != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassic() || CurrentWeaponMode != 0)
 		return;
 
 	if (FireMode[0].IsFiring() && !bServerReloading)
@@ -131,7 +131,7 @@ simulated function float ChargeBar()
 	if (Heat + SKASSecondaryFire(Firemode[1]).RailPower > 0)
 		return FMin((Heat + SKASSecondaryFire(Firemode[1]).RailPower), 1);
 	
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 		return 0;
 	
     return BarrelSpeed / DesiredSpeed;
@@ -310,7 +310,7 @@ defaultproperties
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BWBP_SKC_Tex.SKAS.BigIcon_SKAS'
     BigIconCoords=(Y1=24)
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Shotgun=True
     bWT_Machinegun=True
     SpecialInfo(0)=(Info="360.0;30.0;0.9;120.0;0.0;3.0;0.0")
@@ -335,7 +335,7 @@ defaultproperties
     SightPivot=(Pitch=1024)
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
-    ParamsClasses(0)=Class'SKASWeaponParams'
+    ParamsClasses(0)=Class'SKASWeaponParamsComp'
     ParamsClasses(1)=Class'SKASWeaponParamsClassic'
     ParamsClasses(2)=Class'SKASWeaponParamsRealistic'
     ParamsClasses(3)=Class'SKASWeaponParamsTactical'

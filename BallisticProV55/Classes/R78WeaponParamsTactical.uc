@@ -65,10 +65,10 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
 		SightPivot=(Roll=-1024)
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
-		SightingTime=0.40000
-		SightMoveSpeedFactor=0.8
+		SightingTime=0.45
+		SightMoveSpeedFactor=0.5
 		MagAmmo=7
-        InventorySize=20
+        InventorySize=5
         ZoomType=ZT_Logarithmic
 		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

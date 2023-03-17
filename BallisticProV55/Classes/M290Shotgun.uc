@@ -110,7 +110,7 @@ defaultproperties
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M290'
     BigIconCoords=(Y1=40,X2=490,Y2=225)
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Shotgun=True
     ManualLines(0)="Fires both barrels at once. Deals extreme damage at close to medium range. Spread is tight, recoil is high and fire rate is moderate."
     ManualLines(1)="Fires one barrel at a time. Deals high damage with tighter spread than primary. The interval between two successive shots is short, but the weapon must cock after the second shot, or it may be manually cocked."
@@ -143,7 +143,7 @@ defaultproperties
     bNoCrosshairInScope=True
     SightPivot=(Pitch=256)
     SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
-    ParamsClasses(0)=Class'M290WeaponParams'
+    ParamsClasses(0)=Class'M290WeaponParamsComp'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
     ParamsClasses(2)=Class'M290WeaponParamsRealistic'
     ParamsClasses(3)=Class'M290WeaponParamsTactical'

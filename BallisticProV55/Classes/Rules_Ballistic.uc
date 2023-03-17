@@ -2,8 +2,14 @@
 class Rules_Ballistic extends GameRules
 	config(System);
 
-var() globalconfig float	DamageScale;		// Damage is scaled by this
-var() globalconfig float	VehicleDamageScale;	// Damage is scaled by this for vehicles
+var() float	DamageScale;		// Damage is scaled by this
+var() float	VehicleDamageScale;	// Damage is scaled by this for vehicles
+
+function PostBeginPlay()
+{
+	DamageScale = class'BallisticReplicationInfo'.default.DamageScale;
+	VehicleDamageScale = class'BallisticReplicationInfo'.default.VehicleDamageScale;
+}
 
 function int NetDamage( int OriginalDamage, int Damage, pawn Injured, pawn instigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType )
 {
@@ -22,6 +28,6 @@ function int NetDamage( int OriginalDamage, int Damage, pawn Injured, pawn insti
 
 defaultproperties
 {
-     damageScale=1.000000
+     DamageScale=1.000000
      VehicleDamageScale=1.000000
 }

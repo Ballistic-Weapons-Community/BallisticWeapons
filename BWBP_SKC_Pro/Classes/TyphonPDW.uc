@@ -107,7 +107,8 @@ simulated function CommonStartReload (optional byte i)
 
 	if (bCockAfterReload)
 		bNeedCock=true;
-	if (bCockOnEmpty && MagAmmo < 1 && GameStyleIndex == 0)
+
+	if (bCockOnEmpty && MagAmmo < 1 && (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()))
 		bNeedCock=true;
 	bNeedReload=false;
 }
@@ -118,7 +119,7 @@ simulated function PlayReload()
 		SafePlayAnim(StartShovelAnim, StartShovelAnimRate, , 0, "RELOAD");
 	else
 	{
-	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && GameStyleIndex != 0)
+	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && (class'BallisticReplicationInfo'.static.IsClassicOrRealism()))
 			SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
 		else	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 	}
@@ -721,7 +722,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BWBP_SKC_Tex.Typhon.BigIcon_Typhon'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
 	 bWT_Bullet=True
      SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw')
@@ -773,7 +774,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsArena'
+	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsComp'
 	 ParamsClasses(1)=Class'TyphonPDWWeaponParamsClassic'
 	 ParamsClasses(2)=Class'TyphonPDWWeaponParamsRealistic'
      ParamsClasses(3)=Class'TyphonPDWWeaponParamsTactical'

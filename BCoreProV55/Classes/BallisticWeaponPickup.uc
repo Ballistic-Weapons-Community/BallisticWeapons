@@ -47,7 +47,7 @@ simulated function PreBeginPlay()
 	if (PickupDrawScale != 0)
 		SetDrawScale(PickupDrawScale);
 	
-	bAlternativePickups = class<BallisticWeapon>(InventoryType).default.BCRepClass.default.bAlternativePickups;
+	bAlternativePickups = class'BallisticReplicationInfo'.default.bAlternativePickups;
 
     if(bAlternativePickups)
     {

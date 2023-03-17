@@ -114,7 +114,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -151,17 +150,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(Instigator.IsHumanControlled() && Instigator.FindInventoryType(class'SandbagLayer') == None && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
-			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
@@ -357,7 +345,7 @@ defaultproperties
 	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
 	BigIconMaterial=Texture'BWBP_SKC_Tex.X82.BigIcon_X82'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;80.0;10.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
@@ -386,7 +374,7 @@ defaultproperties
 	MaxZoom=32.000000
 	ZoomStages=3
 	GunLength=80.000000
-	ParamsClasses(0)=Class'X82WeaponParams'
+	ParamsClasses(0)=Class'X82WeaponParamsComp'
 	ParamsClasses(1)=Class'X82WeaponParamsClassic'
 	ParamsClasses(2)=Class'X82WeaponParamsRealistic'
     ParamsClasses(3)=Class'X82WeaponParamsTactical'

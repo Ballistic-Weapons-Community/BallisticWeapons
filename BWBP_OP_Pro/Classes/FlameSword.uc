@@ -315,7 +315,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_512'
      BigIconCoords=(Y1=40,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Swings the sword. Inflicts heavy damage and has a long range and wide swing arc."
      ManualLines(1)="Creates a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
      ManualLines(2)="Passively grants immunity to fire damage."
@@ -326,7 +326,7 @@ defaultproperties
      bNoMag=True
 	 GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClasses(0)=Class'FlameSwordWeaponParams'
+	 ParamsClasses(0)=Class'FlameSwordWeaponParamsComp'
      FireModeClass(0)=Class'BWBP_OP_Pro.FlameSwordPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.FlameSwordSecondaryFire'
 	 MeleeFireClass=Class'BWBP_OP_Pro.FlameSwordMeleeFire'

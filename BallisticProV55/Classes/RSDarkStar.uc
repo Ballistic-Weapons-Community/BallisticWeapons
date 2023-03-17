@@ -60,7 +60,7 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 	
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		MaxSoulPower=10;
 	}
@@ -757,7 +757,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.DarkStar.BigIcon_DarkStar'
      BigIconCoords=(Y1=28,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 20% of damage dealt as HP, but cost HP equal to 20% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 20% of damage dealt as HP, but cost HP equal to 10% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
      ManualLines(1)="Engages the chainsaw. This weapon deals high sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
      ManualLines(2)="All of this weapon's modes have the potential to inflict damage to the wielder. Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will consume the user's soul, dealing significant backlash damage.||With full soul power, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soul power will drain over time.||Very effective at close and medium range."
@@ -784,7 +784,7 @@ defaultproperties
      SightOffset=(X=-22.000000,Z=10.000000)
      SightDisplayFOV=40.000000
 	 GunLength=128.000000
-	 ParamsClasses(0)=Class'RSDarkWeaponParams'
+	 ParamsClasses(0)=Class'RSDarkWeaponParamsComp'
 	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
 	 ParamsClasses(2)=Class'RSDarkWeaponParamsRealistic'
      ParamsClasses(3)=Class'RSDarkWeaponParamsTactical'

@@ -391,7 +391,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Longhorn.BigIcon_LHorn'
 	BigIconCoords=(Y1=30)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Grenade=True
@@ -419,7 +419,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=150)
 	SightOffset=(Y=19.600000,Z=26.400000)
-	ParamsClasses(0)=Class'LonghornWeaponParams'
+	ParamsClasses(0)=Class'LonghornWeaponParamsComp'
 	ParamsClasses(1)=Class'LonghornWeaponParamsClassic'
 	ParamsClasses(2)=Class'LonghornWeaponParamsRealistic'
     ParamsClasses(3)=Class'LonghornWeaponParamsTactical'

@@ -10,9 +10,9 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2300,Max=6000)
 		RangeAtten=0.75
-		Damage=55
-        HeadMult=2.75
-        LimbMult=0.67f
+		Damage=52
+        HeadMult=2.5f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTSRS600Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTSRS600RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSRS600Rifle'
@@ -20,11 +20,11 @@ defaultproperties
 		PenetrateForce=120
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 		FlashScaleFactor=0.5
 		Recoil=360.000000
 		Chaos=0.065000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -69,9 +69,9 @@ defaultproperties
 		CockAnimRate=1.200000
 		SightOffset=(X=16.000000,Z=10.460000)
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
-        SightingTime=0.25
+        SightingTime=0.35
 		MagAmmo=20
-        InventorySize=20
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

@@ -250,7 +250,7 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M353'
 	SightFXClass=Class'BallisticProV55.M353SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
@@ -278,7 +278,7 @@ defaultproperties
 	SightOffset=(X=-4.000000,Z=5.200000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'M353TW_WeaponParams'
+	ParamsClasses(0)=Class'M353TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'M353TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'M353TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'M353TW_WeaponParamsTactical'

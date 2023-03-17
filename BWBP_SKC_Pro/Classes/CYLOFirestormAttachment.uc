@@ -14,7 +14,7 @@ var bool	bShotgunMode;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		bShotgunMode=true;
 		InstantMode=MU_Both;

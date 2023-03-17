@@ -52,12 +52,12 @@ simulated event PostNetBeginPlay()
 	
 	super.PostNetBeginPlay();
 
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		bVariableHeatProps=true;
 		CYLOFirestormPrimaryFire(FireMode[0]).bVariableHeatProps=true;
 	}
-	else if (BCRepClass.static.IsRealism())
+	else if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		CYLOFirestormPrimaryFire(FireMode[0]).HeatPerShot = 0.1;
 	}
@@ -678,7 +678,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMk4'
 	BigIconCoords=(X1=16,Y1=30)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
 	ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
 	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
@@ -698,7 +698,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
-	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
+	ParamsClasses(0)=Class'CYLOFirestormWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOFirestormWeaponParamsRealistic' 
     ParamsClasses(3)=Class'CYLOFirestormWeaponParamsTactical'

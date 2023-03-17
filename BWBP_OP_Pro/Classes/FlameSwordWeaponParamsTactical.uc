@@ -69,7 +69,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=UniversalParams
         DisplaceDurationMult=0.33
         MagAmmo=1
-        InventorySize=6
+        InventorySize=2
 		ViewOffset=(X=20.000000,Y=10.000000,Z=-20.000000)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'

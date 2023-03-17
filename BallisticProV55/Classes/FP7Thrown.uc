@@ -58,21 +58,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	Destroy();
 }
 
-function InitProPineapple(float PSpeed, float PDelay)
-{
-	Speed = PSpeed;
-    
-	DetonateDelay = PDelay;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= 0)
-		DetonateDelay = 0.05;
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.FP7Grenade'
      DampenFactor=0.050000
      DampenFactorParallel=0.350000
      ImpactDamage=15

@@ -177,6 +177,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.F2000AssaultRifle'
      ModeIndex=1
      DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
      ShockRadius=896

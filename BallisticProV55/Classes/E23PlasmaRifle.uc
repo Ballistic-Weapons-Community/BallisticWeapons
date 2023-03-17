@@ -34,7 +34,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 		E23PrimaryFire(FireMode[0]).SGFireCount = 9;
 	E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	if (Laser == None)
@@ -454,7 +454,7 @@ defaultproperties
 	BigIconCoords=(Y1=36,Y2=225)
 	SightFXClass=Class'BallisticProV55.E23ClipEffect'
 	SightFXBone="Clip"
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_RapidProj=True
 	bWT_Energy=True
 	ManualLines(0)="Series mode fires a continuous stream of high damage projectiles, which gain damage over range.|Multi mode fires five projectiles simultaneously in a spread pattern, mimicking a shotgun.|Sniper mode fires a very fast projectile which is weak up close but quickly gains damage over range."
@@ -487,7 +487,7 @@ defaultproperties
 	SightPivot=(Pitch=256)
 	SightOffset=(X=-8.000000,Z=9.300000)
 	SightDisplayFOV=25.000000
-	ParamsClasses(0)=Class'E23WeaponParams'
+	ParamsClasses(0)=Class'E23WeaponParamsComp'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	ParamsClasses(2)=Class'E23WeaponParamsRealistic'
     ParamsClasses(3)=Class'E23WeaponParamsTactical'

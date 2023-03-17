@@ -223,7 +223,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.OtherShields.BigIcon_JWJunkShield'
 	BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
 	ManualLines(1)="Prepared strike with the weapons."
 	ManualLines(2)="The ballistic shield reduces movement speed whilst active."
@@ -232,7 +232,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
 	bNoMag=True
 	GunLength=0.000000
-	ParamsClasses(0)=Class'BallisticShieldWeaponParams'
+	ParamsClasses(0)=Class'BallisticShieldWeaponParamsComp'
 	FireModeClass(0)=Class'BWBP_OP_Pro.BallisticShieldPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.BallisticShieldSecondaryFire'
 	PutDownTime=0.500000

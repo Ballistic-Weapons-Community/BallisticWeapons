@@ -49,7 +49,7 @@ replication
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		StartingGrenades = 6;
 	}
@@ -640,7 +640,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.M1014.BigIcon_M1014'
 	BigIconCoords=(Y1=25,Y2=210)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic shotgun fire. Lower overall damage per shot than other shotguns, but good fire rate and tight spread. Spread tightens further with the suppressor employed."
@@ -670,7 +670,7 @@ defaultproperties
 	SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 	SightDisplayFOV=20.000000
 	GunLength=48.000000
-	ParamsClasses(0)=Class'MK781WeaponParams'
+	ParamsClasses(0)=Class'MK781WeaponParamsComp'
 	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
 	ParamsClasses(2)=Class'MK781WeaponParamsRealistic'
     ParamsClasses(3)=Class'MK781WeaponParamsTactical'

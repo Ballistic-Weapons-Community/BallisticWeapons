@@ -695,7 +695,7 @@ defaultproperties
 	LaserAimSpread=(Min=0,Max=256)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_G5'
 	BigIconCoords=(Y1=36,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -741,7 +741,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	SightingTime=0.500000
-	ParamsClasses(0)=Class'G5WeaponParams'
+	ParamsClasses(0)=Class'G5WeaponParamsComp'
 	ParamsClasses(1)=Class'G5WeaponParamsClassic' //todo: seeker stats
 	ParamsClasses(2)=Class'G5WeaponParamsRealistic' //todo: seeker stats
     ParamsClasses(3)=Class'G5WeaponParamsTactical'

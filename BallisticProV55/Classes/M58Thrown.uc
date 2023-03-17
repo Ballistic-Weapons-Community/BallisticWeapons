@@ -73,21 +73,9 @@ simulated function Timer()
 	}
 }
 
-function InitProPineapple(float PSpeed, float PDelay)
-{
-	Speed = PSpeed;
-    
-	DetonateDelay = PDelay;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= 0)
-		DetonateDelay = 0.05;
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.M58Grenade'
      DampenFactor=0.050000
      DampenFactorParallel=0.350000
      DetonateDelay=1.500000

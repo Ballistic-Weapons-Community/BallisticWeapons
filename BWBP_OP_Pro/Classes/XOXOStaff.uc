@@ -346,7 +346,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.XOXO.BigIcon_XOXO'
 	BigIconCoords=(Y1=16,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="The Bomb firemode shoots Xes and Os, that explode and deal relatively high damage on direct hit and also release smaller, shrapnel-like Xes and Os that deal some area damage. The projectile travels relatively slow though and has to deal with noticeable trajectory.|The Fast Charge has high RPM, deals good damage and travels in a straight line. Gains damage over range.|Lust creates a shockwave, damaging and knocking back nearby enemies. Every shockwave has vampiristic abilities, healing you and random teammates on the map, no matter wher they are, the health of your enemies will be evenly distributed between you and your team. This mode costs Lewdness to use."
 	ManualLines(1)="The Stream, with its spazzing movement, performs rather poorly on medium range, on the other hand, continously hitting someone with it at close range increases the base damage until you next miss.. Aiming it at teammates however enables its homing capability, which makes it rather convenient to heal them."
 	ManualLines(2)="Has a melee attack.|By killing enemies, you can collect their lewdness (similar to Dark Star and Nova Staff souls) and fill up your luv-o-meter. Filling it up, makes it possible to activate love-mode by pressing the Weapon Special-Key. This gives you damage resistance, improved jump, reduces the Lewdness cost of Lust Shockwave and allows the Sexplosion to be used.||The Sexplosion is an impressive firemode, which creates a gargantuan ball of love, acting bomb-like, but much slower. Upon impact, it explodes violently and kills pretty much everyone in proximity. The Sexplosion however wastes the complete charge of Le Big Xoxo and ends Love-Mode. Think twice, before wasting it!"
@@ -369,7 +369,7 @@ defaultproperties
 	SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
-	ParamsClasses(0)=Class'XOXOWeaponParams'
+	ParamsClasses(0)=Class'XOXOWeaponParamsComp'
 	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
 	ParamsClasses(2)=Class'XOXOWeaponParamsRealistic'
     ParamsClasses(3)=Class'XOXOWeaponParamsTactical'

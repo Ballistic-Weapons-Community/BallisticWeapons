@@ -170,6 +170,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.BOGPPistol'
     FizzleImpactManager=Class'BallisticProV55.IM_BOGPFlareFizzle'
     FallSpeed=460.000000
     FallOffDistance=4600.000000

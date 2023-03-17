@@ -42,7 +42,7 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
 	}
@@ -513,7 +513,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMK3'
 	BigIconCoords=(X1=16,Y1=30)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Shotgun=True
 	bWT_Machinegun=True
@@ -538,7 +538,7 @@ defaultproperties
 	SightPivot=(Pitch=450)
 	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 	GunLength=16.000000
-	ParamsClasses(0)=Class'CYLOWeaponParams' 
+	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOWeaponParamsRealistic' 
     ParamsClasses(3)=Class'CYLOWeaponParamsTactical'

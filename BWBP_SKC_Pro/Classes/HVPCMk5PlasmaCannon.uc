@@ -42,7 +42,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		HVPCMk5PrimaryFire(FireMode[0]).ProjectileCount = 1;
 		HVPCMk5PrimaryFire(FireMode[0]).HeatPerShot = 1.0;
@@ -791,8 +791,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
      AIReloadTime=0.200000
-     //BigIconMaterial=Texture'BWBP_SKC_Tex.HVPC.BigIcon_HVPC'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.HVPC.BigIcon_HVPC'
      bWT_Hazardous=True
      bWT_Energy=True
      bWT_Super=True
@@ -823,7 +822,7 @@ defaultproperties
      PlayerViewOffset=(X=10.000000,Y=11.00000,Z=-13.00000)
      BobDamping=1.600000
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk5Attachment'
-     //IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
+     IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
      IconCoords=(X2=127,Y2=31)
      ItemName="H-V Plasma Cannon Mk5"
      LightType=LT_Pulse

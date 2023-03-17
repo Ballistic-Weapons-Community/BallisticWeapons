@@ -1043,7 +1043,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000'
 	BigIconCoords=(Y1=30,Y2=235)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
 	ManualLines(1)="Launches a smoke grenade. Upon impact, generates a cloud of smoke and deals minor radius damage. There is a bonus for a direct hit."
@@ -1079,7 +1079,7 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
-	ParamsClasses(0)=Class'MARSWeaponParams'
+	ParamsClasses(0)=Class'MARSWeaponParamsComp'
 	ParamsClasses(1)=Class'MARSWeaponParamsClassic'
 	ParamsClasses(2)=Class'MARSWeaponParamsRealistic'
     ParamsClasses(3)=Class'MARSWeaponParamsTactical'

@@ -598,7 +598,7 @@ defaultproperties
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
     AIReloadTime=0.200000
     BigIconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.BigIcon_Super'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Energy=True
     bWT_Splash=True
@@ -615,7 +615,7 @@ defaultproperties
     bCockOnEmpty=False
 	bNonCocking=True
 	bNoMag=True
-	ParamsClasses(0)=Class'SuperchargerWeaponParamsArena'
+	ParamsClasses(0)=Class'SuperchargerWeaponParamsComp'
 	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic'
 	ParamsClasses(2)=Class'SuperchargerWeaponParamsRealistic'
     ParamsClasses(3)=Class'SuperchargerWeaponParamsTactical'

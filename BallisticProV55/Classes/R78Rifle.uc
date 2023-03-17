@@ -27,7 +27,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CockAnim = 'Cock';
 		CockAnimPostReload = 'Cock'; 
@@ -44,6 +44,8 @@ function ServerSwitchSilencer(bool bDetachSuppressor)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
+    if (class'BallisticReplicationInfo'.static.IsTactical())
+        return;
 	if (ReloadState != RS_None || SightingState != SS_None || GameStyleIndex == 0)
 		return;
 	TemporaryScopeDown(0.5);
@@ -189,7 +191,7 @@ defaultproperties
 
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_R78'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Bullet=True
      ManualLines(0)="Bolt-action sniper rifle fire with explosive rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
      ManualLines(1)="Engages the scope."
@@ -227,7 +229,7 @@ defaultproperties
      MaxZoom=16.000000
      ZoomStages=2
      GunLength=80.000000
-     ParamsClasses(0)=Class'R78WeaponParams'
+     ParamsClasses(0)=Class'R78WeaponParamsComp'
      ParamsClasses(1)=Class'R78WeaponParamsClassic'
      ParamsClasses(2)=Class'R78WeaponParamsRealistic'
      ParamsClasses(3)=Class'R78WeaponParamsTactical'

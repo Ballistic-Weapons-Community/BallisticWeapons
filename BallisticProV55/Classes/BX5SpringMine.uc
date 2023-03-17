@@ -191,6 +191,7 @@ simulated state FadeOut
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.BX5Mine'
      Health=30
      StartDelay=0.300000
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MineSBase2'

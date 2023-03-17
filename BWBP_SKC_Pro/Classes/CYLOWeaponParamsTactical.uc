@@ -8,10 +8,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=12000.000000)
-        DecayRange=(Min=1575,Max=3675)
+        DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
 		Damage=46
-        HeadMult=2.75
+        HeadMult=2.75f
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.1050000
+		FireInterval=0.132000
 		PreFireAnim=
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -40,14 +40,14 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=5000.000000,Max=5000.000000)
-        DecayRange=(Min=1000,Max=2500)
+        DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.25
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=13
-        HeadMult=2
-        LimbMult=0.67f
+		Damage=9
+        HeadMult=2.0f
+        LimbMult=0.75f
 		PushbackForce=150.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
@@ -107,9 +107,9 @@ defaultproperties
 		SightPivot=(Pitch=450)
 		SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 		ViewOffset=(X=8.000000,Z=-14.000000)
-		InventorySize=20
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.2
+		InventorySize=5
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.3
 		DisplaceDurationMult=1
 		MagAmmo=22
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

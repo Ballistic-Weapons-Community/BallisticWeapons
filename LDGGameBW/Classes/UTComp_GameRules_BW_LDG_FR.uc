@@ -43,7 +43,7 @@ function bool IsFarming(Controller C, optional bool bAllowSentinel)
 {
 	local UTComp_PRI uPRI;
 	
-	if ( (MyMutator.bNoBotFarming) && (Level.Game.IsA('LDGBallisticFRTracked') || Level.Game.IsA('LDGBallisticFR_CTFMapsTracked')) && (Bot(C) != None))
+	if ( (MyMutator.bNoBotFarming) && (Level.Game.IsA('Game_Freon_Tracked') || Level.Game.IsA('Game_Freon_CTFMapsTracked')) && (Bot(C) != None))
 		return true;
 	
 	if (!MyMutator.bNoVehicleFarming)

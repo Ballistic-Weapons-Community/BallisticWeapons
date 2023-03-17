@@ -82,12 +82,12 @@ defaultproperties
 		SightPivot=(Roll=-1024)
 		SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-7.500000)
-		PlayerSpeedFactor=0.85
-		PlayerJumpFactor=0.85
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
         DisplaceDurationMult=1.4
-		InventorySize=20
-		SightMoveSpeedFactor=0.7
-		SightingTime=0.45
+		InventorySize=7
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.8
 		MagAmmo=5
         ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

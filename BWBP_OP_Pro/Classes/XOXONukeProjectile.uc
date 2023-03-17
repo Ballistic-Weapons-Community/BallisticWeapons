@@ -103,6 +103,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.XOXOStaff'
      ImpactManager=Class'BWBP_OP_Pro.IM_XOXO'
      PenetrateManager=Class'BWBP_OP_Pro.IM_XOXO'
      bRandomStartRotation=False

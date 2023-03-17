@@ -39,7 +39,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_FP7'
      BigIconCoords=(Y1=12,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -54,7 +54,7 @@ defaultproperties
      NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
 	 
      CurrentWeaponMode=1
-     ParamsClasses(0)=Class'FP7WeaponParams'
+     ParamsClasses(0)=Class'FP7WeaponParamsComp'
      ParamsClasses(1)=Class'FP7WeaponParamsClassic'
      ParamsClasses(2)=Class'FP7WeaponParamsRealistic'
      ParamsClasses(3)=Class'FP7WeaponParamsTactical'

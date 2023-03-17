@@ -365,7 +365,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.OA-AR.BigIcon_OAAR'
 	BigIconCoords=(Y1=40,Y2=235)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Splash=True
 	bWT_Machinegun=True
@@ -405,7 +405,7 @@ defaultproperties
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
-	ParamsClasses(0)=Class'M46WeaponParams'
+	ParamsClasses(0)=Class'M46WeaponParamsComp'
 	ParamsClasses(1)=Class'M46WeaponParamsClassic' 
 	ParamsClasses(2)=Class'M46WeaponParamsRealistic' 
     ParamsClasses(3)=Class'M46WeaponParamsTactical'

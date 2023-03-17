@@ -86,6 +86,7 @@ function AdjustSpeed()
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.A500Reptile'
     DetonateOn=DT_Impact
     PlayerImpactType=PIT_Detonate
     bNoInitialSpin=True

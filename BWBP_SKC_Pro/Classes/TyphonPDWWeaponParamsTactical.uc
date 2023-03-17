@@ -43,7 +43,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
-		DecayRange=(Min=900,Max=3600)
+		DecayRange=(Min=1575,Max=3675)
 		TraceRange=(Max=6000.000000)
 		Damage=72.000000
         HeadMult=2.75f
@@ -106,8 +106,8 @@ defaultproperties
 		SightingTime=0.250000
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		SightPivot=(Pitch=0)
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
+		InventorySize=4
+		SightMoveSpeedFactor=0.75
 		DisplaceDurationMult=1
 		MagAmmo=20
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

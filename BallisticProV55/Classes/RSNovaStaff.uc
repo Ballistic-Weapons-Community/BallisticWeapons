@@ -53,7 +53,7 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		MaxSouls=10;
 	}
@@ -177,7 +177,7 @@ simulated event WeaponTick(float DT)
 
 	if (Role == ROLE_Authority)
 	{
-		if (!class'BCReplicationInfo'.static.IsArena() && Instigator.Health > 0 && level.TimeSeconds >= NextRegenTime)
+		if (!class'BallisticReplicationInfo'.static.IsArena() && Instigator.Health > 0 && level.TimeSeconds >= NextRegenTime)
 		{
 			if (bOnRampage)
 				Instigator.GiveHealth(2, Instigator.SuperHealthMax);
@@ -718,7 +718,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.BigIcon_NovaStaff'
 	BigIconCoords=(Y1=32,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Heal=True
 	ManualLines(0)="Slow Bolts deal high damage, gain damage over range and leech enemy HP for the user. This mode damages the user if used from the hip.|Rapid Fire bolts have moderate damage and gain damage over range.|The Lightning mode locks onto an enemy, deals damage and inflicts blind. Alternatively, it can be used to rapidly heal allies. It costs low soul power.|Thunder Strike mode generates a thunder bolt with medium range and excellent damage output. It inflicts severe damage at high soul cost.|Chain Lightning attacks multiple enemies on screen in the same fashion as Lightning, but drains soul power at an alarming rate."
 	ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
@@ -741,7 +741,7 @@ defaultproperties
 	SightOffset=(X=-60.000000,Z=15.000000)
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
-	ParamsClasses(0)=Class'RSNovaWeaponParams'
+	ParamsClasses(0)=Class'RSNovaWeaponParamsComp'
 	ParamsClasses(1)=Class'RSNovaWeaponParamsClassic'
 	ParamsClasses(2)=Class'RSNovaWeaponParamsRealistic'
     ParamsClasses(3)=Class'RSNovaWeaponParamsTactical'

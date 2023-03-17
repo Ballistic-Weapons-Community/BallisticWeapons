@@ -79,11 +79,11 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		ViewOffset=(X=10.000000,Z=-12.000000)
 		SightOffset=(Y=5.300000,Z=23.299999)
-		PlayerSpeedFactor=0.9
+		PlayerSpeedFactor=0.95
         DisplaceDurationMult=1.25
-		InventorySize=35
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.350000		
+		InventorySize=8
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.50000		
 		MagAmmo=4
         ZoomType=ZT_Fixed
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

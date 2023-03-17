@@ -18,8 +18,6 @@ simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
 		
@@ -56,11 +54,10 @@ simulated function InitProjectile ()
 {
     local float r;
     
-    r=((FRand()-0.50)*0.50)+1; // Lets make it a bit more random.
+    r = ((FRand()-0.50)*0.50)+1; // Lets make it a bit more random.
     DetonateDelay *= r;
-    Speed*=r;
+    Speed *=r ;
     
-	Velocity = Speed * Vector(VelocityDir);
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
 	if (DetonateOn == DT_Timer)
@@ -128,6 +125,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      bAlignToVelocity=True
      bDynamicLight=True
      bNoInitialSpin=False

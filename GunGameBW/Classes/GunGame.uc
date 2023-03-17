@@ -1,44 +1,42 @@
 //////////////////////////////////////
-// GunGame GameType - (c) by Mutant //
-// Version 1.0 Final                //
+// GunGame GameType - (c) by Mutant 
+// Version 1.0 Final                
+// modified for BW by Jiffy and Azarael
 //////////////////////////////////////
 class GunGame extends xDeathmatch
-	config(GunGameBW);
+	config(System);
 
 //Settings-related
-var config int StartHealth;
-var config int StartShield;
-var config int MaxHealth;
-var bool bAdrenalineOn;      		   //Disables adrenaline -> no combos
-var config byte CureAward;             //Health for kills, heals player max. up to 'StartHealth'. Then Shield, max. up to 'StartShield'
-var config byte IterationAward;        //Award amount for cycling through WeaponList (only valid for GoalScore/Lives mode)
-var bool bNoAdrenaline;       		   //Remove Adrenaline-Pickups
-var bool bNoHealth;          		   //Remove Health-Pickups
-var bool bNoShield;         		   //Remove Shield-Pickups
-var bool bNoDoubleDamage;      		   //Remove DoubleDamage-Pickups
-var config byte VictoryCondition;      //0 = Reaching highest GunLevel ends the match; 1 = Reaching GoalScore ends the match; 2 = Last Man wins the match
-var config byte AmmoHandling;          //Rule how to handle the ammo issue: 0 = unlimited ammo, 1 = limited ammo, so if out of ammo --> downgrade GunLevel
-var config byte StdWeaponFeature;      //Defines how to handle standard weapon kills
-var config byte StdWeaponFactor;       //Defines the value of the effect a standard weapon kill will cause
-var config byte KillAmount;            //Defines how many kills are needed to level up
-var config bool bUseCustomWeapons;     //Set to true if you want a customized WeaponList
-var config string CustomWeapons;       //Customized weapon set
+var config int 					StartHealth;
+var config int 					StartShield;
+var config int 					MaxHealth;
+var bool 						bAdrenalineOn;			//Disables adrenaline -> no combos
+var config byte 				CureAward;				//Health for kills, heals player max. up to 'StartHealth'. Then Shield, max. up to 'StartShield'
+var config byte 				IterationAward;			//Award amount for cycling through WeaponList (only valid for GoalScore/Lives mode)
+var config byte 				VictoryCondition;		//0 = Reaching highest GunLevel ends the match; 1 = Reaching GoalScore ends the match; 2 = Last Man wins the match
+var config byte 				AmmoHandling;			//Rule how to handle the ammo issue: 0 = unlimited ammo, 1 = limited ammo, so if out of ammo --> downgrade GunLevel
+var config byte 				StdWeaponFeature;		//Defines how to handle standard weapon kills
+var config byte 				StdWeaponFactor;		//Defines the value of the effect a standard weapon kill will cause
+var config byte 				KillAmount;				//Defines how many kills are needed to level up
 
-//Game-related
-var config array< class<Weapon> > DefaultWeapons;         //Default weapon set. Modified for BW, and now my fingers hurt
+var bool 						bNoAdrenaline;       		   //Remove Adrenaline-Pickups
+var bool 						bNoHealth;          		   //Remove Health-Pickups
+var bool 						bNoShield;         		   //Remove Shield-Pickups
+var bool 						bNoDoubleDamage;      		   //Remove DoubleDamage-Pickups
 
-var array< class<Weapon> > WeaponList; //Load DefaultWeapons or Custom weapons in here, this is the actual weapon set GunGame works with
-var array<GGRegistry> Registry;        //Registry class, used to handle ammonition issues, and some other GG specific things (similar to a Controller class)
-var int HighestLevel;                 //Highest GunLevel
-var array<PlayerStart> PlayerStarts;   //Includes all playerstarts
+var array< class<Weapon> > 		WeaponList; 		//Load DefaultWeapons or Custom weapons in here, this is the actual weapon set GunGame works with
+var array<GGRegistry> 			Registry;        	//Registry class, used to handle ammonition issues, and some other GG specific things (similar to a Controller class)
+var int 						HighestLevel;        //Highest GunLevel
+var array<PlayerStart> 			PlayerStarts;   	//Includes all playerstarts
 
-var globalconfig string	InventoryMut;
+var globalconfig string			InventoryMut, HUDFixMut;
 
-var GunGamePRI timerKillerPRI;	//moving variables to Timer to execute weapon switching on a delay
-var Controller timerKiller;
-var bool bTimerCalled;
+var GunGamePRI 					timerKillerPRI;		//moving variables to Timer to execute weapon switching on a delay
+var Controller 					timerKiller;
+var bool 						bTimerCalled;
 
-var Sound LvlUpSound;	//sounds to play upon killing & reaching the final weapon
+var Sound 						LvlUpSound;			//sounds to play upon killing & reaching the final weapon
+
 //**********************************************FUNCTIONS****************************************************************//
 
 static function FillPlayInfo(PlayInfo PlayInfo)
@@ -91,7 +89,7 @@ static function PrecacheGameTextures(LevelInfo myLevel)
      }
 }
 
-//Get rid of useless settings/activate wished settings
+//Get rid of useless settings/activate desired settings
 static event bool AcceptPlayInfoProperty(string PropertyName)
 {
      if ( PropertyName ~= "MaxLives" )
@@ -176,59 +174,15 @@ event InitGame(string options, out string error)
      if(InOpt != "")
           KillAmount = byte(InOpt);
 
-     InOpt = ParseOption(Options, "bUseCustomWeapons");
-     if(InOpt != "")
-          bUseCustomWeapons = bool(InOpt);
-
-     InOpt = ParseOption(Options, "CustomWeapons");
-     if(InOpt != "")
-          CustomWeapons = InOpt;
-
      WeaponList.Remove(0, WeaponList.Length);  //Remove old WeaponList (for singleplayer games)
      Registry.Remove(0, Registry.Length);      //Remove old Registry (for singleplayer games)
 
-     //Assign customized WeaponList
-     if ( bUseCustomWeapons && CustomWeapons != "" )
-     {
-          Split(CustomWeapons, ";", WeaponClasses);
-
-          for ( i=0; i<WeaponClasses.Length; i++ )
-          {
-               W = Class<Weapon>(DynamicLoadObject(WeaponClasses[i], Class'Class', true));
-
-               if ( W != None ) //Check that user weapon actually exists
-               {
-                    WeaponList.Insert(WeaponList.Length, 1);
-                    WeaponList[WeaponList.Length-1] = W;
-                    Default.WeaponList[WeaponList.Length-1] = WeaponList[WeaponList.Length-1];
-               }
-               else if ( i == 0 )  //No standard weapon wished, if zeroth element does not exist or is invalid
-               {
-                    WeaponList.Insert(0, 1);
-                    WeaponList[0] = None;
-                    Default.WeaponList[0] = None;
-               }
-               else
-                    log("GunGameBW: Error - Cannot load weapon:"@WeaponClasses[i]);
-          }
-     }
-
-     //Check if WeaponList is valid, if not assign basic weapon
-     if ( WeaponList.Length == 0 || (WeaponList[0] == None && WeaponList.Length == 1) )
-     {
-          if ( bUseCustomWeapons )
-          {
-               bUseCustomWeapons = false;
-               log("GunGameBW: Error - invalid customized weapon set, use default set.");
-          }
-
-          for ( i=0; i<DefaultWeapons.Length; i++ )
-          {
-               WeaponList.Insert(WeaponList.Length, 1);
-               WeaponList[i] = DefaultWeapons[i];
-               Default.WeaponList[i] = WeaponList[i];
-          }
-     }
+	for ( i=0; i < class'GunGameConfig'.default.WeaponList.Length; i++ )
+	{
+		WeaponList.Insert(WeaponList.Length, 1);
+		WeaponList[i] = class'GunGameConfig'.default.WeaponList[i];
+		default.WeaponList[i] = WeaponList[i];
+	}
 
      HighestLevel = WeaponList.Length;
 
@@ -269,6 +223,9 @@ event InitGame(string options, out string error)
 	 
 	 if (InventoryMut != "")
     	AddMutator(InventoryMut);
+		
+	 if (HUDFixMut != "")
+    	AddMutator(HUDFixMut);
 }
 
 function InitGameReplicationInfo()
@@ -294,7 +251,6 @@ function GetServerDetails( out ServerResponseLine ServerState )
           case 2:  AddServerDetail( ServerState, "GG-VictoryCondition", "Lives" );
      }
      AddServerDetail( ServerState, "GG-AmmoHandling", Eval(AmmoHandling == 0, "Unlimited", "Downgrading") );
-     AddServerDetail( ServerState, "GG-CustomWeapons", bUseCustomWeapons );
      AddServerDetail( ServerState, "GG-KillAmount", KillAmount );
 }
 
@@ -1338,9 +1294,10 @@ defaultproperties
 {
 	 LvlUpSound=Sound'GameSounds.Fanfares.UT2K3Fanfare08'
 	 InventoryMut="BallisticProV55.Mut_BallisticDM"
-     StartHealth=175
-     StartShield=0
-	 MaxHealth=218
+	 HUDFixMut="HUDFix.MutHUDFix"
+     StartHealth=100
+     StartShield=100
+	 MaxHealth=199
      bAdrenalineOn=True
      CureAward=25
      IterationAward=1
@@ -1350,103 +1307,6 @@ defaultproperties
      StdWeaponFactor=1
      KillAmount=1
 
-     DefaultWeapons(0)=Class'BallisticProV55.X3Knife'	//standard weapon
-
-     DefaultWeapons(1)=Class'BallisticProV55.HVCMk9LightningGun'
-     DefaultWeapons(2)=Class'BWBP_SKC_Pro.LAWLauncher'
-     DefaultWeapons(3)=Class'BallisticProV55.MACWeapon'
-     DefaultWeapons(4)=Class'BWBP_SKC_Pro.MGLauncher'	//ks2
-     DefaultWeapons(5)=Class'BWBP_SKC_Pro.FLASHLauncher'
-     DefaultWeapons(6)=Class'BallisticProV55.RX22AFlamer'
-     DefaultWeapons(7)=Class'BallisticProV55.M290Shotgun'
-
-     DefaultWeapons(8)=Class'BallisticProV55.MRocketLauncher'
-     DefaultWeapons(9)=Class'BallisticProV55.G5Bazooka'
-     DefaultWeapons(10)=Class'BWBP_SKC_Pro.SKASShotgun'	//ks1
-     DefaultWeapons(11)=Class'BWBP_SKC_Pro.AH208Pistol'
-	 DefaultWeapons(12)=Class'BallisticProV55.SRS600Rifle'
-
-	 DefaultWeapons(13)=Class'BallisticProV55.M50AssaultRifle'
-	 DefaultWeapons(14)=Class'BallisticProV55.M46AssaultRifle'
-	 DefaultWeapons(15)=Class'BallisticProV55.M46AssaultRifleQS'
-     DefaultWeapons(16)=Class'BWBP_SKC_Pro.MARSAssaultRifle'
-     DefaultWeapons(17)=Class'BWBP_SKC_Pro.F2000AssaultRifle'
-     DefaultWeapons(18)=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'	//ar
-     DefaultWeapons(19)=Class'BWBP_SKC_Pro.CYLOUAW'
-	 DefaultWeapons(20)=Class'BWBP_SKC_Pro.LK05Carbine'
-	 DefaultWeapons(21)=Class'BallisticProV55.SARAssaultRifle'
-	 DefaultWeapons(22)=Class'BWBP_SKC_Pro.AK47AssaultRifle'
-     DefaultWeapons(23)=Class'BWBP_OP_Pro.CX61AssaultRifle'
-	 
-     DefaultWeapons(24)=Class'BallisticProV55.Fifty9MachinePistol'
-     DefaultWeapons(25)=Class'BallisticProV55.XK2SubMachinegun'
-	 DefaultWeapons(26)=Class'BallisticProV55.XMK5SubMachinegun'	//smg
-     DefaultWeapons(27)=Class'BallisticProV55.XRS10SubMachinegun'
-
-	 DefaultWeapons(28)=Class'BallisticProV55.RSNovaStaff'
-     DefaultWeapons(29)=Class'BallisticProV55.RSDarkStar'
-     DefaultWeapons(30)=Class'BWBP_OP_Pro.XOXOStaff'
-     DefaultWeapons(31)=Class'BallisticProV55.E23PlasmaRifle'
-     DefaultWeapons(32)=Class'BallisticProV55.A73SkrithRifle'	//energy
-	 DefaultWeapons(33)=Class'BWBP_SKC_Pro.A49SkrithBlaster'
-     DefaultWeapons(34)=Class'BWBP_OP_Pro.XM20AutoLas'
-     DefaultWeapons(35)=Class'BWBP_OP_Pro.Raygun'
-     DefaultWeapons(36)=Class'BWBP_OP_Pro.ProtonStreamer'
-
-	 DefaultWeapons(37)=Class'BallisticProV55.A500Reptile'
-     DefaultWeapons(38)=Class'BWBP_SKC_Pro.CoachGun'
-     DefaultWeapons(39)=Class'BWBP_OP_Pro.ARShotgun'
-     DefaultWeapons(40)=Class'BWBP_SKC_Pro.MK781Shotgun'
-     DefaultWeapons(41)=Class'BallisticProV55.MRS138Shotgun'	//shotgun
-     DefaultWeapons(42)=Class'BWBP_OP_Pro.TrenchGun'
-     DefaultWeapons(43)=Class'BallisticProV55.M763Shotgun'
-	 DefaultWeapons(44)=Class'BWBP_SKC_Pro.SK410Shotgun'
-
-	 DefaultWeapons(45)=Class'BallisticProV55.M353Machinegun'
-	 DefaultWeapons(46)=Class'BallisticProV55.M925Machinegun'
-	 DefaultWeapons(47)=Class'BWBP_OP_Pro.Z250Minigun'	//mg
-     DefaultWeapons(48)=Class'BallisticProV55.XMV850Minigun'
-     DefaultWeapons(49)=Class'BWBP_SKC_Pro.FG50MachineGun'
-
-     DefaultWeapons(50)=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
-	 DefaultWeapons(51)=Class'BWBP_OP_Pro.AkeronLauncher'	//ordnance
-	 DefaultWeapons(52)=Class'BWBP_SKC_Pro.LonghornLauncher'
-
-	 DefaultWeapons(53)=Class'BallisticProV55.R78Rifle'
-	 DefaultWeapons(54)=Class'BallisticProV55.SRS900Rifle'
-	 DefaultWeapons(55)=Class'BWBP_OP_Pro.R9A1RangerRifle'
-	 DefaultWeapons(56)=Class'BallisticProV55.MarlinRifle'
-	 DefaultWeapons(57)=Class'BWBP_OP_Pro.CX85AssaultWeapon'
-	 DefaultWeapons(58)=Class'BWBP_SKC_Pro.LS14Carbine'	//sniper
-     DefaultWeapons(59)=Class'BWBP_SKC_Pro.M2020GaussDMR'
-     DefaultWeapons(60)=Class'BWBP_SKC_Pro.AS50Rifle'
-	 DefaultWeapons(61)=Class'BWBP_OP_Pro.BX85Crossbow'
-	 DefaultWeapons(62)=Class'BWBP_SKC_Pro.X82Rifle'
-     DefaultWeapons(63)=Class'BallisticProV55.M75Railgun'
-
-	 DefaultWeapons(64)=Class'BallisticProV55.AM67Pistol'
-     DefaultWeapons(65)=Class'BWBP_SKC_Pro.AH250Pistol'
-     DefaultWeapons(66)=Class'BallisticProV55.D49Revolver'
-     DefaultWeapons(67)=Class'BallisticProV55.leMatRevolver'
-     DefaultWeapons(68)=Class'BallisticProV55.GRS9Pistol'
-	 DefaultWeapons(69)=Class'BallisticProV55.MRT6Shotgun'
-     DefaultWeapons(70)=Class'BallisticProV55.RS8Pistol'	//pistol
-     DefaultWeapons(71)=Class'BWBP_SKC_Pro.PS9mPistol'
-	 DefaultWeapons(72)=Class'BWBP_SKC_Pro.MRDRMachinePistol'
-     DefaultWeapons(73)=Class'BallisticProV55.A42SkrithPistol'
-	 DefaultWeapons(74)=Class'BallisticProV55.MD24Pistol'
-	 DefaultWeapons(75)=Class'BallisticProV55.BOGPPistol'
-     DefaultWeapons(76)=Class'BWBP_OP_Pro.PD97Bloodhound'
-
-     DefaultWeapons(77)=Class'BWBP_SKC_Pro.DragonsToothSword'
-	 DefaultWeapons(78)=Class'BWBP_OP_Pro.DefibFists'
-     DefaultWeapons(79)=Class'BWBP_OP_Pro.FlameSword'
-     DefaultWeapons(80)=Class'BWBP_OP_Pro.MAG78Longsword'	//melee
-     DefaultWeapons(81)=Class'BallisticProV55.A909SkrithBlades'
-     DefaultWeapons(82)=Class'BallisticProV55.EKS43Katana'
-     DefaultWeapons(83)=Class'BallisticProV55.X4Knife'
-     DefaultWeapons(84)=Class'BWBP_SKC_Pro.X8Knife'
-
      LoginMenuClass="GunGameBW.UT2K4GunGameLoginMenu"
      bWeaponStay=False
      bAllowWeaponThrowing=False
@@ -1455,7 +1315,6 @@ defaultproperties
      HUDType="GunGameBW.GGHUD"
      DeathMessageClass=Class'BallisticProV55.Ballistic_DeathMessage'
      MutatorClass="GunGameBW.GunGameMut"
-     BroadcastHandlerClass="GunGameBW.GGBroadcastHandler"
      PlayerControllerClassName="BallisticProV55.BallisticPlayer"
      GameReplicationInfoClass=Class'GunGameBW.GunGameGRI'
      GameName="Ballistic GunGame"

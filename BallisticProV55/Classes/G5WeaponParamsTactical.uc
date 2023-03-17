@@ -76,12 +76,13 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		ViewOffset=(X=10.000000,Y=10.5,Z=-6.000000)
-		SightingTime=0.350000	
+		SightingTime=0.5
         DisplaceDurationMult=1.25
         MagAmmo=2        
-		InventorySize=24
+		InventorySize=8
 		PlayerSpeedFactor=0.9
-		SightMoveSpeedFactor=0.8
+        PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.5
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

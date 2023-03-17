@@ -13,9 +13,9 @@ defaultproperties
         TraceCount=7
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=13
-        HeadMult=2
-        LimbMult=0.67f
+        Damage=15
+        HeadMult=2.0f
+        LimbMult=0.75f
         PushbackForce=180.000000
 		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
@@ -47,9 +47,9 @@ defaultproperties
         TraceCount=7
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=13
-        HeadMult=2
-        LimbMult=0.67f
+        Damage=18
+        HeadMult=2.0f
+        LimbMult=0.75f
         DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
@@ -85,9 +85,9 @@ defaultproperties
         TraceCount=30
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=10
-        HeadMult=2
-        LimbMult=0.67f
+        Damage=45
+        HeadMult=2.0f
+        LimbMult=0.75f
         PushbackForce=850.000000
 		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgunAlt'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
@@ -143,9 +143,9 @@ defaultproperties
 		SightPivot=(Pitch=1024)
 		SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
 		ViewOffset=(X=-4.000000,Y=1.000000,Z=-10.000000)
-		InventorySize=24
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.25
+		InventorySize=8
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=24
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")

@@ -297,7 +297,6 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_JCF_Tex.RGP-X350.BigIcon_RGPX'
 	BigIconCoords=(Y1=36,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True

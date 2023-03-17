@@ -174,21 +174,9 @@ simulated function Tick(float DT)
 }
 */
 
-function InitProPineapple(float PSpeed, float PDelay)
-{
-	Speed = PSpeed;
-    
-	DetonateDelay = PDelay;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= 0)
-		DetonateDelay = 0.05;
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.G28Grenade'
      ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
      Health=20
      DetonateDelay=2.000000

@@ -132,7 +132,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -171,18 +170,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(BallisticTurret(Instigator) == None && Pickup == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
-			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
-		
+				
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
 
@@ -237,7 +225,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M925'
 	BigIconCoords=(Y1=36,Y2=235)
 	SightFXClass=Class'BallisticProV55.M925SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)=".50 caliber fire. High damage per shot, but high recoil and fires in semi-automatic mode when not deployed. Has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
@@ -261,7 +249,7 @@ defaultproperties
 	SightPivot=(Pitch=64)
 	SightOffset=(X=-18.000000,Z=7.200000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'M925WeaponParams'
+	ParamsClasses(0)=Class'M925WeaponParamsComp'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M925WeaponParamsRealistic' //todo: turret
     ParamsClasses(3)=Class'M925WeaponParamsTactical'

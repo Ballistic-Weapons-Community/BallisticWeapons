@@ -463,7 +463,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_D49'
 	SightFXClass=Class'BallisticProV55.D49SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Fires from a single barrel. Powerful, but short-ranged and has high recoil."
 	ManualLines(1)="Fires both barrels at once. Twice as much recoil as the single fire with lower sustained damage output."
@@ -483,7 +483,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
-	ParamsClasses(0)=Class'D49WeaponParams'
+	ParamsClasses(0)=Class'D49WeaponParamsComp'
 	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	ParamsClasses(2)=Class'D49WeaponParamsRealistic'
     ParamsClasses(3)=Class'D49WeaponParamsTactical'

@@ -138,9 +138,9 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightPivot=(Pitch=50)
 		SightOffset=(X=25.000000,Y=0.010000,Z=8.000000)
-		InventorySize=20
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.25
+		InventorySize=6
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=15
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

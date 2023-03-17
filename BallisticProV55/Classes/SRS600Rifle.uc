@@ -238,7 +238,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.SRS.BigIcon_SRSM2'
 	BigIconCoords=(Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="High-powered battle rifle fire. Long range, good penetration and high per-shot damage. Recoil is significant."
 	ManualLines(1)="Attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible."
@@ -261,7 +261,7 @@ defaultproperties
 	SightOffset=(X=16.000000,Z=10.460000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
-	ParamsClasses(0)=Class'SRS600WeaponParams'
+	ParamsClasses(0)=Class'SRS600WeaponParamsComp'
 	ParamsClasses(1)=Class'SRS600WeaponParamsClassic'
 	ParamsClasses(2)=Class'SRS600WeaponParamsRealistic'
     ParamsClasses(3)=Class'SRS600WeaponParamsTactical'

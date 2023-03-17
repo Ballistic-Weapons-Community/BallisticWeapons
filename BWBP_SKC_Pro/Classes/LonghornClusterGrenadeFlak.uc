@@ -257,6 +257,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
 	DetonateDelayRange=(Min=0.75,Max=1.250000)
 	DetonateOn=DT_ImpactTimed
 	PlayerImpactType=PIT_Detonate

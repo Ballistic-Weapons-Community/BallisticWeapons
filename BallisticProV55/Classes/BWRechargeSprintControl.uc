@@ -16,6 +16,19 @@ replication
 		ClientDelayRecharge, ClientDodged;
 }
 
+simulated function PostBeginPlay()
+{
+    Super.PostBeginPlay();
+
+    if (Role == ROLE_Authority)
+    {
+		StaminaDrainRate = class'BallisticReplicationInfo'.default.StaminaDrainRate;
+		StaminaChargeRate = class'BallisticReplicationInfo'.default.StaminaChargeRate;
+		SpeedFactor = class'BallisticReplicationInfo'.default.SprintSpeedFactor;
+		JumpDrainFactor = class'BallisticReplicationInfo'.default.JumpDrainFactor;
+    }
+}
+
 // If Sprint not active, return
 // Sprint not active
 // Multiply groundspeed

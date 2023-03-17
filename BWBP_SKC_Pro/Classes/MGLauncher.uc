@@ -203,7 +203,7 @@ defaultproperties
 	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MGL.BigIcon_MGL'
 	IdleTweenTime=0.000000
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -230,7 +230,7 @@ defaultproperties
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
-	ParamsClasses(0)=Class'MGLWeaponParams'
+	ParamsClasses(0)=Class'MGLWeaponParamsComp'
 	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
 	ParamsClasses(2)=Class'MGLWeaponParamsRealistic'
     ParamsClasses(3)=Class'MGLWeaponParamsTactical'

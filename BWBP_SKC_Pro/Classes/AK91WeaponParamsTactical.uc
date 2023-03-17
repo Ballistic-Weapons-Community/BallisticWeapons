@@ -93,12 +93,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightingTime=0.300000
+		SightingTime=0.350000
+        SightMoveSpeedFactor=0.75
 		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
 		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
-		InventorySize=20
+		InventorySize=6
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

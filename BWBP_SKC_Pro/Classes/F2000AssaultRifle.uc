@@ -215,10 +215,16 @@ function ApplySuppressorRecoil()
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
+    // too strong
+    if (class'BallisticReplicationInfo'.static.IsTactical())
+        return;
+
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
-	if (Clientstate != WS_ReadyToFire)
+
+	if (ClientState != WS_ReadyToFire)
 		return;
+
 	TemporaryScopeDown(0.5);
 	bSilenced = !bSilenced;
 	ServerSwitchSilencer(bSilenced);
@@ -454,7 +460,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000Ice'
 	BigIconCoords=(X1=32,Y1=40,X2=475)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
 	ManualLines(1)="Launches a cryogenic grenade. Upon impact, freezes nearby enemies, slowing their movement. The effect is proportional to their distance from the epicentre. This attack will also extinguish the fires of an FP7 grenade."
@@ -476,7 +482,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 	SightDisplayFOV=25.000000
-	ParamsClasses(0)=Class'F2000WeaponParams'
+	ParamsClasses(0)=Class'F2000WeaponParamsComp'
 	ParamsClasses(1)=Class'F2000WeaponParamsClassic'
 	ParamsClasses(2)=Class'F2000WeaponParamsRealistic'
     ParamsClasses(3)=Class'F2000WeaponParamsTactical'

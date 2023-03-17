@@ -276,7 +276,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RX22A'
 	BigIconCoords=(Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_RapidProj=True
@@ -297,7 +297,7 @@ defaultproperties
 	SightPivot=(Pitch=768)
 	SightOffset=(X=-12.000000,Z=14.300000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'RX22AWeaponParams'
+	ParamsClasses(0)=Class'RX22AWeaponParamsComp'
 	ParamsClasses(1)=Class'RX22AWeaponParamsClassic'
 	ParamsClasses(2)=Class'RX22AWeaponParamsRealistic'
     ParamsClasses(3)=Class'RX22AWeaponParamsTactical'

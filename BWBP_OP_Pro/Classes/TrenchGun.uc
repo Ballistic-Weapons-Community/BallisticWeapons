@@ -563,7 +563,7 @@ function byte BestMode()
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CurrentWeaponMode = 3;
 		TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
@@ -658,7 +658,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.TechGun.BigIcon_TechGun'
 	BigIconCoords=(Y1=35,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	bWT_Energy=True
 	ManualLines(0)="Fire either a single barrel or both barrels of the loaded ammo type. Charge fire before releasing to fire both barrel simultaneously, tap to fire a single barrel. Electro Shot is capable of displacing targets' aim, with the effectiveness of this being increased by firing both barrels at once. Cryo Shot will temporarily slow targets hit by it, firing both rounds at once also increases the duration of this effect."
@@ -686,7 +686,7 @@ defaultproperties
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	ParamsClasses(0)=Class'TrenchGunWeaponParams'
+	ParamsClasses(0)=Class'TrenchGunWeaponParamsComp'
 	ParamsClasses(1)=Class'TrenchGunWeaponParamsClassic'
 	ParamsClasses(2)=Class'TrenchGunWeaponParamsRealistic'
     ParamsClasses(3)=Class'TrenchGunWeaponParamsTactical'

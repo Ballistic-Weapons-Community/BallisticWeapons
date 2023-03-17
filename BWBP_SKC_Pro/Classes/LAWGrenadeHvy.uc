@@ -5,7 +5,7 @@
 //
 // by Sarge
 // uses code by DC and BE.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class LAWGrenadeHvy extends BallisticGrenade;
 
@@ -112,6 +112,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
      DetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True

@@ -310,7 +310,6 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_CC_Tex.CruMg.BigIcon_CruML'
 	BigIconCoords=(Y1=50,Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)=""

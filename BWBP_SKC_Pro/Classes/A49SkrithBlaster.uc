@@ -33,7 +33,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		bVariableHeatProps=True;
 		A49PrimaryFire(FireMode[0]).bVariableHeatProps = True;
@@ -379,7 +379,7 @@ defaultproperties
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
 	BigIconMaterial=Texture'BWBP_SKC_Tex.A6.BigIcon_A49'
 	BigIconCoords=(Y1=24)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_RapidProj=True
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
@@ -394,7 +394,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	SightZoomFactor=0.85
 	GunLength=0.100000
-	ParamsClasses(0)=Class'A49WeaponParams'
+	ParamsClasses(0)=Class'A49WeaponParamsComp'
 	ParamsClasses(1)=Class'A49WeaponParamsClassic'
 	ParamsClasses(2)=Class'A49WeaponParamsRealistic'
     ParamsClasses(3)=Class'A49WeaponParamsTactical'

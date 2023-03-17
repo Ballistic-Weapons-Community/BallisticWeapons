@@ -502,7 +502,7 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_OP_Tex.Z250.BigIcon_Z250'
 	BigIconCoords=(X1=30,X2=470,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Primary fire spins up the barrels, delivering a hail of explosive rounds which inflict damage to the target and any nearby enemies."
@@ -535,7 +535,7 @@ defaultproperties
 	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 	SightDisplayFOV=45.000000
 	SightingTime=0.550000
-	ParamsClasses(0)=Class'Z250WeaponParams'
+	ParamsClasses(0)=Class'Z250WeaponParamsComp'
 	ParamsClasses(1)=Class'Z250WeaponParamsClassic'
 	ParamsClasses(2)=Class'Z250WeaponParamsRealistic'
     ParamsClasses(3)=Class'Z250WeaponParamsTactical'

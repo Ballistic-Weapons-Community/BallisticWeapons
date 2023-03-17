@@ -119,7 +119,6 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		//WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
 		PlayerSpeedFactor=0.90000
 		PlayerJumpFactor=0.900000
 		SightMoveSpeedFactor=0.500000
@@ -140,7 +139,6 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH2",Index=3)
-		//WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
 		PlayerSpeedFactor=0.90000
 		PlayerJumpFactor=0.900000
 		SightMoveSpeedFactor=0.500000
@@ -161,7 +159,6 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH3",Index=3)
-		//WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
 		PlayerSpeedFactor=0.90000
 		PlayerJumpFactor=0.900000
 		SightMoveSpeedFactor=0.500000
@@ -176,7 +173,7 @@ defaultproperties
 		FireParams(3)=FireParams'ClassicPrimaryFireParams'
 		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
 	End Object
-	
+
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams-Jungle'
 	Layouts(2)=WeaponParams'ClassicParams-Oil'
