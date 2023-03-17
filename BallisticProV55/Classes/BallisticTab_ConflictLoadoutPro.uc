@@ -359,7 +359,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 	
 	return true;
 }
-
+/*
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
 function bool LoadLIFromCache(string ClassStr, GUIComboBox LayoutComboBox)
 {
@@ -415,7 +415,7 @@ function bool LoadCIFromCache(string ClassStr, int LayoutIndex, GUIComboBox Camo
 		CamoComboBox.AddItem("Random",, "255");
 
 	return true;
-}
+}*/
 
 
 function int GetItemSize(class<Weapon> Item)

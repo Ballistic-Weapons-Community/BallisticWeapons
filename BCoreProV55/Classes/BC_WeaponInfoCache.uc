@@ -32,21 +32,6 @@ class BC_WeaponInfoCache extends Object
 	config(BWCache) 
 	exportstructs;
 
-struct LayoutInfo
-{
-	var() config byte 			GameStyleIndex;
-	var() config byte 			LayoutIndex;
-	var() config string			LayoutName;
-	var() config array<int> 	AllowedCamos;
-};
-
-struct CamoInfo
-{
-	var() config byte 			GameStyleIndex;
-	var() config byte 			CamoIndex;
-	var() config string			CamoName;
-};
-
 struct WeaponInfo
 {
 	var() config string			ClassName;
@@ -57,10 +42,6 @@ struct WeaponInfo
 	var() config Material		BigIconMaterial;
 	var() config byte			InventorySize;
 	var() config bool			bIsBW;
-	var() config array<LayoutInfo> 	Layouts;
-	var() config array<CamoInfo> 	Camos;
-	var() config int 			TotalLayouts;
-	var() config int 			TotalCamos;
 };
 
 var() config array<WeaponInfo>	Weapons;
@@ -82,66 +63,6 @@ static function bool FindWeaponInfo(string CN, out WeaponInfo WI, optional out i
 	return false;
 }
 
-// Find a specific layout for a chosen weapon, output the LI and return success or failure to find the weapon
-static function bool FindLayoutInfo(WeaponInfo WI, byte GameStyleIndex, int LayoutIndex, out LayoutInfo LI, optional out int Index)
-{
-	local int i, j;
-	
-	//first check if our required WeaponInfo exists in our list
-	if (FindWeaponInfo(WI.ClassName, WI, i))
-	{
-		for (j = 0; j < GameStyleIndex; j++)
-		{
-			log("Loading layout : index "$default.Weapons[i].Layouts[LayoutIndex].LayoutIndex$" : name "$default.Weapons[i].Layouts[LayoutIndex].LayoutName); 
-		
-			if (default.Weapons[i].Layouts[LayoutIndex].GameStyleIndex == GameStyleIndex)
-			{
-				Index = LayoutIndex;
-				LI = default.Weapons[i].Layouts[LayoutIndex];
-				return true;
-			}
-		}
-	}
-	Index = -1;
-	return false;
-}
-
-// Find a specific camo for a chosen weapon's layout, output the CI and return success or failure to find the weapon
-static function bool FindCamoInfo(WeaponInfo WI, byte GameStyleIndex, int LayoutIndex, int CamoIndex, out CamoInfo CI, optional out int Index)
-{
-	local int i, j, k;
-	
-	//first check if our required WeaponInfo exists in our list
-	if (FindWeaponInfo(WI.ClassName, WI, i))
-	{
-		for (j = 0; j < GameStyleIndex; j++)
-		{
-			log("Loading camo : index "$default.Weapons[i].Camos[CamoIndex].CamoIndex$" : name "$default.Weapons[i].Camos[CamoIndex].CamoName); 
-		
-			if (default.Weapons[i].Camos[CamoIndex].GameStyleIndex == GameStyleIndex )
-			{
-				if (default.Weapons[i].Layouts[LayoutIndex].AllowedCamos.Length == 0 )
-				{
-					Index = CamoIndex;
-					CI = default.Weapons[i].Camos[CamoIndex];
-					return true;
-				}
-				for (k = 0; k < default.Weapons[i].Layouts[LayoutIndex].AllowedCamos.Length; k++) //Why no dynamicArray.find?!?
-				{
-					if ( default.Weapons[i].Layouts[LayoutIndex].AllowedCamos[k] == CamoIndex)
-					{
-						Index = CamoIndex;
-						CI = default.Weapons[i].Camos[CamoIndex];
-						return true;
-					}
-				}
-			}
-		}
-	}
-	Index = -1;
-	return false;
-}
-
 // Fast shotcut to use FindWeaponInfo() and automatically AddWeaponInfoName() if needed
 static function WeaponInfo AutoWeaponInfo(string WeapClassName, optional out int i)
 {
@@ -153,7 +74,7 @@ static function WeaponInfo AutoWeaponInfo(string WeapClassName, optional out int
 	return AddWeaponInfoName(WeapClassName, i);
 }
 
-// Shortcut to AddWeaponInfo() using only classname
+// Shorcut to AddWeaponInfo() using only classname
 static function WeaponInfo AddWeaponInfoName(string WeapClassName, optional out int i)
 {
 	local class<Weapon> Weap;
@@ -174,10 +95,7 @@ static function WeaponInfo AddWeaponInfoName(string WeapClassName, optional out 
 static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 {
 	local WeaponInfo WI;
-	local LayoutInfo LI;
-	local CamoInfo CI;
 	local Class<BallisticWeapon> BW;
-	local int GIIndex, LIIndex, CIIndex, TotalLayouts, TotalCamos;
 
 	i=-1;
 	if (Weap == None)
@@ -188,6 +106,7 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 	WI.SmallIconMaterial = Weap.default.IconMaterial;
 	WI.SmallIconCoords	 = Weap.default.IconCoords;
 	WI.InventoryGroup	 = Weap.default.InventoryGroup;
+
 	
 	BW = Class<BallisticWeapon>(Weap);
 	if (BW != None)
@@ -195,48 +114,6 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 		WI.BigIconMaterial		= BW.default.BigIconMaterial;
 		WI.InventorySize		= BW.static.GetInventorySize();
 		WI.bIsBW				= true;
-		
-		for (GIIndex = 0; GIIndex <= 1; GIIndex++)
-		{
-			for (LIIndex = 0; LIIndex < BW.default.ParamsClasses[GIIndex].default.Layouts.length; LIIndex++)
-			{
-				LI.GameStyleIndex = GIIndex;
-				LI.LayoutIndex = LIIndex;
-				LI.AllowedCamos = BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].AllowedCamos;
-				
-				if (BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].LayoutName == "")
-				{
-					LI.LayoutName = string(GIIndex)$":"$string(LIIndex);
-				}
-				else
-				{
-					LI.LayoutName = BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].LayoutName;
-				}
-			
-				WI.Layouts[TotalLayouts] = LI;
-				TotalLayouts++;
-			}
-			for (CIIndex = 0; CIIndex < BW.default.ParamsClasses[GIIndex].default.Camos.length; CIIndex++)
-			{
-				CI.GameStyleIndex = GIIndex;
-				CI.CamoIndex = CIIndex;
-				
-				if (BW.default.ParamsClasses[GIIndex].default.Camos[CIIndex].CamoName == "")
-				{
-					CI.CamoName = string(GIIndex)$":"$string(CIIndex);
-				}
-				else
-				{
-					CI.CamoName = BW.default.ParamsClasses[GIIndex].default.Camos[CIIndex].CamoName;
-				}
-			
-				WI.Camos[TotalCamos] = CI;
-				TotalCamos++;
-			}
-		}
-		
-		WI.TotalLayouts = TotalLayouts;
-		WI.TotalCamos = TotalCamos;
 	}
 
 	i = default.Weapons.length;
@@ -274,7 +151,6 @@ static function EndSession()
 
 defaultproperties
 {
-/*
      Weapons(0)=(ClassName="BallisticProV55.X3Knife",ItemName="X3 Knife",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_X3',SmallIconCoords=(X2=127,Y2=31),InventoryGroup=1,BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_X3',InventorySize=2,bIsBW=True)
      Weapons(1)=(ClassName="BallisticProV55.A909SkrithBlades",ItemName="A909 Skrith Blades",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A909',SmallIconCoords=(X2=127,Y2=31),InventoryGroup=1,BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A909',InventorySize=2,bIsBW=True)
      Weapons(2)=(ClassName="BallisticProV55.EKS43Katana",ItemName="EKS43 Katana",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_EKS43',SmallIconCoords=(X2=127,Y2=31),InventoryGroup=1,BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_EKS43',InventorySize=2,bIsBW=True)
@@ -306,5 +182,4 @@ defaultproperties
      Weapons(28)=(ClassName="BallisticProV55.FP9Explosive",ItemName="FP9A5 Explosive Device",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_FP9Explosive',SmallIconCoords=(X2=127,Y2=31),BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_FP9A5',bIsBW=True)
      Weapons(29)=(ClassName="BallisticProV55.BX5Mine",ItemName="BX5-SM Land Mine",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_BX5',SmallIconCoords=(X2=127,Y2=31),BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_BX5',bIsBW=True)
      Weapons(30)=(ClassName="BallisticProV55.T10Grenade",ItemName="T10 Toxic Grenade",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_T10',SmallIconCoords=(X2=127,Y2=31),BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_T10',bIsBW=True)
-*/
 }

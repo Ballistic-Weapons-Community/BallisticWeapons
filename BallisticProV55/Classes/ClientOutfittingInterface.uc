@@ -5,11 +5,10 @@
 // client to the outfitting mutator.
 //
 // Modified for killstreak support by Azarael
-
+// Modified for camo/layout support by SK
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
-
 //=============================================================================
 class ClientOutfittingInterface extends Actor
 	config(BallisticProV55);

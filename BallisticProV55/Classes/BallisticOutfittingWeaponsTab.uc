@@ -597,8 +597,87 @@ function InternalOnChange(GUIComponent Sender)
 	}
 }
 
+
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
 function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
+{
+	local byte GameStyleIndex;
+	local int i;
+	local class<BallisticWeapon> BW;
+		
+	//clear old layouts
+	LayoutComboBox.Clear();
+	
+	BW = class<BallisticWeapon>(DynamicLoadObject(COI.GetGroupItem(GroupIndex, Index), class'Class'));
+	if (BW == None)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
+	{
+		LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+	}
+	
+	return true;
+}
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
+{
+	local byte GameStyleIndex;
+	local int i, j;
+	local array<int> AllowedCamos;
+	local class<BallisticWeapon> BW;
+	
+	//clear old camos
+	CamoComboBox.Clear();
+	
+	BW = class<BallisticWeapon>(DynamicLoadObject(COI.GetGroupItem(GroupIndex, Index), class'Class'));
+	if (BW == None)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+	if (LayoutIndex < 0 || BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	if (AllowedCamos.Length == 0 )
+	{
+		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
+		{
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+		}
+	}
+	else
+	{
+		for (i = 0; i < AllowedCamos.Length; i++)
+		{
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
+		}
+	}
+	
+	if (CamoComboBox.ItemCount() > 1)
+		CamoComboBox.AddItem("Random",, "255");
+	
+	return true;
+}
+/*
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadLayouts2(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 {
  	local BC_WeaponInfoCache.LayoutInfo LI;
 	local BC_WeaponInfoCache.WeaponInfo WI;
@@ -628,7 +707,7 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 }
 
 //give this function a gun and a layout index, grab an array of camos from cache, add each value to the combobox
-function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
+function bool LoadCamos2(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
 {
  	local BC_WeaponInfoCache.CamoInfo CI;
 	local BC_WeaponInfoCache.WeaponInfo WI;
@@ -658,7 +737,7 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 		CamoComboBox.AddItem("Random",, "255");
 
 	return true;
-}
+}*/
 
 defaultproperties
 {
