@@ -152,6 +152,72 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Gray"
+		Weight=60
+		
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
+		SightOffset=(X=5.000000,Z=18.500000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Tactical
+		LayoutName="Tactical"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KShotgunShiney",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KSmallShiney",Index=2)
+		Weight=20
+		
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
+		SightOffset=(X=5.000000,Z=18.500000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Wood
+		LayoutName="Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_LargeShine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_SmallShine",Index=2)
+		Weight=10
+		
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
+		SightOffset=(X=5.000000,Z=18.500000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_WoodOld
+		LayoutName="Old Trusty"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781-OldTrusty",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781Small",Index=2)
+		Weight=10
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -167,6 +233,9 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Tactical'
+	Layouts(2)=WeaponParams'ClassicParams_Wood'
+	Layouts(3)=WeaponParams'ClassicParams_WoodOld'
 
 
 }

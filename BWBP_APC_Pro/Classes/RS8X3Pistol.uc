@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class RS8X3Pistol extends BallisticWeapon;
+class RS8X3Pistol extends BallisticWeapon HideDropDown CacheExempt;
 
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer

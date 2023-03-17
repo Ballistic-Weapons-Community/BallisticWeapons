@@ -10,6 +10,8 @@ class Mut_TeamOutfitting extends Mut_Ballistic
 	config(BallisticProV55);
 
 var() config string 			LoadOut[5];			// Loadout info saved seperately on each client
+var() config int 				Layout[5];			// Layout number saved seperately on each client
+var() config int 				Camo[5];			// Camo number saved seperately on each client
 
 var   Array<ClientTeamOutfittingInterface>	COIPond;			// Jump right in, they won't bite - probably...
 var   PlayerController						PCPendingCOI;	// The PlayerController that is about to get its COI
@@ -184,7 +186,7 @@ function ModifyPlayer(Pawn Other)
 					i--;
 				continue;
 			}
-			SpawnWeapon(W, Other);
+			SpawnWeaponLayout(W, Other, 255, 255); //Bots have random layouts
 
 			if (i == 0)
 				i = 4;
@@ -259,7 +261,7 @@ function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5]
 }
 
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
-function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
+function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5], optional int Layouts[NUM_GROUPS], optional int Camos[NUM_GROUPS])
 {
 	local byte i, j, k, m, DummyFlags;
 	local bool bMatch;
@@ -334,7 +336,7 @@ function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
 			if (W == None)
 				log("Could not load outfitted weapon "$Stuff[i]);
 			else
-				SpawnWeapon(W, Other);
+				SpawnWeaponLayout(W, Other, Layouts[i], Camos[i]);
 			}
 		}
 		if (i == 0)
@@ -373,6 +375,39 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 			newWeapon = P.Spawn(newClass,,,P.Location);
 			if( newWeapon != None )
 				newWeapon.GiveTo(P);
+			if (P.Weapon == None && P.PendingWeapon == None)
+			{
+				P.PendingWeapon = newWeapon;
+				P.ChangedWeapon();
+			}
+			
+			return newWeapon;
+		}
+		else newWeapon.MaxOutAmmo(); //double loading
+    }
+	
+	return None;
+}
+
+static function Weapon SpawnWeaponLayout(class<weapon> newClass, Pawn P, int LayoutIndex, int CamoIndex)
+{
+	local Weapon newWeapon;
+
+    if( (newClass!=None) && P != None)
+    {
+		newWeapon = Weapon(P.FindInventoryType(newClass));
+		if (newWeapon == None || BallisticHandgun(newWeapon) != None)
+		{
+			newWeapon = P.Spawn(newClass,,,P.Location);
+			if( newWeapon != None )
+			{
+				if (BallisticWeapon(newWeapon) != None)
+				{
+					BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+					BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
+				}
+				newWeapon.GiveTo(P);
+			}
 			if (P.Weapon == None && P.PendingWeapon == None)
 			{
 				P.PendingWeapon = newWeapon;
@@ -486,6 +521,16 @@ function bool MutatorIsAllowed()
 
 defaultproperties
 {
+	 Layout(0)=0
+	 Layout(1)=0
+	 Layout(2)=0
+	 Layout(3)=0
+	 Layout(4)=0
+	 Camo(0)=0
+	 Camo(1)=0
+	 Camo(2)=0
+	 Camo(3)=0
+	 Camo(4)=0
      LoadOut(0)="BallisticProV55.X3Knife"
      LoadOut(1)="BallisticProV55.M806Pistol"
      LoadOut(2)="BallisticProV55.M763Shotgun"

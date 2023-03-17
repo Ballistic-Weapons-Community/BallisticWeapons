@@ -20,7 +20,7 @@ defaultproperties
 		MomentumTransfer=150.000000
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.SkrithStaffBoltFlashEmitter'
 		FlashScaleFactor=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.A73E.A73E-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=102.000000
 		Chaos=0.005000
 		WarnTargetPct=0.200000	
@@ -49,7 +49,7 @@ defaultproperties
 		MomentumTransfer=150.000000
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.SkrithStaffBoltFlashEmitter'
 		FlashScaleFactor=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=241.000000
 		Chaos=0.020000
 		WarnTargetPct=0.200000	

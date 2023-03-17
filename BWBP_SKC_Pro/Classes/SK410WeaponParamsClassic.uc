@@ -113,6 +113,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -129,6 +130,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicRDSParams
+		Weight=10
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -143,9 +145,104 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Wood
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoJungle",Index=1)
+		Weight=10
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		bNeedCock=True
+		MagAmmo=6
+		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightPivot=(Pitch=150)
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Digital
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoDigital",Index=1)
+		Weight=10
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		bNeedCock=True
+		MagAmmo=6
+		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightPivot=(Pitch=150)
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Blood
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoBlood",Index=1)
+		Weight=3
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		bNeedCock=True
+		MagAmmo=6
+		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightPivot=(Pitch=150)
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Tiger
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoTiger",Index=1)
+		Weight=3
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		bNeedCock=True
+		MagAmmo=6
+		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightPivot=(Pitch=150)
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Corrupt
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-Charged",Index=1)
+		Weight=1
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		bNeedCock=True
+		MagAmmo=6
+		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightPivot=(Pitch=150)
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicRDSParams'
+	Layouts(2)=WeaponParams'ClassicParams_Wood'
+	Layouts(3)=WeaponParams'ClassicParams_Digital'
+	Layouts(4)=WeaponParams'ClassicParams_Blood'
+	Layouts(5)=WeaponParams'ClassicParams_Tiger'
+	Layouts(6)=WeaponParams'ClassicParams_Corrupt'
 
 
 }

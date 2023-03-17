@@ -164,6 +164,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Military Issue"
+		Weight=30
+		
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=45
@@ -178,7 +181,32 @@ defaultproperties
         FireParams(2)=FireParams'ClassicSniperFireParams'
 		AltFireParams(0)=FireParams'ClassicLaserFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-UTC
+		LayoutName="Police Issue"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.ViperCamos.UTCViperShine",Index=1)
+		
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=45
+		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+		SightOffset=(X=-8.000000,Z=9.300000)
+		SightPivot=(Pitch=256)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+        FireParams(0)=FireParams'ClassicSeriesFireParams'
+        FireParams(1)=FireParams'ClassicMultiFireParams'
+        FireParams(2)=FireParams'ClassicSniperFireParams'
+		AltFireParams(0)=FireParams'ClassicLaserFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-UTC'
 
 }

@@ -1106,9 +1106,9 @@ defaultproperties
 	DrawScale=0.300000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
-	Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-	Skins(3)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-	Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	Skins(2)=Texture'BWBP_SKC_Tex.LS14.LS14-RDS'
+	Skins(3)=Texture'BWBP_SKC_Tex.LS440.LS440-Green'
+	Skins(4)=Shader'BWBP_OP_Tex.CX61.CX61SightShad'
     Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
 	 
 }

@@ -151,27 +151,83 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
-		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=2,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="Holo",Slot=3,Scale=1f)
+	Begin Object Class=WeaponParams Name=ClassicParams //Stock sight
+		Weight=30
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=9
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_EOTech //EO Tech
+		Weight=10
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="GLIrons",Slot=52,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0.1f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=9
+		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
+		SightPivot=(Pitch=-800)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Winter //Suppressor, EO Tech
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AR23Camos.AR23-MainWinterShine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AR23Camos.AR23-MiscWinterShine",Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.AR23.AR23-HoloShine',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View',Index=4)
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="GLIrons",Slot=52,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0.1f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=9
+		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
+		SightPivot=(Pitch=-800)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		Weight=3
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Holo",Slot=52,Scale=0f)
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=9
+		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
+		SightPivot=(Pitch=-800)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_EOTech'
+	Layouts(2)=WeaponParams'ClassicParams_Irons'
+	Layouts(3)=WeaponParams'ClassicParams_Winter'
 
 
 }

@@ -8,6 +8,11 @@
 //=============================================================================
 class A42PrimaryFire extends BallisticProProjectileFire;
 
+var byte Shots;
+var byte Cycle;
+var() float HeatPerShot;
+var() int FireSpread;
+
 simulated event ModeDoFire()
 {
 	if (Weapon.GetFireMode(1).IsFiring())
@@ -20,8 +25,39 @@ simulated event ModeDoFire()
 	super.ModeDoFire();
 }
 
+simulated state SpreadShot
+{
+
+	function SpawnProjectile (Vector Start, Rotator Dir)
+	{
+		local int i;
+		local rotator R;
+
+		Shots = FMin(default.Shots, BW.MagAmmo);
+
+		ConsumedLoad = (AmmoPerFire * Shots);
+		for (i=0;i<Shots;i++)
+		{
+			R.Roll = (65536.0 / 3) * Cycle + (65536.0 / 12);
+			Dir = Rotator(GetFireSpread() >> Dir);
+
+			Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,1,0)*FireSpread) >> R) >> Dir) );
+			Proj.Instigator = Instigator;
+
+			//log("SkrithPistol PrimaryFire: isSlave: "$BallisticHandgun(BW).IsSlave()$" Cycle: "$Cycle$" Shot: "$i$" Heat Added: "$(HeatPerShot*ConsumedLoad)$" Current Heat: "$A48SkrithPistolBal(BW).Heat);
+			Cycle++;
+			if (Cycle > 3)
+				Cycle = 1;
+		}
+	}
+}
+
 defaultproperties
 {
+	Cycle=1
+	Shots=3
+	HeatPerShot=0.081000
+	FireSpread=120
 	bPawnRapidFireAnim=True
 	AmmoClass=Class'BallisticProV55.Ammo_A42Charge'
 	ShakeRotMag=(X=32.000000,Y=8.000000)

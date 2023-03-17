@@ -280,7 +280,13 @@ simulated event RenderOverlays (Canvas C)
 		Super.RenderOverlays(C);
 		return;
 	}
-	if (!class'BallisticReplicationInfo'.static.IsClassic())
+	if (ZoomType == ZT_Irons)
+	{
+		Super.RenderOverlays(C);
+		if (SightFX != None)
+			RenderSightFX(C);
+	}
+	else if (!class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
 		SetRotation(Instigator.GetViewRotation());

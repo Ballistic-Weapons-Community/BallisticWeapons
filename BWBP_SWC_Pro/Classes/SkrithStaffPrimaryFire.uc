@@ -57,7 +57,7 @@ simulated function SwitchCannonMode (byte NewMode)
 defaultproperties
 {
      ChargeFireSound=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-Shot'
-     PowerFireSound=Sound'BWBP_SKC_SoundsExp.A73E.A73E-Power'
+     PowerFireSound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power'
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
      FireRecoil=128.000000

@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM84PrimaryFire extends BallisticProGrenadeFire;
+class XM84PrimaryFire extends BallisticGrenadeFire;
 
 defaultproperties
 {

@@ -608,7 +608,6 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_OP_Tex.M575.BigIcon_M575'
      BigIconCoords=(Y1=50,Y2=240)
      SightFXClass=Class'BWBP_OP_Pro.M575SightLEDs'
-     
      bWT_Bullet=True
      bWT_Machinegun=True
      ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
@@ -632,7 +631,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Burst of Three")
      WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-	WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+	 WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=3
      bNoCrosshairInScope=True
 	 bShowChargingBar=True

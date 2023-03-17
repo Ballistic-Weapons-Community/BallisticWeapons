@@ -149,6 +149,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Silver"
+		Weight=30
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
@@ -169,7 +172,87 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 
+	Begin Object Class=WeaponParams Name=ClassicParams_Black
+		LayoutName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.RS8-K-Shiney",Index=1)
+		Weight=10
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=14
+		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
+		SightPivot=(Pitch=768,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Gray
+		LayoutName="Gray"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.M1911-Shiny",Index=1)
+		Weight=10
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=14
+		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
+		SightPivot=(Pitch=768,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_X3Combo
+		LayoutName="Tactical Knife"
+		LayoutMesh=SkeletalMesh'BWBP_CC_Anim.FPm_RS8X3'
+		Weight=10
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=14
+		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
+		SightPivot=(Pitch=768,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Black'
+	Layouts(2)=WeaponParams'ClassicParams_Gray'
+	Layouts(3)=WeaponParams'ClassicParams_X3Combo'
 
 
 }

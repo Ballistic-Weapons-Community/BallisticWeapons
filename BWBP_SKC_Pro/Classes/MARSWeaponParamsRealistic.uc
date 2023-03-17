@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1400.000000,Max=6000.000000) /5.56mm
+		TraceRange=(Min=1400.000000,Max=6000.000000) //5.56mm
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.0500000
@@ -47,7 +47,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade'
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_HETimed'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000

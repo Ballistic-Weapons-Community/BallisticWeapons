@@ -10,7 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM84Thrown extends BallisticProPineapple;
+class XM84Thrown extends BallisticPineapple;
 
 var   Emitter PATrail;
 
@@ -32,6 +32,21 @@ simulated function DestroyEffects()
 {
 	super.DestroyEffects();
 	if (PATrail != None)
+		PATrail.Kill();
+}
+
+simulated event KVelDropBelow()
+{
+	super.KVelDropBelow();
+
+	if (PATrail != None)
+		PATrail.Kill();
+}
+
+simulated event KImpact(actor other, vector pos, vector impactVel, vector impactNorm)
+{
+	super.KImpact(other, pos, impactVel, impactNorm);
+	if (PATrail!= None && VSize(impactVel) > 200)
 		PATrail.Kill();
 }
 

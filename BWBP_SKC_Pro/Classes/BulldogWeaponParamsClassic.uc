@@ -117,6 +117,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=0f)
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.750000
@@ -134,8 +135,53 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-RS
+		Weight=20
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=1f)
+		PlayerSpeedFactor=0.900000
+		PlayerJumpFactor=0.750000
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=8
+		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		SightOffset=(X=-40.000000,Y=13.550000,Z=22.950000)
+		SightPivot=(Pitch=200)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Wood
+		Weight=20
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BulldogCamos.PugDog-Shine",Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Bulldog.Bulldog-Scope',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.M575.M575_RDS_SH1',Index=3)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=0f)
+		PlayerSpeedFactor=0.900000
+		PlayerJumpFactor=0.750000
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=8
+		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
+		SightPivot=(Pitch=200)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-RS'
+	Layouts(2)=WeaponParams'ClassicParams-Wood'
 
 }

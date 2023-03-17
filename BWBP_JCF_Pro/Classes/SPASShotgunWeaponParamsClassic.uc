@@ -122,6 +122,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
@@ -135,7 +136,78 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Bricks
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S2",Index=1)
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		MagAmmo=5
+		ReloadAnimRate=1.0
+		CockAnimRate=1.0
+		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-AU
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S3",Index=1)
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		MagAmmo=5
+		ReloadAnimRate=1.2
+		CockAnimRate=1.2
+		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Blue
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S4",Index=1)
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		MagAmmo=5
+		ReloadAnimRate=1.0
+		CockAnimRate=1.0
+		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Hazard
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S5",Index=1)
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		MagAmmo=5
+		ReloadAnimRate=1.0
+		CockAnimRate=1.0
+		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	Layouts(1)=WeaponParams'ClassicParams-Bricks'
+	Layouts(2)=WeaponParams'ClassicParams-AU'
+	Layouts(3)=WeaponParams'ClassicParams-Blue'
+	Layouts(4)=WeaponParams'ClassicParams-Hazard'
 }

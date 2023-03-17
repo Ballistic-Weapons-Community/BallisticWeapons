@@ -134,7 +134,152 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================		
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=ClassicParams //Standard
+		Weight=20
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		bNeedCock=True
+		MagAmmo=20
+		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_D //Desert
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1)
+		Weight=20
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		bNeedCock=True
+		MagAmmo=20
+		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_DE //Flecktarn
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1)
+		Weight=10
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		bNeedCock=True
+		MagAmmo=20
+		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_V //Veteran Bloody
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1)
+		Weight=3
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		bNeedCock=True
+		MagAmmo=20
+		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_R //Red
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1)
+		Weight=3
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		bNeedCock=True
+		MagAmmo=20
+		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_B //Blue
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1)
+		Weight=3
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		bNeedCock=True
+		MagAmmo=20
+		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_AU //Gold
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1)
+		Weight=1
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
@@ -155,5 +300,11 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	
-    Layouts(0)=WeaponParams'ClassicParams'
+    Layouts(0)=WeaponParams'ClassicParams' //Standard
+    Layouts(1)=WeaponParams'ClassicParams_D' //Desert Camo
+    Layouts(2)=WeaponParams'ClassicParams_DE' //Flecktarn Camo
+    Layouts(3)=WeaponParams'ClassicParams_V' //Veteran Bloody
+    Layouts(4)=WeaponParams'ClassicParams_B' //Blue Camo
+    Layouts(5)=WeaponParams'ClassicParams_R' //Red Camo
+    Layouts(6)=WeaponParams'ClassicParams_AU' //Gold
 }

@@ -111,6 +111,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -123,8 +124,42 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-AC
+		Weight=15
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRS138Camos.MRSArctic-Main-Shine",Index=1)
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=7
+		SightOffset=(Z=25.000000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-AU
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRS138Camos.MRSGold-Main-Shine",Index=1)
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=14
+		SightOffset=(Z=25.000000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=2.000000
+		CockAnimRate=2.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	Layouts(1)=WeaponParams'ClassicParams-AC'
+	Layouts(2)=WeaponParams'ClassicParams-AU'
 }

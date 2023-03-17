@@ -93,5 +93,9 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 	End Object
 
-	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(0)=WeaponParams'ClassicParams' //Black
+	Layouts(1)=WeaponParams'ClassicParams' //Silver
+	Layouts(2)=WeaponParams'ClassicParams' //Two-Tone
+	Layouts(3)=WeaponParams'ClassicParams' //Silver Fancy
+	Layouts(4)=WeaponParams'ClassicParams' //Gold
 }

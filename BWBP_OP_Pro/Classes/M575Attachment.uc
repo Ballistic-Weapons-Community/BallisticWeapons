@@ -49,6 +49,7 @@ simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
 	
+
 	if (!class'BallisticReplicationInfo'.static.IsArena())
 	{
 		TracerClass=Class'BallisticProV55.TraceEmitter_FiftyNine';

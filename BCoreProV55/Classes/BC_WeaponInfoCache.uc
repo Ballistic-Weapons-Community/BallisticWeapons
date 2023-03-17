@@ -32,13 +32,6 @@ class BC_WeaponInfoCache extends Object
 	config(BWCache) 
 	exportstructs;
 
-struct LayoutInfo
-{
-	var() config byte 			GameStyleIndex;
-	var() config byte 			LayoutIndex;
-	var() config byte			LayoutName;
-};
-
 struct WeaponInfo
 {
 	var() config string			ClassName;
@@ -49,7 +42,6 @@ struct WeaponInfo
 	var() config Material		BigIconMaterial;
 	var() config byte			InventorySize;
 	var() config bool			bIsBW;
-	var() config array<LayoutInfo>		Layouts;
 };
 
 var() config array<WeaponInfo>	Weapons;

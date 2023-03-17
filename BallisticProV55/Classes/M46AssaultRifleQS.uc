@@ -3,7 +3,7 @@
 // 
 // Red dot M46.
 //=============================================================================
-class M46AssaultRifleQS extends M46AssaultRifle;
+class M46AssaultRifleQS extends M46AssaultRifle HideDropDown CacheExempt;
 
 defaultproperties
 {

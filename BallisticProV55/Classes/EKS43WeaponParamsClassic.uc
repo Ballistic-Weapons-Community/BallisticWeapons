@@ -102,6 +102,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="7Fold Steel"
+		Weight=30
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -111,7 +114,24 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Flamer
+		LayoutName="Superheated Alloy"
+		Weight=30
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKS43Camos.Katana-KGlow",Index=1)
+		PlayerSpeedFactor=1.100000
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-Flamer'
 
 }

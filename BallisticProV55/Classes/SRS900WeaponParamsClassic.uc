@@ -35,6 +35,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.125000
 		BurstFireRateFactor=1.00
+		AimedFireAnim="AimedFire"	
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
@@ -94,7 +95,12 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=ClassicParams_Scope
+		//Layout core
+		LayoutName="Adv Scope"
+		Weight=30
+		//Attachments
+		//Function
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -112,8 +118,106 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
-	Layouts(0)=WeaponParams'ClassicParams'
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_RDS
+		//Layout core
+		LayoutName="Holosight"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
+		//Function
+		ZoomType=ZT_Irons
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=20
+		SightOffset=(X=16.000000,Z=10.460000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+		
+	//Camos
+	Begin Object Class=WeaponCamo Name=SRS_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_Desert
+		Index=1
+		CamoName="Desert"
+		Weight=20
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KMain",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KScopeShine",Index=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KAmmo",Index=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_DesertTac
+		Index=2
+		CamoName="Desert Tac"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_Black
+		Index=3
+		CamoName="Black"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRS600Camos.SRSNSGrey",Index=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_Flecktarn
+		Index=4
+		CamoName="Flecktarn"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRS600Camos.SRSM2German",Index=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_Blue
+		Index=5
+		CamoName="Blue"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRS600Camos.SRSNSJungle",Index=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_Red
+		Index=6
+		CamoName="Red"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRS600Camos.SRSNSTiger",Index=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_RedTiger
+		Index=7
+		CamoName="Red Tiger"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRS600Camos.SRSNSFlame",Index=0)
+	End Object
+	
+	Layouts(0)=WeaponParams'ClassicParams_Scope'
+	Layouts(1)=WeaponParams'ClassicParams_RDS'
+	Camos(0)=WeaponCamo'SRS_Gray'
+    Camos(1)=WeaponCamo'SRS_Desert'
+    Camos(2)=WeaponCamo'SRS_DesertTac'
+    Camos(3)=WeaponCamo'SRS_Black'
+    Camos(4)=WeaponCamo'SRS_Flecktarn'
+    Camos(5)=WeaponCamo'SRS_Blue'
+    Camos(6)=WeaponCamo'SRS_Red'
+    Camos(7)=WeaponCamo'SRS_RedTiger'
 
 
 }

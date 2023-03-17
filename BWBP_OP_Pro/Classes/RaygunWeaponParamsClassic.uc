@@ -99,6 +99,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		SightPivot=(Pitch=450)
 		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
 		ViewOffset=(X=5.000000,Z=-5.000000)
@@ -113,6 +114,112 @@ defaultproperties
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-    End Object 
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Blue
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Blue_S",Index=0)
+		Weight=20
+		SightPivot=(Pitch=450)
+		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		ViewOffset=(X=5.000000,Z=-5.000000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+        DisplaceDurationMult=0.75
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+		MagAmmo=24
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Black
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Black_S",Index=0)
+		Weight=10
+		SightPivot=(Pitch=450)
+		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		ViewOffset=(X=5.000000,Z=-5.000000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+        DisplaceDurationMult=0.75
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+		MagAmmo=24
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Wooden
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Wooden_S",Index=0)
+		Weight=10
+		SightPivot=(Pitch=450)
+		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		ViewOffset=(X=5.000000,Z=-5.000000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+        DisplaceDurationMult=0.75
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+		MagAmmo=24
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Emerald
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Emerald_S",Index=0)
+		Weight=3
+		SightPivot=(Pitch=450)
+		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		ViewOffset=(X=5.000000,Z=-5.000000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+        DisplaceDurationMult=0.75
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+		MagAmmo=24
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Gold
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_GnB_S",Index=0)
+		Weight=1
+		SightPivot=(Pitch=450)
+		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		ViewOffset=(X=5.000000,Z=-5.000000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+        DisplaceDurationMult=0.75
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+		MagAmmo=24
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object
+	
     Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams-Blue'
+	Layouts(2)=WeaponParams'ClassicParams-Black'
+	Layouts(3)=WeaponParams'ClassicParams-Wooden'
+	Layouts(4)=WeaponParams'ClassicParams-Emerald'
+	Layouts(5)=WeaponParams'ClassicParams-Gold'
 }

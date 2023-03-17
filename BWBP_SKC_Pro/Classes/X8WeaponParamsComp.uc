@@ -16,6 +16,8 @@ defaultproperties
 			DamageTypeArm=Class'BWBP_SKC_Pro.DTX8Knife'
 			ChargeDamageBonusFactor=1
 			PenetrationEnergy=0.000000
+			HookStopFactor=1.300000
+			HookPullForce=100.000000
 			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
 			BotRefireRate=0.800000
 			WarnTargetPct=0.100000

@@ -33,6 +33,61 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams-Pink
+		ProjectileClass=Class'BallisticProV55.A73ProjectileBal'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=50.000000
+		MaxSpeed=3000.000000
+		AccelSpeed=60000.000000
+		Damage=20.0
+		DamageRadius=64.000000
+		MomentumTransfer=100.000000
+		HeadMult=2.0
+		LimbMult=0.45
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterBal'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=40.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=4)
+		WarnTargetPct=0.200000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Pink
+		FireInterval=0.080000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Pink'
+	End Object
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams-Orange
+		ProjectileClass=Class'BallisticProV55.A73ProjectileB'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=85.000000
+		MaxSpeed=4500.000000
+		AccelSpeed=100000.000000
+		Damage=40.0
+		DamageRadius=64.000000
+		MomentumTransfer=100.000000
+		HeadMult=2.5
+		LimbMult=0.5
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=102.000000
+		Chaos=-1.0
+		Inaccuracy=(X=9,Y=6)
+		WarnTargetPct=0.200000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Orange
+		AmmoPerFire=2
+		FireInterval=0.157500
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Orange'
+	End Object
 
     //=================================================================
     // SECONDARY FIRE
@@ -64,6 +119,64 @@ defaultproperties
         AimedFireAnim="Fire"
 	    FireInterval=0.800000
         FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+    End Object
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams-Pink
+    	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterBal'
+        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        Speed=3000.000000
+        AccelSpeed=8000.000000
+        MaxSpeed=7000.000000
+        Damage=70.000000
+        DamageRadius=100.000000
+        MomentumTransfer=2000.000000
+		RadiusFallOffType=RFO_Linear
+        MaxDamageGainFactor=1.00
+        DamageGainStartTime=0.05
+        DamageGainEndTime=0.7
+        Recoil=960.000000
+        Chaos=0.500000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        ProjectileClass=Class'BallisticProV55.A73PowerProjectileBal'
+        WarnTargetPct=0.500000
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicSecondaryFireParams-Pink
+        AmmoPerFire=8
+	    FireEndAnim=
+        AimedFireAnim="Fire"
+	    FireInterval=0.800000
+        FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams-Pink'
+    End Object
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams-Orange
+    	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
+        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        Speed=1500.000000
+        AccelSpeed=0.000000 //is this working?
+        MaxSpeed=2000.000000
+        Damage=90.000000
+        DamageRadius=270.000000
+        MomentumTransfer=2000.000000
+		RadiusFallOffType=RFO_Linear
+		SplashDamage=True
+		RecommendSplashDamage=True
+        MaxDamageGainFactor=1.00
+        DamageGainStartTime=0.05
+        DamageGainEndTime=0.7
+        Recoil=241.000000
+        Chaos=0.020000
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		ProjectileClass=Class'BallisticProV55.A73PowerProjectileB'
+        WarnTargetPct=0.500000
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicSecondaryFireParams-Orange
+        AmmoPerFire=8
+	    FireEndAnim=
+        AimedFireAnim="Fire"
+	    FireInterval=0.850000
+        FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams-Orange'
     End Object
 		
 	//=================================================================
@@ -109,6 +222,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Infantry Blue"
+		Weight=30
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
@@ -121,7 +236,51 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Pink
+		LayoutName="Fabulous Pink"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73AmmoSkin",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.A73CamosA73Skin_SD",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.A73CamosA73SkinB",Index=3)
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=25
+		SightOffset=(X=-12.000000,Z=14.300000)
+		SightPivot=(Pitch=768)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams-Pink'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams-Pink'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Orange
+		LayoutName="Elite Orange"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BAmmoSkin",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BSkin_SD",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BSkinB0",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BBladeShader",Index=4)
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=40
+		SightOffset=(X=-12.000000,Z=14.300000)
+		SightPivot=(Pitch=768)
+		ReloadAnimRate=0.800000
+		CockAnimRate=0.800000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams-Orange'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams-Orange'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-Pink'
+	Layouts(2)=WeaponParams'ClassicParams-Orange'
+	//Layouts(3)=WeaponParams'ClassicParams-Purple'
 
 }

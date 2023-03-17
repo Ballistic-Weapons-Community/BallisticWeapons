@@ -100,6 +100,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
+		LayoutName="Teal"
+		
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.700000
 		InventorySize=25
@@ -117,7 +120,58 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-500
+		Weight=10
+		LayoutName="Black"
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Main",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD",Index=2)
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.700000
+		InventorySize=25
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=900
+		SightOffset=(X=8.000000,Z=28.000000)
+		SightPivot=(Pitch=700,Roll=2048)
+		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto")
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	Begin Object Class=WeaponParams Name=ClassicParams-858
+		Weight=10
+		LayoutName="Green"
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Main",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Barrels_SD",Index=2)
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.700000
+		InventorySize=25
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=900
+		SightOffset=(X=8.000000,Z=28.000000)
+		SightPivot=(Pitch=700,Roll=2048)
+		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto")
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-500'
+	Layouts(2)=WeaponParams'ClassicParams-858'
 
 }

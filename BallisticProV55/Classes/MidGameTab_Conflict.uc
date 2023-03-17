@@ -23,6 +23,7 @@ var automated GUIListBox	lb_Weapons;
 var GUIList                 li_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
 var automated GUILabel   	l_WeapTitle;
+var automated GUIComboBox	 cb_WeapLayoutIndex, cb_WeapCamoIndex;
 var automated GUIScrollTextBox	tb_Desc;
 var Automated GUIButton BStats, BClear;
 var automated GUILabel	l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_Loading;
@@ -51,12 +52,18 @@ struct Item
 	var() int		Size;
 	var() string	Ammo;
 	var() int		InventoryGroup;
+	var() int		LayoutIndex;
+	var() int		CamoIndex;
 	var() bool		bBad;
     var() int       SectionIndex;
 };
 
 var() array<Item> Inventory;
 
+var() array<int> LayoutIndexList;
+var() array<int> CamoIndexList;
+var() bool bUpdatingWeapon; //dont change layout unless we click the box
+	
 var() Material BoxTex;
 
 var ConflictLoadoutLRI CLRI;
@@ -221,6 +228,8 @@ simulated function InitWeaponLists ()
 	l_Loading.Hide();
 
 	li_Weapons.Clear();
+	cb_WeapLayoutIndex.Clear();
+	cb_WeapCamoIndex.Clear();
 
 	//Only explicitly load saved inventory.	
 	Inventory.length = 0;
@@ -235,13 +244,13 @@ simulated function InitWeaponLists ()
 		if (class<BallisticWeapon>(a) != None)
 		{
 			Weap = class<BallisticWeapon>(a);
-			AddInventory(string(Weap), Weap, Weap.default.ItemName);
+			AddInventory(string(Weap), Weap, Weap.default.ItemName, class'ConflictLoadoutConfig'.default.SavedLayout[i], class'ConflictLoadoutConfig'.default.SavedCamo[i]);
 		}
 		
 		else if (class<ConflictItem>(a) != None)
 		{
 			CI = class<ConflictItem>(a);
-			AddInventory(string(CI), CI, CI.default.ItemName);
+			AddInventory(string(CI), CI, CI.default.ItemName, 0, 0);
 		}
 	}
 
@@ -262,12 +271,18 @@ simulated function InitWeaponLists ()
 			{
 				lastIndex = -1;
 				li_Weapons.Add("Misc",,"Mc",true);
+				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
+				LayoutIndexList.Insert(CamoIndexList.Length, 0);
 			}
 			
 			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i].ClassName, class'Class'));
 			
 			if (CI != None)
+			{
 				li_Weapons.Add(CI.default.ItemName, , string(i));
+				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
+				LayoutIndexList.Insert(CamoIndexList.Length, 0);
+			}
 		}
 		
         // handle weapons
@@ -277,11 +292,76 @@ simulated function InitWeaponLists ()
             {
                 lastIndex = CLRI.FullInventoryList[i].InventoryGroup;
                 li_Weapons.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
+				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
+				LayoutIndexList.Insert(CamoIndexList.Length, 0);
             }
             
             li_Weapons.Add(CLRI.FullInventoryList[i].ItemName, , string(i));
+				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
+				LayoutIndexList.Insert(CamoIndexList.Length, 0);
 		}
 	}
+}
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadLIFromBW(class<BallisticWeapon> BW, GUIComboBox LayoutComboBox)
+{
+	local byte GameStyleIndex;
+	local int i;
+		
+	//clear old layouts
+	LayoutComboBox.Clear();
+	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
+	{
+		LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+	}
+	
+	return true;
+}
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboBox CamoComboBox)
+{
+	local byte GameStyleIndex;
+	local int i, j;
+	local array<int> AllowedCamos;
+	//clear old layouts
+	CamoComboBox.Clear();
+	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	if (AllowedCamos.Length == 0 )
+	{
+		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
+		{
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+		}
+	}
+	else
+	{
+		for (i = 0; i < AllowedCamos.Length; i++)
+		{
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
+		}
+	}
+	
+	if (CamoComboBox.ItemCount() > 1)
+		CamoComboBox.AddItem("Random",, "255");
+	
+	return true;
 }
 
 function int GetItemSize(class<Weapon> Item)
@@ -405,7 +485,7 @@ function int GetInsertionPoint(class<BallisticWeapon> InsertWeapon)
 	return i;
 }
 
-function bool AddInventory(string ClassName, class<actor> InvClass, string FriendlyName)
+function bool AddInventory(string ClassName, class<actor> InvClass, string FriendlyName, optional int PassedLayoutIndex, optional int PassedCamoIndex)
 {
 	local int i, Size, A;
     local int SectionIndex;
@@ -457,6 +537,8 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	Inventory[i].Size = Size;
 	Inventory[i].Title = FriendlyName;
 	Inventory[i].InventoryGroup = Weap.default.InventoryGroup;
+	Inventory[i].CamoIndex = PassedCamoIndex;
+	Inventory[i].LayoutIndex = PassedLayoutIndex;
     Inventory[i].SectionIndex = SectionIndex;
 	
 	A = WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
@@ -513,7 +595,7 @@ function bool InternalOnDblClick(GUIComponent Sender)
 {
 	if (Sender==li_Weapons)
 	{
-		AddInventory(string(li_Weapons.GetObject()), class<Actor>(li_Weapons.GetObject()), li_Weapons.Get());
+		AddInventory(string(li_Weapons.GetObject()), class<Actor>(li_Weapons.GetObject()), li_Weapons.Get(), LayoutIndexList[li_Weapons.Index], int(cb_WeapCamoIndex.getExtra()));
 	}
 
 	return true;
@@ -649,8 +731,16 @@ function InternalOnChange(GUIComponent Sender)
 		{
 			if (class<BallisticWeapon>(li_Weapons.GetObject()) != None)
 			{
-				Pic_Weapon.Image = class<BallisticWeapon>(li_Weapons.GetObject()).default.BigIconMaterial;
-				tb_Desc.SetContent(class<BallisticWeapon>(li_Weapons.GetObject()).static.GetShortManual());
+				bUpdatingWeapon=true;
+				BW = class<BallisticWeapon>(li_Weapons.GetObject());
+				Pic_Weapon.Image = BW.default.BigIconMaterial;
+				tb_Desc.SetContent(BW.static.GetShortManual());
+				log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[lb_Weapons.List.Index]); 
+				LoadLIFromBW(BW, cb_WeapLayoutIndex);
+				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
+				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapCamoIndex);
+				cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+				bUpdatingWeapon=false;
 				return;
 			}
 			if (class<ConflictItem>(li_Weapons.GetObject()) != None)
@@ -664,20 +754,45 @@ function InternalOnChange(GUIComponent Sender)
 
         if (li_Weapons.GetObject() == None) //Item not loaded. Load it and add it as the Object for the weapons list's current position.
         {
-             inv_offset = int(li_Weapons.GetExtra());
+            inv_offset = int(li_Weapons.GetExtra());
 
             if (inv_offset != -1)
             {
                 BW = class<BallisticWeapon>(DynamicLoadObject(CLRI.FullInventoryList[inv_offset].ClassName, class'Class'));
                 if (BW != None)
                 {
-                    Pic_Weapon.Image = BW.default.BigIconMaterial;
-                    tb_Desc.SetContent(BW.static.GetShortManual());
-                    li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
+					bUpdatingWeapon=true;
+					Pic_Weapon.Image = BW.default.BigIconMaterial;
+					tb_Desc.SetContent(BW.static.GetShortManual());
+					li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
+					LoadLIFromBW(BW, cb_WeapLayoutIndex);
+					LoadCIFromBW(BW, 0, cb_WeapCamoIndex);
+					bUpdatingWeapon=false;
                 }
             }
         }
 	}	
+	else if (Sender == cb_WeapLayoutIndex ) //todo
+	{
+		if (lb_Weapons.List.GetObject() != None && class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None && !bUpdatingWeapon)
+		{
+			LayoutIndexList[lb_Weapons.List.Index] = cb_WeapLayoutIndex.getIndex();
+			if (class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None)
+			{
+				BW = class<BallisticWeapon>(lb_Weapons.List.GetObject());
+				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapCamoIndex);
+			}
+			log("Setting layout index of gun at loc "$lb_Weapons.List.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
+		}
+	}	
+	else if (Sender == cb_WeapCamoIndex )
+	{
+		if (lb_Weapons.List.GetObject() != None && class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None && !bUpdatingWeapon)
+		{
+			CamoIndexList[lb_Weapons.List.Index] = cb_WeapCamoIndex.getIndex();
+			log("Setting camo index of gun at loc "$lb_Weapons.List.Index$" to "$cb_WeapCamoIndex.getIndex()); 
+		}
+	}
 }
 
 event Closed( GUIComponent Sender, bool bCancelled )
@@ -966,7 +1081,8 @@ defaultproperties
 
      Begin Object Class=GUIImage Name=Pic_WeaponImg
          //Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Scaled
+         ImageStyle=ISTY_Justified
+         ImageAlign=IMGA_Center
          WinTop=0.040000
          WinLeft=0.515000
          WinWidth=0.40000
@@ -1002,7 +1118,7 @@ defaultproperties
          bVisibleWhenEmpty=True
          OnCreateComponent=WeaponDescription.InternalOnCreateComponent
          FontScale=FNS_Small
-         WinTop=0.280000
+         WinTop=0.320000
          WinLeft=0.480000
          WinWidth=0.500000
          WinHeight=0.3750000
@@ -1012,7 +1128,33 @@ defaultproperties
          bNeverFocus=True
      End Object
      tb_Desc=GUIScrollTextBox'BallisticProV55.MidGameTab_Conflict.WeaponDescription'
-
+	 
+     Begin Object Class=GUIComboBox Name=cb_WeapLayoutIndexComBox
+         MaxVisibleItems=16
+         Hint="Weapon layouts."
+         WinTop=0.280000
+         WinLeft=0.48
+         WinWidth=0.196094
+         WinHeight=0.040000
+         TabOrder=0
+         OnChange=MidGameTab_Conflict.InternalOnChange
+         OnKeyEvent=cb_WeapLayoutIndexComBox.InternalOnKeyEvent
+     End Object
+     cb_WeapLayoutIndex=GUIComboBox'BallisticProV55.MidGameTab_Conflict.cb_WeapLayoutIndexComBox'
+	 
+     Begin Object Class=GUIComboBox Name=cb_WeapCamoIndexComBox
+         MaxVisibleItems=16
+         Hint="Weapon camos."
+         WinTop=0.280000
+         WinLeft=0.74
+         WinWidth=0.196094
+         WinHeight=0.040000
+         TabOrder=0
+         OnChange=MidGameTab_Conflict.InternalOnChange
+         OnKeyEvent=cb_WeapCamoIndexComBox.InternalOnKeyEvent
+     End Object
+     cb_WeapCamoIndex=GUIComboBox'BallisticProV55.MidGameTab_Conflict.cb_WeapCamoIndexComBox'
+	 
      Begin Object Class=GUIButton Name=BClearButton
          Caption="Clear Loadout"
          WinTop=0.92000

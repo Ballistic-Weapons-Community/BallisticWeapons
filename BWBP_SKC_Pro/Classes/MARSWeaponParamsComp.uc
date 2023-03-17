@@ -35,7 +35,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade'
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000

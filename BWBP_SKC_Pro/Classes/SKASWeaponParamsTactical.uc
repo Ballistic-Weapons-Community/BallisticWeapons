@@ -10,7 +10,7 @@ defaultproperties
         TraceRange=(Min=2560.000000,Max=2560.000000)
         DecayRange=(Min=788,Max=1838)
         RangeAtten=0.25
-        TraceCount=10
+        TraceCount=7
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=15
@@ -44,7 +44,7 @@ defaultproperties
         TraceRange=(Min=2048.000000,Max=4096.000000)
         DecayRange=(Min=1000,Max=2500)
         RangeAtten=0.25
-        TraceCount=10
+        TraceCount=7
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=18
@@ -82,7 +82,7 @@ defaultproperties
         TraceRange=(Min=2560.000000,Max=2560.000000)
         DecayRange=(Min=788,Max=1838)
         RangeAtten=0.6
-        TraceCount=10
+        TraceCount=30
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=45
@@ -131,7 +131,7 @@ defaultproperties
 	//=================================================================
 
     Begin Object Class=AimParams Name=TacticalAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+        SprintOffset=(Pitch=-1000,Yaw=-2048)
         ChaosSpeedThreshold=300
     End Object
 

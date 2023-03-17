@@ -109,7 +109,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
+		LayoutName="Brown"
+		
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -127,8 +131,63 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-C
+		Weight=15
+		LayoutName="No Dart"
+		
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=45
+		SightOffset=(X=1.000000,Z=14.900000)
+		SightPivot=(Pitch=200)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Red
+		Weight=10
+		LayoutName="Red"
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGShield",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGClip",Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-SMG.OA-SMG_Darter',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.OA-SMG.OA-SMG_Dart',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=45
+		SightOffset=(X=-20.000000,Z=13.000000)
+		SightPivot=(Pitch=200)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	Layouts(1)=WeaponParams'ClassicParams-C'
+	Layouts(2)=WeaponParams'ClassicParams-Red'
 }

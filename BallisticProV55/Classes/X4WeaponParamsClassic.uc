@@ -102,6 +102,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Standard"
 		PlayerSpeedFactor=1.150000
         InventorySize=2
 		SightMoveSpeedFactor=0.500000

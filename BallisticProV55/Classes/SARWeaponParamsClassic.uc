@@ -115,6 +115,7 @@ defaultproperties
 	   	XRandFactor=0.15 //
 		YRandFactor=0.15 //
 		YawFactor=0.700000 //
+
 		MaxRecoil=3840.000000
 		DeclineTime=0.7 //
 		ViewBindFactor=0.45
@@ -163,6 +164,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Standard Flash"
+		Weight=30
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -181,8 +184,111 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Gray
+		LayoutName="Combat Laser"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.SAR15-Shiny",Index=1)
+		Weight=10
+		
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Black
+		LayoutName="Stealth Scoped"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.DSARSkin-Shiny",Index=1)
+		Weight=10
+		
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Blue
+		LayoutName="Tech Amplified"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.CSARSkin-Shiny",Index=1)
+		Weight=10
+		
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Desert
+		LayoutName="Desert Operator"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.AAS-Shiny",Index=1)
+		Weight=5
+		
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-Gray'
+	Layouts(2)=WeaponParams'ClassicParams-Black'
+	Layouts(3)=WeaponParams'ClassicParams-Blue'
+	Layouts(4)=WeaponParams'ClassicParams-Desert'
 
 }

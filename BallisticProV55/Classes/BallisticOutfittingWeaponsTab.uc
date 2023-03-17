@@ -11,8 +11,11 @@
 class BallisticOutfittingWeaponsTab extends UT2K4TabPanel config(BallisticProV55);
 
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
+
 var automated GUILoadOutItem 		Item_Melee, Item_SideArm, Item_Primary, Item_Secondary, Item_Grenade;
 var automated GUIComboBox	 		cb_Melee, cb_SideArm, cb_Primary, cb_Secondary, cb_Grenade;
+var automated GUIComboBox	 		cb_Melee_LI, cb_SideArm_LI, cb_Primary_LI, cb_Secondary_LI, cb_Grenade_LI;
+var automated GUIComboBox	 		cb_Melee_CI, cb_SideArm_CI, cb_Primary_CI, cb_Secondary_CI, cb_Grenade_CI;
 var automated moComboBox			cb_Presets;
 var Automated GUIImage 				Box_Melee, Box_SideArm, Box_Primary, Box_Secondary, Box_Grenade, Box_Streak1, Box_Streak2, Box_Streak3, MeleeBack, SideArmBack, PrimaryBack, SecondaryBack, GrenadeBack;
 var Automated GUIButton 			BDone, BCancel, BSavePreset;
@@ -27,6 +30,8 @@ struct LoadoutWeapons
 {
     var string PresetName;
 	var string Weapons[5];
+	var int Layouts[5];
+	var int Camos[5];
 };
 
 var() config array<LoadoutWeapons>	SavedLoadouts[5];  //Saved loadouts
@@ -38,6 +43,7 @@ struct WeaponItemInfo
 	var string ItemClassName;
 	var IntBox ImageCoords;
 	var int InventoryGroup;
+	var byte Index;
 };
 
 var array<WeaponItemInfo> 			sortedPrimaries;
@@ -56,7 +62,13 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Super.InitComponent(MyController, MyOwner);
 	
 	if(BallisticOutfittingMenu(Controller.ActivePage) != None)
-	p_Anchor = BallisticOutfittingMenu(Controller.ActivePage);
+		p_Anchor = BallisticOutfittingMenu(Controller.ActivePage);
+		
+	Item_Melee.OnItemChange = OnLoadoutItemChange;
+	Item_Sidearm.OnItemChange = OnLoadoutItemChange;
+	Item_Primary.OnItemChange = OnLoadoutItemChange;
+	Item_Secondary.OnItemChange = OnLoadoutItemChange;
+	Item_Grenade.OnItemChange = OnLoadoutItemChange;
 }
 
 function ShowPanel(bool bShow)
@@ -69,6 +81,8 @@ function ShowPanel(bool bShow)
 	{
 		for(i=0;i<5;i++)
 		SavedLoadouts[0].Weapons[i] = class'Mut_Outfitting'.default.LoadOut[i];
+		SavedLoadouts[0].Layouts[i] = class'Mut_Outfitting'.default.Layout[i];
+		SavedLoadouts[0].Camos[i] = class'Mut_Outfitting'.default.Camo[i];
 		bInitialized=True;
 		SaveConfig();
 	}
@@ -200,10 +214,34 @@ function LoadWeapons()
 	}
 	
 	Item_Melee.SetItem(SavedLoadOuts[CurrentIndex].Weapons[0]);
+	LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
+	cb_Melee_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
+	LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI);
+	cb_Melee_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
+	
 	Item_SideArm.SetItem(SavedLoadOuts[CurrentIndex].Weapons[1]);
+	LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
+	cb_SideArm_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
+	LoadCamos(1, cb_SideArm_LI.getIndex(), Item_Melee.Index, cb_SideArm_CI);
+	cb_SideArm_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
+	
 	Item_Primary.SetItem(SavedLoadOuts[CurrentIndex].Weapons[2]);
+	LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
+	cb_Primary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
+	LoadCamos(2, cb_Primary_LI.getIndex(), Item_Melee.Index, cb_Primary_CI);
+	cb_Primary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
+	
 	Item_Secondary.SetItem(SavedLoadOuts[CurrentIndex].Weapons[3]);
+	LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
+	cb_Secondary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
+	LoadCamos(3, cb_Secondary_LI.getIndex(), Item_Melee.Index, cb_Secondary_CI);
+	cb_Secondary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
+	
 	Item_Grenade.SetItem(SavedLoadOuts[CurrentIndex].Weapons[4]);
+	LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
+	cb_Grenade_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
+	LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Melee.Index, cb_Grenade_CI);
+	cb_Grenade_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
 	
 	//Add Random and None forcibly as separate items here.
 	
@@ -263,6 +301,7 @@ function FillItemInfos(int Group, int Index)
 	WInfo.ItemCap = WI.ItemName;
 	WInfo.InventoryGroup = WI.InventoryGroup;
 	WInfo.ItemClassName = COI.GetGroupItem(Group, Index);
+	WInfo.Index = Index;
 	if (WI.bIsBW)
 	{
 		WInfo.ItemImage = WI.BigIconMaterial;
@@ -340,6 +379,34 @@ function FillItemInfos(int Group, int Index)
 	}
 }
 
+function OnLoadoutItemChange(GUIComponent Sender)
+{
+	if (Sender == Item_Melee)
+	{
+		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
+		LoadCamos(0, 0, Item_Melee.Index, cb_Melee_CI);
+	}
+	else if (Sender == Item_SideArm)
+	{
+		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
+		LoadCamos(1, 0, Item_SideArm.Index, cb_SideArm_CI);
+	}
+	else if (Sender == Item_Primary)
+	{
+		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
+		LoadCamos(2, 0, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
+	}
+	else if (Sender == Item_Secondary)
+	{
+		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
+		LoadCamos(3, 0, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
+	}
+	else if (Sender == Item_Grenade)
+	{
+		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
+		LoadCamos(4, 0, Item_Grenade.Index, cb_Grenade_CI);
+	}
+}
 
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 {
@@ -352,45 +419,106 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 			SavedLoadouts[cb_Presets.GetIndex()].PresetName = cb_Presets.GetText();
 		if (Item_Melee.Items.length > Item_Melee.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[0] = cb_Melee_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = cb_Melee_CI.getIndex();
+		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[1] = cb_SideArm_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = cb_SideArm_CI.getIndex();
+		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[2] = cb_Primary_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = cb_Primary_CI.getIndex();
+		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[3] = cb_Secondary_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = cb_Secondary_CI.getIndex();
+		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[4] = cb_Grenade_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = cb_Grenade_CI.getIndex();
+		}
 		SaveConfig();	
 	}
 	return true;
 }
 
+//Save selected weapons to the preset and mut defaults, COI reads from mut defaults to send to user
 function SaveWeapons()
 {
 		SavedLoadouts[cb_Presets.GetIndex()].PresetName = cb_Presets.GetText();
 			
 		if (Item_Melee.Items.length > Item_Melee.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[0] = cb_Melee_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = cb_Melee_CI.getIndex();
+		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[1] = cb_SideArm_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = cb_SideArm_CI.getIndex();
+		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[2] = cb_Primary_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = cb_Primary_CI.getIndex();
+		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[3] = cb_Secondary_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = cb_Secondary_CI.getIndex();
+		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
+		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
+			SavedLoadouts[cb_Presets.GetIndex()].Layouts[4] = cb_Grenade_LI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = cb_Grenade_CI.getIndex();
+		}
 
 		if (Item_Melee.Items.length > Item_Melee.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[0] = Item_Melee.Items[Item_Melee.Index].Text;
+			class'Mut_Outfitting'.default.Layout[0] = cb_Melee_LI.getIndex();
+			class'Mut_Outfitting'.default.Camo[0] = cb_Melee_CI.getIndex();
+		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
+			class'Mut_Outfitting'.default.Layout[1] = cb_SideArm_LI.getIndex();
+			class'Mut_Outfitting'.default.Camo[1] = cb_SideArm_CI.getIndex();
+		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[2] = Item_Primary.Items[Item_Primary.Index].Text;
+			class'Mut_Outfitting'.default.Layout[2] = cb_Primary_LI.getIndex();
+			class'Mut_Outfitting'.default.Camo[2] = cb_Primary_CI.getIndex();
+		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
+			class'Mut_Outfitting'.default.Layout[3] = cb_Secondary_LI.getIndex();
+			class'Mut_Outfitting'.default.Camo[3] = cb_Secondary_CI.getIndex();
+		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
+			class'Mut_Outfitting'.default.Layout[4] = cb_Grenade_LI.getIndex();
+			class'Mut_Outfitting'.default.Camo[4] = cb_Grenade_CI.getIndex();
+		}
 		
 		CurrentIndex=cb_Presets.GetIndex();
 		
@@ -406,26 +534,211 @@ function InternalOnChange(GUIComponent Sender)
 		return;
 		
 	if (Sender == cb_Melee)
+	{
 		Item_Melee.SetItem(cb_Melee.GetExtra());
-		
+		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
+		LoadCamos(0, 0, Item_Melee.Index, cb_Melee_CI);
+	}
 	else if (Sender == cb_SideArm)
+	{
 		Item_SideArm.SetItem(cb_SideArm.GetExtra());
+		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
+		LoadCamos(1, 0, Item_SideArm.Index, cb_SideArm_CI);
+	}
 	else if (Sender == cb_Primary)
+	{
 		Item_Primary.SetItem(cb_Primary.GetExtra());
+		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
+		LoadCamos(2, 0, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
+	}
 	else if (Sender == cb_Secondary)
+	{
 		Item_Secondary.SetItem(cb_Secondary.GetExtra());
+		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
+		LoadCamos(3, 0, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
+	}
 	else if (Sender == cb_Grenade)
+	{
 		Item_Grenade.SetItem(cb_Grenade.GetExtra());
+		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
+		LoadCamos(4, 0, Item_Grenade.Index, cb_Grenade_CI);
+	}
 		
-	else if (Sender == cb_Presets && cb_Presets.GetExtra() != "")
+	else if (Sender == cb_Presets && cb_Presets.GetExtra() != "") //Grab the preset data
 	{
 		Item_Melee.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[0]);
+		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
+		cb_Melee_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
+		LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI);
+		cb_Melee_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
+		
 		Item_SideArm.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[1]);
+		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
+		cb_SideArm_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
+		LoadCamos(1, cb_SideArm_LI.getIndex(), Item_Melee.Index, cb_SideArm_CI);
+		cb_SideArm_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
+		
 		Item_Primary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[2]);
+		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
+		cb_Primary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
+		LoadCamos(2, cb_Primary_LI.getIndex(), Item_Melee.Index, cb_Primary_CI);
+		cb_Primary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
+		
 		Item_Secondary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[3]);
+		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
+		cb_Secondary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
+		LoadCamos(3, cb_Secondary_LI.getIndex(), Item_Melee.Index, cb_Secondary_CI);
+		cb_Secondary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
+		
 		Item_Grenade.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[4]);
+		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
+		cb_Grenade_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
+		LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Melee.Index, cb_Grenade_CI);
+		cb_Grenade_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
 	}
 }
+
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
+{
+	local byte GameStyleIndex;
+	local int i;
+	local class<BallisticWeapon> BW;
+		
+	//clear old layouts
+	LayoutComboBox.Clear();
+	
+	BW = class<BallisticWeapon>(DynamicLoadObject(COI.GetGroupItem(GroupIndex, Index), class'Class'));
+	if (BW == None)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
+	{
+		LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+	}
+	
+	return true;
+}
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
+{
+	local byte GameStyleIndex;
+	local int i, j;
+	local array<int> AllowedCamos;
+	local class<BallisticWeapon> BW;
+	
+	//clear old camos
+	CamoComboBox.Clear();
+	
+	BW = class<BallisticWeapon>(DynamicLoadObject(COI.GetGroupItem(GroupIndex, Index), class'Class'));
+	if (BW == None)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+	if (LayoutIndex < 0 || BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	if (AllowedCamos.Length == 0 )
+	{
+		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
+		{
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+		}
+	}
+	else
+	{
+		for (i = 0; i < AllowedCamos.Length; i++)
+		{
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
+		}
+	}
+	
+	if (CamoComboBox.ItemCount() > 1)
+		CamoComboBox.AddItem("Random",, "255");
+	
+	return true;
+}
+/*
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadLayouts2(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
+{
+ 	local BC_WeaponInfoCache.LayoutInfo LI;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	local int i, j;
+	
+	if (COI.GetGroupItem(GroupIndex, Index) == "")
+		return false;
+		
+	//clear old layouts
+	LayoutComboBox.Clear();
+		
+	class'BC_WeaponInfoCache'.static.FindWeaponInfo(COI.GetGroupItem(GroupIndex, Index), WI, i);
+	
+	if (i==-1)
+	{
+		log("Error loading item for outfitting: "$COI.GetGroupItem(GroupIndex, Index), 'Warning');
+		return false;
+	}
+	
+	for (j = 0; j < WI.TotalLayouts; j++)
+	{
+		if (class'BC_WeaponInfoCache'.static.FindLayoutInfo(WI, class'BCReplicationInfo'.default.GameStyle, j, LI, i))
+			LayoutComboBox.AddItem(LI.LayoutName);
+	}
+
+	return true;
+}
+
+//give this function a gun and a layout index, grab an array of camos from cache, add each value to the combobox
+function bool LoadCamos2(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
+{
+ 	local BC_WeaponInfoCache.CamoInfo CI;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	local int i, j;
+	
+	if (COI.GetGroupItem(GroupIndex, Index) == "")
+		return false;
+		
+	//clear old layouts
+	CamoComboBox.Clear();
+		
+	class'BC_WeaponInfoCache'.static.FindWeaponInfo(COI.GetGroupItem(GroupIndex, Index), WI, i);
+	
+	if (i==-1)
+	{
+		log("Error loading item for outfitting: "$COI.GetGroupItem(GroupIndex, Index), 'Warning');
+		return false;
+	}
+	
+	for (j = 0; j < WI.TotalCamos; j++)
+	{
+		if (class'BC_WeaponInfoCache'.static.FindCamoInfo(WI, class'BCReplicationInfo'.default.GameStyle, LayoutIndex, j, CI, i))
+			CamoComboBox.AddItem(CI.CamoName,, String(CI.CamoIndex));
+	}
+	
+	if (WI.TotalCamos > 1)
+		CamoComboBox.AddItem("Random",, "255");
+
+	return true;
+}*/
 
 defaultproperties
 {
@@ -507,6 +820,32 @@ defaultproperties
      End Object
      cb_Melee=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_MeleeComBox'
 
+	Begin Object Class=GUIComboBox Name=cb_MeleeComBox_LI
+         MaxVisibleItems=16
+         Hint="Gear layouts."
+         WinTop=0.290000
+         WinLeft=0.092148
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_MeleeComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Melee_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_MeleeComBox_LI'
+
+	Begin Object Class=GUIComboBox Name=cb_MeleeComBox_CI
+         MaxVisibleItems=16
+         Hint="Gear camos."
+         WinTop=0.290000
+         WinLeft=0.212148
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_MeleeComBox_CI.InternalOnKeyEvent
+     End Object
+     cb_Melee_CI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_MeleeComBox_CI'
+	 
      Begin Object Class=GUIComboBox Name=cb_SideArmBox
          MaxVisibleItems=16
          Hint="Quick list of sidearms."
@@ -519,6 +858,32 @@ defaultproperties
          OnKeyEvent=cb_SideArmBox.InternalOnKeyEvent
      End Object
      cb_SideArm=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SideArmBox'
+	 
+     Begin Object Class=GUIComboBox Name=cb_SideArmBox_LI
+         MaxVisibleItems=16
+         Hint="Sidearm layouts."
+         WinTop=0.290000
+         WinLeft=0.392930
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_SideArmBox_LI.InternalOnKeyEvent
+     End Object
+     cb_SideArm_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SideArmBox_LI'
+	 
+     Begin Object Class=GUIComboBox Name=cb_SideArmBox_CI
+         MaxVisibleItems=16
+         Hint="Sidearm camos."
+         WinTop=0.290000
+         WinLeft=0.512930
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_SideArmBox_CI.InternalOnKeyEvent
+     End Object
+     cb_SideArm_CI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SideArmBox_CI'
 
      Begin Object Class=GUIComboBox Name=cb_PrimaryComBox
          MaxVisibleItems=16
@@ -533,6 +898,32 @@ defaultproperties
      End Object
      cb_Primary=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_PrimaryComBox'
 
+     Begin Object Class=GUIComboBox Name=cb_PrimaryComBox_LI
+         MaxVisibleItems=16
+         Hint="Primary Weapon layouts."
+         WinTop=0.590000
+         WinLeft=0.241563
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_PrimaryComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Primary_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_PrimaryComBox_LI'
+
+     Begin Object Class=GUIComboBox Name=cb_PrimaryComBox_CI
+         MaxVisibleItems=16
+         Hint="Primary Weapon camos."
+         WinTop=0.590000
+         WinLeft=0.361563
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_PrimaryComBox_CI.InternalOnKeyEvent
+     End Object
+     cb_Primary_CI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_PrimaryComBox_CI'
+
      Begin Object Class=GUIComboBox Name=cb_SecondaryComBox
          MaxVisibleItems=16
          Hint="Quick list of secondary weapons."
@@ -546,6 +937,32 @@ defaultproperties
      End Object
      cb_Secondary=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SecondaryComBox'
 
+     Begin Object Class=GUIComboBox Name=cb_SecondaryComBox_LI
+         MaxVisibleItems=16
+         Hint="Secondary weapon layouts."
+         WinTop=0.590000
+         WinLeft=0.540977
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_SecondaryComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Secondary_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SecondaryComBox_LI'
+
+     Begin Object Class=GUIComboBox Name=cb_SecondaryComBox_CI
+         MaxVisibleItems=16
+         Hint="Secondary weapon camos."
+         WinTop=0.590000
+         WinLeft=0.660977
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_SecondaryComBox_CI.InternalOnKeyEvent
+     End Object
+     cb_Secondary_CI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SecondaryComBox_CI'
+
      Begin Object Class=GUIComboBox Name=cb_GrenadeComBox
          MaxVisibleItems=16
          Hint="Quick list of grenades and traps."
@@ -558,6 +975,32 @@ defaultproperties
          OnKeyEvent=cb_GrenadeComBox.InternalOnKeyEvent
      End Object
      cb_Grenade=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_GrenadeComBox'
+
+     Begin Object Class=GUIComboBox Name=cb_GrenadeComBox_LI
+         MaxVisibleItems=16
+         Hint="Grenade layouts."
+         WinTop=0.290000
+         WinLeft=0.692148
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_GrenadeComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Grenade_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_GrenadeComBox_LI'
+
+     Begin Object Class=GUIComboBox Name=cb_GrenadeComBox_CI
+         MaxVisibleItems=16
+         Hint="Grenade layouts."
+         WinTop=0.290000
+         WinLeft=0.812148
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_GrenadeComBox_CI.InternalOnKeyEvent
+     End Object
+     cb_Grenade_CI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_GrenadeComBox_CI'
 
      Begin Object Class=moComboBox Name=co_PresetsCB
          ComponentJustification=TXTA_Left
@@ -574,7 +1017,7 @@ defaultproperties
      cb_Presets=moComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.co_PresetsCB'
 
      Begin Object Class=GUIImage Name=ImageBoxMelee
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.030000
          WinLeft=0.087500
@@ -585,7 +1028,7 @@ defaultproperties
      Box_Melee=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxMelee'
 
      Begin Object Class=GUIImage Name=ImageBoxSideArm
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.030000
          WinLeft=0.387500
@@ -596,7 +1039,7 @@ defaultproperties
      Box_SideArm=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxSideArm'
 
      Begin Object Class=GUIImage Name=ImageBoxPrimary
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.337500
          WinLeft=0.237500
@@ -607,7 +1050,7 @@ defaultproperties
      Box_Primary=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxPrimary'
 
      Begin Object Class=GUIImage Name=ImageBoxSecondary
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.337500
          WinLeft=0.537500
@@ -618,7 +1061,7 @@ defaultproperties
      Box_Secondary=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxSecondary'
 
      Begin Object Class=GUIImage Name=ImageBoxGrenade
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.030000
          WinLeft=0.687500
@@ -628,6 +1071,7 @@ defaultproperties
      End Object
      Box_Grenade=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxGrenade'
 
+    /*
      Begin Object Class=GUIImage Name=MeleeBackImage
          Image=Texture'Engine.MenuBlack'
          ImageStyle=ISTY_Stretched
@@ -682,7 +1126,7 @@ defaultproperties
          RenderWeight=0.003000
      End Object
      GrenadeBack=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.GrenadeBackImage'
-
+*/
      Begin Object Class=GUIButton Name=BSavePresetButton
          Caption="SAVE"
          Hint="Saves the current configuration as a new preset."
@@ -707,11 +1151,11 @@ defaultproperties
      End Object
      l_Receiving=GUILabel'BallisticProV55.BallisticOutfittingWeaponsTab.l_Receivinglabel'
 
-     SavedLoadouts(0)=(PresetName="DEFAULT",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-     SavedLoadouts(1)=(PresetName="DEFAULT2",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-     SavedLoadouts(2)=(PresetName="DEFAULT3",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-     SavedLoadouts(3)=(PresetName="DEFAULT4",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-     SavedLoadouts(4)=(PresetName="DEFAULT5",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
+     SavedLoadouts(0)=(PresetName="DEFAULT",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(1)=(PresetName="DEFAULT2",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(2)=(PresetName="DEFAULT3",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(3)=(PresetName="DEFAULT4",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(4)=(PresetName="DEFAULT5",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
      QuickListText="QuickList"
      ReceivingText(0)="Receiving..."
      ReceivingText(1)="Loading..."

@@ -107,6 +107,7 @@ simulated function CommonStartReload (optional byte i)
 
 	if (bCockAfterReload)
 		bNeedCock=true;
+
 	if (bCockOnEmpty && MagAmmo < 1 && (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()))
 		bNeedCock=true;
 	bNeedReload=false;
@@ -120,7 +121,7 @@ simulated function PlayReload()
 	{
 	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && (class'BallisticReplicationInfo'.static.IsClassicOrRealism()))
 			SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
-		else SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
+		else	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 	}
 }
 

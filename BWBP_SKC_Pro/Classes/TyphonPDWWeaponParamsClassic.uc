@@ -102,6 +102,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=10
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
+		Weight=30
 		SightingTime=0.250000
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		SightPivot=(Pitch=0)
@@ -118,7 +119,72 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Urban
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineUrban",Index=1)
+		SightingTime=0.250000
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		DisplaceDurationMult=1
+		bNeedCock=True
+		MagAmmo=25
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Green
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineGreen",Index=1)
+		SightingTime=0.250000
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		DisplaceDurationMult=1
+		bNeedCock=True
+		MagAmmo=25
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Blue
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineBlue",Index=1)
+		SightingTime=0.250000
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+		InventorySize=12
+		SightMoveSpeedFactor=0.9
+		DisplaceDurationMult=1
+		bNeedCock=True
+		MagAmmo=25
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Urban'
+	Layouts(2)=WeaponParams'ClassicParams_Green'
+	Layouts(3)=WeaponParams'ClassicParams_Blue'
 
 
 }

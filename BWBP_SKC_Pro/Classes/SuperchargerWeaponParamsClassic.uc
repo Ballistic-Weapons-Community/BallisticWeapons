@@ -29,6 +29,34 @@ defaultproperties
 		FireInterval=0.063150
 		FireEndAnim="FireLoopEnd"	
 		FireAnim="FireLoop"
+		FireLoopAnim="FireLoop"
+		AimedFireAnim="SightFire"
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Sniper
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+		RangeAtten=0.950000
+		Damage=10
+		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=5
+		Chaos=0.01
+		Inaccuracy=(X=32,Y=32)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Sniper
+		FireInterval=0.063150
+		FireEndAnim="FireLoopEnd"	
+		FireAnim="FireLoop"
+		FireLoopAnim="FireLoop"
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
@@ -110,7 +138,23 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Sniper
+		InventorySize=29
+		SightingTime=0.300000
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.750000
+		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
+		SightPivot=(Pitch=64)
+        ZoomType=ZT_Fixed
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sniper'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Sniper'
 
 
 }

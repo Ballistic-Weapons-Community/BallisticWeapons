@@ -11,7 +11,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BallisticProV55.IE_A73Lob'
      HitDecals(0)=Class'BallisticProV55.AD_A73Lob'
-     HitSounds(0)=Sound'BWBP_SKC_SoundsExp.A73E.A73E-PowerImpact'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.A73E.A73E-PowerImpact'
      HitSoundVolume=1.300000
      HitSoundRadius=256.000000
 }

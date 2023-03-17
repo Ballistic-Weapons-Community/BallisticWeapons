@@ -61,7 +61,7 @@ defaultproperties
      XInaccuracy=32.000000
      YInaccuracy=32.000000
 	 FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.A73E.A73E-Power',Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      TweenTime=0.000000
      FireRate=0.850000

@@ -106,6 +106,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Slice"
+		Weight=30
 		PlayerSpeedFactor=1.200000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
@@ -115,7 +117,23 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-B
+		LayoutName="Dice"
+		Weight=20
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=1)
+		PlayerSpeedFactor=1.200000
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-B'
 
 }

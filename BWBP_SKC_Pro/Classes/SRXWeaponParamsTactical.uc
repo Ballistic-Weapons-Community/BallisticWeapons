@@ -16,7 +16,6 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
-        PenetrationEnergy=48
 		PenetrateForce=120
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
@@ -147,7 +146,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
 		AimSpread=(Min=64,Max=768)
 		ChaosDeclineTime=0.75
         ChaosSpeedThreshold=300

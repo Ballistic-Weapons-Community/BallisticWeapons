@@ -179,6 +179,7 @@ var     bool                        RewindActive;                   // True if c
 // WEAPON STATE VARIABLES
 //=============================================================================
 var		WeaponParams				WeaponParams;
+var		WeaponCamo					WeaponCamo;
 var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
@@ -266,6 +267,7 @@ var() IntBox				BigIconCoords;				// Coords for drawing the BigIcon in the weapo
 var	bool					bSkipDrawWeaponInfo;		// Skips the Ballistic versions of NewDrawWeaponInfo
 var	bool					bAllowWeaponInfoOverride;	// If true, prevents upgraded HUDs from overriding the weapon info display
 var() float					IdleTweenTime;				// Just a general tween time used by anims like idle
+var() array<BallisticGunAugment>	GunAugments;				// Actor to spawn if the layout has an additional optic/suppressor/bayonet
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -385,6 +387,9 @@ var	Object.Color	HeaderColor, TextColor;
 //-----------------------------------------------------------------------------
 var() byte                      GameStyleIndex;         // Game style parameters to use for this weapon
 var() byte                      LayoutIndex;            // Index of layout parameters to use for this weapon instance
+var() bool						bLayoutSet;				// Do we have our layout chosen already
+var() byte                      CamoIndex;            	// Index of camo sets to use for this weapon
+var() bool						bCamoSet;				// Do we have our camo chosen already
 //-----------------------------------------------------------------------------
 // Move speed
 //-----------------------------------------------------------------------------
@@ -431,7 +436,7 @@ replication
 {
 	// Things the server should send to the owning client
 	reliable if (bNetOwner && Role == ROLE_Authority)
-		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, bServerDeferInitialSwitch;
+		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, CamoIndex, bServerDeferInitialSwitch;
 
 	// functions on server, called by client
    	reliable if (Role < ROLE_Authority)
@@ -547,6 +552,18 @@ simulated function PostBeginPlay()
 	}
 }
 
+simulated function SetLayoutIndex(byte NewLayoutIndex)
+{
+	LayoutIndex = NewLayoutIndex;
+	bLayoutSet = True;
+}
+
+simulated function SetCamoIndex(byte NewCamoIndex)
+{
+	CamoIndex = NewCamoIndex;
+	bCamoSet = True;
+}
+
 //===========================================================================
 // PostNetBeginPlay
 //
@@ -561,7 +578,7 @@ simulated function PostNetBeginPlay()
 
 
     assert(ParamsClasses[GameStyleIndex] != None);
-    
+	
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
 	ParamsClasses[GameStyleIndex].static.Initialize(self);
 
@@ -585,10 +602,140 @@ simulated function PostNetBeginPlay()
 	}
 }
 
+//Take a layout from a pickup or mutator via GiveTo. If default (255), generate a random layout if applicable
+simulated function GenerateLayout(byte Index)
+{
+	local byte i;
+	local float f;
+	local int WeightSum, CurrentWeight;
+	local array<WeaponParams> Layouts;
+	
+	Layouts = ParamsClasses[GameStyleIndex].default.Layouts;
+	
+	//We have a layout set, use it
+	if (Index < Layouts.length && Index >= 0)
+	{
+		SetLayoutIndex(Index);
+		return;
+	}
+	
+	if (!bLayoutSet)
+	{
+		//Build a weighted list of random layouts and return a random layout index
+		if (Layouts.length > 0 /* && BCRepClass.default.bRandomCamo*/)
+		{
+					
+			//Build the weighted list
+			for (i=0; i<Layouts.length; i++)
+			{
+				WeightSum += Layouts[i].Weight;
+			}
+			f = FRand()*WeightSum;
+			
+			for (i=0; i<Layouts.length; i++)
+			{
+				if ( f >= CurrentWeight && f < CurrentWeight+Layouts[i].Weight)
+				{
+					SetLayoutIndex(i);
+					break;
+				}
+				CurrentWeight += Layouts[i].Weight;
+			}
+		}
+		else
+		{
+			SetLayoutIndex(0);
+		}
+	}
+}
+
+//Take a camo from a pickup or mutator via GiveTo. 
+//If default (255), generate a random camo if applicable. If a default fails to generate, pass 255 to abort load
+//Builds a sublist of acceptable camos based on our layout
+simulated function GenerateCamo(byte Index)
+{
+	local byte i, j;
+	local float f;
+	
+	local int WeightSum, CurrentWeight;
+	local array<WeaponCamo> Camos;
+	local array<WeaponCamo> CamoSublist;
+	local array<int> AllowedCamos;
+	
+	Camos = ParamsClasses[GameStyleIndex].default.Camos;
+	AllowedCamos = ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	
+	//No camos, disable load
+	if (Camos.length == 0)
+	{
+		//log("set index to -1, camos length is 0");
+		SetCamoIndex(255); //A passed 255 aborts load
+		return;
+	}
+	
+	//We have a layout set, use it
+	if (Index < Camos.length && Index >= 0)
+	{
+		//log("set index to " $Index$ ", camos length is " $Camos.length);
+		SetCamoIndex(Index);
+		return;
+	}
+	
+	//Build an allowed list of camos based on layout, then randomize
+	if (!bCamoSet)
+	{
+		//Create a sublist of allowed camos
+		if (AllowedCamos.length == 0) //default, all are allowed
+		{
+			CamoSublist = Camos;
+		}
+		else
+		{
+			for (i=0;i<AllowedCamos.length;i++)
+			{
+				CamoSublist.Insert(0,1); //add a blank
+				CamoSublist[0] = Camos[AllowedCamos[i]]; //set it
+			}
+		}
+		//Build a weighted list of random camos and return a random layout index
+		if (CamoSublist.length > 0 /* && BCRepClass.default.bRandomCamo*/)
+		{
+			//Build the weighted list
+			for (i=0; i<CamoSublist.length; i++)
+			{
+				WeightSum += CamoSublist[i].Weight;
+			}
+			f = FRand()*WeightSum;
+			
+			for (i=0; i<CamoSublist.length; i++)
+			{
+				if ( f >= CurrentWeight && f < CurrentWeight+CamoSublist[i].Weight)
+				{
+					//log("set index to " $CamoSublist[i].Index$ ", camos sublist length is " $CamoSublist.length);
+					SetCamoIndex(CamoSublist[i].Index);
+					break;
+				}
+				CurrentWeight += CamoSublist[i].Weight;
+			}
+		}
+		else if (CamoSublist.length == 0) //No camos allowed, abort load
+		{
+			//log("set index to -1, our sublist length is 0");
+			SetCamoIndex(255);
+		}
+		else
+		{
+			//log("set index to 0, the randomizer is off");
+			SetCamoIndex(0); //Randomizer disabled, load spot 0
+		}
+	}
+}
+
 simulated function OnWeaponParamsChanged()
 {
     local int i;
-
+	local Material M;
+	
     assert(WeaponParams != None);
 
 	SightingTime 				= WeaponParams.SightingTime;
@@ -618,14 +765,15 @@ simulated function OnWeaponParamsChanged()
 
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
-		
+			
 	if (WeaponParams.MinZoom != 0)
 		MinZoom = WeaponParams.MinZoom;
 		
 	if (WeaponParams.MaxZoom != 0)
 		MaxZoom = WeaponParams.MaxZoom;
-	
+		
 	bAdjustHands				= WeaponParams.bAdjustHands;
+	
 	if (WeaponParams.WristAdjust != rot(0,0,0))
     {
 		WristAdjust = WeaponParams.WristAdjust;
@@ -665,12 +813,56 @@ simulated function OnWeaponParamsChanged()
         default.PlayerViewPivot = WeaponParams.ViewPivot;
     }
 	
+	//Visuals
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
-        Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
+	{
+		if (WeaponParams.WeaponMaterialSwaps[i].Material != None)
+			Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
+		if (WeaponParams.WeaponMaterialSwaps[i].MaterialName != "")
+		{
+			M = Material(DynamicLoadObject(WeaponParams.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+			if (M != None)
+				Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = M;
+		}
+	}
+	
+	//Camos
+	if (WeaponCamo != None)
+	{
+		for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
+		{
+			if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+				Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+			if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+			{
+				M = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+				if (M != None)
+					Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = M;
+			}
+		}
+	}
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
 	
+	//Change mesh if layout dictates it
+	if (WeaponParams.LayoutMesh != None)
+	{
+		LinkMesh(WeaponParams.LayoutMesh);
+	}
+	
+	//Spawn a weapon attachment if required by the layout
+    for (i = 0; i < WeaponParams.GunAugments.Length; ++i)
+	{
+		GunAugments[i] = Spawn(WeaponParams.GunAugments[i].GunAugmentClass);
+		GunAugments[i].SetDrawScale(WeaponParams.GunAugments[i].Scale);
+		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
+	}
+	
+	//log("Camo Index is "$CamoIndex);
+	//log("Weapon Camo is "$WeaponCamo);
+	
+	//Weapon Modes
 	if (WeaponParams.WeaponModes.Length != 0)
 	{
 		for (i = 0; i < WeaponModes.Length; ++i)
@@ -3453,10 +3645,23 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
-
+		{
+			log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			//if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
 		else
+		{
+			log("randomizing"); 
+			GenerateLayout(255);
+			GenerateCamo(255);
+			//if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
     }
  	
    	else if ( !W.HasAmmo() )
@@ -3773,6 +3978,7 @@ simulated function Destroyed()
     }
 
 	WeaponParams = None;
+	WeaponCamo = None;
 
     if (RcComponent != None)
     {
@@ -3825,7 +4031,7 @@ simulated event StopFire(int Mode)
 
 function DropFrom(vector StartLocation)
 {
-    local int m;
+    local int m, i;
 	local Pickup Pickup;
 
     if (!bCanThrow)// || !HasAmmo())
@@ -3852,6 +4058,15 @@ function DropFrom(vector StartLocation)
             WeaponPickup(Pickup).bThrown = true;
     	Pickup.InitDroppedPickupFor(self);
 	    Pickup.Velocity = Velocity;
+		if (BallisticWeaponPickup(Pickup) != None)
+		{
+			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
+			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
+			for (i = 0; i < WeaponParams.AttachmentMaterialSwaps.Length; ++i)
+			{
+				BallisticWeaponPickup(Pickup).Skins[WeaponParams.AttachmentMaterialSwaps[i].Index] = WeaponParams.AttachmentMaterialSwaps[i].Material;
+			}
+		}
     }
     Destroy();
 }

@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AH208Pistol extends BallisticWeapon;
+class AH208Pistol extends BallisticWeapon HideDropDown CacheExempt;
 
 var(AH208Pistol) name		RDSBone;			// Bone to use for hiding Red Dot Sight
 var(AH208Pistol) name		MuzzBone;			// Bone to use for hiding Compensator

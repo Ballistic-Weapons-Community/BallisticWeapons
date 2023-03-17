@@ -8,17 +8,115 @@ var(AH250Pistol) name		RDSBone;			// Bone to use for hiding Red Dot Sight
 var(AH250Pistol) name		MuzzBone;			// Bone to use for hiding Compensator
 var(AH250Pistol) name		LAMBone;			// Bone to use for hiding LAM
 var(AH250Pistol) name		ScopeBone;			// Bone to use for hiding scope
-var(AH208Pistol) name		BulletBone;			// Bone to use for hiding bullet
+var(AH250Pistol) name		BulletBone;			// Bone to use for hiding bullet
+
+var(AH250Pistol)   bool			bHasLaser;
+var(AH250Pistol)   LaserActor	Laser;
+var(AH250Pistol)   Emitter		LaserDot;
+var(AH250Pistol)   bool			bLaserOn;
+var(AH250Pistol)   bool			bStriking;
+
+var(AH250Pistol) Sound			LaserOnSound;
+var(AH250Pistol) Sound			LaserOffSound;
+
+replication
+{
+	reliable if (Role == ROLE_Authority)
+		bLaserOn, bHasLaser;
+}
 
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 
-simulated function PostBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	Super.PostBeginPlay();
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
 	
-	SetBoneScale (0, 0.0, RDSBone);
-	SetBoneScale (5, 0.0, LAMBone);
+	bHasLaser=False;
+	if (InStr(WeaponParams.LayoutTags, "laser") != -1)
+	{
+		bHasLaser=True;
+	}
+	
+}
+//Laser Code
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
+simulated event PostNetReceive()
+{
+	if (level.NetMode != NM_Client)
+		return;
+	if (bLaserOn != default.bLaserOn)
+	{
+		OnLaserSwitched();
+
+		default.bLaserOn = bLaserOn;
+		ClientSwitchLaser();
+	}
+	Super.PostNetReceive();
+}
+
+function ServerWeaponSpecial(optional byte i)
+{
+	if (!bHasLaser || bServerReloading)
+		return;
+	ServerSwitchLaser(!bLaserOn);
+}
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	bLaserOn = bNewLaserOn;
+	bUseNetAim = default.bUseNetAim || bLaserOn;
+	if (ThirdPersonActor!=None)
+		AH250Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+
+	OnLaserSwitched();
+
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+}
+
+simulated function ClientSwitchLaser()
+{
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+	}
+
+	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
+		PlayIdle();
+
+	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -40,6 +138,121 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	
 	Super.BringUp(PrevWeapon);
+	
+	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
+		Laser = Spawn(class'LaserActor');
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
+	if (bHasLaser && Instigator != None && AIController(Instigator.Controller) != None)
+		ServerSwitchLaser(FRand() > 0.5);
+
+	if ( ThirdPersonActor != None )
+		AH250Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+}
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'M806LaserDot',,,Loc);
+}
+
+simulated function bool PutDown()
+{
+	if (Super.PutDown())
+	{
+		KillLaserDot();
+		if (ThirdPersonActor != None)
+			AH250Attachment(ThirdPersonActor).bLaserOn = false;
+		return true;
+	}
+	return false;
+}
+
+simulated function Destroyed ()
+{
+	default.bLaserOn = false;
+	if (Laser != None)
+		Laser.Destroy();
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	Super.Destroyed();
+}
+
+simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, float Distance)
+{
+	local vector ViewLoc, Outvec, Dir, X, Y, Z;
+	local rotator ViewRot;
+
+	ViewLoc = Instigator.Location + Instigator.EyePosition();
+	ViewRot = Instigator.GetViewRotation();
+	Dir = InVec - ViewLoc;
+	GetAxes(ViewRot, X, Y, Z);
+
+    OutVec.X = Distance / tan(OutFOV * PI / 360);
+    OutVec.Y = (Dir dot Y) * (Distance / tan(InFOV * PI / 360)) / (Dir dot X);
+    OutVec.Z = (Dir dot Z) * (Distance / tan(InFOV * PI / 360)) / (Dir dot X);
+    OutVec = OutVec >> ViewRot;
+
+	return OutVec + ViewLoc;
+}
+
+// Draw a laser beam and dot to show exact path of bullets before they're fired
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc;
+	local Rotator AimDir;
+	local Actor Other;
+
+	if ((ClientState == WS_Hidden) || (!bLaserOn) || Instigator == None || Instigator.Controller == None || Laser==None)
+		return;
+
+	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
+	Loc = GetBoneCoords('tip2').Origin;
+
+	End = Start + Normal(Vector(AimDir))*5000;
+	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+	if (Other == None)
+		HitLocation = End;
+
+	// Draw dot at end of beam
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
+	if (LaserDot != None)
+		LaserDot.SetLocation(HitLocation);
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+
+	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
+	Laser.SetLocation(Loc);
+	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		Laser.SetRotation(Rotator(HitLocation - Loc));
+	else
+	{
+		AimDir = GetBoneRotation('tip2');
+		Laser.SetRotation(AimDir);
+	}
+	Scale3D.X = VSize(HitLocation-Loc)/128;
+	Scale3D.Y = 1;
+	Scale3D.Z = 1;
+	Laser.SetDrawScale3D(Scale3D);
+	Canvas.DrawActor(Laser, false, false, DisplayFOV);
+}
+
+simulated event RenderOverlays( Canvas Canvas )
+{
+	super.RenderOverlays(Canvas);
+	if (!IsInState('Lowered'))
+		DrawLaserSight(Canvas);
 }
 
 simulated function Notify_HideBullet()
@@ -135,10 +348,12 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
+	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
 	AIRating=0.6
 	CurrentRating=0.6
 	ManualLines(0)="High-powered semi-automatic fire."
-	ManualLines(1)="Engages the scope."
+	ManualLines(1)="Engages the sight."
 	ManualLines(2)="Effective at medium range."
 	RDSBone="RedDotSight"
 	MuzzBone="Compensator"
@@ -152,8 +367,8 @@ defaultproperties
 	
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Pitch=0.9)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Pitch=0.9)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Cock',Volume=5.100000,Radius=48.000000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=48.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=48.000000)

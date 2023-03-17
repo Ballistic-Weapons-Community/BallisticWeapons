@@ -26,7 +26,8 @@
 class BallisticWeaponParams extends Object
     DependsOn(FireEffectParams);
 
-var array<WeaponParams>                  Layouts;
+var array<WeaponParams>                  Layouts; //Gun variants, attachment setups, alternate designs
+var array<WeaponCamo>                  Camos; //Gun skins
 
 static simulated final function Initialize(BallisticWeapon BW)
 {
@@ -41,6 +42,9 @@ static simulated final function Initialize(BallisticWeapon BW)
 static simulated final function SetWeaponParams(BallisticWeapon BW)
 {
     BW.WeaponParams = default.Layouts[BW.LayoutIndex];
+	log("BW.CamoIndex is " $BW.CamoIndex);
+	if (BW.CamoIndex != 255)
+		BW.WeaponCamo = default.Camos[BW.CamoIndex];
     BW.OnWeaponParamsChanged();
 }
 

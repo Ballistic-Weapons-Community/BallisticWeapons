@@ -1,4 +1,4 @@
-class XM20AutoLas extends BallisticWeapon;
+class XM20AutoLas extends BallisticWeapon HideDropDown CacheExempt;
 
 var() name			BulletBone;
 
