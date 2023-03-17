@@ -309,7 +309,7 @@ simulated event WeaponTick (float DT)
 	if (SprintControl != None)
 	{
 		//if sprinting or running
-		if ((Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) > 220 && !bRunOffsetting && CurrentWeaponMode != 1) || (!class'BallisticReplicationInfo'.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting) )
+		if ((Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) > 220 && !bRunOffsetting && CurrentWeaponMode != 1) || (class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && SprintControl != None && SprintControl.bSprinting) )
 		{
 			AimComponent.OnPlayerSprint();
 			bRunOffsetting=true;

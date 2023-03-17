@@ -1137,7 +1137,7 @@ defaultproperties
          WinWidth=0.196094
          WinHeight=0.040000
          TabOrder=0
-         OnChange=BallisticTab_ConflictLoadoutPro.InternalOnChange
+         OnChange=MidGameTab_Conflict.InternalOnChange
          OnKeyEvent=cb_WeapLayoutIndexComBox.InternalOnKeyEvent
      End Object
      cb_WeapLayoutIndex=GUIComboBox'BallisticProV55.MidGameTab_Conflict.cb_WeapLayoutIndexComBox'
@@ -1150,7 +1150,7 @@ defaultproperties
          WinWidth=0.196094
          WinHeight=0.040000
          TabOrder=0
-         OnChange=BallisticTab_ConflictLoadoutPro.InternalOnChange
+         OnChange=MidGameTab_Conflict.InternalOnChange
          OnKeyEvent=cb_WeapCamoIndexComBox.InternalOnKeyEvent
      End Object
      cb_WeapCamoIndex=GUIComboBox'BallisticProV55.MidGameTab_Conflict.cb_WeapCamoIndexComBox'
