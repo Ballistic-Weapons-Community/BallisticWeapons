@@ -2031,4 +2031,5 @@ defaultproperties
      GameName="BallisticPro: ArenaMaster"
      Description="One life per round. Don't waste it."
      Acronym="AM"
+	 MapListType="3SPNv3141BW.AM_MapList"
 }
