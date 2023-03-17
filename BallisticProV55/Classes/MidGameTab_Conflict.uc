@@ -312,7 +312,7 @@ function bool LoadLIFromBW(class<BallisticWeapon> BW, GUIComboBox LayoutComboBox
 	//clear old layouts
 	LayoutComboBox.Clear();
 	
-	GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	if (BW.default.ParamsClasses.length < GameStyleIndex)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
@@ -336,7 +336,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 	//clear old layouts
 	CamoComboBox.Clear();
 	
-	GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	if (BW.default.ParamsClasses.length < GameStyleIndex)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');

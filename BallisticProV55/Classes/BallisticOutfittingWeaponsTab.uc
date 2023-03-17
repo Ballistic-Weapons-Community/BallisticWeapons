@@ -616,7 +616,7 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 		return false;
 	}
 	
-	GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	if (BW.default.ParamsClasses.length < GameStyleIndex)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
@@ -649,7 +649,7 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 		return false;
 	}
 	
-	GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	if (LayoutIndex < 0 || BW.default.ParamsClasses.length < GameStyleIndex)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
