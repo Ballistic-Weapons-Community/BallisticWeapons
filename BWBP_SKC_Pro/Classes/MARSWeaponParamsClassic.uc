@@ -233,12 +233,12 @@ defaultproperties
 		LayoutTags="thermal"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=11
 		bNeedCock=True
 		//BringUpTime=0.6
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -259,11 +259,11 @@ defaultproperties
 		LayoutTags="thermal"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -286,11 +286,11 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -313,11 +313,11 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
