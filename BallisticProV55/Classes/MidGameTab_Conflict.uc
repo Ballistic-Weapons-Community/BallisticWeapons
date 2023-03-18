@@ -15,6 +15,7 @@ const SUB_SECTION_INDEX = 1;
 
 var bool					bInitialized; // showpanel
 var bool					bLoadInitialized;
+var bool					bCamosInstalled;
 
 var int                     SectionSizes[2];
 var int                     SpaceUsed[2];
@@ -83,6 +84,7 @@ function InitPanel()
 function Initialize()
 {
     local eFontScale FS;
+	local Material M;
 
 	if (bInitialized)
 		return;
@@ -103,6 +105,12 @@ function Initialize()
 		SetTimer(0.05, true);
 	else
 		OnLRIAcquired();
+
+	/*M = Material(DynamicLoadObject("BWBP_Camos_Tex.SARCamos.AAS-Circle", class'Material')); //Todo, replace with a canary
+	if (M != None)
+	{
+		bCamosInstalled=True;
+	}*/
 
 	bInitialized = true;
 }
@@ -321,7 +329,10 @@ function bool LoadLIFromBW(class<BallisticWeapon> BW, GUIComboBox LayoutComboBox
 	
 	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
 	{
-		LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+		if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName == "")
+			LayoutComboBox.AddItem("Layout: "$string(i));
+		else
+			LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
 	}
 	
 	return true;
@@ -335,6 +346,12 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 	local array<int> AllowedCamos;
 	//clear old layouts
 	CamoComboBox.Clear();
+	
+	/*if (!bCamosInstalled)
+	{
+		CamoComboBox.AddItem("Not Installed",, "0");
+		return true;
+	}*/
 	
 	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	if (BW.default.ParamsClasses.length < GameStyleIndex)
@@ -357,6 +374,9 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
 		}
 	}
+	
+	if (CamoComboBox.ItemCount() == 0)
+		CamoComboBox.AddItem("None",, "255");
 	
 	if (CamoComboBox.ItemCount() > 1)
 		CamoComboBox.AddItem("Random",, "255");
@@ -723,6 +743,8 @@ function InternalOnChange(GUIComponent Sender)
 		{
 			tb_Desc.SetContent(class'BallisticWeaponClassInfo'.static.GetClassDescription(li_Weapons.SelectedText()));
 			Pic_Weapon.Image = None;
+			cb_WeapLayoutIndex.SetVisibility(false);
+			cb_WeapCamoIndex.SetVisibility(false);
 			return;
 		}
 
@@ -740,6 +762,8 @@ function InternalOnChange(GUIComponent Sender)
 				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
 				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapCamoIndex);
 				cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+				cb_WeapLayoutIndex.SetVisibility(true);
+				cb_WeapCamoIndex.SetVisibility(true);
 				bUpdatingWeapon=false;
 				return;
 			}
@@ -747,6 +771,8 @@ function InternalOnChange(GUIComponent Sender)
 			{
 				Pic_Weapon.Image = class<ConflictItem>(li_Weapons.GetObject()).default.Icon;
 				tb_Desc.SetContent(class<ConflictItem>(li_Weapons.GetObject()).default.Description);
+				cb_WeapLayoutIndex.SetVisibility(false);
+				cb_WeapCamoIndex.SetVisibility(false);
 				return;
 			}
 			return;
@@ -766,7 +792,11 @@ function InternalOnChange(GUIComponent Sender)
 					tb_Desc.SetContent(BW.static.GetShortManual());
 					li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
 					LoadLIFromBW(BW, cb_WeapLayoutIndex);
+					LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
 					LoadCIFromBW(BW, 0, cb_WeapCamoIndex);
+					CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
+					cb_WeapLayoutIndex.SetVisibility(true);
+					cb_WeapCamoIndex.SetVisibility(true);
 					bUpdatingWeapon=false;
                 }
             }
@@ -774,23 +804,23 @@ function InternalOnChange(GUIComponent Sender)
 	}	
 	else if (Sender == cb_WeapLayoutIndex ) //todo
 	{
-		if (lb_Weapons.List.GetObject() != None && class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None && !bUpdatingWeapon)
+		if (li_Weapons.GetObject() != None && class<BallisticWeapon>(li_Weapons.GetObject()) != None && !bUpdatingWeapon)
 		{
-			LayoutIndexList[lb_Weapons.List.Index] = cb_WeapLayoutIndex.getIndex();
-			if (class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None)
+			LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
+			if (class<BallisticWeapon>(li_Weapons.GetObject()) != None)
 			{
-				BW = class<BallisticWeapon>(lb_Weapons.List.GetObject());
-				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapCamoIndex);
+				BW = class<BallisticWeapon>(li_Weapons.GetObject());
+				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index], cb_WeapCamoIndex);
 			}
-			log("Setting layout index of gun at loc "$lb_Weapons.List.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
+			log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
 		}
 	}	
 	else if (Sender == cb_WeapCamoIndex )
 	{
-		if (lb_Weapons.List.GetObject() != None && class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None && !bUpdatingWeapon)
+		if (li_Weapons.GetObject() != None && class<BallisticWeapon>(li_Weapons.GetObject()) != None && !bUpdatingWeapon)
 		{
-			CamoIndexList[lb_Weapons.List.Index] = cb_WeapCamoIndex.getIndex();
-			log("Setting camo index of gun at loc "$lb_Weapons.List.Index$" to "$cb_WeapCamoIndex.getIndex()); 
+			CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
+			log("Setting camo index of gun at loc "$li_Weapons.Index$" to "$cb_WeapCamoIndex.getIndex()); 
 		}
 	}
 }

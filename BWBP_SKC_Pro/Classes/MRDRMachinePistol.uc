@@ -240,7 +240,7 @@ defaultproperties
 	Priority=143
 	HudColor=(B=150,G=150,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=2
+	InventoryGroup=3
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.MRDRPickup'
 	PlayerViewOffset=(X=-8.000000,Y=8.000000,Z=-8.000000)

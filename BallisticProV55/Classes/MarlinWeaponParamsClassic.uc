@@ -188,8 +188,6 @@ defaultproperties
 		//Layout core
 		LayoutName="Gauss Mod"
 		Weight=5
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinK-Shiny",Index=1)
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		//Function

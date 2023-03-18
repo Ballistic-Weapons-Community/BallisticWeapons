@@ -97,6 +97,9 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		LayoutName="Standard"
+		Weight=30
 		CockAnimRate=1.250000
 		SightPivot=(Pitch=200)
 		SightOffset=(Y=0.050000,Z=12.130000)
@@ -110,5 +113,52 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+	
+	//Camos
+	Begin Object Class=WeaponCamo Name=M50_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M50_Black
+		Index=1
+		CamoName="Black"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinA-D',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50.M50Laser',Index=4)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50Gren-D',Index=5)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50.M900Grenade',Index=6)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M50_Jungle
+		Index=2
+		CamoName="Jungle"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M50Camos.M30A2-SATiger",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M50Camos.M30A2-SBTiger",Index=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M50_Gold
+		Index=3
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Main1_S1",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Main2_S1",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Laser_S1",Index=4)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Main3_S1",Index=5)
+	End Object
+	
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	Camos(0)=WeaponCamo'M50_Silver'
+	Camos(1)=WeaponCamo'M50_Black'
+	Camos(2)=WeaponCamo'M50_Jungle'
+	Camos(3)=WeaponCamo'M50_Gold'
+	Camos(4)=WeaponCamo'M50A3_Black'
+	Camos(5)=WeaponCamo'M50A3_Desert'
 }

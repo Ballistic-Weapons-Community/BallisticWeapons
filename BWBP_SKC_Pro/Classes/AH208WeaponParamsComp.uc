@@ -64,7 +64,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
 		PlayerJumpFactor=1.000000
 		InventorySize=3
 		SightMoveSpeedFactor=1

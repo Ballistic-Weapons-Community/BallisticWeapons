@@ -91,7 +91,13 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-    Begin Object Class=WeaponParams Name=ArenaParams
+    Begin Object Class=WeaponParams Name=ArenaParams_Scope
+		//Layout core
+		LayoutName="Scoped"
+		Weight=30
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
+		//Function
         CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		SightingTime=0.500000
@@ -99,14 +105,19 @@ defaultproperties
         MagAmmo=24
         InventorySize=6
         ZoomType=ZT_Logarithmic
-        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
 
-    Begin Object Class=WeaponParams Name=ArenaRDSParams
+    Begin Object Class=WeaponParams Name=ArenaParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		Weight=20
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		SightingTime=0.350000
@@ -116,12 +127,62 @@ defaultproperties
 		ViewPivot=(Pitch=384)
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
-        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
-    Layouts(1)=WeaponParams'ArenaRDSParams'
+		
+	//Camos
+	Begin Object Class=WeaponCamo Name=M46_Tan
+		Index=0
+		CamoName="Desert"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M46_Jungle
+		Index=1
+		CamoName="Jungle"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoGreenMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoGreenClip",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoGreenGrenadeLauncher",Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M46_Blue
+		Index=2
+		CamoName="Ocean"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoBlueMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M46Camos.AL_PulseRifle_Clip",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoBlueGrenadeLauncher",Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M46_Black
+		Index=3
+		CamoName="Stealth"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-GrayMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-GrayClip",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-GrayGrenadeLauncher",Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+	End Object
+	
+	Layouts(0)=WeaponParams'ArenaParams_Scope'
+    Layouts(1)=WeaponParams'ArenaParams_RDS'
+	Camos(0)=WeaponCamo'M46_Tan'
+    Camos(1)=WeaponCamo'M46_Jungle'
+    Camos(2)=WeaponCamo'M46_Blue'
+    Camos(3)=WeaponCamo'M46_Black'
 }
