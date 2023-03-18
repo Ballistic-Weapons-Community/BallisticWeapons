@@ -72,7 +72,7 @@ var private Rotator				AimOffset;			    // Extra Aim offset. Set NewAimOffset an
 var private Rotator				NewAimOffset;		    // This is what AimOffset should be and is adjusted for sprinting and so on
 var private Rotator				OldAimOffset;		    // AimOffset before it started shifting. Used for interpolationg AimOffset
 var	private float				AimOffsetTime;		    // Time when AimOffset should reach NewAimOffset. Used for interpolationg AimOffset
-// var private float               VelocityAimAdjustMult;       // Multiplier on AimAdjustTime, set by ADS
+// var private float            VelocityAimAdjustMult;       // Multiplier on AimAdjustTime, set by ADS
 
 var private Rotator				LastViewPivot;			// Aim saved between ApplyAimToView calls, used to find delta aim
 var private float               ViewBindFactor;         // Amount to bind aim offsetting to view
@@ -96,6 +96,7 @@ var	private float				NewLongGunFactor;	    // What LongGunFactor should be. Set 
 //-----------------------------------------------------------------------------
 // Displacement
 //-----------------------------------------------------------------------------
+var private bool				bSprintOffset;			// Sprint offset is active.
 var	private float				DisplaceFactor;         // Current factor for aim displacement.
 
 //=============================================================
@@ -243,6 +244,8 @@ final simulated function Cleanup()
     DisplaceFactor = 0;
     DisplaceEndTime = 0;
     DisplaceDurationMult = 0;
+
+	bSprintOffset=False;
 }
 
 //=============================================================
@@ -337,8 +340,10 @@ final simulated function OnPlayerJumped()
     bForceReaim=true;
 }
 
-final simulated function OnPlayerSprint()
+final simulated function OnPlayerSprint(bool bSprint)
 {
+	bSprintOffset = bSprint;
+
     SetNewAimOffset(CalcNewAimOffset(), Params.OffsetAdjustTime);
     Reaim(0.05, AimAdjustTime, Params.SprintChaos);
 }
@@ -444,7 +449,7 @@ final simulated function Rotator CalcNewAimOffset()
     if (BW.IsHoldingMelee())
         return R;
 
-    if (BW.SprintActive())
+    if (bSprintOffset)
 	{
 		R.Pitch += Params.SprintOffset.Pitch;
 		if (BW.Instigator.Controller.Handedness < 0)

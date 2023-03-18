@@ -167,7 +167,7 @@ var() config array<SpecialInfoEntry> SpecialInfo; 			// A list of special info s
 //=============================================================================
 var Object.Color  					MagEmptyColor;			//used by Simple XHairs if mag is empty
 var Object.Color					CockingColor;			//used by Simple XHairs when weapon needs cocking
-
+var Object.Color  					CrosshairColor;			//used by Simple XHairs
 //=============================================================================
 // END STATIC DEFINITIONS
 //=============================================================================
@@ -214,6 +214,9 @@ var		bool						bStandardCrosshairOff;			// True if ScopeView has hidden the UT20
 // Movement speed
 //-----------------------------------------------------------------------------
 var	  bool							PlayerSpeedUp;					// Player speed has been altered by this weapon
+// Azarael - fixed the sprint draw problem.
+// this class should now be made sprint-agnostic where possible
+// broadcasting owner event on weapon change should do it
 var   BCSprintControl				SprintControl;					// A low, poor sort of hack to draw Sprint info on the HUD
 //-----------------------------------------------------------------------------
 // Melee
@@ -2700,7 +2703,6 @@ function ServerMeleeHold()
 	MeleeFireMode.HoldStartTime = Level.TimeSeconds;
 	MeleeFireMode.PlayPreFire();
 	GunLength = 1;
-	AddSpeedModification(1.05);
 	bPreventReload = True;
 }
 
@@ -2743,7 +2745,6 @@ final function ServerMeleeRelease()
 		MeleeFireMode.PlayFiring();
 	else MeleeFireMode.ServerPlayFiring();
 	MeleeFireMode.DoFireEffect();
-	RemoveSpeedModification(1.15);
 	GunLength = default.GunLength;
 	//Trace, damage code
 	//Fire delay
@@ -4718,7 +4719,7 @@ function OwnerEvent(name EventName)
 		Inv.OwnerEvent(EventName);
 }
 
-simulated function PlayerSprint (bool bSprinting)
+simulated function PlayerSprint(bool bSprinting)
 {
 	if (!class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting)
 		return;
@@ -4729,7 +4730,7 @@ simulated function PlayerSprint (bool bSprinting)
 	if (bAimDisabled)
 		return;
 
-	AimComponent.OnPlayerSprint();
+	AimComponent.OnPlayerSprint(bSprinting);
 }
 
 //Hold scope when dodging
@@ -4926,15 +4927,104 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 }
 
-//Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
-simulated function DrawCrosshairs(canvas C)
+simulated function DrawSimpleCrosshair(Canvas C)
 {
-	local IntBox	Size;
-	local NonDefCrosshairCfg CHCfg;
-	local float			ScaleFactor;
 	local float 		ShortBound, LongBound;
 	local float 		OffsetAdjustment;
 	local Color 		SavedDrawColor;
+
+	if (!bNoMag && MagAmmo == 0)
+	{
+		SavedDrawColor = MagEmptyColor;
+		//SavedDrawColor.A = class'HUD'.default.CrosshairColor.A;
+	}
+
+	else if (bNeedCock)
+	{
+		SavedDrawColor = CockingColor;
+		//SavedDrawColor.A = class'HUD'.default.CrosshairColor.A;
+	}
+
+	else 
+		SavedDrawColor = CrosshairColor;
+		//SavedDrawColor = class'HUD'.default.CrosshairColor;
+
+	C.DrawColor = SavedDrawColor;
+
+	ShortBound = 2;
+	LongBound= 10;
+
+	if (!bScopeView)
+		OffsetAdjustment = AimComponent.CalcCrosshairOffset(C);
+
+	//black
+	//hor
+	//C.SetDrawColor(0,0,0,SavedDrawColor.A);
+
+	if (!bScopeView)
+	{
+		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+	
+		C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+	
+		//ver
+		C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+	
+		C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+	
+		/*
+		//centre square
+		if (bDrawCrosshairDot)
+		{
+			C.DrawColor.A = SavedDrawColor.A;
+			C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
+			C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
+		}
+		*/
+	}
+
+	/*
+	//green
+	C.DrawColor = SavedDrawColor;
+
+	if (!bScopeView)
+	{
+		//hor
+		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+	
+		C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+	
+		//ver
+		C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+	
+		C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+	
+		if (bDrawCrosshairDot)
+		{
+			C.DrawColor.A = SavedDrawColor.A;
+			C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
+			C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+		}
+	}
+	*/
+
+	C.SetDrawColor(255, 255, 255, 255);
+}
+
+//Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
+simulated function DrawCrosshairs(canvas C)
+{
+	local IntBox				Size;
+	local NonDefCrosshairCfg 	CHCfg;
+	local float					ScaleFactor;
 		
 	ScaleFactor = C.ClipX / 1600;
 
@@ -4944,118 +5034,42 @@ simulated function DrawCrosshairs(canvas C)
 	
 	if (bDrawSimpleCrosshair)
 	{
-		if (!bNoMag && MagAmmo == 0)
-		{
-			SavedDrawColor = MagEmptyColor;
-			SavedDrawColor.A = class'HUD'.default.CrosshairColor.A;
-		}
-
-		else if (bNeedCock)
-		{
-			SavedDrawColor = CockingColor;
-			SavedDrawColor.A = class'HUD'.default.CrosshairColor.A;
-		}
-
-		else SavedDrawColor = class'HUD'.default.CrosshairColor;
-
-		C.DrawColor = SavedDrawColor;
-
-		ShortBound = 2;
-		LongBound= 10;
-
-		if (!bScopeView)
-			OffsetAdjustment = AimComponent.CalcCrosshairOffset(C);
-
-		//black
-		//hor
-		C.SetDrawColor(0,0,0,SavedDrawColor.A);
-
-		if (!bScopeView)
-		{
-			C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-		
-			C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-		
-			//ver
-			C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-		
-			C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-		
-			//centre square
-			if (bDrawCrosshairDot)
-			{
-				C.DrawColor.A = SavedDrawColor.A;
-				C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
-				C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
-			}
-		}
-
-		//green
-		C.DrawColor = SavedDrawColor;
-
-		if (!bScopeView)
-		{
-			//hor
-			C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-		
-			C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-		
-			//ver
-			C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-		
-			C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-		
-			if (bDrawCrosshairDot)
-			{
-				C.DrawColor.A = SavedDrawColor.A;
-				C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-				C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
-			}
-		}
-		C.SetDrawColor(255, 255, 255, 255);
+		DrawSimpleCrosshair(C);
+		return;
 	}
+
+	if (bGlobalCrosshair)
+		CHCfg = class'BallisticWeapon'.default.NDCrosshairCfg;
 	else
+		CHCfg = NDCrosshairCfg;
+	
+	//Work out the exact size of the crosshair
+	Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+	Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+	Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+	Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+
+	// Draw primary
+	if (CHCfg.Pic1 != None)
 	{
-		if (bGlobalCrosshair)
-			CHCfg = class'BallisticWeapon'.default.NDCrosshairCfg;
-		else
-			CHCfg = NDCrosshairCfg;
-		
-		//Work out the exact size of the crosshair
-		Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
 
-		// Draw primary
-		if (CHCfg.Pic1 != None)
-		{
+		C.DrawColor = CHCfg.Color1;
+		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.3;
+		C.SetPos((C.ClipX / 2) - (Size.X1/2), (C.ClipY / 2) - (Size.Y1/2));
 
-			C.DrawColor = CHCfg.Color1;
-			if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.3;
-			C.SetPos((C.ClipX / 2) - (Size.X1/2), (C.ClipY / 2) - (Size.Y1/2));
-
-			C.DrawTile (CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
-		}
-		
-		// Draw    secondary
-		if (CHCfg.Pic2 != None)
-		{
-			C.DrawColor = CHCfg.Color2;
-			if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.5;
-			C.SetPos((C.ClipX / 2) - (Size.X2/2), (C.ClipY / 2) - (Size.Y2/2));
-
-			C.DrawTile (CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
-		}
+		C.DrawTile (CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
 	}
+	
+	// Draw secondary
+	if (CHCfg.Pic2 != None)
+	{
+		C.DrawColor = CHCfg.Color2;
+		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.5;
+		C.SetPos((C.ClipX / 2) - (Size.X2/2), (C.ClipY / 2) - (Size.Y2/2));
+
+		C.DrawTile (CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
+	}
+
 }
 
 // End render stuff ----------------------------------------------------------------------------------------------------
@@ -5474,7 +5488,7 @@ defaultproperties
      NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000)
      NDCrosshairChaosFactor=0.400000
 	 NDCrosshairScaleFactor=1.000000
-	 bDrawCrosshairDot=True
+	 bDrawCrosshairDot=False
 	 bDrawSimpleCrosshair=True
 	 
      bUseSights=True
@@ -5490,8 +5504,9 @@ defaultproperties
      ZoomStages=2
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
-     MagEmptyColor=(B=50,G=50,R=255,A=255)
-     CockingColor=(B=50,G=175,R=255,A=255)
+     MagEmptyColor=(B=50,G=50,R=255,A=192)
+     CockingColor=(B=50,G=175,R=255,A=192)
+	 CrosshairColor=(B=200,G=225,R=255,A=192)
      GunLength=64.000000
      LongGunPivot=(Pitch=-4000,Yaw=-12000)
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
