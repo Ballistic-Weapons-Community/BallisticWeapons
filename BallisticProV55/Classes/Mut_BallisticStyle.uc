@@ -35,6 +35,7 @@ simulated function PreBeginPlay()
 
 defaultproperties
 {
+	GroupName="Ballistic"
 	InventoryModes(0)=(Name="Conflict",MutatorClassName="BallisticProV55.Mut_ConflictLoadout")
 	InventoryModes(1)=(Name="Outfitting",MutatorClassName="BallisticProV55.Mut_Outfitting")
 	InventoryModes(2)=(Name="Evolution",MutatorClassName="BallisticProV55.Mut_Loadout")
