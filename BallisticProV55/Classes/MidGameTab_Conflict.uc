@@ -743,6 +743,8 @@ function InternalOnChange(GUIComponent Sender)
 		{
 			tb_Desc.SetContent(class'BallisticWeaponClassInfo'.static.GetClassDescription(li_Weapons.SelectedText()));
 			Pic_Weapon.Image = None;
+			cb_WeapLayoutIndex.SetVisibility(false);
+			cb_WeapCamoIndex.SetVisibility(false);
 			return;
 		}
 
@@ -760,6 +762,8 @@ function InternalOnChange(GUIComponent Sender)
 				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
 				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapCamoIndex);
 				cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+				cb_WeapLayoutIndex.SetVisibility(true);
+				cb_WeapCamoIndex.SetVisibility(true);
 				bUpdatingWeapon=false;
 				return;
 			}
@@ -767,6 +771,8 @@ function InternalOnChange(GUIComponent Sender)
 			{
 				Pic_Weapon.Image = class<ConflictItem>(li_Weapons.GetObject()).default.Icon;
 				tb_Desc.SetContent(class<ConflictItem>(li_Weapons.GetObject()).default.Description);
+				cb_WeapLayoutIndex.SetVisibility(false);
+				cb_WeapCamoIndex.SetVisibility(false);
 				return;
 			}
 			return;
@@ -789,6 +795,8 @@ function InternalOnChange(GUIComponent Sender)
 					LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
 					LoadCIFromBW(BW, 0, cb_WeapCamoIndex);
 					CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
+					cb_WeapLayoutIndex.SetVisibility(true);
+					cb_WeapCamoIndex.SetVisibility(true);
 					bUpdatingWeapon=false;
                 }
             }
