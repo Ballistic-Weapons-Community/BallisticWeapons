@@ -8,14 +8,15 @@ class XMV500Pack extends Actor;
 
 defaultproperties
 {
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMv850backpack'
-     bOnlyDrawIfAttached=True
-     RemoteRole=ROLE_None
-     RelativeLocation=(X=15.000000,Y=7.000000)
-     RelativeRotation=(Yaw=-16384,Roll=16384)
-     DrawScale=0.230000
-     Skins(0)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
-     Skins(1)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
-     Skins(2)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
+	DrawType=DT_StaticMesh
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMv850backpack'
+	bOnlyDrawIfAttached=True
+	RemoteRole=ROLE_None
+	RelativeLocation=(X=15.000000,Y=7.000000)
+	RelativeRotation=(Yaw=-16384,Roll=16384)
+	DrawScale=0.230000
+	// hard reference to assets in an offline package - please fix
+	//Skins(0)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
+	//Skins(1)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
+	//Skins(2)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
 }

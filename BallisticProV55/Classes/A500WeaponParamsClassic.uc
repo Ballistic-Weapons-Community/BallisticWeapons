@@ -223,7 +223,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=1f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Camos_Tex.A500Camos.SSW_Main',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A500Camos.SSW_Main",Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Lighter.LightGunSkin',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Lighter.LightGlassShader',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.DarkStar.DarkStarDiamond_SD',Index=4)

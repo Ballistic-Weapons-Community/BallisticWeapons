@@ -270,8 +270,9 @@ function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (Instigator!=None && Instigator.IsLocallyControlled())
-		Shader'BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD'.FallbackMaterial = Texture'BWBP_Camos_Tex.XMVCamos.XMV500_Barrels';
+
+	//if (Instigator!=None && Instigator.IsLocallyControlled())
+	//	Shader'BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD'.FallbackMaterial = Texture'BWBP_Camos_Tex.XMVCamos.XMV500_Barrels';
 }
 
 // Add extra Ballistic info to the debug readout
