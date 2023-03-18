@@ -159,6 +159,10 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		LayoutName="Caustic Green"
+		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		Weight=30
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -176,7 +180,10 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A500Camos.SkrithRocketLauncher_Main",Index=1)
-		
+		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
@@ -193,7 +200,10 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A500Camos.Dragon_Main",Index=1)
-		
+		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
@@ -208,8 +218,15 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-SSS
 		LayoutName="Reverse Engineered"
 		Weight=1
-		LayoutMesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithSuperWeapon'
-		
+		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=1f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Camos_Tex.A500Camos.SSW_Main',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Lighter.LightGunSkin',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Lighter.LightGlassShader',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.DarkStar.DarkStarDiamond_SD',Index=4)
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20

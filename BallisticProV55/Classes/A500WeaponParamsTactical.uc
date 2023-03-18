@@ -96,7 +96,11 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-        ReloadAnimRate=1.250000
+        WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
+		ReloadAnimRate=1.250000
 		SightPivot=(Pitch=512)
 		SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
 		ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
