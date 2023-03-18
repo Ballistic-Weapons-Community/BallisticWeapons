@@ -46,12 +46,12 @@ defaultproperties
 		Speed=2500.000000
 		MaxSpeed=2500.000000
 		AccelSpeed=0.000000
-		Damage=150
+		Damage=80
 		DamageRadius=768.000000
 		MomentumTransfer=-30000.000000
-		MaxDamageGainFactor=0.6
-		DamageGainStartTime=0.05
-		DamageGainEndTime=0.25
+		MaxDamageGainFactor=0
+		DamageGainStartTime=0
+		DamageGainEndTime=0
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-FireBig',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1024.000000
@@ -61,7 +61,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalBombPrimaryFireParams
 		FireInterval=1.350000
-		AmmoPerFire=16
+		AmmoPerFire=35
 		FireAnim="Fire"
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'TacticalBombPrimaryEffectParams'
@@ -195,7 +195,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalFastAimParams
-    	AimSpread=(Min=64,Max=378)
+    	AimSpread=(Min=256,Max=1024)
         ADSMultiplier=0.35
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
@@ -203,7 +203,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalBombAimParams
-		AimSpread=(Min=128,Max=1024)
+		AimSpread=(Min=512,Max=2048)
         ADSMultiplier=0.2
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
@@ -211,14 +211,14 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalLustAimParams
-		AimSpread=(Min=128,Max=1024)
+		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalNukeAimParams
-		AimSpread=(Min=128,Max=1024)
+		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300

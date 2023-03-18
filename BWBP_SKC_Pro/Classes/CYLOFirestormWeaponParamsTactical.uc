@@ -44,7 +44,9 @@ defaultproperties
 		TraceCount=6
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
-		Damage=15
+		Damage=12
+		HeadMult=1.5f
+        LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
@@ -124,7 +126,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=64,Max=768)
+		AimSpread=(Min=512,Max=1024)
 		ADSMultiplier=0.35
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
 		AimAdjustTime=0.400000

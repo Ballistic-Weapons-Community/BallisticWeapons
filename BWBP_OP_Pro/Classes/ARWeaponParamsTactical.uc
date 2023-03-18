@@ -13,9 +13,9 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=9
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=8
+        HeadMult=1.5f
+        LimbMult=0.85f
 		DamageType=Class'BWBP_OP_Pro.DT_ARShotgun'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_ARShotgunHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_ARShotgun'
@@ -24,7 +24,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=256.000000
+		Recoil=384.000000
 		Chaos=0.5
 		BotRefireRate=0.900000
 		WarnTargetPct=0.5	
@@ -91,7 +91,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=64,Max=768)
+		AimSpread=(Min=512,Max=1536)
         ADSMultiplier=0.6
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-1024,Yaw=-1024)

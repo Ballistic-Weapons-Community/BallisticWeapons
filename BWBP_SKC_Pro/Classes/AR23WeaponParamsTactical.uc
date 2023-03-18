@@ -54,7 +54,9 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=9
+		Damage=10
+		HeadMult=1.5f
+        LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23Flak'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AR23Flak'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23Flak'
@@ -66,7 +68,7 @@ defaultproperties
 		FlashScaleFactor=2
 		Recoil=768.000000
 		Chaos=0.25
-		Inaccuracy=(X=512,Y=768)
+		Inaccuracy=(X=256,Y=256)
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Misc.FLAK-Fire',Volume=1.800000)

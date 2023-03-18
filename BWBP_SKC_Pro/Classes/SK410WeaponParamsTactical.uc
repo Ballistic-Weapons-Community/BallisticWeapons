@@ -10,12 +10,12 @@ defaultproperties
         TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=788,Max=1838)
         RangeAtten=0.35
-        TraceCount=7
+        TraceCount=6
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
         ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
         Damage=10
-        HeadMult=2.0f
-        LimbMult=0.75f
+        HeadMult=1.5f
+        LimbMult=0.85f
         DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'

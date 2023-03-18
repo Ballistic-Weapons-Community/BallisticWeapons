@@ -814,9 +814,21 @@ exec simulated function WeaponSpecial(optional byte i)
 			else
 					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
 			AdjustThermalView(bThermal);
+
+
 			if (!bScopeView)
 				PlayerController(InstigatorController).ClientMessage("Activated infrared targeting scope.");
+
+			// I don't have time to do this refactor atm
+			if (class'BallisticReplicationInfo'.static.IsTactical())
+			{
+				if (!bScopeView)
+					PlayerController(InstigatorController).ClientMessage("Activated standard scope.");
+				return;
+			}
+
 			bMeatVision = !bMeatVision;
+
 			if (bMeatVision)
 					class'BUtil'.static.PlayFullSound(self, NVOnSound);
 			else

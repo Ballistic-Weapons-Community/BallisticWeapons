@@ -16,8 +16,8 @@ defaultproperties
 		BotRefireRate=0.5
      	WarnTargetPct=0.300000
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
-     	Speed=6000.000000
-     	MaxSpeed=6000.000000
+     	Speed=4200.000000
+     	MaxSpeed=4200.000000
 		Damage=150
         ImpactDamage=150
      	DamageRadius=450.000000
@@ -25,9 +25,9 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.400000
+		FireInterval=0.600000
 		bCockAfterFire=True
-		FireAnimRate=1.5
+		FireAnimRate=1
 		AimedFireAnim="SightFire"
 		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -56,9 +56,9 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.800000
+		FireInterval=1.200000
 		bCockAfterFire=True
-		FireAnimRate=2.00000
+		FireAnimRate=1.5
 		AimedFireAnim="SightFire"
 		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
 	End Object
@@ -78,7 +78,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=64,Max=512)
+		AimSpread=(Min=512,Max=1024)
         ADSMultiplier=0.5
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpChaos=0.200000

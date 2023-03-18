@@ -10,13 +10,13 @@ defaultproperties
 		TraceRange=(Min=2560.000000,Max=3072.000000)
         DecayRange=(Min=1000,Max=3000)
 		RangeAtten=0.25
-		TraceCount=10
+		TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		MaxHits=14 // inflict maximum of 156 damage to a single target
-		Damage=13
-        HeadMult=2
-        LimbMult=0.67f
+		MaxHits=13 // inflict maximum of 130 damage to a single target, before modifiers
+		Damage=10
+        HeadMult=1.5f
+        LimbMult=0.85f
 		PushbackForce=100.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'

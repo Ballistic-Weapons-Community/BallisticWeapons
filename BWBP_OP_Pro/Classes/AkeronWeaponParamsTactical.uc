@@ -9,10 +9,10 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocket'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
-		Speed=5500.000000
-		MaxSpeed=35000.000000
-		AccelSpeed=100000.000000
-		Damage=150
+		Speed=4200.000000
+		MaxSpeed=4200.000000
+		AccelSpeed=0.000000
+		Damage=90
 		DamageRadius=400.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
@@ -24,7 +24,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.70000
+		FireInterval=0.85000
 		FireEndAnim=
 		FireAnimRate=1.1	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams'
@@ -33,10 +33,10 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryBarrageEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocket'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
-		Speed=3000.000000
-		MaxSpeed=20000.000000
-		AccelSpeed=100000.000000
-		Damage=150
+		Speed=4200.000000
+		MaxSpeed=4200.000000
+		AccelSpeed=0.000000
+		Damage=90
 		DamageRadius=400.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
@@ -48,8 +48,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryBarrageFireParams
-		FireInterval=0.250000
-		BurstFireRateFactor=0.3
+		FireInterval=0.45000
+		BurstFireRateFactor=0.5
 		FireEndAnim=
 		FireAnimRate=1.1	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryBarrageEffectParams'
@@ -65,7 +65,7 @@ defaultproperties
 		Speed=4000.000000
 		MaxSpeed=35000.000000
 		AccelSpeed=100000.000000
-		Damage=150
+		Damage=90
 		DamageRadius=400.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
@@ -97,7 +97,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=64,Max=768)
+		AimSpread=(Min=512,Max=1536)
 		ADSMultiplier=0.50000
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-1500)
@@ -120,7 +120,7 @@ defaultproperties
 		InitialWeaponMode=1
 		PlayerSpeedFactor=0.95
         DisplaceDurationMult=1.25
-		InventorySize=5
+		InventorySize=6
 		SightMoveSpeedFactor=0.5
 		SightingTime=0.5
 		MagAmmo=9

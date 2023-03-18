@@ -50,9 +50,9 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=9
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=8
+        HeadMult=1.5f
+        LimbMult=0.85f
 		PushbackForce=150.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
@@ -96,7 +96,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.35
-		AimSpread=(Min=64,Max=768)
+		AimSpread=(Min=512,Max=1024)
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
 		AimAdjustTime=0.400000
 		ChaosDeclineTime=0.5

@@ -12,12 +12,12 @@ defaultproperties
         DecayRange=(Min=1050,Max=2100)
 		WaterTraceRange=5000.0
 		RangeAtten=0.45
-		TraceCount=10
+		TraceCount=7
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=12
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=10
+        HeadMult=1.5f
+        LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -43,12 +43,12 @@ defaultproperties
 		TraceRange=(Min=3000.000000,Max=5000.000000)
 		WaterTraceRange=5000.0
 		RangeAtten=0.45
-		TraceCount=10
+		TraceCount=7
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=12
+		Damage=8
         HeadMult=2.0f
-        LimbMult=0.75f
+        LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -82,7 +82,7 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
-		Damage=10
+		Damage=5
         HeadMult=1
         LimbMult=1
 		DamageType=Class'BWBP_SKC_Pro.DT_Mk781Electro'
@@ -115,7 +115,7 @@ defaultproperties
 		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
 		Speed=5500.000000
 		MaxSpeed=5500.000000
-		Damage=150
+		Damage=80
 		DamageRadius=378.000000
 		MomentumTransfer=70000.000000
 		HeadMult=1.0

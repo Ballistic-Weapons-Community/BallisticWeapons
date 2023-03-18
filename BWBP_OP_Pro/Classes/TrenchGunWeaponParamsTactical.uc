@@ -10,13 +10,13 @@ defaultproperties
 		TraceRange=(Min=2048.000000,Max=2560.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.25
-		TraceCount=10
+		TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
-		MaxHits=14 // inflict maximum of 156 damage to a single target
-		Damage=15
-        HeadMult=2
-        LimbMult=0.67f
+		MaxHits=8 // inflict maximum of 156 damage to a single target
+		Damage=10
+        HeadMult=1.5f
+        LimbMult=0.85f
 		Inaccuracy=(X=220,Y=220)
 		DamageType=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
@@ -54,7 +54,7 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
 		MaxHits=0
-		Damage=10
+		Damage=5
         HeadMult=1
         LimbMult=1
 		Inaccuracy=(X=150,Y=150)

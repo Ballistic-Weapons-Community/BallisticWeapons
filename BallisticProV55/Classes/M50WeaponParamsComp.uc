@@ -35,12 +35,14 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.M50Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=3500.000000
-		Damage=110
-		DamageRadius=512.000000
+		Speed=4200.000000 // 80 m/s
+		MaxSpeed=4200.000000
+		Damage=100
+        ImpactDamage=200
+		DamageRadius=1050.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	

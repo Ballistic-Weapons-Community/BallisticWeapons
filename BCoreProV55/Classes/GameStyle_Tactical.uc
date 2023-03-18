@@ -30,7 +30,7 @@ defaultproperties
 	PlayerSuperHealthMax=200
 
 	bShieldRegeneration=False
-	StartingShield=50
+	StartingShield=25
 	PlayerShieldMax=100
 
 	bPlayerDeceleration=True

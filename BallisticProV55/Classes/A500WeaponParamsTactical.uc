@@ -12,7 +12,7 @@ defaultproperties
         Speed=3500.000000
         AccelSpeed=0.000000
         MaxSpeed=3500.000000
-        Damage=50.000000
+        Damage=22.000000
         HeadMult=2
         LimbMult=0.8
         MomentumTransfer=1000.000000
@@ -44,7 +44,7 @@ defaultproperties
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
         Speed=6000.000000
         MaxSpeed=6000.000000
-        Damage=50.000000
+        Damage=80.000000
         DamageRadius=768.000000
         RadiusFallOffType=RFO_None
         Chaos=0.5

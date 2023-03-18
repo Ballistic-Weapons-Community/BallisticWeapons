@@ -116,7 +116,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.500000
 		CrouchMultiplier=0.750000
-		AimSpread=(Min=64,Max=1024)
+		AimSpread=(Min=256,Max=2048)
 		AimAdjustTime=0.550000
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-4000,Yaw=1500)
@@ -139,7 +139,7 @@ defaultproperties
 		MagAmmo=50
 		SightingTime=0.45
 		DisplaceDurationMult=1.4
-        InventorySize=6
+        InventorySize=7
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

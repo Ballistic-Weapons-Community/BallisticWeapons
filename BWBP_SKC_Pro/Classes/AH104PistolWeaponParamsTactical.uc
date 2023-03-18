@@ -13,8 +13,8 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 			DecayRange=(Min=1575,Max=2560)
 			PenetrationEnergy=48 
-			Damage=135.000000
-            HeadMult=2.75f
+			Damage=80.000000
+            HeadMult=2f
             LimbMult=0.67f
 			RangeAtten=0.5
 			DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
@@ -35,7 +35,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 			AimedFireAnim="SightFire"
 			FireEndAnim=
-			FireInterval=0.39
+			FireInterval=0.35
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 		End Object
 		

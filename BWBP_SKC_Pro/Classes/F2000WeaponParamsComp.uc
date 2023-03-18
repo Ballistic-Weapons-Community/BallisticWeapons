@@ -37,7 +37,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.F2000Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=3500.000000
+		Speed=4200.000000
 		Damage=50
 		DamageRadius=512.000000
 		MomentumTransfer=0.000000

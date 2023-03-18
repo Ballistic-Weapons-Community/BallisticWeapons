@@ -45,7 +45,7 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.F2000Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=3500.000000
+		Speed=4200.000000 // 80 m/s
 		Damage=80
         ImpactDamage=80
 		DamageRadius=512.000000
@@ -85,7 +85,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=64,Max=512)
+		AimSpread=(Min=512,Max=1024)
         ADSMultiplier=0.35
 		SprintOffset=(Pitch=-3000,Yaw=-4096)
 		ChaosDeclineTime=0.5
@@ -99,7 +99,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		CockAnimRate=1.10000
 		ReloadAnimRate=1.10000
-		InventorySize=7
+		InventorySize=6
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35
 		DisplaceDurationMult=1

@@ -27,7 +27,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK47FlashEmitter'
 		FlashScaleFactor=0.800000
-		Recoil=220.000000
+		Recoil=360.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -53,7 +53,7 @@ defaultproperties
         LimbMult=0.67f
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.50000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.20000,Radius=256) // stealth
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
@@ -76,6 +76,7 @@ defaultproperties
 		YRandFactor=0.10000
 		DeclineDelay=0.15
 		DeclineTime=0.65	
+		MaxRecoil=6144
 	End Object
 	
 	//=================================================================
@@ -83,7 +84,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=64,Max=512)
+		AimSpread=(Min=512,Max=1024)
         ADSMultiplier=0.35
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
@@ -96,7 +97,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		ReloadAnimRate=1.250000
-		InventorySize=6
+		InventorySize=7
         SightMoveSpeedFactor=0.6
 		SightingTime=0.35
 		DisplaceDurationMult=1
