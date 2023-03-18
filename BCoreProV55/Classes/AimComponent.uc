@@ -279,6 +279,9 @@ final simulated function OnPreDrawFPWeapon()
 final simulated function OnWeaponSelected()
 {
 	OldLookDir = BW.GetPlayerAim();
+
+	bSprintOffset = (BW.SprintControl != None && BW.SprintControl.bSprintActive);
+
 	AimOffset = CalcNewAimOffset();
 	NewAimOffset = AimOffset;
 	OldAimOffset = AimOffset;

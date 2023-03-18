@@ -118,6 +118,9 @@ simulated event Tick(float DT)
 //return
 singular function StartSprint()
 {
+	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
+		return;
+		
 	if (Stamina <= 0  || Instigator.Physics != PHYS_Walking || Instigator.bIsCrouched || bSprintActive || !CheckDirection())
 		return;
 
@@ -130,6 +133,9 @@ singular function StartSprint()
 // Sprint Key released. Used on Client and Server
 singular function StopSprint()
 {
+	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
+		return;
+
 	if (!bSprintActive)
 		return;
 
@@ -227,15 +233,10 @@ simulated function TickSprint(float DT)
 	Stamina = FClamp(Stamina, 0, MaxStamina);
 }
 
-// why this ever lived in BallisticWeapon is beyond me
-// all Inventory items provide a HUD draw function
 simulated event RenderOverlays( canvas C )
 {
 	local float	ScaleFactor, SprintFactor;
 
-	if ( (Instigator == None) || (Instigator.Controller == None))
-		return;
-	
 	ScaleFactor = C.ClipX / 1600;
 
 	if (Stamina < MaxStamina)

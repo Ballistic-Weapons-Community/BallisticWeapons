@@ -246,7 +246,7 @@ function ModifyPlayer(Pawn Other)
     BPawn = BallisticPawn(Other);
 
 	//adds sprint support to mutator
-    if (xPawn(Other) != None && class'BallisticReplicationInfo'.default.bEnableSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
+    if (xPawn(Other) != None && GetSprintControl(PlayerController(Other.Controller)) == None)
 	{
         CreateSprintControl(xPawn(Other));
 	}

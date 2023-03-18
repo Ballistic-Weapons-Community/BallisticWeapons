@@ -2312,7 +2312,13 @@ simulated event WeaponRenderOverlays( Canvas Canvas )
 simulated event RenderOverlays (Canvas C)
 {
 	local Vector X, Y, Z;
-	
+
+	if ( (Instigator == None) || (Instigator.Controller == None))
+		return;
+
+	if (SprintControl != None)
+		SprintControl.RenderOverlays(C);
+
 	if (!bScopeView)
 	{
 		WeaponRenderOverlays(C);
