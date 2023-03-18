@@ -501,15 +501,16 @@ function CheckBob(float DeltaTime, vector Y)
 		return;
 
 	// BobTime is an accumulator and is never reset.
+	// Local footsteps are bound to weapon bob
 	m = int(0.5 * Pi + 9.0 * OldBobTime/Pi);
 	n = int(0.5 * Pi + 9.0 * BobTime/Pi);
 
-	if (m != n)
+	if (m != n && (!bIsCrouched))
 	{
 		FootStepping(0);
 	}
 
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) )
+	else if ( !bWeaponBob && (!bIsCrouched) && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) )
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
@@ -529,6 +530,10 @@ simulated function FootStepping(int Side)
 		SoundScale = 2;
 	else
 		SoundScale = GroundSpeed / class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+
+	// footsteps are quieter if we are local pawn - hear others better
+	if (IsLocallyControlled())
+		SoundScale *= 0.5f;
 
     SurfaceNum = 0;
 
