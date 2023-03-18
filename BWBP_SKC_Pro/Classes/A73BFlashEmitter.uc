@@ -42,7 +42,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
          StartSizeRange=(X=(Min=4.000000,Max=4.000000))
-         Texture=Texture'BWBP_SKC_Tex.A73b.A73BMuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BMuzzleFlash'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -67,7 +67,7 @@ defaultproperties
          DetailMode=DM_High
          StartLocationRange=(Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
          StartSizeRange=(X=(Min=12.000000,Max=20.000000))
-         Texture=Texture'BWBP_SKC_Tex.A73b.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          SpawnOnTriggerRange=(Min=2.000000,Max=5.000000)
@@ -94,7 +94,7 @@ defaultproperties
          StartLocationRange=(X=(Min=160.000000,Max=160.000000))
          StartSizeRange=(X=(Min=140.000000,Max=180.000000),Y=(Min=140.000000,Max=180.000000),Z=(Min=140.000000,Max=180.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BWBP_SKC_Tex.A73b.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

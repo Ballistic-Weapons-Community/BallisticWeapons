@@ -21,7 +21,7 @@ defaultproperties
          StartLocationOffset=(X=100.000000)
          StartSizeRange=(X=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BWBP_SKC_Tex.A73b.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.350000,Max=0.500000)
      End Object

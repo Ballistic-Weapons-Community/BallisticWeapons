@@ -1,19 +1,9 @@
 //=============================================================================
-// MRLRocket.
-//
-// A Crazy, unpredictable and not too powerful small 'drunk' rocket. They move
-// fast and unpredictably, but usually come with lots of others.
-//
-// Drunkness:
-// -Initial low accuracy
-// -Duds
-// -Strafing
-// -Sidewinders
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2007 RuneStorm. All Rights Reserved.
+// Cryo Rocket.
 //=============================================================================
 class BRINKRocket extends BallisticProjectile;
+
+var array<Actor> PokedControls;
 
 simulated function PostNetBeginPlay()
 {
@@ -55,57 +45,57 @@ simulated event Landed( vector HitNormal )
 	HitWall( HitNormal, Level );
 }
 
-/*simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
     Super.ApplyImpactEffect(Other, HitLocation);
 
-	if (Pawn(Other) != None && (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact))
+	if (Pawn(Other) != None)
 		ApplySlowdown(Pawn(Other), Damage/8);
-}*/
+}
 
 // Special HurtRadius function. This will hurt everyone except the chosen victim.
 // Useful if you want to spare a directly hit enemy from the radius damage
-/*function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
+function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Excluded )
 {
 	local actor Victims;
-	local float damageScale, DmgRadiusScale, dist;
+	local float damageScale, dist;
 	local vector dir;
+	local int i;
 
 	if( bHurtEntry )
 		return;
 
 	bHurtEntry = true;
-	
-	if (Victim == None)
+	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
 	{
-		DamageAmount *= 0.5;
-		DamageRadius *= 0.75;
-	}
-	foreach CollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
-	{
-		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
-		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
+		//Put out fires.
+		//We do this by notifying the FireControl for every fire we hit.
+		//The FireControl will then use the info internally to remove the fires, and replicate
+		//a function to the client so that the client may also remove the fires.
+		if (FP7GroundFire(Victims) != None)
 		{
-			if (!FastTrace(Victims.Location, Location))
+			for (i=0; i < PokedControls.Length && FP7GroundFire(Victims).FireControl != PokedControls[i]; i++);
+			
+			if (i == PokedControls.Length)
 			{
-				if (!bCoverPenetrator)
-					continue;
-				else DmgRadiusScale = (DamageRadius - GetCoverReductionFor(Victims.Location)) / DamageRadius;
-				
-				if (DamageRadius * DmgRadiusScale < 16)
-					continue;
+				PokedControls[PokedControls.Length] = FP7GroundFire(Victims).FireControl;
+				FP7GroundFire(Victims).FireControl.NotifyPutOut(HitLocation, DamageRadius);
 			}
-			else DmgRadiusScale = 1;
+		}
+		/* RX22A shit */
+		
+		
+		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
+		else if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Excluded && Victims != HurtWall)
+		{
 			dir = Victims.Location;
 			if (Victims.Location.Z > HitLocation.Z)
 				dir.Z = FMax(HitLocation.Z, dir.Z - Victims.CollisionHeight);
 			else dir.Z = FMin(HitLocation.Z, dir.Z + Victims.CollisionHeight);
 			dir -= HitLocation;
 			dist = FMax(1,VSize(dir));
-			if (bCoverPenetrator && DmgRadiusScale < 1 && VSize(dir) > DamageRadius * DmgRadiusScale)
-				continue;
 			dir = dir/dist;
-			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/ (DamageRadius * DmgRadiusScale));
+			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
 			class'BallisticDamageType'.static.GenericHurt
@@ -120,23 +110,14 @@ simulated event Landed( vector HitNormal )
 			if (Pawn(Victims) != None)
 				ApplySlowdown(Pawn(Victims), Damage/8);
 		 }
-	 }
-	bHurtEntry = false;
-}*/
-
-function ApplySlowdown(pawn Other, float Damage)
-{
-	local Inv_Slowdown Slow;
-	
-	Slow = Inv_Slowdown(Other.FindInventoryType(class'Inv_Slowdown'));
-	
-	if (Slow == None)
-	{
-		Other.CreateInventory("BallisticProV55.Inv_Slowdown");
-		Slow = Inv_Slowdown(Other.FindInventoryType(class'Inv_Slowdown'));
+		 
 	}
-	
-	Slow.AddSlow(0.7, Damage);
+	bHurtEntry = false;
+}
+
+function ApplySlowdown(Pawn Target, float Duration)
+{
+	class'BCSprintControl'.static.AddSlowTo(Target, 0.7, Duration);
 }
 
 defaultproperties

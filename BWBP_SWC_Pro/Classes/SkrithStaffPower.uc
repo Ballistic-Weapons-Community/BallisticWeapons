@@ -218,8 +218,8 @@ defaultproperties
      Physics=PHYS_Falling
      AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
      LifeSpan=16.000000
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.A73b.A73BPowerF2'
-     Skins(1)=FinalBlend'BWBP_SKC_Tex.A73b.A73BPowerF1'
+     Skins(0)=FinalBlend'BW_Core_WeaponTex.A73OrangeLayout.A73BPowerF2'
+     Skins(1)=FinalBlend'BW_Core_WeaponTex.A73OrangeLayout.A73BPowerF1'
      Style=STY_Additive
      SoundVolume=255
      SoundRadius=75.000000

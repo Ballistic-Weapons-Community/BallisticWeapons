@@ -9,7 +9,7 @@ class AD_A500EBlastSplat extends AD_ImpactDecal;
 
 defaultproperties
 {
-     DecalTextures(0)=Texture'BWBP_SWC_Tex.Misc.DragonSplat_Small'
+     DecalTextures(0)=Texture'BW_Core_WeaponTex.Reptile.DragonSplat_Small'
      MaterialBlendingOp=PB_AlphaBlend
      FrameBufferBlendingOp=PB_Add
 }

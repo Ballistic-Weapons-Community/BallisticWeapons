@@ -40,7 +40,7 @@ defaultproperties
          MaxParticles=75
          StartSizeRange=(X=(Min=2.000000,Max=4.000000))
          InitialParticlesPerSecond=1000.000000
-         Texture=Texture'BWBP_KBP_Tex.A73Purple.A73MuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1
@@ -73,7 +73,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.700000)
          StartSizeRange=(X=(Min=55.000000,Max=65.000000))
          InitialParticlesPerSecond=100000.000000
-         Texture=Texture'BWBP_KBP_Tex.A73Purple.A73MuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1

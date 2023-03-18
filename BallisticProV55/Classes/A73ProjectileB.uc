@@ -16,6 +16,6 @@ defaultproperties
      TrailClass=Class'BallisticProV55.A73TrailEmitterB'
      LightHue=10
      LightSaturation=50
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.A73b.A73BProjFinal'
-     Skins(1)=FinalBlend'BWBP_SKC_Tex.A73b.A73BProj2Final'
+     Skins(0)=FinalBlend'BW_Core_WeaponTex.A73OrangeLayout.A73BProjFinal'
+     Skins(1)=FinalBlend'BW_Core_WeaponTex.A73OrangeLayout.A73BProj2Final'
 }

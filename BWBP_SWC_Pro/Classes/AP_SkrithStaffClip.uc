@@ -26,8 +26,8 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.A73CellPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.A73Clip'
      DrawScale=0.300000
-     Skins(0)=Texture'BWBP_SKC_Tex.A73b.A73BAmmoSkin'
-     Skins(1)=Texture'BWBP_SKC_Tex.A73b.A73BAmmoSkin'
+     Skins(0)=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BAmmoSkin'
+     Skins(1)=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BAmmoSkin'
      CollisionRadius=8.000000
      CollisionHeight=4.800000
 }

@@ -6,5 +6,5 @@ class AD_SkrithStaffGeneral extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BWBP_SKC_Tex.A73b.A73BScorch'
+     ProjTexture=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BScorch'
 }

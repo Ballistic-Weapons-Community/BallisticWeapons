@@ -22,7 +22,7 @@ defaultproperties
          StartLocationOffset=(X=100.000000)
          StartSizeRange=(X=(Min=60.000000,Max=80.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BWBP_SKC_Tex.A73b.A73BPower'
+         Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BPower'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.200000)
      End Object
@@ -75,7 +75,7 @@ defaultproperties
          SpinsPerSecondRange=(X=(Max=0.050000))
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=35.000000,Max=50.000000),Y=(Min=35.000000,Max=50.000000),Z=(Min=35.000000,Max=50.000000))
-         Texture=Texture'BWBP_SKC_Tex.A73b.A73BPower'
+         Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BPower'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -156,7 +156,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=4.000000,Max=5.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BWBP_SKC_Tex.A73b.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object

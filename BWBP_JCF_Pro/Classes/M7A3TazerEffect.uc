@@ -7,10 +7,9 @@
 class M7A3TazerEffect extends BallisticEmitter;
 
 var Pawn						Target;
-var Inv_Slowdown			Slow;
-var M7A3PlayerEffect		Flash;
+var M7A3PlayerEffect			Flash;
 
-var int 							MaxRange;
+var int 						MaxRange;
 var float 						EffectInterval;
 
 simulated function SetTarget(Pawn Targ)
@@ -31,15 +30,7 @@ simulated function SetTarget(Pawn Targ)
 	if (Instigator.Role == ROLE_Authority)
 	{
 		SetTimer(EffectInterval, True);
-		Slow = Inv_Slowdown(Target.FindInventoryType(class'Inv_Slowdown'));
-	
-		if (Slow == None)
-		{
-			Target.CreateInventory("BallisticProV55.Inv_Slowdown");
-			Slow = Inv_Slowdown(Target.FindInventoryType(class'Inv_Slowdown'));
-		}
-	
-		Slow.AddSlow(0.4, EffectInterval * 1.5);
+		class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval * 1.5);
 	}
 		
 	if (Flash == None)
@@ -58,7 +49,7 @@ function Timer()
 	}
 	
 	class'BallisticDamageType'.static.GenericHurt (Target, 5, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTM7A3Tazer');
-	Slow.AddSlow(0.4, EffectInterval);
+	class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval);
 	
 }
 simulated function UpdateTargets()

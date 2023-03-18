@@ -226,7 +226,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_X3Combo
 		LayoutName="Tactical Knife"
-		LayoutMesh=SkeletalMesh'BWBP_CC_Anim.FPm_RS8X3'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8X3'
 		Weight=10
 		
 		PlayerSpeedFactor=1.100000

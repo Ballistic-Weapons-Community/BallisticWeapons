@@ -210,7 +210,7 @@ defaultproperties
         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=50.000000))
         InitialParticlesPerSecond=20.000000
-        Texture=Texture'BWBP_SKC_Tex.A73b.FlareB1'
+        Texture=Texture'BW_Core_WeaponTex.A73OrangeLayout.FlareB1'
         TextureUSubdivisions=1
         TextureVSubdivisions=1
         LifetimeRange=(Min=0.501000,Max=0.501000)

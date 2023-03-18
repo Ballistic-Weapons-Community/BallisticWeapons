@@ -169,8 +169,8 @@ defaultproperties
      AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
      LifeSpan=6.000000
      DrawScale3D=(X=0.250000,Y=1.500000,Z=1.500000)
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.A73b.A73BProjFinal'
-     Skins(1)=FinalBlend'BWBP_SKC_Tex.A73b.A73BProj2Final'
+     Skins(0)=FinalBlend'BW_Core_WeaponTex.A73OrangeLayout.A73BProjFinal'
+     Skins(1)=FinalBlend'BW_Core_WeaponTex.A73OrangeLayout.A73BProj2Final'
      Style=STY_Additive
      SoundVolume=255
      SoundRadius=75.000000

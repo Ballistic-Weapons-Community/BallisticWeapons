@@ -74,7 +74,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.400000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BWBP_KBP_Tex.A73Purple.A73MuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1

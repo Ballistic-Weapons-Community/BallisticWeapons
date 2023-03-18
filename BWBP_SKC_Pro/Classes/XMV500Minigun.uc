@@ -306,7 +306,7 @@ simulated event WeaponTick (float DT)
 
 	super.WeaponTick(DT);
 
-	if (SprintControl != None)
+	/*if (SprintControl != None)
 	{
 		//if sprinting or running
 		if ((Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) > 220 && !bRunOffsetting && CurrentWeaponMode != 1) || (class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && SprintControl != None && SprintControl.bSprinting) )
@@ -337,7 +337,7 @@ simulated event WeaponTick (float DT)
 				//SetNewAimOffset(default.AimOffset, AimAdjustTime);
 				bRunOffsetting=false;
 			}
-	}
+	}*/
 }
 
 simulated function bool PutDown()

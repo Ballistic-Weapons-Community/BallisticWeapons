@@ -30,6 +30,7 @@ simulated function SetTarget(Pawn Targ)
 
 	if (Instigator.Role == ROLE_Authority)
 	{
+		SetTimer(EffectInterval, True);
 		class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval * 1.5);
 	}
 		
@@ -49,7 +50,7 @@ function Timer()
 	}
 	
 	class'BallisticDamageType'.static.GenericHurt (Target, 5, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTPD97Tazer');
-	Slow.AddSlow(0.4, EffectInterval);
+	class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval);
 	
 }
 simulated function UpdateTargets()
