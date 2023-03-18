@@ -116,7 +116,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=BurstAimParams
-		ADSMultiplier=1
+		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.45
 		AimSpread=(Min=48,Max=378)

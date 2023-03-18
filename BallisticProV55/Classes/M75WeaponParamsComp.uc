@@ -79,7 +79,7 @@ defaultproperties
 		JumpChaos=0.800000
 		AimSpread=(Min=64,Max=1536)
 		ChaosDeclineTime=0.800000
-		ADSMultiplier=0.75
+		ADSMultiplier=0.25
         ChaosSpeedThreshold=300
 	End Object
 

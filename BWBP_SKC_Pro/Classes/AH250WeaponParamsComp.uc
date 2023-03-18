@@ -93,13 +93,13 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=2
+		ADSMultiplier=1
 		AimSpread=(Min=16,Max=256)
 		ChaosDeclineTime=0.60000
 	End Object
 	
 	Begin Object Class=AimParams Name=ArenaAimParams_208
-        ADSMultiplier=2
+        ADSMultiplier=1
         AimSpread=(Min=16,Max=128)
         ChaosDeclineTime=0.60000
     End Object

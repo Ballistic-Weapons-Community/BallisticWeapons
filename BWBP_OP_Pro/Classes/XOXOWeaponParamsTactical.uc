@@ -203,7 +203,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalBombAimParams
-		AimSpread=(Min=512,Max=2048)
+		AimSpread=(Min=256,Max=2048)
         ADSMultiplier=0.2
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
@@ -211,14 +211,14 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalLustAimParams
-		AimSpread=(Min=512,Max=2048)
+		AimSpread=(Min=256,Max=2048)
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalNukeAimParams
-		AimSpread=(Min=512,Max=2048)
+		AimSpread=(Min=256,Max=2048)
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300

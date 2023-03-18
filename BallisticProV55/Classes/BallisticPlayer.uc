@@ -684,20 +684,10 @@ exec function SwitchToBestWeapon()
 		Pawn.Weapon.PutDown();
 }
 
-exec simulated function Preferences()
-{
-	ClientOpenMenu("BallisticProV55.ConfigMenu_Preferences");
-}
-
-exec simulated function Options()
-{
-	Preferences();
-}
-
 // Command to access the ballistic config menu
 exec simulated function Ballistic()
 {
-	Preferences();
+	ClientOpenMenu("BallisticProV55.ConfigMenu_Preferences");
 }
 
 // Weapon stats
