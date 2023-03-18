@@ -283,6 +283,7 @@ function InitFor(Inventory I)
 
 defaultproperties
 {
+	WeaponClass=class'AH104Pistol'
 	 MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
 	 //AltMuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
      FlashScale=0.050000	 

@@ -166,6 +166,7 @@ simulated function ShotgunFireEffects(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'CYLOFirestormAssaultWeapon'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 	 ShotgunFireClass=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryShotgunFire'

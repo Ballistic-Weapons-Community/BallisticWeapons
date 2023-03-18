@@ -124,6 +124,7 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
+	WeaponClass=class'MD24Pistol'
      MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

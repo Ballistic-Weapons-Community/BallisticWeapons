@@ -1,5 +1,10 @@
 class XMV850WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 1;
+	BWA.ModeInfos[0].TracerMix = 5;
+}
 defaultproperties
 {    
     //=================================================================

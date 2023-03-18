@@ -124,6 +124,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'CYLOUAW'
      FireClass=Class'BWBP_SKC_Pro.CYLOSecondaryFire'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

@@ -276,6 +276,7 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'M575Machinegun'
      IceTracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
      IceImpactManager=Class'BallisticProV55.IM_FreezeHit'
 	 MuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'

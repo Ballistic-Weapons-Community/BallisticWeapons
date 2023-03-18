@@ -55,6 +55,7 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
+	WeaponClass=class'Fifty9MachinePistol'
      MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      FlashScale=0.800000

@@ -147,6 +147,7 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'GRS9Pistol'
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_GRSNine'

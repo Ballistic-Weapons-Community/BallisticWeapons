@@ -11,6 +11,7 @@ class XMK5Attachment extends BallisticAttachment;
 
 defaultproperties
 {
+	WeaponClass=class'XMK5SubMachinegun'
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone="tip2"

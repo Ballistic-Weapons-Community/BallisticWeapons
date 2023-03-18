@@ -70,6 +70,7 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
+	WeaponClass=class'AK47AssaultRifle'
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_Rifle'

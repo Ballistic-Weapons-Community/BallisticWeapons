@@ -1,5 +1,10 @@
 class M46WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
     //=================================================================
@@ -111,7 +116,7 @@ defaultproperties
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		SightingTime=0.35000
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6
 		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)

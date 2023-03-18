@@ -56,7 +56,6 @@ function ServeCustomers()
 {
 	local int i,j,k;
 	local array<Actor> Served;
-	local Inv_Slowdown Slow;
 		
 	for(i=0;i<Clouds.length;i++)
 		for(j=0;j<Clouds[i].Touching.length;j++)
@@ -74,16 +73,7 @@ function ServeCustomers()
 				class'BallisticDamageType'.static.GenericHurt(Clouds[i].Touching[j], Damage, Instigator, Clouds[i].Touching[j].Location, vect(0,0,0), DamageType);
 				if (Pawn(Clouds[i].Touching[j]) != None)
 				{
-					Slow = Inv_Slowdown(Pawn(Clouds[i].Touching[j]).FindInventoryType(class'Inv_Slowdown'));
-	
-					if (Slow == None)
-					{
-						Pawn(Clouds[i].Touching[j]).CreateInventory("BallisticProV55.Inv_Slowdown");
-						Slow = Inv_Slowdown(Pawn(Clouds[i].Touching[j]).FindInventoryType(class'Inv_Slowdown'));
-						Slow.AddSlow(0.8, 0.4);
-					}
-	
-					else Slow.AddSlow(0.8, 0.2);
+					class'BCSprintControl'.static.AddSlowTo(Pawn(Clouds[i].Touching[j]), 0.8, 0.2);
 				}
 				Served[Served.length] = Clouds[i].Touching[j];	
 			}

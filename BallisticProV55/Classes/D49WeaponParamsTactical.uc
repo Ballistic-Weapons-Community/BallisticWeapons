@@ -1,5 +1,13 @@
 class D49WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+	BWA.ModeInfos[1].TracerChance = 0;
+}
+
+
+
 defaultproperties
 {    
     //=================================================================
@@ -108,7 +116,7 @@ defaultproperties
 		ReloadAnimRate=1.750000
         DisplaceDurationMult=0.5
         SightingTime=0.2
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.7
         MagAmmo=6
         InventorySize=3
 		ViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)

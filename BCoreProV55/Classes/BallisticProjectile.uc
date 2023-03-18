@@ -67,7 +67,18 @@ var() byte                      LayoutIndex;            // For parameter indexin
 var() byte                      CurrentWeaponMode;      // For parameter indexing - fire mode index of firing weapon
 var() bool					    bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
 var() bool					    bPenetrate;				// Will go through enemies
+
+// this property (StartDelay) and its associated handling should be abolished.
+// it is designed to simulate a delay between the action of a firemode animation (grenade throw)
+// and the spawning of the projectile from that action
+// however, the projectile is spawned and hidden at the _start_ of the action (from the idle position)
+// and receives its velocity and rotation at that time
+// this causes the aim to be off, as it's calculated from where the fire action began
+// the correct way to handle this is to give the fire mode a prefire time and animation
+// and leave the projectile alone
 var() float					    StartDelay;				// Used to delay projectile's entry into the world
+
+
 var() bool					    bTearOnExplode;			// If not NetTemporary, tear this projectile off when it explodes
 var() float					    NetTrappedDelay;		// How long to remain in nettrapped state before being destroyed
 //-----------------------------------------------------------------------------

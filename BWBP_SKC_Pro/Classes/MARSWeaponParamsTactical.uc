@@ -1,5 +1,10 @@
 class MARSWeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
    //=================================================================

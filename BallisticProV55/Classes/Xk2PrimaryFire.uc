@@ -103,21 +103,11 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {	
-    local Inv_Slowdown Slow;
-
     super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
     if (bAmped && Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
     {
-        Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
-
-        if (Slow == None)
-        {
-            Pawn(Victim).CreateInventory("BallisticProV55.Inv_Slowdown");
-            Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
-        }
-
-        Slow.AddSlow(0.7, 0.2);
+        class'BCSprintControl'.static.AddSlowTo(Pawn(Victim), 0.7, 0.2);
     }
 }
 

@@ -1,5 +1,10 @@
 class XK2WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {    
     //=================================================================
@@ -112,7 +117,7 @@ defaultproperties
 		MagAmmo=30
 		SightingTime=0.25
         InventorySize=4
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

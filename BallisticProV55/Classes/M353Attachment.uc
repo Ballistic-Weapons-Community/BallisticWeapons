@@ -88,6 +88,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'M353Machinegun'
      MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_MG'

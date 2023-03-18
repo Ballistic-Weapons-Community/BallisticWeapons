@@ -222,6 +222,8 @@ static simulated final function OverrideProjectileParams(BallisticProjectile pro
     }
 }
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA) {}
+
 // Subclass function for overriding
 static simulated function OnInitialize(BallisticWeapon BW);
 

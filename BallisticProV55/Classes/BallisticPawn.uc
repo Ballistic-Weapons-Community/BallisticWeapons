@@ -491,7 +491,7 @@ function CheckBob(float DeltaTime, vector Y)
 	local float OldBobTime;
 	local int m,n;
 
-    DeltaTime *= GroundSpeed / 300;
+    DeltaTime *= GroundSpeed / (class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 1.5);
 
 	OldBobTime = BobTime;
 
@@ -2996,8 +2996,8 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.20000
-     FootstepRadius=256.000000
+     FootstepVolume=0.300000
+     FootstepRadius=384.000000
 
 	 BaseEyeHeight=36
      CollisionRadius=19.000000

@@ -40,6 +40,7 @@ simulated function EjectBrass(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'BulldogAssaultCannon'
      AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'

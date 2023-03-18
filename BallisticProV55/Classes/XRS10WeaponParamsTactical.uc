@@ -1,5 +1,10 @@
 class XRS10WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {    
     //=================================================================
@@ -84,7 +89,7 @@ defaultproperties
 		DisplaceDurationMult=0.5
 		MagAmmo=30
 		SightingTime=0.200000
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.7
         InventorySize=3
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

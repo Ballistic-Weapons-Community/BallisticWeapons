@@ -1,5 +1,10 @@
 class M806WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
     //=================================================================
@@ -87,7 +92,7 @@ defaultproperties
 		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 		DisplaceDurationMult=0.5
 		SightingTime=0.20000
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.7
 		MagAmmo=7
         InventorySize=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

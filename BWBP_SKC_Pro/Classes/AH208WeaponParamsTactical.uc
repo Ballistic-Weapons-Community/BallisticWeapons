@@ -1,5 +1,10 @@
 class AH208WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
     //=================================================================
@@ -67,7 +72,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		InventorySize=3
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.6
 		SightingTime=0.2
 		DisplaceDurationMult=0.5
 		MagAmmo=7

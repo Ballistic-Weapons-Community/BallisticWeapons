@@ -34,6 +34,7 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'MARSAssaultRifle'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

@@ -1,5 +1,10 @@
 class F2000WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
     //=================================================================
@@ -95,7 +100,7 @@ defaultproperties
 		CockAnimRate=1.10000
 		ReloadAnimRate=1.10000
 		InventorySize=7
-		SightMoveSpeedFactor=0.75
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=30

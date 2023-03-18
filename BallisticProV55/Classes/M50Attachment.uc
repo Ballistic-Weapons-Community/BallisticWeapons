@@ -10,6 +10,7 @@ class M50Attachment extends BallisticAttachment;
 
 defaultproperties
 {
+	WeaponClass=class'M50AssaultRifle'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

@@ -211,6 +211,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'LK05Carbine'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.LK05SilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

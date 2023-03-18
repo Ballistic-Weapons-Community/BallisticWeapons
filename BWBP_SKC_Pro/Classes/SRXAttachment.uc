@@ -312,6 +312,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'SRXRifle'
 	 CamoMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
 	 CamoMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
 	 CamoMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'

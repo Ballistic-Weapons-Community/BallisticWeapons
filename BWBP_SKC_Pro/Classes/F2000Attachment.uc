@@ -16,6 +16,7 @@ function InitFor(Inventory I)
 
 defaultproperties
 {
+	WeaponClass=class'F2000AssaultRifle'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

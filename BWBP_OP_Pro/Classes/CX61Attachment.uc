@@ -285,6 +285,7 @@ simulated function FlameFireEffects()
 
 defaultproperties
 {
+	WeaponClass=class'CX61AssaultRifle'
      AltFlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

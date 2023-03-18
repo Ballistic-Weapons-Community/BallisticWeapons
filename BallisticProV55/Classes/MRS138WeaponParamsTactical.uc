@@ -96,7 +96,7 @@ defaultproperties
 		SightPivot=(Pitch=256)
 		ViewOffset=(Y=10.000000,Z=-14.000000)
 		SightingTime=0.3
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.6
 		MagAmmo=6
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

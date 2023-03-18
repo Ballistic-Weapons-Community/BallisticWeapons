@@ -164,19 +164,9 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 	bHurtEntry = false;
 }
 
-function ApplySlowdown(pawn Other, float Damage)
+function ApplySlowdown(Pawn P, float Duration)
 {
-	local Inv_Slowdown Slow;
-	
-	Slow = Inv_Slowdown(Other.FindInventoryType(class'Inv_Slowdown'));
-	
-	if (Slow == None)
-	{
-		Other.CreateInventory("BallisticProV55.Inv_Slowdown");
-		Slow = Inv_Slowdown(Other.FindInventoryType(class'Inv_Slowdown'));
-	}
-	
-	Slow.AddSlow(0.7, Damage);
+	class'BCSprintControl'.static.AddSlowTo(P, 0.7, Duration);
 }
 
 defaultproperties

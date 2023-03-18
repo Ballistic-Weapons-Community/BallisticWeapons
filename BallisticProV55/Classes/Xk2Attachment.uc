@@ -208,6 +208,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
+	WeaponClass=class'XK2Submachinegun'
      IceTracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
      IceImpactManager=Class'BallisticProV55.IM_FreezeHit'
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'

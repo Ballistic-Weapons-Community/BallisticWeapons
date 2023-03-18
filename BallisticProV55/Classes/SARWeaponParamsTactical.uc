@@ -1,5 +1,10 @@
 class SARWeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {    
     //=================================================================
@@ -142,7 +147,7 @@ defaultproperties
 		MagAmmo=32
         InventorySize=5
         SightingTime=0.35 // adjust the factor with stock mode
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.6
         RecoilParams(0)=RecoilParams'TacticalAutoRecoilParams'
         RecoilParams(1)=RecoilParams'TacticalBurstRecoilParams'
         AimParams(0)=AimParams'TacticalAutoAimParams'

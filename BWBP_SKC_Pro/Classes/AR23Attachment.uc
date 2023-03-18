@@ -5,7 +5,7 @@
 //
 // by Marc "Sgt. Kelly" Moylan.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AR23Attachment extends BallisticAttachment;
 
@@ -116,6 +116,7 @@ simulated function Vector GetTipLocation()
 
 defaultproperties
 {
+	WeaponClass=class'AR23HeavyRifle'
 	 FireClass=Class'BWBP_SKC_Pro.AR23SecondaryFire'
      ScopedTracerOffset=(Y=-14.000000,Z=-2.000000)
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'

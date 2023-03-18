@@ -142,6 +142,7 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'R9RangerRifle'
      TracerClasses(0)=Class'BallisticProV55.TraceEmitter_Default'
      TracerClasses(1)=Class'BallisticProV55.TraceEmitter_Freeze'
      TracerClasses(2)=Class'BallisticProV55.TraceEmitter_R9Laser'

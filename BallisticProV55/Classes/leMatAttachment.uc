@@ -168,6 +168,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'leMatRevolver'
      FireClass=Class'BallisticProV55.leMatSecondaryFire'
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'

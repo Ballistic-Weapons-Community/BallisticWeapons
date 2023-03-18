@@ -1,5 +1,10 @@
 class GRS9WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
     //=================================================================
@@ -104,7 +109,7 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
         DisplaceDurationMult=0.5
         SightingTime=0.250000
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.7
         MagAmmo=18
         InventorySize=3
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

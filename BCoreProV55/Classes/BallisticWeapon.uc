@@ -489,6 +489,9 @@ simulated final function LinkSprintControl()
 {
     local Inventory Inv;
 
+	if (Instigator == None)
+		return;
+
     if (SprintControl == None)	
     {
 		for (Inv = Instigator.Inventory; Inv != None; Inv = Inv.Inventory)
@@ -576,7 +579,6 @@ simulated function PostNetBeginPlay()
 	// Link up with sprint control
     LinkSprintControl();
 
-
     assert(ParamsClasses[GameStyleIndex] != None);
 	
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
@@ -587,7 +589,6 @@ simulated function PostNetBeginPlay()
 
     if (NetInventoryGroup != 255)
         InventoryGroup = NetInventoryGroup;
-
 
     bDeferInitialSwitch = bServerDeferInitialSwitch;
 
@@ -654,7 +655,7 @@ simulated function GenerateLayout(byte Index)
 //Builds a sublist of acceptable camos based on our layout
 simulated function GenerateCamo(byte Index)
 {
-	local byte i, j;
+	local byte i;
 	local float f;
 	
 	local int WeightSum, CurrentWeight;
@@ -2668,6 +2669,13 @@ function UpdateSpeed()
 {
 	local float NewSpeed;
 
+	// delegate where possible
+	if (SprintControl != None)
+	{
+		SprintControl.UpdateSpeed();
+		return;
+	}
+
 	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
     //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
@@ -2675,12 +2683,6 @@ function UpdateSpeed()
     {
         //log("BW UpdateSpeed: "$NewSpeed$" * 1.4");
 		NewSpeed *= 1.4;
-    }
-
-    if (SprintControl != None && SprintControl.bSprinting)
-    {
-        //log("BW UpdateSpeed: "$NewSpeed$" * "$SprintControl.SpeedFactor);
-        NewSpeed *= SprintControl.SpeedFactor;
     }
 
 	if (Instigator.GroundSpeed != NewSpeed)
@@ -4877,7 +4879,7 @@ simulated function string GetHUDAmmoText(int Mode)
 //Draw special weapon info on the hud
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
-	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local float		ScaleFactor, XL, YL, YL2;
 	local string	Temp;
 
 	Super.NewDrawWeaponInfo (C, YPos);
@@ -4921,22 +4923,6 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
 		C.CurY = C.ClipY - 130 * ScaleFactor * class'HUD'.default.HudScale - YL2 - YL;
 		C.DrawText(WeaponModes[CurrentWeaponMode].ModeName, false);
-	}
-	
-	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
-	// Would be nice if someone could have a HUD function called along the inventory chain
-	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
-	{
-		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
-		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
-		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
-		if (SprintFactor < 0.2)
-			C.SetDrawColor(255, 0, 0);
-		else if (SprintFactor < 0.5)
-			C.SetDrawColor(64, 128, 255);
-		else
-			C.SetDrawColor(0, 0, 255);
-		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
 	}
 }
 

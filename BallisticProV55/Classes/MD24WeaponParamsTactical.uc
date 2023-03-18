@@ -1,5 +1,10 @@
 class MD24WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
     //=================================================================
@@ -69,7 +74,7 @@ defaultproperties
 		ViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
 		SightingTime=0.200000
         DisplaceDurationMult=0.33
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.7
 		MagAmmo=16
         InventorySize=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

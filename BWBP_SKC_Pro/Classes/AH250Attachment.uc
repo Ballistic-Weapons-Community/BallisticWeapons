@@ -94,6 +94,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'AH250Pistol'
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_BigBullet'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

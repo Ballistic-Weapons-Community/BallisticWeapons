@@ -1,5 +1,10 @@
 class leMatWeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
     //=================================================================
@@ -112,7 +117,7 @@ defaultproperties
 		ViewPivot=(Pitch=512)
         DisplaceDurationMult=0.5
         SightingTime=0.200000
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.7
         MagAmmo=9
         InventorySize=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

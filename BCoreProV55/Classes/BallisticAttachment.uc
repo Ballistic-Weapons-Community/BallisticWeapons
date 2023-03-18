@@ -53,6 +53,7 @@ struct ModeInfo
 
 var   ModeInfo                      ModeInfos[2];
 
+var() class<BallisticWeapon>		WeaponClass;						// currently optional. used to access params
 var() class<actor>					MuzzleFlashClass;					//Effect to spawn fot mode 0 muzzle flash
 var   actor							MuzzleFlash;						//The flash actor itself
 var() class<actor>					AltMuzzleFlashClass;				//Effect to spawn fot mode 1 muzzle flash
@@ -207,6 +208,11 @@ simulated function GenerateModeInfo()
         if (ModeInfos[i].TracerChance < 2 && (level.DetailMode <= DM_High || class'BallisticMod'.default.EffectsDetailMode <= 1))
 		    ModeInfos[i].TracerChance *= 0.5;
     }
+
+	// give params opportunity to modify attachment (for tactical tracers)
+	// fixme: do all init from fire effect params.
+	if (WeaponClass != None)
+		WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetAttachmentParams(self);
 }
 
 simulated function PostNetBeginPlay()

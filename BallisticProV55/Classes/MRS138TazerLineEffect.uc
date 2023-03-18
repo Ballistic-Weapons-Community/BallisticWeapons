@@ -1,7 +1,6 @@
 class MRS138TazerLineEffect extends BallisticEmitter;
 
 var Pawn					Target;
-var Inv_Slowdown			Slow;
 var MRS138TazerPlayerEffect	Flash;
 
 var int 					MaxRange;
@@ -26,15 +25,8 @@ simulated function SetTarget(Pawn Targ)
 	if (Instigator.Role == ROLE_Authority)
 	{
 		SetTimer(EffectInterval, True);
-		Slow = Inv_Slowdown(Target.FindInventoryType(class'Inv_Slowdown'));
-	
-		if (Slow == None)
-		{
-			Target.CreateInventory("BallisticProV55.Inv_Slowdown");
-			Slow = Inv_Slowdown(Target.FindInventoryType(class'Inv_Slowdown'));
-		}
-	
-		Slow.AddSlow(0.4, EffectInterval * 1.5);
+
+		class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval * 1.5);
 	}
 		
 	// don't spawn this shit for the player who has been hit
@@ -61,7 +53,8 @@ function Timer()
 	}
 	
 	class'BallisticDamageType'.static.GenericHurt (Target, 7, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTMRS138TazerLine');
-	Slow.AddSlow(0.4, EffectInterval);
+	
+	class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval);
 }
 
 simulated function UpdateTargets()

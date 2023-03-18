@@ -48,6 +48,7 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
+	WeaponClass=class'MRDRMachinePistol'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      FlashScale=0.800000

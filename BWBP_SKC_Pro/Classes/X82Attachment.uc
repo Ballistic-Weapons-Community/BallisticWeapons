@@ -117,6 +117,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'X82Rifle'
      MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMG'

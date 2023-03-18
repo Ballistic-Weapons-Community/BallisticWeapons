@@ -135,21 +135,11 @@ function DoFireEffect()
 
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {	
-    local Inv_Slowdown Slow;
-
     super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
     if (Pawn(Target) != None && Pawn(Target).Health > 0 && Vehicle(Target) == None && SX45Pistol(Weapon).CurrentWeaponMode == 1)
     {
-        Slow = Inv_Slowdown(Pawn(Target).FindInventoryType(class'Inv_Slowdown'));
-
-        if (Slow == None)
-        {
-            Pawn(Target).CreateInventory("BallisticProV55.Inv_Slowdown");
-            Slow = Inv_Slowdown(Pawn(Target).FindInventoryType(class'Inv_Slowdown'));
-        }
-
-        Slow.AddSlow(0.7, 0.35);
+        class'BCSprintControl'.static.AddSlowTo(Pawn(Target), 0.7, 0.35);
     }
 	else if (Pawn(Target) != None && Pawn(Target).bProjTarget && SX45Pistol(Weapon).CurrentWeaponMode == 2)
 		TryPlague(Target);

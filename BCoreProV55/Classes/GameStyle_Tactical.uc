@@ -10,9 +10,9 @@ defaultproperties
 {
 	Index=GS_Tactical
 	Name="Tactical"
-	RecoilScale=0.8
+	RecoilScale=0.9
 
-	bRunInADS=True
+	bRunInADS=False
 
 	MaxInventoryCapacity=12
 

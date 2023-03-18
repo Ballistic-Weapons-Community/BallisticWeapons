@@ -1,5 +1,10 @@
 class AH104PistolWeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
    //=================================================================
@@ -96,7 +101,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
 		InventorySize=5
 		PlayerSpeedFactor=0.95
-		SightMoveSpeedFactor=0.75
+		SightMoveSpeedFactor=0.6
 		MagAmmo=9
 		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
 		SightOffset=(X=-30.000000,Y=-0.800000,Z=23.000000)
