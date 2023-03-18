@@ -32,7 +32,8 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-        FireInterval=1.200000
+        AimedFireAnim="SightFire"
+		FireInterval=1.200000
         AmmoPerFire=2
         bCockAfterFire=True	
         FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
@@ -69,7 +70,8 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-        FireInterval=0.400000
+        AimedFireAnim="SightFireAlt"
+		FireInterval=0.400000
         bCockAfterFire=True
         FireAnim="FireRight"	
         FireEffectParams(0)=ShotgunEffectParams'TacticalSecondaryEffectParams'

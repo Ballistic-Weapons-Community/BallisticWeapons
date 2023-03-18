@@ -71,6 +71,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=1f)
 		InventorySize=4
 		SightMoveSpeedFactor=0.5
 		SightingTime=0.5

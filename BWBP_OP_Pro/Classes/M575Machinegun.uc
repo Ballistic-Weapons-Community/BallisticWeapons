@@ -671,4 +671,10 @@ defaultproperties
      ParamsClasses(3)=Class'M575MachinegunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_M575'
      DrawScale=1.000000
+	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	 Skins(1)=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader'
+	 Skins(2)=Shader'BWBP_OP_Tex.M575.M575_scope_SH1'
+	 Skins(3)=Shader'BWBP_OP_Tex.M575.M575_body_SH1'
+	 Skins(4)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'
+	 Skins(5)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowCyanShader'
 }
