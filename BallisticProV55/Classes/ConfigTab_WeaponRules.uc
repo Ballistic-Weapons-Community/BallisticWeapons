@@ -30,20 +30,20 @@ var automated moCheckbox	ch_UseItemizer; 			//Enable Itemizer to spawn aditional
 
 function LoadSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{
-		sl_Sway.SetValue(style.default.SwayScale);
-		sl_Recoil.SetValue(style.default.RecoilScale);
-		fl_Damage.SetValue(style.default.DamageScale);
-		fl_VDamage.SetValue(style.default.VehicleDamageScale);
-		ch_WeaponJumpOffsetting.Checked(style.default.bWeaponJumpOffsetting);
-		ch_LongWeaponOffsetting.Checked(style.default.bLongWeaponOffsetting);
-		int_MaxInventoryCapacity.SetValue(style.default.MaxInventoryCapacity);
-		ch_NoReloading.Checked(style.default.bNoReloading);
+		sl_Sway.SetValue(game_style.default.SwayScale);
+		sl_Recoil.SetValue(game_style.default.RecoilScale);
+		fl_Damage.SetValue(game_style.default.DamageScale);
+		fl_VDamage.SetValue(game_style.default.VehicleDamageScale);
+		ch_WeaponJumpOffsetting.Checked(game_style.default.bWeaponJumpOffsetting);
+		ch_LongWeaponOffsetting.Checked(game_style.default.bLongWeaponOffsetting);
+		int_MaxInventoryCapacity.SetValue(game_style.default.MaxInventoryCapacity);
+		ch_NoReloading.Checked(game_style.default.bNoReloading);
 	}
 
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
@@ -52,24 +52,24 @@ function LoadSettings()
 
 function SaveSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
 	if (!bInitialized)
 		return;
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{
-		style.default.SwayScale						= sl_Sway.GetValue();
-		style.default.RecoilScale					= sl_Recoil.GetValue();
-		style.default.DamageScale					= fl_Damage.GetValue();
-		style.default.VehicleDamageScale			= fl_VDamage.GetValue();
-		style.default.bWeaponJumpOffsetting			= ch_WeaponJumpOffsetting.IsChecked();
-		style.default.bLongWeaponOffsetting			= ch_LongWeaponOffsetting.IsChecked();
-		style.default.bNoReloading					= ch_NoReloading.IsChecked();
-		style.default.MaxInventoryCapacity 			= int_MaxInventoryCapacity.GetValue();	
-		style.static.StaticSaveConfig();
+		game_style.default.SwayScale						= sl_Sway.GetValue();
+		game_style.default.RecoilScale					= sl_Recoil.GetValue();
+		game_style.default.DamageScale					= fl_Damage.GetValue();
+		game_style.default.VehicleDamageScale			= fl_VDamage.GetValue();
+		game_style.default.bWeaponJumpOffsetting			= ch_WeaponJumpOffsetting.IsChecked();
+		game_style.default.bLongWeaponOffsetting			= ch_LongWeaponOffsetting.IsChecked();
+		game_style.default.bNoReloading					= ch_NoReloading.IsChecked();
+		game_style.default.MaxInventoryCapacity 			= int_MaxInventoryCapacity.GetValue();	
+		game_style.static.StaticSaveConfig();
 	}
 
 	class'Rules_Ballistic'.static.StaticSaveConfig();

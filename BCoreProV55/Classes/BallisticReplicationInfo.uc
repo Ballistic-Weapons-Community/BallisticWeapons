@@ -30,6 +30,10 @@ var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
 var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
 var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
+
+//=============================================================================
+// INVENTORY
+//=============================================================================
 var int						MaxInventoryCapacity;		// Maximum inventory size player can hold
 
 //=============================================================================
@@ -166,7 +170,9 @@ final function BindToReplication()
 	GRep.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	GRep.bLongWeaponOffsetting			= bLongWeaponOffsetting;
 	GRep.bNoReloading					= bNoReloading;
+
 	GRep.MaxInventoryCapacity			= MaxInventoryCapacity;
+
 	GRep.bAlternativePickups 	        = bAlternativePickups;
 	GRep.bUniversalMineLights          	= bUniversalMineLights;
 
@@ -223,7 +229,9 @@ simulated final function BindFromReplication()
 	bWeaponJumpOffsetting			= GRep.bWeaponJumpOffsetting;
 	bLongWeaponOffsetting			= GRep.bLongWeaponOffsetting;
 	bNoReloading					= GRep.bNoReloading;
+
 	MaxInventoryCapacity			= GRep.MaxInventoryCapacity;
+
 	bAlternativePickups 	        = GRep.bAlternativePickups;
 	bUniversalMineLights          	= GRep.bUniversalMineLights;
 

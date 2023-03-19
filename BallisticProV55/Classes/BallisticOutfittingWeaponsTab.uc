@@ -635,7 +635,7 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
 {
 	local byte GameStyleIndex;
-	local int i, j;
+	local int i;
 	local array<int> AllowedCamos;
 	local class<BallisticWeapon> BW;
 	

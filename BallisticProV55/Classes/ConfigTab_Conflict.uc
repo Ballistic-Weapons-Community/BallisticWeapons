@@ -270,7 +270,7 @@ function bool InternalOnDblClick(GUIComponent Sender)
 
 function bool InternalOnClick(GUIComponent Sender)
 {
-	local int i, j, k;
+	local int i;
 
 	if (Sender==BAddAllBlue) // ADD ALL
 	{

@@ -18,8 +18,6 @@ simulated Event PostNetBeginPlay()
 // Return the location of the muzzle.
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {
-    local Coords C;
-
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return Instigator.Weapon.GetBoneCoords('tip').Origin;
 	else if (BallisticTurret(Instigator) != None)

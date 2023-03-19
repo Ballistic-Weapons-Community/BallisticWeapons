@@ -10,7 +10,6 @@ class A42PrimaryFire extends BallisticProProjectileFire;
 
 var byte Shots;
 var byte Cycle;
-var() float HeatPerShot;
 var() int FireSpread;
 
 simulated event ModeDoFire()

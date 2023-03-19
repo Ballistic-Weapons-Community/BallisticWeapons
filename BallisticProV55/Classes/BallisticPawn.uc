@@ -161,7 +161,7 @@ var		class<DamageType>	LastDamagedType;
 //Sloth variables
 var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
-var     bool                bCanDodge, bCanDoubleJump;
+var     bool                bCanDodge;
 
 replication
 {
@@ -2297,7 +2297,6 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
 function bool DoJump( bool bUpdating )
 {
 	local float OldJumpZ;
-	local bool  bJR;
 
 	OldJumpZ = JumpZ;
 
@@ -2642,9 +2641,11 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		local Controller Killer;
 		local vector HitLocationMatchZ;
 		
+		/*
         local Vector SelfToHit, SelfToInstigator, CrossPlaneNormal;
         local float W;
         local float YawDir;
+		*/
 		
 		if ( damagetype == None )
 		{

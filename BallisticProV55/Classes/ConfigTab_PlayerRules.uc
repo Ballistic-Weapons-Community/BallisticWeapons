@@ -24,24 +24,24 @@ var automated moNumericEdit 	ne_KillRewardShieldMax;			//Armour Reward Cap
 
 function LoadSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{
-		ne_StartingHealth.SetValue(style.default.StartingHealth);
-		ne_PlayerHealthMax.SetValue(style.default.PlayerHealthMax);
-		ne_PlayerSuperHealthMax.SetValue(style.default.PlayerSuperHealthMax);
-		ch_HealthRegen.Checked(style.default.bHealthRegeneration);
-		ne_HeathKillReward.SetValue(style.default.HealthKillReward);
-    	ne_KillRewardHealthMax.SetValue(style.default.KillRewardHealthMax);
+		ne_StartingHealth.SetValue(game_style.default.StartingHealth);
+		ne_PlayerHealthMax.SetValue(game_style.default.PlayerHealthMax);
+		ne_PlayerSuperHealthMax.SetValue(game_style.default.PlayerSuperHealthMax);
+		ch_HealthRegen.Checked(game_style.default.bHealthRegeneration);
+		ne_HeathKillReward.SetValue(game_style.default.HealthKillReward);
+    	ne_KillRewardHealthMax.SetValue(game_style.default.KillRewardHealthMax);
 
-		ne_StartingShield.SetValue(style.default.StartingShield);
-		ne_PlayerShieldMax.SetValue(style.default.PlayerShieldMax);
-		ch_ShieldRegen.Checked(style.default.bShieldRegeneration);
-    	ne_ShieldKillReward.SetValue(style.default.ShieldKillReward);
-    	ne_KillRewardShieldMax.SetValue(style.default.KillRewardShieldMax);
+		ne_StartingShield.SetValue(game_style.default.StartingShield);
+		ne_PlayerShieldMax.SetValue(game_style.default.PlayerShieldMax);
+		ch_ShieldRegen.Checked(game_style.default.bShieldRegeneration);
+    	ne_ShieldKillReward.SetValue(game_style.default.ShieldKillReward);
+    	ne_KillRewardShieldMax.SetValue(game_style.default.KillRewardShieldMax);
 	}
 }
 
@@ -63,29 +63,29 @@ function DefaultSettings()
 
 function SaveSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
     if (!bInitialized)
         return;
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{
-		style.default.StartingHealth    	= ne_StartingHealth.GetValue();
-		style.default.PlayerHealthMax 		= ne_PlayerHealthMax.GetValue();
-		style.default.PlayerSuperHealthMax	= ne_PlayerSuperHealthMax.GetValue();
-		style.default.bHealthRegeneration	= ch_HealthRegen.IsChecked();
-		style.default.HealthKillReward  	= ne_HeathKillReward.GetValue();
-		style.default.KillRewardHealthMax 	= ne_KillRewardHealthMax.GetValue();
+		game_style.default.StartingHealth    	= ne_StartingHealth.GetValue();
+		game_style.default.PlayerHealthMax 		= ne_PlayerHealthMax.GetValue();
+		game_style.default.PlayerSuperHealthMax	= ne_PlayerSuperHealthMax.GetValue();
+		game_style.default.bHealthRegeneration	= ch_HealthRegen.IsChecked();
+		game_style.default.HealthKillReward  	= ne_HeathKillReward.GetValue();
+		game_style.default.KillRewardHealthMax 	= ne_KillRewardHealthMax.GetValue();
 
-		style.default.StartingShield 		= ne_StartingShield.GetValue();
-		style.default.PlayerShieldMax		= ne_PlayerShieldMax.GetValue();
-		style.default.bShieldRegeneration	= ch_ShieldRegen.IsChecked();
-		style.default.ShieldKillReward 		= ne_ShieldKillReward.GetValue();
-		style.default.KillRewardShieldMax 	= ne_KillRewardShieldMax.GetValue();
+		game_style.default.StartingShield 		= ne_StartingShield.GetValue();
+		game_style.default.PlayerShieldMax		= ne_PlayerShieldMax.GetValue();
+		game_style.default.bShieldRegeneration	= ch_ShieldRegen.IsChecked();
+		game_style.default.ShieldKillReward 		= ne_ShieldKillReward.GetValue();
+		game_style.default.KillRewardShieldMax 	= ne_KillRewardShieldMax.GetValue();
 
-		style.static.StaticSaveConfig();
+		game_style.static.StaticSaveConfig();
 	}
 }
 

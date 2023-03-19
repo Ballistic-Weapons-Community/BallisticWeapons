@@ -47,8 +47,6 @@ function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 
 function bool InternalOnClick(GUIComponent Sender)
 {
-	local int i;
-
 	if (Sender==BCancel) // CANCEL
 		Controller.CloseMenu();
 

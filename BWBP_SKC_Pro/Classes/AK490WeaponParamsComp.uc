@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=13000.000000)
         DecayRange=(Min=2363,Max=6000)
 		RangeAtten=0.75
-		Damage=28
+		Damage=26
         HeadMult=2.0f
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'

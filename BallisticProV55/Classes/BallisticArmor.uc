@@ -38,9 +38,6 @@ function ArmorImpactEffect(vector HitLocation)
 
 function int ArmorAbsorbDamage(int Damage, class<DamageType> DamageType, vector HitLocation)
 {
-	local int ArmorDamage;
-    local int rnd;
-
 	// Pawn is authoritative over the shield value.
 	// Destroy if pawn ran out of shields.
 	if (xPawn(Owner).ShieldStrength == 0)

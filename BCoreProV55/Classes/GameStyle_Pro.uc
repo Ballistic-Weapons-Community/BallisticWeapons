@@ -16,7 +16,11 @@ defaultproperties
 	bRunInADS=True
 
 	// General
-	MaxInventoryCapacity=12
+	MaxInventoryCapacity=14
+
+	ConflictWeaponSlots=11
+	ConflictEquipmentSlots=3
+
     bAlternativePickups=False
 	bUniversalMineLights=True
 

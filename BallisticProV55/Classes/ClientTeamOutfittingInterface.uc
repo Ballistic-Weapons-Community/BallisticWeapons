@@ -96,7 +96,7 @@ simulated function string GetGroupItemForTeam(byte GroupNum, byte TeamNum, int I
 }
 
 //Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
-simulated function string SetGroupItemForTeam(string str, byte GroupNum, byte TeamNum, int ItemNum)
+simulated function SetGroupItemForTeam(string str, byte GroupNum, byte TeamNum, int ItemNum)
 {
 	if(TeamNum == 1)
 	{
@@ -133,7 +133,7 @@ simulated function string SetGroupItemForTeam(string str, byte GroupNum, byte Te
 }
 
 //Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
-simulated function string PushWeaponFromMutator(string str, byte GroupNum, byte TeamNum)
+simulated function PushWeaponFromMutator(string str, byte GroupNum, byte TeamNum)
 {
 	if(TeamNum == 1)
 	{
@@ -453,8 +453,6 @@ simulated function SortList(byte group_index, byte team)
 {
 	local int i, j;
 	local BC_WeaponInfoCache.WeaponInfo WI;
-    local array<string> sorted;
-
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
 	local int wiGroup, existingGroup;
 

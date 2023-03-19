@@ -16,6 +16,9 @@ defaultproperties
 
 	MaxInventoryCapacity=12
 
+	ConflictWeaponSlots=10
+	ConflictEquipmentSlots=2
+
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bNoReloading=False

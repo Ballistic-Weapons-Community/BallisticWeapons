@@ -15,8 +15,6 @@ var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages;
 
 function LoadSettings()
 {
-	local int i;
-
     co_ADSHandling.AddItem("Default" ,,string(0));
 	co_ADSHandling.AddItem("Hold" ,,string(1));
 	co_ADSHandling.AddItem("Toggle" ,,string(2));

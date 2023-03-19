@@ -3,47 +3,47 @@
 //
 // Page where players choose their inventory for Conflict
 //
-// by Nolan "Dark Carnivour" Richert.
+// by Nolan "Dark Carnivour" Richert, Azarael and Sergeant Kelly
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MidGameTab_Conflict extends MidGamePanel;
 
-const INVENTORY_SIZE_TOTAL = 12;
-
 const MAIN_SECTION_INDEX = 0;
 const SUB_SECTION_INDEX = 1;
 
-var bool					bInitialized; // showpanel
-var bool					bLoadInitialized;
-var bool					bCamosInstalled;
+var bool							bInitialized; // showpanel
+var bool							bLoadInitialized;
+var bool							bCamosInstalled;
 
-var int                     SectionSizes[2];
-var int                     SpaceUsed[2];
+var int                     		SectionSizes[2];
+var int								MaxInventorySize;
 
-var automated GUIListBox	lb_Weapons;
-var GUIList                 li_Weapons;
-var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
-var automated GUILabel   	l_WeapTitle;
-var automated GUIComboBox	 cb_WeapLayoutIndex, cb_WeapCamoIndex;
-var automated GUIScrollTextBox	tb_Desc;
-var Automated GUIButton BStats, BClear;
-var automated GUILabel	l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_Loading;
+var int                     		SpaceUsed[2];
 
-var() localized string StatTimeCaption;
-var() localized string StatFragsCaption;
-var() localized string StatEffCaption;
-var() localized string StatDmgRtCaption;
-var() localized string StatSnprEffCaption;
-var() localized string StatStgnEffCaption;
-var() localized string StatHzrdEffCaption;
+var automated GUIListBox			lb_Weapons;
+var GUIList                 		li_Weapons;
+var Automated GUIImage				Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
+var automated GUILabel   			l_WeapTitle;
+var automated GUIComboBox	 		cb_WeapLayoutIndex, cb_WeapCamoIndex;
+var automated GUIScrollTextBox		tb_Desc;
+var Automated GUIButton BStats, 	BClear;
+var automated GUILabel				l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_Loading;
 
-var() localized string HealthText;
-var() localized string ArmorText;
-var() localized string AmmoText;
+var() localized string 				StatTimeCaption;
+var() localized string 				StatFragsCaption;
+var() localized string 				StatEffCaption;
+var() localized string 				StatDmgRtCaption;
+var() localized string				StatSnprEffCaption;
+var() localized string				StatStgnEffCaption;
+var() localized string 				StatHzrdEffCaption;
 
-var() Texture	HealthIcon;
-var() Texture	ArmorIcon;
-var() Texture	AmmoIcon;
+var() localized string 				HealthText;
+var() localized string 				ArmorText;
+var() localized string 				AmmoText;
+
+var() Texture						HealthIcon;
+var() Texture						ArmorIcon;
+var() Texture						AmmoIcon;
 
 struct Item
 {
@@ -59,19 +59,19 @@ struct Item
     var() int       SectionIndex;
 };
 
-var() array<Item> Inventory;
+var() array<Item> 					Inventory;
 
-var() array<int> LayoutIndexList;
-var() array<int> CamoIndexList;
-var() bool bUpdatingWeapon; //dont change layout unless we click the box
+var() array<int> 					LayoutIndexList;
+var() array<int> 					CamoIndexList;
+var() bool 							bUpdatingWeapon; //dont change layout unless we click the box
 	
-var() Material BoxTex;
+var() Material 						BoxTex;
 
-var ConflictLoadoutLRI CLRI;
+var ConflictLoadoutLRI 				CLRI;
 
-var bool bWaitingWeaps, bWaitingSkill;
+var bool 							bWaitingWeaps, bWaitingSkill;
 
-var GUIStyles 	ConflictListStyle;
+var GUIStyles 						ConflictListStyle;
 
 // Check for PRI update
 function InitPanel()
@@ -83,12 +83,21 @@ function InitPanel()
 
 function Initialize()
 {
+	local class<BC_GameStyle> style;
     local eFontScale FS;
-	local Material M;
+	//local Material M;
 
 	if (bInitialized)
 		return;
 
+
+	style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+
+	SectionSizes[0] = style.default.ConflictWeaponSlots;
+	SectionSizes[1] = style.default.ConflictEquipmentSlots;
+
+	MaxInventorySize = SectionSizes[0] + SectionSizes[1];
+	
     Controller.RegisterStyle(class'STY2ConflictList', true);
 
     ConflictListStyle = Controller.GetStyle("ConflictList", FS);
@@ -228,7 +237,7 @@ simulated function InitWeaponLists ()
 	local class<Weapon> Weap;
 	local class<ConflictItem> CI;
 	local int i, lastIndex;
-	local BC_WeaponInfoCache.WeaponInfo WI;
+	//local BC_WeaponInfoCache.WeaponInfo WI;
 	
 	Log("MidGameTab_Conflict: InitWeaponLists");
 
@@ -342,7 +351,7 @@ function bool LoadLIFromBW(class<BallisticWeapon> BW, GUIComboBox LayoutComboBox
 function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboBox CamoComboBox)
 {
 	local byte GameStyleIndex;
-	local int i, j;
+	local int i;
 	local array<int> AllowedCamos;
 	//clear old layouts
 	CamoComboBox.Clear();
@@ -587,6 +596,26 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	return true;
 }
 
+// called when camo or layout index changes. presumably we're setting this for a weapon we already have
+function UpdateExistingInventory(int weapon_list_index)
+{
+	local int i, clri_inv_offset;
+
+	clri_inv_offset = int(li_Weapons.GetExtraAtIndex(weapon_list_index));
+
+	for (i = 0; i < Inventory.Length; ++i)
+	{
+		if (Inventory[i].ClassName != CLRI.FullInventoryList[clri_inv_offset].ClassName)
+			continue;
+
+		Inventory[i].CamoIndex = CamoIndexList[weapon_list_index];
+		Inventory[i].LayoutIndex = LayoutIndexList[weapon_list_index];
+
+		// don't break after finding an instance of the class
+		// might have other instances of the same weapon from dual wield - better to sync them all
+	}
+}
+
 function bool HandleConflictItem(class<actor> InvClass, string FriendlyName)
 {
 	local int i, Size;
@@ -630,7 +659,7 @@ function int GetClickedInventoryIndex()
     // main items
     for (i = 0; i < Inventory.length && Inventory[i].SectionIndex == MAIN_SECTION_INDEX; i++)
     {
-        ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_TOTAL) * Inventory[i].Size;
+        ItemSize = (Box_Inventory.ActualWidth()/MaxInventorySize) * Inventory[i].Size;
 
         if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
         {
@@ -639,12 +668,12 @@ function int GetClickedInventoryIndex()
         X += ItemSize;
     }
 
-    X = Box_Inventory.Bounds[0] + (Box_Inventory.ActualWidth() / INVENTORY_SIZE_TOTAL) * SectionSizes[MAIN_SECTION_INDEX];
+    X = Box_Inventory.Bounds[0] + (Box_Inventory.ActualWidth() / MaxInventorySize) * SectionSizes[MAIN_SECTION_INDEX];
 
     // sub items - use offset
     while (i < Inventory.Length) // unrealscript won't handle a for loop with an empty initializer, lol
     {
-        ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_TOTAL) * Inventory[i].Size;
+        ItemSize = (Box_Inventory.ActualWidth()/MaxInventorySize) * Inventory[i].Size;
 
         if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
             return i;
@@ -813,6 +842,8 @@ function InternalOnChange(GUIComponent Sender)
 				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index], cb_WeapCamoIndex);
 			}
 			log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
+
+			UpdateExistingInventory(li_Weapons.Index);
 		}
 	}	
 	else if (Sender == cb_WeapCamoIndex )
@@ -821,6 +852,8 @@ function InternalOnChange(GUIComponent Sender)
 		{
 			CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
 			log("Setting camo index of gun at loc "$li_Weapons.Index$" to "$cb_WeapCamoIndex.getIndex()); 
+
+			UpdateExistingInventory(li_Weapons.Index);
 		}
 	}
 }
@@ -852,7 +885,6 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
     local float xl,yl;
     local GUIStyles style;
     local float mX, mY, BarW;
-    local bool bIsSection;
     local string s;
     local int inv_offset;
     local int inv_size;
@@ -939,15 +971,13 @@ function DrawInventory(Canvas C)
 
     initial_wep_index = class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex();
 
-
-
 	ScaleFactor = float(Controller.ResX)/1600;
 	MyX = Box_Inventory.Bounds[0] + 24*ScaleFactor;
 	MyY = Box_Inventory.Bounds[1] + 24*ScaleFactor;
 	MyW = Box_Inventory.ActualWidth() - 48*ScaleFactor;
 	MyH = Box_Inventory.ActualHeight() - 48*ScaleFactor;
 
-    SlotWidth = MyW / INVENTORY_SIZE_TOTAL;
+    SlotWidth = MyW / MaxInventorySize;
 
 	C.SetDrawColor(255,255,255,255);
 	C.SetPos(MyX, Myy);

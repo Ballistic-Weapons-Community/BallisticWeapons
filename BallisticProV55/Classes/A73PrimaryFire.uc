@@ -9,7 +9,7 @@
 //=============================================================================
 class A73PrimaryFire extends BallisticProProjectileFire;
 
-var float HeatPerShot, HeatDeclineDelay;
+var float HeatDeclineDelay;
 
 simulated function bool AllowFire()
 {

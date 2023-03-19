@@ -217,7 +217,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i;
-	local ArenaPreset NewPreset;
 
 	if (Sender==BAddAll) // ADD ALL
 	{
@@ -316,7 +315,6 @@ function DefaultSettings()
 function SaveSettings()
 {
     local int i;
-	local ArenaPreset NewPreset;
 	
 	if (!bInitialized)
         return;

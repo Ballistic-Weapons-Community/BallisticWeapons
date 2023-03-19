@@ -19,7 +19,7 @@ var automated GUIButton		bn_ClientSettings;
 
 function LoadSettings()
 {
-	local class<BC_GameStyle> style;
+	local class<BC_GameStyle> game_style;
 
 	co_InventoryMode.AddItem("Conflict Loadout" ,,string(0));
 	co_InventoryMode.AddItem("Outfitting Loadout" ,,string(1));
@@ -32,23 +32,23 @@ function LoadSettings()
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
 
-	style = BaseMenu.GetGameStyle();
+	game_style = BaseMenu.GetGameStyle();
 
-	if (style == None)
+	if (game_style == None)
 	{
 		Log("ConfigTab_GameRules: Couldn't load: No compatible style found");
 	}
 	else 
 	{
-		co_InventoryMode.SetIndex(style.default.InventoryModeIndex);
-		ch_KillStreaks.Checked(style.default.bKillstreaks);
-		ch_BrightPlayers.Checked(style.default.bBrightPlayers);
+		co_InventoryMode.SetIndex(game_style.default.InventoryModeIndex);
+		ch_KillStreaks.Checked(game_style.default.bKillstreaks);
+		ch_BrightPlayers.Checked(game_style.default.bBrightPlayers);
 	}
 }
 
 function SaveSettings()
 {
-	local class<BC_GameStyle> style;
+	local class<BC_GameStyle> game_style;
 
 	if (!bInitialized)
 		return;
@@ -58,18 +58,18 @@ function SaveSettings()
     class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
 
-	style = BaseMenu.GetGameStyle();
+	game_style = BaseMenu.GetGameStyle();
 
-	if (style == None)
+	if (game_style == None)
 	{
 		Log("ConfigTab_GameRules: Couldn't save: No compatible style found");
 	}
 	else 
 	{
-		style.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
-		style.default.bBrightPlayers			= ch_BrightPlayers.IsChecked();
-		style.default.bKillstreaks				= ch_KillStreaks.IsChecked();
-		style.static.StaticSaveConfig();
+		game_style.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
+		game_style.default.bBrightPlayers			= ch_BrightPlayers.IsChecked();
+		game_style.default.bKillstreaks				= ch_KillStreaks.IsChecked();
+		game_style.static.StaticSaveConfig();
 	}
 }
 
@@ -87,7 +87,10 @@ function bool InternalOnClick(GUIComponent Sender)
 	if (Sender==bn_ClientSettings) // DONE
 	{
 		Controller.OpenMenu("BallisticProV55.ConfigMenu_Preferences");
+		return true;
 	}
+
+	return false;
 }
 
 defaultproperties

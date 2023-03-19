@@ -15,6 +15,7 @@ var() float FallSpeed;
 var() float FallOffDistance;
 var() float	IgniteRadius;
 
+var vector VelocityDir;
 var vector FallStart;
 var float FallOff;
 var float FallingSpeed;
@@ -32,19 +33,19 @@ simulated function InitProjectile()
 
 	if(Instigator != None && Instigator.GetTeamNum() == 1)
 		LightHue = 160;
+
+	VelocityDir = Normal(Velocity);
 }
 
 simulated event Tick(float DT)
 {
 	local float Dist;
 
-    /*
 	Dist = VSize(Location - FallStart);
 	FallOff = FMin(1.0,Dist/FallOffDistance);
 	FallingSpeed += (FallSpeed*DT)*FallOff;
 
-	Velocity = ((Speed * FMax(0.1,1.0-FallOff)) * Vector(VelocityDir)) + (FMin(512.0,FallingSpeed) * vect(0,0,-1));
-    */
+	Velocity = ((Speed * FMax(0.1,1.0-FallOff)) * VelocityDir) + (FMin(512.0,FallingSpeed) * vect(0,0,-1));
 
 	if(Level.TimeSeconds >= DieTime)
 		FizzleOut();

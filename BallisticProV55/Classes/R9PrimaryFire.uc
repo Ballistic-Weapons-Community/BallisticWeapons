@@ -9,10 +9,9 @@
 //=============================================================================
 class R9PrimaryFire extends BallisticProInstantFire;
 
-var BUtil.FullSound FreezeFireSound, LaserFireSound;
-var int	HeatPerShot;
-
 #exec OBJ LOAD File="BW_Core_WeaponSound.uax"
+
+var BUtil.FullSound FreezeFireSound, LaserFireSound;
 
 /*function SwitchWeaponMode (byte NewMode)
 {

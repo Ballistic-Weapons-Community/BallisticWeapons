@@ -23,25 +23,25 @@ var automated moFloatEdit       fe_JumpDrainFactor;			// Jump Drain Factor
 
 function LoadSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{    	
-		ne_PlayerGroundSpeed.SetValue(style.default.PlayerGroundSpeed);
-		ne_PlayerAccelRate.SetValue(style.default.PlayerAccelRate);
-		cb_bPlayerDeceleration.Checked(style.default.bPlayerDeceleration);
-    	fe_PlayerStrafeScale.SetValue(style.default.PlayerStrafeScale);
-    	fe_PlayerBackpedalScale.SetValue(style.default.PlayerBackpedalScale);
-		ch_AllowDodging.Checked(style.default.bAllowDodging);
-		ch_AllowDoubleJump.Checked(style.default.bAllowDoubleJump);
+		ne_PlayerGroundSpeed.SetValue(game_style.default.PlayerGroundSpeed);
+		ne_PlayerAccelRate.SetValue(game_style.default.PlayerAccelRate);
+		cb_bPlayerDeceleration.Checked(game_style.default.bPlayerDeceleration);
+    	fe_PlayerStrafeScale.SetValue(game_style.default.PlayerStrafeScale);
+    	fe_PlayerBackpedalScale.SetValue(game_style.default.PlayerBackpedalScale);
+		ch_AllowDodging.Checked(game_style.default.bAllowDodging);
+		ch_AllowDoubleJump.Checked(game_style.default.bAllowDoubleJump);
 
-		cb_bUseSprint.Checked(style.default.bEnableSprint);
-    	ne_StaminaDrainRate.SetValue(style.default.StaminaDrainRate);
-    	ne_StaminaChargeRate.SetValue(style.default.StaminaChargeRate);
-    	fe_InitSpeedFactor.SetValue(style.default.SprintSpeedFactor);
-    	fe_JumpDrainFactor.SetValue(style.default.JumpDrainFactor);
+		cb_bUseSprint.Checked(game_style.default.bEnableSprint);
+    	ne_StaminaDrainRate.SetValue(game_style.default.StaminaDrainRate);
+    	ne_StaminaChargeRate.SetValue(game_style.default.StaminaChargeRate);
+    	fe_InitSpeedFactor.SetValue(game_style.default.SprintSpeedFactor);
+    	fe_JumpDrainFactor.SetValue(game_style.default.JumpDrainFactor);
 	}
 }
 
@@ -65,29 +65,29 @@ function DefaultSettings()
 
 function SaveSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
     if (!bInitialized)
         return;
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
 	if (style != None)
 	{
-		style.default.PlayerGroundSpeed 	= ne_PlayerGroundSpeed.GetValue();
-    	style.default.PlayerAirSpeed 		= ne_PlayerGroundSpeed.GetValue(); // this is NOT an error. ground and air speed should be equivalent
-    	style.default.PlayerAccelRate 		= ne_PlayerAccelRate.GetValue();
-		style.default.bPlayerDeceleration 	= cb_bPlayerDeceleration.IsChecked();
-    	style.default.PlayerStrafeScale 	= fe_PlayerStrafeScale.GetValue();
-    	style.default.PlayerBackpedalScale 	= fe_PlayerBackpedalScale.GetValue();
-		style.default.bAllowDodging			= ch_AllowDodging.IsChecked();
-		style.default.bAllowDoubleJump 		= ch_AllowDoubleJump.IsChecked();
+		game_style.default.PlayerGroundSpeed 	= ne_PlayerGroundSpeed.GetValue();
+    	game_style.default.PlayerAirSpeed 		= ne_PlayerGroundSpeed.GetValue(); // this is NOT an error. ground and air speed should be equivalent
+    	game_style.default.PlayerAccelRate 		= ne_PlayerAccelRate.GetValue();
+		game_style.default.bPlayerDeceleration 	= cb_bPlayerDeceleration.IsChecked();
+    	game_style.default.PlayerStrafeScale 	= fe_PlayerStrafeScale.GetValue();
+    	game_style.default.PlayerBackpedalScale 	= fe_PlayerBackpedalScale.GetValue();
+		game_style.default.bAllowDodging			= ch_AllowDodging.IsChecked();
+		game_style.default.bAllowDoubleJump 		= ch_AllowDoubleJump.IsChecked();
 
-		style.default.bEnableSprint 		= cb_bUseSprint.IsChecked();
-    	style.default.StaminaDrainRate 		= ne_StaminaDrainRate.GetValue();
-    	style.default.StaminaChargeRate 	= ne_StaminaChargeRate.GetValue();
-    	style.default.SprintSpeedFactor 	= fe_InitSpeedFactor.GetValue();
-    	style.default.JumpDrainFactor 		= fe_JumpDrainFactor.GetValue();
+		game_style.default.bEnableSprint 		= cb_bUseSprint.IsChecked();
+    	game_style.default.StaminaDrainRate 		= ne_StaminaDrainRate.GetValue();
+    	game_style.default.StaminaChargeRate 	= ne_StaminaChargeRate.GetValue();
+    	game_style.default.SprintSpeedFactor 	= fe_InitSpeedFactor.GetValue();
+    	game_style.default.JumpDrainFactor 		= fe_JumpDrainFactor.GetValue();
 
     	style.static.StaticSaveConfig();
 	}

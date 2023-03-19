@@ -28,7 +28,7 @@ var automated moCheckBox    chk_AlternativePickups;		//Press USE to Pickup Weapo
 
 function LoadSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
     fl_NadePct.SetValue(class'Mut_BallisticSwap'.default.NadeReplacePercent);
 	ch_BrightPickups.Checked(class'Mut_Ballistic'.default.bBrightPickups);
@@ -46,11 +46,11 @@ function LoadSettings()
     chk_bRemoveSuperHealthPack.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveSuperHealthPack);
     chk_bRemoveAdrenaline.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline);
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{
-    	chk_AlternativePickups.Checked(style.default.bAlternativePickups);
+    	chk_AlternativePickups.Checked(game_style.default.bAlternativePickups);
 	}
 }
 
@@ -77,7 +77,7 @@ function DefaultSettings()
 
 function SaveSettings()
 {
-	local class<BC_GameStyle_Config> style;
+	local class<BC_GameStyle_Config> game_style;
 
     if (!bInitialized)
         return;
@@ -101,12 +101,12 @@ function SaveSettings()
     class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline = chk_bRemoveAdrenaline.IsChecked();
     class'BallisticProV55.Mut_Pickups'.static.StaticSaveConfig();
 
-	style = BaseMenu.GetConfigStyle();
+	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{    
-		style.default.bAlternativePickups = chk_AlternativePickups.IsChecked();
-    	style.static.StaticSaveConfig();
+		game_style.default.bAlternativePickups = chk_AlternativePickups.IsChecked();
+    	game_style.static.StaticSaveConfig();
 	}
 }
 

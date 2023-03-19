@@ -364,7 +364,7 @@ simulated function SortList()
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	local InventoryEntry Current;
 	local array<InventoryEntry> Sorted;
-	local array<string> ConflictItems;
+	//local array<string> ConflictItems;
 	
 	local int CurrentGroup, SortedGroup;
 

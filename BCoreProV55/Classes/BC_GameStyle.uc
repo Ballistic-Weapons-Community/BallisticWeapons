@@ -37,10 +37,16 @@ var() config bool		bBrightPlayers;		    	// Players have ambient glow to glow in
 //=============================================================================
 // NON-CONFIG VARIABLES
 //=============================================================================	
-var() bool				bRunInADS;					// Use run anims in ADS (because gametype has fast ADS move speed)
 var() float				PlayerWalkSpeedFactor;		// sane default for use for ADS speed for your style (ADS speed is controlled by the weapons, so there's no point having this config)
 var() float				PlayerCrouchSpeedFactor;
 var() float				PlayerAnimationGroundSpeed;	// sets default.GroundSpeed - used for dealing with animations in C++ code
+
+//=============================================================================
+// NON-CONFIG VARIABLES - NOT REPLICATED
+//=============================================================================	
+var() bool				bRunInADS;					// Use run anims in ADS (because gametype has fast ADS move speed)
+var() int				ConflictWeaponSlots;		// Number of slots available for main weapons in Conflict.
+var() int				ConflictEquipmentSlots;		// Number of slots available for equipment in Conflict.
 
 static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 {
@@ -73,6 +79,9 @@ defaultproperties
 
 	InventoryModeIndex=0
 	MaxInventoryCapacity=0
+
+	ConflictWeaponSlots=10
+	ConflictEquipmentSlots=2
 
 	PlayerWalkSpeedFactor=0.9
 	PlayerCrouchSpeedFactor=0.45

@@ -11,13 +11,7 @@ class Mut_ConflictLoadout extends Mut_Ballistic
 	CacheExempt
 	config(BallisticProV55)
 	DependsOn(Mut_Loadout);
-	
-const INVENTORY_SIZE_MAX = 12;
-	
-var() globalconfig byte	LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
-var 		  array<string> 	LoadoutOptionText;
 
-var array<Mut_Loadout.LORequirements> FullRequirementsList;
 
 struct ConflictWeapon
 {
@@ -27,6 +21,16 @@ struct ConflictWeapon
 };
 
 var() globalconfig array<ConflictWeapon>	ConflictWeapons;	// Big list of all available weapons and the teams for which they are selectable
+var() globalconfig byte						LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
+
+// Assigned from game style
+var private	int 							MaxInventorySize;			
+	
+var	array<string> 							LoadoutOptionText;
+
+var array<Mut_Loadout.LORequirements> 		FullRequirementsList;
+
+
 
 //================================================
 // PostBeginPlay
@@ -40,8 +44,14 @@ function PostBeginPlay()
 {
 	local int i, j;
 	local GameRules G;
+	local class<BC_GameStyle> style;
 
 	Super.PostBeginPlay();
+
+	style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+
+	// FIXME - exploitable
+	MaxInventorySize = style.default.ConflictWeaponSlots + style.default.ConflictEquipmentSlots;
 	
 	if (LoadoutOption == 1)
 	{
@@ -273,7 +283,7 @@ function ModifyPlayer( pawn Other )
 				{
 					Size = GetItemSize(InventoryClass);
 
-					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+					if (SpaceUsed + Size > MaxInventorySize)
 						continue;
 				
 					if (class<Weapon>(InventoryClass) != None)
@@ -297,7 +307,7 @@ function ModifyPlayer( pawn Other )
 					if (ItemClass != None)
 					{
 						Size = ItemClass.default.Size/5;
-						if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+						if (SpaceUsed + Size > MaxInventorySize)
 							continue;
 						CLRI.AppliedItems[CLRI.AppliedItems.length] = ItemClass;
 						if (ItemClass.default.bBonusAmmo)
@@ -313,7 +323,7 @@ function ModifyPlayer( pawn Other )
 		}
 	}
 		
-	if (SpaceUsed < INVENTORY_SIZE_MAX)
+	if (SpaceUsed < MaxInventorySize)
 	{
 		for (Inv=Other.Inventory; Inv != None; Inv = Inv.Inventory)
 			if (Weapon(Inv) != None)
@@ -445,7 +455,7 @@ function EquipBot(Pawn P)
 
 	// Pick us some stuff
 	CLRI.Loadout.length = 0;
-	for (i=0; i < INVENTORY_SIZE_MAX && SpaceUsed < INVENTORY_SIZE_MAX; i++)
+	for (i=0; i < MaxInventorySize && SpaceUsed < MaxInventorySize; i++)
 	{
 		if (LoadoutOption == 1)
 		{	// Randomly pick something using weights
@@ -475,7 +485,7 @@ function EquipBot(Pawn P)
 					continue;
 				Size = CI.default.Size/5;
 
-				if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
+				if (Size + SpaceUsed > MaxInventorySize)
 					continue;
 				CLRI.Loadout[CLRI.Loadout.length] = ClassName;
 				SpaceUsed += Size;
@@ -500,7 +510,7 @@ function EquipBot(Pawn P)
 		}
 		Size = GetItemSize(W);
 
-		if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
+		if (Size + SpaceUsed > MaxInventorySize)
 			continue;
 		CLRI.Loadout[CLRI.Loadout.length] = ClassName;
 		SpaceUsed += Size;
