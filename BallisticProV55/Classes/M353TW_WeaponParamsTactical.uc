@@ -89,13 +89,11 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-        CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
 		WeaponModes(0)=(bUnavailable=True)
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_Burst",Value=5.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-        SightMoveSpeedFactor=0.5
+        SightMoveSpeedFactor=0.4
 		MagAmmo=100
 		SightingTime=0.45
         InventorySize=6

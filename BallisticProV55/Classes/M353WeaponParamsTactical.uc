@@ -90,8 +90,6 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-        CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
 		SightPivot=(Pitch=128)
 		SightOffset=(X=-6.000000,Z=5.30000)
 		ViewOffset=(X=2.000000,Y=3.500000,Z=-4.000000)
@@ -101,7 +99,7 @@ defaultproperties
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=3
         DisplaceDurationMult=1.25
-        SightMoveSpeedFactor=0.5
+        SightMoveSpeedFactor=0.4
 		MagAmmo=100
 		SightingTime=0.45
         InventorySize=6

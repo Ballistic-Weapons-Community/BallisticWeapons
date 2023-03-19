@@ -110,8 +110,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		CockAnimRate=1.250000
-		ReloadAnimRate=0.900000
+		ReloadAnimRate=0.80000
 		SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
 		ViewOffset=(X=30.000000,Y=20.000000,Z=-18.000000)
 		WeaponModes(0)=(ModeName="Barrage",ModeID="WM_BigBurst",Value=3)
@@ -121,7 +120,7 @@ defaultproperties
 		PlayerSpeedFactor=0.95
         DisplaceDurationMult=1.25
 		InventorySize=6
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.4
 		SightingTime=0.5
 		MagAmmo=9
         ZoomType=ZT_Logarithmic

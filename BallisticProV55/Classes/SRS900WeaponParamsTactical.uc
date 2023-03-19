@@ -122,12 +122,11 @@ defaultproperties
 		Weight=30
 		//Attachments
 		//Function
-		CockAnimRate=1.200000
 		SightOffset=(X=20.000000,Z=11.750000)
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 		MagAmmo=20
 		SightingTime=0.5
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.4
         InventorySize=6
         ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -142,7 +141,6 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		//Function
-		CockAnimRate=1.200000
 		SightOffset=(X=16.000000,Z=10.460000)
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
         SightingTime=0.35

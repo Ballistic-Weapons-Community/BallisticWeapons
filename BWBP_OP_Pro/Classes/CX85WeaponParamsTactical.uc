@@ -102,9 +102,10 @@ defaultproperties
 		ViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
 		SightOffset=(X=-20.000000,Z=35.000000)
 		CockAnimRate=1.200000
+		ReloadAnimRate=0.85
 		PlayerSpeedFactor=0.95
 		InventorySize=6
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.4
 		SightingTime=0.65
 		DisplaceDurationMult=1
 		MagAmmo=50

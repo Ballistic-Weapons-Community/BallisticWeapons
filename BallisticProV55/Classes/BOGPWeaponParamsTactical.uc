@@ -99,13 +99,11 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-        CockAnimRate=1.50000
-		ReloadAnimRate=1.250000
         DisplaceDurationMult=0.75
         MagAmmo=1
         SightingTime=0.2
         InventorySize=3
-        SightMoveSpeedFactor=0.7
+        SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=300)
 		SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

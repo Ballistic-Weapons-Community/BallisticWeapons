@@ -91,13 +91,11 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
-		CockAnimRate=1.25000
-		ReloadAnimRate=1.250000
 		SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
 		SightPivot=(Pitch=128)
 		PlayerSpeedFactor=0.95
 		InventorySize=6
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.4
 		SightingTime=0.5
 		DisplaceDurationMult=1
 		MagAmmo=85

@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.80000
+		FireInterval=1
 		bCockAfterFire=True
 		FireEndAnim=
 		AimedFireAnim="SightFireCock"
@@ -57,7 +57,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalGaussFireParams
-		FireInterval=0.80000
+		FireInterval=1
 		bCockAfterFire=True
 		FireEndAnim=
 		AimedFireAnim="SightFireCock"
@@ -108,12 +108,11 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		CockAnimRate=1.700000
-		ReloadAnimRate=2.000000
+		CockAnimRate=1.250000
 		SightOffset=(X=4.000000,Y=-0.100000,Z=9.100000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.35
-        SightMoveSpeedFactor=0.60
+        SightMoveSpeedFactor=0.50
 		MagAmmo=8
         InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -133,13 +132,12 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=1
-		CockAnimRate=1.700000
-		ReloadAnimRate=2.000000
+		CockAnimRate=1.25
 		SightOffset=(X=4.000000,Y=-0.100000,Z=10.500000)
 		SightPivot=(Pitch=128)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.35
-        SightMoveSpeedFactor=0.60
+        SightMoveSpeedFactor=0.50
 		MagAmmo=8
         InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

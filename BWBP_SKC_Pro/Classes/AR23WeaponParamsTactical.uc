@@ -120,7 +120,7 @@ defaultproperties
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
 		InventorySize=6
-        SightMoveSpeedFactor=0.5
+        SightMoveSpeedFactor=0.4
 		SightingTime=0.65000
 		DisplaceDurationMult=1.2
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=1,Scale=0f)

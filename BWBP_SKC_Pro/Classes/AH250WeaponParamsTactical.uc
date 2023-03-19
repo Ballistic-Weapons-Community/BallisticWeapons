@@ -134,7 +134,7 @@ defaultproperties
 		
 		//Function
 		InventorySize=4
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.4
 		SightingTime=0.5
 		DisplaceDurationMult=0.75
 		MagAmmo=7
@@ -159,7 +159,7 @@ defaultproperties
 		
 		//Function
 		InventorySize=3
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.65
 		SightingTime=0.2
 		DisplaceDurationMult=0.5
 		MagAmmo=7
@@ -185,7 +185,7 @@ defaultproperties
 		
 		//Function
 		InventorySize=3
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.65
 		SightingTime=0.2
 		DisplaceDurationMult=0.5
 		MagAmmo=7

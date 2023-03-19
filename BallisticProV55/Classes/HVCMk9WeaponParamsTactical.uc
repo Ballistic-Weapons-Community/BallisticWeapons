@@ -80,7 +80,7 @@ defaultproperties
 		SightOffset=(X=-12.000000,Z=26.000000)
 		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		InventorySize=8
-        SightMoveSpeedFactor=0.6
+        SightMoveSpeedFactor=0.5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

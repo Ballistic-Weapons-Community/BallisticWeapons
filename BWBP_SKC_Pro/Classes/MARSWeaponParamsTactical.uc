@@ -174,10 +174,9 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 		//Function
-		CockAnimRate=1.10000
-		ReloadAnimRate=1.10000
+		ReloadAnimRate=0.85
 		InventorySize=6
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.4
 		SightingTime=0.5	
 		DisplaceDurationMult=1
 		MagAmmo=30
@@ -198,10 +197,9 @@ defaultproperties
 		SightOffset=(X=-5.000000,Y=-7.370000,Z=27.010000)
 		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 		//Function
-		CockAnimRate=1.10000
-		ReloadAnimRate=1.10000
+		ReloadAnimRate=0.85
 		InventorySize=7
-		SightMoveSpeedFactor=0.75
+		SightMoveSpeedFactor=0.65
 		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=30

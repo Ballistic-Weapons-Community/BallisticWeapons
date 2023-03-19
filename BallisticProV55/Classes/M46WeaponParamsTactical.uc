@@ -98,10 +98,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams_Scope
-        CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
 		SightingTime=0.5
-        SightMoveSpeedFactor=0.5
+        SightMoveSpeedFactor=0.4
         MagAmmo=24
         InventorySize=6
         ZoomType=ZT_Logarithmic
@@ -113,10 +111,8 @@ defaultproperties
     End Object 
 
     Begin Object Class=WeaponParams Name=TacticalParams_RDS
-		CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
 		SightingTime=0.35000
-        SightMoveSpeedFactor=0.6
+        SightMoveSpeedFactor=0.5
         MagAmmo=24
         InventorySize=6
 		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)

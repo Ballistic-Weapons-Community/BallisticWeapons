@@ -86,11 +86,10 @@ defaultproperties
     //=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		ReloadAnimRate=1.250000
 		ViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
 		ViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
 		PlayerSpeedFactor=0.9
-        SightMoveSpeedFactor=0.5
+        SightMoveSpeedFactor=0.4
         DisplaceDurationMult=1.4
 		SightingTime=0.65
 		MagAmmo=36
