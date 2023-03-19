@@ -738,7 +738,7 @@ function ViewFlash(float DeltaTime)
 
 defaultproperties
 {
-     BallisticMenu="BallisticProV55.BallisticConfigMenuPro"
+     BallisticMenu="BallisticProV55.ConfigMenu_Preferences"
      WeaponStatsMenu="BallisticProV55.BallisticWeaponStatsMenu"
      ComboNameList(3)="BallisticProV55.Ballistic_ComboMiniMe"
 }
