@@ -24,7 +24,7 @@ var() globalconfig array<ConflictWeapon>	ConflictWeapons;	// Big list of all ava
 var() globalconfig byte						LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
 
 // Assigned from game style
-var private	int 							MaxInventorySize;			
+var protected int 							MaxInventorySize;			
 	
 var	array<string> 							LoadoutOptionText;
 
@@ -333,19 +333,28 @@ function ModifyPlayer( pawn Other )
 			s = GetFallbackWeapon(CLRI); //GetRandomWeapon(CLRI);
 
 			InventoryClass = Level.Game.BaseMutator.GetInventoryClass(s);
+
 			if( (InventoryClass!=None))
 			{
 				Inv = Spawn(InventoryClass);
 				if( Inv != None )
 				{
 					Inv.GiveTo(Other);
-					Inv.PickupFunction(Other);
+
+					// Azarael 19/03/2023: added code from Freon variant
+					if (Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
+					{
+						Other.PendingWeapon = Weapon(Inv);
+						Other.ChangedWeapon();
+					}
+					if ( Inv != None )
+						Inv.PickupFunction(Other);
 				}
 			}
 		}
 	}
 
-	for (Inv=Other.Inventory;Inv!=None;Inv=Inv.Inventory)
+	for (Inv = Other.Inventory; Inv != None; Inv = Inv.Inventory)
 	{
 		W = Weapon(Inv);
 		if (W != None && BonusAmmo > 0)

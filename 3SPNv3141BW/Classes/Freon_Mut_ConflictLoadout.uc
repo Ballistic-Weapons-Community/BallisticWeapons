@@ -10,13 +10,14 @@ class Freon_Mut_ConflictLoadout extends Mut_ConflictLoadout
 function ModifyPlayer( pawn Other )
 {
 	local int i, Size, SpaceUsed;
+	local int CamoIndex, LayoutIndex;
 	local float BonusAmmo;
 	local Inventory Inv;
 	local Weapon W;
 	local class<Inventory> InventoryClass;
 	local ConflictLoadoutLRI CLRI;
 	local string s;
-	local class<ConflictItem> itemclass;
+	local class<ConflictItem> ItemClass;
 
     local int net_inventory_group, inventory_group_offset;
 
@@ -35,7 +36,7 @@ function ModifyPlayer( pawn Other )
 		EquipBot(Other);
 	else
 	{
-		CLRI.Validate(CLRI.Loadout);
+		CLRI.Validate(CLRI.Loadout, CLRI.Layout, CLRI.Camo);
 		if (CLRI.Loadout.length == 0)
 		{
  			s = GetFallbackWeapon(CLRI);
@@ -60,7 +61,7 @@ function ModifyPlayer( pawn Other )
 				{
 					Size = GetItemSize(InventoryClass);
 
-					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+					if (SpaceUsed + Size > MaxInventorySize)
 						continue;
 				
 					if (class<Weapon>(InventoryClass) != None)
@@ -78,8 +79,17 @@ function ModifyPlayer( pawn Other )
                             net_inventory_group = 255;
                         }
 
-						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, net_inventory_group, i == CLRI.InitialWeaponIndex);
-                    }
+						if ( i < CLRI.Layout.length && CLRI.Layout[i] != "")
+							LayoutIndex = int(CLRI.Layout[i]);
+						if ( i < CLRI.Camo.length && CLRI.Camo[i] != "")
+							CamoIndex = int(CLRI.Camo[i]);	
+
+						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, net_inventory_group, i == CLRI.InitialWeaponIndex, LayoutIndex, CamoIndex);
+
+						LayoutIndex=0;
+						CamoIndex=0;
+					
+					}
 					else 
 						SpawnInventoryItem(InventoryClass, Other);
 
@@ -88,11 +98,11 @@ function ModifyPlayer( pawn Other )
 
 				else
 				{
-					itemclass = class<ConflictItem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
-					if (itemclass != None)
+					ItemClass = class<ConflictItem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
+					if (ItemClass != None)
 					{
-						Size = itemclass.default.Size/5;
-						if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+						Size = ItemClass.default.Size/5;
+						if (SpaceUsed + Size > MaxInventorySize)
 							continue;
 						CLRI.AppliedItems[CLRI.AppliedItems.length] = ItemClass;
 						if (ItemClass.default.bBonusAmmo)
@@ -100,7 +110,7 @@ function ModifyPlayer( pawn Other )
 							if (ItemClass.static.AddAmmoBonus(Other, BonusAmmo));
 								SpaceUsed += Size;
 						}
-						else if (ItemClass.static.Applyitem(Other))
+						else if (ItemClass.static.ApplyItem(Other))
 							SpaceUsed += Size;
 					}
 				}
@@ -108,12 +118,12 @@ function ModifyPlayer( pawn Other )
 		}
 
         // stimpack is guaranteed
-        SpawnConflictWeapon(class'ICISStimpack', Other, 0, false);
+        SpawnConflictWeapon(class'ICISStimpack', Other, 0, false, 0, 0);
 	}
 
-	if (SpaceUsed < INVENTORY_SIZE_MAX)
+	if (SpaceUsed < MaxInventorySize)
 	{
-		for (Inv=Other.Inventory;Inv!=None;Inv=Inv.Inventory)
+		for (Inv=Other.Inventory; Inv != None; Inv = Inv.Inventory)
 			if (Weapon(Inv) != None)
 				break;
 		if (Inv == None)
@@ -121,6 +131,7 @@ function ModifyPlayer( pawn Other )
 			s = GetFallbackWeapon(CLRI);
 
 			InventoryClass = Level.Game.BaseMutator.GetInventoryClass(s);
+
 			if( (InventoryClass!=None))
 			{
 				Inv = Spawn(InventoryClass);
@@ -149,6 +160,7 @@ function ModifyPlayer( pawn Other )
 				SpawnAmmo(W.default.FireModeClass[1].default.AmmoClass, Other, BonusAmmo);
 		}
 	}
+
 	for (i = 0; i < CLRI.AppliedItems.length; i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
 
@@ -169,7 +181,7 @@ final function class<Weapon> CheckSwitchWeaponClass(class<Weapon> input)
     return input;
 }
 
-function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon)
+function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon, int LayoutIndex, int CamoIndex)
 {
 	local Weapon newWeapon;
 	local bool bHasTrack;
@@ -199,6 +211,8 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_invento
             {
                 BallisticWeapon(newWeapon).NetInventoryGroup = net_inventory_group;
                 BallisticWeapon(newWeapon).bServerDeferInitialSwitch = !set_as_initial_weapon;
+				BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+				BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
             }
 			newWeapon.GiveTo(Other);
 			newWeapon.PickupFunction(Other);
