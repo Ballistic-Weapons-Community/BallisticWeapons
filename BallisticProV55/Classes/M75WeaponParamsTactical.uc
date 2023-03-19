@@ -13,7 +13,7 @@ defaultproperties
 		Chaos=0.750000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
-		Damage=150
+		Damage=200
         HeadMult=2
         LimbMult=0.67f
 		PushbackForce=350.000000
@@ -39,7 +39,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
 		Recoil=1024.000000
 		Chaos=0.750000
-		Damage=150
+		Damage=200
         HeadMult=2
         LimbMult=0.67f
 		BotRefireRate=0.3

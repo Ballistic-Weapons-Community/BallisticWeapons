@@ -10,8 +10,8 @@ class Ammo_20mmRailgun extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=30
-     InitialAmount=15
+     MaxAmmo=14
+     InitialAmount=7
      bTryHeadShot=True
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_M75Clip'

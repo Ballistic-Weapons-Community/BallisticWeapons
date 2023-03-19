@@ -12,7 +12,7 @@ defaultproperties
 {
      bNoPackResupply=True
      MaxAmmo=2
-     InitialAmount=2
+     InitialAmount=0
      IconFlashMaterial=Shader'BWBP_SKC_Tex.LAW.AmmoIcon_LAWFlash'
      PickupClass=Class'BWBP_SKC_Pro.AP_LAWTube'
      IconMaterial=Texture'BWBP_SKC_Tex.LAW.AmmoIcon_LAW'

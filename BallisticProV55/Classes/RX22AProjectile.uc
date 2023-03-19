@@ -19,6 +19,7 @@ simulated event PreBeginPlay()
 {
 	if (Owner != None && Pawn(Owner) != None)
 		Instigator = Pawn(Owner);
+
 	super.PreBeginPlay();
 }
 
@@ -35,21 +36,6 @@ event Tick(float DT)
 		Destroy();
 }
 
-simulated function Timer()
-{
-	if (StartDelay > 0)
-	{
-		SetCollision(true, false, false);
-		StartDelay = 0;
-		SetPhysics(default.Physics);
-		bDynamicLight=default.bDynamicLight;
-		bHidden=default.bHidden;
-		InitProjectile();
-	}
-	else
-		super.Timer();
-}
-
 simulated function bool CanTouch (Actor Other)
 {
     local int i;
@@ -61,19 +47,21 @@ simulated function bool CanTouch (Actor Other)
 		return false;
 
 	for(i=0;i<AlreadyHit.length;i++)
+	{
 		if (AlreadyHit[i] == Other)
 			return false;
+	}
 
     return true;
 }
 
-simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+simulated function DoDamage(Actor Other, Vector HitLocation)
 {
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
 	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
-
+	
     if (Pawn(Other) != None)
 		FireControl.FireSinge(Pawn(Other), Instigator);
 }
@@ -90,19 +78,17 @@ simulated function Explode (vector a, vector b)
 
 defaultproperties
 {
-	 bApplyParams=False
-     bPenetrate=True
-     StartDelay=0.000000
-     Speed=3000.000000
-     Damage=18.000000
-     MyDamageType=Class'BallisticProV55.DTRX22ABurned'
-     bHidden=True
-     RemoteRole=ROLE_None
-     LifeSpan=0.350000
-     CollisionRadius=30.000000
-     CollisionHeight=30.000000
-     bCollideActors=False
-     bCollideWorld=False
-     bBlockZeroExtentTraces=False
-     bBlockNonZeroExtentTraces=False
+	WeaponClass=class'RX22AFlamer'
+	bPenetrate=True
+	Speed=3000.000000
+	MyDamageType=Class'BallisticProV55.DTRX22ABurned'
+	bHidden=True
+	RemoteRole=ROLE_None
+	LifeSpan=0.350000
+	CollisionRadius=15.000000
+	CollisionHeight=15.000000
+	bCollideActors=True
+	bCollideWorld=False
+	bBlockZeroExtentTraces=False
+	bBlockNonZeroExtentTraces=False
 }

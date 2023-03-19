@@ -8,7 +8,9 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
 		//TraceRange=(Min=1800.000000,Max=1800.000000)
-		Damage=25
+		Speed=3000
+		MaxSpeed=3000
+		Damage=15
 		//PenetrateForce=50
 		Chaos=0.050000
 		BotRefireRate=0.99
@@ -60,7 +62,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		AimSpread=(Min=32,Max=128)
+		AimSpread=(Min=512,Max=2048)
         ADSMultiplier=0.5
 		ChaosSpeedThreshold=300
 	End Object
@@ -73,8 +75,9 @@ defaultproperties
 		SightPivot=(Pitch=768)
 		SightOffset=(X=-12.000000,Z=14.300000)
 		ViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
-		PlayerSpeedFactor=0.95
-		MagAmmo=75
+		PlayerSpeedFactor=0.85
+		SightMoveSpeedFactor=0.5
+		MagAmmo=40
         InventorySize=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -12,6 +12,8 @@ defaultproperties
 			//TraceRange=(Min=1800.000000,Max=1800.000000)
 			//WaterTraceRange=5000.0
 			//DecayRange=(Min=0.0,Max=0.0)
+			Speed=3000
+			MaxSpeed=3000
 			Damage=17.0
 			HeadMult=3.3
 			LimbMult=0.6

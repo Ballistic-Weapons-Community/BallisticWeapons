@@ -13,7 +13,7 @@ defaultproperties
 		Chaos=0.750000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
-		Damage=80
+		Damage=170
 		PushbackForce=350.000000
 	    DamageType=Class'BallisticProV55.DTM75Railgun'
         DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
@@ -37,7 +37,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
 		Recoil=1024.000000
 		Chaos=0.750000
-		Damage=80
+		Damage=170
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
 		PushbackForce=1300.000000

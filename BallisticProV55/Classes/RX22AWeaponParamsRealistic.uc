@@ -7,6 +7,17 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	// Azarael note:
+	// though the RX22A primary is defined as an instant fire,
+	// conceptually, it is not - it uses some convoluted handling in which
+	// its FireControl does most of the work, including for spawning
+	// the projectiles that do its hit registration
+	//
+	// attempting to use instant fire parameters for it will have no gameplay effect,
+	// and the code expects projectile params here
+	// 
+	// I've fixed the issue further up in the core, where the mode would attempt to assign
+	// instant params and complain if none existed
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=500.000000,Max=3000.000000)
 		WaterTraceRange=5000.0

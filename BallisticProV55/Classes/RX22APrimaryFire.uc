@@ -24,55 +24,69 @@ function RX22AFireControl GetFireControl()
 
 function DoFireEffect()
 {
-    local Vector Start, Dir, End, HitLocation, HitNormal;
+    local Vector TraceStart, Start, Dir, End, HitLocation, HitNormal;
     local Rotator Aim;
 	local actor Other;
 	local float Dist, NodeDist, DR;
 	local int i;
 
     // the to-hit trace always starts right in front of the eye
-    Start = Instigator.Location + Instigator.EyePosition();
-	Aim = GetFireAim(Start);
+    TraceStart = Instigator.Location + Instigator.EyePosition();
+	Aim = GetFireAim(TraceStart);
 	Aim = Rotator(GetFireSpread() >> Aim);
-
     Dir = Vector(Aim);
-	End = Start + (Dir*MaxRange());
+	End = TraceStart + (Dir*MaxRange());
+
 	Weapon.bTraceWater=true;
-	for (i=0;i<20;i++)
+
+	Start = TraceStart;
+
+	// find endpoint, stopping if we reach it or hit any factors that should block the flame
+	for (i = 0; i < 20; i++)
 	{
 		Other = Trace(HitLocation, HitNormal, End, Start, true);
+
 		if (Other == None || Other.bWorldGeometry || Mover(Other) != none || Vehicle(Other)!=None || FluidSurfaceInfo(Other) != None || (PhysicsVolume(Other) != None && PhysicsVolume(Other).bWaterVolume))
 			break;
+
 		Start = HitLocation + Dir * FMax(32, (Other.CollisionRadius*2 + 4));
 	}
+
 	Weapon.bTraceWater=false;
 
 	if (Other == None)
 		HitLocation = End;
+	
 	if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
 		Other = None;
 
-	Dist = VSize(HitLocation-Start);
-	for (i=0;i<GetFireControl().GasNodes.Length;i++)
+	Dist = VSize(HitLocation-TraceStart);
+
+	// manage ignition of any gas nodes within the flamer's cone
+	for (i = 0; i < GetFireControl().GasNodes.Length; i++)
 	{
 		if (GetFireControl().GasNodes[i] == None || (RX22AGasCloud(GetFireControl().GasNodes[i]) == None && RX22AGasPatch(GetFireControl().GasNodes[i]) == None && RX22AGasSoak(GetFireControl().GasNodes[i]) == None))
 			continue;
-		NodeDist = VSize(GetFireControl().GasNodes[i].Location-Start);
+
+		// check within range of start pos
+		NodeDist = VSize(GetFireControl().GasNodes[i].Location-TraceStart);
 		if (NodeDist > Dist)
 			continue;
-		DR = Dir Dot Normal(GetFireControl().GasNodes[i].Location-Start);
+
+		// check within cone of start pos
+		DR = Dir Dot Normal(GetFireControl().GasNodes[i].Location-TraceStart);
 		if (DR < 0.75)
 			continue;
-		NodeDist = VSize(GetFireControl().GasNodes[i].Location - (Start + Dir * (DR * NodeDist)));
+
+		NodeDist = VSize(GetFireControl().GasNodes[i].Location - (TraceStart + Dir * (DR * NodeDist)));
 		if (NodeDist < 128)
 			GetFireControl().GasNodes[i].TakeDamage(5, Instigator, GetFireControl().GasNodes[i].Location, vect(0,0,0), class'DTRX22ABurned');
 	}
 
-
 	if (Other != None && (Other.bWorldGeometry || Mover(Other) != none))
-		GetFireControl().FireShot(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, Other);
+		GetFireControl().FireShot(TraceStart, HitLocation, Dist, Other != None, HitNormal, Instigator, Other);
 	else
-		GetFireControl().FireShot(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None);
+		GetFireControl().FireShot(TraceStart, HitLocation, Dist, Other != None, HitNormal, Instigator, None);
 
 	SendFireEffect(Other, HitLocation, HitNormal, 0);
 	

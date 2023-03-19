@@ -8,8 +8,8 @@ class Ammo_FlamerGas extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=75
-     InitialAmount=75
+     MaxAmmo=80
+     InitialAmount=40
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_FlameTankFlash'
      PickupClass=Class'BallisticProV55.AP_FlamerGas'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIcon_FlameTank'

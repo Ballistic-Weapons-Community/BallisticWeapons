@@ -91,10 +91,10 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
-		PlayerSpeedFactor=0.90
-		PlayerJumpFactor=0.90
-		InventorySize=12
-		SightMoveSpeedFactor=0.85
+		PlayerSpeedFactor=0.95
+		PlayerJumpFactor=0.95
+		InventorySize=6
+		SightMoveSpeedFactor=0.5
 		DisplaceDurationMult=1.5
 		MagAmmo=30
 		SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)

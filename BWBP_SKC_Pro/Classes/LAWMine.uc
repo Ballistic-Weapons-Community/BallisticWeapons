@@ -12,8 +12,9 @@
 //=============================================================================
 class LAWMine extends BallisticProjectile;
 
-var() Sound						DetonateSound;
+var() 	Sound					DetonateSound;
 var     int						ShockRadius;
+var		float					WallDecayFactor;
 
 var() class<DamageType>			MyShotDamageType;	// Damagetype to use when detonated by damage
 var() class<BCImpactManager>	ImpactManager2;		// Impact manager to spawn on final hit
@@ -149,6 +150,7 @@ function Shockwave(vector HitLocation)
 	
 	if (Role < ROLE_Authority)
 		return;
+
 	foreach CollidingActors( class 'Actor', A, ShockRadius, Location )
 	{
 		if (A != Self && A.bCanBeDamaged)
@@ -157,9 +159,9 @@ function Shockwave(vector HitLocation)
 				A.SetDelayedDamageInstigatorController( InstigatorController );
 				
 			if (FastTrace(A.Location, Location))
-				class'BallisticDamageType'.static.Hurt(A, 75.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
-			else 
-				class'BallisticDamageType'.static.Hurt(A, 40.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
+				class'BallisticDamageType'.static.Hurt(A, Damage, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
+			else if (VSize(A.Location - Location) < ShockRadius / 2)
+				class'BallisticDamageType'.static.Hurt(A, Damage * WallDecayFactor, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
 		}
 
 	}
@@ -176,32 +178,33 @@ function bool IsStationary()
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
-     ModeIndex=1
-     DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
-     ShockRadius=1024
-     MyShotDamageType=Class'BWBP_SKC_Pro.DTLAWShot'
-     ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'
-     Health=175
-     ImpactManager=Class'BallisticProV55.IM_RPG'
-     StartDelay=0.300000
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=2000.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     Damage=210.000000
-     DamageRadius=1536.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
-     bNetTemporary=False
-     Physics=PHYS_None
-     LifeSpan=0.000000
-     DrawScale=0.450000
-     bUnlit=False
-     CollisionRadius=16.000000
-     CollisionHeight=44.000000
-     bCollideWorld=False
-     bProjTarget=True
-     bNetNotify=True
+	ModeIndex=1
+	DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
+	ShockRadius=1536
+	MyShotDamageType=Class'BWBP_SKC_Pro.DTLAWShot'
+	ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'
+	Health=300
+	ImpactManager=Class'BallisticProV55.IM_RPG'
+	StartDelay=0.300000
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=2000.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	Damage=100.000000
+	WallDecayFactor=0.35
+	DamageRadius=0.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
+	bNetTemporary=False
+	Physics=PHYS_None
+	LifeSpan=0.000000
+	DrawScale=0.450000
+	bUnlit=False
+	CollisionRadius=16.000000
+	CollisionHeight=44.000000
+	bCollideWorld=False
+	bProjTarget=True
+	bNetNotify=True
 }

@@ -8,7 +8,9 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
 		//TraceRange=(Min=1800.000000,Max=1800.000000)
-		Damage=14
+		Speed=3000
+		MaxSpeed=3000
+		Damage=15
 		//PenetrateForce=50
 		Chaos=0.050000
 		BotRefireRate=0.99
@@ -31,7 +33,7 @@ defaultproperties
 		Recoil=32.000000
 		WarnTargetPct=0.500000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-        EffectString="Spray gas"
+        EffectString="Spray fuel"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
@@ -60,7 +62,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=ArenaAimParams
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		AimSpread=(Min=32,Max=128)
+		AimSpread=(Min=256,Max=1024)
         ADSMultiplier=0.5
 		ChaosSpeedThreshold=300
 	End Object
@@ -73,8 +75,10 @@ defaultproperties
 		SightPivot=(Pitch=768)
 		SightOffset=(X=-12.000000,Z=14.300000)
 		ViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
-		PlayerSpeedFactor=0.95
-		MagAmmo=75
+		PlayerSpeedFactor=0.85
+		PlayerJumpFactor=0.85
+		SightMoveSpeedFactor=0.7
+		MagAmmo=40
         InventorySize=8
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

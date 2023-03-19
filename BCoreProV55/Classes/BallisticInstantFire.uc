@@ -114,6 +114,9 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     effect_params = InstantEffectParams(params);
 
+	if (effect_params == None) // RX22A
+		return;
+		
     TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
     DecayRange = effect_params.DecayRange;
 

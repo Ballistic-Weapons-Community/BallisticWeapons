@@ -79,7 +79,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		CockAnimRate=1.250000
 		SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
 		ViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
 		InventorySize=2

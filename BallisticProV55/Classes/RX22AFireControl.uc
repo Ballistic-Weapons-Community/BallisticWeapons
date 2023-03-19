@@ -222,6 +222,7 @@ simulated function FireShot(vector Start, Vector End, float Dist, bool bHit, vec
 		Proj.FireControl = self;
 		Proj.InitFlame(End);
 	}
+
 	if (bHit)
 	{
 		i = FlameHits.length;
@@ -247,14 +248,19 @@ function FireSinge(Pawn P, Pawn InstigatedBy)
 	else
 	{
 		for (i=0;i<SingeVictims.length;i++)
+		{
 			if (SingeVictims[i].Vic == P)
 			{
 				SingeVictims[i].NextReduceTime = level.TimeSeconds + 2.0;
 				SingeVictims[i].Burns++;
+
 				if (SingeVictims[i].Burns > 10)
 					MakeNewBurner(P, 5, InstigatedBy);
+
 				return;
 			}
+		}
+
 		SingeVictims.length = i+1;
 		SingeVictims[i].NextReduceTime = level.TimeSeconds + 2.0;
 		SingeVictims[i].Vic = P;
