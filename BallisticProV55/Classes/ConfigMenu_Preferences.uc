@@ -69,8 +69,8 @@ defaultproperties
 	 BloodTabLabel="Blood"
      BloodTabHint="Configure blood and gore settings."
 	 
-     CrossTabLabel="Crosshairs"
-     CrossTabHint="Configure crosshairs."
+     CrossTabLabel="Graphical Crosshairs"
+     CrossTabHint="Configure the graphical crosshairs."
 
 	 DetailSettings(0)="UltraLow"
      DetailSettings(1)="VeryLow"

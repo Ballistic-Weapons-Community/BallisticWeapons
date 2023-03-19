@@ -25,8 +25,6 @@ var Automated GUIImage		Box_WeapList, Img_Cross1, Img_Cross2, Img_BackShot, Box_
 var automated GUILabel   	l_WeaponsList, l_Inner, l_Outer;
 var automated GUIListBox	lb_Weapons;
 var automated GUIComboBox	cb_CrossList1, cb_CrossList2;
-var automated moCheckbox	ch_OldCross, ch_UniCross;
-
 
 var() array<BallisticWeapon.NonDefCrosshairCfg>		Crosshairs;
 
@@ -92,10 +90,8 @@ function LoadSettings()
 {
 	local int i;
 
-	ch_OldCross.Checked(class'BallisticWeapon'.default.bOldCrosshairs);
 	sl_GlobalScale.SetValue(class'HUD'.default.CrosshairScale);
 	sl_CrossGrow.SetValue(class'BallisticWeapon'.default.NDCrosshairScaleFactor);
-	ch_UniCross.Checked(class'BallisticWeapon'.default.bDrawSimpleCrosshair);
 
 	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
 		Crosshairs[i] = class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg;
@@ -110,10 +106,9 @@ function SaveSettings()
 
 	if (!bLoadInitialized || !bInitialized)
 		return;
-	class'BallisticWeapon'.default.bOldCrosshairs 		= ch_OldCross.IsChecked();
+
 	class'HUD'.default.CrosshairScale					= sl_GlobalScale.GetValue();
 	class'BallisticWeapon'.default.NDCrosshairScaleFactor	= sl_CrossGrow.GetValue();
-	class'BallisticWeapon'.default.bDrawSimpleCrosshair	= ch_UniCross.IsChecked();
 
 	class'BallisticWeapon'.default.NDCrosshairCfg	= Crosshairs[lb_Weapons.List.Elements.Length];
 	class'HUD'.static.StaticSaveConfig();
@@ -129,15 +124,16 @@ function SaveSettings()
 function DefaultSettings()
 {
 	local int i;
-	ch_OldCross.Checked(false);
+
 	sl_GlobalScale.SetValue(1.0);
 	sl_CrossGrow.SetValue(1.0);
-	ch_UniCross.Checked(false);
+
 	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
 	{
 		class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).static.ResetConfig("NDCrosshairCfg");
 		Crosshairs[i] = class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg;
 	}
+	
 	class'BallisticWeapon'.static.ResetConfig("NDCrosshairCfg");
 	Crosshairs[i] = class'BallisticWeapon'.default.NDCrosshairCfg;
 	UpdateSettings();
@@ -150,10 +146,7 @@ function InternalOnChange(GUIComponent Sender)
 	if (!bInitialized)
 		return;
 
-	//if (ch_UniCross.IsChecked())
-	//	CHIndex = Crosshairs.Length-1;
-	//else
-		CHIndex = lb_Weapons.List.Index;
+	CHIndex = lb_Weapons.List.Index;
 
 	if (Sender == sl_Red1)				// Cross1 Red
 		Crosshairs[CHIndex].Color1.R = sl_Red1.GetValue();
@@ -185,8 +178,6 @@ function InternalOnChange(GUIComponent Sender)
 		Crosshairs[CHIndex].USize2 = class<BallisticCrosshairPack>(cb_CrossList2.GetObject()).default.Crosshairs[int(cb_CrossList2.GetExtra())].USize;
 		Crosshairs[CHIndex].VSize2 = class<BallisticCrosshairPack>(cb_CrossList2.GetObject()).default.Crosshairs[int(cb_CrossList2.GetExtra())].VSize;
 	}
-	//else if (Sender == ch_UniCross)		// Universal Crosshair
-	//	UpdateSettings();
 	else if (Sender == lb_Weapons.List)	// Weapon List
 		UpdateSettings();
 	UpdateImages();
@@ -195,10 +186,8 @@ function InternalOnChange(GUIComponent Sender)
 function UpdateImages()
 {
 	local int CHIndex;
-	//if (ch_UniCross.IsChecked())
-	//	CHIndex = Crosshairs.Length-1;
-	//else
-		CHIndex = lb_Weapons.List.Index;
+
+	CHIndex = lb_Weapons.List.Index;
 	Img_Cross1.Image 		= Crosshairs[CHIndex].Pic1;
 	Img_Cross1.ImageColor 	= Crosshairs[CHIndex].Color1;
 	Img_Cross2.Image 		= Crosshairs[CHIndex].Pic2;
@@ -209,10 +198,7 @@ function UpdateSettings()
 {
 	local int i, CHIndex;
 
-	//if (ch_UniCross.IsChecked())
-	//	CHIndex = Crosshairs.Length-1;
-	//else
-		CHIndex = lb_Weapons.List.Index;
+	CHIndex = lb_Weapons.List.Index;
 
 	sl_Red1.SetValue(	Crosshairs[CHIndex].Color1.R);
 	sl_Green1.SetValue(	Crosshairs[CHIndex].Color1.G);
@@ -245,10 +231,7 @@ function bool InternalOnPreDraw(Canvas Canvas)
 	if (!bLoadInitialized || !bInitialized)
 		return false;
 
-	//if (ch_UniCross.IsChecked())
-	//	CHIndex = Crosshairs.Length-1;
-	//else
-		CHIndex = lb_Weapons.List.Index;
+	CHIndex = lb_Weapons.List.Index;
 
 	ScaleFactor = float(Controller.ResX)/1600  * sl_GlobalScale.GetValue()/*class'HUD'.default.CrosshairScale*/;
 
@@ -573,7 +556,7 @@ defaultproperties
 
      Begin Object Class=GUIComboBox Name=cb_CrossList1ComBox
          MaxVisibleItems=16
-         Hint="Choose the style of the Outer crosshair."
+         Hint="Choose the style of the outer crosshair."
          WinTop=0.650000
          WinLeft=0.050000
          WinWidth=0.400000
@@ -586,7 +569,7 @@ defaultproperties
 
      Begin Object Class=GUIComboBox Name=cb_CrossList2ComBox
          MaxVisibleItems=16
-         Hint="Choose the style of the Inner crosshair"
+         Hint="Choose the style of the inner crosshair."
          WinTop=0.650000
          WinLeft=0.539000
          WinWidth=0.400000
@@ -596,35 +579,6 @@ defaultproperties
          OnKeyEvent=cb_CrossList2ComBox.InternalOnKeyEvent
      End Object
      cb_CrossList2=GUIComboBox'BallisticProV55.ConfigTab_Crosshairs.cb_CrossList2ComBox'
-
-     Begin Object Class=moCheckBox Name=ch_OldCrossCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Use UT2004 Crosshairs"
-         OnCreateComponent=ch_OldCrossCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Enable to use UT2004's normal crosshairs."
-         WinTop=0.970000
-         WinLeft=0.520000
-         WinWidth=0.470000
-         WinHeight=0.037833
-     End Object
-     ch_OldCross=moCheckBox'BallisticProV55.ConfigTab_Crosshairs.ch_OldCrossCheck'
-
-     Begin Object Class=moCheckBox Name=ch_UniCrossCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Universal Simple Crosshairs"
-         OnCreateComponent=ch_UniCrossCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="All Ballistic weapons use an improved simple crosshair which accurately shows potential aim displacement."
-         WinTop=0.970000
-         WinLeft=0.010000
-         WinWidth=0.470000
-         WinHeight=0.037833
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     ch_UniCross=moCheckBox'BallisticProV55.ConfigTab_Crosshairs.ch_UniCrossCheck'
 
      OnPreDraw=ConfigTab_Crosshairs.InternalOnPreDraw
 }

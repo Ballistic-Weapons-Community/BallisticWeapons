@@ -935,7 +935,7 @@ simulated function bool PutDown()
 	}
 	else
 	{
-		if (!bOldCrosshairs && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
 	}
 	if (IsMaster())
@@ -1067,7 +1067,7 @@ simulated function StopScopeView(optional bool bNoAnim)
 	SetScopeView(false);
 	
 	//Restore normal crosshairs if the weapon has none in scope view
-	if (bOldCrosshairs && bNoCrosshairInScope && bStandardCrosshairOff)
+	if (CrosshairMode == CHM_Unreal && bNoCrosshairInScope && bStandardCrosshairOff)
 	{
 		bStandardCrosshairOff = False;
 		PlayerController(Instigator.Controller).myHud.bCrosshairShow = True;

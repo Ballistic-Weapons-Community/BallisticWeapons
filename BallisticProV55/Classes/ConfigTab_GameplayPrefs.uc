@@ -9,12 +9,18 @@
 //=============================================================================
 class ConfigTab_GameplayPrefs extends ConfigTabBase;
 
-var automated moComboBox		co_ADSHandling, co_ModeMemory;
+var automated moComboBox		co_Crosshairs, co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
 var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages;
 
 function LoadSettings()
 {
+	co_Crosshairs.AddItem("Simple" ,,string(0));
+	co_Crosshairs.AddItem("Graphical" ,,string(1));
+	co_Crosshairs.AddItem("UT2004" ,,string(2));
+	co_Crosshairs.ReadOnly(True);
+	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
+
     co_ADSHandling.AddItem("Default" ,,string(0));
 	co_ADSHandling.AddItem("Hold" ,,string(1));
 	co_ADSHandling.AddItem("Toggle" ,,string(2));
@@ -38,6 +44,7 @@ function SaveSettings()
 	if (!bInitialized)
 		return;
 
+ 	class'BallisticWeapon'.default.CrosshairMode		= ECrosshairMode(co_Crosshairs.GetIndex());
     class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
@@ -51,6 +58,7 @@ function SaveSettings()
 
 function DefaultSettings()
 {
+	co_Crosshairs.SetIndex(0);
 	co_ADSHandling.SetIndex(0);
 	co_ModeMemory.SetIndex(0);
 	fl_ZoomTimeMod.SetValue(1.5);
@@ -60,6 +68,18 @@ function DefaultSettings()
 
 defaultproperties
 {
+	Begin Object Class=moComboBox Name=co_CrosshairCombo
+        ComponentJustification=TXTA_Left
+        CaptionWidth=0.550000
+        Caption="Crosshair Type"
+        OnCreateComponent=co_CrosshairCombo.InternalOnCreateComponent
+        IniOption="@Internal"
+        Hint="Which crosshairs to use.||Simple: Draws simple crosshairs which show hipfire inaccuracy and change color to indicate when a weapon needs reloading or cocking.||Graphical: Draws custom, configurable graphical crosshairs for each weapon.||UT2004: Uses your Unreal Tournament 2004 crosshairs for each weapon."
+        WinTop=0.1
+        WinLeft=0.250000
+     End Object
+     co_Crosshairs=moComboBox'co_CrosshairCombo'
+
      Begin Object Class=moComboBox Name=co_ADSHandlingCombo
         ComponentJustification=TXTA_Left
         CaptionWidth=0.550000
@@ -67,7 +87,7 @@ defaultproperties
         OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
         IniOption="@Internal"
         Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
-        WinTop=0.10000
+        WinTop=0.15
         WinLeft=0.250000
      End Object
      co_ADSHandling=moComboBox'co_ADSHandlingCombo'
@@ -80,7 +100,7 @@ defaultproperties
          IniOption="@Internal"
          IniDefault="High"
          Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
-         WinTop=0.15000
+         WinTop=0.2
          WinLeft=0.250000
      End Object
      co_ModeMemory=moComboBox'co_ModeCombo'
@@ -94,7 +114,7 @@ defaultproperties
          OnCreateComponent=fl_ZoomTimeModFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Multiplier for the rate of change of zoom levels. 1 to 4."
-         WinTop=0.20000
+         WinTop=0.25
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -107,7 +127,7 @@ defaultproperties
          OnCreateComponent=ch_WeaponUICheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable the selection UI when changing weapons."
-         WinTop=0.250000
+         WinTop=0.3
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -120,7 +140,7 @@ defaultproperties
          OnCreateComponent=ch_SimpleDeathMessagesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Renders death messages as Killer [Weapon] Killed"
-         WinTop=0.30000
+         WinTop=0.35
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
