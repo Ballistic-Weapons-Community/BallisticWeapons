@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=4000.000000,Max=4000.000000)
         DecayRange=(Min=525,Max=1225)
 		RangeAtten=0.5
-		Damage=25
+		Damage=18
         HeadMult=2.0f
         LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTMD24Pistol'

@@ -9,7 +9,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		RangeAtten=0.500000
-		Damage=14
+		Damage=15
 		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'

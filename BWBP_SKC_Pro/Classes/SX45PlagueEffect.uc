@@ -4,11 +4,11 @@
 class SX45PlagueEffect extends BallisticEmitter
 	placeable;
 
-var   Actor							Victim;
-var   float							Duration, MaxDuration, Damage;
-var   Controller					InstigatorController;
-var 	SX45PlagueTrigger		PlagueTrigger;
-var	class<DamageType>	DamageType;
+var  Actor					Victim;
+var  float					Duration, MaxDuration, Damage;
+var  Controller				InstigatorController;
+var SX45PlagueTrigger		PlagueTrigger;
+var	class<DamageType>		DamageType;
 
 function Reset()
 {
@@ -28,7 +28,7 @@ simulated function Initialize(Actor V)
 	Victim = V;
 	
 	if (Role == ROLE_Authority)
-		SetTimer(1.5, true);
+		SetTimer(1, true);
 
 	if (level.netMode == NM_DedicatedServer)
 	{
@@ -58,6 +58,7 @@ function ExtendDuration(float Amount)
 {
 	if (bTearOff)
 		return;
+
 	Duration = FMin(Duration+Amount, MaxDuration);
 }
 
@@ -67,11 +68,13 @@ event Tick (float DT)
 		return;
 
 	Duration -= DT;
-	if (Victim == none || Duration <= 0)
+
+	if (Victim == None || Duration <= 0)
 	{
-		if (level.netMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
+		if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
 			bTearOff=True;
-		else Kill();
+		else 
+			Kill();
 		return;
 	}
 }
@@ -81,7 +84,7 @@ event Timer()
 	if (bTearOff)
 		Destroy();
 		
-	if (Victim != None && Role ==ROLE_Authority && Duration > 0)
+	if (Victim != None && Role == ROLE_Authority && Duration > 0)
 	{
 		if ( Instigator == None || Instigator.Controller == None )
 			Victim.SetDelayedDamageInstigatorController( InstigatorController );
@@ -94,18 +97,19 @@ simulated function Destroyed()
 {
 	if (BallisticPawn(Victim) != None)
 		BallisticPawn(Victim).bPreventHealing = False;
+
 	Super.Destroyed();
 	
 	PlagueTrigger.Destroy();
 }
 
-
 defaultproperties
 {
 	Duration=2.000000
-	MaxDuration=8.000000
-	Damage=2.000000
+	MaxDuration=10.000000
+	Damage=5.000000
 	DamageType=Class'BWBP_SKC_Pro.DTSX45PistolPlague'
+
     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
         UseColorScale=True
         FadeOut=True

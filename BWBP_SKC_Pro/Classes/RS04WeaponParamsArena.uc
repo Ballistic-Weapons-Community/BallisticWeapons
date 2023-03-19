@@ -10,7 +10,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Max=5500.000000)
 		RangeAtten=0.900000
-		Damage=28
+		Damage=25
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
@@ -34,7 +34,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryBurstEffectParams
 		TraceRange=(Max=5500.000000)
 		RangeAtten=0.900000
-		Damage=28
+		Damage=25
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'

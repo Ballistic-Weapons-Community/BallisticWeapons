@@ -12,7 +12,7 @@ defaultproperties
 			TraceRange=(Min=15000.000000,Max=15000.000000)
             DecayRange=(Min=2363,Max=5000)
 			RangeAtten=0.67
-			Damage=20
+			Damage=18
 			DamageType=Class'BWBP_OP_Pro.DTM575MG'
 			DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
 			DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'

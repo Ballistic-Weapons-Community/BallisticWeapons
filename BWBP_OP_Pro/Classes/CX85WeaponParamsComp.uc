@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2363,Max=5000)
 		RangeAtten=0.67
-		Damage=21
+		Damage=18
 		DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'

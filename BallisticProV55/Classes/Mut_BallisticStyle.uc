@@ -28,9 +28,18 @@ simulated function PreBeginPlay()
 	class'BallisticGameStyles'.default.CurrentStyle = OverrideStyle;
 
 	Log("Mut_BallisticStyle: Overriding game style with "$GetEnum(enum'EGameStyle', class'BallisticGameStyles'.default.CurrentStyle));
-	Log("Mut_BallisticStyle: Spawning mutator "$InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName);
 
-	Level.Game.AddMutator(InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName, false);
+	if (class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex < 6)
+	{
+		Log("Mut_BallisticStyle: Spawning mutator "$InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName);
+
+		Level.Game.AddMutator(InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName, false);
+	}
+
+	else 
+	{
+		log("Mut_BallisticStyle: No default inventory mode assigned. Applying style override only.");
+	}
 }
 
 defaultproperties

@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=20
+		Damage=18
 		DamageType=Class'BWBP_OP_Pro.DTMX32Primary'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTMX32PrimaryHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTMX32PrimaryLimb'

@@ -10,14 +10,14 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=20
+		Damage=18
 		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.500000
-		Recoil=140.000000
+		Recoil=130.000000
 		Chaos=0.02000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)

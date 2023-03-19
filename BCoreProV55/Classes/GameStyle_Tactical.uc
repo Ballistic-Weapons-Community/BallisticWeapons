@@ -10,7 +10,7 @@ defaultproperties
 {
 	Index=GS_Tactical
 	Name="Tactical"
-	RecoilScale=0.9
+	RecoilScale=0.7
 
 	bRunInADS=False
 
@@ -30,11 +30,11 @@ defaultproperties
 	bHealthRegeneration=False
 	StartingHealth=100
 	PlayerHealthMax=100
-	PlayerSuperHealthMax=200
+	PlayerSuperHealthMax=100
 
 	bShieldRegeneration=False
 	StartingShield=25
-	PlayerShieldMax=100
+	PlayerShieldMax=25
 
 	bPlayerDeceleration=True
 	bAllowDodging=True
@@ -57,8 +57,8 @@ defaultproperties
 	SprintSpeedFactor=1.5f
 	JumpDrainFactor=2
 
-	HealthKillReward=25
-	KillRewardHealthMax=100
-	ShieldKillReward=0
-	KillRewardShieldMax=0
+	HealthKillReward=0
+	KillRewardHealthMax=0
+	ShieldKillReward=25
+	KillRewardShieldMax=25
 }

@@ -9,7 +9,7 @@ defaultproperties
 		TraceRange=(Min=8000.000000,Max=8000.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		Damage=45
+		Damage=30
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
 		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'

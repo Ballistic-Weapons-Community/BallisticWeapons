@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
-		Damage=20
+		Damage=18
 		DamageType=Class'BallisticProV55.DTSARRifle'
 		DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSARRifle'
@@ -35,7 +35,7 @@ defaultproperties
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
-		Damage=20
+		Damage=18
 		DamageType=Class'BallisticProV55.DTSARRifle'
 		DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSARRifle'

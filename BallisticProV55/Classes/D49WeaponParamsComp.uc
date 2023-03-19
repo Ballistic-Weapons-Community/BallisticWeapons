@@ -10,7 +10,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=8.000000
-        Damage=50.000000
+        Damage=45.000000
         HeadMult=2.0f
         LimbMult=0.67f
         DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -45,7 +45,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=8.000000
-        Damage=100.000000
+        Damage=90.000000
         HeadMult=1.5f
         LimbMult=0.67f
         RangeAtten=0.5

@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=9000.000000,Max=11000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=25
+		Damage=23
 		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
@@ -24,7 +24,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.095000
+		FireInterval=0.088000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object

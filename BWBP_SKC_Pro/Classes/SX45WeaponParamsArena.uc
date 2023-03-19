@@ -9,10 +9,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaStandardPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		RangeAtten=0.3
-		Damage=32
-		HeadMult=1.5f
-		LimbMult=0.5f
+		DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
+		Damage=26
+		HeadMult=2f
+		LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
@@ -40,10 +41,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaCryoPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		RangeAtten=0.3
-		Damage=28
-		HeadMult=1.5f
-		LimbMult=0.5f
+		DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
+		Damage=26
+		HeadMult=2f
+		LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead_Cryo'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
@@ -71,10 +73,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaRadPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		RangeAtten=0.3
-		Damage=22
-		HeadMult=1.5f
-		LimbMult=0.5f
+		DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
+		Damage=26
+		HeadMult=2f
+		LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead_RAD'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'
@@ -124,7 +127,6 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		DisplaceDurationMult=0.33
-		PlayerSpeedFactor=1.05
 		SightingTime=0.200000
 		MagAmmo=9
         InventorySize=3

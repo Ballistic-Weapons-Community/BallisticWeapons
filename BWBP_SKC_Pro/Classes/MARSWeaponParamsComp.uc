@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=20
+		Damage=18
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
@@ -34,7 +34,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=20
+		Damage=18
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
