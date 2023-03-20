@@ -170,7 +170,7 @@ defaultproperties
         FireParams(1)=FireParams'AutoFireParams'
         AltFireParams(0)=FireParams'MeleeFireParams'
         AimParams(0)=AimParams'TacticalBurstAimParams'
-		AimParams(0)=AimParams'TacticalAutoAimParams'
+		AimParams(1)=AimParams'TacticalAutoAimParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
 }
