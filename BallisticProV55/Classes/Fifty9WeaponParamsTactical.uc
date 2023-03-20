@@ -135,9 +135,17 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=TacticalAimParams
-        AimSpread=(Min=128,Max=512)
-        ADSMultiplier=0.5
+	Begin Object Class=AimParams Name=TacticalBurstAimParams
+        AimSpread=(Min=256,Max=1024)
+        ADSMultiplier=1
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		AimAdjustTime=0.450000
+        ChaosSpeedThreshold=300
+	End Object
+
+	Begin Object Class=AimParams Name=TacticalAutoAimParams
+        AimSpread=(Min=256,Max=1024)
+        ADSMultiplier=0.75
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.450000
         ChaosSpeedThreshold=300
@@ -161,7 +169,8 @@ defaultproperties
         FireParams(0)=FireParams'BurstFireParams'
         FireParams(1)=FireParams'AutoFireParams'
         AltFireParams(0)=FireParams'MeleeFireParams'
-        AimParams(0)=AimParams'TacticalAimParams'
+        AimParams(0)=AimParams'TacticalBurstAimParams'
+		AimParams(0)=AimParams'TacticalAutoAimParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
 }

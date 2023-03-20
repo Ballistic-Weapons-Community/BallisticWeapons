@@ -119,16 +119,16 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalStockOutAimParams
-		ADSMultiplier=0.35
+		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.300000
-		AimSpread=(Min=256,Max=1024)
+		AimSpread=(Min=384,Max=1536)
 		ChaosDeclineTime=0.5
 		ChaosSpeedThreshold=300
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalStockInAimParams
-		ADSMultiplier=0.65
+		ADSMultiplier=1
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.45
 		AimSpread=(Min=256,Max=1024)

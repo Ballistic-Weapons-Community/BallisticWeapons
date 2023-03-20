@@ -82,10 +82,10 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=64,Max=1024)
+		AimSpread=(Min=384,Max=1536)
 		AimAdjustTime=0.600000
 		CrouchMultiplier=0.700000
-		ADSMultiplier=0.7000
+		ADSMultiplier=0.5
 		ViewBindFactor=0.300000
 		SprintChaos=0.400000
 		ChaosDeclineTime=0.450000

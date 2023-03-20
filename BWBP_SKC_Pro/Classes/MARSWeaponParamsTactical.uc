@@ -148,7 +148,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=256,Max=1024)
+		AimSpread=(Min=384,Max=1536)
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-3072,Yaw=-4096))
 		ChaosDeclineTime=0.5
@@ -156,8 +156,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalAimParams_CQC
-		AimSpread=(Min=64,Max=512)
-        ADSMultiplier=0.35
+		AimSpread=(Min=384,Max=1536)
+        ADSMultiplier=0.5
 		SprintOffset=(Pitch=-3000,Yaw=-4096)
 		ChaosDeclineTime=0.5
         ChaosSpeedThreshold=300
