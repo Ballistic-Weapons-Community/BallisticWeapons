@@ -118,7 +118,7 @@ defaultproperties
 		ADSMultiplier=0.5
 		CrouchMultiplier=0.750000
 		AimSpread=(Min=768,Max=3072)
-		AimAdjustTime=0.550000
+		AimAdjustTime=0.800000
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-4000,Yaw=1500)
 		ChaosDeclineTime=0.800000

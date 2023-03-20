@@ -162,7 +162,13 @@ simulated function bool CheckScope()
 
 	NextCheckScopeTime = level.TimeSeconds + 0.25;
 	
-	if (IsMaster() || ReloadState != RS_None || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
+	if 
+	(
+		IsMaster() || 
+		AimComponent.IsDisplaced() || 
+		(ReloadState != RS_None && ReloadState != RS_Cocking) || 
+		(Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || 
+		(SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
 	{
 		StopScopeView();
 		return false;
@@ -563,16 +569,6 @@ simulated function EmptyFire (byte Mode)
 	else if (bNeedReload && ClientState == WS_ReadyToFire && FireCount < 1 && Othergun.FireCount < 1 && Instigator.IsLocallyControlled() &&
 		(Othergun.bNeedReload || !Othergun.HasAmmoLoaded(Mode)))
 		ServerStartReload(Mode);
-}
-
-simulated function PlayScopeUp()
-{
-	if (HasAnim(ZoomInAnim))
-	    SafePlayAnim(ZoomInAnim, 1.0);
-	else
-		SightingState = SS_Raising;
-	if(ZoomType == ZT_Irons)
-	PlayerController(Instigator.Controller).bZooming = True;
 }
 
 // Fire pressed. Change weapon if out of ammo, reload if empty mag or skip reloading if possible

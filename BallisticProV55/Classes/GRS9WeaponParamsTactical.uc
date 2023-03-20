@@ -94,7 +94,7 @@ defaultproperties
         AimSpread=(Min=256,Max=1024)
         ADSMultiplier=0.75
         SprintChaos=0.050000
-        AimAdjustTime=0.350000
+        AimAdjustTime=0.450000
         ChaosDeclineTime=0.450000
         ChaosSpeedThreshold=300
     End Object

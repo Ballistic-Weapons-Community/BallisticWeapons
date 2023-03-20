@@ -108,7 +108,7 @@ defaultproperties
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-4000)
 		ADSMultiplier=0.5
-		AimAdjustTime=0.450000
+		AimAdjustTime=0.70000
 		ChaosDeclineTime=1.750000
         ChaosSpeedThreshold=300.000000
 	End Object

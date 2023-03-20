@@ -74,7 +74,7 @@ defaultproperties
 		ViewBindFactor=1
 		SprintOffSet=(Pitch=-6000,Yaw=-8000)
 		JumpOffSet=(Pitch=-6000,Yaw=2000)
-		AimAdjustTime=1
+		AimAdjustTime=0.8
 		AimSpread=(Min=0,Max=0)
 		ChaosSpeedThreshold=300
 		AimDamageThreshold=2000.000000

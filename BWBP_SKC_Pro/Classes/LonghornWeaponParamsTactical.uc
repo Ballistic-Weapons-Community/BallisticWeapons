@@ -84,7 +84,7 @@ defaultproperties
 		JumpChaos=0.200000
 		FallingChaos=0.200000
 		SprintChaos=0.200000
-		AimAdjustTime=0.900000
+		AimAdjustTime=0.600000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=300
 	End Object
