@@ -118,7 +118,7 @@ defaultproperties
      MaxSpeed=7000.000000
      Damage=110.000000
 	 DamageRadius=512.000000
-     WallPenetrationForce=192
+     WallPenetrationForce=64
      MomentumTransfer=60000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAG'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAGRadius'

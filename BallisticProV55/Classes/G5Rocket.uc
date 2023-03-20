@@ -136,7 +136,7 @@ defaultproperties
      MaxSpeed=25000.000000
      Damage=120.000000
      DamageRadius=768.000000
-     WallPenetrationForce=384
+     WallPenetrationForce=64
      MomentumTransfer=75000.000000
      MyDamageType=Class'BallisticProV55.DTG5Bazooka'
      LightType=LT_Steady

@@ -104,7 +104,7 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     WallPenetrationForce=128
+     WallPenetrationForce=64
      MyDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'

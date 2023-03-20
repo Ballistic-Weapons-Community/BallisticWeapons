@@ -7,8 +7,9 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
-		TraceRange=(Min=3000.000000)
-		Damage=20
+		TraceRange=(Min=3000.000000,Max=3000.000000)
+		Inaccuracy=(X=48,Y=48)
+		Damage=10
 		HeadMult=1f
 		LimbMult=1f
 		DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
@@ -82,7 +83,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams
 		ViewOffset=(X=3.000000,Y=-3.000000,Z=-8.500000)
 		SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
-		MagAmmo=15
+		MagAmmo=10
 		InventorySize=1
         SightingTime=0.200000
         SightMoveSpeedFactor=0.6

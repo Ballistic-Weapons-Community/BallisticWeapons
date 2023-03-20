@@ -146,7 +146,7 @@ defaultproperties
      Damage=600.000000
      DamageRadius=160.000000
      MomentumTransfer=400000.000000
-     WallPenetrationForce=600
+     WallPenetrationForce=256 // 600 was 12 metres of cover required to neutralize the effect, this is 5
 	 
      FlySound=Sound'BW_Core_WeaponSound.Artillery.Art-FlyBy'
      SoundVolume=192

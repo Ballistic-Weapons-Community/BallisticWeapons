@@ -37,7 +37,7 @@ simulated function Timer()
 	}
 	
 	DamageRadius=400;
-    WallPenetrationForce=300;
+    WallPenetrationForce=256;
 }
 
 simulated event Tick(float DT)

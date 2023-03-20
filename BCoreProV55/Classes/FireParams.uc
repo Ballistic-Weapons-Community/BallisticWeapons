@@ -46,7 +46,7 @@ var() Name 						AimedFireAnim;		    // Fire anim to play when ADS
 //-----------------------------------------------------------------------------
 // Subobjects
 //-----------------------------------------------------------------------------
-var() array<FireEffectParams>   FireEffectParams;       // subobjects which define the gameplay effects of the firemode as well as various display factors
+var() editinline array<FireEffectParams>   FireEffectParams;       // subobjects which define the gameplay effects of the firemode as well as various display factors
 
 static simulated final function Initialize(BallisticWeapon BW, int ModeIndex, int AmmoIndex);
 

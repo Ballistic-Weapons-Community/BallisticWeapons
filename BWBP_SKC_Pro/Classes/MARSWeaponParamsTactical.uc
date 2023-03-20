@@ -140,6 +140,7 @@ defaultproperties
 		DeclineTime=0.5
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
+		ADSViewBindFactor=0.85
 	End Object
 	
 	//=================================================================

@@ -12,6 +12,7 @@ defaultproperties
     //=================================================================	
 		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 			DecayRange=(Min=1575,Max=2560)
+			Inaccuracy=(X=16,Y=16)
 			PenetrationEnergy=48 
 			Damage=80.000000
             HeadMult=2f
@@ -27,7 +28,6 @@ defaultproperties
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
 			Recoil=1024.000000
 			Chaos=0.2
-			Inaccuracy=(X=16,Y=16)
 			WarnTargetPct=0.400000
 			BotRefireRate=0.7
 		End Object
@@ -42,7 +42,6 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
 	
 		Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)

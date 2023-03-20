@@ -105,7 +105,7 @@ defaultproperties
     Speed=3500.000000
     Damage=110.000000
     DamageRadius=512.000000
-    WallPenetrationForce=128
+    WallPenetrationForce=64
     MyDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'

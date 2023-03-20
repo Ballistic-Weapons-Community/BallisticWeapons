@@ -17,6 +17,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		RangeAtten=0.5
         DecayRange=(Min=525,Max=1225)
+		Inaccuracy=(X=48,Y=48)
 		Damage=22
         HeadMult=2.5
         LimbMult=0.67f
@@ -65,6 +66,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.5
+		ADSViewBindFactor=0.85
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=0.250000),(InVal=1.000000,OutVal=0.100000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.200000),(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.550000),(InVal=0.600000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000

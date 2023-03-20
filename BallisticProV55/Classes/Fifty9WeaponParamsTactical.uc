@@ -19,6 +19,7 @@ defaultproperties
         HeadMult=2.75
         LimbMult=0.67f
         RangeAtten=0.5
+		Inaccuracy=(X=48,Y=48)
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
@@ -27,7 +28,6 @@ defaultproperties
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
         FlashScaleFactor=0.400000
         Recoil=144.000000
-        Inaccuracy=(X=72,Y=72)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 	    SplashDamage=False
 	    RecommendSplashDamage=False
@@ -43,6 +43,7 @@ defaultproperties
         HeadMult=2.75
         LimbMult=0.67f
         RangeAtten=0.5
+		Inaccuracy=(X=48,Y=48)
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
@@ -51,7 +52,6 @@ defaultproperties
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
         FlashScaleFactor=0.400000
         Recoil=144.000000
-        Inaccuracy=(X=72,Y=72)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 	    SplashDamage=False
 	    RecommendSplashDamage=False
@@ -113,6 +113,7 @@ defaultproperties
 		CrouchMultiplier=1
 		HipMultiplier=1.5
 		ViewBindFactor=0.2
+		ADSViewBindFactor=0.7 // no stock
 		DeclineDelay=0.09
 	End Object
 
@@ -126,6 +127,7 @@ defaultproperties
 		CrouchMultiplier=0.8
 		HipMultiplier=1.75
 		ViewBindFactor=0.2
+		ADSViewBindFactor=0.85 // stock
 		DeclineDelay=0.09
 	End Object
 

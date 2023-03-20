@@ -90,24 +90,26 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
+	Begin Object Class=RecoilParams Name=TacticalStockOutRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 	   	XRandFactor=0.05
 		YRandFactor=0.05
 		DeclineTime=0.5
 		ViewBindFactor=0.35
+		ADSViewBindFactor=0.85
 		CrouchMultiplier=0.75
 		DeclineDelay=0.14
 	End Object
 
-	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
+	Begin Object Class=RecoilParams Name=TacticalStockInRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-	   	XRandFactor=0.05
+		XRandFactor=0.05
 		YRandFactor=0.05
 		DeclineTime=0.5
 		ViewBindFactor=0.45
+		ADSViewBindFactor=0.7
 		CrouchMultiplier=1
 		DeclineDelay=0.14
 	End Object
@@ -116,7 +118,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=TacticalAutoAimParams
+	Begin Object Class=AimParams Name=TacticalStockOutAimParams
 		ADSMultiplier=0.35
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.300000
@@ -125,8 +127,8 @@ defaultproperties
 		ChaosSpeedThreshold=300
 	End Object
 
-	Begin Object Class=AimParams Name=TacticalBurstAimParams
-		ADSMultiplier=1
+	Begin Object Class=AimParams Name=TacticalStockInAimParams
+		ADSMultiplier=0.65
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.45
 		AimSpread=(Min=256,Max=1024)
@@ -146,10 +148,10 @@ defaultproperties
         InventorySize=5
         SightingTime=0.35 // adjust the factor with stock mode
         SightMoveSpeedFactor=0.5
-        RecoilParams(0)=RecoilParams'TacticalAutoRecoilParams'
-        RecoilParams(1)=RecoilParams'TacticalBurstRecoilParams'
-        AimParams(0)=AimParams'TacticalAutoAimParams'
-        AimParams(1)=AimParams'TacticalBurstAimParams'
+        RecoilParams(0)=RecoilParams'TacticalStockOutRecoilParams'
+        RecoilParams(1)=RecoilParams'TacticalStockInRecoilParams'
+        AimParams(0)=AimParams'TacticalStockOutAimParams'
+        AimParams(1)=AimParams'TacticalStockInAimParams'
 		FireParams(0)=FireParams'TacticalAutoFireParams'
 		FireParams(1)=FireParams'TacticalBurstFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'

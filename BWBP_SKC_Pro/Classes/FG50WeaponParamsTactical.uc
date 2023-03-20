@@ -123,6 +123,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
+		ADSViewBindFactor=0.85
 		XCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=0.130000),(InVal=0.550000,OutVal=0.15000),(InVal=0.700000,OutVal=0.21000),(InVal=1.000000,OutVal=0.225000)))
 		YCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
@@ -162,8 +163,8 @@ defaultproperties
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		InventorySize=6
-		SightMoveSpeedFactor=0.4
-		SightingTime=0.8
+		SightMoveSpeedFactor=0.3
+		SightingTime=0.75
 		DisplaceDurationMult=1.4
 		MagAmmo=40
 		ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)

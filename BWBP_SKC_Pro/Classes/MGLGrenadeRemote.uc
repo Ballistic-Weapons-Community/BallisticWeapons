@@ -67,7 +67,7 @@ defaultproperties
      MotionBlurRadius=400.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     WallPenetrationForce=256
+     WallPenetrationForce=64
      Speed=4500.000000
      Damage=140.000000
      DamageRadius=768.000000

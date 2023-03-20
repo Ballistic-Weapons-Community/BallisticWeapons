@@ -27,7 +27,7 @@ defaultproperties
 		PushbackForce=128.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=450.000000
+		Recoil=300.000000
 		Chaos=0.150000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.M925.M925-Fire',Volume=0.800000)
@@ -46,6 +46,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.250000
+		ADSViewBindFactor=0.7
 		CrouchMultiplier=0.700000
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.40000),(InVal=0.5,OutVal=0.550000),(InVal=0.700000,OutVal=0.70000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.5,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
@@ -82,7 +83,7 @@ defaultproperties
 		DisplaceDurationMult=1.4
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
-		SightMoveSpeedFactor=0.4
+		SightMoveSpeedFactor=0.3
 		SightingTime=0.65
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

@@ -14,6 +14,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPriEffectParams
      	TraceRange=(Min=3072,Max=3072)
         DecayRange=(Min=525,Max=1225)
+		Inaccuracy=(X=48,Y=48)
 		RangeAtten=0.5
      	PenetrationEnergy=8.000000
 		PenetrateForce=135
@@ -26,7 +27,6 @@ defaultproperties
     	DamageTypeArm=Class'BallisticProV55.DTXRS10SMG'
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		Recoil=240.000000
-     	Inaccuracy=(X=64,Y=64)
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
 	End Object
 
@@ -57,9 +57,10 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.5
+		ADSViewBindFactor=0.7
 		HipMultiplier=1
-		XCurve=(Points=(,(InVal=0.150000,OutVal=0.05),(InVal=0.30000,OutVal=-0.07000),(InVal=0.5500000,OutVal=0.090000),(InVal=0.800000,OutVal=-0.15000),(InVal=1.000000,OutVal=0.100000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.220000),(InVal=0.400000,OutVal=0.400000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+		XCurve=(Points=(,(InVal=0.150000,OutVal=0.05),(InVal=0.30000,OutVal=0.07000),(InVal=0.5500000,OutVal=0.090000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.220000),(InVal=0.400000,OutVal=0.400000),(InVal=0.600000,OutVal=0.550000),(InVal=0.800000,OutVal=0.850000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05
 		YRandFactor=0.05
 		MaxRecoil=4096.000000

@@ -5,7 +5,6 @@ var() float         FlankDamageMult;
 var() float         BackDamageMult;
 var() float         Fatigue;
 
-
 //Accessor for stats
 // sigh
 function FireModeStats GetStats() 

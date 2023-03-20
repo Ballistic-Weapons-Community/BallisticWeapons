@@ -27,7 +27,7 @@ defaultproperties
         FlashScaleFactor=0.900000
         Recoil=450.000000
         Chaos=0.2
-        Inaccuracy=(X=16,Y=16)
+        Inaccuracy=(X=48,Y=48)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
         WarnTargetPct=0.400000
         BotRefireRate=0.7

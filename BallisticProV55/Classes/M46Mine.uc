@@ -24,7 +24,7 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     WallPenetrationForce=128
+     WallPenetrationForce=64
      MyDamageType=Class'BallisticProV55.DTM46GrenadeRadius'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_Grenade'
      CullDistance=2500.000000

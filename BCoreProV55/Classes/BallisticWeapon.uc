@@ -176,15 +176,14 @@ var Object.Color  					CrosshairColor;			//used by Simple XHairs
 //=============================================================================
 // END STATIC DEFINITIONS
 //=============================================================================
-
 var     RewindCollisionManager      RwColMgr;                       // Used for rewind-based instant fire tracing
 var     bool                        RewindActive;                   // True if currently in rewind mode (for cleanup)
 
 //=============================================================================
 // WEAPON STATE VARIABLES
 //=============================================================================
-var		editinline WeaponParams		WeaponParams;
-var		editinline WeaponCamo		WeaponCamo;
+var()	editinline WeaponParams		WeaponParams;
+var		WeaponCamo					WeaponCamo;
 var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
@@ -242,11 +241,11 @@ var   bool     						bMagPlusOne;              		// A true value means weapon ca
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
-var editinline RecoilComponent				RcComponent;					// Object which handles recoil
+var() editinline RecoilComponent	RcComponent;					// Object which handles recoil
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
-var editinline AimComponent					AimComponent;
+var() editinline AimComponent		AimComponent;					// Object which handles aim/sway
 //=============================================================================
 // END WEAPON STATE VARIABLES
 //=============================================================================

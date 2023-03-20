@@ -46,10 +46,10 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000
-		Damage=110
-        ImpactDamage=110
+		Damage=150
+        ImpactDamage=150
 		PushbackForce=100.000000
-		DamageRadius=512.000000
+		DamageRadius=1024.000000
 		MomentumTransfer=60000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=2048.000000
@@ -72,6 +72,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
+		ADSViewBindFactor=0.8
 		XRandFactor=0.350000
 		YRandFactor=0.350000
 		MaxRecoil=6144.000000

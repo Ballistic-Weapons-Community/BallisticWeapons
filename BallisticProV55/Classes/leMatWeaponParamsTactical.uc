@@ -15,6 +15,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=8000.000000)
         DecayRange=(Min=788,Max=1838)
+		Inaccuracy=(X=48,Y=48)
 		RangeAtten=0.5
 		Damage=45
         HeadMult=2.75

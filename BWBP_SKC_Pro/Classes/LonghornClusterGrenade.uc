@@ -310,7 +310,7 @@ defaultproperties
      MaxSpeed=6000.000000
      Damage=130.000000
      DamageRadius=450.000000
-     WallPenetrationForce=192
+     WallPenetrationForce=32
      //MomentumTransfer=100000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Metal'

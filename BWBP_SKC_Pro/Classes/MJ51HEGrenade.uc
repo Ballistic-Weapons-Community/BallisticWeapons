@@ -31,7 +31,7 @@ defaultproperties
     MaxSpeed=4500.000000
     Damage=140.000000
     DamageRadius=512.000000
-    WallPenetrationForce=128
+    WallPenetrationForce=64
     MyDamageType=Class'BWBP_SKC_Pro.DTMJ51HEGrenade'
     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
     StaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.MOACProjLaunched'

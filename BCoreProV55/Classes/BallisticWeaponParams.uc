@@ -26,8 +26,8 @@
 class BallisticWeaponParams extends Object
     DependsOn(FireEffectParams);
 
-var editinline array<WeaponParams>	Layouts; //Gun variants, attachment setups, alternate designs
-var editinline array<WeaponCamo>	Camos; //Gun skins
+var() editinline 	array<WeaponParams>		Layouts; //Gun variants, attachment setups, alternate designs
+var() 				array<WeaponCamo>		Camos; //Gun skins
 
 static simulated final function Initialize(BallisticWeapon BW)
 {

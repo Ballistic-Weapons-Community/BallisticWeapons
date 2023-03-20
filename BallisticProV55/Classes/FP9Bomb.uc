@@ -458,7 +458,7 @@ defaultproperties
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=1200.000000
      MotionBlurRadius=1024.000000
-     WallPenetrationForce=512
+     WallPenetrationForce=64
      ShakeRotMag=(X=512.000000,Y=400.000000)
      ShakeRotRate=(X=3000.000000,Z=3000.000000)
      ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)

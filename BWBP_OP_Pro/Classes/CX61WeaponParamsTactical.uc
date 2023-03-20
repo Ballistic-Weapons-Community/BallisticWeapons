@@ -29,7 +29,6 @@ defaultproperties
 		Recoil=128
 		Chaos=0.03
 		WarnTargetPct=0.200000
-		Inaccuracy=(X=48,Y=48)
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Fire',Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
@@ -74,6 +73,7 @@ defaultproperties
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.4
+		ADSViewBindFactor=0.85
 		XCurve=(Points=(,(InVal=0.2,OutVal=-0.03),(InVal=0.4,OutVal=0.11),(InVal=0.5,OutVal=0.13),(InVal=0.6,OutVal=0.15),(InVal=0.8,OutVal=0.16),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.190000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.620000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000

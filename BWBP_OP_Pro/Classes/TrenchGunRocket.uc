@@ -117,7 +117,7 @@ defaultproperties
      MaxSpeed=7000.000000
      Damage=110.000000
 	 DamageRadius=180.000000
-     WallPenetrationForce=192
+     WallPenetrationForce=64
      MomentumTransfer=60000.000000
      MyDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAG'
      MyRadiusDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAGRadius'

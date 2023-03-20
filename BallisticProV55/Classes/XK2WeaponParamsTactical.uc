@@ -14,6 +14,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=1838)
+		Inaccuracy=(X=32,Y=32)
 		RangeAtten=0.5
 		Damage=24
         HeadMult=2.75f
@@ -40,6 +41,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryIceEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=1838)
+		Inaccuracy=(X=32,Y=32)
 		RangeAtten=0.5
 		Damage=18
         HeadMult=2.75
@@ -53,7 +55,6 @@ defaultproperties
 		FlashScaleFactor=0.250000
 		Recoil=98.000000
 		Chaos=0.050000
-		Inaccuracy=(X=96,Y=96)
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
 	End Object
 
@@ -84,6 +85,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.45
+		ADSViewBindFactor=0.9
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.16)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000

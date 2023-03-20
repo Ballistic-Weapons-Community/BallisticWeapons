@@ -15,7 +15,7 @@ defaultproperties
         AccelSpeed=0
         Damage=150.000000
         ImpactDamage=50
-        DamageRadius=512.000000
+        DamageRadius=1024.000000
         Chaos=0.700000
         Inaccuracy=(X=64,Y=64)
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.BOGP.BOGP_Fire',Volume=1.750000)
@@ -102,7 +102,7 @@ defaultproperties
         DisplaceDurationMult=0.75
         MagAmmo=1
         SightingTime=0.2
-        InventorySize=3
+        InventorySize=5
         SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=300)
 		SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)

@@ -34,7 +34,7 @@ defaultproperties
      AccelSpeed=6750.000000
      Damage=70.000000
      DamageRadius=384.000000
-     WallPenetrationForce=192
+     WallPenetrationForce=64
      MomentumTransfer=50000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_LS14Rocket'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'

@@ -25,9 +25,9 @@ class AimComponent extends Object;
 //
 // MUST BE CLEANED UP FROM THE WEAPON CODE
 //=============================================================================
-var BallisticWeapon				BW;
-var LevelInfo					Level;
-var editinline AimParams		Params;
+var 				BallisticWeapon		BW;
+var 				LevelInfo			Level;
+var() editinline 	AimParams			Params;
 
 //=============================================================================
 // MUTABLES

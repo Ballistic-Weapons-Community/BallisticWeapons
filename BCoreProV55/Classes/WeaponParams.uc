@@ -119,8 +119,8 @@ var() array<WeaponModeType> WeaponModes;				//A list of the available weapon fir
 
 var() editinline array<RecoilParams>	RecoilParams;
 var() editinline array<AimParams>		AimParams;
-var() editinline array<FireParams>     FireParams;
-var() editinline array<FireParams>     AltFireParams;
+var() editinline array<FireParams>    	FireParams;
+var() editinline array<FireParams>     	AltFireParams;
 
 final function FireEffectParams.FireModeStats GetFireStats() 
 {

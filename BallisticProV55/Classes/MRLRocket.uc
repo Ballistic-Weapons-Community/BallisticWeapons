@@ -96,7 +96,7 @@ defaultproperties
      MaxSpeed=25000.000000
      Damage=35.000000
      DamageRadius=420.000000
-     WallPenetrationForce=64
+     WallPenetrationForce=32
      MomentumTransfer=5500.000000
      MyDamageType=Class'BallisticProV55.DT_MRL'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
