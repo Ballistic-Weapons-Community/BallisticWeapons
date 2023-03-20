@@ -4,6 +4,8 @@
 // Non-Karma version for use on servers. Currently only derived from by the Pro version of the 
 // NRP grenade, hence the name.
 //
+// need to add support for grenades that detonate after hitting the floor
+//
 // Azarael
 //=============================================================================
 class BallisticProPineapple extends BallisticGrenade
@@ -151,7 +153,8 @@ defaultproperties
      DetonateDelay=3
      bNoInitialSpin=True
      bRandomStartRotation=False
-     StartDelay=0.300000
+	 // disable start delay for now. needs animation-level fix.
+     //StartDelay=0.300000
      NetTrappedDelay=1.000000
      LifeSpan=6.000000
      DrawScale=0.200000

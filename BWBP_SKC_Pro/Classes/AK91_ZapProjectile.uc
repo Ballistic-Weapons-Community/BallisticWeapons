@@ -84,7 +84,6 @@ defaultproperties
      WeaponClass=Class'BWBP_SKC_Pro.AK91ChargeRifle'
 	 bApplyParams=False
      bPenetrate=True
-     StartDelay=0.050000
      Speed=3000.000000
      Damage=5.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'

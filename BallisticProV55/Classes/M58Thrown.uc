@@ -33,18 +33,16 @@ simulated function DestroyEffects()
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
-	local M58Cloud C;
 	local vector X,Y,Z;
 
 	if (bExploded)
 		return;
 		
-	if ( Level.netMode != NM_DedicatedServer )
+	if (Role == ROLE_Authority)
 	{
-		C = Spawn(class'M58Cloud',self,,HitLocation-HitNormal*2);
-		C.SetBase(Self);
+		Spawn(class'M58Cloud',self,,HitLocation-HitNormal*2);
 	}
-	
+
 	if (Level.NetMode != NM_DedicatedServer && TrailClass != None && Trail == None)
 	{
 		GetAxes(rot(16384,0,0),X,Y,Z);
@@ -54,9 +52,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		Trail = Spawn( TrailClass, self,, Location + class'BUtil'.static.AlignedOffset(Rotation,TrailOffset), OrthoRotation(X,Y,Z) );
 		if (Trail != None)
 			Trail.SetBase (self);
-		PlaySound(sound'BW_Core_WeaponSound.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
-		AmbientSound = Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
 	}
+
 	bExploded=true;
 	LifeSpan = 12;
 	SetTimer(10.5,false);
@@ -75,36 +72,20 @@ simulated function Timer()
 
 defaultproperties
 {
+	DetonateOn=DT_Still
     WeaponClass=Class'BallisticProV55.M58Grenade'
-     DampenFactor=0.050000
-     DampenFactorParallel=0.350000
-     DetonateDelay=1.500000
-     ImpactDamage=15
-     ImpactDamageType=Class'BallisticProV55.DTM58Grenade'
-     ImpactManager=Class'BallisticProV55.IM_Grenade'
-     TrailClass=Class'BallisticProV55.M58Spray'
-     TrailOffset=(Z=8.000000)
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     DamageRadius=200.000000
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M58.M58Projectile'
-     bAlwaysRelevant=True
-     DrawScale=0.350000
-     SoundVolume=192
-     SoundRadius=128.000000
-     Begin Object Class=KarmaParams Name=KParams0
-         KMass=0.400000
-         KLinearDamping=0.000000
-         KAngularDamping=0.400000
-         KStartEnabled=True
-         KVelDropBelowThreshold=20.000000
-         bHighDetailOnly=False
-         bClientOnly=False
-         bKDoubleTickRate=True
-         KFriction=2.500000
-         KRestitution=0.500000
-         KImpactThreshold=100.000000
-     End Object
-     KParams=KarmaParams'BallisticProV55.M58Thrown.KParams0'
-
+	DampenFactor=0.050000
+	DampenFactorParallel=0.350000
+	DetonateDelay=0.5
+	ImpactDamage=15
+	ImpactDamageType=Class'BallisticProV55.DTM58Grenade'
+	ImpactManager=Class'BallisticProV55.IM_Grenade'
+	TrailClass=Class'BallisticProV55.M58Spray'
+	TrailOffset=(Z=8.000000)
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.M58.M58Projectile'
+	DrawScale=0.350000
+	SoundVolume=192
+	SoundRadius=128.000000
 }

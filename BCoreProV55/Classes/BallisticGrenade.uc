@@ -19,6 +19,7 @@ var() enum EDetonateType				// Different ways that grenade can detonate
 	DT_Timer,					// Detonate when timer runs out
 	DT_Impact,					// Detonate on impact
 	DT_ImpactTimed,				// Detonate on timer that only starts on impact
+	DT_Still,					// Detonate after timer that starts when projectile is still
 	DT_None						// Don't use normal detonation
 } DetonateOn;
 
@@ -228,6 +229,10 @@ simulated event HitWall(vector HitNormal, actor Wall)
 	{
 		bBounce = False;
 		SetPhysics(PHYS_None);
+
+		if (DetonateOn == DT_Still)
+			SetTimer(DetonateDelay, false);
+
 		if (Trail != None && !TrailWhenStill)
 		{
 			DestroyEffects();

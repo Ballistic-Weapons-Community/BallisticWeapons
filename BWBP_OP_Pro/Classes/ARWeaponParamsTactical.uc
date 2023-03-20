@@ -8,12 +8,12 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=6000.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1050,Max=2100)
 		RangeAtten=0.3
 		TraceCount=10
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=8
+		Damage=13
         HeadMult=1.5f
         LimbMult=0.85f
 		DamageType=Class'BWBP_OP_Pro.DT_ARShotgun'
@@ -42,7 +42,6 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
 	
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.ARProjectile'

@@ -42,6 +42,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	if ( Role == ROLE_Authority )
 	{
 		C = Spawn(class'T10CloudControl',self,,HitLocation-HitNormal*2);
+		
 		if (C!=None)
 		{
 			C.Instigator = Instigator;
@@ -81,23 +82,23 @@ simulated function Timer()
 defaultproperties
 {
     WeaponClass=Class'BallisticProV55.T10Grenade'
-     DampenFactor=0.050000
-     DampenFactorParallel=0.350000
-     DetonateDelay=2.000000
-     ImpactDamage=15
-     ImpactDamageType=Class'BallisticProV55.DTT10Grenade'
-     ImpactManager=Class'BallisticProV55.IM_Grenade'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BallisticProV55.T10Spray'
-     TrailOffset=(Z=8.000000)
-     MyRadiusDamageType=Class'BallisticProV55.DTT10Gas'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Damage=20.000000
-     DamageRadius=200.000000
-     MyDamageType=Class'BallisticProV55.DTT10Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.T10.T10Projectile'
-     DrawScale=0.350000
-     SoundVolume=192
-     SoundRadius=128.000000
+	DampenFactor=0.050000
+	DampenFactorParallel=0.350000
+	DetonateDelay=2.000000
+	ImpactDamage=15
+	ImpactDamageType=Class'BallisticProV55.DTT10Grenade'
+	ImpactManager=Class'BallisticProV55.IM_Grenade'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BallisticProV55.T10Spray'
+	TrailOffset=(Z=8.000000)
+	MyRadiusDamageType=Class'BallisticProV55.DTT10Gas'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Damage=20.000000
+	DamageRadius=200.000000
+	MyDamageType=Class'BallisticProV55.DTT10Grenade'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.T10.T10Projectile'
+	DrawScale=0.350000
+	SoundVolume=192
+	SoundRadius=128.000000
 }

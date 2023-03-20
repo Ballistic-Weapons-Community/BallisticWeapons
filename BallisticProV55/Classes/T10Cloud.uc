@@ -18,12 +18,13 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 
 	MyControl = T10CloudControl(Owner);
-	if (level.NetMode != NM_Client)
+	
+	if (Level.NetMode != NM_Client)
 	{
 		Fear = Spawn(class'AvoidMarker');
 		Fear.SetCollisionSize(200, 200);
 	    Fear.StartleBots();
-		if (level.netMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer)
 		{
 			Emitters[0].Disabled = true;
 			Emitters[1].Disabled = true;

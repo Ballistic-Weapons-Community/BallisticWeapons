@@ -12,10 +12,10 @@ defaultproperties
         DecayRange=(Min=1050,Max=2100)
 		WaterTraceRange=5000.0
 		RangeAtten=0.45
-		TraceCount=7
+		TraceCount=10
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=10
+		Damage=12
         HeadMult=1.5f
         LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -41,13 +41,14 @@ defaultproperties
 	//Suppressed
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimarySilEffectParams
 		TraceRange=(Min=3000.000000,Max=5000.000000)
+		DecayRange=(Min=1050,Max=2100)
 		WaterTraceRange=5000.0
 		RangeAtten=0.45
-		TraceCount=7
+		TraceCount=10
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=8
-        HeadMult=2.0f
+        HeadMult=1.5f
         LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'

@@ -232,6 +232,7 @@ defaultproperties
      bNetTemporary=True
      Physics=PHYS_Falling
      RemoteRole=ROLE_SimulatedProxy
+	 
      LifeSpan=15.000000
      CollisionRadius=2.000000
      CollisionHeight=2.000000

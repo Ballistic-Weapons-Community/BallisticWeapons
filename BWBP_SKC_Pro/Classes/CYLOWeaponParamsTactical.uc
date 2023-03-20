@@ -45,12 +45,12 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=5000.000000,Max=5000.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1050,Max=2100)
 		RangeAtten=0.25
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=8
+		Damage=10
         HeadMult=1.5f
         LimbMult=0.85f
 		PushbackForce=150.000000
@@ -68,7 +68,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.700000
+		FireInterval=0.9
 		AmmoPerFire=0
 		FireAnim="FireSG"
 		FireEndAnim=	

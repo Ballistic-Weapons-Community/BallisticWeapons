@@ -10,7 +10,7 @@ defaultproperties
         TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=788,Max=1838)
         RangeAtten=0.35
-        TraceCount=6
+        TraceCount=10
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
         ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
         Damage=10

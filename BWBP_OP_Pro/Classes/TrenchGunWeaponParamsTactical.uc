@@ -8,13 +8,13 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=TacticalExploPrimaryEffectParams
 		TraceRange=(Min=2048.000000,Max=2560.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1050,Max=2100)
 		RangeAtten=0.25
-		TraceCount=8
+		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
-		MaxHits=8 // inflict maximum of 156 damage to a single target
-		Damage=10
+		MaxHits=13 // inflict maximum of 156 damage to a single target
+		Damage=13
         HeadMult=1.5f
         LimbMult=0.85f
 		Inaccuracy=(X=220,Y=220)
