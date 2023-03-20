@@ -183,8 +183,8 @@ var     bool                        RewindActive;                   // True if c
 //=============================================================================
 // WEAPON STATE VARIABLES
 //=============================================================================
-var		WeaponParams				WeaponParams;
-var		WeaponCamo					WeaponCamo;
+var		editinline WeaponParams		WeaponParams;
+var		editinline WeaponCamo		WeaponCamo;
 var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
@@ -228,7 +228,7 @@ var   BCSprintControl				SprintControl;					// A low, poor sort of hack to draw 
 //-----------------------------------------------------------------------------
 var EMeleeState						MeleeState;
 var float							MeleeInterval, MeleeHoldTime;
-var  protected BallisticMeleeFire 	MeleeFireMode;
+var protected BallisticMeleeFire 	MeleeFireMode;
 var	float							MeleeFatigue;
 //-----------------------------------------------------------------------------
 // Ammo/Reload
@@ -242,11 +242,11 @@ var   bool     						bMagPlusOne;              		// A true value means weapon ca
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
-var	RecoilComponent					RcComponent;					// Object which handles recoil
+var editinline RecoilComponent				RcComponent;					// Object which handles recoil
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
-var AimComponent					AimComponent;
+var editinline AimComponent					AimComponent;
 //=============================================================================
 // END WEAPON STATE VARIABLES
 //=============================================================================

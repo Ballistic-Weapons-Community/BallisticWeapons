@@ -13,9 +13,8 @@
 //
 // by Azarael 2020
 //=============================================================================
-class FireEffectParams extends Object
-    editinlinenew
-    DependsOn(BUtil);
+class FireEffectParams extends Object 
+	DependsOn(BUtil);
 
 enum FireSpreadMode
 {

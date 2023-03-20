@@ -8,7 +8,6 @@
 // by Azarael 2020
 //=============================================================================
 class FireParams extends Object
-    editinlinenew
     DependsOn(BUtil)
     DependsOn(FireEffectParams);
 

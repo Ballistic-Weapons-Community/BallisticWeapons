@@ -27,7 +27,7 @@ class RecoilComponent extends Object;
 //=============================================================================
 var BallisticWeapon				BW;
 var LevelInfo					Level;
-var RecoilParams				Params;
+var editinline RecoilParams		Params;
 
 // UnrealScript's shitty object handling necessitates copying most of the RecoilParams fields we might want to modify
 // and exposing them as public so that we can apply modifiers from the weapon

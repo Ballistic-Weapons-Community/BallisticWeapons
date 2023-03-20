@@ -13,8 +13,8 @@ class RecoilParams extends Object
 // Gameplay
 var() InterpCurve 		XCurve;						// Curve used to apply Yaw according to recoil amount.
 var() InterpCurve 		YCurve;						// Curve used to apply Pitch according to recoil amount.
-var() InterpCurve 		XCurveAlt;						// Curve used to apply Yaw according to recoil amount.
-var() InterpCurve 		YCurveAlt;						// Curve used to apply Pitch according to recoil amount.
+var() InterpCurve 		XCurveAlt;					// Curve used to apply Yaw according to recoil amount.
+var() InterpCurve 		YCurveAlt;					// Curve used to apply Pitch according to recoil amount.
 var() float				PitchFactor;				// Recoil is multiplied by this and added to Aim Pitch.
 var() float				YawFactor;					// Recoil is multiplied by this and added to Aim Yaw.
 var() float				XRandFactor;				// Recoil multiplied by this for recoil Yaw randomness

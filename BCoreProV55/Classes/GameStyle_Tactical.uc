@@ -10,7 +10,7 @@ defaultproperties
 {
 	Index=GS_Tactical
 	Name="Tactical"
-	RecoilScale=0.7
+	RecoilScale=0.5
 
 	bRunInADS=False
 

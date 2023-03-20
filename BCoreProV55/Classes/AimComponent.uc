@@ -27,7 +27,7 @@ class AimComponent extends Object;
 //=============================================================================
 var BallisticWeapon				BW;
 var LevelInfo					Level;
-var AimParams				    Params;
+var editinline AimParams		Params;
 
 //=============================================================================
 // MUTABLES
