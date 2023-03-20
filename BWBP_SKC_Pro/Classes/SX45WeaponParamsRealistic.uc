@@ -146,7 +146,12 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=RealisticParams
+	Begin Object Class=WeaponParams Name=RealisticParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		Weight=30
+		//Attachments
+		//Functions
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.130000
@@ -160,7 +165,31 @@ defaultproperties
 		FireParams(1)=FireParams'RealisticCryoPrimaryFireParams'
 		FireParams(2)=FireParams'RealisticRadPrimaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'RealisticParams'
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Irons
+		//Layout core
+		LayoutName="Iron Sights"
+		Weight=10
+		//Attachments
+		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
+		//Functions
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.130000
+		MagAmmo=15
+		bMagPlusOne=True
+		SightOffset=(y=-3.140000,Z=14.300000)
+		WeaponName="SX-45 .45 Tech Pistol"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticCryoPrimaryFireParams'
+		FireParams(2)=FireParams'RealisticRadPrimaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'RealisticParams_RDS'
+	Layouts(1)=WeaponParams'RealisticParams_Irons'
 
 
 }

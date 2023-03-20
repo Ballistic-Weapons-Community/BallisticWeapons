@@ -100,7 +100,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=10
+		InventorySize=4
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		Weight=30
 		SightingTime=0.250000
@@ -128,7 +128,7 @@ defaultproperties
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
 		bNeedCock=True
@@ -149,7 +149,7 @@ defaultproperties
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
 		bNeedCock=True
@@ -169,7 +169,7 @@ defaultproperties
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
 		bNeedCock=True

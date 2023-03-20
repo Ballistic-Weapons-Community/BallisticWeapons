@@ -154,7 +154,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		
 		//Function
-        InventorySize=7
+        InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
@@ -178,7 +178,7 @@ defaultproperties
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
 		
 		//Function
-        InventorySize=7
+        InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8

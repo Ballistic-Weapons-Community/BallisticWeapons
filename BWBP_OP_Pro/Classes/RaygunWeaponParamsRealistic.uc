@@ -13,7 +13,7 @@ defaultproperties
 		Speed=2300.000000
 		MaxSpeed=8000.000000
 		AccelSpeed=20000.000000
-		Damage=75
+		Damage=80
 		MomentumTransfer=65000.000000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.RaygunMuzzleFlashAlt'
 		FlashScaleFactor=2.500000

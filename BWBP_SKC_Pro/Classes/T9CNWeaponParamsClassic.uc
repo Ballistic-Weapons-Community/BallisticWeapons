@@ -99,7 +99,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=6
-		InventorySize=6
+		InventorySize=2
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
@@ -123,7 +123,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		Weight=1
-		InventorySize=10
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.150000
 		bNeedCock=True
@@ -143,7 +143,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineB",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineB",Index=3)
 		Weight=1
-		InventorySize=10
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.150000
 		bNeedCock=True
@@ -163,7 +163,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineC",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineC",Index=3)
 		Weight=1
-		InventorySize=10
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.150000
 		bNeedCock=True
@@ -183,7 +183,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineD",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineC",Index=3)
 		Weight=1
-		InventorySize=10
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.150000
 		bNeedCock=True
@@ -203,7 +203,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainE",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideE",Index=3)
 		Weight=1
-		InventorySize=10
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.150000
 		bNeedCock=True

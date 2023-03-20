@@ -68,6 +68,13 @@ function StopFiring()
 
 simulated state Scope
 {
+	simulated function ApplyFireEffectParams(FireEffectParams effect_params)
+	{
+		super(BallisticFire).ApplyFireEffectParams(effect_params);
+		bUseWeaponMag=False;
+		bFireOnRelease=True;
+		bModeExclusive=False;
+	}
 	
 	// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 	simulated function bool AllowFire()

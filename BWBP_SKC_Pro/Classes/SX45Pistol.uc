@@ -534,6 +534,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SX45WeaponParamsArena'
 	ParamsClasses(1)=Class'SX45WeaponParamsClassic'
 	ParamsClasses(2)=Class'SX45WeaponParamsRealistic'
+	ParamsClasses(3)=Class'SX45WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.SX45PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.SX45SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

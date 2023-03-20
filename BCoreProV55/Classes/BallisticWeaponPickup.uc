@@ -351,6 +351,10 @@ event Landed(Vector HitNormal)
 
 simulated function PostNetReceive()
 {
+	local WeaponCamo WC;
+	local Material M;
+	local int i;
+	
 	if (LayoutIndex != OldLayoutIndex)
 	{
 		OldLayoutIndex = LayoutIndex;
@@ -359,6 +363,26 @@ simulated function PostNetReceive()
 	if (CamoIndex != OldCamoIndex)
 	{
 		OldCamoIndex = CamoIndex;
+		WC = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Camos[CamoIndex];
+		if (WC != None)
+		{
+			for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
+			{
+				if (WC.WeaponMaterialSwaps[i].PIndex != -1)
+				{
+					if (WC.WeaponMaterialSwaps[i].Material != None)
+						Skins[WC.WeaponMaterialSwaps[i].PIndex] = WC.WeaponMaterialSwaps[i].Material;
+					if (WC.WeaponMaterialSwaps[i].MaterialName != "")
+					{
+						M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+						if (M != None)
+							Skins[WC.WeaponMaterialSwaps[i].PIndex] = M;
+					}
+				}
+			}
+		}
+	
+		
 		//Skins[0] = class<BallisticCamoWeapon>(InventoryType).default.CamoMaterials[CamoIndex];
 	}
 	if (level.NetMode != NM_Client)

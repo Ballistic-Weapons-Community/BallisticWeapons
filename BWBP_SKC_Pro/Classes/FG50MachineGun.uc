@@ -52,21 +52,6 @@ replication
 		ClientScreenStart, bLaserOn;
 }
 
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
-	{
-		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
-		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
-	}
-	if (class'BallisticReplicationInfo'.static.IsRealism())
-	{
-		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
-		FireModeClass[1]=Class'BWBP_SKC_Pro.FG50DeployFire';
-	}
-}
-
 simulated function PostNetBeginPlay()
 {
 	local Actor A;
@@ -75,7 +60,6 @@ simulated function PostNetBeginPlay()
 	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		bDecorativeHeat=true;
-		FG50SecondaryFire(FireMode[0]).HeatPerShot=0.25;
 	}
 	
 	if (Heater == None || Heater.bDeleteMe)
@@ -679,7 +663,7 @@ defaultproperties
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	SightOffset=(Y=25.000000,Z=10.300000)
-	ParamsClasses(0)=Class'FG50WeaponParamsNoTurret'
+	ParamsClasses(0)=Class'FG50WeaponParamsComp'
 	ParamsClasses(1)=Class'FG50WeaponParamsClassic'	 
 	ParamsClasses(2)=Class'FG50WeaponParamsRealistic'
     ParamsClasses(3)=Class'FG50WeaponParamsTactical'	 

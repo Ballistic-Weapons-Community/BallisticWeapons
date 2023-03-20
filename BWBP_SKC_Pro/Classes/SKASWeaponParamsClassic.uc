@@ -140,7 +140,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=512,Max=1024)
+		AimSpread=(Min=32,Max=1024)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.350000
@@ -157,7 +157,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=11
+		InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=36

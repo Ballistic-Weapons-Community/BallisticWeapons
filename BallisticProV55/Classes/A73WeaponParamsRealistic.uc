@@ -47,7 +47,7 @@ defaultproperties
         Speed=400.000000
         AccelSpeed=8000.000000
         MaxSpeed=4200.000000
-        Damage=100.000000
+        Damage=150.000000
         DamageRadius=200.000000
         MomentumTransfer=100000.000000
 		bLimitMomentumZ=False
@@ -114,7 +114,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=12
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=48

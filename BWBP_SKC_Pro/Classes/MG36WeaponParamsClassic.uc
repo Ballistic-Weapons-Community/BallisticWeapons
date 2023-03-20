@@ -84,7 +84,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		PlayerSpeedFactor=0.900000
-		InventorySize=15
+		InventorySize=9
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=100

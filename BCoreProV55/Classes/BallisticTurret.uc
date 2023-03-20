@@ -120,7 +120,9 @@ var   byte		GunRotationYaw,			// GunRotation form sent to non-owning clients
 var   BCTurretList		TurretList;		// Link to turret list control
 var   float				LastUsedTime;	// Time when this turret was last used
 // ----------------
-
+// Variants
+var 	byte 			CamoIndex;
+var 	byte 			LayoutIndex;
 // AI Stuff
 var   float			NextBotReaimTime;	// Time when bot aim error should be recalculated
 var   rotator		BotAimError;		// Current bot inaccuracy offset
@@ -233,10 +235,33 @@ function bool DriverGetAmmo(Ammunition Ammo, int AmmoToAdd)
 // Turret has just been deployed. Chance to get info from a weapon that spawned the turret. (e.g. Get ammo from machinegun when its deployed)
 function InitDeployedTurretFor(Weapon Weap)
 {
+	local int i;
+	local WeaponCamo WC;
+	local Material M;
+	
 	if (BallisticWeapon(Weap) != None)
 	{
 		MagAmmoAmount = BallisticWeapon(Weap).MagAmmo;
 		WeaponMode = 	BallisticWeapon(Weap).CurrentWeaponMode;
+		CamoIndex = BallisticWeapon(Weap).CamoIndex;
+		LayoutIndex = BallisticWeapon(Weap).LayoutIndex;
+		if (BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).WeaponCamo != None)
+		{
+			WC = BallisticWeapon(Weap).WeaponCamo;
+			for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
+			{
+				if (WC.WeaponMaterialSwaps[i].Material != None)
+				{
+					Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
+				}
+				if (WC.WeaponMaterialSwaps[i].MaterialName != "")
+				{
+					M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+					if (M != None)
+						Skins[WC.WeaponMaterialSwaps[i].AIndex] = M;
+				}
+			}
+		}
 	}
 	AmmoAmount[0] = Weap.AmmoAmount(0);
 	AmmoAmount[1] = Weap.AmmoAmount(1);
@@ -249,6 +274,8 @@ function InitTurretWeapon(Weapon Weap)
 		BallisticWeapon(Weap).MagAmmo = 			MagAmmoAmount;
 		BallisticWeapon(Weap).CurrentWeaponMode =	WeaponMode;
 		BallisticWeapon(Weap).InitTurretWeapon(self);
+		BallisticWeapon(Weap).LayoutIndex = LayoutIndex;
+		BallisticWeapon(Weap).CamoIndex = CamoIndex;
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
 //	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);
@@ -263,6 +290,8 @@ function InitUndeployedWeapon(Weapon Weap)
 		BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		BallisticWeapon(Weap).MagAmmo =					MagAmmoAmount;
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
+		BallisticWeapon(Weap).LayoutIndex = LayoutIndex;
+		BallisticWeapon(Weap).CamoIndex = CamoIndex;
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
 //	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);

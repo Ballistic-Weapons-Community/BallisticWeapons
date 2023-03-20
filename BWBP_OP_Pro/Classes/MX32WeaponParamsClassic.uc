@@ -117,7 +117,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ClassicAimParams //Heavy Rifle handling
 		ADSMultiplier=0.700000
 		CrouchMultiplier=0.700000
-		AimSpread=(Min=400,Max=3000)
+		AimSpread=(Min=64,Max=3096)
 		AimAdjustTime=0.550000
 		ChaosDeclineTime=1.400000
 		ChaosDeclineDelay=0.600000

@@ -16,6 +16,8 @@ struct MaterialSwap
     var()   Material    Material;
 	var()	string		MaterialName;
     var()   int         Index;
+    var()   int         PIndex; //Pickup
+    var()   int         AIndex; //Attachment
 };
 
 

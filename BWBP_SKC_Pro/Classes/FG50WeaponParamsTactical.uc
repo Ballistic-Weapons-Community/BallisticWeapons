@@ -27,6 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPriStandardFireParams
+		TargetState="HEAmmo"
 		FireInterval=0.200000
 		FireEndAnim=
 		AimedFireAnim="SGCFireAimed"
@@ -55,6 +56,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPriControlledFireParams
+		TargetState="HEAmmo"
 		FireInterval=0.600000
 		FireEndAnim=
 		AimedFireAnim="SGCFireAimed"
@@ -80,9 +82,12 @@ defaultproperties
 		Recoil=512.000000
 		WarnTargetPct=0.600000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+		Heat=1.5
+		PushbackForce=150.000000
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecStandardFireParams
+		TargetState="RapidFire"
 		FireInterval=0.165000
 		FireAnim="Fire"
 		FireEndAnim=
@@ -106,9 +111,12 @@ defaultproperties
 		Chaos=0.5
 		WarnTargetPct=0.600000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2',Volume=7.100000,Pitch=1.000000,Slot=SLOT_Interact,bNoOverride=False)
+		Heat=1.5
+		PushbackForce=125.000000
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecControlledFireParams
+		TargetState="RapidFire"
 		FireInterval=0.600000
 		FireAnim="CFire"
 		FireEndAnim=
@@ -178,4 +186,53 @@ defaultproperties
 		AltFireParams(2)=FireParams'TacticalSecStandardFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=FG50_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FG50_Wood
+		Index=1
+		CamoName="Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MainWood",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MiscDark",Index=2,AIndex=2,PIndex=3)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FG50_Desert
+		Index=2
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MainDesert",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MiscDark",Index=2,AIndex=2,PIndex=3)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FG50_Dazzle
+		Index=4
+		CamoName="Dazzle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MainDazzle",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MiscDark",Index=2,AIndex=2,PIndex=3)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FG50_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MainGold",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MiscDark",Index=2,AIndex=2,PIndex=3)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'FG50_Black'
+	Camos(1)=WeaponCamo'FG50_Wood'
+	Camos(2)=WeaponCamo'FG50_Desert'
+	Camos(3)=WeaponCamo'FG50_Dazzle'
+	Camos(4)=WeaponCamo'FG50_Gold'
 }

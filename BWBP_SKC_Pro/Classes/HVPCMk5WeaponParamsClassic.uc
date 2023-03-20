@@ -189,7 +189,7 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
-		InventorySize=29
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		SightPivot=(Pitch=1024)
@@ -211,7 +211,7 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
-		InventorySize=29
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		SightPivot=(Pitch=1024)
@@ -227,7 +227,7 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
-		InventorySize=29
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		SightPivot=(Pitch=1024)
@@ -249,7 +249,7 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
-		InventorySize=29
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		SightPivot=(Pitch=1024)

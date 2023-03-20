@@ -235,7 +235,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
-		InventorySize=11
+		InventorySize=6
 		bNeedCock=True
 		//BringUpTime=0.6
 		SightMoveSpeedFactor=0.500000
@@ -261,7 +261,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
-		InventorySize=11
+		InventorySize=6
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -288,7 +288,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
-		InventorySize=11
+		InventorySize=6
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -315,13 +315,13 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
-		InventorySize=11
+		InventorySize=4
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		InitialWeaponMode=2
+		InitialWeaponMode=6
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		ReloadAnimRate=1.000000
@@ -345,42 +345,42 @@ defaultproperties
 		Index=1
 		CamoName="Tan"
 		Weight=15
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-Irons",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-Irons",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Green
 		Index=2
 		CamoName="Olive Drab"
 		Weight=15
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainGreen",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainGreen",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Urban
 		Index=3
 		CamoName="Urban"
 		Weight=10
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainSplitter",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainSplitter",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Arctic
 		Index=4
 		CamoName="Arctic"
 		Weight=5
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-IronArctic",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-IronArctic",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Proto
 		Index=5
 		CamoName="Prototype"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronBlack",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_LE
 		Index=6
 		CamoName="Limited Edition"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronBlack",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams_Marksman' //Black

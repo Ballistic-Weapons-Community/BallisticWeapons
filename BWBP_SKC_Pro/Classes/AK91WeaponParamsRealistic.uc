@@ -91,6 +91,21 @@ defaultproperties
 		bViewDecline=True
 	End Object
 	
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_Scope
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.200000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.150000),(InVal=0.800000,OutVal=0.450000),(InVal=1.000000,OutVal=0.400000)))
+		YawFactor=0.400000
+		XRandFactor=0.300000
+		YRandFactor=0.300000
+		MaxRecoil=2700.000000
+		DeclineTime=1.500000
+		ViewBindFactor=0.100000
+		ADSViewBindFactor=1.000000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+	
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -112,16 +127,22 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================		
 	
-	Begin Object Class=WeaponParams Name=RealisticParams
+	Begin Object Class=WeaponParams Name=RealisticParams_Irons
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
+		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		ZoomType=ZT_Irons
+		//Function
 		InventorySize=12
 		WeaponPrice=2900
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.210000
 		MagAmmo=25
 		bMagPlusOne=True
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		ViewOffset=(X=0.000000,Y=5.000000,Z=-14.000000)
 		WeaponName="AK-91 7.62mm Charge Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
@@ -130,5 +151,89 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-    Layouts(0)=WeaponParams'RealisticParams'
+	Begin Object Class=WeaponParams Name=RealisticParams_ACOG
+		//Layout core
+		Weight=10
+		LayoutName="ACOG"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=1f)
+		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+		//Function
+		InventorySize=12
+		WeaponPrice=2900
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.310000
+		MagAmmo=25
+		bMagPlusOne=True
+		SightPivot=(Pitch=64)
+		ViewOffset=(X=0.000000,Y=5.000000,Z=-14.000000)
+		WeaponName="AK-91 7.62mm Charge Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object	
+
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=VK_Red
+		Index=0
+		CamoName="Red"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VK_Green
+		Index=1
+		CamoName="Green"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopGreen",Index=2,AIndex=1,PIndex=1)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VK_Black
+		Index=2
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopBlack",Index=2,AIndex=1,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VK_Desert
+		Index=3
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopDesert",Index=2,AIndex=1,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VK_Quantum
+		Index=4
+		CamoName="Quantum"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopQuantum",Index=2,AIndex=1,PIndex=1)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VK_Gold
+		Index=5
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopGold",Index=2,AIndex=1,PIndex=1)
+		Weight=1
+	End Object
+
+    Layouts(0)=WeaponParams'RealisticParams_Irons'
+	Layouts(1)=WeaponParams'RealisticParams_ACOG'
+	
+	Camos(0)=WeaponCamo'VK_Red'
+	Camos(1)=WeaponCamo'VK_Green'
+	Camos(2)=WeaponCamo'VK_Black'
+	Camos(3)=WeaponCamo'VK_Desert'
+	Camos(4)=WeaponCamo'VK_Quantum'
+	Camos(5)=WeaponCamo'VK_Gold'
 }
