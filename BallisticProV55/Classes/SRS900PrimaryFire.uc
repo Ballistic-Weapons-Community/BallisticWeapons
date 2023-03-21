@@ -75,6 +75,9 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, SRS900Rifle(Weapon).bSilenced, WaterHitLoc);
 }
 
+// FIXME:
+// Shouldn't be doing overrides for this.
+// Unfortunately, it's compositional
 function ServerPlayFiring()
 {
 	if (SRS900Rifle(Weapon) != None && SRS900Rifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
@@ -82,9 +85,11 @@ function ServerPlayFiring()
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-
 	CheckClipFinished();
+
+	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	if (BW.BlendFire())		
+		BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
 }
 
 //Do the spread on the client side
@@ -104,6 +109,8 @@ function PlayFiring()
 	}
 
 	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	if (BW.BlendFire())		
+		BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
 
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;

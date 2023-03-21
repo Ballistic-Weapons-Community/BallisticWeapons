@@ -1725,7 +1725,9 @@ simulated function bool CheckScope()
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated final function StartScopeView()
 {
-	StartScopeZoom();
+	if (ZoomType != ZT_Irons)
+		StartScopeZoom();
+	
 	SetScopeView(true);
 	ScopeModifyCrosshair();
 		
@@ -1798,7 +1800,9 @@ simulated final function StopScopeView(optional bool bNoAnim)
 	
 	bScopeDesired = False;
 
-	EndScopeZoom();
+	if (ZoomType != ZT_Irons)
+		EndScopeZoom();
+		
 	ScopeRestoreCrosshair();
 }
 
@@ -2056,11 +2060,8 @@ simulated final function EndScopeZoom()
 	
 	OldZoomFOV = PC.FovAngle;
 
-	if (ZoomType != ZT_Irons)
-	{
-		PC.SetFOV(PC.DefaultFOV);
-		PC.bZooming = False;
-	}
+	PC.SetFOV(PC.DefaultFOV);
+	PC.bZooming = False;
 }
 
 simulated function ChangeZoom (float Value)

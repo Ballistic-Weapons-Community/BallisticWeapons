@@ -36,6 +36,7 @@ defaultproperties
 		FireInterval=0.20000
 		BurstFireRateFactor=0.55
 		FireEndAnim=	
+		AimedFireAnim="AimedFire"
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		
