@@ -93,6 +93,7 @@ var() BUtil.FullSound				FlyBySound;							//Sound to play for bullet flyby effe
 var() EModeUsed						FlyByMode;							//Firing mode/s that use flyby effect.
 var() float							FlybyRange;							//Max distance from bullet trace line, at which flyby by sounds will be heard
 var() float							FlyByBulletSpeed;					//Used to calculate flyby sound delay (simulate bullet speed)
+var int CamoIndex;
 
 //===========================================================================
 // Animation support
@@ -149,6 +150,8 @@ replication
 {
 	reliable if (bNetDirty && Role==Role_Authority)
 		FireCount, AltFireCount, MeleeFireCount, WallPenetrates, DirectImpact, DirectImpactCount, bIsAimed;
+	reliable if (bNetInitial && Role == ROLE_Authority)
+		CamoIndex;
 }
 
 simulated function PostBeginPlay()
@@ -156,6 +159,9 @@ simulated function PostBeginPlay()
 	super.PostBeginPlay();
 
     GenerateModeInfo();
+	
+	if (Role == ROLE_Authority && BallisticWeapon(Instigator.Weapon) != None)
+		CamoIndex = BallisticWeapon(Instigator.Weapon).CamoIndex;
 }
 
 //==========================================================
@@ -218,15 +224,32 @@ simulated function GenerateModeInfo()
 simulated function PostNetBeginPlay()
 {
 	local int i;
+	local WeaponCamo WC;
+	local Material M;
 	
 	Super.PostNetBeginPlay();
 	bHeavy = bIsAimed;
 	
-	if (BallisticWeapon(Instigator.Weapon) != None)
+	if (BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).WeaponCamo != None) //refactor and put this somewhere else later, maybe pass the material in
 	{
-		for (i = 0; i < BallisticWeapon(Instigator.Weapon).WeaponParams.AttachmentMaterialSwaps.Length; ++i)
+		WC = BallisticWeapon(Instigator.Weapon).WeaponCamo;
+		for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
 		{
-			Skins[BallisticWeapon(Instigator.Weapon).WeaponParams.AttachmentMaterialSwaps[i].Index] = BallisticWeapon(Instigator.Weapon).WeaponParams.AttachmentMaterialSwaps[i].Material;
+			if (WC.WeaponMaterialSwaps[i].AIndex != -1)
+			{				
+				if (WC.WeaponMaterialSwaps[i].Material != None)
+				{
+					log("Material is " $WC.WeaponMaterialSwaps[i].Material);
+					Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
+				}
+				if (WC.WeaponMaterialSwaps[i].MaterialName != "")
+				{
+					M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+					log("D Material is " $M);
+					if (M != None)
+						Skins[WC.WeaponMaterialSwaps[i].AIndex] = M;
+				}
+			}
 		}
 	}
 }

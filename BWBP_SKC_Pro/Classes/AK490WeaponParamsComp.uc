@@ -117,7 +117,11 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams //Standard
-		Weight=20
+		//Layout core
+		Weight=30
+		LayoutName="Standard"
+		//Attachments
+		//Function
 		ReloadAnimRate=1.250000
 		
 		PlayerJumpFactor=1.000000
@@ -135,141 +139,69 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
 	
-	//=================================================================
-	// CAMO PARAMS
-	//=================================================================
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=AK_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
 	
-	Begin Object Class=WeaponParams Name=ArenaParams_D //Desert
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1)
+	Begin Object Class=WeaponCamo Name=AK_Desert
+		Index=1
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1,AIndex=1,PIndex=1)
 		Weight=20
-		ReloadAnimRate=1.250000
-		PlayerSpeedFactor=1.000000
-		PlayerJumpFactor=1.000000
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000
-		DisplaceDurationMult=1
-		MagAmmo=25
-		SightPivot=(Pitch=64)
-		SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-
-	Begin Object Class=WeaponParams Name=ArenaParams_DE //Flecktarn
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1)
+	
+	Begin Object Class=WeaponCamo Name=AK_Flecktarn
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1,AIndex=1,PIndex=1)
 		Weight=10
-		ReloadAnimRate=1.250000
-		PlayerSpeedFactor=1.000000
-		PlayerJumpFactor=1.000000
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000
-		DisplaceDurationMult=1
-		MagAmmo=25
-		SightPivot=(Pitch=64)
-		SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-
-	Begin Object Class=WeaponParams Name=ArenaParams_V //Veteran Bloody
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1)
+	
+	Begin Object Class=WeaponCamo Name=AK_Blood
+		Index=3
+		CamoName="Bloodied"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1,AIndex=1,PIndex=1)
 		Weight=3
-		ReloadAnimRate=1.250000
-		PlayerSpeedFactor=1.000000
-		PlayerJumpFactor=1.000000
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000
-		DisplaceDurationMult=1
-		MagAmmo=25
-		SightPivot=(Pitch=64)
-		SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-
-	Begin Object Class=WeaponParams Name=ArenaParams_R //Red
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1)
+	
+	Begin Object Class=WeaponCamo Name=AK_Blue
+		Index=4
+		CamoName="Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1,AIndex=1,PIndex=1)
 		Weight=3
-		ReloadAnimRate=1.250000
-		PlayerSpeedFactor=1.000000
-		PlayerJumpFactor=1.000000
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000
-		DisplaceDurationMult=1
-		MagAmmo=25
-		SightPivot=(Pitch=64)
-		SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-
-	Begin Object Class=WeaponParams Name=ArenaParams_B //Blue
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1)
+	
+	Begin Object Class=WeaponCamo Name=AK_Red
+		Index=5
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=1,PIndex=1)
 		Weight=3
-		ReloadAnimRate=1.250000
-		PlayerSpeedFactor=1.000000
-		PlayerJumpFactor=1.000000
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000
-		DisplaceDurationMult=1
-		MagAmmo=25
-		SightPivot=(Pitch=64)
-		SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-
-	Begin Object Class=WeaponParams Name=ArenaParams_AU //Gold
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1)
+	
+	Begin Object Class=WeaponCamo Name=AK_AU
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1,AIndex=1,PIndex=1)
 		Weight=1
-		ReloadAnimRate=1.250000
-		PlayerSpeedFactor=1.000000
-		PlayerJumpFactor=1.000000
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000
-		DisplaceDurationMult=1
-		MagAmmo=25
-		SightPivot=(Pitch=64)
-		SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryGoldFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	
     Layouts(0)=WeaponParams'ArenaParams'
-	Layouts(1)=WeaponParams'ArenaParams_D' //Desert Camo
-    Layouts(2)=WeaponParams'ArenaParams_DE' //Flecktarn Camo
-    Layouts(3)=WeaponParams'ArenaParams_V' //Veteran Bloody
-    Layouts(4)=WeaponParams'ArenaParams_B' //Blue Camo
-    Layouts(5)=WeaponParams'ArenaParams_R' //Red Camo
-    Layouts(6)=WeaponParams'ArenaParams_AU' //Gold
+	
+	Camos(0)=WeaponCamo'AK_Black' //Black
+	Camos(1)=WeaponCamo'AK_Desert'
+	Camos(2)=WeaponCamo'AK_Flecktarn'
+	Camos(3)=WeaponCamo'AK_Blood'
+	Camos(4)=WeaponCamo'AK_Blue'
+	Camos(5)=WeaponCamo'AK_Red'
+	Camos(6)=WeaponCamo'AK_AU'
+	
 }

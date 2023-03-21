@@ -589,7 +589,8 @@ simulated function PostNetBeginPlay()
     assert(ParamsClasses[GameStyleIndex] != None);
 	
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
-	ParamsClasses[GameStyleIndex].static.Initialize(self);
+	if (Level.NetMode == NM_Client)
+		ParamsClasses[GameStyleIndex].static.Initialize(self);
 
 	if (class'BallisticReplicationInfo'.default.bNoReloading)
 		bNoMag = true;
@@ -3662,7 +3663,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
 			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
-			//if (Role == ROLE_Authority)
+			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
 		}
@@ -3671,7 +3672,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			log("randomizing"); 
 			GenerateLayout(255);
 			GenerateCamo(255);
-			//if (Role == ROLE_Authority)
+			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
 		}
@@ -4046,6 +4047,7 @@ function DropFrom(vector StartLocation)
 {
     local int m, i;
 	local Pickup Pickup;
+	local Material N;
 
     if (!bCanThrow)// || !HasAmmo())
         return;
@@ -4075,9 +4077,22 @@ function DropFrom(vector StartLocation)
 		{
 			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
 			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
-			for (i = 0; i < WeaponParams.AttachmentMaterialSwaps.Length; ++i)
+			if (WeaponCamo != None)
 			{
-				BallisticWeaponPickup(Pickup).Skins[WeaponParams.AttachmentMaterialSwaps[i].Index] = WeaponParams.AttachmentMaterialSwaps[i].Material;
+				for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
+				{
+					if (WeaponCamo.WeaponMaterialSwaps[i].PIndex != -1)
+					{
+						if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+							BallisticWeaponPickup(Pickup).Skins[WeaponCamo.WeaponMaterialSwaps[i].PIndex] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+						if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+						{
+							N = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+							if (N != None)
+								BallisticWeaponPickup(Pickup).Skins[WeaponCamo.WeaponMaterialSwaps[i].PIndex] = N;
+						}
+					}
+				}
 			}
 		}
     }

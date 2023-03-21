@@ -239,7 +239,7 @@ defaultproperties
     bUseSights=False
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'FG50TW_WeaponParamsComp'
-	ParamsClasses(1)=Class'FG50TW_WeaponParamsComp'
+	ParamsClasses(1)=Class'FG50TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'FG50TW_WeaponParamsTactical'
 	SelectAnim="Deploy"

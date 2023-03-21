@@ -124,7 +124,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=40

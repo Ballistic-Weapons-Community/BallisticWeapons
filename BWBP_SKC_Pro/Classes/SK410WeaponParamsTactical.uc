@@ -97,8 +97,14 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
-		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		//Function
 		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 		InventorySize=5
 		SightMoveSpeedFactor=0.6
@@ -110,5 +116,85 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_RDS
+		//Layout core
+		Weight=10
+		LayoutName="Red Dot Sight"
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=1f)
+		SightPivot=(Pitch=150)
+		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		//Function
+		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
+		InventorySize=5
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.3
+		DisplaceDurationMult=0.75
+		MagAmmo=8
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_RDS'
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=SK_Black
+		Index=0
+		CamoName="Black" //This needs to be core, with urban in camos
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-Main",Index=1,Index=1,AIndex=2,PIndex=0)
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SK_Urban
+		Index=1
+		CamoName="Urban"
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SK_Wood
+		Index=2
+		CamoName="Wood"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoJungle",Index=1,Index=1,AIndex=2,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SK_Digital
+		Index=3
+		CamoName="Digital"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoDigital",Index=1,Index=1,AIndex=2,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SK_Blood
+		Index=4
+		CamoName="Bloodied"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoBlood",Index=1,AIndex=2,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SK_RedTiger
+		Index=5
+		CamoName="Red Tiger"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoTiger",Index=1,AIndex=2,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SK_Corrupt
+		Index=6
+		CamoName="Corrupt"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-Charged",Index=1,AIndex=2,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'SK_Black'
+	Camos(1)=WeaponCamo'SK_Urban'
+	Camos(2)=WeaponCamo'SK_Wood'
+	Camos(3)=WeaponCamo'SK_Digital'
+	Camos(4)=WeaponCamo'SK_Blood'
+	Camos(5)=WeaponCamo'SK_RedTiger'
+	Camos(6)=WeaponCamo'SK_Corrupt'
 }

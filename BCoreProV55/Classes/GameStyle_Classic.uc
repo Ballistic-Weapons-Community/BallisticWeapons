@@ -52,4 +52,8 @@ defaultproperties
 	KillRewardHealthMax=0
 	ShieldKillReward=0
 	KillRewardShieldMax=0
+	
+	//Conflict
+	ConflictWeaponSlots=20
+	ConflictEquipmentSlots=2
 }

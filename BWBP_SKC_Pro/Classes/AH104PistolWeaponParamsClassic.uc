@@ -111,18 +111,63 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
-        InventorySize=8
+		SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
+		//Function
+        InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=7
-		SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Holo
+		//Layout core
+		Weight=10
+		LayoutName="Holosight"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=1f)
+		WeaponMaterialSwaps(0)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=4,AIndex=-1,PIndex=-1)
+		SightOffset=(X=-30.000000,Y=-0.700000,Z=26.730000)
+		//Function
+        InventorySize=5
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=7
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Holo'
+
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=AH_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Red
+		Index=1
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainRed",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-Misc",Index=2,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'AH_Black'
+	Camos(1)=WeaponCamo'AH_Red'
 
 
 }

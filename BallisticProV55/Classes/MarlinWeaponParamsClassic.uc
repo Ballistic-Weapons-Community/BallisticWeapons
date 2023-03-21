@@ -73,16 +73,6 @@ defaultproperties
 		FireAnimRate=1.150000	
 	FireEffectParams(0)=InstantEffectParams'ClassicGaussPrimaryEffectParams'
 	End Object
-	
-	Begin Object Class=FireParams Name=ClassicGoldPrimaryFireParams
-		FireInterval=0.80000
-		bCockAfterFire=True
-		FireEndAnim=
-		FireAnim="SightFireCock"
-		AimedFireAnim="SightFireCock"
-		FireAnimRate=1.150000	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-	End Object
 		
     //=================================================================
     // SECONDARY FIRE

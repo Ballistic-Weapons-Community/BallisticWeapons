@@ -91,6 +91,8 @@ simulated function ClientSetHeat(float NewHeat)
 	HeatLevel = NewHeat;
 }
 
+
+
 function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
@@ -99,22 +101,38 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
     Instigator = Other;
     W = Weapon(Other.FindInventoryType(class));
-    if ( W == None )
+    if ( W == None || class != W.Class)
     {
 		bJustSpawned = true;
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			//if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			log("randomizing"); 
+			GenerateLayout(255);
+			GenerateCamo(255);
+			//if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
 		if (AK91Pickup(Pickup) != None)
 			HeatLevel = FMax( 0.0, AK91Pickup(Pickup).HeatLevel - (level.TimeSeconds - AK91Pickup(Pickup).HeatTime) * 0.25 );
 		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
 			ClientSetHeat(HeatLevel);
     }
-    else if ( !W.HasAmmo() )
+ 	
+   	else if ( !W.HasAmmo() )
 	    bPossiblySwitch = true;
-
     if ( Pickup == None )
         bPossiblySwitch = true;
 
@@ -123,15 +141,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         if ( FireMode[m] != None )
         {
             FireMode[m].Instigator = Instigator;
-            GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
+			W.GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
         }
     }
+	
+	if (MeleeFireMode != None)
+		MeleeFireMode.Instigator = Instigator;
 
 	if ( (Instigator.Weapon != None) && Instigator.Weapon.IsFiring() )
 		bPossiblySwitch = false;
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
+		
+	//Disable aim for weapons picked up by AI-controlled pawns
+	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
 
     if ( !bJustSpawned )
 	{

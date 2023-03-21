@@ -145,8 +145,13 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=6
+	Begin Object Class=WeaponParams Name=ClassicParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		Weight=30
+		//Attachments
+		//Functions
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
@@ -158,7 +163,30 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicCryoPrimaryFireParams'
 		FireParams(2)=FireParams'ClassicRadPrimaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ClassicParams'
+		
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		//Layout core
+		LayoutName="Iron Sights"
+		Weight=10
+		//Attachments
+		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
+		//Functions
+		InventorySize=4
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
+		bNeedCock=True
+		MagAmmo=15
+		SightOffset=(y=-3.140000,Z=14.300000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicCryoPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicRadPrimaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'ClassicParams_RDS'
+	Layouts(1)=WeaponParams'ClassicParams_Irons'
 
 
 }

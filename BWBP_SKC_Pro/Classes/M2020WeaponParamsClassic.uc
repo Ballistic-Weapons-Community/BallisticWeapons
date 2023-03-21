@@ -152,7 +152,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=15
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10

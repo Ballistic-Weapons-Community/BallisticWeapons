@@ -32,7 +32,6 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalAutoFireParams
-		TargetState="SpinUpFire"
         FireInterval=0.300000
         FireAnim="Fire"
         FireEndAnim=

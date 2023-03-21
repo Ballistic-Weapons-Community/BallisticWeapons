@@ -7,7 +7,8 @@
 // by Azarael 2020
 //=============================================================================
 class WeaponParams extends Object
-    DependsOn(FireEffectParams);
+    DependsOn(FireEffectParams)
+    editinlinenew;
 
 // Struct used for skin replacements
 struct MaterialSwap
@@ -15,6 +16,8 @@ struct MaterialSwap
     var()   Material    Material;
 	var()	string		MaterialName;
     var()   int         Index;
+    var()   int         PIndex;
+    var()   int         AIndex;
 };
 
 struct BoneScale
@@ -117,10 +120,10 @@ var() bool			        bDualBlocked;			//Prevent this weapon from being dual wield
 var() int InitialWeaponMode;
 var() array<WeaponModeType> WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
 
-var() editinline array<RecoilParams>	RecoilParams;
-var() editinline array<AimParams>		AimParams;
-var() editinline array<FireParams>    	FireParams;
-var() editinline array<FireParams>     	AltFireParams;
+var() array<RecoilParams>	RecoilParams;
+var() array<AimParams>		AimParams;
+var() array<FireParams>     FireParams;
+var() array<FireParams>     AltFireParams;
 
 final function FireEffectParams.FireModeStats GetFireStats() 
 {
