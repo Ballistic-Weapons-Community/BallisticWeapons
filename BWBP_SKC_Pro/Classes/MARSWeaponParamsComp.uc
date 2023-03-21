@@ -162,7 +162,7 @@ defaultproperties
 		CockAnimRate=1.10000
 		ReloadAnimRate=1.10000
 		PlayerJumpFactor=1
-		InventorySize=7
+		InventorySize=6
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.50000		
 		DisplaceDurationMult=1
@@ -186,7 +186,7 @@ defaultproperties
 		//Function
 		CockAnimRate=1.10000
 		ReloadAnimRate=1.10000
-		InventorySize=7
+		InventorySize=6
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000		
 		DisplaceDurationMult=1

@@ -65,7 +65,7 @@ defaultproperties
 		SightPivot=(Roll=-1024)
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
 		SightingTime=0.45
-		SightMoveSpeedFactor=0.4
+		SightMoveSpeedFactor=0.45
 		MagAmmo=7
         InventorySize=5
         ZoomType=ZT_Logarithmic

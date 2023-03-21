@@ -90,7 +90,7 @@ defaultproperties
 		PlayerJumpFactor=0.9
 		MagAmmo=300
 		SightingTime=0.80000
-		SightMoveSpeedFactor=0.4
+		SightMoveSpeedFactor=0.45
         InventorySize=7
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

@@ -80,7 +80,7 @@ defaultproperties
 		InventorySize=8
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
-		SightMoveSpeedFactor=0.4
+		SightMoveSpeedFactor=0.35
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

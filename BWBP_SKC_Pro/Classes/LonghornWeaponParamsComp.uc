@@ -98,7 +98,7 @@ defaultproperties
 		SightOffset=(Y=19.600000,Z=26.400000)
 		
 		PlayerJumpFactor=1
-		InventorySize=6
+		InventorySize=5
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000		
 		DisplaceDurationMult=1

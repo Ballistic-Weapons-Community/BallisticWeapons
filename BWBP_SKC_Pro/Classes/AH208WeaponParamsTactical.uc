@@ -77,7 +77,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
 		InventorySize=3
-        SightMoveSpeedFactor=0.6
+        SightMoveSpeedFactor=0.75
 		SightingTime=0.2
 		DisplaceDurationMult=0.5
 		MagAmmo=7

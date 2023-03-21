@@ -119,7 +119,7 @@ defaultproperties
 		MagAmmo=30
 		SightingTime=0.25
         InventorySize=4
-        SightMoveSpeedFactor=0.6
+        SightMoveSpeedFactor=0.75
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

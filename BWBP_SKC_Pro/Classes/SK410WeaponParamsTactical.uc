@@ -107,7 +107,7 @@ defaultproperties
 		//Function
 		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 		InventorySize=5
-		SightMoveSpeedFactor=0.6
+		SightMoveSpeedFactor=0.75
 		SightingTime=0.3
 		DisplaceDurationMult=0.75
 		MagAmmo=8
@@ -128,7 +128,7 @@ defaultproperties
 		//Function
 		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 		InventorySize=5
-		SightMoveSpeedFactor=0.6
+		SightMoveSpeedFactor=0.75
 		SightingTime=0.3
 		DisplaceDurationMult=0.75
 		MagAmmo=8

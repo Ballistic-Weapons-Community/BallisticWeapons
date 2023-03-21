@@ -106,7 +106,7 @@ defaultproperties
         PlayerJumpFactor=0.9
         DisplaceDurationMult=1.25
 		InventorySize=7
-        SightMoveSpeedFactor=0.4
+        SightMoveSpeedFactor=0.35
 		SightingTime=0.8
 		MagAmmo=6
         ZoomType=ZT_Logarithmic

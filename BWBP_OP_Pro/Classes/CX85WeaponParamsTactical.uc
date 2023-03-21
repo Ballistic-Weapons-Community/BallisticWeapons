@@ -105,7 +105,7 @@ defaultproperties
 		ReloadAnimRate=0.85
 		PlayerSpeedFactor=0.95
 		InventorySize=6
-		SightMoveSpeedFactor=0.4
+		SightMoveSpeedFactor=0.35
 		SightingTime=0.65
 		DisplaceDurationMult=1
 		MagAmmo=50

@@ -108,7 +108,7 @@ defaultproperties
 		ViewOffset=(Y=16.000000,Z=-25.000000)
 		PlayerSpeedFactor=0.95
 		InventorySize=6
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.45
 		DisplaceDurationMult=1
 		MagAmmo=15

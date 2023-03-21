@@ -41,17 +41,17 @@ defaultproperties
 	bAllowDoubleJump=False
 	PlayerStrafeScale=1
 	PlayerBackpedalScale=1
-	PlayerGroundSpeed=200
-	PlayerAnimationGroundSpeed=260
-	PlayerAirSpeed=200
+	PlayerGroundSpeed=210
+	PlayerAnimationGroundSpeed=270
+	PlayerAirSpeed=210
 	PlayerAccelRate=1536
 	PlayerJumpZ=294
 	PlayerDodgeZ=170
 
-	PlayerWalkSpeedFactor=0.85f
+	PlayerWalkSpeedFactor=0.75f
 	PlayerCrouchSpeedFactor=0.33f
 
-	bEnableSprint=true
+	bEnableSprint=True
 	StaminaChargeRate=5
 	StaminaDrainRate=5
 	SprintSpeedFactor=1.5f

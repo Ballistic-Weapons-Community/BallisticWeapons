@@ -165,7 +165,7 @@ defaultproperties
 		ReloadAnimRate=1.5
 		
 		PlayerJumpFactor=1.000000
-		InventorySize=6
+		InventorySize=5
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.30000
 		DisplaceDurationMult=1

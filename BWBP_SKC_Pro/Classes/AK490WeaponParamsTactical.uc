@@ -105,7 +105,7 @@ defaultproperties
 		//Attachments
 		//Function
 		InventorySize=7
-        SightMoveSpeedFactor=0.5
+        SightMoveSpeedFactor=0.6
 		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=25

@@ -98,7 +98,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
         SightingTime=0.6
         MagAmmo=5
-        InventorySize=7
+        InventorySize=8
         ZoomType=ZT_Logarithmic
 		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

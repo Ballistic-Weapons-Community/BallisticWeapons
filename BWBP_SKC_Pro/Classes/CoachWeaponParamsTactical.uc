@@ -107,7 +107,7 @@ defaultproperties
 		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
 		ViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
 		InventorySize=4
-		SightMoveSpeedFactor=0.5
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
 		DisplaceDurationMult=1
 		MagAmmo=2

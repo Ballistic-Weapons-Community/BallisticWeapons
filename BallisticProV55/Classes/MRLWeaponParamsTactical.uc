@@ -89,7 +89,7 @@ defaultproperties
 		ViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
 		ViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
 		PlayerSpeedFactor=0.9
-        SightMoveSpeedFactor=0.4
+        SightMoveSpeedFactor=0.45
         DisplaceDurationMult=1.4
 		SightingTime=0.65
 		MagAmmo=36
