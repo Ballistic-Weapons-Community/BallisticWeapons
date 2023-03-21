@@ -159,6 +159,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
         W = self;
+		
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);

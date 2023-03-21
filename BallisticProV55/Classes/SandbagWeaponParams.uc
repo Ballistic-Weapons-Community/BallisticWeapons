@@ -1,4 +1,4 @@
-class SandbagWeaponParamsComp extends BallisticWeaponParams;
+class SandbagWeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {    
@@ -44,7 +44,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        
+		PlayerSpeedFactor=1
         MagAmmo=1
         InventorySize=1
 		ViewOffset=(X=40.000000,Z=-10.000000)

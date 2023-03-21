@@ -140,9 +140,13 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 		bJustSpawned = true;
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
+
         W = self;
+
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		
+		ParamsClasses[GameStyleIndex].static.Initialize(self);
     }
  	
    	else if ( !W.HasAmmo() )
