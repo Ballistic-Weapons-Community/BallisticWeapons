@@ -4821,9 +4821,7 @@ simulated final function byte GetRecoilParamsIndex()
 // Used to query whether the weapon is being held left-handed, so we can reverse the recoil curve.
 simulated function int Handedness()
 {
-	if (InstigatorController != None)
-		return InstigatorController.Handedness;
-	return 0;
+	return Hand;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

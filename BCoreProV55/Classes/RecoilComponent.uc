@@ -273,7 +273,7 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 		R.Pitch += Params.EvaluateYRecoil(Recoil);
 	}
 
-	if (BW.Handedness() == -1)
+	if (BW.Handedness() < 0) // held in left hand - reverse recoil curve
 		R.Yaw = -R.Yaw;
 
     R *= class'BallisticReplicationInfo'.default.RecoilScale;
@@ -312,5 +312,5 @@ final simulated function ReceiveNetRecoil(byte NetXRand, byte NetYRand, float Ne
 //=============================================================
 final simulated function DrawDebug(Canvas Canvas)
 {
-    Canvas.DrawText("RecoilComponent: Recoil: "$Recoil$"/"$MaxRecoil$", ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor );
+    Canvas.DrawText("RecoilComponent: Recoil: "$Recoil$"/"$MaxRecoil$", ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor $ " Hand: " $ BW.Handedness());
 }
