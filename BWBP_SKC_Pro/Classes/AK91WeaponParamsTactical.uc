@@ -119,7 +119,6 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -142,7 +141,6 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -150,7 +148,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'TacticalParams'
-	Layouts(0)=WeaponParams'TacticalParams_ACOG'
+	Layouts(1)=WeaponParams'TacticalParams_ACOG'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=VK_Red

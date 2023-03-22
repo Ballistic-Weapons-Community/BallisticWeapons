@@ -198,28 +198,28 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=M781_Digital
 		Index=1
 		CamoName="Digital"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1, AIndex=1, PIndex=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1,AIndex=1,PIndex=2)
 		Weight=15
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Desert
 		Index=2
 		CamoName="Desert"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1, AIndex=1, PIndex=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1,AIndex=1,PIndex=2)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Patriot
 		Index=3
 		CamoName="Patriot"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1, AIndex=1, PIndex=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1,AIndex=1,PIndex=2)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_RedTiger
 		Index=4
 		CamoName="Red Tiger"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1, AIndex=1, PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1,AIndex=1,PIndex=2)
 		Weight=1
 	End Object
 	
