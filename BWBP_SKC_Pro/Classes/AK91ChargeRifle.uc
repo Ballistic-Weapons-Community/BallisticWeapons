@@ -109,19 +109,17 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
-			log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
 			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
-			//if (Role == ROLE_Authority)
+			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
 		}
 		else
 		{
-			log("randomizing"); 
 			GenerateLayout(255);
 			GenerateCamo(255);
-			//if (Role == ROLE_Authority)
+			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
 		}

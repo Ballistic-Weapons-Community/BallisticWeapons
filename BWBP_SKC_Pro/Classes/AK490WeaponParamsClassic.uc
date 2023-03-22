@@ -170,42 +170,42 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=AK_Desert
 		Index=1
 		CamoName="Desert"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1,AIndex=1,PIndex=1)
 		Weight=20
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Flecktarn
 		Index=2
 		CamoName="Jungle"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1,AIndex=1,PIndex=1)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Blood
 		Index=3
 		CamoName="Bloodied"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Blue
 		Index=4
 		CamoName="Blue"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Red
 		Index=5
 		CamoName="Red"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_AU
 		Index=6
 		CamoName="Gold"
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1,AIndex=1,PIndex=1)
 		Weight=1
 	End Object
 	

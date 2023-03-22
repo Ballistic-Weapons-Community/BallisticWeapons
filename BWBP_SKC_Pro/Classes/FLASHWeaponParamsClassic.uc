@@ -124,6 +124,45 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=FLASH_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoBlack",Index=2,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Winter
+		Index=2
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoWhite",Index=2,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Pink
+		Index=3
+		CamoName="Pink"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoFAB",Index=2,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Glitch
+		Index=4
+		CamoName="11011"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-Charged",Index=2,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'FLASH_Green'
+	Camos(1)=WeaponCamo'FLASH_Black'
+	Camos(2)=WeaponCamo'FLASH_Winter'
+	Camos(3)=WeaponCamo'FLASH_Pink'
+	Camos(4)=WeaponCamo'FLASH_Glitch'
 }
