@@ -250,6 +250,45 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'RealisticRDSParams'
 	Layouts(1)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M781_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M781_Digital
+		Index=1
+		CamoName="Digital"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1,AIndex=1,PIndex=2)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M781_Desert
+		Index=2
+		CamoName="Desert"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M781_Patriot
+		Index=3
+		CamoName="Patriot"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1,AIndex=1,PIndex=2)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M781_RedTiger
+		Index=4
+		CamoName="Red Tiger"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1,AIndex=1,PIndex=2)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'M781_Gray'
+	Camos(1)=WeaponCamo'M781_Digital'
+	Camos(2)=WeaponCamo'M781_Desert'
+	Camos(3)=WeaponCamo'M781_Patriot'
+	Camos(4)=WeaponCamo'M781_RedTiger'
 }

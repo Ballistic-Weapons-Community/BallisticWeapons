@@ -57,6 +57,7 @@ struct Item
 	var() int		CamoIndex;
 	var() bool		bBad;
     var() int       SectionIndex;
+	var() int		ListIndex;
 };
 
 var() array<Item> 					Inventory;
@@ -375,12 +376,15 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 		{
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 		}
+		cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
 	}
 	else
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
+			if (CamoIndexList[lb_Weapons.List.Index] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+				cb_WeapCamoIndex.setIndex(i);
 		}
 	}
 	
@@ -388,7 +392,11 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 		CamoComboBox.AddItem("None",, "255");
 	
 	if (CamoComboBox.ItemCount() > 1)
+	{
 		CamoComboBox.AddItem("Random",, "255");
+		if (CamoIndexList[lb_Weapons.List.Index] == 255) //these damn boxes changing sizes
+			cb_WeapCamoIndex.setIndex(cb_WeapCamoIndex.ItemCount()-1);
+	}
 	
 	return true;
 }
@@ -569,6 +577,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	Inventory[i].CamoIndex = PassedCamoIndex;
 	Inventory[i].LayoutIndex = PassedLayoutIndex;
     Inventory[i].SectionIndex = SectionIndex;
+	Inventory[i].ListIndex = li_Weapons.Index; //so we can find our weapon again on click
 	
 	A = WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
 
@@ -689,13 +698,16 @@ function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i;
 
-	//Figure out which currently existing item the player clicked on and then remove it.
+	//Figure out which currently existing item the player clicked on and then make it our primary gun, open it in list view.
 	if (Sender == Box_Inventory)
 	{
         i = GetClickedInventoryIndex();
 
         if (i < Inventory.Length)
+		{
 		    class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(i);
+			li_Weapons.setIndex(Inventory[i].ListIndex);
+		}
 		return true;
 	}
 	
@@ -790,7 +802,7 @@ function InternalOnChange(GUIComponent Sender)
 				LoadLIFromBW(BW, cb_WeapLayoutIndex);
 				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
 				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapCamoIndex);
-				cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+				//cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
 				cb_WeapLayoutIndex.SetVisibility(true);
 				cb_WeapCamoIndex.SetVisibility(true);
 				bUpdatingWeapon=false;
@@ -850,8 +862,8 @@ function InternalOnChange(GUIComponent Sender)
 	{
 		if (li_Weapons.GetObject() != None && class<BallisticWeapon>(li_Weapons.GetObject()) != None && !bUpdatingWeapon)
 		{
-			CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
-			log("Setting camo index of gun at loc "$li_Weapons.Index$" to "$cb_WeapCamoIndex.getIndex()); 
+			CamoIndexList[li_Weapons.Index] = int(cb_WeapCamoIndex.getExtra());
+			log("Setting camo index of gun at loc "$li_Weapons.Index$" to "$cb_WeapCamoIndex.getExtra()); 
 
 			UpdateExistingInventory(li_Weapons.Index);
 		}

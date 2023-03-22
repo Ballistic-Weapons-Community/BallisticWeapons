@@ -115,4 +115,60 @@ defaultproperties
 		AltFireParams(2)=FireParams'TacticalSecondaryFireParamsOvercharge'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=XM20_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XM20_HexGreen
+		Index=1
+		CamoName="Green Hex"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGreen",Index=2,AIndex=1,PIndex=3)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XM20_HexBlue
+		Index=2
+		CamoName="Blue Hex"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoBlue",Index=2,AIndex=1,PIndex=3)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XM20_HexOrange
+		Index=3
+		CamoName="Yellow Hex"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoWhite",Index=2,AIndex=1,PIndex=3)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XM20_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGold",Index=2,AIndex=1,PIndex=3)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XM20P_Blue
+		Index=5
+		CamoName="Prototype"
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XM20P_Yellow
+		Index=6
+		CamoName="Test Bed"
+		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainBurnedShine',Index=2,AIndex=1,PIndex=3)
+		Weight=5
+	End Object
+	
+	Camos(0)=WeaponCamo'XM20_Black'
+	Camos(1)=WeaponCamo'XM20_HexGreen'
+	Camos(2)=WeaponCamo'XM20_HexBlue'
+	Camos(3)=WeaponCamo'XM20_HexOrange'
+	Camos(4)=WeaponCamo'XM20_Gold'
+	Camos(5)=WeaponCamo'XM20P_Blue'
+	Camos(6)=WeaponCamo'XM20P_Yellow'
 }

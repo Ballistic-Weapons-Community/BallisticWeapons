@@ -115,15 +115,19 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
 		Weight=30
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		SightOffset=(X=0.000000,Y=-6.450000,Z=24.000000)
-		bNeedCock=True
+		LayoutName="Adv Holosight"
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="HoloSightLower",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=0.000000,Y=-6.450000,Z=24.000000)
+		//Function
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
+		bNeedCock=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
@@ -135,16 +139,20 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_NoCarry
+		//Layout core
 		Weight=10
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
-		bNeedCock=True
+		LayoutName="Adv Holosight 2"
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=1f)
+		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
+		//Function
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
+		bNeedCock=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
@@ -156,38 +164,20 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_NoRDS
+		//Layout core
 		Weight=3
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
-		bNeedCock=True
+		LayoutName="Iron Sights"
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		InitialWeaponMode=1
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_UTC
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.UTCG51MainShine",Index=1)
+		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
+		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
-		SightOffset=(X=0.000000,Y=-6.450000,Z=24.000000)
 		bNeedCock=True
-		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
-		WeaponBoneScales(1)=(BoneName="HoloSightLower",Slot=55,Scale=1f)
-		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
@@ -201,6 +191,69 @@ defaultproperties
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_NoCarry'
 	Layouts(2)=WeaponParams'ClassicParams_NoRDS'
-	Layouts(3)=WeaponParams'ClassicParams_UTC'
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=G51_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G51_Green
+		Index=1
+		CamoName="Green"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainGreen",Index=1,AIndex=0,PIndex=1)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G51_GreenHex
+		Index=2
+		CamoName="Green Hex"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainHexG",Index=1,AIndex=0,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G51_BlueHex
+		Index=3
+		CamoName="Blue Hex"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainHexB",Index=1,AIndex=0,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G51_Desert
+		Index=4
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainDesert",Index=1,AIndex=0,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G51_UTC
+		Index=5
+		CamoName="UTC"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.UTCG51Tex",Index=1,AIndex=0,PIndex=1)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G51_Inferno
+		Index=6
+		CamoName="Inferno"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainRed",Index=1,AIndex=0,PIndex=1)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G51_Gold
+		Index=7
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainGold",Index=1,AIndex=0,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'G51_Black'
+	Camos(1)=WeaponCamo'G51_Green'
+	Camos(2)=WeaponCamo'G51_GreenHex'
+	Camos(3)=WeaponCamo'G51_BlueHex'
+	Camos(4)=WeaponCamo'G51_Desert'
+	Camos(5)=WeaponCamo'G51_UTC'
+	Camos(6)=WeaponCamo'G51_Inferno'
+	Camos(7)=WeaponCamo'G51_Gold'
 }

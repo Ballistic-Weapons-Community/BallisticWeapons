@@ -98,65 +98,23 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams //Tan
+	Begin Object Class=WeaponParams Name=ClassicParams_Holo
+		//Layout core
 		Weight=30
+		LayoutName="Holosight"
+		//Attachments
+		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8,AIndex=8)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9,AIndex=2)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		//Function
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=25
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-
-	Begin Object Class=WeaponParams Name=ClassicParams_Gray
-		Weight=10
-		InventorySize=35
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		bNeedCock=True
-		MagAmmo=25
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-RecShine',Index=3)
-		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-
-	Begin Object Class=WeaponParams Name=ClassicParams_Black
-		Weight=10
-		InventorySize=35
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		bNeedCock=True
-		MagAmmo=25
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-MainBlack",Index=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1)
-		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2)
-		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -165,40 +123,21 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_TanIrons //Tan, no EOTech
-		Weight=3
-		InventorySize=35
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		bNeedCock=True
-		MagAmmo=25
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		//Layout core
+		Weight=10
+		LayoutName="Iron Sights"
+		//Attachments
+		SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
+		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_BlueTiger //Fancy Blue, credit TVoid
-		Weight=1
+		//Function
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=25
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecBlueCamo",Index=3)
-		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -207,34 +146,73 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_RedTiger //Fancy Red, MW
+	Layouts(0)=WeaponParams'ClassicParams_Holo'
+	Layouts(1)=WeaponParams'ClassicParams_Irons'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=LK05_Tan
+		Index=0
+		CamoName="Tan"
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LK05_Gray
+		Index=1
+		CamoName="Gray"
+		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-RecShine',Index=3,AIndex=4,PIndex=7)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LK05_Black
+		Index=2
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-MainBlack",Index=3,AIndex=4,PIndex=7)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LK05_BlueTiger //Credit TVoid
+		Index=3
+		CamoName="Blue Tiger"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecBlueCamo",Index=3,AIndex=4,PIndex=7)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LK05_RedTiger
+		Index=4
+		CamoName="Red Tiger"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecRedCamo",Index=3,AIndex=4,PIndex=7)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LK05_Meat
+		Index=5
+		CamoName="MEAT"
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=4,PIndex=7)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LK05_Gold
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecGold",Index=3,AIndex=4,PIndex=7)
 		Weight=1
-		InventorySize=35
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		bNeedCock=True
-		MagAmmo=25
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecRedCamo",Index=3)
-		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Gray'
-	Layouts(2)=WeaponParams'ClassicParams_Black'
-	Layouts(3)=WeaponParams'ClassicParams_TanIrons'
-	Layouts(4)=WeaponParams'ClassicParams_BlueTiger'
-	Layouts(5)=WeaponParams'ClassicParams_RedTiger'
-
-
+	Camos(0)=WeaponCamo'LK05_Tan'
+	Camos(1)=WeaponCamo'LK05_Gray'
+	Camos(2)=WeaponCamo'LK05_Black'
+	Camos(3)=WeaponCamo'LK05_BlueTiger'
+	Camos(4)=WeaponCamo'LK05_RedTiger'
+	Camos(5)=WeaponCamo'LK05_Meat'
+	Camos(6)=WeaponCamo'LK05_Gold'
 }

@@ -116,4 +116,45 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=RCS_Red
+		Index=0
+		CamoName="Red"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RCS_Yellow
+		Index=1
+		CamoName="Yellow"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainYellowShine",Index=1,AIndex=0,PIndex=39)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RCS_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainJungleShine",Index=1,AIndex=0,PIndex=39)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RCS_Arctic
+		Index=3
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainArcticShine",Index=1,AIndex=0,PIndex=39)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RCS_Clown
+		Index=4
+		CamoName="Clown"
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainClownShine",Index=1,AIndex=0,PIndex=39)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'RCS_Red'
+	Camos(1)=WeaponCamo'RCS_Yellow'
+	Camos(2)=WeaponCamo'RCS_Jungle'
+	Camos(3)=WeaponCamo'RCS_Arctic'
+	Camos(4)=WeaponCamo'RCS_Clown'
 }
