@@ -36,35 +36,61 @@ var() editinline 	RecoilParams		Params;
 //=============================================================================
 // MUTABLES
 //=============================================================================
-var float						PitchFactor;					// Recoil is multiplied by this and added to Aim Pitch.
-var float						YawFactor;						// Recoil is multiplied by this and added to Aim Yaw.
-var float						XRandFactor;					// Recoil multiplied by this for recoil Yaw randomness
-var float						YRandFactor;					// Recoil multiplied by this for recoil Pitch randomness
-var float						MinRandFactor;					// Bias for calculation of recoil random factor
-var float						MaxRecoil;						// The maximum recoil amount
-var float						DeclineTime;					// Time it takes for Recoil to decline maximum to zero
-var float						DeclineDelay;					// The time between firing and when recoil should start decaying
-var float             			HipMultiplier;            		// Hipfire recoil is scaled up by this value
-var float             			CrouchMultiplier;         		// Crouch recoil is scaled by this value
-var bool                        bViewDecline;                   // Weapon will move back down through its recoil path when recoil is declining
-var bool						bUseAltSightCurve;				// Weapon will use a different recoil curve when in sights
+var float						PitchFactor;				// Recoil is multiplied by this and added to Aim Pitch.
+var float						YawFactor;					// Recoil is multiplied by this and added to Aim Yaw.
+var float						XRandFactor;				// Recoil multiplied by this for recoil Yaw randomness
+var float						YRandFactor;				// Recoil multiplied by this for recoil Pitch randomness
+var float						MinRandFactor;				// Bias for calculation of recoil random factor
+var float						MaxRecoil;					// The maximum recoil amount
+var float						DeclineTime;				// Time it takes for Recoil to decline maximum to zero
+var float						DeclineDelay;				// The time between firing and when recoil should start decaying
+var float             			HipMultiplier;            	// Hipfire recoil is scaled up by this value
+var float						MaxMoveMultiplier;			// Recoil while moving is scaled by this value - maximum is applied when player is moving at full basic run speed
+var float             			CrouchMultiplier;         	// Crouch recoil is scaled by this value
+var bool                        bViewDecline;               // Weapon will move back down through its recoil path when recoil is declining
+var bool						bUseAltSightCurve;			// Weapon will use a different recoil curve when in sights - danger, this will break under certain conditions (see note)
 
 //=============================================================================
 // STATE
 //=============================================================================
-var private float               Recoil;						    // The current recoil amount. Increases each shot, decreases when not firing
-var private float               XRand;				            // Random between 0 and 1. Recorded random number for recoil Yaw randomness
-var private float               YRand;				            // Random between 0 and 1. Recorded random number for recoil Pitch randomness
+var private float               Recoil;						// The current recoil amount. Increases each shot, decreases when not firing
+var private float               XRand;				        // Random between 0 and 1. Recorded random number for recoil Yaw randomness
+var private float               YRand;				        // Random between 0 and 1. Recorded random number for recoil Pitch randomness
 
 // View application
-var private Rotator             LastViewPivot;   		        // Pivot saved between GetViewPivotDelta calls, used to find delta recoil  
-var private float               ViewBindFactor;             	// Amount to bind recoil offsetting to view
+var private Rotator             LastViewPivot;   		    // Pivot saved between GetViewPivotDelta calls, used to find delta recoil  
+
+/* 
+notes on ViewBindFactor/ADSViewBindFactor - Azarael
+
+because the server is authoritative on recoil (due to a timing fault in UT's netcode), and the client's reception of recoil is delayed,
+values other than 1.0 (hard bind to view) will cause varying degrees of desynchronization between the client and server,
+because the recoil offset on the server will not match the recoil offset on the client,
+which is what is used to visually offset the weapon, and thus the sights that the player is aiming with
+
+this is very severe with weapons which are single shot with high recoil and a fast reset, such as power pistols -
+the client may fire again before the weapon has fully reset on their end,
+but on the server, the resetting process started before the client, and will continue while the client's request to shoot is being sent over the wire
+so, by the time the server calculates the shot, the weapon has already reset, so the weapon appears to fire far below the aim position the client saw
+
+for this reason I strongly advise using full recoil binds for these weapons in whichever modes are considered accurate, 
+at least until a fix can be added (recoil application and modification needs to be delayed on the server by 1/2 of the player's observed ping)
+
+if gametype uses ADS for precision, Params.ADSViewBindFactor is the value, otherwise, it's Params.ViewBindFactor
+we accept a degree of desynchronization on hipfire if the gametype isn't intended to be played primarily from hipfire
+
+this problem does not affect weapons using a value of 1 
+because the server will only use the recoil value to calculate shot trajectory for the component of recoil that is _not_ bound to the player's view
+if all recoil is bound to the view, the server will simply use the player's look direction for aim, which is a client input value with no server adjustment
+and thus will be updated at the same time as the request to shoot is received by the server
+*/
+var private float               ViewBindFactor;            	// Amount to bind recoil offsetting to view.
 
 // State
-var private float               LastRecoilTime;                 // Last time at which recoil was added
+var private float               LastRecoilTime;             // Last time at which recoil was added
 
 // Replication
-var private bool                bForceUpdate;                   // Forces ApplyAimToView call to recalculate recoil (set after ReceiveNetRecoil)
+var private bool                bForceUpdate;               // Forces ApplyAimToView call to recalculate recoil (set after ReceiveNetRecoil)
 
 //=============================================================
 // Accessors
@@ -141,6 +167,7 @@ final simulated function Recalculate()
 	DeclineTime 		= Params.DeclineTime;
 	DeclineDelay		= Params.DeclineDelay;
 	HipMultiplier 		= Params.HipMultiplier;
+	MaxMoveMultiplier 	= Params.MaxMoveMultiplier;
 	CrouchMultiplier 	= Params.CrouchMultiplier;
     bViewDecline        = Params.bViewDecline;
     bUseAltSightCurve   = Params.bUseAltSightCurve;
@@ -163,12 +190,22 @@ final simulated function AddRecoil (float Amount, optional byte Mode)
 	
 	if (BW.bAimDisabled || Amount == 0)
 		return;
-		
+	
+	// reduce recoil when stationary crouched by desired factor
 	if (BW.Instigator.bIsCrouched && VSize(BW.Instigator.Velocity) < 30)
 		Amount *= CrouchMultiplier;
 		
+	// increase recoil when not in ADS by factor
 	if (!BW.bScopeView)
 		Amount *= HipMultiplier;
+
+	// increase recoil when moving
+	if (MaxMoveMultiplier > 1.0f && VSize(BW.Instigator.Velocity) >= 30)
+	{
+		Amount *= 1f + ((MaxMoveMultiplier - 1f) * FMin(1f, VSize(BW.Instigator.Velocity) / class'BallisticReplicationInfo'.default.PlayerGroundSpeed));
+	}
+
+	Amount *= class'BallisticReplicationInfo'.default.RecoilShotScale;
 	
 	Recoil = FMin(MaxRecoil, Recoil + Amount);
 

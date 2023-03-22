@@ -24,7 +24,8 @@ var BC_GameStyle.EGameStyle	GameStyle;
 // WEAPONS
 //=============================================================================
 var float					AccuracyScale;				// Used for scaling general weapon accuracy.
-var float					RecoilScale;				// Used for scaling general weapon recoil.
+var float					RecoilScale;				// Used for scaling weapon recoil patterns.
+var float					RecoilShotScale;				// Used for scaling weapon recoil per shot.
 var float					DamageScale;				// Scales anti-player weapon damage
 var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
 var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
@@ -103,7 +104,8 @@ var struct GeneralRep
 {
 	var BC_GameStyle.EGameStyle	GameStyle;				
 	var float					AccuracyScale;				// Used for scaling general weapon accuracy.
-	var float					RecoilScale;				// Used for scaling general weapon recoil.
+	var float					RecoilScale;				// Used for scaling weapon recoil patterns.
+	var float					RecoilShotScale;			// Used for scaling weapon recoil per shot.
 	var float					DamageScale;				// Scales anti-player weapon damage
 	var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
 	var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
@@ -164,6 +166,7 @@ final function BindToReplication()
 
 	GRep.AccuracyScale			        = AccuracyScale;
 	GRep.RecoilScale			        = RecoilScale;
+	GRep.RecoilShotScale			    = RecoilShotScale;
 	GRep.DamageScale					= DamageScale;
 	GRep.VehicleDamageScale				= VehicleDamageScale;
 	
@@ -223,6 +226,7 @@ simulated final function BindFromReplication()
 
 	AccuracyScale			    	= GRep.AccuracyScale;
 	RecoilScale			        	= GRep.RecoilScale;
+	RecoilShotScale			        = GRep.RecoilShotScale;
 	DamageScale						= GRep.DamageScale;
 	VehicleDamageScale				= GRep.VehicleDamageScale;
 	
@@ -269,6 +273,7 @@ simulated final function BindDefaults()
 
 	class.default.AccuracyScale			        = AccuracyScale;
 	class.default.RecoilScale			        = RecoilScale;
+	class.default.RecoilShotScale			    = RecoilShotScale;
 	class.default.DamageScale					= DamageScale;
 	class.default.VehicleDamageScale			= VehicleDamageScale;
 	
@@ -319,6 +324,7 @@ simulated final function BindDefaults()
 
 	Log("Accuracy Scale: "$AccuracyScale);
 	Log("Recoil Scale: "$RecoilScale);
+	Log("Recoil Shot Scale: "$RecoilShotScale);
 	Log("Sprint/Jump Weapon Offsetting: "$bWeaponJumpOffsetting);
 	Log("Long Weapon Offsetting: "$bLongWeaponOffsetting);
 	Log("Reloading: "$ !bNoReloading);
@@ -380,6 +386,7 @@ defaultproperties
 	// defaults used from pro, config styles will override them directly
 	AccuracyScale=1
 	RecoilScale=1
+	RecoilShotScale=1
 	DamageScale=1
 	VehicleDamageScale=1
 

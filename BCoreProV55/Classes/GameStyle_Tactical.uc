@@ -10,7 +10,9 @@ defaultproperties
 {
 	Index=GS_Tactical
 	Name="Tactical"
-	RecoilScale=0.6
+	
+	RecoilScale=0.8 // 0.6 with no scaling is about right
+	RecoilShotScale=0.625 // move penalty will do the rest
 
 	bRunInADS=False
 
