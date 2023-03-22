@@ -13,6 +13,7 @@ defaultproperties
 		Damage=52
         HeadMult=2.5
         LimbMult=0.67f
+		PenetrationEnergy=48
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
@@ -118,6 +119,8 @@ defaultproperties
 		MaxRecoil=3072.000000
 		DeclineTime=0.60000
 		DeclineDelay=0.400000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalExplosiveRecoilParams
@@ -128,6 +131,8 @@ defaultproperties
 		MaxRecoil=3072.000000
 		DeclineTime=1.20000
 		DeclineDelay=1.000000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAcidRecoilParams
@@ -138,6 +143,8 @@ defaultproperties
 		MaxRecoil=3072.000000
 		DeclineTime=0.30000
 		DeclineDelay=0.300000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

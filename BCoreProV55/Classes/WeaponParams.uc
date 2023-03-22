@@ -81,8 +81,9 @@ var() Vector                SightOffset;            // Offset when moving weapon
 var() Rotator               SightPivot;             // Pivot when moving weapon to ADS position
 var() EZoomType             ZoomType;               // Type of zoom. Precise control is within the weapon's sighting properties
 var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the screen
-var() float					MinZoom;				// Minimum Zoom for Sniper
+var() float					MinZoom;				// Minimum scope zoom factor
 var() float					MaxZoom;				// Maximun Zoom for Sniper
+var() int					ZoomStages;				// Zoom stages for sniper
 var() bool         			bAdjustHands;      		// Adjust hand position when sighting?
 var() rotator      			WristAdjust;       		// Amount to move wrist bone when using iron sights.
 var() rotator      			RootAdjust;        		// Amount to move arm bone when using iron sights.

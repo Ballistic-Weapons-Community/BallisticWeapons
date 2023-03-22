@@ -25,7 +25,7 @@ var BC_GameStyle.EGameStyle	GameStyle;
 //=============================================================================
 var float					AccuracyScale;				// Used for scaling general weapon accuracy.
 var float					RecoilScale;				// Used for scaling weapon recoil patterns.
-var float					RecoilShotScale;				// Used for scaling weapon recoil per shot.
+var float					RecoilShotScale;			// Used for scaling weapon recoil per shot.
 var float					DamageScale;				// Scales anti-player weapon damage
 var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
 var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping

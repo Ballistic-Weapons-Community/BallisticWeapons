@@ -71,6 +71,7 @@ defaultproperties
 		DeclineDelay=0.650000
 		DeclineTime=0.5
 		HipMultiplier=1
+		MaxMoveMultiplier=1.5
     End Object
 	
 	//=================================================================

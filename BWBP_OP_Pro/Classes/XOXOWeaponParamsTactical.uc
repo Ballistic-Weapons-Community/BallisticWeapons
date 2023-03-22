@@ -158,6 +158,8 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=1.500000
 		DeclineDelay=0.250000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalBombRecoilParams
@@ -168,6 +170,8 @@ defaultproperties
 		YRandFactor=1.5
 		DeclineDelay=0.8
 		DeclineTime=1.500000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalLustRecoilParams
@@ -178,6 +182,8 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=1.500000
 		DeclineDelay=0.250000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalNukeRecoilParams
@@ -188,6 +194,8 @@ defaultproperties
 		YRandFactor=1.5
 		DeclineDelay=0.8
 		DeclineTime=1.500000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

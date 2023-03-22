@@ -11,6 +11,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
         DecayRange=(Min=525,Max=1225)
+		PenetrationEnergy=16
         RangeAtten=0.5
 		Damage=15
         HeadMult=2.25f

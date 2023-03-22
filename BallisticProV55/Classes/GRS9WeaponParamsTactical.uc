@@ -22,7 +22,7 @@ defaultproperties
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
-        PenetrationEnergy=8
+        PenetrationEnergy=16
         PenetrateForce=100
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -83,7 +83,8 @@ defaultproperties
         DeclineTime=0.750000
         DeclineDelay=0.350000
         MaxRecoil=6144
-        HipMultiplier=1.5
+		HipMultiplier=1.5
+		MaxMoveMultiplier=2
     End Object
 
 	//=================================================================

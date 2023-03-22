@@ -13,6 +13,7 @@ defaultproperties
 		Damage=32
 		HeadMult=3.0f
 		LimbMult=0.67f
+		PenetrationEnergy=16
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
@@ -107,6 +108,8 @@ defaultproperties
 		DeclineTime=0.500000
 		DeclineDelay=0.250000
 		CrouchMultiplier=0.800000
+		HipMultiplier=1
+		MaxMoveMultiplier=1.5
 	End Object
 
 	//=================================================================

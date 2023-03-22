@@ -22,7 +22,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
-        PenetrationEnergy=32
+        PenetrationEnergy=48
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK47FlashEmitter'
@@ -79,6 +79,8 @@ defaultproperties
 		DeclineDelay=0.15
 		DeclineTime=0.65	
 		MaxRecoil=6144
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 	
 	//=================================================================

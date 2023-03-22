@@ -182,6 +182,8 @@ defaultproperties
 		DeclineTime=1.5
 		ViewBindFactor=0.3
 		DeclineDelay=0.8
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
  
 	Begin Object Class=RecoilParams Name=TacticalFastRecoilParams
@@ -192,6 +194,8 @@ defaultproperties
 		DeclineTime=0.5
 		ViewBindFactor=0.5
 		DeclineDelay=0.25
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

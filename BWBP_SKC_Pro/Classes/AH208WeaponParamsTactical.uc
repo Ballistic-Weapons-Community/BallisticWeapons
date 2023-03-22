@@ -21,7 +21,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTAH208Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH208PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH208Pistol'
-        PenetrationEnergy=16
+        PenetrationEnergy=48
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000
@@ -53,6 +53,8 @@ defaultproperties
         MaxRecoil=6144.000000
         DeclineDelay=0.65
         DeclineTime=1
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
     End Object
 
 	//=================================================================

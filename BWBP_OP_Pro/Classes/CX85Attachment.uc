@@ -31,7 +31,7 @@ simulated function GenerateModeInfo()
     Super.GenerateModeInfo();
 
     ModeInfos[1].ImpactManager = class'BallisticProV55.IM_Bullet';
-    ModeInfos[1].TracerClass = class'TraceEmitter_BX85Crossbow';
+    ModeInfos[1].TracerClass = class'TraceEmitter_KF8XCrossbow';
     ModeInfos[1].WaterTracerClass = class'BallisticProV55.TraceEmitter_WaterBullet';
     ModeInfos[1].TracerChance = 1;
     ModeInfos[1].TracerMix = 0;

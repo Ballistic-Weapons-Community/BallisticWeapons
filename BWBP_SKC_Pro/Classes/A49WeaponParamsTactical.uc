@@ -68,6 +68,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.400000),(InVal=0.540000,OutVal=0.650000),(InVal=0.700000,OutVal=0.720000),(InVal=1.000000,OutVal=0.300000)))
 		DeclineTime=0.5
 		DeclineDelay=0.170000
+		HipMultiplier=1
+		MaxMoveMultiplier=1.5
 	End Object
 
 	//=================================================================

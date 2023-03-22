@@ -79,6 +79,8 @@ defaultproperties
 		YRandFactor=0.05000
 		DeclineDelay=0.1700000
 		DeclineTime=0.65
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -103,7 +105,11 @@ defaultproperties
         SightMoveSpeedFactor=0.35
         MagAmmo=24
         InventorySize=6
+		// acog
         ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -138,6 +138,8 @@ defaultproperties
 		YRandFactor=0.050000
 		MaxRecoil=8192
 		DeclineTime=1.500000
+		HipMultiplier=1.5
+		MaxMoveMultiplier=3
 	End Object
 
 	//=================================================================

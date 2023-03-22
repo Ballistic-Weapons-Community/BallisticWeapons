@@ -42,6 +42,8 @@ defaultproperties
 		YRandFactor=0.10000
 		DeclineDelay=1.25
 		DeclineTime=1.000000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -68,7 +70,11 @@ defaultproperties
 		SightMoveSpeedFactor=0.45
 		MagAmmo=7
         InventorySize=5
+		// sniper 4-8x
         ZoomType=ZT_Logarithmic
+		MinZoom=4
+		MaxZoom=8
+		ZoomStages=1
 		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -74,6 +74,8 @@ defaultproperties
         MaxRecoil=8192.000000
         XRandFactor=0.10000
         YRandFactor=0.10000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
     End Object
 
 	//=================================================================

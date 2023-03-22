@@ -9,6 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=1575,Max=3675)
+		PenetrationEnergy=32
 		RangeAtten=0.67
 		Damage=18
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
@@ -33,6 +34,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_CQC
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=1575,Max=3675)
+		PenetrationEnergy=32
 		RangeAtten=0.67
 		Damage=18
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'

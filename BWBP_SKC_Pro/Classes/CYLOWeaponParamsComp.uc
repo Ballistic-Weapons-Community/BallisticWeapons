@@ -9,6 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=12000.000000)
         DecayRange=(Min=1250,Max=3750)
+		PenetrationEnergy=32
 		RangeAtten=0.67
 		Damage=28
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'

@@ -21,7 +21,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'
-        PenetrationEnergy=16
+        PenetrationEnergy=32
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.5
@@ -79,6 +79,8 @@ defaultproperties
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
 		ADSViewBindFactor=0.85
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

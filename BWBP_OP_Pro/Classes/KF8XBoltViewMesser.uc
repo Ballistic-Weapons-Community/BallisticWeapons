@@ -1,11 +1,11 @@
 //=============================================================================
-// BX85BoltViewMesser.
+// KF8XBoltViewMesser.
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BX85BoltViewMesser extends Actor;
+class KF8XBoltViewMesser extends Actor;
 
 var PlayerController 	PC;
 var Pawn OriginalPawn;

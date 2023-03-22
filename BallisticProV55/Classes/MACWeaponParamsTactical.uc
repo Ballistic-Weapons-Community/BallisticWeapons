@@ -53,6 +53,8 @@ defaultproperties
 		XRandFactor=0.600000
 		YRandFactor=0.900000
 		MinRandFactor=0.350000
+		HipMultiplier=1 // always on shoulder
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -84,7 +86,11 @@ defaultproperties
 		SightingTime=0.80000
 		MagAmmo=5
         InventorySize=8
+		// acog-like
         ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

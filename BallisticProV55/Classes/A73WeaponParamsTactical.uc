@@ -81,6 +81,8 @@ defaultproperties
 		YRandFactor=0.100000
 		DeclineTime=0.5
 		DeclineDelay=0.170000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
  	End Object
 
     //=================================================================

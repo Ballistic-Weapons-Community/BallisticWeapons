@@ -16,6 +16,7 @@ defaultproperties
 		Damage=120
         HeadMult=2
         LimbMult=0.67f
+		PenetrationEnergy=128
 		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'

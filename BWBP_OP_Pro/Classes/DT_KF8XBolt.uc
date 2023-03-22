@@ -1,13 +1,13 @@
 //=============================================================================
-// DT_BX85Bolt.
+// DT_KF8XBolt.
 //
-// DamageType for the BX85 bolts
+// DamageType for the KF8X bolts
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DT_BX85Bolt extends DT_BWBlunt;
+class DT_KF8XBolt extends DT_BWBlunt;
 
 static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
@@ -19,8 +19,8 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 static function DoDartEffect(Actor Victim, Pawn Instigator)
 {
     local int i;
-    local BX85BoltViewMesser VM;
-	local BX85BoltPoisoner DP;
+    local KF8XBoltViewMesser VM;
+	local KF8XBoltPoisoner DP;
 
 	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
 		Return;
@@ -29,15 +29,15 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
 	{
 		for (i=0;i<Pawn(Victim).Owner.Attached.length;i++)
 		{
-			if (BX85BoltViewMesser(Pawn(Victim).Owner.Attached[i]) != None)
+			if (KF8XBoltViewMesser(Pawn(Victim).Owner.Attached[i]) != None)
 			{
-				VM = BX85BoltViewMesser(Pawn(Victim).Owner.Attached[i]);
+				VM = KF8XBoltViewMesser(Pawn(Victim).Owner.Attached[i]);
 				break;
 			}
 		}
 		if (VM == None)
 		{
-			VM = Victim.Level.Spawn(class'BX85BoltViewMesser', Pawn(Victim).Owner);
+			VM = Victim.Level.Spawn(class'KF8XBoltViewMesser', Pawn(Victim).Owner);
 			VM.SetBase(Pawn(Victim).Owner);
 		}
 		VM.SetupTimer();
@@ -46,7 +46,7 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
 	else if (AIController(Pawn(Victim).Owner) != None)
 		class'BC_BotStoopidizer'.static.DoBotStun(AIController(Pawn(Victim).Owner), 2, 12);
 
-	DP = Victim.Level.Spawn(class'BX85BoltPoisoner', Pawn(Victim).Owner);
+	DP = Victim.Level.Spawn(class'KF8XBoltPoisoner', Pawn(Victim).Owner);
 
 	DP.Instigator = Instigator;
 
@@ -58,15 +58,15 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
 
 defaultproperties
 {
-     DeathStrings(0)="%o was assassinated from the shadows by %k's BX85 bolt."
+     DeathStrings(0)="%o was assassinated from the shadows by %k's K-F8X bolt."
      DeathStrings(1)="%k planted a crossbow bolt into %o."
      DeathStrings(2)="%o was discreetly decommissioned by %k's silent bolt."
      FlashThreshold=0
      FlashV=(Y=2000.000000)
      FlashF=0.300000
-     SimpleKillString="BX85 Bolt"
-     WeaponClass=Class'BWBP_OP_Pro.BX85Crossbow'
-     DeathString="%%o was assassinated from the shadows by %k's BX85 bolt."
+     SimpleKillString="KF-8X Bolt"
+     WeaponClass=Class'BWBP_OP_Pro.KF8XCrossbow'
+     DeathString="%%o was assassinated from the shadows by %k's KF-8X bolt."
      FemaleSuicide="%o dropped her own crossbow."
      MaleSuicide="%o dropped his own crossbow."
      PawnDamageSounds(0)=Sound'BWBP_SKC_Sounds.VSK.VSK-ImpactFlesh'

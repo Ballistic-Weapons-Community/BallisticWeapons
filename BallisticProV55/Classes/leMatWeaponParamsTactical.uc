@@ -23,7 +23,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
 		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'
-        PenetrationEnergy=16
+        PenetrationEnergy=24
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
@@ -89,6 +89,8 @@ defaultproperties
 		YRandFactor=0.150000
 		DeclineTime=1.000000
 		DeclineDelay=0.5
+		HipMultiplier=1
+		MaxMoveMultiplier=1.5
 	End Object
 
 	//=================================================================

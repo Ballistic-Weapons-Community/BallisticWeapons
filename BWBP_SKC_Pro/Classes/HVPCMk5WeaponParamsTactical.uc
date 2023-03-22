@@ -10,11 +10,13 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk5Projectile'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-		Speed=75.000000
-		MaxSpeed=8000.000000
+		Speed=3000.000000
+		MaxSpeed=9000.000000
 		AccelSpeed=90000.000000
-		Damage=75
-		DamageRadius=265.000000
+		Damage=100
+		HeadMult=2.75f
+		LimbMult=0.65f
+		DamageRadius=512.000000
 		MomentumTransfer=65000.000000
 		MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Fire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -43,7 +45,9 @@ defaultproperties
 		Speed=6500.000000
 		MaxSpeed=20000.000000
 		AccelSpeed=150000.000000
-		Damage=45
+		Damage=50
+		HeadMult=2.75f
+		LimbMult=0.65f
 		DamageRadius=122.000000
 		MomentumTransfer=12500.000000
 		FlashScaleFactor=0.400000
@@ -76,6 +80,8 @@ defaultproperties
 		YRandFactor=0.200000
 		DeclineTime=0.600000
 		DeclineDelay=0.300000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

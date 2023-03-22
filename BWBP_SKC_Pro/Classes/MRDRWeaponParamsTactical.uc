@@ -25,7 +25,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
-        PenetrationEnergy=8
+        PenetrationEnergy=16
 		FlashScaleFactor=0.600000
 		Recoil=64.000000
 		Chaos=0.100000
@@ -73,6 +73,8 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=0.800000
 		DeclineDelay=0.350000
+		HipMultiplier=1
+		MaxMoveMultiplier=1.5
 	End Object
 
 	//=================================================================

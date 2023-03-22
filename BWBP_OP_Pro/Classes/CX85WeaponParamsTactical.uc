@@ -23,7 +23,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'
-        PenetrationEnergy=16
+        PenetrationEnergy=32
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=class'BallisticProV55.M50FlashEmitter'
@@ -80,6 +80,8 @@ defaultproperties
 		YRandFactor=0.05000
 		DeclineTime=1.000000
 		DeclineDelay=0.170000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -109,7 +111,11 @@ defaultproperties
 		SightingTime=0.65
 		DisplaceDurationMult=1
 		MagAmmo=50
-        ZoomType=ZT_Logarithmic
+        // sniper 4-8x
+		ZoomType=ZT_Logarithmic
+		MinZoom=4
+		MaxZoom=8
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

@@ -72,6 +72,8 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=1.000000
 		DeclineDelay=0.2
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -105,7 +107,11 @@ defaultproperties
 		SightingTime=0.5
 		DisplaceDurationMult=1
 		MagAmmo=20
+		// acog
         ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

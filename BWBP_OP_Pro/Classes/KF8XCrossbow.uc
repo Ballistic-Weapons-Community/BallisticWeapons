@@ -1,5 +1,5 @@
 //===========================================================================
-// BX-85 Stealth Crossbow.
+// KF-8X Stealth Crossbow.
 //
 // Primary fires relatively slow projectile crossbow bolts for poor DPS.
 // Secondary fires lightning projectiles which damage the target and inflict a DoT effect.
@@ -9,7 +9,7 @@
 // Passively cloaks the user based on their movement speed. Low settings abusers have an additional
 // penalty on this check.
 //===========================================================================
-class BX85Crossbow extends BallisticWeapon;
+class KF8XCrossbow extends BallisticWeapon;
 
 //IR/NV
 var() BUtil.FullSound	ThermalOnSound;	// Sound when activating thermal mode
@@ -57,7 +57,7 @@ simulated event PreBeginPlay()
     
 	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
-		FireModeClass[0]=Class'BWBP_OP_Pro.BX85PrimaryBoltFire';
+		FireModeClass[0]=Class'BWBP_OP_Pro.KF8XPrimaryBoltFire';
 	}
 }
 
@@ -344,6 +344,8 @@ simulated function UpdatePawnList()
 
 simulated function OnScopeViewChanged()
 {
+	Super.OnScopeViewChanged();
+
 	if (!bScopeView)
 	{
 		if (Target != None)
@@ -531,7 +533,7 @@ simulated function SetNVLight(bool bOn)
 	{
 		if (NVLight == None)
 		{
-			NVLight = Spawn(class'BX85NVLight',,,Instigator.location);
+			NVLight = Spawn(class'KF8XNVLight',,,Instigator.location);
 			NVLight.SetBase(Instigator);
 		}
 		NVLight.bDynamicLight = true;
@@ -542,7 +544,7 @@ simulated function SetNVLight(bool bOn)
 
 simulated function float ChargeBar()
 {
-	return BX85Attachment(ThirdPersonActor).CurAlpha / 128.0f;
+	return KF8XAttachment(ThirdPersonActor).CurAlpha / 128.0f;
 }
 
 function float GetAIRating()
@@ -629,12 +631,12 @@ defaultproperties
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=3
-	ParamsClasses(0)=Class'BX85WeaponParamsComp'
-	ParamsClasses(1)=Class'BX85WeaponParamsClassic'
-	ParamsClasses(2)=Class'BX85WeaponParamsRealistic'
-    ParamsClasses(3)=Class'BX85WeaponParamsTactical'
+	ParamsClasses(0)=Class'KF8XWeaponParamsComp'
+	ParamsClasses(1)=Class'KF8XWeaponParamsClassic'
+	ParamsClasses(2)=Class'KF8XWeaponParamsRealistic'
+    ParamsClasses(3)=Class'KF8XWeaponParamsTactical'
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.XBow.CockFast',Volume=1.200000)
-	FireModeClass(0)=Class'BWBP_OP_Pro.BX85PrimaryFire'
+	FireModeClass(0)=Class'BWBP_OP_Pro.KF8XPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	PutDownTime=0.600000
 	BringUpTime=0.900000
@@ -642,17 +644,17 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	bShowChargingBar=True
-	Description="Originally a specialist law enforcement weapon, the PD-97 'Bloodhound' has been adapted into a military role, used to control opponents and track their movement upon the battlefield. While less immediately lethal than most other weapons, its tactical repertoire is not to be underestimated."
+	Description="Crossbows have long since been phased out in the battlefield; they're reserved only for hunters or specialist groups across the several galaxies. It wasn't until the exploits of one Billy “Hambo” Hale that they began to pick up popularity again. He claimed he managed to take down a group of Skrith when they weren't looking during an expedition of the reclaimed Amazon.  Using only his wits, some tranquilizer bolts and his crossbow, Hambo's tale had created a surge in the crossbow market, with Enravion taking the lead with their KF-8X Crossbow model. A magazine fed crossbow that's pump action, it comes with a modular scope and poison bolts.  Originally it was supposed to have a built-in stealth generator courtesy of XWI, but it was soon removed after reports of several users becoming violently unhinged after prolonged exposure."
 	Priority=24
 	HudColor=(B=150,G=150,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
-	PickupClass=Class'BWBP_OP_Pro.BX85Pickup'
+	PickupClass=Class'BWBP_OP_Pro.KF8XPickup'
 	PlayerViewOffset=(X=10.000000,Y=2.000000,Z=-7.000000)
-	AttachmentClass=Class'BWBP_OP_Pro.BX85Attachment'
+	AttachmentClass=Class'BWBP_OP_Pro.KF8XAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.XBow.Icon_Crossbow'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="BX85 Stealth Crossbow"
+	ItemName="KF-8X Stealth Crossbow"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30

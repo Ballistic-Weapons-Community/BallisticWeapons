@@ -144,7 +144,9 @@ defaultproperties
 		MaxRecoil=4096
 		DeclineDelay=0.350000
 		DeclineTime=0.900000
-		CrouchMultiplier=0.200000
+		CrouchMultiplier=0.700000
+		HipMultiplier=1.5
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

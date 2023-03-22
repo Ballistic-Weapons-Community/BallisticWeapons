@@ -14,9 +14,6 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AS50Limb'
-        PenetrationEnergy=96
-		PenetrateForce=450
-		bPenetrate=True
 		PDamageFactor=0.800000
 		PushbackForce=255.000000
 		WallPDamageFactor=0.850000
@@ -78,6 +75,8 @@ defaultproperties
 		MinRandFactor=0.15
 		DeclineTime=1.500000
 		DeclineDelay=0.5
+		HipMultiplier=2
+		MaxMoveMultiplier=4
 		CrouchMultiplier=0.650000
 	End Object
 
@@ -109,7 +108,11 @@ defaultproperties
         SightMoveSpeedFactor=0.35
 		SightingTime=0.8
 		MagAmmo=6
+		// sniper 5-10x
         ZoomType=ZT_Logarithmic
+		MinZoom=5
+		MaxZoom=10
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

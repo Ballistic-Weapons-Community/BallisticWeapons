@@ -21,7 +21,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
-        PenetrationEnergy=24
+        PenetrationEnergy=32
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -89,6 +89,8 @@ defaultproperties
 		DeclineTime=0.4
 		DeclineDelay=0.160000
 		CrouchMultiplier=1
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

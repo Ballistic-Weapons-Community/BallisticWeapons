@@ -22,7 +22,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
 		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
-        PenetrationEnergy=12
+        PenetrationEnergy=16
 		PenetrateForce=175
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XMk5FlashEmitter'
@@ -74,6 +74,8 @@ defaultproperties
 		YRandFactor=0.05000
 		DeclineTime=0.5
 		DeclineDelay=0.125000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BX85NVLight extends Actor;
+class KF8XNVLight extends Actor;
 
 defaultproperties
 {

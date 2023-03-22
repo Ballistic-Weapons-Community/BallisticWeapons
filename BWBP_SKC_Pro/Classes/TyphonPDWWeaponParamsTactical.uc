@@ -17,6 +17,7 @@ defaultproperties
         HeadMult=2.75f
         LimbMult=0.67f
 		RangeAtten=0.75
+		PenetrationEnergy=32
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150
 		bPenetrate=True
@@ -45,6 +46,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DecayRange=(Min=1575,Max=3675)
 		TraceRange=(Max=6000.000000)
+		PenetrationEnergy=64
 		Damage=72.000000
         HeadMult=2.75f
         LimbMult=0.67f
@@ -82,6 +84,8 @@ defaultproperties
 		YRandFactor=0.15000
 		DeclineTime=0.9
 		DeclineDelay=0.4000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

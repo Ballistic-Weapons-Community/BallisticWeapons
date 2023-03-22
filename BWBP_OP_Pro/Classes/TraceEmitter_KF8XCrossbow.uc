@@ -1,4 +1,4 @@
-class TraceEmitter_BX85Crossbow extends BCTraceEmitter;
+class TraceEmitter_KF8XCrossbow extends BCTraceEmitter;
 
 defaultproperties
 {

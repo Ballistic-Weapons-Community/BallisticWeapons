@@ -21,7 +21,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
-        PenetrationEnergy=16
+        PenetrationEnergy=48
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000
@@ -51,7 +51,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
-        PenetrationEnergy=16
+        PenetrationEnergy=48
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000
@@ -83,6 +83,8 @@ defaultproperties
 		MaxRecoil=6144.000000
 		DeclineDelay=0.65
 		DeclineTime=1
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_208
@@ -93,6 +95,8 @@ defaultproperties
         MaxRecoil=6144.000000
         DeclineDelay=0.65
         DeclineTime=1
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
     End Object
 
 	//=================================================================

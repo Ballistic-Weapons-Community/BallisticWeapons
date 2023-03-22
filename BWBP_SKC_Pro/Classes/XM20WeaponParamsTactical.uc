@@ -10,6 +10,8 @@ defaultproperties
 		YRandFactor=0.1
 		DeclineTime=0.8
 		DeclineDelay=0.2
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalAimParams
@@ -101,7 +103,11 @@ defaultproperties
 		SightingTime=0.5
 		DisplaceDurationMult=1
 		MagAmmo=50
-        ZoomType=ZT_Smooth
+		// acog-like
+        ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'

@@ -136,6 +136,8 @@ defaultproperties
 		YRandFactor=0.100000
 		DeclineTime=0.5
 		DeclineDelay=0.240000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -162,6 +164,9 @@ defaultproperties
         InventorySize=6
         SightMoveSpeedFactor=0.35
         ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		SightPivot=(Pitch=256)
 		SightOffset=(X=-8.000000,Z=9.300000)

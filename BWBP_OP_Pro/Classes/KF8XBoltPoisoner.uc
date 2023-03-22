@@ -1,14 +1,14 @@
 //=============================================================================
-// BX85BoltPoisoner.
+// KF8XBoltPoisoner.
 //
 // Actor attached to players to cause gradual poison damage.
 // Doesn't decay, unlike the XMK5
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BX85BoltPoisoner extends Actor
+class KF8XBoltPoisoner extends Actor
 	placeable;
 
 var   Actor				Victim;			// The poor guy being poisoned
@@ -72,7 +72,7 @@ simulated event Tick(float DT)
 
 defaultproperties
 {
-     DamageType=Class'BWBP_OP_Pro.DT_BX85BoltPoison'
+     DamageType=Class'BWBP_OP_Pro.DT_KF8XBoltPoison'
      Damage=15
      PoisonTime=7.500000
      bHidden=True

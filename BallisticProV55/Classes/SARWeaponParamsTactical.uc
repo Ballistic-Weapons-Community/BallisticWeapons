@@ -42,6 +42,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalBurstEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1250,Max=3750)
+		PenetrationEnergy=16
 		RangeAtten=0.67
 		Damage=34
         HeadMult=2.75
@@ -99,6 +100,8 @@ defaultproperties
 		ViewBindFactor=0.35
 		ADSViewBindFactor=0.85
 		CrouchMultiplier=0.75
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 		DeclineDelay=0.14
 	End Object
 
@@ -111,6 +114,8 @@ defaultproperties
 		ViewBindFactor=0.45
 		ADSViewBindFactor=0.7
 		CrouchMultiplier=1
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 		DeclineDelay=0.14
 	End Object
 

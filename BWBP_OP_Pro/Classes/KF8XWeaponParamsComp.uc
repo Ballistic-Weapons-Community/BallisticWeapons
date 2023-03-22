@@ -1,4 +1,4 @@
-class BX85WeaponParamsTactical extends BallisticWeaponParams;
+class KF8XWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -6,67 +6,70 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=90
-        HeadMult=2.5
+		Damage=80
+        HeadMult=2.0f
         LimbMult=0.67f
-		DamageType=Class'DTBX85Bolt'
-		DamageTypeHead=Class'DTBX85BoltHead'
-		DamageTypeArm=Class'DTBX85Bolt'
+		DamageType=Class'DTKF8XBolt'
+		DamageTypeHead=Class'DTKF8XBoltHead'
+		DamageTypeArm=Class'DTKF8XBolt'
 		Chaos=0.150000
-		BotRefireRate=0.5
-		WarnTargetPct=0.5
+		BotRefireRate=0.500000
+		WarnTargetPct=0.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
 	End Object
 
-	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=1.500000
 		PreFireAnim=
 		FireAnim="FireCycleRotate"
 		FireAnimRate=2.00000	
-		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=TacticalRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.5
 		XRandFactor=0.050000
 		YRandFactor=0.050000
 		MaxRecoil=4096.000000
 		DeclineTime=1.500000
-		DeclineDelay=0.5
+		DeclineDelay=0.500000
 	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=512,Max=2048)
-		ADSMultiplier=0.5
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=64,Max=512)
+		ADSMultiplier=0.25
 		JumpChaos=0.200000
-		AimAdjustTime=0.70000
-        ChaosSpeedThreshold=300
+		AimAdjustTime=0.450000
 	End Object
 
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=TacticalParams
-		InventorySize=7
-		SightMoveSpeedFactor=0.35
-		SightingTime=0.5
+	Begin Object Class=WeaponParams Name=ArenaParams
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		
+		PlayerJumpFactor=1
+		InventorySize=5
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.400000
 		DisplaceDurationMult=1
 		MagAmmo=8
         ZoomType=ZT_Logarithmic
-        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(0)=WeaponParams'ArenaParams'
 }

@@ -21,7 +21,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23HR'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AR23HRHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23HR'
-		PenetrationEnergy=64
+		PenetrationEnergy=96
 		PenetrateForce=100.000000
 		bPenetrate=True
 		PDamageFactor=0.8
@@ -97,6 +97,8 @@ defaultproperties
 		MaxRecoil=5040.000000
 		DeclineTime=1.500000
 		DeclineDelay=0.40000
+		HipMultiplier=1.5
+		MaxMoveMultiplier=3
 	End Object
 
 	//=================================================================

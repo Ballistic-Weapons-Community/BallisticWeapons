@@ -13,7 +13,7 @@ defaultproperties
 
     Begin Object Class=InstantEffectParams Name=BurstFireEffect
         DecayRange=(Min=525,Max=1225)
-        PenetrationEnergy=8
+        PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
         Damage=26.000000
         HeadMult=2.75
@@ -37,7 +37,7 @@ defaultproperties
 
     Begin Object Class=InstantEffectParams Name=AutoFireEffect
         DecayRange=(Min=525,Max=1225)
-        PenetrationEnergy=8
+        PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
         Damage=26.000000
         HeadMult=2.75
@@ -111,7 +111,8 @@ defaultproperties
 		DeclineTime=0.5
 		MaxRecoil=6144
 		CrouchMultiplier=1
-		HipMultiplier=1.5
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 		ViewBindFactor=0.2
 		ADSViewBindFactor=0.7 // no stock
 		DeclineDelay=0.09
@@ -125,7 +126,8 @@ defaultproperties
 		DeclineTime=0.5
 		MaxRecoil=6144
 		CrouchMultiplier=0.8
-		HipMultiplier=1.75
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 		ViewBindFactor=0.2
 		ADSViewBindFactor=0.85 // stock
 		DeclineDelay=0.09

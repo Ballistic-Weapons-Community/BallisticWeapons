@@ -1,4 +1,4 @@
-class BX85Attachment extends BallisticAttachment;
+class KF8XAttachment extends BallisticAttachment;
 
 var byte DestAlpha;
 var byte CurAlpha;
@@ -54,7 +54,7 @@ simulated function PostNetBeginPlay()
 	
 	if (BallisticPawn(Instigator) == None)
 	{
-		Log("No Ballistic Pawn detected for BX85Attachment.");
+		Log("No Ballistic Pawn detected for KF8XAttachment.");
 		Disable('Tick');
 		return;
 	}
@@ -283,7 +283,7 @@ defaultproperties
      Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
      Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
 	 
-	 TracerClass=Class'TraceEmitter_BX85Crossbow'
+	 TracerClass=Class'TraceEmitter_KF8XCrossbow'
      TracerChance=1.000000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both

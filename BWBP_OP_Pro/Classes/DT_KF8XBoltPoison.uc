@@ -1,25 +1,25 @@
 //=============================================================================
-// DT_BX85BoltPoison.
+// DT_KF8XBoltPoison.
 //
-// DamageType for the BX85 dart poisoning
+// DamageType for the KF8X dart poisoning
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DT_BX85BoltPoison extends DT_BWMiscDamage;
+class DT_KF8XBoltPoison extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%k's BX85 bolt delivered a lethal toxic dose to %o."
+     DeathStrings(0)="%k's KF-8X bolt delivered a lethal toxic dose to %o."
      DeathStrings(1)="%o succumbed to %k's toxic bolts."
      DeathStrings(2)="%k's xbow poison eventually overcame %o's fragile constitution."
-     SimpleKillString="BX85 Poison"
+     SimpleKillString="KF-8X Poison"
      DamageDescription=",Poison,GearSafe,NonSniper,"
-     WeaponClass=Class'BWBP_OP_Pro.BX85Crossbow'
-     DeathString="%k's BX85 bolt delivered a lethal toxic dose to %o."
-     FemaleSuicide="%o pricked herself with an BX85 bolt."
-     MaleSuicide="%o pricked himself with an BX85 dart."
+     WeaponClass=Class'BWBP_OP_Pro.KF8XCrossbow'
+     DeathString="%k's KF-8X bolt delivered a lethal toxic dose to %o."
+     FemaleSuicide="%o pricked herself with a KF-8X bolt."
+     MaleSuicide="%o pricked himself with a KF-8X dart."
      bArmorStops=False
      bFastInstantHit=True
      bDirectDamage=True

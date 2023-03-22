@@ -1,7 +1,7 @@
 //=============================================================================
 // CX61 pickup
 //=============================================================================
-class BX85Pickup extends BallisticWeaponPickup
+class KF8XPickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BWBP_OP_Tex.utx
@@ -32,9 +32,9 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBow_static'
-     InventoryType=Class'BWBP_OP_Pro.BX85Crossbow'
+     InventoryType=Class'BWBP_OP_Pro.KF8XCrossbow'
      RespawnTime=20.000000
-     PickupMessage="You picked up the BX85 stealth crossbow."
+     PickupMessage="You picked up the KF8X stealth crossbow."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBow_static'
      Physics=PHYS_None

@@ -71,6 +71,8 @@ defaultproperties
 		MinRandFactor=0.400000
 		DeclineTime=1.500000
 		DeclineDelay=0.5
+		HipMultiplier=2
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -102,7 +104,11 @@ defaultproperties
         SightingTime=0.8
         MagAmmo=5
         InventorySize=7
+		// sniper 5-10x
         ZoomType=ZT_Logarithmic
+		MinZoom=5
+		MaxZoom=10
+		ZoomStages=1
 		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

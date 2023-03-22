@@ -10,7 +10,7 @@ defaultproperties
      	TraceRange=(Min=3072,Max=3072)
         DecayRange=(Min=525,Max=1225)
 		RangeAtten=0.5
-     	PenetrationEnergy=8.000000
+     	PenetrationEnergy=16
 		PenetrateForce=135
 		bPenetrate=True
      	Damage=15.000000

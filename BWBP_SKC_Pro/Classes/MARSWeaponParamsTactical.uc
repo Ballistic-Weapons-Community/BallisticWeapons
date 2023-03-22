@@ -21,7 +21,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
-        PenetrationEnergy=16
+        PenetrationEnergy=32
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.5
@@ -48,7 +48,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
-        PenetrationEnergy=16
+        PenetrationEnergy=32
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.5
@@ -129,7 +129,8 @@ defaultproperties
 		DeclineTime=0.5
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
-		CrouchMultiplier=0.650000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_CQC
@@ -141,6 +142,8 @@ defaultproperties
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
 		ADSViewBindFactor=0.85
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 	
 	//=================================================================
@@ -183,7 +186,11 @@ defaultproperties
 		SightingTime=0.5	
 		DisplaceDurationMult=1
 		MagAmmo=30
+		// acog-like
         ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -251,14 +258,14 @@ defaultproperties
 		Index=5
 		CamoName="Prototype"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronBlack",Index=1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_LE
 		Index=6
 		CamoName="Limited Edition"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronBlack",Index=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1)
 	End Object
 	
     Layouts(0)=WeaponParams'TacticalParams_Scope'

@@ -82,6 +82,9 @@ defaultproperties
         PlayerJumpFactor=0.9
 		SightMoveSpeedFactor=0.35
         ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

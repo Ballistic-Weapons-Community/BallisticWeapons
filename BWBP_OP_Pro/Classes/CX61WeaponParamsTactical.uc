@@ -21,7 +21,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'
-        PenetrationEnergy=16
+        PenetrationEnergy=32
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -80,6 +80,8 @@ defaultproperties
 		YRandFactor=0.05000
 		DeclineTime=0.5
 		DeclineDelay=0.135000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

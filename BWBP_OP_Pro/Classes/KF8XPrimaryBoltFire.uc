@@ -1,4 +1,13 @@
-class BX85PrimaryFire extends BallisticProInstantFire;
+//=============================================================================
+// KF8XPrimaryBoltFire.
+//
+// A poison bolt version of the KF8X, it is not instant hit.
+//
+// by SK
+// uses code by Logan "BlackEagle" Richert & Nolan "Dark Carnivour" Richert.
+// Copyright� 2011 RuneStorm. All Rights Reserved.
+//=============================================================================
+class KF8XPrimaryBoltFire extends BallisticProjectileFire;
 
 var() Name		NoMagFireAnim;
 
@@ -47,34 +56,23 @@ function PlayFiring()
 
 defaultproperties
 {
-	TraceRange=(Min=30000.000000,Max=30000.000000)
-    MaxWaterTraceRange=5000
-	WallPenetrationForce=0.000000
-	
-	Damage=70.000000
-	HeadMult=1.5f
-    LimbMult=0.85f
-	
-	WaterRangeAtten=0.600000
-	DamageType=Class'DTBX85Bolt'
-	DamageTypeHead=Class'DTBX85BoltHead'
-	DamageTypeArm=Class'DTBX85Bolt'
-	PenetrateForce=0
-	bPenetrate=False
-	FireChaos=0.150000
-	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
-	PreFireAnim=
-	FireAnim="FireCycleRotate"
-	EmptyFireAnim="FireCycle"
-	NoMagFireAnim="FireCycle"
-	FireAnimRate=2.00000
-	FireForce="AssaultRifleAltFire"
-	FireRate=1.500000
-	AmmoClass=Class'BWBP_OP_Pro.Ammo_BX85Darts'
-	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-20.000000)
-	ShakeOffsetRate=(X=-1000.000000)
-	ShakeOffsetTime=2.000000
-	BotRefireRate=0.500000
-	WarnTargetPct=0.500000
+     SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+     XInaccuracy=6.000000
+     YInaccuracy=6.000000
+	 BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
+     bModeExclusive=False
+     PreFireAnim=
+	 FireAnim="FireCycleRotate"
+	 EmptyFireAnim="FireCycle"
+	 NoMagFireAnim="FireCycle"
+     FireForce="AssaultRifleAltFire"
+     FireRate=1.500000
+	 AmmoClass=Class'BWBP_OP_Pro.Ammo_KF8XDarts'
+     ShakeRotTime=2.000000
+     ShakeOffsetMag=(X=-20.000000)
+     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetTime=2.000000
+     ProjectileClass=Class'BWBP_OP_Pro.KF8XToxicBolt'
+     BotRefireRate=0.300000
+     WarnTargetPct=0.300000
 }

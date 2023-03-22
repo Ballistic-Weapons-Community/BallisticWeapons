@@ -13,7 +13,7 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 			DecayRange=(Min=1575,Max=2560)
 			Inaccuracy=(X=16,Y=16)
-			PenetrationEnergy=48 
+			PenetrationEnergy=64
 			Damage=80.000000
             HeadMult=2f
             LimbMult=0.67f
@@ -73,7 +73,8 @@ defaultproperties
 		DeclineTime=1.000000
 		DeclineDelay=0.400000
 		ViewBindFactor=0.300000
-		HipMultiplier=1.000000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 		CrouchMultiplier=0.700000
 	End Object
 

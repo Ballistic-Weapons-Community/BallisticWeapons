@@ -90,6 +90,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.75
 		DeclineTime=1.000000
+		HipMultiplier=1 // shoulder fire
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -98,7 +100,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=512,Max=2048)
-		ADSMultiplier=0.5
+		ADSMultiplier=1
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-1500)
 		AimAdjustTime=0.8
@@ -123,7 +125,11 @@ defaultproperties
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.5
 		MagAmmo=9
+		// acog-like
         ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=4
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryBarrageFireParams'

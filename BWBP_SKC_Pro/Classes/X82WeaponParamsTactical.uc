@@ -19,6 +19,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'
+		PenetrationEnergy=128
 		PenetrateForce=450
 		PushbackForce=255.000000
 		bPenetrate=True
@@ -59,8 +60,9 @@ defaultproperties
 		YRandFactor=0.300000
 		DeclineTime=1.500000
 		MaxRecoil=8192
-		HipMultiplier=2.5
 		CrouchMultiplier=0.7
+		HipMultiplier=2
+		MaxMoveMultiplier=4
 	End Object
 
 	//=================================================================
@@ -94,7 +96,11 @@ defaultproperties
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.8
 		MagAmmo=5
+		// sniper 5-10x
         ZoomType=ZT_Logarithmic
+		MinZoom=5
+		MaxZoom=10
+		ZoomStages=1
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

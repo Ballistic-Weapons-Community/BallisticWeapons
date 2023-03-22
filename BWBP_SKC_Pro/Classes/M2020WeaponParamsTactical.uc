@@ -14,7 +14,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
-        PenetrationEnergy=48
+        PenetrationEnergy=64
 		PenetrateForce=600
 		bPenetrate=True
 		PDamageFactor=0.750000
@@ -80,7 +80,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
-        PenetrationEnergy=24
+        PenetrationEnergy=48
 		PenetrateForce=600
 		bPenetrate=True
 		PDamageFactor=0.750000
@@ -113,6 +113,8 @@ defaultproperties
 		YRandFactor=0.1
 		DeclineDelay=0.550000
 		CrouchMultiplier=0.650000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalPowerRecoilParams
@@ -123,6 +125,8 @@ defaultproperties
 		YRandFactor=0.2
 		DeclineDelay=1.1
 		CrouchMultiplier=0.650000
+		HipMultiplier=2
+		MaxMoveMultiplier=3
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalOfflineRecoilParams
@@ -133,6 +137,8 @@ defaultproperties
 		YRandFactor=0.0500000
 		DeclineDelay=0.3
 		CrouchMultiplier=0.650000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -162,7 +168,11 @@ defaultproperties
 		SightingTime=0.65
 		DisplaceDurationMult=1
 		MagAmmo=10
+		// sniper 5-10x
         ZoomType=ZT_Logarithmic
+		MinZoom=5
+		MaxZoom=10
+		ZoomStages=1
 		RecoilParams(0)=RecoilParams'TacticalRechargeRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalPowerRecoilParams'
 		RecoilParams(2)=RecoilParams'TacticalOfflineRecoilParams'

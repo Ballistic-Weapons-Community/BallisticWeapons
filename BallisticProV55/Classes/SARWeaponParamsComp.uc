@@ -9,6 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaAutoEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1250,Max=3750)
+		PenetrationEnergy=16
 		RangeAtten=0.67
 		Damage=18
 		DamageType=Class'BallisticProV55.DTSARRifle'
@@ -34,6 +35,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaBurstEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1250,Max=3750)
+		PenetrationEnergy=16
 		RangeAtten=0.67
 		Damage=18
 		DamageType=Class'BallisticProV55.DTSARRifle'

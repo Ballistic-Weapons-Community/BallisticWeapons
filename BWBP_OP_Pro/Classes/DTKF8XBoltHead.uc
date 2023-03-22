@@ -1,4 +1,4 @@
-class DTBX85BoltHead extends DT_BWBullet;
+class DTKF8XBoltHead extends DT_BWBullet;
 
 // HeadShot stuff from old sniper damage ------------------
 static function IncrementKills(Controller Killer)
@@ -21,16 +21,16 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o was assassinated from the shadows by %k's BX85 bolt."
+     DeathStrings(0)="%o was assassinated from the shadows by %k's KF8X bolt."
      DeathStrings(1)="%k planted a crossbow bolt into %o."
      DeathStrings(2)="%o was discreetly decommissioned by %k's silent bolt."
-     SimpleKillString="BX85 Crossbow Bolt"
+     SimpleKillString="KF8X Crossbow Bolt"
      DamageIdent="Sniper"
      bMetallic=True
 	 bHeaddie=True
 	 InvasionDamageScaling=2
-     WeaponClass=Class'BWBP_OP_Pro.BX85Crossbow'
-     DeathString="%%o was assassinated from the shadows by %k's BX85 bolt."
+     WeaponClass=Class'BWBP_OP_Pro.KF8XCrossbow'
+     DeathString="%%o was assassinated from the shadows by %k's KF8X bolt."
      FemaleSuicide="%o dropped her own crossbow."
      MaleSuicide="%o dropped his own crossbow."
      bFastInstantHit=True

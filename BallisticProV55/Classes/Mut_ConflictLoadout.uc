@@ -840,7 +840,7 @@ defaultproperties
 	 ConflictWeapons(90)=(ClassName="BWBP_OP_Pro.TrenchGun",bRed=True,bBlue=True)
 	 ConflictWeapons(91)=(ClassName="BWBP_OP_Pro.XM20AutoLas",bRed=True,bBlue=True)
 	 ConflictWeapons(92)=(ClassName="BWBP_OP_Pro.AkeronLauncher",bRed=True,bBlue=True)
-	 ConflictWeapons(93)=(ClassName="BWBP_OP_Pro.BX85Crossbow",bRed=True,bBlue=True)
+	 ConflictWeapons(93)=(ClassName="BWBP_OP_Pro.KF8XCrossbow",bRed=True,bBlue=True)
 	 ConflictWeapons(94)=(ClassName="BWBP_OP_Pro.CX61AssaultRifle",bRed=True,bBlue=True)
 	 ConflictWeapons(95)=(ClassName="BWBP_OP_Pro.CX85AssaultWeapon",bRed=True,bBlue=True)
 	 ConflictWeapons(96)=(ClassName="BWBP_OP_Pro.DefibFists",bRed=True,bBlue=True)

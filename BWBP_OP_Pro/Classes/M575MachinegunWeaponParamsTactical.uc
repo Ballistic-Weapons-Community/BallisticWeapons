@@ -14,6 +14,7 @@ defaultproperties
 			DamageType=Class'BWBP_OP_Pro.DTM575MG'
 			DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
 			DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
+			PenetrationEnergy=32
 			PenetrateForce=150
 			bPenetrate=True
 			MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
@@ -70,6 +71,8 @@ defaultproperties
 		MaxRecoil=12288.000000
 		DeclineTime=0.5
 		DeclineDelay=0.15000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

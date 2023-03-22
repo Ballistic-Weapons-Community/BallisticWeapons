@@ -81,6 +81,8 @@ defaultproperties
 		YRandFactor=0.05000
 		DeclineTime=1.00000
 		DeclineDelay=0.400000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_600
@@ -91,6 +93,8 @@ defaultproperties
 		YRandFactor=0.1000
 		DeclineTime=1.00000
 		DeclineDelay=0.400000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 	
 	//=================================================================
@@ -131,7 +135,11 @@ defaultproperties
 		SightingTime=0.5
 		SightMoveSpeedFactor=0.35
         InventorySize=6
+		// sniper 4-8x
         ZoomType=ZT_Logarithmic
+		MinZoom=4
+		MaxZoom=8
+		ZoomStages=1
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

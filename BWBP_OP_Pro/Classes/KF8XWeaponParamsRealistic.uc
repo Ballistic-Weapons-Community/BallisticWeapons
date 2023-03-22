@@ -1,4 +1,4 @@
-class BX85WeaponParamsRealistic extends BallisticWeaponParams;
+class KF8XWeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,7 +7,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
-		ProjectileClass=Class'BWBP_OP_Pro.BX85ToxicBolt'
+		ProjectileClass=Class'BWBP_OP_Pro.KF8XToxicBolt'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=15000.000000
 		Damage=30.000000

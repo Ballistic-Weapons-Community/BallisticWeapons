@@ -70,6 +70,8 @@ defaultproperties
 		DeclineDelay=1.000000
 		DeclineTime=0.800000
 		CrouchMultiplier=0.6
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -101,7 +103,11 @@ defaultproperties
 		SightingTime=0.80000
 		DisplaceDurationMult=1.25
 		MagAmmo=20
+		// sniper 4-8x
         ZoomType=ZT_Logarithmic
+		MinZoom=4
+		MaxZoom=8
+		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

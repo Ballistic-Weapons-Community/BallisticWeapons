@@ -178,17 +178,17 @@ function float SurfaceScale (int Surf)
 {
 	switch (Surf)
 	{
-		Case 0:/*EST_Default*/	return 1.5; // bricks and such
-		Case 1:/*EST_Rock*/		return 1.0;
-		Case 2:/*EST_Dirt*/		return 1.5;
-		Case 3:/*EST_Metal*/	return 0.25;
-		Case 4:/*EST_Wood*/		return 3.0;
-		Case 5:/*EST_Plant*/	return 3.0;
-		Case 6:/*EST_Flesh*/	return 1.0;
-		Case 7:/*EST_Ice*/		return 1.0;
-		Case 8:/*EST_Snow*/		return 5.0;
+		Case 0:/*EST_Default*/	return 1.0; 	// bricks, concrete, drywall and such
+		Case 1:/*EST_Rock*/		return 1.0;		// sometimes refers to bricks so let's be safe
+		Case 2:/*EST_Dirt*/		return 2.0;
+		Case 3:/*EST_Metal*/	return 0.33;
+		Case 4:/*EST_Wood*/		return 6.0;		// this modifier should realistically be higher, however, we don't want to shoot straight through boxes on maps
+		Case 5:/*EST_Plant*/	return 16.0;		
+		Case 6:/*EST_Flesh*/	return 1.0;	 	// this refers to flesh as a surface type, which is very rare in maps - we assume it traps
+		Case 7:/*EST_Ice*/		return 6.0;
+		Case 8:/*EST_Snow*/		return 16.0;
 		Case 9:/*EST_Water*/	return 0.25;
-		Case 10:/*EST_Glass*/	return 4.0;
+		Case 10:/*EST_Glass*/	return 16.0;
 		default:				return 1.0;
 	}
 }
@@ -579,6 +579,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				break;
 			}
 
+			//log("BallisticInstantFire: Attempting wall penetration: force "$WallPenForce$" with surface scaler "$ SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)));
+
 			if (
                     WallCount < MAX_WALLS && WallPenForce > 0 && 
                     class'WallPenetrationUtil'.static.GoThroughWall
@@ -591,7 +593,19 @@ function DoTrace (Vector InitialStart, Rotator Dir)
                     )
                 )
 			{
-				WallPenForce -= VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
+
+				//log("BallisticInstantFire: Penetrated: distance "$VSize(Start - HitLocation)$" units, energy cost "$ (VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial))) $", initial force "$WallPenForce);
+			
+				WallPenForce -= (VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)));
+
+				// todo: reduce dist by energy loss
+
+				// deviate next shot slightly, to stop player firing through concealment / cover in front of them, accurately, at distant target
+				Dir.Yaw += 32 - (FRand() * 64);
+				Dir.Pitch += 32 - (FRand() * 64);
+				X = Normal(Vector(Dir));
+
+				//log("BallisticInstantFire: remaining force "$WallPenForce);
 
 				WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
 				WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);

@@ -9,7 +9,7 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaFireEffectParams
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
-        PenetrationEnergy=8.000000
+        PenetrationEnergy=16
         Damage=45.000000
         HeadMult=2.0f
         LimbMult=0.67f
@@ -44,7 +44,7 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaAltFireEffectParams
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
-        PenetrationEnergy=8.000000
+        PenetrationEnergy=16.000000
         Damage=90.000000
         HeadMult=1.5f
         LimbMult=0.67f

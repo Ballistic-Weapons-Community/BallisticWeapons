@@ -41,7 +41,6 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaBeamEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
     	TraceRange=(Min=8000.000000,Max=8000.000000)
-        PenetrationEnergy=8.000000
         PenetrateForce=150
         Damage=50.000000
         DamageType=Class'BallisticProV55.DTA42SkrithBeam'
