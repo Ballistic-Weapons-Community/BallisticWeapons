@@ -258,6 +258,10 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
     }
         
 	// Pitching/Yawing
+
+	// Azarael notes:
+	// This will work, but ONLY if you have 100% view binding of recoil.
+	// If there is any escape factor, you will get a visual jump where the evaluation of the two curves differs.
 	if (BW.bScopeView && bUseAltSightCurve)
 	{
 		R.Yaw += Params.EvaluateXRecoilAlt(Recoil);
@@ -268,7 +272,8 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 		R.Yaw += Params.EvaluateXRecoil(Recoil);
 		R.Pitch += Params.EvaluateYRecoil(Recoil);
 	}
-	if (BW.InstigatorController != None && BW.InstigatorController.Handedness == -1)
+
+	if (BW.Handedness() == -1)
 		R.Yaw = -R.Yaw;
 
     R *= class'BallisticReplicationInfo'.default.RecoilScale;

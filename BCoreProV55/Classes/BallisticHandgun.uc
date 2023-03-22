@@ -507,6 +507,27 @@ simulated event RenderOverlays (Canvas C)
 		Instigator.Controller.Handedness = 0;
 }
 
+// Used to query whether the weapon is being held left-handed, so we can reverse the recoil curve.
+simulated function int Handedness()
+{
+	local int hand;
+
+	hand = 1;
+
+	if (InstigatorController != None)
+	{
+		hand = InstigatorController.Handedness;
+
+		if (hand == 0)
+			hand = 1;
+
+		if (IsSlave())
+			hand *= -1;
+	}
+
+	return hand;
+}
+
 simulated event WeaponTick(float DT)
 {
 	local int m;
