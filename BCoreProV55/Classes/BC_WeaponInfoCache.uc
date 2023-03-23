@@ -1,7 +1,7 @@
 //=============================================================================
 // BC_WeaponInfoCache.
 //
-// To solve to problem of taking rediculous amounts of time to load all the
+// To solve to problem of taking ridiculous amounts of time to load all the
 // weapon classes just to get a few menu related properties, we can use this
 // which holds a list of weapons and their properties which might be needed by
 // BW menus and such.
@@ -29,7 +29,7 @@
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BC_WeaponInfoCache extends Object 
-	config(BWCache) 
+	abstract
 	exportstructs;
 
 struct WeaponInfo
@@ -44,83 +44,35 @@ struct WeaponInfo
 	var() config bool			bIsBW;
 };
 
-var() config array<WeaponInfo>	Weapons;
-var   bool						bChanged;
+var array< class<BC_WeaponInfoCache_GameStyle> >	CacheClasses;
+
+static final function class<BC_WeaponInfoCache_GameStyle> CurrentCache()
+{
+	return default.CacheClasses[class'BallisticReplicationInfo'.default.GameStyle];
+}
 
 // Find a specific weapon in the list, output the WI and return success or failure to find the weapon
 static function bool FindWeaponInfo(string CN, out WeaponInfo WI, optional out int Index)
 {
-	local int i;
-
-	for (i=0;i<default.Weapons.length;i++)
-		if (default.Weapons[i].ClassName ~= CN)
-		{
-			Index = i;
-			WI = default.Weapons[i];
-			return true;
-		}
-	Index = -1;
-	return false;
+	return CurrentCache().static.FindWeaponInfo(CN, WI, Index);
 }
 
 // Fast shotcut to use FindWeaponInfo() and automatically AddWeaponInfoName() if needed
 static function WeaponInfo AutoWeaponInfo(string WeapClassName, optional out int i)
 {
-	local WeaponInfo WI;
-
-	// Tap into the BW weapon cache system to identify BallisticWeapons without loading them
-	if (FindWeaponInfo(WeapClassName, WI, i))
-		return WI;
-	return AddWeaponInfoName(WeapClassName, i);
+	return CurrentCache().static.AutoWeaponInfo(WeapClassName, i);
 }
 
 // Shorcut to AddWeaponInfo() using only classname
 static function WeaponInfo AddWeaponInfoName(string WeapClassName, optional out int i)
 {
-	local class<Weapon> Weap;
-	local WeaponInfo WI;
-
-	Weap = class<Weapon>(DynamicLoadObject(WeapClassName, class'Class'));
-	if (Weap != None)
-		WI = AddWeaponInfo(Weap, i);
-	else
-	{
-		i = -1;
-		return WI;
-	}
-	return WI;
+	return CurrentCache().static.AddWeaponInfoName(WeapClassName, i);
 }
 
 // List the right properties of the input class. Returns the new WI and index of WI in the list
 static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 {
-	local WeaponInfo WI;
-	local Class<BallisticWeapon> BW;
-
-	i=-1;
-	if (Weap == None)
-		return WI;
-
-	WI.ClassName 		 = string(Weap);
-	WI.ItemName			 = Weap.default.ItemName;
-	WI.SmallIconMaterial = Weap.default.IconMaterial;
-	WI.SmallIconCoords	 = Weap.default.IconCoords;
-	WI.InventoryGroup	 = Weap.default.InventoryGroup;
-
-	BW = Class<BallisticWeapon>(Weap);
-
-	if (BW != None)
-	{
-		WI.BigIconMaterial		= BW.default.BigIconMaterial;
-		WI.InventorySize		= BW.static.GetInventorySize();
-		WI.bIsBW				= true;
-	}
-
-	i = default.Weapons.length;
-	default.Weapons[default.Weapons.length] = WI;
-
-	default.bChanged = true;
-	return WI;
+	return CurrentCache().static.AddWeaponInfo(Weap, i);
 }
 
 static function bool IsValid(coerce string S)
@@ -132,24 +84,19 @@ static function bool IsValid(coerce string S)
 
 static function GetBWWeps(out array<WeaponInfo> BWeps)
 {
-	local int i;
-	
-	for (i=0;i<default.Weapons.Length;i++)
-	{
-		if (default.Weapons[i].bIsBW)
-			BWeps[BWeps.Length] = default.Weapons[i];
-	}
+	CurrentCache().static.GetBWWeps(BWeps);
 }
 
 // If the list was changed, save it.
 static function EndSession()
 {
-	if (default.bChanged)
-		StaticSaveConfig();
-	default.bChanged = false;
+	CurrentCache().static.EndSession();
 }
 
 defaultproperties
 {
-    // never specify any defaults here. this is a bcore class and it prevents correct regeneration of the cache when deleting BWCache.ini.
+	CacheClasses(0)=class'WeaponInfoCache_Pro'
+	CacheClasses(1)=class'WeaponInfoCache_Classic'
+	CacheClasses(2)=class'WeaponInfoCache_Realism'
+	CacheClasses(3)=class'WeaponInfoCache_Tactical'
 }
