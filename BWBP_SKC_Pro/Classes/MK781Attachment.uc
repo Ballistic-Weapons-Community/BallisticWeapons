@@ -60,44 +60,30 @@ simulated function InstantFireEffects(byte Mode)
 	local int i;
 	local float XS, YS, RMin, RMax, Range, fX;
 
-	if (Level.NetMode == NM_Client && FireClass != None && Mode == 0)
+	if (Level.NetMode == NM_Client && Mode == 0)
 	{
-		if (!bSilenced)
-		{
-			XS = FireClass.default.XInaccuracy; 
-			YS = Fireclass.default.YInaccuracy;
-		}
-		else
-		{
-			XS = 64; YS = 64;
-		}
-		if (!bScoped)
-		{
-			XS *= FireClass.static.GetAttachmentDispersionFactor();
-			YS *= FireClass.static.GetAttachmentDispersionFactor();
-		}
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+		RMin = GetTraceRange(); RMax = GetTraceRange();
 		Start = Instigator.Location + Instigator.EyePosition();
-		for (i=0;i<FireClass.default.TraceCount;i++)
+		for (i=0;i<GetTraceCount();i++)
 		{
 			mHitActor = None;
 			Range = Lerp(FRand(), RMin, RMax);
 			R = Rotator(mHitLocation);
-			switch (FireClass.default.FireSpreadMode)
+			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:
 					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
 					break;
 				case FSM_Circle:
 					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 					break;
 				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
+					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
 					break;
 			}
 			End = Start + Vector(R) * Range;
@@ -129,11 +115,7 @@ simulated function InstantFireEffects(byte Mode)
 	if (Level.NetMode == NM_Client && FireClassAlt != None && Mode == 1 && !bSilenced)
 	{
 		XS = FireClassAlt.default.XInaccuracy; YS = FireclassAlt.default.YInaccuracy;
-		if (!bScoped)
-		{
-			XS *= 5;
-			YS *= 5;
-		}
+
 		RMin = FireClassAlt.default.TraceRange.Min; RMax = FireClassAlt.default.TraceRange.Max;
 		Start = Instigator.Location + Instigator.EyePosition();
 		for (i=0;i<FireClassAlt.default.TraceCount;i++)
@@ -289,7 +271,7 @@ defaultproperties
      FireClassAlt=Class'BWBP_SKC_Pro.MK781SecondaryFire'
      ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_Supercharge'
      TracerClassAlt=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
-     FireClass=Class'BWBP_SKC_Pro.MK781PrimaryFire'
+     WeaponClass=Class'BWBP_SKC_Pro.MK781Shotgun'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Shell'

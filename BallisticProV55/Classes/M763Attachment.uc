@@ -19,7 +19,7 @@ simulated function InstantFireEffects(byte Mode)
 	local Rotator R;
 	local Material HitMat;
 	local int i;
-	local float XS, YS, RMin, RMax, Range, fX;
+	local float  RMin, RMax, Range, fX;
 
 	if (Mode == 1)
 	{
@@ -27,36 +27,32 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	}
 	
-	if (Level.NetMode == NM_Client && FireClass != None)
+	if (Level.NetMode == NM_Client)
 	{
-		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
-		if(!bScoped)
-		{
-			XS *= 3;
-			YS *= 3;
-		}
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+		RMin = GetTraceRange(); RMax = GetTraceRange();
+
 		Start = Instigator.Location + Instigator.EyePosition();
-		for (i=0;i<FireClass.default.TraceCount;i++)
+
+		for (i = 0; i < GetTraceCount(); i++)
 		{
 			mHitActor = None;
 			Range = Lerp(FRand(), RMin, RMax);
 			R = Rotator(mHitLocation);
-			switch (FireClass.default.FireSpreadMode)
+			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:
 					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
 					break;
 				case FSM_Circle:
 					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 					break;
 				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
+					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
 					break;
 			}
 			End = Start + Vector(R) * Range;
@@ -167,7 +163,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 defaultproperties
 {
      AltTracerClass=Class'BallisticProV55.TraceEmitter_M763Gas'
-     FireClass=Class'BallisticProV55.M763PrimaryFire'
+     WeaponClass=Class'BallisticProV55.M763Shotgun'
      MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

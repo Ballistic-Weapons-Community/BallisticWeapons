@@ -9,6 +9,13 @@
 //=============================================================================
 class MarlinRifle extends BallisticWeapon;
 
+// Azarael 23/03/2023
+// 
+// removed all gauss handling
+// I'm sorry but it's killing the weapon
+// reimplement it correctly (so that the basic variant remains separate) before reenabling
+
+/*
 var	 	float 		GaussLevel, MaxGaussLevel;
 var() 	Sound		GaussOnSound;
 
@@ -77,7 +84,7 @@ simulated event Destroyed()
 		
 	if (GaussGlow2 != None)
 		GaussGlow2.Destroy();
-		
+
 	Super.Destroyed();
 }
 
@@ -91,6 +98,13 @@ simulated function bool PutDown()
 	}
 	return false;
 }
+
+simulated function float ChargeBar()
+{
+	return FMax(0, GaussLevel/MaxGaussLevel);
+}
+
+*/
 
 //================================================================
 
@@ -308,15 +322,11 @@ function float SuggestAttackStyle()	{	return -0.4;	}
 function float SuggestDefenseStyle()	{	return 0.4;	}
 // End AI Stuff =====
 
-simulated function float ChargeBar()
-{
-	return FMax(0, GaussLevel/MaxGaussLevel);
-}
 
 defaultproperties
 {
-	GaussOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
-	MaxGaussLevel=3
+	//GaussOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+	//MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Marlin.BigIcon_Marlin'
 	
@@ -341,7 +351,7 @@ defaultproperties
 	StartShovelAnim="StartReload"
 	EndShovelAnim="EndReload"
 	WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
-	WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bShowChargingBar=True

@@ -113,7 +113,7 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 	local Rotator R;
 	local Material HitMat;
 	local int i, j, ShotCount;
-	local float XS, YS, RMin, RMax, Range, fX;
+	local float RMin, RMax, Range, fX;
 	
 	ShotCount = IsDoubleFire + 1;
 	
@@ -123,30 +123,13 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 	if (Instigator == None)
 		return;
 		
-	if (Level.NetMode == NM_Client && FireClass != None)
-	{
-		if (IsDoubleFire == 0)
-		{
-			XS = class'CoachGunPrimaryFire'.default.ShotInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.ShotInaccuracy.Y;
-		}
-		else 
-		{
-			XS = class'CoachGunPrimaryFire'.default.ShotDoubleInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.ShotDoubleInaccuracy.Y;
-		}
-		
-		if(!bScoped)
-		{
-			XS *= FireClass.static.GetAttachmentDispersionFactor();
-			YS *= FireClass.static.GetAttachmentDispersionFactor();
-		}
-		
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+	if (Level.NetMode == NM_Client)
+	{	
+		RMin = GetTraceRange(); RMax = GetTraceRange();
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
-		for (i=0; i < FireClass.default.TraceCount * ShotCount; i++)
+		for (i=0; i < GetTraceCount() * ShotCount; i++)
 		{
 			mHitActor = None;
 			
@@ -154,21 +137,21 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 			
 			R = Rotator(mHitLocation);
 			
-			switch (FireClass.default.FireSpreadMode)
+			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:
 					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
 					break;
 				case FSM_Circle:
 					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 					break;
 				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
+					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
 					break;
 			}
 			
@@ -221,7 +204,7 @@ simulated function SlugFireEffects(byte IsDoubleFire)
 	local Rotator R;
 	local Material HitMat;
 	local int i, j, ShotCount;
-	local float XS, YS, RMin, RMax, Range, fX;
+	local float RMin, RMax, Range, fX;
 	
 	ShotCount = IsDoubleFire + 1;
 	
@@ -230,20 +213,9 @@ simulated function SlugFireEffects(byte IsDoubleFire)
 	if (Instigator == none)
 		return;
 	
-	if (Level.NetMode == NM_Client && FireClass != None)
-	{
-		if (IsDoubleFire == 0)
-		{
-			XS = class'CoachGunPrimaryFire'.default.SlugInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.SlugInaccuracy.Y;
-		}
-		else 
-		{
-			XS = class'CoachGunPrimaryFire'.default.SlugDoubleInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.SlugDoubleInaccuracy.Y;
-		}
-		
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+	if (Level.NetMode == NM_Client)
+	{	
+		RMin = GetTraceRange(); RMax = GetTraceRange();
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
@@ -255,21 +227,21 @@ simulated function SlugFireEffects(byte IsDoubleFire)
 			
 			R = Rotator(mHitLocation);
 			
-			switch (FireClass.default.FireSpreadMode)
+			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:
 					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
 					break;
 				case FSM_Circle:
 					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 					break;
 				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
+					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
 					break;
 			}
 			
@@ -428,7 +400,7 @@ defaultproperties
 
     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
 
-    FireClass=Class'BWBP_SKC_Pro.CoachGunPrimaryFire'
+    WeaponClass=Class'BWBP_SKC_Pro.CoachGun'
     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
     FlashBone="Tip1"
     AltFlashBone="tip2"

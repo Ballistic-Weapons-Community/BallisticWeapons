@@ -50,16 +50,17 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_A42Projectile'
-     BrassMode=MU_None
-     TracerMode=MU_Secondary
-     InstantMode=MU_Secondary
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_A42Beam'
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A42_TPm'
-     DrawScale=0.080000
+	WeaponClass=class'BallisticProV55.A42SkrithPistol'
+	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
+	AltMuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
+	ImpactManager=Class'BallisticProV55.IM_A42Projectile'
+	BrassMode=MU_None
+	TracerMode=MU_Secondary
+	InstantMode=MU_Secondary
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerClass=Class'BallisticProV55.TraceEmitter_A42Beam'
+	bRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A42_TPm'
+	DrawScale=0.080000
 }

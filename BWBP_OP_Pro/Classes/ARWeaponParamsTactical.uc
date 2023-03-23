@@ -28,6 +28,7 @@ defaultproperties
 		Chaos=0.5
 		BotRefireRate=0.900000
 		WarnTargetPct=0.5	
+		Inaccuracy=(X=256,Y=256)
 		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.XMV-850.XMV-Fire-3')
 	End Object
 

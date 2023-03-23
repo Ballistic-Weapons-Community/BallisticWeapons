@@ -37,8 +37,8 @@ simulated function vector GetFireSpread()
 	else
 	{
 		fX = frand();
-		R.Yaw =  XInaccuracy * HipSpreadFactor * Lerp(BW.GetFireChaos(), 1, MaxSpreadFactor) * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = YInaccuracy * HipSpreadFactor * Lerp(BW.GetFireChaos(), 1, MaxSpreadFactor) * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		R.Yaw =  GetXInaccuracy() * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = GetYInaccuracy() * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 		return Vector(R);
 	}
 }
@@ -156,9 +156,20 @@ simulated event ModeDoFire()
 	}
 }
 
-static function float GetAttachmentDispersionFactor()
+function int GetXInaccuracy()
 {
-	return default.HipSpreadFactor;
+	if (BW.bScopeView)
+		return Super.GetXInaccuracy();
+
+	return XInaccuracy * HipSpreadFactor * Lerp(BW.GetFireChaos(), 1, MaxSpreadFactor);
+}
+
+function int GetYInaccuracy()
+{
+	if (BW.bScopeView)
+		return Super.GetYInaccuracy();
+
+	return YInaccuracy * HipSpreadFactor * Lerp(BW.GetFireChaos(), 1, MaxSpreadFactor);
 }
 
 defaultproperties

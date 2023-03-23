@@ -26,7 +26,7 @@ defaultproperties
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK47FlashEmitter'
-		FlashScaleFactor=0.800000
+		FlashScaleFactor=0.9
 		Recoil=360.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000

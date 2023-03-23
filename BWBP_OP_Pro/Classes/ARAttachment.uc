@@ -10,7 +10,7 @@ class ARAttachment extends BallisticShotgunAttachment;
 
 defaultproperties
 {
-     FireClass=Class'BWBP_OP_Pro.ARPrimaryFire'
+     WeaponClass=Class'BWBP_OP_Pro.ARShotgun'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

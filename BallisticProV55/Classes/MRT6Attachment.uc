@@ -6,63 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MRT6Attachment extends HandgunAttachment;
-
-var() class<BallisticShotgunFire>	FireClass;
-
-// Do trace to find impact info and then spawn the effect
-// This should be called from sub-classes
-simulated function InstantFireEffects(byte Mode)
-{
-	local Vector HitLocation, Start, End;
-	local Rotator R;
-	local Material HitMat;
-	local int i;
-	local float XS, YS, RMin, RMax, Range, fX;
-
-	if (Level.NetMode == NM_Client && FireClass != None)
-	{
-		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
-		Start = Instigator.Location + Instigator.EyePosition();
-		for (i=0;i<FireClass.default.TraceCount;i++)
-		{
-			mHitActor = None;
-			Range = Lerp(FRand(), RMin, RMax);
-			R = Rotator(mHitLocation);
-
-			fX = frand();
-			R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-			R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
-
-//			R.Yaw += ((FRand()*XS*2)-XS);
-//			R.Pitch += ((FRand()*YS*2)-YS);
-			End = Start + Vector(R) * Range;
-			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
-			if (mHitActor == None)
-			{
-				DoWaterTrace(Mode, Start, End);
-				SpawnTracer(Mode, End);
-			}
-			else
-			{
-				DoWaterTrace(Mode, Start, HitLocation);
-				SpawnTracer(Mode, HitLocation);
-			}
-
-			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
-				continue;
-
-			if (HitMat == None)
-				mHitSurf = int(mHitActor.SurfaceType);
-			else
-				mHitSurf = int(HitMat.SurfaceType);
-
-			if (ImpactManager != None)
-				ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
-		}
-	}
-}
+class MRT6Attachment extends BallisticShotgunAttachment;
 
 simulated function FlashMuzzleFlash(byte Mode)
 {
@@ -127,7 +71,7 @@ function MRT6UpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     FireClass=Class'BallisticProV55.MRT6PrimaryFire'
+     WeaponClass=Class'BallisticProV55.MRT6Shotgun'
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'

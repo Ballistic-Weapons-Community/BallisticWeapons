@@ -8,6 +8,9 @@
 //=============================================================================
 class MarlinAttachment extends BallisticAttachment;
 
+// Azarael 23/03/2023- removed all gauss handling - see MarlinRifle.uc
+
+/*
 var() class<BCTraceEmitter>	GaussTracerClass;	//Emitter to sue for under water tracer
 var() class<BCImpactManager> GaussImpactManager;
 
@@ -146,11 +149,12 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			Tracer.Initialize(VSize(WLoc - TipLoc));
 	}
 }
+*/
 
 defaultproperties
 {
-	 GaussTracerClass=Class'BallisticProV55.TraceEmitter_MarlinZap'
-	 GaussImpactManager=Class'BallisticProV55.IM_HVCBlueLightning'
+	 //GaussTracerClass=Class'BallisticProV55.TraceEmitter_MarlinZap'
+	 //GaussImpactManager=Class'BallisticProV55.IM_HVCBlueLightning'
      MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

@@ -379,6 +379,13 @@ function DoFireEffect()
         BW.RestoreCollisions();
 
 	ApplyHits();
+
+	// update client's dispersion values before shot
+	if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+	{
+		BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+		BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+	}
 	
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);

@@ -36,6 +36,7 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 	
+	/*
 	Begin Object Class=InstantEffectParams Name=ArenaGaussEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		PenetrationEnergy=48
@@ -65,6 +66,7 @@ defaultproperties
 		FireAnimRate=1.150000	
 		FireEffectParams(0)=InstantEffectParams'ArenaGaussEffectParams'
 	End Object
+	*/
 		
 	//=================================================================
 	// RECOIL
@@ -118,9 +120,10 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		FireParams(1)=FireParams'ArenaGaussFireParams'
+		//FireParams(1)=FireParams'ArenaGaussFireParams'
     End Object 
 	
+	/*
 	Begin Object Class=WeaponParams Name=ArenaParams_Gauss
 		//Layout core
 		LayoutName="Gauss Mod"
@@ -143,7 +146,8 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		FireParams(1)=FireParams'ArenaGaussFireParams'
     End Object 
+	*/
 	
     Layouts(0)=WeaponParams'ArenaParams'
-    Layouts(1)=WeaponParams'ArenaParams_Gauss'
+    //Layouts(1)=WeaponParams'ArenaParams_Gauss'
 }
