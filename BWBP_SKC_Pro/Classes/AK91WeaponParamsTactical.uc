@@ -12,7 +12,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=40
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'

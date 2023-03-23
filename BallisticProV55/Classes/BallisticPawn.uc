@@ -497,7 +497,7 @@ function CheckBob(float DeltaTime, vector Y)
 
 	Super(Pawn).CheckBob(DeltaTime,Y);
 
-	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10) || ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
+	if ( (Physics != PHYS_Walking) || bIsCrouched || (VSize(Velocity) < 10) || ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
 		return;
 
 	// BobTime is an accumulator and is never reset.
@@ -505,12 +505,12 @@ function CheckBob(float DeltaTime, vector Y)
 	m = int(0.5 * Pi + 9.0 * OldBobTime/Pi);
 	n = int(0.5 * Pi + 9.0 * BobTime/Pi);
 
-	if (m != n && (!bIsCrouched))
+	if (m != n)
 	{
 		FootStepping(0);
 	}
 
-	else if ( !bWeaponBob && (!bIsCrouched) && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) )
+	else if ( !bWeaponBob && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) ) // fixme: link to animation speeds
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
@@ -525,19 +525,26 @@ simulated function FootStepping(int Side)
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
 	local float SoundScale;
 	
-	// sprint - louder footsteps
-	if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
+	// crouch - no sound
+	if (bIsCrouched)
+		return;
+	// walk/ADS - quieter
+	if (bIsWalking)
+		SoundScale = 0.5f;
+	// sprint - much louder
+	else if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
 		SoundScale = 2;
+	// run - scale by move speed
 	else
 		SoundScale = GroundSpeed / class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 
 	// footsteps are quieter if we are local pawn - hear others better
 	if (IsLocallyControlled())
-		SoundScale *= 0.5f;
+		SoundScale *= 0.35f;
 
-    SurfaceNum = 0;
-
+	// handle water
     for ( i=0; i<Touching.Length; i++ )
+	{
 		if ( ((PhysicsVolume(Touching[i]) != None) && PhysicsVolume(Touching[i]).bWaterVolume)
 			|| (FluidSurfaceInfo(Touching[i]) != None) )
 		{
@@ -551,6 +558,10 @@ simulated function FootStepping(int Side)
 					Spawn(class'WaterRing',,,HitLocation,rot(16384,0,0));
 			return;
 		}
+	}
+
+	// handle other surface
+	SurfaceNum = 0;
 
 	if ( (Base!=None) && (!Base.IsA('LevelInfo')) && (Base.SurfaceType!=0) )
 	{

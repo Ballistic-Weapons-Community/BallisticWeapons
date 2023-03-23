@@ -9,8 +9,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalRechargeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=70
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
@@ -30,7 +30,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalRechargeFireParams
-		FireInterval=0.6000
+		FireInterval=0.8000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalRechargeEffectParams'
 	End Object
@@ -42,8 +42,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPowerEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=120
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=1.5f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
@@ -63,7 +63,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPowerFireParams
 		FireAnim="FirePowered"
-		FireInterval=1.000000
+		FireInterval=1.500000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPowerEffectParams'
 	End Object
@@ -75,8 +75,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalOfflineEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=40
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.5f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'

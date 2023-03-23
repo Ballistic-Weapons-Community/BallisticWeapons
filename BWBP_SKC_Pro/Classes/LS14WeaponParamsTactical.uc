@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=30
         HeadMult=2.25
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'

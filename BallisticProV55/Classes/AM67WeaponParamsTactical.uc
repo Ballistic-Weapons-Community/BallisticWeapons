@@ -16,7 +16,7 @@ defaultproperties
         PenetrationEnergy=16
         Damage=60.000000
         HeadMult=2.75
-        LimbMult=0.67f
+        LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTAM67Pistol'
         DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'

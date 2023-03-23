@@ -17,7 +17,7 @@ defaultproperties
         MaxSpeed=14000.000000
         Damage=50.000000
         HeadMult=2.25
-        LimbMult=0.67
+        LimbMult=0.75f
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25

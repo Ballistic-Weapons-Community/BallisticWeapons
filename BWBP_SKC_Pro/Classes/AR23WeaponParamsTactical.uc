@@ -17,7 +17,7 @@ defaultproperties
 		WaterTraceRange=12000.0
 		Damage=70
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23HR'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AR23HRHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23HR'

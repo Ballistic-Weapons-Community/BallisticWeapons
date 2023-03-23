@@ -8,18 +8,19 @@
 //=============================================================================
 class HVCMk9PrimaryFire extends BallisticProInstantFire;
 
-var() 	bool		bDoOverCharge;
-var 	Sound 	FireSoundLoop;
-var   	bool	 	bPendingOwnerZap;
-var	bool 		bZapping, bSoundActive;
-var	float	NextMessageTime;
+var()	bool		bDoOverCharge;
+var		Sound		FireSoundLoop;
+var		bool		bPendingOwnerZap;
+var		bool		bZapping, bSoundActive;
+var		float		NextMessageTime;
 
-var int SuccessiveHits;
+var int 			SuccessiveHits;
 
 //[2.5] default vars
-var() sound		FireSound2;
-var   bool		bIsZapping;
-var   float	PendingZapDamage;
+var() sound			FireSound2;
+var   bool			bIsZapping;
+var   float			PendingZapDamage;
+
 struct ZappedTarget
 {
 	var() Pawn	Vic;

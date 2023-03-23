@@ -16,8 +16,8 @@ defaultproperties
         PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
         Damage=26.000000
-        HeadMult=2.75
-        LimbMult=0.67f
+        HeadMult=2.75f
+        LimbMult=0.75f
         RangeAtten=0.5
 		Inaccuracy=(X=48,Y=48)
         DamageType=Class'BallisticProV55.DTFifty9SMG'
@@ -40,8 +40,8 @@ defaultproperties
         PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
         Damage=26.000000
-        HeadMult=2.75
-        LimbMult=0.67f
+        HeadMult=2.75f
+        LimbMult=0.75f
         RangeAtten=0.5
 		Inaccuracy=(X=48,Y=48)
         DamageType=Class'BallisticProV55.DTFifty9SMG'

@@ -17,7 +17,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=34
         HeadMult=2.75
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'

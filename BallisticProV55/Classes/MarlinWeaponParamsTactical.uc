@@ -8,11 +8,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=2300,Max=5000)
+        DecayRange=(Min=3000,Max=6500)
 		RangeAtten=0.75
-		Damage=90
-        HeadMult=2.25f
-        LimbMult=0.67f
+		Damage=80
+        HeadMult=2f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTMarlinRifle'
 		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
@@ -36,12 +36,13 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 	
+	/*
 	Begin Object Class=InstantEffectParams Name=TacticalGaussEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=125
-        HeadMult=2
-        LimbMult=0.67f
+		Damage=100
+        HeadMult=2f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTMarlinRifle'
 		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
@@ -64,6 +65,7 @@ defaultproperties
 		FireAnimRate=1.150000	
 		FireEffectParams(0)=InstantEffectParams'TacticalGaussEffectParams'
 	End Object
+	*/
 		
 	//=================================================================
 	// RECOIL
@@ -107,11 +109,11 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(1)=(bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
 		CockAnimRate=1.250000
-		SightOffset=(X=4.000000,Y=-0.100000,Z=9.100000)
+		SightOffset=(X=4.000000,Y=0,Z=4.800000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.35
         SightMoveSpeedFactor=0.60
@@ -120,9 +122,10 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		FireParams(1)=FireParams'TacticalGaussFireParams'
+		//FireParams(1)=FireParams'TacticalGaussFireParams'
     End Object 
 	
+	/*
 	Begin Object Class=WeaponParams Name=TacticalParams_Gauss
 		//Layout core
 		LayoutName="Gauss Mod"
@@ -147,6 +150,7 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		FireParams(1)=FireParams'TacticalGaussFireParams'
     End Object 
+	*/
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=Deer_Wood
@@ -181,7 +185,7 @@ defaultproperties
 	End Object
 	
     Layouts(0)=WeaponParams'TacticalParams'
-    Layouts(1)=WeaponParams'TacticalParams_Gauss'
+    //Layouts(1)=WeaponParams'TacticalParams_Gauss'
 	Camos(1)=WeaponCamo'Deer_Wood'
 	Camos(2)=WeaponCamo'Deer_Redwood'
 	Camos(3)=WeaponCamo'Deer_Orange'

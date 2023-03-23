@@ -53,6 +53,16 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     default.MaxHits = effect_params.MaxHits;
 }
 
+function int GetXInaccuracy()
+{
+	return XInaccuracy;
+}
+
+function int GetYInaccuracy()
+{
+	return YInaccuracy;
+}
+
 // Get aim then run several individual traces using different spread for each one
 function DoFireEffect()
 {
@@ -66,6 +76,7 @@ function DoFireEffect()
 	DoTrace(StartTrace, Aim);
 
 	Aim = GetFireAim(StartTrace);
+
 	for (i=0;i<TraceCount;i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
@@ -76,6 +87,15 @@ function DoFireEffect()
         BW.RestoreCollisions();
 
 	ApplyHits();
+
+	// update client's dispersion values before shot
+	if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+	{
+		BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+		BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+
+		//log("BallisticShotgunFire: Server update: XInacc "$GetXInaccuracy()$", YInacc "$GetYInaccuracy());
+	}
 
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
@@ -338,6 +358,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 	if (!bAISilent)
 		Instigator.MakeNoise(1.0);
+
 	if (ImpactManager != None && Weapon.EffectIsRelevant(HitLocation,false))
 	{
 		if (Vehicle(Other) != None)
@@ -351,11 +372,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 			Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
 	}
 	return true;
-}
-
-static function float GetAttachmentDispersionFactor()
-{
-	return 3.0f;
 }
 
 defaultproperties

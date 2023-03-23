@@ -17,7 +17,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=34
         HeadMult=2.75
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'
@@ -25,7 +25,7 @@ defaultproperties
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		FlashScaleFactor=0.700000
+		FlashScaleFactor=1
 		Recoil=128
 		Chaos=0.03
 		WarnTargetPct=0.200000

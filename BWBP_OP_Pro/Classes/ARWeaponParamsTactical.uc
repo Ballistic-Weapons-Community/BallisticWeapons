@@ -14,7 +14,7 @@ defaultproperties
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=13
-        HeadMult=1.5f
+        HeadMult=1.75f
         LimbMult=0.85f
 		DamageType=Class'BWBP_OP_Pro.DT_ARShotgun'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_ARShotgunHead'
@@ -28,6 +28,7 @@ defaultproperties
 		Chaos=0.5
 		BotRefireRate=0.900000
 		WarnTargetPct=0.5	
+		Inaccuracy=(X=256,Y=256)
 		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.XMV-850.XMV-Fire-3')
 	End Object
 

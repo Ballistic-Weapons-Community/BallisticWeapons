@@ -18,7 +18,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=46
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
@@ -26,7 +26,7 @@ defaultproperties
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK47FlashEmitter'
-		FlashScaleFactor=0.800000
+		FlashScaleFactor=0.9
 		Recoil=360.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000
@@ -50,8 +50,8 @@ defaultproperties
 		Speed=8500.000000
 		MaxSpeed=8500.000000
 		Damage=75
-        HeadMult=2.75
-        LimbMult=0.67f
+        HeadMult=2.75f
+        LimbMult=0.75f
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.20000,Radius=256) // stealth

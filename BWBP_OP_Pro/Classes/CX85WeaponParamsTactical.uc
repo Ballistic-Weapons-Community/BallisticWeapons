@@ -19,7 +19,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=34
         HeadMult=2.75
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'

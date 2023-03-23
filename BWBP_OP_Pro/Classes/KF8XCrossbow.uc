@@ -51,15 +51,6 @@ replication
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal;
 }
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-    
-	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
-	{
-		FireModeClass[0]=Class'BWBP_OP_Pro.KF8XPrimaryBoltFire';
-	}
-}
 
 //change mag rotation if after firing, as well as code to continue reloading
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)

@@ -6,18 +6,19 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
-		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=90
-        HeadMult=2.5
-        LimbMult=0.67f
-		DamageType=Class'DTKF8XBolt'
-		DamageTypeHead=Class'DTKF8XBoltHead'
-		DamageTypeArm=Class'DTKF8XBolt'
-		Chaos=0.150000
-		BotRefireRate=0.5
-		WarnTargetPct=0.5
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.KF8XToxicBolt'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=7000.000000
+		MaxSpeed=7000.000000
+		Damage=30.000000
+		HeadMult=2.75f
+		LimbMult=0.75f
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
+		Recoil=0.0
+		Chaos=0.15
+		BotRefireRate=0.500000
+		WarnTargetPct=0.150000	
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -25,7 +26,7 @@ defaultproperties
 		PreFireAnim=
 		FireAnim="FireCycleRotate"
 		FireAnimRate=2.00000	
-		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+		FireEffectParams(0)=TacticalPrimaryEffectParams
 	End Object
 
 	//=================================================================
@@ -70,9 +71,9 @@ defaultproperties
 		MinZoom=4
 		MaxZoom=8
 		ZoomStages=1
-        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+        RecoilParams(0)=TacticalRecoilParams
+        AimParams(0)=TacticalAimParams
+		FireParams(0)=TacticalPrimaryFireParams
     End Object 
-    Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(0)=TacticalParams
 }

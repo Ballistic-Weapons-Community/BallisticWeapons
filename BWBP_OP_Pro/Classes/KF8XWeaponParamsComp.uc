@@ -6,18 +6,19 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=80
-        HeadMult=2.0f
-        LimbMult=0.67f
-		DamageType=Class'DTKF8XBolt'
-		DamageTypeHead=Class'DTKF8XBoltHead'
-		DamageTypeArm=Class'DTKF8XBolt'
-		Chaos=0.150000
-		BotRefireRate=0.500000
-		WarnTargetPct=0.500000
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.KF8XToxicBolt'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=9000.000000
+		MaxSpeed=9000.000000
+		Damage=30.000000
+		HeadMult=2.75f
+		LimbMult=0.85f
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
+		Recoil=0.0
+		Chaos=0.15
+		BotRefireRate=0.500000
+		WarnTargetPct=0.150000	
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -25,7 +26,7 @@ defaultproperties
 		PreFireAnim=
 		FireAnim="FireCycleRotate"
 		FireAnimRate=2.00000	
-		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=ArenaPrimaryEffectParams
 	End Object
 
 	//=================================================================
@@ -59,7 +60,6 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
-		
 		PlayerJumpFactor=1
 		InventorySize=5
 		SightMoveSpeedFactor=0.8
@@ -67,9 +67,9 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=8
         ZoomType=ZT_Logarithmic
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+        RecoilParams(0)=ArenaRecoilParams
+        AimParams(0)=ArenaAimParams
+		FireParams(0)=ArenaPrimaryFireParams
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(0)=ArenaParams
 }

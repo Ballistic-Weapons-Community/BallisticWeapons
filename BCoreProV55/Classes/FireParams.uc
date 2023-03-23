@@ -50,6 +50,24 @@ var() editinline array<FireEffectParams>   FireEffectParams;       // subobjects
 
 static simulated final function Initialize(BallisticWeapon BW, int ModeIndex, int AmmoIndex);
 
+// for short manual displayed on fonclit
+final function string BuildShortManualString()
+{
+	local FireEffectParams.FireModeStats FS;
+	local string S;
+
+	FS = FireEffectParams[0].GetStats();
+
+	S = "Damage: Body "$ FS.DamageInt $ ", Head "$ int(FS.DamageInt * FS.HeadMult) $ ", Limb " $ int(FS.DamageInt * FS.LimbMult) $"|Fire Rate:  ";
+
+	if (FireInterval < 0.4)
+		S $= String(int((1 / FireInterval) * 60 * DEFAULT_TIME_DILATION))$"RPM";
+	else 
+        S $= String((1 / FireInterval) * DEFAULT_TIME_DILATION) @ FS.ShotTypeString $ "/second";
+
+	return S;
+}
+
 //Accessor stub for stats
 final function FireEffectParams.FireModeStats GetStats() 
 {

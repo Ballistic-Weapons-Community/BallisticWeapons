@@ -18,7 +18,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=34
         HeadMult=2.5
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTMX32Primary'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTMX32PrimaryHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTMX32PrimaryLimb'

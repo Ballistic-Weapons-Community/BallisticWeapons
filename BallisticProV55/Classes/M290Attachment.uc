@@ -71,7 +71,7 @@ function M290UpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     FireClass=Class'BallisticProV55.M290PrimaryFire'
+     WeaponClass=Class'BallisticProV55.M290Shotgun'
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'

@@ -1,7 +1,7 @@
 //=============================================================================
 // CYLOAttachment.
 //
-// 3rd person weapon attachment for CYLO Versitile UAW
+// 3rd person weapon attachment for CYLO Versatile UAW
 //
 // by Casey 'Xavious' Johnson and Marc 'Sergeant Kelly'
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

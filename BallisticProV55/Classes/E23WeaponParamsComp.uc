@@ -53,6 +53,8 @@ defaultproperties
         MaxSpeed=50000.000000
         AccelSpeed=100000.000000
         Damage=35.000000
+		MaxDamageGainFactor=1
+		DamageGainEndTime=0.35
         DamageRadius=64.000000
         FlashScaleFactor=0.750000
         Chaos=0.350000

@@ -18,7 +18,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=24
         HeadMult=3.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTMD24Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'

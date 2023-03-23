@@ -12,7 +12,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=50
         HeadMult=2.75
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
@@ -79,7 +79,7 @@ defaultproperties
 		AccelSpeed=3000.000000
 		Damage=80
         HeadMult=2
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageRadius=192.000000
 		MomentumTransfer=50000.000000
 		PushbackForce=200.000000
@@ -142,7 +142,8 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		CockAnimRate=1.15
+		CockAnimRate=1
+		ReloadAnimRate=0.75
 		SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 		SightPivot=(Pitch=900)
 		ViewOffset=(X=8.000000,Z=-14.000000)

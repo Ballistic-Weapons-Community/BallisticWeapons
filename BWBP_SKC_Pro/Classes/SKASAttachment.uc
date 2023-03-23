@@ -54,7 +54,7 @@ function SKASUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     FireClass=Class'BWBP_SKC_Pro.SKASPrimaryFire'
+     WeaponClass=Class'BWBP_SKC_Pro.SKASShotgun'
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'

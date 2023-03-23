@@ -11,6 +11,7 @@ class A500Attachment extends BallisticAttachment;
 
 defaultproperties
 {
+	WeaponClass=class'BallisticProV55.A500Reptile'
      MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

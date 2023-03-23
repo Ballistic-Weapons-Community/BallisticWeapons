@@ -11,6 +11,7 @@ class BOGPAttachment extends HandgunAttachment;
 
 defaultproperties
 {
+	WeaponClass=class'BallisticProV55.BOGPPistol'
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashScale=0.650000
      BrassMode=MU_None

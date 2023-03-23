@@ -54,7 +54,6 @@ replication
 		ClientOverCharge, ClientSetHeat;
 }
 
-
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
@@ -145,7 +144,7 @@ simulated event Tick (float DT)
 {
 	local int i;
 	
-	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 	{
 		if (HeatLevel > 0)
 		{
@@ -333,7 +332,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if (((class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()) && GetTargetZap() != None) || FireMode[1].bIsFiring)	
+	if ((class'BallisticReplicationInfo'.static.IsArenaOrTactical() && GetTargetZap() != None) || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{
@@ -404,7 +403,7 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 	
 	
-	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 	{
 		if (StreamEffect != None)
 		{
@@ -853,6 +852,7 @@ defaultproperties
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	ParamsClasses(2)=Class'HVCMk9WeaponParamsRealistic' \\todo: lots of state code
     ParamsClasses(3)=Class'HVCMk9WeaponParamsTactical'
+	
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
 	

@@ -18,7 +18,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=26
         HeadMult=3
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTRS8Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
