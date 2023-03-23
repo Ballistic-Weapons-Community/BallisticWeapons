@@ -18,8 +18,8 @@ defaultproperties
 		Inaccuracy=(X=48,Y=48)
 		RangeAtten=0.5
 		Damage=45
-        HeadMult=2.75
-        LimbMult=0.67f
+        HeadMult=2.75f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
 		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'

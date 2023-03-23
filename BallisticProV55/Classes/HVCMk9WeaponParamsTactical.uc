@@ -7,9 +7,9 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
-		Damage=25
+		Damage=15
 		HeadMult=2.25f
-		LimbMult=0.67f
+		LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeArm=Class'BallisticProV55.DT_HVCLightning'

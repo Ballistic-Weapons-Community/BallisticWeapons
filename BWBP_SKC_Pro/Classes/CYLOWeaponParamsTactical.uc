@@ -15,9 +15,9 @@ defaultproperties
 		TraceRange=(Min=8000.000000,Max=12000.000000)
         DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
-		Damage=46
+		Damage=42
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'

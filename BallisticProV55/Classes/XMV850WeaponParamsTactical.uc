@@ -17,7 +17,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=34
         HeadMult=2.75
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTXMV850MG'
 		DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMV850MG'

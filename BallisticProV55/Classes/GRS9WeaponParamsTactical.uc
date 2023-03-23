@@ -18,7 +18,7 @@ defaultproperties
         RangeAtten=0.5
         Damage=24
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
@@ -50,7 +50,7 @@ defaultproperties
         RangeAtten=0.5
         Damage=14
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTGRS9Laser'
         DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'

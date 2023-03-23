@@ -24,7 +24,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 	if (LConductor != None)
 	{
 		LConductor.Instigator = Instigator;
-		LConductor.Damage = 120;
+		LConductor.Damage = Damage * class'LightningPrimaryFire'.default.TransferDamageMultiplier;
 		LConductor.ChargePower = 2;
         LConductor.bIsCombo = true;
 

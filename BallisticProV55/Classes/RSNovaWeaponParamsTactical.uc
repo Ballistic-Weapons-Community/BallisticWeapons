@@ -14,7 +14,7 @@ defaultproperties
         MaxSpeed=14000
         Damage=90.000000
         HeadMult=2.25
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageRadius=128.000000
 		MomentumTransfer=70000.000000
     	Recoil=512.000000
@@ -40,7 +40,7 @@ defaultproperties
         MaxSpeed=14000
         Damage=37.000000
         HeadMult=2.25
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageRadius=48.000000
 		MomentumTransfer=10000.000000
 		MaxDamageGainFactor=0.6

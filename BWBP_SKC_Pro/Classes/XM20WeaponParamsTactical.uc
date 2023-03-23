@@ -31,7 +31,7 @@ defaultproperties
 		TraceRange=(Min=5000.000000,Max=7500.000000)
 		Damage=26
         HeadMult=2.25
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
@@ -59,7 +59,7 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
 			Damage=26
         HeadMult=2.25
-        LimbMult=0.67f
+        LimbMult=0.75f
 			DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
 			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
@@ -71,7 +71,7 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParamsOvercharge
 			Damage=25
             HeadMult=2.25
-            LimbMult=0.67f
+            LimbMult=0.75f
 			 Chaos=0
 			 Recoil=32
 			FlashScaleFactor=0.200000

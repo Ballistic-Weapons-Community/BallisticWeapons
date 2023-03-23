@@ -11,8 +11,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=52
-        HeadMult=2.5
-        LimbMult=0.67f
+        HeadMult=2.5f
+        LimbMult=0.75f
 		PenetrationEnergy=48
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
@@ -40,8 +40,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=75
-        HeadMult=2.5
-        LimbMult=0.67f
+        HeadMult=2.5f
+        LimbMult=0.75f
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
@@ -68,8 +68,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=40
-        HeadMult=2.5
-        LimbMult=0.67f
+        HeadMult=2.5f
+        LimbMult=0.75f
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';

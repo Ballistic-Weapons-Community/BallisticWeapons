@@ -8,24 +8,23 @@
 //=============================================================================
 class LightningConductor extends Actor;
 
-var   int 							Damage;
-var	  int							MaxConductors;
-var   float 						ConductRadius;
-var   float							ConductDelay;
-var() class<BCTraceEmitter> 		TracerClass;
-var() class<BallisticDamageType>	CDamageType;
-var   float							ChargePower;
-var   float							SquareCoefficient;
-var   bool 							bIsCombo;
+var		int							Damage;
+var		BUtil.IntRange				ConductionRadiusRange;
+var		BUtil.IntRange				TargetCountRange;
+var		float						ConductDelay;
+var()	class<BCTraceEmitter>		TracerClass;
+var()	class<BallisticDamageType>	CDamageType;
+var		float						ChargePower;
+var		bool						bIsCombo;
 
-var	  int 							DmgScalar;
-var   int 							CurrentTargetIndex;
-var   Vector 						VertDisplacement;
-var   array<Actor> 					ShockTargets;
+var		int							DmgScalar;
+var		int 						CurrentTargetIndex;
+var		Vector 						VertDisplacement;
+var		array<Actor>				ShockTargets;
 
-var int							    HitCounter, OldHitCounter;
-var vector						    EffectStart, EffectEnd;
-var Actor						    EffectSource, EffectDest;
+var 	int							HitCounter, OldHitCounter;
+var 	vector						EffectStart, EffectEnd;
+var 	Actor						EffectSource, EffectDest;
 
 var 	float						SelfDmgScalar;
 
@@ -97,27 +96,20 @@ function Initialize(Actor InitialTarget)
 	local float ShortestDistance;
 	*/
 	local Pawn PVictim;
+	local int ConductionRadius, MaxConductors;
+
 	//local bool FoundInstigator;
 
 	ShockTargets.Insert(ShockTargets.Length, 1);
 	ShockTargets[ShockTargets.Length - 1] = InitialTarget;
 
-	//Scale up max conductors, conduct radius, etc. according to ChargePower. Now uses default values, easier to balance
+	//Scale up max conductors, conduct radius, etc. according to ChargePower
+	ConductionRadius = default.ConductionRadiusRange.Min + (ChargePower * (default.ConductionRadiusRange.Max - default.ConductionRadiusRange.Min));
 
-    // between 768 * 0.083 * 1 (63) and 768 * 0.083 * 16 (1019)
-	ConductRadius = default.ConductRadius * (1 + (SquareCoefficient * Square(ChargePower * 4)));
-
-    // between 3 * 2 (6) and 3 * 5 (15)
-	MaxConductors = default.MaxConductors * (1 + (4 * ChargePower));
-
-	if (bIsCombo)	//if firing off a lightning projectile
-	{
-		MaxConductors--;
-		ConductRadius /= 2;
-	}
+	MaxConductors = default.TargetCountRange.Min + (ChargePower * (default.TargetCountRange.Max - default.TargetCountRange.Min));
 
 	//Check for nearby pawns. If "valid", will add to list of pawns to affect
-	ForEach RadiusActors(class'Pawn', PVictim, ConductRadius)
+	ForEach RadiusActors(class'Pawn', PVictim, ConductionRadius)
 	{		
 		//skip to next victim if instigator, in order to not damage the instigator
 		if (PVictim == Instigator)
@@ -144,8 +136,8 @@ function Initialize(Actor InitialTarget)
 
 	//i no longer want to damage/kill the instigator, it's fucking annoying
 	/*
-	//If instigator in ConductRadius, find the shortest distance between all pawns and instigator - insert instigator into array after pawn with least distance
-	ShortestDistance = ConductRadius;
+	//If instigator in ConductionRadius, find the shortest distance between all pawns and instigator - insert instigator into array after pawn with least distance
+	ShortestDistance = ConductionRadius;
 
 	if (FoundInstigator)
 	{
@@ -280,11 +272,10 @@ function Propagate()
 // CalcDecayMult
 //
 // Determines damage loss every jump. 
-// -50% at minimum factor, -33% at maximum factor
 //============================================================
 final function float CalcDecayMult()
 {
-    return 0.5f /* base power */ + ChargePower * 2f /* coeff */ * 0.17f /* max additional power*/;
+    return 0.67f;
 }
 
 final function int CalcDamageForIndex(int index)
@@ -330,8 +321,7 @@ defaultproperties
 	VertDisplacement=(Z=20.000000)
 	TracerClass=Class'BWBP_OP_Pro.TraceEmitter_LightningConduct'
 	CDamageType=Class'BWBP_OP_Pro.DT_LightningConduct'
-	SquareCoefficient=0.083333
-	ConductRadius=768.000000
-	MaxConductors=4
+	ConductionRadiusRange=(Min=128,Max=512)
+	TargetCountRange=(Min=1,Max=4)
 	SelfDmgScalar=0.600000
 }

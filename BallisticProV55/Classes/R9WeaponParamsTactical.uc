@@ -9,9 +9,9 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=45
+		Damage=52
         HeadMult=2.5
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.225000
+		FireInterval=0.22500
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -39,7 +39,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=40
         HeadMult=2.5
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -66,7 +66,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=35
         HeadMult=2.5
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'

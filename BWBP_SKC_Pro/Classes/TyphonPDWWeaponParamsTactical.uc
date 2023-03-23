@@ -15,7 +15,7 @@ defaultproperties
 		TraceRange=(Max=6000.000000)
 		Damage=27.000000
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		RangeAtten=0.75
 		PenetrationEnergy=32
 		Inaccuracy=(X=32,Y=32)
@@ -49,7 +49,7 @@ defaultproperties
 		PenetrationEnergy=64
 		Damage=72.000000
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		RangeAtten=0.75
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150

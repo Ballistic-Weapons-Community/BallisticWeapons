@@ -423,7 +423,7 @@ simulated function InstantFireEffects(byte Mode)
 		
 	if (Mode == 0)
 	{
-		if (ImpactManager != None && (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()))
+		if (ImpactManager != None && (class'BallisticReplicationInfo'.static.IsArenaOrTactical()))
 			ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	}
 	else if (ImpactManagerAlt != None)
@@ -435,7 +435,7 @@ simulated function Tick(float DT)
 {
 	super.Tick(DT);
 
-	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 	{
 		if (Level.NetMode == NM_DedicatedServer)
 			return;

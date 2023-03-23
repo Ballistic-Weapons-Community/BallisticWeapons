@@ -13,8 +13,8 @@ defaultproperties
         AccelSpeed=0.000000
         MaxSpeed=3500.000000
         Damage=22.000000
-        HeadMult=2
-        LimbMult=0.8
+        HeadMult=1.75f
+        LimbMult=0.85f
         MomentumTransfer=1000.000000
         MaxDamageGainFactor=0.2
         DamageGainEndTime=0.3

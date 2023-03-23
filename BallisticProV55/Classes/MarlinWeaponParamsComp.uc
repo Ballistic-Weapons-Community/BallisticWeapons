@@ -110,7 +110,7 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=True)
 		CockAnimRate=1.700000
 		ReloadAnimRate=2.000000
-		SightOffset=(X=4.000000,Y=-0.100000,Z=9.100000)
+		SightOffset=(X=4.000000,Y=0,Z=4.800000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.400000
 		MagAmmo=8

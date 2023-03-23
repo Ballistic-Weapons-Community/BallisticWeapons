@@ -5452,11 +5452,21 @@ static function String GetManual()
 static function String GetShortManual()
 {
 	local String S;
-	
+
+	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Basic Stats"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
+
+	// iterate and calculate damage and basic fire rate
+	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].BuildShortManualString();
+
+	S $= "||";
+
 	if (default.ManualLines.Length < 3)
-		return "No information available.";
+	{
+		S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"No further information available."$class'GUIComponent'.static.MakeColorCode(default.TextColor);
+		return S;
+	}
 	
-	S = class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Primary Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
+	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Primary Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
 	S $= default.ManualLines[0]$"||";
 	
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Alt Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";

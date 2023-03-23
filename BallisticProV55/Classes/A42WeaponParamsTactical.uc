@@ -16,8 +16,8 @@ defaultproperties
         MaxSpeed=10000.000000
         AccelSpeed=60000.000000
         Damage=45.000000
-        HeadMult=2.25
-        LimbMult=0.67
+        HeadMult=2.25f
+        LimbMult=0.75f
         DamageRadius=48.000000
         MaxDamageGainFactor=0.35
         DamageGainStartTime=0.05
@@ -46,7 +46,7 @@ defaultproperties
         PenetrateForce=150
         Damage=85.000000
         HeadMult=2.75
-        LimbMult=0.67
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTA42SkrithBeam'
         DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
         DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'

@@ -8,7 +8,6 @@ var() 	BUtil.FullSound			LightningSound;	//Crackling sound to play
 var() 	Sound					ChargeLoopSound; //Sound to play
 var()   byte                    ChargeLoopSoundVolume; 
 var		byte					ChargeSoundPitch;
-var   	int 					TransferCDamage;	//Damage to transfer to LightningConductor actor
 var		float					ChargeGainPerSecond, ChargeDecayPerSecond, ChargeOvertime, MaxChargeOvertime;
 var		bool 					bAmmoHasBeenCalculated;
 var     float                   MaxDamageBonus;
@@ -20,17 +19,8 @@ final function float CalcBonusDamageFactor()
    return (1 + (LightningRifle(BW).ChargePower * MaxDamageBonus));
 }
 
-// default settings: transfer 75% of damage
-final function float CalcTransferDamage()
-{
-    return default.Damage * CalcBonusDamageFactor() * TransferDamageMultiplier;
-}
-
 simulated function ModeDoFire()
 {
-    if (BW.Role == ROLE_Authority)
-	    TransferCDamage = CalcTransferDamage();
-
 	Load = CalculateAmmoUse();
 	bAmmoHasBeenCalculated = true;
 	
@@ -134,13 +124,12 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
+	// lightning projectiles handle this by themselves, apparently
 	if (LightningProjectile(Target) != None)
 		return;
-	else
-	{
-		if (!class'LightningConductor'.static.ValidTarget(Instigator, Pawn(Target), Instigator.Level))
-			return;
-	}
+
+	if (!class'LightningConductor'.static.ValidTarget(Instigator, Pawn(Target), Instigator.Level))
+		return;
 
 	//Initiates Lightning Conduction actor
 	LConductor = Spawn(class'LightningConductor',Instigator,,HitLocation);
@@ -148,12 +137,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	if (LConductor != None)
 	{
 		LConductor.Instigator = Instigator;
-		LConductor.Damage = TransferCDamage;
+		LConductor.Damage = Damage * TransferDamageMultiplier;
 		LConductor.ChargePower = LightningRifle(BW).ChargePower;
-
-		if (LightningProjectile(Target) != None)	//projectile is op, pls nerf
-			LConductor.bIsCombo = true;
-
 		LConductor.Initialize(Target);
 	}
 
@@ -177,7 +162,7 @@ defaultproperties
     ChargeDecayPerSecond=4f
     FullChargeAmmo=4
     MaxDamageBonus=0.5f
-    TransferDamageMultiplier=0.75f
+    TransferDamageMultiplier=0.67f
 
 	LightningSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	TraceRange=(Min=30000.000000,Max=30000.000000)

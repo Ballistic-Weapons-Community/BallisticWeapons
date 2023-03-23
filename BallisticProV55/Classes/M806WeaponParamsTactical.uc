@@ -16,9 +16,9 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		Inaccuracy=(X=48,Y=48)
 		RangeAtten=0.67 // listed as "HV" isn't it?
-		Damage=40
+		Damage=34
         HeadMult=3
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
@@ -34,10 +34,10 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.25000
+		FireInterval=0.3500
 		FireEndAnim=
 		AimedFireAnim="SightFire"
-		FireAnimRate=2	
+		FireAnimRate=1.5	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		

@@ -18,7 +18,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=24
         HeadMult=2.75f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
@@ -45,7 +45,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=18
         HeadMult=2.75
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'
