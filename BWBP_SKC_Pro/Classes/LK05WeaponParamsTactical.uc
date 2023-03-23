@@ -72,6 +72,7 @@ defaultproperties
 		LayoutName="Holosight"
 		//Attachments
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)

@@ -122,7 +122,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		LayoutName="Default"
 		Weight=30
+		//Attachments
+		//Function
 		PlayerSpeedFactor=1.100000
 		InventorySize=4
 		WeaponPrice=650
@@ -141,95 +145,51 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=RealisticParams_Black
+	Layouts(0)=WeaponParams'RealisticParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=MD24_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MD24_Black
+		Index=1
+		CamoName="Black"
+		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlackShine",Index=1)
-		Weight=10
-		PlayerSpeedFactor=1.100000
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.12
-		MagAmmo=15
-		ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
-		SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
-		SightPivot=(Pitch=0,Roll=-0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		WeaponName="MD24 10mm Black Commando Pistol"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=RealisticParams_Desert
+	Begin Object Class=WeaponCamo Name=MD24_Desert
+		Index=2
+		CamoName="Desert"
+		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24DesertShine",Index=1)
-		Weight=10
-		PlayerSpeedFactor=1.100000
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.12
-		MagAmmo=15
-		ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
-		SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
-		SightPivot=(Pitch=0,Roll=-0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		WeaponName="MD24 10mm Desert Commando Pistol"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=RealisticParams_Blue
+	Begin Object Class=WeaponCamo Name=MD24_Blue
+		Index=3
+		CamoName="Blue"
+		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlueShine",Index=1)
-		Weight=3
-		PlayerSpeedFactor=1.100000
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.12
-		MagAmmo=15
-		ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
-		SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
-		SightPivot=(Pitch=0,Roll=-0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		WeaponName="MD24 10mm Annodised Blue Commando Pistol"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=RealisticParams_Red
+	Begin Object Class=WeaponCamo Name=MD24_Red
+		Index=4
+		CamoName="Red"
+		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24RedShine",Index=1)
-		Weight=3
-		PlayerSpeedFactor=1.100000
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.12
-		MagAmmo=15
-		bMagPlusOne=True
-		ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
-		SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
-		SightPivot=(Pitch=0,Roll=-0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		WeaponName="MD24 10mm Annodised Red Commando Pistol"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'RealisticParams'
-	Layouts(1)=WeaponParams'RealisticParams_Black'
-	Layouts(2)=WeaponParams'RealisticParams_Desert'
-	Layouts(3)=WeaponParams'RealisticParams_Blue'
-	Layouts(4)=WeaponParams'RealisticParams_Red'
+	Camos(0)=WeaponCamo'MD24_Green'
+    Camos(1)=WeaponCamo'MD24_Black'
+    Camos(2)=WeaponCamo'MD24_Desert'
+    Camos(3)=WeaponCamo'MD24_Blue'
+    Camos(4)=WeaponCamo'MD24_Red'
 
 }

@@ -127,28 +127,32 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=RCS_Yellow
 		Index=1
 		CamoName="Yellow"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainYellowShine",Index=1,AIndex=0,PIndex=39)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainYellowShine",Index=1,AIndex=0,PIndex=39)
 		Weight=20
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=RCS_Jungle
 		Index=2
 		CamoName="Jungle"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainJungleShine",Index=1,AIndex=0,PIndex=39)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainJungleShine",Index=1,AIndex=0,PIndex=39)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=RCS_Arctic
 		Index=3
 		CamoName="Arctic"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainArcticShine",Index=1,AIndex=0,PIndex=39)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainArcticShine",Index=1,AIndex=0,PIndex=39)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=RCS_Clown
 		Index=4
 		CamoName="Clown"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainClownShine",Index=1,AIndex=0,PIndex=39)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BusterCamos.Blaster-MainClownShine",Index=1,AIndex=0,PIndex=39)
 		Weight=3
 	End Object
 	
@@ -157,4 +161,5 @@ defaultproperties
 	Camos(2)=WeaponCamo'RCS_Jungle'
 	Camos(3)=WeaponCamo'RCS_Arctic'
 	Camos(4)=WeaponCamo'RCS_Clown'
+	//Camos(5)=WeaponCamo'RCS_Gold'
 }

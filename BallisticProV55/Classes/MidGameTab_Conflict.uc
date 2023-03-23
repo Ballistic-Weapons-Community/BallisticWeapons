@@ -237,7 +237,7 @@ simulated function InitWeaponLists ()
 	local class<actor> a;
 	local class<Weapon> Weap;
 	local class<ConflictItem> CI;
-	local int i, lastIndex;
+	local int i, j, lastIndex;
 	//local BC_WeaponInfoCache.WeaponInfo WI;
 	
 	Log("MidGameTab_Conflict: InitWeaponLists");
@@ -289,8 +289,8 @@ simulated function InitWeaponLists ()
 			{
 				lastIndex = -1;
 				li_Weapons.Add("Misc",,"Mc",true);
-				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
-				LayoutIndexList.Insert(CamoIndexList.Length, 0);
+				LayoutIndexList.Insert(LayoutIndexList.Length, 1);
+				CamoIndexList.Insert(CamoIndexList.Length, 1);
 			}
 			
 			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i].ClassName, class'Class'));
@@ -298,8 +298,8 @@ simulated function InitWeaponLists ()
 			if (CI != None)
 			{
 				li_Weapons.Add(CI.default.ItemName, , string(i));
-				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
-				LayoutIndexList.Insert(CamoIndexList.Length, 0);
+				LayoutIndexList.Insert(LayoutIndexList.Length, 1);
+				CamoIndexList.Insert(CamoIndexList.Length, 1);
 			}
 		}
 		
@@ -310,13 +310,21 @@ simulated function InitWeaponLists ()
             {
                 lastIndex = CLRI.FullInventoryList[i].InventoryGroup;
                 li_Weapons.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
-				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
-				LayoutIndexList.Insert(CamoIndexList.Length, 0);
+				LayoutIndexList.Insert(LayoutIndexList.Length, 1);
+				CamoIndexList.Insert(CamoIndexList.Length, 1);
             }
             
             li_Weapons.Add(CLRI.FullInventoryList[i].ItemName, , string(i));
-				LayoutIndexList.Insert(LayoutIndexList.Length, 0);
-				LayoutIndexList.Insert(CamoIndexList.Length, 0);
+			LayoutIndexList.Insert(LayoutIndexList.Length, 1);
+			CamoIndexList.Insert(CamoIndexList.Length, 1);
+			for (j=0; j < Inventory.length; j++)
+			{
+				//if (Inventory[j].ListIndex != 0)
+				//	continue;
+				//log("INV: "$CLRI.FullInventoryList[i].ItemName$" Inv: " $Inventory[j].ClassName);
+				if (CLRI.FullInventoryList[i].ClassName == Inventory[j].ClassName)
+					Inventory[j].ListIndex=li_Weapons.ItemCount-1; //Tie our inventory to the list if possible
+			}
 		}
 	}
 }
@@ -577,7 +585,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	Inventory[i].CamoIndex = PassedCamoIndex;
 	Inventory[i].LayoutIndex = PassedLayoutIndex;
     Inventory[i].SectionIndex = SectionIndex;
-	Inventory[i].ListIndex = li_Weapons.Index; //so we can find our weapon again on click
+	Inventory[i].ListIndex = li_Weapons.Index;
 	
 	A = WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
 
@@ -706,7 +714,12 @@ function bool InternalOnClick(GUIComponent Sender)
         if (i < Inventory.Length)
 		{
 		    class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(i);
-			li_Weapons.setIndex(Inventory[i].ListIndex);
+			if (Inventory[i].ListIndex != 0) //Open this item in the list
+			{
+				LayoutIndexList[Inventory[i].ListIndex] = Inventory[i].LayoutIndex;
+				CamoIndexList[Inventory[i].ListIndex] = Inventory[i].CamoIndex;
+				li_Weapons.setIndex(Inventory[i].ListIndex); 
+			}
 		}
 		return true;
 	}
@@ -832,9 +845,18 @@ function InternalOnChange(GUIComponent Sender)
 					Pic_Weapon.Image = BW.default.BigIconMaterial;
 					tb_Desc.SetContent(BW.static.GetShortManual());
 					li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
-					LoadLIFromBW(BW, cb_WeapLayoutIndex);
-					LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
-					LoadCIFromBW(BW, 0, cb_WeapCamoIndex);
+					if (LayoutIndexList[li_Weapons.Index] == 0 && CamoIndexList[li_Weapons.Index] == 0) //check if initial load came with set layout
+					{
+						LoadLIFromBW(BW, cb_WeapLayoutIndex);
+						LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
+						LoadCIFromBW(BW, cb_WeapLayoutIndex.getIndex(), cb_WeapCamoIndex);
+					}
+					else
+					{
+						LoadLIFromBW(BW, cb_WeapLayoutIndex);
+						cb_WeapLayoutIndex.setIndex(LayoutIndexList[li_Weapons.Index]);
+						LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index], cb_WeapCamoIndex);
+					}
 					CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
 					cb_WeapLayoutIndex.SetVisibility(true);
 					cb_WeapCamoIndex.SetVisibility(true);

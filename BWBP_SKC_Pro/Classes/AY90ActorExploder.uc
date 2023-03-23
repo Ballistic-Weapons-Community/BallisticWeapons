@@ -194,8 +194,8 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 defaultproperties
 {
      ArmingSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-Fuse'
-     DamageType=Class'BWBP_SKC_Pro.DT_VSKTranqPsn'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_VSKTranqPsn'
+     DamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
+     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
      ImpactManager=Class'BWBP_SKC_Pro.IM_A73BPower'
      StickDamage=50
      Damage=150

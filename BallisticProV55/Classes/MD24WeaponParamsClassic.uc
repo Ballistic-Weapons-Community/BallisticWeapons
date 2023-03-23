@@ -137,6 +137,8 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Layouts(0)=WeaponParams'ClassicParams'
+	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=MD24_Green
 		Index=0
@@ -163,7 +165,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=MD24_Blue
 		Index=3
 		CamoName="Blue"
-		Weight=1
+		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlueShine",Index=1)
 	End Object
@@ -176,7 +178,6 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24RedShine",Index=1)
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams'
 	Camos(0)=WeaponCamo'MD24_Green'
     Camos(1)=WeaponCamo'MD24_Black'
     Camos(2)=WeaponCamo'MD24_Desert'

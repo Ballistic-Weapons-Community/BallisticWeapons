@@ -115,6 +115,49 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=TY_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Urban
+		Index=1
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineUrban",Index=1,AIndex=5,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineGreen",Index=1,AIndex=5,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_UTC
+		Index=3
+		CamoName="UTC"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.UMPMainShine",Index=1,AIndex=5,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Blue
+		Index=4
+		CamoName="Nebula"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineBlue",Index=1,AIndex=5,PIndex=0)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'TY_Black'
+	Camos(1)=WeaponCamo'TY_Urban'
+	Camos(2)=WeaponCamo'TY_Jungle'
+	Camos(3)=WeaponCamo'TY_UTC'
+	Camos(4)=WeaponCamo'TY_Blue'
 }
