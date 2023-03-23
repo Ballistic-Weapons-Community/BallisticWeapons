@@ -89,6 +89,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_Burst",Value=5.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=3
 		PlayerSpeedFactor=0.950000
         PlayerJumpFactor=0.950000
         SightMoveSpeedFactor=0.8

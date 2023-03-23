@@ -9,7 +9,6 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=12000.000000)
         DecayRange=(Min=1575,Max=3675)
-		PenetrationEnergy=32
 		RangeAtten=0.67
 		Damage=22
 		DamageType=Class'BallisticProV55.DTXMV850MG'
@@ -80,6 +79,11 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		LayoutName="Default"
+		Weight=30
+		//Attachments
+		//Function
 		ReloadAnimRate=1.300000
 		SightPivot=(Pitch=700,Roll=2048)
 		SightOffset=(X=8.000000,Z=28.000000)
@@ -97,4 +101,33 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=XMV_Teal
+		Index=0
+		CamoName="Teal"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMV_Green
+		Index=1
+		CamoName="Green"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Main",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Barrels_SD",Index=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMV_Black
+		Index=2
+		CamoName="Black"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Main",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD",Index=2)
+	End Object
+	
+	Camos(0)=WeaponCamo'XMV_Teal'
+    Camos(1)=WeaponCamo'XMV_Green'
+    Camos(2)=WeaponCamo'XMV_Black'
 }

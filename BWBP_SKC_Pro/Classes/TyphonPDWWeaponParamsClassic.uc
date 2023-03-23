@@ -119,72 +119,50 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_Urban
-		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineUrban",Index=1)
-		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
-		PlayerSpeedFactor=1
-		PlayerJumpFactor=1
-		InventorySize=4
-		SightMoveSpeedFactor=0.9
-		DisplaceDurationMult=1
-		bNeedCock=True
-		MagAmmo=25
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Green
-		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
-		Weight=3
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineGreen",Index=1)
-		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
-		PlayerSpeedFactor=1
-		PlayerJumpFactor=1
-		InventorySize=4
-		SightMoveSpeedFactor=0.9
-		DisplaceDurationMult=1
-		bNeedCock=True
-		MagAmmo=25
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Blue
-		Weight=1
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineBlue",Index=1)
-		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
-		PlayerSpeedFactor=1
-		PlayerJumpFactor=1
-		InventorySize=4
-		SightMoveSpeedFactor=0.9
-		DisplaceDurationMult=1
-		bNeedCock=True
-		MagAmmo=25
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Urban'
-	Layouts(2)=WeaponParams'ClassicParams_Green'
-	Layouts(3)=WeaponParams'ClassicParams_Blue'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=TY_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Urban
+		Index=1
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineUrban",Index=1,AIndex=5,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineGreen",Index=1,AIndex=5,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_UTC
+		Index=3
+		CamoName="UTC"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.UMPMainShine",Index=1,AIndex=5,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Blue
+		Index=4
+		CamoName="Nebula"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineBlue",Index=1,AIndex=5,PIndex=0)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'TY_Black'
+	Camos(1)=WeaponCamo'TY_Urban'
+	Camos(2)=WeaponCamo'TY_Jungle'
+	Camos(3)=WeaponCamo'TY_UTC'
+	Camos(4)=WeaponCamo'TY_Blue'
 }

@@ -9,7 +9,6 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=9000.000000,Max=11000.000000)
         DecayRange=(Min=1575,Max=3675)
-		PenetrationEnergy=32
 		RangeAtten=0.67
 		Damage=23
 		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
@@ -66,6 +65,7 @@ defaultproperties
 		LayoutName="Holosight"
 		//Attachments
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		//Function
