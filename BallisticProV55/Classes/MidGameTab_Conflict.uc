@@ -330,6 +330,8 @@ simulated function InitWeaponLists ()
 }
 
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
+// Azarael note: it's very unusual to pass a GUI component that is a member variable of a class to an instance function of that class
+// leaving the signature as it is because I'm not sure of your future intent
 function bool LoadLIFromBW(class<BallisticWeapon> BW, GUIComboBox LayoutComboBox)
 {
 	local byte GameStyleIndex;
@@ -362,7 +364,9 @@ function bool LoadLIFromBW(class<BallisticWeapon> BW, GUIComboBox LayoutComboBox
 }
 
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
-function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboBox CamoComboBox)
+// Azarael note: it's very unusual to pass a GUI component that is a member variable of a class to an instance function of that class
+// leaving the signature as it is because I'm not sure of your future intent
+function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboBox LayoutComboBox, GUIComboBox CamoComboBox)
 {
 	local byte GameStyleIndex;
 	local int i;
@@ -377,12 +381,16 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 	}*/
 	
 	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+
+	// weapon has no parameters for this index
 	if (BW.default.ParamsClasses.length < GameStyleIndex)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		return false;
 	}
+
 	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+
 	if (AllowedCamos.Length == 0 )
 	{
 		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
@@ -391,7 +399,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 			{
 				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
 					CamoComboBox.AddItem("None",, "0");
-				else
+				else // this line caused compile error for me - not sure of your intent so passed LayoutComboBox as a parameter
 					LayoutComboBox.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 			}
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
@@ -826,7 +834,7 @@ function InternalOnChange(GUIComponent Sender)
 				log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[lb_Weapons.List.Index]); 
 				LoadLIFromBW(BW, cb_WeapLayoutIndex);
 				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
-				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapCamoIndex);
+				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index], cb_WeapLayoutIndex, cb_WeapCamoIndex);
 				//cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
 				cb_WeapLayoutIndex.SetVisibility(true);
 				cb_WeapCamoIndex.SetVisibility(true);
@@ -861,13 +869,13 @@ function InternalOnChange(GUIComponent Sender)
 					{
 						LoadLIFromBW(BW, cb_WeapLayoutIndex);
 						LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
-						LoadCIFromBW(BW, cb_WeapLayoutIndex.getIndex(), cb_WeapCamoIndex);
+						LoadCIFromBW(BW, cb_WeapLayoutIndex.getIndex(), cb_WeapLayoutIndex, cb_WeapCamoIndex);
 					}
 					else
 					{
 						LoadLIFromBW(BW, cb_WeapLayoutIndex);
 						cb_WeapLayoutIndex.setIndex(LayoutIndexList[li_Weapons.Index]);
-						LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index], cb_WeapCamoIndex);
+						LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index], cb_WeapLayoutIndex, cb_WeapCamoIndex);
 					}
 					CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
 					cb_WeapLayoutIndex.SetVisibility(true);
@@ -885,7 +893,7 @@ function InternalOnChange(GUIComponent Sender)
 			if (class<BallisticWeapon>(li_Weapons.GetObject()) != None)
 			{
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
-				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index], cb_WeapCamoIndex);
+				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index], cb_WeapLayoutIndex, cb_WeapCamoIndex);
 			}
 			log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
 
