@@ -135,9 +135,8 @@ defaultproperties
 	 WeaponClassNames(42)=class'BallisticProV55.RSDarkStar'
 	 WeaponClassNames(43)=class'BallisticProV55.RSNovaStaff'
 	 WeaponClassNames(44)=class'BallisticProV55.SARAssaultRifle'
-	 WeaponClassNames(45)=class'BallisticProV55.SRS600Rifle'
-	 WeaponClassNames(46)=class'BallisticProV55.SandbagLayer'
-	 WeaponClassNames(47)=class'BallisticProV55.X4Knife'
-	 WeaponClassNames(48)=class'BallisticProV55.XMK5SubMachinegun'
-	 WeaponClassNames(49)=class'BallisticProV55.leMatRevolver'
+	 WeaponClassNames(45)=class'BallisticProV55.SandbagLayer'
+	 WeaponClassNames(46)=class'BallisticProV55.X4Knife'
+	 WeaponClassNames(47)=class'BallisticProV55.XMK5SubMachinegun'
+	 WeaponClassNames(48)=class'BallisticProV55.leMatRevolver'
 } 

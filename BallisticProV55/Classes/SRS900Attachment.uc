@@ -68,7 +68,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-	WeaponClass=class'SRS900Rifle'
+	 WeaponClass=class'SRS900Rifle'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
