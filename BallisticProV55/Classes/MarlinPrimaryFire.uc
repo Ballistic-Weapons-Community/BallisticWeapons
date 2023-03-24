@@ -2,17 +2,17 @@
 // MarlinPrimaryFire.
 //
 // Accurate rifle fire for Deermaster
+// Has a layout for charged gauss shots
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MarlinPrimaryFire extends BallisticProInstantFire;
 
-// Azarael 23/03/2023 - removed all gauss handling - see MarlinRifle.uc for comments
 
-/*
 var() 	BUtil.FullSound			GaussSound;	//extra Gauss sound to play
 var 	bool					bGauss;
+
 
 //// server propagation of firing ////
 function ServerPlayFiring()
@@ -62,8 +62,8 @@ function PlayFiring()
 		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 	}
 	
-    ClientPlayForceFeedback(FireForce);  // jdf
-    FireCount++;
+	ClientPlayForceFeedback(FireForce);  // jdf
+	FireCount++;
 	// End code from normal PlayFiring()
 
 	if (BallisticFireSound.Sound != None)
@@ -78,9 +78,9 @@ function PlayFiring()
 simulated event ModeDoFire()
 {
 	if (!AllowFire())
-        return;
+		return;
 		
-	bGauss = (MarlinRifle(BW).GaussLevel == MarlinRifle(BW).MaxGaussLevel);
+	bGauss = (MarlinRifle(BW).bHasGauss && MarlinRifle(BW).GaussLevel == MarlinRifle(BW).MaxGaussLevel);
 
 	super.ModeDoFire();
 	
@@ -99,11 +99,11 @@ simulated function SendFireEffect(Actor Other, Vector HitLocation, Vector HitNor
 	MarlinAttachment(Weapon.ThirdPersonActor).bGauss = bGauss;
 	super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
 }
-*/
+
 
 defaultproperties
 {
-	 //GaussSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
+	 GaussSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	 RangeAtten=0.75
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000

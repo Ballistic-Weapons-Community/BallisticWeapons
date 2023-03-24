@@ -117,28 +117,32 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20_HexGreen
 		Index=1
 		CamoName="Green Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGreen",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGreen",Index=2,AIndex=1,PIndex=3)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=XM20_HexBlue
 		Index=2
 		CamoName="Blue Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoBlue",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoBlue",Index=2,AIndex=1,PIndex=3)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=XM20_HexOrange
 		Index=3
 		CamoName="Yellow Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoWhite",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoWhite",Index=2,AIndex=1,PIndex=3)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=XM20_Gold
 		Index=4
 		CamoName="Gold"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGold",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGold",Index=2,AIndex=1,PIndex=3)
 		Weight=1
 	End Object
 	
@@ -151,7 +155,8 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20P_Yellow
 		Index=6
 		CamoName="Test Bed"
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainBurnedShine',Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainBurnedShine',Index=2,AIndex=1,PIndex=3)
 		Weight=5
 	End Object
 	

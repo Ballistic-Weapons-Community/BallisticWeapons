@@ -110,8 +110,12 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		Weight=30
+		LayoutName="Default"
+		//Attachments
+		//Function
 		PlayerSpeedFactor=1
-		SightMoveSpeedFactor=0.9
 		MagAmmo=9
         InventorySize=3
 		SightingTime=0.200000
@@ -125,6 +129,68 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=RS04_Tan
+		Index=0
+		CamoName="Tan"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS04_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-MainShineX2",Index=1,AIndex=0,PIndex=0)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS04_TwoTone
+		Index=2
+		CamoName="Two-Tone"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-UC-Main2Tone",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS04_Jungle
+		Index=3
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-UC-CamoJungle",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS04_Hunter
+		Index=4
+		CamoName="Hunter"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-R-CamoHunter",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS04_Autumn
+		Index=5
+		CamoName="Autumn"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-R-CamoAutumn",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS04_RedTiger
+		Index=6
+		CamoName="Red Tiger"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-X-CamoTiger",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'RS04_Tan'
+	Camos(1)=WeaponCamo'RS04_Black'
+	Camos(2)=WeaponCamo'RS04_TwoTone'
+	Camos(3)=WeaponCamo'RS04_Jungle'
+	Camos(4)=WeaponCamo'RS04_Hunter'
+	Camos(5)=WeaponCamo'RS04_Autumn'
+	Camos(6)=WeaponCamo'RS04_RedTiger'
+	//Camos(7)=WeaponCamo'RS04_Gold'
 }

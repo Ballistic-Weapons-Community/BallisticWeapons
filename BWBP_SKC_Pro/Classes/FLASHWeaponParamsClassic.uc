@@ -135,28 +135,32 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=FLASH_Black
 		Index=1
 		CamoName="Black"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoBlack",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoBlack",Index=2,AIndex=0,PIndex=0)
 		Weight=15
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=FLASH_Winter
 		Index=2
 		CamoName="Arctic"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoWhite",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoWhite",Index=2,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=FLASH_Pink
 		Index=3
 		CamoName="Pink"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoFAB",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoFAB",Index=2,AIndex=0,PIndex=0)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=FLASH_Glitch
 		Index=4
 		CamoName="11011"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-Charged",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-Charged",Index=2,AIndex=0,PIndex=0)
 		Weight=1
 	End Object
 	

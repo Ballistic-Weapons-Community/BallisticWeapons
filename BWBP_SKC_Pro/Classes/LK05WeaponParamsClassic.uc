@@ -160,7 +160,8 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=LK05_Gray
 		Index=1
 		CamoName="Gray"
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-RecShine',Index=3,AIndex=4,PIndex=7)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-RecShine',Index=3,AIndex=4,PIndex=7)
 		Weight=20
 	End Object
 	
@@ -194,7 +195,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponCamo Name=LK05_Meat
 		Index=5
-		CamoName="MEAT"
+		CamoName="MEAT (WIP)"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=4,PIndex=7)
 		Weight=3
 	End Object

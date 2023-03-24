@@ -348,7 +348,12 @@ function bool LoadLIFromBW(class<BallisticWeapon> BW, GUIComboBox LayoutComboBox
 	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
 	{
 		if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName == "")
-			LayoutComboBox.AddItem("Layout: "$string(i));
+		{
+			if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length == 1)
+				LayoutComboBox.AddItem("Default");
+			else
+				LayoutComboBox.AddItem("Layout: "$string(i));
+		}
 		else
 			LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
 	}
@@ -382,6 +387,13 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex, GUIComboB
 	{
 		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
 		{
+			if (BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName == "")
+			{
+				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
+					CamoComboBox.AddItem("None",, "0");
+				else
+					LayoutComboBox.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+			}
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 		}
 		cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);

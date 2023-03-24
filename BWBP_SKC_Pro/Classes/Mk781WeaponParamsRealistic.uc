@@ -194,6 +194,14 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		//Function
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -202,12 +210,9 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
-		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
-		SightPivot=(Pitch=-64,Yaw=10)
 		ReloadAnimRate=1.200000
 		CockAnimRate=1.000000
 		WeaponName="Mk 781 12ga Flechette Shotgun"
-        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -221,6 +226,12 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=RealisticRDSParams
+		//Layout core
+		Weight=10
+		LayoutName="Red Dot Sight"
+		//Attachments
+		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+		//Function
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -230,10 +241,9 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
 		InitialWeaponMode=1
-		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 		ReloadAnimRate=1.200000
 		CockAnimRate=1.000000
-		WeaponName="Mk 781 12ga Flechette Shotgun"
+		WeaponName="Mk 781 12ga Flechette Shotgun (RDS)"
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=3)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

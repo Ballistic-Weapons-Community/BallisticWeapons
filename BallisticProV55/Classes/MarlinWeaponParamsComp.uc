@@ -36,7 +36,6 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 	
-	/*
 	Begin Object Class=InstantEffectParams Name=ArenaGaussEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		PenetrationEnergy=48
@@ -66,7 +65,7 @@ defaultproperties
 		FireAnimRate=1.150000	
 		FireEffectParams(0)=InstantEffectParams'ArenaGaussEffectParams'
 	End Object
-	*/
+	
 		
 	//=================================================================
 	// RECOIL
@@ -106,13 +105,14 @@ defaultproperties
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
+		SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(1)=(bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
+		InitialWeaponMode=0
 		CockAnimRate=1.700000
 		ReloadAnimRate=2.000000
-		SightOffset=(X=4.000000,Y=0,Z=4.800000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.400000
 		MagAmmo=8
@@ -121,23 +121,25 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		//FireParams(1)=FireParams'ArenaGaussFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
     End Object 
 	
-	/*
+	
 	Begin Object Class=WeaponParams Name=ArenaParams_Gauss
 		//Layout core
 		LayoutName="Gauss Mod"
+		LayoutTags="gauss"
 		Weight=5
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
+		SightOffset=(X=4.000000,Y=-0.100000,Z=9.100000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Accelerated Shot",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
+		InitialWeaponMode=0
 		CockAnimRate=1.700000
 		ReloadAnimRate=2.000000
-		SightOffset=(X=4.000000,Y=-0.100000,Z=9.100000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.400000
 		MagAmmo=8
@@ -147,8 +149,45 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		FireParams(1)=FireParams'ArenaGaussFireParams'
     End Object 
-	*/
+	
 	
     Layouts(0)=WeaponParams'ArenaParams'
-    //Layouts(1)=WeaponParams'ArenaParams_Gauss'
+    Layouts(1)=WeaponParams'ArenaParams_Gauss'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=Deer_Wood
+		Index=0
+		CamoName="Wood"
+		Weight=30
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Deer_Redwood
+		Index=1
+		CamoName="Redwood"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinK-Shiny",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Deer_Orange
+		Index=2
+		CamoName="Tiger"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.DeermasterOrange-Main-Shine",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Deer_Gold
+		Index=3
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinGold-Shine",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'Deer_Wood'
+	Camos(1)=WeaponCamo'Deer_Redwood'
+	Camos(2)=WeaponCamo'Deer_Orange'
+	Camos(3)=WeaponCamo'Deer_Gold'
 }

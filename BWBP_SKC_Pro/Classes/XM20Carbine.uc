@@ -106,7 +106,7 @@ simulated event RenderTexture( ScriptedTexture Tex )
 simulated function UpdateScreen()
 {
 
-	if (Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
+	if (ZoomType == ZT_Irons && Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
 		return;
 
 	if (Instigator.IsLocallyControlled())
@@ -168,7 +168,7 @@ function int ManageHeatInteraction(Pawn P, int HeatPerShot)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
-	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	if (ZoomType != ZT_Irons && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
 	{
 		ScreenStart();
 		if (!Instigator.IsLocallyControlled())
@@ -410,9 +410,9 @@ simulated event RenderOverlays( Canvas C )
 		NumpadXPosOnes=230; //Ones X coord
 	}
 
-    if (!bScopeView)
+    if (!bScopeView || ZoomType == ZT_Irons)
 	{
-		if (Instigator.IsLocallyControlled())
+		if (Instigator.IsLocallyControlled() && ZoomType != ZT_Irons)
 		{
 			WeaponScreen.Revision++;
 		}
@@ -427,7 +427,7 @@ simulated event RenderOverlays( Canvas C )
     ScaleFactor = C.ClipY / 1200;
 
 
-    if (ScopeViewTex != None)
+    if (ScopeViewTex != None && ZoomType != ZT_Irons)
     {
         C.SetDrawColor(255,255,255,255);
 
@@ -440,7 +440,7 @@ simulated event RenderOverlays( Canvas C )
         C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
         C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 	}
-			DrawLaserSight(C);
+	DrawLaserSight(C);
 }
 
 simulated function float RateSelf()

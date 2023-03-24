@@ -148,49 +148,56 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=G51_Green
 		Index=1
 		CamoName="Green"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainGreen",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainGreen",Index=1,AIndex=0,PIndex=1)
 		Weight=20
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=G51_GreenHex
 		Index=2
-		CamoName="Green Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainHexG",Index=1,AIndex=0,PIndex=1)
+		CamoName="Hex Green"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainHexG",Index=1,AIndex=0,PIndex=1)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=G51_BlueHex
 		Index=3
-		CamoName="Blue Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainHexB",Index=1,AIndex=0,PIndex=1)
+		CamoName="Hex Blue"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainHexB",Index=1,AIndex=0,PIndex=1)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=G51_Desert
 		Index=4
 		CamoName="Desert"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainDesert",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainDesert",Index=1,AIndex=0,PIndex=1)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=G51_UTC
 		Index=5
 		CamoName="UTC"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.UTCG51Tex",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.UTCG51Tex",Index=1,AIndex=0,PIndex=1)
 		Weight=5
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=G51_Inferno
 		Index=6
 		CamoName="Inferno"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainRed",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainRed",Index=1,AIndex=0,PIndex=1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=G51_Gold
 		Index=7
 		CamoName="Gold"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainGold",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G51Camos.G51-MainGold",Index=1,AIndex=0,PIndex=1)
 		Weight=1
 	End Object
 	

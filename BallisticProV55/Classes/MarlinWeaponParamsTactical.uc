@@ -36,7 +36,7 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 	
-	/*
+	
 	Begin Object Class=InstantEffectParams Name=TacticalGaussEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
@@ -65,7 +65,7 @@ defaultproperties
 		FireAnimRate=1.150000	
 		FireEffectParams(0)=InstantEffectParams'TacticalGaussEffectParams'
 	End Object
-	*/
+	
 		
 	//=================================================================
 	// RECOIL
@@ -107,13 +107,13 @@ defaultproperties
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
+		SightOffset=(X=4.000000,Y=0,Z=4.800000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
 		CockAnimRate=1.250000
-		SightOffset=(X=4.000000,Y=0,Z=4.800000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.35
         SightMoveSpeedFactor=0.60
@@ -125,21 +125,21 @@ defaultproperties
 		//FireParams(1)=FireParams'TacticalGaussFireParams'
     End Object 
 	
-	/*
 	Begin Object Class=WeaponParams Name=TacticalParams_Gauss
 		//Layout core
 		LayoutName="Gauss Mod"
+		LayoutTags="gauss"
 		Weight=5
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
-		//Function
-		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
-		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(2)=(bUnavailable=True)
-		InitialWeaponMode=1
-		CockAnimRate=1.25
 		SightOffset=(X=4.000000,Y=-0.100000,Z=10.500000)
 		SightPivot=(Pitch=128)
+		//Function
+		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Accelerated Shot",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(bUnavailable=True)
+		InitialWeaponMode=0
+		CockAnimRate=1.25
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.35
         SightMoveSpeedFactor=0.60
@@ -150,44 +150,44 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		FireParams(1)=FireParams'TacticalGaussFireParams'
     End Object 
-	*/
+	
+    Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Gauss'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=Deer_Wood
 		Index=0
 		CamoName="Wood"
 		Weight=30
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Deer_Redwood
 		Index=1
 		CamoName="Redwood"
 		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinK-Shiny",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinK-Shiny",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Deer_Orange
 		Index=2
 		CamoName="Tiger"
 		Weight=3
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.DeermasterOrange-Main-Shine",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.DeermasterOrange-Main-Shine",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Deer_Gold
 		Index=3
 		CamoName="Gold"
 		Weight=1
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinGold-Shine",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinGold-Shine",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
-    Layouts(0)=WeaponParams'TacticalParams'
-    //Layouts(1)=WeaponParams'TacticalParams_Gauss'
-	Camos(1)=WeaponCamo'Deer_Wood'
-	Camos(2)=WeaponCamo'Deer_Redwood'
-	Camos(3)=WeaponCamo'Deer_Orange'
-	Camos(4)=WeaponCamo'Deer_Gold'
+	Camos(0)=WeaponCamo'Deer_Wood'
+	Camos(1)=WeaponCamo'Deer_Redwood'
+	Camos(2)=WeaponCamo'Deer_Orange'
+	Camos(3)=WeaponCamo'Deer_Gold'
 }
