@@ -89,7 +89,7 @@ defaultproperties
 
     Damage=1
     HeadMult=2.0f
-    LimbMult=0.67f
+    LimbMult=0.75f
 
     UseRunningDamage=False
     RunningSpeedThreshold=300

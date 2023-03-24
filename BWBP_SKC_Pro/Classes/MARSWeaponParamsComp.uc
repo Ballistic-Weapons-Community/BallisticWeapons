@@ -165,7 +165,7 @@ defaultproperties
 		ReloadAnimRate=1.10000
 		PlayerJumpFactor=1
 		InventorySize=6
-		SightMoveSpeedFactor=0.8
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.50000		
 		DisplaceDurationMult=1
 		MagAmmo=30
@@ -189,7 +189,7 @@ defaultproperties
 		CockAnimRate=1.10000
 		ReloadAnimRate=1.10000
 		InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.8
 		SightingTime=0.350000		
 		DisplaceDurationMult=1
 		MagAmmo=30

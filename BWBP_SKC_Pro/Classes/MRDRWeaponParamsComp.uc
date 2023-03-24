@@ -15,7 +15,7 @@ defaultproperties
         RangeAtten=0.5
 		Damage=15
         HeadMult=2.25f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
@@ -89,7 +89,7 @@ defaultproperties
 		MagAmmo=24
         InventorySize=3
         SightingTime=0.200000
-        
+        SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

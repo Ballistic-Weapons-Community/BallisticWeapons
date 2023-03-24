@@ -14,13 +14,13 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=26
         HeadMult=2.0f
-        LimbMult=0.67f
-		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+        LimbMult=0.75f
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
 		PenetrateForce=180
 		bPenetrate=True
-		MuzzleFlashClass=Class'AK47FlashEmitter'
+		MuzzleFlashClass=Class'AK490FlashEmitter'
 		FlashScaleFactor=0.900000
 		Recoil=192.000000
 		Chaos=0.04000
@@ -45,12 +45,12 @@ defaultproperties
 		Damage=45
 		HeadMult=1.5f
 		LimbMult=0.75f
-		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
 		PenetrateForce=180
 		bPenetrate=True
-		MuzzleFlashClass=Class'AK47FlashEmitter'
+		MuzzleFlashClass=Class'AK490FlashEmitter'
 		FlashScaleFactor=0.800000
 		Recoil=100.000000
 		Chaos=0.04000
@@ -69,7 +69,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.AK47Knife'
+		ProjectileClass=Class'BWBP_SKC_Pro.AK490Knife'
 		SpawnOffset=(X=12.000000,Y=10.000000,Z=-15.000000)
 		Speed=8500.000000
 		MaxSpeed=8500.000000
@@ -127,7 +127,7 @@ defaultproperties
 		
 		PlayerJumpFactor=1.000000
 		InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.8
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=25

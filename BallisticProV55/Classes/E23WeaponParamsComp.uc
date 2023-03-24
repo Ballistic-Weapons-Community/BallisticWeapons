@@ -98,7 +98,7 @@ defaultproperties
         WaterTraceRange=5000
         Damage=11.000000
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTVPRLaser'
         DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'
         DamageTypeArm=Class'BallisticProV55.DTVPRLaser'
@@ -156,7 +156,7 @@ defaultproperties
 		SightingTime=0.550000	 
         MagAmmo=100        
         InventorySize=6
-        SightMoveSpeedFactor=0.8
+        SightMoveSpeedFactor=0.6
         ZoomType=ZT_Logarithmic
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		SightPivot=(Pitch=256)

@@ -14,7 +14,7 @@ defaultproperties
         Damage=150
         DamageRadius=1024.000000
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
         BotRefireRate=0.4
         WarnTargetPct=0.75	
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)

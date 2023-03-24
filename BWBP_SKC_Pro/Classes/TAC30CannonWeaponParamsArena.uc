@@ -82,6 +82,7 @@ defaultproperties
 		MagAmmo=10
 		SightOffset=(X=0.000000,Y=10.000000,Z=16.000000)
 		SightPivot=(Pitch=1024,Roll=2048)
+		SightMoveSpeedFactor=0.8
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

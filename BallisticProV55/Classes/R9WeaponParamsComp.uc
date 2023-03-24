@@ -12,7 +12,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=45
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -39,7 +39,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=40
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -66,7 +66,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=35
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -138,10 +138,9 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightPivot=(Pitch=50)
 		SightOffset=(X=25.000000,Y=0.010000,Z=8.000000)
-		
 		PlayerJumpFactor=1
 		InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=15

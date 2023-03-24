@@ -12,7 +12,7 @@ defaultproperties
         TraceRange=(Min=3072,Max=3072)
         Damage=15.000000
         HeadMult=2.25f
-        LimbMult=0.67f
+        LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
@@ -36,7 +36,7 @@ defaultproperties
         TraceRange=(Min=3072,Max=3072)
         Damage=15.000000
         HeadMult=2.25f
-        LimbMult=0.67f
+        LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
@@ -144,6 +144,7 @@ defaultproperties
         MagAmmo=25        
 		InventorySize=3
 		SightingTime=0.2
+		SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=512)
 		SightOffset=(X=-10.000000,Z=12.00000)
 		ViewOffset=(X=14.000000,Y=8.000000,Z=-10.000000)

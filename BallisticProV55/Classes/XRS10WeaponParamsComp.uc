@@ -15,7 +15,7 @@ defaultproperties
 		bPenetrate=True
      	Damage=15.000000
         HeadMult=2.25f
-        LimbMult=0.67f
+        LimbMult=0.75f
      	DamageType=Class'BallisticProV55.DTXRS10SMG'
      	DamageTypeHead=Class'BallisticProV55.DTXRS10SMGHead'
     	DamageTypeArm=Class'BallisticProV55.DTXRS10SMG'

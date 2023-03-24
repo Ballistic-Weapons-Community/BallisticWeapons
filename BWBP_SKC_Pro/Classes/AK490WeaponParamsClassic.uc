@@ -15,9 +15,9 @@ defaultproperties
 		Damage=35
 		HeadMult=2.85
 		LimbMult=0.5
-		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
 		PenetrationEnergy=70.000000
 		PenetrateForce=180
 		bPenetrate=True
@@ -25,7 +25,7 @@ defaultproperties
 		WallPDamageFactor=0.600000
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.ak47.ak47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=256.000000
 		Chaos=-1.0
 		Inaccuracy=(X=12,Y=12)
@@ -48,9 +48,9 @@ defaultproperties
 		Damage=35
 		HeadMult=2.85
 		LimbMult=0.5
-		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
 		PenetrationEnergy=70.000000
 		PenetrateForce=180
 		bPenetrate=True
@@ -58,7 +58,7 @@ defaultproperties
 		WallPDamageFactor=0.600000
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.ak47.ak47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=256.000000
 		Chaos=0.05
 		Inaccuracy=(X=12,Y=12)
@@ -77,7 +77,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.AK47Knife'
+		ProjectileClass=Class'BWBP_SKC_Pro.AK490Knife'
 		SpawnOffset=(X=12.000000,Y=10.000000,Z=-15.000000)
 		Speed=8500.000000
 		MaxSpeed=8500.000000

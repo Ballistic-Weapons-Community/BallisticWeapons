@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=65
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTMarlinRifle'
 		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
@@ -43,7 +43,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=80
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTMarlinRifle'
 		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
@@ -117,6 +117,7 @@ defaultproperties
 		SightingTime=0.400000
 		MagAmmo=8
         InventorySize=5
+		SightMoveSpeedFactor=0.8
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

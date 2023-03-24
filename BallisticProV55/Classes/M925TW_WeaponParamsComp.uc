@@ -11,7 +11,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=50
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTM925MGDeploy'
 		DamageTypeHead=Class'BallisticProV55.DTM925MGDeployHead'
 		DamageTypeArm=Class'BallisticProV55.DTM925MGDeploy'
@@ -70,7 +70,7 @@ defaultproperties
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
-		SightMoveSpeedFactor=0.8
+		SightMoveSpeedFactor=0.7
 		SightingTime=0.700000
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

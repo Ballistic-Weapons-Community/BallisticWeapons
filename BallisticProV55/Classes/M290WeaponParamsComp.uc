@@ -111,6 +111,7 @@ defaultproperties
 		ViewOffset=(X=20.000000,Y=10.000000,Z=-13.000000)
 		MagAmmo=6
 		SightingTime=0.4
+		SightMoveSpeedFactor=0.8
         InventorySize=8
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

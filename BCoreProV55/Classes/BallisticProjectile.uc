@@ -1113,8 +1113,11 @@ defaultproperties
     bRandomStartRotation=True
     bTearOnExplode=True
     NetTrappedDelay=0.150000
-    HeadMult=1.40000
-    LimbMult=0.700000
+
+	// backup values in case of failure to assign
+    HeadMult=2.0f
+    LimbMult=0.75f
+	
     ShakeRadius=-1.000000
     bWarnEnemy=True
     MotionBlurRadius=-1.000000

@@ -142,7 +142,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		Damage=50.0
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DT_RSNovaStab'
 		DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
 		DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'
@@ -210,6 +210,7 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightingTime=0.300000
         DisplaceDurationMult=0.75
+		SightMoveSpeedFactor=0.8
 		MagAmmo=24
         InventorySize=5
 		WeaponModes(0)=(ModeName="Bolt",ModeID="WM_FullAuto")

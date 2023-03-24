@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=80
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTBulldogHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'
@@ -104,7 +104,7 @@ defaultproperties
 		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
 		PlayerSpeedFactor=0.95
 		InventorySize=5
-		SightMoveSpeedFactor=0.8
+		SightMoveSpeedFactor=0.7
 		SightingTime=0.500000		
 		DisplaceDurationMult=1.25
 		MagAmmo=8

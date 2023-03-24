@@ -10,11 +10,12 @@
 class BOGPGrenade extends BallisticGrenade;
 
 var bool bArmed;
+var float ArmingDelay;
 
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(0.30, False);
+	SetTimer(ArmingDelay, False);
 }
 
 simulated function Timer()
@@ -26,7 +27,10 @@ simulated function Timer()
 	}
 	
 	if (!bHasImpacted)
+	{
 		DetonateOn=DT_Impact;
+		PlayerImpactType=PIT_Detonate;
+	}
 		
 	else Explode(Location, vect(0,0,1));
 }
@@ -86,9 +90,10 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+	ArmingDelay=0.3
     WeaponClass=Class'BallisticProV55.BOGPPistol'
      DetonateOn=DT_ImpactTimed
-	 PlayerImpactType=PIT_Detonate
+	 PlayerImpactType=PIT_Bounce
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=1.000000

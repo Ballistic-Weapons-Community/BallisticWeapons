@@ -1,7 +1,7 @@
 //=============================================================================
 // ChaffTrail.
 //
-// Trail for MJ51 Rifle Chaff grenades
+// Trail for G51 Rifle Chaff grenades
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

@@ -13,7 +13,7 @@ defaultproperties
         RangeAtten=0.5
         Damage=15
         HeadMult=2.25f
-        LimbMult=0.67f
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
@@ -100,6 +100,7 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
         DisplaceDurationMult=0.5
         SightingTime=0.200000
+		SightMoveSpeedFactor=0.9
         MagAmmo=18
         InventorySize=3
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

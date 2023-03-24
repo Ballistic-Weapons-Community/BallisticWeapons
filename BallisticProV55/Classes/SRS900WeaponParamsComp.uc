@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=34
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
@@ -42,7 +42,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=34
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
@@ -123,7 +123,7 @@ defaultproperties
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 		MagAmmo=20
 		SightingTime=0.50000
-		SightMoveSpeedFactor=0.8
+		SightMoveSpeedFactor=0.6
         InventorySize=6
         ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -143,6 +143,7 @@ defaultproperties
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 		MagAmmo=20
         InventorySize=6
+		SightMoveSpeedFactor=0.8
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams_600'
 		AimParams(0)=AimParams'ArenaAimParams_600'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_600'

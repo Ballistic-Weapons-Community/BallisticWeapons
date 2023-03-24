@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=40
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -41,7 +41,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=35
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -70,7 +70,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=20
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -132,7 +132,7 @@ defaultproperties
 		
 		PlayerJumpFactor=1
 		InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=15

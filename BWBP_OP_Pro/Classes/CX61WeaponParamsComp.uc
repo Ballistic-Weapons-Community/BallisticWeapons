@@ -102,7 +102,7 @@ defaultproperties
 		
 		PlayerJumpFactor=1
 		InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.8
 		SightingTime=0.300000
 		DisplaceDurationMult=1
 		MagAmmo=32

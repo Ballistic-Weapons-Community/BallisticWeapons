@@ -12,7 +12,7 @@ defaultproperties
         PenetrationEnergy=16
         Damage=45.000000
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
         DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
@@ -47,7 +47,7 @@ defaultproperties
         PenetrationEnergy=16.000000
         Damage=90.000000
         HeadMult=1.5f
-        LimbMult=0.67f
+        LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
@@ -106,6 +106,7 @@ defaultproperties
 		ReloadAnimRate=1.750000
         DisplaceDurationMult=0.5
         SightingTime=0.200000
+		SightMoveSpeedFactor=0.9
         MagAmmo=6
         InventorySize=3
 		ViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)

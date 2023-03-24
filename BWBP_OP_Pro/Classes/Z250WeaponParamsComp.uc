@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=12000.000000)
 		Damage=22
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'

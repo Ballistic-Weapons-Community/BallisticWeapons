@@ -11,7 +11,7 @@ defaultproperties
         PenetrationEnergy=64
         Damage=80.000000
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'

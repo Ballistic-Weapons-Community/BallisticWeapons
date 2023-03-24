@@ -86,7 +86,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DT_TrenchFire'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchFireHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchFire'
-		MuzzleFlashClass=Class'BWBP_OP_Pro.ARFlashEmitter'
+		MuzzleFlashClass=Class'BWBP_OP_Pro.RCS715FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)
 		Recoil=1462.000000

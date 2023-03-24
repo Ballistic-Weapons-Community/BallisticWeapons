@@ -91,7 +91,7 @@ defaultproperties
 		AimSpread=(Min=384,Max=1536)
         ADSMultiplier=0.5
 		AimAdjustTime=0.600000
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=0.5
         ChaosSpeedThreshold=300
 	End Object

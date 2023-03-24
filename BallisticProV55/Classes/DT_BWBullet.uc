@@ -11,7 +11,9 @@ class DT_BWBullet extends BallisticDamageType;
 static function PlayHitSound (Pawn Victim)
 {
 	local class<BallisticBloodSet> BS;
+
 	BS = class'BWBloodSetHunter'.static.GetBloodSetFor(Victim);
+
 	if (BS != None)
 	{
 		if (default.bHeaddie && BS.default.BulletHitHeadSound != None)
@@ -47,4 +49,5 @@ defaultproperties
      PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
      VehicleDamageScaling=0.350000
      VehicleMomentumScaling=0.150000
+	 TransientSoundVolume=2
 }

@@ -13,7 +13,7 @@ defaultproperties
         RangeAtten=0.67
 		Damage=26
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
@@ -83,7 +83,7 @@ defaultproperties
 		WristAdjust=(Yaw=-3500,Pitch=-000)
 		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 		DisplaceDurationMult=0.5
-		
+		SightMoveSpeedFactor=0.9
 		SightingTime=0.20000
 		MagAmmo=7
         InventorySize=2

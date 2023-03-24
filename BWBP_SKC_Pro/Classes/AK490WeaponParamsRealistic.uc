@@ -14,9 +14,9 @@ defaultproperties
 		Damage=50
 		HeadMult=2.2
 		LimbMult=0.65
-		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
 		PenetrationEnergy=22.000000
 		PenetrateForce=70
 		bPenetrate=True
@@ -24,7 +24,7 @@ defaultproperties
 		WallPDamageFactor=0.600000
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.ak47.ak47-Fire',Pitch=1.100000,Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Pitch=1.100000,Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=465.000000 //700 hip
 		Chaos=0.1
 		Inaccuracy=(X=12,Y=12)
@@ -43,7 +43,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.AK47Knife'
+		ProjectileClass=Class'BWBP_SKC_Pro.AK490Knife'
 		SpawnOffset=(X=12.000000,Y=10.000000,Z=-15.000000)
 		Speed=8500.000000
 		MaxSpeed=8500.000000

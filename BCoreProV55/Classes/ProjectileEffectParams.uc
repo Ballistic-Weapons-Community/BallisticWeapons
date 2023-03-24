@@ -66,7 +66,7 @@ function FireModeStats GetStats()
 defaultproperties
 {
     HeadMult=2.0f
-    LimbMult=0.67f
+    LimbMult=0.75f
     MaxSpeed=0.000000
     DamageRadius=0.000000
     RadiusFallOffType=RFO_Quadratic

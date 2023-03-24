@@ -39,7 +39,7 @@ defaultproperties
 		Speed=3000
 		Damage=40.0
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		SpreadMode=FSM_Rectangle
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifeThrow',Radius=32.000000,bAtten=True)
 		Recoil=0.0

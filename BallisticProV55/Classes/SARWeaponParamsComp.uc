@@ -139,6 +139,7 @@ defaultproperties
 		MagAmmo=32
         InventorySize=5
         SightingTime=0.250000
+		SightMoveSpeedFactor=0.8
         RecoilParams(0)=RecoilParams'ArenaAutoRecoilParams'
         RecoilParams(1)=RecoilParams'ArenaBurstRecoilParams'
         AimParams(0)=AimParams'AutoAimParams'

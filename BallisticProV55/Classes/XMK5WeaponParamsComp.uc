@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=16
         HeadMult=2.25f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
 		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
@@ -95,7 +95,7 @@ defaultproperties
 		SightOffset=(X=1.000000,Z=17.750000)
 		ViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
 		DisplaceDurationMult=0.75
-		
+		SightMoveSpeedFactor=0.9
 		MagAmmo=32
 		SightingTime=0.250000
         InventorySize=4

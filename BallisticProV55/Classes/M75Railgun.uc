@@ -168,7 +168,7 @@ function ServerAdjustThermal(bool bNewValue)
 		for (i=0;i<ArrayCount(UpdatedPawns);i++)
 		{
 			if (UpdatedPawns[i] != None)
-				UpdatedPawns[i].bAlwaysRelevant = false;
+				UpdatedPawns[i].bAlwaysRelevant = UpdatedPawns[i].default.bAlwaysRelevant;
 		}
 	}
 }

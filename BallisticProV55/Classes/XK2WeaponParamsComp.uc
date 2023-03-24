@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=16
         HeadMult=2.25f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
@@ -38,7 +38,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=14
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'
@@ -109,7 +109,7 @@ defaultproperties
 		SightOffset=(X=5.000000,Z=12.700000)
 		ViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
 		DisplaceDurationMult=0.75
-		
+		SightMoveSpeedFactor=0.9
 		MagAmmo=30
 		SightingTime=0.250000
         InventorySize=4

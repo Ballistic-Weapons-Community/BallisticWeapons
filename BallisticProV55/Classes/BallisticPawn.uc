@@ -2981,6 +2981,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 defaultproperties
 {
+	bAlwaysRelevant=True
     bCanDodge=True
     bCanDoubleJump=True
      MoverLeaveGrace=1.000000

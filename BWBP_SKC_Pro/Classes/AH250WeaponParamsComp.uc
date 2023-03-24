@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=60
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
@@ -43,7 +43,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=60
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTAH208Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH208PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH208Pistol'
@@ -127,7 +127,7 @@ defaultproperties
 		
 		//Function
 		InventorySize=4
-		SightMoveSpeedFactor=0.8
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.40000
 		DisplaceDurationMult=0.75
 		MagAmmo=7
@@ -153,7 +153,7 @@ defaultproperties
 		//Function
 		PlayerJumpFactor=1.000000
 		InventorySize=3
-		SightMoveSpeedFactor=1
+		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		DisplaceDurationMult=0.5
 		MagAmmo=7
@@ -179,7 +179,7 @@ defaultproperties
 		
 		PlayerJumpFactor=1.000000
 		InventorySize=3
-		SightMoveSpeedFactor=1
+		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		DisplaceDurationMult=0.5
 		MagAmmo=7

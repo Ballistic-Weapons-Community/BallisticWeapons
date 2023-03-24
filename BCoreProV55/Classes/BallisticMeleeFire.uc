@@ -452,30 +452,32 @@ simulated event ModeHoldFire()
 
 defaultproperties
 {
-     SwipePoints(0)=(Weight=3,offset=(Yaw=2560))
-     SwipePoints(1)=(Weight=5,offset=(Yaw=1280))
-     SwipePoints(2)=(Weight=6)
-     SwipePoints(3)=(Weight=4,offset=(Yaw=-1280))
-     SwipePoints(4)=(Weight=2,offset=(Yaw=-2560))
-     WallHitPoint=2
-	 NumSwipePoints=5
-	 WallPenetrationForce=0
+	SwipePoints(0)=(Weight=3,offset=(Yaw=2560))
+	SwipePoints(1)=(Weight=5,offset=(Yaw=1280))
+	SwipePoints(2)=(Weight=6)
+	SwipePoints(3)=(Weight=4,offset=(Yaw=-1280))
+	SwipePoints(4)=(Weight=2,offset=(Yaw=-2560))
+	WallHitPoint=2
+	NumSwipePoints=5
+	WallPenetrationForce=0
 
-     MaxBonusHoldTime=1.500000
-     bCanBackstab=True
-     TraceRange=(Min=145.000000,Max=145.000000)
+	MaxBonusHoldTime=1.500000
+	bCanBackstab=True
+	TraceRange=(Min=145.000000,Max=145.000000)
 
-     Damage=50.000000
-     HeadMult=1f 
-     LimbMult=1f
-     RangeAtten=1.0f
-     ChargeDamageBonusFactor=1f
-     FlankDamageMult=1.15f
-     BackDamageMult=1.3f
+	Damage=50.000000
 
-     PDamageFactor=0.500000
-     RunningSpeedThresh=1000.000000
-     bNoPositionalDamage=True
-     TweenTime=0.100000
-     FireRate=0.800000
+	// backup values in case of failure to assign
+	HeadMult=1f 
+	LimbMult=1f
+	RangeAtten=1.0f
+	ChargeDamageBonusFactor=1f
+	FlankDamageMult=1.15f
+	BackDamageMult=1.3f
+
+	PDamageFactor=0.500000
+	RunningSpeedThresh=1000.000000
+	bNoPositionalDamage=True
+	TweenTime=0.100000
+	FireRate=0.800000
 }

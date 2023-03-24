@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.67
 		Damage=18
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTM353MG'
 		DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
 		DamageTypeArm=Class'BallisticProV55.DTM353MG'
@@ -97,7 +97,7 @@ defaultproperties
 		InitialWeaponMode=3
 		PlayerSpeedFactor=0.950000
         DisplaceDurationMult=1.25
-        SightMoveSpeedFactor=0.8
+        SightMoveSpeedFactor=0.7
 		MagAmmo=100
 		SightingTime=0.45
         InventorySize=6

@@ -13,7 +13,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=34
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
@@ -41,7 +41,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=45
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
@@ -69,7 +69,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=25
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';

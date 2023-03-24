@@ -12,7 +12,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=34
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTSRS600Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTSRS600RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSRS600Rifle'

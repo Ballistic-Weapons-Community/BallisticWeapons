@@ -12,7 +12,7 @@ defaultproperties
 		RangeAtten=0.75
 		Damage=23
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'
@@ -103,6 +103,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		//Function
 		SightingTime=0.300000
+		SightMoveSpeedFactor=0.8
 		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
@@ -124,6 +125,7 @@ defaultproperties
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
 		SightingTime=0.300000
+		SightMoveSpeedFactor=0.6
 		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6

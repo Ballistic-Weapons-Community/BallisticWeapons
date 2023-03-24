@@ -813,6 +813,8 @@ defaultproperties
      WaterRangeAtten=0.000000
      PDamageFactor=0.700000
      WallPDamageFactor=0.95
-     HeadMult=1.5
-     LimbMult=0.7
+
+	// backup values in case of failure to assign
+	HeadMult=2.0f
+	LimbMult=0.75f
 }

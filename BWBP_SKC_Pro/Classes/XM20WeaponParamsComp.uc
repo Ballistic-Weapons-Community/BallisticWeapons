@@ -55,7 +55,7 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
             Damage=16
             HeadMult=2.0f
-            LimbMult=0.67f
+            LimbMult=0.75f
             Chaos=0
             Recoil=32
             FlashScaleFactor=0.100000
@@ -64,7 +64,7 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParamsOvercharge
             Damage=15
             HeadMult=2.0f
-            LimbMult=0.67f
+            LimbMult=0.75f
             Chaos=0
             Recoil=32
             FlashScaleFactor=0.200000
@@ -94,7 +94,7 @@ defaultproperties
 		
 		PlayerJumpFactor=1
 		InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.40000
 		DisplaceDurationMult=1
 		MagAmmo=50

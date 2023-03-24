@@ -95,7 +95,7 @@ function EndStream()
 {
 	bStreamOn = False;
 	AmbientSound = None;
-	Instigator.bAlwaysRelevant=False;
+	Instigator.bAlwaysRelevant= Instigator.default.bAlwaysRelevant;
 	bAlwaysRelevant=False;
 	LockedTarget = None;
 	

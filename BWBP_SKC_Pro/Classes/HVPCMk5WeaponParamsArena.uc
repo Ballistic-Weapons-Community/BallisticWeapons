@@ -10,17 +10,16 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk5Projectile'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-		Speed=50.000000
+		Speed=5000.000000
 		MaxSpeed=8000.000000
 		AccelSpeed=90000.000000
-		Damage=75
-		DamageRadius=265.000000
+		Damage=85
+		DamageRadius=512.000000
 		MomentumTransfer=65000.000000
 		MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Fire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=700.000000
 		Chaos=0.400000
-		Inaccuracy=(X=450,Y=450)
 		WarnTargetPct=0.200000	
 	End Object
 
@@ -43,7 +42,7 @@ defaultproperties
 		Speed=200.000000
 		MaxSpeed=2000000.000000
 		AccelSpeed=150000.000000
-		Damage=30
+		Damage=45
 		DamageRadius=122.000000
 		MomentumTransfer=12500.000000
 		FlashScaleFactor=0.400000
@@ -96,12 +95,12 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.7
 		SightingTime=0.350000		
 		DisplaceDurationMult=1
 		MagAmmo=200
-		PlayerSpeedFactor=0.850000
-		PlayerJumpFactor=0.850000
+		PlayerSpeedFactor=0.90000
+		PlayerJumpFactor=0.90000
 		SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		SightPivot=(Pitch=1024)
 		ViewOffset=(X=10.000000,Y=11.00000,Z=-13.00000)

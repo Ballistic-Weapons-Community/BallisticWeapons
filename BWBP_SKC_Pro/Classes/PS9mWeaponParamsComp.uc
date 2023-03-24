@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=3000.000000)
 		Damage=10
         HeadMult=2.0f
-        LimbMult=0.67f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'
@@ -85,7 +85,7 @@ defaultproperties
 		MagAmmo=15
 		InventorySize=1
         SightingTime=0.200000
-        
+        SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

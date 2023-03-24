@@ -36,7 +36,7 @@ defaultproperties
 	 bHeaddie=True
      DamageIdent="Assault"
      WeaponClass=Class'BWBP_SKC_Pro.MG36Carbine'
-     DeathString="%o had %vh brain shredded by %k's MJ51."
+     DeathString="%k spotted %o. with night vision and put a bullet through his skull."
      FemaleSuicide="%o took the easy way out."
      MaleSuicide="%o took the easy way out."
      bFastInstantHit=True
