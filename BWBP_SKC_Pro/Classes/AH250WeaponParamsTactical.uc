@@ -201,11 +201,21 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_208'
 	End Object
 	
-	//Camos
+    Layouts(0)=WeaponParams'TacticalParams_Laser'
+    Layouts(1)=WeaponParams'TacticalParams_RDS'
+    Layouts(2)=WeaponParams'TacticalParams_Scope'
+	
+	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=Eagle_Silver
 		Index=0
-		CamoName="Black" //Needs to be updated in assets to silver
+		CamoName="Silver"
 		Weight=30
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=5)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Eagle_Black
@@ -213,11 +223,11 @@ defaultproperties
 		CamoName="Black"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-BlackShine",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-MiscBlack",Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-Scope",Index=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-FrontBlack",Index=4)
-		WeaponMaterialSwaps(5)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen",Index=5)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-BlackShine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Eagle_TwoTone
@@ -225,11 +235,11 @@ defaultproperties
 		CamoName="Two-Tone"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-TwoToneShine",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-MiscBlack",Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-Scope",Index=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-FrontBlack",Index=4)
-		WeaponMaterialSwaps(5)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen",Index=5)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-TwoToneShine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Eagle_Chromed
@@ -237,11 +247,11 @@ defaultproperties
 		CamoName="Chromed"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SilverShine",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-MiscBlack",Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-ScopeRed",Index=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-FrontSilver",Index=4)
-		WeaponMaterialSwaps(5)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen",Index=5)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SilverShine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Eagle_Gold
@@ -249,16 +259,12 @@ defaultproperties
 		CamoName="Gold"
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SilverShine",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-MiscBlack",Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-ScopeRed",Index=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-FrontSilver",Index=4)
-		WeaponMaterialSwaps(5)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen",Index=5)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-MainGold-Shine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-MagGold-Shine",Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed',Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-FrontGold-Shine",Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5)
 	End Object
-	
-    Layouts(0)=WeaponParams'TacticalParams_Laser'
-    Layouts(1)=WeaponParams'TacticalParams_RDS'
-    Layouts(2)=WeaponParams'TacticalParams_Scope'
 
 	Camos(0)=WeaponCamo'Eagle_Silver' //Silver
 	Camos(1)=WeaponCamo'Eagle_Black' //Black

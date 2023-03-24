@@ -122,7 +122,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
 		Weight=30
-		LayoutName="Production Model"
+		LayoutName="Production"
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
@@ -168,8 +168,9 @@ defaultproperties
 		WeaponMaterialSwaps(6)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader',Index=6,AIndex=-1,PIndex=-1)
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
 		ReloadAnimRate=1.000000
-		SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
+		SightOffset=(X=10.000000,Y=11.9500000,Z=20.000000)
 		ZoomType=ZT_Irons
+		ScopeViewTex=None
 		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
@@ -202,28 +203,32 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20_HexGreen
 		Index=1
 		CamoName="Green Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGreen",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGreen",Index=2,AIndex=1,PIndex=3)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=XM20_HexBlue
 		Index=2
 		CamoName="Blue Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoBlue",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoBlue",Index=2,AIndex=1,PIndex=3)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=XM20_HexOrange
 		Index=3
 		CamoName="Yellow Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoWhite",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoWhite",Index=2,AIndex=1,PIndex=3)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=XM20_Gold
 		Index=4
 		CamoName="Gold"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGold",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGold",Index=2,AIndex=1,PIndex=3)
 		Weight=1
 	End Object
 	
@@ -236,7 +241,8 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20P_Yellow
 		Index=6
 		CamoName="Test Bed"
-		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainBurnedShine',Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainBurnedShine',Index=2,AIndex=1,PIndex=3)
 		Weight=5
 	End Object
 	
@@ -247,5 +253,4 @@ defaultproperties
 	Camos(4)=WeaponCamo'XM20_Gold'
 	Camos(5)=WeaponCamo'XM20P_Blue'
 	Camos(6)=WeaponCamo'XM20P_Yellow'
-
 }

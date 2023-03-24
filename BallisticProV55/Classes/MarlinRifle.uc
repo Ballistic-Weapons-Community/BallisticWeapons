@@ -9,17 +9,38 @@
 //=============================================================================
 class MarlinRifle extends BallisticWeapon;
 
-// Azarael 23/03/2023
-// 
-// removed all gauss handling
-// I'm sorry but it's killing the weapon
-// reimplement it correctly (so that the basic variant remains separate) before reenabling
-
-/*
+//Layouts
+var()   bool		bHasGauss;				// Fancy version
 var	 	float 		GaussLevel, MaxGaussLevel;
 var() 	Sound		GaussOnSound;
 
 var		Actor		GaussGlow1, GaussGlow2;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasGauss=False;
+	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
+	{
+		bHasGauss=True;
+		bShowChargingBar=True;
+	}
+	
+}
+
+// Gauss Stuff ==================================
+simulated function Tick (float DT)
+{
+	super.Tick(DT);
+
+	if (bHasGauss)
+	{
+		AddGauss(DT);
+	}
+}
 
 simulated function AddGauss(optional float Amount)
 {
@@ -38,18 +59,10 @@ simulated function AddGauss(optional float Amount)
 	}
 }
 
-simulated function Tick (float DT)
-{
-	super.Tick(DT);
-
-	if (GameStyleIndex == 0)
-		AddGauss(DT);
-}
-
 //override to prevent weapon switching for arena
 exec simulated function SwitchWeaponMode (optional byte ModeNum)
 {
-	if (GameStyleIndex == 0)
+	if (bHasGauss)
 		return;
 		
 	super.SwitchWeaponMode(ModeNum);
@@ -59,21 +72,24 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
 	
-	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow1 == None || GaussGlow1.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash(GaussGlow1, class'MarlinChargeEffect', DrawScale, self, 'Gauss2');
-		
-	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow2 == None || GaussGlow2.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash(GaussGlow2, class'MarlinChargeEffect', DrawScale, self, 'Gauss3');
-		
-	if (GaussGlow1 != None)
+	if (bHasGauss)
 	{
-		AttachToBone(GaussGlow1, 'Gauss2');
-		GaussGlow1.bHidden=true;
-	}
-	if (GaussGlow2 != None)
-	{
-		AttachToBone(GaussGlow2, 'Gauss3');
-		GaussGlow2.bHidden=true;
+		if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow1 == None || GaussGlow1.bDeleteMe))
+			class'BUtil'.static.InitMuzzleFlash(GaussGlow1, class'MarlinChargeEffect', DrawScale, self, 'Gauss2');
+			
+		if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow2 == None || GaussGlow2.bDeleteMe))
+			class'BUtil'.static.InitMuzzleFlash(GaussGlow2, class'MarlinChargeEffect', DrawScale, self, 'Gauss3');
+			
+		if (GaussGlow1 != None)
+		{
+			AttachToBone(GaussGlow1, 'Gauss2');
+			GaussGlow1.bHidden=true;
+		}
+		if (GaussGlow2 != None)
+		{
+			AttachToBone(GaussGlow2, 'Gauss3');
+			GaussGlow2.bHidden=true;
+		}
 	}
 }
 
@@ -104,7 +120,7 @@ simulated function float ChargeBar()
 	return FMax(0, GaussLevel/MaxGaussLevel);
 }
 
-*/
+
 
 //================================================================
 
@@ -325,8 +341,8 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-	//GaussOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
-	//MaxGaussLevel=3
+	GaussOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+	MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Marlin.BigIcon_Marlin'
 	
@@ -354,7 +370,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	bShowChargingBar=True
+	bShowChargingBar=False
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(A=138),StartSize1=61,StartSize2=10)
 	

@@ -194,17 +194,21 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
 		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=6
-		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
-		SightPivot=(Pitch=-64,Yaw=10)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
-        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -218,13 +222,17 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicRDSParams
-		Weight=30
+		//Layout core
+		Weight=10
+		LayoutName="Red Dot Sight"
+		//Attachments
+		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=6
-		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -252,28 +260,32 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=M781_Digital
 		Index=1
 		CamoName="Digital"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1,AIndex=1,PIndex=2)
 		Weight=15
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Desert
 		Index=2
 		CamoName="Desert"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1,AIndex=1,PIndex=2)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Patriot
 		Index=3
 		CamoName="Patriot"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1,AIndex=1,PIndex=2)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_RedTiger
 		Index=4
 		CamoName="Red Tiger"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1,AIndex=1,PIndex=2)
 		Weight=1
 	End Object
 	

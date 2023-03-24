@@ -118,6 +118,8 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
 	
+    Layouts(0)=WeaponParams'TacticalParams'
+	
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=AK_Black
 		Index=0
@@ -172,8 +174,6 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1,AIndex=1,PIndex=1)
 		Weight=1
 	End Object
-	
-    Layouts(0)=WeaponParams'TacticalParams'
 	
 	Camos(0)=WeaponCamo'AK_Black' //Black
 	Camos(1)=WeaponCamo'AK_Desert'

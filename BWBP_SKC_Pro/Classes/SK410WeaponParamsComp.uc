@@ -150,6 +150,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=SK_Black
 		Index=0
 		CamoName="Black" //This needs to be core, with urban in camos
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-Main",Index=1,Index=1,AIndex=2,PIndex=0)
 		Weight=30
 	End Object
@@ -163,6 +164,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=SK_Wood
 		Index=2
 		CamoName="Wood"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoJungle",Index=1,Index=1,AIndex=2,PIndex=0)
 		Weight=10
 	End Object
@@ -170,6 +172,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=SK_Digital
 		Index=3
 		CamoName="Digital"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoDigital",Index=1,Index=1,AIndex=2,PIndex=0)
 		Weight=10
 	End Object
@@ -177,6 +180,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=SK_Blood
 		Index=4
 		CamoName="Bloodied"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoBlood",Index=1,AIndex=2,PIndex=0)
 		Weight=3
 	End Object
@@ -184,6 +188,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=SK_RedTiger
 		Index=5
 		CamoName="Red Tiger"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoTiger",Index=1,AIndex=2,PIndex=0)
 		Weight=3
 	End Object
@@ -191,6 +196,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=SK_Corrupt
 		Index=6
 		CamoName="Corrupt"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-Charged",Index=1,AIndex=2,PIndex=0)
 		Weight=1
 	End Object

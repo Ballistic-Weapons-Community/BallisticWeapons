@@ -160,7 +160,14 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		//Function
 		ViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
 		ReloadAnimRate=1.5
 		
@@ -181,7 +188,37 @@ defaultproperties
 		AltFireParams(2)=FireParams'ArenaSecondaryFireParams'
 		AltFireParams(3)=FireParams'ArenaSecondaryBoltFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_RDS
+		//Layout core
+		Weight=10
+		LayoutName="Red Dot Sight"
+		//Attachments
+		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+		//Function
+		ViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
+		ReloadAnimRate=1.5
+		
+		PlayerJumpFactor=1.000000
+		InventorySize=5
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.30000
+		DisplaceDurationMult=1
+		MagAmmo=8
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		FireParams(2)=FireParams'ArenaPrimaryFireParams'
+		FireParams(3)=FireParams'ArenaPrimarySilFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(2)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(3)=FireParams'ArenaSecondaryBoltFireParams'
+    End Object 
+	
+    Layouts(0)=WeaponParams'ArenaParams_RDS'
+    Layouts(1)=WeaponParams'ArenaParams'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M781_Gray
@@ -193,28 +230,32 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=M781_Digital
 		Index=1
 		CamoName="Digital"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1,AIndex=1,PIndex=2)
 		Weight=15
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Desert
 		Index=2
 		CamoName="Desert"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1,AIndex=1,PIndex=2)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Patriot
 		Index=3
 		CamoName="Patriot"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1,AIndex=1,PIndex=2)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_RedTiger
 		Index=4
 		CamoName="Red Tiger"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1,AIndex=1,PIndex=2)
 		Weight=1
 	End Object
 	

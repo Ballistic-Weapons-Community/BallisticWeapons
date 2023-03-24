@@ -160,6 +160,8 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	
+    Layouts(0)=WeaponParams'ClassicParams'
+	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AK_Black
 		Index=0
@@ -170,46 +172,50 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=AK_Desert
 		Index=1
 		CamoName="Desert"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1,AIndex=1,PIndex=1)
 		Weight=20
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Flecktarn
 		Index=2
 		CamoName="Jungle"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1,AIndex=1,PIndex=1)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Blood
 		Index=3
 		CamoName="Bloodied"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Blue
 		Index=4
 		CamoName="Blue"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_Red
 		Index=5
 		CamoName="Red"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=AK_AU
 		Index=6
 		CamoName="Gold"
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1,AIndex=1,PIndex=1)
 		Weight=1
 	End Object
-	
-    Layouts(0)=WeaponParams'ClassicParams' //Standard
 	
 	Camos(0)=WeaponCamo'AK_Black' //Black
 	Camos(1)=WeaponCamo'AK_Desert'

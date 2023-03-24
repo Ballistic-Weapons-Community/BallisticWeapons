@@ -168,8 +168,13 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=TacticalParams
+	Begin Object Class=WeaponParams Name=TacticalParams_RDS
+		//Layout core
+		Weight=10
+		LayoutName="Red Dot Sight"
+		//Attachments
 		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+		//Function
 		ViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
 		ReloadAnimRate=1.2
 		InventorySize=6
@@ -188,7 +193,37 @@ defaultproperties
 		AltFireParams(2)=FireParams'TacticalSecondaryFireParams'
 		AltFireParams(3)=FireParams'TacticalSecondaryBoltFireParams'
     End Object 
-    Layouts(0)=WeaponParams'TacticalParams'
+	
+	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		//Function
+		ViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
+		ReloadAnimRate=1.2
+		InventorySize=6
+		SightMoveSpeedFactor=0.75
+		SightingTime=0.3
+		DisplaceDurationMult=1
+		MagAmmo=8
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryFireParams'
+		FireParams(2)=FireParams'TacticalPrimaryFireParams'
+		FireParams(3)=FireParams'TacticalPrimarySilFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(2)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(3)=FireParams'TacticalSecondaryBoltFireParams'
+    End Object 
+	
+    Layouts(0)=WeaponParams'TacticalParams_RDS'
+    Layouts(1)=WeaponParams'TacticalParams'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M781_Gray
