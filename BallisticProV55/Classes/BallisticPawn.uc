@@ -478,7 +478,7 @@ event Landed(vector HitNormal)
     MultiJumpRemaining = MaxMultiJump;
 
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
-        PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, FootstepRadius + (Velocity.Z * 0.65));
+        PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
 
 //===========================================================================
@@ -523,24 +523,36 @@ simulated function FootStepping(int Side)
 	local actor A;
 	local material FloorMat;
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
-	local float SoundScale;
+	local float SoundVolumeScale, SoundRadiusScale;
 	
 	// crouch - no sound
 	if (bIsCrouched)
 		return;
+		
 	// walk/ADS - quieter
 	if (bIsWalking)
-		SoundScale = 0.5f;
+	{
+		SoundVolumeScale = 0.75f;
+		SoundRadiusScale = 0.35f;
+	}
+
 	// sprint - much louder
 	else if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
-		SoundScale = 2;
-	// run - scale by move speed
+	{
+		SoundVolumeScale = 2f;
+		SoundRadiusScale = 1f;
+	}
+
+	// run - default
 	else
-		SoundScale = GroundSpeed / class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+	{
+		SoundVolumeScale = 1f;
+		SoundRadiusScale = 1f;
+	}
 
 	// footsteps are quieter if we are local pawn - hear others better
-	if (IsLocallyControlled())
-		SoundScale *= 0.35f;
+	//if (IsLocallyControlled())
+	//	SoundScale *= 0.5f;
 
 	// handle water
     for ( i=0; i<Touching.Length; i++ )
@@ -549,9 +561,9 @@ simulated function FootStepping(int Side)
 			|| (FluidSurfaceInfo(Touching[i]) != None) )
 		{
 			if ( FRand() < 0.5 )
-				PlaySound(sound'PlayerSounds.FootStepWater2', SLOT_Interact, FootstepVolume * SoundScale);
+				PlaySound(sound'PlayerSounds.FootStepWater2', SLOT_Interact, FootstepVolume * 2 * SoundVolumeScale,, FootstepRadius * SoundRadiusScale);
 			else
-				PlaySound(sound'PlayerSounds.FootStepWater1', SLOT_Interact, FootstepVolume * SoundScale );
+				PlaySound(sound'PlayerSounds.FootStepWater1', SLOT_Interact, FootstepVolume * 2 * SoundVolumeScale,, FootstepRadius * SoundRadiusScale);
 				
 			if ( !Level.bDropDetail && (Level.DetailMode != DM_Low) && (Level.NetMode != NM_DedicatedServer)
 				&& !Touching[i].TraceThisActor(HitLocation, HitNormal,Location - CollisionHeight*vect(0,0,1.1), Location) )
@@ -575,7 +587,7 @@ simulated function FootStepping(int Side)
 		if (FloorMat !=None)
 			SurfaceNum = FloorMat.SurfaceType;
 	}
-	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundScale,, FootstepRadius * SoundScale );
+	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundVolumeScale,, FootstepRadius * SoundRadiusScale );
 }
 
 simulated function AssignInitialPose()
@@ -3014,8 +3026,8 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.300000
-     FootstepRadius=384.000000
+     FootstepVolume=0.150000
+     FootstepRadius=1024.000000
 
 	 BaseEyeHeight=36
      CollisionRadius=19.000000
@@ -3023,7 +3035,7 @@ defaultproperties
 	 CrouchHeight=32
 
      GruntVolume=0.2
-     GruntRadius=300.000000
+     GruntRadius=384.000000
      DeResTime=4.000000
      RagDeathUpKick=0.000000
      bCanWalkOffLedges=True

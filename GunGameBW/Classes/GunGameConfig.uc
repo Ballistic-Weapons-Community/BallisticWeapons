@@ -43,7 +43,7 @@ defaultproperties
 	WeaponList(21)=Class'BWBP_OP_Pro.R9A1RangerRifle'
 	WeaponList(22)=Class'BallisticProV55.MarlinRifle'
 	WeaponList(23)=Class'BallisticProV55.R78Rifle'
-	WeaponList(24)=Class'BWBP_OP_Pro.BX85Crossbow'
+	WeaponList(24)=Class'BWBP_OP_Pro.KF8XCrossbow'
 
 	// rifle
 	WeaponList(25)=Class'BWBP_SKC_Pro.MARSAssaultRifle'
@@ -53,7 +53,7 @@ defaultproperties
 	WeaponList(29)=Class'BallisticProV55.M50AssaultRifle'
 	WeaponList(30)=Class'BallisticProV55.M46AssaultRifle'
 	WeaponList(31)=Class'BWBP_SKC_Pro.LK05Carbine'
-	WeaponList(32)=Class'BWBP_SKC_Pro.AK47AssaultRifle'
+	WeaponList(32)=Class'BWBP_SKC_Pro.AK490BattleRifle'
 	WeaponList(33)=Class'BWBP_OP_Pro.CX61AssaultRifle'
 	WeaponList(34)=Class'BWBP_SKC_Pro.CYLOUAW'
 	WeaponList(35)=Class'BallisticProV55.SARAssaultRifle'
@@ -73,7 +73,7 @@ defaultproperties
 	// shotgun
 	WeaponList(46)=Class'BallisticProV55.M290Shotgun'
 	WeaponList(47)=Class'BWBP_SKC_Pro.SKASShotgun'
-	WeaponList(48)=Class'BWBP_OP_Pro.ARShotgun'
+	WeaponList(48)=Class'BWBP_OP_Pro.RCS715Shotgun'
 	WeaponList(49)=Class'BWBP_SKC_Pro.MK781Shotgun'
 	WeaponList(50)=Class'BallisticProV55.M763Shotgun'
 	WeaponList(51)=Class'BallisticProV55.MRS138Shotgun'

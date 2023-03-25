@@ -150,7 +150,7 @@ defaultproperties
 		SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
 		ViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
 		MagAmmo=32
-        InventorySize=5
+        InventorySize=6
         SightingTime=0.35 // adjust the factor with stock mode
         SightMoveSpeedFactor=0.6
         RecoilParams(0)=RecoilParams'TacticalStockOutRecoilParams'

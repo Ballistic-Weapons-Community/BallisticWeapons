@@ -79,6 +79,8 @@ function ModifyPlayer( pawn Other )
                             net_inventory_group = 255;
                         }
 
+						// bug. if you change your loadout, you lose the index.
+						// this needs to be rewritten for Freon...
 						if ( i < CLRI.Layout.length && CLRI.Layout[i] != "")
 							LayoutIndex = int(CLRI.Layout[i]);
 						if ( i < CLRI.Camo.length && CLRI.Camo[i] != "")
