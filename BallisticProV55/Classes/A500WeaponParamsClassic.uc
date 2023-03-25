@@ -164,7 +164,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		Weight=30
-		InventorySize=10
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
@@ -184,7 +184,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
-		InventorySize=10
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
@@ -204,7 +204,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
-		InventorySize=10
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
@@ -227,7 +227,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Lighter.LightGunSkin',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Lighter.LightGlassShader',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.DarkStar.DarkStarDiamond_SD',Index=4)
-		InventorySize=10
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
 		SightOffset=(X=4.000000,Y=0.100000,Z=33.500000)

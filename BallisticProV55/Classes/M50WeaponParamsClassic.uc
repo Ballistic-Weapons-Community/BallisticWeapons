@@ -185,7 +185,7 @@ defaultproperties
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
 		
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(Y=-1.000000,Z=14.800000)
@@ -219,7 +219,7 @@ defaultproperties
 		SightOffset=(Y=-1.000000,Z=14.800000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -248,7 +248,7 @@ defaultproperties
 		SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -278,7 +278,7 @@ defaultproperties
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -308,7 +308,7 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(Y=-1.000000,Z=14.800000)
@@ -340,7 +340,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(Y=-1.000000,Z=14.800000)

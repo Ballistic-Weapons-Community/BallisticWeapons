@@ -120,7 +120,7 @@ defaultproperties
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
         SightingTime=0.300000
 		MagAmmo=24
@@ -153,7 +153,7 @@ defaultproperties
         SightingTime=0.210000
         MagAmmo=24
 		bMagPlusOne=True
-		InventorySize=12
+		InventorySize=7
 		WeaponPrice=2300
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)

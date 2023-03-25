@@ -114,7 +114,7 @@ defaultproperties
 		
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
-		InventorySize=8
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45
@@ -138,7 +138,7 @@ defaultproperties
 		
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
-		InventorySize=8
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45
@@ -169,7 +169,7 @@ defaultproperties
 		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
-		InventorySize=8
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45

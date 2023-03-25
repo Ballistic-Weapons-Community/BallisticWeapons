@@ -125,7 +125,7 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
@@ -146,7 +146,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=0)
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
@@ -167,7 +167,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=0)
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
@@ -188,7 +188,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.MGP",Index=0)
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)

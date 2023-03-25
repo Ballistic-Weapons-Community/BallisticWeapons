@@ -119,7 +119,7 @@ defaultproperties
 		Weight=30
 		LayoutName="Black"
 		
-		InventorySize=8
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=50
@@ -148,7 +148,7 @@ defaultproperties
 		Weight=3
 		LayoutName="Silver"
 		
-		InventorySize=8
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=50
@@ -172,7 +172,7 @@ defaultproperties
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-Gold-Shine",Index=1)
-		InventorySize=35
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=100

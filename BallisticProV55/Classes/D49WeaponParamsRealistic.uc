@@ -129,7 +129,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=1800
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15

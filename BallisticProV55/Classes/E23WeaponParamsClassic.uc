@@ -167,7 +167,7 @@ defaultproperties
 		LayoutName="Military Issue"
 		Weight=30
 		
-		InventorySize=11
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=45
 		SightOffset=(X=-8.000000,Z=9.300000)
@@ -188,7 +188,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.ViperCamos.UTCViperShine",Index=1)
 		
-		InventorySize=11
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=45
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)

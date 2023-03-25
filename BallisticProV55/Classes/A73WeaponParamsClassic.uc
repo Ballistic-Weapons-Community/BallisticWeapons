@@ -230,7 +230,7 @@ defaultproperties
 		Weight=30
 		//Attachments
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		SightOffset=(X=-12.000000,Z=14.300000)
@@ -254,7 +254,7 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73SkinB',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73.A73BladeShader',Index=4)
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=25
 		SightOffset=(X=-12.000000,Z=14.300000)
@@ -278,7 +278,7 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.A73RedLayout.A73BSkinB0',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BBladeShader',Index=4)
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		SightOffset=(X=-12.000000,Z=14.300000)

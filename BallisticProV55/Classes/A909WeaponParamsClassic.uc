@@ -109,7 +109,7 @@ defaultproperties
 		LayoutName="Slice"
 		Weight=30
 		PlayerSpeedFactor=1.200000
-		InventorySize=8
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -124,7 +124,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=1)
 		PlayerSpeedFactor=1.200000
-		InventorySize=8
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

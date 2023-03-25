@@ -115,7 +115,7 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=12
@@ -143,7 +143,7 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=12
@@ -166,7 +166,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.Dragon_Main-SD",Index=1)
 
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=12

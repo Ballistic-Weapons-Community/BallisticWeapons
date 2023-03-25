@@ -108,7 +108,7 @@ defaultproperties
 		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=29
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
         ZoomType=ZT_Logarithmic
@@ -131,7 +131,7 @@ defaultproperties
 		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=29
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
         ZoomType=ZT_Logarithmic
@@ -154,7 +154,7 @@ defaultproperties
 		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=29
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
         ZoomType=ZT_Logarithmic

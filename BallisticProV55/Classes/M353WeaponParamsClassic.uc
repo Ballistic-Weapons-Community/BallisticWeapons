@@ -85,7 +85,7 @@ defaultproperties
 		//Attachments
 		//Function
 		PlayerSpeedFactor=0.900000
-		InventorySize=25
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=150

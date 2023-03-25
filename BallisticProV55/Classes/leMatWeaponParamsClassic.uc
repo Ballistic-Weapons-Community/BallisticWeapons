@@ -125,7 +125,7 @@ defaultproperties
 		Weight=90
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=9
 		SightOffset=(X=-30.000000,Y=-0.550000,Z=12.300000)
@@ -147,7 +147,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Main2-Shine",Index=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Ammo-Shine",Index=3)
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=9
 		SightOffset=(X=-30.000000,Y=-0.550000,Z=12.300000)
