@@ -155,7 +155,7 @@ defaultproperties
 		LayoutName="Gray"
 		Weight=60
 		
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
@@ -176,7 +176,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KSmallShiney",Index=2)
 		Weight=20
 		
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
@@ -197,7 +197,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_SmallShine",Index=2)
 		Weight=10
 		
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
@@ -218,7 +218,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781Small",Index=2)
 		Weight=10
 		
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10

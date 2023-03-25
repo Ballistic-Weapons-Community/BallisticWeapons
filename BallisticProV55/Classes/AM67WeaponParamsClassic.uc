@@ -110,7 +110,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=7
 		PlayerSpeedFactor=1.100000
-		InventorySize=8
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14
@@ -132,7 +132,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
 		Weight=2
 		PlayerSpeedFactor=1.100000
-		InventorySize=8
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14
@@ -156,7 +156,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=3
 		PlayerSpeedFactor=1.100000
-		InventorySize=8
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14
@@ -180,7 +180,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=1
 		PlayerSpeedFactor=1.100000
-		InventorySize=8
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14

@@ -198,7 +198,7 @@ defaultproperties
 		Weight=8
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=300
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
@@ -223,7 +223,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A48Skin_SD",Index=1)
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=300
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
@@ -247,7 +247,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A512_ExpShine",Index=1)
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=300
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)

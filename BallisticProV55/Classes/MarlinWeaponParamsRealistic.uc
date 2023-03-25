@@ -165,7 +165,7 @@ defaultproperties
 		WeaponModes(1)=(bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.22
 		MagAmmo=7
@@ -193,7 +193,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Accelerated Shot",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.22
 		MagAmmo=7

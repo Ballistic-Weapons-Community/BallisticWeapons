@@ -704,7 +704,7 @@ defaultproperties
 	GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
 	GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.TacBuster.BigIcon_AA12'
+	BigIconMaterial=Texture'BWBP_OP_Tex.AssaultShotgun.BigIcon_AssaultShotgun'
 	BigIconCoords=(Y1=40)
 	
 	bWT_Shotgun=True
@@ -755,7 +755,7 @@ defaultproperties
 	PickupClass=Class'BWBP_OP_Pro.RCS715Pickup'
 	PlayerViewOffset=(Y=16.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.RCS715Attachment'
-	IconMaterial=Texture'BWBP_OP_Tex.TacBuster.Icon_AA12'
+	IconMaterial=Texture'BWBP_OP_Tex.AssaultShotgun.SmallIcon_AssaultShotgun'
 	IconCoords=(X2=125,Y2=32)
 	ItemName="RCS-715 Tactical Buster"
 	LightType=LT_Pulse

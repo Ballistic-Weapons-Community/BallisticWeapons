@@ -84,7 +84,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.700000
 		MagAmmo=50
-        InventorySize=12
+        InventorySize=7
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

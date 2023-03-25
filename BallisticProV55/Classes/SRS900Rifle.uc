@@ -679,8 +679,10 @@ defaultproperties
 	ScopeViewOverlayTexArena=FinalBlend'BW_Core_WeaponTex.SRS900-SUI.SRSScopeViewOverlay_FB'
 	ScopeViewOverlayTexClassic=FinalBlend'BW_Core_WeaponTex.SRS900.SRSScopeViewOverlay_FB'
 
-	Skins(0)=Texture'BW_Core_WeaponTex.SRS900.SRS900Main'
-	Skins(1)=Shader'BW_Core_WeaponTex.SRS900.SRS900ScopeShine'
-	Skins(2)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
-	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.SRS900.SRS900Main'
+	Skins(2)=Shader'BW_Core_WeaponTex.SRS900.SRS900ScopeShine'
+	Skins(3)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
+	Skins(4)=FinalBlend'BW_Core_WeaponTex.SRS.SRS-HSight-FB'
+	Skins(5)=Shader'BW_Core_WeaponTex.SRS.SRS-HSight-S'
 }

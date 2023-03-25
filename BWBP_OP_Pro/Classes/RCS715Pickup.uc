@@ -20,8 +20,8 @@ class RCS715Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.TacBusterShiny');
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.BusterGrenadeShiny');
+	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.AssaultShotgun.TacBusterShiny');
+	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.AssaultShotgun.BusterGrenadeShiny');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.Reflex');
 	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
@@ -35,8 +35,8 @@ static function StaticPrecache(LevelInfo L)
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.TacBusterShiny');
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.BusterGrenadeShiny');
+	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.AssaultShotgun.TacBusterShiny');
+	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.AssaultShotgun.BusterGrenadeShiny');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.Reflex');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-Misc');
@@ -51,20 +51,20 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763Flash1');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TacticalBuster.AA12Pickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TacticalBuster.AA12AmmoPickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TacticalBuster.AA12GrenadePickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12AmmoPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12GrenadePickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.TacticalBuster.AA12Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12Pickup'
      PickupDrawScale=1.300000
      InventoryType=Class'BWBP_OP_Pro.RCS715Shotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the RCS-715 Tactical Buster."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.TacticalBuster.AA12Pickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12Pickup'
      Physics=PHYS_None
      DrawScale=2.000000
      CollisionHeight=3.000000

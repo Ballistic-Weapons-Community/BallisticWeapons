@@ -133,7 +133,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=8

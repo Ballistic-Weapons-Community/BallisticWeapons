@@ -99,7 +99,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=20
@@ -110,6 +110,8 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

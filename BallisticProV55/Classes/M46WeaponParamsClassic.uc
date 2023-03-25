@@ -120,7 +120,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=25
-		InventorySize=12
+		InventorySize=7
 		SightOffset=(Y=-1.000000,Z=12.500000)
 		SightPivot=(Pitch=600,Roll=-1024)
         ZoomType=ZT_Logarithmic
@@ -146,7 +146,7 @@ defaultproperties
         SightingTime=0.350000
 		bNeedCock=True
         MagAmmo=25
-        InventorySize=12
+        InventorySize=7
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -175,7 +175,7 @@ defaultproperties
         SightingTime=0.350000
 		bNeedCock=True
         MagAmmo=25
-        InventorySize=12
+        InventorySize=7
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -201,7 +201,7 @@ defaultproperties
         SightingTime=0.350000
 		bNeedCock=True
         MagAmmo=25
-        InventorySize=12
+        InventorySize=7
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)

@@ -106,7 +106,7 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=10
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -122,7 +122,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKS43Camos.Katana-KGlow",Index=1)
 		PlayerSpeedFactor=1.100000
-		InventorySize=10
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

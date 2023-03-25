@@ -158,7 +158,7 @@ defaultproperties
 		SightOffset=(X=4.000000,Z=12.600000)
 		SightPivot=(Pitch=384)
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
@@ -184,7 +184,7 @@ defaultproperties
 		SightOffset=(X=4.000000,Y=-0.100000,Z=10.500000)
 		SightPivot=(Pitch=128)
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8

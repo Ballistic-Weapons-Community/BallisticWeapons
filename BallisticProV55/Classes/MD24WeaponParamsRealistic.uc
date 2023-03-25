@@ -128,7 +128,7 @@ defaultproperties
 		//Attachments
 		//Function
 		PlayerSpeedFactor=1.100000
-		InventorySize=4
+		InventorySize=3
 		WeaponPrice=650
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.12

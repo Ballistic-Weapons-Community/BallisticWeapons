@@ -104,7 +104,7 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=0.850000
-		InventorySize=25
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
 		ZoomType=ZT_Logarithmic
@@ -126,7 +126,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAAScope",Index=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAARocket",Index=4)
 		PlayerSpeedFactor=0.850000
-		InventorySize=25
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
 		ZoomType=ZT_Logarithmic

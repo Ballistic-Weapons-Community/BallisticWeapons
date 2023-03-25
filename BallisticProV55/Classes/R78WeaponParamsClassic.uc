@@ -96,7 +96,7 @@ defaultproperties
 		LayoutName="Black Scoped"
 		Weight=30
 		
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=7
@@ -118,7 +118,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R87_Main-SD",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R87_Scope-SD",Index=2)
-		InventorySize=15
+		InventorySize=7
 		
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -139,7 +139,7 @@ defaultproperties
 		Weight=10
 		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.RifleSkinDesertCamo",Index=0)
-		InventorySize=15
+		InventorySize=7
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -160,7 +160,7 @@ defaultproperties
 		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_UTiger-SD",Index=0)
 		
-		InventorySize=15
+		InventorySize=7
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -181,7 +181,7 @@ defaultproperties
 		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_JTiger-SD",Index=0)
 		
-		InventorySize=15
+		InventorySize=7
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -203,7 +203,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_RTiger-SD",Index=0)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Amplifier',BoneName="Muzzle",Scale=0.2)
 		
-		InventorySize=15
+		InventorySize=7
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -225,7 +225,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_Winter-SD",Index=0)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="Muzzle",Scale=0.2)
 		
-		InventorySize=15
+		InventorySize=7
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -245,7 +245,7 @@ defaultproperties
 		Weight=1
 		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.GoldRifle-Shine",Index=0)
-		InventorySize=15
+		InventorySize=7
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -266,7 +266,7 @@ defaultproperties
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.GoldRifle-Shine",Index=1)
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)

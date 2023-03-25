@@ -174,7 +174,7 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=18
@@ -200,7 +200,7 @@ defaultproperties
 		Weight=10
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=18
@@ -226,7 +226,7 @@ defaultproperties
 		Weight=10
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=18
@@ -252,7 +252,7 @@ defaultproperties
 		Weight=10
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=18
@@ -278,7 +278,7 @@ defaultproperties
 		Weight=8
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=18
@@ -304,7 +304,7 @@ defaultproperties
 		Weight=5
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=18
@@ -330,7 +330,7 @@ defaultproperties
 		Weight=1
 		
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=18

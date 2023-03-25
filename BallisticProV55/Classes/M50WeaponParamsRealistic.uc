@@ -124,7 +124,7 @@ defaultproperties
 		//Layout core
 		LayoutName="Standard"
 		Weight=30
-		InventorySize=4
+		InventorySize=7
 		WeaponPrice=2000
 		bMagPlusOne=True
 		SightMoveSpeedFactor=0.500000

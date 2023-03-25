@@ -100,7 +100,7 @@ defaultproperties
 		LayoutName="OD Green"
 		Weight=95
 		
-		InventorySize=29
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -117,7 +117,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MRLCamos.MRL-MagRed",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.MRL.MRL_Rocket',Index=3)
 		
-		InventorySize=29
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

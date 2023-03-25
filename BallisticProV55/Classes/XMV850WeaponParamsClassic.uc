@@ -108,7 +108,7 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.700000
-		InventorySize=25
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=900
 		SightOffset=(X=8.000000,Z=28.000000)
