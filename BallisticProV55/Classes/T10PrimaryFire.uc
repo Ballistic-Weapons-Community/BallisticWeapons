@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class T10PrimaryFire extends BallisticProGrenadeFire;
+class T10PrimaryFire extends BallisticHandGrenadeFire;
 
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
@@ -15,7 +15,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
 
-	if (BallisticProPineapple(Proj) != None)
+	if (BallisticHandGrenadeProjectile(Proj) != None)
 	{
 		if (AIController(Instigator.Controller) == None)
 		{
@@ -33,13 +33,13 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 			Speed = Proj.Speed;
 
 		if (BallisticHandGrenade(Weapon).ClipReleaseTime == 666)
-			DetonateDelay = BallisticProPineapple(Proj).DetonateDelay - 3;
+			DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay - 3;
 		else if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
-			DetonateDelay = BallisticProPineapple(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
+			DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
 		else
-			DetonateDelay = BallisticProPineapple(Proj).DetonateDelay;
+			DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay;
             
-		BallisticProPineapple(Proj).SetThrowPowerAndDelay(Speed, DetonateDelay);
+		BallisticHandGrenadeProjectile(Proj).SetThrowPowerAndDelay(Speed, DetonateDelay);
 	}
 }
 

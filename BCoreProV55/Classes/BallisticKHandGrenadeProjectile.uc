@@ -1,10 +1,11 @@
 //=============================================================================
-// BallisticPineapple.
+// BallisticKHandGrenadeProjectile
+// DEPRECATED. Doesn't work properly in netplay due to reliance on Karma.
 //
 // A Karma based grenade that uses ballistic hand grenade functions like fuse
 // timing and velocity variation.
 //
-// A fancy Karama based grenaded that is thrown high and bounces easily off
+// A fancy Karma based grenaded that is thrown high and bounces easily off
 // walls. Detonates 4 seconds after clip is released. The pineapple is not too
 // effective a weapon in the hands of the amatuer, but once the user masters
 // the timing, it will become a very deadly toy. Throw directly at opponents to
@@ -13,11 +14,11 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticPineapple extends BallisticKGrenade;
+class BallisticKHandGrenadeProjectile extends BallisticKGrenade;
 
-var   float NewDetonateDelay;	// Detonate delay sent to clients
-var   float NewSpeed;			// Speed sent to clients
-var() int	FireModeNum;		// Da fire mode that spawned dis grenade
+var   float 	NewDetonateDelay;	// Detonate delay sent to clients
+var   float 	NewSpeed;			// Speed sent to clients
+var() int		FireModeNum;		// Da fire mode that spawned dis grenade
 
 var   vector	NetLocation, NetKickForce, LastLocation, LastKickForce;
 var   rotator	NetRotation, LastRotation;
@@ -89,7 +90,7 @@ simulated event PostBeginPlay ()
 	SetRotation(R);
 }
 
-function InitPineapple(float PSpeed, float PDelay)
+function SetThrowPowerAndDelay(float PSpeed, float PDelay)
 {
 	PDelay = FMax(PDelay, 0.1);
 

@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class T10Thrown extends BallisticProPineapple;
+class T10Thrown extends BallisticHandGrenadeProjectile;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 

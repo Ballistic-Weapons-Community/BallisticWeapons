@@ -27,7 +27,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK490FlashEmitter'
 		FlashScaleFactor=0.9
-		Recoil=360.000000
+		Recoil=240.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -72,10 +72,10 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
 		ADSViewBindFactor=0.85
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.05000),(InVal=0.200000,OutVal=0.060000),(InVal=0.300000,OutVal=0.10000),(InVal=0.400000,OutVal=0.150000),(InVal=0.5,OutVal=0.170000),(InVal=0.65000000,OutVal=0.100000),(InVal=0.75.000000,OutVal=0.05000),(InVal=1.000000,OutVal=0.080000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.05000),(InVal=0.200000,OutVal=0.060000),(InVal=0.300000,OutVal=0.10000),(InVal=0.400000,OutVal=0.150000),(InVal=0.5,OutVal=0.170000),(InVal=0.65000000,OutVal=0.100000),(InVal=0.75000000,OutVal=0.05000),(InVal=1.000000,OutVal=0.080000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.300000,OutVal=0.35000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.10000
-		YRandFactor=0.10000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		DeclineDelay=0.15
 		DeclineTime=0.65	
 		MaxRecoil=6144

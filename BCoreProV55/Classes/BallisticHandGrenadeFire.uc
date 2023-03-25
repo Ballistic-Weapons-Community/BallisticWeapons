@@ -1,12 +1,12 @@
 //=============================================================================
-// BallisticGrenadeFire.
+// BallisticHandGrenadeFire.
 //
 // Fire class for hand grenades with prefire, clips, pins, handexploding, etc...
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticGrenadeFire extends BallisticProjectileFire;
+class BallisticHandGrenadeFire extends BallisticProjectileFire;
 
 var() name				NoClipPreFireAnim;
 
@@ -64,7 +64,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
 
-	if (BallisticPineapple(Proj) != None)
+	if (BallisticHandGrenadeProjectile(Proj) != None)
 	{
 		if (AIController(Instigator.Controller) == None)
 		{
@@ -81,20 +81,21 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 		else
 			Speed = Proj.Speed;
 		if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
+			DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
 		else
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay;
-		BallisticPineapple(Proj).InitPineapple(Speed, DetonateDelay);
+			DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay;
+			
+		BallisticHandGrenadeProjectile(Proj).SetThrowPowerAndDelay(Speed, DetonateDelay);
 	}
 }
 
 defaultproperties
 {
-     bAISilent=True
-     bSplashDamage=True
-     bRecommendSplashDamage=True
-     bTossed=True
-     bFireOnRelease=True
-     FireRate=1.200000
-     BotRefireRate=0.500000
+	bAISilent=True
+	bSplashDamage=True
+	bRecommendSplashDamage=True
+	bTossed=True
+	bFireOnRelease=True
+	FireRate=1.200000
+	BotRefireRate=0.500000
 }

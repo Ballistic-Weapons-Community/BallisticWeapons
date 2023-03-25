@@ -79,9 +79,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.02),(InVal=0.7,OutVal=-0.06),(InVal=1.0,OutVal=0.0)))
 		ViewBindFactor=0.5
-		XRandFactor=0.150000
-		YRandFactor=0.150000
-		MaxRecoil=6144.000000
+		XRandFactor=0.25
+		YRandFactor=0.25
 		DeclineDelay=0.65
 		DeclineTime=1
 		HipMultiplier=1.25
@@ -91,9 +90,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_208
         XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.03),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.00),(InVal=0.7,OutVal=0.03),(InVal=1.0,OutVal=0.00)))
         ViewBindFactor=0.5
-        XRandFactor=0.100000
-        YRandFactor=0.100000
-        MaxRecoil=6144.000000
+		XRandFactor=0.1
+		YRandFactor=0.1
         DeclineDelay=0.65
         DeclineTime=1
 		HipMultiplier=1.25

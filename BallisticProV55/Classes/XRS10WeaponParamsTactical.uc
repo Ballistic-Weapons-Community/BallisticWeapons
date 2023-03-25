@@ -60,8 +60,8 @@ defaultproperties
 		ADSViewBindFactor=0.7
 		XCurve=(Points=(,(InVal=0.150000,OutVal=0.05),(InVal=0.30000,OutVal=0.07000),(InVal=0.5500000,OutVal=0.090000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.220000),(InVal=0.400000,OutVal=0.400000),(InVal=0.600000,OutVal=0.550000),(InVal=0.800000,OutVal=0.850000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05
-		YRandFactor=0.05
+		XRandFactor=0.1
+		YRandFactor=0.1
 		MaxRecoil=4096.000000
 		DeclineTime=0.5
 		DeclineDelay=0.1

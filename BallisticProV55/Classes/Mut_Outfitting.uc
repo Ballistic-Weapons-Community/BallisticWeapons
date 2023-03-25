@@ -376,7 +376,7 @@ function ChangeLoadout (Pawn P, out string Stuff[NUM_GROUPS], optional string Ol
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
 function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS], optional int Layouts[NUM_GROUPS], optional int Camos[NUM_GROUPS])
 {
-	local byte i, j, k, m, DummyFlags;
+	local byte i, j, k, m;
 	local bool bMatch;
 	local class<weapon> W;
 	
@@ -420,10 +420,7 @@ function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldS
 					Stuff[i] = GetGroup(i)[0];
 			}
 		}
-		
-		else if (Right(GetItemName(Stuff[i]), 5) == "Dummy")
-			DummyFlags = DummyFlags | (1 << i);
-		
+				
 		for (j=0;j<GetGroup(i).length;j++)
 			if (GetGroup(i)[j] ~= Stuff[i])
 				break;
@@ -441,38 +438,21 @@ function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldS
 	
 	for (i=2;i<NUM_GROUPS;i+=0)
 	{
-		if (!bool(DummyFlags & (1 << i)))
+		if (Stuff[i] != "")
 		{
-			if (Stuff[i] != "")
-			{
-				W = class<weapon>(DynamicLoadObject(Stuff[i],class'Class'));
-				if (W == None)
-					log("Could not load outfitted weapon "$Stuff[i]);
-				else
-					SpawnWeaponLayout(W, Other, Layouts[i], Camos[i]);
-			}
+			W = class<weapon>(DynamicLoadObject(Stuff[i],class'Class'));
+			if (W == None)
+				log("Could not load outfitted weapon "$Stuff[i]);
+			else
+				SpawnWeaponLayout(W, Other, Layouts[i], Camos[i]);
 		}
+
 		if (i == 0)
 			i = 4;
 		else if (i == 3)
 			break;
 		else
 			i--;
-	}
-	
-	if (DummyFlags != 0)
-	{
-		j = 0;
-		for (i=1; i < 32; i = i << 1)
-		{
-			if (bool(DummyFlags & i))
-			{
-				W = class<Weapon>(DynamicLoadObject(Stuff[j], class'Class'));
-				if (class<DummyWeapon>(W) != None)
-					class<DummyWeapon>(W).static.ApplyEffect(Other, 0, true);
-			}
-			j++;
-		}
 	}
 }
 

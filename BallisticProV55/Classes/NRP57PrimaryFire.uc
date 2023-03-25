@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class NRP57PrimaryFire extends BallisticProGrenadeFire;
+class NRP57PrimaryFire extends BallisticHandGrenadeFire;
 
 defaultproperties
 {

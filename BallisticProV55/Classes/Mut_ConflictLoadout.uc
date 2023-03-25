@@ -9,29 +9,54 @@ class Mut_ConflictLoadout extends Mut_Ballistic
 	transient
 	HideDropDown
 	CacheExempt
-	config(BallisticProV55)
-	DependsOn(Mut_Loadout);
+	DependsOn(Mut_Loadout)
+	DependsOn(WeaponList_ConflictLoadout);
 
-
-struct ConflictWeapon
-{
-	var() config string ClassName;
-	var() config bool	bRed;
-	var() config bool	bBlue;
-};
-
-var() globalconfig array<ConflictWeapon>	ConflictWeapons;	// Big list of all available weapons and the teams for which they are selectable
-var() globalconfig byte						LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
+var() array<WeaponList_ConflictLoadout.Entry>	ConflictWeapons;	// Big list of all available weapons and the teams for which they are selectable
+var() byte										LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
 
 // Assigned from game style
-var protected int 							MaxInventorySize;			
+var protected int 								MaxInventorySize;			
 	
-var	array<string> 							LoadoutOptionText;
+var	array<string> 								LoadoutOptionText;
 
-var array<Mut_Loadout.LORequirements> 		FullRequirementsList;
+var array<Mut_Loadout.LORequirements> 			FullRequirementsList;
 
+//================================================
+// PreBeginPlay
+//================================================
+function PreBeginPlay()
+{
+	local int i;
+	local class<BC_GameStyle> game_style;
+	local WeaponList_ConflictLoadout list;
 
+	Super.PreBeginPlay();
 
+	game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+
+	// FIXME - exploitable
+	MaxInventorySize = game_style.default.ConflictWeaponSlots + game_style.default.ConflictEquipmentSlots;
+
+	log("Loading Conflict Loadout weapon list from "$game_style.default.StyleName);
+
+	list = new(None, game_style.default.StyleName) class'WeaponList_ConflictLoadout';
+
+	ConflictWeapons.Length = list.ConflictWeapons.Length;
+
+	for (i = 0; i < list.ConflictWeapons.Length; ++i)
+	{
+		ConflictWeapons[i] = list.ConflictWeapons[i];
+	}
+
+	LoadoutOption = list.LoadoutOption;
+
+	for (i = 0; i < ConflictWeapons.Length; ++i)
+	{
+		log("Weapons: " $ ConflictWeapons[i].ClassName);	
+	}
+
+}
 //================================================
 // PostBeginPlay
 // Reads the evolution loadout requirements from either the 
@@ -44,15 +69,9 @@ function PostBeginPlay()
 {
 	local int i, j;
 	local GameRules G;
-	local class<BC_GameStyle> style;
 
 	Super.PostBeginPlay();
 
-	style = class'BallisticGameStyles'.static.GetReplicatedStyle();
-
-	// FIXME - exploitable
-	MaxInventorySize = style.default.ConflictWeaponSlots + style.default.ConflictEquipmentSlots;
-	
 	if (LoadoutOption == 1)
 	{
 		G = spawn(class'Rules_SpLoadout');
@@ -65,8 +84,11 @@ function PostBeginPlay()
 	for (i=0; i < ConflictWeapons.length; i++)
 	{
 		for (j=0;j<class'Mut_Loadout'.default.Items.Length;j++)
+		{
 			if (class'Mut_Loadout'.default.Items[j].ItemName ~= ConflictWeapons[i].ClassName)
 				FullRequirementsList[i] = class'Mut_Loadout'.default.Items[j].Requirements;
+		}
+
 		if (j >= class'Mut_Loadout'.default.Items.Length)
 		{
 			FullRequirementsList.length = i+1;
@@ -747,114 +769,6 @@ defaultproperties
      LoadoutOptionText(0)="Standard"
      LoadoutOptionText(1)="Evolution"
 	 LoadoutOptionText(2)="Purchasing (NOT IMPLEMENTED)"
-	 ConflictWeapons(0)=(ClassName="BallisticProV55.A42SkrithPistol",bRed=True,bBlue=True)
-	 ConflictWeapons(1)=(ClassName="BallisticProV55.A500Reptile",bRed=True,bBlue=True)
-	 ConflictWeapons(2)=(ClassName="BallisticProV55.A73SkrithRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(3)=(ClassName="BallisticProV55.A909SkrithBlades",bRed=True,bBlue=True)
-	 ConflictWeapons(4)=(ClassName="BallisticProV55.AM67Pistol",bRed=True,bBlue=True)
-	 ConflictWeapons(5)=(ClassName="BallisticProV55.BOGPPistol",bRed=True,bBlue=True)
-	 ConflictWeapons(6)=(ClassName="BallisticProV55.BX5Mine",bRed=False,bBlue=False)
-	 ConflictWeapons(7)=(ClassName="BallisticProV55.D49Revolver",bRed=True,bBlue=True)
-	 ConflictWeapons(8)=(ClassName="BallisticProV55.E23PlasmaRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(9)=(ClassName="BallisticProV55.EKS43Katana",bRed=True,bBlue=True)
-	 ConflictWeapons(10)=(ClassName="BallisticProV55.FP7Grenade",bRed=True,bBlue=True)
-	 ConflictWeapons(11)=(ClassName="BallisticProV55.FP9Explosive",bRed=True,bBlue=True)
-	 ConflictWeapons(12)=(ClassName="BallisticProV55.Fifty9MachinePistol",bRed=True,bBlue=True)
-	 ConflictWeapons(13)=(ClassName="BallisticProV55.G5Bazooka",bRed=False,bBlue=False)
-	 ConflictWeapons(14)=(ClassName="BallisticProV55.GRS9Pistol",bRed=True,bBlue=True)
-	 ConflictWeapons(15)=(ClassName="BallisticProV55.HVCMk9LightningGun",bRed=False,bBlue=False)
-	 ConflictWeapons(16)=(ClassName="BallisticProV55.M290Shotgun",bRed=False,bBlue=False)
-	 ConflictWeapons(17)=(ClassName="BallisticProV55.M353Machinegun",bRed=True,bBlue=True)
-	 ConflictWeapons(18)=(ClassName="BallisticProV55.M46AssaultRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(19)=(ClassName="BallisticProV55.M46AssaultRifleQS",bRed=True,bBlue=True)
-	 ConflictWeapons(20)=(ClassName="BallisticProV55.M50AssaultRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(21)=(ClassName="BallisticProV55.M58Grenade",bRed=True,bBlue=True)
-	 ConflictWeapons(22)=(ClassName="BallisticProV55.M75Railgun",bRed=True,bBlue=True)
-	 ConflictWeapons(23)=(ClassName="BallisticProV55.M763Shotgun",bRed=True,bBlue=True)
-	 ConflictWeapons(24)=(ClassName="BallisticProV55.M806Pistol",bRed=False,bBlue=False)
-	 ConflictWeapons(25)=(ClassName="BallisticProV55.M925Machinegun",bRed=True,bBlue=True)
-	 ConflictWeapons(26)=(ClassName="BallisticProV55.MACWeapon",bRed=False,bBlue=False)
-	 ConflictWeapons(27)=(ClassName="BallisticProV55.MD24Pistol",bRed=True,bBlue=True)
-	 ConflictWeapons(28)=(ClassName="BallisticProV55.MRS138Shotgun",bRed=True,bBlue=True)
-	 ConflictWeapons(29)=(ClassName="BallisticProV55.MRT6Shotgun",bRed=True,bBlue=True)
-	 ConflictWeapons(30)=(ClassName="BallisticProV55.MRocketLauncher",bRed=False,bBlue=False)
-	 ConflictWeapons(31)=(ClassName="BallisticProV55.MarlinRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(32)=(ClassName="BallisticProV55.NRP57Grenade",bRed=True,bBlue=True)
-	 ConflictWeapons(33)=(ClassName="BallisticProV55.R78Rifle",bRed=True,bBlue=True)
-	 ConflictWeapons(34)=(ClassName="BallisticProV55.R9RangerRifle",bRed=False,bBlue=False)
-	 ConflictWeapons(35)=(ClassName="BallisticProV55.RS8Pistol",bRed=True,bBlue=True)
-	 ConflictWeapons(36)=(ClassName="BallisticProV55.RSDarkStar",bRed=True,bBlue=True)
-	 ConflictWeapons(37)=(ClassName="BallisticProV55.RSNovaStaff",bRed=True,bBlue=True)
-	 ConflictWeapons(38)=(ClassName="BallisticProV55.RX22AFlamer",bRed=False,bBlue=False)
-	 ConflictWeapons(39)=(ClassName="BallisticProV55.RandomWeaponDummy",bRed=False,bBlue=False)
-	 ConflictWeapons(40)=(ClassName="BallisticProV55.RiotShield",bRed=False,bBlue=False)
-	 ConflictWeapons(41)=(ClassName="BallisticProV55.SARAssaultRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(42)=(ClassName="BallisticProV55.SRS600Rifle",bRed=True,bBlue=True)
-	 ConflictWeapons(43)=(ClassName="BallisticProV55.SRS900Rifle",bRed=True,bBlue=True)
-	 ConflictWeapons(44)=(ClassName="BallisticProV55.SandbagLayer",bRed=True,bBlue=True)
-	 ConflictWeapons(45)=(ClassName="BallisticProV55.T10Grenade",bRed=True,bBlue=True)
-	 ConflictWeapons(46)=(ClassName="BallisticProV55.X3Knife",bRed=True,bBlue=True)
-	 ConflictWeapons(47)=(ClassName="BallisticProV55.X4Knife",bRed=True,bBlue=True)
-	 ConflictWeapons(48)=(ClassName="BallisticProV55.XK2SubMachinegun",bRed=True,bBlue=True)
-	 ConflictWeapons(49)=(ClassName="BallisticProV55.XMK5SubMachinegun",bRed=True,bBlue=True)
-	 ConflictWeapons(50)=(ClassName="BallisticProV55.XMV850Minigun",bRed=True,bBlue=True)
-	 ConflictWeapons(51)=(ClassName="BallisticProV55.XRS10SubMachinegun",bRed=True,bBlue=True)
-	 ConflictWeapons(52)=(ClassName="BallisticProV55.leMatRevolver",bRed=True,bBlue=True)
-	 ConflictWeapons(53)=(ClassName="BWBP_SKC_Pro.A49SkrithBlaster",bRed=True,bBlue=True)
-	 ConflictWeapons(54)=(ClassName="BWBP_SKC_Pro.AH208Pistol",bRed=False,bBlue=False)
-	 ConflictWeapons(55)=(ClassName="BWBP_SKC_Pro.AH250Pistol",bRed=True,bBlue=True)
-	 ConflictWeapons(56)=(ClassName="BWBP_SKC_Pro.AK47AssaultRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(57)=(ClassName="BWBP_SKC_Pro.AS50Rifle",bRed=True,bBlue=True)
-	 ConflictWeapons(58)=(ClassName="BWBP_SKC_Pro.BulldogAssaultCannon",bRed=True,bBlue=True)
-	 ConflictWeapons(59)=(ClassName="BWBP_SKC_Pro.CYLOAssaultWeapon",bRed=True,bBlue=True)
-	 ConflictWeapons(60)=(ClassName="BWBP_SKC_Pro.CYLOUAW",bRed=True,bBlue=True)
-	 ConflictWeapons(61)=(ClassName="BWBP_SKC_Pro.ChaffGrenadeWeapon",bRed=True,bBlue=True)
-	 ConflictWeapons(62)=(ClassName="BWBP_SKC_Pro.CoachGun",bRed=True,bBlue=True)
-	 ConflictWeapons(63)=(ClassName="BWBP_SKC_Pro.DragonsToothSword",bRed=True,bBlue=True)
-	 ConflictWeapons(64)=(ClassName="BWBP_SKC_Pro.F2000AssaultRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(65)=(ClassName="BWBP_SKC_Pro.FG50MachineGun",bRed=True,bBlue=True)
-	 ConflictWeapons(66)=(ClassName="BWBP_SKC_Pro.FLASHLauncher",bRed=False,bBlue=False)
-	 ConflictWeapons(67)=(ClassName="BWBP_SKC_Pro.G28Grenade",bRed=True,bBlue=True)
-	 ConflictWeapons(68)=(ClassName="BWBP_SKC_Pro.HVPCMk66PlasmaCannon",bRed=False,bBlue=False)
-	 ConflictWeapons(69)=(ClassName="BWBP_SKC_Pro.ICISStimpack",bRed=True,bBlue=True)
-	 ConflictWeapons(70)=(ClassName="BWBP_SKC_Pro.LAWLauncher",bRed=False,bBlue=False)
-	 ConflictWeapons(71)=(ClassName="BWBP_SKC_Pro.LK05Carbine",bRed=True,bBlue=True)
-	 ConflictWeapons(72)=(ClassName="BWBP_SKC_Pro.LS14Carbine",bRed=True,bBlue=True)
-	 ConflictWeapons(73)=(ClassName="BWBP_SKC_Pro.LonghornLauncher",bRed=True,bBlue=True)
-	 ConflictWeapons(74)=(ClassName="BWBP_SKC_Pro.M2020GaussDMR",bRed=True,bBlue=True)
-	 ConflictWeapons(75)=(ClassName="BWBP_SKC_Pro.MARSAssaultRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(76)=(ClassName="BWBP_SKC_Pro.MGLauncher",bRed=False,bBlue=False)
-	 ConflictWeapons(77)=(ClassName="BWBP_SKC_Pro.MK781Shotgun",bRed=True,bBlue=True)
-	 ConflictWeapons(78)=(ClassName="BWBP_SKC_Pro.MRDRMachinePistol",bRed=True,bBlue=True)
-	 ConflictWeapons(79)=(ClassName="BWBP_SKC_Pro.PS9mPistol",bRed=True,bBlue=True)
-	 ConflictWeapons(80)=(ClassName="BWBP_SKC_Pro.SK410Shotgun",bRed=True,bBlue=True)
-	 ConflictWeapons(81)=(ClassName="BWBP_SKC_Pro.SKASShotgun",bRed=False,bBlue=False)
-	 ConflictWeapons(82)=(ClassName="BWBP_SKC_Pro.X82Rifle",bRed=True,bBlue=True)
-	 ConflictWeapons(83)=(ClassName="BWBP_SKC_Pro.X8Knife",bRed=True,bBlue=True)
-	 ConflictWeapons(84)=(ClassName="BWBP_SKC_Pro.XM84Flashbang",bRed=True,bBlue=True)
-	 ConflictWeapons(85)=(ClassName="BWBP_OP_Pro.BallisticShieldWeapon",bRed=True,bBlue=True)
-	 ConflictWeapons(86)=(ClassName="BWBP_OP_Pro.FlameSword",bRed=True,bBlue=True)
-	 ConflictWeapons(87)=(ClassName="BWBP_OP_Pro.JWJunkShieldWeapon",bRed=False,bBlue=False)
-	 ConflictWeapons(88)=(ClassName="BWBP_OP_Pro.JWRiotShieldWeapon",bRed=False,bBlue=False)
-	 ConflictWeapons(89)=(ClassName="BWBP_OP_Pro.MAG78Longsword",bRed=True,bBlue=True)
-	 ConflictWeapons(90)=(ClassName="BWBP_OP_Pro.TrenchGun",bRed=True,bBlue=True)
-	 ConflictWeapons(91)=(ClassName="BWBP_OP_Pro.XM20AutoLas",bRed=True,bBlue=True)
-	 ConflictWeapons(92)=(ClassName="BWBP_OP_Pro.AkeronLauncher",bRed=True,bBlue=True)
-	 ConflictWeapons(93)=(ClassName="BWBP_OP_Pro.KF8XCrossbow",bRed=True,bBlue=True)
-	 ConflictWeapons(94)=(ClassName="BWBP_OP_Pro.CX61AssaultRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(95)=(ClassName="BWBP_OP_Pro.CX85AssaultWeapon",bRed=True,bBlue=True)
-	 ConflictWeapons(96)=(ClassName="BWBP_OP_Pro.DefibFists",bRed=True,bBlue=True)
-	 ConflictWeapons(97)=(ClassName="BWBP_OP_Pro.M575Machinegun",bRed=True,bBlue=False)
-	 ConflictWeapons(98)=(ClassName="BWBP_OP_Pro.PD97Bloodhound",bRed=True,bBlue=True)
-	 ConflictWeapons(99)=(ClassName="BWBP_OP_Pro.ProtonStreamer",bRed=True,bBlue=True)
-	 ConflictWeapons(100)=(ClassName="BWBP_OP_Pro.R9A1RangerRifle",bRed=True,bBlue=True)
-	 ConflictWeapons(101)=(ClassName="BWBP_OP_Pro.Raygun",bRed=True,bBlue=True)
-	 ConflictWeapons(102)=(ClassName="BWBP_OP_Pro.WrenchWarpDevice",bRed=True,bBlue=True)
-	 ConflictWeapons(103)=(ClassName="BWBP_OP_Pro.XOXOStaff",bRed=True,bBlue=True)
-	 ConflictWeapons(104)=(ClassName="BWBP_OP_Pro.Z250Minigun",bRed=True,bBlue=True)
-	 ConflictWeapons(105)=(ClassName="BWBPAirstrikesPro.TargetDesignator",bRed=False,bBlue=False)
-	 ConflictWeapons(106)=(ClassName="BWBPAirstrikesPro.X93Painter",bRed=False,bBlue=False)
-	 ConflictWeapons(107)=(ClassName="BWBP_OP_Pro.ARShotgun",bRed=True,bBlue=True)
      ConfigMenuClassName="BallisticProV55.ConfigMenu_Inventory"
      FriendlyName="BallisticPro: Conflict Loadout"
      Description="Play Ballistic Weapons with an expanded loadout system supporting Evolution configuration and inventory space."

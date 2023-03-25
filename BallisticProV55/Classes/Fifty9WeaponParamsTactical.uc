@@ -106,8 +106,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		DeclineTime=0.5
 		MaxRecoil=6144
 		CrouchMultiplier=1
@@ -121,8 +121,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		DeclineTime=0.5
 		MaxRecoil=6144
 		CrouchMultiplier=0.8

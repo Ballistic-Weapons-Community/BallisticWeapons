@@ -10,7 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM84Thrown extends BallisticPineapple;
+class XM84Thrown extends BallisticHandGrenadeProjectile;
 
 var   Emitter PATrail;
 

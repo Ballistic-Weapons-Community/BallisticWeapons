@@ -124,8 +124,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		DeclineTime=0.5
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
@@ -136,8 +136,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_CQC
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		DeclineTime=0.5
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
@@ -204,7 +204,8 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		ViewOffset=(X=0.5,Y=12.000000,Z=-18.000000)
-		SightOffset=(X=-5.000000,Y=-7.370000,Z=27.010000)
+		SightDisplayFOV=48
+		SightOffset=(X=10.000000,Y=-7.370000,Z=27.010000)
 		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 		//Function
 		ReloadAnimRate=0.85

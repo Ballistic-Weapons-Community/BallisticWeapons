@@ -60,8 +60,8 @@ defaultproperties
 		ViewBindFactor=0.4
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.000000),(InVal=0.50000,OutVal=0.120000),,(InVal=0.7000,OutVal=-0.010000),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.4500000,OutVal=0.40000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		HipMultiplier=1
 		MaxMoveMultiplier=1.5
 	End Object

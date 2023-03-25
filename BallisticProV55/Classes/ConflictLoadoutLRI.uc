@@ -17,6 +17,7 @@
 class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo 
 	DependsOn(Mut_Loadout)
 	DependsOn(ConflictLoadoutConfig)
+	DependsOn(WeaponList_ConflictLoadout)
     exportstructs;
 
 /*
@@ -603,7 +604,7 @@ simulated function bool ValidateWeapon (string WeaponName)
 	return false;
 }
 
-simulated function bool TeamAllowed(Mut_ConflictLoadout.ConflictWeapon weapon)
+simulated function bool TeamAllowed(WeaponList_ConflictLoadout.Entry weapon)
 {
 	if (myController == None)
 	{

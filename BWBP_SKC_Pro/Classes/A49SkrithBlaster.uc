@@ -321,8 +321,8 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 			);
 			
 				
-			if (BallisticPineapple(Victims) != None)
-				BallisticPineapple(Victims).KickPineapple(Normal(Victims.Location - Location) * 20000);
+			if (BallisticKHandGrenadeProjectile(Victims) != None)
+				BallisticKHandGrenadeProjectile(Victims).KickPineapple(Normal(Victims.Location - Location) * 20000);
 						
 			if (Instigator != None && Vehicle(Victims) != None && Vehicle(Victims).Health > 0)
 				Vehicle(Victims).DriverRadiusDamage(DamageAmount, DamageRadius, Instigator.Controller, BlastDamageType, 0.0f, Location);

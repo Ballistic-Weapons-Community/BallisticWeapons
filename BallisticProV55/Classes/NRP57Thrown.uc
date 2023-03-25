@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class NRP57Thrown extends BallisticProPineapple;
+class NRP57Thrown extends BallisticHandGrenadeProjectile;
 
 var   Emitter PATrail;
 

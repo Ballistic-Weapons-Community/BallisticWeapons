@@ -1,5 +1,5 @@
 //=============================================================================
-// ConfigTab_WeaponRules.
+// ConfigTab_ConflictLoadout
 //
 // Server side options like rules that change the behaviour of the game and
 // affect all players. These are used when hosting an MP or SP game.
@@ -9,7 +9,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ConfigTab_Conflict extends ConfigTabBase;
+class ConfigTab_ConflictLoadout extends ConfigTabBase;
 
 var Automated GUIImage		Box_Unused;				//All Unused Weapons
 var Automated GUIImage		Box_UsedRed;			//Red Team
@@ -162,6 +162,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	local int i, j;
 	local array<string> ItemNameList;
 	local class<ConflictItem> CI;
+
+	local class<BC_GameStyle> game_style;
+	local WeaponList_ConflictLoadout ConfigList;
 	
 	Super.InitComponent(MyController, MyOwner);
 	
@@ -172,23 +175,34 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_UnusedWeapons.List.Add(Headings[2],,"UT",true);
 	lb_UnusedWeapons.List.Add(Headings[3],,"O",true);
 
+	game_style = BaseMenu.GetGameStyle();
+
+	if (game_style == None)
+	{
+		Log("ConfigTab_ConflictLoadout: Couldn't load: No compatible style found");
+		return;
+	}
+
+	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictLoadout';
+
 	class'CacheManager'.static.GetWeaponList(Recs);
+
 	for (i=0;i<Recs.Length;i++)
 	{
 		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
 			continue;
 		
-		for (j=0;j<class'Mut_ConflictLoadout'.default.ConflictWeapons.length;j++)
-			if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].ClassName ~= Recs[i].ClassName)
+		for (j=0;j<ConfigList.ConflictWeapons.length;j++)
+			if (ConfigList.ConflictWeapons[j].ClassName ~= Recs[i].ClassName)
 			{
-				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bRed)
+				if (ConfigList.ConflictWeapons[j].bRed)
 				{
 					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
 						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
 					else
 						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
 				}
-				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bBlue)
+				if (ConfigList.ConflictWeapons[j].bBlue)
 				{
 					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
 						lb_UsedBlueWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
@@ -210,12 +224,12 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 		CI = class<ConflictItem>(DynamicLoadObject(ItemNameList[i], class'Class'));
 		if (CI != None)
 		{
-			for (j=0;j<class'Mut_ConflictLoadout'.default.ConflictWeapons.length;j++)
-				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].ClassName ~= ItemNameList[i])
+			for (j=0;j<ConfigList.ConflictWeapons.length;j++)
+				if (ConfigList.ConflictWeapons[j].ClassName ~= ItemNameList[i])
 				{
-					if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bRed)
+					if (ConfigList.ConflictWeapons[j].bRed)
 						lb_UsedRedWeapons.List.Add(CI.default.ItemName, lb_UsedRedWeapons, ItemNameList[i]);
-					if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bBlue)
+					if (ConfigList.ConflictWeapons[j].bBlue)
 						lb_UsedBlueWeapons.List.Add(CI.default.ItemName, lb_UsedRedWeapons, ItemNameList[i]);
 					break;
 				}
@@ -251,7 +265,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	for(i=0;i<class'Mut_ConflictLoadout'.default.LoadoutOptionText.Length;i++)
 		co_LoadOpt.AddItem(class'Mut_ConflictLoadout'.default.LoadoutOptionText[i] ,,string(i));
 	co_LoadOpt.ReadOnly(True);
-	co_LoadOpt.SetIndex(int(class'Mut_ConflictLoadout'.default.LoadoutOption));
+	co_LoadOpt.SetIndex(int(ConfigList.LoadoutOption));
 }
 
 function bool InternalOnDblClick(GUIComponent Sender)
@@ -335,33 +349,46 @@ function bool InternalOnClick(GUIComponent Sender)
 
 function SaveSettings()
 {
-	
 	local int i, j, k;
+	local class<BC_GameStyle> game_style;
+	local WeaponList_ConflictLoadout ConfigList;
+
+	game_style = BaseMenu.GetGameStyle();
+
+	if (game_style == None)
+	{
+		Log("ConfigTab_ConflictLoadout: Couldn't save: No compatible style found");
+		return;
+	}
+
+	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictLoadout';
 	
-	class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
-	class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
+	ConfigList.LoadoutOption = co_LoadOpt.GetIndex();
+	ConfigList.ConflictWeapons.length = 0;
 
 	for (i=0;i<lb_UnusedWeapons.List.Elements.length;i++)
 	{
 		if (lb_UnusedWeapons.List.Elements[i].bSection)
 			continue;
-		k = class'Mut_ConflictLoadout'.default.ConflictWeapons.length;
-		class'Mut_ConflictLoadout'.default.ConflictWeapons.length = k+1;
-		class'Mut_ConflictLoadout'.default.ConflictWeapons[k].ClassName = lb_UnusedWeapons.List.GetExtraAtIndex(i);
+		k = ConfigList.ConflictWeapons.length;
+		ConfigList.ConflictWeapons.length = k+1;
+		ConfigList.ConflictWeapons[k].ClassName = lb_UnusedWeapons.List.GetExtraAtIndex(i);
 		for (j=0;j<lb_UsedRedWeapons.List.Elements.length;j++)
 			if (lb_UsedRedWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
 			{
-				class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bRed = true;
+				ConfigList.ConflictWeapons[k].bRed = true;
 				break;
 			}
 		for (j=0;j<lb_UsedBlueWeapons.List.Elements.length;j++)
 			if (lb_UsedBlueWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
 			{
-				class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bBlue = true;
+				ConfigList.ConflictWeapons[k].bBlue = true;
 				break;
 			}
 	}
-	class'Mut_ConflictLoadout'.static.StaticSaveConfig();
+
+	ConfigList.SaveConfig();
+
 	SaveConfig();
 }
 
@@ -384,7 +411,7 @@ defaultproperties
          WinHeight=0.600000
          RenderWeight=0.002000
      End Object
-     Box_Unused=GUIImage'BallisticProV55.ConfigTab_Conflict.ImageBoxUnused'
+     Box_Unused=ImageBoxUnused
 
      Begin Object Class=GUIImage Name=ImageBoxUsedRed
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -395,7 +422,7 @@ defaultproperties
          WinHeight=0.600000
          RenderWeight=0.002000
      End Object
-     Box_UsedRed=GUIImage'BallisticProV55.ConfigTab_Conflict.ImageBoxUsedRed'
+     Box_UsedRed=ImageBoxUsedRed
 
      Begin Object Class=GUIImage Name=ImageBoxUsedBlue
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -406,7 +433,7 @@ defaultproperties
          WinHeight=0.600000
          RenderWeight=0.002000
      End Object
-     Box_UsedBlue=GUIImage'BallisticProV55.ConfigTab_Conflict.ImageBoxUsedBlue'
+     Box_UsedBlue=ImageBoxUsedBlue
 
      Begin Object Class=GUIButton Name=AddButtonBlue
          Caption="< < <"
@@ -414,10 +441,10 @@ defaultproperties
          WinLeft=0.375000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=AddButton.InternalOnKeyEvent
      End Object
-     bAddBlue=GUIButton'BallisticProV55.ConfigTab_Conflict.AddButtonBlue'
+     bAddBlue=AddButtonBlue
 
      Begin Object Class=GUIButton Name=RemoveButtonBlue
          Caption="> > >"
@@ -425,10 +452,10 @@ defaultproperties
          WinLeft=0.225000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=RemoveButton.InternalOnKeyEvent
      End Object
-     BRemoveBlue=GUIButton'BallisticProV55.ConfigTab_Conflict.RemoveButtonBlue'
+     BRemoveBlue=RemoveButtonBlue
 
      Begin Object Class=GUIButton Name=AddAllButtonBlue
          Caption="FILL"
@@ -436,10 +463,10 @@ defaultproperties
          WinLeft=0.075000
          WinWidth=0.075000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=AddAllButton.InternalOnKeyEvent
      End Object
-     BAddAllBlue=GUIButton'BallisticProV55.ConfigTab_Conflict.AddAllButtonBlue'
+     BAddAllBlue=AddAllButtonBlue
 
      Begin Object Class=GUIButton Name=RemoveAllButtonBlue
          Caption="EMPTY"
@@ -447,10 +474,10 @@ defaultproperties
          WinLeft=0.150000
          WinWidth=0.075000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
      End Object
-     BRemoveAllBlue=GUIButton'BallisticProV55.ConfigTab_Conflict.RemoveAllButtonBlue'
+     BRemoveAllBlue=RemoveAllButtonBlue
 
      Begin Object Class=GUIButton Name=AddButtonRed
          Caption="> > >"
@@ -458,10 +485,10 @@ defaultproperties
          WinLeft=0.525000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=AddButton.InternalOnKeyEvent
      End Object
-     bAddRed=GUIButton'BallisticProV55.ConfigTab_Conflict.AddButtonRed'
+     bAddRed=AddButtonRed
 
      Begin Object Class=GUIButton Name=RemoveButtonRed
          Caption="< < <"
@@ -469,10 +496,10 @@ defaultproperties
          WinLeft=0.675000
          WinWidth=0.100000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=RemoveButton.InternalOnKeyEvent
      End Object
-     BRemoveRed=GUIButton'BallisticProV55.ConfigTab_Conflict.RemoveButtonRed'
+     BRemoveRed=RemoveButtonRed
 
      Begin Object Class=GUIButton Name=AddAllButtonRed
          Caption="FILL"
@@ -480,10 +507,10 @@ defaultproperties
          WinLeft=0.850000
          WinWidth=0.075000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=AddAllButton.InternalOnKeyEvent
      End Object
-     BAddAllRed=GUIButton'BallisticProV55.ConfigTab_Conflict.AddAllButtonRed'
+     BAddAllRed=AddAllButtonRed
 
      Begin Object Class=GUIButton Name=RemoveAllButtonRed
          Caption="EMPTY"
@@ -491,10 +518,10 @@ defaultproperties
          WinLeft=0.775000
          WinWidth=0.075000
          TabOrder=0
-         OnClick=ConfigTab_Conflict.InternalOnClick
+         OnClick=ConfigTab_ConflictLoadout.InternalOnClick
          OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
      End Object
-     BRemoveAllRed=GUIButton'BallisticProV55.ConfigTab_Conflict.RemoveAllButtonRed'
+     BRemoveAllRed=RemoveAllButtonRed
 
      Begin Object Class=GUIListBox Name=UsedRedWeaponList
          bVisibleWhenEmpty=True
@@ -508,7 +535,7 @@ defaultproperties
          RenderWeight=0.510000
          TabOrder=1
      End Object
-     lb_UsedRedWeapons=GUIListBox'BallisticProV55.ConfigTab_Conflict.UsedRedWeaponList'
+     lb_UsedRedWeapons=UsedRedWeaponList
 
      Begin Object Class=GUIListBox Name=UsedBlueWeaponList
          bVisibleWhenEmpty=True
@@ -522,7 +549,7 @@ defaultproperties
          RenderWeight=0.510000
          TabOrder=1
      End Object
-     lb_UsedBlueWeapons=GUIListBox'BallisticProV55.ConfigTab_Conflict.UsedBlueWeaponList'
+     lb_UsedBlueWeapons=UsedBlueWeaponList
 
      Begin Object Class=GUIListBox Name=UnusedWeaponList
          bVisibleWhenEmpty=True
@@ -537,9 +564,9 @@ defaultproperties
          RenderWeight=0.510000
          TabOrder=1
      End Object
-     lb_UnusedWeapons=GUIListBox'BallisticProV55.ConfigTab_Conflict.UnusedWeaponList'
+     lb_UnusedWeapons=UnusedWeaponList
 
-     Begin Object Class=GUILabel Name=l_RedLabel
+     Begin Object Class=GUILabel Name=RedLabel
          Caption="Red"
          TextAlign=TXTA_Center
          TextColor=(B=0,R=255)
@@ -549,9 +576,9 @@ defaultproperties
          WinWidth=0.200000
          WinHeight=0.040000
      End Object
-     l_Red=GUILabel'BallisticProV55.ConfigTab_Conflict.l_RedLabel'
+     l_Red=RedLabel
 
-     Begin Object Class=GUILabel Name=l_BlueLabel
+     Begin Object Class=GUILabel Name=BlueLabel
          Caption="Blue"
          TextAlign=TXTA_Center
          TextColor=(B=255,G=255)
@@ -561,9 +588,9 @@ defaultproperties
          WinWidth=0.200000
          WinHeight=0.040000
      End Object
-     l_Blue=GUILabel'BallisticProV55.ConfigTab_Conflict.l_BlueLabel'
+     l_Blue=BlueLabel
 
-     Begin Object Class=GUILabel Name=l_UnusedLabel
+     Begin Object Class=GUILabel Name=UnusedLabel
          Caption="Potentials"
          TextAlign=TXTA_Center
          TextColor=(B=0,G=255,R=255)
@@ -573,7 +600,7 @@ defaultproperties
          WinWidth=0.200000
          WinHeight=0.040000
      End Object
-     l_Unused=GUILabel'BallisticProV55.ConfigTab_Conflict.l_UnusedLabel'
+     l_Unused=UnusedLabel
 
      Begin Object Class=moComboBox Name=LoadOptCombo
          OnCreateComponent=LoadOptCombo.InternalOnCreateComponent
@@ -584,7 +611,7 @@ defaultproperties
          WinLeft=0.275000
          WinWidth=0.300000
      End Object
-     co_LoadOpt=moComboBox'BallisticProV55.ConfigTab_Conflict.LoadOptCombo'
+     co_LoadOpt=LoadOptCombo
 
      Headings(0)="Ballistic Weapons"
      Headings(1)="Items"

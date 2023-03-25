@@ -75,15 +75,23 @@ var() float					ReloadAnimRate;
 //-----------------------------------------------------------------------------
 // Sighting
 //-----------------------------------------------------------------------------
+// General handling
 var() float					SightMoveSpeedFactor;	// Additional slowdown factor in iron sights
 var() float					SightingTime;			// Time it takes to move weapon to and from sight view
+
+// Display - TRY TO MOVE THESE INTO STRUCTS OF THE MAIN WEAPON
+var() int					SightDisplayFOV;		// Display FOV for sights. TODO: try to get general agreement on sights
 var() Vector                SightOffset;            // Offset when moving weapon to ADS position
 var() Rotator               SightPivot;             // Pivot when moving weapon to ADS position
+
+// Zooming
 var() EZoomType             ZoomType;               // Type of zoom. Precise control is within the weapon's sighting properties
 var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the screen
 var() float					MinZoom;				// Minimum scope zoom factor
 var() float					MaxZoom;				// Maximun Zoom for Sniper
 var() int					ZoomStages;				// Zoom stages for sniper
+
+// Hand adjust
 var() bool         			bAdjustHands;      		// Adjust hand position when sighting?
 var() rotator      			WristAdjust;       		// Amount to move wrist bone when using iron sights.
 var() rotator      			RootAdjust;        		// Amount to move arm bone when using iron sights.

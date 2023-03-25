@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M58PrimaryFire extends BallisticProGrenadeFire;
+class M58PrimaryFire extends BallisticHandGrenadeFire;
 
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
@@ -15,31 +15,33 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
-	if (BallisticPineapple(Proj) != None)
-	{
-		if (AIController(Instigator.Controller) == None)
-		{
-			if (BW != None && BW.WeaponModes[BW.CurrentWeaponMode].Value == 0)
-				Speed = Proj.Speed * FClamp(HoldTime-0.5, 0, 2) / 2;
-			else if (BW != None)
-				Speed = Proj.Speed / BW.WeaponModes[BW.CurrentWeaponMode].Value;
-		}
-		else if (Instigator.Controller.Enemy != None)
-		{
-			EnemyDir = Instigator.Controller.Enemy.Location - Instigator.Location;
-			Speed = FMin( Proj.Speed, (1+Normal(EnemyDir).Z) * (VSize(EnemyDir)/1.5) + VSize(Instigator.Controller.Enemy.Velocity) * (Normal(Instigator.Controller.Enemy.Velocity) Dot Normal(EnemyDir)) );
-		}
-		else
-			Speed = Proj.Speed;
 
-		if (BallisticHandGrenade(Weapon).ClipReleaseTime == 666)
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - 3;
-		else if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
-		else
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay;
-		BallisticPineapple(Proj).InitPineapple(Speed, DetonateDelay);
+	if (BallisticHandGrenadeProjectile(Proj) == None)
+		return;
+
+	if (AIController(Instigator.Controller) == None)
+	{
+		if (BW != None && BW.WeaponModes[BW.CurrentWeaponMode].Value == 0)
+			Speed = Proj.Speed * FClamp(HoldTime-0.5, 0, 2) / 2;
+		else if (BW != None)
+			Speed = Proj.Speed / BW.WeaponModes[BW.CurrentWeaponMode].Value;
 	}
+	else if (Instigator.Controller.Enemy != None)
+	{
+		EnemyDir = Instigator.Controller.Enemy.Location - Instigator.Location;
+		Speed = FMin( Proj.Speed, (1+Normal(EnemyDir).Z) * (VSize(EnemyDir)/1.5) + VSize(Instigator.Controller.Enemy.Velocity) * (Normal(Instigator.Controller.Enemy.Velocity) Dot Normal(EnemyDir)) );
+	}
+	else
+		Speed = Proj.Speed;
+
+	if (BallisticHandGrenade(Weapon).ClipReleaseTime == 666)
+		DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay - 3;
+	else if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
+		DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
+	else
+		DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay;
+		
+	BallisticHandGrenadeProjectile(Proj).SetThrowPowerAndDelay(Speed, DetonateDelay);
 }
 
 defaultproperties

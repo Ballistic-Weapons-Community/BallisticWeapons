@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M58Thrown extends BallisticProPineapple;
+class M58Thrown extends BallisticHandGrenadeProjectile;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 

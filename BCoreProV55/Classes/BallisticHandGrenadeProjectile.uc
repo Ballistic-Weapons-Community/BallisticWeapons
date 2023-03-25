@@ -1,19 +1,16 @@
 //=============================================================================
-// BallisticPineapple.
+// BallisticHandGrenadeProjectile.
 //
-// Non-Karma version for use on servers. Currently only derived from by the Pro version of the 
-// NRP grenade, hence the name.
-//
-// need to add support for grenades that detonate after hitting the floor
+// Cookable hand grenades with variable throw distance.
 //
 // Azarael
 //=============================================================================
-class BallisticProPineapple extends BallisticGrenade
+class BallisticHandGrenadeProjectile extends BallisticGrenade
 	abstract;
 
-var() int	FireModeNum;		// Da fire mode that spawned dis grenade
-var float   ClientDetonateDelay;
-var float   ThrowPower;
+var() int		FireModeNum;		// Da fire mode that spawned dis grenade
+var float   	ClientDetonateDelay;
+var float   	ThrowPower;
 
 replication
 {
@@ -42,7 +39,7 @@ simulated function SetInitialSpeed(optional bool force_speed) // ignored here, w
 {
     local Rotator R;
 
-    //Log("Pineapple initial speed: "$Speed$" * "$ThrowPower);
+    //Log("Hand grenade initial speed: "$Speed$" * "$ThrowPower);
 
     // override physics from start delay...
     SetPhysics(default.Physics);

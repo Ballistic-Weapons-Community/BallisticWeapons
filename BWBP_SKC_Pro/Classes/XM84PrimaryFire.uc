@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM84PrimaryFire extends BallisticGrenadeFire;
+class XM84PrimaryFire extends BallisticHandGrenadeFire;
 
 defaultproperties
 {
@@ -27,4 +27,8 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BWBP_SKC_Pro.XM84Thrown'
+
+	 	 // AI
+	 BotRefireRate=0.4
+     WarnTargetPct=0.75
 }

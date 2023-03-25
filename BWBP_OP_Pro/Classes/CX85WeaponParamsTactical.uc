@@ -76,8 +76,8 @@ defaultproperties
 		ViewBindFactor=0.3
 		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.5,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		DeclineTime=1.000000
 		DeclineDelay=0.170000
 		HipMultiplier=1.25

@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ChaffPrimaryFire extends BallisticProGrenadeFire;
+class ChaffPrimaryFire extends BallisticHandGrenadeFire;
 
 function PlayPreFire()
 {

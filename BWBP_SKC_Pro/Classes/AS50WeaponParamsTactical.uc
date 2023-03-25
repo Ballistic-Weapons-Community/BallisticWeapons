@@ -70,8 +70,8 @@ defaultproperties
 		ViewBindFactor=0.15
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.15
-		YRandFactor=0.15
+		XRandFactor=0.25
+		YRandFactor=0.25
 		MinRandFactor=0.15
 		DeclineTime=1.500000
 		DeclineDelay=0.5
@@ -85,7 +85,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=768,Max=4096)
+		AimSpread=(Min=1024,Max=4096)
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-3000,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)

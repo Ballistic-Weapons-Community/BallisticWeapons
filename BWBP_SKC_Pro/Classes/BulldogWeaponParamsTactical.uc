@@ -9,20 +9,20 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2363,Max=7000)
-		RangeAtten=0.5
-		Damage=120
-        HeadMult=1.5f
+		RangeAtten=0.75
+		Damage=110
+        HeadMult=2f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTBulldogHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'
-        PenetrationEnergy=128
+        PenetrationEnergy=192
 		PenetrateForce=250
 		bPenetrate=True
 		PushbackForce=3000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=1.100000
-		Recoil=1280.000000
+		Recoil=1024.000000
 		Chaos=1.000000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
@@ -30,10 +30,10 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.85
+		FireInterval=0.7
 		FireEndAnim=
 		AimedFireAnim="SightFire"
-		FireAnimRate=2.000000	
+		FireAnimRate=2.250000	
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		
@@ -44,12 +44,12 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=7000.000000
-		MaxSpeed=7000.000000
-		Damage=150
-        ImpactDamage=150
+		Speed=4000.000000
+		MaxSpeed=4000.000000
+		Damage=80
+        ImpactDamage=125
 		PushbackForce=100.000000
-		DamageRadius=1024.000000
+		DamageRadius=768.000000
 		MomentumTransfer=60000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=2048.000000

@@ -6,14 +6,15 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G28Thrown extends BallisticProPineapple;
+class G28Thrown extends BallisticHandGrenadeProjectile;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
-var() class<damageType>	ShotDamageType;	// Damagetype to use when detonated by damage
-var   Emitter PATrail;
-var() bool				bDamaged;		// Has been damaged and is about to blow
-var() int				Health;			// Distance from death
+var   Emitter 				PATrail;
+
+var() class<damageType>		ShotDamageType;	// Damagetype to use when detonated by damage
+var() bool					bDamaged;		// Has been damaged and is about to blow
+var() int					Health;			// Distance from death
 
 simulated function InitEffects ()
 {
@@ -70,6 +71,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 	if (bExploded)
 		return;
+
 	if ( Role == ROLE_Authority )
 	{
 		C = Spawn(class'G28CloudControl',self,,HitLocation-HitNormal*2);
@@ -78,6 +80,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			C.Instigator = Instigator;
 		}
 	}
+
 	if (Level.NetMode != NM_DedicatedServer && TrailClass != None && Trail == None)
 	{
 		GetAxes(rot(16384,0,0),X,Y,Z);
@@ -87,9 +90,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		Trail = Spawn( TrailClass, self,, Location + class'BUtil'.static.AlignedOffset(Rotation,TrailOffset), OrthoRotation(X,Y,Z) );
 		if (Trail != None)
 			Trail.SetBase (self);
+
 		PlaySound(sound'BW_Core_WeaponSound.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
 		AmbientSound = Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
 	}
+
 	bExploded=true;
 	LifeSpan = 12;
 	SetTimer(10.5,false);
@@ -116,11 +121,12 @@ simulated function ExplodeFire(vector HitLocation, vector HitNormal)
 }
 */
 
+/*
 simulated function BlowUp(vector HitLocation)
 {
 	local vector Start;
-    	local rotator Dir;
-    	local int i;
+    local rotator Dir;
+    local int i;
 
 	Start = Location/* + 10 * HitNormal*/;
 	if (FlakCount > 0 && FlakClass != None)
@@ -136,6 +142,7 @@ simulated function BlowUp(vector HitLocation)
 	if ( Role == ROLE_Authority )
 		MakeNoise(1.0);
 }
+*/
 
 simulated function Timer()
 {
@@ -176,23 +183,27 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-    WeaponClass=Class'BWBP_SKC_Pro.G28Grenade'
-     ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
-     Health=20
-     DetonateDelay=2.000000
-     ImpactDamage=3
-     ImpactDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_G28Explode'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BWBP_SKC_Pro.G28Spray'
-     TrailOffset=(Z=8.000000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTG28Gas'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Damage=120.000000
-     DamageRadius=300.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
-     SoundVolume=192
-     SoundRadius=128.000000
+	DetonateOn=DT_Still
+	WeaponClass=Class'BWBP_SKC_Pro.G28Grenade'
+	DampenFactor=0.050000
+	DampenFactorParallel=0.350000
+	DetonateDelay=0.5
+	ImpactDamage=15
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_G28Explode'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BWBP_SKC_Pro.G28Spray'
+	TrailOffset=(Z=8.000000)
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
+	SoundVolume=192
+	SoundRadius=128.000000
+
+	Damage=120.000000
+	DamageRadius=300.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTG28Gas'
+	ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
+	Health=20
 }

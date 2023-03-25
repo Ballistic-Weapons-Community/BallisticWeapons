@@ -9,10 +9,10 @@ class GameStyle_Tactical extends BC_GameStyle_Fixed
 defaultproperties
 {
 	Index=GS_Tactical
-	Name="Tactical"
+	StyleName="Tactical"
 	
 	RecoilScale=0.8 // 0.6 with no scaling is about right
-	RecoilShotScale=0.625 // move penalty will do the rest
+	RecoilShotScale=1
 
 	bRunInADS=False
 

@@ -22,7 +22,7 @@ function AddTabs()
 	c_Tabs.AddTab(GameTabLabel,"BallisticProV55.ConfigTab_GameRules",,GameTabHint);
 
 	//Inventory
-	c_Tabs.AddTab(ConflictTabLabel,"BallisticProV55.ConfigTab_Conflict",,ConflictTabHint);
+	c_Tabs.AddTab(ConflictTabLabel,"BallisticProV55.ConfigTab_ConflictLoadout",,ConflictTabHint);
 	c_Tabs.AddTab(LoadoutTabLabel,"BallisticProV55.ConfigTab_Outfitting",,LoadoutTabHint);
 	c_Tabs.AddTab(LoadoutNewTabLabel,"BallisticProV55.ConfigTab_Loadout",,LoadoutNewTabHint);
 	c_Tabs.AddTab(SwapTabLabel,"BallisticProV55.ConfigTab_Swappings",,SwapTabHint);

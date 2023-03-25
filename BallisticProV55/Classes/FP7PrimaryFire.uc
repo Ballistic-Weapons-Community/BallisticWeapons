@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class FP7PrimaryFire extends BallisticProGrenadeFire;
+class FP7PrimaryFire extends BallisticHandGrenadeFire;
 
 /*
 FIXME: Needs to report damage from control instead. Needs its own fire params or fire effect params class to do that.
