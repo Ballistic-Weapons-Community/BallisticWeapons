@@ -186,8 +186,8 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KMain",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KScopeShine",Index=2,AIndex=1,PIndex=1))
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KAmmo",Index=3,AIndex=2,PIndex=2))
-		WeaponMaterialSwaps(4)=(Material=FinalBlend'BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_Camos_Tex.SRSCamos.SRS-HSight-S',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB",Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-S",Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=SRS_DesertTac
@@ -198,8 +198,8 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSDesert",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KScopeShine",Index=2,AIndex=1,PIndex=1)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KAmmo",Index=3,AIndex=2,PIndex=2)
-		WeaponMaterialSwaps(4)=(Material=FinalBlend'BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_Camos_Tex.SRSCamos.SRS-HSight-S',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB",Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-S",Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=SRS_Black
@@ -224,8 +224,8 @@ defaultproperties
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSJungle",Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=FinalBlend'BWBP_Camos_Tex.SRSCamos.SRS-BSight-FB',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_Camos_Tex.SRSCamos.SRS-BSight-S',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-BSight-FB",Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-BSight-S",Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=SRS_Red
@@ -234,8 +234,8 @@ defaultproperties
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSTiger",Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=FinalBlend'BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_Camos_Tex.SRSCamos.SRS-HSight-S',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB",Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-S",Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=SRS_RedTiger
@@ -244,8 +244,8 @@ defaultproperties
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSFlame",Index=1)
-		WeaponMaterialSwaps(2)=(Material=FinalBlend'BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_Camos_Tex.SRSCamos.SRS-HSight-S',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-FB",Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-S",Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
     Layouts(0)=WeaponParams'ArenaParams_Scope'
