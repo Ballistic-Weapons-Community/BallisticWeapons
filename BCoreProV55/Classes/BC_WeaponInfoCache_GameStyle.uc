@@ -37,18 +37,40 @@ class BC_WeaponInfoCache_GameStyle extends Object
 var() config array<BC_WeaponInfoCache.WeaponInfo>	Weapons;
 var   bool											bChanged;
 
+// Invalidation
+var	config int		SavedRevision;
+var int				Revision;
+
+// Invalidates cache if the revisions don't match.
+static final function CheckRevision()
+{
+	if (default.SavedRevision == default.Revision)
+		return;
+
+	default.Weapons.Length = 0;
+
+	default.SavedRevision = default.Revision;
+
+	StaticSaveConfig();
+}
+
 // Find a specific weapon in the list, output the WI and return success or failure to find the weapon
 static function bool FindWeaponInfo(string CN, out BC_WeaponInfoCache.WeaponInfo WI, optional out int Index)
 {
 	local int i;
+	
+	CheckRevision();
 
 	for (i=0;i<default.Weapons.length;i++)
+	{
 		if (default.Weapons[i].ClassName ~= CN)
 		{
 			Index = i;
 			WI = default.Weapons[i];
 			return true;
 		}
+	}
+
 	Index = -1;
 	return false;
 }
@@ -57,6 +79,8 @@ static function bool FindWeaponInfo(string CN, out BC_WeaponInfoCache.WeaponInfo
 static function BC_WeaponInfoCache.WeaponInfo AutoWeaponInfo(string WeapClassName, optional out int i)
 {
 	local BC_WeaponInfoCache.WeaponInfo WI;
+
+	CheckRevision();
 
 	// Tap into the BW weapon cache system to identify BallisticWeapons without loading them
 	if (FindWeaponInfo(WeapClassName, WI, i))
@@ -129,6 +153,7 @@ static function EndSession()
 {
 	if (default.bChanged)
 		StaticSaveConfig();
+
 	default.bChanged = false;
 }
 
