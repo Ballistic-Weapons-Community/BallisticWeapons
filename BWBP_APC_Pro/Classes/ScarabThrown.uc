@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ScarabThrown extends BallisticProPineapple;
+class ScarabThrown extends BallisticHandGrenadeProjectile;
 
 var   Emitter PATrail;
 

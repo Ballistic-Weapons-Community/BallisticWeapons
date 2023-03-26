@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class A51PrimaryFire extends BallisticProGrenadeFire;
+class A51PrimaryFire extends BallisticHandGrenadeFire;
 
 defaultproperties
 {

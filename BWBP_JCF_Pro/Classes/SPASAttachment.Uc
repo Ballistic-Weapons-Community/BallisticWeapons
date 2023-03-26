@@ -133,7 +133,6 @@ function SPASUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     FireClass=Class'BWBP_JCF_Pro.SPASPrimaryFire'
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'
