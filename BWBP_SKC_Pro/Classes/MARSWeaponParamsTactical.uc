@@ -94,7 +94,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Ice
-		ProjectileClass=Class'BWBP_SKC_Pro.F2000Grenade' //DT's need updating to point to MARS-2
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Ice' //DT's need updating to point to MARS-2
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3500.000000
 		Damage=80

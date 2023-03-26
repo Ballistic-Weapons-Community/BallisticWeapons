@@ -6,7 +6,7 @@
 //
 // by Sarge
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AY90Mine extends BallisticProjectile;
 
@@ -127,7 +127,7 @@ defaultproperties
      ArmingSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-Fuse'
      ImpactManager=Class'BWBP_SKC_Pro.IM_A73BPower'
      StartDelay=0.300000
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTF2000MineExplode'
+     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=1000.000000
      MotionBlurRadius=384.000000
@@ -136,7 +136,7 @@ defaultproperties
      Damage=150.000000
      DamageRadius=256.000000
      DrawScale=0.500000
-     MyDamageType=Class'BWBP_SKC_Pro.DTF2000MineExplode'
+     MyDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
      CullDistance=2500.000000
      bNetTemporary=False

@@ -13,15 +13,15 @@ function inventory SpawnCopy( Pawn Other )
 {
 	local Inventory Copy, Copy2;
 
-	InventoryType = Class'Ammo_F2000Grenades';
+	InventoryType = Class'Ammo_MARSGrenades';
 	AmmoAmount = 2;
 	Copy = Super.SpawnCopy(Other);
 	AmmoAmount = default.AmmoAmount;
 	InventoryType = default.InventoryType;
 
 	Copy2 = Super.SpawnCopy(Other);
-	Ammo_545mmSTANAG(Copy2).Grenades = Ammo_F2000Grenades(Copy);
-	Ammo_F2000Grenades(Copy).Bullets = Ammo_545mmSTANAG(Copy2);
+	Ammo_545mmSTANAG(Copy2).Grenades = Ammo_MARSGrenades(Copy);
+	Ammo_MARSGrenades(Copy).Bullets = Ammo_545mmSTANAG(Copy2);
 	return Copy2;
 }
 

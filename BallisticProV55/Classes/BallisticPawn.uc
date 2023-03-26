@@ -532,15 +532,15 @@ simulated function FootStepping(int Side)
 	// walk/ADS - quieter
 	if (bIsWalking)
 	{
-		SoundVolumeScale = 0.75f;
-		SoundRadiusScale = 0.35f;
+		SoundVolumeScale = 0.5f;
+		SoundRadiusScale = 0.5f;
 	}
 
 	// sprint - much louder
 	else if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
 	{
-		SoundVolumeScale = 2f;
-		SoundRadiusScale = 1f;
+		SoundVolumeScale = 1.25f;
+		SoundRadiusScale = 1.25f;
 	}
 
 	// run - default
@@ -3036,7 +3036,7 @@ defaultproperties
      ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.150000
-     FootstepRadius=1024.000000
+     FootstepRadius=512.000000
 
 	 BaseEyeHeight=36
      CollisionRadius=19.000000

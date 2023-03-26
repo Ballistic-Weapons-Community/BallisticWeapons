@@ -50,8 +50,8 @@ defaultproperties
 	PlayerJumpZ=294
 	PlayerDodgeZ=170
 
-	PlayerWalkSpeedFactor=0.75f
-	PlayerCrouchSpeedFactor=0.33f
+	PlayerWalkSpeedFactor=0.6f
+	PlayerCrouchSpeedFactor=0.35f
 
 	bEnableSprint=True
 	StaminaChargeRate=5

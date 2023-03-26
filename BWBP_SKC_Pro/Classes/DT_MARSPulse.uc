@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTF2000Pulse extends DT_BWExplode;
+class DT_MARSPulse extends DT_BWExplode;
 
 defaultproperties
 {
@@ -23,7 +23,7 @@ defaultproperties
      MaleSuicides(2)="%o got a fatal dose of radiation from his own MARS-3 mine."
      SimpleKillString="MARS-3 Shockwave Grenade"
      DamageIdent="Assault"
-     WeaponClass=Class'BWBP_SKC_Pro.F2000AssaultRifle'
+     WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      DeathString="%o got %vh neurons scrambled by %k's MARS-3 pulse."
      FemaleSuicide="%o basked in the blue glow of her MARS-3 mine."
      MaleSuicide="%o basked in the blue glow of his MARS-3 mine."

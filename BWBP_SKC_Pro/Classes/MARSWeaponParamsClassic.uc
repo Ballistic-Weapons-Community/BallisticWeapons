@@ -45,9 +45,9 @@ defaultproperties
 		Damage=22
 		HeadMult=3.5
 		LimbMult=0.5
-		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'
+		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		PenetrationEnergy=32.000000
 		PenetrateForce=150
 		PDamageFactor=0.6

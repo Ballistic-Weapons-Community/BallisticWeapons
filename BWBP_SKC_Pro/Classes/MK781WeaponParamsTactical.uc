@@ -178,7 +178,7 @@ defaultproperties
 		ViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
 		ReloadAnimRate=1.2
 		InventorySize=6
-		SightMoveSpeedFactor=0.75
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
 		DisplaceDurationMult=1
 		MagAmmo=8
@@ -206,7 +206,7 @@ defaultproperties
 		ViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
 		ReloadAnimRate=1.2
 		InventorySize=6
-		SightMoveSpeedFactor=0.75
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
 		DisplaceDurationMult=1
 		MagAmmo=8

@@ -36,7 +36,7 @@ defaultproperties
     Begin Object Class=FireParams Name=TacticalPriFireParams
         AimedFireAnim="SightFire"
         FireEndAnim=
-        FireInterval=0.3
+        FireInterval=0.35
         FireEffectParams(0)=InstantEffectParams'TacticalPriEffectParams'
     End Object 
 
@@ -69,8 +69,8 @@ defaultproperties
         ViewBindFactor=0.5
         XCurve=(Points=(,(InVal=0.1,OutVal=0.05),(InVal=0.2,OutVal=0.12),(InVal=0.3,OutVal=0.08),(InVal=0.40000,OutVal=0.05),(InVal=0.50000,OutVal=0.10000),(InVal=0.600000,OutVal=0.170000),(InVal=0.700000,OutVal=0.24),(InVal=0.800000,OutVal=0.30000),(InVal=1.000000,OutVal=0.4)))
         YCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.4500),(InVal=0.5,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
-        XRandFactor=0.25
-		YRandFactor=0.25
+        XRandFactor=0.1
+		YRandFactor=0.1
 		ClimbTime=0.1
 		DeclineDelay=0.25
         DeclineTime=1.0
@@ -102,7 +102,7 @@ defaultproperties
         InventorySize=4
 		SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
         SightingTime=0.2
-        SightMoveSpeedFactor=0.75
+        SightMoveSpeedFactor=0.6
 		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
