@@ -2651,7 +2651,11 @@ function int ShieldAbsorb( int dam )
         return dam;
 
     Absorption = FMin(ShieldStrength, dam);
-    
+
+	// flash shield only if we absorbed all of the damage
+	if (Absorption == dam)
+		ShieldViewFlash(Absorption);
+   
     dam -= Absorption;
     ShieldStrength -= Absorption;
 
@@ -2842,6 +2846,18 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		MakeNoise(1.0);
 }
 
+function ShieldViewFlash(int damage)
+{
+    local int rnd;
+
+    if (BallisticPlayer(Controller) == None || damage == 0)
+        return;
+
+    rnd = FClamp(damage / 2, 25, 50);
+
+	BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);    
+}
+
 function DamageViewFlash(int damage)
 {
     local int rnd;
@@ -2851,14 +2867,7 @@ function DamageViewFlash(int damage)
 
     rnd = FClamp(damage / 2, 25, 50);
 
-	if (ShieldStrength > 0)
-    {
-        BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);
-    }
-    else 
-    {
-		BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);  
-    }     
+	BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);    
 }
 
 exec simulated function TestFlash(int damage)

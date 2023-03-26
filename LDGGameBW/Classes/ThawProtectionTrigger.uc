@@ -98,7 +98,12 @@ state PawnFrozen
             Destroy();
             return;
         }
+
+		if (!PawnOwner.CanBeThawed())
+			return;
+
 	    invalidTouchers = 0;
+
 	    for(i = 0; i < Toucher.Length; i++)
 	    {
 		    s = DisallowInteraction(Toucher[i]);
@@ -112,7 +117,7 @@ state PawnFrozen
         }
 
         // touch thaw adjustment
-        if((PawnOwner.Health > 12 || Freon(Level.Game).bRoundOT) && Toucher.Length - invalidTouchers > 0)
+        if(Toucher.Length - invalidTouchers > 0)
         {
             if(PlayerController(PawnOwner.Controller) != None)
             {
@@ -186,9 +191,9 @@ state PawnFrozen
             AverageDistance /= i;
 
             if(AverageDistance <= 100.0)
-                HealthGain += (100.0 / ThawSpeed) * 0.5 * Touchers;
+                HealthGain += (100.0 / ThawSpeed) * 0.5 * Touchers * SkillThawAdjustment;
             else
-                HealthGain += (100.0 / ThawSpeed) * 0.25 * Touchers;
+                HealthGain += (100.0 / ThawSpeed) * 0.25 * Touchers * SkillThawAdjustment;
                 
             if(Freon(Level.Game).bRoundOT)
                 HealthGain *= 0.4;
@@ -198,7 +203,7 @@ state PawnFrozen
         else if(AutoThawTime > 0.0)
         {
             if(!Freon(Level.Game).bRoundOT)
-            HealthGain += (100.0 / AutoThawTime) * 0.5 * SkillThawAdjustment;
+            	HealthGain += (100.0 / AutoThawTime) * 0.5 * SkillThawAdjustment;
         }
 
         PawnOwner.DecimalHealth += HealthGain;

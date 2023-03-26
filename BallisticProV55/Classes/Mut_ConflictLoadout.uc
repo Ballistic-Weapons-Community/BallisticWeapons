@@ -280,7 +280,7 @@ function ModifyPlayer( pawn Other )
 		EquipBot(Other);
 	else
 	{
-		CLRI.Validate(CLRI.Loadout, CLRI.Layout, CLRI.Camo);
+		CLRI.Validate(CLRI.Loadout, CLRI.Layouts, CLRI.Camos);
 		if (CLRI.Loadout.length == 0)
 		{
  			s = GetFallbackWeapon(CLRI);
@@ -310,10 +310,10 @@ function ModifyPlayer( pawn Other )
 				
 					if (class<Weapon>(InventoryClass) != None)
 					{
-						if ( i < CLRI.Layout.length && CLRI.Layout[i] != "")
-							LayoutIndex = int(CLRI.Layout[i]);
-						if ( i < CLRI.Camo.length && CLRI.Camo[i] != "")
-							CamoIndex = int(CLRI.Camo[i]);						
+						if ( i < CLRI.Layouts.length && CLRI.Layouts[i] != "")
+							LayoutIndex = int(CLRI.Layouts[i]);
+						if ( i < CLRI.Camos.length && CLRI.Camos[i] != "")
+							CamoIndex = int(CLRI.Camos[i]);						
 						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, LayoutIndex, CamoIndex);
 						LayoutIndex=0;
 						CamoIndex=0;

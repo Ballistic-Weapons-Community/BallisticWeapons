@@ -495,7 +495,7 @@ function ServerSetInventory(string ClassesString, string LayoutsString, string C
 		bInventoryInitialized = true;
 		Split(ClassesString, "|", Loadout);
 		Split(LayoutsString, "|", Layouts);
-		Split(CamosString, "|", Camo);
+		Split(CamosString, "|", Camos);
         InitialWeaponIndex = initial_wep_index;
 		UpdateInventory();
 		return;
@@ -506,14 +506,14 @@ function ServerSetInventory(string ClassesString, string LayoutsString, string C
 		case LUM_Immediate:
 			Split(ClassesString, "|", Loadout);
 			Split(LayoutsString, "|", Layouts);
-			Split(CamosString, "|", Camo);
+			Split(CamosString, "|", Camos);
             InitialWeaponIndex = initial_wep_index;
 			UpdateInventory();
 			break;
 		case LUM_Delayed:
 			Split(ClassesString, "|", PendingLoadout);
 			Split(LayoutsString, "|", PendingLayouts);
-			Split(CamosString, "|", Camo); // we'll let you update your camos immediately
+			Split(CamosString, "|", Camos); // we'll let you update your camos immediately
             PendingInitialWeaponIndex = initial_wep_index;
 			bPendingLoadout = true;
 			break;
@@ -546,7 +546,7 @@ function UpdateInventory()
 {
 	local string s;
 
-	Validate(Loadout, Layouts, Camo);
+	Validate(Loadout, Layouts, Camos);
 
 	if (Loadout.length == 0)
 	{
