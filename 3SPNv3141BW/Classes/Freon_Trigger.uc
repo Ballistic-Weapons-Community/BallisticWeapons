@@ -2,21 +2,21 @@ class Freon_Trigger extends Trigger;
 
 #exec AUDIO IMPORT FILE=Sounds\touch.wav        GROUP=Sounds
 
-var Freon_Pawn        PawnOwner;
-var Array<Freon_Pawn> Toucher;
-var int               Team;
+var Freon_Pawn        	PawnOwner;
+var Array<Freon_Pawn> 	Toucher;
+var int               	Team;
 
-var Sound ThawSound;
-var Sound TouchSound;
+var Sound 				ThawSound;
+var Sound 				TouchSound;
 
-var float ThawSpeed;
-var float AutoThawTime;
-var float FrozeTime;
+var float 				ThawSpeed;
+var float 				AutoThawTime;
+var float 				FrozeTime;
 
-var float FastThawModifier;
+var float 				FastThawModifier;
 
-var bool  bTeamHeal;
-var float TeamHealPostHitDelay; //Kills the "mob bonus" effect
+var bool  				bTeamHeal;
+var float 				TeamHealPostHitDelay; //Kills the "mob bonus" effect
 
 function PostBeginPlay()
 {
@@ -192,9 +192,12 @@ state PawnFrozen
             Destroy();
             return;
         }
-		
+
+		if (!PawnOwner.CanBeThawed())
+			return;
+
         // touch thaw adjustment
-        if((PawnOwner.Health > 12 || Freon(Level.Game).bRoundOT) && Toucher.Length > 0)
+        if (Toucher.Length > 0)
         {
             if(PlayerController(PawnOwner.Controller) != None)
             {
@@ -246,12 +249,14 @@ state PawnFrozen
             if(Freon(Level.Game).bRoundOT)
             	HealthGain *= 0.4;
         }
+
         // auto thaw adjustment
-        else if(AutoThawTime > 0.0)
+        else if (AutoThawTime > 0.0)
         {
         	if(Freon(Level.Game).bRoundOT)
-				HealthGain += (100.0 / AutoThawTime) * 0.15;
-			else HealthGain += (100.0 / AutoThawTime) * 0.5;
+				HealthGain += (100.0 / AutoThawTime) * 0.2;
+			else 
+				HealthGain += (100.0 / AutoThawTime) * 0.5;
         }
         
         PawnOwner.DecimalHealth += HealthGain;

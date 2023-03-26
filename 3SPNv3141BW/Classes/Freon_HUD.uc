@@ -72,7 +72,7 @@ function DrawCustomBeacon(Canvas C, Pawn P, float ScreenLocX, float ScreenLocY)
 
 	if (Freon_Pawn(P).bFrozen)
 	{
-		if (Freon_Pawn(P).Health < 13)
+		if (!Freon_Pawn(P).CanBeThawed())
 			C.DrawColor = NoThawColor;
 		else if(distance <= class'Freon_Trigger'.default.CollisionRadius)
 			C.DrawColor = class'Freon_PRI'.default.FrozenColor;
@@ -120,8 +120,16 @@ function DrawCustomBeacon(Canvas C, Pawn P, float ScreenLocX, float ScreenLocY)
         C.Font = C.MedFont;
 		
 		info = P.PlayerReplicationInfo.PlayerName;
+		
 		if (Freon_Pawn(P).bFrozen)
-			info $= " (" $ P.Health $ "%)";
+		{
+			// if thaw locked, show seconds before thaw is permitted
+			if (Freon_Pawn(P).CanBeThawed())
+				info $= " (" $ P.Health $ "%)";
+			else
+				info $= " (" $ int(Freon_Pawn(P).ThawLockEndTime - Level.TimeSeconds) + 1 $"s)";
+		}
+		
 	    C.TextSize(info, XL, YL);
 	    C.SetPos(ScreenLoc.X - 0.125 * FrozenBeacon.USize, ScreenLoc.Y - 0.345 * FrozenBeacon.VSize - YL);
 	    C.DrawTextClipped(info, false);

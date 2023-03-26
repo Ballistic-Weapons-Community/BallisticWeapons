@@ -2725,9 +2725,9 @@ defaultproperties
      PrecachePickups(45)=Class'BallisticProV55.XRS10Pickup'
 
      PrecachePickups(46)=Class'BWBP_SKC_Pro.A49Pickup'
-     PrecachePickups(47)=Class'BWBP_SKC_Pro.AH208Pickup'
-     PrecachePickups(48)=Class'BWBP_SKC_Pro.AH250Pickup'
-     PrecachePickups(49)=Class'BWBP_SKC_Pro.AK47Pickup'
+     PrecachePickups(47)=Class'BWBP_SKC_Pro.AH250Pickup'
+     PrecachePickups(48)=Class'BWBP_SKC_Pro.AK490Pickup'
+	 PrecachePickups(49)=Class'BWBP_SKC_Pro.AK91Pickup'
      PrecachePickups(50)=Class'BWBP_SKC_Pro.AS50Pickup'
      PrecachePickups(51)=Class'BWBP_SKC_Pro.BulldogPickup'
      PrecachePickups(52)=Class'BWBP_SKC_Pro.ChaffPickup'
@@ -2757,7 +2757,7 @@ defaultproperties
      PrecachePickups(76)=Class'BWBP_SKC_Pro.XM84Pickup'
 
      PrecachePickups(77)=Class'BWBP_OP_Pro.AkeronPickup'
-     PrecachePickups(78)=Class'BWBP_OP_Pro.BX85Pickup'
+     PrecachePickups(78)=Class'BWBP_OP_Pro.KF8XPickup'
      PrecachePickups(79)=Class'BWBP_OP_Pro.CX61Pickup'
      PrecachePickups(80)=Class'BWBP_OP_Pro.CX85Pickup'
      PrecachePickups(81)=Class'BWBP_OP_Pro.DefibFistsPickup'
@@ -2773,7 +2773,7 @@ defaultproperties
 	 PrecachePickups(91)=Class'BWBP_OP_Pro.MAG78Pickup'
 	 PrecachePickups(92)=Class'BWBP_OP_Pro.TrenchGunPickup'
      PrecachePickups(93)=Class'BWBP_OP_Pro.XM20Pickup'
-     PrecachePickups(94)=Class'BWBP_OP_Pro.ARPickup'
+     PrecachePickups(94)=Class'BWBP_OP_Pro.RCS715Pickup'
      PrecachePickups(95)=Class'BWBP_OP_Pro.LightningPickup'
 
      PrecachePickups(96)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
