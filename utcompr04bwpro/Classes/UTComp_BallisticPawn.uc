@@ -1023,6 +1023,25 @@ simulated static function MakeBrightPurpleSkin(xUtil.PlayerRecord record, byte T
 	NewFaceSkin = S;
 }
 
+function DamageViewFlash(int damage)
+{
+    local int rnd;
+
+    if (UTComp_xPlayer_BW(Controller) == None || damage == 0)
+        return;
+
+    rnd = FClamp(damage / 2, 25, 50);
+
+	if (ShieldStrength > 0)
+    {
+        UTComp_xPlayer_BW(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);
+    }
+    else 
+    {
+		UTComp_xPlayer_BW(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);  
+    }     
+}
+
 defaultproperties
 {
      ShieldColor=(G=65,R=105)

@@ -5,7 +5,7 @@ var Shader wpShad[16];
 
 var float OnJoinMessageDrawTimeBW;
 
-#exec TEXTURE IMPORT FILE="Textures\BackgroundOverlayBW.tga" NAME="BackgroundOverlayBW" GROUP="Overlay" DXT=3
+#exec TEXTURE IMPORT FILE="Textures\BackgroundOverlayBW.dds" NAME="BackgroundOverlayBW" GROUP="Overlay" DXT=3
 
 event Initialized()
 {
@@ -52,7 +52,7 @@ function PostRender(Canvas Canvas)
 
 	OverlayLocX = Canvas.ClipX * class'UTComp_Overlay'.default.HorizPosition;
 	
-	//check minium offset for the overlay and that it is left
+	//check minimum offset for the overlay and that it is left
 	if (class'UTComp_Overlay'.default.VertPosition > MinPosY || class'UTComp_Overlay'.default.HorizPosition > 0.5)
 		OverlayLocY =  Canvas.ClipY * class'UTComp_Overlay'.default.VertPosition;
 	else

@@ -38,15 +38,18 @@ var int					ListenRetryCount;
 var Mut_ConflictLoadout LoadoutMut;						// The mutator itself
 
 var bool				bInventoryInitialized;
-var bool				bPendingLoadout;
+
+var bool				bPendingLoadout;					// loadout will be applied after new round
+
 var array<string> 		PendingLoadout;						// If set to pending mode, next loadout
+var array<string>		PendingLayouts;						// If set to pending mode, next layouts
 
 var int                 InitialWeaponIndex;
 var int                 PendingInitialWeaponIndex;
 
 var array<string> 		Loadout;								// Current loadout
-var array<string>		Layout;									// Current layout of each item
-var array<string>		Camo;									// Current camo of each item
+var array<string>		Layouts;								// Current layout of each item
+var array<string>		Camos;									// Current camo of each item
 
 struct InventoryEntry
 {
@@ -491,7 +494,7 @@ function ServerSetInventory(string ClassesString, string LayoutsString, string C
 	{
 		bInventoryInitialized = true;
 		Split(ClassesString, "|", Loadout);
-		Split(LayoutsString, "|", Layout);
+		Split(LayoutsString, "|", Layouts);
 		Split(CamosString, "|", Camo);
         InitialWeaponIndex = initial_wep_index;
 		UpdateInventory();
@@ -502,15 +505,15 @@ function ServerSetInventory(string ClassesString, string LayoutsString, string C
 	{
 		case LUM_Immediate:
 			Split(ClassesString, "|", Loadout);
-			Split(LayoutsString, "|", Layout);
+			Split(LayoutsString, "|", Layouts);
 			Split(CamosString, "|", Camo);
             InitialWeaponIndex = initial_wep_index;
 			UpdateInventory();
 			break;
 		case LUM_Delayed:
 			Split(ClassesString, "|", PendingLoadout);
-			Split(LayoutsString, "|", Layout);
-			Split(CamosString, "|", Camo);
+			Split(LayoutsString, "|", PendingLayouts);
+			Split(CamosString, "|", Camo); // we'll let you update your camos immediately
             PendingInitialWeaponIndex = initial_wep_index;
 			bPendingLoadout = true;
 			break;
@@ -527,6 +530,7 @@ function UpdatePendingLoadout()
 		return;
 
 	Loadout = PendingLoadout;
+	Layouts = PendingLayouts;
     InitialWeaponIndex = PendingInitialWeaponIndex;
 
 	bPendingLoadout = false;
@@ -542,7 +546,7 @@ function UpdateInventory()
 {
 	local string s;
 
-	Validate(Loadout, Layout, Camo);
+	Validate(Loadout, Layouts, Camo);
 
 	if (Loadout.length == 0)
 	{
@@ -557,7 +561,7 @@ function UpdateInventory()
 //===================================================
 // Validate a list of weapons and take out the bad ones
 //===================================================
-simulated function Validate(out array<string> ClassNames, out array<string> LayoutIndex, out array<string> CamoIndex)
+simulated function Validate(out array<string> ClassNames, out array<string> LayoutIndices, out array<string> CamoIndices)
 {
 	local int i;
 	for (i = 0; i < ClassNames.length; i++)
@@ -565,8 +569,8 @@ simulated function Validate(out array<string> ClassNames, out array<string> Layo
 		if (!ValidateWeapon(ClassNames[i]))
 		{
 			ClassNames.remove(i,1);
-			LayoutIndex.remove(i,1);
-			CamoIndex.remove(i,1);
+			LayoutIndices.remove(i,1);
+			CamoIndices.remove(i,1);
 			i--;
 		}
 	}
@@ -719,18 +723,18 @@ defaultproperties
 	Loadout(3)="BallisticProV55.MD24Pistol"
 	Loadout(4)="BallisticProV55.X4Knife"
 	Loadout(5)="BallisticProV55.NRP57Grenade"
-	Layout(0)="0"
-	Layout(1)="0"
-	Layout(2)="0"
-	Layout(3)="0"
-	Layout(4)="0"
-	Layout(5)="0"
-	Camo(0)="0"
-	Camo(1)="0"
-	Camo(2)="0"
-	Camo(3)="0"
-	Camo(4)="0"
-	Camo(5)="0"
+	Layouts(0)="0"
+	Layouts(1)="0"
+	Layouts(2)="0"
+	Layouts(3)="0"
+	Layouts(4)="0"
+	Layouts(5)="0"
+	Camos(0)="0"
+	Camos(1)="0"
+	Camos(2)="0"
+	Camos(3)="0"
+	Camos(4)="0"
+	Camos(5)="0"
 	
 	ChangeInterval=60.000000
 	MenuName="Gear"
