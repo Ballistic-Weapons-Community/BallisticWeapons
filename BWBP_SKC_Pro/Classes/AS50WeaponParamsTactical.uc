@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=125
         HeadMult=1.5f
-        LimbMult=0.85
+        LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AS50Limb'
@@ -18,7 +18,7 @@ defaultproperties
 		PushbackForce=255.000000
 		WallPDamageFactor=0.850000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=1024.000000
+		Recoil=3072.000000
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.4
@@ -26,7 +26,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.800000
+		FireInterval=1
 		FireAnim="CFire"
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -36,11 +36,10 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		Damage=90
-        HeadMult=2.75
+        HeadMult=2.75f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
@@ -48,7 +47,7 @@ defaultproperties
 		PDamageFactor=0.000000
 		WallPDamageFactor=0.850000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=1024.000000
+		Recoil=3072.000000
 		Chaos=1.000000
 		BotRefireRate=0.50000
 		WarnTargetPct=0.40000
@@ -70,14 +69,16 @@ defaultproperties
 		ViewBindFactor=0.15
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.25
+		XRandFactor=0.45
 		YRandFactor=0.25
-		MinRandFactor=0.15
-		DeclineTime=1.500000
-		DeclineDelay=0.5
+		MinRandFactor=0.35
+		MaxRecoil=8192
+		ClimbTime=0.15
+		DeclineDelay=0.75
+		DeclineTime=1.00000
 		HipMultiplier=2
-		MaxMoveMultiplier=4
-		CrouchMultiplier=0.650000
+		MaxMoveMultiplier=2
+		CrouchMultiplier=0.750000
 	End Object
 
 	//=================================================================
@@ -108,10 +109,10 @@ defaultproperties
         SightMoveSpeedFactor=0.35
 		SightingTime=0.8
 		MagAmmo=6
-		// sniper 5-10x
+		// sniper 4-8x
         ZoomType=ZT_Logarithmic
-		MinZoom=5
-		MaxZoom=10
+		MinZoom=4
+		MaxZoom=8
 		ZoomStages=1
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

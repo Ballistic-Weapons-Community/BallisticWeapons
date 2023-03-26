@@ -4495,7 +4495,7 @@ simulated final function ReceiveNetAim(float Yaw, float Pitch, float Time, float
 // Send the random values used for recoil to the client so he'll have the same recoil effect
 final function SendNetRecoil()
 {
-	ReceiveNetRecoil(RcComponent.GetRecoilXRand() * 255, RcComponent.GetRecoilYRand() * 255, RcComponent.GetRecoil() );
+	ReceiveNetRecoil(RcComponent.GetTargetXRand() * 255, RcComponent.GetTargetYRand() * 255, RcComponent.GetTargetRecoil() );
 }
 
 // Receive random values for recoil from the server

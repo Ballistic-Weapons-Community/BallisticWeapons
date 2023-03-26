@@ -24,7 +24,7 @@ defaultproperties
 		PushbackForce=255.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=768.000000
+		Recoil=3072.000000
 		Chaos=0.700000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.700000
@@ -56,13 +56,16 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.1
-		XRandFactor=0.600000
-		YRandFactor=0.300000
-		DeclineTime=1.500000
+		XRandFactor=0.45
+		YRandFactor=0.25
+		MinRandFactor=0.35
 		MaxRecoil=8192
-		CrouchMultiplier=0.7
+		ClimbTime=0.15
+		DeclineDelay=0.75
+		DeclineTime=1.00000
 		HipMultiplier=2
-		MaxMoveMultiplier=4
+		MaxMoveMultiplier=2
+		CrouchMultiplier=0.750000
 	End Object
 
 	//=================================================================
@@ -98,8 +101,8 @@ defaultproperties
 		MagAmmo=5
 		// sniper 5-10x
         ZoomType=ZT_Logarithmic
-		MinZoom=5
-		MaxZoom=10
+		MinZoom=4
+		MaxZoom=8
 		ZoomStages=1
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -41,7 +41,8 @@ var float						YawFactor;					// Recoil is multiplied by this and added to Aim Y
 var float						XRandFactor;				// Recoil multiplied by this for recoil Yaw randomness
 var float						YRandFactor;				// Recoil multiplied by this for recoil Pitch randomness
 var float						MinRandFactor;				// Bias for calculation of recoil random factor
-var float						MaxRecoil;					// The maximum recoil amount
+var int							MaxRecoil;					// The maximum recoil amount
+var float						ClimbTime;					// Time taken to interpolate between positions
 var float						DeclineTime;				// Time it takes for Recoil to decline maximum to zero
 var float						DeclineDelay;				// The time between firing and when recoil should start decaying
 var float             			HipMultiplier;            	// Hipfire recoil is scaled up by this value
@@ -53,9 +54,19 @@ var bool						bUseAltSightCurve;			// Weapon will use a different recoil curve w
 //=============================================================================
 // STATE
 //=============================================================================
-var private float               Recoil;						// The current recoil amount. Increases each shot, decreases when not firing
-var private float               XRand;				        // Random between 0 and 1. Recorded random number for recoil Yaw randomness
-var private float               YRand;				        // Random between 0 and 1. Recorded random number for recoil Pitch randomness
+struct StateData
+{
+	var int Recoil;			// Current recoil amount. Determines position on the recoil path.
+	var float XRand;		// Current X random factor for recoil. Determines additional offset on the recoil path.
+	var float YRand;		// Current Y random factor for recoil. Determines additional offset on the recoil path.
+};
+
+var private StateData           Current;					// Current recoil state.	
+var private StateData			Start;						// Start recoil state for last shot.
+var private StateData			Target;						// Destination recoil for last shot.
+
+var private float				AdjustmentPhase;			// Progression from Start to Target, 0-1
+var private float				AdjustmentTime;				// Time to adjust from Start to Target
 
 // View application
 var private Rotator             LastViewPivot;   		    // Pivot saved between GetViewPivotDelta calls, used to find delta recoil  
@@ -90,48 +101,81 @@ var private float               ViewBindFactor;            	// Amount to bind re
 var private float               LastRecoilTime;             // Last time at which recoil was added
 
 // Replication
-var private bool                bForceUpdate;               // Forces ApplyAimToView call to recalculate recoil (set after ReceiveNetRecoil)
+// var private bool                bForceUpdate;               // Forces ApplyAimToView call to recalculate recoil (set after ReceiveNetRecoil)
 
-//=============================================================
-// Accessors
-//=============================================================
-final simulated function float GetRecoil()
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ACCESSORS
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+final simulated function float GetTargetRecoil()
 {
-    return Recoil;
+    return Target.Recoil;
 }
 
-final simulated function float GetRecoilXRand()
+final simulated function float GetTargetXRand()
 {
-    return XRand;
+    return Target.XRand;
 }
 
-final simulated function float GetRecoilYRand()
+final simulated function float GetTargetYRand()
 {
-    return YRand;
+    return Target.YRand;
 }
 
-//=============================================================
-// Utility
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// UTILITY
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//===========================================================
+// HoldingRecoil
+//
+// True if recoil is not declining
+//===========================================================
 final simulated function bool HoldingRecoil()
 {
     return LastRecoilTime + DeclineDelay >= Level.TimeSeconds;
 }
 
+//===========================================================
+// ShouldUpdateView
+//
+// Called by weapon to determine if delta recoil 
+// should be added to the view rotation on this tick
+//===========================================================
 final simulated function bool ShouldUpdateView()
 {
+	// apply if recoil is climbing
+	if (Current.Recoil > 0 && HoldingRecoil())
+		return true;
+
+	// apply if forced (classic snake behaviour)
+	if (bViewDecline)
+		return true;
+
+	return false;
+
+	/*
     local bool ret;
 
-    ret = bViewDecline || bForceUpdate || (Recoil > 0 && HoldingRecoil());
+    ret = bViewDecline || bForceUpdate || (Current.Recoil > 0 && HoldingRecoil()); // used to prevent removing recoil from player view
 
     bForceUpdate = false;
 
     return ret;
+	*/
 }
 
-//=============================================================
-// Cleanup (hello where are the RAII?)
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CLEANUP (hello where are the RAII?)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//===========================================================
+// Cleanup
+//
+// Resets state variables before this object is released 
+// to the pool
+//===========================================================
+
 final simulated function Cleanup()
 {
 	BW = None;
@@ -139,21 +183,36 @@ final simulated function Cleanup()
 
 	Params = None;
 
-	Recoil = 0;
-	XRand = 0;
-	YRand = 0;
+	Current.Recoil = 0;
+	Current.XRand = 0;
+	Current.YRand = 0;
+
+	Start.Recoil = 0;
+	Start.XRand = 0;
+	Start.YRand = 0;
+
+	Target.Recoil = 0;
+	Target.XRand = 0;
+	Target.YRand = 0;
 
 	LastViewPivot = rot(0,0,0);
 	ViewBindFactor = 0;
 
 	LastRecoilTime = 0;
 
-	bForceUpdate = false;
+	//bForceUpdate = false;
 }
 
-//=============================================================
-// Gameplay
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GAMEPLAY
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//===========================================================
+// Recalculate
+//
+// Called when parameters are change to assign internal 
+// state variables
+//===========================================================
 final simulated function Recalculate()
 {
     assert(Params != None);
@@ -164,6 +223,7 @@ final simulated function Recalculate()
 	YRandFactor 		= Params.YRandFactor;
 	MinRandFactor 		= Params.MinRandFactor;
 	MaxRecoil 			= Params.MaxRecoil;
+	ClimbTime			= Params.ClimbTime;
 	DeclineTime 		= Params.DeclineTime;
 	DeclineDelay		= Params.DeclineDelay;
 	HipMultiplier 		= Params.HipMultiplier;
@@ -178,61 +238,108 @@ final simulated function Recalculate()
 	BW.OnRecoilParamsChanged();
 }
 
+//=============================================================
+// UpdateRecoil
+//
+// Interpolates the recoil between start and end.
+// Initiates view decline if needed.
+//=============================================================
 final simulated function UpdateRecoil(float dt)
 {
-	if (Recoil > 0 && !HoldingRecoil())
-		Recoil -= FMin(Recoil, MaxRecoil * (dt / DeclineTime));
+	// update shift to desired target value
+	if (Current.Recoil != Target.Recoil)
+	{
+		// prevent div0
+		if (AdjustmentTime == 0)
+			AdjustmentPhase = 1;
+		else 
+			AdjustmentPhase = FMin(1, AdjustmentPhase + (dt / AdjustmentTime));
+		
+		Current.Recoil = Lerp(AdjustmentPhase, Start.Recoil, Target.Recoil);
+		Current.XRand = Lerp(AdjustmentPhase, Start.XRand, Target.XRand);
+		Current.YRand = Lerp(AdjustmentPhase, Start.YRand, Target.YRand);
+	}
+
+	// initiate view decline if past recoil decline delay
+	else if (Current.Recoil > 0 && !HoldingRecoil())
+	{
+		Start = Current;
+
+		Target.Recoil = 0;
+		Target.XRand = 0;
+		Target.YRand = 0;
+
+		AdjustmentPhase = 0;
+		AdjustmentTime = DeclineTime;
+	}
 }
 
+final simulated function float ModifyRecoil(float amount)
+{
+	if (VSize(BW.Instigator.Velocity) >= 30) // moving modifiers
+	{
+		// increase recoil when moving by function of current move speed
+		if (MaxMoveMultiplier > 1.0f)
+			amount *= 1f + ((MaxMoveMultiplier - 1f) * FMin(1f, VSize(BW.Instigator.Velocity) / class'BallisticReplicationInfo'.default.PlayerGroundSpeed));
+	}
+	else // stationary modifiers
+	{
+		// reduce recoil when stationary crouched by desired factor
+		if (BW.Instigator.bIsCrouched)
+		amount *= CrouchMultiplier;
+	}
+		
+	// increase recoil when not in ADS
+	if (!BW.bScopeView)
+		amount *= HipMultiplier;
+
+	// scale by game style
+	amount *= class'BallisticReplicationInfo'.default.RecoilShotScale;
+
+	return amount;
+}
+
+//===========================================================
+// AddRecoil
+//
+// Called authoritatively to add recoil
+//===========================================================
 final simulated function AddRecoil (float Amount, optional byte Mode)
 {
-	LastRecoilTime = BW.Level.TimeSeconds;
-	
-	if (BW.bAimDisabled || Amount == 0)
+	if (BW.bAimDisabled || Amount == 0 || (BW.bUseNetAim && BW.Role < ROLE_Authority))
 		return;
+
+	Amount = ModifyRecoil(Amount);
+
+	Start = Current;
 	
-	// reduce recoil when stationary crouched by desired factor
-	if (BW.Instigator.bIsCrouched && VSize(BW.Instigator.Velocity) < 30)
-		Amount *= CrouchMultiplier;
-		
-	// increase recoil when not in ADS by factor
-	if (!BW.bScopeView)
-		Amount *= HipMultiplier;
-
-	// increase recoil when moving
-	if (MaxMoveMultiplier > 1.0f && VSize(BW.Instigator.Velocity) >= 30)
-	{
-		Amount *= 1f + ((MaxMoveMultiplier - 1f) * FMin(1f, VSize(BW.Instigator.Velocity) / class'BallisticReplicationInfo'.default.PlayerGroundSpeed));
-	}
-
-	Amount *= class'BallisticReplicationInfo'.default.RecoilShotScale;
+	Target.Recoil = FMin(MaxRecoil, FMax(Current.Recoil, Target.Recoil) + Amount);
+	Target.XRand = FRand();
+	Target.YRand = FRand();
 	
-	Recoil = FMin(MaxRecoil, Recoil + Amount);
-
-	if (!BW.bUseNetAim || BW.Role == ROLE_Authority)
+	if (Target.Recoil == MaxRecoil)
 	{
-		XRand = FRand();
-		YRand = FRand();
-		
-		if (Recoil == MaxRecoil)
+		if (Amount < 260)
 		{
-			if (Amount < 260)
-			{
-				XRand *= 5 * (400 - Amount) / 400;
-				YRand *= 5 * (400 - Amount) / 400;
-			}
-			else
-			{
-				XRand *= 3;
-				YRand *= 3;
-			}
+			Target.XRand *= 5 * (400 - Amount) / 400;
+			Target.YRand *= 5 * (400 - Amount) / 400;
+		}
+		else
+		{
+			Target.XRand *= 3;
+			Target.YRand *= 3;
 		}
 	}
+
+	AdjustmentPhase = 0;
+	AdjustmentTime = ClimbTime;
+
+	LastRecoilTime = BW.Level.TimeSeconds;
 }
 
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Display
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 final simulated function UpdateADSTransition(float delta)
 {
     ViewBindFactor = Smerp(delta, Params.ViewBindFactor, Params.ADSViewBindFactor);
@@ -250,16 +357,31 @@ final simulated function OnADSViewEnd()
         ViewBindFactor = Params.ViewBindFactor;
 }
 
+//===========================================================
+// GetWeaponPivot
+//
+// Returns the total recoil offset of the weapon.
+//===========================================================
 final simulated function Rotator GetWeaponPivot()
 {
     return GetRecoilPivot(false);
 }
 
+//===========================================================
+// GetViewPivot
+//
+// Returns the recoil offsetting applied to the view.
+//===========================================================
 final simulated function Rotator GetViewPivot()
 {
     return GetRecoilPivot(true) * ViewBindFactor;
 }
 
+//===========================================================
+// CalcViewPivotDelta
+//
+// Calculates the change in view offsetting.
+//===========================================================
 final simulated function Rotator CalcViewPivotDelta()
 {
     local Rotator CurViewPivot, DeltaPivot;
@@ -273,6 +395,14 @@ final simulated function Rotator CalcViewPivotDelta()
     return DeltaPivot;
 }
 
+//===========================================================
+// GetRecoilPivot
+//
+// If bIgnoreViewAim is set, returns the absolute recoil pivot.
+//
+// If bIgnoreViewAim is not set, returns the relative recoil pivot
+// to the player's current view aim.
+//===========================================================
 private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 {
 	local Rotator R;
@@ -284,14 +414,14 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 	// Randomness
     if (Params.MinRandFactor > 0)
 	{
-		AdjustedRecoil = Params.MaxRecoil * Params.MinRandFactor + Recoil * (1 - Params.MinRandFactor);
-		R.Yaw = ((-AdjustedRecoil * Params.XRandFactor + AdjustedRecoil * Params.XRandFactor *2 * XRand) * 0.3);
-		R.Pitch = ((-AdjustedRecoil * Params.YRandFactor + AdjustedRecoil * Params.YRandFactor * 2 * YRand) * 0.3);
+		AdjustedRecoil = Params.MaxRecoil * Params.MinRandFactor + Current.Recoil * (1 - Params.MinRandFactor);
+		R.Yaw = ((-AdjustedRecoil * Params.XRandFactor + AdjustedRecoil * Params.XRandFactor *2 * Current.XRand) * 0.3);
+		R.Pitch = ((-AdjustedRecoil * Params.YRandFactor + AdjustedRecoil * Params.YRandFactor * 2 * Current.YRand) * 0.3);
 	}
 	else
 	{
-		R.Yaw = ((-Recoil * Params.XRandFactor + Recoil * Params.XRandFactor * 2 * XRand) * 0.3);
-		R.Pitch = ((-Recoil * Params.YRandFactor + Recoil * Params.YRandFactor * 2 * YRand) * 0.3);
+		R.Yaw = ((-Current.Recoil * Params.XRandFactor + Current.Recoil * Params.XRandFactor * 2 * Current.XRand) * 0.3);
+		R.Pitch = ((-Current.Recoil * Params.YRandFactor + Current.Recoil * Params.YRandFactor * 2 * Current.YRand) * 0.3);
     }
         
 	// Pitching/Yawing
@@ -301,13 +431,13 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 	// If there is any escape factor, you will get a visual jump where the evaluation of the two curves differs.
 	if (BW.bScopeView && bUseAltSightCurve)
 	{
-		R.Yaw += Params.EvaluateXRecoilAlt(Recoil);
-		R.Pitch += Params.EvaluateYRecoilAlt(Recoil);
+		R.Yaw += Params.EvaluateXRecoilAlt(Current.Recoil);
+		R.Pitch += Params.EvaluateYRecoilAlt(Current.Recoil);
 	}
 	else
 	{
-		R.Yaw += Params.EvaluateXRecoil(Recoil);
-		R.Pitch += Params.EvaluateYRecoil(Recoil);
+		R.Yaw += Params.EvaluateXRecoil(Current.Recoil);
+		R.Pitch += Params.EvaluateYRecoil(Current.Recoil);
 	}
 
 	if (BW.Handedness() < 0) // held in left hand - reverse recoil curve
@@ -321,33 +451,39 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 	return R*(1-ViewBindFactor);
 }
 
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AI
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 final function bool BotShouldFire(float Dist)
 {
-    if (Recoil * Params.YawFactor > 100 * (1+4000/Dist) || (Recoil * Params.PitchFactor > 100 * (1+4000/Dist)))
+    if (Current.Recoil * Params.YawFactor > 100 * (1+4000/Dist) || (Current.Recoil * Params.PitchFactor > 100 * (1+4000/Dist)))
         return false;
 
     return true;
 }
 
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Replication
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 final simulated function ReceiveNetRecoil(byte NetXRand, byte NetYRand, float NetRecoil)
 {
-	XRand = float(NetXRand)/255;
-	YRand = float(NetYRand)/255;
-	Recoil = NetRecoil;
+	Start = Current;
+
+	Target.Recoil = NetRecoil;
+	Target.XRand = float(NetXRand)/255;
+	Target.YRand = float(NetYRand)/255;
+
+	AdjustmentPhase = 0;
+	AdjustmentTime = ClimbTime;
+
 	LastRecoilTime = Level.TimeSeconds;
-	bForceUpdate=True;
+	//bForceUpdate = true;
 }
 
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Debug
-//=============================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 final simulated function DrawDebug(Canvas Canvas)
 {
-    Canvas.DrawText("RecoilComponent: Recoil: "$Recoil$"/"$MaxRecoil$", ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor $ " Hand: " $ BW.Handedness());
+    Canvas.DrawText("RecoilComponent: Recoil: "$ Current.Recoil $"/"$ MaxRecoil $" (Lerp "$ Start.Recoil $"-"$Target.Recoil$", Phase "$AdjustmentPhase$"), ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor);
 }

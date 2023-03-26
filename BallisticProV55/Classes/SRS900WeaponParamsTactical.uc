@@ -34,7 +34,6 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.20000
-		BurstFireRateFactor=0.55
 		FireEndAnim=	
 		AimedFireAnim="AimedFire"
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -63,7 +62,6 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_600
 		FireInterval=0.20000
-		BurstFireRateFactor=0.55
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_600'
@@ -79,8 +77,9 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.5,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
+		ClimbTime=0.1
+		DeclineDelay=0.22
 		DeclineTime=1.00000
-		DeclineDelay=0.400000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -91,8 +90,9 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.5,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1000
 		YRandFactor=0.1000
+		ClimbTime=0.1
+		DeclineDelay=0.22
 		DeclineTime=1.00000
-		DeclineDelay=0.400000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object

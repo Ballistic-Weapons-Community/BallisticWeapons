@@ -27,7 +27,7 @@ class BallisticProjectile extends Projectile
 	config(BallisticProV55);
 
 const HEAD_RADIUS = 7;
-const TORSO_RADIUS = 12;
+//const TORSO_RADIUS = 12;
 const MAX_MOMENTUM_Z = 10000.0f;
 
 //=============================================================================
@@ -859,6 +859,7 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 			
 			// Check for head shot
 			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', HEAD_RADIUS));
+
 			if (InStr(Bone, "head") > -1)
 			{
 				Dmg *= HeadMult;
@@ -866,9 +867,8 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 				if (DamageTypeHead != None)
 					DT = DamageTypeHead;
 			}
-			
-			// Limb shots
-			else if (HitLocation.Z < Other.Location.Z - (Other.CollisionHeight/6) || VSize(HitLocationMatchZ - Other.Location) > TORSO_RADIUS) //accounting for groin region here
+
+			else if (HitLocation.Z <= Other.Location.Z - 5 ) //  || VSize(HitLocation - Other.Location) > TORSO_RADIUS)
 			{
 				Dmg *= LimbMult;
 
@@ -904,21 +904,14 @@ final function Actor GetDamageForCollision(UnlaggedPawnCollision Other, vector H
     {
         Dmg *= HeadMult;
         DT = DamageTypeHead;
-        return Other;
     }
 
-    if (HitLocation.Z > Other.Location.Z - 5)
+    else if (HitLocation.Z <= Other.Location.Z - 5) // || VSize(HitLocation - Other.Location) > TORSO_RADIUS
     {
-        HitLocation.Z = Other.Location.Z;
-
-        // Torso radius
-        if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
-            return Other;
+    	Dmg *= LimbMult;
+    	DT = DamageTypeLimb;
     }
     
-    Dmg *= LimbMult;
-    DT = DamageTypeLimb;
-      
 	return Other;
 }
 

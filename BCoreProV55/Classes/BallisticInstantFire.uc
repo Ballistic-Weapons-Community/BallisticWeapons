@@ -48,7 +48,7 @@ class BallisticInstantFire extends BallisticFire
 
 const MAX_WALLS = 5;
 
-const TORSO_RADIUS = 11;
+//const TORSO_RADIUS = 11;
 const HEAD_HEIGHT_HALF = 10;
 const HEAD_RADIUS = 9; // cylinder
 
@@ -275,33 +275,21 @@ final function float GetDamage (Actor Other, vector HitLocation, vector TraceSta
     // Pawn target - check for locational damage
     if (Pawn(Other) != None)
     {
+		// Head shots - check bone
         HeadLocation = Other.GetBoneCoords('head').Origin;
 
         if (class'BUtil'.static.GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
         {
             Dmg *= HeadMult;
             DT = DamageTypeHead;
-            return Dmg;
         }
 
-        // Torso shots
-
-        // Older version of this check based on spine bone coordinate 
-        // if (HitLocation.Z > Other.GetBoneCoords('spine').Origin.Z - 8) //accounting for groin region here
-
-        // Newer version simply based on middle of collision cylinder (i.e. pawn Location)
-        if (HitLocation.Z > Other.Location.Z - 5)
-        {
-            HitLocation.Z = Other.Location.Z;
-
-            // Torso radius
-            if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
-                return Dmg;
-        }
-        
-        Dmg *= LimbMult;
-        
-        DT = DamageTypeArm;
+        // Limb shots
+        else if (HitLocation.Z <= Other.Location.Z - 5) // && VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
+		{
+        	Dmg *= LimbMult;
+        	DT = DamageTypeArm;
+		}
     }
 
 	return Dmg;
@@ -346,17 +334,11 @@ final function float GetDamageForCollision(UnlaggedPawnCollision Other, vector H
         }
     }
 
-    if (HitLocation.Z > Other.Location.Z - 5)
-    {
-        HitLocation.Z = Other.Location.Z;
-
-        // Torso radius
-        if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
-            return Dmg;
-    }
-    
-    Dmg *= LimbMult;
-    DT = DamageTypeArm;
+	else if (HitLocation.Z <= Other.Location.Z - 5) // && VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
+	{
+		Dmg *= LimbMult;
+		DT = DamageTypeArm;
+	}
       
 	return Dmg;
 }

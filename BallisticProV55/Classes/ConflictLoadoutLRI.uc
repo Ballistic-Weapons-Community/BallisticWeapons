@@ -444,6 +444,9 @@ simulated function SortList()
     {
 		FullInventoryList[i] = Sorted[i];
     }
+
+	// save anything we had to load
+	class'BC_WeaponInfoCache'.static.EndSession();
 	
     /*
 	j = i;

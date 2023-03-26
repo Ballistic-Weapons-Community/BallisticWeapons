@@ -15,7 +15,7 @@ defaultproperties
 		TraceRange=(Min=8000.000000,Max=9000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=55
+		Damage=70
         HeadMult=2.5f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
@@ -27,7 +27,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
-		Recoil=512.000000
+		Recoil=1536.000000
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -35,7 +35,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.55000
+		FireInterval=0.5000
 		FireAnimRate=0.9
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
@@ -46,7 +46,7 @@ defaultproperties
 		TraceRange=(Min=7500.000000,Max=7500.000000)
         DecayRange=(Min=1050,Max=2100)
 		RangeAtten=0.67
-		Damage=55
+		Damage=70
         HeadMult=2.5f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
@@ -58,7 +58,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
-		Recoil=512.000000
+		Recoil=3072.000000
 		Chaos=0.350000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -66,7 +66,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_208
-		FireInterval=0.400000
+		FireInterval=0.500000
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_208'
@@ -79,10 +79,12 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.02),(InVal=0.7,OutVal=-0.06),(InVal=1.0,OutVal=0.0)))
 		ViewBindFactor=0.5
-		XRandFactor=0.25
-		YRandFactor=0.25
-		DeclineDelay=0.65
-		DeclineTime=1
+		XRandFactor=0.2
+		YRandFactor=0.2
+		ClimbTime=0.16
+		DeclineDelay=0.22
+        DeclineTime=1
+		MaxRecoil=8192
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -92,8 +94,10 @@ defaultproperties
         ViewBindFactor=0.5
 		XRandFactor=0.1
 		YRandFactor=0.1
-        DeclineDelay=0.65
+		ClimbTime=0.16
+		DeclineDelay=0.22
         DeclineTime=1
+		MaxRecoil=8192
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
     End Object

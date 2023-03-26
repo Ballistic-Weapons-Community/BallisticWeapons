@@ -111,7 +111,9 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.2
 		YRandFactor=0.2
-		DeclineDelay=0.550000
+		ClimbTime=0.1
+		DeclineDelay=0.5
+		DeclineTime=1.00000
 		CrouchMultiplier=0.650000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -121,9 +123,11 @@ defaultproperties
 		ViewBindFactor=0.2
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.3
-		YRandFactor=0.3
-		DeclineDelay=1.1
+		XRandFactor=0.45
+		YRandFactor=0.45
+		ClimbTime=0.15
+		DeclineDelay=0.7
+		DeclineTime=1.00000
 		CrouchMultiplier=0.650000
 		HipMultiplier=2
 		MaxMoveMultiplier=3
@@ -135,7 +139,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineDelay=0.3
+		DeclineDelay=0.22
+		DeclineTime=1.00000
 		CrouchMultiplier=0.650000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

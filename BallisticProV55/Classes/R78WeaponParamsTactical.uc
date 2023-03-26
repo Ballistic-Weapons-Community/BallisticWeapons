@@ -16,7 +16,7 @@ defaultproperties
 		DamageTypeArm=Class'BallisticProV55.DTR78Rifle'
 		PDamageFactor=0.800000
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-		Recoil=378.000000
+		Recoil=1024.000000
 		Chaos=0.5
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
@@ -40,8 +40,9 @@ defaultproperties
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))
 		XRandFactor=0.25
 		YRandFactor=0.25
-		DeclineDelay=1.25
-		DeclineTime=1.000000
+        ClimbTime=0.125
+		DeclineDelay=0.22
+        DeclineTime=1.0
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object

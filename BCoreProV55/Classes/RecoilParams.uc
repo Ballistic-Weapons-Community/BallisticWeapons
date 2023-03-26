@@ -21,7 +21,8 @@ var() float				XRandFactor;				// Recoil multiplied by this for recoil Yaw rando
 var() float				YRandFactor;				// Recoil multiplied by this for recoil Pitch randomness
 var() float				MinRandFactor;				// Bias for calculation of recoil random factor
 var() float				MaxRecoil;					// The maximum recoil amount
-var() float				DeclineTime;				// Time it takes for Recoil to decline maximum to zero
+var() float				ClimbTime;					// when adding recoil, time required to interpolate between start and target recoil
+var() float				DeclineTime;				// when removing recoil, time required to interpolate from **maximum** recoil to zero
 var() float				DeclineDelay;				// The time between firing and when recoil should start decaying
 
 /* 

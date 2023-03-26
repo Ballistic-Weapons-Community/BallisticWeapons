@@ -60,7 +60,7 @@ var	float				        DisplaceDurationMult;   // Duration multiplier for aim disp
 //-----------------------------------------------------------------------------
 var private Rotator				Aim;				    // How far aim pointer is from crosshair
 var private Rotator				NewAim;				    // New destination for aim pointer
-var private Rotator				OldAim;				    // Where aim poitner was before it started moving
+var private Rotator				OldAim;				    // Where aim pointer was before it started moving
 
 var	private float				ReaimTime;			    // Time it should take to move aim pointer to new position
 var private float				ReaimPhase;			    // How far along pointer is in its movement from old to new
