@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class A51Thrown extends BallisticPineapple;
+class A51Thrown extends BallisticHandGrenadeProjectile;
 
 var   Emitter PATrail;
 

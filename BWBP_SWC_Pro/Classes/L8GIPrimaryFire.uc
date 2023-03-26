@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class L8GIPrimaryFire extends BallisticGrenadeFire;
+class L8GIPrimaryFire extends BallisticHandGrenadeFire;
 
 defaultproperties
 {

@@ -309,9 +309,9 @@ defaultproperties
      Damage=9.000000
      
      RangeAtten=0.300000
-     DamageType=Class'BWBP_OP_Pro.DT_ARShotgun'
-     DamageTypeHead=Class'BWBP_OP_Pro.DT_ARShotgunHead'
-     DamageTypeArm=Class'BWBP_OP_Pro.DT_ARShotgun'
+     DamageType=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
+     DamageTypeHead=Class'BWBP_OP_Pro.DT_RCS715ShotgunHead'
+     DamageTypeArm=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
      KickForce=500
      PenetrateForce=100
      bPenetrate=True

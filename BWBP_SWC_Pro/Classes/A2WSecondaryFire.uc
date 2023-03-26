@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class A2WSecondaryFire extends BallisticGrenadeFire;
+class A2WSecondaryFire extends BallisticHandGrenadeFire;
 
 defaultproperties
 {
