@@ -10,10 +10,10 @@ class DT_FG50Explosion extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%o took %k's FG50 round straight to the spine."
-     DeathStrings(1)="%o couldn't survive %k's firey tempest of FG50 rounds."
-     DeathStrings(2)="%k drilled several large holes into %o with %kh FG50."
-     DeathStrings(3)="%k's FG50 put some lead into %o's diet."
+     DeathStrings(0)="The outcome after %k came at %o with an FG50? %o go boom."
+     DeathStrings(1)="%o failed to withstand %k's orbital assault, being exploded from up above."
+     DeathStrings(2)="%k popped %o with some very, very big bullets."
+     DeathStrings(3)="%o had %vh blood spilled onto the battlefield by %k's FG50."
      SimpleKillString="FG50 Explosive Rounds"
      BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
      bIgniteFires=True

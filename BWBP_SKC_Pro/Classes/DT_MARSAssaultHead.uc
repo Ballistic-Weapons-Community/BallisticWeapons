@@ -10,9 +10,9 @@ class DT_MARSAssaultHead extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%o's brain shut down under %k's MARS-2 fire."
-     DeathStrings(1)="%k terminated a fleeing %o with a MARS-2 headshot."
-     DeathStrings(2)="%k tactically disabled %o with a MARS-2 bullet to the head."
+     DeathStrings(0)="%o's brain shut down under %k's MARS fire."
+     DeathStrings(1)="%k terminated a fleeing %o with a MARS headshot."
+     DeathStrings(2)="%k tactically disabled %o with a MARS bullet to the head."
      bHeaddie=True
      DamageIdent="Assault"
      WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'

@@ -37,11 +37,11 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 defaultproperties
 {
 	 ArmorDrain=0.325000
-     DeathStrings(0)="%k embraced Schadenfreude as %kh FMP destroyed %o."
-     DeathStrings(1)="%o lost the war to %k's FMP-2012."
-     DeathStrings(2)="%k enacted blitzkrieg on %o with %kh FMP-2012."
-     DeathStrings(3)="%o was removed from the gene pool by %k's FMP."
-     DeathStrings(4)="%k's FMP-2012 executed the untermensch %o."
+     DeathStrings(0)="%k adapted to the amplified tehcnology, %o did not as %ve turned into a pile of goo."
+     DeathStrings(1)="%o was on the wrong end of %k's chemical warfare."
+     DeathStrings(2)="%k turned %o into primordial goop with an acidic AMP."
+     DeathStrings(3)="%o couldn't hide from the impending acidic blitzkrieg from %k's amped FMP."
+     DeathStrings(4)="Who wants a %o smoothie from %k?  Made of flesh and corrosive bullets."
      WeaponClass=Class'BWBP_SKC_Pro.FMPMachinePistol'
      DeathString="%k embraced Schadenfreude as %kh FMP destroyed %o."
      FemaleSuicide="%o did her fuhrer impression."
