@@ -2,7 +2,11 @@ class DTZ250Bullet extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was blasted by %k's Z-250."
+     DeathStrings(0)="%o was blasted by the blaster master, %k."
+     DeathStrings(1)="%k's volume of lead might be slow, but it still destroyed a hapless %o."
+     DeathStrings(2)="%o had %vh heart blasted out the back of an exit wound thanks to %k's Z250."
+     DeathStrings(3)="%k broke %o into many different pieces after being exposed to the Z250."
+     DeathStrings(4)="%o was heartbroken, quite literally, after being dumped by %k's portable minigun."
      bIgniteFires=True
      DamageIdent="Machinegun"
      DamageDescription=",Bullet,Flame,"

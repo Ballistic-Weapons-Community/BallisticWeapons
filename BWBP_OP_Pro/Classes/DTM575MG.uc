@@ -11,7 +11,7 @@ class DTM575MG extends DT_BWBullet;
 defaultproperties
 {
      DeathStrings(0)="%o fell to %k's Hybrid Beast in a bloody slump."
-     DeathStrings(1)="%k saw %o through his hybrid scope and mowed him down."
+     DeathStrings(1)="%k saw %o through %kh hybrid scope and mowed %vm down."
      DeathStrings(2)="%o couldn't flee from the all seeing eye of %k's M575."
 	 DeathStrings(3)="%k's M575 spotted %o and ripped him apart with 7.62 lead."
 	 DeathStrings(4)="%o ran, but couldn’t hide from %k's machinegun."
