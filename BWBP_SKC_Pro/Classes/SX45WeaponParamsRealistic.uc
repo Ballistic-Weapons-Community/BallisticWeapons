@@ -190,6 +190,49 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'RealisticParams_RDS'
 	Layouts(1)=WeaponParams'RealisticParams_Irons'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=FNX_Green
+		Index=0
+		CamoName="Olive Drab"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FNX_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SX45Camos.SX45-MainBlack",Index=4,AIndex=3,PIndex=3)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FNX_Desert
+		Index=2
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SX45Camos.SX45-MainTan",Index=4,AIndex=3,PIndex=3)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FNX_Ruby
+		Index=3
+		CamoName="Ruby"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SX45Camos.SX45-MainRedShine",Index=4,AIndex=3,PIndex=3)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FNX_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SX45Camos.SX45-MainGoldShine",Index=4,AIndex=3,PIndex=3)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'FNX_Green'
+	Camos(1)=WeaponCamo'FNX_Black'
+	Camos(2)=WeaponCamo'FNX_Desert'
+	Camos(3)=WeaponCamo'FNX_Ruby'
+	Camos(4)=WeaponCamo'FNX_Gold'
 }
