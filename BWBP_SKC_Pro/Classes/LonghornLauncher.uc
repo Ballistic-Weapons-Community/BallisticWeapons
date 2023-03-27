@@ -419,6 +419,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=150)
 	SightOffset=(Y=19.600000,Z=26.400000)
+	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'LonghornWeaponParamsComp'
 	ParamsClasses(1)=Class'LonghornWeaponParamsClassic'
 	ParamsClasses(2)=Class'LonghornWeaponParamsRealistic'

@@ -459,7 +459,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	AIRating=0.8
 	CurrentRating=0.8
-	SightZoomFactor=0.85
+	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'XK2WeaponParamsComp'
 	ParamsClasses(1)=Class'XK2WeaponParamsClassic'
 	ParamsClasses(2)=Class'XK2WeaponParamsRealistic'

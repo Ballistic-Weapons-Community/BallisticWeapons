@@ -5,5 +5,5 @@ class BallisticShotgun extends BallisticWeapon
 
 defaultproperties
 {
-	SightZoomFactor=0.85
+	SightZoomFactor=1.2
 }

@@ -163,7 +163,7 @@ defaultproperties
     CurrentWeaponMode=0
     SightPivot=(Pitch=768)
     SightOffset=(X=-30.000000,Z=11.000000)
-    SightZoomFactor=0.85
+    SightZoomFactor=1.2
     GunLength=24.000000
     ParamsClasses(0)=Class'MRT6WeaponParamsComp'
     ParamsClasses(1)=Class'MRT6WeaponParamsClassic'

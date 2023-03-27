@@ -392,7 +392,7 @@ defaultproperties
 	SightPivot=(Pitch=2000,Roll=-768)
 	SightOffset=(X=-12.000000,Y=33.000000,Z=65.000000)
 	SightDisplayFOV=40.000000
-	SightZoomFactor=0.85
+	SightZoomFactor=1.2
 	GunLength=0.100000
 	ParamsClasses(0)=Class'A49WeaponParamsComp'
 	ParamsClasses(1)=Class'A49WeaponParamsClassic'

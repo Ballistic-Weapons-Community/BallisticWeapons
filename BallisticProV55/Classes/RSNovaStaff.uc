@@ -761,6 +761,7 @@ defaultproperties
 	DisplayFOV=47.000000
 	Priority=9
 	HudColor=(B=255,G=175,R=100)
+	SightZoomFactor=1.2
 	InventoryGroup=5
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.RSNovaPickup'

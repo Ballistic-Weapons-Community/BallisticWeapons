@@ -795,6 +795,7 @@ defaultproperties
      AIRating=0.70000
      CurrentRating=0.70000
      bShowChargingBar=True
+	 SightZoomFactor=1.2
      Description="Towards the end of the first war, the UTC launched a fierce assault on the substantial Skrith facility set up just outside the rim of the large crater in secter-547b on a distant outworld planet. The skrith facility appeared to be a kind of temple combined with a mine where extensive excavations had been taking place. Deep below the temple, the UTC discovered ruins of an ancient alien city. In the deepest recesses of the Skrith excavation, they found a very strange artifact in the middle of being extracted from solid, fused stone. The artifact was then fully extracted and analysed by UTC scientists. Is was made of an incredibly strong material and, judging by its design, it seemed to be an ancient alien weapon. Despite countless tests, they failed to access the device's internal mechanisms or gain any further useful information."
      Priority=38
      HudColor=(B=25,G=25,R=200)

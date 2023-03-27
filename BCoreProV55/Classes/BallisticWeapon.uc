@@ -560,6 +560,10 @@ simulated function PostBeginPlay()
 			MeleeFireMode.PostNetBeginPlay();
 		}
 	}
+
+	// adjust sight display FOV automatically
+	if (class'BallisticReplicationInfo'.static.IsTactical())
+		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(DisplayFOV, SightZoomFactor);
 }
 
 simulated function SetLayoutIndex(byte NewLayoutIndex)
@@ -2035,7 +2039,7 @@ simulated final function PlayerZoom(PlayerController PC)
 		case ZT_Logarithmic:
 			PC.bZooming=True;
 			LogZoomLevel = loge(MinZoom)/loge(MaxZoom);
-			PC.SetFOV(PC.DefaultFOV / 2**(    (loge(MaxZoom)/loge(2)) * LogZoomLevel    )); 
+			PC.SetFOV(class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV,  2 ** ((loge(MaxZoom)/loge(2)) * LogZoomLevel))); 
 			
 			PC.ZoomLevel = (90 - PC.FOVAngle) / 88;
 			PC.DesiredZoomLevel = PC.ZoomLevel;
@@ -2089,7 +2093,7 @@ simulated function ChangeZoom (float Value)
 		case ZT_Logarithmic:
 			Value *= 1f - (loge(MinZoom)/loge(MaxZoom));
 			LogZoomLevel = FClamp(LogZoomLevel + Value, loge(MinZoom)/loge(MaxZoom), 1);
-			SoughtFOV = PC.DefaultFOV / 2**(    (loge(MaxZoom)/loge(2)) * LogZoomLevel    ); 
+			SoughtFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, 2 **((loge(MaxZoom)/loge(2)) * LogZoomLevel)); 
 			NewZoomLevel = (90 - SoughtFOV) / 88;
 	}
 	if (NewZoomLevel > OldZoomLevel)
@@ -2413,7 +2417,7 @@ simulated function PositionSights()
 		}
 
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
+			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, SightZoomFactor); // FIXME: don't want to do tan/arctan on every tick
 	}
 	
 	else if (SightingPhase <= 0.0)
@@ -2446,7 +2450,7 @@ simulated function PositionSights()
 		RcComponent.UpdateADSTransition(SightingPhase);
 
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
+	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 }
 
@@ -5530,7 +5534,7 @@ defaultproperties
      bUseSights=True
      ScopeXScale=1.000000
      FullZoomFOV=80.000000
-     SightZoomFactor=0.78
+     SightZoomFactor=1.35
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
 	 SightingTime=0.350000

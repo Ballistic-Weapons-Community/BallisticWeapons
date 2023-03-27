@@ -44,10 +44,12 @@ function ServerSwitchSilencer(bool bDetachSuppressor)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-    if (class'BallisticReplicationInfo'.static.IsTactical())
+    if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
         return;
-	if (ReloadState != RS_None || SightingState != SS_None || GameStyleIndex == 0)
+
+	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
+		
 	TemporaryScopeDown(0.5);
 	ServerSwitchSilencer(bSilenced);
 	SwitchSilencer(bSilenced);

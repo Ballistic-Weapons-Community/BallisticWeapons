@@ -25,6 +25,9 @@
 class BUtil extends Object
 	exportstructs;
 
+const DEG_TO_RAD = 0.017453f;
+const RAD_TO_DEG = 57.29578f;
+
 // These are a quick way for log entries to show the NetMode and Role
 // Just use: class'BUtil'.default.NM[int(level.NetMode)]
 // Or use: class'BUtil'.MyNetMode(level);
@@ -383,6 +386,12 @@ static final function vector WeaponConvertFOVs (Weapon Weap, vector InVec, float
     OutVec = OutVec >> ViewRot;
 
 	return OutVec + ViewLoc;
+}
+
+// Returns the adjusted FOV necessary to provide a given zoom magnification from some base FOV
+static final function float CalcZoomFOV(float BaseFOV, float ZoomMagnification)
+{
+	return 2.0f * atan(tan((BaseFOV * DEG_TO_RAD)/2) / ZoomMagnification, 1) * RAD_TO_DEG;
 }
 
 static final function float CalculateDistanceAtten(float Distance, float AttenStartDist, float AttenDist)

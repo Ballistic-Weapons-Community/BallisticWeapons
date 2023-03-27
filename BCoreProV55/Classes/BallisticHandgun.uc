@@ -298,7 +298,7 @@ simulated function PositionSights()
 		}
 
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
+			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, SightZoomFactor);
 	}
 	
 	else if (SightingPhase <= 0.0)
@@ -331,7 +331,7 @@ simulated function PositionSights()
 		RcComponent.UpdateADSTransition(SightingPhase);
 
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
+	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 	if (bAdjustHands)
     {
@@ -1852,7 +1852,7 @@ defaultproperties
      TrackSpeed=18000.000000
      SingleHeldRate=0.300000
      bWT_Sidearm=True
-     SightZoomFactor=0.85
+     SightZoomFactor=1.2
      GunLength=16.000000
      LongGunPivot=(Pitch=5000,Yaw=6000)
 }
