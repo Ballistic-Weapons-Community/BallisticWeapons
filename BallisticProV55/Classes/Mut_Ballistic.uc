@@ -868,7 +868,7 @@ function CreateSprintControl(xPawn P)
 {	
     local BCSprintControl SC;
 
-    SC = Spawn(class'BWRechargeSprintControl', P);
+    SC = Spawn(class'BCSprintControl', P);
 
     SC.GiveTo(P);
     Sprinters[Sprinters.length] = SC;

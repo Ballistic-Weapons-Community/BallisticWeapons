@@ -4,10 +4,14 @@
 // A special inventory actor used to control player sprinting. Key events must
 // be sent from somewhere like a mutator.
 //
+// TODO/FIXME: Replicate drain/charge from server?
+//
 // by Nolan "Dark Carnivour" Richert and Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BCSprintControl extends Inventory;
+
+const RECHARGE_DELAY = 1.5f;
 
 //=============================================================================
 // STAMINA VARIABLES
@@ -43,7 +47,7 @@ var float NextTimerPop;				// Next time to check for slow expiry
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bSprintActive, ClientJumped;
+		bSprintActive, ClientJumped, ClientDelayRecharge;
 }
 
 simulated function PostBeginPlay()
@@ -116,7 +120,7 @@ simulated event Tick(float DT)
 
 //If Stamina's less than 0 or Sprint's active
 //return
-singular function StartSprint()
+function StartSprint()
 {
 	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
 		return;
@@ -131,7 +135,7 @@ singular function StartSprint()
 }
 
 // Sprint Key released. Used on Client and Server
-singular function StopSprint()
+function StopSprint()
 {
 	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
 		return;
@@ -143,39 +147,56 @@ singular function StopSprint()
 	
 	if (Instigator != None)
 		UpdateSpeed();
+
+    DelayRecharge();
+    ClientDelayRecharge();
 }
 
 function OwnerEvent(name EventName)
 {
 	super.OwnerEvent(EventName);
 
-	/*
-	if (EventName == 'ChangedWeapon')
-		UpdateSpeed();
-	*/
-
-	if (EventName == 'Jumped' || EventName == 'Dodged')
+	if (Role == ROLE_Authority)
 	{
-		ClientJumped();
-		Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5 * JumpDrainFactor);
+		if (EventName == 'Jumped' || EventName == 'Dodged')
+		{
+			Jumped();
+			ClientJumped();
+		}
 	}
+}
+
+simulated function DelayRecharge()
+{
+	SprintRechargeDelay = Level.TimeSeconds + RECHARGE_DELAY;
+}
+
+simulated function Jumped()
+{
+	DelayRecharge();
+	Stamina = FMax(0, Stamina - StaminaDrainRate * JumpDrainFactor);
+}
+
+simulated function ClientDelayRecharge()
+{
+	if (Level.NetMode == NM_Client)
+		DelayRecharge();
 }
 
 simulated function ClientJumped()
 {
-	if (level.NetMode != NM_Client)
-		return;
-	Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5 * JumpDrainFactor);
+	if (Level.NetMode == NM_Client)
+		Jumped();
 }
 
 simulated function bool CheckDirection()
 {
 	if (Normal(Instigator.Velocity) Dot Vector(Instigator.Rotation) < 0.2)
 		return false;
+
 	NextAlignmentCheckTime=Level.TimeSeconds + 0.35;
 	return true;	
 }
-
 
 simulated function TickSprint(float DT)
 {	
