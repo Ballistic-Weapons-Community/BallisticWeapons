@@ -30,7 +30,7 @@ static function IncrementKills(Controller Killer)
 defaultproperties
 {
      DeathStrings(0)="The soul and brains in %o's head was freed thanks to %k."
-     DeathStrings(1)="%o put two bullets in %k's eyes, he had no drachma to pay the ferryman."
+     DeathStrings(1)="%o put two bullets in %k's eyes, %ke had no drachma to pay the ferryman."
      DeathStrings(2)="%k's gray matter was reaped due to %o's Reaper."
      DeathStrings(3)="%o's Reaper took %k's head off with a couple of bullets."
      EffectChance=0.500000

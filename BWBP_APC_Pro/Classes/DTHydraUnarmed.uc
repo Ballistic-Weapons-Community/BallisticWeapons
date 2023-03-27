@@ -5,7 +5,8 @@ class DTHydraUnarmed extends DT_BWShell;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was knocked into next week by %k's unarmed Hydra."
+     DeathStrings(0)="%o had several of %vh bones fractured by %k's Unarmed Hydra."
+     DeathStrings(1)="%k made sure that %o can never, EVER repopulate by annihiliating %vh groin with unarmed rockets."
      SimpleKillString="Hydra Bazooka Impact"
      HipString="Luck"
      AimedString="Scoped"

@@ -12,7 +12,7 @@ defaultproperties
 {
      DeathStrings(0)="%o was swooped off to Hell by %k's swooping rockets."
      DeathStrings(1)="%k got around some barricades to blow %o to smithereens."
-     DeathStrings(2)="%o got swept off the mortal coil thanks to %k and their multi-purpose Hydra."
+     DeathStrings(2)="%o got swept off the mortal coil thanks to %k and %kh multi-purpose Hydra."
      DeathStrings(3)="%k sweeped the floor with the blood and guts of %o."
      InvasionDamageScaling=3.000000
      DamageIdent="Ordnance"

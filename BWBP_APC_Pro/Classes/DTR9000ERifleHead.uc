@@ -35,8 +35,8 @@ defaultproperties
      DeathStrings(1)="%k adapted to the situation and sniped off %o's head."
      DeathStrings(2)="%o failed to see the glint of %k's Chimera and got a bullet to the eye."
      DeathStrings(3)="%k's Chimera was a carnivore and took a bite out of %o's brains."
-	 DeathStrings(4)="%o took %k's .338 to the teeth, shattering the cavities to pieces."
-	 DeathStrings(5)="%k had no reason to amp his rifle to nail %o right between the eyes."
+     DeathStrings(4)="%o took %k's .338 to the teeth, shattering the cavities to pieces."
+     DeathStrings(5)="%k had no reason to amp %kh rifle to nail %o right between the eyes."
      HipString="Luck"
      AimedString="Scoped"
      bSnipingDamage=True

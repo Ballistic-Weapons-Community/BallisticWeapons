@@ -35,8 +35,8 @@ defaultproperties
      DeathStrings(1)="%k found that radioactive magnum bullets are good for melting the flesh off of %o's face."
      DeathStrings(2)="%o's cranium was splattered and scattered by %k and their irradiated Chimera."
      DeathStrings(3)="%k made radioactive soup out of %o, using radiation and gray matter respectively."
-	 DeathStrings(4)="%o had their atoms and head separated from their shoulder by %k."
-	 DeathStrings(5)="%k's Chimera slurped %o's brains down like a milkshake."
+     DeathStrings(4)="%o had %vh atoms and head separated from %vh shoulder by %k."
+     DeathStrings(5)="%k's Chimera slurped %o's brains down like a milkshake."
      HipString="Luck"
      AimedString="Scoped"
      bSnipingDamage=True

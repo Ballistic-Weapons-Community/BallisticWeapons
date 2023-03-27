@@ -12,7 +12,7 @@ defaultproperties
 {
      DeathStrings(0)="%o was purged in the fire of %k's Chimera without even seeing them."
      DeathStrings(1)="%k can now see %o from a mile away thanks to some fiery bullets."
-     DeathStrings(2)="%o got their sausage or taco burned to a crisp thanks to %k's Chimera."
+     DeathStrings(2)="%o had %vh heart roasted by %k's modular rifle.
      DeathStrings(3)="%k reduced %o's kneecaps into ashes from well placed shots with a fiery Chimera."
      DeathStrings(4)="%o not only failed to save the princess, but was burned to cinders by %k."
      DeathStrings(5)="%k lit up %o while abiding by the 6 feet rule."

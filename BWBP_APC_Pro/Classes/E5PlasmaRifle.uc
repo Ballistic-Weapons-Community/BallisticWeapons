@@ -473,7 +473,7 @@ defaultproperties
 	AIRating=0.650000
 	CurrentRating=0.650000
 	bShowChargingBar=True
-	Description="The E-5 Adjustable Plasma Pistol (AsP) needs lore written for it."
+	Description="Following the success of the E23 Plasma Rifle, Frontier Tech began another prototype, originally it was to be a modular system and an improvement to the original model.  But lack of finances among other technical issues forced the company to make drastic alterations.  It took a lot of work, but soon, the E5 Advanced Science Pistol or 'ASP' was born.  Firing the same variable high-power plasma bolts like the E23, it comes in a more portable package at the cost of losing a powerful single shot bolt and night vision scope. Instead, it comes with a pop up reflex sight, a requested change from the various light infantry sectors across the galaxy, the E5 should do well during the next year if all goes to plan."
 	Priority=39
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3

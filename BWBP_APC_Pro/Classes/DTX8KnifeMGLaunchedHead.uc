@@ -10,9 +10,9 @@ class DTX8KnifeMGLaunchedHead extends DT_BWBlade;
 
 defaultproperties
 {
-     DeathStrings(0)="%k's knife defied all odds to enter %o's vodka-blurred eye."
-     DeathStrings(1)="%k drunkenly launched a knife into %o's face."
-     DeathStrings(2)="%o took a knife to the eye from %k's PKM launcher."
+     DeathStrings(0)="%k ran out of bullets, but %kh small knife pierced %o's retina."
+     DeathStrings(1)="%o stared down the wrong end of %k's MG, should've seen the ballistic knife poking %vh eye."
+     DeathStrings(2)="%k had one last surprise for %o, a ballistic knife to the dome."
      SimpleKillString="PKMA - X8 Ballistic Knife"
      bCanBeBlocked=False
      bHeaddie=True
