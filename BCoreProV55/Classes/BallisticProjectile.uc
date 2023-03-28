@@ -372,17 +372,17 @@ simulated function InitEffects ()
 {
 	local Vector X,Y,Z;
 
-	if (Level.NetMode != NM_DedicatedServer)
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+
+	if (TrailClass != None && Trail == None)
 	{
-		if (TrailClass != None && Trail == None)
-		{
-			GetAxes(Rotation,X,Y,Z);
-			Trail = Spawn(TrailClass, self,, Location + X*TrailOffset.X + Y*TrailOffset.Y + Z*TrailOffset.Z, Rotation);
-			if (Emitter(Trail) != None)
-				class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
-			if (Trail != None)
-				Trail.SetBase (self);
-		}
+		GetAxes(Rotation,X,Y,Z);
+		Trail = Spawn(TrailClass, self,, Location + X*TrailOffset.X + Y*TrailOffset.Y + Z*TrailOffset.Z, Rotation);
+		if (Emitter(Trail) != None)
+			class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
+		if (Trail != None)
+			Trail.SetBase (self);
 	}
 }
 

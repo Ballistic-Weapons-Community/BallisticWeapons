@@ -1,5 +1,5 @@
 //=============================================================================
-// LonghornClusterGrenadeNoDud. Used in Classic
+// LonghornGrenadeNoDud. Used in Classic
 //
 // Feature packed low explosive grenade that spawns cluster bombs on detonate
 // Has fuse that starts on first bounce, or can be detonated manually for less
@@ -11,7 +11,7 @@
 // by Casey "Xavious" Johnson and Azarael
 // Copyright(c) 2012 Casey Johnson. All Rights Reserved.
 //=============================================================================
-class LonghornClusterGrenadeNoDud extends BallisticGrenade;
+class LonghornGrenadeNoDud extends BallisticGrenade;
 
 var bool                 bColored;
 var bool                 bPrimaryGrenade;
@@ -285,42 +285,42 @@ function BlowUp(vector HitLocation)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
-     bAlignToVelocity=True
-     bDynamicLight=True
-     bNetTemporary=False
-     bNoInitialSpin=True
-     bPrimaryGrenade=True
-     Damage=70
-     DamageRadius=450.000000
-     DampenFactor=0.400000
-     DampenFactorParallel=0.500000
-     DetonateDelay=0.65
-     DetonateOn=DT_ImpactTimed
-     PlayerImpactType=PIT_Detonate
-     DrawScale=0.500000
-     FlakClass=Class'BWBP_SKC_Pro.LonghornMicroClusterFlak'
-     flakcount=6
-     ImpactDamage=70
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigDirect'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_SMARTGrenade'
-     LifeSpan=20
-     LightBrightness=64.000000
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=25
-     LightRadius=8.000000
-     LightSaturation=192
-     LightType=LT_Steady
-     MomentumTransfer=20000.000000
-     MotionBlurFactor=3.000000
-     MotionBlurRadius=384.000000
-     MotionBlurTime=4.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
-     RotationRate=(Roll=32768)
-     ShakeRadius=512.000000
-     Speed=3500.000000
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.GrenadeProj'
-     TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrail'
-     ZBonus=40000.00
+	bAlignToVelocity=True
+	bDynamicLight=True
+	bNetTemporary=False
+	bNoInitialSpin=True
+	bPrimaryGrenade=True
+	Damage=70
+	DamageRadius=450.000000
+	DampenFactor=0.400000
+	DampenFactorParallel=0.500000
+	DetonateDelay=0.65
+	DetonateOn=DT_ImpactTimed
+	PlayerImpactType=PIT_Detonate
+	DrawScale=0.500000
+	FlakClass=Class'BWBP_SKC_Pro.LonghornMicroClusterFlak'
+	flakcount=6
+	ImpactDamage=70
+	ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigDirect'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_SMARTGrenade'
+	LifeSpan=20
+	LightBrightness=64.000000
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=25
+	LightRadius=8.000000
+	LightSaturation=192
+	LightType=LT_Steady
+	MomentumTransfer=20000.000000
+	MotionBlurFactor=3.000000
+	MotionBlurRadius=384.000000
+	MotionBlurTime=4.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
+	RotationRate=(Roll=32768)
+	ShakeRadius=512.000000
+	Speed=3500.000000
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.GrenadeProj'
+	TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrail'
+	ZBonus=40000.00
 }

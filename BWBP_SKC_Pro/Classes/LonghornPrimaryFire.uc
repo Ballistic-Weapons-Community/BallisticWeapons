@@ -8,9 +8,9 @@
 //=============================================================================
 class LonghornPrimaryFire extends BallisticProProjectileFire;
 
-var() 	Actor								MuzzleFlash2;		// The muzzleflash actor
-var	LonghornClusterGrenade	LastGrenade;		// Last grenade fired.
-var	float								ArtilleryDelay;		// Empower grenades launched after this time.
+var() 	Actor			MuzzleFlash2;		// The muzzleflash actor
+var	LonghornGrenade		LastGrenade;		// Last grenade fired.
+var	float				ArtilleryDelay;		// Empower grenades launched after this time.
 
 function ServerPlayFiring()
 {
@@ -29,7 +29,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
-	LastGrenade = LonghornClusterGrenade(Proj);
+	LastGrenade = LonghornGrenade(Proj);
 }
 
 function StopFiring()
@@ -210,7 +210,7 @@ defaultproperties
      ShakeOffsetMag=(X=-30.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
-     //ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
+     //ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenade'
      //BotRefireRate=0.500000
      //WarnTargetPct=0.300000
 }

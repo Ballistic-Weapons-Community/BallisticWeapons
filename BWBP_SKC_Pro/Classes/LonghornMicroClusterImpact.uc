@@ -1,7 +1,7 @@
 //=============================================================================
 // LonghornMicroClusterImpact.
 //
-// Small cluster bomb spawned from LonghornClusterGrenade when used as artillery.
+// Small cluster bomb spawned from LonghornGrenade when used as artillery.
 // Does a lot of damage with large radius.
 //
 // by Casey "Xavious" Johnson.

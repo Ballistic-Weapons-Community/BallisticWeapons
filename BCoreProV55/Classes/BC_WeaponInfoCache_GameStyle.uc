@@ -61,7 +61,7 @@ static function bool FindWeaponInfo(string CN, out BC_WeaponInfoCache.WeaponInfo
 	
 	CheckRevision();
 
-	for (i=0;i<default.Weapons.length;i++)
+	for (i = 0; i < default.Weapons.length; i++)
 	{
 		if (default.Weapons[i].ClassName ~= CN)
 		{
@@ -85,50 +85,44 @@ static function BC_WeaponInfoCache.WeaponInfo AutoWeaponInfo(string WeapClassNam
 	// Tap into the BW weapon cache system to identify BallisticWeapons without loading them
 	if (FindWeaponInfo(WeapClassName, WI, i))
 		return WI;
+
 	return AddWeaponInfoName(WeapClassName, i);
 }
 
 // Shorcut to AddWeaponInfo() using only classname
 static function BC_WeaponInfoCache.WeaponInfo AddWeaponInfoName(string WeapClassName, optional out int i)
 {
-	local class<Weapon> Weap;
+	local class<BallisticWeapon> Weap;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 
-	Weap = class<Weapon>(DynamicLoadObject(WeapClassName, class'Class'));
+	Weap = class<BallisticWeapon>(DynamicLoadObject(WeapClassName, class'Class'));
+	
 	if (Weap != None)
 		WI = AddWeaponInfo(Weap, i);
 	else
-	{
 		i = -1;
-		return WI;
-	}
+
 	return WI;
 }
 
 // List the right properties of the input class. Returns the new WI and index of WI in the list
-static function BC_WeaponInfoCache.WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
+static function BC_WeaponInfoCache.WeaponInfo AddWeaponInfo(class<BallisticWeapon> BW, optional out int i)
 {
 	local BC_WeaponInfoCache.WeaponInfo WI;
-	local Class<BallisticWeapon> BW;
 
 	i=-1;
-	if (Weap == None)
+
+	if (BW == None)
 		return WI;
 
-	WI.ClassName 		 = string(Weap);
-	WI.ItemName			 = Weap.default.ItemName;
-	WI.SmallIconMaterial = Weap.default.IconMaterial;
-	WI.SmallIconCoords	 = Weap.default.IconCoords;
-	WI.InventoryGroup	 = Weap.default.InventoryGroup;
-
-	BW = Class<BallisticWeapon>(Weap);
-
-	if (BW != None)
-	{
-		WI.BigIconMaterial		= BW.default.BigIconMaterial;
-		WI.InventorySize		= BW.static.GetInventorySize();
-		WI.bIsBW				= true;
-	}
+	WI.ClassName 		 	= string(BW);
+	WI.ItemName			 	= BW.default.ItemName;
+	WI.SmallIconMaterial 	= BW.default.IconMaterial;
+	WI.SmallIconCoords	 	= BW.default.IconCoords;
+	WI.InventoryGroup	 	= BW.default.InventoryGroup;
+	WI.BigIconMaterial		= BW.default.BigIconMaterial;
+	WI.InventorySize		= BW.static.GetInventorySize();
+	WI.bIsBW				= true;
 
 	i = default.Weapons.length;
 	default.Weapons[default.Weapons.length] = WI;

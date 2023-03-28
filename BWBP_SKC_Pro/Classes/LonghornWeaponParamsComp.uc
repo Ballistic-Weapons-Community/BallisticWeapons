@@ -15,7 +15,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
 		BotRefireRate=0.500000
      	WarnTargetPct=0.300000
-		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
+		ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenade'
      	Speed=6000.000000
      	MaxSpeed=6000.000000
 		Damage=100.000000

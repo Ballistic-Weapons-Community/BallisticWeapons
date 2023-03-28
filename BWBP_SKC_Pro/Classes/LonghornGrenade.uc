@@ -1,5 +1,5 @@
 //=============================================================================
-// LonghornClusterGrenade.
+// LonghornGrenade.
 //
 // Feature packed low explosive grenade that spawns cluster bombs on detonate
 // Has fuse that starts on first bounce, or can be detonated manually for less
@@ -10,7 +10,7 @@
 // and fixed up by Azarael
 // Copyright(c) 2012 Casey Johnson. All Rights Reserved.
 //=============================================================================
-class LonghornClusterGrenade extends BallisticGrenade;
+class LonghornGrenade extends BallisticGrenade;
 
 var bool                 		bColored;
 var bool                		bPrimaryGrenade;
@@ -282,57 +282,57 @@ function BlowUp(vector HitLocation)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
-     bPrimaryGrenade=True
-     ZBonus=40000.000000
-     DamageDropoffFactor=0.100000
-     ExplosiveImpactDamage=130
-     ArmingDelay=0.180000
-     DetonateOn=DT_ImpactTimed
-     PlayerImpactType=PIT_Detonate
-     DampenFactor=0.300000
-     DampenFactorParallel=0.400000
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     flakcount=6
-     FlakClass=Class'BWBP_SKC_Pro.LonghornMicroClusterDud'
-     ImpactDamage=100
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigDirect'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_SMARTGrenade'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrail'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     Speed=6000.000000
-     MaxSpeed=6000.000000
-     Damage=130.000000
-     DamageRadius=450.000000
-     WallPenetrationForce=32
-     //MomentumTransfer=100000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Metal'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=25
-     LightSaturation=192
-     LightBrightness=64.000000
-     LightRadius=12.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.GrenadeProj'
-     bDynamicLight=True
-     bNetTemporary=False
-     AmbientSound=Sound'GeneralAmbience.texture12'
-     LifeSpan=20.000000
-     DrawScale=0.500000
-     bFullVolume=True
-     SoundVolume=255
-     SoundPitch=32
-     SoundRadius=512.000000
-     TransientSoundVolume=0.700000
-     TransientSoundRadius=1024.000000
-     CollisionRadius=2.000000
-     CollisionHeight=2.000000
-     RotationRate=(Roll=32768)
+	bPrimaryGrenade=True
+	ZBonus=40000.000000
+	DamageDropoffFactor=0.100000
+	ExplosiveImpactDamage=130
+	ArmingDelay=0.180000
+	DetonateOn=DT_ImpactTimed
+	PlayerImpactType=PIT_Detonate
+	DampenFactor=0.300000
+	DampenFactorParallel=0.400000
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	flakcount=6
+	FlakClass=Class'BWBP_SKC_Pro.LonghornMicroClusterDud'
+	ImpactDamage=100
+	ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigDirect'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_SMARTGrenade'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrail'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	Speed=6000.000000
+	MaxSpeed=6000.000000
+	Damage=130.000000
+	DamageRadius=450.000000
+	WallPenetrationForce=32
+	//MomentumTransfer=100000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Metal'
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=25
+	LightSaturation=192
+	LightBrightness=64.000000
+	LightRadius=12.000000
+	StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.GrenadeProj'
+	bDynamicLight=True
+	bNetTemporary=False
+	AmbientSound=Sound'GeneralAmbience.texture12'
+	LifeSpan=20.000000
+	DrawScale=0.500000
+	bFullVolume=True
+	SoundVolume=255
+	SoundPitch=32
+	SoundRadius=512.000000
+	TransientSoundVolume=0.700000
+	TransientSoundRadius=1024.000000
+	CollisionRadius=2.000000
+	CollisionHeight=2.000000
+	RotationRate=(Roll=32768)
 }

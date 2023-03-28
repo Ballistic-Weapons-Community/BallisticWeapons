@@ -70,7 +70,7 @@ static function WeaponInfo AddWeaponInfoName(string WeapClassName, optional out 
 }
 
 // List the right properties of the input class. Returns the new WI and index of WI in the list
-static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
+static function WeaponInfo AddWeaponInfo(class<BallisticWeapon> Weap, optional out int i)
 {
 	return CurrentCache().static.AddWeaponInfo(Weap, i);
 }

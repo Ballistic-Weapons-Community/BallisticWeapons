@@ -30,7 +30,7 @@ var automated GUILabel		l_Blue;					//Label Blue
 var automated GUILabel		l_Unused;				//Label Unused
 var automated moComboBox	co_LoadOpt;				//Loadout Options
 
-var() localized string Headings[4];
+var() localized string Headings[2];
 
 //==================================================================
 // General Menu Code
@@ -159,6 +159,8 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	local array<CacheManager.WeaponRecord> Recs;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+
 	local int i, j;
 	local array<string> ItemNameList;
 	local class<ConflictItem> CI;
@@ -172,8 +174,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 	lb_UnusedWeapons.List.Add(Headings[0],,"BW",true);
 	lb_UnusedWeapons.List.Add(Headings[1],,"I",true);
-	lb_UnusedWeapons.List.Add(Headings[2],,"UT",true);
-	lb_UnusedWeapons.List.Add(Headings[3],,"O",true);
 
 	game_style = BaseMenu.GetGameStyle();
 
@@ -187,42 +187,46 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 	class'CacheManager'.static.GetWeaponList(Recs);
 
-	for (i=0;i<Recs.Length;i++)
+	for (i = 0; i < Recs.Length; i++)
 	{
+		// skip invalid weapon
+		if (Recs[i].ClassName == "")
+			continue;
+
+		// block weapons that are from other BW packs
 		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
 			continue;
+
+		WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName);
+
+		// don't accept non-BW weapons for Conflict Loadout
+		if (!WI.bIsBW)
+			continue;
 		
-		for (j=0;j<ConfigList.ConflictWeapons.length;j++)
+		// search existing specified config weapons to see if the weapon has been assigned to red or blue
+		for (j = 0; j < ConfigList.ConflictWeapons.length; j++)
 		{
 			if (ConfigList.ConflictWeapons[j].ClassName ~= Recs[i].ClassName)
 			{
 				if (ConfigList.ConflictWeapons[j].bRed)
-				{
-					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
-					else
-						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
-				}
+					lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
+
 				if (ConfigList.ConflictWeapons[j].bBlue)
-				{
-					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-						lb_UsedBlueWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
-					else
-						lb_UsedBlueWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
-				}
+					lb_UsedBlueWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
+
 				break;
 			}
 		}
 		
-		if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-			lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
-		else
-			lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
+		// add weapon to general list of availability
+		lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
 	}
+
 	class'BC_WeaponInfoCache'.static.EndSession();
 
 	PlayerOwner().GetAllInt("ConflictItem", ItemNameList);
-	for(i=0;i<ItemNameList.length;i++)
+
+	for(i = 0; i < ItemNameList.length; i++)
 	{
 		CI = class<ConflictItem>(DynamicLoadObject(ItemNameList[i], class'Class'));
 		if (CI != None)
@@ -618,6 +622,4 @@ defaultproperties
 
      Headings(0)="Ballistic Weapons"
      Headings(1)="Items"
-     Headings(2)="UT2004 Standard"
-     Headings(3)="Other"
 }
