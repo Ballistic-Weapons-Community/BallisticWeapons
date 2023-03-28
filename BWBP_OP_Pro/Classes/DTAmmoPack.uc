@@ -14,7 +14,7 @@ defaultproperties
      BloodManagerName="BallisticProV55.BloodMan_BluntSmall"
      bDetonatesBombs=False
      DamageDescription=",Blunt,Hazard,"
-     WeaponClass=Class'BWBP_SWC_Pro.L8GIAmmoPack'
+     WeaponClass=Class'BWBP_OP_Pro.L8GIAmmoPack'
      DeathString="%k bounce an ammo pack off %o's head."
      FemaleSuicide="%o tripped on her own ammo pack."
      MaleSuicide="%o tripped on his own ammo pack."

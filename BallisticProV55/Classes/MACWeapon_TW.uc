@@ -175,5 +175,7 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMRTurret'
 	DrawScale=0.250000
 	PrePivot=(Z=8.000000)
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
+	Skins(2)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
 }

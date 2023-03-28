@@ -99,7 +99,7 @@ defaultproperties
      bAISilent=True
      FireAnim="UseOnSelf"
      FireRate=2.850000
-     AmmoClass=Class'BWBP_SWC_Pro.Ammo_L8GI'
+     AmmoClass=Class'BWBP_OP_Pro.Ammo_L8GI'
      AmmoPerFire=0
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

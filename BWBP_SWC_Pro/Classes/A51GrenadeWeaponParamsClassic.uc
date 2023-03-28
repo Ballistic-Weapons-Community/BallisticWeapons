@@ -76,7 +76,7 @@ defaultproperties
 		ViewPivot=(Pitch=1024,Yaw=-1024)
 		PlayerSpeedFactor=1.000000
         MagAmmo=2
-        InventorySize=3
+        InventorySize=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

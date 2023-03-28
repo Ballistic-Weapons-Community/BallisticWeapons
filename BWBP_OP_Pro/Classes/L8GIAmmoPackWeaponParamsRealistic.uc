@@ -1,4 +1,4 @@
-class L8GIAmmoPackWeaponParamsClassic extends BallisticWeaponParams;
+class L8GIAmmoPackWeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,8 +7,8 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-		ProjectileClass=Class'BWBP_SWC_Pro.L8GIThrown'
+	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.L8GIThrown'
 		SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
 		Speed=600.000000
 		MaxSpeed=600.000000
@@ -17,32 +17,32 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)	
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		PreFireAnim="PrepThrow"
 		FireAnim="Throw"	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams
 		Damage=50
 	End Object
 		
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=2.850000
 		AmmoPerFire=0
 		FireAnim="UseOnSelf"
-	FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		DeclineTime=1.500000
 		CrouchMultiplier=0.800000
 	End Object
@@ -51,7 +51,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=RealisticAimParams
         ChaosDeclineTime=0.320000
 	End Object
     
@@ -59,16 +59,18 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=RealisticParams
+		ViewOffset=(X=0.000000,Y=10.000000,Z=-13.000000)
+     	ViewPivot=(Pitch=1024,Yaw=-1024)
 		PlayerSpeedFactor=0.750000
         MagAmmo=1
-        InventorySize=4
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+        InventorySize=2
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(0)=WeaponParams'RealisticParams'
 
 
 }

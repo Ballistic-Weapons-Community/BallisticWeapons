@@ -69,7 +69,7 @@ defaultproperties
 		PlayerSpeedFactor=1.000000
 		MagAmmo=26
 		SightingTime=0.250000
-        InventorySize=12
+        InventorySize=3
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
