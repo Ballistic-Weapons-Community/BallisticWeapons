@@ -112,7 +112,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		bDualBlocked=True
 		PlayerSpeedFactor=1.100000
-		InventorySize=20
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		bNeedCock=True

@@ -197,5 +197,4 @@ defaultproperties
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BW_Core_WeaponTex.MRT6.MRT6Skin'
     Skins(2)=Texture'BW_Core_WeaponTex.MRT6.MRT6Small'
-    Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

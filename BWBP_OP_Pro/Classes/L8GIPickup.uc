@@ -23,7 +23,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.AmmoPackLo'
      PickupDrawScale=0.350000
      bWeaponStay=False
-     InventoryType=Class'BWBP_SWC_Pro.L8GIAmmoPack'
+     InventoryType=Class'BWBP_OP_Pro.L8GIAmmoPack'
      RespawnTime=20.000000
      PickupMessage="You picked up the L8 GI Ammunition Pack"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.AmmoPackPickup'

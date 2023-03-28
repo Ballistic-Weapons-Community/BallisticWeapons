@@ -123,7 +123,7 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=0.800000
-		InventorySize=17
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		ZoomType=ZT_Logarithmic

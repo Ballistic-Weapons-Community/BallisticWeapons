@@ -104,7 +104,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		SightingTime=0.600000
         MagAmmo=80
-        InventorySize=29
+        InventorySize=7
         SightMoveSpeedFactor=0.75
 		ZoomType=ZT_Logarithmic
 		SightOffset=(X=-30.000000,Y=-25.000000,Z=6.500000)

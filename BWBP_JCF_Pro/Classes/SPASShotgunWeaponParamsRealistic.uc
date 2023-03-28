@@ -96,7 +96,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=4
 		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)

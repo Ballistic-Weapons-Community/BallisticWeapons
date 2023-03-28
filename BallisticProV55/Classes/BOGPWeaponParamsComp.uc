@@ -93,7 +93,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        CockAnimRate=1.50000
+        WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
+		CockAnimRate=1.50000
 		ReloadAnimRate=1.250000
         DisplaceDurationMult=0.75
         MagAmmo=1

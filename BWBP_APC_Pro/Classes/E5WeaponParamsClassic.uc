@@ -168,7 +168,7 @@ defaultproperties
 		
 		SightingTime=0.30000	 
         MagAmmo=45        
-        InventorySize=12
+        InventorySize=3
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
 		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)

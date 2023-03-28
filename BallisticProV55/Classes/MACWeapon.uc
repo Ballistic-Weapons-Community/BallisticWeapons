@@ -502,6 +502,4 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMR'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
-	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
 }

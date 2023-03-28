@@ -53,7 +53,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=UniversalParams
         PlayerSpeedFactor=1.150000
         MagAmmo=1
-        InventorySize=24
+        InventorySize=10
         ZoomType=ZT_Smooth
 		//WeaponModes(0)=(ModeName="AIM-9 Missiles",ModeID="WM_FullAuto")
 		//WeaponModes(1)=(ModeName="Carpet Bombing",ModeID="WM_FullAuto")

@@ -608,7 +608,7 @@ event Tick (float DT)
 
 defaultproperties
 {
-     Swaps(0)=(Old=Class'XWeapons.ShieldGun',NewClassNames=("BallisticProV55.X3Knife","BallisticProV55.A909SkrithBlades","BallisticProV55.EKS43Katana","BallisticProV55.X4Knife"))
+     Swaps(0)=(Old=Class'XWeapons.ShieldGun',NewClassNames=("BallisticProV55.X3Knife","BallisticProV55.A909SkrithBlades","BallisticProV55.EKS43Katana","BallisticProV55.X4Knife","BWBP_SKC_Pro.X8Knife"))
      Swaps(1)=(Old=Class'XWeapons.AssaultRifle',NewClassNames=("BallisticProV55.M806Pistol","BallisticProV55.MRT6Shotgun","BallisticProV55.A42SkrithPistol","BallisticProV55.D49Revolver","BallisticProV55.AM67Pistol","BallisticProV55.RS8Pistol","BallisticProV55.GRS9Pistol","BallisticProV55.leMatRevolver","BallisticProV55.BOGPPistol","BallisticProV55.MD24Pistol"))
      Swaps(2)=(Old=Class'XWeapons.BioRifle',NewClassNames=("BallisticProV55.XK2SubMachinegun","BallisticProV55.Fifty9MachinePistol","BallisticProV55.XRS10SubmachineGun","BallisticProV55.XMK5SubMachinegun"))
      Swaps(3)=(Old=Class'XWeapons.ShockRifle',NewClassNames=("BallisticProV55.M50AssaultRifle","BallisticProV55.SARAssaultRifle","BallisticProV55.M46AssaultRifle"))

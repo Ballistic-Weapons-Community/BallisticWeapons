@@ -78,7 +78,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		InventorySize=65
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.900000
 		bNeedCock=True
@@ -98,7 +98,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99BShine",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99AShine",Index=2)
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.900000
 		bNeedCock=True

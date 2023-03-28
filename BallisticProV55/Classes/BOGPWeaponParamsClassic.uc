@@ -123,7 +123,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		LayoutName="Red"
 		Weight=30
-		
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
@@ -142,9 +142,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-W
 		LayoutName="White"
 		Weight=30
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=0)
-		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=1)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
@@ -163,9 +163,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-F
 		LayoutName="Radical"
 		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=0)
-		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=1)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
@@ -184,9 +184,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-M
 		LayoutName="Medical"
 		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.MGP",Index=0)
-		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.MGP",Index=1)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000

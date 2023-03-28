@@ -105,7 +105,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=6
         SightingTime=0.350000
-        InventorySize=12
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -121,7 +121,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=6
         SightingTime=0.350000
-        InventorySize=12
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

@@ -67,7 +67,7 @@ defaultproperties
 		ViewOffset=(X=30.000000,Y=12.000000,Z=-30.000000)
 		DisplaceDurationMult=0.75
 		PlayerSpeedFactor=1.000000
-		MagAmmo=26
+		MagAmmo=3
 		SightingTime=0.250000
         InventorySize=12
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

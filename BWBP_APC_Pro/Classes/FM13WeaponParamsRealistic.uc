@@ -111,7 +111,7 @@ defaultproperties
 		MagAmmo=5
 		bMagPlusOne=True
         SightingTime=0.350000
-        InventorySize=12
+        InventorySize=6
 		WeaponName="FM-13 Dragon's Breath Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

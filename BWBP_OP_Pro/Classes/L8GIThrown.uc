@@ -232,12 +232,12 @@ defaultproperties
      RandomSpin=1024.000000
      bNoInitialSpin=True
      ImpactDamage=10.000000
-     ImpactDamageType=Class'BWBP_SWC_Pro.DTAmmoPack'
+     ImpactDamageType=Class'BWBP_OP_Pro.DTAmmoPack'
      TrailOffset=(X=1.600000,Z=6.400000)
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Damage=0.000000
      DamageRadius=250.000000
-     MyDamageType=Class'BWBP_SWC_Pro.DTAmmoPack'
+     MyDamageType=Class'BWBP_OP_Pro.DTAmmoPack'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.AmmoPackHi'
      DrawScale=0.350000

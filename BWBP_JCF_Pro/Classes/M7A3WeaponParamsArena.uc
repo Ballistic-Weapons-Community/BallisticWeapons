@@ -18,14 +18,14 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_JCF_Pro.M7A3FlashEmitter'
 		FlashScaleFactor=0.100000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3_Fire_M',Volume=1.000000)
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3-HFire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=200.000000
 		Chaos=0.10000
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.210000
+		FireInterval=0.170000
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -89,7 +89,7 @@ defaultproperties
 		DisplaceDurationMult=0.75
 		PlayerSpeedFactor=1.050000
 		MagAmmo=21
-        InventorySize=12
+        InventorySize=5
 		ViewOffset=(X=10.000000,Y=4.000000,Z=-7.500000)
 		SightingTime=0.250000
 		SightOffset=(X=-10.000000,Y=-0.45000,Z=10.720000)

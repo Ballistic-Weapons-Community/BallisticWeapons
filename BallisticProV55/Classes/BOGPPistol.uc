@@ -326,6 +326,7 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_BORT'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
+	Skins(2)=Shader'BW_Core_WeaponTex.BOGP.BOGP_ScopeShine'
 }
