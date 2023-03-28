@@ -10,10 +10,10 @@ class DTScarabGrenade extends DT_BWBlunt;
 
 defaultproperties
 {
-     DeathStrings(0)="%o found %k's explosive Scarab right under their feet, they couldn't stomp it out in time."
+     DeathStrings(0)="%o found %k's explosive Scarab right under %vh feet, %ve couldn't stomp it out in time."
      DeathStrings(1)="%k created a bloody meal for the scarabs using %o's exploded corpse."
      DeathStrings(2)="%o's ankles made a good appetizer for %k's explosive Scarab."
-     DeathStrings(3)="%k's Scarab scurried onto %o before blowing them up to tiny bits."
+     DeathStrings(3)="%k's Scarab scurried onto %o before blowing %vm up to tiny bits."
      DeathStrings(4)="%o should've brought a bigger net to contain the explosion of %k's Scarab."
      BloodManagerName="BallisticProV55.BloodMan_BluntSmall"
      bDetonatesBombs=False

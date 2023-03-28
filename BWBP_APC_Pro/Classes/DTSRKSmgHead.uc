@@ -29,11 +29,11 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%k used their super 205 to remove %o's head clean off."
+     DeathStrings(0)="%k used %kh super 205 to remove %o's head clean off."
      DeathStrings(1)="%o's brains were entombed in %k's 10mm lead casket."
      DeathStrings(2)="%k got backsplattered from headshotting %o in CQC."
-	 DeathStrings(3)="%o had some dental work by %k, having their teeth replaced by 10mm bullets."
-	 DeathStrings(4)="%k put two bullets in %o's eyes to blind them before dying."
+     DeathStrings(3)="%o had some dental work by %k, having %vh teeth replaced by 10mm bullets."
+     DeathStrings(4)="%k put two bullets in %o's eyes to blind %vm before dying."
      bHeaddie=True
      WeaponClass=Class'BWBP_APC_Pro.SRKSubMachinegun'
      DeathString="%o got %vh brain shredded by %k's SRK-205."

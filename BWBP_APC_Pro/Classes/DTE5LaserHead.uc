@@ -10,10 +10,10 @@ class DTE5LaserHead extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%o had their head decapitated by %k's miniature beam of death."
+     DeathStrings(0)="%o had %vh head decapitated by %k's miniature beam of death."
      DeathStrings(1)="%k gave %o a plasma power tracheostomy, still was fatal though."
      DeathStrings(2)="%o didn't read the fine print before getting lethal eye laser surgery by Dr. %k."
-	 DeathStrings(3)="%k drew a smiley face on %o before dying, they didn’t appreciate it"
+     DeathStrings(3)="%k drew a smiley face on %o before dying, %ve didn’t appreciate it."
      SimpleKillString="E-5 'ViPeR' Laser"
      AimedString="Scoped"
      BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"

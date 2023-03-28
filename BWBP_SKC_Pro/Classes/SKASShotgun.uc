@@ -360,7 +360,7 @@ defaultproperties
     AIRating=0.850000
     CurrentRating=0.850000
     bShowChargingBar=True
-    Description="SKAS-21 Super Shotgun||Manufacturer: UTC Defense Tech|Primary: Variable Fire Buckshot|Secondary: Tri-Barrel Blast"
+    Description="SKAS-21 Super Shotgun||Manufacturer: UTC Defense Tech|Primary: Variable Fire Buckshot|Secondary: Tri-Barrel Blast||The SKAS-21 Super Assault Shotgun is a brand-new, state-of-the-art weapons system developed by UTC Defense Tech. It has been nicknamed 'The Decimator' for its ability to sweep entire streets clean of hostiles in seconds. Built to provide sustained suppressive fire, the fully automatic SKAS fires from an electrically assisted, rotating triple-barrel system. An electric motor housed in the stock operates various internal functions, making this gun one of the few gas-operated/Gatling hybrids. Non-ambidexterous models can disable this system for use with low-impulse ammunition, however use with standard ammunition is not recommended due to the resulting overpressurization. This heavy duty shotgun fires 10 gauge ammunition from a 18 round U drum by default, however 12 gauge (SKAS/M-21), grenade launching (SRAC/G-21), and box fed (SAS/CE-3) variants exist as well. Handle with care, as this is one expensive gun."
     Priority=245
     HudColor=(B=190,G=190,R=190)
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

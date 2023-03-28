@@ -557,7 +557,7 @@ defaultproperties
 	AIRating=0.750000
 	CurrentRating=0.750000
 	bShowChargingBar=True
-	Description="E38 Indivisible Particle Smasher||Manufacturer: United States Defense Department, 20th Century||Commissioned towards the end of the 20th century, the E38 "
+	Description="E38 Indivisible Particle Smasher||Manufacturer: United States Defense Department, 20th 'The truth is out there, I know it.  I've seen those skrith bastards up close back in '59 in Roswell, they're the ones who landed in Roswell in Area 51, with their creepy two headed dogs and all.  They tried to take over the base using their plasma peashooters, only it looked more like what you see in those B-movies.  Those bastards, they shot up the place, melting all the soldiers into piles of goo. I swear to you, I'm not making this up, they even activated some weird shield doohicky that made them immune to the bazookas and other explosives. You gotta believe me, please.  I can prove it to you, I just need you guys to take me to Area 51, where the original model is still being held at, sealed away in a vault!  Wait, why are you looking at me like that?  Why are you putting cuffs on me!?  HEY-'  The last known words of James Kilroy Sr.  Before he was sent to the FBI for interrogation."
 	Priority=39
 	HudColor=(B=50,G=175)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

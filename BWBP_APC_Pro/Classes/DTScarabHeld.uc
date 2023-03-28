@@ -10,9 +10,9 @@ class DTScarabHeld extends DT_BWExplode;
 
 defaultproperties
 {
-     DeathStrings(0)="%o got a share of %k's suicide."
-     DeathStrings(1)="%o came too close to pinapple crazy %k."
-     DeathStrings(2)="%k killed %o with a self propelled grenade."
+     DeathStrings(0)="%o and %k were both eaten alive by %k's horde of Scarabs."
+     DeathStrings(1)="%o came too close to Scarab crazy %k."
+     DeathStrings(2)="%k shared %kh love of Scarabs with %o, too bad it devoured %vm."
      FemaleSuicides(0)="%o held onto their explosive treasure a bit too long."
      FemaleSuicides(1)="%o became a meal for their own swarm of Scarabs."
      FemaleSuicides(2)="%o walked right into a swarm of clusters, their own to be exact."

@@ -662,7 +662,7 @@ defaultproperties
 	BringUpTime=0.900000
 	SelectForce="SwitchToAssaultRifle"
 	bSniping=True
-	Description="No matter what year it is, there will always be those who don’t have the same ideals as the UTC troops. Even during the skrith wars, there’ll be conscientious objectors who oppose violence and they’ll adapt to suppressive tools like the PUG Suppression Cannon.  Designed to fire both rubber slugs and tear gas grenades, it was supposed to be a versatile tool to quell any riots; only it worked a little too well as the slugs managed to break bones and rupture vital organs while the gas suffocated those who got too close. The suppression cannon no longer is used in upholding the law, rather it has ironically found its way in troopers hands to flush out Skrith in their hiding holes."
+	Description="No matter what year it is, there will always be those who don't have the same ideals as the UTC troops. Even during the skrith wars, there'll be conscientious objectors who oppose violence and they'll adapt to suppressive tools like the PUG Suppression Cannon.  Designed to fire both rubber slugs and tear gas grenades, it was supposed to be a versatile tool to quell any riots; only it worked a little too well as the slugs managed to break bones and rupture vital organs while the gas suffocated those who got too close. The suppression cannon no longer is used in upholding the law, rather it has ironically found its way in troopers hands to flush out Skrith in their hiding holes."
 	Priority=162
 	HudColor=(B=25,G=25)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

@@ -29,9 +29,9 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o was lobotomized by %k's FMP bullets."
-     DeathStrings(1)="%k's FMP-2012 bullets invaded %o's head."
-     DeathStrings(2)="%k's FMP-2012 reduced %o's head to sauerkraut."
+     DeathStrings(0)="%o wasn't just lobotomized by %k's FMP bullets, %ve was decapitated."
+     DeathStrings(1)="%k executed the %o from the old guard with a fiery bullet to the back of the head."
+     DeathStrings(2)="%o's brains were reduced to nothing after losing the war to %k."
      bHeaddie=True
 	 bIgniteFires=True
 	 EffectChance=1.000000

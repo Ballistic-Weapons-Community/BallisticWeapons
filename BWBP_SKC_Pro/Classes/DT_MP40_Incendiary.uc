@@ -10,11 +10,11 @@ class DT_MP40_Incendiary extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%k embraced Schadenfreude as %kh FMP destroyed %o."
-     DeathStrings(1)="%o lost the war to %k's FMP-2012."
-     DeathStrings(2)="%k enacted blitzkrieg on %o with %kh FMP-2012."
-     DeathStrings(3)="%o was removed from the gene pool by %k's FMP."
-     DeathStrings(4)="%k's FMP-2012 executed the untermensch %o."
+     DeathStrings(0)="%k's old school SMG is like a new school Flammenwerfer to %o, still burns all the same."
+     DeathStrings(1)="%o screamed and screamed until %k silenced %vm, all quiet on the modern front."
+     DeathStrings(2)="%k cleansed more than just sins from %o with the FMP-2012."
+     DeathStrings(3)="%o died in glorious combat, reduced to ash by %k."
+     DeathStrings(4)="%k silenced the swan song coming from %o with some fiery bullets."
 	 bIgniteFires=True
 	 EffectChance=1.000000
      WeaponClass=Class'BWBP_SKC_Pro.FMPMachinePistol'

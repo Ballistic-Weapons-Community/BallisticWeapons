@@ -227,7 +227,7 @@ defaultproperties
     CurrentRating=0.800000
     bSniping=True
     bShowChargingBar=True
-    Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players"
+    Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players||The pinnacle of electric based weaponry, an evolution of the lightning gun; the ARC-79 Lightning Rifle is the result of a collaboration between the UTC R&D and Nexron Defense.  Designed to fry the circuits of Cryon at a safer distance, the ARC-79 is a devastating rifle even against the Skrith, even the hordes of Krao since it's able to chain the electrical current between targets.  Though it's a recent development, the ARC-79 has been proven useful when a Nexron laboratory was invaded by the Krao on the planet Anschar, only 3 rifles were used to quell the mindless drones, the scientists having fried Krao that night as a reward."
     DisplayFOV=55.000000
     Priority=33
     HudColor=(B=50,G=50,R=200)

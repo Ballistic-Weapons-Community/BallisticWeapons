@@ -11,9 +11,9 @@ class DTE5ShotgunHead extends DT_BWMiscDamage;
 defaultproperties
 {
      DeathStrings(0)="%o's head was pumped full of %k's plasma until it exploded in a ball of light."
-     DeathStrings(1)="%k filled %o's head with shotgun pulses before they succumbed to the viper."
+     DeathStrings(1)="%k filled %o's head with shotgun pulses before %ve succumbed to the ASP."
      DeathStrings(2)="%o's mind was full of thoughts and dreams, now it's home to %k's plasma bolts."
-	 DeathStrings(3)="%k sicced their viper on %o, biting their head off."
+     DeathStrings(3)="%k sicced %kh ASP on %o, biting %vh head off."
      BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
      bIgniteFires=True
      bHeaddie=True

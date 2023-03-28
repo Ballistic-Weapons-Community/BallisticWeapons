@@ -11,9 +11,9 @@ class DTFM13ShotgunHead extends DT_BWShell;
 defaultproperties
 {
      DeathStrings(0)="%k melted %o's helmet and head into molten slag."
-     DeathStrings(1)="%o got %kh neck ripped out by by %k's Pitbull."
-     DeathStrings(2)="%o took a whole facial of %k's dragon breath shells."
-     DeathStrings(3)="%k let %kh Pitbull make a meal out of %o's face."
+     DeathStrings(1)="%o got his neck ripped out by by %k's Pitbull."
+     DeathStrings(2)="%o took a whole facial of  %k's Pitbull breath shells."
+     DeathStrings(3)="%k's let his Pitbull make a meal out of %o's face."
      bHeaddie=True
      InvasionDamageScaling=2
      DamageIdent="Shotgun"

@@ -10,12 +10,12 @@ class DTR9000ERifleRad extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%o didn’t need to be in close proximity for %k to irradiate them."
+     DeathStrings(0)="%o didn’t need to be in close proximity for %k to irradiate %vm."
      DeathStrings(1)="%k rearranged %o's DNA from a distance away."
      DeathStrings(2)="%o mutated into a pile of goop from %k's radioactive Chimera."
      DeathStrings(3)="%k forced a evolutionary virus into %o with a rad amped Chimera."
      DeathStrings(4)="%o is pissing neon green from getting shot by %k's Chimera."
-     DeathStrings(5)="%k turned %o into a ghoul, then had to put them down for going feral."
+     DeathStrings(5)="%k turned %o into a ghoul, then had to put %vm down for going feral."
      AimedString="Scoped"
      bSnipingDamage=True
      InvasionDamageScaling=2.000000

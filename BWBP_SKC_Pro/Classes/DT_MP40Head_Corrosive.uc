@@ -56,9 +56,9 @@ static function IncrementKills(Controller Killer)
 defaultproperties
 {
 	 ArmorDrain=0.750000
-     DeathStrings(0)="%o was lobotomized by %k's FMP bullets."
-     DeathStrings(1)="%k's FMP-2012 bullets invaded %o's head."
-     DeathStrings(2)="%k's FMP-2012 reduced %o's head to sauerkraut."
+     DeathStrings(0)="%o didn't have time to kneel and surrender before %vh brains was melted by %k."
+     DeathStrings(1)="Here we have the modern exhibit from %k, using %o's green matter as paint."
+     DeathStrings(2)="%o got some acid rain from %k, melting %vh brains into neon green mud."
      bHeaddie=True
      WeaponClass=Class'BWBP_SKC_Pro.FMPMachinePistol'
      DeathString="%o was lobotomized by %k's FMP bullets."

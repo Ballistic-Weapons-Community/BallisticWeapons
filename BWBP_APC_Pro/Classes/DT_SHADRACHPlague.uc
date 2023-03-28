@@ -2,10 +2,10 @@ class DT_SHADRACHPlague extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%o couldn't withstand %k's irradiation."
-     DeathStrings(1)="%k's lingering radiation overcame %o."
-     DeathStrings(2)="%k's raygun made %o a terminal biohazard."
-     DeathStrings(3)="%o's corpse glows bright and green thanks to %k's raygun."
+     DeathStrings(0)="%o force evolved into a corpse after being exposed to %k's virus."
+     DeathStrings(1)="%k took notes while %o succumbed to lethal radiation poisoning."
+     DeathStrings(2)="%o ran out of time and became irradiated to death by %k."
+     DeathStrings(3)="%k turned %o into a radioactive beacon to guide lost ships home."
      SimpleKillString="SRK-205 Irradiation"
      BloodManagerName="BallisticProV55.BloodMan_DarkSlow"
      DamageIdent="Energy"

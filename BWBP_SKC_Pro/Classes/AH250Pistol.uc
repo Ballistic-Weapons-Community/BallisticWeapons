@@ -402,7 +402,7 @@ defaultproperties
 	BringUpTime=0.600000
 	CockingBringUpTime=1.400000
 	SelectForce="SwitchToAssaultRifle"
-	Description="AH-250 'Hawk' Assault Pistol||Manufacturer: Enravion Combat Solutions|Primary: Magnum Rounds|Secondary: Scope|The new AH-250 is an updated version of Enravion's AH-208 model. Equipped with a compensator for recoil, match-grade internals, and a precision scope, the AH-250 is a powerful and precise sidearm. Big game hunters have taken a liking to the gun and it can be seen in almost every outer planet action flick. Military adoption remains low due to the heavy recoil and impracticality of carrying around such a large sidearm."
+	Description="AH-250 'Hawk' Assault Pistol||Manufacturer: Enravion Combat Solutions|Primary: Magnum Rounds|Secondary: Scope||Built as a more affordable alternative to the AH-104, the AH-250 is an alternate design chambered for .44 magnum rounds instead of the usual $100 .600 HEAP ones. It is less accurate than the AH-104 and D49, but its 8 round magazine and faster reload times let it put more rounds down range than both. Its significant weight and recoil means it requires both hands to shoot and is harder to control than its revolver and hand cannon siblings, a fact that comes into play where range is a concern. An updated version known as the AH-250M2 'Hawk' is also available, complete with a compensator, match-grade internals, and a 6x precision scope to make aiming easier. Military adoption remains low due to the heavy recoil and impracticality of carrying around such a large sidearm, yet big game hunters have taken a liking to it, plus it remains a popular weapon in every outer planet action flick."
 	Priority=96
 	HudColor=(B=200,G=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
