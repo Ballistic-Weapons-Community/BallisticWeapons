@@ -448,6 +448,8 @@ var() bool						bHasPenetrated;		// Has this weapon recently penetrated? Used in
 // END GAMEPLAY VARIABLES
 //=============================================================================
 
+var private bool				bSetNearClip;
+
 replication
 {
 	// Things the server should send to the owning client
@@ -532,8 +534,17 @@ simulated function PostBeginPlay()
             GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
     }
 
+	// save default values because we'll adjust both the instance and default values as part of aspect correction
 	CachedDisplayFOV = default.DisplayFOV;
 	CachedSightDisplayFOV = default.SightDisplayFOV;
+
+	// this is used to deal with weapons clipping into the view
+	// because of the overly aggressive default near clipping plane
+	if (!default.bSetNearClip && Level.GetLocalPlayerController() != None)
+	{
+		Level.GetLocalPlayerController().ConsoleCommand("nearclip 1");
+		default.bSetNearClip=True;
+	}
 
 	Super.PostBeginPlay();
 
