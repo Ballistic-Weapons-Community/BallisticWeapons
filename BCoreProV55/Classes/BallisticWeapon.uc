@@ -280,9 +280,8 @@ var() array<BallisticGunAugment>	GunAugments;				// Actor to spawn if the layout
 var private int				CachedCanvasX;
 var private int				CachedCanvasY;
 
-// The defaults are changed when using vert- correction - use these for the 
-var private int				CachedDisplayFOV;
-var private int				CachedSightDisplayFOV;
+// The default is changed when using vert- correction
+var() int					BaseDisplayFOV;
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -534,10 +533,6 @@ simulated function PostBeginPlay()
             GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
     }
 
-	// save default values because we'll adjust both the instance and default values as part of aspect correction
-	CachedDisplayFOV = default.DisplayFOV;
-	CachedSightDisplayFOV = default.SightDisplayFOV;
-
 	// this is used to deal with weapons clipping into the view
 	// because of the overly aggressive default near clipping plane
 	if (!default.bSetNearClip && Level.GetLocalPlayerController() != None)
@@ -599,16 +594,14 @@ simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
 	AspectRatio = FClamp(ResScaleX/ResScaleY, 1f, 1.34f);
 
 	// basic FOV is set for 4:3. Adjust FOVs for 16:9 if we have it
-	DisplayFOV = class'BUtil'.static.CalcZoomFOV(CachedDisplayFOV, 1/AspectRatio);
+	BaseDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.DisplayFOV, 1/AspectRatio);
+	DisplayFOV = BaseDisplayFOV;
 
 	// adjust sight display FOV automatically
 	if (class'BallisticReplicationInfo'.static.IsTactical())
-		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(DisplayFOV, SightZoomFactor);
+		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(BaseDisplayFOV, SightZoomFactor);
 	else 
-		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(CachedSightDisplayFOV, 1/AspectRatio);
-
-	default.DisplayFOV = DisplayFOV;
-	default.SightDisplayFOV = SightDisplayFOV;
+		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.SightDisplayFOV, 1/AspectRatio);
 }
 
 simulated function SetLayoutIndex(byte NewLayoutIndex)
@@ -2473,7 +2466,7 @@ simulated function PositionSights()
 	{	// Weapon completely lowered
 		SetLocation(OldLoc);
 		SetRotation(Instigator.GetViewRotation());
-		DisplayFOV = default.DisplayFOV;
+		DisplayFOV = BaseDisplayFOV;
 		PlayerController(InstigatorController).bZooming = False;
 
 		if (SightingState == SS_Lowering)
@@ -2493,7 +2486,7 @@ simulated function PositionSights()
 	{	// Gun is on the move...
 		SetLocation(class'BUtil'.static.VSmerp(SightingPhase, OldLoc, NewLoc));
 		SetRotation(Instigator.GetViewRotation() + SightPivot * SightingPhase);
-		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
+		DisplayFOV = Smerp(SightingPhase, BaseDisplayFOV, SightDisplayFOV);
 
 		AimComponent.UpdateADSTransition(SightingPhase);
 		RcComponent.UpdateADSTransition(SightingPhase);
@@ -2554,7 +2547,7 @@ simulated function TickSighting (float DT)
 			SightingState = SS_None;
 
 			ScopeDownAnimEnd();
-			DisplayFOV = default.DisplayFOV;
+			DisplayFOV = BaseDisplayFOV;
 		}
 		break;
 	}

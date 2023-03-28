@@ -193,6 +193,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 			continue;
 		
 		for (j=0;j<ConfigList.ConflictWeapons.length;j++)
+		{
 			if (ConfigList.ConflictWeapons[j].ClassName ~= Recs[i].ClassName)
 			{
 				if (ConfigList.ConflictWeapons[j].bRed)
@@ -211,6 +212,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 				}
 				break;
 			}
+		}
+		
 		if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
 			lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
 		else

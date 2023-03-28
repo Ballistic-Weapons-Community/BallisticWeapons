@@ -305,7 +305,7 @@ simulated function PositionSights()
 	{	// Weapon completely lowered
 		SetLocation(OldLoc);
 		SetRotation(Instigator.GetViewRotation());
-		DisplayFOV = default.DisplayFOV;
+		DisplayFOV = BaseDisplayFOV;
 		PlayerController(InstigatorController).bZooming = False;
 
 		if (SightingState == SS_Lowering)
@@ -325,7 +325,7 @@ simulated function PositionSights()
 	{	// Gun is on the move...
 		SetLocation(class'BUtil'.static.VSmerp(SightingPhase, OldLoc, NewLoc));
 		SetRotation(Instigator.GetViewRotation() + SightPivot * SightingPhase);
-		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
+		DisplayFOV = Smerp(SightingPhase, BaseDisplayFOV, SightDisplayFOV);
 
 		AimComponent.UpdateADSTransition(SightingPhase);
 		RcComponent.UpdateADSTransition(SightingPhase);

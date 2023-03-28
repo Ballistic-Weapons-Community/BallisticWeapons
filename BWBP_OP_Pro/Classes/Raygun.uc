@@ -123,7 +123,7 @@ simulated function TickSighting (float DT)
 			SightingPhase = 0.0;
 			SightingState = SS_None;
 			ScopeDownAnimEnd();
-			DisplayFOV = default.DisplayFOV;
+			DisplayFOV = BaseDisplayFOV;
 		}
 	}
 }
