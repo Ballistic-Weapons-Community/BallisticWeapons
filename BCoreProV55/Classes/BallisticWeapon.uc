@@ -275,6 +275,14 @@ var	bool					bSkipDrawWeaponInfo;		// Skips the Ballistic versions of NewDrawWea
 var	bool					bAllowWeaponInfoOverride;	// If true, prevents upgraded HUDs from overriding the weapon info display
 var() float					IdleTweenTime;				// Just a general tween time used by anims like idle
 var() array<BallisticGunAugment>	GunAugments;				// Actor to spawn if the layout has an additional optic/suppressor/bayonet
+
+// Cached canvas variables for FOV calc (to correct for vert-)
+var private int				CachedCanvasX;
+var private int				CachedCanvasY;
+
+// The defaults are changed when using vert- correction - use these for the 
+var private int				CachedDisplayFOV;
+var private int				CachedSightDisplayFOV;
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -301,6 +309,7 @@ var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
 var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
 var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view
+
 var float 					MinFixedZoomLevel; 		// Minimum zoom level for ZT_Minimum.
 var float					MinZoom, MaxZoom;		// Min and max magnification levels for ZT_Logarithmic.
 var int						ZoomStages;				// Number of zoom stages
@@ -523,6 +532,9 @@ simulated function PostBeginPlay()
             GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
     }
 
+	CachedDisplayFOV = default.DisplayFOV;
+	CachedSightDisplayFOV = default.SightDisplayFOV;
+
 	Super.PostBeginPlay();
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
@@ -560,10 +572,32 @@ simulated function PostBeginPlay()
 			MeleeFireMode.PostNetBeginPlay();
 		}
 	}
+}
+
+simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
+{
+	local float ResScaleX, ResScaleY;
+	local float AspectRatio;
+
+	CachedCanvasX = CanvasSizeX;
+	CachedCanvasY = CanvasSizeY;
+
+	ResScaleX = CachedCanvasX / 4f;
+	ResScaleY = CachedCanvasY / 3f;
+
+	AspectRatio = FClamp(ResScaleX/ResScaleY, 1f, 1.34f);
+
+	// basic FOV is set for 4:3. Adjust FOVs for 16:9 if we have it
+	DisplayFOV = class'BUtil'.static.CalcZoomFOV(CachedDisplayFOV, 1/AspectRatio);
 
 	// adjust sight display FOV automatically
 	if (class'BallisticReplicationInfo'.static.IsTactical())
 		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(DisplayFOV, SightZoomFactor);
+	else 
+		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(CachedSightDisplayFOV, 1/AspectRatio);
+
+	default.DisplayFOV = DisplayFOV;
+	default.SightDisplayFOV = SightDisplayFOV;
 }
 
 simulated function SetLayoutIndex(byte NewLayoutIndex)
@@ -2217,6 +2251,10 @@ simulated event WeaponRenderOverlays( Canvas Canvas )
 
 	if ( InstigatorController != None )
 		Hand = Clamp(InstigatorController.Handedness, -1, 1);
+
+	// update display FOVs if changed resolution
+	if (Canvas.SizeX != CachedCanvasX || Canvas.SizeY != CachedCanvasY)
+		CalcDisplayFOVs(Canvas.SizeX, Canvas.SizeY);
 
     // draw muzzleflashes/smoke for all fire modes so idle state won't
     // cause emitters to just disappear

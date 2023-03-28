@@ -202,6 +202,28 @@ simulated event PostNetBeginPlay()
     }
 }
 
+simulated function vector CalcDrawOffset(inventory Inv)
+{
+	local vector DrawOffset;
+
+	if ( Controller == None )
+		return (Inv.PlayerViewOffset >> Rotation) + BaseEyeHeight * vect(0,0,1);
+
+	DrawOffset = ((0.9/60 * 100 * ModifiedPlayerViewOffset(Inv)) >> GetViewRotation() ); // hardcode displayfov of 60 for offset purposes here. otherwise, scaling breaks in 16:9
+
+	if ( !IsLocallyControlled() )
+		DrawOffset.Z += BaseEyeHeight;
+	else
+	{
+		DrawOffset.Z += EyeHeight;
+        if( bWeaponBob )
+		    DrawOffset += WeaponBob(Inv.BobDamping);
+         DrawOffset += CameraShake();
+	}
+
+	return DrawOffset;
+}
+
 simulated final function BindDefaultMovement()
 {
     default.WalkingPct = WalkingPct;
