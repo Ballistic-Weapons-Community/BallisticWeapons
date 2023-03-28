@@ -67,7 +67,6 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      bMeleeWeapon=True
      Description="The EKS-43 sword is one of a few weapons produced by Enravion, not designed for widescale military use. It is an expenisve artefact preferred by collectors and other rare procurers. The blade is forged by the use of both ancient techniques and the most modern technology, making it a mighty weapon with incredible sharpness and legendary Enravion strength. Civilians use the weapon for various training and other personal purposes, while several mercenary groups, most notably, the highly skilled 'Apocalytes', adopted the weapon for use with their more skilled warriors."
-     DisplayFOV=65.000000
      Priority=12
      HudColor=(B=255,G=200,R=200)
      CenteredOffsetY=7.000000

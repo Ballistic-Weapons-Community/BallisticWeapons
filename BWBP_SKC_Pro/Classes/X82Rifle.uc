@@ -406,7 +406,6 @@ defaultproperties
 	CurrentRating=0.800000
 	bSniping=True
 	Description="X83 Anti-Material Rifle||Manufacturer: Evravion Combat Solutions |Primary: Single Powerful Shot|Secondary: Activate Zooming Scope|Special: (Scoped) Activate Night Vision/Detector|Special: (Unscoped) Mount X-83 A1||Enravion's high powered X-83 A1 Anti-Material Rifle is a fearsome sight on the modern day battlefield. With an effective range of about 1.1 miles, the X-83 can target and eliminate infantry and light vehicles with ease and at range using its specialized .50 cal N6-BMG HEAP rounds. This special operations weapon, designed to disable key targets like parked aircraft and APCs, was used extensively prior to the Skrith wars."
-	DisplayFOV=55.000000
 	Priority=207
 	HudColor=(B=175,G=175,R=175)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

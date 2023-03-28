@@ -545,7 +545,6 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Ion Impulse Array")
 	CurrentWeaponMode=2
 	Description="Dipheox's most popular weapon, the CYLO Versatile Urban Assault Weapon is designed with one goal in mind: Brutal close quarters combat. The CYLO accomplishes this goal quite well, earning itself the nickname of Badger with its small frame, brutal effectiveness, and unpredictability. UTC refuses to let this weapon in the hands of its soldiers because of its erratic firing and tendency to jam.||The CYLO Versatile UAW is fully capable for urban combat. The rifle's caseless 7.62mm rounds can easily shoot through doors and thin walls, while the shotgun can clear a room quickly with its semi-automatic firing. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
-	DisplayFOV=55.000000
 	Priority=41
 	HudColor=(G=135)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

@@ -152,7 +152,6 @@ defaultproperties
     AIRating=0.900000
     CurrentRating=0.900000
     Description="Another sturdy weapon by Black & Wood, the M290 has proven it's worth many times in combat situations, especially against alien forces, most notably the Krao. One of its greatest feats was during the second Human-Skrith war, when a wounded Captain in the UTC 27th Special Ops division single handedly defended an outpost from six advancing Krao companies, using the weapon�s wide spread to his advantage."
-    DisplayFOV=55.000000
     Priority=38
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=7

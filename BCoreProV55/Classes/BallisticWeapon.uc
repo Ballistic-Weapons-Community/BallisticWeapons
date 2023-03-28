@@ -307,7 +307,7 @@ var() name					ZoomInAnim;				// Anim to play for raising weapon to view through
 var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
 var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
-var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view
+var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view. Default property setting is now ignored.
 
 var float 					MinFixedZoomLevel; 		// Minimum zoom level for ZT_Minimum.
 var float					MinZoom, MaxZoom;		// Min and max magnification levels for ZT_Logarithmic.
@@ -598,10 +598,10 @@ simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
 	DisplayFOV = BaseDisplayFOV;
 
 	// adjust sight display FOV automatically
-	if (class'BallisticReplicationInfo'.static.IsTactical())
+	//if (class'BallisticReplicationInfo'.static.IsTactical())
 		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(BaseDisplayFOV, SightZoomFactor);
-	else 
-		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.SightDisplayFOV, 1/AspectRatio);
+	//else 
+	//	SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.SightDisplayFOV, 1/AspectRatio);
 }
 
 simulated function SetLayoutIndex(byte NewLayoutIndex)
@@ -847,8 +847,11 @@ simulated function OnWeaponParamsChanged()
         default.SightOffset = WeaponParams.SightOffset;
     }
 	
-	SightPivot = WeaponParams.SightPivot;
-    default.SightPivot = WeaponParams.SightPivot;
+	if (WeaponParams.SightPivot != rot(0,0,0))
+    {
+		SightPivot = WeaponParams.SightPivot;
+		default.SightPivot = WeaponParams.SightPivot;
+	}
 
 	if (WeaponParams.ViewOffset != vect(0,0,0))
     {
@@ -5602,7 +5605,7 @@ defaultproperties
      PutDownTime=0.300000
      BringUpTime=0.300000
      bNoAmmoInstances=False
-     DisplayFOV=60.000000
+     DisplayFOV=75.000000 // works now with clipping changes - more accurate to weapon size
      Priority=2
      CenteredOffsetY=0.000000
      CenteredRoll=500

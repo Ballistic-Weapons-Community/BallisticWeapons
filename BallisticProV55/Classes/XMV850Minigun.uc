@@ -461,7 +461,6 @@ defaultproperties
 	bShowChargingBar=True
 	SightPivot=(Pitch=700,Roll=2048)
 	SightOffset=(X=8.000000,Z=28.000000)
-	SightDisplayFOV=45.000000
 	ParamsClasses(0)=Class'XMV850WeaponParamsComp'
 	ParamsClasses(1)=Class'XMV850WeaponParamsClassic' //Todo: state code to support fire while spinning
 	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic' //Todo: state code to support fire while spinning
@@ -475,7 +474,6 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="Anti-Krao weapons are a common thing these days, with many being designed specifically to kill as many as possible in a short time. However, no infantry weapon does this better, than the XMV-850. A weapon to be feared, this monster is capable of firing as many as sixty 5.56mm rounds a second. While most miniguns are capable of firing ten or twelve thousand rounds-per-minute, the XMV-850 has been designed for infantry use, as a fire-rate that high, would generate far to much recoil. To make the weapon usable in a defensive position, it can be deployed to stabilise it, and allows the user to become that much more effective. To help with recoil, and allow the soldier to use the weapon more efectively when not deployed, the fire-rate can be limited to a lower RPM. Though not terribly accurate or damaging, the fact that it can pour out bullets at such a rate, means that it will be difficult to miss the target."
-	DisplayFOV=45.000000
 	Priority=47
 	HudColor=(B=200,G=200,R=0)
 	CustomCrossHairColor=(A=219)

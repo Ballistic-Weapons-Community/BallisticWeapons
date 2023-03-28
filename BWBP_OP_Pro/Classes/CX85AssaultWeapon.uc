@@ -732,7 +732,6 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information on enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
-	DisplayFOV=55.000000
 	Priority=40
 	HudColor=(G=125,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

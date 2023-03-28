@@ -500,7 +500,6 @@ defaultproperties
 	CurrentRating=0.600000
 	bSniping=True
 	Description="Another fine weapon designed by the acclaimed 'Black & Wood' company, the D49 revolver is a true hand cannon. Based on weapons of old, the D49 was intended for non-military use, but rather for self defense and civilian purposes. The dual-barrel design has made it a favourite among it's users, capable of causing massive damage if used correctly, able to easily kill an armored Terran."
-	DisplayFOV=50.000000
 	Priority=22
 	HudColor=(B=255,G=200,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

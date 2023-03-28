@@ -474,7 +474,6 @@ defaultproperties
 	EndShovelAnimRate=1.600000
 	EndShovelAnim="EndReload"
 	DrawScale=0.400000
-	DisplayFOV=50.000000
 	Description="Also from the first line of Drake & Co weaponry, the MRS138 Combat Shotgun is an excellent close-range weapon. It is outfitted with a tactical light and tazer attachment to increase its effectiveness as a crowd control and civilian weapon. The tazer is an effective tool for stunning enemies and inflicting slight damage, leaving them blinded and disoriented for a few seconds, while the flash light can be used for locating those which hide in the dark."
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	CurrentWeaponMode=0

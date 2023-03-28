@@ -382,8 +382,8 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=64)
-	SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=22.000000,Y=-10.020000,Z=20.600000)
+	PlayerViewOffset=(X=-15.000000,Y=11.000000,Z=-16.000000)
 	ParamsClasses(0)=Class'AK490WeaponParamsComp'
 	ParamsClasses(1)=Class'AK490WeaponParamsClassic'
 	ParamsClasses(2)=Class'AK490WeaponParamsRealistic'
@@ -405,7 +405,6 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.AK490Pickup'
-	PlayerViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.AK490Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AK490.SmallIcon_AK490'

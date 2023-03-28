@@ -457,7 +457,6 @@ defaultproperties
      bMeleeWeapon=True
      bCanThrow=False
      Description="The FMD H14 Combat Defibrillator is the go-to weapon of combat medics everywhere. Discharging electrical pulses from a pair of gauntlets, it can be used in both offensive and defensive roles. However, charge is limited, and when it is depleted the weapon becomes nearly useless."
-     DisplayFOV=65.000000
      Priority=1
      HudColor=(G=0)
      CenteredOffsetY=7.000000

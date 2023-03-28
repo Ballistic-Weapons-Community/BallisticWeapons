@@ -648,7 +648,6 @@ defaultproperties
      AIRating=0.7500000
      CurrentRating=0.7500000
      Description="In response to not just the regular UTC troops demanding a new LMG, but also the ODST troops finding the M353 to be inadequate in stopping skrith dead in their tracks, Enravion updated the platform into the new M575 Machine Gun. In addition to firing 7.62mm rounds instead of the old 5.56mm rounds, the M575 also has rail support for all the optics one could ever ask for; when the weapon first debuted, it came with a C-All Red Dot Sight along with a 2x magnifier scope. While the M353 is still hanging around, it is slated to be phased by the M575 within 6 months if all goes well."
-     DisplayFOV=50.000000
      Priority=43
      HudColor=(G=150,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

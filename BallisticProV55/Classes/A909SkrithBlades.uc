@@ -65,7 +65,6 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      bMeleeWeapon=True
      Description="The A909 Skrith Blades are a common Skrith melee weapon. They were a terrible bane of the human armies during the first war. The Skrith used them ruthlessly and with great skill to viciously slice up their enemies. Though the blades are useless at range, they are capable of great harm if the user can sneak up on an opponent. All or most Skrith warriors seem to prefer melee battle, and as such hone their skill with close range weapons. The blades can be extremely deadly when close up, as they can jab and slice very fast."
-     DisplayFOV=70.000000
      Priority=13
      HudColor=(B=255,G=200,R=200)
      CenteredOffsetY=7.000000

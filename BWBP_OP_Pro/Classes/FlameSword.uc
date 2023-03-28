@@ -342,7 +342,6 @@ defaultproperties
      CurrentRating=0.800000
      bMeleeWeapon=True
      Description="During Operation: Chalkboard Firefly, UTC troopers had discovered a strange sword being developed in secret in an underground arctic facility by an unknown manufacturer. While having the appearance of a Medieval arming sword, the blade itself seems to be made out of a strange nano-material, and is covered in a bright fire when held. UTC scientists have yet to find out more about the weapon due to resources being tight due to fighting the Skrith. However what has been found is this weapon was intended to be some sort of psionic enhancing focii, capable of shielding the user from explosions and flames alike."
-     DisplayFOV=65.000000
      Priority=12
      HudColor=(G=50)
      CenteredOffsetY=7.000000

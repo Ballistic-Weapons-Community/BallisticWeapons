@@ -758,7 +758,6 @@ defaultproperties
 	CurrentRating=0.70000
 	bShowChargingBar=True
 	Description="During a mining excavation of the large crater in sector-547b on one of the distant Outword planets, a strage, magnificent artifact was discovered. Generating great interest in the isolated facility, superstitious miners beleived it to be a magical device capable of everything from allowing god to read their minds to teleportation and the summoning of demons. The artifact was subjected to all manner of tests, but proved to be a confounding subject and revealed very little. It was made of an unimaginably strong material and appeared apparently undamaged despite it's intricate construction. For all they could say, it may have been nothing more than a candlestick.|Finally, mine coordinator R Peters, who had had a greedy eye fixed on the artifact since day one, ordered the tests cancelled and retired the artifact to his office."
-	DisplayFOV=47.000000
 	Priority=9
 	HudColor=(B=255,G=175,R=100)
 	SightZoomFactor=1.2
