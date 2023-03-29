@@ -143,7 +143,6 @@ defaultproperties
     bLeftLoaded=True
     bRightLoaded=True
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-    TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRT6'
     
     bWT_Shotgun=True

@@ -78,7 +78,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		WeaponBoneScales(0)=(BoneName="M925RearIronSides",Slot=1,Scale=0f)
+		WeaponBoneScales(0)=(BoneName="M925RearIronSides",Slot=5,Scale=0f)
 		SightPivot=(Pitch=64)
 		SightOffset=(X=-18.000000,Z=7.200000)
 		ViewOffset=(X=9.000000,Y=5.000000,Z=-7.000000)
@@ -109,72 +109,66 @@ defaultproperties
 		Index=1
 		CamoName="Jungle"
 		Weight=15
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainRust",Index=0,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscRust",Index=1,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,AIndex=2,Pindex=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M925.M925AmmoBox',Index=5,AIndex=3,PIndex=3)
-		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainRust",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscRust",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,AIndex=2,Pindex=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M925.M925AmmoBox',Index=4,AIndex=3,PIndex=3)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M925_Desert
 		Index=2
 		CamoName="Desert"
 		Weight=15
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainDesert",Index=0,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M925.M925Small',Index=1,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M925.M925HeatShield',Index=2,AIndex=2,Pindex=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M925.M925AmmoBox',Index=5,AIndex=3,PIndex=3)
-		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainDesert",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M925.M925Small',Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M925.M925HeatShield',Index=3,AIndex=2,Pindex=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M925.M925AmmoBox',Index=4,AIndex=3,PIndex=3)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M925_Rust
 		Index=3
 		CamoName="Rust"
 		Weight=10
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainRust",Index=0,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscRust",Index=1,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,AIndex=2,Pindex=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-AmmoRust",Index=5,AIndex=3,PIndex=3)
-		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainRust",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscRust",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,AIndex=2,Pindex=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-AmmoRust",Index=4,AIndex=3,PIndex=3)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M925_Ember
 		Index=4
 		CamoName="Biohazard"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainEmber",Index=0,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscDark",Index=1,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-ShieldEmber",Index=2,AIndex=2,Pindex=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainEmber",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscDark",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-ShieldEmber",Index=3,AIndex=2,Pindex=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M925.M925AmmoBox',Index=4,AIndex=3,PIndex=3)
-		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M925_Biohazard
 		Index=5
 		CamoName="Biohazard"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainBiohazardShine",Index=0,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscDark",Index=1,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,AIndex=2,Pindex=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainBiohazardShine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscDark",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,AIndex=2,Pindex=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M925.M925AmmoBox',Index=4,AIndex=3,PIndex=3)
-		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M925_Gold
 		Index=6
 		CamoName="Gold"
 		Weight=1
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainGoldShine",Index=0,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscDark",Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-ShieldBlack",Index=2,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-AmmoGoldShine",Index=5,AIndex=3,PIndex=3)
-		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainGoldShine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscDark",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-ShieldBlack",Index=3,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-AmmoGoldShine",Index=4,AIndex=3,PIndex=3)
 	End Object
 	
 	Camos(0)=WeaponCamo'M925_Gray'

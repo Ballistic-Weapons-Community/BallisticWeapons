@@ -264,8 +264,8 @@ simulated function PostBeginPlay()
 	PlayAnim(IdleAnim, IdleAnimRate, 0, 1);
 	FreezeAnimAt(0.0, 1);
 	
-	TensTex = TexScaler(Skins[2]);
-	UnitsTex = TexScaler(Skins[1]);
+	TensTex = TexScaler(Skins[3]);
+	UnitsTex = TexScaler(Skins[2]);
 }
 
 simulated function WeaponTick(float DeltaTime)
@@ -519,7 +519,7 @@ defaultproperties
 {
 	ShieldOnSound=Sound'BWBP_OP_Sounds.Raygun.ShieldOn'
 	ShieldOffSound=Sound'BWBP_OP_Sounds.Raygun.ShieldOff'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=6)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	BigIconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_512'
 	BigIconCoords=(Y1=32,Y2=220)
 	
@@ -577,9 +577,10 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Raygun'
 	DrawScale=0.187500
-	Skins(0)=Shader'BWBP_OP_Tex.Raygun.raygun_body_SH1'
-	Skins(1)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler'
-	Skins(2)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler2'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBP_OP_Tex.Raygun.raygun_body_SH1'
+	Skins(2)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler'
+	Skins(3)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler2'
 	SoundPitch=56
 	SoundRadius=32.000000
 }

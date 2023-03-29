@@ -7,12 +7,12 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=5500.000000,Max=7000.000000)
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		//TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-		//ImpactManager=Class'BallisticProV55.IM_Shell'
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=140.0
 		HeadMult=2.15
 		LimbMult=0.6
@@ -39,7 +39,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=0.8500000	
-		FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 	//=================================================================

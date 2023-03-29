@@ -150,7 +150,7 @@ defaultproperties
      ClipBone=
      SmokeBone=
      PlayerSpeedFactor=0.750000
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=15)
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
      BigIconMaterial=Texture'BWBP_OP_Tex.AmmoPack.BigIcon_AmmoPack'
      bWT_Grenade=True
      SpecialInfo(0)=(Info="0.0;5.0;-999.0;25.0;-999.0;0.0;0.5")

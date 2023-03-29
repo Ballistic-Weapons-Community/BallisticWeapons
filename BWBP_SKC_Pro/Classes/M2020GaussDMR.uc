@@ -569,7 +569,7 @@ defaultproperties
 	ScreenBase2=Texture'BWBP_SKC_Tex.M2020.M2020-ScreenOff'
 	Numbers=Texture'BWBP_SKC_Tex.M2020.M2020-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.M2020.BigIcon_M2020'
 	
@@ -643,7 +643,7 @@ defaultproperties
 	bFullVolume=True
 	SoundVolume=64
 	SoundRadius=128.000000
-	Skins(0)=Shader'BWBP_SKC_Tex.M2020.M2020-ShineAlt'
-	Skins(1)=Shader'BWBP_SKC_Tex.M2020.M2020-Shine'
-	Skins(2)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBP_SKC_Tex.M2020.M2020-ShineAlt'
+	Skins(2)=Shader'BWBP_SKC_Tex.M2020.M2020-Shine'
 }

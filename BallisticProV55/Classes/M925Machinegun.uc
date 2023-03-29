@@ -233,8 +233,7 @@ defaultproperties
 	FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-LeverDown')
 	HandleOnSound=Sound'BW_Core_WeaponSound.M925.M925-StandOn'
 	HandleOffSound=Sound'BW_Core_WeaponSound.M925.M925-StandOff'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
-	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M925'
 	BigIconCoords=(Y1=36,Y2=235)
@@ -298,10 +297,9 @@ defaultproperties
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925'
 	DrawScale=0.140000
-	Skins(0)=Texture'BW_Core_WeaponTex.M925.M925Main'
-	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
-	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
-	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Main'
+	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Small'
+	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
 	Skins(4)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
-	Skins(5)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

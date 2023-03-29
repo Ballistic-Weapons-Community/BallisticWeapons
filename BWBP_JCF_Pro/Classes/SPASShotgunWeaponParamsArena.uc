@@ -105,7 +105,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		ReloadAnimRate=1.500000
-		MagAmmo=5
+		MagAmmo=8
 		SightingTime=0.35
         InventorySize=4
 		ViewOffset=(X=5.000000,Y=3.000000,Z=-6.500000)
