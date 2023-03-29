@@ -168,7 +168,7 @@ defaultproperties
 		Index=4
 		CamoName="Silver"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-NickelShine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK3-NickelShine",Index=1,AIndex=0,PIndex=0)
 		Weight=5
 	End Object
 	
@@ -180,7 +180,7 @@ defaultproperties
 		Weight=3
 	End Object
 	
-	Begin Object Class=WeaponCamo Name=XK2_Gold
+	Begin Object Class=WeaponCamo Name=XK2_Gold //reduce shine
 		Index=6
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
