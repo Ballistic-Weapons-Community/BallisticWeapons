@@ -125,6 +125,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6
+		SightOffset=(X=5,Y=0.050000,Z=11.350000)
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -439,7 +439,7 @@ defaultproperties
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
      WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=2
-     SightOffset=(X=25.000000,Y=0,Z=16.500000)
+     SightOffset=(X=25.000000,Y=0,Z=16)
      SightDisplayFOV=20.000000
 	 ParamsClasses(0)=Class'AK91WeaponParamsComp'
 	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'

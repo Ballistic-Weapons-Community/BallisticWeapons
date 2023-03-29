@@ -109,6 +109,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		MagAmmo=30
 		SightingTime=0.250000
+		SightPivot=(Pitch=64)
         InventorySize=4
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

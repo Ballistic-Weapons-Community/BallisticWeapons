@@ -163,6 +163,7 @@ defaultproperties
 		InventorySize=3
         SightingTime=0.2
         SightMoveSpeedFactor=0.6
+		SightPivot=(Pitch=128)
 		RecoilParams(0)=RecoilParams'TacticalBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'

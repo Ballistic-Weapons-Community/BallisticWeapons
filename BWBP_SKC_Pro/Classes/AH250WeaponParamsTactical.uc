@@ -137,7 +137,6 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=1f)
 		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
-		ViewOffset=(X=15.000000,Y=24.000000,Z=-37.000000)
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		
@@ -162,8 +161,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=0.000000,Y=-7.350000,Z=45.400002)
-		ViewOffset=(X=15.000000,Y=12.000000,Z=-37.000000)
+		SightOffset=(X=-30.000000,Y=-7.350000,Z=45.400002)
 		ZoomType=ZT_Irons
 		
 		//Function
@@ -188,8 +186,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-20.000000,Y=-7.350000,Z=41.700000)
-		ViewOffset=(X=15.000000,Y=12.000000,Z=-37.000000)
+		SightOffset=(X=-30.000000,Y=-7.350000,Z=41.700000)
 		ZoomType=ZT_Irons
 		
 		//Function

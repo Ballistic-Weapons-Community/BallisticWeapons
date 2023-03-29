@@ -847,11 +847,8 @@ simulated function OnWeaponParamsChanged()
         default.SightOffset = WeaponParams.SightOffset;
     }
 	
-	if (WeaponParams.SightPivot != rot(0,0,0))
-    {
-		SightPivot = WeaponParams.SightPivot;
-		default.SightPivot = WeaponParams.SightPivot;
-	}
+	SightPivot = WeaponParams.SightPivot;
+	default.SightPivot = WeaponParams.SightPivot;
 
 	if (WeaponParams.ViewOffset != vect(0,0,0))
     {

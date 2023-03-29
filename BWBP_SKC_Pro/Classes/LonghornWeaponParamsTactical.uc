@@ -99,6 +99,7 @@ defaultproperties
 		InventorySize=4
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
+		SightPivot=(Pitch=150)
 		DisplaceDurationMult=1
 		MagAmmo=4
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

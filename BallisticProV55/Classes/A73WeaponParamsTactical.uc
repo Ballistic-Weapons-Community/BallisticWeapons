@@ -228,7 +228,7 @@ defaultproperties
 		//Function
 		MagAmmo=32
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		InventorySize=6
@@ -251,7 +251,7 @@ defaultproperties
 		//Function
 		MagAmmo=32
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		InventorySize=6
@@ -274,7 +274,7 @@ defaultproperties
 		//Function
 		MagAmmo=32
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		InventorySize=6

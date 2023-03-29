@@ -76,12 +76,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		SightOffset=(X=-5.000000,Y=-1.315,Z=12.600000)
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
-		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 		DisplaceDurationMult=0.5
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.20000

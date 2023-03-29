@@ -126,6 +126,7 @@ defaultproperties
 		SightingTime=0.350000
         MagAmmo=24
         InventorySize=6
+		SightOffset=(X=5,Y=0.050000,Z=11.350000)
 		SightMoveSpeedFactor=0.8
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

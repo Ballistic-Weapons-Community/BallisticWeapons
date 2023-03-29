@@ -146,7 +146,6 @@ defaultproperties
     ReloadAnimRate=1.25
 	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=129),Color2=(B=148,R=0,A=141),StartSize1=99,StartSize2=84)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
-	SightPivot=(Pitch=512)
 	SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
 	SightDisplayFOV=40.000000
 	SightZoomFactor=1.2

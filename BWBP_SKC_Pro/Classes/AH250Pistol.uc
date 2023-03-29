@@ -385,7 +385,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=40.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
+	SightOffset=(X=-30.000000,Y=-7.350000,Z=45.400002)
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
 	bShouldDualInLoadout=True

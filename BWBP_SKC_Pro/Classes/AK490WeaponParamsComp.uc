@@ -126,6 +126,7 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		PlayerJumpFactor=1.000000
 		InventorySize=6
+		SightPivot=(Pitch=64)
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.350000
 		DisplaceDurationMult=1

@@ -399,7 +399,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=5,Y=0.050000,Z=12.200000)
+	SightOffset=(X=5,Y=0.050000,Z=11.350000)
 	PlayerViewOffset=(X=0.000000,Y=4.0000,Z=-9.500000)
 	MinZoom=2.000000
 	MaxZoom=4.000000
@@ -423,7 +423,6 @@ defaultproperties
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.M46Pickup'
 
-	PlayerViewPivot=(Pitch=384)
 	AttachmentClass=Class'BallisticProV55.M46Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.OA-AR.SmallIcon_OAAR'
 	IconCoords=(X2=127,Y2=31)
