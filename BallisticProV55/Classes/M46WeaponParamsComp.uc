@@ -106,6 +106,8 @@ defaultproperties
         MagAmmo=24
         InventorySize=6
         ZoomType=ZT_Logarithmic
+		SightPivot=(Pitch=600,Roll=-1024)
+		SightOffset=(Y=-1.000000,Z=12.500000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
@@ -125,10 +127,6 @@ defaultproperties
         MagAmmo=24
         InventorySize=6
 		SightMoveSpeedFactor=0.8
-		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
-		ViewPivot=(Pitch=384)
-        SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

@@ -105,11 +105,14 @@ defaultproperties
         SightMoveSpeedFactor=0.35
         MagAmmo=24
         InventorySize=6
+
 		// acog
         ZoomType=ZT_Logarithmic
 		MinZoom=2
 		MaxZoom=4
 		ZoomStages=1
+		SightPivot=(Pitch=600,Roll=-1024)
+		SightOffset=(Y=-1.000000,Z=12.500000)
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
@@ -122,10 +125,6 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6
-		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
-		ViewPivot=(Pitch=384)
-        SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

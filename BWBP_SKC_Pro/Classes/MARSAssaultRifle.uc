@@ -1086,7 +1086,7 @@ defaultproperties
 	FullZoomFOV=45.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=255,R=255,A=134),Color2=(B=0,G=0,R=255,A=255),StartSize1=50,StartSize2=51)
 	bNoCrosshairInScope=True
-	SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+	SightOffset=(X=25.000000,Y=-7.340000,Z=27.170000)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
@@ -1109,7 +1109,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.MARSPickup'
-	PlayerViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
+	PlayerViewOffset=(X=-6.00000,Y=10.500000,Z=-20.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.MARSAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000'

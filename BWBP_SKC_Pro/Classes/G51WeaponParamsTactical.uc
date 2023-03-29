@@ -106,8 +106,6 @@ defaultproperties
         InventorySize=6
 		SightingTime=0.350000
 		SightMoveSpeedFactor=0.6
-		SightOffset=(X=10.000000,Y=-6.385000,Z=20.900000)
-		ViewOffset=(X=-8.000000,Y=10.000000,Z=-14.000000)
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)

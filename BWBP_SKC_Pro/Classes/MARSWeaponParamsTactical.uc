@@ -203,9 +203,8 @@ defaultproperties
 		LayoutName="Holosight"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		ViewOffset=(X=0.5,Y=12.000000,Z=-18.000000)
 		SightDisplayFOV=48
-		SightOffset=(X=10.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=22.000000,Y=-7.370000,Z=27.010000)
 		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 		//Function
 		ReloadAnimRate=0.85

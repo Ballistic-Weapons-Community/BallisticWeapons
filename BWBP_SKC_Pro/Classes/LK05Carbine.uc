@@ -578,8 +578,7 @@ defaultproperties
 	WeaponModes(3)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50In',Color1=(A=158),StartSize1=75,StartSize2=72)
-	SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-	SightDisplayFOV=25.000000
+	SightOffset=(X=25.000000,Y=-8.550000,Z=24.660000)
 	ParamsClasses(0)=Class'LK05WeaponParamsComp'
 	ParamsClasses(1)=Class'LK05WeaponParamsClassic'
 	ParamsClasses(2)=Class'LK05WeaponParamsRealistic'
@@ -600,7 +599,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.LK05Pickup'
-	PlayerViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
+	PlayerViewOffset=(X=-11.000000,Y=10.000000,Z=-17.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.LK05Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LK05.SmallIcon_LK05'

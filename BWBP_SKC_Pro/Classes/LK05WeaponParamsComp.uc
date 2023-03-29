@@ -64,13 +64,8 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
-		//Function
-		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
-		
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)	
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.8
@@ -87,13 +82,10 @@ defaultproperties
 		Weight=10
 		LayoutName="Iron Sights"
 		//Attachments
-		SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
+		SightOffset=(X=25.000000,Y=-8.600000,Z=24.250000)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
-		//Function
-		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
-		
+		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.8

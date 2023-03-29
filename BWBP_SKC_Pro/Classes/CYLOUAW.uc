@@ -533,10 +533,10 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
+	bNoCrosshairInScope=True // CHANGE THIS IN BALLSTICWEAPON.UC
 	WeaponModes(0)=(bUnavailable=True)
-	bNoCrosshairInScope=False
-	SightPivot=(Pitch=450)
-	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
+	SightOffset=(X=9.0000,Y=13.6,Z=19.30000)
+	PlayerViewOffset=(X=0,Y=-2.5,Z=-17)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
@@ -562,7 +562,6 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=10
 	PickupClass=Class'BWBP_SKC_Pro.CYLOPickup'
-	PlayerViewOffset=(X=8.000000,Z=-14.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'

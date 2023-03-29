@@ -708,8 +708,9 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
-	SightPivot=(Pitch=900)
-	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
+	SightPivot=(Pitch=256)
+	SightOffset=(X=18.000000,Y=13.565000,Z=21.25000)
+	PlayerViewOffset=(X=0,Y=-2.5,Z=-17)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParamsComp' 
@@ -735,7 +736,7 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=9
 	PickupClass=Class'BWBP_SKC_Pro.CYLOFirestormPickup'
-	PlayerViewOffset=(X=8.000000,Z=-14.000000)
+
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'

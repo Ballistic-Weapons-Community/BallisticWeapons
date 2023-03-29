@@ -104,11 +104,8 @@ defaultproperties
 		//Layout core
 		LayoutName="Standard"
 		Weight=30
-		SightPivot=(Pitch=200)
-		SightOffset=(Y=0.050000,Z=12.130000)
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
-		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
         MagAmmo=30
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

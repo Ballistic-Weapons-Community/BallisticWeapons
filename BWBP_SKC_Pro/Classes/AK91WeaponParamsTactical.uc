@@ -112,13 +112,10 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
-		SightPivot=(Pitch=64)
 		ZoomType=ZT_Irons
 		//Function
 		SightingTime=0.350000
         SightMoveSpeedFactor=0.6
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -140,7 +137,6 @@ defaultproperties
 		//Function
 		SightingTime=0.350000
         SightMoveSpeedFactor=0.6
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
