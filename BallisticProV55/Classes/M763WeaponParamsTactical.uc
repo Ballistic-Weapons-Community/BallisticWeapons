@@ -104,9 +104,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightOffset=(X=5.000000,Z=12.900000)
-		SightPivot=(Pitch=128)
-		ViewOffset=(Y=12.000000,Z=-12.000000)
 		MagAmmo=6
         SightingTime=0.35
         SightMoveSpeedFactor=0.6

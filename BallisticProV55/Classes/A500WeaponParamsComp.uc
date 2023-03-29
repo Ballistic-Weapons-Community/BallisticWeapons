@@ -99,10 +99,6 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		ReloadAnimRate=1.250000
-		SightPivot=(Pitch=512)
-		SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
-		ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
-		ViewPivot=(Pitch=600)
 		MagAmmo=5
         SightingTime=0.300000
 		SightMoveSpeedFactor=0.9

@@ -680,9 +680,7 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Ammo: FRAG-12",Value=1.000000,bUnavailable=True)
 	WeaponModes(4)=(ModeName="Ammo: Dragon",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
-	SightPivot=(Pitch=256)
-	SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
-    SightDisplayFov=25
+	SightOffset=(X=40.000000,Y=2.800000,Z=8.700000)
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
@@ -704,7 +702,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BWBP_OP_Pro.TrenchGunPickup'
-	PlayerViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
+	PlayerViewOffset=(X=-20.000000,Y=4.000000,Z=-10.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.TrenchGunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.TechGun.Icon_TechGun'
 	IconCoords=(X2=127,Y2=30)
@@ -716,7 +714,7 @@ defaultproperties
 	LightBrightness=180.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.Fpm_Trenchgun'
-	DrawScale=1.250000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.TechWrench.TechWrenchShiny'
 	Skins(2)=Texture'BWBP_OP_Tex.TechWrench.CryoShell'

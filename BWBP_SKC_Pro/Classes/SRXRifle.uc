@@ -531,7 +531,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=-20.000000,Y=-0.750000,Z=28.200000)
+	SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
 	PlayerViewOffset=(X=-5.000000,Y=10.000000,Z=-22.000000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000

@@ -484,9 +484,7 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
     NDCrosshairChaosFactor=1.000000
 	NDCrosshairScaleFactor=1.000000
-	SightPivot=(Pitch=256)
-	SightOffset=(X=-8.000000,Z=9.300000)
-	SightDisplayFOV=25.000000
+	SightOffset=(X=14.000000,Z=8.700000)
 	ParamsClasses(0)=Class'E23WeaponParamsComp'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	ParamsClasses(2)=Class'E23WeaponParamsRealistic'

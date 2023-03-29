@@ -314,7 +314,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.XMK5Pickup'
-	PlayerViewOffset=(X=-5.000000,Y=5.00000,Z=-11.000000)
+	PlayerViewOffset=(X=-5.000000,Y=5.00000,Z=-12.000000)
 	AttachmentClass=Class'BallisticProV55.XMK5Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.SmallIcon_OASMG'
 	IconCoords=(X2=127,Y2=31)
