@@ -740,7 +740,7 @@ defaultproperties
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons
      //SightPivot=(Pitch=-1024)
-     SightOffset=(X=-4.000000,Y=0.250000,Z=11.750000)
+     SightOffset=(X=22.000000,Y=0.250000,Z=11.750000)
 	 SightingTime=0.250000
 	 BobDamping=2.300000
      FireModeClass(0)=Class'BWBP_SKC_Pro.TyphonPDWPrimaryFire'
@@ -760,7 +760,7 @@ defaultproperties
 	 InventoryGroup=3
      GroupOffset=18
      PickupClass=Class'BWBP_SKC_Pro.TyphonPDWPickup'
-     PlayerViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
+     PlayerViewOffset=(X=-7.000000,Y=4.500000,Z=-11.000000)
      PutDownTime=0.800000
      BringUpTime=1.000000
 	 CockingBringUpTime=2.000000

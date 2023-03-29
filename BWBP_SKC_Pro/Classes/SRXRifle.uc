@@ -531,8 +531,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=-128,Yaw=16)
-	SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)
+	SightOffset=(X=-20.000000,Y=-0.750000,Z=28.200000)
+	PlayerViewOffset=(X=-5.000000,Y=10.000000,Z=-22.000000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
 	ParamsClasses(0)=Class'SRXWeaponParamsComp'
@@ -554,7 +554,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.SRXPickup'
-	PlayerViewOffset=(X=-2.000000,Y=10.000000,Z=-20.000000)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.SRXAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.SRX.SmallIcon_SRXRifle'
 	IconCoords=(X2=127,Y2=31)

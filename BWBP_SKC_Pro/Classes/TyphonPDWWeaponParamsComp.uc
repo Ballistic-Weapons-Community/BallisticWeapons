@@ -100,10 +100,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
-		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
-		SightPivot=(Pitch=0)
 		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1

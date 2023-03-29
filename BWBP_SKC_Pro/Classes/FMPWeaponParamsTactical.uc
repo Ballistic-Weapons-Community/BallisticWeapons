@@ -188,8 +188,6 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.185000
 		MagAmmo=28
-		SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
-		SightPivot=(YAW=10)
 		WeaponName="FMP-2012 .40 Machine Pistol"
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalIncRecoilParams'

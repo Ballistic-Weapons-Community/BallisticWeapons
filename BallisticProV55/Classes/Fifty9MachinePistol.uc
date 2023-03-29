@@ -323,9 +323,8 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
     NDCrosshairChaosFactor=0.300000
 	
-	SightPivot=(Pitch=512)
-	SightOffset=(X=-10.000000,Z=12.00000)
-	SightDisplayFOV=60.000000
+	SightPivot=(Pitch=128)
+	SightOffset=(X=-7.000000,Z=10.80000)
 	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'Fifty9WeaponParamsComp'	
 	ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
@@ -343,7 +342,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	PickupClass=Class'BallisticProV55.Fifty9Pickup'
-	PlayerViewOffset=(X=14.000000,Y=8.000000,Z=-10.000000)
+	PlayerViewOffset=(X=7.000000,Y=3.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.Fifty9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_Fifty9'
 	IconCoords=(X2=127,Y2=31)

@@ -169,7 +169,6 @@ defaultproperties
 		MinZoom=2
 		MaxZoom=4
 		ZoomStages=1
-		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		SightPivot=(Pitch=256)
 		SightOffset=(X=-8.000000,Z=9.300000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

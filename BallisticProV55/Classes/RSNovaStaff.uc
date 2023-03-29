@@ -737,9 +737,7 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
 	WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
-	SightPivot=(Pitch=512)
-	SightOffset=(X=-60.000000,Z=15.000000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=-10.000000,Z=10.000000)
 	GunLength=128.000000
 	ParamsClasses(0)=Class'RSNovaWeaponParamsComp'
 	ParamsClasses(1)=Class'RSNovaWeaponParamsClassic'
@@ -764,7 +762,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.RSNovaPickup'
-	PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-6.000000)
+	PlayerViewOffset=(X=10.000000,Y=5.000000,Z=-7.500000)
 	AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.SmallIcon_NovaStaff'
 	IconCoords=(X2=127,Y2=31)

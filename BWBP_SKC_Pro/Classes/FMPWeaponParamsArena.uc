@@ -160,9 +160,6 @@ defaultproperties
 		SightMoveSpeedFactor=0.90000
 		SightingTime=0.300000
 		MagAmmo=24
-		ViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
-		SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
-		SightPivot=(Yaw=10)
 		RecoilParams(0)=RecoilParams'ArenaStandardRecoilParams'
 		RecoilParams(1)=RecoilParams'ArenaIncRecoilParams'
 		RecoilParams(2)=RecoilParams'ArenaCorrosiveRecoilParams'

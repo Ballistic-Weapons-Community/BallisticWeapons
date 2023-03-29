@@ -142,9 +142,7 @@ defaultproperties
 		InventorySize=8
 		PlayerSpeedFactor=0.950000
 		SightMoveSpeedFactor=0.950000
-		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightingTime=0.500000
-		SightPivot=(Pitch=64)
 		ZoomType=ZT_Fixed
 		InitialWeaponMode=2
 		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")

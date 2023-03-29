@@ -296,10 +296,8 @@ defaultproperties
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=105,R=0,A=133),Color2=(G=0),StartSize1=87,StartSize2=55)
 	
-	SightPivot=(Pitch=200)
+	SightOffset=(X=15.000000,Y=0.02,Z=17.070000)
 	SightZoomFactor=1.2
-	SightOffset=(X=1.000000,Z=17.750000)
-	SightDisplayFOV=25.000000
 	GunLength=40.000000
 	ParamsClasses(0)=Class'XMK5WeaponParamsComp'
 	ParamsClasses(1)=Class'XMK5WeaponParamsClassic'
@@ -316,7 +314,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.XMK5Pickup'
-	PlayerViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
+	PlayerViewOffset=(X=-5.000000,Y=5.00000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.XMK5Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.SmallIcon_OASMG'
 	IconCoords=(X2=127,Y2=31)

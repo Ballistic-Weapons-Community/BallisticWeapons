@@ -389,7 +389,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=2
 	PickupClass=Class'BWBP_OP_Pro.XOXOPickup'
-	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
+	PlayerViewOffset=(X=5.000000,Y=4.500000,Z=-12.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.XOXOAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.XOXO.SmallIcon_XOXO'
 	IconCoords=(X2=127,Y2=31)

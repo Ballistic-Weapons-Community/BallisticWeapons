@@ -454,8 +454,8 @@ defaultproperties
 	
 	CockAnimRate=1.25
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=256)
-	SightOffset=(X=5.000000,Z=12.700000)
+	SightPivot=(Pitch=64)
+	SightOffset=(X=22.000000,Y=0.01,Z=11.500000)
 	SightDisplayFOV=40.000000
 	AIRating=0.8
 	CurrentRating=0.8
@@ -475,7 +475,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.XK2Pickup'
-	PlayerViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
+	PlayerViewOffset=(X=-8.000000,Y=5.000000,Z=-12.000000)
 	AttachmentClass=Class'BallisticProV55.Xk2Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XK2'
 	IconCoords=(X2=127,Y2=31)

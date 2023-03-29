@@ -227,7 +227,6 @@ defaultproperties
 		//Attachments
 		//Function
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
 		SightOffset=(X=10.000000,Z=12.150000)
         SightingTime=0.35
@@ -251,7 +250,6 @@ defaultproperties
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73.A73BladeShader',Index=4)
 		//Function
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
 		SightOffset=(X=10.000000,Z=12.150000)
         SightingTime=0.35
@@ -275,7 +273,6 @@ defaultproperties
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BBladeShader',Index=4)
 		//Function
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
 		SightOffset=(X=10.000000,Z=12.150000)
         SightingTime=0.35

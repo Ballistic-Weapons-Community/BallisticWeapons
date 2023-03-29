@@ -539,7 +539,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=350)
 	SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
-	SightDisplayFOV=25.000000
+	PlayerViewOffset=(X=-13.000000,Y=9.000000,Z=-11.000000)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'SARWeaponParamsComp'
 	ParamsClasses(1)=Class'SARWeaponParamsClassic'
@@ -561,7 +561,7 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=4
 	PickupClass=Class'BallisticProV55.SARPickup'
-	PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
+
 	AttachmentClass=Class'BallisticProV55.SARAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_SAR12'
 	IconCoords=(X2=127,Y2=31)

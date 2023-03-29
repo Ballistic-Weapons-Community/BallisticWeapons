@@ -780,9 +780,7 @@ defaultproperties
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
      NDCrosshairChaosFactor=0.500000
 	 
-     SightPivot=(Pitch=1024)
-     SightOffset=(X=-22.000000,Z=10.000000)
-     SightDisplayFOV=40.000000
+     SightOffset=(X=0.000000,Y=0,Z=9.000000)
 	 GunLength=128.000000
 	 ParamsClasses(0)=Class'RSDarkWeaponParamsComp'
 	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
@@ -802,7 +800,7 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=2
      PickupClass=Class'BallisticProV55.RSDarkPickup'
-     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-6.000000)
+     PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-6.000000)
      AttachmentClass=Class'BallisticProV55.RSDarkAttachment'
      IconMaterial=Texture'BW_Core_WeaponTex.DarkStar.SmallIcon_DarkStar'
      IconCoords=(X2=127,Y2=31)

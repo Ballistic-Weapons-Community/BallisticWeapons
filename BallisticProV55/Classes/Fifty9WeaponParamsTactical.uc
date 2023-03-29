@@ -163,9 +163,6 @@ defaultproperties
 		InventorySize=3
         SightingTime=0.2
         SightMoveSpeedFactor=0.6
-		SightPivot=(Pitch=512)
-		SightOffset=(X=-10.000000,Z=12.00000)
-		ViewOffset=(X=14.000000,Y=8.000000,Z=-10.000000)
 		RecoilParams(0)=RecoilParams'TacticalBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'
