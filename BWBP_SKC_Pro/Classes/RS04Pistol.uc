@@ -328,6 +328,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'RS04WeaponParamsArena'
 	 ParamsClasses(1)=Class'RS04WeaponParamsClassic'
 	 ParamsClasses(2)=Class'RS04WeaponParamsRealistic'
+	 ParamsClasses(3)=Class'RS04WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04'
      DrawScale=0.350000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

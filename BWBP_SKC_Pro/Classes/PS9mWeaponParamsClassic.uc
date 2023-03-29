@@ -112,6 +112,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=-10.000000,Y=11.40000,Z=11.50000)
+		ViewOffset=(X=3.000000,Y=-2.000000,Z=-8.500000)
 		SightPivot=(Pitch=1024)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

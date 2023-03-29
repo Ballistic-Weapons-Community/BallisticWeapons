@@ -117,7 +117,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		LayoutName="Black"
+		LayoutName="Default"
 		
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -142,56 +142,68 @@ defaultproperties
 		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_Silver
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK3-NickelShine",Index=1)
-		Weight=3
-		LayoutName="Silver"
-		
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=50
-		SightOffset=(Y=-0.550000,Z=14.900000)
-		SightPivot=(Pitch=600,Roll=-512)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
-		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-		InitialWeaponMode=3
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_AU
-		Weight=1
-		LayoutName="Gold"
-		
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-Gold-Shine",Index=1)
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=100
-		SightOffset=(Y=-0.550000,Z=14.900000)
-		SightPivot=(Pitch=600,Roll=-512)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
-		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-		InitialWeaponMode=3
-		ReloadAnimRate=1.400000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-	End Object
-	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Silver'
-	Layouts(2)=WeaponParams'ClassicParams_AU'
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=XK2_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XK2_Jungle
+		Index=1
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-MainJungle",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XK2_Desert
+		Index=2
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-MainDesert",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XK2_Winter
+		Index=3
+		CamoName="Winter"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-MainWinter",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XK2_Silver
+		Index=4
+		CamoName="Silver"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK3-NickelShine",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XK2_Pink
+		Index=5
+		CamoName="Fabulous"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-MainPink",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XK2_Gold //reduce shine
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XK2Camos.XK2-GoldShine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'XK2_Black'
+	Camos(1)=WeaponCamo'XK2_Jungle'
+	Camos(2)=WeaponCamo'XK2_Desert'
+	Camos(3)=WeaponCamo'XK2_Winter'
+	Camos(4)=WeaponCamo'XK2_Silver'
+	Camos(5)=WeaponCamo'XK2_Pink'
+	Camos(6)=WeaponCamo'XK2_Gold'
 }
