@@ -712,7 +712,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=-20.000000,Z=35.000000)
+	SightOffset=(X=15.000000,Y=-0.6,Z=34.000000)
 	SightingTime=0.650000
 	MinZoom=2.000000
 	MaxZoom=8.000000
@@ -738,7 +738,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=6
 	PickupClass=Class'BWBP_OP_Pro.CX85Pickup'
-	PlayerViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
+	PlayerViewOffset=(X=5.000000,Y=10.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.CX85Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.CX85.SmallIcon_CX85'
 	IconCoords=(X2=127,Y2=31)

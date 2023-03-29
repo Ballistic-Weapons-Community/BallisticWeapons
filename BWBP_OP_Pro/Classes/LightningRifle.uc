@@ -187,7 +187,7 @@ defaultproperties
     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
     FullZoomFOV=20.000000
     bNoCrosshairInScope=True
-    SightOffset=(Z=51.000000)
+    SightOffset=(X=35,Z=51.000000)
     MinZoom=2.000000
     MaxZoom=8.000000
     ZoomStages=4
@@ -234,7 +234,7 @@ defaultproperties
     InventoryGroup=9
     GroupOffset=2
     PickupClass=Class'BWBP_OP_Pro.LightningPickup'
-    PlayerViewOffset=(X=20.000000,Y=16.000000,Z=-30.000000)
+    PlayerViewOffset=(X=10.000000,Y=13.000000,Z=-35.000000)
     AttachmentClass=Class'BWBP_OP_Pro.LightningAttachment'
     IconMaterial=Texture'BWBP_OP_Tex.Arc.SmallIcon_LightningRifle'
     IconCoords=(X2=127,Y2=31)

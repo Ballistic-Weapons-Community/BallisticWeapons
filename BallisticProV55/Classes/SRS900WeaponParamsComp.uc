@@ -121,7 +121,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
 		//Function
 		CockAnimRate=1.200000
-		SightOffset=(X=20.000000,Z=11.750000)
+		SightOffset=(X=35.000000,Z=11.750000)
 		MagAmmo=20
 		SightingTime=0.50000
 		SightMoveSpeedFactor=0.6

@@ -617,7 +617,7 @@ defaultproperties
 	ScopeViewTex=Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1'
 	FullZoomFOV=50.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=-2.000000,Y=5.000000,Z=5.200000)
+	SightOffset=(X=4.000000,Y=5.000000,Z=5.100000)
 	SightDisplayFOV=40.000000
 	MinZoom=2.000000
 	MaxZoom=16.000000
@@ -641,7 +641,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BWBP_OP_Pro.KF8XPickup'
-	PlayerViewOffset=(X=10.000000,Y=2.000000,Z=-7.000000)
+	PlayerViewOffset=(X=2.000000,Y=1.000000,Z=-6.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.KF8XAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.XBow.Icon_Crossbow'
 	IconCoords=(X2=127,Y2=31)

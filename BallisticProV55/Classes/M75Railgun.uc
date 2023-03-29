@@ -478,7 +478,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoTweenToScope=True
-	SightOffset=(X=-24,Z=24.7)
+	SightOffset=(X=20.000000,Z=24.700000)
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
@@ -511,7 +511,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BallisticProV55.M75Pickup'
-	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
+	PlayerViewOffset=(X=0.000000,Y=11.000000,Z=-19.000000)
 	AttachmentClass=Class'BallisticProV55.M75Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M75'
 	IconCoords=(X2=127,Y2=31)

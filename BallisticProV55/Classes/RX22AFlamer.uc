@@ -320,7 +320,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.RX22APickup'
-	PlayerViewOffset=(X=6.000000,Y=3.000000,Z=-10.000000)
+	PlayerViewOffset=(X=6.000000,Y=2.000000,Z=-9.000000)
 	AttachmentClass=Class'BallisticProV55.RX22AAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_RX22A'
 	IconCoords=(X2=127,Y2=31)
