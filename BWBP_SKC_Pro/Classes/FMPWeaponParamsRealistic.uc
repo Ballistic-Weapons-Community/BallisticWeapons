@@ -207,31 +207,31 @@ defaultproperties
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MP40_Black
 		Index=0
-		CamoName="Black"
+		CamoName="Schwarz"
 		Weight=30
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MP40_Rust
 		Index=1
-		CamoName="Rust"
+		CamoName="Rost"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainRust",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainRust",Index=1,AIndex=1,PIndex=1)
 		Weight=15
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MP40_Jungle
 		Index=2
-		CamoName="Jungle"
+		CamoName="Dschungel"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainJungle",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainJungle",Index=1,AIndex=1,PIndex=1)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MP40_Chrome
 		Index=3
-		CamoName="Chrome"
+		CamoName="Chrom"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainChrome",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainChrome",Index=1,AIndex=1,PIndex=1)
 		Weight=5
 	End Object
 	
@@ -239,7 +239,7 @@ defaultproperties
 		Index=4
 		CamoName="Quantum"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainQuantum",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainQuantum",Index=1,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
@@ -247,7 +247,7 @@ defaultproperties
 		Index=5
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainGold",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FMPCamos.MP40-MainGold",Index=1,AIndex=1,PIndex=1)
 		Weight=1
 	End Object
 	

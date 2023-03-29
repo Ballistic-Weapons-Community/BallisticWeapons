@@ -138,29 +138,7 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_Black
-		LayoutName="Black"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.D49Camos.D49Black-Shine",Index=1)
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
-		Weight=10
-		
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=6
-		SightOffset=(X=-20.000000,Y=-1.800000,Z=25.100000)
-		SightPivot=(Pitch=768,Roll=-1024)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Tech
+	/*Begin Object Class=WeaponParams Name=ClassicParams_Tech
 		LayoutName="High Tech"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.D49Camos.D66-Shine",Index=1)
@@ -180,11 +158,28 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
+	End Object*/
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Black'
-	Layouts(2)=WeaponParams'ClassicParams_Tech'
-
-
+	//Layouts(1)=WeaponParams'ClassicParams_Tech'
+	//Layouts(1)=WeaponParams'ClassicParams_Scope'
+	//Layouts(1)=WeaponParams'ClassicParams_Snub'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=D49_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=D49_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.D49Camos.D49Black-Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Camos(0)=WeaponCamo'D49_Silver'
+	Camos(1)=WeaponCamo'D49_Black'
 }

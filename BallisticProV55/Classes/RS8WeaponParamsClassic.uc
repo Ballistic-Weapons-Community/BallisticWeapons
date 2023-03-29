@@ -149,61 +149,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Silver"
+		//Layout core
+		LayoutName="Standard"
 		Weight=30
-		
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=14
-		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
-		SightPivot=(Pitch=768,Roll=-1024)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-
-	Begin Object Class=WeaponParams Name=ClassicParams_Black
-		LayoutName="Black"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.RS8-K-Shiney",Index=1)
-		Weight=10
-		
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=14
-		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
-		SightPivot=(Pitch=768,Roll=-1024)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-
-	Begin Object Class=WeaponParams Name=ClassicParams_Gray
-		LayoutName="Gray"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.M1911-Shiny",Index=1)
-		Weight=10
-		
+		//Attachments
+		//Functions
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
@@ -225,9 +175,12 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_X3Combo
+		//Layout core
 		LayoutName="Tactical Knife"
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8X3'
 		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8X3'
+		//Functions
 		
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
@@ -250,9 +203,50 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Black'
-	Layouts(2)=WeaponParams'ClassicParams_Gray'
 	Layouts(3)=WeaponParams'ClassicParams_X3Combo'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=RS8_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS8_Gray
+		Index=1
+		CamoName="Gray"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.M1911-Shiny",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS8_Black
+		Index=2
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.RS8-K-Shiney",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS8_Rainbow
+		Index=3
+		CamoName="Rainbow"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.RS8-MainRainbowShine",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS8_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.RS8-MainGoldShine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'RS8_Silver'
+	Camos(1)=WeaponCamo'RS8_Gray'
+	Camos(2)=WeaponCamo'RS8_Black'
+	Camos(3)=WeaponCamo'RS8_Rainbow'
+	Camos(4)=WeaponCamo'RS8_Gold'
 }
