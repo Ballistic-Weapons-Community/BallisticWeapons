@@ -129,10 +129,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Holo",Slot=3,Scale=1f)
 		MagAmmo=18
-		ViewOffset=(X=7.000000,Y=7.00000,Z=-12.000000)
-		ViewPivot=(Pitch=384)
-		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
-		SightPivot=(Pitch=-800)
+		SightOffset=(X=5,Y=0.000000,Z=16.700000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=true)

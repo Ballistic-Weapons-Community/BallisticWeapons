@@ -126,7 +126,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalStockOutAimParams
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		AimAdjustTime=0.600000
+		AimAdjustTime=0.6
 		AimSpread=(Min=384,Max=1536)
 		ChaosDeclineTime=0.5
 		ChaosSpeedThreshold=300
@@ -146,8 +146,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-		SightPivot=(Pitch=350)
-		SightOffset=(X=30.000000,Y=-0.010000,Z=12.400000)
+		SightPivot=(Pitch=450)
+		SightOffset=(X=35.000000,Y=-0.010000,Z=13.600000)
 		MagAmmo=32
         InventorySize=6
         SightingTime=0.35 // adjust the factor with stock mode

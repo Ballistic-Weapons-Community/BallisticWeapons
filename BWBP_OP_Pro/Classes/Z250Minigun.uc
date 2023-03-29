@@ -558,7 +558,7 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=2
 	PickupClass=Class'BWBP_OP_Pro.Z250Pickup'
-	PlayerViewOffset=(Y=15.000000,Z=-25.000000)
+	PlayerViewOffset=(X=-20,Y=18.000000,Z=-32.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.Z250Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Z250.Icon_Z250'
 	IconCoords=(X2=127,Y2=31)

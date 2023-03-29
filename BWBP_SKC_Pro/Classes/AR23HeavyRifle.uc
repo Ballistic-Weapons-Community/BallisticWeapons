@@ -319,7 +319,7 @@ defaultproperties
      WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
      FullZoomFOV=55.000000
      bNoCrosshairInScope=True
-	 SightPivot=(Pitch=-800,Yaw=0,Roll=0)
+	 SightOffset=(X=5,Y=0.000000,Z=16.700000)
      SightDisplayFOV=40.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.AR23PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AR23SecondaryFire'
@@ -336,8 +336,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_SKC_Pro.AR23Pickup'
-     PlayerViewOffset=(X=7.000000,Y=7.00000,Z=-12.000000)
-     PlayerViewPivot=(Pitch=384)
+     PlayerViewOffset=(X=1.000000,Y=5.00000,Z=-12.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.AR23Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AR23.SmallIcon_AR23'

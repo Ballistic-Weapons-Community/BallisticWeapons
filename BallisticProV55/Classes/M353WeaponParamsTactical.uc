@@ -93,9 +93,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
 		LayoutName="Default"
-		SightPivot=(Pitch=128)
-		SightOffset=(X=-6.000000,Z=5.30000)
-		ViewOffset=(X=2.000000,Y=3.500000,Z=-4.000000)
+		SightOffset=(X=10.000000,Z=4.70000)
 		WeaponModes(0)=(bUnavailable=True)
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_Burst",Value=5.000000)

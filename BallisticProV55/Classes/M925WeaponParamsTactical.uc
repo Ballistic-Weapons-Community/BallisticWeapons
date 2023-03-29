@@ -79,9 +79,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		WeaponBoneScales(0)=(BoneName="M925RearIronSides",Slot=1,Scale=0f)
-		SightPivot=(Pitch=64)
-		SightOffset=(X=-18.000000,Z=7.200000)
-		ViewOffset=(X=9.000000,Y=5.000000,Z=-7.000000)
+		SightOffset=(X=-6.000000,Z=7.100000)
 		DisplaceDurationMult=1.4
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9

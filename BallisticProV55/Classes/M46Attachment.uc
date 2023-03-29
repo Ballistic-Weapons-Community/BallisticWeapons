@@ -30,7 +30,6 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 defaultproperties
 {
 	WeaponClass=class'M46AssaultRifle'
-	ScopedTracerOffset=(Y=-14.000000,Z=-2.000000)
 	MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 	AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 	ImpactManager=Class'BallisticProV55.IM_Bullet'

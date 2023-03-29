@@ -154,7 +154,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
-		SightOffset=(X=11.000000,Z=9.88000)
+		SightOffset=(X=25.000000,Z=9.88000)
         SightingTime=0.35
 		SightMoveSpeedFactor=0.6
 		MagAmmo=20

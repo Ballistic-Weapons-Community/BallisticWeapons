@@ -255,7 +255,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.FLASHPickup'
-	PlayerViewOffset=(X=10.000000,Z=-12.000000)
+	PlayerViewOffset=(X=-5.000000,Z=-10.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.FLASHAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Flash.SmallIcon_FLASH'

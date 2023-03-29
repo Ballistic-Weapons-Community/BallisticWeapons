@@ -280,7 +280,7 @@ defaultproperties
     
 	CurrentWeaponMode=3
 	bNoCrosshairInScope=True
-	SightOffset=(X=-6.000000,Z=5.30000)
+	SightOffset=(X=10.000000,Z=4.70000)
 	ParamsClasses(0)=Class'M353WeaponParamsComp'
 	ParamsClasses(1)=Class'M353WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M353WeaponParamsRealistic' //todo: turret
@@ -299,7 +299,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	PickupClass=Class'BallisticProV55.M353Pickup'
-	PlayerViewOffset=(X=2.000000,Y=3.500000,Z=-4.000000)
+	PlayerViewOffset=(X=-4.000000,Y=3.000000,Z=-5.500000)
 	AttachmentClass=Class'BallisticProV55.M353Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M353'
 	IconCoords=(X2=127,Y2=31)

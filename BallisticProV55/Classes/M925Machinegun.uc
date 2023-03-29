@@ -260,9 +260,8 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=64)
-	SightOffset=(X=-18.000000,Z=7.200000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=-6.000000,Z=7.100000)
+
 	ParamsClasses(0)=Class'M925WeaponParamsComp'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M925WeaponParamsRealistic' //todo: turret
@@ -285,7 +284,7 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.M925Pickup'
-	PlayerViewOffset=(X=9.000000,Y=5.000000,Z=-7.000000)
+	PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-7.000000)
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'
 	IconCoords=(X2=127,Y2=31)

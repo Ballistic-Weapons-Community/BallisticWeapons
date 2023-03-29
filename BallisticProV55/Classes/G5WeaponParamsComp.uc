@@ -75,7 +75,6 @@ defaultproperties
 	    CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
-		ViewOffset=(X=10.000000,Y=10.500000,Z=-6.000000)
 		SightingTime=0.550000	
         DisplaceDurationMult=1.25
         MagAmmo=2        
