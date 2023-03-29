@@ -148,7 +148,7 @@ function bool KeyEvent(EInputKey Key, EInputAction Action, FLOAT Delta )
 	}
 	else if ((Action == IST_Press) && bPreferencesKeyEnabled && (Key == class'BallisticProInteractions'.default.PreferencesKey))
 	{
-		ConsoleCommand("Preferences");
+		ConsoleCommand("Ballistic");
 		return true;
 	}
       else if ((Action == IST_Press) && bDualSelectKeyEnabled && (Key == class'BallisticProInteractions'.default.DualSelectKey))
