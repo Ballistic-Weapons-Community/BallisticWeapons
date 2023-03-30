@@ -260,7 +260,7 @@ final simulated function UpdateRecoil(float dt)
 		Target.YRand = 0;
 
 		AdjustmentPhase = 0;
-		AdjustmentTime = DeclineTime;
+		AdjustmentTime = DeclineTime * Start.Recoil / MaxRecoil;
 	}
 }
 
