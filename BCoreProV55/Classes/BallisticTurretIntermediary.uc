@@ -9,6 +9,8 @@ var Pawn myPawn;
 var class<BallisticWeapon> GunClass;
 var BallisticWeapon BW;
 var int MagAmmo;
+var byte LayoutIndex;
+var byte CamoIndex;
 var int TurretAmmoAmount;
 var int WeaponMode;
 
@@ -54,6 +56,8 @@ simulated function Timer()
 			{
 				BW.GiveTo(myPawn);
 				BW.MagAmmo = MagAmmo;
+				BW.LayoutIndex = LayoutIndex;
+				BW.CamoIndex = CamoIndex;
 				BW.SetAmmoTo(TurretAmmoAmount, 0);
 				BW.CurrentWeaponMode = WeaponMode;
 			}

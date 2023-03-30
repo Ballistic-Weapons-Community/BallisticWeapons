@@ -4118,7 +4118,7 @@ function DropFrom(vector StartLocation)
             WeaponPickup(Pickup).bThrown = true;
     	Pickup.InitDroppedPickupFor(self);
 	    Pickup.Velocity = Velocity;
-		if (BallisticWeaponPickup(Pickup) != None)
+		if (Role == ROLE_Authority && BallisticWeaponPickup(Pickup) != None)
 		{
 			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
 			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;

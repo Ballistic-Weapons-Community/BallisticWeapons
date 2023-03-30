@@ -77,15 +77,27 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 
-	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Mount
 		BotRefireRate=0.300000
 	End Object
 	
-	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Mount
 		TargetState="Mount"
 		FireInterval=0.200000
 		AmmoPerFire=0
-		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Mount'
+	End Object	
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
 	End Object	
 	
 	//=================================================================
@@ -145,14 +157,24 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		PlayerSpeedFactor=0.825000
-		InventorySize=8
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.35
-		MagAmmo=40
-		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
+		//Layout core
+		Weight=30
+		LayoutName="Holosight"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Holosight",Slot=51,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=0f)
+		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=0f)
 		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.35
+		//Function
+		PlayerSpeedFactor=0.825000
+		InventorySize=8
+		MagAmmo=40
+		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
 		WeaponName="FG-50 .50 Heavy Machinegun"
@@ -161,9 +183,40 @@ defaultproperties
 		AimParams(1)=AimParams'RealisticControlledAimParams'
 		FireParams(0)=FireParams'RealisticPriControlledFireParams'
 		FireParams(2)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Bipod
+		//Layout core
+		Weight=20
+		LayoutName="Bipod"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Holosight",Slot=51,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=1f)
+		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=1f)
+		SightOffset=(X=0.000000,Y=25.000000,Z=8.200000)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.35
+		//Function
+		PlayerSpeedFactor=0.825000
+		InventorySize=8
+		MagAmmo=40
+		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
+		ReloadAnimRate=0.900000
+		CockAnimRate=1.000000
+		WeaponName="FG-50 .50 Heavy Machinegun"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		AimParams(1)=AimParams'RealisticControlledAimParams'
+		FireParams(0)=FireParams'RealisticPriControlledFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Mount'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Bipod'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=FG50_Black
@@ -191,7 +244,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=FG50_Dazzle
-		Index=4
+		Index=3
 		CamoName="Dazzle"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MainDazzle",Index=1,AIndex=1,PIndex=0)

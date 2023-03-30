@@ -273,9 +273,9 @@ function InitTurretWeapon(Weapon Weap)
 	{
 		BallisticWeapon(Weap).MagAmmo = 			MagAmmoAmount;
 		BallisticWeapon(Weap).CurrentWeaponMode =	WeaponMode;
+		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
+		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitTurretWeapon(self);
-		BallisticWeapon(Weap).LayoutIndex = LayoutIndex;
-		BallisticWeapon(Weap).CamoIndex = CamoIndex;
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
 //	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);
@@ -289,9 +289,9 @@ function InitUndeployedWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).CurrentWeaponMode =		WeaponMode;
 		BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		BallisticWeapon(Weap).MagAmmo =					MagAmmoAmount;
+		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
+		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
-		BallisticWeapon(Weap).LayoutIndex = LayoutIndex;
-		BallisticWeapon(Weap).CamoIndex = CamoIndex;
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
 //	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);
@@ -347,7 +347,14 @@ function GiveWeapon(string aClassName )
 		return;
 	newWeapon = Spawn(WeaponClass,,,Location);
 	if( newWeapon != None )
+	{
+		if (BallisticWeapon(newWeapon) != None)
+		{
+			BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+			BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
+		}
 		newWeapon.GiveTo(self);
+	}
 	InitTurretWeapon(newWeapon);
 }
 
@@ -676,6 +683,11 @@ function UndeployTurret ()
 			W = spawn(WC,OldDriver,,,rot(0,0,0));
 			if (W != None)
 			{
+				if (BallisticWeapon(W) != None)
+				{
+					BallisticWeapon(W).GenerateLayout(LayoutIndex);
+					BallisticWeapon(W).GenerateCamo(CamoIndex);
+				}
 				W.GiveTo(OldDriver);
 
 				InitUndeployedWeapon(W);
@@ -689,6 +701,8 @@ function UndeployTurret ()
 			BTI.myPawn = OldDriver;
 			BTI.GunClass = WC;
 			BTI.MagAmmo = MagAmmoAmount;
+			BTI.LayoutIndex = LayoutIndex;
+			BTI.CamoIndex = CamoIndex;
 			BTI.TurretAmmoAmount = AmmoAmount[0];
 			BTI.WeaponMode = WeaponMode;
 			if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)

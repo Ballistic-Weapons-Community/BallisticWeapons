@@ -300,7 +300,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=FG50_Dazzle
-		Index=4
+		Index=3
 		CamoName="Dazzle"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MainDazzle",Index=1,AIndex=1,PIndex=0)

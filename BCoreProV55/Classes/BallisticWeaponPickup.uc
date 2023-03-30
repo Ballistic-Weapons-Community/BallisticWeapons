@@ -308,6 +308,8 @@ function InitDroppedPickupFor(Inventory Inv)
 		else if (BallisticWeapon(W) != None && !BallisticWeapon(W).bNoMag)
 		{
 			MagAmmo = BallisticWeapon(W).MagAmmo;
+			LayoutIndex = BallisticWeapon(W).LayoutIndex;
+			CamoIndex = BallisticWeapon(W).CamoIndex;
 	        if ((!bThrown || BallisticFire(W.GetFireMode(0)) == None || BallisticFire(W.GetFireMode(0)).bUseWeaponMag==false))
 				GetAmmoAmount(0, W);
 			if (W!=None && W.GetAmmoClass(1) != W.GetAmmoClass(0) && (!bThrown || BallisticFire(W.GetFireMode(1)) == None || BallisticFire(W.GetFireMode(1)).bUseWeaponMag==false))
@@ -351,10 +353,6 @@ event Landed(Vector HitNormal)
 
 simulated function PostNetReceive()
 {
-	local WeaponCamo WC;
-	local Material M;
-	local int i;
-	
 	if (LayoutIndex != OldLayoutIndex)
 	{
 		OldLayoutIndex = LayoutIndex;
@@ -363,26 +361,7 @@ simulated function PostNetReceive()
 	if (CamoIndex != OldCamoIndex)
 	{
 		OldCamoIndex = CamoIndex;
-		WC = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Camos[CamoIndex];
-		if (WC != None)
-		{
-			for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
-			{
-				if (WC.WeaponMaterialSwaps[i].PIndex != -1)
-				{
-					if (WC.WeaponMaterialSwaps[i].Material != None)
-						Skins[WC.WeaponMaterialSwaps[i].PIndex] = WC.WeaponMaterialSwaps[i].Material;
-					if (WC.WeaponMaterialSwaps[i].MaterialName != "")
-					{
-						M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
-						if (M != None)
-							Skins[WC.WeaponMaterialSwaps[i].PIndex] = M;
-					}
-				}
-			}
-		}
-	
-		
+		UpdateSkins(CamoIndex);
 		//Skins[0] = class<BallisticCamoWeapon>(InventoryType).default.CamoMaterials[CamoIndex];
 	}
 	if (level.NetMode != NM_Client)
@@ -392,6 +371,31 @@ simulated function PostNetReceive()
 	}
 }
 
+simulated function UpdateSkins(byte PassedIndex)
+{
+	local WeaponCamo WC;
+	local Material M;
+	local int i;
+	
+	WC = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Camos[PassedIndex];
+	if (WC != None)
+	{
+		for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
+		{
+			if (WC.WeaponMaterialSwaps[i].PIndex != -1)
+			{
+				if (WC.WeaponMaterialSwaps[i].Material != None)
+					Skins[WC.WeaponMaterialSwaps[i].PIndex] = WC.WeaponMaterialSwaps[i].Material;
+				if (WC.WeaponMaterialSwaps[i].MaterialName != "")
+				{
+					M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+					if (M != None)
+						Skins[WC.WeaponMaterialSwaps[i].PIndex] = M;
+				}
+			}
+		}
+	}
+}
 
 event Destroyed()
 {
@@ -563,4 +567,5 @@ defaultproperties
      TransientSoundRadius=64.000000
      CollisionRadius=26.000000
      MessageClass=Class'BCoreProV55.BallisticPickupMessage'
+	bNetNotify=True
 }
