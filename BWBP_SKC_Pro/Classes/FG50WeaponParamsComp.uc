@@ -124,6 +124,18 @@ defaultproperties
 		FireAnimRate=2.400000	
 		FireEffectParams(0)=InstantEffectParams'ArenaSecControlledEffectParams'
 	End Object
+	
+	//Mount
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Mount
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Mount
+		TargetState="Mount"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Mount'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -167,14 +179,24 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		Weight=30
+		LayoutName="Holosight"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Holosight",Slot=51,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=0f)
+		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=0f)
+		SightOffset=(X=15,Y=15.000000,Z=6.250000)
+		SightMoveSpeedFactor=0.7
+		SightingTime=0.60000		
+		//Function
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		InventorySize=6
-		SightMoveSpeedFactor=0.7
-		SightingTime=0.60000		
 		DisplaceDurationMult=1.4
 		MagAmmo=40
-		SightOffset=(X=15,Y=15.000000,Z=6.250000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaStandardAimParams'
 		AimParams(1)=AimParams'ArenaControlledAimParams'
@@ -183,7 +205,36 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecControlledFireParams'
 		AltFireParams(2)=FireParams'ArenaSecStandardFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Bipod
+		//Layout core
+		Weight=20
+		LayoutName="Bipod"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Holosight",Slot=51,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=1f)
+		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=1f)
+		SightOffset=(X=0.000000,Y=15.050000,Z=5.000000)
+		SightMoveSpeedFactor=0.7
+		SightingTime=0.60000		
+		//Function
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+		InventorySize=6
+		DisplaceDurationMult=1.4
+		MagAmmo=40
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaStandardAimParams'
+		AimParams(1)=AimParams'ArenaControlledAimParams'
+		FireParams(0)=FireParams'ArenaPriControlledFireParams'
+		FireParams(2)=FireParams'ArenaPriStandardFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Mount'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Bipod'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=FG50_Black
@@ -211,7 +262,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=FG50_Dazzle
-		Index=4
+		Index=3
 		CamoName="Dazzle"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FG50Camos.FG50-MainDazzle",Index=1,AIndex=1,PIndex=0)

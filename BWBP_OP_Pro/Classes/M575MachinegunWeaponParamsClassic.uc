@@ -134,47 +134,42 @@ defaultproperties
 		FireParams(3)=FireParams'ClassicPrimaryFireParams'
 		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
 	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Jungle
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH2",Index=3)
-		PlayerSpeedFactor=0.90000
-		PlayerJumpFactor=0.900000
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=50
-		SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
-		SightPivot=(Pitch=128)
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParams'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
-		FireParams(3)=FireParams'ClassicPrimaryFireParams'
-		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Oil
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH3",Index=3)
-		PlayerSpeedFactor=0.90000
-		PlayerJumpFactor=0.900000
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=50
-		SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
-		SightPivot=(Pitch=128)
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParams'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
-		FireParams(3)=FireParams'ClassicPrimaryFireParams'
-		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
-	End Object
 
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Jungle'
-	Layouts(2)=WeaponParams'ClassicParams-Oil'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M575_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M575_Blacker
+		Index=1
+		CamoName="Midnight"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_CM2",Index=3,AIndex=3,PIndex=3)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M575_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH2",Index=3,AIndex=3,PIndex=3)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M575_Oil
+		Index=3
+		CamoName="Oil Slick"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH3",Index=3,AIndex=3,PIndex=3)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'M575_Black'
+	Camos(1)=WeaponCamo'M575_Blacker'
+	Camos(2)=WeaponCamo'M575_Jungle'
+	Camos(3)=WeaponCamo'M575_Oil'
 }

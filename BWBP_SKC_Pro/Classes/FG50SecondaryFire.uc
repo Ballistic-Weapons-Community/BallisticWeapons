@@ -279,6 +279,7 @@ simulated state Mount
 	{
 		super(BallisticFire).ApplyFireEffectParams(effect_params);
 		bUseWeaponMag=False;
+		BrassClass=None;
 	}
 	
 	function PlayFiring()
