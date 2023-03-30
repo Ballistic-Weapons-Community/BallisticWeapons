@@ -110,7 +110,7 @@ defaultproperties
 		CrouchMultiplier=0.750000
 		AimSpread=(Min=64,Max=1024)
 		AimAdjustTime=0.550000
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-4000,Yaw=1500)
 		ChaosDeclineTime=0.800000
 		ChaosDeclineDelay=0.600000

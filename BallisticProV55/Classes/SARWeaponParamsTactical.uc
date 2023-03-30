@@ -96,13 +96,13 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
+		DeclineTime=0.75
 		ViewBindFactor=0.35
 		ADSViewBindFactor=0.85
 		CrouchMultiplier=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
-		DeclineDelay=0.14
+		DeclineDelay=0.13
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalStockInRecoilParams
@@ -110,13 +110,13 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05
 		YRandFactor=0.05
-		DeclineTime=0.5
+		DeclineTime=0.75
 		ViewBindFactor=0.45
 		ADSViewBindFactor=0.7
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
-		DeclineDelay=0.14
+		DeclineDelay=0.13
 	End Object
 
 	//=================================================================
@@ -125,19 +125,19 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalStockOutAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.6
 		AimSpread=(Min=384,Max=1536)
-		ChaosDeclineTime=0.5
+		ChaosDeclineTime=0.75
 		ChaosSpeedThreshold=300
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalStockInAimParams
 		ADSMultiplier=1
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.45
 		AimSpread=(Min=256,Max=1024)
-		ChaosDeclineTime=0.5
+		ChaosDeclineTime=0.75
 		ChaosSpeedThreshold=300
 	End Object
 

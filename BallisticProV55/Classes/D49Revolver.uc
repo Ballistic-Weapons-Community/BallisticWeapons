@@ -482,7 +482,8 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
+	SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
+	SightPivot=(Pitch=350,Roll=-500)
 	ParamsClasses(0)=Class'D49WeaponParamsComp'
 	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	ParamsClasses(2)=Class'D49WeaponParamsRealistic'
@@ -506,8 +507,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.D49Pickup'
-	PlayerViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)
-	PlayerViewPivot=(Pitch=512)
+	PlayerViewOffset=(X=-10.000000,Y=7.000000,Z=-15.000000)
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'
 	IconCoords=(X2=127,Y2=31)

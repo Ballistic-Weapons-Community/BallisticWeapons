@@ -137,7 +137,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=768)
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096))
+		SprintOffset=(Pitch=-2048,Yaw=-2048))
 		ChaosDeclineTime=0.5
         ChaosSpeedThreshold=300
 	End Object
@@ -145,7 +145,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams_CQC
 		AimSpread=(Min=64,Max=512)
         ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=0.5
         ChaosSpeedThreshold=300
 	End Object
@@ -183,7 +183,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
-		SightOffset=(X=22.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
 		//Function
 		CockAnimRate=1.10000
 		ReloadAnimRate=1.10000

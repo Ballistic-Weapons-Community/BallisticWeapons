@@ -77,7 +77,7 @@ defaultproperties
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.400000,OutVal=0.10000),(InVal=0.600000,OutVal=0.25000),(InVal=0.800000,OutVal=0.33000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		MaxRecoil=6400.000000
-		DeclineTime=0.650000
+		DeclineTime=1
 		DeclineDelay=1.000000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -90,7 +90,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=384,Max=1536)
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.600000
 		ChaosDeclineDelay=1.000000
 		ChaosDeclineTime=0.650000
@@ -107,7 +107,7 @@ defaultproperties
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
-		SightOffset=(X=4.000000,Y=0,Z=4.800000)
+		SightOffset=(X=10.000000,Y=0,Z=4.800000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=True)

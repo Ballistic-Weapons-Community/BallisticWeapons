@@ -147,7 +147,7 @@ defaultproperties
 		MagAmmo=18
 		bMagPlusOne=True
 		SightPivot=(Pitch=128)
-		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)

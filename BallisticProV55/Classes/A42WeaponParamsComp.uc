@@ -98,7 +98,6 @@ defaultproperties
         SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
-		ViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=1024,Roll=-768)
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

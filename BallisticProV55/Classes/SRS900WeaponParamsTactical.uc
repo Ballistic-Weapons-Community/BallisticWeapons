@@ -79,7 +79,7 @@ defaultproperties
 		YRandFactor=0.05000
 		ClimbTime=0.1
 		DeclineDelay=0.22
-		DeclineTime=1.00000
+		DeclineTime=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -92,7 +92,7 @@ defaultproperties
 		YRandFactor=0.1000
 		ClimbTime=0.1
 		DeclineDelay=0.22
-		DeclineTime=1.00000
+		DeclineTime=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -102,7 +102,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=512,Max=2048)
 		AimAdjustTime=0.8
         ADSMultiplier=0.5
@@ -111,7 +111,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalAimParams_600
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=512,Max=2048)
 		AimAdjustTime=0.600000
         ADSMultiplier=0.5

@@ -93,7 +93,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=64,Max=768)
         ADSMultiplier=0.35
 		ChaosDeclineTime=0.75
@@ -101,7 +101,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=ArenaAimParams_600
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=64,Max=768)
         ADSMultiplier=0.35
 		ChaosDeclineTime=0.75

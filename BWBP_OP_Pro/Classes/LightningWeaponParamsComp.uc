@@ -83,7 +83,7 @@ defaultproperties
 		AimAdjustTime=0.750000
 		ChaosSpeedThreshold=300
 		ChaosDeclineTime=0.750000
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object
 

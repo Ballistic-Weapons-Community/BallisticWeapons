@@ -76,7 +76,7 @@ defaultproperties
 		XRandFactor=0.350000
 		YRandFactor=0.350000
 		MaxRecoil=6144.000000
-		DeclineTime=1.500000
+		DeclineTime=1.25
 		DeclineDelay=0.400000
 		HipMultiplier=1.5
 		MaxMoveMultiplier=3
@@ -90,7 +90,7 @@ defaultproperties
 		AimSpread=(Min=512,Max=2048)
 		AimAdjustTime=0.8
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
         JumpOffset=(Pitch=-6000,Yaw=-1500)
         ChaosSpeedThreshold=300
 		ChaosDeclineTime=1.600000

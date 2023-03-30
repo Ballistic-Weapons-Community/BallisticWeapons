@@ -55,7 +55,7 @@ defaultproperties
 		YawFactor=0.5
 		XRandFactor=0.300000
 		YRandFactor=0.200000
-		DeclineTime=1.500000
+		DeclineTime=0.75
 		MinRandFactor=0.350000
 	End Object
 
@@ -65,8 +65,6 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ViewBindFactor=1
-		SprintOffSet=(Pitch=-7000,Yaw=-3500)
-		JumpOffSet=(Pitch=-6000,Yaw=-1500)
 		AimAdjustTime=0.700000
 		AimSpread=(Min=8,Max=32)
 		ChaosDeclineTime=1.200000

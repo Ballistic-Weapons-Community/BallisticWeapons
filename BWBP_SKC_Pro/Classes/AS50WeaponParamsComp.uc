@@ -87,7 +87,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=128,Max=1536)
 		ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 		AimAdjustTime=0.600000
 		ChaosDeclineTime=0.800000

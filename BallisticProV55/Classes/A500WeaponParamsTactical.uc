@@ -75,7 +75,7 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.170000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.100000),(InVal=1.000000,OutVal=0.5)))
         XRandFactor=0.200000
         YRandFactor=0.200000
-        DeclineTime=1.500000
+        DeclineTime=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
     End Object
@@ -86,7 +86,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=TacticalAimParams
         ADSMultiplier=0.5
-        SprintOffset=(Pitch=-3072,Yaw=-4096)
+        SprintOffset=(Pitch=-2048,Yaw=-2048)
         AimAdjustTime=0.600000
         AimSpread=(Min=256,Max=1024)
         AimDamageThreshold=75.000000

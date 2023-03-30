@@ -43,7 +43,7 @@ defaultproperties
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
-        DeclineTime=1.500000
+        DeclineTime=0.75
     End Object
 
     //=================================================================
@@ -52,7 +52,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
-        SprintOffset=(Pitch=-3072,Yaw=-4096)
+        SprintOffset=(Pitch=-2048,Yaw=-2048)
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
     End Object

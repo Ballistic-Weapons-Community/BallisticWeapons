@@ -385,7 +385,7 @@ defaultproperties
 	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'
     ParamsClasses(3)=Class'AM67WeaponParamsTactical'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
-	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
+	PlayerViewOffset=(X=2.000000,Y=4.000000,Z=-10.000000)
 	Priority=24
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	PutDownTime=0.600000
@@ -397,7 +397,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	SightDisplayFOV=60.000000
 	SightFXClass=Class'BallisticProV55.AM67SightLEDs'
-	SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
+	SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
 	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

@@ -58,7 +58,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
-		Recoil=3072.000000
+		Recoil=2048.000000
 		Chaos=0.350000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -82,8 +82,8 @@ defaultproperties
 		XRandFactor=0.2
 		YRandFactor=0.2
 		ClimbTime=0.16
-		DeclineDelay=0.22
-        DeclineTime=1
+		DeclineDelay=0.45
+        DeclineTime=1.5
 		MaxRecoil=8192
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -95,8 +95,8 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.16
-		DeclineDelay=0.22
-        DeclineTime=1
+		DeclineDelay=0.45
+        DeclineTime=1.5
 		MaxRecoil=8192
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -109,6 +109,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.75
 		AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.700000
 		ChaosDeclineTime=0.60000
         ChaosSpeedThreshold=300
@@ -117,6 +118,7 @@ defaultproperties
     Begin Object Class=AimParams Name=TacticalAimParams_208
         ADSMultiplier=0.75
         AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.5
         ChaosDeclineTime=0.60000
         ChaosSpeedThreshold=300
@@ -161,7 +163,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-30.000000,Y=-7.350000,Z=45.400002)
+		SightOffset=(X=-10.000000,Y=-7.350000,Z=45.400002)
 		ZoomType=ZT_Irons
 		
 		//Function
@@ -186,7 +188,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-30.000000,Y=-7.350000,Z=41.700000)
+		SightOffset=(X=-10.000000,Y=-7.350000,Z=41.700000)
 		ZoomType=ZT_Irons
 		
 		//Function

@@ -440,7 +440,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.XRS10Pickup'
-	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-11.000000)
+	PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.XRS10Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.XRS10.SmallIcon_XRS10'
 	IconCoords=(X2=127,Y2=31)

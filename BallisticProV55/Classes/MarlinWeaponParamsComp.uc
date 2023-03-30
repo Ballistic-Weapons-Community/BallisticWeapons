@@ -88,7 +88,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=512)
         ADSMultiplier=0.25
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.400000
 		ChaosDeclineDelay=1.000000
 		ChaosDeclineTime=0.650000
@@ -105,7 +105,7 @@ defaultproperties
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
-		SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
+		SightOffset=(X=10.000000,Y=-0.070000,Z=4.750000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=True)

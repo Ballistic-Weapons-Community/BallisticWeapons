@@ -190,7 +190,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.8
 		YRandFactor=0.8
-		DeclineTime=1.5
+		DeclineTime=0.75
 		ViewBindFactor=0.4
 		DeclineDelay=0.8
 		HipMultiplier=1.25
@@ -202,7 +202,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05
 		YRandFactor=0.05
-		DeclineTime=0.5
+		DeclineTime=0.75
 		ViewBindFactor=0.65
 		DeclineDelay=0.25
 		HipMultiplier=1.25
@@ -217,7 +217,7 @@ defaultproperties
         AimSpread=(Min=256,Max=1024)
 		AimAdjustTime=0.600000
         ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object

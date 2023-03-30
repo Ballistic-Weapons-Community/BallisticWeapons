@@ -89,7 +89,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=768,Max=3072)
-		SprintOffset=(Pitch=-3000,Yaw=-5000)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-4000,Yaw=-3000)
 		AimAdjustTime=0.700000
 		ChaosDeclineTime=1.250000

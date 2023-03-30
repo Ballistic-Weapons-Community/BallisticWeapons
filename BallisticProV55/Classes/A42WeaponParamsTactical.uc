@@ -76,8 +76,8 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.550000,OutVal=0.550000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.0)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-        DeclineTime=0.5
-        DeclineDelay=0.200000
+        DeclineTime=0.75
+        DeclineDelay=0.195
         ViewBindFactor=0.5
         HipMultiplier=1
 		MaxMoveMultiplier=1.5
@@ -90,6 +90,7 @@ defaultproperties
     Begin Object Class=AimParams Name=TacticalAimParams
 		AimAdjustTime=0.45
         AimSpread=(Min=128,Max=512)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
         ChaosDeclineTime=0.450000
         ADSMultiplier=0.75
         ChaosSpeedThreshold=300
@@ -105,7 +106,6 @@ defaultproperties
         SightingTime=0.200000
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5
-		ViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=1024,Roll=-768)
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

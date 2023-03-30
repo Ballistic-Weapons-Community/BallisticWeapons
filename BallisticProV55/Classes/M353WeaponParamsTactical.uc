@@ -67,8 +67,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.050000,OutVal=0.070000),(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.400000),(InVal=0.550000,OutVal=0.650000),(InVal=0.650000,OutVal=0.750000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
-		DeclineDelay=0.150000
+		DeclineTime=0.75
+		DeclineDelay=0.130000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -81,7 +81,7 @@ defaultproperties
 		ADSMultiplier=0.5
 		AimSpread=(Min=768,Max=3072)
 		AimAdjustTime=0.8
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-4000,Yaw=3000)
 		ChaosDeclineTime=1.600000
         ChaosSpeedThreshold=300

@@ -14,8 +14,8 @@ defaultproperties
 			DecayRange=(Min=1575,Max=2560)
 			Inaccuracy=(X=16,Y=16)
 			PenetrationEnergy=96
-			Damage=80.000000
-            HeadMult=2f
+			Damage=75.000000
+            HeadMult=2.75f
             LimbMult=0.75f
 			RangeAtten=0.5
 			DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
@@ -70,7 +70,7 @@ defaultproperties
 		XRandFactor=0.150000
 		YRandFactor=0.150000
 		MaxRecoil=8192.000000
-		DeclineTime=1.000000
+		DeclineTime=1.5
 		DeclineDelay=0.400000
 		ViewBindFactor=0.300000
 		HipMultiplier=1.25
@@ -84,6 +84,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=384,Max=1536)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.600000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.5
@@ -103,13 +104,12 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
-		SightOffset=(X=-30.000000,Y=-0.800000,Z=23.000000)
+		SightOffset=(X=-5.000000,Y=-0.680000,Z=22.700000)
 		//Function
 		InventorySize=5
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.6
 		MagAmmo=9
-		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -131,7 +131,6 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.6
 		MagAmmo=9
-		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

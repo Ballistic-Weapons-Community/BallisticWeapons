@@ -119,9 +119,8 @@ defaultproperties
 		MagAmmo=9
         InventorySize=3
 		SightingTime=0.200000
-		SightOffset=(X=-20.000000,Y=-1.9500000,Z=17.000000)
+		SightOffset=(X=5.000000,Y=-1.9500000,Z=17.000000)
 		SightPivot=(Roll=-256)
-		ViewOffset=(Y=9.000000,Z=-14.000000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

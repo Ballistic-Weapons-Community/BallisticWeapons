@@ -193,7 +193,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=FastAimParams
     	AimSpread=(Min=64,Max=378)
         ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
@@ -201,21 +201,21 @@ defaultproperties
 	Begin Object Class=AimParams Name=BombAimParams
 		AimSpread=(Min=128,Max=1024)
         ADSMultiplier=0.2
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=LustAimParams
 		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=NukeAimParams
 		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object

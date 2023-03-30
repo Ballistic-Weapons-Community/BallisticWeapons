@@ -157,7 +157,7 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=1
     PickupClass=Class'BallisticProV55.M290Pickup'
-    PlayerViewOffset=(X=20.000000,Y=7.000000,Z=-14.000000)
+    PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-18.000000)
     AttachmentClass=Class'BallisticProV55.M290Attachment'
     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M290'
     IconCoords=(X2=127,Y2=31)

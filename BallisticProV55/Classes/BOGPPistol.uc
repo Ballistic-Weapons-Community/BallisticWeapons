@@ -293,7 +293,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=300)
-	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
+	SightOffset=(X=-5.000000,Y=0.080000,Z=8.550000)
 	ParamsClasses(0)=Class'BOGPWeaponParamsComp'
 	ParamsClasses(1)=Class'BOGPWeaponParamsClassic'
 	ParamsClasses(2)=Class'BOGPWeaponParamsRealistic'
@@ -313,7 +313,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.BOGPPickup'
-	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
+	PlayerViewOffset=(X=5.000000,Y=3.000000,Z=-9.000000)
 	AttachmentClass=Class'BallisticProV55.BOGPAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.BOGP.SmallIcon_BOGP'
 	IconCoords=(X2=127,Y2=31)

@@ -68,8 +68,8 @@ defaultproperties
 		XRandFactor=0.200000
 		YRandFactor=0.300000
 		ClimbTime=0.15
-		DeclineDelay=0.5
-		DeclineTime=0.800000
+		DeclineDelay=0.75
+		DeclineTime=0.750000
 		CrouchMultiplier=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -85,7 +85,7 @@ defaultproperties
 		AimAdjustTime=0.80000
 		ChaosSpeedThreshold=300
 		ChaosDeclineTime=0.750000
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object
 

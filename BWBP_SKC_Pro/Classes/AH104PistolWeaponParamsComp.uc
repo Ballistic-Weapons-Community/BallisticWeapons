@@ -98,13 +98,12 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
-		SightOffset=(X=-30.000000,Y=-0.800000,Z=23.000000)
+		SightOffset=(X=-5.000000,Y=-0.680000,Z=22.700000)
 		//Function
 		InventorySize=5
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.900000
 		MagAmmo=9
-		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
@@ -126,7 +125,6 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.900000
 		MagAmmo=9
-		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

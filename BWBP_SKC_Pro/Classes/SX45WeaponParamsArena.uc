@@ -136,7 +136,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		MagAmmo=9
         InventorySize=3
-		SightOffset=(X=-5,Y=-3.140000,Z=14.300000)
+		SightOffset=(X=0,Y=-3.140000,Z=14.300000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaStandardPrimaryFireParams'

@@ -17,7 +17,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		Inaccuracy=(X=48,Y=48)
 		RangeAtten=0.5
-		Damage=45
+		Damage=40
         HeadMult=2.75f
         LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
@@ -28,7 +28,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.600000
-		Recoil=300.000000
+		Recoil=512.000000
 		Chaos=0.0400000
 		BotRefireRate=0.9
 		WarnTargetPct=0.35
@@ -36,7 +36,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.32
+		FireInterval=0.3
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.5	
@@ -64,7 +64,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=2.000000
-		Recoil=512.000000
+		Recoil=768.000000
 		Chaos=0.300000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5	
@@ -87,8 +87,8 @@ defaultproperties
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.2,OutVal=0.03),(InVal=0.36,OutVal=0.07),(InVal=0.62,OutVal=0.09),(InVal=0.6,OutVal=0.11),(InVal=1,OutVal=0.15)))
 		XRandFactor=0.150000
 		YRandFactor=0.150000
-		DeclineTime=1.000000
-		DeclineDelay=0.5
+		DeclineTime=0.75
+		DeclineDelay=0.34
 		HipMultiplier=1
 		MaxMoveMultiplier=1.5
 	End Object
@@ -99,6 +99,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
         AimSpread=(Min=128,Max=512)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.45
         ADSMultiplier=0.75
 		ChaosDeclineTime=0.450000
@@ -110,13 +111,11 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-		SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
-		SightPivot=(Pitch=95,Roll=-50)
+		SightOffset=(X=-15.000000,Y=-1.5,Z=15.30000)
+		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
-		ViewOffset=(X=15.000000,Y=11.000000,Z=-7.000000)
-		ViewPivot=(Pitch=512)
         DisplaceDurationMult=0.5
         SightingTime=0.200000
         SightMoveSpeedFactor=0.6

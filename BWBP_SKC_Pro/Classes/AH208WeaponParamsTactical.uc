@@ -51,8 +51,8 @@ defaultproperties
         XRandFactor=0.15
         YRandFactor=0.15
         MaxRecoil=4096.000000
-        DeclineDelay=0.65
-        DeclineTime=1
+        DeclineDelay=0.45
+        DeclineTime=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
     End Object

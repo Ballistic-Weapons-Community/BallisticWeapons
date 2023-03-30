@@ -14,8 +14,8 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=TacticalPriEffectParams
         DecayRange=(Min=1050,Max=2100)
         PenetrationEnergy=16
-        Damage=60.000000
-        HeadMult=2.75
+        Damage=45.000000
+        HeadMult=2.75f
         LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTAM67Pistol'
@@ -25,7 +25,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
         FlashScaleFactor=0.900000
-        Recoil=1536.000000
+        Recoil=1024.000000
         Chaos=0.2
         Inaccuracy=(X=48,Y=48)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
@@ -36,7 +36,7 @@ defaultproperties
     Begin Object Class=FireParams Name=TacticalPriFireParams
         AimedFireAnim="SightFire"
         FireEndAnim=
-        FireInterval=0.35
+        FireInterval=0.3
         FireEffectParams(0)=InstantEffectParams'TacticalPriEffectParams'
     End Object 
 
@@ -72,8 +72,8 @@ defaultproperties
         XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.1
-		DeclineDelay=0.25
-        DeclineTime=1.0
+		DeclineDelay=0.4
+        DeclineTime=1.5
 		MaxRecoil=8192
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -85,6 +85,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=TacticalAimParams
         AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.50000
         ADSMultiplier=0.65
         JumpChaos=0.200000
@@ -100,10 +101,9 @@ defaultproperties
         DisplaceDurationMult=0.75
         MagAmmo=6
         InventorySize=4
-		SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
+		SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
         SightingTime=0.2
         SightMoveSpeedFactor=0.6
-		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalPriFireParams'
