@@ -17,6 +17,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		PenetrateForce=180
+		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter'
 		FlashScaleFactor=0.250000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)

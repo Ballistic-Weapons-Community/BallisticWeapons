@@ -29,7 +29,7 @@ defaultproperties
         FlashScaleFactor=1.200000
         Recoil=768.000000
         Chaos=0.400000
-        Inaccuracy=(X=48,Y=48)
+        Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-FireSingle',Volume=1.200000)
         WarnTargetPct=0.4
 		BotRefireRate=0.7
@@ -64,7 +64,7 @@ defaultproperties
         FlashScaleFactor=1.200000
         Recoil=2048.000000
         Chaos=0.800000
-        Inaccuracy=(X=48,Y=48)
+        Inaccuracy=(X=192,Y=192)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Fire',Volume=1.300000)
         WarnTargetPct=0.5
 		BotRefireRate=0.7

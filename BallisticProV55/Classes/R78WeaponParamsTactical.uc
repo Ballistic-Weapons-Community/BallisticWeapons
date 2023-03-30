@@ -8,13 +8,16 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=100
-        HeadMult=1.5f
+		Damage=120
+        HeadMult=2f
         LimbMult=0.85f
 		DamageType=Class'BallisticProV55.DTR78Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR78Rifle'
 		PDamageFactor=0.800000
+		bPenetrate=True
+		PenetrateForce=250
+		PenetrationEnergy=96
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 		Recoil=1024.000000
 		Chaos=0.5

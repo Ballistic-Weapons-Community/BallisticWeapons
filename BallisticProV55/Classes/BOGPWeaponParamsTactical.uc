@@ -17,7 +17,7 @@ defaultproperties
         ImpactDamage=50
         DamageRadius=1024.000000
         Chaos=0.700000
-        Inaccuracy=(X=64,Y=64)
+        Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.BOGP.BOGP_Fire',Volume=1.750000)
         SplashDamage=True
         RecommendSplashDamage=True
@@ -43,7 +43,7 @@ defaultproperties
         MomentumTransfer=0.000000
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
         Chaos=0.700000
-        Inaccuracy=(X=64,Y=64)
+        Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_FlareFire',Volume=2.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
         WarnTargetPct=0.100000
         BotRefireRate=0.300000

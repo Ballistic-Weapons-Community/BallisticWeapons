@@ -23,9 +23,10 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
         PenetrationEnergy=32
 		PenetrateForce=150
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
-		FlashScaleFactor=0.5
-		Recoil=150.000000
+		FlashScaleFactor=0.66
+		Recoil=140.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -50,9 +51,10 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
         PenetrationEnergy=32
 		PenetrateForce=150
+		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
-		FlashScaleFactor=0.5
-		Recoil=160.000000
+		FlashScaleFactor=0.66
+		Recoil=136.000000
 		Chaos=0.02000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -152,9 +154,9 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=384,Max=1536)
-		ADSMultiplier=0.5
+		ADSMultiplier=0.65
 		AimAdjustTime=0.500000
-		SprintOffset=(Pitch=-2048,Yaw=-2048))
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=0.75
         ChaosSpeedThreshold=300
 	End Object
@@ -162,7 +164,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams_CQC
 		AimSpread=(Min=384,Max=1536)
 		AimAdjustTime=0.600000
-        ADSMultiplier=0.5
+        ADSMultiplier=0.65
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=0.75
         ChaosSpeedThreshold=300

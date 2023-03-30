@@ -24,6 +24,7 @@ defaultproperties
         PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True
+		Inaccuracy=(X=48,Y=48)
 		MuzzleFlashClass=Class'FlashEmitter_AR'
 		FlashScaleFactor=0.900000
 		Recoil=180.000000
@@ -52,6 +53,7 @@ defaultproperties
 		DamageTypeArm=Class'BallisticProV55.DTSARRifle'
 		PenetrateForce=150
 		bPenetrate=True
+		Inaccuracy=(X=48,Y=48)
 		MuzzleFlashClass=Class'FlashEmitter_AR'
 		FlashScaleFactor=0.900000
 		Recoil=128.000000

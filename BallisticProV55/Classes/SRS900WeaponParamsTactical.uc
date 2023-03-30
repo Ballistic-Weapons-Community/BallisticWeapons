@@ -52,6 +52,7 @@ defaultproperties
         PenetrationEnergy=48
 		PenetrateForce=120
 		bPenetrate=True
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
         FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 		FlashScaleFactor=0.5

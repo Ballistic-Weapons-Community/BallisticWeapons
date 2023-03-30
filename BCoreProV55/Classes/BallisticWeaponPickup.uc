@@ -36,7 +36,7 @@ var byte 		CamoIndex, OldCamoIndex;
 
 replication
 {
-	unreliable if (Role == ROLE_Authority && bNetDirty)
+	reliable if (Role == ROLE_Authority)
 		LandedRot;
 	reliable if (Role == ROLE_Authority)
 		LayoutIndex, CamoIndex;

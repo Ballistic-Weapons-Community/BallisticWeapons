@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=80
+		Damage=100
         HeadMult=1.75f
         LimbMult=0.85f
 		DamageType=Class'BallisticProV55.DTR78Rifle'
@@ -16,7 +16,7 @@ defaultproperties
 		DamageTypeArm=Class'BallisticProV55.DTR78Rifle'
 		PDamageFactor=0.800000
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-		Recoil=378.000000
+		Recoil=512.000000
 		Chaos=0.500000
 		BotRefireRate=0.4
 		WarnTargetPct=0.5

@@ -337,6 +337,7 @@ final simulated function OnADSEnd()
 //=============================================================
 final simulated function OnPlayerJumped()
 {
+	// problematic. we want a consistent basic offset for this, not a reaim.
     Reaim(0.05, AimAdjustTime, Params.JumpChaos, Params.JumpOffset.Yaw, Params.JumpOffset.Pitch);
     bJumpLock = True;
     FireChaos += Params.JumpChaos;

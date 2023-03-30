@@ -27,13 +27,13 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
+
+	if (!class'BallisticReplicationInfo'.static.IsArena())
 	{
 		CockAnim = 'Cock';
 		CockAnimPostReload = 'Cock'; 
 		ReloadEmptyAnim='ReloadEmptySlow';
 		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock';
-		R78PrimaryFire(FireMode[0]).bExplosive = false;
 	}
 }
 
@@ -195,7 +195,7 @@ defaultproperties
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_R78'
      
      bWT_Bullet=True
-     ManualLines(0)="Bolt-action sniper rifle fire with explosive rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
+     ManualLines(0)="Bolt-action sniper rifle fire. High damage, long range, slow fire rate."
      ManualLines(1)="Engages the scope."
      ManualLines(2)="Does not use tracer rounds. Effective at long range and against clustered enemies."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")

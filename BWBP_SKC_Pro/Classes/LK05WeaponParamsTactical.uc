@@ -18,6 +18,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
         PenetrationEnergy=32
 		PenetrateForce=150
+		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1
 		Recoil=160.000000

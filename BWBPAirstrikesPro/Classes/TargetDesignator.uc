@@ -458,7 +458,7 @@ defaultproperties
     CustomCrossHairTextureName="Crosshairs.Hud.Crosshair_Circle2"
     InventoryGroup=0
     PickupClass=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
-    PlayerViewOffset=(X=50.000000,Y=20.100000,Z=-13.000000)
+    PlayerViewOffset=(X=27.000000,Y=20.150000,Z=-13.500000)
     BobDamping=1.575000
     AttachmentClass=Class'BWBPAirstrikesPro.TargetDesignatorAttachment'
     IconMaterial=Texture'BWBP_OP_Tex.Designator.SmallIcon_Designator'

@@ -8,14 +8,6 @@
 //=============================================================================
 class R78Attachment extends BallisticAttachment;
 
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
-	{
-		ImpactManager=Class'BallisticProV55.IM_Bullet';
-	}
-}
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
@@ -101,7 +93,7 @@ simulated function InstantFireEffects(byte Mode)
 defaultproperties
 {
      MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-     ImpactManager=Class'IM_IncendiaryHMGBullet'
+     ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      TracerChance=0.000000

@@ -14,7 +14,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=1838)
-		Inaccuracy=(X=32,Y=32)
+		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=22
         HeadMult=2.75f
@@ -41,7 +41,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryIceEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=1838)
-		Inaccuracy=(X=32,Y=32)
+		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=18
         HeadMult=2.75

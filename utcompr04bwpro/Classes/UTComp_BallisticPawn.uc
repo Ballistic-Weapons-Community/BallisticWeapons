@@ -1032,7 +1032,7 @@ function ShieldViewFlash(int damage)
 
     rnd = FClamp(damage / 2, 25, 50);
 
-	BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);    
+	UTComp_xPlayer_BW(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);    
 }
 
 function DamageViewFlash(int damage)

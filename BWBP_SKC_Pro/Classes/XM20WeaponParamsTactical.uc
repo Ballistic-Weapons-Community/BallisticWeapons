@@ -37,6 +37,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		PenetrateForce=600
 		bPenetrate=False
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
 		FlashScaleFactor=0.300000
 		Recoil=96.000000
@@ -58,22 +59,23 @@ defaultproperties
 	
 		Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
 			Damage=26
-        HeadMult=2.25
-        LimbMult=0.75f
+			HeadMult=2.25
+			LimbMult=0.75f
 			DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
 			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
-			 Chaos=0
-			 Recoil=32
+			Inaccuracy=(X=16,Y=16)
+			Chaos=0
+			Recoil=32
 			FlashScaleFactor=0.100000
 		End Object
 		
 		Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParamsOvercharge
 			Damage=25
-            HeadMult=2.25
-            LimbMult=0.75f
-			 Chaos=0
-			 Recoil=32
+			HeadMult=2.25
+			LimbMult=0.75f
+			Chaos=0
+			Recoil=32
 			FlashScaleFactor=0.200000
 		End Object
 		

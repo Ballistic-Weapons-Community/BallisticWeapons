@@ -19,6 +19,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
 		PenetrateForce=135
 		bPenetrate=True
+		Inaccuracy=(X=128,Y=128)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
@@ -50,6 +51,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
 		PenetrateForce=135
 		bPenetrate=True
+		Inaccuracy=(X=128,Y=128)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=0.06
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFrostFire',Volume=2.800000)
@@ -81,6 +83,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'
 		PenetrateForce=135
 		bPenetrate=True
+		Inaccuracy=(X=128,Y=128)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 		FlashScaleFactor=2.5
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyRadFire',Volume=2.200000)

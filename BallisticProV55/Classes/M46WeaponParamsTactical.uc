@@ -24,6 +24,7 @@ defaultproperties
         PenetrationEnergy=48
         PenetrateForce=150
         bPenetrate=True
+		Inaccuracy=(X=16,Y=16)
         MuzzleFlashClass=Class'BallisticProV55.M46FlashEmitter'
         FlashScaleFactor=0.450000
         Recoil=340.000000

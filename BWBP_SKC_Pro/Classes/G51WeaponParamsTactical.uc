@@ -25,6 +25,7 @@ defaultproperties
 		PenetrationEnergy=32
 		PenetrateForce=150
 		bPenetrate=True
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ55-Fire')

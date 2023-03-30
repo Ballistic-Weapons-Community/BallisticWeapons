@@ -19,6 +19,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
 		PenetrateForce=120
 		bPenetrate=True
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=0.2000000
 		Recoil=200.000000
@@ -47,6 +48,7 @@ defaultproperties
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
 		PenetrateForce=120
 		bPenetrate=True
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=1.1000000
 		Recoil=320.000000
@@ -75,6 +77,7 @@ defaultproperties
 		DamageTypeArm=class'DTSRXRifle_Corrosive';
 		PenetrateForce=120
 		bPenetrate=True
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=0.4000000
 		Recoil=64.000000

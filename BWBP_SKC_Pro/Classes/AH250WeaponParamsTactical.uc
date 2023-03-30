@@ -25,6 +25,7 @@ defaultproperties
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000
+		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
 		Recoil=1536.000000
@@ -56,6 +57,7 @@ defaultproperties
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000
+		Inaccuracy=(X=72,Y=72)
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
 		Recoil=2048.000000
