@@ -315,7 +315,6 @@ defaultproperties
      CurrentRating=0.800000
      bSniping=True
      Description="Precision weapons often haven't had the need to get with the times, that was until the second Skrith war broke out. While the regular marksman weapons and sniper rifles did their job against high value targets, the ever-changing situation eventually cultivated a need to upgrade their long ranged capabilities.  Enravion, hearing the call, managed to upgrade their old R98 platform into a new breed, the R9000-E 'Chimera' Modular Sniper Rifle or 'MSR' for short. In addition to much needed upgrades like being chambered in .338 Lapua Magnum, cold bore floating barrel and picatinny rails, the Chimera earns it's nickname for its ability to accept the AMP system that's prevalent on several weapon systems already. Though it can be outfitted for different environments, the traditional long rifle is the way to go, with the amp to either ignite Krao or fry Cryons with radiation, the Chimera is a force to be reckoned with."
-     DisplayFOV=55.000000
      Priority=33
      HudColor=(B=50,G=50,R=200)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

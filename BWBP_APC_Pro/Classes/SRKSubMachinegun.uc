@@ -220,7 +220,6 @@ simulated function TickSighting (float DT)
 			SightingPhase = 0.0;
 			SightingState = SS_None;
 			ScopeDownAnimEnd();
-			DisplayFOv = default.DisplayFOV;
 		}
 	}
 }
@@ -302,8 +301,7 @@ defaultproperties
      WeaponModes(3)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     SightOffset=(X=-20.000000,Y=-0.350000,Z=15.800000)
-     SightDisplayFOV=40.000000
+     SightOffset=(X=0.000000,Y=-0.350000,Z=15.800000)
      CockSound=(Sound=Sound'BWBP_CC_Sounds.SRKS.SRKS-Cock',Volume=1.600000)
      ClipInSound=(Sound=Sound'BWBP_CC_Sounds.SRKS.SRKS-ClipIn',Volume=1.600000)
      ClipOutSound=(Sound=Sound'BWBP_CC_Sounds.SRKS.SRKS-ClipOut',Volume=1.600000)
@@ -328,7 +326,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=3
      PickupClass=Class'BWBP_APC_Pro.SRKSmgPickup'
-     PlayerViewOffset=(X=10.000000,Y=6.000000,Z=-12.000000)
+     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-14.000000)
      BobDamping=2.250000
      AttachmentClass=Class'BWBP_APC_Pro.SRKSmgAttachment'
      IconMaterial=Texture'BWBP_CC_Tex.SRKSmg.SmallIcon_SPXSmg'

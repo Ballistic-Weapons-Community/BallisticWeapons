@@ -356,7 +356,6 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	SightOffset=(X=-5.000000,Y=-0.100000,Z=27.000000)
-	SightDisplayFOV=55.000000
 	SightPivot=(Pitch=128)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'FM13WeaponParamsArena'

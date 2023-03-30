@@ -176,6 +176,7 @@ defaultproperties
      AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      FlashScale=2.000000
+	 FlashBone="Muzzle"
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      TracerMode=MU_Both
      InstantMode=MU_Both

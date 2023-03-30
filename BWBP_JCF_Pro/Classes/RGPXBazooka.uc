@@ -317,7 +317,6 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightPivot=(Yaw=-512)
     SightOffset=(X=-20.000000,Y=-9.500000,Z=9.750000)
-    SightDisplayFOV=40.000000
 	SightingTime=0.350000
 	ParamsClasses(0)=Class'RGPXWeaponParamsArena'
 	ParamsClasses(1)=Class'RGPXWeaponParamsClassic'
