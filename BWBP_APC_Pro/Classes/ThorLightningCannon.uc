@@ -206,7 +206,6 @@ defaultproperties
      bNoCrosshairInScope=True
      SightPivot=(Pitch=1024,Roll=-768)
      SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-     SightDisplayFOV=40.000000
      SightingTime=0.200000
      FireModeClass(0)=Class'BWBP_APC_Pro.ThorLCPrimaryFire'
      FireModeClass(1)=Class'BWBP_APC_Pro.ThorLCSecondaryFire'

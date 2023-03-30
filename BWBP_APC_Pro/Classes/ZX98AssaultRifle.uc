@@ -289,7 +289,6 @@ defaultproperties
      bNoCrosshairInScope=True
      SightPivot=(Pitch=64)
      SightOffset=(X=-10.000000,Y=-0.500000,Z=12.500000)
-     SightDisplayFOV=25.000000
      GunLength=16.000000
 	 SightFXClass=Class'BWBP_APC_Pro.ZX98SightLEDs'
 	 ScopeViewTex=Texture'BWBP_CC_Tex.AR.M30A1-Scope'
@@ -310,7 +309,7 @@ defaultproperties
      InventoryGroup=4
      GroupOffset=10
      PickupClass=Class'BWBP_APC_Pro.ZX98Pickup'
-     PlayerViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
+     PlayerViewOffset=(X=7.000000,Y=5.000000,Z=-10.500000)
      BobDamping=2.250000
      AttachmentClass=Class'BWBP_APC_Pro.ZX98Attachment'
      IconMaterial=Texture'BWBP_CC_Tex.AR.ARSmallIcon'

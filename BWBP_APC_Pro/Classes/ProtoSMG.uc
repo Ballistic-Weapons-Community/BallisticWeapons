@@ -654,9 +654,9 @@ defaultproperties
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 
 	CurrentWeaponMode=0
-	bNoCrosshairInScope=False
+	bNoCrosshairInScope=True
 	SightPivot=(Pitch=128)
-	SightOffset=(X=-10.000000,Y=-0.950000,Z=25.000000)
+	SightOffset=(X=-20.000000,Y=-0.950000,Z=24.950000)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'ProtoWeaponParams' 
 	ParamsClasses(1)=Class'ProtoWeaponParamsClassic' 
@@ -673,14 +673,13 @@ defaultproperties
 	AIRating=0.750000
 	CurrentRating=0.750000
 	Description="After the restrictions of photon based weaponry was lifted, several manufacturers began working on making new weapons with the technology in mind.  One such company was NDTR Industries, who saw the development of the EP90 and decided to make a PDW like that on their own, utilizing the old P90 as their inspiration.  Now known as the FCO1-B Proto PDW, as the name implies, it's still a prototype with only a few 100 being made for testing.  Still relatively potent thanks to an integral silencer and a unique second magazine that is actually a photon battery, powering a special burst that disorients and disables any organic or mechanized target."
-	DisplayFOV=55.000000
 	Priority=41
 	HudColor=(B=135)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=10
 	PickupClass=Class'BWBP_APC_Pro.ProtoPickup'
-	PlayerViewOffset=(X=16.000000,Y=7.000000,Z=-17.000000)
+	PlayerViewOffset=(X=10.000000,Y=6.000000,Z=-18.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_APC_Pro.ProtoAttachment'
 	IconMaterial=Texture'BWBP_CC_Tex.ProtoLMG.SmallIcon_ProtoLMG'

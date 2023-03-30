@@ -389,8 +389,6 @@ defaultproperties
 	CockAnimRate=1.25
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=256)
-	SightOffset=(X=5.000000,Z=12.700000)
-	SightDisplayFOV=40.000000
 	AIRating=0.8
 	CurrentRating=0.8
 	SightZoomFactor=0.85
@@ -401,14 +399,14 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_SWC_Pro.MDKSecondaryFire'
 	SelectForce="SwitchToAssaultRifle"
 	Description="Primary: 9mm Fire||Alt Add/Remove Scope/Silencer||The MDK Modular SMG was created to fill a variety of roles, featuring different rates of fire and varying degrees of accuracy and power to go with them. Though it is fairly compact compared to larger guns, it is quite heavy and cannot be dual-wielded. Black & Wood saw particularly high sales among soldiers and law enforcement officers on fringe colonies that had previously been attacked by the Skrith, as it fills a variety of roles that would normally require multiple weapons."
-	DisplayFOV=55.000000
 	Priority=32
 	HudColor=(B=200,G=150,R=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=1
 	PickupClass=Class'BWBP_SWC_Pro.MDKPickup'
-	PlayerViewOffset=(X=30.000000,Y=12.000000,Z=-30.000000)
+	SightOffset=(X=10.000000,Y=-0.050000,Z=41.000000)
+	PlayerViewOffset=(X=25.000000,Y=11.000000,Z=-33.000000)
 	AttachmentClass=Class'BWBP_SWC_Pro.MDKAttachment'
 	IconMaterial=Texture'BWBP_SWC_Tex.Icons.SmallIcon_MDK'
 	IconCoords=(X2=127,Y2=31)

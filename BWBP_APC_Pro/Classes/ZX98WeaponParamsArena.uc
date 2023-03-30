@@ -97,6 +97,7 @@ defaultproperties
 		CockAnimRate=1.400000
 		ZoomType=ZT_Fixed
 		SightOffset=(X=-10.000000,Y=-0.500000,Z=12.500000)
+		ViewOffset=(X=7.000000,Y=5.000000,Z=-10.500000)
 		SightPivot=(Pitch=64)
 		PlayerSpeedFactor=0.95
 		PlayerJumpFactor=0.95

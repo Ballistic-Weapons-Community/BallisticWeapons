@@ -84,7 +84,6 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.300000,Y1=0.300000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.700000
 	SightOffset=(X=-24.000000,Y=-0.500000,Z=18.000000)
-	SightDisplayFOV=40.000000
 	MeleeFireClass=Class'BWBP_SWC_Pro.A2WMeleeFire'
 	ParamsClasses(0)=Class'A2WWeaponParams'
 	ParamsClasses(1)=Class'A2WWeaponParamsClassic'
@@ -102,7 +101,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=5
 	PickupClass=Class'BWBP_SWC_Pro.A2WPickup'
-	PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
+	PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-15.000000)
 	AttachmentClass=Class'BWBP_SWC_Pro.A2WAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A42'
 	IconCoords=(X2=127,Y2=31)

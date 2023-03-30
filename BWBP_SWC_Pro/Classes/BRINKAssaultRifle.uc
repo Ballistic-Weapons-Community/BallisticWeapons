@@ -762,8 +762,7 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Single Barrel")
 	bNoCrosshairInScope=True
 	bShowChargingBar=True
-	SightOffset=(X=-20.000000,Y=-0.240000,Z=17.750000)
-	SightDisplayFOV=25.000000
+	SightOffset=(X=-7.000000,Y=-0.40000,Z=16.200000)
 	ParamsClasses(0)=Class'BRINKAssaultRifleWeaponParamsArena'
 	ParamsClasses(1)=Class'BRINKAssaultRifleWeaponParamsClassic'
 	ParamsClasses(2)=Class'BRINKAssaultRifleWeaponParamsRealistic'

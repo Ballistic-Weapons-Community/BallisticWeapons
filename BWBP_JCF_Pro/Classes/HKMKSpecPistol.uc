@@ -539,8 +539,6 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-15.000000,Z=8.700000)
-	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'HKMKSpecWeaponParams'
 	ParamsClasses(1)=Class'HKMKSpecWeaponParamsClassic'
 	ParamsClasses(2)=Class'HKMKSpecWeaponParamsRealistic'
@@ -559,7 +557,8 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=14
 	PickupClass=Class'BWBP_JCF_Pro.HKMKSpecPickup'
-	PlayerViewOffset=(X=3.000000,Y=9.000000,Z=-10.000000)
+	SightOffset=(X=0.000000,Y=-4.300000,Z=11.600000)
+	PlayerViewOffset=(X=-2.000000,Y=7.000000,Z=-11.000000)
 	AttachmentClass=Class'BWBP_JCF_Pro.HKMKSpecAttachment'
 	IconMaterial=Texture'BWBP_JCF_Tex.HKMK.SmallIcon_HKMK'
 	IconCoords=(X2=127,Y2=31)

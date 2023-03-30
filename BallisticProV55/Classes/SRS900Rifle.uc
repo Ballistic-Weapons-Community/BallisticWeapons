@@ -605,7 +605,7 @@ defaultproperties
 	StabTitleTex=Texture'BW_Core_WeaponTex.SRS900-UI.StabilityIcon'
 	StabBackTex=Texture'BW_Core_WeaponTex.SRS900-UI.StabilityScreen'
 	StabCurveTex=FinalBlend'BW_Core_WeaponTex.SRS900-UI.StabilityCurve-FB'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_SRS900'
 	
 	bWT_Bullet=True

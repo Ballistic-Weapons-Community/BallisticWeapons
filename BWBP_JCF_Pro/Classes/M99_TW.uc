@@ -246,7 +246,6 @@ defaultproperties
     BringUpTime=1.000000
 	bCanThrow=False
 	bNoInstagibReplace=True
-	DisplayFOV=90.000000
     ClientState=WS_BringUp
 	Priority=1
 	PlayerViewOffset=(X=-100.000000)

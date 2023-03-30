@@ -125,8 +125,7 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      FullZoomFOV=50.000000
      bNoCrosshairInScope=True
-     SightOffset=(X=-10.000000,Y=-0.30000,Z=11.280000)
-     SightDisplayFOV=38.000000
+     SightOffset=(X=-3.000000,Y=-0.30000,Z=11.280000)
      SightingTime=0.250000
 	 ReloadAnimRate=1.25
      GunLength=16.000000
@@ -148,7 +147,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
      PickupClass=Class'BWBP_JCF_Pro.M7A3Pickup'
-     PlayerViewOffset=(X=10.000000,Y=4.000000,Z=-7.500000)
+     PlayerViewOffset=(X=6.000000,Y=3.000000,Z=-8.000000)
      AttachmentClass=Class'BWBP_JCF_Pro.M7A3Attachment'
      IconMaterial=Texture'BWBP_JCF_Tex.M7A3.SmallIcon_M7A3'
      IconCoords=(X2=127,Y2=35)

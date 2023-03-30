@@ -464,7 +464,6 @@ defaultproperties
      CurrentWeaponMode=0
      SightPivot=(Pitch=450)
      SightOffset=(X=-20.000000,Y=0.310000,Z=12.500000)
-     SightDisplayFOV=40.000000
 	 PlayerViewOffset=(X=9.000000,Y=4.000000,Z=-7.000000)
 	 GunLength=128.000000
      FireModeClass(0)=Class'BWBP_SWC_Pro.SkrithStaffPrimaryFire'
