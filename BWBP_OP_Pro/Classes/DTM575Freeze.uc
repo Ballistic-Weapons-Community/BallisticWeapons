@@ -2,8 +2,10 @@ class DTM575Freeze extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%k's freeze rounds put %o on ice."
-     DeathStrings(1)="%o was turned into a snow-cone by %k's freeze rounds."
+     DeathStrings(0)="%k brought Fimbulvetr to %o in a portable, machinegun package."
+     DeathStrings(1)="%o was pelted to death by %k's 7.62mm hailstorm."
+     DeathStrings(2)="%k dropped %o's temperature to hypothermic levels."
+     DeathStrings(3)="%o went to Niflheim via %k's frostbitten bullets."
      SimpleKillString="M575 Freeze Rounds"
      FlashThreshold=0
      FlashV=(X=350.000000,Y=350.000000,Z=700.000000)

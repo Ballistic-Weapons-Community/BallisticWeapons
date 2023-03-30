@@ -10,7 +10,7 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=7500.000000,Max=7500.000000)
 		RangeAtten=0.30000
-		TraceCount=6
+		TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=9
@@ -43,7 +43,7 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=4000.000000,Max=6000.000000)
 		RangeAtten=0.300000
-		TraceCount=12
+		TraceCount=14
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=9
@@ -105,9 +105,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		ReloadAnimRate=1.500000
-		MagAmmo=10
+		MagAmmo=8
 		SightingTime=0.35
-        InventorySize=8
+        InventorySize=4
 		ViewOffset=(X=5.000000,Y=3.000000,Z=-6.500000)
 		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

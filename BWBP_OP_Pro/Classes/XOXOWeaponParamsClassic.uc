@@ -13,7 +13,7 @@ defaultproperties
 		Speed=5000.000000
 		MaxSpeed=10000.000000
 		AccelSpeed=30000.000000
-		Damage=20
+		Damage=15
 		DamageRadius=48.000000
 		MomentumTransfer=-1000.000000
 		RadiusFallOffType=RFO_Linear
@@ -27,8 +27,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicFastPrimaryFireParams
-		FireInterval=0.090000
-		AmmoPerFire=1
+		FireInterval=0.150000
+		AmmoPerFire=2
 		FireAnim="Fire2"
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicFastPrimaryEffectParams'
@@ -130,7 +130,7 @@ defaultproperties
 		FireInterval=0.070000
 		FireAnim="SecFireLoop"
 		FireEndAnim="SecFireEnd"	
-	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
 	End Object
 	
 	//=================================================================

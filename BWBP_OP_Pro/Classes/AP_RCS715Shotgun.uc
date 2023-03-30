@@ -15,7 +15,7 @@ defaultproperties
      PickupMessage="You picked up 3 magazines for the RCS-715 Shotgun."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.TacticalBuster.AA12AmmoPickup'
-     DrawScale=2.000000
+     DrawScale=0.100000
      CollisionRadius=8.000000
      CollisionHeight=4.500000
 }

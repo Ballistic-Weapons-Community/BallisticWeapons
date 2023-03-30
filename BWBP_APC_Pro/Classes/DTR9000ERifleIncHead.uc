@@ -31,12 +31,12 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o had their brains sizzling by %k's incendiary magnum bullet to the head."
-     DeathStrings(1)="%k roasted %o so much that their head exploded in a fiery ball."
+     DeathStrings(0)="%o had %vh brains sizzling by %k's incendiary magnum bullet to the head."
+     DeathStrings(1)="%k roasted %o so much that %vh head exploded in a fiery ball."
      DeathStrings(2)="%o's gray matter was the primary ingredient of %k's crispy brains recipe."
-     DeathStrings(3)="%k singed %o's tongue after force feeding them a very hot bullet down their throat."
-	 DeathStrings(4)="%o's cheeks were bright red after %k shot them with an incendiary amped Chimera."
-	 DeathStrings(5)="%k turned %o's head into a beacon after igniting their cranium."
+     DeathStrings(3)="%k singed %o's tongue after force feeding %vm a very hot bullet down their throat."
+     DeathStrings(4)="%o's cheeks were bright red after %k shot %vm with an incendiary amped Chimera."
+     DeathStrings(5)="%k turned %o's head into a beacon after igniting %vh cranium."
      HipString="Luck"
      AimedString="Scoped"
      bSnipingDamage=True

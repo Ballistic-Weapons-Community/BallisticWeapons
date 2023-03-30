@@ -10,9 +10,9 @@ class DTScarabGrenadeRadius extends DT_BWExplode;
 
 defaultproperties
 {
-     DeathStrings(0)="%o discovered one of %k's lurking pineapples."
-     DeathStrings(1)="%k's pineapple crawled it's way into %o's path."
-     DeathStrings(2)="%o couldn't get enough of %k's pineapple delight."
+     DeathStrings(0)="%o discovered a nest of %k's Scarabs way too late."
+     DeathStrings(1)="%Surprise, %o! It's a swarm of scarabs courtesy of %k!"
+     DeathStrings(2)="%o couldn't get enough pineapples, so %k brought a Scarab as a gift."
      InvasionDamageScaling=3.000000
      DamageIdent="Grenade"
      WeaponClass=Class'BWBP_APC_Pro.ScarabGrenade'

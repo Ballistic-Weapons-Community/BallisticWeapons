@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%k's swarm of scarabs devoured %o alive."
      DeathStrings(2)="%o couldn't outrun %k's swarm and was eaten up as a result."
      DeathStrings(3)="%k caught %o in a storm of cluster bombs, the hidden 11th plague."
-     DeathStrings(4)="%o had their shins shredded by %k's cluster bombs."
+     DeathStrings(4)="%o had %vh shins shredded by %k's cluster bombs."
      BloodManagerName="BallisticProV55.BloodMan_BluntSmall"
      bDetonatesBombs=False
      InvasionDamageScaling=3.000000

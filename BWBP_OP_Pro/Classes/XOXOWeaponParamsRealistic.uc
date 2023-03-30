@@ -126,7 +126,7 @@ defaultproperties
 		FireInterval=0.070000
 		FireAnim="SecFireLoop"
 		FireEndAnim="SecFireEnd"	
-	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
 	End Object
 	
 	//=================================================================

@@ -44,9 +44,9 @@ defaultproperties
 		Damage=60
         HeadMult=2.0f
         LimbMult=0.75f
-		DamageType=Class'BWBP_SKC_Pro.DTAH208Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH208PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH208Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000

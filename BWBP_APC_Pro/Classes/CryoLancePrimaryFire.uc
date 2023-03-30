@@ -127,9 +127,9 @@ defaultproperties
      WallPenetrationForce=16.000000
      Damage=20.000000
      RangeAtten=0.350000
-     DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'
+     DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
+     DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
+     DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
      PenetrateForce=150
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=False

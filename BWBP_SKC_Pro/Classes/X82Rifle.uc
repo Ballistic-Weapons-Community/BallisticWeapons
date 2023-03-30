@@ -357,7 +357,7 @@ defaultproperties
 	ManualLines(2)="Weapon Function activates infrared vision. Viable infantry targets will be bordered by a box in the weapon's scope.||Effective at long range. Very effective at long range when deployed."
 	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
 	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	BigIconMaterial=Texture'BWBP_SKC_Tex.X82.BigIcon_X82'
 	
 	bWT_Bullet=True
@@ -427,7 +427,7 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83'
 	DrawScale=0.450000
-	Skins(0)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'
-	Skins(1)=Texture'UT2004Weapons.Pickups.ClassicSniperAmmoT'
-	Skins(2)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'
+	Skins(2)=Texture'BW_Core_WeaponTex.Ammo.ClassicSniperAmmoT'
 }

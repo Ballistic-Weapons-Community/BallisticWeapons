@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%k was in spitting distance to spit some plasma bolts towards %o."
      DeathStrings(2)="%o has several scorching holes as a gift from %k."
      DeathStrings(3)="%k's viper sunk it's fangs into %o's ribcage."
-	 DeathStrings(4)="%o's limbs atrophied after getting bit by %k."
+     DeathStrings(4)="%o's limbs atrophied after getting bit by %k."
      BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
      bIgniteFires=True
      DamageIdent="Energy"
@@ -22,8 +22,8 @@ defaultproperties
      bOnlySeverLimbs=True
      WeaponClass=Class'BWBP_APC_Pro.E5PlasmaRifle'
      DeathString="%k melted a burning hole through %o with the E-5 ViPeR."
-     FemaleSuicide="%o's ViPeR bit her in half."
-     MaleSuicide="%o's ViPeR bit him in half."
+     FemaleSuicide="%o's ASP bit her in half."
+     MaleSuicide="%o's ASP bit him in half."
      GibModifier=2.000000
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000

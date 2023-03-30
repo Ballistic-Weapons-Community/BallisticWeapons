@@ -150,14 +150,14 @@ defaultproperties
      ClipBone=
      SmokeBone=
      PlayerSpeedFactor=0.750000
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=15)
-     BigIconMaterial=Texture'BWBP_SWC_Tex.AmmoPack.BigIcon_AmmoPack'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
+     BigIconMaterial=Texture'BWBP_OP_Tex.AmmoPack.BigIcon_AmmoPack'
      bWT_Grenade=True
      SpecialInfo(0)=(Info="0.0;5.0;-999.0;25.0;-999.0;0.0;0.5")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-     FireModeClass(0)=Class'BWBP_SWC_Pro.L8GIPrimaryFire'
-     FireModeClass(1)=Class'BWBP_SWC_Pro.L8GISecondaryFire'
+     FireModeClass(0)=Class'BWBP_OP_Pro.L8GIPrimaryFire'
+     FireModeClass(1)=Class'BWBP_OP_Pro.L8GISecondaryFire'
      SelectForce="SwitchToAssaultRifle"
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(G=200,R=200,A=128),Color2=(A=212),StartSize1=98,StartSize2=101)
      NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
@@ -167,32 +167,33 @@ defaultproperties
      Priority=20
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=0
-     PickupClass=Class'BWBP_SWC_Pro.L8GIPickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PickupClass=Class'BWBP_OP_Pro.L8GIPickup'
+     PlayerViewOffset=(X=0.000000,Y=10.000000,Z=-13.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
-     AttachmentClass=Class'BWBP_SWC_Pro.L8GIAttachment'
-     IconMaterial=Texture'BWBP_SWC_Tex.AmmoPack.SmallIcon_AmmoPack'
+     AttachmentClass=Class'BWBP_OP_Pro.L8GIAttachment'
+     IconMaterial=Texture'BWBP_OP_Tex.AmmoPack.SmallIcon_AmmoPack'
      IconCoords=(X2=127,Y2=31)
      ItemName="L8 GI Ammunition Pack"
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_AmmoPack'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_AmmoPack'
 	 ParamsClasses(0)=Class'L8GIAmmoPackWeaponParamsArena'
 	 ParamsClasses(1)=Class'L8GIAmmoPackWeaponParamsClassic'
 	 ParamsClasses(2)=Class'L8GIAmmoPackWeaponParamsRealistic'
      DrawScale=0.400000
-	 Skins(0)=Texture'BW_Core_WeaponTex.Ammo.AmmoPackSkin'
-	 Skins(1)=Texture'BW_Core_WeaponTex.A73.A73AmmoSkin'
-	 Skins(2)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
-	 Skins(3)=Texture'BW_Core_WeaponTex.M353.M353_Ammo'
-	 Skins(4)=Texture'BW_Core_WeaponTex.MRT6.MRT6Skin'
-	 Skins(5)=Texture'BW_Core_WeaponTex.MRT6.MRT6Small'
-	 Skins(6)=Texture'BW_Core_WeaponTex.FP7.FP7Grenade'
-	 Skins(7)=Texture'BW_Core_WeaponTex.M50.M900Grenade'
-	 Skins(8)=Shader'BW_Core_WeaponTex.M50.M50Skin2Shiney'
-	 Skins(9)=Shader'BW_Core_WeaponTex.M806.M806_Main-SD'
-	 Skins(10)=Texture'BW_Core_WeaponTex.NRP57.Grenade'
-	 Skins(11)=Shader'BW_Core_WeaponTex.R78.R78_Main-SD'
-	 Skins(12)=Texture'BW_Core_WeaponTex.M75.M75Clip'
-	 Skins(13)=FinalBlend'BW_Core_WeaponTex.G5.G5RocketFinal'
-	 Skins(14)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
+	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	 Skins(1)=Texture'BW_Core_WeaponTex.Ammo.AmmoPackSkin'
+	 Skins(2)=Texture'BW_Core_WeaponTex.A73.A73AmmoSkin'
+	 Skins(3)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
+	 Skins(4)=Texture'BW_Core_WeaponTex.M353.M353_Ammo'
+	 Skins(5)=Texture'BW_Core_WeaponTex.MRT6.MRT6Skin'
+	 Skins(6)=Texture'BW_Core_WeaponTex.MRT6.MRT6Small'
+	 Skins(7)=Texture'BW_Core_WeaponTex.FP7.FP7Grenade'
+	 Skins(8)=Texture'BW_Core_WeaponTex.M50.M900Grenade'
+	 Skins(9)=Shader'BW_Core_WeaponTex.M50.M50Skin2Shiney'
+	 Skins(10)=Shader'BW_Core_WeaponTex.M806.M806_Main-SD'
+	 Skins(11)=Texture'BW_Core_WeaponTex.NRP57.Grenade'
+	 Skins(12)=Shader'BW_Core_WeaponTex.R78.R78_Main-SD'
+	 Skins(13)=Texture'BW_Core_WeaponTex.M75.M75Clip'
+	 Skins(14)=FinalBlend'BW_Core_WeaponTex.G5.G5RocketFinal'
+	 Skins(15)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
 }

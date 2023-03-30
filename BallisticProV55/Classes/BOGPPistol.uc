@@ -265,7 +265,7 @@ defaultproperties
 {
 	GrenadeBone="GrenadePistolGrenade"
 	bShouldDualInLoadout=False
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.BOGP.BigIcon_BOGP'
 	BigIconCoords=(Y1=32,Y2=230)
@@ -326,6 +326,7 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_BORT'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
+	Skins(2)=Shader'BW_Core_WeaponTex.BOGP.BOGP_ScopeShine'
 }

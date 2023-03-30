@@ -231,7 +231,6 @@ simulated function bool HasAmmo()
 defaultproperties
 {
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
-	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=4)
 	BeltLength=8
 	BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOn')
 	BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOff')
@@ -305,11 +304,10 @@ defaultproperties
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925Turret'
 	DrawScale=0.230000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
-	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Main'
-	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
-	Skins(4)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(5)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
 	CollisionHeight=24.000000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Main'
+	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Small'
+	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
+	Skins(4)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
 }

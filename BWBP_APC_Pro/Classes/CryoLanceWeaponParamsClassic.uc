@@ -10,9 +10,9 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		RangeAtten=0.350000
 		Damage=20
-		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'
+		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.500000
@@ -91,7 +91,7 @@ defaultproperties
 		ReloadAnimRate=1.10000
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000		
 		DisplaceDurationMult=1

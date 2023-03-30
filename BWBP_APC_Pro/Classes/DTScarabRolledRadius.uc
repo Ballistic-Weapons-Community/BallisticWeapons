@@ -10,8 +10,8 @@ class DTScarabRolledRadius extends DT_BWExplode;
 
 defaultproperties
 {
-     DeathStrings(0)="%k rolled a pineapple into %o's town."
-     DeathStrings(1)="%o tripped on %k's patroling pineapple."
+     DeathStrings(0)="%o walked down the street, failing to see %k's rolling Scarabs."
+     DeathStrings(1)="%k bowled a Scarab towards %o's direction, getting an explosive strike."
      InvasionDamageScaling=3.000000
      DamageIdent="Grenade"
      WeaponClass=Class'BWBP_APC_Pro.ScarabGrenade'

@@ -10,10 +10,11 @@ class DT_AH104Immolation extends DT_BWFire;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was immolated by %k."
-     DeathStrings(1)="%k's incineration finally overcame %o."
-     DeathStrings(2)="%o ran around sizzling and popping as %k set %vm alight."
-     DeathStrings(3)="%k coated %o with flaming gas."
+     DeathStrings(0)="%o was sent to hell by %k's hellfire's fire."
+     DeathStrings(1)="%k's hellfire cremated %o to ashes, ready to be stuffed in an urn."
+     DeathStrings(2)="%k overcooked %o by about thousand degrees."
+     DeathStrings(3)="%o couldn’t handle %k's heat, so %ve got doused with flame instead."
+     DeathStrings(4)="%k showed off the Hellfire to %o, it's too hot to handle for %vm."
      SimpleKillString="AH104 Flamethrower"
      DamageIdent="Assault"
      WeaponClass=Class'BWBP_SKC_Pro.AH104Pistol'

@@ -84,15 +84,13 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 defaultproperties
 {
-     ImpactManager=Class'BallisticProV55.IM_E23Projectile'
+     WeaponClass=Class'BWBP_APC_Pro.E5PlasmaRifle'
+	 ImpactManager=Class'BallisticProV55.IM_E23Projectile'
      bRandomStartRotation=False
-
      MyRadiusDamageType=Class'BWBP_APC_Pro.DTE5Plasma'
      bUsePositionalDamage=True
-          
      DamageTypeHead=Class'BWBP_APC_Pro.DTE5PlasmaHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-
      MyDamageType=Class'BWBP_APC_Pro.DTE5Plasma'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

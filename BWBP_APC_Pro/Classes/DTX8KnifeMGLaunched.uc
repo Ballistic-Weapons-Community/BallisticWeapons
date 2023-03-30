@@ -10,9 +10,9 @@ class DTX8KnifeMGLaunched extends DT_BWBlade;
 
 defaultproperties
 {
-     DeathStrings(0)="%k showed %o how in %kh country, KNIFE SHOOTS YOU."
-     DeathStrings(1)="%k hit the wrong trigger and pegged %o with a knife."
-     DeathStrings(2)="%o mistakenly brought a gun to %k's ballistic knife fight."
+     DeathStrings(0)="%o never saw %k's small ballistic knife on %kh big PKMA."
+     DeathStrings(1)="%k showed %o it's not the size that matters, it's how you use it."
+     DeathStrings(2)="%o mistakenly brought a gun to %k's ballistic knife fight, again."
      SimpleKillString="PKMA - X8 Ballistic Knife"
      bCanBeBlocked=False
      WeaponClass=Class'BWBP_APC_Pro.PKMMachinegun'

@@ -10,10 +10,11 @@ class DTFM14Shotgun extends DT_BWShell;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was chewed up like a piece of meat by %k's Pitbull."
-     DeathStrings(1)="%k unleashed the Pitbull's breath on %o."
-     DeathStrings(2)="%o couldn't slay the Pitbull and got roasted by %k's FM14."
-     DeathStrings(3)="%k sicced his Pitbull onto %o, good shotgun gets a treat."
+     DeathStrings(0)="%o managed to blunder %vh way right in front of %k's blunderbuss."
+     DeathStrings(1)="%k managed to hunt %o down and open up a massive hole where %vh spine used to be."
+     DeathStrings(2)="%o never saw %ks 8 gauge slug from several feet away, taking one straight to the lungs."
+     DeathStrings(3)="%k opened a window to %o's heart with a high powered blunderbuss."
+     DeathStrings(4)="%o was a victim of gnasher brutality, %k's gnasher to be precise."
      InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBP_APC_Pro.FM14Shotgun'

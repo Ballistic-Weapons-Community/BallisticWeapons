@@ -10,10 +10,10 @@ class DTFM13Immolation extends DT_BWFire;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was immolated by %k."
-     DeathStrings(1)="%k's incineration finally overcame %o."
-     DeathStrings(2)="%o ran around sizzling and popping as %k set %vm alight."
-     DeathStrings(3)="%k coated %o with flaming gas."
+     DeathStrings(0)="%o's bitter, burned corpse made %k's Pitbull very sick."
+     DeathStrings(1)="%k's Pitbull feasted on %o's cooked remains for dinner."
+     DeathStrings(2)="%o had %vh body covered with burns thanks to %k's FM13."
+     DeathStrings(3)="%k coated %o with flaming gas for %kh Pitbull to burn off."
      InvasionDamageScaling=1.500000
      DamageIdent="Machinegun"
      WeaponClass=Class'BWBP_APC_Pro.FM13Shotgun'

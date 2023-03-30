@@ -29,10 +29,10 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o went dark on %k due to having his mind blown by the Reaper."
+     DeathStrings(0)="%o went dark on %k due to having %vh mind blown by the Reaper."
      DeathStrings(1)="%k's Reaper punched a fist-sized hole into %o's tiny head."
-     DeathStrings(2)="%o's mind couldn’t handle the gauss tech used by %k's Reaper."
-     DeathStrings(3)="%k popped off on %o, taking his head off his shoulders."
+     DeathStrings(2)="%o's mind couldn't handle the gauss tech used by %k's Reaper."
+     DeathStrings(3)="%k popped off on %o, taking his head off %vh shoulders."
      EffectChance=0.500000
      bHeaddie=True
      DamageIdent="Assault"

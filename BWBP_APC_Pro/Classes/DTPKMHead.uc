@@ -31,9 +31,8 @@ defaultproperties
 {
      DeathStrings(0)="%o's head was cleaned out of any political thoughts by %k's PKMA."
      DeathStrings(1)="%k purged %o's mind of negative feelings and gray matter."
-     DeathStrings(2)="%o got his skull shattered by %k's heavy PKMA boolets"
-	 DeathStrings(3)="%k's PKMA cleared %k's pores and brains."
-	 DeathStrings(4)="%o got his head misted by %k."
+     DeathStrings(2)="%o got %vh skull shattered by %k's heavy PKMA boolets."
+     DeathStrings(3)="%k's PKMA cleared %k's pores and brains."
      bHeaddie=True
      DamageIdent="Machinegun"
      WeaponClass=Class'BWBP_APC_Pro.PKMMachinegun'

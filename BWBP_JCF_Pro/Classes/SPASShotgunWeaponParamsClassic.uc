@@ -7,13 +7,13 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=5500.000000,Max=7000.000000)
 		WaterTraceRange=5000.0
 		RangeAtten=0.150000
-		//TraceCount=1
-		//TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-		//ImpactManager=Class'BallisticProV55.IM_BigBullet'
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_BigBullet'
 		Damage=100.0
 		HeadMult=1.35
 		LimbMult=0.3
@@ -40,7 +40,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		AimedFireAnim="SightFire"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -123,7 +123,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		InventorySize=35
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
 		bNeedCock=True
@@ -141,7 +141,7 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S2",Index=1)
-		InventorySize=10
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
 		MagAmmo=5
@@ -158,7 +158,7 @@ defaultproperties
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S3",Index=1)
-		InventorySize=10
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
 		MagAmmo=5
@@ -175,7 +175,7 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S4",Index=1)
-		InventorySize=10
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
 		MagAmmo=5
@@ -192,7 +192,7 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S5",Index=1)
-		InventorySize=10
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
 		MagAmmo=5

@@ -59,13 +59,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12Pickup'
-     PickupDrawScale=1.300000
+     PickupDrawScale=0.100000
      InventoryType=Class'BWBP_OP_Pro.RCS715Shotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the RCS-715 Tactical Buster."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12Pickup'
      Physics=PHYS_None
-     DrawScale=2.000000
+     DrawScale=0.100000
      CollisionHeight=3.000000
 }

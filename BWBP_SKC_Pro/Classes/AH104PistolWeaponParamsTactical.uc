@@ -153,10 +153,45 @@ defaultproperties
 		CamoName="Red"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainRed",Index=1,AIndex=0,PIndex=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-Misc",Index=2,AIndex=1,PIndex=2)
-		Weight=10
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Green
+		Index=2
+		CamoName="Green"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainGreen",Index=1,AIndex=0,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Tiger
+		Index=3
+		CamoName="Tiger"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainTiger",Index=1,AIndex=0,PIndex=1)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Meat
+		Index=4
+		CamoName="Meat"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainMeat",Index=1,AIndex=0,PIndex=1)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Gold
+		Index=5
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainGoldShine",Index=1,AIndex=0,PIndex=1)
+		Weight=1
 	End Object
 	
 	Camos(0)=WeaponCamo'AH_Black'
 	Camos(1)=WeaponCamo'AH_Red'
+	Camos(2)=WeaponCamo'AH_Green'
+	Camos(3)=WeaponCamo'AH_Tiger'
+	Camos(4)=WeaponCamo'AH_Meat'
+	Camos(5)=WeaponCamo'AH_Gold'
 }

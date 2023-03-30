@@ -102,7 +102,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-        DisplaceDurationMult=0.75
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
+	    DisplaceDurationMult=0.75
         MagAmmo=1
         SightingTime=0.2
         InventorySize=5

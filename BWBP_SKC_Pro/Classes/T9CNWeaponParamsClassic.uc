@@ -89,7 +89,7 @@ defaultproperties
 		FallingChaos=0.400000
 		AimDamageThreshold=480.000000
 		ChaosDeclineTime=0.450000
-		ChaosSpeedThreshold=1200.000000
+		ChaosSpeedThreshold=11200.000000
 		ChaosTurnThreshold=196608.000000
 	End Object
 	
@@ -107,8 +107,8 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=1f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MainShine',Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-SlideSilverShine',Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		SightPivot=(Pitch=128)
 		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
@@ -137,9 +137,9 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainE",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideE",Index=3)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		SightPivot=(Pitch=128)
 		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
@@ -180,8 +180,8 @@ defaultproperties
 		Index=2
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainBlack",Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideBlack",Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-MainBlack",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-SlideBlack",Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-MiscBlack",Index=4,Index=4,PIndex=-1)
 		Weight=20
 	End Object
@@ -211,7 +211,7 @@ defaultproperties
 		CamoName="Two-Tone"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineB",Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineB",Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShine",Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-MiscBlack",Index=4,Index=4,PIndex=-1)
 		Weight=10
 	End Object

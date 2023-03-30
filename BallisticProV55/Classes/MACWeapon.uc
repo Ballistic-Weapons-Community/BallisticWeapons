@@ -425,7 +425,7 @@ defaultproperties
 	Shells(0)="Shell1"
 	Shells(1)="Shell2"
 	Shells(2)="Shell3"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Artillery.BigIcon_Artillery'
 	BigIconCoords=(Y1=24,Y2=225)
@@ -502,6 +502,7 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMR'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
-	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
+	Skins(2)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
 }

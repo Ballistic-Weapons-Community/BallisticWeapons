@@ -425,7 +425,7 @@ defaultproperties
 	UndeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-UnDeploy'
 
 
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XMV850'
 	BigIconCoords=(Y2=255)
@@ -497,6 +497,8 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMV850'
 	DrawScale=0.600000
-	Skins(0)=Texture'BW_Core_WeaponTex.XMV850.XMV850_Main'
 	SoundRadius=128.000000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.XMV850.XMV850_Main'
+	Skins(2)=Shader'BW_Core_WeaponTex.XMV850.XMV850_Barrels_SD'
 }

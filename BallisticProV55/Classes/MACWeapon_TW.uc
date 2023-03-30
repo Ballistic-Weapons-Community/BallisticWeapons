@@ -154,7 +154,7 @@ function byte BestMode()
 
 defaultproperties
 {
-	TeamSkins(0)=(SkinNum=1)
+	TeamSkins(0)=(SkinNum=0)
 	ReloadAnimRate=2.500000
 	GunLength=0.000000
 	bUseSpecialAim=True
@@ -175,5 +175,4 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMRTurret'
 	DrawScale=0.250000
 	PrePivot=(Z=8.000000)
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

@@ -143,7 +143,6 @@ defaultproperties
     bLeftLoaded=True
     bRightLoaded=True
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-    TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRT6'
     
     bWT_Shotgun=True
@@ -197,5 +196,4 @@ defaultproperties
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BW_Core_WeaponTex.MRT6.MRT6Skin'
     Skins(2)=Texture'BW_Core_WeaponTex.MRT6.MRT6Small'
-    Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

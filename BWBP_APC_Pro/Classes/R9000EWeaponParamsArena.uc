@@ -124,7 +124,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		ViewOffset=(X=12.000000,Y=7.000000,Z=-14.000000)
 		MagAmmo=6
-        InventorySize=12
+        InventorySize=5
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

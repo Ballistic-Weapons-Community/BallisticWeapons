@@ -12,8 +12,10 @@ class DT_KF8XBoltPoison extends DT_BWMiscDamage;
 defaultproperties
 {
      DeathStrings(0)="%k's KF-8X bolt delivered a lethal toxic dose to %o."
-     DeathStrings(1)="%o succumbed to %k's toxic bolts."
-     DeathStrings(2)="%k's xbow poison eventually overcame %o's fragile constitution."
+     DeathStrings(1)="%o OD'ed on %k's poisonous bolts, failing to take the prescribed dosage."
+     DeathStrings(2)="%k and %kh KF-8X forced %o to take a nap thanks to some toxic melatonin."
+     DeathStrings(3)="%k injected some toxic bolts into %o's bloodstream, mmmmm... poison."
+     DeathStrings(4)="%o drank too much of %k's toxic to the point %vh heart quit."
      SimpleKillString="KF-8X Poison"
      DamageDescription=",Poison,GearSafe,NonSniper,"
      WeaponClass=Class'BWBP_OP_Pro.KF8XCrossbow'

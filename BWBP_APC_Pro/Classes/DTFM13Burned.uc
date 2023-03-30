@@ -10,16 +10,16 @@ class DTFM13Burned extends DT_BWFire;
 
 defaultproperties
 {
-     DeathStrings(0)="%k sprayed %o with fire."
-     DeathStrings(1)="%k's Dragon seared the flesh off %o."
-     DeathStrings(2)="%o was torched to a crisp by %k's flamethrower."
-     DeathStrings(3)="%o got cooked alive by %k's Dragon."
-     DeathStrings(4)="%k poured fire all over %o's screaming figure."
+     DeathStrings(0)="%k's Pitbull took a fiery leak all over %o, scorching %vm to death."
+     DeathStrings(1)="%o tried to play with %k's fiery Pitbull, only to be burned, literally."
+     DeathStrings(2)="%k has a very naughty Pitbull, poor %o got third degree burns all over %vh body."
+     DeathStrings(3)="%o got cooked alive by %k's Pitbull. Good boy."
+     DeathStrings(4)="%k let %kh Pitbull play with his new toy, a burning %o."
      InvasionDamageScaling=1.500000
      DamageIdent="Machinegun"
      WeaponClass=Class'BWBP_APC_Pro.FM13Shotgun'
      DeathString="%k sprayed %o with fire."
-     FemaleSuicide="%o pitbull burned his owner to the bone."
+     FemaleSuicide="%o mistreated his Pitbull and burned herself to death."
      MaleSuicide="%o mistreated his Pitbull and burned himself to death."
      bDelayedDamage=True
      KDamageImpulse=2000.000000

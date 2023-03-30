@@ -111,10 +111,10 @@ defaultproperties
 	HudColor=(B=255,G=175,R=125)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
-	PickupClass=Class'BWBP_SKC_Pro.F2000Pickup'
+	PickupClass=Class'BWBP_SKC_Pro.MARSPickup'
 	PlayerViewOffset=(X=0.500000,Y=12.000000,Z=-18.000000)
 	BobDamping=2.000000
-	AttachmentClass=Class'BWBP_SKC_Pro.F2000Attachment'
+	AttachmentClass=Class'BWBP_SKC_Pro.MARSAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000Ice'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="[B] Cryo Lance"
