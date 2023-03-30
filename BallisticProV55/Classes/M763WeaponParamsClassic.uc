@@ -152,7 +152,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Gray"
+		LayoutName="Default"
 		Weight=60
 		
 		InventorySize=7
@@ -169,73 +169,44 @@ defaultproperties
 		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_Tactical
-		LayoutName="Tactical"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KShotgunShiney",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KSmallShiney",Index=2)
-		Weight=20
-		
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		SightOffset=(X=5.000000,Z=18.500000)
-		SightPivot=(Pitch=512)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Wood
-		LayoutName="Wood"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_LargeShine",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_SmallShine",Index=2)
-		Weight=10
-		
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		SightOffset=(X=5.000000,Z=18.500000)
-		SightPivot=(Pitch=512)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_WoodOld
-		LayoutName="Old Trusty"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781-OldTrusty",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781Small",Index=2)
-		Weight=10
-		
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		SightOffset=(X=5.000000,Z=18.500000)
-		SightPivot=(Pitch=512)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Spray'
-	End Object
-	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Tactical'
-	Layouts(2)=WeaponParams'ClassicParams_Wood'
-	Layouts(3)=WeaponParams'ClassicParams_WoodOld'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M763_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M763_OD
+		Index=1
+		CamoName="Olive Drab"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KShotgunShiney",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KSmallShiney",Index=2,AIndex=0,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M763_Wood
+		Index=2
+		CamoName="Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_LargeShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_SmallShine",Index=2,AIndex=0,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M763_Trusty
+		Index=3
+		CamoName="Ol' Trusty"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781-OldTrusty",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781Small",Index=2,AIndex=0,PIndex=1)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'M763_Gray'
+	Camos(1)=WeaponCamo'M763_OD'
+	Camos(2)=WeaponCamo'M763_Wood'
+	Camos(3)=WeaponCamo'M763_Trusty'
 }

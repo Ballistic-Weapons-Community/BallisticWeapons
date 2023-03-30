@@ -64,21 +64,112 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		LayoutName="Scope"
+		Weight=30
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
 		SightPivot=(Roll=-1024)
 		SightOffset=(X=18.000000,Y=-1.600000,Z=17.000000)
 		SightingTime=0.45
 		SightMoveSpeedFactor=0.45
-		MagAmmo=7
-        InventorySize=5
-		// sniper 4-8x
-        ZoomType=ZT_Logarithmic
+        ZoomType=ZT_Logarithmic// sniper 4-8x
 		MinZoom=4
 		MaxZoom=8
 		ZoomStages=1
-		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
+		//Function
+		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+		MagAmmo=7
+        InventorySize=5
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+    End Object 
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_NoScope
+		//Layout core
+		LayoutName="Iron Sights"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
+		ZoomType=ZT_Irons
+		SightPivot=(Pitch=-32,Roll=-1024)
+		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		//Function
+		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+		SightingTime=0.4
+		SightMoveSpeedFactor=0.45
+		MagAmmo=7
+        InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=R78_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Tan
+		Index=1
+		CamoName="Tan"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R87_Main-SD",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R87_Scope-SD",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Desert
+		Index=2
+		CamoName="Desert"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.RifleSkinDesertCamo",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Jungle
+		Index=3
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_JTiger-SD",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Tiger
+		Index=4
+		CamoName="Tiger"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_RTiger-SD",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Winter
+		Index=5
+		CamoName="Winter"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_Winter-SD",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Gold
+		Index=6
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.GoldRifle-Shine",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'R78_Gray'
+	Camos(1)=WeaponCamo'R78_Tan'
+	Camos(2)=WeaponCamo'R78_Desert'
+	Camos(3)=WeaponCamo'R78_Jungle'
+	Camos(4)=WeaponCamo'R78_Tiger'
+	Camos(5)=WeaponCamo'R78_Winter'
+	Camos(6)=WeaponCamo'R78_Gold'
 }

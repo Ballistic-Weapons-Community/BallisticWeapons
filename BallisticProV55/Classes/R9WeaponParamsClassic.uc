@@ -109,6 +109,58 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=R9_Orange
+		Index=0
+		CamoName="Orange"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_OrangeShine
+		Index=1
+		CamoName="Fresh Orange"
+		Weight=15
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.R9A1.R9_body_SH2",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_Gray
+		Index=2
+		CamoName="Gray"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH4",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_Jungle
+		Index=3
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.R9A1.R9_body_SH3",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_Winter
+		Index=4
+		CamoName="Winter"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH5",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_IceFire
+		Index=5
+		CamoName="Fire & Ice"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.R9A1.R9_body_SH1",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'R9_Orange'
+	Camos(1)=WeaponCamo'R9_OrangeShine'
+	Camos(2)=WeaponCamo'R9_Gray'
+	Camos(3)=WeaponCamo'R9_Jungle'
+	Camos(4)=WeaponCamo'R9_Winter'
+	Camos(5)=WeaponCamo'R9_IceFire'
 }

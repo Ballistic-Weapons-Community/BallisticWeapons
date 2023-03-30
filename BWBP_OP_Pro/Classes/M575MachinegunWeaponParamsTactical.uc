@@ -107,4 +107,40 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M575_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M575_Blacker
+		Index=1
+		CamoName="Midnight"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_CM2",Index=3,AIndex=3,PIndex=3)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M575_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH2",Index=3,AIndex=3,PIndex=3)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M575_Oil
+		Index=3
+		CamoName="Oil Slick"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M575Camos.M575_body_SH3",Index=3,AIndex=3,PIndex=3)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'M575_Black'
+	Camos(1)=WeaponCamo'M575_Blacker'
+	Camos(2)=WeaponCamo'M575_Jungle'
+	Camos(3)=WeaponCamo'M575_Oil'
 }
