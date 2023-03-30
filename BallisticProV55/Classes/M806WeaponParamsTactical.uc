@@ -64,8 +64,8 @@ defaultproperties
 		ViewBindFactor=0.4
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
-		DeclineDelay=0.37000
+		DeclineTime=0.75
+		DeclineDelay=0.4000
 		HipMultiplier=1
 		MaxMoveMultiplier=1.5
 	End Object
@@ -76,6 +76,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
     	AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
         ADSMultiplier=0.75
 		AimAdjustTime=0.450000
 		ChaosDeclineTime=0.320000
@@ -87,12 +88,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightOffset=(X=-5.000000,Y=-1.315,Z=12.600000)
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
-		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 		DisplaceDurationMult=0.5
 		SightingTime=0.20000
         SightMoveSpeedFactor=0.6

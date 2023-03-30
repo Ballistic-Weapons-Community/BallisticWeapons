@@ -439,8 +439,7 @@ defaultproperties
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
      WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=2
-     SightPivot=(Pitch=64)
-     SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+     SightOffset=(X=25.000000,Y=0,Z=16)
      SightDisplayFOV=20.000000
 	 ParamsClasses(0)=Class'AK91WeaponParamsComp'
 	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
@@ -464,7 +463,7 @@ defaultproperties
      InventoryGroup=4
 	 GroupOffset=11
      PickupClass=Class'BWBP_SKC_Pro.AK91Pickup'
-     PlayerViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
+     PlayerViewOffset=(X=-3.000000,Y=5.000000,Z=-14.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.AK91Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'

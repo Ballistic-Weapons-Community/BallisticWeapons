@@ -533,10 +533,10 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
+	bNoCrosshairInScope=True // CHANGE THIS IN BALLSTICWEAPON.UC
 	WeaponModes(0)=(bUnavailable=True)
-	bNoCrosshairInScope=False
-	SightPivot=(Pitch=450)
-	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
+	SightOffset=(X=9.0000,Y=13.6,Z=19.30000)
+	PlayerViewOffset=(X=0,Y=-2.5,Z=-17)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
@@ -556,14 +556,12 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0),Color2=(G=0),StartSize1=90,StartSize2=93)
 	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 	Description="Dipheox's most popular weapon, the CYLO Versatile Urban Assault Weapon is designed with one goal in mind: Brutal close quarters combat. The CYLO accomplishes this goal quite well, earning itself the nickname of Badger with its small frame, brutal effectiveness, and unpredictability. UTC refuses to let this weapon in the hands of its soldiers because of its erratic firing and tendency to jam.||The CYLO Versatile UAW is fully capable for urban combat. The rifle's caseless 7.62mm rounds can easily shoot through doors and thin walls, while the shotgun can clear a room quickly with its semi-automatic firing. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
-	DisplayFOV=55.000000
 	Priority=41
 	HudColor=(G=135)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=10
 	PickupClass=Class'BWBP_SKC_Pro.CYLOPickup'
-	PlayerViewOffset=(X=8.000000,Z=-14.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'

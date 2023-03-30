@@ -124,7 +124,7 @@ defaultproperties
 	//=================================================================
 
     Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
         ChaosSpeedThreshold=300
     End Object
 
@@ -133,14 +133,11 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		SightPivot=(Pitch=1024)
-		SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
-		ViewOffset=(X=-4.000000,Y=1.000000,Z=-10.000000)
-		
 		PlayerJumpFactor=1.000000
 		InventorySize=8
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000
+		SightPivot=(Pitch=1024)
 		DisplaceDurationMult=1
 		MagAmmo=24
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")

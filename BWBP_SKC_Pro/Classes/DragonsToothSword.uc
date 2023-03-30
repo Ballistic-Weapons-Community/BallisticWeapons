@@ -161,7 +161,6 @@ defaultproperties
 	CurrentRating=0.800000
 	bMeleeWeapon=True
 	Description="The Dragon Nanoblade is a technological marvel. A weapon consisting of a nanotechnologically created blade which is dynamically 'forged' on command into a non-eutactic solid. Nanoscale whetting devices ensure that the blade is both unbreakable and lethally sharp. The true weapon of a modern warrior."
-	DisplayFOV=65.000000
 	Priority=12
 	HudColor=(B=255,G=125,R=75)
 	CenteredOffsetY=7.000000

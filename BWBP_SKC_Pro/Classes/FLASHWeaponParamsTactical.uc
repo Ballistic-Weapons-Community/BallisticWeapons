@@ -66,7 +66,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=768,Max=4096)
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		SprintOffset=(Pitch=-3072,Yaw=-2048)
 		AimDamageThreshold=300.000000
 		ChaosDeclineTime=0.750000
 		ChaosSpeedThreshold=300
@@ -77,7 +77,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		ViewOffset=(X=10.000000,Z=-12.000000)
 		SightOffset=(Y=5.300000,Z=23.299999)
 		PlayerSpeedFactor=0.95
         DisplaceDurationMult=1.25

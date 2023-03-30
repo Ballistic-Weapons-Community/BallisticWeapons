@@ -454,8 +454,8 @@ defaultproperties
 	
 	CockAnimRate=1.25
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=256)
-	SightOffset=(X=5.000000,Z=12.700000)
+	SightPivot=(Pitch=64)
+	SightOffset=(X=22.000000,Y=0.01,Z=11.500000)
 	SightDisplayFOV=40.000000
 	AIRating=0.8
 	CurrentRating=0.8
@@ -469,14 +469,13 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="Yet another high quality weapon by Black & Wood, the XK2 is a lightweight, suppressed sub-machinegun. It has a fast rate of fire, but its low velocity bullets make it less dangerous than other weapons. However, these low velocity rounds do allow the weapon to be easily silenced, turning it into an effective stealth weapon, used by many law enforcement organisations, and Black-Ops military units alike. The weapon's high rate of fire, and quick reload times, means that the soldier can pump out rounds quicker than even the M353, making it very useful for cover-fire."
-	DisplayFOV=55.000000
 	Priority=32
 	HudColor=(B=100,G=150,R=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.XK2Pickup'
-	PlayerViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
+	PlayerViewOffset=(X=-8.000000,Y=5.000000,Z=-12.000000)
 	AttachmentClass=Class'BallisticProV55.Xk2Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XK2'
 	IconCoords=(X2=127,Y2=31)

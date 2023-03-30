@@ -478,7 +478,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoTweenToScope=True
-	SightOffset=(X=-24,Z=24.7)
+	SightOffset=(X=20.000000,Z=24.700000)
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
@@ -506,13 +506,12 @@ defaultproperties
 	bSniping=True
 	bShowChargingBar=True
 	Description="There are very few things feared by the Skrith and the Railgun is one of them. Railguns use electromagnetism to fire metallic projectiles at incredible speeds, some moving at hundreds of thousands of feet per second. This one uses depleted uranium-dragonium slugs for ammo. Railguns were far too large and heavy for infantry use until Enravion developed the Tactical Infantry Cannon version. No comparable infantry weapon currently available is capable of as much damage in a single shot as the M75. When fully charged it can flip over a tank, or fire right through a concrete building. Designed for use against vehicles, no infantry armor could be considered protection against this weapon. The M75 does have some disadvantages though. Its slow firerate, great weight and highly visible trail make it a weapon that will benefit only the most skilled soldiers."
-	DisplayFOV=45.000000
 	Priority=34
 	HudColor=(B=255,G=25,R=0)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BallisticProV55.M75Pickup'
-	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
+	PlayerViewOffset=(X=0.000000,Y=11.000000,Z=-19.000000)
 	AttachmentClass=Class'BallisticProV55.M75Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M75'
 	IconCoords=(X2=127,Y2=31)

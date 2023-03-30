@@ -93,7 +93,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=64,Max=768)
         ADSMultiplier=0.35
 		ChaosDeclineTime=0.75
@@ -101,7 +101,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=ArenaAimParams_600
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=64,Max=768)
         ADSMultiplier=0.35
 		ChaosDeclineTime=0.75
@@ -121,8 +121,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
 		//Function
 		CockAnimRate=1.200000
-		SightOffset=(X=20.000000,Z=11.750000)
-		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
+		SightOffset=(X=35.000000,Z=11.750000)
 		MagAmmo=20
 		SightingTime=0.50000
 		SightMoveSpeedFactor=0.6
@@ -142,8 +141,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
 		CockAnimRate=1.200000
-		SightOffset=(X=11.000000,Z=9.88000)
-		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
+		SightOffset=(X=25.000000,Z=9.88000)
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.8
@@ -161,8 +159,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
 		CockAnimRate=1.200000
-		SightOffset=(X=11.000000,Z=8.650000)
-		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
+		SightOffset=(X=22.000000,Z=8.650000)
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.9

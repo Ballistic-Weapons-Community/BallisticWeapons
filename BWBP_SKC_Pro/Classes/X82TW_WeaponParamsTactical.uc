@@ -60,7 +60,7 @@ defaultproperties
 		YawFactor=0.000000
 		XRandFactor=0.000000
 		YRandFactor=0.200000
-		DeclineTime=0.5
+		DeclineTime=0.75
 		DeclineDelay=0.150000
 		MaxRecoil=8192
 		HipMultiplier=1

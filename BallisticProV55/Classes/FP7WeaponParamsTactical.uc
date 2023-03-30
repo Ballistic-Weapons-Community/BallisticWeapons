@@ -63,7 +63,6 @@ defaultproperties
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
-        DeclineTime=1.500000
     End Object
 
 	//=================================================================

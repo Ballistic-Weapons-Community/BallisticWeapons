@@ -80,7 +80,7 @@ defaultproperties
 		ChaosSpeedThreshold=300
 		ChaosDeclineTime=0.750000
 		AimSpread=(Min=0,Max=0)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 	End Object
 
 	//=================================================================
@@ -90,9 +90,6 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.200000
-		SightOffset=(X=15,Z=21.500000)
-		SightPivot=(Pitch=256)
-		ViewOffset=(Y=10.000000,Z=-14.000000)
 		SightingTime=0.3
 		MagAmmo=6
         InventorySize=5

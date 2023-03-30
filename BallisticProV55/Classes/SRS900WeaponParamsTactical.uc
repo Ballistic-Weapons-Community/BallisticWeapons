@@ -79,7 +79,7 @@ defaultproperties
 		YRandFactor=0.05000
 		ClimbTime=0.1
 		DeclineDelay=0.22
-		DeclineTime=1.00000
+		DeclineTime=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -92,7 +92,7 @@ defaultproperties
 		YRandFactor=0.1000
 		ClimbTime=0.1
 		DeclineDelay=0.22
-		DeclineTime=1.00000
+		DeclineTime=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -102,7 +102,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=512,Max=2048)
 		AimAdjustTime=0.8
         ADSMultiplier=0.5
@@ -111,7 +111,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalAimParams_600
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=512,Max=2048)
 		AimAdjustTime=0.600000
         ADSMultiplier=0.5
@@ -131,8 +131,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
 		//Function
-		SightOffset=(X=20.000000,Z=11.750000)
-		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
+		SightOffset=(X=35.000000,Z=11.750000)
 		MagAmmo=20
 		SightingTime=0.5
 		SightMoveSpeedFactor=0.35
@@ -155,12 +154,28 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
-		SightOffset=(X=11.000000,Z=9.88000)
-		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
+		SightOffset=(X=25.000000,Z=9.88000)
         SightingTime=0.35
 		SightMoveSpeedFactor=0.6
 		MagAmmo=20
         InventorySize=6
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
+		AimParams(0)=AimParams'TacticalAimParams_600'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_600'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_IRONS
+		//Layout core
+		LayoutName="Irons"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
+		//Function
+		SightOffset=(X=22.000000,Z=8.650000)
+		MagAmmo=20
+        InventorySize=6
+		SightMoveSpeedFactor=0.9
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
 		AimParams(0)=AimParams'TacticalAimParams_600'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_600'
@@ -245,6 +260,7 @@ defaultproperties
 	
     Layouts(0)=WeaponParams'TacticalParams_Scope'
     Layouts(1)=WeaponParams'TacticalParams_RDS'
+	Layouts(2)=WeaponParams'TacticalParams_IRONS'
 	Camos(0)=WeaponCamo'SRS_Gray'
     Camos(1)=WeaponCamo'SRS_Desert'
     Camos(2)=WeaponCamo'SRS_DesertTac'

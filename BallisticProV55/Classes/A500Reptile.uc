@@ -146,7 +146,6 @@ defaultproperties
     ReloadAnimRate=1.25
 	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=129),Color2=(B=148,R=0,A=141),StartSize1=99,StartSize2=84)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
-	SightPivot=(Pitch=512)
 	SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
 	SightDisplayFOV=40.000000
 	SightZoomFactor=1.2
@@ -163,13 +162,12 @@ defaultproperties
 	CurrentRating=0.800000
 	bShowChargingBar=True
 	Description="The A500 is a mostly experimental Skrith weapon, seen in only a handful of battles fought against Terran forces. The first encounter with Skrith troops using the 'Reptile' was during a notorious incident on one of the Outworld colonies, where UTC troops were stationed in defense of a large Terran lab still operating. The Skrith invaded the area with little warning, and although the heavily armoured Terrans far outnumbered the Skrith incursion party, the A500 was used by the aliens to great effect. The armoured Terrans affected by the acidic substances suffered a painful fate as the armour was eaten away rapidly and then the soldier themselves fell to the toxic substance. Many theorize that the A500 and other recent Skrith weapons are a response to the ineffectiveness of their previous energy weapons against much of the Terran armour."
-	DisplayFOV=55.000000
 	Priority=39
 	HudColor=(G=200,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BallisticProV55.A500Pickup'
-	PlayerViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
+	PlayerViewOffset=(X=-15.000000,Y=9.000000,Z=-20.000000)
 	PlayerViewPivot=(Pitch=600)
 	AttachmentClass=Class'BallisticProV55.A500Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Reptile.SmallIcon_Reptile'

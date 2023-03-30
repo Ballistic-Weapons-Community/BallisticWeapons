@@ -192,9 +192,9 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=12
 	SightPivot=(Pitch=128)
-	SightOffset=(X=-10.000000,Y=-2.110000,Z=9.15000)
+	SightOffset=(X=3.000000,Y=-2.110000,Z=9.15000)
 	PickupClass=Class'BWBP_SKC_Pro.T9CNPickup'
-	PlayerViewOffset=(X=7.000000,Y=5.500000,Z=-8.000000)
+	PlayerViewOffset=(X=-2.000000,Y=4.00000,Z=-8.000000)
 	AttachmentClass=Class'BWBP_SKC_Pro.T9CNAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.T9CN.SmallIcon_BerSilver'
 	IconCoords=(X2=127,Y2=31)

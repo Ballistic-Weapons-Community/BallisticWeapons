@@ -542,7 +542,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.MRLPickup'
-	PlayerViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
+	PlayerViewOffset=(X=12.000000,Y=6.000000,Z=-15.000000)
 	PlayerViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
 	AttachmentClass=Class'BallisticProV55.MRLAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.MRL.SmallIcon_MRL'

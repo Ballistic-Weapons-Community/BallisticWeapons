@@ -17,7 +17,7 @@ defaultproperties
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
         Damage=50.000000
-        HeadMult=2.5f
+        HeadMult=2.75f
         LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
@@ -52,7 +52,7 @@ defaultproperties
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
         Damage=100.000000
-        HeadMult=2.5f
+        HeadMult=2.75f
         LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -86,8 +86,8 @@ defaultproperties
 		ViewBindFactor=0.65
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=1.200000
-		DeclineDelay=0.350000
+		DeclineTime=1.1
+		DeclineDelay=0.440000
 		MaxRecoil=6144
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -100,6 +100,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimAdjustTime=0.45
         AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		JumpChaos=0.750000
         ADSMultiplier=0.75
 		ChaosDeclineTime=0.450000
@@ -120,10 +121,8 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=6
         InventorySize=3
-		ViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)
-		ViewPivot=(Pitch=512)
-		SightOffset=(X=-30.000000,Y=-3.500000,Z=23.9500000)
-		SightPivot=(Pitch=-175,Roll=-500)
+		SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
+		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)
 		WristAdjust=(Yaw=-2500,Pitch=-0000)

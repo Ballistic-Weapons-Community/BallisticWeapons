@@ -72,8 +72,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.300000,OutVal=0.35000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineDelay=0.15
-		DeclineTime=0.65
+		DeclineDelay=0.14
+		DeclineTime=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2	
 	End Object
@@ -85,8 +85,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.300000,OutVal=0.35000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineDelay=0.15
-		DeclineTime=0.65	
+		DeclineDelay=0.14
+		DeclineTime=0.75	
 	End Object
 
 	//=================================================================
@@ -96,7 +96,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=384,Max=1536)
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ViewBindFactor=0.200000
 		ChaosDeclineTime=1.500000
         ChaosSpeedThreshold=300.000000
@@ -112,13 +112,10 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
-		SightPivot=(Pitch=64)
 		ZoomType=ZT_Irons
 		//Function
 		SightingTime=0.350000
         SightMoveSpeedFactor=0.6
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -140,7 +137,6 @@ defaultproperties
 		//Function
 		SightingTime=0.350000
         SightMoveSpeedFactor=0.6
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'

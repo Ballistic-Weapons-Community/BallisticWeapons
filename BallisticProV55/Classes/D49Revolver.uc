@@ -482,7 +482,8 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
+	SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
+	SightPivot=(Pitch=350,Roll=-500)
 	ParamsClasses(0)=Class'D49WeaponParamsComp'
 	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	ParamsClasses(2)=Class'D49WeaponParamsRealistic'
@@ -500,15 +501,13 @@ defaultproperties
 	CurrentRating=0.600000
 	bSniping=True
 	Description="Another fine weapon designed by the acclaimed 'Black & Wood' company, the D49 revolver is a true hand cannon. Based on weapons of old, the D49 was intended for non-military use, but rather for self defense and civilian purposes. The dual-barrel design has made it a favourite among it's users, capable of causing massive damage if used correctly, able to easily kill an armored Terran."
-	DisplayFOV=50.000000
 	Priority=22
 	HudColor=(B=255,G=200,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.D49Pickup'
-	PlayerViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)
-	PlayerViewPivot=(Pitch=512)
+	PlayerViewOffset=(X=-10.000000,Y=7.000000,Z=-15.000000)
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'
 	IconCoords=(X2=127,Y2=31)

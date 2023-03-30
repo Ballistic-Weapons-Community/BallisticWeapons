@@ -712,7 +712,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=-20.000000,Z=35.000000)
+	SightOffset=(X=15.000000,Y=-0.6,Z=34.000000)
 	SightingTime=0.650000
 	MinZoom=2.000000
 	MaxZoom=8.000000
@@ -732,14 +732,13 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information on enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
-	DisplayFOV=55.000000
 	Priority=40
 	HudColor=(G=125,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	GroupOffset=6
 	PickupClass=Class'BWBP_OP_Pro.CX85Pickup'
-	PlayerViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
+	PlayerViewOffset=(X=5.000000,Y=10.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.CX85Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.CX85.SmallIcon_CX85'
 	IconCoords=(X2=127,Y2=31)

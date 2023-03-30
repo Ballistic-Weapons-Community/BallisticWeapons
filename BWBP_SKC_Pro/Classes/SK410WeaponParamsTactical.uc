@@ -79,7 +79,7 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.5,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.15
 		YRandFactor=0.15
-        DeclineTime=0.5
+        DeclineTime=0.75
         DeclineDelay=0.450000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -90,7 +90,7 @@ defaultproperties
 	//=================================================================
 
     Begin Object Class=AimParams Name=TacticalAimParams
-        SprintOffset=(Pitch=-1000,Yaw=-2048)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
         ChaosSpeedThreshold=300
     End Object
 
@@ -104,10 +104,9 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightOffset=(X=22.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
 		//Function
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 		InventorySize=5
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
@@ -128,7 +127,6 @@ defaultproperties
 		SightPivot=(Pitch=150)
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
 		//Function
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 		InventorySize=5
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.3

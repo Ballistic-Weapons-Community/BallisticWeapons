@@ -16,7 +16,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		Inaccuracy=(X=32,Y=32)
 		RangeAtten=0.5
-		Damage=24
+		Damage=22
         HeadMult=2.75f
         LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTXK2SMG'
@@ -28,7 +28,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		Recoil=72.000000
 		Chaos=0.025000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.5,Radius=384.000000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.25,Radius=256.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -90,8 +90,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
-		DeclineTime=0.5
-		DeclineDelay=0.15
+		DeclineTime=0.75
+		DeclineDelay=0.13
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -102,10 +102,10 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.500000
 		AimSpread=(Min=384,Max=1536)
-		ChaosDeclineTime=0.5
+		ChaosDeclineTime=0.75
 		ChaosSpeedThreshold=300
 	End Object
 
@@ -114,14 +114,12 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightPivot=(Pitch=256)
-		SightOffset=(X=5.000000,Z=12.700000)
-		ViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
 		DisplaceDurationMult=0.75
 		MagAmmo=30
 		SightingTime=0.25
         InventorySize=5
         SightMoveSpeedFactor=0.6
+		SightPivot=(Pitch=64)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

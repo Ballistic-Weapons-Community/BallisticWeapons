@@ -187,7 +187,7 @@ defaultproperties
     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
     FullZoomFOV=20.000000
     bNoCrosshairInScope=True
-    SightOffset=(Z=51.000000)
+    SightOffset=(X=35,Z=51.000000)
     MinZoom=2.000000
     MaxZoom=8.000000
     ZoomStages=4
@@ -228,14 +228,13 @@ defaultproperties
     bSniping=True
     bShowChargingBar=True
     Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players||The pinnacle of electric based weaponry, an evolution of the lightning gun; the ARC-79 Lightning Rifle is the result of a collaboration between the UTC R&D and Nexron Defense.  Designed to fry the circuits of Cryon at a safer distance, the ARC-79 is a devastating rifle even against the Skrith, even the hordes of Krao since it's able to chain the electrical current between targets.  Though it's a recent development, the ARC-79 has been proven useful when a Nexron laboratory was invaded by the Krao on the planet Anschar, only 3 rifles were used to quell the mindless drones, the scientists having fried Krao that night as a reward."
-    DisplayFOV=55.000000
     Priority=33
     HudColor=(B=50,G=50,R=200)
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=9
     GroupOffset=2
     PickupClass=Class'BWBP_OP_Pro.LightningPickup'
-    PlayerViewOffset=(X=20.000000,Y=16.000000,Z=-30.000000)
+    PlayerViewOffset=(X=10.000000,Y=13.000000,Z=-35.000000)
     AttachmentClass=Class'BWBP_OP_Pro.LightningAttachment'
     IconMaterial=Texture'BWBP_OP_Tex.Arc.SmallIcon_LightningRifle'
     IconCoords=(X2=127,Y2=31)

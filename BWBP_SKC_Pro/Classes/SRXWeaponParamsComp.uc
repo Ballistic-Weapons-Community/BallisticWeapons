@@ -147,7 +147,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=64,Max=768)
 		ChaosDeclineTime=0.75
         ChaosSpeedThreshold=300
@@ -159,9 +159,6 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=ArenaParams
 		CockAnimRate=1.200000
-		SightPivot=(Pitch=-128,Yaw=16)
-		SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)
-		ViewOffset=(X=-2.000000,Y=10.000000,Z=-20.000000)
 		MagAmmo=20
         InventorySize=6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

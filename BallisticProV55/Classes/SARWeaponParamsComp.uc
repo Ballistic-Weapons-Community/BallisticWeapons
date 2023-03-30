@@ -110,8 +110,8 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=AutoAimParams
 		ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		AimAdjustTime=0.300000
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		AimAdjustTime=0.6
 		AimSpread=(Min=64,Max=512)
 		ChaosDeclineTime=0.5
 		ChaosSpeedThreshold=300
@@ -119,7 +119,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=BurstAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.45
 		AimSpread=(Min=48,Max=378)
 		ChaosDeclineTime=0.5
@@ -133,9 +133,8 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams
         CockAnimRate=1.250000
 		ReloadAnimRate=1.100000
-		SightPivot=(Pitch=350)
-		SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
-		ViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
+		SightPivot=(Pitch=450)
+		SightOffset=(X=35.000000,Y=-0.010000,Z=13.600000)
 		MagAmmo=32
         InventorySize=5
         SightingTime=0.250000

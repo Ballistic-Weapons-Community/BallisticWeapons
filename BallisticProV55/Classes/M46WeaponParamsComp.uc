@@ -81,7 +81,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.550000
 		AimSpread=(Min=64,Max=512)
 		ChaosDeclineTime=1.250000
@@ -106,6 +106,8 @@ defaultproperties
         MagAmmo=24
         InventorySize=6
         ZoomType=ZT_Logarithmic
+		SightPivot=(Pitch=600,Roll=-1024)
+		SightOffset=(Y=-1.000000,Z=12.500000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
@@ -124,11 +126,8 @@ defaultproperties
 		SightingTime=0.350000
         MagAmmo=24
         InventorySize=6
+		SightOffset=(X=5,Y=0.050000,Z=11.350000)
 		SightMoveSpeedFactor=0.8
-		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
-		ViewPivot=(Pitch=384)
-        SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

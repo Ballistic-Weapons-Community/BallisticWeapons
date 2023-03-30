@@ -67,8 +67,9 @@ defaultproperties
 		YawFactor=0.100000
 		XRandFactor=0.200000
 		YRandFactor=0.300000
-		DeclineDelay=1.000000
-		DeclineTime=0.800000
+		ClimbTime=0.15
+		DeclineDelay=0.75
+		DeclineTime=0.750000
 		CrouchMultiplier=0.6
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -84,7 +85,7 @@ defaultproperties
 		AimAdjustTime=0.80000
 		ChaosSpeedThreshold=300
 		ChaosDeclineTime=0.750000
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object
 
@@ -94,8 +95,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		ReloadAnimRate=0.9
-		ViewOffset=(X=20.000000,Y=16.000000,Z=-30.000000)
-		SightOffset=(Z=51.000000)
+		SightOffset=(X=35,Z=51.000000)
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		InventorySize=7

@@ -62,7 +62,7 @@ defaultproperties
 		MaxRecoil=8192
 		ClimbTime=0.15
 		DeclineDelay=0.75
-		DeclineTime=1.00000
+		DeclineTime=1.5
 		HipMultiplier=2
 		MaxMoveMultiplier=2
 		CrouchMultiplier=0.750000

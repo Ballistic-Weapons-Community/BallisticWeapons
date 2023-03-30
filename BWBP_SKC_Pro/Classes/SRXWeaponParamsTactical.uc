@@ -116,8 +116,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
 		XRandFactor=0.2
 		YRandFactor=0.2
-		DeclineTime=0.60000
-		DeclineDelay=0.400000
+		DeclineTime=0.75
+		DeclineDelay=0.250000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -127,8 +127,8 @@ defaultproperties
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.25),(InVal=0.5,OutVal=0.16),(InVal=0.7,OutVal=0.3),(InVal=0.85,OutVal=-0.1),(InVal=1,OutVal=-0.4)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
 		YRandFactor=0.2
-		DeclineTime=1.20000
-		DeclineDelay=1.000000
+		DeclineTime=0.75
+		DeclineDelay=0.45
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -138,8 +138,8 @@ defaultproperties
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.25),(InVal=0.5,OutVal=0.16),(InVal=0.7,OutVal=0.3),(InVal=0.85,OutVal=-0.1),(InVal=1,OutVal=-0.4)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
 		YRandFactor=0.08
-		DeclineTime=0.30000
-		DeclineDelay=0.300000
+		DeclineTime=0.75
+		DeclineDelay=0.45
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -150,7 +150,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=512,Max=2048)
 		AimAdjustTime=0.600000
 		ChaosDeclineTime=0.75
@@ -163,9 +163,6 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
         SightingTime=0.35
-		SightPivot=(Pitch=-128,Yaw=16)
-		SightOffset=(X=-10.000000,Y=-0.67,Z=27.200000)
-		ViewOffset=(X=-2.000000,Y=10.000000,Z=-20.000000)
 		MagAmmo=20
         InventorySize=6
         SightMoveSpeedFactor=0.6

@@ -778,7 +778,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=15.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+	SightOffset=(X=18.000000,Y=15.000000,Z=6.700000)
 	MinZoom=4.000000
 	MaxZoom=16.000000
 	ZoomStages=2
@@ -796,14 +796,13 @@ defaultproperties
 	AIRating=0.80000
 	CurrentRating=0.800000
 	bSniping=True
-	Description="[ Fallschirmj�gerscharfsch�tzengewehr] FSsG-50 is the name given to high-performance FG50 machineguns that are then equipped with match-grade barrels and high-quality custom marksman stocks. FG-50s with exceptional target groupings and perfect reliability ratings are the primary candidates for the FSsG upgrade, though some production plants with extremely tight tolerances and quality control specifically produce the FSsG variant. The result is a very accurate sniper rifle with a muzzle velocity far higher than its standard cousin. These elite rifles are very rarely mounted on vehicle platforms and are often utilized by sharpshooters equipped with enhanced scopes and match-grade N6-BMG rounds for hard target interdiction. This FSSG-50 is firing the mass produced N1-Incendiary round and has an Aeris Mark 2 Suresight scope attached."
-	DisplayFOV=55.000000
+	Description="[ Fallschirmjägerscharfschútzengewehr] FSsG-50 is the name given to high-performance FG50 machineguns that are then equipped with match-grade barrels and high-quality custom marksman stocks. FG-50s with exceptional target groupings and perfect reliability ratings are the primary candidates for the FSsG upgrade, though some production plants with extremely tight tolerances and quality control specifically produce the FSsG variant. The result is a very accurate sniper rifle with a muzzle velocity far higher than its standard cousin. These elite rifles are very rarely mounted on vehicle platforms and are often utilized by sharpshooters equipped with enhanced scopes and match-grade N6-BMG rounds for hard target interdiction. This FSSG-50 is firing the mass produced N1-Incendiary round and has an Aeris Mark 2 Suresight scope attached."
 	Priority=207
 	HudColor=(G=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BWBP_SKC_Pro.AS50Pickup'
-	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
+	PlayerViewOffset=(X=-6.000000,Y=-5.000000,Z=-6.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.AS50Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.FSG50.SmallIcon_FSG50'
@@ -816,7 +815,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FSSG-50'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'
 	Skins(2)=Texture'BWBP_SKC_Tex.FSG50.FSG-Misc'

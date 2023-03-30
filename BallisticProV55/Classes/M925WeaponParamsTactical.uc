@@ -53,8 +53,8 @@ defaultproperties
 		XRandFactor=0.15
 		YRandFactor=0.15
 		MaxRecoil=6500.000000
-		DeclineTime=1.500000
-		DeclineDelay=0.40000
+		DeclineTime=1.25
+		DeclineDelay=0.35000
 		HipMultiplier=1.5
 		MaxMoveMultiplier=3
 	End Object
@@ -65,7 +65,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=768,Max=4096)
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		SprintOffset=(Pitch=-3072,Yaw=-3072)
 		JumpOffset=(Pitch=-6000,Yaw=-4000)
         ADSMultiplier=0.5
 		AimAdjustTime=0.700000
@@ -79,9 +79,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		WeaponBoneScales(0)=(BoneName="M925RearIronSides",Slot=5,Scale=0f)
-		SightPivot=(Pitch=64)
-		SightOffset=(X=-18.000000,Z=7.200000)
-		ViewOffset=(X=9.000000,Y=5.000000,Z=-7.000000)
+		SightOffset=(X=-6.000000,Z=7.100000)
 		DisplaceDurationMult=1.4
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9

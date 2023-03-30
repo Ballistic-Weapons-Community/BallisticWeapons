@@ -128,7 +128,7 @@ defaultproperties
 		ViewBindFactor=0.200000
 		ChaosDeclineTime=1.500000
 		SprintChaos=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpChaos=0.5
 		JumpOffset=(Pitch=-6000,Yaw=2000)
         ChaosSpeedThreshold=300.000000
@@ -142,9 +142,7 @@ defaultproperties
 		InventorySize=8
 		PlayerSpeedFactor=0.950000
 		SightMoveSpeedFactor=0.950000
-		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightingTime=0.500000
-		SightPivot=(Pitch=64)
 		ZoomType=ZT_Fixed
 		InitialWeaponMode=2
 		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")

@@ -108,7 +108,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=512)
         ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
 		ChaosSpeedThreshold=300
 	End Object
@@ -124,16 +124,13 @@ defaultproperties
 		//Attachments
 		//Function
 		ReloadAnimRate=1.250000
-		
 		PlayerJumpFactor=1.000000
 		InventorySize=6
+		SightPivot=(Pitch=64)
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=25
-		SightPivot=(Pitch=64)
-		SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

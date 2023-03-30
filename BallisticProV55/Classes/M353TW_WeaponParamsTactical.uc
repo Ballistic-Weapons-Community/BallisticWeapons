@@ -65,8 +65,8 @@ defaultproperties
 		YRandFactor=0.03000
         ViewBindFactor=1.000000
 		MaxRecoil=12288.000000
-		DeclineTime=0.5
-		DeclineDelay=0.150000
+		DeclineTime=1.5
+		DeclineDelay=0.130000
 	End Object
 
 	//=================================================================
@@ -77,7 +77,6 @@ defaultproperties
 		ADSMultiplier=0.5
 		AimAdjustTime=0.800000
 		AimSpread=(Min=0,Max=0)
-		SprintOffSet=(Pitch=-6000,Yaw=-8000)
 		ViewBindFactor=1.000000
 		AimDamageThreshold=2000.000000
 		ChaosDeclineTime=0.320000

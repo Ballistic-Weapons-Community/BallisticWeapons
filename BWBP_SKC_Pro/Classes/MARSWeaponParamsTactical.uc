@@ -126,8 +126,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
-		DeclineDelay=0.140000
+		DeclineTime=0.75
+		DeclineDelay=0.130000
 		ViewBindFactor=0.4
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -138,8 +138,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
-		DeclineDelay=0.140000
+		DeclineTime=0.75
+		DeclineDelay=0.130000
 		ViewBindFactor=0.4
 		ADSViewBindFactor=0.85
 		HipMultiplier=1.25
@@ -154,8 +154,8 @@ defaultproperties
 		AimSpread=(Min=384,Max=1536)
 		ADSMultiplier=0.5
 		AimAdjustTime=0.500000
-		SprintOffset=(Pitch=-3072,Yaw=-4096))
-		ChaosDeclineTime=0.5
+		SprintOffset=(Pitch=-2048,Yaw=-2048))
+		ChaosDeclineTime=0.75
         ChaosSpeedThreshold=300
 	End Object
 
@@ -163,8 +163,8 @@ defaultproperties
 		AimSpread=(Min=384,Max=1536)
 		AimAdjustTime=0.600000
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
-		ChaosDeclineTime=0.5
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		ChaosDeclineTime=0.75
         ChaosSpeedThreshold=300
 	End Object
 	
@@ -203,9 +203,8 @@ defaultproperties
 		LayoutName="Holosight"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		ViewOffset=(X=0.5,Y=12.000000,Z=-18.000000)
 		SightDisplayFOV=48
-		SightOffset=(X=10.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
 		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 		//Function
 		ReloadAnimRate=0.85

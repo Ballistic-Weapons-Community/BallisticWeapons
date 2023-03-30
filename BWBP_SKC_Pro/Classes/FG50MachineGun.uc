@@ -662,7 +662,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightOffset=(Y=25.000000,Z=10.300000)
+	SightOffset=(X=15,Y=15.000000,Z=6.250000)
 	ParamsClasses(0)=Class'FG50WeaponParamsComp'
 	ParamsClasses(1)=Class'FG50WeaponParamsClassic'	 
 	ParamsClasses(2)=Class'FG50WeaponParamsRealistic'
@@ -682,7 +682,7 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.FG50Pickup'
-	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
+	PlayerViewOffset=(X=-6.000000,Y=-5.000000,Z=-6.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.FG50Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.FG50.SmallIcon_FG50'
@@ -695,6 +695,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FG50'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

@@ -385,7 +385,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=40.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
+	SightOffset=(X=-10.000000,Y=-7.350000,Z=45.400002)
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
 	bShouldDualInLoadout=True
@@ -409,7 +409,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=13
 	PickupClass=Class'BWBP_SKC_Pro.AH250Pickup'
-	PlayerViewOffset=(X=15,Y=12,Z=-37)
+	PlayerViewOffset=(X=0,Y=13,Z=-37)
 	BobDamping=1.200000
 	AttachmentClass=Class'BWBP_SKC_Pro.AH250Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Eagle.SmallIcon_EagleAlt'

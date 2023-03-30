@@ -205,7 +205,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalFastAimParams
     	AimSpread=(Min=384,Max=1536)
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
@@ -213,21 +213,21 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalBombAimParams
 		AimSpread=(Min=768,Max=3072)
         ADSMultiplier=0.2
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalLustAimParams
 		AimSpread=(Min=768,Max=3072)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalNukeAimParams
 		AimSpread=(Min=768,Max=3072)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
@@ -237,12 +237,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		ViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
-		SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
-		SightPivot=(Pitch=768)
 		InventorySize=6
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35
+		SightPivot=(Pitch=768)
 		DisplaceDurationMult=1
 		MagAmmo=70
 		WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")

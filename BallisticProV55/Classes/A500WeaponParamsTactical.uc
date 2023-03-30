@@ -75,7 +75,7 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.170000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.100000),(InVal=1.000000,OutVal=0.5)))
         XRandFactor=0.200000
         YRandFactor=0.200000
-        DeclineTime=1.500000
+        DeclineTime=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
     End Object
@@ -86,7 +86,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=TacticalAimParams
         ADSMultiplier=0.5
-        SprintOffset=(Pitch=-3072,Yaw=-4096)
+        SprintOffset=(Pitch=-2048,Yaw=-2048)
         AimAdjustTime=0.600000
         AimSpread=(Min=256,Max=1024)
         AimDamageThreshold=75.000000
@@ -103,10 +103,6 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
-		SightPivot=(Pitch=512)
-		SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
-		ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
-		ViewPivot=(Pitch=600)
         SightMoveSpeedFactor=0.6
         InventorySize=5
 		MagAmmo=5

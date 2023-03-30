@@ -143,7 +143,7 @@ defaultproperties
 		YRandFactor=0.200000
 		MaxRecoil=4096
 		DeclineDelay=0.350000
-		DeclineTime=0.900000
+		DeclineTime=0.75
 		CrouchMultiplier=0.700000
 		HipMultiplier=1.5
 		MaxMoveMultiplier=2
@@ -156,7 +156,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=512,Max=2048)
         ADSMultiplier=0.5
-		SprintOffSet=(Pitch=-7000,Yaw=-3000)
+		SprintOffSet=(Pitch=-2048,Yaw=-2048)
 		OffsetAdjustTime=0.600000
 		JumpOffSet=(Pitch=-6000,Yaw=-1500)
 		JumpChaos=0.700000
@@ -179,8 +179,7 @@ defaultproperties
 		SightingTime=0.50000		
 		DisplaceDurationMult=1
 		MagAmmo=8
-		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
-		SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
+		SightOffset=(X=0.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
 		WeaponModes(0)=(ModeName="Airburst: Impact Detonation",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Airburst: Proximity Detonation",ModeID="WM_FullAuto")

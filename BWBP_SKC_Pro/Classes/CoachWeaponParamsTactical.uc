@@ -84,7 +84,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.200000
 		YRandFactor=0.200000
-		DeclineTime=0.900000
+		DeclineTime=0.750000
 		DeclineDelay=0.400000
 	End Object
 
@@ -94,6 +94,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
         ChaosSpeedThreshold=300
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 	End Object
 
 	//=================================================================
@@ -103,8 +104,6 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.200000
-		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
-		ViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
 		InventorySize=4
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.3

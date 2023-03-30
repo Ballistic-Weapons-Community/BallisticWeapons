@@ -81,7 +81,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=1024)
 		ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-1024,Yaw=-1024)
         ChaosSpeedThreshold=300
 	End Object
@@ -91,8 +91,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		ViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
-		SightOffset=(X=-20.000000,Z=35.000000)
+		SightOffset=(X=15.000000,Y=-0.6,Z=34.000000)
 		CockAnimRate=1.200000
 		PlayerSpeedFactor=0.95
 		InventorySize=6

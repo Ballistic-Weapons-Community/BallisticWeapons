@@ -85,7 +85,7 @@ defaultproperties
 	//=================================================================
 
     Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
         ChaosSpeedThreshold=300
     End Object
 
@@ -99,12 +99,11 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightOffset=(X=22.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
 		//Function
 		CockAnimRate=1.250000
     	ReloadAnimRate=1.250000
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 		PlayerJumpFactor=1.000000
 		InventorySize=5
 		SightMoveSpeedFactor=0.9
@@ -127,9 +126,7 @@ defaultproperties
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
 		//Function
 		CockAnimRate=1.250000
-    	ReloadAnimRate=1.250000
-		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-		
+    	ReloadAnimRate=1.250000		
 		PlayerJumpFactor=1.000000
 		InventorySize=5
 		SightMoveSpeedFactor=0.9

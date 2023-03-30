@@ -730,7 +730,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.PentagramOutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=61),Color2=(B=0,G=148,R=255,A=158),StartSize1=90,StartSize2=96)
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	CurrentWeaponMode=0
-	SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
+	SightOffset=(X=32.000000,Y=2.850000,Z=17.90000)
 	bNoCrosshairInScope=True
 	SightDisplayFOV=40.000000
 	GunLength=48.000000
@@ -753,7 +753,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=7
 	PickupClass=Class'BWBP_OP_Pro.RCS715Pickup'
-	PlayerViewOffset=(Y=16.000000,Z=-25.000000)
+	PlayerViewOffset=(X=-15,Y=4.000000,Z=-15.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.RCS715Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.AssaultShotgun.SmallIcon_AssaultShotgun'
 	IconCoords=(X2=125,Y2=32)
@@ -765,5 +765,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_AssaultShotgun'
-	DrawScale=0.600000
+	DrawScale=0.300000
 }

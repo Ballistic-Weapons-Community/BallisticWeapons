@@ -88,7 +88,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.35
 		AimSpread=(Min=64,Max=768)
-		SprintOffset=(Pitch=-3000,Yaw=-8000)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.400000
 		ChaosDeclineTime=0.5
 		ChaosSpeedThreshold=300
@@ -99,14 +99,11 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="ElecSight",Slot=54,Scale=0f)
 		CockAnimRate=1.400000
-		SightPivot=(Pitch=450)
-		SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
-		ViewOffset=(X=8.000000,Z=-14.000000)
-		PlayerJumpFactor=1
 		InventorySize=5
 		SightMoveSpeedFactor=0.8
-		SightingTime=0.350000		
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=22
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

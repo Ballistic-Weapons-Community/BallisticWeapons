@@ -91,6 +91,7 @@ defaultproperties
     Begin Object Class=AimParams Name=TacticalAimParams
 		AimAdjustTime=0.45
         AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
         JumpChaos=0.750000
         ADSMultiplier=1
         ChaosDeclineTime=1.000000
@@ -109,7 +110,7 @@ defaultproperties
         InventorySize=5
         SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=300)
-		SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
+		SightOffset=(X=-5.000000,Y=0.080000,Z=8.550000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalGrenadeFireParams'

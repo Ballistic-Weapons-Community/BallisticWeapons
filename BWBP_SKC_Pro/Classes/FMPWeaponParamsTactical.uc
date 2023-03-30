@@ -124,7 +124,7 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=4096.000000
-		DeclineTime=0.5
+		DeclineTime=0.75
 		DeclineDelay=0.150000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=1.000000
@@ -142,7 +142,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
-		DeclineTime=0.500000
+		DeclineTime=0.7500000
 		DeclineDelay=0.45000
 		ViewBindFactor=0.45
 		CrouchMultiplier=0.800000
@@ -159,7 +159,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
-		DeclineTime=0.500000
+		DeclineTime=0.7500000
 		DeclineDelay=0.45000
 		ViewBindFactor=0.45
 		CrouchMultiplier=0.800000
@@ -173,7 +173,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
     	AimSpread=(Min=256,Max=1224)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.450000
 		ADSMultiplier=1
         ChaosSpeedThreshold=300
@@ -188,8 +188,6 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.185000
 		MagAmmo=28
-		SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
-		SightPivot=(YAW=10)
 		WeaponName="FMP-2012 .40 Machine Pistol"
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalIncRecoilParams'

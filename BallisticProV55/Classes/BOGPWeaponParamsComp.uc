@@ -101,7 +101,7 @@ defaultproperties
         SightingTime=0.200000
         InventorySize=3
 		SightPivot=(Pitch=300)
-		SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
+		SightOffset=(X=-5.000000,Y=0.080000,Z=8.550000)
 		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

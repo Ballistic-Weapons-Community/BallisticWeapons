@@ -142,7 +142,7 @@ defaultproperties
     CurrentWeaponMode=0
     bNoCrosshairInScope=True
     SightPivot=(Pitch=256)
-    SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
+    SightOffset=(X=-10.000000,Y=-0.040000,Z=14.050000)
     ParamsClasses(0)=Class'M290WeaponParamsComp'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
     ParamsClasses(2)=Class'M290WeaponParamsRealistic'
@@ -152,13 +152,12 @@ defaultproperties
     AIRating=0.900000
     CurrentRating=0.900000
     Description="Another sturdy weapon by Black & Wood, the M290 has proven it's worth many times in combat situations, especially against alien forces, most notably the Krao. One of its greatest feats was during the second Human-Skrith war, when a wounded Captain in the UTC 27th Special Ops division single handedly defended an outpost from six advancing Krao companies, using the weapon�s wide spread to his advantage."
-    DisplayFOV=55.000000
     Priority=38
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=7
     GroupOffset=1
     PickupClass=Class'BallisticProV55.M290Pickup'
-    PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-13.000000)
+    PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-18.000000)
     AttachmentClass=Class'BallisticProV55.M290Attachment'
     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M290'
     IconCoords=(X2=127,Y2=31)

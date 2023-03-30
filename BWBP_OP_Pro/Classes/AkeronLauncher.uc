@@ -170,7 +170,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_OP_Pro.AkeronPickup'
-     PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-18.000000)
+     PlayerViewOffset=(X=15.000000,Y=13.000000,Z=-16.000000)
      AttachmentClass=Class'BWBP_OP_Pro.AkeronAttachment'
      IconMaterial=Texture'BWBP_OP_Tex.Akeron.Icon_Akeron'
      IconCoords=(X2=127,Y2=31)

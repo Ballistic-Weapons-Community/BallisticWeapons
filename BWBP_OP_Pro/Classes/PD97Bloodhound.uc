@@ -474,7 +474,7 @@ defaultproperties
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
+	SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)
 	SightDisplayFOV=40.000000
 	SightingTime=0.200000
 	ParamsClasses(0)=Class'PD97WeaponParamsComp'
@@ -496,7 +496,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=13
 	PickupClass=Class'BWBP_OP_Pro.PD97Pickup'
-	PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
+	PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-11.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.PD97Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Bloodhound.Icon_PD97'
 	IconCoords=(X2=127,Y2=31)

@@ -82,7 +82,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=384,Max=1536)
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpChaos=0.200000
 		FallingChaos=0.200000
 		SprintChaos=0.200000
@@ -96,12 +96,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		ViewOffset=(X=-30.000000,Y=5.000000,Z=-20.000000)
-		SightPivot=(Pitch=150)
-		SightOffset=(Y=19.600000,Z=26.400000)
 		InventorySize=4
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
+		SightPivot=(Pitch=150)
 		DisplaceDurationMult=1
 		MagAmmo=4
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

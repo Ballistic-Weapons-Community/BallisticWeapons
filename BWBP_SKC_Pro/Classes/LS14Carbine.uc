@@ -1063,7 +1063,7 @@ defaultproperties
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=600,Roll=-1024)
-	SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+	SightOffset=(X=26.000000,Y=-8.500000,Z=22.500000)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
@@ -1090,7 +1090,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=4
 	PickupClass=Class'BWBP_SKC_Pro.LS14Pickup'
-	PlayerViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
+	PlayerViewOffset=(X=-10.000000,Y=9.500000,Z=-15.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.LS14Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LS14.SmallIcon_LS14'

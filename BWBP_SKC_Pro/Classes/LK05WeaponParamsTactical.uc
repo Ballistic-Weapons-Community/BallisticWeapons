@@ -43,8 +43,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.4
-		DeclineDelay=0.200000
+		DeclineTime=0.75
+		DeclineDelay=0.140000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -57,8 +57,8 @@ defaultproperties
 		AimSpread=(Min=384,Max=1536)
         ADSMultiplier=0.5
 		AimAdjustTime=0.600000
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		ChaosDeclineTime=0.5
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		ChaosDeclineTime=0.75
 		ChaosSpeedThreshold=300
 	End Object
 
@@ -71,13 +71,10 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		//Function
-		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35
@@ -93,12 +90,11 @@ defaultproperties
 		Weight=10
 		LayoutName="Iron Sights"
 		//Attachments
-		SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
+		SightOffset=(X=25.000000,Y=-8.600000,Z=24.250000)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
 		//Function
-		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35

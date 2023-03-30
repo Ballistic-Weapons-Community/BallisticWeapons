@@ -68,8 +68,7 @@ defaultproperties
 		//Attachments
 		//Function
 		ReloadAnimRate=1.350000
-		SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
-		ViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
+		SightOffset=(X=-8.000000,Y=-0.030000,Z=7.400000)
 		SightingTime=0.200000
         DisplaceDurationMult=0.33
         SightMoveSpeedFactor=0.9

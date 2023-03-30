@@ -105,8 +105,8 @@ defaultproperties
 		ViewBindFactor=0.6
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.500000
-		DeclineDelay=0.250000
+		DeclineTime=0.7500000
+		DeclineDelay=0.240000
 		CrouchMultiplier=0.800000
 		HipMultiplier=1
 		MaxMoveMultiplier=1.5
@@ -118,6 +118,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
     	AimSpread=(Min=128,Max=512)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
         ADSMultiplier=0.5
 		AimAdjustTime=0.450000
 		ChaosDeclineTime=0.400000
@@ -139,8 +140,7 @@ defaultproperties
 		PlayerSpeedFactor=1.05
 		SightingTime=0.200000
 		MagAmmo=15
-		ViewOffset=(X=0.000000,Y=7.000000,Z=-12.000000)
-		SightOffset=(y=-3.140000,Z=14.300000)
+		SightOffset=(X=0,y=-3.140000,Z=14.300000)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalStandardPrimaryFireParams'
@@ -162,8 +162,7 @@ defaultproperties
 		SightingTime=0.200000
 		MagAmmo=15
         InventorySize=3
-		ViewOffset=(X=0.000000,Y=7.000000,Z=-12.000000)
-		SightOffset=(y=-3.140000,Z=14.300000)
+		SightOffset=(X=0,Y=-3.140000,Z=14.300000)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalStandardPrimaryFireParams'

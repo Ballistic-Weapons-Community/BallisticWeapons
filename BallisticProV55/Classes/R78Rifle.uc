@@ -226,7 +226,7 @@ defaultproperties
      FullZoomFOV=20.000000
      bNoCrosshairInScope=True
      SightPivot=(Roll=-1024)
-     SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
+     SightOffset=(X=18.000000,Y=-1.600000,Z=17.000000)
      MinZoom=4.000000
      MaxZoom=16.000000
      ZoomStages=2
@@ -242,15 +242,14 @@ defaultproperties
      AIRating=0.800000
      CurrentRating=0.800000
      bSniping=True
-     Description="Originally taken from the design of a bird hunting rifle, the R78 'Raven', is a favourite among military snipers and commando corps. Used to a great extent by the expert marksmen of the New European Army, the Raven, is extremely reliable and capable of incredible damage in a single shot. The added long distance sniping scope makes the R78 one of the most deadly weapons. Of course, the gun is only as good as the soldier using it, with a low clip capacity, long reload times and it's terrible ineffectiveness in close quarters combat. Several of the A1 models come with a variety of custom camo finishes and a quick action bolt, perfect for hunting in the woods."
-     DisplayFOV=55.000000
+     Description="Originally taken from the design of a bird hunting rifle, the R78 'Raven' is a favourite among military snipers and commando corps. Used to a great extent by the expert marksmen of the New European Army, the Raven is extremely reliable and capable of incredible damage in a single shot. The added long distance sniping scope makes the R78 one of the most deadly weapons. Of course, the gun is only as good as the soldier using it; it has a low magazine capacity, long reload times and is terribly ineffective in close quarters combat."
      Priority=33
      HudColor=(B=50,G=50,R=200)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=9
      GroupOffset=2
      PickupClass=Class'BallisticProV55.R78Pickup'
-     PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+     PlayerViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
      AttachmentClass=Class'BallisticProV55.R78Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_R78'
      IconCoords=(X2=127,Y2=31)

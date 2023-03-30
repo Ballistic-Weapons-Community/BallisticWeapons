@@ -587,8 +587,7 @@ defaultproperties
      ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=40.000000
-     SightPivot=(Pitch=600)
-     SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
+     SightOffset=(X=15.000000,Y=11.7500000,Z=20)
 	 ParamsClasses(0)=Class'XM20WeaponParamsComp'
 	 ParamsClasses(1)=Class'XM20WeaponParamsClassic'
 	 ParamsClasses(2)=Class'XM20WeaponParamsRealistic'
@@ -606,7 +605,7 @@ defaultproperties
      Priority=194
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      PickupClass=Class'BWBP_SKC_Pro.XM20Pickup'
-     PlayerViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
+     PlayerViewOffset=(X=0.000000,Y=-1.000000,Z=-19.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.XM20Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'

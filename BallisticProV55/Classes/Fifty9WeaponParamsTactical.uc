@@ -108,14 +108,14 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
+		DeclineTime=1.1
 		MaxRecoil=6144
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 		ViewBindFactor=0.2
 		ADSViewBindFactor=0.7 // no stock
-		DeclineDelay=0.09
+		DeclineDelay=0.14
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
@@ -123,14 +123,14 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
+		DeclineTime=1.1
 		MaxRecoil=6144
 		CrouchMultiplier=0.8
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 		ViewBindFactor=0.2
 		ADSViewBindFactor=0.85 // stock
-		DeclineDelay=0.09
+		DeclineDelay=0.14
 	End Object
 
 	//=================================================================
@@ -140,7 +140,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalBurstAimParams
         AimSpread=(Min=256,Max=1024)
         ADSMultiplier=1
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.45000
         ChaosSpeedThreshold=300
 	End Object
@@ -148,7 +148,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAutoAimParams
         AimSpread=(Min=256,Max=1024)
         ADSMultiplier=0.75
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.600000
         ChaosSpeedThreshold=300
 	End Object
@@ -163,9 +163,7 @@ defaultproperties
 		InventorySize=3
         SightingTime=0.2
         SightMoveSpeedFactor=0.6
-		SightPivot=(Pitch=512)
-		SightOffset=(X=-10.000000,Z=12.00000)
-		ViewOffset=(X=14.000000,Y=8.000000,Z=-10.000000)
+		SightPivot=(Pitch=128)
 		RecoilParams(0)=RecoilParams'TacticalBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'

@@ -362,8 +362,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
-	SightDisplayFOV=60.000000
+	SightOffset=(X=5.000000,Y=-4.9,Z=46.00000)
 	ParamsClasses(0)=Class'M806WeaponParamsComp'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'
@@ -383,7 +382,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=8
 	PickupClass=Class'BallisticProV55.M806Pickup'
-	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
+	PlayerViewOffset=(X=-5.000000,Y=7.000000,Z=-25.000000)
 	AttachmentClass=Class'BallisticProV55.M806Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M806'
 	IconCoords=(X2=127,Y2=31)
@@ -395,5 +394,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806'
-	DrawScale=0.080000
+	DrawScale=0.300000
 }

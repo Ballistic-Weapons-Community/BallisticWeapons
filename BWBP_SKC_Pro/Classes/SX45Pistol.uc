@@ -529,7 +529,7 @@ defaultproperties
     WeaponModes(2)=(ModeName="Amplified: Radiation",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(y=-3.140000,Z=14.300000)
+	SightOffset=(X=0,Y=-3.140000,Z=14.300000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'SX45WeaponParamsArena'
 	ParamsClasses(1)=Class'SX45WeaponParamsClassic'
@@ -547,7 +547,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=11
 	PickupClass=Class'BWBP_SKC_Pro.SX45Pickup'
-	PlayerViewOffset=(X=0.000000,Y=7.000000,Z=-12.000000)
+	PlayerViewOffset=(X=-3.000000,Y=5.000000,Z=-13.000000)
 	AttachmentClass=Class'BWBP_SKC_Pro.SX45Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.SX45.SmallIcon_SX45'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=175,G=178,R=176,A=160),Color2=(G=0),StartSize1=52,StartSize2=40)

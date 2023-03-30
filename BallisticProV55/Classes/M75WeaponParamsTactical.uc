@@ -69,8 +69,8 @@ defaultproperties
 		XRandFactor=0.250000
 		YRandFactor=0.250000
 		MinRandFactor=0.400000
-		DeclineTime=1.500000
-		DeclineDelay=0.5
+		DeclineTime=0.75
+		DeclineDelay=0.6
 		HipMultiplier=2
 		MaxMoveMultiplier=2
 	End Object
@@ -80,7 +80,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		SprintOffset=(Pitch=-8000,Yaw=-10000)
+		SprintOffset=(Pitch=-3072,Yaw=-3072)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 		JumpChaos=0.800000
 		AimSpread=(Min=768,Max=4096)
@@ -95,8 +95,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightOffset=(X=-24.000000,Z=24.700000)
-		ViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
+		SightOffset=(X=20.000000,Z=24.700000)
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9

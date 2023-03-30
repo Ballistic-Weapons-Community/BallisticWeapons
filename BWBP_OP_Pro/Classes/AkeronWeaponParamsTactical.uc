@@ -101,7 +101,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=512,Max=2048)
 		ADSMultiplier=1
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=-1500)
 		AimAdjustTime=0.8
 		ChaosSpeedThreshold=300
@@ -114,7 +114,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		ReloadAnimRate=0.80000
 		SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
-		ViewOffset=(X=30.000000,Y=20.000000,Z=-18.000000)
+		ViewOffset=(X=15.000000,Y=13.000000,Z=-16.000000)
 		WeaponModes(0)=(ModeName="Barrage",ModeID="WM_BigBurst",Value=3)
 		WeaponModes(1)=(ModeName="High Velocity",ModeID="WM_FullAuto",Value=1)
 		WeaponModes(2)=(ModeName="N/A",ModeID="WM_BigBurst",Value=3,bUnavailable=True)

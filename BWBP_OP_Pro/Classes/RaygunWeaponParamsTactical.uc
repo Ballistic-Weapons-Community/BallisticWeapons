@@ -75,7 +75,7 @@ defaultproperties
 		XRandFactor=0.050000
 		YRandFactor=0.050000
 		DeclineTime=1.500000
-		DeclineDelay=0.230000
+		DeclineDelay=0.180000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
  	End Object
@@ -87,7 +87,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=1
         AimSpread=(Min=256,Max=1024)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.500000
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
@@ -98,13 +98,11 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightPivot=(Pitch=450)
-		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-		ViewOffset=(X=5.000000,Z=-5.000000)
         DisplaceDurationMult=0.75
 		InventorySize=5
 		SightMoveSpeedFactor=0.75
 		SightingTime=0.3
+		SightPivot=(Pitch=450)
 		MagAmmo=24
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -250,7 +250,6 @@ defaultproperties
      CurrentRating=0.5000000
      bMeleeWeapon=True
      Description="RSH-1034 Riot Shield||Manufacturer: Apollo Industries|Primary: Smash|Secondary: Prepared Bash||A defensive weapon capable of blocking many attack types. Reduces incoming frontal damage by 35 or reduces it to 25% of the original amount, whichever is greater. Blocks melee damage outright. Has no effect on non-locational damage such as gas and fire."
-     DisplayFOV=65.000000
      Priority=12
      HudColor=(B=255,G=200,R=200)
      CenteredOffsetY=7.000000

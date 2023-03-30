@@ -68,7 +68,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=512)
         ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=0.5
 		ChaosDeclineDelay=0.3
 		ChaosSpeedThreshold=300
@@ -80,10 +80,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
-		ReloadAnimRate=1.000000
-		SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
-		ViewOffset=(X=4.000000,Y=0.000000,Z=-22.000000)
-		
+		ReloadAnimRate=1.000000		
 		PlayerJumpFactor=1
 		InventorySize=5
 		SightMoveSpeedFactor=0.8

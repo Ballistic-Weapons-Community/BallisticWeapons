@@ -196,7 +196,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.350000
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.600000
 		AimSpread=(Min=64,Max=378)
 		AimDamageThreshold=75.000000
@@ -217,9 +217,8 @@ defaultproperties
 		//Function
         ReloadAnimRate=1.250000
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
 		SightMoveSpeedFactor=0.8
 		InventorySize=6
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -241,9 +240,8 @@ defaultproperties
 		//Function
         ReloadAnimRate=1.250000
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
 		InventorySize=6
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
@@ -264,9 +262,8 @@ defaultproperties
 		//Function
         ReloadAnimRate=1.250000
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
 		InventorySize=6
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

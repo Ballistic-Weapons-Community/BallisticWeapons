@@ -257,7 +257,6 @@ defaultproperties
 	bMeleeWeapon=True
 	bNoInstagibReplace=True
 	Description="Generic sandbags, as used in militaries for decades. Useful for laying temporary cover. Can be used as a base for most deployed weapons, reducing the chance of the user being directly hit by attacks. May be picked up with the Use key when no other players are near them. Vulnerable to destruction if hit by high-powered weaponry."
-	DisplayFOV=65.000000
 	Priority=12
 	HudColor=(G=200)
 	CenteredOffsetY=7.000000

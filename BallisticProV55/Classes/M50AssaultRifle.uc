@@ -682,11 +682,10 @@ defaultproperties
 	WeaponModes(1)=(Value=3.000000,bUnavailable=True)
 	MeleeFireClass=Class'BallisticProV55.M50MeleeFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=158),StartSize1=84,StartSize2=82)
-	
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=200)
-	SightOffset=(Y=0.050000,Z=12.130000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=10,Y=0.050000,Z=12.130000)
+	PlayerViewOffset=(X=-7.000000,Y=4.500000,Z=-9.000000)
 	EffectOffset=(X=100,Z=7)
 	ParamsClasses(0)=Class'M50WeaponParamsComp'
 	ParamsClasses(1)=Class'M50WeaponParamsClassic'
@@ -705,7 +704,7 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.M50Pickup'
-	PlayerViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+
 	AttachmentClass=Class'BallisticProV55.M50Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M50'
 	IconCoords=(X2=127,Y2=31)

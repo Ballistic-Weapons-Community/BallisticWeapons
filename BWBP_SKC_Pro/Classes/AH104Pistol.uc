@@ -493,7 +493,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.AH104.BigIcon_AH104'
-	
+	bNoCrosshairInScope=True
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Draw')
@@ -509,7 +509,7 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Laser-Auto",bUnavailable=True,Value=7.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=-30.000000,Y=-0.800000,Z=23.000000)
+	SightOffset=(X=-5.000000,Y=-0.680000,Z=22.700000)
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),StartSize1=61,StartSize2=62)
@@ -531,7 +531,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=12
 	PickupClass=Class'BWBP_SKC_Pro.AH104Pickup'
-	PlayerViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
+	PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-20.000000)
 	BobDamping=2.300000
 	AttachmentClass=Class'BWBP_SKC_Pro.AH104Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AH104.SmallIcon_AH104'

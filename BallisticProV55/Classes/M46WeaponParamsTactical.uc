@@ -26,7 +26,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.M46FlashEmitter'
         FlashScaleFactor=0.450000
-        Recoil=170.000000
+        Recoil=340.000000
         Chaos=0.032000
         BotRefireRate=0.99
         WarnTargetPct=0.2
@@ -77,8 +77,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.5,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineDelay=0.1700000
-		DeclineTime=0.65
+		DeclineDelay=0.165000
+		DeclineTime=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -89,7 +89,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.60000
 		AimSpread=(Min=384,Max=1536)
 		ChaosDeclineTime=1.250000
@@ -105,11 +105,14 @@ defaultproperties
         SightMoveSpeedFactor=0.35
         MagAmmo=24
         InventorySize=6
+
 		// acog
         ZoomType=ZT_Logarithmic
 		MinZoom=2
 		MaxZoom=4
 		ZoomStages=1
+		SightPivot=(Pitch=600,Roll=-1024)
+		SightOffset=(Y=-1.000000,Z=12.500000)
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
@@ -122,10 +125,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6
-		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
-		ViewPivot=(Pitch=384)
-        SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+		SightOffset=(X=5,Y=0.050000,Z=11.350000)
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

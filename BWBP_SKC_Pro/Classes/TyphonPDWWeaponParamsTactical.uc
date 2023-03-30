@@ -82,8 +82,8 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
         XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.9
-		DeclineDelay=0.4000
+		DeclineTime=0.75
+		DeclineDelay=0.185000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -95,7 +95,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=256,Max=1024)
 		ADSMultiplier=0.50000
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.50000
 		ChaosDeclineTime=0.90000
         ChaosSpeedThreshold=300.000000
@@ -107,10 +107,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
-		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
-		SightPivot=(Pitch=0)
 		InventorySize=4
 		SightMoveSpeedFactor=0.6
 		DisplaceDurationMult=1

@@ -82,7 +82,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=768)
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ViewBindFactor=0.200000
 		ChaosDeclineTime=1.500000
         ChaosSpeedThreshold=300.000000
@@ -98,13 +98,10 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
-		SightPivot=(Pitch=64)
 		ZoomType=ZT_Irons
 		//Function
 		SightingTime=0.300000
 		SightMoveSpeedFactor=0.8
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -126,7 +123,6 @@ defaultproperties
 		//Function
 		SightingTime=0.300000
 		SightMoveSpeedFactor=0.6
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

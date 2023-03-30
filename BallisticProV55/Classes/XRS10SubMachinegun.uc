@@ -425,7 +425,6 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
 	
 	SightOffset=(X=-15.000000,Z=9.500000)
-	SightDisplayFOV=60.000000
 	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'XRS10WeaponParamsComp'
 	ParamsClasses(1)=Class'XRS10WeaponParamsClassic'
@@ -441,7 +440,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.XRS10Pickup'
-	PlayerViewOffset=(X=5.000000,Y=11.000000,Z=-11.000000)
+	PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.XRS10Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.XRS10.SmallIcon_XRS10'
 	IconCoords=(X2=127,Y2=31)

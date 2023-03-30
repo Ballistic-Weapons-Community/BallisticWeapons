@@ -550,7 +550,6 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="Miniguns are devastating tools of destruction in the right hands, able to decimate swarms of Krao and keep the Skrith suppressed. However, not only is the recoil fearsome, but the weight also has become an issue to non-geneboosted soldiers. While a relatively minor complaint to some companies, it didn't stop Majestic Firearms 12 from producing a more lightweight and portable version of a minigun while still retaining a lot of stopping power against heavier units. Enter the Z250 Minigun, not as big as the XMV-850 but still just as deadly, chambered for a specialized .308 HEAP round, it might not fire as fast yet it can still rip apart anyone standing on the wrong end. It can also fire fuel grenades to coat the battlefield in a flammable substance, providing a great area of denial. The Z250 is currently being issued to ODST troops and specialized troops to combat the Krao swarms infecting the universe."
-	DisplayFOV=45.000000
 	Priority=47
 	HudColor=(B=50,G=200,R=25)
 	CustomCrossHairColor=(A=219)
@@ -559,7 +558,7 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=2
 	PickupClass=Class'BWBP_OP_Pro.Z250Pickup'
-	PlayerViewOffset=(Y=15.000000,Z=-25.000000)
+	PlayerViewOffset=(X=-20,Y=18.000000,Z=-32.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.Z250Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Z250.Icon_Z250'
 	IconCoords=(X2=127,Y2=31)

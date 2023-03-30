@@ -366,7 +366,6 @@ defaultproperties
      CurrentRating=0.200000
      bMeleeWeapon=True
      Description="NEX Plas-Edge Sword||Manufacturer: Nexron Defence|Primary: Slash|Secondary: Charged Slash|Special: Block|| The NEX Plas-Edge Mod 0 is the first in a line of high tech energy based swords pioneered by Nexron defense. Unlike the later nanosword designs, the NEX Mod 0 uses only the supercharged ionic gas channel for energy and relies on a traditional metal sword for the cutting. This approach was quickly abandoned as Element 115's plasma field unfortunately proved to be highly unstable with erratic charge levels and random dangerous overheats. The blade's excessive heat also required a different approach - scientists noted that after prolonged exposure the blade ionized the surrounding atmosphere and made breathing difficult. When using the NEX in combat, be careful not to overcharge it as the blade is prone to discharge when completely energized. It should be noted that the plas-edge's coils are incredibly unstable and will absorb any and all incoming energy. With an effect similar to skrith anti-energy armor, this can be used to the user's advantage in the field by absorbing enemy plasma charges and using them to strike a supercharged blow."
-     DisplayFOV=65.000000
      Priority=1
      HudColor=(G=0)
      CenteredOffsetY=7.000000

@@ -284,9 +284,8 @@ defaultproperties
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
-	SightPivot=(Pitch=600)
-	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
-	SightDisplayFOV=25.000000
+	PlayerViewOffset=(X=-13.000000,Y=5.000000,Z=-15.00000)
+	SightOffset=(X=27.500000,Y=-0.360000,Z=20.26)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CX61WeaponParamsComp'
 	ParamsClasses(1)=Class'CX61WeaponParamsClassic'
@@ -302,14 +301,12 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="Cimerion Labs' CX61 Tactical Rifle was engineered as a reliable primary weapon for use by medical personnel. Incorporating a nano-forge capable of producing G28 aerosol for projection by the weapon, it is able to choose between projecting healing spray or igniting the G28 gas in order to emit a blast of flame to disorient foes."
-	DisplayFOV=55.000000
 	Priority=32
 	HudColor=(B=168,G=111,R=83)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=9
 	PickupClass=Class'BWBP_OP_Pro.CX61Pickup'
-	PlayerViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
 	AttachmentClass=Class'BWBP_OP_Pro.CX61Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.CX61.Icon_CX61'
 	IconCoords=(X2=127,Y2=31)

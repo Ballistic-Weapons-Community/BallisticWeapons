@@ -80,8 +80,8 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.15
 		YRandFactor=0.1
-        DeclineTime=0.750000
-        DeclineDelay=0.350000
+        DeclineTime=1.1
+        DeclineDelay=0.250000
         MaxRecoil=6144
 		HipMultiplier=1.5
 		MaxMoveMultiplier=2
@@ -93,6 +93,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=TacticalAimParams
         AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
         ADSMultiplier=0.75
         SprintChaos=0.050000
         AimAdjustTime=0.450000
@@ -106,8 +107,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
 		bDualBlocked=True
-        SightOffset=(X=-15.000000,Z=5.900000)
-		ViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
+        SightOffset=(X=-5.000000,Z=5.900000)
         DisplaceDurationMult=0.5
         SightingTime=0.250000
         SightMoveSpeedFactor=0.6

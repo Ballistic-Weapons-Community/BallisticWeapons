@@ -88,7 +88,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=384)
 		ADSMultiplier=0.50000
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.450000
 		ChaosDeclineTime=0.90000
         ChaosSpeedThreshold=300.000000
@@ -100,10 +100,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
-		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
-		SightPivot=(Pitch=0)
 		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1

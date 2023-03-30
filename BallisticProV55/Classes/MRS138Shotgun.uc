@@ -433,15 +433,14 @@ defaultproperties
 	StartShovelAnimRate=1.400000
 	StartShovelAnim="PrepReload"
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
-	SightOffset=(X=15,Z=21.500000)
-	SightDisplayFOV=40
+	SightOffset=(X=40,Z=18.000000)
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
 	PutDownTime=0.35
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	Priority=36
-	PlayerViewOffset=(Y=10.000000,Z=-14.000000)
+	PlayerViewOffset=(X=-18.000000,Y=8,Z=-18.000000)
 	PickupClass=Class'BallisticProV55.MRS138Pickup'
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRS'
 	MeleeFireClass=Class'BallisticProV55.MRS138MeleeFire'
@@ -474,7 +473,6 @@ defaultproperties
 	EndShovelAnimRate=1.600000
 	EndShovelAnim="EndReload"
 	DrawScale=0.400000
-	DisplayFOV=50.000000
 	Description="Also from the first line of Drake & Co weaponry, the MRS138 Combat Shotgun is an excellent close-range weapon. It is outfitted with a tactical light and tazer attachment to increase its effectiveness as a crowd control and civilian weapon. The tazer is an effective tool for stunning enemies and inflicting slight damage, leaving them blinded and disoriented for a few seconds, while the flash light can be used for locating those which hide in the dark."
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	CurrentWeaponMode=0

@@ -153,16 +153,6 @@ final simulated function bool ShouldUpdateView()
 		return true;
 
 	return false;
-
-	/*
-    local bool ret;
-
-    ret = bViewDecline || bForceUpdate || (Current.Recoil > 0 && HoldingRecoil()); // used to prevent removing recoil from player view
-
-    bForceUpdate = false;
-
-    return ret;
-	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -247,7 +237,7 @@ final simulated function Recalculate()
 final simulated function UpdateRecoil(float dt)
 {
 	// update shift to desired target value
-	if (Current.Recoil != Target.Recoil)
+	if (Current.Recoil != Target.Recoil || Current.XRand != Target.XRand || Current.YRand != Target.YRand)
 	{
 		// prevent div0
 		if (AdjustmentTime == 0)
@@ -485,5 +475,5 @@ final simulated function ReceiveNetRecoil(byte NetXRand, byte NetYRand, float Ne
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 final simulated function DrawDebug(Canvas Canvas)
 {
-    Canvas.DrawText("RecoilComponent: Recoil: "$ Current.Recoil $"/"$ MaxRecoil $" (Lerp "$ Start.Recoil $"-"$Target.Recoil$", Phase "$AdjustmentPhase$"), ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor);
+    Canvas.DrawText("Recoil: "$ Current.Recoil $"/"$ MaxRecoil $", XRand "$ Current.XRand $", YRand "$ Current.YRand $" (Lerp "$ Start.Recoil $"-"$Target.Recoil $", XRand "$ Start.XRand $"-"$Target.XRand $", YRand "$ Start.YRand $"-"$Target.YRand $", Phase "$AdjustmentPhase$"), ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor);
 }

@@ -339,7 +339,8 @@ defaultproperties
      CurrentWeaponMode=1
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50In',USize1=128,VSize1=128,USize2=128,VSize2=128,Color1=(B=0,G=0,R=255,A=158),Color2=(B=0,G=255,R=255,A=255),StartSize1=75,StartSize2=72)
      bNoCrosshairInScope=True
-     SightOffset=(X=20.000000,Y=-6.450000,Z=20.500000)
+     SightOffset=(X=25.000000,Y=-6.380000,Z=20.88000)
+	 PlayerViewOffset=(X=-13.000000,Y=9.00000,Z=-16.000000)
      SightDisplayFOV=40.000000
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=2.200000)
      ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagIn',Volume=2.200000)
@@ -364,7 +365,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
      PickupClass=Class'BWBP_SKC_Pro.G51Pickup'
-     PlayerViewOffset=(X=-8.000000,Y=10.000000,Z=-16.000000)
+
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.G51Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.G51.SmallIcon_G51'

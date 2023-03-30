@@ -185,7 +185,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3000,Yaw=-5000)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-4000,Yaw=-3000)
 		AimSpread=(Min=16,Max=1740)
 		CrouchMultiplier=0.600000

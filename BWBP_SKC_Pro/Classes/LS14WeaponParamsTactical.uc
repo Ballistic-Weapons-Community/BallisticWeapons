@@ -71,7 +71,7 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		DeclineTime=1.000000
-		DeclineDelay=0.2
+		DeclineDelay=0.18
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -84,7 +84,7 @@ defaultproperties
 		AimSpread=(Min=384,Max=1536)
 		AimAdjustTime=0.700000
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.0
 		ChaosDeclineDelay=0.5
         ChaosSpeedThreshold=300
@@ -99,9 +99,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=0f)
-		ViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
-		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+		SightOffset=(X=26.000000,Y=-8.500000,Z=22.500000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.5

@@ -135,7 +135,6 @@ defaultproperties
 		SightingTime=0.15
 		MagAmmo=6
 		ViewOffset=(X=4.000000,Y=10.500000,Z=-13.000000)
-		ViewPivot=(Pitch=512)
 		SightOffset=(X=-20.000000,Y=-3.500000,Z=23.9500000)
 		SightPivot=(Pitch=-175,Roll=-500)
 		bAdjustHands=true

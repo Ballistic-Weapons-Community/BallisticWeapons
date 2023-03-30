@@ -635,8 +635,7 @@ defaultproperties
      CurrentWeaponMode=3
      bNoCrosshairInScope=True
 	 bShowChargingBar=True
-     SightPivot=(Pitch=128)
-     SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
+     SightOffset=(X=5.000000,Y=-0.35000,Z=12.850000)
      FireModeClass(0)=Class'BWBP_OP_Pro.M575PrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.M575SecondaryFire'
      SelectAnimRate=1.350000
@@ -648,13 +647,12 @@ defaultproperties
      AIRating=0.7500000
      CurrentRating=0.7500000
      Description="In response to not just the regular UTC troops demanding a new LMG, but also the ODST troops finding the M353 to be inadequate in stopping skrith dead in their tracks, Enravion updated the platform into the new M575 Machine Gun. In addition to firing 7.62mm rounds instead of the old 5.56mm rounds, the M575 also has rail support for all the optics one could ever ask for; when the weapon first debuted, it came with a C-All Red Dot Sight along with a 2x magnifier scope. While the M353 is still hanging around, it is slated to be phased by the M575 within 6 months if all goes well."
-     DisplayFOV=50.000000
      Priority=43
      HudColor=(G=150,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_OP_Pro.M575Pickup'
-     PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-7.800000)
+     PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-10.00000)
      AttachmentClass=Class'BWBP_OP_Pro.M575Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.M575.SmallIcon_M575'
      IconCoords=(X2=127,Y2=31)
@@ -670,7 +668,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'M575MachinegunWeaponParamsRealistic'
      ParamsClasses(3)=Class'M575MachinegunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_M575'
-     DrawScale=1.000000
+     DrawScale=1
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader'
 	 Skins(2)=Shader'BWBP_OP_Tex.M575.M575_scope_SH1'

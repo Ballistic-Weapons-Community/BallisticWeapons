@@ -114,7 +114,6 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="Whatever the west has for their armaments, be it rifles or explosive ordinance, ZTV Exports refuses to be outclassed.  Their latest weapon to come off the assembly line is the LRGh-90 ''Topor'' Grenade Launcher, based off an old prototype that never saw the light of day until now. Firing either concussion or smoke 35mm caseless grenades in a bullpup configuration, the Topor may not look like it's ergo-friendly, but more than makes up for its versatility and ruggedness, living up to the legend that ZTV weapons can never malfunction, no matter the environment.  ZTV projects that the ''Thumper''  will be able to outshine their competitors with their newest offering, and given how the PKMA and AK-490 are doing, it could be another home run."
-	DisplayFOV=55.000000
 	Priority=39
 	HudColor=(G=200,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

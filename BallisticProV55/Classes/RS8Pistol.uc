@@ -510,7 +510,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-15.000000,Z=8.700000)
+	SightOffset=(X=-10.000000,Z=8.700000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'RS8WeaponParamsComp'
 	ParamsClasses(1)=Class'RS8WeaponParamsClassic'
@@ -532,7 +532,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=7
 	PickupClass=Class'BallisticProV55.RS8Pickup'
-	PlayerViewOffset=(X=3.000000,Y=9.000000,Z=-12.000000)
+	PlayerViewOffset=(X=-2.000000,Y=5.000000,Z=-12.000000)
 	AttachmentClass=Class'BallisticProV55.RS8Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.RS8.SmallIcon_RS8'
 	IconCoords=(X2=127,Y2=31)

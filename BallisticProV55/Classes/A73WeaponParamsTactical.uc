@@ -195,8 +195,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.5
-		DeclineDelay=0.170000
+		DeclineTime=0.75
+		DeclineDelay=0.125000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
  	End Object
@@ -207,7 +207,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.5
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.600000
 		AimSpread=(Min=384,Max=1536)
 		AimDamageThreshold=75.000000
@@ -227,9 +227,8 @@ defaultproperties
 		//Attachments
 		//Function
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		InventorySize=6
@@ -251,9 +250,8 @@ defaultproperties
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73.A73BladeShader',Index=4)
 		//Function
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		InventorySize=6
@@ -275,9 +273,8 @@ defaultproperties
 		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BBladeShader',Index=4)
 		//Function
 		MagAmmo=32
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=12.150000)
+		SightOffset=(X=10.000000,Z=11.90000)
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		InventorySize=6
