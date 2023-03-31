@@ -159,7 +159,7 @@ defaultproperties
 
 	RunOffset=(Pitch=-4000,Yaw=-2000)
 	HatchSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Flash.BigIcon_FLASH'
 	BigIconCoords=(Y2=230)
@@ -226,10 +226,4 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FLASH'
 	DrawScale=0.400000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BWBP_SKC_Tex.Flash.FLASH-Scope'
-	Skins(2)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
-	Skins(3)=Texture'BWBP_SKC_Tex.Flash.FLASH-Main'
-	Skins(4)=Texture'BWBP_SKC_Tex.Flash.FLASH-Lens'
-	Skins(5)=Texture'BWBP_SKC_Tex.Flash.FLASH-Rocket'
 }

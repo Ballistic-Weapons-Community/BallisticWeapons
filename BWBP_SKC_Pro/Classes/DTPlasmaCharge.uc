@@ -18,7 +18,7 @@ defaultproperties
      bIgniteFires=True
      DamageIdent="Streak"
      DamageDescription=",Plasma,"
-     WeaponClass=Class'BWBP_SKC_Pro.HVPCMk66PlasmaCannon'
+     WeaponClass=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
      DeathString="%k burned %o a new one with the H-VPC."
      FemaleSuicide="%o valiantly attacked a wall and died for it."
      MaleSuicide="%o valiantly attacked a wall and died for it."
