@@ -144,7 +144,6 @@ defaultproperties
 	PutDownTime=0.600000
 	ReloadAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"
-	SightDisplayFOV=60.000000
 	SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
 	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")

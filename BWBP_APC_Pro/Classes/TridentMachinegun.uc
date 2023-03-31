@@ -350,7 +350,6 @@ defaultproperties
 	AIRating=0.7500000
 	CurrentRating=0.7500000
 	Description=""
-	DisplayFOV=50.000000
 	Priority=43
 	HudColor=(B=150,R=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

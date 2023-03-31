@@ -674,6 +674,8 @@ defaultproperties
 	 LoadoutGroup0(10)=BWBP_SKC_Pro.DragonsToothSword
 	 LoadoutGroup0(11)=BWBP_SKC_Pro.N3XPlaz
 	 LoadoutGroup0(12)=BWBP_SKC_Pro.X8Knife
+	 LoadoutGroup0(13)="BallisticProV55.RandomWeaponDummy"
+     LoadoutGroup0(14)="BallisticProV55.NoneWeaponDummy"
 	 LoadoutGroup1(0)=BallisticProV55.M806Pistol
 	 LoadoutGroup1(1)=BallisticProV55.A42SkrithPistol
 	 LoadoutGroup1(2)=BallisticProV55.MRT6Shotgun
@@ -691,6 +693,8 @@ defaultproperties
 	 LoadoutGroup1(14)=BWBP_SKC_Pro.RS04Pistol
 	 LoadoutGroup1(15)=BWBP_SKC_Pro.SX45Pistol
 	 LoadoutGroup1(16)=BWBP_SKC_Pro.T9CNMachinePistol
+	 LoadoutGroup1(17)="BallisticProV55.RandomWeaponDummy"
+     LoadoutGroup1(18)="BallisticProV55.NoneWeaponDummy"
 	 LoadoutGroup2(0)=BallisticProV55.M763Shotgun
 	 LoadoutGroup2(1)=BallisticProV55.A73SkrithRifle
 	 LoadoutGroup2(2)=BallisticProV55.M353Machinegun
@@ -916,6 +920,8 @@ defaultproperties
 	 LoadoutGroup3(100)=BWBP_SKC_Pro.M2020GaussDMR
 	 LoadoutGroup3(101)=BWBP_SKC_Pro.VSKTranqRifle
 	 LoadoutGroup3(102)=BWBP_SKC_Pro.X82Rifle
+	 LoadoutGroup3(103)="BallisticProV55.RandomWeaponDummy"
+     LoadoutGroup3(104)="BallisticProV55.NoneWeaponDummy"
 	 LoadoutGroup4(1)=BallisticProV55.NRP57Grenade
 	 LoadoutGroup4(2)=BallisticProV55.FP7Grenade
 	 LoadoutGroup4(3)=BallisticProV55.FP9Explosive
@@ -933,6 +939,8 @@ defaultproperties
 	 LoadoutGroup4(15)=BWBP_SWC_Pro.NTOVBandage
 	 LoadoutGroup4(16)=BallisticProV55.M58Grenade
 	 LoadoutGroup4(17)=BallisticProV55.SandbagLayer
+	 LoadoutGroup4(18)="BallisticProV55.RandomWeaponDummy"
+     LoadoutGroup4(19)="BallisticProV55.NoneWeaponDummy"
 	 
      bHideLockers=True
      FriendlyName="BallisticPro: Loadout"

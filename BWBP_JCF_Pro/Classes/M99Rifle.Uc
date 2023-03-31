@@ -403,7 +403,6 @@ defaultproperties
      CurrentRating=0.600000
      bSniping=True
      Description="M99 ECS .55 Anti Material Rifle||Manufacturer: Enravion Combat Solutions|Primary: Single Powerful Shot|Secondary: Activate Zooming Scope||In the 21st century the M99 was an effective long range sniper rifle, with a high penetration power. During the Skrith wars however the M99 lost its relevance due to its slow fire rate and old ammunition. Weapons like the M75-TIC Railgun were far more effective and feared. In the middle of the war the production of the M75 was too expensive to arm every sniper with it. Thus Enravion Combat Solutions started to do researches on how to improve old firearms and they succeeded. The M99-ECS was the result. Many improvements like better materials and a high quality scope made the rifle useful again. The major improvement however was the ammunition. The new 55.cal ECS armor piercing round easily penetrates concrete wall, with minimal deformations. Due to its nano coating the 55.cal ECS projectile glides through the air with minimal aerodynamic drag. This way it keeps its high V0"
-     DisplayFOV=55.000000
      Priority=33
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=9

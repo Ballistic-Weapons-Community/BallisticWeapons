@@ -333,8 +333,13 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Shockwave'
 	End Object
 	
+	Layouts(0)=WeaponParams'ClassicParams_Marksman' //Black
+	Layouts(1)=WeaponParams'ClassicParams_Tactical'
+	Layouts(2)=WeaponParams'ClassicParams_CQC'
+	Layouts(3)=WeaponParams'ClassicParams_Shockwave'
 	
-	//Camos
+	
+	//Camos =========================================
 	Begin Object Class=WeaponCamo Name=MARS_Black
 		Index=0
 		CamoName="Black"
@@ -389,11 +394,6 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams_Marksman' //Black
-	Layouts(1)=WeaponParams'ClassicParams_Tactical'
-	Layouts(2)=WeaponParams'ClassicParams_CQC'
-	Layouts(3)=WeaponParams'ClassicParams_Shockwave'
-	
 	Camos(0)=WeaponCamo'MARS_Black' //Black
 	Camos(1)=WeaponCamo'MARS_Tan'
 	Camos(2)=WeaponCamo'MARS_Green'
@@ -402,6 +402,4 @@ defaultproperties
 	Camos(5)=WeaponCamo'MARS_Proto'
 	Camos(6)=WeaponCamo'MARS_LE'
 	//Camos(7)=WeaponCamos'MARS_Gold'
-
-
 }

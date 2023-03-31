@@ -54,10 +54,10 @@ simulated function Timer()
 		
 			if (BW != None)
 			{
+				BW.GenerateLayout(LayoutIndex);
+				BW.GenerateCamo(CamoIndex);
 				BW.GiveTo(myPawn);
 				BW.MagAmmo = MagAmmo;
-				BW.LayoutIndex = LayoutIndex;
-				BW.CamoIndex = CamoIndex;
 				BW.SetAmmoTo(TurretAmmoAmount, 0);
 				BW.CurrentWeaponMode = WeaponMode;
 			}

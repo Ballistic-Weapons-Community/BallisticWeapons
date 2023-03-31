@@ -19,7 +19,7 @@ function PlayFiring()
 {
 	if (BW.MagAmmo - ConsumedLoad < 1 || class'BallisticReplicationInfo'.static.IsClassic())
 	{
-		AimedFireAnim = 'AimedFire';
+		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 	else
@@ -34,7 +34,7 @@ function ServerPlayFiring()
 {
 	if (BW.MagAmmo - ConsumedLoad < 1 || class'BallisticReplicationInfo'.static.IsClassic())
 	{
-		AimedFireAnim = 'AimedFire';
+		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 	else

@@ -29,7 +29,7 @@ defaultproperties
 		Recoil=140.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M514H.M514H-Fire',Pitch=1.250000,Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M514H.M514H-Fire',Pitch=1.250000,Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -221,7 +221,8 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Ice'
     End Object 
 	
-	//Camos =======================================
+	
+	//Camos =========================================
 	Begin Object Class=WeaponCamo Name=MARS_Black
 		Index=0
 		CamoName="Black"
@@ -232,46 +233,49 @@ defaultproperties
 		Index=1
 		CamoName="Tan"
 		Weight=15
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-Irons",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-Irons",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Green
 		Index=2
 		CamoName="Olive Drab"
 		Weight=15
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainGreen",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainGreen",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Urban
 		Index=3
 		CamoName="Urban"
 		Weight=10
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainSplitter",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainSplitter",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Arctic
 		Index=4
 		CamoName="Arctic"
 		Weight=5
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-IronArctic",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-IronArctic",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Proto
 		Index=5
 		CamoName="Prototype"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronBlack",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronBlack",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_LE
 		Index=6
 		CamoName="Limited Edition"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1,PIndex=1,AIndex=0)
 	End Object
-	
-    Layouts(0)=WeaponParams'TacticalParams_Scope'
-    Layouts(1)=WeaponParams'TacticalParams_Holosight'
 	
 	Camos(0)=WeaponCamo'MARS_Black' //Black
 	Camos(1)=WeaponCamo'MARS_Tan'
@@ -280,4 +284,5 @@ defaultproperties
 	Camos(4)=WeaponCamo'MARS_Arctic'
 	Camos(5)=WeaponCamo'MARS_Proto'
 	Camos(6)=WeaponCamo'MARS_LE'
+	//Camos(7)=WeaponCamos'MARS_Gold'
 }

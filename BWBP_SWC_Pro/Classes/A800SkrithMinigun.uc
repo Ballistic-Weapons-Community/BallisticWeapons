@@ -250,8 +250,7 @@ defaultproperties
      WeaponModes(3)=(ModeName="3600 RPM",bUnavailable=True,ModeID="WM_FullAuto")
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=160,G=80,R=88,A=137),Color2=(B=151,G=150,R=0,A=202),StartSize1=84,StartSize2=61)
      DesiredSpeed=0.33
-     SightOffset=(X=-10.000000,Y=-3.830000,Z=16.900000)
-     SightDisplayFOV=45.000000
+     SightOffset=(X=-35.000000,Y=-3.830000,Z=16.900000)
 	 SightingTime=0.600000
 	 ReloadAnimRate=1.3
 	 MinZoom=2.000000
@@ -268,14 +267,13 @@ defaultproperties
      AIRating=0.700000
      CurrentRating=0.700000
      Description="One of the more devastating skrith tools of destruction, the Y11 is their answer to the XMV-850 Minigun. Able to spit out a deluge of plasma bolts at a rapid pace of fire, the Y11 can cut down anyone who isn't prepared; such was the case when only 3 skrith warriors were able to mow down a small battalion of UTC troops in the dense forests. Without their armor, the soldiers fell quickly, leaving only a few scarred survivors to tell the tale; calling them 'Warthogs' due to the voracious firepower and speed. Newer models of the Y11 have the capabilities to fire HV Plasma Rockets, making it even more potent against personnel."
-     DisplayFOV=45.000000
      Priority=78
      CustomCrossHairColor=(A=219)
      CustomCrossHairScale=1.008803
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_SWC_Pro.A800MinigunPickup'
-     PlayerViewOffset=(X=40.000000,Y=14.000000,Z=-15.000000)
+     PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
 	 PlayerViewPivot=(Roll=-256)
      BobDamping=2.200000
      AttachmentClass=Class'BWBP_SWC_Pro.A800MinigunAttachment'

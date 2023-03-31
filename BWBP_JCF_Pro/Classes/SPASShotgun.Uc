@@ -140,7 +140,6 @@ defaultproperties
 	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
      CurrentRating=0.600000
      Description="SPAS-12 Shotgun||Manufacturer: Classic Weapons Industries|Primary: Pump Shot|Secondary: Semi-Auto Shot||The SPAS is another well known firearm brought back to life by Classic Weapons Industries. A highly accurate 12-gauge shotgun, the 8 shell SPAS 12 was originally produced by Franchi in the pre-war period. It was a formidible dual-mode shotgun that could be fired in both semi-automatic and pump-action firemodes. CWI has worked to improve this venerable classic and has overhauled the original pump action firemode for improved accuracy and range. Users have the option of quickly switching between these modes to deal with different tactical situations. Comes with a variety of pre-war attachments for all your shooting needs."
-     DisplayFOV=50.000000
      Priority=36
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=7

@@ -367,25 +367,24 @@ defaultproperties
      bNoCrosshairInScope=True
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=39,R=137,A=255),Color2=(B=148,G=145,R=149,A=255),StartSize1=96,StartSize2=96)
 	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
-	 SightPivot=(Pitch=64)
-     SightOffset=(X=-5.000000,Y=-1.1150000,Z=15.00000)
      FireModeClass(0)=Class'BWBP_APC_Pro.PKMPrimaryFire'
      FireModeClass(1)=Class'BWBP_APC_Pro.PKMSecondaryFire'
      SelectAnimRate=1.000000
      PutDownTime=0.550000
      BringUpTime=0.500000
-	CockingBringUpTime=2.000000
+	 CockingBringUpTime=2.000000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.7500000
      CurrentRating=0.7500000
      Description="Rugged, reliable, no fancy attachments needed.  That's the mantra of ZTV Exports PKM-420 General Purpose Machine Gun, an old timey design brought back from the glory days of the MSR (Merged States Republic).  A 7.62mm belt-fed machine gun that can get the job done even without the frills of optics and other attachments, however there have been upgrades so that it can mount the infamous X8 seen on the AK-490. The PKM can fight, no matter how harsh the conditions are or how many Krao come surging, nothing can stop this machine gun from performing above and beyond."
-     DisplayFOV=40.000000
      Priority=43
      HudColor=(G=150,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_APC_Pro.PKMPickup'
-     PlayerViewOffset=(X=15.000000,Y=5.000000,Z=-7.000000)
+     PlayerViewOffset=(X=17.000000,Y=6.000000,Z=-12.000000)
+	 SightOffset=(X=-10.000000,Y=-1.1150000,Z=14.10000)
+	 SightPivot=(Pitch=-64)
      AttachmentClass=Class'BWBP_APC_Pro.PKMAttachment'
      IconMaterial=Texture'BWBP_CC_Tex.PKM.SmallIcon_PKMA'
      IconCoords=(X2=127,Y2=31)

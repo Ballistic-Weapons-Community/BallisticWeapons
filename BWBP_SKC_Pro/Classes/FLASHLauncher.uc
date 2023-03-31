@@ -226,10 +226,10 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FLASH'
 	DrawScale=0.400000
-	Skins(0)=Texture'BWBP_SKC_Tex.Flash.FLASH-Scope'
-	Skins(1)=Texture'BW_Core_WeaponTex.M353.M353_Ammo'
-	Skins(2)=Texture'BWBP_SKC_Tex.Flash.FLASH-Main'
-	Skins(3)=Texture'BWBP_SKC_Tex.Flash.FLASH-Lens'
-	Skins(4)=Texture'BWBP_SKC_Tex.Flash.FLASH-Rocket'
-	Skins(5)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BWBP_SKC_Tex.Flash.FLASH-Scope'
+	Skins(2)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+	Skins(3)=Texture'BWBP_SKC_Tex.Flash.FLASH-Main'
+	Skins(4)=Texture'BWBP_SKC_Tex.Flash.FLASH-Lens'
+	Skins(5)=Texture'BWBP_SKC_Tex.Flash.FLASH-Rocket'
 }

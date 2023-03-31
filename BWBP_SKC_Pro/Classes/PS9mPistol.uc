@@ -373,7 +373,7 @@ defaultproperties
 	Priority=65
 	HudColor=(B=130,G=100,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=2
+	InventoryGroup=3
 	PickupClass=Class'BWBP_SKC_Pro.PS9mPickup'
 	PlayerViewOffset=(X=3.000000,Y=-5.000000,Z=-8.500000)
 	BobDamping=2.000000
