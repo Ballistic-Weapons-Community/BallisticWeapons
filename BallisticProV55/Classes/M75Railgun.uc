@@ -204,7 +204,7 @@ simulated function DrawScopeMuzzleFlash(Canvas C)
 
 simulated event DrawScopeOverlays(Canvas C)
 {  
-    if (bThermal)
+	if (bThermal)
 		DrawThermalMode(C);
 
 	Super.DrawScopeOverlays(C);

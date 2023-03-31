@@ -434,19 +434,19 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 simulated event DrawScopeOverlays(Canvas C)
 {
 	if (bThermal)
-		DrawThermalMode(C);
-
-	if (bThermal)
 		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed';
 	else if (bMeatVision)
 		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget';
 	else 
 		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-Scope';
 
-	Super.DrawScopeOverlays(C);
+	if (bThermal)
+		DrawThermalMode(C);
 
 	if (bMeatVision)
 		DrawMeatVisionMode(C);
+
+	Super.DrawScopeOverlays(C);
 }
 
 simulated event Timer()
@@ -560,6 +560,7 @@ simulated event DrawThermalMode (Canvas C)
 	ImageScaleRatio = 1.3333333;
 
 	C.Style = ERenderStyle.STY_Modulated;
+
 	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);

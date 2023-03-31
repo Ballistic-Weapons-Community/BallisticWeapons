@@ -212,10 +212,10 @@ simulated event DrawScopeOverlays (Canvas C)
     if (bThermal)
 		DrawThermalMode(C);
 
-	Super.DrawScopeOverlays(C);
-	
 	if (bMeatVision)
 		DrawMeatVisionMode(C);
+
+	Super.DrawScopeOverlays(C);
 }
 
 simulated event Timer()
