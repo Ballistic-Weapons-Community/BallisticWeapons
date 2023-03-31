@@ -38,7 +38,6 @@ replication
 		ClientOverCharge, ClientSetHeat;
 }
 
-
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
@@ -56,63 +55,6 @@ simulated function ClientOverCharge()
 {
 	if (Firemode[1].bIsFiring)
 		StopFire(1);
-}
-// Get the tracking zap emitter from attachment
-simulated function HVCMk9_TrackingZap GetTargetZap()
-{
-	if (ThirdPersonActor == None)
-		return None;
-	return HVPCMk5Attachment(ThirdPersonActor).TargetZap;
-}
-// Activate the target zap and/or give it the list of targets (Server->Attachment->Client)
-simulated function SetTargetZap(array<actor> Ts, array<vector> Vs)
-{
-	if (!FireMode[0].IsFiring())
-		return;
-	if (Role == ROLE_Authority)
-		HVPCMk5Attachment(ThirdPersonActor).SetTargetZap(Ts, Vs);
-	if (!Instigator.IsLocallyControlled())
-		return;
-	if (level.DetailMode > DM_High)
-	{	if (ClawSpark1 == None)	class'BUtil'.static.InitMuzzleFlash (ClawSpark1, class'HVCMk9_ClawArc', DrawScale, self, 'ClawTip1');
-		if (ClawSpark2 == None)	class'BUtil'.static.InitMuzzleFlash (ClawSpark2, class'HVCMk9_ClawArc', DrawScale, self, 'ClawTip2');	}
-}
-// Activate free zap (Server->Attachment->Client)
-simulated function SetFreeZap()
-{
-	if (Role == ROLE_Authority)
-		HVPCMk5Attachment(ThirdPersonActor).SetFreeZap();
-	if (!Instigator.IsLocallyControlled())
-		return;
-	if (FreeZap != None)
-	{	if (bCanKillZap)	FreeZap.Destroy();
-		else				return;
-	}
-	KillTargetZap();
-	FreeZap = spawn(class'HVCMk9_FreeZap', self);
-	FreeZap.bHidden = true;
-	bCanKillZap = false;
-}
-// Kill all zaps (Server->Attachment->Client)
-simulated function KillZap()
-{
-	if (Role == ROLE_Authority)
-		HVPCMk5Attachment(ThirdPersonActor).KillZap();
-	if (Instigator.IsLocallyControlled())
-	{	KillTargetZap();		KillFreeZap();		}
-}
-// Kill the target zap (local only)
-simulated function KillTargetZap()
-{
-	if (ClawSpark1 != None)		Emitter(ClawSpark1).Kill();
-	if (ClawSpark2 != None)		Emitter(ClawSpark2).Kill();
-	Instigator.SoundPitch=64;
-}
-// Kill the free zap (local only)
-simulated function KillFreeZap()
-{
-	if (FreeZap != None)
-	{	FreeZap.Kill();	bCanKillZap = true;	}
 }
 
 // -----------------------------------------------
@@ -280,7 +222,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if (GetTargetZap() != None || FireMode[1].bIsFiring)	{	if (ClawAlpha < 1)
+	if (FireMode[1].bIsFiring)	{	if (ClawAlpha < 1)
 	{
 		ClawAlpha = FClamp(ClawAlpha + DT, 0, 1);
 		SetBoneRotation('Claw1', rot(-8192,0,0),0,ClawAlpha);
@@ -302,34 +244,17 @@ simulated event WeaponTick(float DT)
 	}
 	if (level.DetailMode>DM_Low)
 	{
-		if (AmmoAmount(0) < 1 && !FireMode[1].bIsFiring)	{	if (!bArcOOA)
-		{
-			bArcOOA=true;
-			//if (Arc1 != None)	Arc1.Destroy();
-			//if (Arc2 != None)	Arc2.Destroy();
-			//if (Arc3 != None)	Arc3.Destroy();
-		}	}
+		if (AmmoAmount(0) < 1 && !FireMode[1].bIsFiring)	
+		{	
+			if (!bArcOOA)
+				bArcOOA = true;
+		}
+		
 		else if (bArcOOA)
 		{
 			bArcOOA = false;
-			InitArcs();
 		}
 
-		else if (FireMode[1].bIsFiring || FireMode[0].bIsFiring)
-		{
-			InitArcs();
-		}
-
-
-
-//		if (FireMode[1].bIsFiring)
-//		{
-//			if (Arc1==None||Arc2==None||Arc3==None)
-//				InitArcs();
-//			HVPCMk5_SideArc(Arc1).SetColorShift(HVCMk9SecondaryFire(FireMode[1]).ChargePower);
-//			HVPCMk5_TopArc(Arc2).SetColorShift(HVCMk9SecondaryFire(FireMode[1]).ChargePower);
-//			HVPCMk5_TopArc(Arc3).SetColorShift(HVCMk9SecondaryFire(FireMode[1]).ChargePower);
-//		}
 		if (!bArcOOA)
 		{
 			RotorSpin += DT*(65536 + 65536 * ClawAlpha);
@@ -360,8 +285,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Instigator.SoundPitch = default.SoundPitch;
 	Instigator.SoundRadius = default.SoundRadius;
 	Instigator.bFullVolume = true;
-	if (AmmoAmount(0) > 0 && level.DetailMode>DM_Low)
-		InitArcs();
 }
 simulated function bool PutDown()
 {
@@ -394,26 +317,7 @@ simulated function ResetArcs()
 	{
 		Emitter(Spiral).kill();
 		Spiral = None;
-		//if (Arc1==None && bArcOOA)
-			//return;
-		InitArcs();
-		//if (Arc1 != None)
-			//HVPCMk5_SideArc(Arc1).SetColorShift(0);
-		//if (Arc2 != None)
-			//HVPCMk5_TopArc(Arc2).SetColorShift(0);
-		//if (Arc3 != None)
-			//HVPCMk5_TopArc(Arc3).SetColorShift(0);
 	}
-}
-
-simulated function InitArcs()
-{
-	//if (Arc1 == None)
-		//class'bUtil'.static.InitMuzzleFlash(Arc1, class'HVPCMk5_SideArc', DrawScale, self, 'Arc3');
-	//if (Arc2 == None)
-		//class'bUtil'.static.InitMuzzleFlash(Arc2, class'HVPCMk5_TopArc',  DrawScale, self, 'Arc1');
-	//if (Arc3 == None)
-		//class'bUtil'.static.InitMuzzleFlash(Arc3, class'HVPCMk5_TopArc',  DrawScale, self, 'Arc2');
 }
 
 simulated function InitGas()
@@ -421,44 +325,6 @@ simulated function InitGas()
 	if (CoolantSmoke == None)
 		class'bUtil'.static.InitMuzzleFlash(CoolantSmoke, class'PumaGlowFXDamaged', DrawScale, self, 'tip');
 }
-
-
-
-simulated event RenderOverlays (Canvas C)
-{
-	local vector End, X,Y,Z;
-//	if (Spiral != None)
-//		Spiral.SetRelativeRotation(rot(0,0,1)*RotorSpin);
-
-
-	Super.RenderOverlays(C);
-	if (FreeZap != None)
-	{
-		GetViewAxes(X,Y,Z);
-		FreeZap.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
-		FreeZap.SetRotation(rotator(Vector(GetAimPivot()*0.5) >> Instigator.GetViewRotation()));
-		End = X * 1000;
-		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(End, End);
-		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.X.Min -= 500 * Abs(X.Z);
-		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.X.Max += 500 * Abs(X.Z);
-		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Y.Min -= 500 * Abs(X.X);
-		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Y.Max += 500 * Abs(X.X);
-		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Z.Min -= 500 * (1-Abs(X.Z));
-		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Z.Max += 500 * (1-Abs(X.Z));
-
-		BeamEmitter(FreeZap.Emitters[2]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(End+vect(100,100,100), End-vect(100,100,100));
-
-		C.DrawActor(FreeZap, false, false, Instigator.Controller.FovAngle);
-	}
-	if (GetTargetZap() != None)
-	{
-		GetTargetZap().bHidden = true;
-		GetTargetZap().SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
-		//GetTargetZap().UpdateTargets();
-		C.DrawActor(GetTargetZap(), false, false, Instigator.Controller.FovAngle);
-	}
-}
-
 
 // -----------------------------------------------
 // Reload / Venting stuff
@@ -485,13 +351,6 @@ simulated function Notify_LGArcOff()
 	
 	if (level.DetailMode>DM_Low)
 		InitGas();
-		
-	//if (Arc1 != None)
-	//{	Emitter(Arc1).Kill();	Arc1=None;	}
-	//if (Arc2 != None)
-	//{	Emitter(Arc2).Kill();	Arc2=None;	}
-	//if (Arc3 != None)
-	//{	Emitter(Arc3).Kill();	Arc3=None;	}
 }
 
 simulated event AnimEnd (int Channel)
@@ -517,6 +376,7 @@ function ServerStartReload (optional byte i)
 		Instigator.SoundVolume = 128;	}
 	bIsVenting = true;
 }
+
 simulated function PlayIdle()
 {
     if (bIsVenting)
@@ -553,8 +413,6 @@ simulated function Notify_LGArcOn()
 {
 	if (CoolantSmoke != None)
 		CoolantSmoke.Destroy();
-	if (AmmoAmount(0) > 0 && level.DetailMode>DM_Low)
-		InitArcs();
 }
 
 function ServerReloadRelease(optional byte i)
@@ -591,12 +449,6 @@ simulated function Destroyed()
 		FreeZap.Destroy();
 	if (CoolantSmoke != None)
 		CoolantSmoke.Destroy();
-	//if (Arc1 != None)
-	//	Arc1.Destroy();
-	//if (Arc2 != None)
-	//	Arc2.Destroy();
-	//if (Arc3 != None)
-	//	Arc3.Destroy();
 	if (ClawSpark1 != None)
 		ClawSpark1.Destroy();
 	if (ClawSpark2 != None)
