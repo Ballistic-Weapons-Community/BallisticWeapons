@@ -87,6 +87,7 @@ var() Rotator               SightPivot;             // Pivot when moving weapon 
 // Zooming
 var() EZoomType             ZoomType;               // Type of zoom. Precise control is within the weapon's sighting properties
 var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the screen
+var() float					ScopeScale;				// Scale of scope
 var() float					MinZoom;				// Minimum scope zoom factor
 var() float					MaxZoom;				// Maximun Zoom for Sniper
 var() int					ZoomStages;				// Zoom stages for sniper
@@ -159,6 +160,7 @@ defaultproperties
     PlayerJumpFactor=1.000000
     InventorySize=6
     WeaponPrice=100
+	ScopeScale=1
     SightMoveSpeedFactor=0.900000
     SightingTime=0.350000
     ZoomType=ZT_Irons

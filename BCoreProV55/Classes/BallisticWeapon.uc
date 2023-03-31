@@ -815,9 +815,12 @@ simulated function OnWeaponParamsChanged()
 
     ZoomType                    = WeaponParams.ZoomType;
 
+	ScopeScale					= FMin(1f, WeaponParams.ScopeScale);
+
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
 			
+	
 	if (WeaponParams.MinZoom > 0 && WeaponParams.MaxZoom > 0 && WeaponParams.ZoomStages > 0)
 	{
 		MinZoom = WeaponParams.MinZoom;
