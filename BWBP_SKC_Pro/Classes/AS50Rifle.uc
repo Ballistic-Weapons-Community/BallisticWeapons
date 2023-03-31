@@ -484,7 +484,7 @@ simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn              P;
 	local int               i, j;
-	local float             Dist, DotP, ImageScaleRatio;//, OtherRatio;
+	local float             Dist, DotP;
 	local Array<Material>	OldSkins;
 	local int               OldSkinCount;
 	local bool              bFocused;
@@ -493,8 +493,6 @@ simulated event DrawThermalMode (Canvas C)
 	local Array<Material>	AttOldSkins1;
 
 	C.ColorModulate.W = 1;
-
-	ImageScaleRatio = 1.3333333;
 
 	C.Style = ERenderStyle.STY_Modulated;
 

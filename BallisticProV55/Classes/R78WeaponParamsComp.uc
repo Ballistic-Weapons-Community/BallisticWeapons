@@ -74,7 +74,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.6
 		//Function
 		ReloadAnimRate=1.250000
-		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+		ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		MagAmmo=7
         InventorySize=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -96,7 +96,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.6
 		//Function
 		ReloadAnimRate=1.250000
-		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+		ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		MagAmmo=7
         InventorySize=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
