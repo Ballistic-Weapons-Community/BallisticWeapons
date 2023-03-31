@@ -302,7 +302,8 @@ var() class<Actor>			SightFXClass;			// Effect to attach as an iron sight effect
 var() name					SightFXBone;			// Bone to attach SightFX to
 var() bool					bUseSights;				// This weapon has sights or a scope that can be used
 var() bool					bNoTweenToScope;		// Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
-var() config float 			ScopeXScale;			// Manual scaling for scopes
+var() float 				ScopeXScale;			// Corrects for legacy scopes made for full-screen 4:3 view
+var() float					ScopeScale;				// General scaler for scope texture draw
 var() name					ZoomInAnim;				// Anim to play for raising weapon to view through Scope or sights
 var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
@@ -2242,7 +2243,7 @@ simulated function RenderSightFX(Canvas Canvas)
 	}
 }
 
-simulated event WeaponRenderOverlays( Canvas Canvas )
+simulated function DrawFPWeapon( Canvas Canvas )
 {
     local int m;
 	local vector NewScale3D;
@@ -2356,67 +2357,69 @@ simulated event WeaponRenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 	if ( Hand == 0 )
 		PlayerViewOffset.Y = 0;
+
+	if (SightFX != None)
+		RenderSightFX(Canvas);
 }
 
 // Draw the scope view
 simulated event RenderOverlays (Canvas C)
 {
-	local Vector X, Y, Z;
-
 	if ( (Instigator == None) || (Instigator.Controller == None))
 		return;
 
 	if (SprintControl != None)
 		SprintControl.RenderOverlays(C);
 
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-
-	if (ZoomType == ZT_Irons)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
+	if (!bScopeView || ZoomType == ZT_Irons)
+		DrawFPWeapon(C);
 	else
 	{
-		GetViewAxes(X, Y, Z);
-		if (BFireMode[0].MuzzleFlash != None)
-		{
-			BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
-		}
-		if (BFireMode[1].MuzzleFlash != None)
-		{
-			BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
-		}
 		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
 		SetRotation(Instigator.GetViewRotation());
+
+		DrawScopeMuzzleFlash(C);
+		DrawScopeOverlays(C);
+	}
+}
+
+simulated function DrawScopeMuzzleFlash(Canvas C)
+{
+	local Vector X, Y, Z;
+
+	GetViewAxes(X, Y, Z);
+
+	if (BFireMode[0].MuzzleFlash != None)
+	{
+		BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
+		BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
+		C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
 	}
 
-	// Draw Scope View
-    if (ScopeViewTex != None && ZoomType != ZT_Irons)
-    {
-		C.ColorModulate.W = 1;
-   		C.SetDrawColor(255,255,255,255);
-		C.SetPos(C.OrgX, C.OrgY);
-		
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-
-		C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
+	if (BFireMode[1].MuzzleFlash != None)
+	{
+		BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
+		BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
+		C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
 	}
+}
+
+simulated function DrawScopeOverlays(Canvas C)
+{
+	if (ScopeViewTex == None)
+		return;
+
+	C.ColorModulate.W = 1;
+	C.SetDrawColor(255,255,255,255);
+	C.SetPos(C.OrgX, C.OrgY);
+	
+	C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
+
+	C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
+	C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
+
+	C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
+	C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
 }
 
 // Cut in before the gun is rendered and move it around if we're trying to use sight view...
@@ -5193,12 +5196,6 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 		}
 	}
 	bHurtEntry = false;
-}
-
-exec simulated final function ScaleScope(float X)
-{
-	ScopeXScale = X;
-	SaveConfig();
 }
 
 exec simulated final function SetDefaultMode()

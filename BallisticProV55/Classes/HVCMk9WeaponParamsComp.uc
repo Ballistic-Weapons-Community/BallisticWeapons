@@ -21,6 +21,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.070000	
+		TargetState="DirectFire"
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		

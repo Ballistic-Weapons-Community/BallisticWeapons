@@ -449,7 +449,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 }
 
-simulated event RenderOverlays (Canvas Canvas)
+simulated function DrawScopeOverlays(Canvas Canvas)
 {
 	local float tileScaleX;
 	local float tileScaleY;
@@ -462,23 +462,12 @@ simulated event RenderOverlays (Canvas Canvas)
 	local float barSizeX;
 	local float barSizeY;
 
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(Canvas);
-		if (SightFX != None)
-			RenderSightFX(Canvas);
-		return;
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
 	ScaleFactor = Canvas.ClipX / 1600;
 
     if (ScopeViewTex != None) //Now resets gun variables
     {
 		Canvas.ColorModulate.W = 1;
+		
 		if (CurrentWeaponMode == 1)
 		{
 	        Canvas.SetDrawColor(255,255,255,255);

@@ -269,27 +269,14 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 }*/
 
 // Draw the scope view Arena
-simulated event RenderOverlays (Canvas C)
+simulated function DrawScopeOverlays(Canvas C)
 {
 	local PlayerController PC;
 	local float	ScaleFactor, HF, ZM, XL, XY, ImageScaleRatio;
 	local Vector X, Y, Z;
 
-	if (!bScopeView)
+	if (!class'BallisticReplicationInfo'.static.IsClassic())
 	{
-		Super.RenderOverlays(C);
-		return;
-	}
-	if (ZoomType == ZT_Irons)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else if (!class'BallisticReplicationInfo'.static.IsClassic())
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
 		ScaleFactor = C.ClipY / 1200;
 		if (ScopeViewTex != None)
 		{
@@ -394,23 +381,7 @@ simulated event RenderOverlays (Canvas C)
 		}
 	}
 	else
-	{
-		GetViewAxes(X, Y, Z);
-		if (BFireMode[0].MuzzleFlash != None)
-		{
-			BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
-		}
-		if (BFireMode[1].MuzzleFlash != None)
-		{
-			BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
-		}
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-		
+	{		
 		ScaleFactor = C.ClipX / 1600;
 		if (ScopeViewTexAlt != None)
 		{

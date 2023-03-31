@@ -32,7 +32,7 @@ var() Sound		OverHeatSound;		// Sound to play when it overheats
 
 var bool		bWaterBurn;			// busy getting damaged in water
 
-var HvCMk9_TrackingZap		StreamEffect;
+var HvCMk9_DirectStream		StreamEffect;
 
 var bool	bArcOOA;			// Arcs have been killed cause ammo is out
 var Actor	Arc1;				// The decorative side arc
@@ -52,15 +52,6 @@ replication
 {
 	reliable if (ROLE==ROLE_Authority)
 		ClientOverCharge, ClientSetHeat;
-}
-
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
-		HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
-	else
-		HVCMk9PrimaryFire(FireMode[0]).GotoState('DirectFire');
 }
 
 // -----------------------------------------------
@@ -332,7 +323,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if ((class'BallisticReplicationInfo'.static.IsArenaOrTactical() && GetTargetZap() != None) || FireMode[1].bIsFiring)	
+	if (GetTargetZap() != None || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{

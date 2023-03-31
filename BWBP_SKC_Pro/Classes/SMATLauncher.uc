@@ -106,46 +106,6 @@ function float SuggestAttackStyle()	{	return -0.5;	}
 function float SuggestDefenseStyle()	{	return -0.9;	}
 // End AI Stuff =====
 
-/*
-simulated event RenderOverlays (Canvas Canvas)
-{
-
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(Canvas);
-		if (SightFX != None)
-			RenderSightFX(Canvas);
-		return;
-	}
-	if (!bNoMeshInScope)
-	{
-		Super.RenderOverlays(Canvas);
-		if (SightFX != None)
-			RenderSightFX(Canvas);
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
-
-	// Draw Scope View
-    if (ScopeViewTex != None)
-    	{
- 	        Canvas.SetDrawColor(255,255,255);
-
-        	Canvas.SetPos(Canvas.OrgX, Canvas.OrgY);
-    		Canvas.DrawTile(ScopeViewTex, (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
-
-        	Canvas.SetPos((Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(ScopeViewTex, Canvas.SizeY, Canvas.SizeY, 0, 0, 1024, 1024);
-
-        	Canvas.SetPos(Canvas.SizeX - (Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(ScopeViewTex, (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
-		
-	}
-}
-*/
 simulated function float ChargeBar()
 {
     return FMin((Heat + SMATSecondaryFire(Firemode[1]).RailPower), 1);

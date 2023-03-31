@@ -93,67 +93,53 @@ simulated function Notify_BrassOut()
 //	BFireMode[0].EjectBrass();
 }
 
-simulated event RenderOverlays (Canvas Canvas)
+simulated function DrawScopeOverlays(Canvas Canvas)
 {
 	local float	ScaleFactor;
 
-	if (!bScopeView)
-	{
-		Super(Weapon).RenderOverlays(Canvas);
-		if (SightFX != None)
-			RenderSightFX(Canvas);
+	ScaleFactor = Canvas.ClipX / 1600;
+
+    if (ScopeViewTex == None) //Now resets gun variables
 		return;
+
+	if (CurrentWeaponMode == 1)
+	{
+		Canvas.SetDrawColor(255,255,255,255);
+
+		Canvas.SetPos(Canvas.OrgX, Canvas.OrgY);
+		Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1);
+
+		Canvas.SetPos((Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
+		Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', Canvas.SizeY, Canvas.SizeY, 0, 0, 1024, 1024);
+
+		Canvas.SetPos(Canvas.SizeX - (Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
+		Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1);
 	}
 	else
 	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
+		Canvas.SetDrawColor(255,255,255,255);
+	//Left Border
+		Canvas.SetPos(Canvas.OrgX, Canvas.OrgY);
+		Canvas.DrawTile(ScopeViewTex, (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
+	//Scope
+		Canvas.SetPos((Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
+		Canvas.DrawTile(ScopeViewTex, Canvas.SizeY, Canvas.SizeY, 0, 0, 1024, 1024);
+	//Right Border
+		Canvas.SetPos(Canvas.SizeX - (Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
+		Canvas.DrawTile(ScopeViewTex, (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
 	}
-	ScaleFactor = Canvas.ClipX / 1600;
 
-    if (ScopeViewTex != None) //Now resets gun variables
-    {
-		if (CurrentWeaponMode == 1)
-		{
-	        Canvas.SetDrawColor(255,255,255,255);
+	Canvas.Font = GetFontSizeIndex(Canvas, -2 + int(2 * class'HUD'.default.HudScale));
 
-        	Canvas.SetPos(Canvas.OrgX, Canvas.OrgY);
-    		Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1);
-
-        	Canvas.SetPos((Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', Canvas.SizeY, Canvas.SizeY, 0, 0, 1024, 1024);
-
-        	Canvas.SetPos(Canvas.SizeX - (Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1);
-		}
-		else
-		{
-	        Canvas.SetDrawColor(255,255,255,255);
-		//Left Border
-        	Canvas.SetPos(Canvas.OrgX, Canvas.OrgY);
-    		Canvas.DrawTile(ScopeViewTex, (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
-		//Scope
-        	Canvas.SetPos((Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(ScopeViewTex, Canvas.SizeY, Canvas.SizeY, 0, 0, 1024, 1024);
-		//Right Border
-        	Canvas.SetPos(Canvas.SizeX - (Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(ScopeViewTex, (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
-		}
-
-		Canvas.Font = GetFontSizeIndex(Canvas, -2 + int(2 * class'HUD'.default.HudScale));
-
-		if ((Canvas.ClipX/Canvas.ClipY) > 1.4)
-		{
-			Canvas.SetPos(Canvas.SizeX*0.549,Canvas.SizeY*0.689);
-			Canvas.DrawText("X", false);
-		}
-		else
-		{
-			Canvas.SetPos(Canvas.SizeX*0.56, Canvas.SizeY*0.7);
-			Canvas.DrawText("X", false);
-		}
-
-
+	if ((Canvas.ClipX/Canvas.ClipY) > 1.4)
+	{
+		Canvas.SetPos(Canvas.SizeX*0.549,Canvas.SizeY*0.689);
+		Canvas.DrawText("X", false);
+	}
+	else
+	{
+		Canvas.SetPos(Canvas.SizeX*0.56, Canvas.SizeY*0.7);
+		Canvas.DrawText("X", false);
 	}
 }
 

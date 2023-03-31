@@ -8,22 +8,25 @@
 //=============================================================================
 class HVCMk9Attachment extends BallisticAttachment;
 
-var Actor 		Pack;			// The Backpack
-var Emitter		FreeZap;
-var bool	bStreamOn;
-var HVCMk9_TrackingZap StreamEffect;
+var Actor 					Pack;			// The Backpack
+var Emitter					FreeZap;
 
-var bool		bDischarge, bDischargeOld;
-var byte		ChargePower;						// Power of secondary zap sent from server
-var HVCMk9LightningGun	LG;							// Access to the lightning gun itself (only available to owner)
+var bool					bDischarge, bDischargeOld;
+var byte					ChargePower;						// Power of secondary zap sent from server
+var HVCMk9LightningGun		LG;							// Access to the lightning gun itself (only available to owner)
 
-var Actor	Arc1;			// Decorative arc effects
-var Actor	Arc2;
-var Actor	Arc3;
+var Actor					Arc1;			// Decorative arc effects
+var Actor					Arc2;
+var Actor					Arc3;
 
 var class<BCImpactManager> ImpactManagerAlt;
 
-var() Sound DischargeSound;			// Sound of water discharge
+var() Sound 				DischargeSound;			// Sound of water discharge
+
+
+// [Pro] Direct Stream
+var bool					bStreamOn;
+var HVCMk9_DirectStream		StreamEffect;
 
 //[2.5] Tracking Zap
 var HVCMk9_TrackingZapClassic TargetZap;
@@ -39,9 +42,7 @@ var array<vector>	OldLures;		// List of last lures sent to client (used by serve
 replication
 {
 	reliable if (Role==ROLE_Authority)
-		bDischarge, ChargePower, StreamEffect;
-	reliable if (Role==ROLE_Authority && bNetDirty)
-		ZapTargets, TargZapCount, FreeZapCount, KillZapCount, ZapLures;
+		ZapTargets, TargZapCount, FreeZapCount, KillZapCount, ZapLures, bDischarge, ChargePower, StreamEffect;
 	reliable if (Role==ROLE_Authority && bNetOwner && bNetInitial)
 		LG;
 }
@@ -77,7 +78,7 @@ function StartStream()
 	
 	if (StreamEffect == None)
 	{
-		StreamEffect = spawn(class'HvCMk9_TrackingZap', self);
+		StreamEffect = spawn(class'HVCMk9_DirectStream', self);
 		StreamEffect.SetLocation(GetBoneCoords('tip').Origin);
 		StreamEffect.SetBase(self);
 		if (HvCMk9LightningGun(Instigator.Weapon) != None)
@@ -367,21 +368,21 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	local BCTraceEmitter Tracer;
 	local float Dist;
 
-	if (Mode == 1)
+	if (Mode == 0)
+		return;
+
+	if (VSize(V) < 2)
 	{
-		if (VSize(V) < 2)
-		{
-			V = Instigator.Location + Instigator.EyePosition() + V * 1400;
-			Tracer = Spawn(class'TraceEmitter_HVCRedMiss', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
-			Tracer.Initialize(Dist, float(ChargePower));
-			return;
-		}
-		Dist = VSize(V - GetModeTipLocation());
-		if (Dist > 25)
-		{
-			Tracer = Spawn(class'TraceEmitter_HVCRedLightning', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
-			Tracer.Initialize(Dist, float(ChargePower)/255);
-		}
+		V = Instigator.Location + Instigator.EyePosition() + V * 1400;
+		Tracer = Spawn(class'TraceEmitter_HVCRedMiss', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
+		Tracer.Initialize(Dist, float(ChargePower));
+		return;
+	}
+	Dist = VSize(V - GetModeTipLocation());
+	if (Dist > 25)
+	{
+		Tracer = Spawn(class'TraceEmitter_HVCRedLightning', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
+		Tracer.Initialize(Dist, float(ChargePower)/255);
 	}
 }
 
@@ -423,7 +424,7 @@ simulated function InstantFireEffects(byte Mode)
 		
 	if (Mode == 0)
 	{
-		if (ImpactManager != None && (class'BallisticReplicationInfo'.static.IsArenaOrTactical()))
+		if (ImpactManager != None)
 			ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	}
 	else if (ImpactManagerAlt != None)

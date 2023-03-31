@@ -431,73 +431,26 @@ simulated final function SetScreenMode()
 	}
 }
 
-simulated final function DrawScopeTex(Canvas C)
+simulated function RenderOverlays(Canvas C)
 {
-    local Material ScopeTex;
-
-    if (bThermal)
-        ScopeTex = ScopeViewTexThermal;
-    else 
-        ScopeTex = ScopeViewTex;
-
-    C.DrawTile(ScopeTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-
-    C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-    C.DrawTile(ScopeTex, C.SizeY, C.SizeY, 0, 0, 1024, 1024);
-
-    C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-    C.DrawTile(ScopeTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-}
-
-simulated function RenderOverlays (Canvas C)
-{
-	local Vector X, Y, Z;
-
     SetScreenMode();
 
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	
-	C.ColorModulate.W = 1;
+	Super.RenderOverlays(C);
+}
 
+simulated function DrawScopeOverlays(Canvas C)
+{
 	if (bThermal)
+	{
 		DrawThermalMode(C);
-
-	if (ZoomType == ZT_Irons)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
+        ScopeViewTex = ScopeViewTexThermal;
 	}
-	else
+    else 
 	{
-		GetViewAxes(X, Y, Z);
-		if (BFireMode[0].MuzzleFlash != None)
-		{
-			BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
-		}
-		if (BFireMode[1].MuzzleFlash != None)
-		{
-			BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
-		}
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
+        ScopeViewTex = default.ScopeViewTex;
 	}
 
-	C.SetDrawColor(255,255,255,255);
-	C.SetPos(C.OrgX, C.OrgY);
-	C.Style = ERenderStyle.STY_Alpha;
-
-    DrawScopeTex(C);
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function UpdatePawnList()
@@ -526,7 +479,6 @@ simulated function UpdatePawnList()
 	}
 }
 
-
 // Draws players through walls and all the other Thermal Mode stuff
 simulated event DrawThermalMode (Canvas C)
 {
@@ -539,6 +491,8 @@ simulated event DrawThermalMode (Canvas C)
 	local vector            Start;
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
+
+	C.ColorModulate.W = 1;
 
 	ImageScaleRatio = 1.3333333;
 

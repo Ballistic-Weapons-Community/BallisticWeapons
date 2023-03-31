@@ -19,6 +19,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.100000
 		BurstFireRateFactor=1.00
+		TargetState="BranchingFire"
 		FireEffectParams(0)=FireEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		

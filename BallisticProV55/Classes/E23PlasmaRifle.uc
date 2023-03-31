@@ -258,37 +258,18 @@ simulated event WeaponTick(float DT)
 		SetNVLight(false);
 }
 
-simulated event RenderOverlays (Canvas C)
+simulated event DrawFPWeapon(Canvas C)
 {
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		DrawLaserSight(C);
-		return;
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
+	Super.DrawFPWeapon(C);
+
+	DrawLaserSight(C);
+}
+
+simulated function DrawScopeOverlays(Canvas C)
+{
 	DrawLaserSight(C);
 	
-	C.ColorModulate.W = 1;
-
-    if (ScopeViewTex != None)
-    {
-		C.SetPos(C.OrgX, C.OrgY);
-   		C.SetDrawColor(255,255,255,255);
-    	C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY * 1.33)/2, C.SizeY, 0, 0, 1, 1024);
-
-        C.SetPos((C.SizeX - C.SizeY*1.33)/2, C.OrgY);
-        C.DrawTile(ScopeViewTex, C.SizeY * 1.33, C.SizeY, 0, 0, 1024, 1024);
-
-        C.SetPos(C.SizeX - (C.SizeX - C.SizeY*1.33)/2, C.OrgY);
-        C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY * 1.33)/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function SetNVLight(bool bOn)
@@ -508,6 +489,7 @@ defaultproperties
 	IconMaterial=Texture'BW_Core_WeaponTex.VPR.SmallIcon_VPR'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="E-23 'ViPeR' Plasma Rifle"
+	ScopeXScale=1.33
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=64

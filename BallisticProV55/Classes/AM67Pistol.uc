@@ -285,10 +285,11 @@ simulated function DrawLaserSight ( Canvas Canvas )
 simulated event RenderOverlays( Canvas Canvas )
 {
 	super.RenderOverlays(Canvas);
+
 	if (IsInState('Lowered'))
 		return;
-	DrawLaserSight(Canvas);
 
+	DrawLaserSight(Canvas);
 }
 
 simulated function UpdateNetAim()

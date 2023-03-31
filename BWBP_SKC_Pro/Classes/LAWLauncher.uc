@@ -229,44 +229,10 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	Canvas.DrawActor(Laser, false, false, DisplayFOV);
 }
 
-simulated event RenderOverlays (Canvas C)
+simulated event DrawFPWeapon (Canvas C)
 {
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(C);
-		DrawLaserSight(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	if (ZoomType == ZT_Irons)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
-
-	// Draw Scope View
-    if (ScopeViewTex != None)
-    {
-   		C.SetDrawColor(255,255,255,255);
-		C.SetPos(C.OrgX, C.OrgY);
-		
-		C.ColorModulate.W = 1;
-		
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-
-		C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawFPWeapon(C);
+	DrawLaserSight(C);
 }
 
 simulated function Destroyed ()

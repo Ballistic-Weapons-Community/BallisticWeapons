@@ -48,10 +48,6 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 
 }
-simulated event RenderOverlays( Canvas C )
-{
-	Super.RenderOverlays(C);
-}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
