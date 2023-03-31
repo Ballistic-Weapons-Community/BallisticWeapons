@@ -29,7 +29,7 @@ defaultproperties
 		BotRefireRate=0.900000
 		WarnTargetPct=0.5	
 		Inaccuracy=(X=256,Y=256)
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.XMV-850.XMV-Fire-3')
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Single',Pitch=1.100000,Volume=1.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
