@@ -2404,23 +2404,59 @@ simulated function DrawScopeMuzzleFlash(Canvas C)
 	}
 }
 
+// override to draw before the scope is drawn
+simulated function PreDrawScope(Canvas C, int OffsetX, int OffsetY, int SizeX, int SizeY)
+{
+
+}
+
 simulated function DrawScopeOverlays(Canvas C)
 {
+	local int ScopeSizeX, ScopeSizeY;
+
+	local int ScopeOffsetX, ScopeOffsetY;
+
 	if (ScopeViewTex == None)
 		return;
 
 	C.SetDrawColor(255,255,255,255);
-	C.SetPos(C.OrgX, C.OrgY);
 	C.Style = ERenderStyle.STY_Alpha;
 	C.ColorModulate.W = 1;
 
-	C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
+	ScopeSizeY = C.SizeY * ScopeScale;
+	ScopeSizeX = ScopeSizeY * ScopeXScale;
+	
+	ScopeOffsetX = (C.SizeX - ScopeSizeX) / 2;
+	ScopeOffsetY = (C.SizeY - ScopeSizeY) / 2;
 
-	C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-	C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
+	C.SetPos(ScopeOffsetX, ScopeOffsetY);
+	PreDrawScope(C, ScopeOffsetX, ScopeOffsetY, ScopeSizeX, ScopeSizeY);
 
-	C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-	C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
+	// draw bars where the scope image does not reach
+	if (ScopeOffsetY > 0)
+	{
+		// top bar
+		C.SetPos(C.OrgX, C.OrgY);
+		C.DrawTile(ScopeViewTex, C.SizeX, ScopeOffsetY, 8, 8, 1, 1);
+
+		// bottom bar
+		C.SetPos(C.OrgX, C.SizeY - ScopeOffsetY);
+		C.DrawTile(ScopeViewTex, C.SizeX, ScopeOffsetY, 8, 8, 1, 1);
+	}
+
+	// left bar
+	C.SetPos(C.OrgX, ScopeOffsetY);
+	C.DrawTile(ScopeViewTex, ScopeOffsetX, ScopeSizeY, 8, 8, 1, 1);
+
+	// right bar
+	// exaggerate because of an issue when drawing scopes that have an X scaler applied
+	// (aspect-correct scopes are fine)
+	C.SetPos(C.SizeX - ScopeOffsetX - 4, ScopeOffsetY);
+	C.DrawTile(ScopeViewTex, ScopeOffsetX + 4, ScopeSizeY, 8, 8, 1, 1);
+
+	// actual scope
+	C.SetPos(ScopeOffsetX, ScopeOffsetY);
+	C.DrawTile(ScopeViewTex, ScopeSizeX, ScopeSizeY, 0, 0, 1024, 1024);
 }
 
 // Cut in before the gun is rendered and move it around if we're trying to use sight view...
@@ -5572,6 +5608,7 @@ defaultproperties
 	 CrosshairMode=CHM_Simple
 	 
      bUseSights=True
+	 ScopeScale=1
      ScopeXScale=1.000000
      FullZoomFOV=80.000000
      SightZoomFactor=1.35
