@@ -2409,10 +2409,11 @@ simulated function DrawScopeOverlays(Canvas C)
 	if (ScopeViewTex == None)
 		return;
 
-	C.ColorModulate.W = 1;
 	C.SetDrawColor(255,255,255,255);
 	C.SetPos(C.OrgX, C.OrgY);
-	
+	C.Style = ERenderStyle.STY_Alpha;
+	C.ColorModulate.W = 1;
+
 	C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
 
 	C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);

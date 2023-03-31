@@ -117,19 +117,19 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 simulated event DrawScopeOverlays(Canvas C)
 {
 	if (bThermal)
-		DrawThermalMode(C);
-
-	if (bThermal)
 		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed';
 	else if (bMeatVision)
 		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget';
 	else 
 		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-Scope';
 
-	Super.DrawScopeOverlays(C);
+	if (bThermal)
+		DrawThermalMode(C);
 
 	if (bMeatVision)
 		DrawMeatVisionMode(C);
+
+	Super.DrawScopeOverlays(C);
 }
 
 simulated event Timer()
