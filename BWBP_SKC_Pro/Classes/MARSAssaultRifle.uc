@@ -549,7 +549,7 @@ simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
 	local int i, j;
-	local float Dist, DotP, ImageScaleRatio;//, OtherRatio;
+	local float Dist, DotP;//, OtherRatio;
 	local Array<Material>	OldSkins;
 	local int OldSkinCount;
 	local bool bLOS, bFocused;
@@ -557,17 +557,14 @@ simulated event DrawThermalMode (Canvas C)
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
 
-	ImageScaleRatio = 1.3333333;
-
 	C.Style = ERenderStyle.STY_Modulated;
-
-	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BWBP_SKC_Tex.MARS.F2000IRNVFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BWBP_SKC_Tex.MARS.F2000IRNVFinal', (C.SizeY*1.3333333) * 0.75, C.SizeY, 0, 0, 1024, 1024);
 
 	if (ColorMod == None || !bHasThermalSight)
 		return;
+
 	// Draw the players with an orange effect
 	C.Style = ERenderStyle.STY_Alpha;
 	Start = Instigator.Location + Instigator.EyePosition();

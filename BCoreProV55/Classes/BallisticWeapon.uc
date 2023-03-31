@@ -592,7 +592,7 @@ simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
 	ResScaleX = CachedCanvasX / 4f;
 	ResScaleY = CachedCanvasY / 3f;
 
-	AspectRatio = FClamp(ResScaleX/ResScaleY, 1f, 1.34f);
+	AspectRatio = FClamp(ResScaleX/ResScaleY, 1f, 3f);
 
 	// basic FOV is set for 4:3. Adjust FOVs for 16:9 if we have it
 	BaseDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.DisplayFOV, 1/AspectRatio);

@@ -23,13 +23,8 @@ replication
 
 simulated event RenderOverlays (Canvas C)
 {
-	local Vector X, Y, Z;
-        WeaponRenderOverlays(C);
-        if (SightFX != None)
-			RenderSightFX(C);
-        DrawLaserSight(C);
-        return;
-    C.ColorModulate.W = 1;
+	Super.RenderOverlays(C);
+	DrawLaserSight(C);
 }
 
 simulated event PostNetBeginPlay()

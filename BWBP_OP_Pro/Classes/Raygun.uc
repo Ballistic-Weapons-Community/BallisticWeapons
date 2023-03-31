@@ -542,7 +542,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
 	SightOffset=(X=8.000000,Y=7.350000,Z=7.550000)
-	SightZoomFactor=0.85
+	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'RaygunWeaponParamsComp'
 	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
 	ParamsClasses(2)=Class'RaygunWeaponParamsRealistic'

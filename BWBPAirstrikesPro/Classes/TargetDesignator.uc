@@ -127,44 +127,14 @@ simulated function bool PutDown()
 }
 
 // Draw the scope view
-simulated event RenderOverlays (Canvas C)
+simulated event DrawScopeOverlays(Canvas C)
 {
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	if (ZoomType == ZT_Irons)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
+	if (LastRangeFound < StrikeInfo[CurrentWeaponMode].MinRange)
+		ScopeViewTex = Texture'DesignatorScreenNo';
+	else 
+		ScopeViewTex = default.ScopeViewTex;
 
-	// Draw Scope View
-    if (ScopeViewTex != None)
-    {
-   		C.SetDrawColor(255,255,255,255);
-		C.SetPos(C.OrgX, C.OrgY);
-		
-
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-
-		C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		if (LastRangeFound < StrikeInfo[CurrentWeaponMode].MinRange)
-			C.DrawTile(Texture'DesignatorScreenNo', (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-		else C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function WeaponTick(float DT)

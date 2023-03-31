@@ -251,44 +251,18 @@ simulated function TickSighting (float DT)
 		LastSightDownTime = level.TimeSeconds;
 }
 
-simulated event RenderOverlays (Canvas C)
+simulated event DrawFPWeapon(Canvas C)
 {
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		DrawLaserSight(C);
-		return;
-	}
-	
-	if (ZoomType == ZT_Irons)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
+	Super.DrawFPWeapon(C);
+
+	DrawLaserSight(C);
+}
+
+simulated function DrawScopeOverlays(Canvas C)
+{
 	DrawLaserSight(C);
 	
-	C.ColorModulate.W = 1;
-
-    if (ScopeViewTex != None && ZoomType != ZT_Irons)
-    {
-		C.SetPos(C.OrgX, C.OrgY);
-   		C.SetDrawColor(255,255,255,255);
-    	C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY * 1.33)/2, C.SizeY, 0, 0, 1, 1024);
-
-        C.SetPos((C.SizeX - C.SizeY*1.33)/2, C.OrgY);
-        C.DrawTile(ScopeViewTex, C.SizeY * 1.33, C.SizeY, 0, 0, 1024, 1024);
-
-        C.SetPos(C.SizeX - (C.SizeX - C.SizeY*1.33)/2, C.OrgY);
-        C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY * 1.33)/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawScopeOverlays(C);
 }
 
 // Secondary fire doesn't count for this weapon
@@ -458,6 +432,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	BobDamping=2.200000
+	ScopeXScale=1.3333
 	SightPivot=(Pitch=256)
 	SightOffset=(X=2.000000,Y=-0.850000,Z=10.850000)
 	ParamsClasses(0)=Class'E5WeaponParams'
