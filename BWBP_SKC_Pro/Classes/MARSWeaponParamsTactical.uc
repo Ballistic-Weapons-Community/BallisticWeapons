@@ -216,12 +216,14 @@ defaultproperties
 		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=30
-        RecoilParams(0)=RecoilParams'TacticalRecoilParams_CQC'
-        AimParams(0)=AimParams'TacticalAimParams_CQC'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams_CQC'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Ice'
-    End Object 
-	
+        RecoilParams(0)=TacticalRecoilParams_CQC'
+        AimParams(0)=TacticalAimParams_CQC'
+		FireParams(0)=TacticalPrimaryFireParams_CQC'
+		AltFireParams(0)=TacticalSecondaryFireParams_Ice'
+    End Object 	
+
+	Layouts(0)=TacticalParams_Scope
+    Layouts(1)=TacticalParams_Holosight
 	
 	//Camos =========================================
 	Begin Object Class=WeaponCamo Name=MARS_Black

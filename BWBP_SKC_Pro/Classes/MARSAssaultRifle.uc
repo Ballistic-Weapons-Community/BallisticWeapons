@@ -61,17 +61,17 @@ simulated function OnWeaponParamsChanged()
 	
 	bHasSuppressor=False;
 	bHasThermalSight=False;
+
 	if (InStr(WeaponParams.LayoutTags, "suppressor") != -1)
 	{
 		bHasSuppressor=True;
 	}
+
 	if (InStr(WeaponParams.LayoutTags, "thermal") != -1)
 	{
 		bHasThermalSight=True;
 	}
-	
 }
-
 
 //=====================================================================
 // GRENADE CODE
