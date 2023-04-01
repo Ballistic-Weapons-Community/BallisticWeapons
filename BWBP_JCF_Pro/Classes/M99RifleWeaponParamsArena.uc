@@ -9,7 +9,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=135
+		Damage=100
+		HeadMult=2.25f
+		LimbMult=0.75f
 		DamageType=Class'BWBP_JCF_Pro.DTM99Rifle'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTM99RifleHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTM99Rifle'
@@ -71,7 +73,7 @@ defaultproperties
 		PlayerJumpFactor=0.800000
 		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
 		SightPivot=(Roll=-1024)
-		ViewOffset=(X=25.000000,Y=-3.000000,Z=-24.500000)
+		ViewOffset=(X=10.000000,Y=-4.000000,Z=-30.000000)
 		ZoomType=ZT_Smooth
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

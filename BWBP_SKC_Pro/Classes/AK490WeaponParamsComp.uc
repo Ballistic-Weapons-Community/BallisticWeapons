@@ -34,35 +34,6 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
-	
-	//=================================================================
-    // PRIMARY FIRE - AU
-    //=================================================================	
-	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryGoldEffectParams
-		TraceRange=(Min=12000.000000,Max=13000.000000)
-		RangeAtten=0.40000
-		Damage=45
-		HeadMult=1.5f
-		LimbMult=0.75f
-		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
-		PenetrateForce=180
-		bPenetrate=True
-		MuzzleFlashClass=Class'AK490FlashEmitter'
-		FlashScaleFactor=0.800000
-		Recoil=100.000000
-		Chaos=0.04000
-		WarnTargetPct=0.200000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-	End Object
-
-	Begin Object Class=FireParams Name=ArenaPrimaryGoldFireParams
-		FireInterval=0.05000
-		FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryGoldEffectParams'
-	End Object
 		
     //=================================================================
     // SECONDARY FIRE

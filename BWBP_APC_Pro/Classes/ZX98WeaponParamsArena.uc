@@ -12,6 +12,8 @@ defaultproperties
 			TraceRange=(Min=8000.000000,Max=12000.000000)
 			RangeAtten=0.350000
 			Damage=22
+			HeadMult=2.5f
+			LimbMult=0.75f
 			DamageType=Class'BWBP_APC_Pro.DTZX98Rifle'
 			DamageTypeHead=Class'BWBP_APC_Pro.DTZX98RifleHead'
 			DamageTypeArm=Class'BWBP_APC_Pro.DTZX98Rifle'

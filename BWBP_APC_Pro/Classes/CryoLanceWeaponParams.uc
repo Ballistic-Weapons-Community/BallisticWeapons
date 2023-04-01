@@ -10,6 +10,8 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		RangeAtten=0.350000
 		Damage=20
+		HeadMult=2.0f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'

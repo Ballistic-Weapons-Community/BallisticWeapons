@@ -11,6 +11,8 @@ defaultproperties
 		TraceRange=(Min=10000.000000,Max=13000.000000)
 		RangeAtten=0.900000
 		Damage=26
+		HeadMult=2.0f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_APC_Pro.DTSRKSmg'
 		DamageTypeHead=Class'BWBP_APC_Pro.DTSRKSmgHead'
 		DamageTypeArm=Class'BWBP_APC_Pro.DTSRKSmg'

@@ -477,7 +477,7 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      SightPivot=(Pitch=256)
-     SightOffset=(X=-40.000000,Y=12.000000,Z=43.000000)
+     SightOffset=(X=100.000000,Y=12.000000,Z=43.000000)
      SightingTime=0.250000
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
@@ -497,7 +497,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=7
      PickupClass=Class'BWBP_APC_Pro.WrenchgunPickup'
-     PlayerViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
+     PlayerViewOffset=(X=-80.000000,Y=10.000000,Z=-45.000000)
      AttachmentClass=Class'BWBP_APC_Pro.WrenchgunAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.CoachGun.SmallIcon_Coach'
      IconCoords=(X2=127,Y2=40)

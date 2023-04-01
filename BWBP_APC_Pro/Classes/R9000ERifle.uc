@@ -321,7 +321,7 @@ defaultproperties
      InventoryGroup=9
      GroupOffset=2
      PickupClass=Class'BWBP_APC_Pro.R9000EPickup'
-     PlayerViewOffset=(X=12.000000,Y=7.000000,Z=-14.000000)
+     PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-18.000000)
      AttachmentClass=Class'BWBP_APC_Pro.R9000EAttachment'
      IconMaterial=Texture'BWBP_CC_Tex.ElementalSniper.SmallIcon_R9000E'
      IconCoords=(X2=127,Y2=31)

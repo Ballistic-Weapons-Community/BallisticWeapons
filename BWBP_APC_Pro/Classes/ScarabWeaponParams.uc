@@ -11,10 +11,10 @@ defaultproperties
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Speed=1400.000000
         MaxSpeed=1500.000000
-        Damage=50
-        DamageRadius=512.000000
-		HeadMult=1.0
-		LimbMult=1.0
+        Damage=120
+        DamageRadius=768.000000
+		HeadMult=2.0f
+        LimbMult=0.75f
         BotRefireRate=0.4
         WarnTargetPct=0.75	
         FireSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,bAtten=True)
@@ -35,8 +35,8 @@ defaultproperties
 		SpawnOffset=(Z=-14.000000)
         Speed=1000.000000
         MaxSpeed=1500.000000
-		Damage=50.000000
-		DamageRadius=512.000000
+		Damage=220.000000
+		DamageRadius=400.000000
 		HeadMult=1.0
 		LimbMult=1.0
 		WarnTargetPct=0.500000

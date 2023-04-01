@@ -11,7 +11,9 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 			TraceRange=(Min=15000.000000,Max=15000.000000)
 			RangeAtten=0.35
-			Damage=27
+			Damage=26
+			HeadMult=2.0f
+			LimbMult=0.75f
 			DamageType=Class'BWBP_APC_Pro.DTPKM'
 			DamageTypeHead=Class'BWBP_APC_Pro.DTPKMHead'
 			DamageTypeArm=Class'BWBP_APC_Pro.DTPKM'
@@ -41,7 +43,7 @@ defaultproperties
 			SpawnOffset=(X=12.000000,Y=10.000000,Z=-15.000000)
 			Speed=8500.000000
 			MaxSpeed=8500.000000
-			Damage=70
+			Damage=90
 			BotRefireRate=0.300000
 			WarnTargetPct=0.300000
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=1.350000)
@@ -93,8 +95,8 @@ defaultproperties
 		SightingTime=0.55000
 		DisplaceDurationMult=1
 		MagAmmo=75
-		ViewOffset=(X=17.000000,Y=6.000000,Z=-12.000000)
-		SightOffset=(X=-10.000000,Y=-1.1150000,Z=14.10000)
+		ViewOffset=(X=5.000000,Y=6.000000,Z=-12.000000)
+		SightOffset=(X=5.000000,Y=-1.1150000,Z=14.10000)
 		SightPivot=(Pitch=-64)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
