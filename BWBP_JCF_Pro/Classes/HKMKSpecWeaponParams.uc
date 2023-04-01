@@ -9,16 +9,16 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
 		RangeAtten=0.3
-		Damage=35
-		HeadMult=1.5f
-		LimbMult=0.5f
+		Damage=30
+		HeadMult=2.5f
+		LimbMult=0.75f
 		DamageType=Class'BWBP_JCF_Pro.DTHKMKSpecPistol'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTHKMKSpecPistolHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTHKMKSpecPistol'
 		PenetrateForce=135
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		Recoil=220.000000
+		Recoil=200.000000
 		Chaos=0.280000
 		BotRefireRate=0.750000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.MkFire_1',Volume=1.300000)
@@ -40,9 +40,11 @@ defaultproperties
 		TraceRange=(Min=5000.000000,Max=5000.000000)
 		RangeAtten=0.750000
 		TraceCount=12
+		HeadMult=2.5f
+		LimbMult=0.75f
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=6
+		Damage=8
 		DamageType=Class'BWBP_JCF_Pro.DTHKMKSpecPistolAlt'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTHKMKSpecPistolHeadAlt'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTHKMKSpecPistolAlt'

@@ -101,7 +101,6 @@ simulated function SetScopeProperties()
 	{
 		ZoomType = ZT_Fixed;
 		ScopeViewTex = ScopeScopeViewTex;
-		FullZoomFOV = 50;
 	}
 	else
 	{

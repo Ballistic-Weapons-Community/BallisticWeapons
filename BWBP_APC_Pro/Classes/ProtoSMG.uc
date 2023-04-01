@@ -656,7 +656,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=128)
-	SightOffset=(X=-20.000000,Y=-0.950000,Z=24.950000)
+	SightOffset=(X=0.000000,Y=-0.950000,Z=24.950000)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'ProtoWeaponParams' 
 	ParamsClasses(1)=Class'ProtoWeaponParamsClassic' 

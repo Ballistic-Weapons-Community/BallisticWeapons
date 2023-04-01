@@ -126,7 +126,6 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightOffset=(X=-4.000000,Y=-0.130000,Z=8.650000)
      SightingTime=0.450000
      GunLength=32.000000
      LongGunPivot=(Pitch=4500,Yaw=-8000)
@@ -145,7 +144,8 @@ defaultproperties
      InventoryGroup=7
      GroupOffset=31
      PickupClass=Class'BWBP_JCF_Pro.SPASPickup'
-     PlayerViewOffset=(X=5.000000,Y=3.000000,Z=-6.500000)
+     PlayerViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
+	 SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
      AttachmentClass=Class'BWBP_JCF_Pro.SPASAttachment'
      IconMaterial=Texture'BWBP_JCF_Tex.SPAS.SmallIcon_SPAS'
      IconCoords=(X2=127,Y2=30)

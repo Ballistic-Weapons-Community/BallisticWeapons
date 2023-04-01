@@ -373,7 +373,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=1
      PickupClass=Class'BWBP_SKC_Pro.N3XPlazPickup'
-     PlayerViewOffset=(X=40.000000,Z=-10.000000)
+     PlayerViewOffset=(X=33.000000,Z=-10.000000)
      AttachmentClass=Class'BWBP_SKC_Pro.N3XPlazAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PlasAxe.SmallIcon_PlasAxe'
      IconCoords=(X2=127,Y2=31)

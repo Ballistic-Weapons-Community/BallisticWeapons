@@ -10,7 +10,9 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=10000.000000,Max=12000.000000)
 		RangeAtten=0.800000
-		Damage=35
+		Damage=30
+		HeadMult=2.5f
+		LimbMult=0.75f
 		DamageType=Class'BWBP_JCF_Pro.DTM7A3Rifle'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTM7A3RifleHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTM7A3Rifle'
@@ -25,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.170000
+		FireInterval=0.150000
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'

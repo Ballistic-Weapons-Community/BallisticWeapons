@@ -10,8 +10,8 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		RangeAtten=0.35
 		Damage=20
-		HeadMult=1.5f
-		LimbMult=0.8f
+		HeadMult=2.5f
+        LimbMult=0.75f
 		//DamageType=Class'BallisticProV55.DTM353MG'
 		//DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
 		//DamageTypeArm=Class'BallisticProV55.DTM353MG'
@@ -38,10 +38,12 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
         TraceRange=(Min=2048.000000,Max=2048.000000)
         RangeAtten=0.350000
-        TraceCount=6
+        TraceCount=1
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
         ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
-        Damage=11
+        Damage=60
+		HeadMult=2.5f
+        LimbMult=0.75f
         DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
@@ -98,8 +100,8 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(0)=(BoneName="Bullet1",Slot=101,Scale=0f)
-		SightOffset=(X=-15.000000,Y=-0.900000,Z=19.30000)
-		ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+		SightOffset=(X=5.000000,Y=-0.900000,Z=19.30000)
+		ViewOffset=(X=0.000000,Y=10.000000,Z=-16.000000)
 		PlayerSpeedFactor=0.950000
         PlayerJumpFactor=0.950000
         DisplaceDurationMult=1.25

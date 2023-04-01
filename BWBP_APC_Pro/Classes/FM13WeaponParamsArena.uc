@@ -13,6 +13,8 @@ defaultproperties
 		TracerClass=Class'BWBP_APC_Pro.TraceEmitter_ShotgunFlame'
 		ImpactManager=Class'BWBP_APC_Pro.IM_FireShot'
 		Damage=10
+		HeadMult=2.0f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_APC_Pro.DTFM13Shotgun'
 		DamageTypeHead=Class'BWBP_APC_Pro.DTFM13ShotgunHead'
 		DamageTypeArm=Class'BWBP_APC_Pro.DTFM13Shotgun'
@@ -94,8 +96,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		ViewOffset=(X=6.000000,Y=13.000000,Z=-23.000000)
-		SightOffset=(X=-5.000000,Y=-0.100000,Z=27.000000)
+		ViewOffset=(X=-9.000000,Y=5.000000,Z=-25.000000)
+		SightOffset=(X=10.000000,Y=-0.100000,Z=27.000000)
 		SightPivot=(Pitch=128)
 		MagAmmo=6
         SightingTime=0.350000
