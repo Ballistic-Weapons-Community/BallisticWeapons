@@ -157,7 +157,8 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		InventorySize=7
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.500000		
+		SightingTime=0.45	
+		ScopeScale=0.75	
 		DisplaceDurationMult=1
 		MagAmmo=10
         ZoomType=ZT_Logarithmic

@@ -123,7 +123,8 @@ defaultproperties
         DisplaceDurationMult=1.25
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.5
+		SightingTime=0.45
+		ScopeScale=0.7
 		MagAmmo=9
 		// acog-like
         ZoomType=ZT_Logarithmic

@@ -70,7 +70,8 @@ defaultproperties
         ZoomType=ZT_Logarithmic
 		SightOffset=(X=18.000000,Y=-1.600000,Z=17.000000)
 		SightPivot=(Roll=-1024)
-		SightingTime=0.550000
+		SightingTime=0.4500
+		ScopeScale=0.6
 		SightMoveSpeedFactor=0.6
 		//Function
 		ReloadAnimRate=1.250000
@@ -92,7 +93,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		SightPivot=(Pitch=-32,Roll=-1024)
 		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
-		SightingTime=0.450000
+		SightingTime=0.40000
 		SightMoveSpeedFactor=0.6
 		//Function
 		ReloadAnimRate=1.250000

@@ -122,7 +122,8 @@ defaultproperties
         DisplaceDurationMult=1.25
 		InventorySize=5
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.500000
+		ScopeScale=0.7
+		SightingTime=0.450000
 		MagAmmo=9
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

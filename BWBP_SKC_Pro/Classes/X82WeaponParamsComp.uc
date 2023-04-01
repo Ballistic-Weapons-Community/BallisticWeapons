@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=95
+		Damage=120
         HeadMult=1.75f
         LimbMult=0.85f
 		PenetrationEnergy=128
@@ -88,7 +88,8 @@ defaultproperties
         DisplaceDurationMult=1.4
 		InventorySize=7
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.750000		
+		SightingTime=0.6	
+		ScopeScale=0.8	
 		MagAmmo=5
         ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

@@ -185,10 +185,11 @@ defaultproperties
 		ReloadAnimRate=0.85
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.5	
+		SightingTime=0.4	
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// acog-like
+		ScopeScale=0.7
         ZoomType=ZT_Logarithmic
 		MinZoom=2
 		MaxZoom=4

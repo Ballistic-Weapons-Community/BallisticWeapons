@@ -169,7 +169,8 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		InventorySize=7
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.65
+		SightingTime=0.45	
+		ScopeScale=0.75
 		DisplaceDurationMult=1
 		MagAmmo=10
 		// sniper 5-10x

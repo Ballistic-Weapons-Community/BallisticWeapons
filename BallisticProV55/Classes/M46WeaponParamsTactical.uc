@@ -102,12 +102,13 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams_Scope
-		SightingTime=0.5
+		SightingTime=0.4
         SightMoveSpeedFactor=0.35
         MagAmmo=24
         InventorySize=6
 
 		// acog
+		ScopeScale=0.65
         ZoomType=ZT_Logarithmic
 		MinZoom=2
 		MaxZoom=4

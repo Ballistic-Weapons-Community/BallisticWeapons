@@ -72,7 +72,8 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
 		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
-		SightingTime=0.5
+		SightingTime=0.5	
+		ScopeScale=0.7
         DisplaceDurationMult=1.25
         MagAmmo=2        
 		InventorySize=8

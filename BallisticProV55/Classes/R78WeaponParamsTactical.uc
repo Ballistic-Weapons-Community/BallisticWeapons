@@ -75,7 +75,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
 		SightPivot=(Roll=-1024)
 		SightOffset=(X=18.000000,Y=-1.600000,Z=17.000000)
-		SightingTime=0.45
+		SightingTime=0.4500
+		ScopeScale=0.6
 		SightMoveSpeedFactor=0.45
         ZoomType=ZT_Logarithmic// sniper 4-8x
 		MinZoom=4

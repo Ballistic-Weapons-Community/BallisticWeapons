@@ -97,7 +97,8 @@ defaultproperties
         DisplaceDurationMult=1.4
 		InventorySize=7
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.8
+		SightingTime=0.6	
+		ScopeScale=0.8
 		MagAmmo=5
 		// sniper 5-10x
         ZoomType=ZT_Logarithmic

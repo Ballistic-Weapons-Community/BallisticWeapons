@@ -127,7 +127,8 @@ defaultproperties
 		SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.5
+		SightingTime=0.4	
+		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=15
 		// sniper 4-8x

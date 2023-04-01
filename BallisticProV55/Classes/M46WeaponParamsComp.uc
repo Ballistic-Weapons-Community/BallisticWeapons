@@ -101,7 +101,8 @@ defaultproperties
 		//Function
         CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightingTime=0.500000
+		SightingTime=0.4
+		ScopeScale=0.65
         SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6

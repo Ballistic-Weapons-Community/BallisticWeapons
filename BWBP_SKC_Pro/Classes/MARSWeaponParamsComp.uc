@@ -165,8 +165,9 @@ defaultproperties
 		ReloadAnimRate=1.10000
 		PlayerJumpFactor=1
 		InventorySize=6
+		ScopeScale=0.7
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.50000		
+		SightingTime=0.4		
 		DisplaceDurationMult=1
 		MagAmmo=30
         ZoomType=ZT_Logarithmic

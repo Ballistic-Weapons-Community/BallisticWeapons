@@ -847,6 +847,38 @@ function UpdateRotation(float DeltaTime, float maxPitch)
     }
 }
 
+// Azarael notes:
+//
+// compatibility 
+// the original function was written by someone who thought that the best place 
+// for the vote menu class string was a CONFIG variable of the fucking GUIController,
+// which is a class that can't be changed or changed easily
+//
+// this despite the fact that the desired voting menu is a concern / property of the VOTING SYSTEM, 
+// and its replication info is REQUIRED in order to open the menu in the first place??????
+//
+// some menus call SaveConfig on the GUIController, preventing temporary overrides
+// (client may crash or otherwise exit uncleanly, preventing us from resetting the value and saving, 
+// and potentially breaking the client's mapvote elsewhere)
+// 
+// can't intercept this with an Interaction either because PlayerController's exec function runs first in native code
+//
+// so we check the VoteReplicationInfo in use to see if it has an override, and fall back to the inbred behaviour otherwise
+exec function ShowVoteMenu()
+{
+	local string s;
+
+	if( Level.NetMode == NM_StandAlone ||  VoteReplicationInfo == None || !VoteReplicationInfo.MapVoteEnabled() )
+		return;
+
+	s = VoteReplicationInfo.GetPropertyText("MapVotingMenu");
+
+	if (s == "")
+		s = Player.GUIController.GetPropertyText("MapVotingMenu");
+
+	Player.GUIController.OpenMenu(s);
+}
+
 defaultproperties
 {
      BallisticMenu="BallisticProV55.ConfigMenu_Preferences"
