@@ -22,7 +22,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-FireOld',Volume=9.600000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-FireNewLoud2',Volume=9.600000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1524.000000
 		Chaos=-1.0
 		Inaccuracy=(X=5,Y=5)
@@ -35,7 +35,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.800000
 		BurstFireRateFactor=1.00
-		bCockAfterFire=True
+		bCockAfterFire=False
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
@@ -137,4 +137,43 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=SMAT_Green
+		Index=0
+		CamoName="Olive Drab"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SMAT_Urban
+		Index=1
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MainUrban",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MiscUrban",Index=2,AIndex=-1,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SMAT_Ocean
+		Index=2
+		CamoName="Ocean"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MainWater",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MiscWater",Index=2,AIndex=-1,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SMAT_Orange
+		Index=3
+		CamoName="Orange"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MainOrange",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MiscOrange",Index=2,AIndex=-1,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'SMAT_Green'
+	Camos(1)=WeaponCamo'SMAT_Urban'
+	Camos(2)=WeaponCamo'SMAT_Ocean'
+	Camos(3)=WeaponCamo'SMAT_Orange'
 }

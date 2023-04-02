@@ -105,8 +105,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=19,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="RocketMain",Slot=20,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="RocketBig",Slot=21,Scale=0f)
-		ViewOffset=(X=30.000000,Y=20.000000,Z=-15.000000)
-		SightOffset=(X=-20.000000,Y=-30.000000,Z=24.300000)
+		ViewOffset=(X=10.000000,Y=20.000000,Z=-22.000000)
+		SightOffset=(X=-5.000000,Y=-30.000000,Z=24.300000)
 		SightPivot=(Yaw=-512)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

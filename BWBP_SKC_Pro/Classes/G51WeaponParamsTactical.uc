@@ -107,6 +107,10 @@ defaultproperties
         InventorySize=6
 		SightingTime=0.350000
 		SightMoveSpeedFactor=0.6
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)

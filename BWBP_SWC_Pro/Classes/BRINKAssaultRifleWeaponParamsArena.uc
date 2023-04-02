@@ -11,6 +11,8 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		RangeAtten=0.350000
 		Damage=18
+		HeadMult=2.25f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SWC_Pro.DTBRINKAssault'
 		DamageTypeHead=Class'BWBP_SWC_Pro.DTBRINKAssaultHead'
 		DamageTypeArm=Class'BWBP_SWC_Pro.DTBRINKAssault'

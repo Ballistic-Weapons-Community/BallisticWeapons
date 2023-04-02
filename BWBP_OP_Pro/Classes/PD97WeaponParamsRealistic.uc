@@ -125,4 +125,53 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'RealisticParams'
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=PUG_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUG_Red
+		Index=1
+		CamoName="Military Red"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MainRed",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MagDark",Index=2,AIndex=1,PIndex=2)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUG_Blue
+		Index=2
+		CamoName="Police Blue"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MainBlue",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MagDark",Index=2,AIndex=1,PIndex=2)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUG_Black
+		Index=3
+		CamoName="Riot Police"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MainBlack",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MagDark",Index=2,AIndex=1,PIndex=2)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUG_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MainGold",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PD97Camos.PD97-MagDark",Index=2,AIndex=1,PIndex=2)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'PUG_Gray'
+	Camos(1)=WeaponCamo'PUG_Red'
+	Camos(2)=WeaponCamo'PUG_Blue'
+	Camos(3)=WeaponCamo'PUG_Black'
+	Camos(4)=WeaponCamo'PUG_Gold'
 }

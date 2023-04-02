@@ -613,7 +613,6 @@ defaultproperties
      BarrelStartSound=Sound'BWBP_SKC_Sounds.550.Mini-Up'
      DeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Deploy'
      UndeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-UnDeploy'
-     RunOffset=(Pitch=-1500,Yaw=-3000)
      LaserOnSound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn'
      ModeCycleSound=Sound'BWBP_SKC_Sounds.AH104.AH104-ModeCycle'
      LaserOffSound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff'
@@ -648,9 +647,7 @@ defaultproperties
 	 RotationSpeeds(3)=1.00  // 3600 RPM - 3600 revolutions per minute x 6 shots
 	 RotationSpeeds(4)=1.32  // 4800 RPM - 4800 revolutions per minute x 6 shots
      CurrentWeaponMode=0
-     SightPivot=(Pitch=512,Roll=1024)
-     SightOffset=(X=0.000000,Y=-17.000000,Z=75.000000)
-     SightDisplayFOV=50.000000
+     SightOffset=(X=15.000000,Y=-17.000000,Z=75.000000)
 	 ParamsClasses(0)=Class'XMV500WeaponParams'
 	 ParamsClasses(1)=Class'XMV500WeaponParamsClassic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.XMV500MinigunPrimaryFire'
@@ -663,16 +660,13 @@ defaultproperties
      CurrentRating=0.700000
      Description="XMB-500 Smart Minigun|Manuacturer: Enravion Combat Solutions|Primary: Auto fire||The XMB-500 Personal Suppression System is a prototype weapon being developed by Enravion as a low-recoil, precision minigun. The XMB-500 has been designed for ease of use with infantry and boasts firerates of 600 to 2400 RPM; combined with the potent incendiary rounds, the accurate XMB-500 is perfect for cutting down large amounts of enemy troops. This weapon has excellent accuracy when stationary but unfortunately cannot be fired safely at the higher speeds while moving. To prevent damage to the user and the weapon, the XMB-500 will automatically lock when mobile at cyclic speeds over 600 RPM. It should be noted that the speed sensor will malfunction if submerged in liquid or not properly cared for."
      Priority=48
-     //CustomCrossHairColor=(A=219)
-     //CustomCrossHairScale=1.008803
-     //CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      GroupOffset=3
      PickupClass=Class'BWBP_SKC_Pro.XMV500Pickup'
-     PlayerViewOffset=(X=30.000000,Y=8.000000,Z=-45.000000)
+     PlayerViewOffset=(X=20.000000,Y=17.000000,Z=-50.000000)
      BobDamping=1.400000
      AttachmentClass=Class'BWBP_SKC_Pro.XMV500MinigunAttachment'
-    // IconMaterial=Texture'BWBP_SKC_Tex.XMV500.SmallIcon_XMV500'
+     //IconMaterial=Texture'BWBP_SKC_Tex.XMV500.SmallIcon_XMV500'
      IconCoords=(X2=127,Y2=25)
      ItemName="[B] XMB-500 Smart Minigun"
      LightType=LT_Pulse

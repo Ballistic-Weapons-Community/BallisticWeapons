@@ -105,6 +105,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		bDualBlocked=True
 		DisplaceDurationMult=0.75
 		SightMoveSpeedFactor=0.9
 		MagAmmo=30

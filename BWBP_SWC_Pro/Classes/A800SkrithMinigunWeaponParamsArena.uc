@@ -13,11 +13,11 @@ defaultproperties
 		Speed=5500.000000
 		MaxSpeed=14000.000000
 		AccelSpeed=100000.000000
-		Damage=20
+		Damage=30
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
 		FlashScaleFactor=0.100000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=120.000000
+		Recoil=100.000000
 		Chaos=0.100000
 		WarnTargetPct=0.200000	
 	End Object
@@ -81,7 +81,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ViewBindFactor=0.2
 		ADSMultiplier=1
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		SprintOffset=(Pitch=-5000,Yaw=-2000)
 		AimSpread=(Min=128,Max=768)
 		AimDamageThreshold=75.000000
 		ChaosDeclineTime=1.000000
@@ -99,7 +99,7 @@ defaultproperties
         InventorySize=7
         SightMoveSpeedFactor=0.75
 		ZoomType=ZT_Logarithmic
-		SightOffset=(X=-35.000000,Y=-3.830000,Z=16.900000)
+		SightOffset=(X=-15.000000,Y=-25.000000,Z=6.500000)
 		SightPivot=(Roll=-1900)
 		ViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
 		ViewPivot=(Roll=-256)

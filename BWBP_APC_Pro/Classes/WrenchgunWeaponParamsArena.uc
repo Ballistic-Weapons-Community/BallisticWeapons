@@ -12,6 +12,8 @@ defaultproperties
 			ProjectileClass=Class'BWBP_APC_Pro.WrenchgunWrenchShot'
 			SpawnOffset=(X=12.000000,Y=10.000000,Z=-15.000000)
 			Damage=12
+			HeadMult=2.0f
+			LimbMult=0.75f
 			MomentumTransfer=17000.000000
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			Recoil=1100.000000
@@ -41,6 +43,8 @@ defaultproperties
 			Speed=8500.000000
 			MaxSpeed=8500.000000
 			Damage=44
+			HeadMult=2.0f
+			LimbMult=0.75f
 			MomentumTransfer=75000.000000
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			Recoil=1100.000000
@@ -90,9 +94,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.100000
-		SightOffset=(X=-40.000000,Y=12.000000,Z=43.000000)
+		SightOffset=(X=100.000000,Y=12.000000,Z=43.000000)
 		SightPivot=(Pitch=256)
-		ViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
+		ViewOffset=(X=-80.000000,Y=10.000000,Z=-45.000000)
 		PlayerSpeedFactor=1.000000
 		PlayerJumpFactor=1.000000
 		InventorySize=4

@@ -217,31 +217,26 @@ function LoadWeapons()
 	LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
 	cb_Melee_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
 	LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI);
-	cb_Melee_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
 	
 	Item_SideArm.SetItem(SavedLoadOuts[CurrentIndex].Weapons[1]);
 	LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
 	cb_SideArm_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
-	LoadCamos(1, cb_SideArm_LI.getIndex(), Item_Melee.Index, cb_SideArm_CI);
-	cb_SideArm_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
+	LoadCamos(1, cb_SideArm_LI.getIndex(), Item_SideArm.Index, cb_SideArm_CI);
 	
 	Item_Primary.SetItem(SavedLoadOuts[CurrentIndex].Weapons[2]);
 	LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
 	cb_Primary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
-	LoadCamos(2, cb_Primary_LI.getIndex(), Item_Melee.Index, cb_Primary_CI);
-	cb_Primary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
+	LoadCamos(2, cb_Primary_LI.getIndex(), sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
 	
 	Item_Secondary.SetItem(SavedLoadOuts[CurrentIndex].Weapons[3]);
 	LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
 	cb_Secondary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
-	LoadCamos(3, cb_Secondary_LI.getIndex(), Item_Melee.Index, cb_Secondary_CI);
-	cb_Secondary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
+	LoadCamos(3, cb_Secondary_LI.getIndex(), sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
 	
 	Item_Grenade.SetItem(SavedLoadOuts[CurrentIndex].Weapons[4]);
 	LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
 	cb_Grenade_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
-	LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Melee.Index, cb_Grenade_CI);
-	cb_Grenade_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
+	LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Grenade.Index, cb_Grenade_CI);
 	
 	//Add Random and None forcibly as separate items here.
 	
@@ -384,27 +379,27 @@ function OnLoadoutItemChange(GUIComponent Sender)
 	if (Sender == Item_Melee)
 	{
 		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
-		LoadCamos(0, 0, Item_Melee.Index, cb_Melee_CI);
+		LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI);
 	}
 	else if (Sender == Item_SideArm)
 	{
 		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
-		LoadCamos(1, 0, Item_SideArm.Index, cb_SideArm_CI);
+		LoadCamos(1, cb_SideArm_LI.getIndex(), Item_SideArm.Index, cb_SideArm_CI);
 	}
 	else if (Sender == Item_Primary)
 	{
 		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
-		LoadCamos(2, 0, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
+		LoadCamos(2, cb_Primary_LI.getIndex(), sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
 	}
 	else if (Sender == Item_Secondary)
 	{
 		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
-		LoadCamos(3, 0, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
+		LoadCamos(3, cb_Secondary_LI.getIndex(), sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
 	}
 	else if (Sender == Item_Grenade)
 	{
 		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
-		LoadCamos(4, 0, Item_Grenade.Index, cb_Grenade_CI);
+		LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Grenade.Index, cb_Grenade_CI);
 	}
 }
 
@@ -422,31 +417,31 @@ function bool InternalOnClick(GUIComponent Sender)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[0] = cb_Melee_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = cb_Melee_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = int(cb_Melee_CI.getExtra());
 		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[1] = cb_SideArm_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = cb_SideArm_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = int(cb_SideArm_CI.getExtra());
 		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[2] = cb_Primary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = cb_Primary_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = int(cb_Primary_CI.getExtra());
 		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[3] = cb_Secondary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = cb_Secondary_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = int(cb_Secondary_CI.getExtra());
 		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[4] = cb_Grenade_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = cb_Grenade_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = int(cb_Grenade_CI.getExtra());
 		}
 		SaveConfig();	
 	}
@@ -462,62 +457,62 @@ function SaveWeapons()
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[0] = cb_Melee_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = cb_Melee_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = int(cb_Melee_CI.getExtra());
 		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[1] = cb_SideArm_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = cb_SideArm_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = int(cb_SideArm_CI.getExtra());
 		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[2] = cb_Primary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = cb_Primary_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = int(cb_Primary_CI.getExtra());
 		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[3] = cb_Secondary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = cb_Secondary_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = int(cb_Secondary_CI.getExtra());
 		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
 		{
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
 			SavedLoadouts[cb_Presets.GetIndex()].Layouts[4] = cb_Grenade_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = cb_Grenade_CI.getIndex();
+			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = int(cb_Grenade_CI.getExtra());
 		}
 
 		if (Item_Melee.Items.length > Item_Melee.Index)
 		{
 			class'Mut_Outfitting'.default.LoadOut[0] = Item_Melee.Items[Item_Melee.Index].Text;
 			class'Mut_Outfitting'.default.Layout[0] = cb_Melee_LI.getIndex();
-			class'Mut_Outfitting'.default.Camo[0] = cb_Melee_CI.getIndex();
+			class'Mut_Outfitting'.default.Camo[0] = int(cb_Melee_CI.getExtra());
 		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
 		{
 			class'Mut_Outfitting'.default.LoadOut[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
 			class'Mut_Outfitting'.default.Layout[1] = cb_SideArm_LI.getIndex();
-			class'Mut_Outfitting'.default.Camo[1] = cb_SideArm_CI.getIndex();
+			class'Mut_Outfitting'.default.Camo[1] = int(cb_SideArm_CI.getExtra());
 		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
 		{
 			class'Mut_Outfitting'.default.LoadOut[2] = Item_Primary.Items[Item_Primary.Index].Text;
 			class'Mut_Outfitting'.default.Layout[2] = cb_Primary_LI.getIndex();
-			class'Mut_Outfitting'.default.Camo[2] = cb_Primary_CI.getIndex();
+			class'Mut_Outfitting'.default.Camo[2] = int(cb_Primary_CI.getExtra());
 		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
 		{
 			class'Mut_Outfitting'.default.LoadOut[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
 			class'Mut_Outfitting'.default.Layout[3] = cb_Secondary_LI.getIndex();
-			class'Mut_Outfitting'.default.Camo[3] = cb_Secondary_CI.getIndex();
+			class'Mut_Outfitting'.default.Camo[3] = int(cb_Secondary_CI.getExtra());
 		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
 		{
 			class'Mut_Outfitting'.default.LoadOut[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
 			class'Mut_Outfitting'.default.Layout[4] = cb_Grenade_LI.getIndex();
-			class'Mut_Outfitting'.default.Camo[4] = cb_Grenade_CI.getIndex();
+			class'Mut_Outfitting'.default.Camo[4] = int(cb_Grenade_CI.getExtra());
 		}
 		
 		CurrentIndex=cb_Presets.GetIndex();
@@ -537,31 +532,31 @@ function InternalOnChange(GUIComponent Sender)
 	{
 		Item_Melee.SetItem(cb_Melee.GetExtra());
 		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
-		LoadCamos(0, 0, Item_Melee.Index, cb_Melee_CI);
+		LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI);
 	}
 	else if (Sender == cb_SideArm)
 	{
 		Item_SideArm.SetItem(cb_SideArm.GetExtra());
 		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
-		LoadCamos(1, 0, Item_SideArm.Index, cb_SideArm_CI);
+		LoadCamos(1, cb_SideArm_LI.getIndex(), Item_SideArm.Index, cb_SideArm_CI);
 	}
 	else if (Sender == cb_Primary)
 	{
 		Item_Primary.SetItem(cb_Primary.GetExtra());
 		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
-		LoadCamos(2, 0, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
+		LoadCamos(2, cb_Primary_LI.getIndex(), sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
 	}
 	else if (Sender == cb_Secondary)
 	{
 		Item_Secondary.SetItem(cb_Secondary.GetExtra());
 		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
-		LoadCamos(3, 0, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
+		LoadCamos(3, cb_Secondary_LI.getIndex(), sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
 	}
 	else if (Sender == cb_Grenade)
 	{
 		Item_Grenade.SetItem(cb_Grenade.GetExtra());
 		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
-		LoadCamos(4, 0, Item_Grenade.Index, cb_Grenade_CI);
+		LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Grenade.Index, cb_Grenade_CI);
 	}
 		
 	else if (Sender == cb_Presets && cb_Presets.GetExtra() != "") //Grab the preset data
@@ -570,34 +565,28 @@ function InternalOnChange(GUIComponent Sender)
 		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
 		cb_Melee_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
 		LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI);
-		cb_Melee_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[0]);
 		
 		Item_SideArm.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[1]);
 		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
 		cb_SideArm_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
-		LoadCamos(1, cb_SideArm_LI.getIndex(), Item_Melee.Index, cb_SideArm_CI);
-		cb_SideArm_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
+		LoadCamos(1, cb_SideArm_LI.getIndex(), Item_SideArm.Index, cb_SideArm_CI);
 		
 		Item_Primary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[2]);
 		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
 		cb_Primary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
-		LoadCamos(2, cb_Primary_LI.getIndex(), Item_Melee.Index, cb_Primary_CI);
-		cb_Primary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
+		LoadCamos(2, cb_Primary_LI.getIndex(), sortedPrimaries[Item_Primary.Index].Index, cb_Primary_CI);
 		
 		Item_Secondary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[3]);
 		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
 		cb_Secondary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
-		LoadCamos(3, cb_Secondary_LI.getIndex(), Item_Melee.Index, cb_Secondary_CI);
-		cb_Secondary_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
+		LoadCamos(3, cb_Secondary_LI.getIndex(), sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_CI);
 		
 		Item_Grenade.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[4]);
 		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
 		cb_Grenade_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
-		LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Melee.Index, cb_Grenade_CI);
-		cb_Grenade_CI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[4]);
+		LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Grenade.Index, cb_Grenade_CI);
 	}
 }
-
 
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
 function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
@@ -625,13 +614,23 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 	
 	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
 	{
-		LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+		if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName == "")
+		{
+			if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length == 1)
+				LayoutComboBox.AddItem("Default");
+			else
+				LayoutComboBox.AddItem("Layout: "$string(i));
+		}
+		else
+			LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
 	}
 	
 	return true;
 }
 
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
+//Unlike the load layouts function above, this one will try and read your last camo index to find which value to default
+//This is required due to the allowed camos changing for various layouts
 function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
 {
 	local byte GameStyleIndex;
@@ -642,103 +641,61 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	//clear old camos
 	CamoComboBox.Clear();
 	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+	
 	BW = class<BallisticWeapon>(DynamicLoadObject(COI.GetGroupItem(GroupIndex, Index), class'Class'));
 	if (BW == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		return false;
 	}
-	
-	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
-	if (LayoutIndex < 0 || BW.default.ParamsClasses.length < GameStyleIndex)
+
+	// weapon has no parameters for this index
+	if (BW.default.ParamsClasses.length < GameStyleIndex)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		return false;
 	}
+
 	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+
 	if (AllowedCamos.Length == 0 )
 	{
 		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
 		{
+			if (BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName == "")
+			{
+				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
+					CamoComboBox.AddItem("None",, "0");
+				else
+					CamoComboBox.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+			}
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 		}
+		CamoComboBox.setIndex(SavedLoadOuts[CurrentIndex].Camos[GroupIndex]);
 	}
 	else
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
+			if (SavedLoadOuts[CurrentIndex].Camos[GroupIndex] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+				CamoComboBox.setIndex(i);
 		}
 	}
 	
+	if (CamoComboBox.ItemCount() == 0)
+		CamoComboBox.AddItem("None",, "255");
+	
 	if (CamoComboBox.ItemCount() > 1)
+	{
 		CamoComboBox.AddItem("Random",, "255");
+		if (SavedLoadOuts[CurrentIndex].Camos[GroupIndex] == 255) //these damn boxes changing sizes
+			CamoComboBox.setIndex(CamoComboBox.ItemCount()-1);
+	}
 	
 	return true;
 }
-/*
-//give this function a gun, grab an array of layouts from cache, add each value to the combobox
-function bool LoadLayouts2(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
-{
- 	local BC_WeaponInfoCache.LayoutInfo LI;
-	local BC_WeaponInfoCache.WeaponInfo WI;
-	local int i, j;
-	
-	if (COI.GetGroupItem(GroupIndex, Index) == "")
-		return false;
-		
-	//clear old layouts
-	LayoutComboBox.Clear();
-		
-	class'BC_WeaponInfoCache'.static.FindWeaponInfo(COI.GetGroupItem(GroupIndex, Index), WI, i);
-	
-	if (i==-1)
-	{
-		log("Error loading item for outfitting: "$COI.GetGroupItem(GroupIndex, Index), 'Warning');
-		return false;
-	}
-	
-	for (j = 0; j < WI.TotalLayouts; j++)
-	{
-		if (class'BC_WeaponInfoCache'.static.FindLayoutInfo(WI, class'BCReplicationInfo'.default.GameStyle, j, LI, i))
-			LayoutComboBox.AddItem(LI.LayoutName);
-	}
-
-	return true;
-}
-
-//give this function a gun and a layout index, grab an array of camos from cache, add each value to the combobox
-function bool LoadCamos2(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
-{
- 	local BC_WeaponInfoCache.CamoInfo CI;
-	local BC_WeaponInfoCache.WeaponInfo WI;
-	local int i, j;
-	
-	if (COI.GetGroupItem(GroupIndex, Index) == "")
-		return false;
-		
-	//clear old layouts
-	CamoComboBox.Clear();
-		
-	class'BC_WeaponInfoCache'.static.FindWeaponInfo(COI.GetGroupItem(GroupIndex, Index), WI, i);
-	
-	if (i==-1)
-	{
-		log("Error loading item for outfitting: "$COI.GetGroupItem(GroupIndex, Index), 'Warning');
-		return false;
-	}
-	
-	for (j = 0; j < WI.TotalCamos; j++)
-	{
-		if (class'BC_WeaponInfoCache'.static.FindCamoInfo(WI, class'BCReplicationInfo'.default.GameStyle, LayoutIndex, j, CI, i))
-			CamoComboBox.AddItem(CI.CamoName,, String(CI.CamoIndex));
-	}
-	
-	if (WI.TotalCamos > 1)
-		CamoComboBox.AddItem("Random",, "255");
-
-	return true;
-}*/
 
 defaultproperties
 {
@@ -1151,11 +1108,11 @@ defaultproperties
      End Object
      l_Receiving=GUILabel'BallisticProV55.BallisticOutfittingWeaponsTab.l_Receivinglabel'
 
-     SavedLoadouts(0)=(PresetName="DEFAULT",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
-     SavedLoadouts(1)=(PresetName="DEFAULT2",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
-     SavedLoadouts(2)=(PresetName="DEFAULT3",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
-     SavedLoadouts(3)=(PresetName="DEFAULT4",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
-     SavedLoadouts(4)=(PresetName="DEFAULT5",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Layouts[3]=0,Camos[3]=0,Weapons[4]="BWBPRecolors3Pro.G28Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(0)=(PresetName="DEFAULT",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BallisticProV55.A73SkrithRifle",Layouts[3]=0,Camos[3]=0,Weapons[4]="BallisticProV55.NRP57Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(1)=(PresetName="DEFAULT2",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BallisticProV55.A73SkrithRifle",Layouts[3]=0,Camos[3]=0,Weapons[4]="BallisticProV55.NRP57Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(2)=(PresetName="DEFAULT3",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BallisticProV55.A73SkrithRifle",Layouts[3]=0,Camos[3]=0,Weapons[4]="BallisticProV55.NRP57Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(3)=(PresetName="DEFAULT4",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BallisticProV55.A73SkrithRifle",Layouts[3]=0,Camos[3]=0,Weapons[4]="BallisticProV55.NRP57Grenade",Layouts[4]=0,Camos[4]=0)
+     SavedLoadouts(4)=(PresetName="DEFAULT5",Weapons[0]="BallisticProV55.A909SkrithBlades",Layouts[0]=0,Camos[0]=0,Weapons[1]="BallisticProV55.A42SkrithPistol",Layouts[1]=0,Camos[1]=0,Weapons[2]="BallisticProV55.A73SkrithRifle",Layouts[2]=0,Camos[2]=0,Weapons[3]="BallisticProV55.A73SkrithRifle",Layouts[3]=0,Camos[3]=0,Weapons[4]="BallisticProV55.NRP57Grenade",Layouts[4]=0,Camos[4]=0)
      QuickListText="QuickList"
      ReceivingText(0)="Receiving..."
      ReceivingText(1)="Loading..."

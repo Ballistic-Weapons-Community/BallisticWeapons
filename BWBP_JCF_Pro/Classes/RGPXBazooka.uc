@@ -316,7 +316,8 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	SightPivot=(Yaw=-512)
-    SightOffset=(X=-20.000000,Y=-9.500000,Z=9.750000)
+    PlayerViewOffset=(X=10.000000,Y=20.000000,Z=-22.000000)
+	SightOffset=(X=-5.000000,Y=-30.000000,Z=24.300000)
 	SightingTime=0.350000
 	ParamsClasses(0)=Class'RGPXWeaponParamsArena'
 	ParamsClasses(1)=Class'RGPXWeaponParamsClassic'
@@ -337,7 +338,6 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_JCF_Pro.RGPXPickup'
-	PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-15.000000)
 	AttachmentClass=Class'BWBP_JCF_Pro.RGPXAttachment'
 	IconMaterial=Texture'BWBP_JCF_Tex.RGP-X350.SmallIcon_RGPX'
 	IconCoords=(X2=127,Y2=31)

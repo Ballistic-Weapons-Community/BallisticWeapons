@@ -17,6 +17,8 @@ var bool						bLoadInitialized;
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
 var automated GUILoadOutItem 	Item_Streak1, Item_Streak2;
 var automated GUIComboBox	 	cb_Streak1, cb_Streak2;
+var automated GUIComboBox	 	cb_Streak1_LI, cb_Streak2_LI;
+var automated GUIComboBox	 	cb_Streak1_CI, cb_Streak2_CI;
 var automated GUIImage 			MyBack, Box_Streak1, Box_Streak2, Streak1Back, Streak2Back;
 var automated GUIHeader 		MyHeader;
 var automated GUILabel			l_Receiving;
@@ -144,7 +146,14 @@ function LoadWeapons()
 	}
 	
 	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
+	LoadLayouts(0, Item_Streak1.Index, cb_Streak1_LI);
+	cb_Streak1_LI.setIndex(class'KillstreakConfig'.default.Layouts[0]);
+	LoadCamos(0, cb_Streak1_LI.getIndex(), Item_Streak1.Index, cb_Streak1_CI);
+	
 	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
+	LoadLayouts(1, Item_Streak2.Index, cb_Streak2_LI);
+	cb_Streak2_LI.setIndex(class'KillstreakConfig'.default.Layouts[1]);
+	LoadCamos(1, cb_Streak1_LI.getIndex(), Item_Streak2.Index, cb_Streak2_CI);
 	
 	class'BC_WeaponInfoCache'.static.EndSession();
 	
@@ -182,6 +191,116 @@ function bool GetItemInfo(int Group, int Index, out string ItemCap, out Material
 	return true;
 }
 
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
+{
+	local byte GameStyleIndex;
+	local int i;
+	local class<BallisticWeapon> BW;
+		
+	//clear old layouts
+	LayoutComboBox.Clear();
+	
+	BW = class<BallisticWeapon>(DynamicLoadObject(KLRI.GetGroupItem(GroupIndex, Index), class'Class'));
+	if (BW == None)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+	
+	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
+	{
+		if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName == "")
+		{
+			if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length == 1)
+				LayoutComboBox.AddItem("Default");
+			else
+				LayoutComboBox.AddItem("Layout: "$string(i));
+		}
+		else
+			LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+	}
+	
+	return true;
+}
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+//Unlike the load layouts function above, this one will try and read your last camo index to find which value to default
+//This is required due to the allowed camos changing for various layouts
+function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
+{
+	local byte GameStyleIndex;
+	local int i;
+	local array<int> AllowedCamos;
+	local class<BallisticWeapon> BW;
+	
+	//clear old camos
+	CamoComboBox.Clear();
+	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
+	
+	BW = class<BallisticWeapon>(DynamicLoadObject(KLRI.GetGroupItem(GroupIndex, Index), class'Class'));
+	if (BW == None)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+
+	// weapon has no parameters for this index
+	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	{
+		log("Error loading item for outfitting: "$BW, 'Warning');
+		return false;
+	}
+
+	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+
+	if (AllowedCamos.Length == 0 )
+	{
+		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
+		{
+			if (BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName == "")
+			{
+				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
+					CamoComboBox.AddItem("None",, "0");
+				else
+					CamoComboBox.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+			}
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+		}
+		CamoComboBox.setIndex(class'KillstreakConfig'.default.Camos[GroupIndex]);
+	}
+	else
+	{
+		for (i = 0; i < AllowedCamos.Length; i++)
+		{
+			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
+			if (class'KillstreakConfig'.default.Camos[GroupIndex] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+				CamoComboBox.setIndex(i);
+		}
+	}
+	
+	if (CamoComboBox.ItemCount() == 0)
+		CamoComboBox.AddItem("None",, "255");
+	
+	if (CamoComboBox.ItemCount() > 1)
+	{
+		CamoComboBox.AddItem("Random",, "255");
+		if (class'KillstreakConfig'.default.Camos[GroupIndex] == 255) //these damn boxes changing sizes
+			CamoComboBox.setIndex(CamoComboBox.ItemCount()-1);
+	}
+	
+	return true;
+}
+
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 {
 	return false;
@@ -198,6 +317,11 @@ function SaveStreaks()
 	if (Item_Streak2.Items.length > Item_Streak2.Index)
 		class'KillstreakConfig'.default.Killstreaks[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
 	
+	class'KillstreakConfig'.default.Layouts[0] = cb_Streak1_LI.getIndex();
+	class'KillstreakConfig'.default.Layouts[1] = cb_Streak2_LI.getIndex();
+	class'KillstreakConfig'.default.Camos[0] = int(cb_Streak1_CI.getExtra());
+	class'KillstreakConfig'.default.Camos[1] = int(cb_Streak2_CI.getExtra());
+	
 	class'KillstreakConfig'.static.StaticSaveConfig();
 	
 	KLRI.UpdateStreakChoices();
@@ -205,6 +329,16 @@ function SaveStreaks()
 
 function OnLoadoutItemChange(GUIComponent Sender)
 {
+	if (Sender == Item_Streak1)
+	{
+		LoadLayouts(0, Item_Streak1.Index, cb_Streak1_LI);
+		LoadCamos(0, 0, Item_Streak1.Index, cb_Streak1_CI);
+	}
+	else if (Sender == Item_Streak2)
+	{
+		LoadLayouts(1, Item_Streak2.Index, cb_Streak2_LI);
+		LoadCamos(1, 0, Item_Streak2.Index, cb_Streak2_CI);
+	}
 	SaveStreaks();
 }
 
@@ -217,13 +351,25 @@ function InternalOnChange(GUIComponent Sender)
 	{
 		Item_Streak1.SetItem(cb_Streak1.GetExtra());
 		Item_Streak1.OnItemChange(Item_Streak1);
+		LoadLayouts(0, Item_Streak1.Index, cb_Streak1_LI);
+		LoadCamos(0, 0, Item_Streak1.Index, cb_Streak2_CI);
 	}
 	
 	else if (Sender == cb_Streak2)
 	{
 		Item_Streak2.SetItem(cb_Streak2.GetExtra());
 		Item_Streak2.OnItemChange(Item_Streak2);
+		LoadLayouts(1, Item_Streak2.Index, cb_Streak2_LI);
+		LoadCamos(1, 0, Item_Streak2.Index, cb_Streak2_CI);
 	}
+	else if (Sender == cb_Streak1_LI )
+	{
+		LoadCamos(0, cb_Streak1_LI.GetIndex(), Item_Streak1.Index, cb_Streak1_CI);
+	}	
+	else if (Sender == cb_Streak2_LI )
+	{
+		LoadCamos(1, cb_Streak2_LI.GetIndex(), Item_Streak2.Index, cb_Streak2_CI);
+	}	
 }
 
 defaultproperties
@@ -267,6 +413,32 @@ defaultproperties
      End Object
      cb_Streak1=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak1ComBox'
 
+	Begin Object Class=GUIComboBox Name=cb_Streak1ComBox_LI
+         MaxVisibleItems=16
+         Hint="Streak 1 layouts."
+         WinTop=0.440000
+         WinLeft=0.241563
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=MidGameTab_Killstreaks.InternalOnChange
+         OnKeyEvent=cb_Streak1ComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Streak1_LI=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak1ComBox_LI'
+
+	Begin Object Class=GUIComboBox Name=cb_Streak1ComBox_CI
+         MaxVisibleItems=16
+         Hint="Streak 1 camos."
+         WinTop=0.440000
+         WinLeft=0.361563
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=MidGameTab_Killstreaks.InternalOnChange
+         OnKeyEvent=cb_Streak1ComBox_CI.InternalOnKeyEvent
+     End Object
+     cb_Streak1_CI=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak1ComBox_CI'
+
      Begin Object Class=GUIComboBox Name=cb_Streak2Box
          MaxVisibleItems=16
          Hint="Quick list of Streak2 items"
@@ -279,6 +451,32 @@ defaultproperties
          OnKeyEvent=cb_Streak2Box.InternalOnKeyEvent
      End Object
      cb_Streak2=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak2Box'
+
+	Begin Object Class=GUIComboBox Name=cb_Streak2ComBox_LI
+         MaxVisibleItems=16
+         Hint="Streak 2 layouts."
+         WinTop=0.440000
+         WinLeft=0.540977
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=MidGameTab_Killstreaks.InternalOnChange
+         OnKeyEvent=cb_Streak2ComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Streak2_LI=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak2ComBox_LI'
+
+	Begin Object Class=GUIComboBox Name=cb_Streak2ComBox_CI
+         MaxVisibleItems=16
+         Hint="Streak 2 camos."
+         WinTop=0.440000
+         WinLeft=0.660977
+         WinWidth=0.116094
+         WinHeight=0.035000
+         TabOrder=0
+         OnChange=MidGameTab_Killstreaks.InternalOnChange
+         OnKeyEvent=cb_Streak2ComBox_CI.InternalOnKeyEvent
+     End Object
+     cb_Streak2_CI=GUIComboBox'BallisticProV55.MidGameTab_Killstreaks.cb_Streak2ComBox_CI'
 
      Begin Object Class=GUIImage Name=ImageBoxStreak1
          Image=Texture'2K4Menus.NewControls.Display99'

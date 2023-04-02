@@ -9,7 +9,6 @@
 //=============================================================================
 class G51Carbine extends BallisticWeapon;
 
-var() bool		bFirstDraw;
 var() name		GrenadeLoadAnim;	//Anim for grenade reload
 var()   bool		bLoaded;
 
@@ -22,6 +21,12 @@ var() Sound		ClipInSoundEmpty;		//
 var name			BulletBone;
 var name			BulletBone2;
 
+
+replication
+{
+	reliable if (ROLE == ROLE_Authority)
+		bLoaded;
+}
 
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
@@ -126,22 +131,15 @@ simulated event AnimEnd (int Channel)
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	if (bFirstDraw && MagAmmo > 0)
-	{
-     	BringUpTime=2.0;
-     	SelectAnim='Pullout';
-		bFirstDraw=false;
-		bLoaded=False;
-	}
-	else
-	{
-     	BringUpTime=default.BringUpTime;
-		SelectAnim='Pullout';
-	}
 	if (!bLoaded)
 	{
 		SetBoneScale (0, 0.0, GrenBone);
 		SetBoneScale (1, 0.0, GrenBoneBase);
+	}
+	else
+	{
+		SetBoneScale (0, 1.0, GrenBone);
+		SetBoneScale (1, 1.0, GrenBoneBase);
 	}
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 	{
@@ -180,7 +178,10 @@ simulated function LoadGrenade()
 	if (Ammo[1].AmmoAmount < 1 || bLoaded)
 		return;
 	if (ReloadState == RS_None)
+	{
+		ReloadState = RS_GearSwitch;
 		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+	}
 }
 
 // Animation notify for when the clip is stuck in
@@ -203,16 +204,21 @@ simulated function Notify_ClipOut()
 
 
 // Notifys for greande loading sounds
-simulated function Notify_GrenVisible()	{	SetBoneScale (0, 1.0, GrenBone); SetBoneScale (1, 1.0, GrenBoneBase);	ReloadState = RS_PreClipOut;}
+simulated function Notify_GrenVisible()	{	SetBoneScale (0, 1.0, GrenBone); SetBoneScale (1, 1.0, GrenBoneBase);	ReloadState = RS_PreClipIn;}
 simulated function Notify_GrenSlide()	{	PlaySound(GrenSlideSound, SLOT_Misc, 2.2, ,64);	}
 simulated function Notify_GrenLoaded()	
 {
-    	local Inventory Inv;
+    local Inventory Inv;
+
+	if (ReloadState == RS_None)
+		return;
+	ReloadState = RS_PostClipIn;
 
 	G51Attachment(ThirdPersonActor).bGrenadier=true;	
 	G51Attachment(ThirdPersonActor).IAOverride(True);
 
 	Ammo[1].UseAmmo (1, True);
+	bLoaded = true;
 	if (Ammo[1].AmmoAmount == 0)
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
@@ -223,7 +229,7 @@ simulated function Notify_GrenLoaded()
 			}
 	}
 }
-simulated function Notify_GrenReady()	{	ReloadState = RS_None; bLoaded = true;	}
+simulated function Notify_GrenReady()	{	ReloadState = RS_None;	}
 simulated function Notify_GrenLaunch()	
 {
 	SetBoneScale (0, 0.0, GrenBone); 	
@@ -318,7 +324,6 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-     bFirstDraw=True
      GrenadeLoadAnim="LoadGrenade"
      GrenBone="Grenade"
      GrenBoneBase="GrenadeHandle"

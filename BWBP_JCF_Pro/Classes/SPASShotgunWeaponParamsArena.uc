@@ -14,6 +14,8 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=9
+		HeadMult=2.5f
+		LimbMult=0.75f
 		DamageType=Class'BWBP_JCF_Pro.DTSPASShotgun'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTSPASShotgunHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTSPASShotgun'
@@ -47,6 +49,8 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=9
+		HeadMult=2.5f
+		LimbMult=0.75f
 		DamageType=Class'BWBP_JCF_Pro.DTSPASShotgun'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTSPASShotgunHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTSPASShotgun'
@@ -108,8 +112,8 @@ defaultproperties
 		MagAmmo=8
 		SightingTime=0.35
         InventorySize=4
-		ViewOffset=(X=5.000000,Y=3.000000,Z=-6.500000)
-		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
+		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
+		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

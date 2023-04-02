@@ -9,8 +9,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimarySTDEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=100
-		HeadMult=1.5f
-		LimbMult=0.9f
+		HeadMult=1.75f
+		LimbMult=0.85f
 		DamageType=Class'BWBP_APC_Pro.DTR9000ERifle'
 		DamageTypeHead=Class'BWBP_APC_Pro.DTR9000ERifleHead'
 		DamageTypeArm=Class'BWBP_APC_Pro.DTR9000ERifle'
@@ -120,9 +120,9 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightingTime=0.550000
 		SightPivot=(Roll=-1024)
-		SightOffset=(Y=-1.600000,Z=22.000000)
+		SightOffset=(X=15.000000,Y=-1.600000,Z=22.000000)
 		SightMoveSpeedFactor=0.8
-		ViewOffset=(X=12.000000,Y=7.000000,Z=-14.000000)
+		ViewOffset=(X=8.000000,Y=9.000000,Z=-18.000000)
 		MagAmmo=6
         InventorySize=5
         ZoomType=ZT_Logarithmic

@@ -11,7 +11,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XK2SubMachinegun extends BallisticWeapon;
+class XK2SubMachinegun extends BallisticHandgun;
 
 var(XK2)   bool		bSilenced;				// Silencer on. Silenced
 var(XK2) name		SilencerBone;			// Bone to use for hiding silencer

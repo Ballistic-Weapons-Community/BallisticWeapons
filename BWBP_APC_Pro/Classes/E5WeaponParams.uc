@@ -15,6 +15,8 @@ defaultproperties
         AccelSpeed=100000.000000
         Damage=35.000000
         DamageRadius=16.000000
+		HeadMult=2.0f
+        LimbMult=0.75f
         MaxDamageGainFactor=0.6
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25

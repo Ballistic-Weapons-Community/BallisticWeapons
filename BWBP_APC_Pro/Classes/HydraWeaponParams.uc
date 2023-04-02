@@ -12,8 +12,8 @@ defaultproperties
 		Speed=2000.000000
 		MaxSpeed=25000.000000
 		AccelSpeed=5000.000000
-		Damage=90
-		DamageRadius=448.000000
+		Damage=120
+		DamageRadius=768.000000
 		MomentumTransfer=75000.000000
 		MuzzleFlashClass=Class'BWBP_APC_Pro.HydraFlashEmitter'
 		Recoil=64.000000
@@ -35,11 +35,11 @@ defaultproperties
 		Speed=2000.000000
 		MaxSpeed=25000.000000
 		AccelSpeed=5000.000000
-		Damage=90
-		DamageRadius=448.000000
+		Damage=120
+		DamageRadius=768.000000
 		MomentumTransfer=75000.000000
 		MuzzleFlashClass=Class'BWBP_APC_Pro.HydraFlashEmitter'
-		Recoil=64.000000
+		Recoil=384.000000
 		Chaos=0.500000
 		BotRefireRate=0.5
 		WarnTargetPct=0.8	
@@ -129,9 +129,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-	    SightOffset=(X=-30.000000,Y=-13.000000,Z=12.000000)
-		SightPivot=(Roll=-3072)
-		ViewOffset=(X=10.000000,Y=8.000000,Z=-10.000000)
+	    SightOffset=(X=-10.000000,Y=-10.000000,Z=15.000000)
+		ViewOffset=(X=7.000000,Y=11.000000,Z=-7.000000)
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=100,Scale=0f)
 		SightingTime=0.650000	
         DisplaceDurationMult=1.25

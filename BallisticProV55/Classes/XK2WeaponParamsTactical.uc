@@ -114,6 +114,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		bDualBlocked=True
 		DisplaceDurationMult=0.75
 		MagAmmo=30
 		SightingTime=0.25

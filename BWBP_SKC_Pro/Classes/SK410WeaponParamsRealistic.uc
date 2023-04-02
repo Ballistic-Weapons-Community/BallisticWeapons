@@ -173,15 +173,15 @@ defaultproperties
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=SK_Black
 		Index=0
-		CamoName="Black" //This needs to be core, with urban in camos
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-Main",Index=1,Index=1,AIndex=2,PIndex=0)
+		CamoName="Black"
 		Weight=30
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=SK_Urban
 		Index=1
 		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-C-CamoSnow",Index=1,AIndex=2,PIndex=0)
 		Weight=10
 	End Object
 	
@@ -189,7 +189,7 @@ defaultproperties
 		Index=2
 		CamoName="Wood"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoJungle",Index=1,Index=1,AIndex=2,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoJungle",Index=1,AIndex=2,PIndex=0)
 		Weight=10
 	End Object
 	
@@ -197,7 +197,7 @@ defaultproperties
 		Index=3
 		CamoName="Digital"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoDigital",Index=1,Index=1,AIndex=2,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoDigital",Index=1,AIndex=2,PIndex=0)
 		Weight=10
 	End Object
 	

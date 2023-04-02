@@ -355,7 +355,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=-5.000000,Y=-0.100000,Z=27.000000)
+	SightOffset=(X=10.000000,Y=-0.100000,Z=27.000000)
 	SightPivot=(Pitch=128)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'FM13WeaponParamsArena'
@@ -374,7 +374,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BWBP_APC_Pro.FM13Pickup'
-	PlayerViewOffset=(X=6,Y=13.000000,Z=-23.000000)
+	PlayerViewOffset=(X=-9.000000,Y=5.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.FM13Attachment'
 	IconMaterial=Texture'BWBP_CC_Tex.FM13.SmallIcon_Pitbull'
 	IconCoords=(X2=127,Y2=31)
