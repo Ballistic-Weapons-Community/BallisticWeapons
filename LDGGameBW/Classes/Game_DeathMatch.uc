@@ -581,7 +581,7 @@ defaultproperties
      MapColor=(G=255,R=255,A=255)
      PlayerHealth=175
      PlayerSuperHealth=218
-     MapListType="LDGGameBW.Game_DeathMatchMapList"
+     MapListType="LDGGameBW.MapList_DeathMatch"
      MutatorClass="LDGGameBW.DefMut_DeathMatch"
      GameName="LDG Ballistic Death Match"
      BindColor=(G=255,R=255)

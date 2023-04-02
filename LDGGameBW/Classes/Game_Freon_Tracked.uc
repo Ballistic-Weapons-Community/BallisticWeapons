@@ -592,6 +592,5 @@ defaultproperties
 {
      ThawRateCurve=(Points=((OutVal=5.000000),(InVal=2.000000,OutVal=3.000000),(InVal=3.500000,OutVal=2.400000),(InVal=4.000000,OutVal=2.000000),(InVal=5.000000,OutVal=1.660000),(InVal=6.000000,OutVal=1.330000),(InVal=7.000000,OutVal=1.150000),(InVal=8.000000,OutVal=1.000000),(InVal=10.000000,OutVal=1.000000)))
      DefaultPlayerClassName="LDGGameBW.Freon_Pawn_Tracked"
-     MapListType="LDGGameBW.MapList_Freon_Tracked"
-     GameName="LDG Ballistic Freon (Tracked, DM Maps)"
+     GameName="LDG Ballistic Freon (Tracked)"
 }

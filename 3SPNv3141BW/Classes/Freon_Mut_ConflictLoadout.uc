@@ -120,7 +120,8 @@ function ModifyPlayer( pawn Other )
 		}
 
         // stimpack is guaranteed
-        SpawnConflictWeapon(class'ICISStimpack', Other, 0, false, 0, 0);
+		// not any more - more than enough slots in conflict now
+        // SpawnConflictWeapon(class'ICISStimpack', Other, 0, false, 0, 0);
 	}
 
 	if (SpaceUsed < MaxInventorySize)
