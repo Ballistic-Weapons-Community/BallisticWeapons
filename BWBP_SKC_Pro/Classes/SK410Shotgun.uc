@@ -217,7 +217,7 @@ defaultproperties
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SK410'
     DrawScale=0.350000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Texture'BWBP_SKC_Tex.SK410.SK410-C-CamoSnow'
+    Skins(1)=Texture'BWBP_SKC_Tex.SK410.SK410-Main'
     Skins(2)=Texture'BWBP_SKC_Tex.SK410.SK410-Misc'
     Skins(3)=Shader'BWBP_SKC_Tex.SK410.SK410-LightsOn'
 }

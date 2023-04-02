@@ -530,7 +530,7 @@ defaultproperties
 
      bShowChargingBar=True
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Main'
+     Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.Coach-Main'
      Skins(2)=Texture'BWBP_SKC_Tex.CoachGun.DBL-SawnBits'
-     Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc'
+     Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.Coach-Misc'
 }

@@ -87,8 +87,8 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams
 	    CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightOffset=(X=-20.000000,Y=-13.000000,Z=13.000000)
-		ViewOffset=(X=18.000000,Y=15.000000,Z=-15.000000)
+		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
+		ViewOffset=(X=20.000000,Y=15.000000,Z=-10.000000)
 		SightingTime=0.550000	
         DisplaceDurationMult=1.25
         MagAmmo=2        
@@ -102,4 +102,43 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=SMAT_Green
+		Index=0
+		CamoName="Olive Drab"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SMAT_Urban
+		Index=1
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MainUrban",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MiscUrban",Index=2,AIndex=-1,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SMAT_Ocean
+		Index=2
+		CamoName="Ocean"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MainWater",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MiscWater",Index=2,AIndex=-1,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SMAT_Orange
+		Index=3
+		CamoName="Orange"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MainOrange",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SMATCamos.SMAT-MiscOrange",Index=2,AIndex=-1,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'SMAT_Green'
+	Camos(1)=WeaponCamo'SMAT_Urban'
+	Camos(2)=WeaponCamo'SMAT_Ocean'
+	Camos(3)=WeaponCamo'SMAT_Orange'
 }
