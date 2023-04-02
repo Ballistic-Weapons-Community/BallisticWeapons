@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XRS10SubMachinegun extends BallisticWeapon;
+class XRS10SubMachinegun extends BallisticHandgun;
 
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer

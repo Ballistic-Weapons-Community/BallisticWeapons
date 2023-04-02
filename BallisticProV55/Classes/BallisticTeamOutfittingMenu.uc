@@ -750,8 +750,8 @@ defaultproperties
     bAllowedAsLast=True
     OnKeyEvent=BallisticTeamOutfittingMenu.InternalOnKeyEvent
 
-    SavedLoadouts(0)=(PresetName="DEFAULT",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-    SavedLoadouts(1)=(PresetName="DEFAULT2",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
+    SavedLoadouts(0)=(PresetName="TERRAN",Weapons[0]="BallisticProV55.X3Knife",Weapons[1]="BallisticProV55.M806Pistol",Weapons[2]="BallisticProV55.M50AssaultRifle",Weapons[3]="BallisticProV55.M763Shotgun",Weapons[4]="BallisticProV55.NRP57Grenade")
+    SavedLoadouts(1)=(PresetName="SKRITH",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
     SavedLoadouts(2)=(PresetName="DEFAULT3",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
     SavedLoadouts(3)=(PresetName="DEFAULT4",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
     SavedLoadouts(4)=(PresetName="DEFAULT5",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")

@@ -884,7 +884,7 @@ function InternalOnChange(GUIComponent Sender)
             }
         }
 	}	
-	else if (Sender == cb_WeapLayoutIndex ) //todo
+	else if (Sender == cb_WeapLayoutIndex )
 	{
 		if (li_Weapons.GetObject() != None && class<BallisticWeapon>(li_Weapons.GetObject()) != None && !bUpdatingWeapon)
 		{
