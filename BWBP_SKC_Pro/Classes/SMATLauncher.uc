@@ -10,7 +10,9 @@
 //=============================================================================
 class SMATLauncher extends BallisticWeapon;
 
-var() BUtil.FullSound	HatchSound;
+var() BUtil.FullSound	LeverDownSound;
+var() BUtil.FullSound	LeverUpSound;
+var() BUtil.FullSound	EjectSound;
 
 var   bool          bRunOffsetting;
 var   bool          bRunOverride;
@@ -20,6 +22,33 @@ var() rotator       RunOffset;
 var()     float Heat;
 var()     float CoolRate;
 
+
+
+simulated function Notify_LeverDown ()
+{
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+	class'BUtil'.static.PlayFullSound(self, LeverDownSound);
+}
+
+simulated function Notify_LeverUp ()
+{
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+	class'BUtil'.static.PlayFullSound(self, LeverUpSound);
+}
+
+simulated function Notify_EjectRocket ()
+{
+	local vector start;
+	
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+	class'BUtil'.static.PlayFullSound(self, EjectSound);
+	SMATPrimaryFire(FireMode[0]).FlashHatchSmoke();
+	Start = Instigator.Location + Instigator.EyePosition() + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), vect(5,10,-5));
+	Spawn(class'Brass_HAMR', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -113,6 +142,9 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
+     LeverDownSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-LeverOpen',Volume=0.700000,Pitch=1.000000)
+     LeverUpSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-LeverClose',Volume=0.700000,Pitch=1.000000)
+     EjectSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-Eject',Volume=1.700000,Pitch=1.000000)
      RunOffset=(Pitch=-1500,Yaw=-4500)
      CoolRate=0.700000
      PlayerSpeedFactor=0.700000
@@ -131,9 +163,12 @@ defaultproperties
      CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
      ReloadAnim="ReloadFancy"
      ReloadAnimRate=1.000000
-     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn',Volume=1.100000)
-     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Cycle',Volume=1.100000)
-     bNeedCock=True
+     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Cycle',Volume=1.100000)
+     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-RocketIn',Volume=1.600000)
+     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-RocketOut',Volume=1.100000)
+     bNeedCock=False
+	 bCockOnEmpty=False
+	 bCockAfterReload=False
      WeaponModes(0)=(ModeName="Single Fire")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
@@ -149,8 +184,7 @@ defaultproperties
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"
 	bNoCrosshairInScope=True
-	SightOffset=(X=-20.000000,Y=-13.000000,Z=13.000000)
-	PlayerViewOffset=(X=18.000000,Y=15.000000,Z=-15.000000)
+	SightOffset=(X=-6.000000,Y=-7.500000,Z=5.500000)
 	 
      NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(A=192),Color2=(A=192),StartSize1=89,StartSize2=13)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
@@ -158,8 +192,8 @@ defaultproperties
 	 
 	 
 	ParamsClasses(0)=Class'SMATWeaponParamsArena'
-	ParamsClasses(1)=Class'SMATWeaponParamsClassic' //todo: seeker stats
-	ParamsClasses(2)=Class'SMATWeaponParamsRealistic' //todo: seeker stats
+	ParamsClasses(1)=Class'SMATWeaponParamsClassic' 
+	ParamsClasses(2)=Class'SMATWeaponParamsRealistic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.SMATPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.SMATSecondaryFire'
      SelectAnimRate=0.600000
@@ -178,6 +212,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.SMATPickup'
+     PlayerViewOffset=(X=15.000000,Y=15.000000,Z=-10.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.SMATAttachment'
      //IconMaterial=Texture'BWBP_SKC_Tex.SMAA.SmallIcon_SMAA'

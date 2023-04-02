@@ -22,7 +22,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-FireOld',Volume=9.600000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-FireNewLoud2',Volume=9.600000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1524.000000
 		Chaos=-1.0
 		Inaccuracy=(X=5,Y=5)
@@ -35,7 +35,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.800000
 		BurstFireRateFactor=1.00
-		bCockAfterFire=True
+		bCockAfterFire=False
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object

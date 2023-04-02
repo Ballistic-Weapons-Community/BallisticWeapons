@@ -42,10 +42,58 @@ simulated event ModeDoFire()
 	Super.ModeDoFire();
 }
 
+simulated function InitEffects()
+{
+    if ((HatchSmokeClass != None) && ((HatchSmoke == None) || HatchSmoke.bDeleteMe) )
+	{
+		HatchSmoke = Spawn(HatchSmokeClass, Weapon);
+
+		if ( HatchSmoke != None )
+			Weapon.AttachToBone(HatchSmoke, 'tip');
+
+		if (Emitter(HatchSmoke) != None)
+			class'BallisticEmitter'.static.ScaleEmitter(Emitter(HatchSmoke), Weapon.DrawScale*FlashScaleFactor);
+		else
+			HatchSmoke.SetDrawScale(HatchSmoke.DrawScale*Weapon.DrawScale*FlashScaleFactor);
+
+		if (DGVEmitter(HatchSmoke) != None)
+			DGVEmitter(HatchSmoke).InitDGV();
+	}
+	Super.InitEffects();
+}
+
+simulated function FlashHatchSmoke()
+{
+	if (Level.DetailMode < DM_High)
+		return;
+    if (HatchSmoke != None && Level.TimeSeconds < NextFireTime + 3.0)
+	{
+		Weapon.PlaySound(SteamSound, SLOT_Misc, 0.3);
+		Emitter(HatchSmoke).Emitters[0].SpawnOnTriggerRange.Min = Lerp(((NextFireTime+3.0) - Level.TimeSeconds) / 3.8, 10, 70);
+		Emitter(HatchSmoke).Emitters[0].SpawnOnTriggerRange.Max = Emitter(HatchSmoke).Emitters[0].SpawnOnTriggerRange.Min;
+        HatchSmoke.Trigger(Weapon, Instigator);
+	}
+}
+
+simulated function DestroyEffects()
+{
+	Super.DestroyEffects();
+
+    if (HatchSmoke != None)
+	{
+		if (Emitter(HatchSmoke) != None)
+			Emitter(HatchSmoke).Kill();
+		else
+			HatchSmoke.Destroy();
+	}
+}
+
 defaultproperties
 {
+     HatchSmokeClass=Class'BallisticProV55.G5HatchEmitter'
+     SteamSound=Sound'BW_Core_WeaponSound.G5.G5-Steam'
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
-     bCockAfterFire=True
+     bCockAfterFire=False
      MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
      //RecoilPerShot=1024.000000
      XInaccuracy=5.000000
