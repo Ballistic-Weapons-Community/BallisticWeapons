@@ -123,6 +123,49 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=LAW_Green
+		Index=0
+		CamoName="OD Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LAW_Tan
+		Index=1
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LAWCamos.LAW-MainTan",Index=2,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LAW_Black
+		Index=2
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LAWCamos.LAW-MainBlack",Index=2,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LAW_RedTiger
+		Index=3
+		CamoName="Red Tiger"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LAWCamos.LAW-MainRedTiger",Index=2,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LAW_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LAWCamos.LAW-MainGold",Index=2,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'LAW_Green'
+	Camos(1)=WeaponCamo'LAW_Tan'
+	Camos(2)=WeaponCamo'LAW_Black'
+	Camos(3)=WeaponCamo'LAW_RedTiger'
+	Camos(4)=WeaponCamo'LAW_Gold'
 }
