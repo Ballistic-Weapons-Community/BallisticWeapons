@@ -50,7 +50,7 @@ function Initialize()
 
 	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
 	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
-
+	
 	KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 	
 	if (KLRI == None)
@@ -242,6 +242,9 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	local array<int> AllowedCamos;
 	local class<BallisticWeapon> BW;
 	
+	if (LayoutIndex == -1) //layout box isn't even loaded yet
+		return false;
+	
 	//clear old camos
 	CamoComboBox.Clear();
 	
@@ -365,11 +368,21 @@ function InternalOnChange(GUIComponent Sender)
 	else if (Sender == cb_Streak1_LI )
 	{
 		LoadCamos(0, cb_Streak1_LI.GetIndex(), Item_Streak1.Index, cb_Streak1_CI);
+		SaveStreaks();
 	}	
 	else if (Sender == cb_Streak2_LI )
 	{
 		LoadCamos(1, cb_Streak2_LI.GetIndex(), Item_Streak2.Index, cb_Streak2_CI);
+		SaveStreaks();
 	}	
+	else if (Sender == cb_Streak1_CI )
+	{
+		SaveStreaks();
+	}	
+	else if (Sender == cb_Streak2_CI )
+	{
+		SaveStreaks();
+	}
 }
 
 defaultproperties

@@ -10,8 +10,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 		ProjectileClass=Class'BallisticProV55.MACShell'
 		SpawnOffset=(X=28.000000,Y=10.000000)
-		Speed=25000.000000
-		MaxSpeed=25000.000000
+		Speed=14000.000000
+		MaxSpeed=14000.000000
 		Damage=350.000000
 		DamageRadius=192.000000
 		MomentumTransfer=80000.000000
@@ -120,55 +120,32 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_Jungle
-		LayoutName="Jungle"
-		Weight=20
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainJungle",Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=2)
-		
-		SightPivot=(Pitch=450)
-		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
-		PlayerSpeedFactor=0.750000
-		PlayerJumpFactor=0.750000
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.450000
-        ZoomType=ZT_Logarithmic
-		MagAmmo=5
-		WeaponName="J2329-HAMR"
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-
-	Begin Object Class=WeaponParams Name=ClassicParams_Urban
-		LayoutName="Urban"
-		Weight=20
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainJungle",Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=2)
-		
-		SightPivot=(Pitch=450)
-		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
-		PlayerSpeedFactor=0.750000
-		PlayerJumpFactor=0.750000
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.450000
-        ZoomType=ZT_Logarithmic
-		MagAmmo=5
-		WeaponName="J2329-HAMR"
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Jungle'
-	Layouts(2)=WeaponParams'ClassicParams_Urban'
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=MAC_Desert
+		Index=0
+		CamoName="Desert"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MAC_Jungle
+		Index=1
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainJungle",Index=1,AIndex=1,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MAC_Urban
+		Index=2
+		CamoName="Urban"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainUrban",Index=1,AIndex=1,PIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'MAC_Desert'
+	Camos(1)=WeaponCamo'MAC_Jungle'
+	Camos(2)=WeaponCamo'MAC_Urban'
 }

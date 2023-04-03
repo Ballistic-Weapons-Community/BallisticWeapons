@@ -17,6 +17,8 @@ var array<string>		Streak1s;
 var array<string>		Streak2s;
 
 var array<string> 		Killstreaks[2];
+var array<byte> 		Layouts[2];
+var array<byte> 		Camos[2];
 
 var bool				bWeaponsReady, bPendingLoadoutSave, bClientAttemptedGetStreakList;
 
@@ -299,7 +301,12 @@ simulated function UpdateStreakChoices()
 {
 	ServerUpdateStreakChoices(
 		class'KillstreakConfig'.default.Killstreaks[0], 
-		class'KillstreakConfig'.default.Killstreaks[1]
+		class'KillstreakConfig'.default.Killstreaks[1],
+		class'KillstreakConfig'.default.Layouts[0],
+		class'KillstreakConfig'.default.Layouts[1],
+		class'KillstreakConfig'.default.Camos[0],
+		class'KillstreakConfig'.default.Camos[1]
+		
 	);
 }
 
@@ -310,12 +317,16 @@ simulated function ClientGetStreakChoices()
 	UpdateStreakChoices();
 }
 
-function ServerUpdateStreakChoices(string Streak1, string Streak2)
+function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1, byte Layout2, byte Camo1, byte Camo2)
 {
 	local int i;
 	
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
+	Layouts[0] = Layout1;
+	Layouts[1] = Layout2;
+	Camos[0] = Camo1;
+	Camos[1] = Camo2;
 		
 	for (i=0; i < MAX_GROUPS; i++)
 	{

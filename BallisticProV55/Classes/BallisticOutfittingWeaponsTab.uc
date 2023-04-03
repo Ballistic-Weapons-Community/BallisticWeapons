@@ -638,6 +638,9 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	local array<int> AllowedCamos;
 	local class<BallisticWeapon> BW;
 	
+	if (LayoutIndex == -1) //layout box isn't even loaded yet
+		return false;
+	
 	//clear old camos
 	CamoComboBox.Clear();
 	
