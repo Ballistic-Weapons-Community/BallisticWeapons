@@ -101,7 +101,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Desert"
 		Weight=60
 		
 		SightPivot=(Pitch=450)

@@ -100,7 +100,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="UTC Issue"
 		Weight=30
 		
 		PlayerSpeedFactor=0.850000
