@@ -2486,7 +2486,10 @@ simulated function PositionSights()
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
 
 	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
-	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
+	Offset = SightOffset; 
+	
+	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 16384;
+	
 	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
 
 	if (SightingPhase >= 1.0)
