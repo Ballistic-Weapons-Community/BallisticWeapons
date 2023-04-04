@@ -12,7 +12,7 @@ defaultproperties
 	StyleName="Tactical"
 	
 	RecoilScale=0.75
-	RecoilShotScale=0.75
+	RecoilShotScale=1
 
 	bRunInADS=False
 

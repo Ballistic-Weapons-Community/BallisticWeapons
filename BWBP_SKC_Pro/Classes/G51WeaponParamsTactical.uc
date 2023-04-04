@@ -29,7 +29,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.SCAR-Fire',Volume=2.600000)
-		Recoil=200.000000
+		Recoil=140.000000
 		Chaos=0.040000
 		WarnTargetPct=0.200000
 	End Object
@@ -71,10 +71,10 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.250000,OutVal=0.150000),(InVal=0.400000,OutVal=0.24000),(InVal=0.800000,OutVal=0.32000),(InVal=1.000000,OutVal=0.48000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.0500
-		YRandFactor=0.0500
+		XRandFactor=0.1
+		YRandFactor=0.1
 		DeclineTime=1.00000
 		DeclineDelay=0.140000
 		CrouchMultiplier=0.850000
@@ -108,7 +108,7 @@ defaultproperties
 		SightingTime=0.350000
 		SightMoveSpeedFactor=0.6
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
