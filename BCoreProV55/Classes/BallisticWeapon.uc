@@ -216,8 +216,8 @@ var   	ESightingState				SightingState;					// State of non anim, sight related 
 var		bool						bStandardCrosshairOff;			// True if ScopeView has hidden the UT2004 crosshair.
 
 // HACK. Used to deal with sight fire animations with incorrect amplitude by blending them with the Idle.
-// Please don't rely on this - if you see it in use, it means animations need redoing.
-var		float						SightAnimReductionFactor;		
+// Please don't rely on this - if you see it defined in the default properties, the weapon needs looking at.
+var		float						SightAnimScale;		
 //-----------------------------------------------------------------------------
 // Movement speed
 //-----------------------------------------------------------------------------
@@ -1028,7 +1028,7 @@ simulated final function bool BlendFire()
 			return false;
 		case SS_Raising: 
 			AnimBlendToAlpha(1, 1, (1-SightingPhase) * SightingTime); 
-			AnimBlendToAlpha(2, SightAnimReductionFactor, (1-SightingPhase) * SightingTime); 
+			AnimBlendToAlpha(2, 1 - SightAnimScale, (1-SightingPhase) * SightingTime); 
 			return true;
 		case SS_Lowering: 
 			AnimBlendToAlpha(1, 0, SightingPhase * SightingTime); 
@@ -1036,7 +1036,7 @@ simulated final function bool BlendFire()
 			return true;
 		case SS_Active: 
 			AnimBlendParams(1,1); 
-			AnimBlendParams(2,SightAnimReductionFactor);
+			AnimBlendParams(2, 1 - SightAnimScale);
 			return true;
 	}
 	
@@ -1044,7 +1044,7 @@ simulated final function bool BlendFire()
 	if (bScopeView)
 	{
 		AnimBlendParams(1,1);
-		AnimBlendParams(2,SightAnimReductionFactor);
+		AnimBlendParams(2, 1 - SightAnimScale);
 		return true;
 	}
 
@@ -5646,6 +5646,7 @@ defaultproperties
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
 	 SightingTime=0.350000
+	 SightAnimScale=1
      MinFixedZoomLevel=0.050000
      MinZoom=1.000000
      MaxZoom=2.000000

@@ -465,6 +465,7 @@ defaultproperties
      PickupClass=Class'BWBP_SKC_Pro.AK91Pickup'
      PlayerViewOffset=(X=-3.000000,Y=5.000000,Z=-14.000000)
      BobDamping=2.000000
+	 SightAnimScale=0.5
      AttachmentClass=Class'BWBP_SKC_Pro.AK91Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
      IconCoords=(X2=127,Y2=31)

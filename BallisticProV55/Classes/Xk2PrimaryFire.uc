@@ -126,13 +126,7 @@ function ServerPlayFiring()
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
-	// Slightly modified Code from original PlayFiring()
-	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-	else if(!BW.bScopeView || !Weapon.HasAnim(AimedFireAnim))
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	else BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "FIRE");
-	// End code from normal PlayFiring()
+	PlayFireAnimations();
 
 	CheckClipFinished();
 }
@@ -144,13 +138,7 @@ function PlayFiring()
 	else
 		Weapon.SetBoneScale (0, 0.0, XK2SubMachinegun(Weapon).SilencerBone);
 		
-	// Slightly modified Code from original PlayFiring()
-	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-	else if(!BW.bScopeView || !Weapon.HasAnim(AimedFireAnim))
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	else BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "FIRE");
-	// End code from normal PlayFiring()
+	PlayFireAnimations();
 
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;

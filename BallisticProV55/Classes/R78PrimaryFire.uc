@@ -59,7 +59,7 @@ function ServerPlayFiring()
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	PlayFireAnimations();
 
 	CheckClipFinished();
 }
@@ -78,7 +78,7 @@ function PlayFiring()
 		Weapon.SetBoneScale (0, 0.0, R78Rifle(Weapon).SilencerBone);
 	}
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	PlayFireAnimations();
 
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
