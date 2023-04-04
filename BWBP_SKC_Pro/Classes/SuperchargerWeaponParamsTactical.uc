@@ -157,6 +157,49 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'TacticalParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=Super_Industrial
+		Index=0
+		CamoName="Industrial"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Green
+		Index=1
+		CamoName="OD Green"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainGreen",Index=3,AIndex=4,PIndex=4)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Black
+		Index=2
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainBlack",Index=3,AIndex=4,PIndex=4)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Quantum
+		Index=3
+		CamoName="Quantum"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainGreen",Index=3,AIndex=4,PIndex=4)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainGreen",Index=3,AIndex=4,PIndex=4)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'Super_Industrial'
+	Camos(1)=WeaponCamo'Super_Green'
+	Camos(2)=WeaponCamo'Super_Black'
+	//Camos(3)=WeaponCamo'Super_Quantum'
+	//Camos(4)=WeaponCamo'Super_Gold'
 }

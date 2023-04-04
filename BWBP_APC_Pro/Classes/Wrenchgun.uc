@@ -514,7 +514,7 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_WrenchGun'
      DrawScale=1.250000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Main'
+     Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.Coach-Main'
      Skins(2)=Texture'BWBP_CC_Tex.Wrenchgun.WrenchShells'
      Skins(3)=Texture'BWBP_CC_Tex.Wrenchgun.WrenchShells'
      Skins(4)=Shader'BWBP_OP_Tex.Wrench.WrenchShader'

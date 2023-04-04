@@ -2,8 +2,8 @@ class KillstreakConfig extends Object
 	config(BallisticProV55);
 
 var() globalconfig string		Killstreaks[2];
-var()	globalconfig int		Layouts[2];
-var()	globalconfig int		Camos[2];
+var()	globalconfig byte		Layouts[2];
+var()	globalconfig byte		Camos[2];
 
 static function UpdateStreaks(string ks1, string ks2)
 {

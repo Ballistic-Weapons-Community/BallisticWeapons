@@ -13,7 +13,7 @@ class WrenchgunPickup extends BallisticHandGunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Main');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.Coach-Main');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscBlack');
 	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
@@ -28,7 +28,7 @@ static function StaticPrecache(LevelInfo L)
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.Coach-Main');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscBlack');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');

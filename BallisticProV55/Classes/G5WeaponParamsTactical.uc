@@ -90,4 +90,24 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=G5_UTC
+		Index=0
+		CamoName="UTC Jungle"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G5_Pirate
+		Index=1
+		CamoName="Pirate Gray"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAA-Shine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAAScope",Index=2,AIndex=5,PIndex=4)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAARocket",Index=4,AIndex=3,PIndex=3)
+	End Object
+	
+	Camos(0)=WeaponCamo'G5_UTC'
+	Camos(1)=WeaponCamo'G5_Pirate'
 }

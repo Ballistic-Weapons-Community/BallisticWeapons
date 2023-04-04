@@ -373,6 +373,9 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	//clear old layouts
 	cb_WeapCamoIndex.Clear();
 	
+	if (LayoutIndex == -1) //layout box isn't even loaded yet
+		return false;
+		
 	/*if (!bCamosInstalled)
 	{
 		cb_WeapCamoIndex.AddItem("Not Installed",, "0");

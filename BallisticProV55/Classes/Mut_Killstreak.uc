@@ -429,7 +429,7 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 		Index = 0;
 	}
 	
-	S = SpawnStreakWeapon(KLRI.Killstreaks[Index], Other, Index);
+	S = SpawnStreakWeapon(KLRI.Killstreaks[Index], KLRI.Layouts[Index], KLRI.Camos[Index], Other, Index);
 	
 	if (S != "")
 	{
@@ -441,7 +441,7 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 	}
 }
 
-function String SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlot)
+function String SpawnStreakWeapon(string WeaponString, byte LI, byte CI, Pawn Other, byte GroupSlot)
 {
 	local class<Weapon> KR;
 	local int j, k, m;
@@ -465,7 +465,7 @@ function String SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlo
 	if (KR == None)
 		return "";
 	
-	SpawnWeapon(KR, Other);
+	SpawnWeapon(KR, Other, LI, CI);
 
 	if (class<BallisticWeapon>(KR) != None && !class<BallisticWeapon>(KR).default.bNoMag)
 	{
@@ -480,7 +480,7 @@ function String SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlo
 	return KR.default.ItemName;
 }
 
-static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
+static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P, byte LayoutIndex, byte CamoIndex)
 {
 	local Weapon newWeapon;
 
@@ -492,6 +492,11 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 			newWeapon = P.Spawn(newClass,,,P.Location);
 			if( newWeapon != None )
 			{
+				if (BallisticWeapon(newWeapon) != None)
+				{
+					BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+					BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
+				}
 				newWeapon.GiveTo(P);
 			}
 			if (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).default.bShouldDualInLoadout)

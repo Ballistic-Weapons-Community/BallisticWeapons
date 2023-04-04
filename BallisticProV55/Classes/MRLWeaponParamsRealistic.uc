@@ -117,6 +117,23 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=MRL_Military
+		Index=0
+		CamoName="OD Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MRL_Rad
+		Index=1
+		CamoName="Radical"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRLCamos.MRL_MainRed_S1",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MRLCamos.MRL-MagRed",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'MRL_Military'
+	Camos(1)=WeaponCamo'MRL_Rad'
 }
