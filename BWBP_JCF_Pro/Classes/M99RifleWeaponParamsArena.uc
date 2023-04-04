@@ -74,7 +74,7 @@ defaultproperties
 		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
 		SightPivot=(Roll=-1024)
 		ViewOffset=(X=10.000000,Y=-4.000000,Z=-30.000000)
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

@@ -377,7 +377,6 @@ defaultproperties
      CurrentWeaponMode=0
 	 PlayerSpeedFactor=0.750000
      PlayerJumpFactor=0.780000
-     ZoomType=ZT_Smooth
      ZoomInAnim="ZoomIn"
      ZoomOutAnim="ZoomOut"
      ScopeViewTex=Texture'BWBP_JCF_Tex.M99.M99Scope2'
