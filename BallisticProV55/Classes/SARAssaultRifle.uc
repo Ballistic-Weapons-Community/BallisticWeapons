@@ -561,7 +561,7 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=4
 	PickupClass=Class'BallisticProV55.SARPickup'
-
+	SightAnimScale=0.65
 	AttachmentClass=Class'BallisticProV55.SARAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_SAR12'
 	IconCoords=(X2=127,Y2=31)

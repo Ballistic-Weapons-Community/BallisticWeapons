@@ -20,11 +20,13 @@ event ModeDoFire()
 		{
 			CoachGun(Weapon).bRightLoaded=false;
 			FireAnim='SightFire';
+			AimedFireAnim='SightFire';
 		}
 		else
 		{
 			CoachGun(Weapon).bLeftLoaded=false;
 			FireAnim='SightFire';
+			AimedFireAnim='SightFire';
 		}
 	}
 	super.ModeDoFire();

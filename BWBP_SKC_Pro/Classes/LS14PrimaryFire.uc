@@ -109,6 +109,9 @@ simulated event ModeDoFire()
 			else
 				FireAnim='Fire';
 		}
+
+		AimedFireAnim = FireAnim;
+
 		if (!bSecondBarrel)
 		{
 			bSecondBarrel=true;

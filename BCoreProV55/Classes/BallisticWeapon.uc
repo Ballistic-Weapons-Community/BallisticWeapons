@@ -1105,6 +1105,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
     }
 	// End stuff from Engine.Weapon
 
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
+		return;
+
 	// Start Shovel ended, move on to Shovel loop
 	if (ReloadState == RS_StartShovel)
 	{
