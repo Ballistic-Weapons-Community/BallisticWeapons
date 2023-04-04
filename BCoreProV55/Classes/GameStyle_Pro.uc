@@ -52,10 +52,10 @@ defaultproperties
     PlayerDodgeZ=210
 
 	bEnableSprint=true
-	StaminaChargeRate=25
-	StaminaDrainRate=20
+	StaminaChargeRate=15
+	StaminaDrainRate=10
 	SprintSpeedFactor=1.5f
-	JumpDrainFactor=1
+	JumpDrain=5
 
     HealthKillReward=25
 	KillRewardHealthMax=100

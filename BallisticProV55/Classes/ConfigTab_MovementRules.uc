@@ -15,7 +15,7 @@ var automated moCheckBox        cb_bUseSprint;				// Enable Sprint
 var automated moNumericEdit     ne_StaminaDrainRate;		// Stamina Drain Rate
 var automated moNumericEdit     ne_StaminaChargeRate;		// Stamina Charge Rate
 var automated moFloatEdit       fe_InitSpeedFactor;			// Speed During Sprint
-var automated moFloatEdit       fe_JumpDrainFactor;			// Jump Drain Factor
+var automated moFloatEdit       fe_JumpDrain;			// Jump Drain Factor
 
 //==================================================================
 // Settings & Defaults
@@ -41,7 +41,7 @@ function LoadSettings()
     	ne_StaminaDrainRate.SetValue(game_style.default.StaminaDrainRate);
     	ne_StaminaChargeRate.SetValue(game_style.default.StaminaChargeRate);
     	fe_InitSpeedFactor.SetValue(game_style.default.SprintSpeedFactor);
-    	fe_JumpDrainFactor.SetValue(game_style.default.JumpDrainFactor);
+    	fe_JumpDrain.SetValue(game_style.default.JumpDrain);
 	}
 }
 
@@ -60,7 +60,7 @@ function DefaultSettings()
     ne_StaminaDrainRate.SetValue(25);
     ne_StaminaChargeRate.SetValue(25);
     fe_InitSpeedFactor.SetValue(1.35);
-    fe_JumpDrainFactor.SetValue(2);
+    fe_JumpDrain.SetValue(2);
 }
 
 function SaveSettings()
@@ -72,7 +72,7 @@ function SaveSettings()
 
 	game_style = BaseMenu.GetConfigStyle();
 
-	if (style != None)
+	if (game_style != None)
 	{
 		game_style.default.PlayerGroundSpeed 	= ne_PlayerGroundSpeed.GetValue();
     	game_style.default.PlayerAirSpeed 		= ne_PlayerGroundSpeed.GetValue(); // this is NOT an error. ground and air speed should be equivalent
@@ -87,9 +87,9 @@ function SaveSettings()
     	game_style.default.StaminaDrainRate 		= ne_StaminaDrainRate.GetValue();
     	game_style.default.StaminaChargeRate 	= ne_StaminaChargeRate.GetValue();
     	game_style.default.SprintSpeedFactor 	= fe_InitSpeedFactor.GetValue();
-    	game_style.default.JumpDrainFactor 		= fe_JumpDrainFactor.GetValue();
+    	game_style.default.JumpDrain 		= fe_JumpDrain.GetValue();
 
-    	style.static.StaticSaveConfig();
+    	game_style.static.StaticSaveConfig();
 	}
 }
 
@@ -241,17 +241,17 @@ defaultproperties
      End Object
      fe_InitSpeedFactor=moFloatEdit'fe_InitSpeedFactorC'
 
-     Begin Object Class=moFloatEdit Name=fe_JumpDrainFactorC
+     Begin Object Class=moFloatEdit Name=fe_JumpDrainC
          MinValue=0.000000
          MaxValue=2.000000
          ComponentWidth=0.175000
          Caption="Jump Drain Factor"
-         OnCreateComponent=fe_JumpDrainFactorC.InternalOnCreateComponent
+         OnCreateComponent=fe_JumpDrainC.InternalOnCreateComponent
          Hint="The jump drain factor during sprint."
          WinTop=0.70000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fe_JumpDrainFactor=moFloatEdit'fe_JumpDrainFactorC'
+     fe_JumpDrain=moFloatEdit'fe_JumpDrainC'
 
 }

@@ -76,7 +76,7 @@ var() config bool			bEnableSprint;
 var() config int			StaminaChargeRate;
 var() config int			StaminaDrainRate;
 var() config float			SprintSpeedFactor;
-var() config float			JumpDrainFactor;
+var() config float			JumpDrain;
 
 //=============================================================================
 // HEALTH/ARMOR - NO REP
@@ -149,7 +149,7 @@ var struct SprintRep
 	var() config int			StaminaChargeRate;
 	var() config int			StaminaDrainRate;
 	var() config float			SprintSpeedFactor;
-	var() config float			JumpDrainFactor;
+	var() config float			JumpDrain;
 } SRep;
 
 replication
@@ -204,7 +204,7 @@ final function BindToReplication()
 	SRep.StaminaChargeRate				= StaminaChargeRate;
 	SRep.StaminaDrainRate				= StaminaDrainRate;
     SRep.SprintSpeedFactor				= SprintSpeedFactor;
-	SRep.JumpDrainFactor				= JumpDrainFactor;
+	SRep.JumpDrain				= JumpDrain;
 }
 
 // Set all defaults to match server vars here
@@ -264,7 +264,7 @@ simulated final function BindFromReplication()
 	StaminaChargeRate				= SRep.StaminaChargeRate;
 	StaminaDrainRate				= SRep.StaminaDrainRate;
     SprintSpeedFactor				= SRep.SprintSpeedFactor;
-	JumpDrainFactor					= SRep.JumpDrainFactor;
+	JumpDrain					= SRep.JumpDrain;
 }
 
 simulated final function BindDefaults()
@@ -309,7 +309,7 @@ simulated final function BindDefaults()
 	class.default.StaminaChargeRate				= StaminaChargeRate;
 	class.default.StaminaDrainRate				= StaminaDrainRate;
     class.default.SprintSpeedFactor				= SprintSpeedFactor;
-	class.default.JumpDrainFactor				= JumpDrainFactor;
+	class.default.JumpDrain				= JumpDrain;
 
 	class.default.bHealthRegeneration			= bHealthRegeneration;
 	class.default.bShieldRegeneration			= bShieldRegeneration;
