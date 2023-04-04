@@ -142,7 +142,7 @@ defaultproperties
 {
      bShowSplash=True
      SplashPic=Texture'BW_Core_WeaponTex.ui.SplashScreenNew'
-     VersionText="Ballistic Definitive Edition: "
+     VersionText="Definitive Edition: "
      DiscordText="discord.gg/2XTfKPa"
      bVisible=True
 }

@@ -653,7 +653,10 @@ simulated function PostNetBeginPlay()
         InventoryGroup = NetInventoryGroup;
 
     bDeferInitialSwitch = bServerDeferInitialSwitch;
+}
 
+simulated function CheckSetBurstMode()
+{
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_BigBurst")
@@ -944,6 +947,8 @@ simulated function OnWeaponParamsChanged()
 		}
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
+
+	CheckSetBurstMode();
 }
 
 simulated final function CreateRecoilComponent()

@@ -16,7 +16,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=13000.000000)
         DecayRange=(Min=2363,Max=6000)
 		RangeAtten=0.75
-		Damage=46
+		Damage=45
         HeadMult=2.75f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'

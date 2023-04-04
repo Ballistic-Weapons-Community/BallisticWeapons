@@ -3,6 +3,7 @@ class G51WeaponParamsTactical extends BallisticWeaponParams;
 static simulated function SetAttachmentParams(BallisticAttachment BWA)
 {
 	BWA.ModeInfos[0].TracerChance = 0;
+	BWA.ModeInfos[0].TracerMix = 0;
 }
 
 defaultproperties
@@ -36,6 +37,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.100000
+		BurstFireRateFactor=0.75
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -108,7 +110,7 @@ defaultproperties
 		SightingTime=0.350000
 		SightMoveSpeedFactor=0.6
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
