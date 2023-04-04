@@ -284,7 +284,7 @@ simulated function PositionSights()
 	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
 	Offset = SightOffset; 
 	
-	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 16384;
+	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 8192;
 	
 	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1- (SightingPhase * 0.95)))) - (SightPos + ViewAlignedOffset(Offset));
 
