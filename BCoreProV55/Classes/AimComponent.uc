@@ -265,8 +265,6 @@ final simulated function Recalculate()
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;
 
-    // VelocityAimAdjustMult = 1;
-
 	BW.OnAimParamsChanged();
 }
 
@@ -304,11 +302,6 @@ final simulated function ApplyADSModifiers()
 {
 	AimSpread.Min = 0;
     AimSpread.Max *= Params.ADSMultiplier;
-
-	/*
-    AimSpread.Max = AimSpread.Min;
-    VelocityAimAdjustMult = 0.5f;
-	*/
 }
 
 final simulated function OnADSViewStart()
@@ -372,6 +365,9 @@ final simulated function AddFireChaos(float chaos)
 // Azarael - fixed recoil bug here
 final simulated function UpdateAim(float DT)
 {
+	local float AdjustAlpha;
+	local float VeLMag;
+
 	if (BW.bAimDisabled)
 	{
 		Aim = rot(0,0,0);
@@ -404,17 +400,13 @@ final simulated function UpdateAim(float DT)
 
     // Change aim adjust time for player velocity
 	if (BW.Instigator.Base != None)
-        AimAdjustTime = (Params.AimAdjustTime * 2) - (Params.AimAdjustTime * (FMin(VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity), 375) / 350));
-    else
-        AimAdjustTime = Params.AimAdjustTime;
+		VelMag = VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity);
+	else
+		VelMag = VSize(BW.Instigator.Velocity);
+		
+	AdjustAlpha = FMin(1f, VelMag / class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
 
-	/* Azarael 13/03/2023 - wip sway impl - requires general changes so not done yet
-    AimAdjustTime = Params.AimAdjustTime;
-
-    // Change aim adjust time for player velocity
-	if (BW.Instigator.Base != None)
-        AimAdjustTime *= 1.0f - ((0.66f * (FMin(VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity), 260) / 260)) * VelocityAimAdjustMult);
-	*/
+    AimAdjustTime = Params.AimAdjustTime * 2f * Lerp(AdjustAlpha, 1.0f, Params.VelocityAimAdjustMult);
 }
 
 final simulated function UpdateReaim(float DT)

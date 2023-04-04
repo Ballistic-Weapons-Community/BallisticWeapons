@@ -214,6 +214,10 @@ var   	float						NextCheckScopeTime;				// Used to prevent CheckScope() from ex
 var  	float						LogZoomLevel;					// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
 var   	ESightingState				SightingState;					// State of non anim, sight related gun movement
 var		bool						bStandardCrosshairOff;			// True if ScopeView has hidden the UT2004 crosshair.
+
+// HACK. Used to deal with sight fire animations with incorrect amplitude by blending them with the Idle.
+// Please don't rely on this - if you see it defined in the default properties, the weapon needs looking at.
+var		float						SightAnimScale;		
 //-----------------------------------------------------------------------------
 // Movement speed
 //-----------------------------------------------------------------------------
@@ -551,8 +555,15 @@ simulated function PostBeginPlay()
 	CreateRecoilComponent();
 	CreateAimComponent();
 
-	//Set up channel 1 for sight fire blending.
+	//Set up channels 1 and 2 for sight fire blending.
 	AnimBlendParams(1,0);
+	AnimBlendParams(2,0);
+
+
+	// Channel 2 is used to dampen sight fire animations that haven't been dealt with correctly.
+	// We freeze the first idle frame, which is the basic ADS view, and blend it in with the standard animation.
+	SafePlayAnim(IdleAnim, 1.0, 0, 2);
+	FreezeAnimAt(0, 2);
 
 	if (bUseBigIcon)
 	{
@@ -642,7 +653,10 @@ simulated function PostNetBeginPlay()
         InventoryGroup = NetInventoryGroup;
 
     bDeferInitialSwitch = bServerDeferInitialSwitch;
+}
 
+simulated function CheckSetBurstMode()
+{
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_BigBurst")
@@ -933,6 +947,8 @@ simulated function OnWeaponParamsChanged()
 		}
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
+
+	CheckSetBurstMode();
 }
 
 simulated final function CreateRecoilComponent()
@@ -1013,17 +1029,30 @@ simulated final function bool BlendFire()
 {
 	switch(SightingState)
 	{
-		case SS_None: return false;
-		case SS_Raising: AnimBlendToAlpha(1, 1, (1-SightingPhase) * SightingTime); return true;
-		case SS_Lowering: AnimBlendToAlpha(1, 0, SightingPhase * SightingTime); return true;
-		case SS_Active: AnimBlendParams(1,1); return true;
+		case SS_None: 
+			return false;
+		case SS_Raising: 
+			AnimBlendToAlpha(1, 1, (1-SightingPhase) * SightingTime); 
+			AnimBlendToAlpha(2, 1 - SightAnimScale, (1-SightingPhase) * SightingTime); 
+			return true;
+		case SS_Lowering: 
+			AnimBlendToAlpha(1, 0, SightingPhase * SightingTime); 
+			AnimBlendToAlpha(2, 0, SightingPhase * SightingTime); 
+			return true;
+		case SS_Active: 
+			AnimBlendParams(1,1); 
+			AnimBlendParams(2, 1 - SightAnimScale);
+			return true;
 	}
 	
+	// this code is unreachable and is equivalent to the SS_Active case. Azarael
 	if (bScopeView)
 	{
 		AnimBlendParams(1,1);
+		AnimBlendParams(2, 1 - SightAnimScale);
 		return true;
 	}
+
 	return false;
 }
 
@@ -1056,10 +1085,11 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		bPreventReload=false;
 	}
 		
-	//Phase out Channel 1 if a sight fire animation has just ended.
+	//Phase out channels 1 and 2 if a sight fire animation has just ended.
 	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
 	{
 		AnimBlendParams(1, 0);
+		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
@@ -1079,6 +1109,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			PlayIdle();
     }
 	// End stuff from Engine.Weapon
+
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
+		return;
 
 	// Start Shovel ended, move on to Shovel loop
 	if (ReloadState == RS_StartShovel)
@@ -2486,7 +2520,10 @@ simulated function PositionSights()
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
 
 	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
-	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
+	Offset = SightOffset; 
+	
+	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 8192;
+	
 	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
 
 	if (SightingPhase >= 1.0)
@@ -5450,7 +5487,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     YPos += YL;
 	Canvas.SetPos(4,YPos);
 
-	RcComponent.DrawDebug(Canvas);
+	YPos = RcComponent.DrawDebug(Canvas, YPos, YL);
     YPos += YL;
 	Canvas.SetPos(4,YPos);
 	
@@ -5618,6 +5655,7 @@ defaultproperties
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
 	 SightingTime=0.350000
+	 SightAnimScale=1
      MinFixedZoomLevel=0.050000
      MinZoom=1.000000
      MaxZoom=2.000000

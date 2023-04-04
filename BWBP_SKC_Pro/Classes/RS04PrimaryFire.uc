@@ -8,50 +8,43 @@
 //=============================================================================
 class RS04PrimaryFire extends BallisticProInstantFire;
 
-
-//Do the spread on the client side
-function PlayFiring()
+simulated function PlayFireAnimations()
 {
-
 	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'IdleOpen';
 		BW.ReloadAnim = 'ReloadOpen';
-    		if (RS04Pistol(Weapon).bScopeView)
+
+		if (BW.CurrentWeaponMode == 1)
 		{
-			if (RS04Pistol(Weapon).CurrentWeaponMode == 1)
-				FireAnim = 'FireOpen';
-			else
-				FireAnim = 'FireSightsOpen';
-		}
-		else if (RS04Pistol(Weapon).CurrentWeaponMode == 1)
+			AimedFireAnim = 'FireOpen';
 			FireAnim = 'FireDualOpen';
+		}
 		else
+		{
+			AimedFireAnim = 'FireSightsOpen';
 			FireAnim = 'FireOpen';
+		}
 	}
+	
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
-    		if (RS04Pistol(Weapon).bScopeView)
+
+		if (BW.CurrentWeaponMode == 1)
 		{
-			if (RS04Pistol(Weapon).CurrentWeaponMode == 1)
-				FireAnim = 'Fire';
-			else
-				FireAnim = 'FireSights';
-		}
-		else if (RS04Pistol(Weapon).CurrentWeaponMode == 1)
 			FireAnim = 'FireDual';
+			AimedFireAnim = 'Fire';
+		}
 		else
+		{
+			AimedFireAnim = 'FireSights';
 			FireAnim = 'Fire';
+		}
 	}
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-
-    ClientPlayForceFeedback(FireForce);  // jdf
-    FireCount++;
-	
-	super.PlayFiring();
+	Super.PlayFireAnimations();
 }
 
 defaultproperties

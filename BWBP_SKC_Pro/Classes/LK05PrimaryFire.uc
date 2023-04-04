@@ -90,21 +90,28 @@ function ServerPlayFiring()
 	else
 		Weapon.SetBoneScale (0, 0.0, LK05Carbine(Weapon).SilencerBone);
 	
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 
 	CheckClipFinished();
+}
+
+simulated function PlayFireAnimations()
+{
+	if (BW.MagAmmo - ConsumedLoad < 1)
+	{
+		BW.IdleAnim = 'OpenIdle';
+		BW.ReloadAnim = 'ReloadEmpty';
+
+		AimedFireAnim = 'OpenSightFire';
+		FireAnim = 'OpenFire';
+	}
+	else
+	{
+		AimedFireAnim = 'SightFire';
+		FireAnim = 'Fire';
+	}
+
+	Super.PlayFireAnimations();
 }
 
 //Do the spread on the client side
@@ -118,38 +125,7 @@ function PlayFiring()
 		Weapon.SetBoneScale (0, 0.0, LK05Carbine(Weapon).SilencerBone);
 	}
 
-	if (BW.MagAmmo - ConsumedLoad < 1)
-	{
-		BW.IdleAnim = 'OpenIdle';
-		BW.ReloadAnim = 'ReloadEmpty';
-    		if (LK05Carbine(Weapon).bScopeView)
-			FireAnim = 'OpenSightFire';
-		else
-			FireAnim = 'OpenFire';
-	}
-	else
-	{
-		BW.IdleAnim = 'Idle';
-		BW.ReloadAnim = 'Reload';
-    	if (LK05Carbine(Weapon).bScopeView)
-			FireAnim = 'SightFire';
-		else
-			FireAnim = 'Fire';
-	}
-
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 	
     ClientPlayForceFeedback(FireForce);  // jdf
 

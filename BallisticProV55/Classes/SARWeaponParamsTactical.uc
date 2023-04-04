@@ -101,7 +101,7 @@ defaultproperties
 		DeclineTime=0.75
 		ViewBindFactor=0.35
 		ADSViewBindFactor=0.85
-		CrouchMultiplier=0.75
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 		DeclineDelay=0.13
@@ -129,7 +129,7 @@ defaultproperties
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.6
-		AimSpread=(Min=384,Max=1536)
+		AimSpread=(Min=256,Max=1024)
 		ChaosDeclineTime=0.75
 		ChaosSpeedThreshold=300
 	End Object
@@ -138,7 +138,7 @@ defaultproperties
 		ADSMultiplier=1
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.45
-		AimSpread=(Min=256,Max=1024)
+		AimSpread=(Min=256,Max=768)
 		ChaosDeclineTime=0.75
 		ChaosSpeedThreshold=300
 	End Object

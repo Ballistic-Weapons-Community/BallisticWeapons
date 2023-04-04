@@ -373,6 +373,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'SX45Pistol'
 	 AmpMaterials[0]=Shader'BW_Core_WeaponTex.AMP.Amp-FinalYellow'
 	 AmpMaterials[1]=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'
 	 AmpMaterials[2]=Shader'BW_Core_WeaponTex.Amp.Amp-GlowCyanShader'

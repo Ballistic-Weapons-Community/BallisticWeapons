@@ -20,11 +20,13 @@ event ModeDoFire()
 		{
 			SawnOffShotgun(Weapon).bRightLoaded=false;
 			FireAnim='SightFire';
+			AimedFireAnim='SightFire';
 		}
 		else
 		{
 			SawnOffShotgun(Weapon).bLeftLoaded=false;
 			FireAnim='SightFire';
+			AimedFireAnim='SightFire';
 		}
 	}
 	super.ModeDoFire();

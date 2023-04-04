@@ -53,6 +53,7 @@ defaultproperties
 		XRandFactor=0.600000
 		YRandFactor=0.900000
 		MinRandFactor=0.350000
+		CrouchMultiplier=1
 		HipMultiplier=1 // always on shoulder
 		MaxMoveMultiplier=2
 	End Object
@@ -65,7 +66,7 @@ defaultproperties
 		SprintOffSet=(Pitch=-3072,Yaw=-1024)
 		JumpOffSet=(Pitch=-6000,Yaw=-1500)
 		AimAdjustTime=0.700000
-		AimSpread=(Min=768,Max=4096)
+		AimSpread=(Min=512,Max=2560)
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=300
 	End Object

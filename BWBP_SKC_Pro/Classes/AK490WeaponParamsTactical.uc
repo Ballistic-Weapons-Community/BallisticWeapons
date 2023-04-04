@@ -16,7 +16,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=13000.000000)
         DecayRange=(Min=2363,Max=6000)
 		RangeAtten=0.75
-		Damage=46
+		Damage=45
         HeadMult=2.75f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
@@ -80,6 +80,7 @@ defaultproperties
 		DeclineDelay=0.15
 		DeclineTime=1.25
 		MaxRecoil=6144
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -89,7 +90,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=384,Max=1536)
+		AimSpread=(Min=256,Max=1024)
 		AimAdjustTime=0.6
         ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
@@ -112,7 +113,7 @@ defaultproperties
 		SightingTime=0.35
 		SightPivot=(Pitch=64)
 		DisplaceDurationMult=1
-		MagAmmo=25
+		MagAmmo=20
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

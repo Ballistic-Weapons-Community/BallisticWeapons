@@ -499,8 +499,11 @@ event Landed(vector HitNormal)
 
     MultiJumpRemaining = MaxMultiJump;
 
+	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
-        PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
+		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
+
+        //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
 
 //===========================================================================
@@ -572,9 +575,9 @@ simulated function FootStepping(int Side)
 		SoundRadiusScale = 1f;
 	}
 
-	// footsteps are quieter if we are local pawn - hear others better
-	//if (IsLocallyControlled())
-	//	SoundScale *= 0.5f;
+	// footsteps are slightly quieter if we are local pawn - hear others better
+	if (IsLocallyControlled())
+		SoundVolumeScale *= 0.67f;
 
 	// handle water
     for ( i=0; i<Touching.Length; i++ )
@@ -3057,16 +3060,17 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.150000
-     FootstepRadius=512.000000
+     FootstepVolume=0.5
+     FootstepRadius=18.000000
 
 	 BaseEyeHeight=36
      CollisionRadius=19.000000
 
 	 CrouchHeight=32
 
-     GruntVolume=0.2
-     GruntRadius=384.000000
+     GruntVolume=0.5
+     GruntRadius=18.000000
+
      DeResTime=4.000000
      RagDeathUpKick=0.000000
      bCanWalkOffLedges=True

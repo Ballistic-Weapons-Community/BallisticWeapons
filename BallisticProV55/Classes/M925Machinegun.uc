@@ -259,6 +259,7 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
+	SightAnimScale=0.75
 	SightOffset=(X=-6.000000,Z=7.100000)
 
 	ParamsClasses(0)=Class'M925WeaponParamsComp'

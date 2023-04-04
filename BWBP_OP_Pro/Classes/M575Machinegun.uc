@@ -607,6 +607,7 @@ defaultproperties
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBP_OP_Tex.M575.BigIcon_M575'
      BigIconCoords=(Y1=50,Y2=240)
+	 SightAnimScale=0.5
      SightFXClass=Class'BWBP_OP_Pro.M575SightLEDs'
      bWT_Bullet=True
      bWT_Machinegun=True

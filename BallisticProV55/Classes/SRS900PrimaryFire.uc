@@ -87,9 +87,7 @@ function ServerPlayFiring()
 
 	CheckClipFinished();
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	if (BW.BlendFire())		
-		BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+	PlayFireAnimations();
 }
 
 //Do the spread on the client side
@@ -108,9 +106,7 @@ function PlayFiring()
 		Weapon.SetBoneScale (0, 0.0, SRS900Rifle(Weapon).SilencerBone);
 	}
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	if (BW.BlendFire())		
-		BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+	PlayFireAnimations();
 
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;

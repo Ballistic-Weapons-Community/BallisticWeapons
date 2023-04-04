@@ -371,6 +371,7 @@ defaultproperties
      InventoryGroup=4
      PickupClass=Class'BWBP_SKC_Pro.G51Pickup'
 
+	SightAnimScale=0.25
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.G51Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.G51.SmallIcon_G51'

@@ -125,7 +125,7 @@ defaultproperties
 		YRandFactor=0.1
 		DeclineTime=1.1
 		MaxRecoil=6144
-		CrouchMultiplier=0.8
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 		ViewBindFactor=0.2
@@ -138,7 +138,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalBurstAimParams
-        AimSpread=(Min=256,Max=1024)
+        AimSpread=(Min=256,Max=768)
         ADSMultiplier=1
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.45000
@@ -146,7 +146,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalAutoAimParams
-        AimSpread=(Min=256,Max=1024)
+        AimSpread=(Min=256,Max=768)
         ADSMultiplier=0.75
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.600000

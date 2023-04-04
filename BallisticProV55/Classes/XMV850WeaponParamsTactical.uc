@@ -78,7 +78,7 @@ defaultproperties
 		SprintOffSet=(Pitch=-6000,Yaw=-8000)
 		JumpOffSet=(Pitch=-6000,Yaw=2000)
 		AimAdjustTime=0.8
-		AimSpread=(Min=768,Max=4096)
+		AimSpread=(Min=512,Max=2560)
         ADSMultiplier=0.5
 		ChaosSpeedThreshold=300
 	End Object

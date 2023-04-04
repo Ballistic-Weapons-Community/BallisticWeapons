@@ -58,7 +58,7 @@ var() config bool			bEnableSprint;
 var() config int			StaminaChargeRate;
 var() config int			StaminaDrainRate;
 var() config float			SprintSpeedFactor;
-var() config float			JumpDrainFactor;
+var() config float			JumpDrain;
 
 //=============================================================================
 // KILL REWARD
@@ -103,7 +103,7 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.StaminaChargeRate			= default.StaminaChargeRate;
 	rep.StaminaDrainRate 			= default.StaminaDrainRate;
 	rep.SprintSpeedFactor 			= default.SprintSpeedFactor;
-	rep.JumpDrainFactor 			= default.JumpDrainFactor;
+	rep.JumpDrain 			= default.JumpDrain;
 
 	rep.HealthKillReward			= default.HealthKillReward;
 	rep.KillRewardHealthMax			= default.KillRewardHealthMax;

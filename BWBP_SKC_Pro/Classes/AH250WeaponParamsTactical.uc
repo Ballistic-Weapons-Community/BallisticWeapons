@@ -83,10 +83,11 @@ defaultproperties
 		ViewBindFactor=0.5
 		XRandFactor=0.2
 		YRandFactor=0.2
-		ClimbTime=0.16
+		ClimbTime=0.1
 		DeclineDelay=0.45
         DeclineTime=1.5
 		MaxRecoil=8192
+		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -96,10 +97,11 @@ defaultproperties
         ViewBindFactor=0.5
 		XRandFactor=0.1
 		YRandFactor=0.1
-		ClimbTime=0.16
+		ClimbTime=0.1
 		DeclineDelay=0.45
         DeclineTime=1.5
 		MaxRecoil=8192
+		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
     End Object
@@ -110,7 +112,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.75
-		AimSpread=(Min=256,Max=1024)
+		AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.700000
 		ChaosDeclineTime=0.60000
@@ -119,7 +121,7 @@ defaultproperties
 	
     Begin Object Class=AimParams Name=TacticalAimParams_208
         ADSMultiplier=0.75
-        AimSpread=(Min=256,Max=1024)
+        AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.5
         ChaosDeclineTime=0.60000

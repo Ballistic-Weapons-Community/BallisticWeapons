@@ -131,6 +131,7 @@ defaultproperties
 		DeclineTime=0.75
 		DeclineDelay=0.130000
 		ViewBindFactor=0.4
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -144,6 +145,7 @@ defaultproperties
 		DeclineDelay=0.130000
 		ViewBindFactor=0.4
 		ADSViewBindFactor=0.85
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -153,7 +155,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=384,Max=1536)
+		AimSpread=(Min=256,Max=1024)
 		ADSMultiplier=0.65
 		AimAdjustTime=0.500000
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
@@ -162,7 +164,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalAimParams_CQC
-		AimSpread=(Min=384,Max=1536)
+		AimSpread=(Min=256,Max=1024)
 		AimAdjustTime=0.600000
         ADSMultiplier=0.65
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
@@ -194,10 +196,10 @@ defaultproperties
 		MinZoom=2
 		MaxZoom=4
 		ZoomStages=1
-		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Smoke'
+		RecoilParams(0)=TacticalRecoilParams
+        AimParams(0)=TacticalAimParams
+		FireParams(0)=TacticalPrimaryFireParams
+		AltFireParams(0)=TacticalSecondaryFireParams_Smoke
     End Object 
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Holosight
@@ -216,10 +218,10 @@ defaultproperties
 		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=30
-        RecoilParams(0)=TacticalRecoilParams_CQC'
-        AimParams(0)=TacticalAimParams_CQC'
-		FireParams(0)=TacticalPrimaryFireParams_CQC'
-		AltFireParams(0)=TacticalSecondaryFireParams_Ice'
+        RecoilParams(0)=TacticalRecoilParams_CQC
+        AimParams(0)=TacticalAimParams_CQC
+		FireParams(0)=TacticalPrimaryFireParams_CQC
+		AltFireParams(0)=TacticalSecondaryFireParams_Ice
     End Object 	
 
 	Layouts(0)=TacticalParams_Scope

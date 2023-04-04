@@ -79,6 +79,7 @@ defaultproperties
         DeclineTime=0.75
         DeclineDelay=0.195
         ViewBindFactor=0.5
+		CrouchMultiplier=1
         HipMultiplier=1
 		MaxMoveMultiplier=1.5
     End Object

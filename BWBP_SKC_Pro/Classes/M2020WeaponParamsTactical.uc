@@ -111,10 +111,10 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.2
 		YRandFactor=0.2
-		ClimbTime=0.1
+		ClimbTime=0.08
 		DeclineDelay=0.5
 		DeclineTime=1.00000
-		CrouchMultiplier=0.650000
+		CrouchMultiplier=0.750000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -125,10 +125,10 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.45
 		YRandFactor=0.45
-		ClimbTime=0.15
+		ClimbTime=0.12
 		DeclineDelay=0.7
 		DeclineTime=1.00000
-		CrouchMultiplier=0.650000
+		CrouchMultiplier=0.750000
 		HipMultiplier=2
 		MaxMoveMultiplier=3
 	End Object
@@ -141,7 +141,7 @@ defaultproperties
 		YRandFactor=0.1
 		DeclineDelay=0.22
 		DeclineTime=1.00000
-		CrouchMultiplier=0.650000
+		CrouchMultiplier=0.750000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -151,7 +151,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=768,Max=4096)
+		AimSpread=(Min=512,Max=2560)
 		AimAdjustTime=0.5
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)

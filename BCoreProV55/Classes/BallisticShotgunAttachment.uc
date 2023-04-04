@@ -62,8 +62,10 @@ simulated function InstantFireEffects(byte Mode)
 	
 	if (InstantMode == MU_None || (InstantMode == MU_Secondary && Mode != 1) || (InstantMode == MU_Primary && Mode != 0))
 		return;
+
 	if (mHitLocation == vect(0,0,0))
 		return;
+
 	if (Instigator == none)
 		return;
 
@@ -83,7 +85,7 @@ simulated function InstantFireEffects(byte Mode)
 			Range = Lerp(FRand(), RMin, RMax);
 			
 			R = Rotator(mHitLocation);
-			
+
 			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:

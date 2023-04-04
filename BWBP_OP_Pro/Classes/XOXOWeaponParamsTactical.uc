@@ -158,6 +158,7 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=1.500000
 		DeclineDelay=0.250000
+		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -170,6 +171,7 @@ defaultproperties
 		YRandFactor=1.5
 		DeclineDelay=0.8
 		DeclineTime=1.500000
+		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -182,6 +184,7 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=1.500000
 		DeclineDelay=0.250000
+		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -194,6 +197,7 @@ defaultproperties
 		YRandFactor=1.5
 		DeclineDelay=0.8
 		DeclineTime=1.500000
+		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -203,7 +207,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalFastAimParams
-    	AimSpread=(Min=384,Max=1536)
+    	AimSpread=(Min=256,Max=1024)
         ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
@@ -211,7 +215,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalBombAimParams
-		AimSpread=(Min=768,Max=3072)
+		AimSpread=(Min=512,Max=2048)
         ADSMultiplier=0.2
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
@@ -219,14 +223,14 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalLustAimParams
-		AimSpread=(Min=768,Max=3072)
+		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalNukeAimParams
-		AimSpread=(Min=768,Max=3072)
+		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300

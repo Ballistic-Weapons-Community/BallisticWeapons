@@ -29,7 +29,7 @@ var		bool		bSprintActive;			// Sprint key is held down
 var()	float		SpeedFactor;			// Player speed multiplied by this when sprinting
 var		float		SprintRechargeDelay; 	// Retrigger delay
 var		float		NextAlignmentCheckTime;	// Next time to check player's facing
-var		float       JumpDrainFactor;
+var		float       JumpDrain;
 
 //=============================================================================
 // SLOW VARIABLES
@@ -55,7 +55,7 @@ simulated function PostBeginPlay()
 	StaminaChargeRate = class'BallisticReplicationInfo'.default.StaminaChargeRate;
 	StaminaDrainRate = class'BallisticReplicationInfo'.default.StaminaDrainRate;
 	SpeedFactor = class'BallisticReplicationInfo'.default.SprintSpeedFactor;
-	JumpDrainFactor = class'BallisticReplicationInfo'.default.JumpDrainFactor;
+	JumpDrain = class'BallisticReplicationInfo'.default.JumpDrain;
 }
 
 simulated function PostNetBeginPlay()
@@ -174,7 +174,7 @@ simulated function DelayRecharge()
 simulated function Jumped()
 {
 	DelayRecharge();
-	Stamina = FMax(0, Stamina - StaminaDrainRate * JumpDrainFactor);
+	Stamina = FMax(0, Stamina - JumpDrain);
 }
 
 simulated function ClientDelayRecharge()
@@ -388,6 +388,7 @@ defaultproperties
      MaxStamina=100.000000
      StaminaDrainRate=25.000000
      StaminaChargeRate=25.000000
+	 JumpDrain=10
      SpeedFactor=1.500000
 	 SlowFactor=1.000000
      bReplicateInstigator=True

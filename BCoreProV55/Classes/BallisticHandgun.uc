@@ -282,8 +282,11 @@ simulated function PositionSights()
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
 
 	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
-	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
-	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
+	Offset = SightOffset; 
+	
+	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 8192;
+	
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1- (SightingPhase * 0.95)))) - (SightPos + ViewAlignedOffset(Offset));
 
 	if (SightingPhase >= 1.0)
 	{	// Weapon locked in sight view
@@ -1796,7 +1799,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
     YPos += YL;
 	Canvas.SetPos(4,YPos);
-	RcComponent.DrawDebug(Canvas);
+	YPos = RcComponent.DrawDebug(Canvas, YPos, YL);
 	
     YPos += YL;
 	Canvas.SetPos(4,YPos);

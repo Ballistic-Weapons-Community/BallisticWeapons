@@ -67,10 +67,10 @@ defaultproperties
 		YawFactor=0.100000
 		XRandFactor=0.200000
 		YRandFactor=0.300000
-		ClimbTime=0.15
+		ClimbTime=0.12
 		DeclineDelay=0.75
 		DeclineTime=0.750000
-		CrouchMultiplier=0.6
+		CrouchMultiplier=0.75
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -80,7 +80,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=768,Max=4096)
+		AimSpread=(Min=512,Max=2560)
 		ADSMultiplier=0.5
 		AimAdjustTime=0.80000
 		ChaosSpeedThreshold=300

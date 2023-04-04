@@ -21,8 +21,6 @@ simulated event ModeDoFire()
 		return;
 		
 	super.ModeDoFire();
-    
-
 }
 
 defaultproperties

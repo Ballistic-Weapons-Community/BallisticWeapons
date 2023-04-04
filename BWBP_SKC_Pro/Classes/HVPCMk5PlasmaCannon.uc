@@ -666,6 +666,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
      bNoMag=True
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
+	 SightAnimScale=0.5
 	 SightPivot=(Pitch=256)
      SightOffset=(X=30.000000,Y=-0.175,Z=13.150000)
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'

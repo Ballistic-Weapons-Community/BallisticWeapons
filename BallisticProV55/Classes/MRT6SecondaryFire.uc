@@ -21,12 +21,14 @@ event ModeDoFire()
 			bCockAfterFire=true;
 			MRT6Shotgun(Weapon).bRightLoaded=false;
 			FireAnim='FireRight';
+			AimedFireAnim='FireRight';
 		}
 		else
 		{
 			bCockAfterFire=false;
 			MRT6Shotgun(Weapon).bLeftLoaded=false;
 			FireAnim='FireLeft';
+			AimedFireAnim='FireLeft';
 		}
 	}
 	super.ModeDoFire();

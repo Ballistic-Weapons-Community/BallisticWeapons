@@ -21,12 +21,14 @@ event ModeDoFire()
 			bCockAfterFire=true;
 			M290Shotgun(Weapon).bRightLoaded=false;
 			FireAnim='FireRight';
+			AimedFireAnim='FireRight';
 		}
 		else
 		{
 			bCockAfterFire=false;
 			M290Shotgun(Weapon).bLeftLoaded=false;
 			FireAnim='FireLeft';
+			AimedFireAnim='FireLeft';
 		}
 	}
 	super.ModeDoFire();
