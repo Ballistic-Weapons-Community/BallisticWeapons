@@ -46,7 +46,8 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     TraceCount = effect_params.TraceCount;
     TracerClass = effect_params.TracerClass;
     ImpactManager = effect_params.ImpactManager;
-    MaxHits = effect_params.MaxHits;    
+    MaxHits = effect_params.MaxHits;   
+
 	default.TraceCount = effect_params.TraceCount;
     default.TracerClass = effect_params.TracerClass;
     default.ImpactManager = effect_params.ImpactManager;
@@ -72,8 +73,6 @@ function DoFireEffect()
 
     if (Level.NetMode == NM_DedicatedServer)
         BW.RewindCollisions();
-
-	DoTrace(StartTrace, Aim);
 
 	Aim = GetFireAim(StartTrace);
 
@@ -221,7 +220,9 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				continue;
 			}
 			else if (Vehicle(Other) != None)
+			{
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+			}
 			else if (Mover(Other) == None)
 				break;
 		}
@@ -257,6 +258,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				Weapon.bTraceWater=true;
 				continue;
 			}
+
 			bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 			
 			break;
@@ -339,8 +341,10 @@ function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLoca
 	local Vector V;
 
 	V = Instigator.Location + Instigator.EyePosition() + Dir * TraceRange.Min;
+
 	if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(V - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
 		Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(V - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
+	
 	if (ImpactManager != None && WaterHitLoc != vect(0,0,0) && Weapon.EffectIsRelevant(WaterHitLoc,false) && bDoWaterSplash)
 		ImpactManager.static.StartSpawn(WaterHitLoc, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLoc), 9, Instigator);
 }
@@ -349,7 +353,7 @@ function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLoca
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
 {
 	local int Surf;
-
+	
 	if (ImpactManager != None && WaterHitLoc != vect(0,0,0) && Weapon.EffectIsRelevant(WaterHitLoc,false) && bDoWaterSplash)
 		ImpactManager.static.StartSpawn(WaterHitLoc, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLoc), 9, Instigator);
 
@@ -359,18 +363,21 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	if (!bAISilent)
 		Instigator.MakeNoise(1.0);
 
-	if (ImpactManager != None && Weapon.EffectIsRelevant(HitLocation,false))
-	{
-		if (Vehicle(Other) != None)
-			Surf = 3;
-		else if (HitMat == None)
-			Surf = int(Other.SurfaceType);
-		else
-			Surf = int(HitMat.SurfaceType);
-		ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
-		if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
-			Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
-	}
+	if (ImpactManager == None || !Weapon.EffectIsRelevant(HitLocation,false))
+		return false;
+
+	if (Vehicle(Other) != None)
+		Surf = 3;
+	else if (HitMat == None)
+		Surf = int(Other.SurfaceType);
+	else
+		Surf = int(HitMat.SurfaceType);
+
+	ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
+
+	if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
+		Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
+
 	return true;
 }
 
