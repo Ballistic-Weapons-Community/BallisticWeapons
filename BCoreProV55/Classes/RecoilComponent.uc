@@ -20,6 +20,15 @@
 //=============================================================================
 class RecoilComponent extends Object;
 
+enum ERecoilState
+{
+	Base,
+	Climbing,
+	Holding,
+	DeclineStart,
+	Declining
+};
+
 //=============================================================================
 // ACTOR/OBJECT REFERENCES
 //
@@ -127,15 +136,41 @@ final simulated function float GetTargetYRand()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //===========================================================
-// HoldingRecoil
+// CanDeclineRecoil
 //
-// True if recoil is not declining
+// True if recoil can decline
 //===========================================================
-final simulated function bool HoldingRecoil()
+final simulated function bool CanDeclineRecoil()
 {
-    return LastRecoilTime + DeclineDelay >= Level.TimeSeconds;
+    return LastRecoilTime + DeclineDelay < Level.TimeSeconds;
 }
 
+final simulated function bool ShouldShift()
+{
+	return Current.Recoil != Target.Recoil || Current.XRand != Target.XRand || Current.YRand != Target.YRand;
+}
+
+final simulated function ERecoilState GetRecoilState()
+{
+	if (Current.Recoil == Target.Recoil)
+	{
+		if (Current.Recoil > 0)
+		{
+			if (CanDeclineRecoil())
+				return ERecoilState.DeclineStart;
+			return ERecoilState.Holding;
+
+		}
+		return ERecoilState.Base;
+	}
+
+	else
+	{
+		if (Current.Recoil < Target.Recoil)
+			return ERecoilState.Climbing;
+		return ERecoilState.Declining;
+	}
+}
 //===========================================================
 // ShouldUpdateView
 //
@@ -145,7 +180,7 @@ final simulated function bool HoldingRecoil()
 final simulated function bool ShouldUpdateView()
 {
 	// apply if recoil is climbing
-	if (Current.Recoil > 0 && HoldingRecoil())
+	if (Current.Recoil > 0 && !CanDeclineRecoil())
 		return true;
 
 	// apply if forced (classic snake behaviour)
@@ -237,21 +272,34 @@ final simulated function Recalculate()
 final simulated function UpdateRecoil(float dt)
 {
 	// update shift to desired target value
-	if (Current.Recoil != Target.Recoil || Current.XRand != Target.XRand || Current.YRand != Target.YRand)
+	if (ShouldShift())
 	{
 		// prevent div0
 		if (AdjustmentTime == 0)
-			AdjustmentPhase = 1;
+			AdjustmentPhase = 1f;
+
+		AdjustmentPhase = FMin(1, AdjustmentPhase + (dt / AdjustmentTime));
+
+		//Log("Adjust: Time "$AdjustmentTime$", Phase "$AdjustmentPhase);
+
+		// x64 fix for bad Lerp handling
+		if (AdjustmentPhase < 1f)
+		{
+			Current.Recoil = Lerp(AdjustmentPhase, Start.Recoil, Target.Recoil);
+			Current.XRand = Lerp(AdjustmentPhase, Start.XRand, Target.XRand);
+			Current.YRand = Lerp(AdjustmentPhase, Start.YRand, Target.YRand);
+		}
+
 		else 
-			AdjustmentPhase = FMin(1, AdjustmentPhase + (dt / AdjustmentTime));
-		
-		Current.Recoil = Lerp(AdjustmentPhase, Start.Recoil, Target.Recoil);
-		Current.XRand = Lerp(AdjustmentPhase, Start.XRand, Target.XRand);
-		Current.YRand = Lerp(AdjustmentPhase, Start.YRand, Target.YRand);
+		{
+			Current.Recoil = Target.Recoil;
+			Current.XRand = Target.XRand;
+			Current.YRand = Target.YRand;
+		}
 	}
 
 	// initiate view decline if past recoil decline delay
-	else if (Current.Recoil > 0 && !HoldingRecoil())
+	else if (Current.Recoil > 0 && CanDeclineRecoil())
 	{
 		Start = Current;
 
@@ -260,7 +308,9 @@ final simulated function UpdateRecoil(float dt)
 		Target.YRand = 0;
 
 		AdjustmentPhase = 0;
-		AdjustmentTime = DeclineTime * Start.Recoil / MaxRecoil;
+		AdjustmentTime = DeclineTime * (float(Start.Recoil) / float(MaxRecoil));
+
+		//log("Decline: Time "$AdjustmentTime$", Phase "$AdjustmentPhase$", Start Recoil: "$Start.Recoil$" Max Recoil: "$MaxRecoil);
 	}
 }
 
@@ -473,7 +523,13 @@ final simulated function ReceiveNetRecoil(byte NetXRand, byte NetYRand, float Ne
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Debug
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-final simulated function DrawDebug(Canvas Canvas)
+final simulated function int DrawDebug(Canvas Canvas, int YPos, int YL)
 {
-    Canvas.DrawText("Recoil: "$ Current.Recoil $"/"$ MaxRecoil $", XRand "$ Current.XRand $", YRand "$ Current.YRand $" (Lerp "$ Start.Recoil $"-"$Target.Recoil $", XRand "$ Start.XRand $"-"$Target.XRand $", YRand "$ Start.YRand $"-"$Target.YRand $", Phase "$AdjustmentPhase$"), ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor);
+    Canvas.DrawText("Recoil: "$ Current.Recoil $"/"$ MaxRecoil $", XRand "$ Current.XRand $", YRand "$ Current.YRand $" (Lerp "$ Start.Recoil $"-"$Target.Recoil $", XRand "$ Start.XRand $"-"$Target.XRand $", YRand "$ Start.YRand $"-"$Target.YRand $", Time "$AdjustmentTime$", Phase "$AdjustmentPhase$")");
+	
+	YPos += YL;
+	Canvas.SetPos(4, YPos);
+	Canvas.DrawText("State: "$ GetEnum(enum'ERecoilState', GetRecoilState()) $", Should Shift: "$ ShouldShift() $", ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor);
+
+	return YPos;
 }

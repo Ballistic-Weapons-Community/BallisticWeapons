@@ -1796,7 +1796,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
     YPos += YL;
 	Canvas.SetPos(4,YPos);
-	RcComponent.DrawDebug(Canvas);
+	YPos = RcComponent.DrawDebug(Canvas, YPos, YL);
 	
     YPos += YL;
 	Canvas.SetPos(4,YPos);
