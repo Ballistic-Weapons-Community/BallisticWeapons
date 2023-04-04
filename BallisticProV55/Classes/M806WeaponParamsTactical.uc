@@ -75,7 +75,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-    	AimSpread=(Min=256,Max=1024)
+    	AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
         ADSMultiplier=0.75
 		AimAdjustTime=0.450000

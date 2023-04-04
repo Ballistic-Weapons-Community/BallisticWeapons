@@ -128,7 +128,7 @@ defaultproperties
 		DeclineDelay=0.150000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=1.000000
-		CrouchMultiplier=0.500000
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -145,7 +145,7 @@ defaultproperties
 		DeclineTime=0.7500000
 		DeclineDelay=0.45000
 		ViewBindFactor=0.45
-		CrouchMultiplier=0.800000
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -162,7 +162,7 @@ defaultproperties
 		DeclineTime=0.7500000
 		DeclineDelay=0.45000
 		ViewBindFactor=0.45
-		CrouchMultiplier=0.800000
+		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object

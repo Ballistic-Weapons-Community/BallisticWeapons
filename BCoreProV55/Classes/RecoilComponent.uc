@@ -55,7 +55,7 @@ var float						ClimbTime;					// Time taken to interpolate between positions
 var float						DeclineTime;				// Time it takes for Recoil to decline maximum to zero
 var float						DeclineDelay;				// The time between firing and when recoil should start decaying
 var float             			HipMultiplier;            	// Hipfire recoil is scaled up by this value
-var float						MaxMoveMultiplier;			// Recoil while moving is scaled by this value - maximum is applied when player is moving at full basic run speed
+var float						MaxMoveMultiplier;			// Recoil while moving is scaled by this value - maximum is applied when player is moving at or above walk speed
 var float             			CrouchMultiplier;         	// Crouch recoil is scaled by this value
 var bool                        bViewDecline;               // Weapon will move back down through its recoil path when recoil is declining
 var bool						bUseAltSightCurve;			// Weapon will use a different recoil curve when in sights - danger, this will break under certain conditions (see note)
@@ -320,7 +320,7 @@ final simulated function float ModifyRecoil(float amount)
 	{
 		// increase recoil when moving by function of current move speed
 		if (MaxMoveMultiplier > 1.0f)
-			amount *= 1f + ((MaxMoveMultiplier - 1f) * FMin(1f, VSize(BW.Instigator.Velocity) / class'BallisticReplicationInfo'.default.PlayerGroundSpeed));
+			amount *= 1f + ((MaxMoveMultiplier - 1f) * FMin(1f, VSize(BW.Instigator.Velocity) / (class'BallisticReplicationInfo'.default.PlayerGroundSpeed * BW.Instigator.WalkingPct)));
 	}
 	else // stationary modifiers
 	{

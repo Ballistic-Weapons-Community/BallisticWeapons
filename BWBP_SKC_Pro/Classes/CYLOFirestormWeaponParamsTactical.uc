@@ -10,8 +10,8 @@ defaultproperties
 		TraceRange=(Min=10000.000000,Max=12000.000000)
         DecayRange=(Min=2300,Max=6000)
 		RangeAtten=0.5
-		Damage=50
-        HeadMult=2.75
+		Damage=45
+        HeadMult=2.75f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.125000
+		FireInterval=0.120000
 		PreFireAnim=
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
@@ -120,7 +120,7 @@ defaultproperties
 		YRandFactor=0.1
 		DeclineTime=0.75
 		DeclineDelay=0.165000
-		CrouchMultiplier=0.800000
+		CrouchMultiplier=0.850000
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
@@ -130,7 +130,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=384,Max=1536)
+		AimSpread=(Min=256,Max=1024)
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.600000
