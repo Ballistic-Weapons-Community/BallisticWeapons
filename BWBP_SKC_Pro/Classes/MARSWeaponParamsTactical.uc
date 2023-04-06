@@ -182,7 +182,7 @@ defaultproperties
 		LayoutName="Adv Scope"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
-		ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
+		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 		//Function
 		ReloadAnimRate=0.85
 		InventorySize=6
@@ -196,10 +196,10 @@ defaultproperties
 		MinZoom=2
 		MaxZoom=4
 		ZoomStages=1
-		RecoilParams(0)=TacticalRecoilParams
-        AimParams(0)=TacticalAimParams
-		FireParams(0)=TacticalPrimaryFireParams
-		AltFireParams(0)=TacticalSecondaryFireParams_Smoke
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Smoke'
     End Object 
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Holosight
@@ -218,10 +218,10 @@ defaultproperties
 		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=30
-        RecoilParams(0)=TacticalRecoilParams_CQC
-        AimParams(0)=TacticalAimParams_CQC
-		FireParams(0)=TacticalPrimaryFireParams_CQC
-		AltFireParams(0)=TacticalSecondaryFireParams_Ice
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_CQC'
+        AimParams(0)=AimParams'TacticalAimParams_CQC'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_CQC'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Ice'
     End Object 	
 
 	Layouts(0)=TacticalParams_Scope

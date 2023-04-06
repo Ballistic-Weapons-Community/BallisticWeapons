@@ -111,8 +111,8 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		SightPivot=(Pitch=128)
-		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
-		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		//SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		//ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
 		//Functions
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -142,8 +142,8 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		SightPivot=(Pitch=128)
-		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
-		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		//SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		//ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
 		//Functions
 		InventorySize=2
 		SightMoveSpeedFactor=0.500000

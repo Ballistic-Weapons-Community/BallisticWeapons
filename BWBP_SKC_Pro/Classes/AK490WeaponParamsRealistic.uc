@@ -112,8 +112,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.210000
 		MagAmmo=20
-		ViewOffset=(X=-9.000000,Y=10.000000,Z=-16.000000)
-		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		//ViewOffset=(X=-9.000000,Y=10.000000,Z=-16.000000)
+		//SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
 		SightPivot=(Pitch=64)
 		WeaponName="AK-490 7.62mm Battle Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

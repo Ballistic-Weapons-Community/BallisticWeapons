@@ -122,9 +122,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		bMagPlusOne=True
-		SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
+		//SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
 		SightingTime=0.3
-		ViewOffset=(X=1,Y=9,Z=-13)
+		//ViewOffset=(X=1,Y=9,Z=-13)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Gauss: Online",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Gauss: Full Charge",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)

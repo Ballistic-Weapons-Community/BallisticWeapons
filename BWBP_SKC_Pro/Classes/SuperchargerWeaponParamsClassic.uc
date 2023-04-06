@@ -126,11 +126,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=29
+		InventorySize=11
 		SightingTime=0.300000
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
+		//SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
         ZoomType=ZT_Fixed
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -140,11 +140,11 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Sniper
-		InventorySize=29
+		InventorySize=11
 		SightingTime=0.300000
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
+		//SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
         ZoomType=ZT_Fixed
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

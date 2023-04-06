@@ -103,7 +103,7 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+		//SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8,AIndex=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9,AIndex=2)
@@ -111,7 +111,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		//Function
-		InventorySize=11
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
@@ -129,12 +129,13 @@ defaultproperties
 		Weight=10
 		LayoutName="Iron Sights"
 		//Attachments
-		SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
+		//SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
+		SightOffset=(X=25.000000,Y=-8.600000,Z=24.250000)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
 		//Function
-		InventorySize=35
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True

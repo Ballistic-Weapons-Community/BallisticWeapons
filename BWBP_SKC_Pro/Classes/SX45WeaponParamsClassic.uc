@@ -150,13 +150,13 @@ defaultproperties
 		LayoutName="RDS"
 		Weight=30
 		//Attachments
+		SightOffset=(y=-3.140000,Z=14.300000)
 		//Functions
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=15
-		SightOffset=(y=-3.140000,Z=14.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -171,13 +171,13 @@ defaultproperties
 		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
+		SightOffset=(y=-3.140000,Z=14.300000)
 		//Functions
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=15
-		SightOffset=(y=-3.140000,Z=14.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

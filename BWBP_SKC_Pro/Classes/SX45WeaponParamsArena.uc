@@ -130,13 +130,13 @@ defaultproperties
 		LayoutName="RDS"
 		Weight=30
 		//Attachments
+		SightOffset=(X=0,Y=-3.140000,Z=14.300000)
 		//Functions
 		DisplaceDurationMult=0.33
 		SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
 		MagAmmo=9
         InventorySize=3
-		SightOffset=(X=0,Y=-3.140000,Z=14.300000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaStandardPrimaryFireParams'
@@ -152,13 +152,13 @@ defaultproperties
 		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
+		SightOffset=(X=-5,Y=-3.140000,Z=14.300000)
 		//Functions
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.200000
 		MagAmmo=9
         InventorySize=3
-		SightOffset=(X=-5,Y=-3.140000,Z=14.300000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaStandardPrimaryFireParams'

@@ -731,6 +731,8 @@ defaultproperties
      ReloadAnim="Reload"
 	 ReloadEmptyAnim="ReloadEmpty"
 	 bCockOnEmpty=True
+	 CockSelectAnim="PulloutFancyOld"
+	 CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-BoltSlap',Volume=1.100000)
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
 	 WeaponModes(0)=(ModeName="Mode: Rapid Fire",ModeID="WM_FullAuto")

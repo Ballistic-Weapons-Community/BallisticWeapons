@@ -130,7 +130,7 @@ defaultproperties
 		AllowedCamos(4)=4
 		//Attachments
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
-		SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
+		//SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
 		//Function
@@ -169,8 +169,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
 		ReloadAnimRate=1.000000
 		SightOffset=(X=10.000000,Y=11.9500000,Z=20.000000)
-		ZoomType=ZT_Irons
-		ScopeViewTex=None
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000

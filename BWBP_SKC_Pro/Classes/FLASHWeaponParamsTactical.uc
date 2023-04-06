@@ -77,7 +77,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightOffset=(Y=5.300000,Z=23.299999)
+		//SightOffset=(Y=5.300000,Z=23.299999)
 		PlayerSpeedFactor=0.95
         DisplaceDurationMult=1.25
 		InventorySize=8

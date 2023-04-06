@@ -119,7 +119,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20
-		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+		//SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

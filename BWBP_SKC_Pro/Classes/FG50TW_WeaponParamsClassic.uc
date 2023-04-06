@@ -140,8 +140,8 @@ defaultproperties
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=50
-		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
-		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
+		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
@@ -161,8 +161,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=50
 		WeaponBoneScales(0)=(BoneName="Holosight",Slot=51,Scale=0f)
-		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
-		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
+		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000

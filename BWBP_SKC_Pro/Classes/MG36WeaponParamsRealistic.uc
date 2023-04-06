@@ -92,8 +92,8 @@ defaultproperties
 		SightingTime=0.3
 		MagAmmo=100
 		bMagPlusOne=True
-		ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
-		SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
+		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic
 		WeaponName="Mk 88 5.56mm Squad Automatic Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

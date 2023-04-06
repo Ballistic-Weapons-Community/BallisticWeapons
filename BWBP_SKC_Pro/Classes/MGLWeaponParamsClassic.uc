@@ -133,7 +133,7 @@ defaultproperties
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=6
-		SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
+		//SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
 		SightPivot=(Pitch=512)
 		WeaponModes(0)=(ModeName="Timed",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Impact",ModeID="WM_FullAuto")

@@ -209,7 +209,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45
-		SightOffset=(X=-15.000000,Y=0.000000,Z=6.500000)
+		//SightOffset=(X=-15.000000,Y=0.000000,Z=6.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParamsSemi'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsAuto'
 		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAuto'

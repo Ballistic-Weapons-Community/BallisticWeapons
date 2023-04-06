@@ -119,7 +119,8 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
-		SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
+		//SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
+		SightOffset=(X=-5.000000,Y=-0.680000,Z=22.700000)
 		//Function
         InventorySize=8
 		WeaponPrice=3000
@@ -127,7 +128,7 @@ defaultproperties
 		SightingTime=0.21
 		MagAmmo=7
 		bMagPlusOne=True
-		ViewOffset=(X=8,Y=8,Z=-18)
+		//ViewOffset=(X=8,Y=8,Z=-18)
 		WeaponName="AH104 .600 Handcannon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -152,7 +153,7 @@ defaultproperties
 		SightingTime=0.21
 		MagAmmo=7
 		bMagPlusOne=True
-		ViewOffset=(X=8,Y=8,Z=-18)
+		//ViewOffset=(X=8,Y=8,Z=-18)
 		WeaponName="AH104 .600 Handcannon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

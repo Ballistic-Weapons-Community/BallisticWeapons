@@ -130,7 +130,8 @@ defaultproperties
 		SightingTime=0.110000
 		MagAmmo=10
 		bMagPlusOne=True
-		SightOffset=(X=-20.000000,Y=-1.9500000,Z=17.000000)
+		//SightOffset=(X=-20.000000,Y=-1.9500000,Z=17.000000)
+		SightPivot=(Roll=-256)
 		WeaponName="RS4 .45 Compact Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

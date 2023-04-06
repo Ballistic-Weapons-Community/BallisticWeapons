@@ -115,22 +115,89 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=8
-		WeaponPrice=2000
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.250000
-		MagAmmo=8
+	Begin Object Class=WeaponParams Name=RealisticParams_Scope
+		//Layout core
+		LayoutName="Scoped Marksman"
+		Weight=10
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=1f)
 		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400000)
-		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
 		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		SightingTime=0.300000
+		
+		//Function
+		InventorySize=4
+		WeaponPrice=2000
+		MagAmmo=8
+		SightMoveSpeedFactor=0.500000
+		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
 		WeaponName="AH250 .44 Scoped Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Compensated'
 		AimParams(0)=AimParams'RealisticAimParams_Compensated'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 	End Object
 
-	Layouts(0)=WeaponParams'RealisticParams'
+	Begin Object Class=WeaponParams Name=RealisticParams_RDS
+		//Layout core
+		LayoutName="Red Dot Sight"
+		Weight=30
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+		SightOffset=(X=-10.000000,Y=-7.350000,Z=45.400002)
+		ZoomType=ZT_Irons
+		SightingTime=0.250000
+		
+		//Function
+		InventorySize=4
+		WeaponPrice=2000
+		MagAmmo=8
+		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
+		SightMoveSpeedFactor=0.500000
+		WeaponName="AH250 .44 Scoped Handgun"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Compensated'
+		AimParams(0)=AimParams'RealisticAimParams_Compensated'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=RealisticParams_Laser
+		//Layout core
+		LayoutName="Laser Sight"
+		LayoutTags="laser"
+		Weight=30
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+		SightOffset=(X=-10.000000,Y=-7.350000,Z=41.700000)
+		ZoomType=ZT_Irons
+		SightingTime=0.250000
+		
+		//Function
+		InventorySize=4
+		WeaponPrice=2000
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=8
+		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
+		WeaponName="AH250 .44 Scoped Handgun"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Compensated'
+		AimParams(0)=AimParams'RealisticAimParams_Compensated'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+	End Object
+
+	Layouts(0)=WeaponParams'RealisticParams_Scope'
+	Layouts(1)=WeaponParams'RealisticParams_RDS'
+	Layouts(2)=WeaponParams'RealisticParams_Laser'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=Eagle_Silver

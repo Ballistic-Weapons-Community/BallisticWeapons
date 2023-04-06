@@ -145,7 +145,7 @@ defaultproperties
 		SightingTime=0.300000
 		bNeedCock=True
 		MagAmmo=20
-		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		//SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
 		SightPivot=(Pitch=64)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)

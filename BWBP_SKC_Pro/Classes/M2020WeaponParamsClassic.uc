@@ -156,7 +156,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
+		//SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Gauss: Quick Charge",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Gauss: Full Charge",ModeID="WM_SemiAuto",Value=1.000000)

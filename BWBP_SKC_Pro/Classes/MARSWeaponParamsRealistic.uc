@@ -144,13 +144,20 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=12
-		WeaponPrice=2800
+		//Layout core
+		Weight=30
+		LayoutName="Thermal Marksman"
+		LayoutTags="thermal"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
+		ZoomType=ZT_Logarithmic
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
-		ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
-		ZoomType=ZT_Logarithmic
+		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		//Function
+		InventorySize=7
+		WeaponPrice=2800
+		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		MagAmmo=30
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -165,7 +172,41 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Holo
+		//Layout core
+		Weight=30
+		LayoutName="CQC Holosight"
+		LayoutTags="suppressor"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
+		//Function
+		InventorySize=7
+		WeaponPrice=2800
+		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
+		MagAmmo=30
+		bMagPlusOne=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		WeaponName="MARS-3 5.56mm Bullpup Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Holo'
 	
 	
 	//Camos =========================================

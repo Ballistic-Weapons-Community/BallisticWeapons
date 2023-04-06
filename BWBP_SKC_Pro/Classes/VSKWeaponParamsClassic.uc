@@ -108,8 +108,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
-		ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
+		//SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
+		//ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -126,8 +126,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
-		ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
+		//SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
+		//ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

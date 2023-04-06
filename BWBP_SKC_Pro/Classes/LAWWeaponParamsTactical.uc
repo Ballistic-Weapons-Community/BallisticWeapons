@@ -88,7 +88,7 @@ defaultproperties
 		DisplaceDurationMult=1.25
 		MagAmmo=1
         ZoomType=ZT_Logarithmic
-		SightOffset=(Y=6.000000,Z=15.000000)
+		//SightOffset=(Y=6.000000,Z=15.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

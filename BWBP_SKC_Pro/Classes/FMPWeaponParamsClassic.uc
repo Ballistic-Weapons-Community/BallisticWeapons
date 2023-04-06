@@ -191,7 +191,7 @@ defaultproperties
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=28
-		SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
+		//SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
 		SightPivot=(YAW=10)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicIncRecoilParams'
