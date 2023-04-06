@@ -286,7 +286,7 @@ simulated function PositionSights()
 	
 	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 8192;
 	
-	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1- (SightingPhase * 0.95)))) - (SightPos + ViewAlignedOffset(Offset));
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1 - (SightingPhase * (1 - SightBobScale))))) - (SightPos + ViewAlignedOffset(Offset));
 
 	if (SightingPhase >= 1.0)
 	{	// Weapon locked in sight view
@@ -1854,6 +1854,7 @@ defaultproperties
      bShouldDualInLoadout=True
      TrackSpeed=18000.000000
      SingleHeldRate=0.300000
+	 SightBobScale=0.35f
      bWT_Sidearm=True
      SightZoomFactor=1.2
      GunLength=16.000000

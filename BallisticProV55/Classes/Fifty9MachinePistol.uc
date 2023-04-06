@@ -176,10 +176,15 @@ simulated function SwitchStock(bool bNewValue)
 simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
+	{
 		SightingTime = 0.3f; // awkward to sight
-	
+		SightBobScale = 0.15f * class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+	}
 	else
+	{
 		SightingTime = default.SightingTime;
+		SightBobScale = default.SightBobScale * class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+	}
 }
 
 simulated function SetStockRotation()

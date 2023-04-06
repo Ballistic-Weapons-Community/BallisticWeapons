@@ -477,6 +477,7 @@ defaultproperties
 	FireModeClass(0)=Class'BWBP_OP_Pro.R9A1PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.R9A1ScopeFire'
 	SightingTime=0.4
+	SightBobScale=0.2
 	SelectAnimRate=1.100000
 	BringUpTime=0.400000
 	SelectForce="SwitchToAssaultRifle"

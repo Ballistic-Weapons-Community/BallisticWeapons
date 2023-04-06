@@ -21,7 +21,7 @@ defaultproperties
 		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
 		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=768.000000
+		Recoil=1536.000000
 		Chaos=0.30000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
@@ -81,7 +81,9 @@ defaultproperties
 		XRandFactor=0.2
 		YRandFactor=0.2
 		DeclineTime=0.75
-		DeclineDelay=0.9
+		DeclineDelay=0.55
+		MaxRecoil=8192
+		ClimbTime=0.075
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

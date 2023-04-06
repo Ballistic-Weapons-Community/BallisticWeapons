@@ -456,7 +456,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=64)
 	SightOffset=(X=22.000000,Y=0.01,Z=11.500000)
-	SightDisplayFOV=40.000000
+	SightBobScale=0.15f
 	AIRating=0.8
 	CurrentRating=0.8
 	SightZoomFactor=1.2

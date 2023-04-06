@@ -11,9 +11,10 @@ defaultproperties
 	Index=GS_Pro
 	StyleName="Pro"
 
-	DamageScale=1.25
-	RecoilScale=0.7
+	DamageScale=1.25f
+	RecoilScale=0.7f
 	bRunInADS=True
+	SightBobScale=0.25f
 
 	// General
 	MaxInventoryCapacity=14

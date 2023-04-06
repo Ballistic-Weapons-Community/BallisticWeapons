@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=45
+		Damage=52
         HeadMult=2.5f
         LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -65,7 +65,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		WaterTraceRange=5000
 		RangeAtten=0.75
-		Damage=35
+		Damage=40
         HeadMult=2.5f
         LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -99,6 +99,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.175000),(InVal=0.400000,OutVal=0.450000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
+		ClimbTime=0.04
 		DeclineDelay=0.350000
 		DeclineTime=1.00000
 		CrouchMultiplier=0.850000

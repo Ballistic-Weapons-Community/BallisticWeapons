@@ -164,6 +164,7 @@ defaultproperties
     SightOffset=(X=-10.000000,Z=11.000000)
     SightZoomFactor=1.2
 	SightAnimScale=0.5
+	SightBobScale=0.7f
     GunLength=24.000000
     ParamsClasses(0)=Class'MRT6WeaponParamsComp'
     ParamsClasses(1)=Class'MRT6WeaponParamsClassic'

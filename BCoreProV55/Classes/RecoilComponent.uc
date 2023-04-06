@@ -49,7 +49,6 @@ var float						XRandFactor;				// Recoil multiplied by this for recoil Yaw rando
 var float						YRandFactor;				// Recoil multiplied by this for recoil Pitch randomness
 var float						MinRandFactor;				// Bias for calculation of recoil random factor
 var int							MaxRecoil;					// The maximum recoil amount
-var float						ClimbTime;					// Time taken to interpolate between positions
 var float						DeclineTime;				// Time it takes for Recoil to decline maximum to zero
 var float						DeclineDelay;				// The time between firing and when recoil should start decaying
 var float             			HipMultiplier;            	// Hipfire recoil is scaled up by this value
@@ -217,7 +216,6 @@ final simulated function Recalculate()
 	YRandFactor 		= Params.YRandFactor;
 	MinRandFactor 		= Params.MinRandFactor;
 	MaxRecoil 			= Params.MaxRecoil;
-	ClimbTime			= Params.ClimbTime;
 	DeclineTime 		= Params.DeclineTime;
 	DeclineDelay		= Params.DeclineDelay;
 	HipMultiplier 		= Params.HipMultiplier;
@@ -338,14 +336,14 @@ final function AddRecoil (float Amount, optional byte Mode)
 	TargetPivot += NewTargetDeltaPivot;
 
 	AdjustmentPhase = 0;
-	AdjustmentTime = ClimbTime;
+	AdjustmentTime = Params.ClimbTime;
 
 	MoveState = ERecoilState.Climbing;
 
 	LastRecoilTime = BW.Level.TimeSeconds;
 
 	if (BW.Role == ROLE_Authority)
-		BW.SendNetRecoil(TargetPivot.Pitch, TargetPivot.Yaw, ClimbTime);
+		BW.SendNetRecoil(TargetPivot.Pitch, TargetPivot.Yaw, Params.ClimbTime);
 }
 
 final function StartRecoilDecline()

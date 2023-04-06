@@ -128,6 +128,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
+		ClimbTime=0.04
 		DeclineTime=0.75
 		DeclineDelay=0.130000
 		ViewBindFactor=0.4
@@ -141,6 +142,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
+		ClimbTime=0.04
 		DeclineTime=0.75
 		DeclineDelay=0.130000
 		ViewBindFactor=0.4

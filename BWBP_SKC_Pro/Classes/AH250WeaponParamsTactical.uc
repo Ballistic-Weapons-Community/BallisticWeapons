@@ -83,7 +83,7 @@ defaultproperties
 		ViewBindFactor=0.5
 		XRandFactor=0.2
 		YRandFactor=0.2
-		ClimbTime=0.1
+		ClimbTime=0.06
 		DeclineDelay=0.45
         DeclineTime=1.5
 		MaxRecoil=8192
@@ -97,7 +97,7 @@ defaultproperties
         ViewBindFactor=0.5
 		XRandFactor=0.1
 		YRandFactor=0.1
-		ClimbTime=0.1
+		ClimbTime=0.06
 		DeclineDelay=0.45
         DeclineTime=1.5
 		MaxRecoil=8192

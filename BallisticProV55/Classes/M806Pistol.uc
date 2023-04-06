@@ -360,6 +360,7 @@ defaultproperties
 	bAdjustHands=true
 	RootAdjust=(Yaw=-375,Pitch=3500)
 	WristAdjust=(Yaw=-3500,Pitch=-000)
+	SightBobScale=1f
 	ParamsClasses(0)=Class'M806WeaponParamsComp'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'

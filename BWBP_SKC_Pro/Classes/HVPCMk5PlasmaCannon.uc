@@ -669,6 +669,7 @@ defaultproperties
 	 SightAnimScale=0.5
 	 SightPivot=(Pitch=256)
      SightOffset=(X=30.000000,Y=-0.175,Z=13.150000)
+	 SightBobScale=0.5
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk5SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color2=(B=153,G=168,R=170,A=83),StartSize2=84)

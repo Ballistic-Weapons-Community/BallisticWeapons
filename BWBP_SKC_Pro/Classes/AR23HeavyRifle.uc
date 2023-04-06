@@ -320,7 +320,7 @@ defaultproperties
      FullZoomFOV=55.000000
      bNoCrosshairInScope=True
 	 SightOffset=(X=5,Y=0.000000,Z=16.700000)
-     SightDisplayFOV=40.000000
+     SightBobScale=0.5
      FireModeClass(0)=Class'BWBP_SKC_Pro.AR23PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AR23SecondaryFire'
      PutDownTime=0.700000

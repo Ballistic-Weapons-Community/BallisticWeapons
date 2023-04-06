@@ -662,7 +662,8 @@ defaultproperties
      GroupOffset=3
      PickupClass=Class'BWBP_SKC_Pro.XMV500Pickup'
      PlayerViewOffset=(X=20.000000,Y=17.000000,Z=-50.000000)
-     BobDamping=1.400000
+     BobDamping=0.5
+	 SightBobScale=3
      AttachmentClass=Class'BWBP_SKC_Pro.XMV500MinigunAttachment'
      //IconMaterial=Texture'BWBP_SKC_Tex.XMV500.SmallIcon_XMV500'
      IconCoords=(X2=127,Y2=25)

@@ -602,6 +602,7 @@ defaultproperties
      bNoCrosshairInScope=True
      SightOffset=(X=16.000000,Y=-0.340000,Z=22.720000)
      SightDisplayFOV=20.000000 
+	 SightBobScale=0.3
      FireModeClass(0)=Class'BWBP_OP_Pro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.MX32SecondaryFire'
 	 WeaponModes(0)=(ModeName="Auto Rockets",ModeID="WM_FullAuto")

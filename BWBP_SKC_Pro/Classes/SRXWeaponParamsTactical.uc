@@ -22,7 +22,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=0.2000000
-		Recoil=200.000000
+		Recoil=512.000000
 		Chaos=0.100000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
@@ -51,7 +51,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=1.1000000
-		Recoil=320.000000
+		Recoil=650.000000
 		Chaos=0.450000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-LoudFire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
@@ -80,7 +80,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=0.4000000
-		Recoil=64.000000
+		Recoil=300.000000
 		Chaos=0.150000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-SpecialFire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
@@ -119,6 +119,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
 		XRandFactor=0.2
 		YRandFactor=0.2
+		ClimbTime=0.05
 		DeclineTime=0.75
 		DeclineDelay=0.250000
 		CrouchMultiplier=0.85

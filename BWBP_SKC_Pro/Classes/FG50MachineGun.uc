@@ -648,6 +648,7 @@ defaultproperties
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	SightOffset=(X=15,Y=15.000000,Z=6.250000)
+	SightBobScale=0.5
 	ParamsClasses(0)=Class'FG50WeaponParamsComp'
 	ParamsClasses(1)=Class'FG50WeaponParamsClassic'	 
 	ParamsClasses(2)=Class'FG50WeaponParamsRealistic'

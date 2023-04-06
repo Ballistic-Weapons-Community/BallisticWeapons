@@ -192,6 +192,9 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=12
+	BobDamping=2f 
+	bNoCrosshairInScope=True
+	SightBobScale=0.15f
 	SightPivot=(Pitch=128)
 	SightOffset=(X=3.000000,Y=-2.110000,Z=9.15000)
 	PickupClass=Class'BWBP_SKC_Pro.T9CNPickup'

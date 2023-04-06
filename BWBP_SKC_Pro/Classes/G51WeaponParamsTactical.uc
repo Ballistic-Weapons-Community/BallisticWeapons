@@ -30,7 +30,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.SCAR-Fire',Volume=2.600000)
-		Recoil=140.000000
+		Recoil=170.000000
 		Chaos=0.040000
 		WarnTargetPct=0.200000
 	End Object
@@ -77,6 +77,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
+		ClimbTime=0.04
 		DeclineTime=1.00000
 		DeclineDelay=0.140000
 		CrouchMultiplier=0.850000

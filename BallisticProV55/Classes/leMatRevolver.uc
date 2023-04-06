@@ -608,6 +608,7 @@ defaultproperties
 	WristAdjust=(Yaw=-3000,Pitch=-0000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
+	SightBobScale=1f
 	ParamsClasses(0)=Class'leMatWeaponParamsComp'
 	ParamsClasses(1)=Class'leMatWeaponParamsClassic'
 	ParamsClasses(2)=Class'leMatWeaponParamsRealistic'
