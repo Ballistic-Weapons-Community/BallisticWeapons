@@ -3771,7 +3771,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
-			log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
+			//log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
 			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
 			if (Role == ROLE_Authority)
@@ -3780,7 +3780,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 		}
 		else
 		{
-			log("randomizing"); 
+			//log("randomizing"); 
 			GenerateLayout(255);
 			GenerateCamo(255);
 			if (Role == ROLE_Authority)
@@ -4604,20 +4604,20 @@ simulated final function ReceiveNetAim(float Yaw, float Pitch, float Time, float
 	AimComponent.ReceiveNetAim(Yaw, Pitch, Time, oChaos, nChaos);
 }
 
-// Send the random values used for recoil to the client so he'll have the same recoil effect
-final function SendNetRecoil()
+// Compress and send recoil data from server
+final function SendNetRecoil(int pitch, int yaw, float shift_time)
 {
-	ReceiveNetRecoil(RcComponent.GetTargetXRand() * 255, RcComponent.GetTargetYRand() * 255, RcComponent.GetTargetRecoil() );
+	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer && !Instigator.IsLocallyControlled())
+		ReceiveNetRecoil(pitch, yaw, int(shift_time * 255) );
 }
 
-// Receive random values for recoil from the server
-// DC 110313
-simulated final function ReceiveNetRecoil(byte XRand, byte YRand, float RecAmp)
+// Apply recoil from server.
+simulated final function ReceiveNetRecoil(int pitch, int yaw, byte shift_time)
 {
 	if (Role == ROLE_Authority)
 		return;
 
-	RcComponent.ReceiveNetRecoil(XRand, YRand, RecAmp);
+	RcComponent.ReceiveNetRecoil(pitch, yaw, shift_time / 255.0f);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -4678,12 +4678,12 @@ simulated final function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreView
 
 simulated final function Rotator GetRecoilPivot()
 {
-	return RcComponent.GetWeaponPivot();
+	return RcComponent.GetEscapePivot();
 }
 
 simulated final function Rotator GetFireRot()
 {
-	return GetAimPivot() + RcComponent.GetWeaponPivot();
+	return GetAimPivot() + RcComponent.GetEscapePivot();
 }
 
 simulated final function Vector GetFireDir()
@@ -4700,7 +4700,7 @@ simulated final function Rotator GetBasePlayerView()
 simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
-	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle); // ? is that correct?
 }
 
 // Rotates the player's view according to Aim
@@ -4899,8 +4899,6 @@ simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 	RcComponent.AddRecoil(Recoil, Mode);
 	AimComponent.AddFireChaos(FireChaos);
 
-	if (ROLE == ROLE_Authority)
-		SendNetRecoil();
 	/*
 	// Set crosshair size
 	if (bReaiming)
