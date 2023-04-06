@@ -72,7 +72,7 @@ function ServerWeaponSpecial(optional byte i)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		GASCAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
@@ -94,8 +94,6 @@ simulated function ClientSwitchLaser()
 
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)

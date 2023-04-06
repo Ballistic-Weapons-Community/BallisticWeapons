@@ -58,7 +58,6 @@ simulated function OutOfAmmo()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 
 	G5Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
@@ -80,7 +79,6 @@ simulated function ClientSwitchLaser()
 		PlaySound(LaserOffSound,,0.7,,32);
 	}
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 	OnLaserSwitched();
 }
 
@@ -201,12 +199,6 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	Scale3D.Z = 1.5;
 	Laser.SetDrawScale3D(Scale3D);
 	Canvas.DrawActor(Laser, false, false, DisplayFOV);
-}
-
-// Azarael - improved ironsights
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function PlayIdle()

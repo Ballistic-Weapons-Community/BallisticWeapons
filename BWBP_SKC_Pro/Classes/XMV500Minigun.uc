@@ -142,7 +142,6 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 	if (ThirdPersonActor != None)
 		XMV500MinigunAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	OnLaserSwitched();
@@ -163,7 +162,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function KillLaserDot()

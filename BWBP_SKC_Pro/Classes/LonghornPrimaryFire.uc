@@ -123,8 +123,6 @@ simulated event ModeHoldFire()
             AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         Instigator.DeactivateSpawnProtection();
     }
-    else if (!BW.bUseNetAim && !BW.bScopeView)
-    	ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 

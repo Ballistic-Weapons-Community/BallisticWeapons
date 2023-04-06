@@ -42,7 +42,7 @@ function ServerWeaponSpecial(optional byte i)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		MX32Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 		
@@ -87,7 +87,6 @@ simulated function ClientSwitchLaser()
 	MX32SecondaryFire(FireMode[1]).AdjustLaserParams(bLaserOn);
 	
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)

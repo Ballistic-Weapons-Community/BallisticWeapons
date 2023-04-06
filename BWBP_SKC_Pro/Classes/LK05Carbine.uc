@@ -77,11 +77,6 @@ simulated function OnAimParamsChanged()
 		ApplyLaserAim();
 }
 
-simulated function CheckSetNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 //=================================
 //Silencer Code
 //=================================
@@ -199,7 +194,6 @@ exec simulated function WeaponSpecial(optional byte i)
 	{
 		ServerSwitchLaser(!bLaserOn);
 		PlayIdle();
-		CheckSetNetAim();
 	}
 }
 
@@ -280,8 +274,6 @@ function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
 	
-	CheckSetNetAim();
-
 	if (ThirdPersonActor!=None)
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -307,10 +299,7 @@ simulated function ClientSwitchLaser()
 	}
 
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
-
-
 
 simulated function SpawnLaserDot(optional vector Loc)
 {

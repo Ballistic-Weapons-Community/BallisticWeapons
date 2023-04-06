@@ -252,7 +252,7 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		AH104Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	OnLaserSwitched();
@@ -274,7 +274,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -391,12 +390,6 @@ simulated event RenderOverlays(Canvas C)
 		DrawLaserSight(C);
 }
 
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 simulated event AnimEnd (int Channel)
 {
     local name Anim;
@@ -429,20 +422,6 @@ simulated function bool HasAmmo()
 			return true;
 	return false;	//This weapon is empty
 }
-
-// Change some properties when using sights...
-/*simulated function SetScopeBehavior()
-{
-	AdjustControlProperties();
-	super.SetScopeBehavior();
-
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	if (bScopeView)
-	{
-		ViewRecoilFactor = 0.3;
-		ChaosDeclineTime *= 1.5;
-	}
-}*/
 
 // AI Interface =====
 // choose between regular or alt-fire

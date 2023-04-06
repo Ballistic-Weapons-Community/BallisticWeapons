@@ -257,8 +257,6 @@ function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
     
-	CheckSetNetAim();
-
 	if (ThirdPersonActor!=None)
 		SARAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -284,7 +282,6 @@ simulated function ClientSwitchLaser()
 	}
 
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -410,11 +407,6 @@ simulated event RenderOverlays( Canvas Canvas )
     	}
     }
     bDrawingFirstPerson = false;
-}
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function PlayReload()

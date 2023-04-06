@@ -71,7 +71,6 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 
 	if (ThirdPersonActor != None)
 		XRS10Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
@@ -98,7 +97,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction') && ReloadState != RS_GearSwitch)
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -225,12 +223,6 @@ simulated event RenderOverlays( Canvas Canvas )
 	super.RenderOverlays(Canvas);
 	if (!IsInState('Lowered'))
 		DrawLaserSight(Canvas);
-}
-
-// Change some properties when using sights...
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function PlayCocking(optional byte Type)

@@ -186,7 +186,6 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn == bNewLaserOn)
 		return;
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = bLaserOn;
 	if (ThirdPersonActor != None)
 		HMCAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
@@ -198,7 +197,6 @@ simulated function ClientSwitchLaser()
 	if (!bLaserOn)
 		KillLaserDot();
 	PlayIdle();
-	bUseNetAim = bLaserOn;
 }
 
 simulated function KillLaserDot()

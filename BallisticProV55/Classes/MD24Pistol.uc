@@ -122,7 +122,7 @@ function ServerWeaponSpecial(optional byte i)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		MD24Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -149,8 +149,6 @@ simulated function ClientSwitchLaser()
 
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -326,11 +324,6 @@ simulated function bool HasAmmo()
 	if (Ammo[0] != None && FireMode[0] != None && Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire)
 			return true;
 	return false;	//This weapon is empty
-}
-// Change some properties when using sights...
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function OnScopeViewChanged()

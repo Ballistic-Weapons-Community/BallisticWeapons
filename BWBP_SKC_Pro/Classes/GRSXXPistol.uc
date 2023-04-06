@@ -149,7 +149,7 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn == bNewLaserOn)
 		return;
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		GRSXXAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	if (bLaserOn)
@@ -170,7 +170,6 @@ simulated function ClientSwitchLaser()
 	if (!bLaserOn)
 		KillLaserDot();
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -328,11 +327,6 @@ simulated event RenderOverlays( Canvas Canvas )
 		GlowFX.SetRotation(R);
 		Canvas.DrawActor(GlowFX, false, false, DisplayFOV);
 	}
-}
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 // Change some properties when using sights...

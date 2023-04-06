@@ -142,7 +142,7 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn == bNewLaserOn)
 		return;
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		AM67Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	if (bLaserOn)
@@ -163,7 +163,6 @@ simulated function ClientSwitchLaser()
 	if (!bLaserOn)
 		KillLaserDot();
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -290,11 +289,6 @@ simulated event RenderOverlays( Canvas Canvas )
 		return;
 
 	DrawLaserSight(Canvas);
-}
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 // AI Interface =====

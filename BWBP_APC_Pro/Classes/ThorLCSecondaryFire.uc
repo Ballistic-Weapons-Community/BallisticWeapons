@@ -79,7 +79,6 @@ if (!AllowFire())
 			AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
 		Instigator.DeactivateSpawnProtection();
 	}
-	else if (!BW.default.bUseNetAim && !BW.bScopeView)
 
 	// client
 	if (Instigator.IsLocallyControlled())

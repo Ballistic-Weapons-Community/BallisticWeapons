@@ -71,7 +71,7 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		M99Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
@@ -91,7 +91,6 @@ simulated function ClientSwitchLaser()
 		PlaySound(LaserOffSound,,0.7,,32);
 	}
 	PlayIdle();
-	bUseNetAim = bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -214,16 +213,9 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
-function ServerUpdateLaser(bool bNewLaserOn)
-{
-	bUseNetAim = bNewLaserOn;
-}
-
 function InitLaser(optional byte i)
 {
 	bLaserOn = !bLaserOn;
-	bUseNetAim = bLaserOn;
-	ServerUpdateLaser(bLaserOn);
 	ServerSwitchLaser(bLaserOn);
 }
 

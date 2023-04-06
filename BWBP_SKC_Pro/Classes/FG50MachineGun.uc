@@ -152,18 +152,11 @@ simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmou
 	return true;
 }
 
-simulated function CheckSetNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 //=====================================================================
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-
-	CheckSetNetAim();
 
 	if (ThirdPersonActor!=None)
 		FG50Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
@@ -183,7 +176,6 @@ simulated function ClientSwitchLaser()
 		KillLaserDot();
 		PlaySound(LaserOffSound,,0.7,,32);	
 	}
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -348,11 +340,6 @@ simulated event RenderOverlays( Canvas Canvas )
 }
 
 
-function ServerUpdateLaser(bool bNewLaserOn)
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bNewLaserOn;
-}
-
 function ServerSwitchWeaponMode(byte NewMode)
 {
 	super.ServerSwitchWeaponMode(NewMode);
@@ -372,8 +359,6 @@ function ServerSwitchWeaponMode(byte NewMode)
 
 	if (Role == ROLE_Authority)
 		ServerSwitchLaser(bLaserOn);
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	ServerUpdateLaser(bLaserOn);
 }
 
 simulated function CommonSwitchWeaponMode (byte newMode)

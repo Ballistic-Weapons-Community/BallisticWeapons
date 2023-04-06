@@ -60,7 +60,7 @@ function ServerWeaponSpecial(optional byte i)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		HydraAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
 		
@@ -105,7 +105,6 @@ simulated function ClientSwitchLaser()
 	//HydraPrimaryFire(FireMode[1]).AdjustLaserParams(bLaserOn);
 	
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)

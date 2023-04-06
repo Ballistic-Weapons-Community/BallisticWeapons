@@ -314,6 +314,7 @@ final simulated function OnADSViewEnd()
     ViewBindFactor = Params.ViewBindFactor;
 }
 
+// this function is never called
 final simulated function OnADSEnd()
 {
     Recalculate();
@@ -478,7 +479,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 	if (bJumpLock)
 		bJumpLock = False;
 		
-	if (BW.bUseNetAim && BW.Role < ROLE_Authority)
+	if (BW.Role < ROLE_Authority)
 		return;
 
 	bForceReaim=false;
@@ -549,8 +550,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
         
 	StartAim(T, X, Y);
 
-	if (BW.bUseNetAim)
-		SendNewAim();
+	SendNewAim();
 }
 
 // Start aim interpolation
@@ -579,8 +579,7 @@ final simulated function ZeroAim(float TimeMod)
 
     StartAim(TimeMod, 0, 0);
 
-	if (BW.bUseNetAim)
-        SendNewAim();
+    SendNewAim();
 }
 
 final simulated function UpdateDisplacements(float delta)
@@ -675,7 +674,7 @@ private final function SendNewAim()
 
 final simulated function ReceiveNetAim(float Yaw, float Pitch, float Time, float oChaos, float nChaos)
 {
-	if (!BW.bUseNetAim || BW.Role == ROLE_Authority)
+	if (BW.Role == ROLE_Authority)
 		return;
 
 	bReaiming=true;

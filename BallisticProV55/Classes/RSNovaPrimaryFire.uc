@@ -141,8 +141,6 @@ simulated event ModeDoFire()
     if(InStr(Level.Game.GameName, "Freon") != -1 && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 		class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
-    else if (!BW.bUseNetAim && !BW.bScopeView)
-    	ApplyRecoil();
 		
 	if (!BW.bScopeView)
 		BW.AddFireChaos(FireChaos);
@@ -336,8 +334,6 @@ state NovaLightning
     	        AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         	Instigator.DeactivateSpawnProtection();
 	    }
-		else if (!BW.default.bUseNetAim && !BW.bScopeView)
-			ApplyRecoil();
 
 	    // client
     	if (Instigator.IsLocallyControlled())
@@ -771,8 +767,6 @@ state ChainLightning
     	        AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         	Instigator.DeactivateSpawnProtection();
 	    }
-		else if (!BW.default.bUseNetAim && !BW.bScopeView)
-			ApplyRecoil();
 
 	    // client
     	if (Instigator.IsLocallyControlled())

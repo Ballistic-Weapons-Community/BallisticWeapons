@@ -444,7 +444,6 @@ var() float					    EndShovelAnimRate;		//Rate for end anim
 // Aim
 //-----------------------------------------------------------------------------
 var(Aim) bool				    bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
-var(Aim) bool				    bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
 var(Aim) bool				    bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
 var() float					    GunLength;			// How far weapon extends from player. Used by long-gun check
 var() bool						bHasPenetrated;		// Has this weapon recently penetrated? Used in announcing wallbang death messages
@@ -1686,7 +1685,6 @@ simulated function bool CanUseSights()
 exec simulated function ScopeView()
 {
 	bScopeHeld      = true;
-
 	bPendingSightUp = false;
 
     // abort any scope view in progress
@@ -1697,9 +1695,11 @@ exec simulated function ScopeView()
 		return;
 	}
 	
+	// weapon does not have iron sights
 	if (!bUseSights)
 		return;
 
+	// can't use ADS right now
 	if (!CanUseSights())
 		return;
 
@@ -1714,23 +1714,25 @@ exec simulated function ScopeView()
             break;
     }
 
-    if (!bScopeDesired)
-    {
-        ServerReaim(0.1);
-
-        if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
-            PlayerController(InstigatorController).StopZoom();
-    }
-
-    else 
-    {	
+    if (bScopeDesired)
+	{	
         ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
 	
+		// need to go to the first frame of idle for things to look natural
+		// as we'll freeze that frame once the weapon goes to the top
         if (!IsFiring() && !bNoTweenToScope)
             SafeTweenAnim(IdleAnim, SightingTime);
 
         if (AimComponent.AllowADS())
             PlayScopeUp();
+    }
+
+	else
+    {
+        ServerReaim(0.1);
+
+        if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
+            PlayerController(InstigatorController).StopZoom();
     }
 }
 
@@ -1831,7 +1833,8 @@ final function ServerSetScopeView(bool bNewValue)
 // SetScopeView
 //
 // Called on client and server when transitioning to or from full ADS mode.
-// The client replicates the call to the server.
+// On the client, this is called from StartScopeView and StopScopeView.
+// On the server, this is called from the client's SetScopeView.
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated final function SetScopeView(bool bNewValue)
 {
@@ -1848,8 +1851,6 @@ simulated final function SetScopeView(bool bNewValue)
 
 	if (Role == ROLE_Authority)
 	{
-		CheckSetNetAim();
-
 		if (!Instigator.IsLocallyControlled())
 			BindScopeViewFactors();
 	}
@@ -2025,21 +2026,6 @@ simulated function OnAimParamsChanged()
 //------------------------------------------------------------------------
 // Aim parameter modification
 //------------------------------------------------------------------------
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// CheckSetNetAim
-//
-// Called whenever a function modifies a variable which could cause this 
-// weapon to need to replicate its aim.
-//
-// By default, Pro weapons always use net aim. However, any weapon which 
-// would formerly have used SetScopeBehavior() to change net aim, or set it 
-// directly, should use this function instead.
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-simulated function CheckSetNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // BindScopeViewFactors
@@ -4612,7 +4598,7 @@ simulated function ZeroFlashCount(int Mode) {}
 // Receive aim info from server
 simulated final function ReceiveNetAim(float Yaw, float Pitch, float Time, float oChaos, float nChaos)
 {
-	if (!bUseNetAim || Role == ROLE_Authority)
+	if (Role == ROLE_Authority)
 		return;
 
 	AimComponent.ReceiveNetAim(Yaw, Pitch, Time, oChaos, nChaos);
@@ -4628,7 +4614,7 @@ final function SendNetRecoil()
 // DC 110313
 simulated final function ReceiveNetRecoil(byte XRand, byte YRand, float RecAmp)
 {
-	if (!bUseNetAim || Role == ROLE_Authority)
+	if (Role == ROLE_Authority)
 		return;
 
 	RcComponent.ReceiveNetRecoil(XRand, YRand, RecAmp);
@@ -4671,9 +4657,6 @@ simulated final function ZeroAim (float TimeMod)
 {
 	if (bAimDisabled)
 		return;
-		
-	if (!bUseNetAim)
-		AimComponent.ZeroAim(TimeMod);
 
 	ServerZeroAim(TimeMod);
 }
@@ -4916,7 +4899,7 @@ simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 	RcComponent.AddRecoil(Recoil, Mode);
 	AimComponent.AddFireChaos(FireChaos);
 
-	if (ROLE == ROLE_Authority && bUseNetAim)
+	if (ROLE == ROLE_Authority)
 		SendNetRecoil();
 	/*
 	// Set crosshair size
@@ -5668,7 +5651,6 @@ defaultproperties
      GunLength=64.000000
      LongGunPivot=(Pitch=-4000,Yaw=-12000)
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
-     bUseNetAim=True
 	 
 	 ScopeHandling=SH_Default
      SelectAnim="Pullout"

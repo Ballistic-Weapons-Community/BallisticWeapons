@@ -62,7 +62,6 @@ simulated function ClientSwitchLaser(bool bNewLaserOn)
 		return;
 
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 
 	if (!bLaserOn)
 		KillLaserDot();
@@ -74,7 +73,7 @@ simulated function SwitchLaser(bool bNewLaserOn)
 		return;
 
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = bLaserOn || default.bUseNetAim;
+
 	ClientSwitchLaser(bLaserOn);
 
 	if (Role == ROLE_Authority && ThirdPersonActor != None)

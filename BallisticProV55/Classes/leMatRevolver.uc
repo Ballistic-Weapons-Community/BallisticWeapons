@@ -35,12 +35,6 @@ const NumShells	= 9;
 var   Emitter		LaserDot;
 var   bool			bLaserOn;
 
-replication
-{
-	reliable if (Role < ROLE_Authority)
-		ServerUpdateLaser;
-}
-
 simulated state PendingSGReload extends PendingDualAction
 {
 	simulated function BeginState()	{	OtherGun.LowerHandGun();	}
@@ -419,11 +413,6 @@ simulated function CommonCockGun(optional byte Type)
 		SafePlayAnim(CockAnim, 1.0, 0.2);
 }
 
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 simulated function KillLaserDot()
 {
 	if (LaserDot != None)
@@ -471,16 +460,9 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
-function ServerUpdateLaser(bool bNewLaserOn)
-{
-	bUseNetAim = default.bUseNetAim || bNewLaserOn;
-}
-
 exec simulated function WeaponSpecial(optional byte i)
 {
 	bLaserOn = !bLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
-	ServerUpdateLaser(bLaserOn);
 }
 
 simulated event WeaponTick(float DT)

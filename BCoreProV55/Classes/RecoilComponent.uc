@@ -346,7 +346,7 @@ final simulated function float ModifyRecoil(float amount)
 //===========================================================
 final simulated function AddRecoil (float Amount, optional byte Mode)
 {
-	if (BW.bAimDisabled || Amount == 0 || (BW.bUseNetAim && BW.Role < ROLE_Authority))
+	if (BW.bAimDisabled || Amount == 0 || BW.Role < ROLE_Authority)
 		return;
 
 	Amount = ModifyRecoil(Amount);

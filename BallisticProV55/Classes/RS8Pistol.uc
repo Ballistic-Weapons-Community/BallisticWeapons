@@ -94,7 +94,7 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		RS8Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	OnLaserSwitched();
@@ -118,7 +118,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction') && ReloadState != RS_GearSwitch)
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -244,11 +243,6 @@ simulated event RenderOverlays( Canvas Canvas )
 	super.RenderOverlays(Canvas);
 	if (!IsInState('Lowered'))
 		DrawLaserSight(Canvas);
-}
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function OnScopeViewChanged()
