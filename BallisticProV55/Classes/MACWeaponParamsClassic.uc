@@ -104,10 +104,10 @@ defaultproperties
 		Weight=60
 		
 		SightPivot=(Pitch=450)
-		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
+		//SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=7
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
         ZoomType=ZT_Logarithmic

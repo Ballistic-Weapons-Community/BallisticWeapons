@@ -72,7 +72,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="M925RearIronSides",Slot=5,Scale=0f)
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.150000
-		SightOffset=(X=-6.000000,Z=7.100000)
+		//SightOffset=(X=-6.000000,Z=7.100000)
 		DisplaceDurationMult=1.4
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9

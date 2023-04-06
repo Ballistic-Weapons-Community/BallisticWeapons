@@ -85,12 +85,12 @@ defaultproperties
 		//Attachments
 		//Function
 		PlayerSpeedFactor=0.900000
-		InventorySize=7
+		InventorySize=9
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=150
-		SightOffset=(X=-8.000000,Y=-0.200000,Z=7.500000)
-		SightPivot=(Pitch=512,Roll=-512)
+		//SightOffset=(X=-8.000000,Y=-0.200000,Z=7.500000)
+		//SightPivot=(Pitch=512,Roll=-512)
 		WeaponModes(0)=(bUnavailable=True)
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)

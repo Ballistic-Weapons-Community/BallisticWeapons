@@ -88,7 +88,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=2
 		SightMoveSpeedFactor=0.500000
-		ViewOffset=(X=5.000000,Z=-6.000000)
+		//ViewOffset=(X=5.000000,Z=-6.000000)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

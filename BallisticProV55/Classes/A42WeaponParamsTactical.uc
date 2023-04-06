@@ -108,7 +108,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5
 		SightPivot=(Pitch=1024,Roll=-768)
-		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalProjFireParams'

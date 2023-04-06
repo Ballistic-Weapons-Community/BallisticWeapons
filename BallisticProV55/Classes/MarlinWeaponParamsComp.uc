@@ -113,7 +113,7 @@ defaultproperties
 		InitialWeaponMode=0
 		CockAnimRate=1.700000
 		ReloadAnimRate=2.000000
-		ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
+		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.400000
 		MagAmmo=8
         InventorySize=5
@@ -140,7 +140,7 @@ defaultproperties
 		InitialWeaponMode=0
 		CockAnimRate=1.700000
 		ReloadAnimRate=2.000000
-		ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
+		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.400000
 		MagAmmo=8
         InventorySize=5

@@ -170,7 +170,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=40
-		SightOffset=(Z=15.600000)
+		//SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)

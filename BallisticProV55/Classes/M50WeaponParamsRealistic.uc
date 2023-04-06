@@ -129,8 +129,8 @@ defaultproperties
 		bMagPlusOne=True
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
-		ViewOffset=(X=-3.500000,Y=4.500000,Z=-9.000000)
-		SightOffset=(X=1.000000,Y=0.050000,Z=12.09000)
+		//ViewOffset=(X=-3.500000,Y=4.500000,Z=-9.000000)
+		//SightOffset=(X=1.000000,Y=0.050000,Z=12.09000)
 		SightPivot=(Pitch=200,Roll=0)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)

@@ -114,11 +114,11 @@ defaultproperties
 		
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
-		InventorySize=7
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45
-		SightOffset=(X=1.000000,Z=17.750000)
+		//SightOffset=(X=1.000000,Z=17.750000)
 		SightPivot=(Pitch=200)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -138,11 +138,11 @@ defaultproperties
 		
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
-		InventorySize=7
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45
-		SightOffset=(X=1.000000,Z=14.900000)
+		//SightOffset=(X=1.000000,Z=14.900000)
 		SightPivot=(Pitch=200)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)

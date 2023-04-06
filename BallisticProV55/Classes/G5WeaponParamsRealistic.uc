@@ -88,8 +88,8 @@ defaultproperties
 		SightingTime=0.400000
 		ZoomType=ZT_Logarithmic
 		MagAmmo=2
-		ViewOffset=(X=9.000000,Y=9.500000,Z=-3.000000)
-		SightOffset=(X=-2.7500000,Y=-5.40000,Z=4.80000000)
+		//ViewOffset=(X=9.000000,Y=9.500000,Z=-3.000000)
+		//SightOffset=(X=-2.7500000,Y=-5.40000,Z=4.80000000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="G5 90mm Guided Missile Launcher"

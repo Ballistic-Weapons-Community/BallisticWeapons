@@ -83,7 +83,7 @@ defaultproperties
 		MaxZoom=8
 		ZoomStages=1
 		//Function
-		ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
+		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		MagAmmo=7
         InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -102,7 +102,7 @@ defaultproperties
 		SightPivot=(Pitch=-32,Roll=-1024)
 		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
 		//Function
-		ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
+		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		SightingTime=0.4
 		SightMoveSpeedFactor=0.45
 		MagAmmo=7

@@ -187,9 +187,10 @@ defaultproperties
 		
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
-		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
-		SightOffset=(Y=-1.000000,Z=14.800000)
-		SightPivot=(Pitch=600,Roll=-1024)
+		//ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+		//SightOffset=(Y=-1.000000,Z=14.800000)
+		//SightPivot=(Pitch=600,Roll=-1024)
+		SightPivot=(Pitch=200)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -215,8 +216,8 @@ defaultproperties
 		AttachmentMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50.M50Laser',Index=4)
 		AttachmentMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50Gren-D',Index=3)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
-		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
-		SightOffset=(Y=-1.000000,Z=14.800000)
+		//ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+		//SightOffset=(Y=-1.000000,Z=14.800000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		
 		InventorySize=7
@@ -244,8 +245,8 @@ defaultproperties
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
 		//GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.05)
         WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
-		ViewOffset=(X=-4.000000,Y=10.00000,Z=-15.000000)
-		SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
+		//ViewOffset=(X=-4.000000,Y=10.00000,Z=-15.000000)
+		//SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		
 		InventorySize=7
@@ -273,8 +274,8 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.15)
-		ViewOffset=(X=-4.000000,Y=10.00000,Z=-15.000000)
-		SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
+		//ViewOffset=(X=-4.000000,Y=10.00000,Z=-15.000000)
+		//SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		
 		//Function
@@ -310,8 +311,8 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
-		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
-		SightOffset=(Y=-1.000000,Z=14.800000)
+		//ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+		//SightOffset=(Y=-1.000000,Z=14.800000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -342,8 +343,8 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
-		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
-		SightOffset=(Y=-1.000000,Z=14.800000)
+		//ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+		//SightOffset=(Y=-1.000000,Z=14.800000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)

@@ -112,7 +112,7 @@ defaultproperties
 		SightingTime=0.300000
 		MagAmmo=5
 		bMagPlusOne=True
-		ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
+		//ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
 		WeaponName="R87A1 .416 Sniper Rifle"
@@ -137,7 +137,7 @@ defaultproperties
 		InventorySize=7
 		MagAmmo=5
 		bMagPlusOne=True
-		ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
+		//ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
 		WeaponName="R87A1 .416 Sniper Rifle"

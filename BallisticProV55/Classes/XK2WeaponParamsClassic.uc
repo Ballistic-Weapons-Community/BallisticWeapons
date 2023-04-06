@@ -119,11 +119,11 @@ defaultproperties
 		Weight=30
 		LayoutName="Default"
 		
-		InventorySize=7
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=50
-		SightOffset=(Y=-0.550000,Z=14.900000)
+		//SightOffset=(Y=-0.550000,Z=14.900000)
 		SightPivot=(Pitch=600,Roll=-512)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)

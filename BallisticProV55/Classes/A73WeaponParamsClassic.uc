@@ -233,8 +233,8 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
-		SightOffset=(X=-12.000000,Z=14.300000)
-		SightPivot=(Pitch=768)
+		//SightOffset=(X=-12.000000,Z=14.300000)
+		SightPivot=(Pitch=450)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -257,8 +257,8 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=25
-		SightOffset=(X=-12.000000,Z=14.300000)
-		SightPivot=(Pitch=768)
+		//SightOffset=(X=-12.000000,Z=14.300000)
+		SightPivot=(Pitch=450)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -281,8 +281,8 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
-		SightOffset=(X=-12.000000,Z=14.300000)
-		SightPivot=(Pitch=768)
+		//SightOffset=(X=-12.000000,Z=14.300000)
+		SightPivot=(Pitch=450)
 		ReloadAnimRate=0.800000
 		CockAnimRate=0.800000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

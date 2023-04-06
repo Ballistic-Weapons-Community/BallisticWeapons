@@ -161,9 +161,10 @@ defaultproperties
 		SightingTime=0.25
 		MagAmmo=8
 		bMagPlusOne=True
-		ViewOffset=(X=-2.000000,Y=6.000000,Z=-12.000000)
-		SightOffset=(X=5.000000,Y=0,Z=11.500000)
-		SightPivot=(Pitch=-128)
+		//ViewOffset=(X=-2.000000,Y=6.000000,Z=-12.000000)
+		//SightOffset=(X=5.000000,Y=0,Z=11.500000)
+		//SightPivot=(Pitch=-128)
+		SightPivot=(Pitch=128)
 		InitialWeaponMode=1
 		WeaponModes(0)=(bUnavailable=true,ModeName="Long-Range",bUnavailable=true,Value=0.500000)
 		WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)

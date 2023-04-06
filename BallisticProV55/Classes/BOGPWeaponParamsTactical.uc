@@ -111,7 +111,7 @@ defaultproperties
         InventorySize=5
         SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=300)
-		SightOffset=(X=-5.000000,Y=0.080000,Z=8.550000)
+		//SightOffset=(X=-5.000000,Y=0.080000,Z=8.550000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalGrenadeFireParams'

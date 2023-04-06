@@ -84,7 +84,7 @@ defaultproperties
         DisplaceDurationMult=0.0
         MagAmmo=1
         InventorySize=1
-		ViewOffset=(X=63.000000,Y=-4.000000,Z=-6.000000)
+		//ViewOffset=(X=63.000000,Y=-4.000000,Z=-6.000000)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
         FireParams(0)=FireParams'ArenaPriFireParams'

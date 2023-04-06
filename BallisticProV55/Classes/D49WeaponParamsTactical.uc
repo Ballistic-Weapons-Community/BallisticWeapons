@@ -122,7 +122,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=6
         InventorySize=3
-		SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
+		//SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)

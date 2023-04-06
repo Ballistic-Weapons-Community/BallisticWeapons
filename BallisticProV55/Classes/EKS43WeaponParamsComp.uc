@@ -76,14 +76,35 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
+		LayoutName="Perfect Steel"
+		Weight=30
+		
         DisplaceDurationMult=0.33
         MagAmmo=1
         InventorySize=1
-		ViewOffset=(X=6.000000,Z=-18.000000)
+		//ViewOffset=(X=6.000000,Z=-18.000000)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+    Begin Object Class=WeaponParams Name=UniversalParams_Hot
+		LayoutName="Superheated"
+		Weight=10
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKS43Camos.Katana-KGlow",Index=1)
+        DisplaceDurationMult=0.33
+        MagAmmo=1
+        InventorySize=1
+		//ViewOffset=(X=6.000000,Z=-18.000000)
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'UniversalParams'
+    Layouts(1)=WeaponParams'UniversalParams_Hot'
 }

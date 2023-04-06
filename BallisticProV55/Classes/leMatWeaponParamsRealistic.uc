@@ -132,10 +132,11 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.14
 		MagAmmo=9
-		ViewOffset=(X=14.000000,Y=8.000000,Z=-8.000000)
+		//ViewOffset=(X=14.000000,Y=8.000000,Z=-8.000000)
 		ViewPivot=(Pitch=512)
-		SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
-		SightPivot=(Pitch=95,Roll=-50)
+		//SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
+		//SightPivot=(Pitch=95,Roll=-50)
+		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)

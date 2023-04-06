@@ -87,7 +87,7 @@ defaultproperties
 		LayoutName="Default"
         CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightOffset=(X=10.000000,Z=4.70000)
+		//SightOffset=(X=10.000000,Z=4.70000)
 		WeaponModes(0)=(bUnavailable=True)
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_Burst",Value=5.000000)

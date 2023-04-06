@@ -218,7 +218,7 @@ defaultproperties
         ReloadAnimRate=1.250000
 		MagAmmo=32
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=11.90000)
+		//SightOffset=(X=10.000000,Z=11.90000)
 		SightMoveSpeedFactor=0.8
 		InventorySize=6
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -241,7 +241,7 @@ defaultproperties
         ReloadAnimRate=1.250000
 		MagAmmo=32
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=11.90000)
+		//SightOffset=(X=10.000000,Z=11.90000)
 		InventorySize=6
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
@@ -263,7 +263,7 @@ defaultproperties
         ReloadAnimRate=1.250000
 		MagAmmo=32
 		SightPivot=(Pitch=450)
-		SightOffset=(X=10.000000,Z=11.90000)
+		//SightOffset=(X=10.000000,Z=11.90000)
 		InventorySize=6
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

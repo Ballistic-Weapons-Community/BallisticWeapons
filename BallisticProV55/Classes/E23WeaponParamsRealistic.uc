@@ -168,7 +168,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=60
-		SightOffset=(X=-8.000000,Z=9.300000)
+		//SightOffset=(X=-8.000000,Z=9.300000)
 		SightPivot=(Pitch=256)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
