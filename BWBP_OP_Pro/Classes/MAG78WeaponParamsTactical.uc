@@ -76,7 +76,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-		ViewOffset=(X=10.000000,Z=-20.000000)
+		//ViewOffset=(X=10.000000,Z=-20.000000)
         DisplaceDurationMult=0.33
         MagAmmo=1
         InventorySize=1

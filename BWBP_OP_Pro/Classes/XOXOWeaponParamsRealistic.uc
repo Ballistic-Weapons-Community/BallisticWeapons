@@ -169,7 +169,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=RealisticParams
-		SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
+		//SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
 		SightPivot=(Pitch=768)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
@@ -192,4 +192,22 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticFastAimParams'
     End Object 
     Layouts(0)=WeaponParams'RealisticParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=XOXO_Pink
+		Index=0
+		CamoName="Love"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XOXO_Purple
+		Index=1
+		CamoName="Lust"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XOXOCamos.XOXOPurpleCamo-Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Camos(0)=WeaponCamo'XOXO_Pink'
+	Camos(1)=WeaponCamo'XOXO_Purple'
 }

@@ -80,7 +80,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=UniversalParams
         Weight=30
-		ViewOffset=(Y=75.000000,Z=-125.000000)
+		//ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.95
         MagAmmo=1
         InventorySize=2
@@ -94,7 +94,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=UniversalParams-Civ
 		Weight=10
 		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_CivShield'
-		ViewOffset=(Y=75.000000,Z=-125.000000)
+		//ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.9
         MagAmmo=1
         InventorySize=5
@@ -108,7 +108,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=UniversalParams-Junk
 		Weight=10
 		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_JunkShield'
-		ViewOffset=(Y=75.000000,Z=-125.000000)
+		//ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.9
         MagAmmo=1
         InventorySize=5

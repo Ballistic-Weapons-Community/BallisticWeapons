@@ -95,7 +95,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
-		SightOffset=(X=5.000000,Y=-0.35000,Z=12.850000)
+		//SightOffset=(X=5.000000,Y=-0.35000,Z=12.850000)
 		PlayerSpeedFactor=0.95
 		InventorySize=6
 		SightMoveSpeedFactor=0.35

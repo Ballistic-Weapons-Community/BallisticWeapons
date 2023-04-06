@@ -135,8 +135,8 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
-		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
+		//ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
+		//SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
 		PlayerSpeedFactor=0.870000
         PlayerJumpFactor=0.870000
         SightMoveSpeedFactor=0.75
@@ -144,73 +144,7 @@ defaultproperties
 		MagAmmo=30
 		SightingTime=0.55
 		DisplaceDurationMult=1.4
-        InventorySize=12
-        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-        AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicFastRocketFireParams'
-		AltFireParams(1)=FireParams'ClassicGuidedRocketFireParams'
-    End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Desert
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S2",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S2",Index=2)
-		Weight=10
-		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
-		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
-		PlayerSpeedFactor=0.870000
-        PlayerJumpFactor=0.870000
-        SightMoveSpeedFactor=0.75
-		bNeedCock=True
-		MagAmmo=30
-		SightingTime=0.55
-		DisplaceDurationMult=1.4
-        InventorySize=12
-        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-        AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicFastRocketFireParams'
-		AltFireParams(1)=FireParams'ClassicGuidedRocketFireParams'
-    End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Ruby
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S3",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S3",Index=2)
-		Weight=10
-		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
-		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
-		PlayerSpeedFactor=0.870000
-        PlayerJumpFactor=0.870000
-        SightMoveSpeedFactor=0.75
-		MagAmmo=30
-		SightingTime=0.55
-		DisplaceDurationMult=1.4
-        InventorySize=12
-        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-        AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicFastRocketFireParams'
-		AltFireParams(1)=FireParams'ClassicGuidedRocketFireParams'
-    End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Au
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S1",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S1",Index=2)
-		Weight=1
-		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
-		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
-		PlayerSpeedFactor=0.870000
-        PlayerJumpFactor=0.870000
-        SightMoveSpeedFactor=0.75
-		MagAmmo=60
-		ReloadAnimRate=1.300000
-		CockAnimRate=1.300000
-		SightingTime=0.55
-		DisplaceDurationMult=1.4
-        InventorySize=12
+        InventorySize=7
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -219,7 +153,43 @@ defaultproperties
     End Object
 	
     Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Desert'
-	Layouts(2)=WeaponParams'ClassicParams-Ruby'
-	Layouts(3)=WeaponParams'ClassicParams-Au'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=MX32_White
+		Index=0
+		CamoName="White"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MX32_Desert
+		Index=1
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S2",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S2",Index=2,AIndex=1,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MX32_Ruby
+		Index=2
+		CamoName="Ruby"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S3",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S3",Index=2,AIndex=1,PIndex=1)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MX32_Gold
+		Index=3
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S1",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S1",Index=2,AIndex=1,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'MX32_White'
+	Camos(1)=WeaponCamo'MX32_Desert'
+	Camos(2)=WeaponCamo'MX32_Ruby'
+	Camos(3)=WeaponCamo'MX32_White'
 }

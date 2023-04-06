@@ -134,7 +134,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
 		ReloadAnimRate=0.800000
-		SightOffset=(X=16.000000,Y=-0.340000,Z=22.720000)
+		//SightOffset=(X=16.000000,Y=-0.340000,Z=22.720000)
 		PlayerSpeedFactor=0.95
         SightMoveSpeedFactor=0.45
 		MagAmmo=50
@@ -148,4 +148,43 @@ defaultproperties
 		AltFireParams(1)=FireParams'TacticalGuidedRocketFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=MX32_White
+		Index=0
+		CamoName="White"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MX32_Desert
+		Index=1
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S2",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S2",Index=2,AIndex=1,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MX32_Ruby
+		Index=2
+		CamoName="Ruby"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S3",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S3",Index=2,AIndex=1,PIndex=1)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MX32_Gold
+		Index=3
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S1",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S1",Index=2,AIndex=1,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'MX32_White'
+	Camos(1)=WeaponCamo'MX32_Desert'
+	Camos(2)=WeaponCamo'MX32_Ruby'
+	Camos(3)=WeaponCamo'MX32_White'
 }

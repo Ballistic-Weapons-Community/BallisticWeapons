@@ -93,7 +93,7 @@ defaultproperties
 		//WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.450000
-		SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
+		//SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
 		SightPivot=(Pitch=128)
 		PlayerSpeedFactor=0.95
 		PlayerJumpFactor=0.95

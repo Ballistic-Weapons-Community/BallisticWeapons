@@ -60,7 +60,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		ViewOffset=(X=0.000000,Y=10.000000,Z=-13.000000)
+		//ViewOffset=(X=0.000000,Y=10.000000,Z=-13.000000)
      	ViewPivot=(Pitch=1024,Yaw=-1024)
 		PlayerSpeedFactor=0.750000
         MagAmmo=1
