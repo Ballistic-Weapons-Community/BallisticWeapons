@@ -61,7 +61,7 @@ defaultproperties
 	LoadoutTabHint="Change how and which weapons are used by the 'Ballistic Loadout' mutator."
 	LoadoutNewTabLabel="Evolution Loadout"
 	LoadoutNewTabHint="Adjust the loadout and requirement settings for the 'Ballistic Evolution Loadout' mutator."
-	SwapTabLabel="Pickups"
+	SwapTabLabel="Swappings"
 	SwapTabHint="Adjust how and which weapons are spawned by the 'Ballistic Weapons' mutator."
 	ArenaTabLabel="Arena"
 	ArenaTabHint"Change which weapons are used by the 'Ballistic Arena' Mutator."

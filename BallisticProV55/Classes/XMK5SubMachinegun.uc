@@ -298,6 +298,7 @@ defaultproperties
 	
 	SightOffset=(X=15.000000,Y=0.02,Z=17.070000)
 	SightZoomFactor=1.2
+	SightBobScale=0.25f
 	GunLength=40.000000
 	ParamsClasses(0)=Class'XMK5WeaponParamsComp'
 	ParamsClasses(1)=Class'XMK5WeaponParamsClassic'

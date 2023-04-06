@@ -261,6 +261,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightAnimScale=0.75
 	SightOffset=(X=-6.000000,Z=7.100000)
+	SightBobScale=0.5
 
 	ParamsClasses(0)=Class'M925WeaponParamsComp'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret

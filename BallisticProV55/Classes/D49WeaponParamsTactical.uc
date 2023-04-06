@@ -27,7 +27,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
         FlashScaleFactor=1.200000
-        Recoil=768.000000
+        Recoil=1024.000000
         Chaos=0.400000
         Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-FireSingle',Volume=1.200000)
@@ -88,6 +88,7 @@ defaultproperties
 		YRandFactor=0.1
 		DeclineTime=1.1
 		DeclineDelay=0.440000
+		ClimbTime=0.05
 		MaxRecoil=6144
 		CrouchMultiplier=1
 		HipMultiplier=1.25

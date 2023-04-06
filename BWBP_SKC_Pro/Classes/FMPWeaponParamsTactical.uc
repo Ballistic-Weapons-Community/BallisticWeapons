@@ -124,6 +124,7 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=4096.000000
+		ClimbTime=0.04
 		DeclineTime=0.75
 		DeclineDelay=0.150000
 		ViewBindFactor=0.200000
@@ -142,6 +143,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
+		ClimbTime=0.04
 		DeclineTime=0.7500000
 		DeclineDelay=0.45000
 		ViewBindFactor=0.45
@@ -159,6 +161,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
+		ClimbTime=0.04
 		DeclineTime=0.7500000
 		DeclineDelay=0.45000
 		ViewBindFactor=0.45

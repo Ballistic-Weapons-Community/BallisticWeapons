@@ -46,6 +46,7 @@ var() float				PlayerAnimationGroundSpeed;	// sets default.GroundSpeed - used fo
 // NON-CONFIG VARIABLES - NOT REPLICATED
 //=============================================================================	
 var() bool				bRunInADS;					// Use run anims in ADS (because gametype has fast ADS move speed)
+var() float				SightBobScale;				// Scales view bob when in iron sights
 var() int				ConflictWeaponSlots;		// Number of slots available for main weapons in Conflict.
 var() int				ConflictEquipmentSlots;		// Number of slots available for equipment in Conflict.
 
@@ -79,6 +80,8 @@ defaultproperties
 	RecoilShotScale=1.0f
 	DamageScale=1.0f
 	VehicleDamageScale=1.0f
+
+	SightBobScale=1f
 
 	InventoryModeIndex=0
 	MaxInventoryCapacity=0

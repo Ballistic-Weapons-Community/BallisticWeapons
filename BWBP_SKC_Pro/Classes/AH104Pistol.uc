@@ -511,7 +511,8 @@ defaultproperties
 	GroupOffset=12
 	PickupClass=Class'BWBP_SKC_Pro.AH104Pickup'
 	PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-20.000000)
-	BobDamping=2.300000
+	BobDamping=1.5f
+	SightBobScale=0.4f
 	AttachmentClass=Class'BWBP_SKC_Pro.AH104Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AH104.SmallIcon_AH104'
 	IconCoords=(X2=127,Y2=31)

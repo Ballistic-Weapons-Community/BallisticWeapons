@@ -27,7 +27,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XMk5FlashEmitter'
 		FlashScaleFactor=0.800000
-		Recoil=110.000000
+		Recoil=150.000000
 		Chaos=0.035000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
@@ -72,6 +72,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.250000),(InVal=0.30000,OutVal=0.350000),(InVal=0.450000,OutVal=0.5),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
+		ClimbTime=0.04
 		DeclineTime=0.75
 		DeclineDelay=0.13
 		CrouchMultiplier=0.85

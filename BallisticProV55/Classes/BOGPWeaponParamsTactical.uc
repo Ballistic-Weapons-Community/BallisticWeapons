@@ -16,6 +16,7 @@ defaultproperties
         Damage=150.000000
         ImpactDamage=50
         DamageRadius=1024.000000
+		Recoil=2048
         Chaos=0.700000
         Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.BOGP.BOGP_Fire',Volume=1.750000)
@@ -79,7 +80,8 @@ defaultproperties
         XRandFactor=0.250000
         YRandFactor=0.250000
         DeclineTime=1.000000
-        DeclineDelay=0.800000
+        DeclineDelay=0.200000
+		ClimbTime=0.075
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

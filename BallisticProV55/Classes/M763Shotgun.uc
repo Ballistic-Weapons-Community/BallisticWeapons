@@ -378,6 +378,8 @@ defaultproperties
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M763 Shotgun"
 	bNoCrosshairInScope=True
+	BobDamping=0.8
+	SightBobScale=0.35
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=25

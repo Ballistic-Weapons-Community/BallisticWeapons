@@ -52,6 +52,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.5,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.15
 		YRandFactor=0.15
+		ClimbTime=0.05
 		MaxRecoil=6500.000000
 		DeclineTime=1.25
 		DeclineDelay=0.35000

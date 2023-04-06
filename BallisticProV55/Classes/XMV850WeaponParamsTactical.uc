@@ -28,7 +28,7 @@ defaultproperties
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
 		FlashScaleFactor=0.800000
-		Recoil=72.000000
+		Recoil=96.000000
 		Chaos=0.120000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
@@ -67,6 +67,7 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=8192.000000
+		ClimbTime=0.04
 		DeclineTime=1.5
 	End Object
 

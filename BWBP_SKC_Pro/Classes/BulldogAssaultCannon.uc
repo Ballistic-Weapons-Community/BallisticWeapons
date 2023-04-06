@@ -735,7 +735,8 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.BulldogPickup'
 	PlayerViewOffset=(X=30.000000,Y=2.000000,Z=-15.000000)
-	BobDamping=1.600000
+	BobDamping=1
+	SightBobScale=0.5
 	AttachmentClass=Class'BWBP_SKC_Pro.BulldogAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Bulldog.SmallIcon_Bulldog'
 	IconCoords=(X2=127,Y2=31)

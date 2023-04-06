@@ -28,7 +28,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=192.000000
+		Recoil=310.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
@@ -113,6 +113,7 @@ defaultproperties
 		ViewBindFactor=0.6
 		XRandFactor=0.1
 		YRandFactor=0.1
+		ClimbTime=0.04
 		DeclineTime=0.7500000
 		DeclineDelay=0.240000
 		CrouchMultiplier=1
@@ -145,7 +146,7 @@ defaultproperties
 		//Functions
 		InventorySize=3
 		DisplaceDurationMult=0.33
-		PlayerSpeedFactor=1.05
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.200000
 		MagAmmo=15
 		SightOffset=(X=0,y=-3.140000,Z=14.300000)
@@ -166,7 +167,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
 		//Functions
 		DisplaceDurationMult=0.33
-		PlayerSpeedFactor=1.05
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.200000
 		MagAmmo=15
         InventorySize=3

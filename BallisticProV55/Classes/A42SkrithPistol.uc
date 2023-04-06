@@ -280,7 +280,8 @@ defaultproperties
     NDCrosshairChaosFactor=0.700000
 	SightPivot=(Pitch=1024,Roll=-768)
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-	SightDisplayFOV=40.000000
+	SightBobScale=0.35f
+
 	ParamsClasses(0)=Class'A42WeaponParamsComp'
 	ParamsClasses(1)=Class'A42WeaponParamsClassic'
 	ParamsClasses(2)=Class'A42WeaponParamsRealistic'

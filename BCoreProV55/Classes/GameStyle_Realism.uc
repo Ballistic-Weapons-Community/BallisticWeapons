@@ -11,6 +11,7 @@ defaultproperties
 	Index=GS_Realism
 	StyleName="Realism"
 	bRunInADS=False
+	SightBobScale=1f
 
 	MaxInventoryCapacity=0
 

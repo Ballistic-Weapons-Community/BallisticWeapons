@@ -557,6 +557,8 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	GroupOffset=2
+	BobDamping=0.1
+	SightBobScale=1
 	PickupClass=Class'BWBP_OP_Pro.Z250Pickup'
 	PlayerViewOffset=(X=-20,Y=18.000000,Z=-32.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.Z250Attachment'

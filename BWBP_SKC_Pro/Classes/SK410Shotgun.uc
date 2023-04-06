@@ -208,6 +208,8 @@ defaultproperties
     IconMaterial=Texture'BWBP_SKC_Tex.SK410.SmallIcon_SK410'
     IconCoords=(X2=127,Y2=35)
     ItemName="SK-410 Assault Shotgun"
+	BobDamping=1.5
+	SightBobScale=0.3
     LightType=LT_Pulse
     LightEffect=LE_NonIncidence
     LightHue=25

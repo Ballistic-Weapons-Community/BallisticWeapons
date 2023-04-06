@@ -31,7 +31,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=0.5
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=350.000000
+		Recoil=550.000000
 		Chaos=0.080000
 		WarnTargetPct=0.200000
 	End Object
@@ -94,6 +94,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.5,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
+		ClimbTime=0.05
 		DeclineTime=1.500000
 		DeclineDelay=0.30000
 		HipMultiplier=1.5

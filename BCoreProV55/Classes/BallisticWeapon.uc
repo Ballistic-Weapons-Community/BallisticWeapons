@@ -323,6 +323,7 @@ var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the 
 var() bool					bNoCrosshairInScope;	// Crosshair will be hidden when in scope or sights
 var() name					SightBone;				// Bone at which camera should be to view through sights. Uses origin if none
 var Vector					SMuzzleFlashOffset;		// Offset for muzzle flash in scope
+var() float					SightBobScale;			// Scale for bobbing when in ADS
 //-----------------------------------------------------------------------------
 // Ammo/Reload
 //-----------------------------------------------------------------------------
@@ -558,7 +559,6 @@ simulated function PostBeginPlay()
 	AnimBlendParams(1,0);
 	AnimBlendParams(2,0);
 
-
 	// Channel 2 is used to dampen sight fire animations that haven't been dealt with correctly.
 	// We freeze the first idle frame, which is the basic ADS view, and blend it in with the standard animation.
 	SafePlayAnim(IdleAnim, 1.0, 0, 2);
@@ -652,6 +652,8 @@ simulated function PostNetBeginPlay()
         InventoryGroup = NetInventoryGroup;
 
     bDeferInitialSwitch = bServerDeferInitialSwitch;
+
+	SightBobScale *= class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
 }
 
 simulated function CheckSetBurstMode()
@@ -2510,7 +2512,7 @@ simulated function PositionSights()
 	
 	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 8192;
 	
-	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1 - (SightingPhase * (1 - SightBobScale))))) - (SightPos + ViewAlignedOffset(Offset));
 
 	if (SightingPhase >= 1.0)
 	{	// Weapon locked in sight view
@@ -5356,6 +5358,23 @@ exec function BWSightOffsetZ (float f) {	SightOffset.Z = f;	default.SightOffset.
 
 function SVMessage (){	Instigator.ClientMessage("SightOffset: X: "$SightOffset.X$", Y: "$SightOffset.Y$", Z: "$SightOffset.Z$", Scale: "$DrawScale$", Sight Display FOV: "$SightDisplayFov);	}
 
+// temporary tuning functions for smooth recoil - standalone only
+exec function ClimbTime(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.Params.ClimbTime = f; 
+	} 
+}
+
+exec function PrimaryRecoil(float f)
+{
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		BFireMode[0].FireRecoil = f; 
+	} 
+}
+
 delegate DumpHead(array<CacheManager.WeaponRecord> Recs);
 delegate DumpLine(class<BallisticWeapon> Weap, int Line);
 delegate DumpTail(array<CacheManager.WeaponRecord> Recs);
@@ -5641,6 +5660,7 @@ defaultproperties
      MinZoom=1.000000
      MaxZoom=2.000000
      ZoomStages=2
+	 SightBobScale=0.15
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
      MagEmptyColor=(B=50,G=50,R=255,A=150)

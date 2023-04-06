@@ -20,7 +20,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-		Recoil=512.000000
+		Recoil=1280.000000
 		Chaos=0.800000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
@@ -50,7 +50,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 		FlashScaleFactor=0.000000
-		Recoil=768.000000
+		Recoil=1280.000000
 		Chaos=0.800000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
@@ -74,11 +74,12 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.65
 		CrouchMultiplier=0.850000
+		ClimbTime=0.06
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.400000,OutVal=0.10000),(InVal=0.600000,OutVal=0.25000),(InVal=0.800000,OutVal=0.33000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		MaxRecoil=6400.000000
+		MaxRecoil=8192
 		DeclineTime=1
-		DeclineDelay=1.000000
+		DeclineDelay=0.6
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object

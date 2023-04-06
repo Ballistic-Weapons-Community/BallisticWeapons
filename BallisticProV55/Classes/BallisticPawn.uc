@@ -542,6 +542,25 @@ function CheckBob(float DeltaTime, vector Y)
 	}
 }
 
+simulated final function float FootstepSurfaceScale (int Surf)
+{
+	switch (Surf)
+	{
+		Case 0:/*EST_Default*/	return 1.0; 	// bricks, concrete, drywall and such
+		Case 1:/*EST_Rock*/		return 1.0;		// rocks
+		Case 2:/*EST_Dirt*/		return 0.75;	// sand, etc - we assume it dampens
+		Case 3:/*EST_Metal*/	return 3.0;		// metal is damn loud
+		Case 4:/*EST_Wood*/		return 2.0;		// we assume floorboards and amp it
+		Case 5:/*EST_Plant*/	return 0.5;		// dampens sound well
+		Case 6:/*EST_Flesh*/	return 2.0;	 	// disgusting
+		Case 7:/*EST_Ice*/		return 1.0;
+		Case 8:/*EST_Snow*/		return 2.0;		// compacting snow makes a fair bit of noise
+		Case 9:/*EST_Water*/	return 3.0;		// almost never going to see this one
+		Case 10:/*EST_Glass*/	return 1.0;		// nor this one
+		default:				return 1.0;
+	}
+}
+
 simulated function FootStepping(int Side)
 {
     local int SurfaceNum, i;
@@ -577,7 +596,7 @@ simulated function FootStepping(int Side)
 
 	// footsteps are slightly quieter if we are local pawn - hear others better
 	if (IsLocallyControlled())
-		SoundVolumeScale *= 0.67f;
+		SoundVolumeScale *= 0.65f;
 
 	// handle water
     for ( i=0; i<Touching.Length; i++ )
@@ -612,6 +631,9 @@ simulated function FootStepping(int Side)
 		if (FloorMat !=None)
 			SurfaceNum = FloorMat.SurfaceType;
 	}
+
+	SoundRadiusScale *= FootstepSurfaceScale(SurfaceNum);
+
 	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundVolumeScale,, FootstepRadius * SoundRadiusScale );
 }
 
@@ -3061,7 +3083,7 @@ defaultproperties
      ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.5
-     FootstepRadius=18.000000
+     FootstepRadius=22.000000
 
 	 BaseEyeHeight=36
      CollisionRadius=19.000000
@@ -3069,7 +3091,7 @@ defaultproperties
 	 CrouchHeight=32
 
      GruntVolume=0.5
-     GruntRadius=18.000000
+     GruntRadius=20.000000
 
      DeResTime=4.000000
      RagDeathUpKick=0.000000

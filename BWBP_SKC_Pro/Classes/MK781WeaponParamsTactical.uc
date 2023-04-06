@@ -24,7 +24,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.Mk781FlashEmitter'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MK781.Mk781-Fire',Volume=1.300000)
-		Recoil=300.000000
+		Recoil=768.000000
 		Inaccuracy=(X=256,Y=256)
 		BotRefireRate=0.800000
 		WarnTargetPct=0.400000	
@@ -57,7 +57,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=2.300000,Radius=256.000000)
-		Recoil=240.000000
+		Recoil=512.000000
 		Inaccuracy=(X=128,Y=128)
 		BotRefireRate=0.800000
 		WarnTargetPct=0.400000		
@@ -150,7 +150,8 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.5),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineDelay=0.600000
+		ClimbTime=0.06
+		DeclineDelay=0.450000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

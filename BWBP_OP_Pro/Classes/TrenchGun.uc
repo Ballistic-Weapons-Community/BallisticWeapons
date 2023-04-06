@@ -681,6 +681,7 @@ defaultproperties
 	WeaponModes(4)=(ModeName="Ammo: Dragon",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
 	SightOffset=(X=40.000000,Y=2.800000,Z=8.700000)
+	SightBobScale=0.3
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
