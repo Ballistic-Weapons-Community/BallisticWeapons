@@ -95,7 +95,7 @@ defaultproperties
         DisplaceDurationMult=0.75
         MagAmmo=8
         InventorySize=4
-		SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
+		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
 		SightingTime=0.250000
 		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -104,4 +104,31 @@ defaultproperties
         AltFireParams(0)=FireParams'ArenaFlashFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=AM67_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AM67_Gray
+		Index=1
+		CamoName="Pounder"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AM67Camos.AM67.AH104-MainMk2",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AM67_Silver
+		Index=2
+		CamoName="Special Edition"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AM67Camos.AH999-Main",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'AM67_Green'
+	Camos(1)=WeaponCamo'AM67_Gray'
+	Camos(2)=WeaponCamo'AM67_Silver'
 }

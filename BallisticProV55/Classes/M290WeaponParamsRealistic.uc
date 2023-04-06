@@ -138,9 +138,9 @@ defaultproperties
 		SightingTime=0.25
 		MagAmmo=8
 		bMagPlusOne=True //Todo: Plus two
-		ViewOffset=(X=20.000000,Y=8.000000,Z=-13.000000)
-		SightOffset=(X=-50.000000,Z=17.000000)     //Original
-		SightPivot=(Pitch=512)                     //Original
+		ViewOffset=(X=14.000000,Y=8.000000,Z=-13.000000)
+		//SightOffset=(X=-50.000000,Z=17.000000)     //Original
+		SightPivot=(Pitch=256)                     //Original
 		CockAnimRate=1.400000
 		ReloadAnimRate=1.350000
 		WeaponName="M290 12ga Double-Shotgun"
@@ -150,6 +150,31 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M290_Yellow
+		Index=0
+		CamoName="Yellow"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M290_Dark
+		Index=1
+		CamoName="Dark Orange"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M290Camos.MiniThorSkin",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M290_Retro
+		Index=2
+		CamoName="Retro Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M290Camos.M290_SH1",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'M290_Yellow'
+	Camos(1)=WeaponCamo'M290_Dark'
+	Camos(2)=WeaponCamo'M290_Retro'
 }

@@ -106,7 +106,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Snub Fighter"
+		LayoutName="Iron Sights"
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=7
 		PlayerSpeedFactor=1.100000
@@ -114,8 +114,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14
-		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
-		SightPivot=(Pitch=1024,Roll=-1024)
+		//SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
+		//SightPivot=(Pitch=1024,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -128,7 +128,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
-		LayoutName="Mid-Range"
+		LayoutName="RDS"
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
 		Weight=2
 		PlayerSpeedFactor=1.100000
@@ -136,56 +136,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14
-		SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
+		//SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
 		SightPivot=(Pitch=0,Roll=-0)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Gray
-		LayoutName="Heavy Pounder"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AM67Camos.AM67.AH104-MainMk2",Index=1)
-		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
-		Weight=3
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=14
-		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
-		SightPivot=(Pitch=1024,Roll=-1024)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Silver
-		LayoutName="AH999 Limited"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AM67Camos.AH999-Main",Index=1)
-		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
-		Weight=1
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=14
-		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
-		SightPivot=(Pitch=1024,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -199,7 +151,31 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_RDS'
-	Layouts(2)=WeaponParams'ClassicParams_Gray' //AH104
-	Layouts(3)=WeaponParams'ClassicParams_Silver' //AH999
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=AM67_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AM67_Gray
+		Index=1
+		CamoName="Pounder"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AM67Camos.AM67.AH104-MainMk2",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AM67_Silver
+		Index=2
+		CamoName="Special Edition"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AM67Camos.AH999-Main",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'AM67_Green'
+	Camos(1)=WeaponCamo'AM67_Gray'
+	Camos(2)=WeaponCamo'AM67_Silver'
 }
