@@ -89,7 +89,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
+		//SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 		PlayerSpeedFactor=0.95
 		InventorySize=7
 		SightMoveSpeedFactor=0.45
@@ -102,4 +102,23 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=Z250_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Z250_Gold
+		Index=1
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_body_SH2",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_Sight_SH2",Index=2,AIndex=1,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'Z250_Green'
+	Camos(1)=WeaponCamo'Z250_Gold'
 }

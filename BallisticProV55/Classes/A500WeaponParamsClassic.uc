@@ -167,7 +167,7 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
-		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
+		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -187,7 +187,7 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
-		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
+		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -207,7 +207,7 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
-		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
+		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -230,7 +230,7 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
-		SightOffset=(X=4.000000,Y=0.100000,Z=33.500000)
+		//SightOffset=(X=4.000000,Y=0.100000,Z=33.500000)
 		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

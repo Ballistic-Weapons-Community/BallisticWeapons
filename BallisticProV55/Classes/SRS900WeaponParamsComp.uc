@@ -119,9 +119,9 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
+		SightOffset=(X=35.000000,Z=11.750000)
 		//Function
 		CockAnimRate=1.200000
-		SightOffset=(X=35.000000,Z=11.750000)
 		MagAmmo=20
 		SightingTime=0.50000
 		SightMoveSpeedFactor=0.6
@@ -139,9 +139,9 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
+		SightOffset=(X=25.000000,Z=9.88000)
 		//Function
 		CockAnimRate=1.200000
-		SightOffset=(X=25.000000,Z=9.88000)
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.8
@@ -157,9 +157,9 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
+		SightOffset=(X=22.000000,Z=8.650000)
 		//Function
 		CockAnimRate=1.200000
-		SightOffset=(X=22.000000,Z=8.650000)
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.9

@@ -99,12 +99,12 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.300000
 		DisplaceDurationMult=1
-		ViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
-		SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
+		//ViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
+		//SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
 		SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Flamethrower",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(1)=(ModeName="Healing Gas",Value=2,ModeID="WM_BigBurst")

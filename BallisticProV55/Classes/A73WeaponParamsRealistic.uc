@@ -246,9 +246,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=48
-		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
-		SightOffset=(X=-1-.000000,Z=14.300000)
-		SightPivot=(Pitch=768)
+		//ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
+		//SightOffset=(X=-1-.000000,Z=14.300000)
+		SightPivot=(Pitch=450)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="A77 Plasma Rifle"
@@ -273,9 +273,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=48
-		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
-		SightOffset=(X=-1-.000000,Z=14.300000)
-		SightPivot=(Pitch=768)
+		//ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
+		//SightOffset=(X=-1-.000000,Z=14.300000)
+		SightPivot=(Pitch=450)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="A77 Plasma Rifle"
@@ -300,9 +300,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=48
-		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
-		SightOffset=(X=-1-.000000,Z=14.300000)
-		SightPivot=(Pitch=768)
+		//ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
+		//SightOffset=(X=-1-.000000,Z=14.300000)
+		SightPivot=(Pitch=450)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="A77 Plasma Rifle"

@@ -120,8 +120,8 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=100
-		ViewOffset=(X=5.000000,Y=2.000000,Z=-9.000000)
-		SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
+		//ViewOffset=(X=5.000000,Y=2.000000,Z=-9.000000)
+		//SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
 		SightPivot=(Pitch=128)
 		WeaponName="M575 7.62mm Medium Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

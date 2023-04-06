@@ -121,12 +121,12 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=0f)
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.750000
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
-		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
-		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
+		//ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		//SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
 		SightPivot=(Pitch=200)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
@@ -145,8 +145,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
-		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
-		SightOffset=(X=-40.000000,Y=13.550000,Z=22.950000)
+		//ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		//SightOffset=(X=-40.000000,Y=13.550000,Z=22.950000)
 		SightPivot=(Pitch=200)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
@@ -169,8 +169,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
-		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
-		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
+		//ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		//SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
 		SightPivot=(Pitch=200)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

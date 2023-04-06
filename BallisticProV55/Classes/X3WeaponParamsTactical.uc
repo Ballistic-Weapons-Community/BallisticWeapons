@@ -125,4 +125,22 @@ defaultproperties
 		AltFireParams(1)=FireParams'TacticalPrimaryFireProjParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=X3_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=X3_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.X3Camos.KnifeA1Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Camos(0)=WeaponCamo'X3_Silver'
+	Camos(1)=WeaponCamo'X3_Black'
 }

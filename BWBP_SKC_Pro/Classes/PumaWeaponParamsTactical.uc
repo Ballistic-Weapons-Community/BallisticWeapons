@@ -180,7 +180,7 @@ defaultproperties
 		SightingTime=0.50000		
 		DisplaceDurationMult=1
 		MagAmmo=8
-		SightOffset=(X=0.000000,Y=-0.035000,Z=19.500000)
+		//SightOffset=(X=0.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
 		WeaponModes(0)=(ModeName="Airburst: Impact Detonation",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Airburst: Proximity Detonation",ModeID="WM_FullAuto")

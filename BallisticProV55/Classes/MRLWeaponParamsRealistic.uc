@@ -108,7 +108,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.45
 		MagAmmo=40
-		ViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
+		//ViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
 		ViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
 		WeaponName="JL21 'PeaceMaker' Rocket Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

@@ -108,8 +108,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=25
-		ViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
-		SightOffset=(X=-10.000000,Z=9.45000)
+		//ViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
+		//SightOffset=(X=-10.000000,Z=9.45000)
 		SightPivot=(Pitch=32)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=true)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=true)

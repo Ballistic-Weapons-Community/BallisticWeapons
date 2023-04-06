@@ -115,7 +115,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=4
-		SightOffset=(X=0.000000,Y=5.300000,Z=23.300000)
+		//SightOffset=(X=0.000000,Y=5.300000,Z=23.300000)
 		ZoomType=ZT_Fixed
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

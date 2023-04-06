@@ -107,7 +107,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35
 		MagAmmo=6
-		SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
+		//SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
 		SightPivot=(Pitch=512)
 		WeaponModes(0)=(ModeName="Impact",ModeID="WM_SemiAuto",Value=1)
 		WeaponModes(1)=(ModeName="4-Round Burst",bUnavailable=True)

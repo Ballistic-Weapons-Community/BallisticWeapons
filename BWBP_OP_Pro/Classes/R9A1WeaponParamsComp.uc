@@ -127,7 +127,7 @@ defaultproperties
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		SightPivot=(Roll=11800)
-		SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)	
+		//SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)	
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.6

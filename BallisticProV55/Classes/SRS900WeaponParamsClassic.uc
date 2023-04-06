@@ -102,12 +102,13 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
+		SightOffset=(X=35.000000,Z=11.750000)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20
-		SightOffset=(X=20.000000,Z=11.750000)
+		//SightOffset=(X=20.000000,Z=11.750000)
         ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -128,13 +129,41 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
+		SightOffset=(X=25.000000,Z=9.88000)
 		//Function
 		ZoomType=ZT_Irons
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20
-		SightOffset=(X=11.000000,Z=9.88000)
+		//SightOffset=(X=11.000000,Z=9.88000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		//Layout core
+		LayoutName="Iron Sights"
+		Weight=5
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
+		SightOffset=(X=22.000000,Z=8.650000)
+		//Function
+		ZoomType=ZT_Irons
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=20
+		//SightOffset=(X=11.000000,Z=9.88000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -149,6 +178,7 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'ClassicParams_Scope'
 	Layouts(1)=WeaponParams'ClassicParams_RDS'
+	Layouts(2)=WeaponParams'ClassicParams_Irons'
 		
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=SRS_Gray

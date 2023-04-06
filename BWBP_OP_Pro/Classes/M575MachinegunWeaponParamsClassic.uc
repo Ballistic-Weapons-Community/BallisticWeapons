@@ -119,12 +119,13 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
+		InventorySize=9
 		PlayerSpeedFactor=0.90000
 		PlayerJumpFactor=0.900000
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=50
-		SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
+		//SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
 		SightPivot=(Pitch=128)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

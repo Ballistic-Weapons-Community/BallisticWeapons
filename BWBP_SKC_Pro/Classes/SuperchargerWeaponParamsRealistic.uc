@@ -135,7 +135,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
-		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
+		//SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
 		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)

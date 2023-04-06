@@ -76,7 +76,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=RealisticParams
-		ViewOffset=(X=10.000000,Z=-20.000000)
+		//ViewOffset=(X=10.000000,Z=-20.000000)
  	    PlayerSpeedFactor=1.10
         DisplaceDurationMult=0.33
         MagAmmo=1

@@ -181,7 +181,7 @@ defaultproperties
 		WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
 		InitialWeaponMode=0
 		WeaponName="SKAS-21 Automatic Shotgun"
-		SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
+		//SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000

@@ -158,4 +158,58 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=CYLOFS_Orange
+		Index=0
+		CamoName="Orange"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Red
+		Index=2
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainRed",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Blue
+		Index=3
+		CamoName="Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainBlue",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Yellow
+		Index=4
+		CamoName="Yellow"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainYellow",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_OrangeFancy
+		Index=5
+		CamoName="Custom Orange"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainStripes",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Gold
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainGold",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'CYLOFS_Orange'
+	Camos(1)=WeaponCamo'CYLOFS_Red'
+	Camos(2)=WeaponCamo'CYLOFS_Blue'
+	Camos(3)=WeaponCamo'CYLOFS_Yellow'
+	Camos(4)=WeaponCamo'CYLOFS_OrangeFancy'
+	Camos(5)=WeaponCamo'CYLOFS_Gold'
 }

@@ -116,8 +116,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.4
 		MagAmmo=900
-		ViewOffset=(X=7.000000,Y=6.000000,Z=-18.000000)
-		SightOffset=(X=8.000000,Z=28.000000)
+		//ViewOffset=(X=7.000000,Y=6.000000,Z=-18.000000)
+		//SightOffset=(X=8.000000,Z=28.000000)
 		SightPivot=(Pitch=700,Roll=2048)
 		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=True)

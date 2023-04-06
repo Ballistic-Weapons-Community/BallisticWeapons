@@ -116,12 +116,12 @@ defaultproperties
 		Weight=30
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
+		SightOffset=(Y=-1.000000,Z=12.500000)
 		//Function
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=25
 		InventorySize=7
-		SightOffset=(Y=-1.000000,Z=12.500000)
 		SightPivot=(Pitch=600,Roll=-1024)
         ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -142,13 +142,14 @@ defaultproperties
 		Weight=20
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		SightOffset=(X=5,Y=0.050000,Z=11.350000)
 		//Function
         SightingTime=0.350000
 		bNeedCock=True
         MagAmmo=25
         InventorySize=7
         SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+        //SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -177,7 +178,7 @@ defaultproperties
         MagAmmo=25
         InventorySize=7
         SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+        //SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -203,7 +204,7 @@ defaultproperties
         MagAmmo=25
         InventorySize=7
         SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+        //SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")

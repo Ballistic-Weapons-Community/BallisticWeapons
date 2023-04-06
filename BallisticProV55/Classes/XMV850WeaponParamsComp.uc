@@ -86,7 +86,7 @@ defaultproperties
 		//Function
 		ReloadAnimRate=1.300000
 		SightPivot=(Pitch=700,Roll=2048)
-		SightOffset=(X=8.000000,Z=30.000000)
+		//SightOffset=(X=8.000000,Z=30.000000)
 		DisplaceDurationMult=1.4
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9

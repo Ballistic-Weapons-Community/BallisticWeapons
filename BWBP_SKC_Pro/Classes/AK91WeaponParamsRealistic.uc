@@ -133,7 +133,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		ZoomType=ZT_Irons
 		//Function
 		InventorySize=12
@@ -143,7 +143,7 @@ defaultproperties
 		MagAmmo=25
 		bMagPlusOne=True
 		SightPivot=(Pitch=64)
-		ViewOffset=(X=0.000000,Y=5.000000,Z=-14.000000)
+		//ViewOffset=(X=0.000000,Y=5.000000,Z=-14.000000)
 		WeaponName="AK-91 7.62mm Charge Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -157,7 +157,7 @@ defaultproperties
 		LayoutName="ACOG"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=1f)
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
@@ -168,7 +168,7 @@ defaultproperties
 		MagAmmo=25
 		bMagPlusOne=True
 		SightPivot=(Pitch=64)
-		ViewOffset=(X=0.000000,Y=5.000000,Z=-14.000000)
+		//ViewOffset=(X=0.000000,Y=5.000000,Z=-14.000000)
 		WeaponName="AK-91 7.62mm Charge Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
 		AimParams(0)=AimParams'RealisticAimParams'

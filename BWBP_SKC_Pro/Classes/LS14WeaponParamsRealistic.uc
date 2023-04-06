@@ -175,8 +175,8 @@ defaultproperties
 		SightingTime=0.3
 		MagAmmo=20
 		//ViewOffset=(X=-4.000000,Y=10.000000,Z=-16.000000)
-		ViewOffset=(X=-8.000000,Y=9.000000,Z=-16.000000)
-		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+		//ViewOffset=(X=-8.000000,Y=9.000000,Z=-16.000000)
+		//SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_SemiAuto",Value=1.000000)
@@ -204,7 +204,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=20
-		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+		//SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_FullAuto")

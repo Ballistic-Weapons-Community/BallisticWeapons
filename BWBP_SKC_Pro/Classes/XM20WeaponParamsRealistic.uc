@@ -122,17 +122,26 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		Weight=30
+		LayoutName="Production"
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		//Attachments
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
+		SightPivot=(Pitch=600,Roll=-1024)
+		ZoomType=ZT_Smooth
+		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=40
-		SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
-		ViewOffset=(X=0.000000,Y=-3.000000,Z=-16.000000)
-		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Smooth
+		//ViewOffset=(X=0.000000,Y=-3.000000,Z=-16.000000)
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
 		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
@@ -144,7 +153,49 @@ defaultproperties
 		AltFireParams(1)=FireParams'RealisticSecondaryFireParams'
 		AltFireParams(2)=FireParams'RealisticSecondaryFireParamsOvercharge'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Proto
+		//Layout core
+		Weight=10
+		LayoutName="Prototype"
+		AllowedCamos(0)=5
+		AllowedCamos(1)=6
+		//Attachments
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainProtoShine',Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-MiscProto',Index=3,AIndex=2,PIndex=0)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(5)=(Material=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-WiresProto',Index=5,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(6)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader',Index=6,AIndex=-1,PIndex=-1)
+		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
+		ReloadAnimRate=1.000000
+		SightOffset=(X=10.000000,Y=11.9500000,Z=20.000000)
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
+		//Function
+		PlayerSpeedFactor=1.100000
+		PlayerJumpFactor=1.100000
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
+		MagAmmo=40
+		//SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
+		//ViewOffset=(X=0.000000,Y=-3.000000,Z=-16.000000)
+		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
+		WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(1)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(2)=FireParams'RealisticSecondaryFireParamsOvercharge'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Proto'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XM20_Black

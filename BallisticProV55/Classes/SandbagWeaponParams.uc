@@ -47,7 +47,7 @@ defaultproperties
 		PlayerSpeedFactor=1
         MagAmmo=1
         InventorySize=1
-		ViewOffset=(X=40.000000,Z=-10.000000)
+		//ViewOffset=(X=40.000000,Z=-10.000000)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
         FireParams(0)=FireParams'UniversalFireParams'

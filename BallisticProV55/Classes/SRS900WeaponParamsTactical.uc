@@ -184,6 +184,10 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_600'
     End Object 
 	
+    Layouts(0)=WeaponParams'TacticalParams_Scope'
+    Layouts(1)=WeaponParams'TacticalParams_RDS'
+	Layouts(2)=WeaponParams'TacticalParams_IRONS'
+	
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=SRS_Gray
 		Index=0
@@ -261,9 +265,6 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-S",Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
-    Layouts(0)=WeaponParams'TacticalParams_Scope'
-    Layouts(1)=WeaponParams'TacticalParams_RDS'
-	Layouts(2)=WeaponParams'TacticalParams_IRONS'
 	Camos(0)=WeaponCamo'SRS_Gray'
     Camos(1)=WeaponCamo'SRS_Desert'
     Camos(2)=WeaponCamo'SRS_DesertTac'

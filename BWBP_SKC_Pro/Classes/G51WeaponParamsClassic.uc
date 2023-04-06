@@ -122,7 +122,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="HoloSightLower",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		SightOffset=(X=0.000000,Y=-6.450000,Z=24.000000)
+		//SightOffset=(X=0.000000,Y=-6.450000,Z=24.000000)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -147,7 +147,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=1f)
-		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
+		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -172,7 +172,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
+		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000

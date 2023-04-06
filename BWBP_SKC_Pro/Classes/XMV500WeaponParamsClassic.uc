@@ -99,11 +99,11 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=600
-		ViewOffset=(X=50.000000,Y=0.000000,Z=-50.000000)
-		SightOffset=(X=-40.000000,Y=0,Z=90.000000)
+		//ViewOffset=(X=50.000000,Y=0.000000,Z=-50.000000)
+		//SightOffset=(X=-40.000000,Y=0,Z=90.000000)
 		SightPivot=(Pitch=1024,Roll=0)
 		//ViewOffset=(X=5.000000,Y=0.000000,Z=-30.000000)
-		//SightOffset=(X=8.000000,Z=28.000000)
+		////SightOffset=(X=8.000000,Z=28.000000)
 		//SightPivot=(Pitch=700,Roll=2048)
 		WeaponModes(0)=(bUnavailable=True)
 		WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")

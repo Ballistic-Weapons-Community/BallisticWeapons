@@ -483,7 +483,10 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
-	SightPivot=(Pitch=350,Roll=-500)
+	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+	bAdjustHands=true
+	RootAdjust=(Yaw=-375,Pitch=2000)
+	WristAdjust=(Yaw=-2500,Pitch=-0000)
 	ParamsClasses(0)=Class'D49WeaponParamsComp'
 	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	ParamsClasses(2)=Class'D49WeaponParamsRealistic'

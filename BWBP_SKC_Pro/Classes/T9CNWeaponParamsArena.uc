@@ -71,7 +71,7 @@ defaultproperties
         InventorySize=4
 		MagAmmo=18
 		SightPivot=(Pitch=128)
-		SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
+		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

@@ -127,8 +127,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14
-		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
-		SightPivot=(Pitch=1024,Roll=-1024)
+		//SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
+		//SightPivot=(Pitch=1024,Roll=-1024)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

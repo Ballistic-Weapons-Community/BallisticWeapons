@@ -193,8 +193,8 @@ defaultproperties
 		SightingTime=0.15
 		MagAmmo=33
 		bMagPlusOne=True
-		ViewOffset=(X=6.000000,Y=7.000000,Z=-8.000000)
-		SightOffset=(X=-15.000000,Y=0.000000,Z=6.500000)
+		//ViewOffset=(X=6.000000,Y=7.000000,Z=-8.000000)
+		//SightOffset=(X=-15.000000,Y=0.000000,Z=6.500000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)

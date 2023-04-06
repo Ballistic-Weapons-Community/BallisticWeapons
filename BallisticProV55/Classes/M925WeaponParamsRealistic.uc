@@ -101,9 +101,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35
 		MagAmmo=50
-		ViewOffset=(X=5.000000,Y=5.000000,Z=-10.000000)
-		SightOffset=(X=-10.000000,Z=7.095000)
-		SightPivot=(Pitch=32)
+		//ViewOffset=(X=5.000000,Y=5.000000,Z=-10.000000)
+		//SightOffset=(X=-10.000000,Z=7.095000)
+		//SightPivot=(Pitch=32)
 		CockAnimRate=1.000000
 		ReloadAnimRate=0.900000
         WeaponName="M925 .50 Heavy Machinegun"

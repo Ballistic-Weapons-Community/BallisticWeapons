@@ -126,9 +126,10 @@ defaultproperties
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
-		ViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
-		SightOffset=(X=-10.000000,Y=-0.650000,Z=10.500000)
-		SightPivot=(Pitch=1024,Roll=-1024)
+		//ViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
+		//SightOffset=(X=-10.000000,Y=-0.650000,Z=10.500000)
+		//SightPivot=(Pitch=1024,Roll=-1024)
+		SightPivot=(Pitch=300)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

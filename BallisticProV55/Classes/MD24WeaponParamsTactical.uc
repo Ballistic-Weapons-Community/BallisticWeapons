@@ -80,7 +80,7 @@ defaultproperties
 		Weight=30
 		//Attachments
 		//Function
-		SightOffset=(X=-8.000000,Y=-0.030000,Z=7.400000)
+		//SightOffset=(X=-8.000000,Y=-0.030000,Z=7.400000)
 		SightingTime=0.200000
         DisplaceDurationMult=0.33
         SightMoveSpeedFactor=0.6

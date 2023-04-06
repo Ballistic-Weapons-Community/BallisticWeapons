@@ -101,12 +101,12 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
 		SightPivot=(Pitch=450)
-		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-		ViewOffset=(X=5.000000,Z=-5.000000)
+		//SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		//ViewOffset=(X=5.000000,Z=-5.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
         DisplaceDurationMult=0.75
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		MagAmmo=24
@@ -121,12 +121,12 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Blue_S",Index=0)
 		Weight=20
 		SightPivot=(Pitch=450)
-		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-		ViewOffset=(X=5.000000,Z=-5.000000)
+		//SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		//ViewOffset=(X=5.000000,Z=-5.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
         DisplaceDurationMult=0.75
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		MagAmmo=24
@@ -141,8 +141,8 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Black_S",Index=0)
 		Weight=10
 		SightPivot=(Pitch=450)
-		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-		ViewOffset=(X=5.000000,Z=-5.000000)
+		//SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		//ViewOffset=(X=5.000000,Z=-5.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
         DisplaceDurationMult=0.75
@@ -161,8 +161,8 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Wooden_S",Index=0)
 		Weight=10
 		SightPivot=(Pitch=450)
-		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-		ViewOffset=(X=5.000000,Z=-5.000000)
+		//SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		//ViewOffset=(X=5.000000,Z=-5.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
         DisplaceDurationMult=0.75
@@ -181,8 +181,8 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Emerald_S",Index=0)
 		Weight=3
 		SightPivot=(Pitch=450)
-		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-		ViewOffset=(X=5.000000,Z=-5.000000)
+		//SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		//ViewOffset=(X=5.000000,Z=-5.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
         DisplaceDurationMult=0.75
@@ -201,8 +201,8 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_GnB_S",Index=0)
 		Weight=1
 		SightPivot=(Pitch=450)
-		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-		ViewOffset=(X=5.000000,Z=-5.000000)
+		//SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+		//ViewOffset=(X=5.000000,Z=-5.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
         DisplaceDurationMult=0.75

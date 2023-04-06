@@ -88,7 +88,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

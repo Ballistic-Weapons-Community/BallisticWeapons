@@ -104,8 +104,8 @@ defaultproperties
 		SightingTime=0.300000
 		MagAmmo=3
 		bMagPlusOne=True
-		ViewOffset=(X=8.000000,Y=8.000000,Z=-14.000000)
-		SightOffset=(X=15.7500000,Y=0.000000,Z=24.700000)
+		//ViewOffset=(X=8.000000,Y=8.000000,Z=-14.000000)
+		//SightOffset=(X=15.7500000,Y=0.000000,Z=24.700000)
 		ReloadAnimRate=1.100000
 		CockAnimRate=1.325000
 		ZoomType=ZT_Logarithmic

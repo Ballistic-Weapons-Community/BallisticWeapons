@@ -114,8 +114,8 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		ReloadAnimRate=0.80000
-		SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
-		ViewOffset=(X=15.000000,Y=13.000000,Z=-16.000000)
+		//SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
+		//ViewOffset=(X=15.000000,Y=13.000000,Z=-16.000000)
 		WeaponModes(0)=(ModeName="Barrage",ModeID="WM_BigBurst",Value=3)
 		WeaponModes(1)=(ModeName="High Velocity",ModeID="WM_FullAuto",Value=1)
 		WeaponModes(2)=(ModeName="N/A",ModeID="WM_BigBurst",Value=3,bUnavailable=True)

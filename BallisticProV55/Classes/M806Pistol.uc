@@ -356,6 +356,10 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightOffset=(X=5.000000,Y=-4.9,Z=46.00000)
+	SightPivot=(Pitch=-110,Roll=-675)              //Aligned
+	bAdjustHands=true
+	RootAdjust=(Yaw=-375,Pitch=3500)
+	WristAdjust=(Yaw=-3500,Pitch=-000)
 	SightBobScale=1f
 	ParamsClasses(0)=Class'M806WeaponParamsComp'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'

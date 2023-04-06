@@ -166,15 +166,16 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=0f)
 		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=0f)
-		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
-		SightPivot=(Pitch=32)
+		SightOffset=(X=15,Y=15.000000,Z=6.250000)
+		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+		//SightPivot=(Pitch=32)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35
 		//Function
 		PlayerSpeedFactor=0.825000
 		InventorySize=8
 		MagAmmo=40
-		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
+		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
 		WeaponName="FG-50 .50 Heavy Machinegun"
@@ -196,14 +197,15 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=1f)
 		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=1f)
-		SightOffset=(X=0.000000,Y=25.000000,Z=8.200000)
+		SightOffset=(X=0.000000,Y=15.050000,Z=5.000000)
+		//SightOffset=(X=0.000000,Y=25.000000,Z=8.200000)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35
 		//Function
 		PlayerSpeedFactor=0.825000
 		InventorySize=8
 		MagAmmo=40
-		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
+		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
 		WeaponName="FG-50 .50 Heavy Machinegun"

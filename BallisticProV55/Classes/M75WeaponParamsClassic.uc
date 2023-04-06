@@ -98,7 +98,7 @@ defaultproperties
 		Weight=70
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
-		InventorySize=7
+		InventorySize=9
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=7
@@ -119,7 +119,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
-		InventorySize=7
+		InventorySize=9
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=7
@@ -143,7 +143,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
-		InventorySize=7
+		InventorySize=9
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=7

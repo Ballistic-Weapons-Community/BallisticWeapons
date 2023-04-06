@@ -115,7 +115,7 @@ defaultproperties
 		PlayerJumpFactor=0.9
 		InventorySize=19
 		SightMoveSpeedFactor=0.8
-		ViewOffset=(X=25,Y=10,Z=-26)
+		//ViewOffset=(X=25,Y=10,Z=-26)
 		SightingTime=0.750000
 		ReloadAnimRate=0.800000
 		DisplaceDurationMult=1

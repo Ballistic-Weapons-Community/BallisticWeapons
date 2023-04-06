@@ -103,13 +103,13 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=0.850000
-		InventorySize=7
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
 		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
-		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
+		//SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

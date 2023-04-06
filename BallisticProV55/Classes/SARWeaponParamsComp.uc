@@ -134,7 +134,7 @@ defaultproperties
         CockAnimRate=1.250000
 		ReloadAnimRate=1.100000
 		SightPivot=(Pitch=450)
-		SightOffset=(X=35.000000,Y=-0.010000,Z=13.600000)
+		//SightOffset=(X=35.000000,Y=-0.010000,Z=13.600000)
 		MagAmmo=32
         InventorySize=5
         SightingTime=0.250000

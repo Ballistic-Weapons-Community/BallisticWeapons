@@ -112,9 +112,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=10
-		ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
+		//ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
 		ViewPivot=(Pitch=600)
-		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
+		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
 		WeaponName="A500 'Reptile' Chemical Gun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

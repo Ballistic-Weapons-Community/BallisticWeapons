@@ -113,7 +113,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-		SightOffset=(X=-15.000000,Y=-1.5,Z=15.30000)
+		//SightOffset=(X=-15.000000,Y=-1.5,Z=15.30000)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)

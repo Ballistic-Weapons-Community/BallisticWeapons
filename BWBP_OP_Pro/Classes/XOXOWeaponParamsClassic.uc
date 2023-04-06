@@ -214,43 +214,11 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
+		//SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
 		SightPivot=(Pitch=768)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.30000
-		DisplaceDurationMult=1
-		MagAmmo=70
-		WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-		WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
-		WeaponModes(2)=(ModeName="Lust Shockwave",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-		FireParams(0)=FireParams'ClassicFastPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicBombPrimaryFireParams'
-		FireParams(2)=FireParams'ClassicLustPrimaryFireParams'
-		FireParams(3)=FireParams'ClassicNukePrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-		RecoilParams(0)=RecoilParams'ClassicFastRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicBombRecoilParams'
-		RecoilParams(2)=RecoilParams'ClassicLustRecoilParams'
-		RecoilParams(3)=RecoilParams'ClassicNukeRecoilParams'
-		AimParams(0)=AimParams'ClassicFastAimParams'
-		AimParams(1)=AimParams'ClassicBombAimParams'
-		AimParams(2)=AimParams'ClassicLustAimParams'
-		AimParams(3)=AimParams'ClassicNukeAimParams'
-    End Object 
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Purple
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XOXOCamos.XOXOPurpleCamo-Shine",Index=1)
-		SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
-		SightPivot=(Pitch=768)
-		PlayerSpeedFactor=1
-		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.30000
 		DisplaceDurationMult=1
@@ -275,5 +243,22 @@ defaultproperties
     End Object 
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Purple'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=XOXO_Pink
+		Index=0
+		CamoName="Love"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XOXO_Purple
+		Index=1
+		CamoName="Lust"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XOXOCamos.XOXOPurpleCamo-Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Camos(0)=WeaponCamo'XOXO_Pink'
+	Camos(1)=WeaponCamo'XOXO_Purple'
 }

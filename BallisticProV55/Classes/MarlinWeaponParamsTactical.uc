@@ -115,7 +115,7 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
 		CockAnimRate=1.250000
-		ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
+		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.35
         SightMoveSpeedFactor=0.60
 		MagAmmo=8
@@ -141,7 +141,7 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
 		CockAnimRate=1.25
-		ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
+		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.35
         SightMoveSpeedFactor=0.60
 		MagAmmo=8

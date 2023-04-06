@@ -170,7 +170,7 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=45
-		SightOffset=(X=-8.000000,Z=9.300000)
+		//SightOffset=(X=-8.000000,Z=9.300000)
 		SightPivot=(Pitch=256)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
@@ -194,7 +194,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000)
-		SightOffset=(X=-8.000000,Z=9.300000)
+		//SightOffset=(X=-8.000000,Z=9.300000)
 		SightPivot=(Pitch=256)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

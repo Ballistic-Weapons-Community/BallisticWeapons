@@ -178,8 +178,8 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=13,Scale=0f)
-		SightOffset=(X=-40.000000,Y=11.150000,Z=29.000000)
-		ViewOffset=(X=-15,Y=5,Z=-30)
+		//SightOffset=(X=-40.000000,Y=11.150000,Z=29.000000)
+		//ViewOffset=(X=-15,Y=5,Z=-30)
 		SightingTime=0.22
 		PlayerSpeedFactor=1.000000
 		PlayerJumpFactor=1.000000

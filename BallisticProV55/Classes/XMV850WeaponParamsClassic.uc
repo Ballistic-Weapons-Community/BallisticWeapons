@@ -108,10 +108,10 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.700000
-		InventorySize=7
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=900
-		SightOffset=(X=8.000000,Z=28.000000)
+		//SightOffset=(X=8.000000,Z=28.000000)
 		SightPivot=(Pitch=700,Roll=2048)
 		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto")

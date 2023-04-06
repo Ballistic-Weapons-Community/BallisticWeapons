@@ -233,7 +233,8 @@ defaultproperties
 		LayoutTags="thermal"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		ZoomType=ZT_Logarithmic
+		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=6
 		bNeedCock=True
@@ -243,7 +244,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
@@ -259,7 +259,8 @@ defaultproperties
 		LayoutTags="thermal"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		ZoomType=ZT_Logarithmic
 		//Function
 		InventorySize=6
 		bNeedCock=True
@@ -268,8 +269,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ZoomType=ZT_Logarithmic
-		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-3 Adv Assault Rifle"
@@ -286,7 +285,10 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
+		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=6
 		bNeedCock=True
@@ -295,8 +297,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ZoomType=ZT_Irons
-		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
@@ -313,7 +313,10 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
+		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=4
 		bNeedCock=True
@@ -322,8 +325,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ZoomType=ZT_Irons
-		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
@@ -333,7 +334,7 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Shockwave'
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams_Marksman' //Black
+	Layouts(0)=WeaponParams'ClassicParams_Marksman'
 	Layouts(1)=WeaponParams'ClassicParams_Tactical'
 	Layouts(2)=WeaponParams'ClassicParams_CQC'
 	Layouts(3)=WeaponParams'ClassicParams_Shockwave'

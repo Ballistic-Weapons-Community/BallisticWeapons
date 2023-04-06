@@ -111,8 +111,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.4
 		MagAmmo=200
-		ViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
-		SightOffset=(X=-12.000000,Z=14.300000)
+		//ViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
+		//SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
 		WeaponName="RX220-A Incinerator"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

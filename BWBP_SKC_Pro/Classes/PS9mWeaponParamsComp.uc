@@ -80,8 +80,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-		ViewOffset=(X=3.000000,Y=-3.000000,Z=-8.500000)
-		SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
+		//ViewOffset=(X=3.000000,Y=-3.000000,Z=-8.500000)
+		//SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 		MagAmmo=15
 		InventorySize=1
         SightingTime=0.200000

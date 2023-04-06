@@ -105,10 +105,10 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
-        InventorySize=7
+        InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=150
-		SightOffset=(X=-12.000000,Z=14.300000)
+		//SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -124,10 +124,10 @@ defaultproperties
 		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
-        InventorySize=7
+        InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=150
-		SightOffset=(X=-12.000000,Z=14.300000)
+		//SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

@@ -504,7 +504,12 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-10.000000,Z=8.700000)
+	//SightOffset=(X=-10.000000,Z=8.700000)
+	SightOffset=(X=-10.000000,Y=-2.000000,Z=18.8750000)
+	SightPivot=(Pitch=-200,Roll=-1050)
+	bAdjustHands=true
+	RootAdjust=(Yaw=-290,Pitch=3000)
+	WristAdjust=(Yaw=-3000,Pitch=-000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'RS8WeaponParamsComp'
 	ParamsClasses(1)=Class'RS8WeaponParamsClassic'

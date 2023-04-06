@@ -158,6 +158,22 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sight"
+		//Attachments
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.SRX.SRX-Rifle",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_OP_Tex.SRX.SRX-Stock",Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=4) //A3
+		WeaponMaterialSwaps(4)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=5) //A4
+		WeaponMaterialSwaps(5)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=6) //A5
+		WeaponMaterialSwaps(6)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=11) //A10
+		WeaponMaterialSwaps(7)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=12) //A11
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
+		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
+		SightPivot=(Pitch=-128,Yaw=16)
+		//Function
 		CockAnimRate=1.200000
 		MagAmmo=20
         InventorySize=6
@@ -170,5 +186,88 @@ defaultproperties
 		FireParams(2)=FireParams'ArenaAcidFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+	
+    Begin Object Class=WeaponParams Name=ArenaParams_RDS
+		//Layout core
+		Weight=30
+		LayoutName="Red Dot Sight"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		SightPivot=(Pitch=-128,Yaw=16)
+		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
+		//Function
+		CockAnimRate=1.200000
+		MagAmmo=20
+        InventorySize=6
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		RecoilParams(1)=RecoilParams'ArenaExplosiveRecoilParams'
+		RecoilParams(2)=RecoilParams'ArenaAcidRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaStandardFireParams'
+		FireParams(1)=FireParams'ArenaExplosiveFireParams'
+		FireParams(2)=FireParams'ArenaAcidFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_RDS'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=SRX_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-StockBlack',Index=2,AIndex=1,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Stealth
+		Index=2
+		CamoName="Dead Stealth"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockRedBlack",Index=2,AIndex=1,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Banana
+		Index=3
+		CamoName="Banana"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.BWBP_OP_Tex.SRX.SRX-Rifle",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockYellowCamo",Index=2,AIndex=1,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Jungle
+		Index=4
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.SRX.SRX-Rifle",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockJungle",Index=2,AIndex=1,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_RedWinter
+		Index=5
+		CamoName="Red Winter"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.SRX.SRX-Rifle",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockRedCamo",Index=2,AIndex=1,PIndex=1)
+		Weight=5
+	End Object
+	
+	Camos(0)=WeaponCamo'SRX_Gray'
+	Camos(1)=WeaponCamo'SRX_Black'
+	Camos(2)=WeaponCamo'SRX_Stealth'
+	Camos(3)=WeaponCamo'SRX_Banana'
+	Camos(4)=WeaponCamo'SRX_Jungle'
+	Camos(5)=WeaponCamo'SRX_RedWinter'
 }

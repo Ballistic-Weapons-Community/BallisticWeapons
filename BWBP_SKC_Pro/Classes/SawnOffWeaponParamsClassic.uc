@@ -166,7 +166,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=13,Scale=0f)
-		SightOffset=(X=-40.000000,Y=11.150000,Z=29.000000)
+		//SightOffset=(X=-40.000000,Y=11.150000,Z=29.000000)
 		PlayerSpeedFactor=1.000000
 		PlayerJumpFactor=1.000000
 		InventorySize=10

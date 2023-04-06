@@ -104,15 +104,15 @@ defaultproperties
 		SightingTime=0.300000
 		MagAmmo=20
 		bMagPlusOne=True
-		ViewOffset=(X=-1.000000,Y=6.000000,Z=-11.000000)
-		SightOffset=(X=24.000000,Z=11.800000)
+		//ViewOffset=(X=-1.000000,Y=6.000000,Z=-11.000000)
+		//SightOffset=(X=24.000000,Z=11.800000)
         ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
-		InitialWeaponMode=2
+		InitialWeaponMode=1
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="SRS900-E 7.62mm Marksman Rifle"
@@ -121,7 +121,70 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_RDS
+		//Layout core
+		LayoutName="Holosight"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
+		SightOffset=(X=25.000000,Z=9.88000)
+		//Function
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		MagAmmo=20
+		bMagPlusOne=True
+		//ViewOffset=(X=-1.000000,Y=6.000000,Z=-11.000000)
+		//SightOffset=(X=24.000000,Z=11.800000)
+        ZoomType=ZT_Logarithmic
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=1
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		WeaponName="SRS900-E 7.62mm Marksman Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Irons
+		//Layout core
+		LayoutName="Iron Sights"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
+		SightOffset=(X=22.000000,Z=8.650000)
+        ZoomType=ZT_Irons
+		//Function
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		MagAmmo=20
+		bMagPlusOne=True
+		//ViewOffset=(X=-1.000000,Y=6.000000,Z=-11.000000)
+		//SightOffset=(X=24.000000,Z=11.800000)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=1
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		WeaponName="SRS900-E 7.62mm Marksman Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_RDS'
+	Layouts(2)=WeaponParams'RealisticParams_Irons'
 
 
 }

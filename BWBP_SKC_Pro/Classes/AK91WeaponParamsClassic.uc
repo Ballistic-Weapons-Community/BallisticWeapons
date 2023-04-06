@@ -110,14 +110,14 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		ZoomType=ZT_Irons
 		//Function
 		InventorySize=7
 		SightingTime=0.300000
 		bNeedCock=True
 		SightPivot=(Pitch=64)
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
+		//ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -130,7 +130,7 @@ defaultproperties
 		LayoutName="ACOG"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=1f)
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
@@ -138,7 +138,7 @@ defaultproperties
 		SightingTime=0.400000
 		bNeedCock=True
 		SightPivot=(Pitch=64)
-		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
+		//ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

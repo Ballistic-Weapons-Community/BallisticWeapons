@@ -103,8 +103,8 @@ defaultproperties
 		SightingTime=0.33
 		MagAmmo=5
 		bMagPlusOne=True
-		ViewOffset=(X=-5,Y=5,Z=-9)
-		SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
+		//ViewOffset=(X=-5,Y=5,Z=-9)
+		//SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 		SightPivot=(Roll=-1024)
 		ZoomType=ZT_Logarithmic
 		CockAnimRate=1.000000
