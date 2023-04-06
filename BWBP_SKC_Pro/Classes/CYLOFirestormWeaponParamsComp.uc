@@ -156,7 +156,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=CYLOFS_Red
-		Index=2
+		Index=1
 		CamoName="Red"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainRed",Index=1,AIndex=0,PIndex=0)
@@ -164,7 +164,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=CYLOFS_Blue
-		Index=3
+		Index=2
 		CamoName="Blue"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainBlue",Index=1,AIndex=0,PIndex=0)
@@ -172,7 +172,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=CYLOFS_Yellow
-		Index=4
+		Index=3
 		CamoName="Yellow"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainYellow",Index=1,AIndex=0,PIndex=0)
@@ -180,7 +180,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=CYLOFS_OrangeFancy
-		Index=5
+		Index=4
 		CamoName="Custom Orange"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainStripes",Index=1,AIndex=0,PIndex=0)
@@ -188,7 +188,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=CYLOFS_Gold
-		Index=6
+		Index=5
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainGold",Index=1,AIndex=0,PIndex=0)
