@@ -221,7 +221,7 @@ defaultproperties
 		SightPivot=(Pitch=-128,Yaw=16)
 		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		//Function
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		bNeedCock=True

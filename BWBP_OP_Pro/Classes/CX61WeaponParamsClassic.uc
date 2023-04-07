@@ -120,4 +120,69 @@ defaultproperties
 		AltFireParams(1)=FireParams'ClassicSecondaryFireHealParams'
     End Object 
     Layouts(0)=WeaponParams'ClassicParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=CX61_Blue
+		Index=0
+		CamoName="Blue"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CX61_Red
+		Index=1
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainRed",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=TexOscillator'BW_Core_WeaponTex.A73RedLayout.A73BEnergyOsc',Index=3,AIndex=-1,PIndex=-1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CX61_White
+		Index=2
+		CamoName="White"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainWhite",Index=1,AIndex=1,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CX61_Hex
+		Index=3
+		CamoName="Hex Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainHex",Index=1,AIndex=1,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CX61_Stripes
+		Index=4
+		CamoName="Limited"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainStripes",Index=1,AIndex=1,PIndex=1)
+		Weight=7
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CX61_Meat
+		Index=5
+		CamoName="MEAT"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainMeat",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=TexOscillator'BW_Core_WeaponTex.A73RedLayout.A73BEnergyOsc',Index=3,AIndex=-1,PIndex=-1)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CX61_Gold
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainGold",Index=1,AIndex=1,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'CX61_Blue'
+	Camos(1)=WeaponCamo'CX61_Red'
+	Camos(2)=WeaponCamo'CX61_White'
+	Camos(3)=WeaponCamo'CX61_Hex'
+	Camos(4)=WeaponCamo'CX61_Stripes'
+	Camos(5)=WeaponCamo'CX61_Meat'
+	Camos(6)=WeaponCamo'CX61_Gold'
 }
