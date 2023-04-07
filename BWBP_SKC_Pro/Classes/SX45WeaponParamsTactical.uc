@@ -179,8 +179,8 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalRadPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'TacticalParams_RDS'
-	Layouts(1)=WeaponParams'TacticalParams_Irons'
+	Layouts(0)=WeaponParams'TacticalParams_Irons'
+	Layouts(1)=WeaponParams'TacticalParams_RDS'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=FNX_Green

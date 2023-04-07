@@ -18,17 +18,18 @@ var(SRX) sound		AmplifierOffSound;		//
 var(SRX) sound		AmplifierPowerOnSound;		// Silencer stuck on sound
 var(SRX) sound		AmplifierPowerOffSound;		//
 var(SRX) float		AmpCharge;					// Existing ampjuice
-var(SRX) float 	DrainRate;					// Rate that ampjuice leaks out
+var(SRX) float		DrainRate;					// Rate that ampjuice leaks out
 var(SRX) bool		bShowCharge;				// Hides charge until the amp is on
 
-var	  Rotator	RearSightBoneRot;
+var	  Rotator		RearSightBoneRot;
+var(SRX) bool		bHasOptic;
 
 //Scripted Ammo Screen Texture
-var() ScriptedTexture WeaponScreen; //Scripted texture to write on
-var() Material	WeaponScreenShader; //Scripted Texture with self illum applied
-var() Material	ScreenBase;
-var() Material	ScreenAmmoBlue; //Norm
-var() Material	ScreenAmmoRed; //Low Ammo
+var() ScriptedTexture 	WeaponScreen; //Scripted texture to write on
+var() Material			WeaponScreenShader; //Scripted Texture with self illum applied
+var() Material			ScreenBase;
+var() Material			ScreenAmmoBlue; //Norm
+var() Material			ScreenAmmoRed; //Low Ammo
 var protected const color MyFontColor; //Why do I even need this?
 
 var	float	AmmoBarPos;
@@ -41,11 +42,20 @@ replication
 		ServerSwitchSilencer, ServerSwitchAmplifier;	
 }
 
-simulated function PostNetBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	SetBoneScale(3, 0.0, 'IronsFront');
-	SetBoneRotation('Sight',RearSightBoneRot);
-	super.PostNetBeginPlay();
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasOptic=false;
+
+	if (InStr(WeaponParams.LayoutTags, "optic") != -1)
+	{
+		bHasOptic=true;
+		SetBoneScale(3, 0.0, 'IronsFront');
+		SetBoneRotation('Sight',RearSightBoneRot);
+	}
 }
 
 //==============================================
@@ -87,7 +97,7 @@ simulated event RenderTexture( ScriptedTexture Tex )
 
 simulated event RenderOverlays( Canvas C )
 {
-	if (Instigator.IsLocallyControlled())
+	if (Instigator.IsLocallyControlled() && bHasOptic)
 		WeaponScreen.Revision++;
 
 	super.RenderOverlays(C);
@@ -95,7 +105,7 @@ simulated event RenderOverlays( Canvas C )
 	
 simulated function UpdateScreen()
 {
-	if (Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
+	if (!bHasOptic || (Instigator != None && AIController(Instigator.Controller) != None)) //Bots cannot update your screen
 		return;
 
 	if (Instigator.IsLocallyControlled())
@@ -358,7 +368,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
 
-	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	if (bHasOptic && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
 	{
 		ScreenStart();
 		if (!Instigator.IsLocallyControlled())
@@ -366,6 +376,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	
 	SetBoneScale (2, 0.0, AmplifierBone);
+	if (bHasOptic)
+	{
+		SetBoneScale(3, 0.0, 'IronsFront');
+		SetBoneRotation('Sight',RearSightBoneRot);
+	}
 
 	if (AIController(Instigator.Controller) != None)
 		bSilenced = (FRand() > 0.5);

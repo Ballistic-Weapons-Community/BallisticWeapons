@@ -12,13 +12,12 @@
 //=============================================================================
 class XM20Carbine extends BallisticWeapon;
 
-
+var() bool		bIsPrototype;
 var() Sound		DoubleVentSound;	//Sound for double fire's vent
 var() Sound		OverHeatSound;		// Sound to play when it overheats
 
 var float		lastModeChangeTime;
-
-var() Sound			ModeCycleSound;
+var() Sound		ModeCycleSound;
 
 //Screen vars
 var	int	NumpadYOffset1; //Ammo tens
@@ -67,6 +66,20 @@ replication
 		ClientScreenStart, bLaserOn, bOvercharged, ChargeRate, ChargeRateOvercharge;
 }
 
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsPrototype=false;
+
+	if (InStr(WeaponParams.LayoutTags, "prototype") != -1)
+	{
+		bIsPrototype=true;
+	}
+}
+
 //========================== AMMO COUNTER NON-STATIC TEXTURE ============
 
 simulated function ClientScreenStart()
@@ -106,7 +119,7 @@ simulated event RenderTexture( ScriptedTexture Tex )
 simulated function UpdateScreen()
 {
 
-	if (ZoomType == ZT_Irons && Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
+	if (bIsPrototype || (Instigator != None && AIController(Instigator.Controller) != None)) //Bots cannot update your screen
 		return;
 
 	if (Instigator.IsLocallyControlled())
@@ -168,7 +181,7 @@ function int ManageHeatInteraction(Pawn P, int HeatPerShot)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
-	if (ZoomType != ZT_Irons && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	if (!bIsPrototype && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
 	{
 		ScreenStart();
 		if (!Instigator.IsLocallyControlled())
@@ -409,9 +422,9 @@ simulated event RenderOverlays( Canvas C )
 		NumpadXPosOnes=230; //Ones X coord
 	}
 
-    if (!bScopeView || ZoomType == ZT_Irons)
+    if (!bScopeView || bIsPrototype)
 	{
-		if (Instigator.IsLocallyControlled() && ZoomType != ZT_Irons)
+		if (Instigator.IsLocallyControlled() && !bIsPrototype)
 		{
 			WeaponScreen.Revision++;
 		}
@@ -426,7 +439,7 @@ simulated event RenderOverlays( Canvas C )
     ScaleFactor = C.ClipY / 1200;
 
 
-    if (ScopeViewTex != None && ZoomType != ZT_Irons)
+    if (ScopeViewTex != None)
     {
         C.SetDrawColor(255,255,255,255);
 

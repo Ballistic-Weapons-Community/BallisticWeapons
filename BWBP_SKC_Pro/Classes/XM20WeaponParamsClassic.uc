@@ -156,6 +156,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Prototype"
+		LayoutTags="prototype"
 		AllowedCamos(0)=5
 		AllowedCamos(1)=6
 		//Attachments
