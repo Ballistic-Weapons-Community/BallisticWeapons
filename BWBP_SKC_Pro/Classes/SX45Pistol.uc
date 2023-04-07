@@ -531,7 +531,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=0,Y=-3.140000,Z=14.300000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'SX45WeaponParamsArena'
+	ParamsClasses(0)=Class'SX45WeaponParamsComp'
 	ParamsClasses(1)=Class'SX45WeaponParamsClassic'
 	ParamsClasses(2)=Class'SX45WeaponParamsRealistic'
 	ParamsClasses(3)=Class'SX45WeaponParamsTactical'

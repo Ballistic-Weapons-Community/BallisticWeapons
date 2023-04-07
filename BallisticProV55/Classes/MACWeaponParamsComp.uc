@@ -53,6 +53,8 @@ defaultproperties
 		XRandFactor=0.600000
 		YRandFactor=0.900000
 		MinRandFactor=0.350000
+		ClimbTime=0.1
+		HipMultiplier=1
 	End Object
 
 	//=================================================================

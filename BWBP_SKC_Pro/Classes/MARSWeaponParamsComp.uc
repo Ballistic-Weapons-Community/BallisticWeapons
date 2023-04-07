@@ -110,14 +110,16 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
-		DeclineTime=0.500000
-		DeclineDelay=0.140000
+		ClimbTime=0.04
+		DeclineTime=0.75
+		DeclineDelay=0.130000
+		CrouchMultiplier=0.85
 		ViewBindFactor=0.4
-		CrouchMultiplier=0.650000
+		HipMultiplier=1.25
 	End Object
 	
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams_CQC
@@ -125,9 +127,12 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
-		DeclineTime=0.500000
-		DeclineDelay=0.140000
+		ClimbTime=0.04
+		DeclineTime=0.75
+		DeclineDelay=0.130000
+		CrouchMultiplier=0.85
 		ViewBindFactor=0.4
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -165,12 +170,15 @@ defaultproperties
 		ReloadAnimRate=1.10000
 		PlayerJumpFactor=1
 		InventorySize=6
-		ScopeScale=0.7
-		SightMoveSpeedFactor=0.6
-		SightingTime=0.4		
 		DisplaceDurationMult=1
 		MagAmmo=30
-        ZoomType=ZT_Logarithmic
+		// ADS handling
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.4	
+		// Zoom
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		ScopeScale=0.6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

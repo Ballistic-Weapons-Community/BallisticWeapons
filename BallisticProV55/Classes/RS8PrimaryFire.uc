@@ -78,14 +78,16 @@ function PlayFiring()
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
-		AimedFireAnim = 'SightFireOpen';
+		//AimedFireAnim = 'SightFireOpen';
+		AimedFireAnim='OpenFire';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
-		AimedFireAnim = 'SightFire';
+		//AimedFireAnim = 'SightFire';
+		AimedFireAnim='Fire';
 		FireAnim = 'Fire';
 	}
 

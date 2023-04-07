@@ -18,7 +18,7 @@ defaultproperties
 		DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'
 		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
-		Recoil=512.000000
+		Recoil=1536.000000
 		Chaos=0.400000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
@@ -66,9 +66,12 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.2,OutVal=0.2),(InVal=0.4,OutVal=0.45),(InVal=0.75,OutVal=0.7),(InVal=1.000000,OutVal=1)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineDelay=0.650000
-		DeclineTime=0.5
-		HipMultiplier=1
+		MaxRecoil=8192
+		ClimbTime=0.075
+		DeclineDelay=0.30000
+		DeclineTime=0.75
+		CrouchMultiplier=1
+		HipMultiplier=1.25
     End Object
 	
 	//=================================================================

@@ -21,7 +21,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
         MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
         FlashScaleFactor=0.5
-        Recoil=378.000000
+        Recoil=1024.000000
         Chaos=0.400000
         BotRefireRate=0.900000
         WarnTargetPct=0.5
@@ -53,7 +53,7 @@ defaultproperties
         MomentumTransfer=100000.000000
         MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
         FlashScaleFactor=0.5
-        Recoil=650.000000
+        Recoil=1024.000000
         Chaos=0.450000
         BotRefireRate=0.6
         WarnTargetPct=0.4	
@@ -79,9 +79,10 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.5,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.15
 		YRandFactor=0.15
+		MaxRecoil=8192
 		ClimbTime=0.05
+		DeclineDelay=0.450000
         DeclineTime=0.75
-        DeclineDelay=0.450000
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

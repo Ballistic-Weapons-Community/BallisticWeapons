@@ -75,8 +75,8 @@ defaultproperties
 		XRandFactor=0.050000
 		YRandFactor=0.050000
 		ClimbTime=0.04
-		DeclineTime=1.500000
 		DeclineDelay=0.180000
+		DeclineTime=1
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

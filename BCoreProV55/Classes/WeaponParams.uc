@@ -46,7 +46,7 @@ struct WeaponModeType							// All the settings for a weapon firing mode
 enum EZoomType
 {
 	ZT_Irons, // Iron sights or simple non-magnifying aiming aid such as a red dot sight or holographic. Smoothly zooms into FullZoomFOV as the weapon repositions to sights view.
-	ZT_Fixed, // Fixed scope zoom. Does not allow any change in zoom and goes straight to FullZoomFOV when StartScopeView is called.
+	ZT_Fixed, // Zooms to MaxZoom only.
 	ZT_Logarithmic, //Zooms between MinZoom and MaxZoom magnification levels in relative steps.
 	ZT_Minimum, // Minimum zoom level. Zooms straight to the lowest zoom level and stops on scope up. Will zoom between FOV (90 - (88 * MinFixedZoomLevel)) and FullZoomFOV.
 	ZT_Smooth // Smooth zoom. Replaces bSmoothZoom, allows the weapon to zoom from FOV 90 to FullZoomFOV.

@@ -23,7 +23,7 @@ defaultproperties
         DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
         FlashScaleFactor=1.200000
-        Recoil=2048.000000
+        Recoil=2560.000000
         Chaos=0.300000
         BotRefireRate=0.7
         WarnTargetPct=0.75	
@@ -32,7 +32,6 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-        AimedFireAnim="SightFire"
 		FireInterval=1.200000
         AmmoPerFire=2
         bCockAfterFire=True	
@@ -61,7 +60,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
         FlashScaleFactor=2
-        Recoil=1024.000000
+        Recoil=1536.000000
         Chaos=0.250000
         BotRefireRate=0.7
         WarnTargetPct=0.5	
@@ -70,7 +69,6 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-        AimedFireAnim="SightFireAlt"
 		FireInterval=0.400000
         bCockAfterFire=True
         FireAnim="FireRight"	
@@ -87,11 +85,11 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.300000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
         XRandFactor=0.100000
         YRandFactor=0.100000
-		CrouchMultiplier=0.85
 		ClimbTime=0.075
+		DeclineDelay=0.5
         DeclineTime=0.750000
-        DeclineDelay=0.5
-		HipMultiplier=1.25
+		CrouchMultiplier=0.85
+		HipMultiplier=1.5
 		MaxMoveMultiplier=2
     End Object
 

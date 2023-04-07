@@ -79,8 +79,8 @@ defaultproperties
 		XRandFactor=0.05000
 		YRandFactor=0.05000
 		ClimbTime=0.04
-		DeclineTime=0.75
 		DeclineDelay=0.140000
+		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -113,11 +113,9 @@ defaultproperties
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=50
-        // sniper 4-8x
-		ZoomType=ZT_Logarithmic
-		MinZoom=4
-		MaxZoom=8
-		ZoomStages=1
+        // fixed 4x
+        ZoomType=ZT_Fixed
+		MaxZoom=4
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

@@ -67,7 +67,11 @@ defaultproperties
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=8
-        ZoomType=ZT_Logarithmic
+		// variable 2-4-8x
+		ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=8
+		ZoomStages=2
         RecoilParams(0)=ArenaRecoilParams
         AimParams(0)=ArenaAimParams
 		FireParams(0)=ArenaPrimaryFireParams

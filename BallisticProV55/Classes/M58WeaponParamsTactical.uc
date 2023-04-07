@@ -32,7 +32,7 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw'Volume=0.5,Radius=12.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		ProjectileClass=Class'BallisticProV55.M58Rolled'
 		SpawnOffset=(Z=-14.000000)
         Speed=1000.000000

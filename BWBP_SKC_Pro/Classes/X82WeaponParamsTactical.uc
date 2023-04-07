@@ -63,9 +63,9 @@ defaultproperties
 		ClimbTime=0.08
 		DeclineDelay=0.75
 		DeclineTime=1.5
+		CrouchMultiplier=0.750000
 		HipMultiplier=2
 		MaxMoveMultiplier=2
-		CrouchMultiplier=0.750000
 	End Object
 
 	//=================================================================

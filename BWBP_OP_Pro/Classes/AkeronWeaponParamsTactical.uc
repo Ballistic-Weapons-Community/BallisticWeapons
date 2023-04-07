@@ -89,8 +89,9 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.75
-		DeclineTime=1.000000
 		ClimbTime=0.04
+		DeclineTime=1.000000
+		CrouchMultiplier=0.85
 		HipMultiplier=1 // shoulder fire
 		MaxMoveMultiplier=2
 	End Object

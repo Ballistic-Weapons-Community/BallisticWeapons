@@ -55,8 +55,9 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		YawFactor=0.000000
+		ClimbTime=0.05
+		DeclineDelay=0.100000
 		DeclineTime=1.000000
-		DeclineDelay=0.000000
 	End Object
 
 	//=================================================================

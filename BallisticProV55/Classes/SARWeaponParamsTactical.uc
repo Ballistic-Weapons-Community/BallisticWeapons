@@ -94,33 +94,33 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalStockOutRecoilParams
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
+		ViewBindFactor=0.35
+		ADSViewBindFactor=0.85
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.30000,OutVal=-0.030000),(InVal=0.4500000,OutVal=-0.050000),(InVal=0.600000,OutVal=0.060000),(InVal=0.800000,OutVal=0.04000),(InVal=1.000000,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.04
+		DeclineDelay=0.13
 		DeclineTime=0.75
-		ViewBindFactor=0.35
-		ADSViewBindFactor=0.85
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
-		DeclineDelay=0.13
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalStockInRecoilParams
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
+		ViewBindFactor=0.45
+		ADSViewBindFactor=0.7
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.30000,OutVal=-0.030000),(InVal=0.4500000,OutVal=-0.050000),(InVal=0.600000,OutVal=0.060000),(InVal=0.800000,OutVal=0.04000),(InVal=1.000000,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05
 		YRandFactor=0.05
 		ClimbTime=0.04
+		DeclineDelay=0.13
 		DeclineTime=0.75
-		ViewBindFactor=0.45
-		ADSViewBindFactor=0.7
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
-		DeclineDelay=0.13
 	End Object
 
 	//=================================================================

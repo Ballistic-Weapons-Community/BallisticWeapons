@@ -698,7 +698,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-	 ParamsClasses(0)=Class'HVPCMk5WeaponParamsArena'
+	 ParamsClasses(0)=Class'HVPCMk5WeaponParamsComp'
 	 ParamsClasses(1)=Class'HVPCMk5WeaponParamsClassic'
 	 ParamsClasses(2)=Class'HVPCMk5WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'HVPCMk5WeaponParamsTactical'

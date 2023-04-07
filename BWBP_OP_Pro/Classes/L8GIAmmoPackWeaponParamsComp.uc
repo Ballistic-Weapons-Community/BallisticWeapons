@@ -1,4 +1,4 @@
-class L8GIAmmoPackWeaponParamsArena extends BallisticWeaponParams;
+class L8GIAmmoPackWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {

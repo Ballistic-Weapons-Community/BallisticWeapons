@@ -140,6 +140,7 @@ defaultproperties
 		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
 		ZoomType=ZT_Fixed
+		MaxZoom=3
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
 		SightingTime=0.350000

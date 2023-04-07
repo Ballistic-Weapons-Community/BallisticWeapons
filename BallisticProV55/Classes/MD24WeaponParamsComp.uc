@@ -44,8 +44,10 @@ defaultproperties
 		ViewBindFactor=0.65
 		XRandFactor=0.03000
 		YRandFactor=0.03000
-		DeclineTime=0.500000
-		DeclineDelay=0.220000
+		ClimbTime=0.04
+		DeclineDelay=0.170000
+		DeclineTime=0.75
+		CrouchMultiplier=1
 	End Object
 
 	//=================================================================

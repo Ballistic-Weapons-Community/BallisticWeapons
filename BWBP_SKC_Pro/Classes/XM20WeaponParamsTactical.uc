@@ -9,8 +9,8 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.04
-		DeclineTime=0.75
 		DeclineDelay=0.2
+		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -108,11 +108,9 @@ defaultproperties
 		AllowedCamos(4)=4
 		//Attachments
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
-		SightPivot=(Pitch=600,Roll=-1024)
-        ZoomType=ZT_Logarithmic //Acog like
-		MinZoom=2
+		//SightPivot=(Pitch=600,Roll=-1024)
+		ZoomType=ZT_Fixed
 		MaxZoom=4
-		ZoomStages=1
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
@@ -143,6 +141,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
 		SightOffset=(X=10.000000,Y=11.9500000,Z=20.000000)
 		ZoomType=ZT_Fixed
+		MaxZoom=4
 		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		//Function
 		ReloadAnimRate=1.000000

@@ -176,9 +176,10 @@ defaultproperties
      IconCoords=(X2=127,Y2=31)
      ItemName="L8 GI Ammunition Pack"
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_AmmoPack'
-	 ParamsClasses(0)=Class'L8GIAmmoPackWeaponParamsArena'
+	 ParamsClasses(0)=Class'L8GIAmmoPackWeaponParamsComp'
 	 ParamsClasses(1)=Class'L8GIAmmoPackWeaponParamsClassic'
 	 ParamsClasses(2)=Class'L8GIAmmoPackWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'L8GIAmmoPackWeaponParamsComp'
      DrawScale=0.400000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Texture'BW_Core_WeaponTex.Ammo.AmmoPackSkin'

@@ -76,8 +76,11 @@ defaultproperties
 		XRandFactor=0.150000
 		YRandFactor=0.150000
 		MaxRecoil=6144.000000
-		DeclineDelay=0.65
-		DeclineTime=1
+		ClimbTime=0.06
+		DeclineDelay=0.45
+        DeclineTime=1.5
+		CrouchMultiplier=1
+		HipMultiplier=1.25
 	End Object
 	
     Begin Object Class=RecoilParams Name=ArenaRecoilParams_208
@@ -86,8 +89,11 @@ defaultproperties
         XRandFactor=0.100000
         YRandFactor=0.100000
         MaxRecoil=6144.000000
-        DeclineDelay=0.65
-        DeclineTime=1
+		ClimbTime=0.06
+		DeclineDelay=0.45
+        DeclineTime=1.5
+		CrouchMultiplier=1
+		HipMultiplier=1.25
     End Object
 	
 	//=================================================================
@@ -114,22 +120,28 @@ defaultproperties
 		//Layout core
 		LayoutName="Scoped Marksman"
 		Weight=10
+
+		//Function
+		InventorySize=4
+		DisplaceDurationMult=0.75
+		MagAmmo=7
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=1f)
+
+		// ADS handling
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.40000
+
+		// Zoom
         ZoomType=ZT_Fixed
+		MaxZoom=3
 		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		
-		//Function
-		InventorySize=4
-		SightMoveSpeedFactor=0.6
-		SightingTime=0.40000
-		DisplaceDurationMult=0.75
-		MagAmmo=7
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

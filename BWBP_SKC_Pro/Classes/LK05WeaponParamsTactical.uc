@@ -21,7 +21,7 @@ defaultproperties
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1
-		Recoil=160.000000
+		Recoil=220.000000
 		Chaos=0.028000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-RapidFire',Volume=1.200000)
@@ -40,19 +40,19 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.35
 		ADSViewBindFactor=0.85
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.14),(InVal=0.35,OutVal=0.16),(InVal=0.5,OutVal=0.23),(InVal=0.7,OutVal=0.33),(InVal=0.85,OutVal=0.45),(InVal=1.000000,OutVal=0.5)))
+		XCurve=(Points=(,(InVal=0.1,OutVal=0.03),(InVal=0.2,OutVal=0.045),(InVal=0.35,OutVal=-0.06),(InVal=0.5,OutVal=0.0),(InVal=0.7,OutVal=0.09),(InVal=0.85,OutVal=0.0),(InVal=1.000000,OutVal=-0.06)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.04
-		DeclineTime=0.75
 		DeclineDelay=0.140000
+		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
 
-	//=================================================================
+
 	// AIM
 	//=================================================================
 

@@ -526,4 +526,5 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.D49.D49Shells-Shiney'
+	SightAnimScale=0.5
 }

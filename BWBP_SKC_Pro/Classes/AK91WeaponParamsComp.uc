@@ -71,8 +71,11 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.300000,OutVal=0.35000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.10000
 		YRandFactor=0.10000
-		DeclineDelay=0.15
-		DeclineTime=0.65	
+		ClimbTime=0.04
+		DeclineDelay=0.14
+		DeclineTime=0.75
+		CrouchMultiplier=0.85	
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -119,6 +122,7 @@ defaultproperties
 		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
 		ZoomType=ZT_Fixed
+		MaxZoom=3
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
 		SightingTime=0.300000

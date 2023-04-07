@@ -40,7 +40,6 @@ defaultproperties
 		MaxRecoil=4096.000000
 		DeclineTime=1.500000
 		DeclineDelay=0.5
-		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
 
@@ -68,11 +67,11 @@ defaultproperties
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=8
-        ZoomType=ZT_Logarithmic
-		// sniper 4-8x
-		MinZoom=4
+		// adjustable 2-4-8x
+		ZoomType=ZT_Logarithmic
+		MinZoom=2
 		MaxZoom=8
-		ZoomStages=1
+		ZoomStages=2
         RecoilParams(0)=TacticalRecoilParams
         AimParams(0)=TacticalAimParams
 		FireParams(0)=TacticalPrimaryFireParams

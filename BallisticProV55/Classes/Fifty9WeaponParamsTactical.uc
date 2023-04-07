@@ -108,15 +108,15 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=1.1
-		ClimbTime=0.04
 		MaxRecoil=6144
+		ClimbTime=0.04
+		DeclineDelay=0.14
+		DeclineTime=1.1
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 		ViewBindFactor=0.2
 		ADSViewBindFactor=0.7 // no stock
-		DeclineDelay=0.14
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
@@ -124,15 +124,16 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		ClimbTime=0.04
-		DeclineTime=1.1
 		MaxRecoil=6144
+		ClimbTime=0.04
+		DeclineDelay=0.14
+		DeclineTime=1.1
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 		ViewBindFactor=0.2
 		ADSViewBindFactor=0.85 // stock
-		DeclineDelay=0.14
+
 	End Object
 
 	//=================================================================

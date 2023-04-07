@@ -23,7 +23,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
-		Recoil=768.000000
+		Recoil=1280.000000
 		Chaos=1.000000
 		BotRefireRate=0.60000
 		WarnTargetPct=0.5
@@ -57,7 +57,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=3.000000
-		Recoil=768.000000
+		Recoil=1280.000000
 		Chaos=1.000000
 		BotRefireRate=0.60000
 		WarnTargetPct=0.5	
@@ -82,12 +82,13 @@ defaultproperties
 		ViewBindFactor=0.350000
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
-		ClimbTime=0.06
 		XRandFactor=0.200000
 		YRandFactor=0.200000
-		DeclineTime=0.750000
+		ClimbTime=0.06
 		DeclineDelay=0.400000
+		DeclineTime=0.750000
 		CrouchMultiplier=0.85
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================

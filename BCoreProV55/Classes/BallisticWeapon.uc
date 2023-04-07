@@ -835,11 +835,12 @@ simulated function OnWeaponParamsChanged()
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
 			
-	
-	if (WeaponParams.MinZoom > 0 && WeaponParams.MaxZoom > 0 && WeaponParams.ZoomStages > 0)
+	if (WeaponParams.MaxZoom > 0)
+		MaxZoom = WeaponParams.MaxZoom;
+
+	if (WeaponParams.MinZoom > 0 && WeaponParams.ZoomStages > 0)
 	{
 		MinZoom = WeaponParams.MinZoom;
-		MaxZoom = WeaponParams.MaxZoom;
 		ZoomStages = WeaponParams.ZoomStages;
 	}
 
@@ -2096,15 +2097,14 @@ simulated final function PlayerZoom(PlayerController PC)
 			break;
 		case ZT_Fixed:
 			PC.bZooming=True;
-			PC.SetFOV(FullZoomFOV);
-			PC.ZoomLevel = (90 - FullZoomFOV) / 88;
-			PC.DesiredZoomLevel = (90 - FullZoomFOV) / 88;
+			PC.SetFOV(class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, MaxZoom)); 
+			PC.ZoomLevel = (90 - PC.FOVAngle) / 88;
+			PC.DesiredZoomLevel = PC.ZoomLevel;
 			break;
 		case ZT_Logarithmic:
 			PC.bZooming=True;
 			LogZoomLevel = loge(MinZoom)/loge(MaxZoom);
 			PC.SetFOV(class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV,  2 ** ((loge(MaxZoom)/loge(2)) * LogZoomLevel))); 
-			
 			PC.ZoomLevel = (90 - PC.FOVAngle) / 88;
 			PC.DesiredZoomLevel = PC.ZoomLevel;
 			//2 to the power of what two must be raised to to get maxzoom.

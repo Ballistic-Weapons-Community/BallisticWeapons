@@ -8,8 +8,11 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		DeclineTime=0.8
+		ClimbTime=0.04
 		DeclineDelay=0.2
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.25
 	End Object
 
 	Begin Object Class=AimParams Name=ArenaAimParams
@@ -97,8 +100,9 @@ defaultproperties
 		AllowedCamos(4)=4
 		//Attachments
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
-		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Smooth
+		//SightPivot=(Pitch=600,Roll=-1024)
+		ZoomType=ZT_Fixed
+		MaxZoom=4
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.40000
 		//Function
@@ -131,6 +135,7 @@ defaultproperties
 		ReloadAnimRate=1.000000
 		SightOffset=(X=10.000000,Y=11.9500000,Z=20.000000)
 		ZoomType=ZT_Fixed
+		MaxZoom=4
 		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35000

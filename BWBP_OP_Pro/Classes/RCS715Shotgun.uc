@@ -12,7 +12,6 @@
 //==========================================================
 class RCS715Shotgun extends BallisticProShotgun;
 
-
 var Name					BulletBone;
 var() bool					bLoaded;
 
@@ -32,7 +31,6 @@ var() bool					bReady;						//Weapon ready for alt fire
 
 var() name					SightsBone;					// Bone to use for hiding sight; temporary
 var() name  				SightsBoneHinge;			//Bone to use for hiding sight; temporary
-
 
 struct RevInfo
 {
@@ -732,7 +730,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightOffset=(X=32.000000,Y=2.850000,Z=17.90000)
 	bNoCrosshairInScope=True
-	SightDisplayFOV=40.000000
+	BobDamping=1
+	SightBobScale=
 	GunLength=48.000000
 	ParamsClasses(0)=Class'RCS715WeaponParamsComp'
 	ParamsClasses(1)=Class'RCS715WeaponParamsClassic'

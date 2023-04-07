@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=2300,Max=6000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=34
+		Damage=50
         HeadMult=2.0f
         LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
@@ -22,16 +22,16 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 		FlashScaleFactor=0.500000
-		Recoil=320.000000
+		Recoil=600.000000
 		Chaos=0.070000
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.20000
+		FireInterval=0.25000
 		BurstFireRateFactor=0.55
 		FireEndAnim=	
-		AimedFireAnim="AimedFire"
+		//AimedFireAnim="AimedFire"
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		
@@ -40,7 +40,7 @@ defaultproperties
         DecayRange=(Min=2300,Max=6000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=34
+		Damage=50
         HeadMult=2.0f
         LimbMult=0.75f
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
@@ -50,17 +50,18 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.500000
-		Recoil=210.000000
+		Recoil=600.000000
 		Chaos=0.065000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_600
-		FireInterval=0.20000
+		FireInterval=0.25000
+		FireAnimRate=0.85
 		BurstFireRateFactor=0.55
 		FireEndAnim=
-		AimedFireAnim="AimedFire"	
+		//="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_600'
 	End Object
 		
@@ -70,22 +71,28 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=1.00000)))
+		YCurve=(Points=(,(InVal=0.120000,OutVal=0.11000),(InVal=0.300000,OutVal=0.330000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
-		DeclineTime=1.00000
-		DeclineDelay=0.400000
+		ClimbTime=0.04
+		DeclineDelay=0.22
+		DeclineTime=0.75
+		CrouchMultiplier=1
+		HipMultiplier=1.5
 	End Object
 	 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams_600
 		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=1.00000)))
+		YCurve=(Points=(,(InVal=0.120000,OutVal=0.11000),(InVal=0.300000,OutVal=0.330000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1000
 		YRandFactor=0.1000
-		DeclineTime=1.00000
-		DeclineDelay=0.400000
+		ClimbTime=0.04
+		DeclineDelay=0.22
+		DeclineTime=0.75
+		CrouchMultiplier=1
+		HipMultiplier=1.5
 	End Object
 	 
 	//=================================================================
@@ -139,7 +146,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=25.000000,Z=9.88000)
+		SightOffset=(X=30.000000,Z=9.88000)
 		//Function
 		CockAnimRate=1.200000
 		MagAmmo=20

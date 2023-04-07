@@ -75,10 +75,10 @@ defaultproperties
 		ADSViewBindFactor=0.8
 		XRandFactor=0.350000
 		YRandFactor=0.350000
-		ClimbTime=0.08
 		MaxRecoil=8192
-		DeclineTime=1.25
+		ClimbTime=0.08
 		DeclineDelay=0.400000
+		DeclineTime=1.25
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
 		MaxMoveMultiplier=3

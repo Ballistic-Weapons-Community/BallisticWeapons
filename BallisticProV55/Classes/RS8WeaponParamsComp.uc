@@ -29,7 +29,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.20000
 		FireEndAnim=
-		AimedFireAnim='SightFire'
+		//AimedFireAnim='SightFire'
 		FireAnimRate=2	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -57,8 +57,10 @@ defaultproperties
 		ViewBindFactor=0.6
 		XRandFactor=0.05
 		YRandFactor=0.05
-		DeclineTime=0.500000
-		DeclineDelay=0.250000
+		ClimbTime=0.04
+		DeclineDelay=0.240000
+		DeclineTime=0.75
+		CrouchMultiplier=1
 	End Object
 
 	//=================================================================
@@ -85,7 +87,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.200000
-		MagAmmo=9
+		MagAmmo=15
         InventorySize=2
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

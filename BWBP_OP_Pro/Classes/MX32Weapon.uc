@@ -639,4 +639,5 @@ defaultproperties
      LightRadius=4.000000
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_MX32'
      DrawScale=0.300000
+	 SightAnimScale=0.5
 }

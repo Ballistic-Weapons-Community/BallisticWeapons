@@ -1,4 +1,4 @@
-class SX45WeaponParamsArena extends BallisticWeaponParams;
+class SX45WeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -107,9 +107,10 @@ defaultproperties
 		ViewBindFactor=0.6
 		XRandFactor=0.05
 		YRandFactor=0.05
-		DeclineTime=0.500000
-		DeclineDelay=0.250000
-		CrouchMultiplier=0.800000
+		ClimbTime=0.04
+		DeclineDelay=0.240000
+		DeclineTime=0.7500000
+		CrouchMultiplier=1
 	End Object
 
 	//=================================================================
