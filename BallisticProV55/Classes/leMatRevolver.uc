@@ -638,4 +638,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Wilson'
 	DrawScale=0.300000
+	SightAnimScale=0.65
 }

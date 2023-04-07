@@ -609,4 +609,5 @@ defaultproperties
 	SoundRadius=128.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.Glock.Glock_Shiny'
+	SightAnimScale=0.25
 }

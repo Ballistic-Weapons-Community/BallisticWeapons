@@ -86,6 +86,7 @@ defaultproperties
 		ScopeScale=0.7	
 		MagAmmo=4
         ZoomType=ZT_Fixed
+		MaxZoom=2
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

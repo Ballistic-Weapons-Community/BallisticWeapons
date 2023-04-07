@@ -56,7 +56,7 @@ defaultproperties
 		PenetrationEnergy=16.000000
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=2.300000,Radius=256.000000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=1.25,Radius=256.000000,bAtten=True)
 		Recoil=512.000000
 		Inaccuracy=(X=128,Y=128)
 		BotRefireRate=0.800000
@@ -152,8 +152,9 @@ defaultproperties
 		YRandFactor=0.1
 		ClimbTime=0.06
 		DeclineDelay=0.450000
+		DeclineTime=0.75
 		CrouchMultiplier=0.85
-		HipMultiplier=1.25
+		HipMultiplier=1.5
 		MaxMoveMultiplier=2
 	End Object
 

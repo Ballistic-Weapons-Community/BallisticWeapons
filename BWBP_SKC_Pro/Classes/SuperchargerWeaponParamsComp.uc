@@ -115,7 +115,9 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.000000
-		CrouchMultiplier=0.800000
+		ClimbTime=0.03
+		CrouchMultiplier=0.850000
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -144,6 +146,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.950000
 		SightingTime=0.500000
 		ZoomType=ZT_Fixed
+		MaxZoom=4
 		InitialWeaponMode=2
 		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)

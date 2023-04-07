@@ -268,9 +268,9 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	PackOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PackOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-	LeverOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-	LeverOffSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	PackOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PackOn',Volume=0.600000,Radius=24.000000,Pitch=1.000000)
+	LeverOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=24.000000,Pitch=1.000000)
+	LeverOffSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=24.000000,Pitch=1.000000)
 	ValveAnim="TurnValve"
 
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

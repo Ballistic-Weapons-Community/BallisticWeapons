@@ -446,10 +446,10 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
-	RevReloadSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Click',Volume=0.400000,Radius=48.000000,Pitch=1.000000)
-	RevOpenSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Open',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-	RevCloseSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Close',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-	RevSpinSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Spin',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	RevReloadSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Click',Volume=0.400000,Radius=24.000000,Pitch=1.000000)
+	RevOpenSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Open',Volume=0.500000,Radius=24.000000,Pitch=1.000000)
+	RevCloseSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Close',Volume=0.500000,Radius=24.000000,Pitch=1.000000)
+	RevSpinSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Spin',Volume=0.500000,Radius=24.000000,Pitch=1.000000)
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
 	Shells(0)=(BulletName="Bullet1",ShellName="Shell1",NextShell=2)
 	Shells(1)=(BulletName="Bullet4",ShellName="Shell4",NextShell=3)
@@ -526,4 +526,5 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.D49.D49Shells-Shiney'
+	SightAnimScale=0.5
 }

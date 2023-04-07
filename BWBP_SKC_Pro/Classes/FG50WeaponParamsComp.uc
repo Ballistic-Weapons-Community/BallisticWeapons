@@ -143,12 +143,16 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.15
-		XCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=0.130000),(InVal=0.550000,OutVal=0.15000),(InVal=0.700000,OutVal=0.21000),(InVal=1.000000,OutVal=0.225000)))
+		XCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=-0.090000),(InVal=0.550000,OutVal=0.05000),(InVal=0.700000,OutVal=-0.07500),(InVal=1.000000,OutVal=0.1000)))
 		YCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
 		MaxRecoil=8192
-		DeclineTime=1.500000
+		ClimbTime=0.15
+		DeclineDelay=0.3
+		DeclineTime=2
+		CrouchMultiplier=0.85
+		HipMultiplier=1.5
 	End Object
 
 	//=================================================================

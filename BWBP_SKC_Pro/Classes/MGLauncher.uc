@@ -214,9 +214,9 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.300000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.300000,Radius=32.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=24.000000)
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.300000,Radius=24.000000)
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.300000,Radius=24.000000)
 	ClipInFrame=0.325000
 	StartShovelAnim="ReloadStart"
 	EndShovelAnim="ReloadEnd"

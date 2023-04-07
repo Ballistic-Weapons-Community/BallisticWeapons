@@ -31,7 +31,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=0.5
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=550.000000
+		Recoil=600.000000
 		Chaos=0.080000
 		WarnTargetPct=0.200000
 	End Object
@@ -89,14 +89,13 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.200000
-		CrouchMultiplier=0.85
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.20000),(InVal=0.5,OutVal=0.220000),(InVal=0.700000,OutVal=0.35000),(InVal=0.5)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.5,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.075000),(InVal=0.500000,OutVal=-0.075000),(InVal=0.700000,OutVal=-0.09),(InVal=1,OutVal=0)))		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.5,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.05
-		DeclineTime=1.500000
 		DeclineDelay=0.30000
+		DeclineTime=1.500000
+		CrouchMultiplier=0.85
 		HipMultiplier=1.5
 		MaxMoveMultiplier=3
 	End Object

@@ -546,4 +546,5 @@ defaultproperties
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney'
+	SightAnimScale=0.3
 }

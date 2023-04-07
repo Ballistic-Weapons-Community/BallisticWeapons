@@ -78,7 +78,7 @@ defaultproperties
         DamageType=Class'BallisticProV55.DTFifty9Blade'
         DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=12.000000,bAtten=True)
         SplashDamage=False
         RecommendSplashDamage=False
         BotRefireRate=0.99
@@ -102,12 +102,12 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
-		DeclineTime=0.5
-		MaxRecoil=6144
+		ClimbTime=0.04
+		DeclineDelay=0.14
+		DeclineTime=1.1
 		CrouchMultiplier=1
 		HipMultiplier=1.5
 		ViewBindFactor=0.2
-		DeclineDelay=0.09
 	End Object
 
 	Begin Object Class=RecoilParams Name=ArenaAutoRecoilParams
@@ -115,12 +115,13 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
-		DeclineTime=0.5
 		MaxRecoil=6144
-		CrouchMultiplier=0.8
-		HipMultiplier=1.75
+		ClimbTime=0.04
+		DeclineDelay=0.14
+		DeclineTime=1.1
+		CrouchMultiplier=0.85
+		HipMultiplier=1.5
 		ViewBindFactor=0.2
-		DeclineDelay=0.09
 	End Object
 
 	//=================================================================

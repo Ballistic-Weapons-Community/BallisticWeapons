@@ -70,8 +70,11 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
-		DeclineTime=1.000000
-		DeclineDelay=0.170000
+		ClimbTime=0.04
+		DeclineDelay=0.140000
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -100,7 +103,9 @@ defaultproperties
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=50
-        ZoomType=ZT_Logarithmic
+		// fixed 4x
+        ZoomType=ZT_Fixed
+		MaxZoom=4
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

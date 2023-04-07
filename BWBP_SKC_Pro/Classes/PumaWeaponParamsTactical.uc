@@ -141,12 +141,12 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.200000
 		YRandFactor=0.200000
-		ClimbTime=0.05
 		MaxRecoil=4096
+		ClimbTime=0.05
 		DeclineDelay=0.350000
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
-		HipMultiplier=1.5
+		HipMultiplier=1.25
 		MaxMoveMultiplier=2
 	End Object
 

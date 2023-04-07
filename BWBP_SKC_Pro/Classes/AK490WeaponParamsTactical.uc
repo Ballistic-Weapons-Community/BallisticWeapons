@@ -55,7 +55,7 @@ defaultproperties
         LimbMult=0.75f
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.20000,Radius=256) // stealth
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.50000,Radius=32) // stealth
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
@@ -77,10 +77,10 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.300000,OutVal=0.35000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
+		MaxRecoil=6144
 		ClimbTime=0.04
 		DeclineDelay=0.15
 		DeclineTime=1.25
-		MaxRecoil=6144
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

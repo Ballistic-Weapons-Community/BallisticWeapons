@@ -12,7 +12,7 @@ defaultproperties
         Speed=1750.000000
         Damage=40
         DamageRadius=256.000000
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
     End Object
 
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -34,7 +34,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_SKC_Pro.DTChaffSmack'
         BotRefireRate=0.900000
         WarnTargetPct=0.050000
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,Pitch=0.800000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=12.000000,Pitch=0.800000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams

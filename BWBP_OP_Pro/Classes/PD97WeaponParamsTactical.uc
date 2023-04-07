@@ -15,7 +15,7 @@ defaultproperties
 		Chaos=0.150000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.300000	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Radius=128,Volume=0.5)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -58,8 +58,8 @@ defaultproperties
 		YRandFactor=0.10000
 		MaxRecoil=8192.000000
 		ClimbTime=0.04
-		DeclineTime=1.500000
 		DeclineDelay=0.5
+		DeclineTime=1.500000
 		CrouchMultiplier=1
 		HipMultiplier=1
 		MaxMoveMultiplier=1.5

@@ -67,12 +67,15 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.35
-		XCurve=(Points=(,(InVal=0.080000,OutVal=0.050000),(InVal=0.110000,OutVal=0.080000),(InVal=0.150000,OutVal=0.14000),(InVal=0.300000,OutVal=0.2300000),(InVal=0.450000,OutVal=0.2500000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.380000),(InVal=1.000000,OutVal=0.25)))
+		XCurve=(Points=(,(InVal=0.10000,OutVal=0.000000),(InVal=0.150000,OutVal=0.080000),(InVal=0.25000,OutVal=0.04000),(InVal=0.300000,OutVal=-0.0500000),(InVal=0.450000,OutVal=0.0000000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=-0.12),(InVal=1.000000,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
-		DeclineDelay=0.1700000
-		DeclineTime=0.65
+		ClimbTime=0.04
+		DeclineDelay=0.165000
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -101,12 +104,15 @@ defaultproperties
 		//Function
         CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightingTime=0.4
-		ScopeScale=0.65
-        SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6
-        ZoomType=ZT_Logarithmic
+		// ADS handling
+		SightingTime=0.4
+        SightMoveSpeedFactor=0.6
+		// Zoom
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		ScopeScale=0.65
 		SightPivot=(Pitch=600,Roll=-1024)
 		SightOffset=(Y=-1.000000,Z=12.500000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

@@ -86,7 +86,7 @@ defaultproperties
     End Object  
 
 	Begin Object Class=ProjectileEffectParams Name=TacticalConeEffectParams
-    	MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
+    	MuzzleFlashClass=Class'BallisticProV55.RSDarkFastMuzzleFlash'
 		SpawnOffset=(X=0,Y=0,Z=0)
         Speed=
         AccelSpeed=
@@ -113,7 +113,7 @@ defaultproperties
     End Object     
 
 	Begin Object Class=ProjectileEffectParams Name=TacticalBombEffectParams
-    	MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
+    	MuzzleFlashClass=Class'BallisticProV55.RSDarkFastMuzzleFlash'
     	SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
         Speed=4000.000000
         AccelSpeed=0.000000
@@ -147,9 +147,9 @@ defaultproperties
 		Damage=50.0
 		HeadMult=1f
 		LimbMult=1f
-		DamageType=Class'BallisticProV55.DT_RSNovaStab'
-		DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
-		DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'
+		DamageType=Class'BallisticProV55.DT_RSDarkStab'
+		DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
+		DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.000000
@@ -175,28 +175,28 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalBoltRecoilParams
+		ViewBindFactor=0.3
      	XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
      	YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.8
 		YRandFactor=0.8
 		ClimbTime=0.06
-		DeclineTime=0.75
-		ViewBindFactor=0.3
 		DeclineDelay=0.8
+		DeclineTime=0.75
 		CrouchMultiplier=1
-		HipMultiplier=1.25
+		HipMultiplier=1.5
 		MaxMoveMultiplier=2
 	End Object
  
 	Begin Object Class=RecoilParams Name=TacticalFastRecoilParams
+		ViewBindFactor=0.5
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 	    XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.04
-		DeclineTime=0.75
-		ViewBindFactor=0.5
 		DeclineDelay=0.25
+		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

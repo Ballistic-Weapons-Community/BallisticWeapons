@@ -53,7 +53,7 @@ defaultproperties
 		YawFactor=0.800000
 		XRandFactor=0.200000
 		YRandFactor=0.200000
-		DeclineTime=1.000000
+		DeclineTime=0.75
     End Object
 	 
 	//=================================================================

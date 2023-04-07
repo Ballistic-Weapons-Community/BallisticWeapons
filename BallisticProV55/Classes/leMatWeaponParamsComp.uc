@@ -28,7 +28,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.32
 		FireEndAnim=
-		AimedFireAnim="SightFire"
+		//AimedFireAnim="SightFire"
 		FireAnimRate=1.5	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -75,8 +75,10 @@ defaultproperties
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.2,OutVal=0.03),(InVal=0.36,OutVal=0.07),(InVal=0.62,OutVal=0.09),(InVal=0.6,OutVal=0.11),(InVal=1,OutVal=0.15)))
 		XRandFactor=0.150000
 		YRandFactor=0.150000
-		DeclineTime=1.000000
-		DeclineDelay=0.500000
+		ClimbTime=0.04
+		DeclineTime=0.75
+		DeclineDelay=0.34
+		CrouchMultiplier=1
 	End Object
 
 	//=================================================================

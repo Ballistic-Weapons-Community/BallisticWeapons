@@ -279,9 +279,9 @@ defaultproperties
 {
 	SpringOnAnim="SecStart"
 	SpringOffAnim="SecFinish"
-	DeploySound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Deploy',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
-	OpenSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
-	CloseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
+	DeploySound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Deploy',Volume=1.000000,Radius=24.000000,Pitch=1.000000)
+	OpenSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.000000,Radius=24.000000,Pitch=1.000000)
+	CloseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.000000,Radius=24.000000,Pitch=1.000000)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_BX5'
 	BigIconCoords=(Y1=24,Y2=240)

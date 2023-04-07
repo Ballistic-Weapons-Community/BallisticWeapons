@@ -15,7 +15,7 @@ defaultproperties
 		Chaos=0.150000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.300000	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Radius=128,Volume=0.5)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -57,8 +57,10 @@ defaultproperties
 		XRandFactor=0.10000
 		YRandFactor=0.10000
 		MaxRecoil=8192.000000
+		ClimbTime=0.04
+		DeclineDelay=0.5
 		DeclineTime=1.500000
-		DeclineDelay=0.500000
+		CrouchMultiplier=1
 	End Object
 
 	//=================================================================

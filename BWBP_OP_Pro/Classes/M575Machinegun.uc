@@ -327,7 +327,7 @@ simulated function SetScopeProperties()
 		ZoomType = ZT_Fixed;
 		SightingTime = 0.6;
 		ScopeViewTex = ScopeScopeViewTex;
-		FullZoomFOV = 50;
+		MaxZoom=2;
 	}
 	else
 	{

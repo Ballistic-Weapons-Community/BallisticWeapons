@@ -11,7 +11,7 @@ defaultproperties
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Damage=0
         DamageRadius=200.000000
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		Speed=1000.000000
         MaxSpeed=1500.000000
 		HeadMult=1.0
@@ -32,7 +32,7 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		ProjectileClass=Class'BallisticProV55.M58Rolled'
 		SpawnOffset=(Z=-14.000000)
         Speed=1000.000000

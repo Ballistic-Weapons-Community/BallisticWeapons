@@ -161,7 +161,7 @@ defaultproperties
 		HookStopFactor=1.700000
 		HookPullForce=150.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Volume=0.5,Radius=12.000000,bAtten=True)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000
@@ -186,9 +186,12 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.8
 		YRandFactor=0.8
-		DeclineTime=1.5
-		ViewBindFactor=0.4
+		ClimbTime=0.06
 		DeclineDelay=0.8
+		DeclineTime=0.75
+		CrouchMultiplier=1
+		ViewBindFactor=0.4
+		HipMultiplier=1.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=ArenaFastRecoilParams
@@ -196,9 +199,12 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05
 		YRandFactor=0.05
-		DeclineTime=0.5
-		ViewBindFactor=0.65
+		ClimbTime=0.04
 		DeclineDelay=0.25
+		DeclineTime=0.75
+		CrouchMultiplier=1
+		ViewBindFactor=0.65
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================

@@ -15,7 +15,7 @@ defaultproperties
         DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
         BotRefireRate=0.99
         WarnTargetPct=0.3
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Volume=0.35,Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Volume=0.5,Radius=24.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -40,7 +40,7 @@ defaultproperties
         HookPullForce=100.000000
         BotRefireRate=0.99
         WarnTargetPct=0.5
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Volume=0.35,Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Volume=0.5,Radius=24.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

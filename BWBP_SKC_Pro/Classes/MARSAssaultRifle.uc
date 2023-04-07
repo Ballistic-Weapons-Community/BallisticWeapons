@@ -996,11 +996,11 @@ defaultproperties
 	
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.10000
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=24.000000)
 	ReloadAnimRate=1.10000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle',Volume=1.400000,Radius=24.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.400000,Radius=24.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagIn',Volume=1.400000,Radius=24.000000)
 	ClipInFrame=0.650000
 	ScopeViewTex=Texture'BWBP_SKC_Tex.MARS.MARS-Scope'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)

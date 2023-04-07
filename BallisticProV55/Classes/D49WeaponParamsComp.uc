@@ -33,7 +33,7 @@ defaultproperties
         FireAnim="FireSingle"
         FireEndAnim=
         FireInterval=0.4
-        AimedFireAnim="SightFire"
+        //AimedFireAnim="SightFire"
         FireEffectParams(0)=InstantEffectParams'ArenaFireEffectParams'
     End Object 
 
@@ -80,9 +80,12 @@ defaultproperties
 		ViewBindFactor=0.65
 		XRandFactor=0.10000
 		YRandFactor=0.10000
-		DeclineTime=1.200000
-		DeclineDelay=0.350000
 		MaxRecoil=6144
+		ClimbTime=0.05
+		DeclineDelay=0.440000
+		DeclineTime=1.1
+		CrouchMultiplier=1
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================

@@ -61,11 +61,13 @@ defaultproperties
 		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.5),(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.000000
-		ClimbTime=0.06
 		XRandFactor=0.400000
 		YRandFactor=0.400000
 		MaxRecoil=6144.000000
+		ClimbTime=0.06
 		DeclineDelay=0.5
+		DeclineTime=0.75
+		HipMultiplier=1.5
 	End Object
 
 	//=================================================================

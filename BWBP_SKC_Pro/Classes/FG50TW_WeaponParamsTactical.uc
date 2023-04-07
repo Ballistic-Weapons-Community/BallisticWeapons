@@ -10,7 +10,7 @@ defaultproperties
 		XRandFactor=0.200000
 		YRandFactor=0.050000
 		MaxRecoil=1200.000000
-		DeclineTime=1.000001
+		DeclineTime=1
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalAimParams

@@ -27,7 +27,7 @@ defaultproperties
 		PushbackForce=128.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=300.000000
+		Recoil=600.000000
 		Chaos=0.150000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.M925.M925-Fire',Volume=0.800000)
@@ -47,15 +47,14 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.250000
 		ADSViewBindFactor=0.7
-		CrouchMultiplier=0.850000
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.40000),(InVal=0.5,OutVal=0.550000),(InVal=0.700000,OutVal=0.70000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.5,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.01000),(InVal=0.180000,OutVal=-0.020000),(InVal=0.300000,OutVal=0.040000),(InVal=0.500000,OutVal=0.030000),(InVal=0.650000,OutVal=0.00000),(InVal=0.700000,OutVal=-0.0200000),(InVal=0.850000,OutVal=0.010000),(InVal=1.000000,OutVal=0.00)))		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.5,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.15
 		YRandFactor=0.15
-		ClimbTime=0.05
 		MaxRecoil=6500.000000
-		DeclineTime=1.25
+		ClimbTime=0.1
 		DeclineDelay=0.35000
+		DeclineTime=1.25
+		CrouchMultiplier=0.850000
 		HipMultiplier=1.5
 		MaxMoveMultiplier=3
 	End Object

@@ -115,39 +115,41 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.1
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.25),(InVal=0.5,OutVal=0.16),(InVal=0.7,OutVal=0.12),(InVal=0.85,OutVal=0.1),(InVal=1,OutVal=0.3)))
+		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
 		XRandFactor=0.2
 		YRandFactor=0.2
 		ClimbTime=0.05
-		DeclineTime=0.75
 		DeclineDelay=0.250000
+		DeclineTime=0.75
 		CrouchMultiplier=0.85
-		HipMultiplier=1.25
+		HipMultiplier=1.5
 		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalExplosiveRecoilParams
 		ViewBindFactor=0.1
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.25),(InVal=0.5,OutVal=0.16),(InVal=0.7,OutVal=0.3),(InVal=0.85,OutVal=-0.1),(InVal=1,OutVal=-0.4)))
+		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
 		YRandFactor=0.2
-		DeclineTime=0.75
+		ClimbTime=0.05
 		DeclineDelay=0.32
+		DeclineTime=0.75
 		CrouchMultiplier=0.85
-		HipMultiplier=1.25
+		HipMultiplier=1.5
 		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAcidRecoilParams
 		ViewBindFactor=0.1
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.25),(InVal=0.5,OutVal=0.16),(InVal=0.7,OutVal=0.3),(InVal=0.85,OutVal=-0.1),(InVal=1,OutVal=-0.4)))
+		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
 		YRandFactor=0.08
-		DeclineTime=0.75
+		ClimbTime=0.05
 		DeclineDelay=0.2
+		DeclineTime=0.75
 		CrouchMultiplier=0.85
-		HipMultiplier=1.25
+		HipMultiplier=1.5
 		MaxMoveMultiplier=2
 	End Object
 

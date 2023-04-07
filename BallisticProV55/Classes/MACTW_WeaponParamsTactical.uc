@@ -55,8 +55,10 @@ defaultproperties
 		YawFactor=0.5
 		XRandFactor=0.300000
 		YRandFactor=0.200000
-		DeclineTime=0.75
 		MinRandFactor=0.350000
+		ClimbTime=0.1
+		DeclineTime=0.75
+		CrouchMultiplier=1
 	End Object
 
 	//=================================================================

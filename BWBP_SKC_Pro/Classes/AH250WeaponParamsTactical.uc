@@ -83,10 +83,10 @@ defaultproperties
 		ViewBindFactor=0.5
 		XRandFactor=0.2
 		YRandFactor=0.2
+		MaxRecoil=8192
 		ClimbTime=0.06
 		DeclineDelay=0.45
         DeclineTime=1.5
-		MaxRecoil=8192
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -97,10 +97,10 @@ defaultproperties
         ViewBindFactor=0.5
 		XRandFactor=0.1
 		YRandFactor=0.1
+		MaxRecoil=8192
 		ClimbTime=0.06
 		DeclineDelay=0.45
         DeclineTime=1.5
-		MaxRecoil=8192
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -136,22 +136,28 @@ defaultproperties
 		//Layout core
 		LayoutName="Scoped Marksman"
 		Weight=10
+
+		//Function
+		InventorySize=4
+		DisplaceDurationMult=0.75
+		MagAmmo=7
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=1f)
-		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
-		ZoomType=ZT_Fixed
-		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
-		
-		//Function
-		InventorySize=4
+
+		// ADS handling
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.5
-		DisplaceDurationMult=0.75
-		MagAmmo=7
+
+		// Zoom
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

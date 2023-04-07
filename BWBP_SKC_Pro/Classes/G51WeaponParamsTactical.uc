@@ -73,18 +73,18 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.250000,OutVal=0.150000),(InVal=0.400000,OutVal=0.24000),(InVal=0.800000,OutVal=0.32000),(InVal=1.000000,OutVal=0.48000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.250000,OutVal=0.060000),(InVal=0.400000,OutVal=-0.020000),(InVal=0.800000,OutVal=0.100),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.04
-		DeclineTime=1.00000
 		DeclineDelay=0.140000
+		DeclineTime=1.00000
 		CrouchMultiplier=0.850000
-		ViewBindFactor=0.4
-		ADSViewBindFactor=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
+		ViewBindFactor=0.4
+		ADSViewBindFactor=0.85
 	End Object
 
 	//=================================================================

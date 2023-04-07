@@ -139,9 +139,11 @@ defaultproperties
 		XRandFactor=0.200000
 		YRandFactor=0.200000
 		MaxRecoil=4096
+		ClimbTime=0.05
 		DeclineDelay=0.350000
-		DeclineTime=0.900000
-		CrouchMultiplier=0.200000
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.25
 	End Object
 
 	//=================================================================

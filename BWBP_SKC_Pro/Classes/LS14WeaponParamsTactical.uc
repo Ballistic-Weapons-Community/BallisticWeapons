@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=30
+		Damage=20
         HeadMult=2.25
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
@@ -66,13 +66,13 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.150000,OutVal=0.1),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.20000),(InVal=0.400000,OutVal=0.420000),(InVal=0.600000,OutVal=0.560000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.1
-		YRandFactor=0.1
-		ClimbTime=0.04
-		DeclineTime=1.000000
+		XCurve=(Points=((InVal=0,OutVal=0),(InVal=1,OutVal=0)))
+		YCurve=(Points=((InVal=0,OutVal=0),(InVal=1,OutVal=1)))
+		XRandFactor=0.0
+		YRandFactor=0.0
+		ClimbTime=0.01
 		DeclineDelay=0.18
+		DeclineTime=1.000000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -108,11 +108,9 @@ defaultproperties
 		SightingTime=0.5
 		DisplaceDurationMult=1
 		MagAmmo=20
-		// acog
-        ZoomType=ZT_Logarithmic
-		MinZoom=2
-		MaxZoom=4
-		ZoomStages=1
+		// fixed 3x - acog/carbine
+		ZoomType=ZT_Fixed
+		MaxZoom=3
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

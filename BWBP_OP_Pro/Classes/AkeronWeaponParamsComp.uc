@@ -89,7 +89,9 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.75
+		ClimbTime=0.04
 		DeclineTime=1.000000
+		CrouchMultiplier=0.85
 	End Object
 
 	//=================================================================

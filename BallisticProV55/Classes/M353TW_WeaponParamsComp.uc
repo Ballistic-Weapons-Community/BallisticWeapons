@@ -59,8 +59,8 @@ defaultproperties
 		YRandFactor=0.03000
         ViewBindFactor=1.000000
 		MaxRecoil=12288.000000
-		DeclineTime=0.500000
-		DeclineDelay=0.150000
+		DeclineTime=1.500000
+		DeclineDelay=0.130000
 	End Object
 
 	//=================================================================

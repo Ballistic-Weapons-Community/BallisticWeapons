@@ -172,4 +172,5 @@ defaultproperties
     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M290'
     DrawScale=0.280000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	SightAnimScale=0.5
 }

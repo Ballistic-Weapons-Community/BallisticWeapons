@@ -10,7 +10,7 @@ defaultproperties
         TraceRange=(Min=150.000000,Max=150.000000)
         Damage=45.000000
         Fatigue=0.030000
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.7,Radius=24.000000,bAtten=True)
         DamageType=Class'BallisticProV55.DTA909Blades'
         DamageTypeHead=Class'BallisticProV55.DTA909Head'
         DamageTypeArm=Class'BallisticProV55.DTA909Limb'
@@ -41,7 +41,7 @@ defaultproperties
         MomentumTransfer=100
         HookStopFactor=1.700000
         HookPullForce=100.000000
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.5,Radius=24.000000,bAtten=True)
         WarnTargetPct=0.500000
         BotRefireRate=0.5
     End Object

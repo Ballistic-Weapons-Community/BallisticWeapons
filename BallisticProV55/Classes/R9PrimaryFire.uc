@@ -136,7 +136,7 @@ defaultproperties
      KickForce=6000
      PenetrateForce=150
      bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=48.000000,Pitch=1.250000,bAtten=True)
+     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=24.000000,Pitch=1.250000,bAtten=True)
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'

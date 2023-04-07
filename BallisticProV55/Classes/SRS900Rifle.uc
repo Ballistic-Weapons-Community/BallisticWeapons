@@ -595,8 +595,8 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipIn')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
-	WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=2.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	
@@ -656,4 +656,6 @@ defaultproperties
 	Skins(3)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
 	Skins(4)=FinalBlend'BW_Core_WeaponTex.SRS.SRS-HSight-FB'
 	Skins(5)=Shader'BW_Core_WeaponTex.SRS.SRS-HSight-S'
+
+	SightAnimScale=0.1
 }

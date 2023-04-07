@@ -146,6 +146,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.45
 		SightingTime=0.5
 		ZoomType=ZT_Fixed
+		MaxZoom=4
 		InitialWeaponMode=2
 		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)

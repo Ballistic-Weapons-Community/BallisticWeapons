@@ -78,14 +78,16 @@ function PlayFiring()
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
-		AimedFireAnim = 'SightFireOpen';
+		//AimedFireAnim = 'SightFireOpen';
+		AimedFireAnim='OpenFire';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
-		AimedFireAnim = 'SightFire';
+		//AimedFireAnim = 'SightFire';
+		AimedFireAnim='Fire';
 		FireAnim = 'Fire';
 	}
 
@@ -137,7 +139,7 @@ defaultproperties
      FireChaos=0.250000
      XInaccuracy=96.000000
      YInaccuracy=96.000000
-     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilenceFire',Volume=0.700000,Radius=76.000000,bAtten=True)
+     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilenceFire',Volume=0.700000,Radius=48.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
      bPawnRapidFireAnim=True
 	 FireEndAnim=
