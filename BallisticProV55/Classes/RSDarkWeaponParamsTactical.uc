@@ -86,7 +86,7 @@ defaultproperties
     End Object  
 
 	Begin Object Class=ProjectileEffectParams Name=TacticalConeEffectParams
-    	MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
+    	MuzzleFlashClass=Class'BallisticProV55.RSDarkFastMuzzleFlash'
 		SpawnOffset=(X=0,Y=0,Z=0)
         Speed=
         AccelSpeed=
@@ -113,7 +113,7 @@ defaultproperties
     End Object     
 
 	Begin Object Class=ProjectileEffectParams Name=TacticalBombEffectParams
-    	MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
+    	MuzzleFlashClass=Class'BallisticProV55.RSDarkFastMuzzleFlash'
     	SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
         Speed=4000.000000
         AccelSpeed=0.000000
@@ -147,9 +147,9 @@ defaultproperties
 		Damage=50.0
 		HeadMult=1f
 		LimbMult=1f
-		DamageType=Class'BallisticProV55.DT_RSNovaStab'
-		DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
-		DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'
+		DamageType=Class'BallisticProV55.DT_RSDarkStab'
+		DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
+		DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.000000

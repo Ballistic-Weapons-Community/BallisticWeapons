@@ -78,7 +78,7 @@ defaultproperties
         DamageType=Class'BallisticProV55.DTFifty9Blade'
         DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=12.000000,bAtten=True)
         SplashDamage=False
         RecommendSplashDamage=False
         BotRefireRate=0.99

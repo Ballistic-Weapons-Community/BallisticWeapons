@@ -17,7 +17,7 @@ defaultproperties
 		MaxSpeed=1500.000000
 		HeadMult=1.0
 		LimbMult=1.0
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
     End Object
 
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -40,7 +40,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		WarnTargetPct=0.5
 	End Object
     

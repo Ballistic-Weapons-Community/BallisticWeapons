@@ -11,13 +11,13 @@ defaultproperties
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Speed=1400.000000
         MaxSpeed=1500.000000
-        Damage=150
+        Damage=200
         DamageRadius=1024.000000
-        HeadMult=2.0f
-        LimbMult=0.75f
+        HeadMult=1.0
+        LimbMult=1.0
         BotRefireRate=0.4
         WarnTargetPct=0.75	
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -40,7 +40,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		WarnTargetPct=0.500000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

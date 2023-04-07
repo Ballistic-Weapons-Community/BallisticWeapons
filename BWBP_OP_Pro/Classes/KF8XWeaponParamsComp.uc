@@ -14,7 +14,7 @@ defaultproperties
 		Damage=30.000000
 		HeadMult=2.75f
 		LimbMult=0.85f
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=32.000000)
 		Recoil=0.0
 		Chaos=0.15
 		BotRefireRate=0.500000

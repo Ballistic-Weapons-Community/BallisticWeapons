@@ -23,7 +23,7 @@ defaultproperties
 		Chaos=0.5
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Fire',Volume=2.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Fire',Volume=1.500000,Radius=1024.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams

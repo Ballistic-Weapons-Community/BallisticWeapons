@@ -15,7 +15,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSStabChest'
         BotRefireRate=0.800000
         WarnTargetPct=0.800000
-        FireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=256.000000,bAtten=True)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Radius=48.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -38,7 +38,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSLimb'
         BotRefireRate=0.700000
         WarnTargetPct=0.800000
-        FireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=256.000000,bAtten=True)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Radius=48.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

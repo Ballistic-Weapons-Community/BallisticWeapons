@@ -39,7 +39,7 @@ defaultproperties
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
      PenetrateForce=0
      bPenetrate=False
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=24.000000,bAtten=True)
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
      FlashScaleFactor=0.600000

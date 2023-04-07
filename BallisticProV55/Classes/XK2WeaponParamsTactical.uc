@@ -28,7 +28,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		Recoil=128.000000
 		Chaos=0.025000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.25,Radius=256.000000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.6,Radius=256.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams

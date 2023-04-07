@@ -50,7 +50,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Spike'
 		BotRefireRate=0.800000
 		WarnTargetPct=0.100000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=12.000000,bAtten=True)
 	End Object
 	
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams

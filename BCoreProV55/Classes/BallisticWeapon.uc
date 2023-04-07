@@ -1388,7 +1388,7 @@ simulated function Notify_ShellIn()
 				MagAmmo+=AmmoNeeded;
 				Ammo[0].UseAmmo (AmmoNeeded, True);
 		}
-		PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
+		class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 		// A bot will stop reloading if they feel unsafe. Dumb ones will do this less
 		if (AIController(InstigatorController) != None && MagAmmo > 0 && AIController(InstigatorController).Enemy != None)
 		{
@@ -1407,7 +1407,7 @@ simulated function Notify_ClipIn()
 	if (ReloadState == RS_None)
 		return;
 	ReloadState = RS_PostClipIn;
-	PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 	if (level.NetMode != NM_Client)
 	{
 		AmmoNeeded = default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
@@ -1425,7 +1425,7 @@ simulated function Notify_ClipOut()
 	if (ReloadState == RS_None)
 		return;
 	ReloadState = RS_PreClipIn;
-	PlayOwnedSound(ClipOutSound.Sound,ClipOutSound.Slot,ClipOutSound.Volume,ClipOutSound.bNoOverride,ClipOutSound.Radius,ClipOutSound.Pitch,ClipOutSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, ClipOutSound, true);
 }
 
 // Animation notify for when cocking action starts. Used to time sounds
@@ -1433,7 +1433,7 @@ simulated function Notify_CockStart()
 {
 	if (ReloadState == RS_None && !bNeedCock)	return;
 	ReloadState = RS_Cocking;
-	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, CockSound, true);
 }
 
 // Animation notify for when cocking action starts for pullout fancy animations that use a different sound to Notify_CockStart. Used to time sounds
@@ -1441,7 +1441,7 @@ simulated function Notify_CockPullout()
 {
 	if (ReloadState == RS_None && !bNeedCock)	return;
 	ReloadState = RS_Cocking;
-	PlayOwnedSound(CockSelectSound.Sound,CockSelectSound.Slot,CockSelectSound.Volume,CockSelectSound.bNoOverride,CockSelectSound.Radius,CockSelectSound.Pitch,CockSelectSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, CockSelectSound, true);
 }
 
 // Animation notify for ejecting a cartridge
@@ -1468,7 +1468,7 @@ simulated function Notify_CockAfterReload()
 // Animation notify for when the magazine is hit
 simulated function Notify_ClipHit()
 {
-	PlayOwnedSound(ClipHitSound.Sound,ClipHitSound.Slot,ClipHitSound.Volume,ClipHitSound.bNoOverride,ClipHitSound.Radius,ClipHitSound.Pitch,ClipHitSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, ClipHitSound, true);
 }
 
 //================================================================================
@@ -5605,8 +5605,8 @@ defaultproperties
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
 	 
-     BringUpSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     PutDownSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	 
 	 MagAmmo=30
 	 
@@ -5614,8 +5614,8 @@ defaultproperties
 	 CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
 	 CockSelectAnimRate=1.000000
-     CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
-	 CockSelectSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
+     CockSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	 CockSelectSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
@@ -5624,9 +5624,9 @@ defaultproperties
 	 StartShovelAnimRate=1.000000
 	 EndShovelAnimRate=1.000000
 	 
-     ClipHitSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
-     ClipOutSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     ClipInSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipHitSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipOutSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipInSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      ClipInFrame=0.900000
      ShovelIncrement=1
      bPlayThirdPersonReload=True

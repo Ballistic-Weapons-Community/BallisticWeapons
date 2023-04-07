@@ -161,7 +161,7 @@ defaultproperties
 		HookStopFactor=1.700000
 		HookPullForce=150.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Volume=0.5,Radius=12.000000,bAtten=True)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000

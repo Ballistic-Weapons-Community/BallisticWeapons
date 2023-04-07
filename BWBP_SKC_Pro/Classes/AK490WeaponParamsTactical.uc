@@ -55,7 +55,7 @@ defaultproperties
         LimbMult=0.75f
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.20000,Radius=256) // stealth
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.50000,Radius=32) // stealth
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
