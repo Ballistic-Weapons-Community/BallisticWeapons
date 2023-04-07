@@ -181,7 +181,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponCamo Name=CYLOFS_OrangeFancy
 		Index=4
-		CamoName="Custom Orange"
+		CamoName="Limited"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainStripes",Index=1,AIndex=0,PIndex=0)
 		Weight=5
