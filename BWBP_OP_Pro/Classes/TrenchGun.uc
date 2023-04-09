@@ -680,7 +680,7 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Ammo: FRAG-12",Value=1.000000,bUnavailable=True)
 	WeaponModes(4)=(ModeName="Ammo: Dragon",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=40.000000,Y=2.800000,Z=8.700000)
+	SightOffset=(X=0,Y=0,Z=1.22)
 	SightBobScale=0.3
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
@@ -703,7 +703,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BWBP_OP_Pro.TrenchGunPickup'
-	PlayerViewOffset=(X=-20.000000,Y=4.000000,Z=-10.000000)
+	PlayerViewOffset=(X=10,Y=5.9,Z=-5)
 	AttachmentClass=Class'BWBP_OP_Pro.TrenchGunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.TechGun.Icon_TechGun'
 	IconCoords=(X2=127,Y2=30)

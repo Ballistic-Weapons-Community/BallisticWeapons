@@ -24,6 +24,7 @@ var() float				MaxRecoil;					// The maximum recoil amount
 var() float				ClimbTime;					// when adding recoil, time required to interpolate between start and target recoil
 var() float				DeclineTime;				// when removing recoil, time required to interpolate from **maximum** recoil to zero
 var() float				DeclineDelay;				// The time between firing and when recoil should start decaying
+var() float				EscapeMultiplier;			// Hack. Multiplies the escape recoil pivot in order to have weapons appear to shoot from above the front sight in ADS..
 
 /* 
 notes on ViewBindFactor/ADSViewBindFactor - Azarael
@@ -97,5 +98,6 @@ defaultproperties
     HipMultiplier=1
 	MaxMoveMultiplier=1
 	CrouchMultiplier=1
+	EscapeMultiplier=1
     bViewDecline=False
 }

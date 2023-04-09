@@ -532,8 +532,7 @@ defaultproperties
 	CurrentWeaponMode=1
 	bShowChargingBar=True
 	bNoCrosshairInScope=True
-	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
-	SightDisplayFOV=45.000000
+	SightOffset=(X=0,Y=0,Z=3.35)
 	SightingTime=0.550000
 	ParamsClasses(0)=Class'Z250WeaponParamsComp'
 	ParamsClasses(1)=Class'Z250WeaponParamsClassic'
@@ -560,7 +559,7 @@ defaultproperties
 	BobDamping=0.1
 	SightBobScale=1
 	PickupClass=Class'BWBP_OP_Pro.Z250Pickup'
-	PlayerViewOffset=(X=-20,Y=18.000000,Z=-32.000000)
+	PlayerViewOffset=(X=25,Y=12,Z=-8.5)
 	AttachmentClass=Class'BWBP_OP_Pro.Z250Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Z250.Icon_Z250'
 	IconCoords=(X2=127,Y2=31)

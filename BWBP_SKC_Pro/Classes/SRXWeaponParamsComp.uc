@@ -177,7 +177,7 @@ defaultproperties
 		WeaponMaterialSwaps(6)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=11) //A10
 		WeaponMaterialSwaps(7)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=12) //A11
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
-		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
+		SightOffset=(X=0,Y=0,Z=2.5)
 		SightPivot=(Pitch=-128,Yaw=16)
 		//Function
 		CockAnimRate=1.200000
@@ -200,7 +200,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		SightPivot=(Pitch=-128,Yaw=16)
-		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
+		SightOffset=(X=0.000000,Y=0.1,Z=3.7)
 		//Function
 		CockAnimRate=1.200000
 		MagAmmo=20

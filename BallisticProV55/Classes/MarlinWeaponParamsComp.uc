@@ -107,7 +107,7 @@ defaultproperties
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
-		SightOffset=(X=40.000000,Y=-0.070000,Z=4.750000)
+		SightOffset=(X=24.000000,Y=-0.040000,Z=2.850000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=True)
@@ -134,7 +134,7 @@ defaultproperties
 		Weight=5
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
-		SightOffset=(X=40.000000,Y=-0.100000,Z=9.100000)
+		SightOffset=(X=24.000000,Y=-0.060000,Z=6.300000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Accelerated Shot",ModeID="WM_SemiAuto",Value=1.000000)

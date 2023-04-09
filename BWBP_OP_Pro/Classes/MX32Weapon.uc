@@ -600,8 +600,7 @@ defaultproperties
 	 ClipInSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagIn',Volume=1.350000)
      ClipInFrame=0.650000
      bNoCrosshairInScope=True
-     SightOffset=(X=16.000000,Y=-0.340000,Z=22.720000)
-     SightDisplayFOV=20.000000 
+     SightOffset=(X=0,Y=0,Z=1.72)
 	 SightBobScale=0.3
      FireModeClass(0)=Class'BWBP_OP_Pro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.MX32SecondaryFire'
@@ -626,7 +625,7 @@ defaultproperties
      InventoryGroup=6
      GroupOffset=7
      PickupClass=Class'BWBP_OP_Pro.MX32Pickup'
-     PlayerViewOffset=(X=-1.000000,Y=6.000000,Z=-16.000000)
+     PlayerViewOffset=(X=11,Y=6,Z=-2)
      AttachmentClass=Class'BWBP_OP_Pro.MX32Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.MX32.SmallIcon_MX32'
      IconCoords=(X2=127,Y2=28)

@@ -349,7 +349,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=25.000000,Z=12.900000)
+	SightOffset=(X=15.000000,Z=7.750000)
 	SightDisplayFOV=60.000000
 	SightPivot=(Pitch=128)
 	GunLength=48.000000
@@ -372,7 +372,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
-	PlayerViewOffset=(X=-10,Y=8.000000,Z=-14.000000)
+	PlayerViewOffset=(X=-6,Y=4.800000,Z=-8.400000)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M763'
 	IconCoords=(X2=127,Y2=31)
@@ -387,5 +387,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M763'
-	DrawScale=0.500000
+	DrawScale=0.3
 }

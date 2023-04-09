@@ -450,6 +450,18 @@ final simulated function Rotator GetEscapePivot()
 }
 
 //===========================================================
+// GetFireEscapePivot
+//
+// Pivot used to determine shot direction. 
+// Hack to make weapons that escape in sight view appear to 
+// shoot above the front sight, rather than directly onto it.
+//===========================================================
+final simulated function Rotator GetFireEscapePivot()
+{
+	return GetEscapePivot() * Params.EscapeMultiplier;
+}
+
+//===========================================================
 // CalculateRecoil
 //
 // Calculates the offset for the current recoil state by 

@@ -531,9 +531,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
-	PlayerViewOffset=(X=-5.000000,Y=10.000000,Z=-22.000000)
-	SightDisplayFOV=25.000000
+	SightOffset=(X=0.000000,Y=0.1,Z=3.7)
+	PlayerViewOffset=(X=8.000000,Y=8.00000,Z=-10.000000)
 	GunLength=72.000000
 	ParamsClasses(0)=Class'SRXWeaponParamsComp'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'

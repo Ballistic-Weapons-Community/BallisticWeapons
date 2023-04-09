@@ -92,12 +92,12 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=6
      PickupClass=Class'BallisticProV55.T10Pickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.T10Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_T10'
      IconCoords=(X2=127,Y2=31)
      ItemName="T10 Toxic Grenade"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
-     DrawScale=0.400000
+     DrawScale=0.300000
 }

@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=52
+		Damage=70
         HeadMult=2.5f
         LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -20,7 +20,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=420.000000
+		Recoil=512.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -29,8 +29,9 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.3000
+		FireAnimRate=0.9
 		FireEndAnim=
-		AimedFireAnim="AimedFire"	
+		//AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 
@@ -47,7 +48,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=420.000000
+		Recoil=512.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -75,7 +76,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=240.000000
+		Recoil=256.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -95,11 +96,12 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.35
+		ADSViewBindFactor=0.85
 		XCurve=(Points=(,(InVal=0.150000,OutVal=0.10000),(InVal=0.350000,OutVal=0.25000),(InVal=0.5,OutVal=0.30000),(InVal=0.70000,OutVal=0.350000),(InVal=0.850000,OutVal=0.42000),(InVal=1.000000,OutVal=0.45)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.175000),(InVal=0.400000,OutVal=0.450000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
-		ClimbTime=0.04
+		ClimbTime=0.08
 		DeclineDelay=0.350000
 		DeclineTime=1.00000
 		CrouchMultiplier=0.850000
@@ -131,7 +133,7 @@ defaultproperties
 		SightingTime=0.4	
 		ScopeScale=0.7
 		DisplaceDurationMult=1
-		MagAmmo=15
+		MagAmmo=12
 		// sniper 4-8x
 		MinZoom=4
 		MaxZoom=8

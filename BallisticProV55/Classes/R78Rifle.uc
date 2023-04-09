@@ -226,7 +226,7 @@ defaultproperties
      FullZoomFOV=20.000000
      bNoCrosshairInScope=True
      SightPivot=(Roll=-1024)
-     SightOffset=(X=18.000000,Y=-1.600000,Z=17.000000)
+     SightOffset=(X=12.000000,Y=-1.070000,Z=11.30000)
      MinZoom=4.000000
      MaxZoom=16.000000
      ZoomStages=2
@@ -249,7 +249,7 @@ defaultproperties
      InventoryGroup=9
      GroupOffset=2
      PickupClass=Class'BallisticProV55.R78Pickup'
-     PlayerViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
+     PlayerViewOffset=(X=-0.700000,Y=5.300000,Z=-8.70000)
      AttachmentClass=Class'BallisticProV55.R78Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_R78'
      IconCoords=(X2=127,Y2=31)
@@ -261,5 +261,5 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=5.000000
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R78'
-     DrawScale=0.450000
+     DrawScale=0.3
 }

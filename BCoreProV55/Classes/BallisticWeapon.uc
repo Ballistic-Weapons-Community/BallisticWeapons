@@ -4685,7 +4685,7 @@ simulated final function Rotator GetRecoilPivot()
 
 simulated final function Rotator GetFireRot()
 {
-	return GetAimPivot() + RcComponent.GetEscapePivot();
+	return GetAimPivot() + RcComponent.GetFireEscapePivot();
 }
 
 simulated final function Vector GetFireDir()

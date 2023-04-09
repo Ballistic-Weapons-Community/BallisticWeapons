@@ -482,7 +482,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
+	SightOffset=(X=34,Y=-5,Z=32.7)
 	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 	bAdjustHands=true
 	RootAdjust=(Yaw=-375,Pitch=2000)
@@ -510,7 +510,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.D49Pickup'
-	PlayerViewOffset=(X=-10.000000,Y=7.000000,Z=-15.000000)
+	PlayerViewOffset=(X=-13.64,Y=9.55,Z=-20.45)
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'
 	IconCoords=(X2=127,Y2=31)
@@ -522,7 +522,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_D49'
-	DrawScale=0.220000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.D49.D49Shells-Shiney'

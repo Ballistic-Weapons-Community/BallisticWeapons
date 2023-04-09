@@ -142,7 +142,7 @@ defaultproperties
      ScopeViewTex=Texture'BW_Core_WeaponTex.Artillery.Artillery-ScopeView'
      FullZoomFOV=10.000000
      bNoCrosshairInScope=True
-     SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
+     SightOffset=(X=20.000000,Y=-17.000000,Z=-1.5000000)
 
      MinZoom=2.000000
      MaxZoom=8.000000
@@ -170,7 +170,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_OP_Pro.AkeronPickup'
-     PlayerViewOffset=(X=15.000000,Y=13.000000,Z=-16.000000)
+     PlayerViewOffset=(X=5.000000,Y=13.000000,Z=-6.000000)
      AttachmentClass=Class'BWBP_OP_Pro.AkeronAttachment'
      IconMaterial=Texture'BWBP_OP_Tex.Akeron.Icon_Akeron'
      IconCoords=(X2=127,Y2=31)

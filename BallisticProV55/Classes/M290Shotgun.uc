@@ -142,7 +142,7 @@ defaultproperties
     CurrentWeaponMode=0
     bNoCrosshairInScope=True
     SightPivot=(Pitch=256)
-    SightOffset=(X=-10.000000,Y=-0.040000,Z=14.050000)
+    SightOffset=(X=-10.700000,Y=-0.040000,Z=15.000000)
 	SightBobScale=0.75
     ParamsClasses(0)=Class'M290WeaponParamsComp'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
@@ -158,7 +158,7 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=1
     PickupClass=Class'BallisticProV55.M290Pickup'
-    PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-18.000000)
+    PlayerViewOffset=(X=8.600000,Y=9.60000,Z=-19.300000)
     AttachmentClass=Class'BallisticProV55.M290Attachment'
     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M290'
     IconCoords=(X2=127,Y2=31)
@@ -170,7 +170,7 @@ defaultproperties
     LightBrightness=180.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M290'
-    DrawScale=0.280000
+    DrawScale=0.3
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	SightAnimScale=0.5
 }

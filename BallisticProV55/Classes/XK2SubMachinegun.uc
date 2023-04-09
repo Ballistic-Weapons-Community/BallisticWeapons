@@ -455,8 +455,8 @@ defaultproperties
 	CockAnimRate=1.25
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=64)
-	SightOffset=(X=22.000000,Y=0.01,Z=11.500000)
-	SightBobScale=0.15f
+	SightOffset=(X=33.000000,Y=0.02,Z=17.2500000)
+	SightBobScale=0.2f
 	AIRating=0.8
 	CurrentRating=0.8
 	SightZoomFactor=1.2
@@ -476,7 +476,7 @@ defaultproperties
 	GroupOffset=1
 	SightAnimScale=0.75
 	PickupClass=Class'BallisticProV55.XK2Pickup'
-	PlayerViewOffset=(X=-8.000000,Y=5.000000,Z=-12.000000)
+	PlayerViewOffset=(X=-12.000000,Y=7.500000,Z=-18.000000)
 	AttachmentClass=Class'BallisticProV55.Xk2Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XK2'
 	IconCoords=(X2=127,Y2=31)
@@ -488,7 +488,7 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XK2'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
     Skins(2)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'

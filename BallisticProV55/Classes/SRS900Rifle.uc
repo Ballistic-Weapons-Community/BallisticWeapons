@@ -609,7 +609,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=20.000000,Z=11.750000)
+	SightOffset=(X=21.000000,Z=7.050000)
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2
@@ -643,7 +643,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS900'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	
 	//Arena Scope Stuff
 	GeneralUITexArena=Texture'BW_Core_WeaponTex.SRS900-SUI.SRS900UI'

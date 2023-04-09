@@ -260,7 +260,7 @@ defaultproperties
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
 	SightAnimScale=0.75
-	SightOffset=(X=-6.000000,Z=7.100000)
+	SightOffset=(X=-38.500000,Z=15.40000)
 	SightBobScale=0.5
 
 	ParamsClasses(0)=Class'M925WeaponParamsComp'
@@ -285,7 +285,7 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.M925Pickup'
-	PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-7.000000)
+	PlayerViewOffset=(X=10.700000,Y=8.600000,Z=-15.000000)
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'
 	IconCoords=(X2=127,Y2=31)
@@ -297,7 +297,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925'
-	DrawScale=0.140000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Main'
 	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Small'

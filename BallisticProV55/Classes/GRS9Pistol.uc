@@ -570,9 +570,8 @@ defaultproperties
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=True
-	SightOffset=(X=-15.000000,Z=5.900000)
-	SightDisplayFOV=60.000000
-	SightBobScale=0.6
+	SightOffset=(X=-30.000000,Z=11.800000)
+	SightBobScale=0.3
 	ParamsClasses(0)=Class'GRS9WeaponParamsComp'
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
 	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
@@ -592,7 +591,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
-	PlayerViewOffset=(X=0.000000,Y=3.000000,Z=-10.000000)
+	PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-20.000000)
 	AttachmentClass=Class'BallisticProV55.GRS9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Glock.SmallIcon_Glock'
 	IconCoords=(X2=127,Y2=31)
@@ -604,7 +603,7 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_GRS9'
-	DrawScale=0.150000
+	DrawScale=0.30000
 	bFullVolume=True
 	SoundRadius=128.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

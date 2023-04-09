@@ -541,7 +541,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
-	SightOffset=(X=8.000000,Y=7.350000,Z=7.550000)
+	SightOffset=(X=-5,Y=0,Z=0.5)
 	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'RaygunWeaponParamsComp'
 	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
@@ -563,7 +563,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BWBP_OP_Pro.RaygunPickup'
-	PlayerViewOffset=(X=0.000000,Y=-3,Z=-5.000000)
+	PlayerViewOffset=(X=10,Y=1,Z=-1.9)
 	AttachmentClass=Class'BWBP_OP_Pro.RaygunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_128'
 	IconCoords=(X2=127,Y2=31)

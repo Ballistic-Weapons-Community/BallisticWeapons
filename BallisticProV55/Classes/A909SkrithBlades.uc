@@ -72,11 +72,11 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=2
      PickupClass=Class'BallisticProV55.A909Pickup'
-     PlayerViewOffset=(X=63.000000,Y=-4.000000,Z=-6.000000)
+     PlayerViewOffset=(X=51.000000,Y=-3.240000,Z=-4.86)
      AttachmentClass=Class'BallisticProV55.A909Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A909'
      IconCoords=(X2=127,Y2=31)
      ItemName="A909 Skrith Blades"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A909'
-     DrawScale=0.370000
+     DrawScale=0.30
 }

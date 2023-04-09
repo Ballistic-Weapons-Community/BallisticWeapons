@@ -367,7 +367,6 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightPivot=(Pitch=768)
 	SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
-	SightDisplayFOV=40.000000
 	GunLength=128.000000
 	ParamsClasses(0)=Class'XOXOWeaponParamsComp'
 	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
@@ -389,7 +388,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=2
 	PickupClass=Class'BWBP_OP_Pro.XOXOPickup'
-	PlayerViewOffset=(X=5.000000,Y=4.500000,Z=-12.000000)
+	PlayerViewOffset=(X=5.000000,Y=4.500000,Z=-4.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.XOXOAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.XOXO.SmallIcon_XOXO'
 	IconCoords=(X2=127,Y2=31)

@@ -837,8 +837,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bUseSights=False
 	SightPivot=(Pitch=1024)
-	SightOffset=(X=-12.000000,Z=26.000000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=-14.400000,Z=31.200000)
 	ParamsClasses(0)=Class'HVCMk9WeaponParamsComp'
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	ParamsClasses(2)=Class'HVCMk9WeaponParamsRealistic' \\todo: lots of state code
@@ -862,7 +861,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=5
 	PickupClass=Class'BallisticProV55.HVCMk9Pickup'
-	PlayerViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
+	PlayerViewOffset=(X=-4.800000,Y=12.000000,Z=-12.000000)
 	AttachmentClass=Class'BallisticProV55.HVCMk9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Lighter.SmallIcon_LG'
 	IconCoords=(X2=127,Y2=31)
@@ -874,7 +873,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
-	DrawScale=0.250000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	bFullVolume=True
 	SoundVolume=64
