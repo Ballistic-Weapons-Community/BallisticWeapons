@@ -667,7 +667,7 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.FG50Pickup'
 
-	PlayerViewOffset=(X=2.00,Y=5.00,Z=-4.00)
+	PlayerViewOffset=(X=4.00,Y=4.00,Z=-5.00)
 	SightOffset=(X=3.00,Y=0.00,Z=3.25)
 	SightBobScale=0.5f
 

@@ -383,7 +383,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 
 	PlayerViewOffset=(X=4,Y=3.75,Z=-3.500000)
-	SightOffset=(X=-6.500000,Y=0,Z=2.7)
+	SightOffset=(X=-6.500000,Y=0.02,Z=2.55)
 	SightPivot=(Pitch=64)
 
 	ParamsClasses(0)=Class'AK490WeaponParamsComp'

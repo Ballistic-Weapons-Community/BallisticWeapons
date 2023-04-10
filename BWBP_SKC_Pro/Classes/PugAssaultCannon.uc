@@ -668,8 +668,8 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.PugPickup'
 
-	PlayerViewOffset=(X=16.00,Y=6.00,Z=-1.00)
-	SightOffset=(X=-26.00,Y=3.45,Z=-13.17)
+	PlayerViewOffset=(X=10.00,Y=5.50,Z=-3.50)
+	SightOffset=(X=0.00,Y=0.00,Z=3.00)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.PugAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Pug.SmallIcon_Pug'

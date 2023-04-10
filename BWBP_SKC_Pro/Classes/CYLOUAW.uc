@@ -536,7 +536,7 @@ defaultproperties
 	bNoCrosshairInScope=True // CHANGE THIS IN BALLSTICWEAPON.UC
 	WeaponModes(0)=(bUnavailable=True)
 
-	PlayerViewOffset=(X=4,Y=-4.75,Z=-4.75)
+	PlayerViewOffset=(X=4,Y=4.75,Z=-4.75)
 	SightOffset=(X=1,Y=0,Z=2.13)
 
 	GunLength=16.000000

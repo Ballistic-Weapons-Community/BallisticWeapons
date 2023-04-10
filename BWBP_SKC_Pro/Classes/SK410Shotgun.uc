@@ -202,7 +202,7 @@ defaultproperties
     PickupClass=Class'BWBP_SKC_Pro.SK410Pickup'
 
     PlayerViewOffset=(X=7.00,Y=4.25,Z=-4.5)
-    SightOffset=(X=-5.00,Y=0.01,Z=2.79)
+    SightOffset=(X=0.00,Y=0.01,Z=2.40)
 	SightPivot=(Pitch=150)
 
     AttachmentClass=Class'BWBP_SKC_Pro.SK410Attachment'

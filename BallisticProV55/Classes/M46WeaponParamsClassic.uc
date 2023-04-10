@@ -142,7 +142,7 @@ defaultproperties
 		Weight=20
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
-		SightOffset=(X=-7.5,Y=0.05,Z=5)
+		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
 		//Function
         SightingTime=0.350000
 		bNeedCock=True

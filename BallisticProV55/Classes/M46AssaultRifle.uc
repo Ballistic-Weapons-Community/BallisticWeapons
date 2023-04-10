@@ -401,7 +401,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 
 	PlayerViewOffset=(X=5,Y=4.0000,Z=-4.500000)
-	SightOffset=(X=-1,Y=0.050000,Z=3.9)
+	SightOffset=(X=-1,Y=0.040000,Z=3.9)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1

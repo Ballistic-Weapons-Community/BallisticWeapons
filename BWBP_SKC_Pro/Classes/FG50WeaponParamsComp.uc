@@ -220,7 +220,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=1f)
 		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=1f)
-		SightOffset=(X=-12.00,Y=0.05,Z=2.00)
+		SightOffset=(X=0.00,Y=0.05,Z=2.00)
 		SightMoveSpeedFactor=0.7
 		SightingTime=0.60000		
 		//Function

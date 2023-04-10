@@ -654,7 +654,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_OP_Pro.M575Pickup'
-     PlayerViewOffset=(X=9,Y=6.75,Z=-4.5)
+     PlayerViewOffset=(X=9,Y=4.00,Z=-4.5)
      AttachmentClass=Class'BWBP_OP_Pro.M575Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.M575.SmallIcon_M575'
      IconCoords=(X2=127,Y2=31)

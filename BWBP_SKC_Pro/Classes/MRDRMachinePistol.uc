@@ -242,7 +242,7 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.MRDRPickup'
 
 	PlayerViewOffset=(X=5.00,Y=7.00,Z=-4.00)
-	SightOffset=(X=25.00,Y=-2.30,Z=7.10)
+	SightOffset=(X=-5.00,Y=-0.6,Z=7.10)
 	SightPivot=(Pitch=900,Roll=-800)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.MRDRAttachment'

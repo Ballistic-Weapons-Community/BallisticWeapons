@@ -150,7 +150,7 @@ defaultproperties
 		Weight=20
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
-		SightOffset=(X=-2.5,Y=-1.000000,Z=3.85)
+		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
 		//Function
         SightingTime=0.210000
         MagAmmo=24

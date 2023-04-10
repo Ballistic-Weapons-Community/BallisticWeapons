@@ -378,9 +378,9 @@ defaultproperties
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LAWPickup'
 
-	PlayerViewOffset=(X=1.00,Y=1.50,Z=2.00)
-	SightOffset=(X=-7.50,Y=-1.50,Z=2.25)
-	
+	PlayerViewOffset=(X=1.00,Y=4.00,Z=5.00)
+	SightOffset=(X=12.00,Y=-1.25,Z=1.90)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.LAWAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LAW.SmallIcon_LAW'
 	IconCoords=(X2=127,Y2=31)

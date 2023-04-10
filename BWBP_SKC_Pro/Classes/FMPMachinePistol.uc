@@ -371,6 +371,7 @@ defaultproperties
 	PlayerViewOffset=(X=4.00,Y=4.50,Z=-4.50)
 	SightOffset=(X=-3.50,Y=0.01,Z=1.65)
 	SightingTime=0.200000
+	SightZoomFactor=1.2 // smg
 
 	AttachmentClass=Class'BWBP_SKC_Pro.FMPAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MP40.SmallIcon_MP40'

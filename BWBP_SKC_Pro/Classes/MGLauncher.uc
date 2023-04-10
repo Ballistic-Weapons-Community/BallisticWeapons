@@ -247,7 +247,7 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.MGLPickup'
 
 	PlayerViewOffset=(X=19.00,Y=11.15,Z=-10.40)
-	SightOffset=(X=-1.00,Y=0.27,Z=19.90)
+	SightOffset=(X=-1.00,Y=0.00,Z=18.10)
 	SightPivot=(Pitch=512)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.MGLAttachment'

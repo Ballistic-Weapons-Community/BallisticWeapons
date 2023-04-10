@@ -754,8 +754,8 @@ defaultproperties
 	InventoryGroup=9
 	PickupClass=Class'BWBP_SKC_Pro.AS50Pickup'
 
-	PlayerViewOffset=(X=4.000000,Y=5.000000,Z=-4.000000)
-	SightOffset=(X=3.000000,Y=0.000000,Z=3.700000)
+	PlayerViewOffset=(X=4.00,Y=4.00,Z=-5.00)
+	SightOffset=(X=3.00,Y=0.00,Z=3.70)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.AS50Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.FSG50.SmallIcon_FSG50'

@@ -1079,7 +1079,7 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.LS14Pickup'
 
 	PlayerViewOffset=(X=5.00,Y=5.75,Z=-8.00)
-	SightOffset=(X=11.00,Y=-2.05,Z=7.50)
+	SightOffset=(X=11.00,Y=-0.5,Z=7.50)
 	SightPivot=(Pitch=600,Roll=-1024)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.LS14Attachment'

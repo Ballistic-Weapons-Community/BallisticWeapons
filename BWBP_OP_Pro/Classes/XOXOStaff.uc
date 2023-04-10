@@ -366,7 +366,7 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
 	CurrentWeaponMode=0
 	SightPivot=(Pitch=768)
-	SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
+	SightOffset=(X=5.000000,Y=0.650000,Z=0.500000)
 	GunLength=128.000000
 	ParamsClasses(0)=Class'XOXOWeaponParamsComp'
 	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
