@@ -459,9 +459,7 @@ defaultproperties
     
 	CurrentWeaponMode=0
 	bShowChargingBar=True
-	SightPivot=(Pitch=700,Roll=2048)
-	SightOffset=(X=4.000000,Z=15.000000)
-	SightBobScale=0.5f
+
 	ParamsClasses(0)=Class'XMV850WeaponParamsComp'
 	ParamsClasses(1)=Class'XMV850WeaponParamsClassic' //Todo: state code to support fire while spinning
 	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic' //Todo: state code to support fire while spinning
@@ -483,7 +481,12 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.XMV850Pickup'
-	PlayerViewOffset=(X=-2.500000,Y=4.000000,Z=-10.000000)
+
+	PlayerViewOffset=(X=4.5,Y=4,Z=-5)
+	SightOffset=(X=-6.5,Y=-1,Z=7.5)
+	SightPivot=(Pitch=700,Roll=2048)
+	SightBobScale=0.5f
+
 	AttachmentClass=Class'BallisticProV55.XMV850MinigunAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XMV850'
 	IconCoords=(X2=127,Y2=31)

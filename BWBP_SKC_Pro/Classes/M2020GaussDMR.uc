@@ -556,7 +556,6 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=22.3,Y=-2.150000,Z=15.430000)
 	MinFixedZoomLevel=0.350000
 	MinZoom=2.000000
 	MaxZoom=16.000000
@@ -584,7 +583,10 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=11
 	PickupClass=Class'BWBP_SKC_Pro.M2020GaussPickup'
+
 	PlayerViewOffset=(X=-8.6,Y=6.900000,Z=-11.150000)
+	SightOffset=(X=22.3,Y=-2.150000,Z=15.430000)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.M2020GaussAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.M2020.SmallIcon_M2020'
 	IconCoords=(X2=127,Y2=31)

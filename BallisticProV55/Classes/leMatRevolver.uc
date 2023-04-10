@@ -601,8 +601,6 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
      
 	bNoCrosshairInScope=True	
-	SightOffset=(X=-15.000000,Y=-1.5,Z=15.30000)
-	SightPivot=(Pitch=512,Roll=-50)
 	bAdjustHands=true
 	RootAdjust=(Yaw=-350,Pitch=2500)
 	WristAdjust=(Yaw=-3000,Pitch=-0000)
@@ -625,7 +623,11 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=4
 	PickupClass=Class'BallisticProV55.leMatPickup'
-	PlayerViewOffset=(X=10.000000,Y=7.000000,Z=-13.000000)
+
+	PlayerViewOffset=(X=12,Y=7,Z=-13)
+	SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+	SightPivot=(Pitch=512,Roll=-50)
+
 	AttachmentClass=Class'BallisticProV55.leMatAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.leMat.SmallIcon_Wilson41DB'
 	IconCoords=(X2=127,Y2=31)

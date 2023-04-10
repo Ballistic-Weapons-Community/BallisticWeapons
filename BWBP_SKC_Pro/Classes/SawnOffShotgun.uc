@@ -492,7 +492,6 @@ defaultproperties
      WeaponModes(1)=(ModeName="Slug",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightOffset=(X=-10.000000,Y=2.8800000,Z=9.600000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
@@ -515,7 +514,10 @@ defaultproperties
      InventoryGroup=2
 	 GroupOffset=16
      PickupClass=Class'BWBP_SKC_Pro.SawnOffPickup'
+
      PlayerViewOffset=(X=-2.400000,Y=4.800000,Z=-7.200000)
+     SightOffset=(X=-10.000000,Y=2.8800000,Z=9.600000)
+
      AttachmentClass=Class'BWBP_SKC_Pro.SawnOffAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.TechSawnOff.SmallIcon_SawnOff'
      IconCoords=(X2=127,Y2=38)

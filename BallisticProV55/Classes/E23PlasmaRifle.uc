@@ -464,7 +464,7 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
     NDCrosshairChaosFactor=1.000000
 	NDCrosshairScaleFactor=1.000000
-	SightOffset=(X=21.000000,Z=13.000000)
+
 	ParamsClasses(0)=Class'E23WeaponParamsComp'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	ParamsClasses(2)=Class'E23WeaponParamsRealistic'
@@ -483,7 +483,10 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=12
 	PickupClass=Class'BallisticProV55.E23Pickup'
-	PlayerViewOffset=(X=0.000000,Y=6.750000,Z=-13.50000)
+
+	PlayerViewOffset=(X=4,Y=6.5,Z=-7.5)
+	SightOffset=(X=15,Z=4)
+
 	AttachmentClass=Class'BallisticProV55.E23Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.VPR.SmallIcon_VPR'
 	IconCoords=(X2=127,Y2=31)

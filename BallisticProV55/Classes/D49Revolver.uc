@@ -482,8 +482,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=34,Y=-5,Z=32.7)
-	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+
 	bAdjustHands=true
 	RootAdjust=(Yaw=-375,Pitch=2000)
 	WristAdjust=(Yaw=-2500,Pitch=-0000)
@@ -510,7 +509,11 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.D49Pickup'
-	PlayerViewOffset=(X=-13.64,Y=9.55,Z=-20.45)
+
+	PlayerViewOffset=(X=16.5,Y=9.5,Z=-16.5)
+	SightOffset=(X=-11,Y=-4.6,Z=25.5)
+	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+	
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'
 	IconCoords=(X2=127,Y2=31)

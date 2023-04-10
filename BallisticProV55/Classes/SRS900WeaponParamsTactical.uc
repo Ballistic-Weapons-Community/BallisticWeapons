@@ -75,7 +75,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=1.00000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.120000,OutVal=0.11000),(InVal=0.300000,OutVal=0.330000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
@@ -90,7 +90,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_600
 		ViewBindFactor=0.25
 		ADSViewBindFactor=0.85
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=1.00000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.120000,OutVal=0.11000),(InVal=0.300000,OutVal=0.330000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1000
 		YRandFactor=0.1000
@@ -136,7 +136,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
 		//Function
-		SightOffset=(X=21.000000,Z=7.050000)
+		SightOffset=(X=9.000000,Z=3.150000)
 		MagAmmo=20
 		SightingTime=0.5
 		SightMoveSpeedFactor=0.35
@@ -159,7 +159,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
-		SightOffset=(X=18.000000,Z=5.93)
+		SightOffset=(X=6.000000,Z=2.03)
         SightingTime=0.35
 		SightMoveSpeedFactor=0.6
 		MagAmmo=20
@@ -177,7 +177,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
-		SightOffset=(X=13.000000,Z=5.20000)
+		SightOffset=(X=1.000000,Z=1.30000)
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.9

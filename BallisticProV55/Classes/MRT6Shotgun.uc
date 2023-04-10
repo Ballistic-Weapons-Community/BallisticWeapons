@@ -160,11 +160,6 @@ defaultproperties
     WeaponModes(1)=(bUnavailable=True)
     WeaponModes(2)=(bUnavailable=True)
     CurrentWeaponMode=0
-    SightPivot=(Pitch=768)
-    SightOffset=(X=-10.000000,Z=11.000000)
-    SightZoomFactor=1.2
-	SightAnimScale=0.5
-	SightBobScale=0.7f
     GunLength=24.000000
     ParamsClasses(0)=Class'MRT6WeaponParamsComp'
     ParamsClasses(1)=Class'MRT6WeaponParamsClassic'
@@ -182,7 +177,14 @@ defaultproperties
     InventoryGroup=2
     GroupOffset=9
     PickupClass=Class'BallisticProV55.MRT6Pickup'
-    PlayerViewOffset=(X=1.000000,Y=3.000000,Z=-8.500000)
+
+    PlayerViewOffset=(X=1.000000,Y=3.000000,Z=-5.500000)
+	SightPivot=(Pitch=768)
+    SightOffset=(X=-10.000000,Z=6.500000)
+    SightZoomFactor=1.2
+	SightAnimScale=0.5
+	SightBobScale=0.7f
+
     AttachmentClass=Class'BallisticProV55.MRT6Attachment'
     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_MRT6'
     IconCoords=(X2=127,Y2=31)

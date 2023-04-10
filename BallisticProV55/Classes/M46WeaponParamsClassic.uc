@@ -116,7 +116,7 @@ defaultproperties
 		Weight=30
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
-		SightOffset=(Y=-1.000000,Z=12.500000)
+		SightOffset=(X=-1,Y=0.050000,Z=3.9)
 		//Function
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -142,7 +142,7 @@ defaultproperties
 		Weight=20
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
-		SightOffset=(X=5,Y=0.050000,Z=11.350000)
+		SightOffset=(X=-7.5,Y=0.05,Z=5)
 		//Function
         SightingTime=0.350000
 		bNeedCock=True

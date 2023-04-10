@@ -647,8 +647,6 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=15,Y=15.000000,Z=6.250000)
-	SightBobScale=0.5f
 	ParamsClasses(0)=Class'FG50WeaponParamsComp'
 	ParamsClasses(1)=Class'FG50WeaponParamsClassic'	 
 	ParamsClasses(2)=Class'FG50WeaponParamsRealistic'
@@ -668,7 +666,11 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.FG50Pickup'
-	PlayerViewOffset=(X=-6.000000,Y=-5.000000,Z=-6.000000)
+
+	PlayerViewOffset=(X=2.00,Y=5.00,Z=-4.00)
+	SightOffset=(X=3.00,Y=0.00,Z=3.25)
+	SightBobScale=0.5f
+
 	AttachmentClass=Class'BWBP_SKC_Pro.FG50Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.FG50.SmallIcon_FG50'
 	IconCoords=(X2=127,Y2=31)

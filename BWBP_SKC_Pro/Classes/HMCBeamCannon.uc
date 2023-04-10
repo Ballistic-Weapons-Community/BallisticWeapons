@@ -514,8 +514,6 @@ defaultproperties
      bNoMag=True
      bNonCocking=True
      bWT_Energy=True
-     SightPivot=(Pitch=748)
-     SightOffset=(X=-10.30000,Z=12.260000)
      MagAmmo=500
      FireModeClass(0)=Class'BWBP_SKC_Pro.HMCPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HMCSecondaryFire'
@@ -532,6 +530,8 @@ defaultproperties
      GroupOffset=4
      PickupClass=Class'BWBP_SKC_Pro.HMCPickup'
      PlayerViewOffset=(X=5.150000,Y=5.150000,Z=-6.90000)
+     SightOffset=(X=-10.30000,Z=12.260000)
+	 SightPivot=(Pitch=748)
      AttachmentClass=Class'BWBP_SKC_Pro.HMCAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.SmallIcon_HMC'
      IconCoords=(X2=127,Y2=31)

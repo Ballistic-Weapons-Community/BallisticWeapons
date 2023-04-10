@@ -74,7 +74,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
 		SightPivot=(Roll=-1024)
-		SightOffset=(X=12.000000,Y=-1.070000,Z=11.30000)
+     	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
 		SightingTime=0.4500
 		ScopeScale=0.6
 		SightMoveSpeedFactor=0.45

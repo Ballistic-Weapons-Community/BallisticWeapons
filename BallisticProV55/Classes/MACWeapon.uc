@@ -463,7 +463,7 @@ defaultproperties
 	FullZoomFOV=10.000000
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
-	SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
+	SightOffset=(X=-5.000000,Y=-15.000000,Z=0.000000)
 	SightDisplayFOV=70.000000
 	GunLength=96.000000
 	ParamsClasses(0)=Class'MACWeaponParamsComp'
@@ -488,7 +488,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.MACPickup'
-	PlayerViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)
+	PlayerViewOffset=(X=-2.000000,Y=12.000000,Z=5.000000)
 	AttachmentClass=Class'BallisticProV55.MACAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Artillery.SmallIcon_Artillery'
 	IconCoords=(X2=127,Y2=31)

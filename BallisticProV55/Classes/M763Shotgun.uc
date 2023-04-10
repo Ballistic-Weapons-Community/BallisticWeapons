@@ -349,9 +349,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=15.000000,Z=7.750000)
-	SightDisplayFOV=60.000000
-	SightPivot=(Pitch=128)
+
 	GunLength=48.000000
 	ParamsClasses(0)=Class'M763WeaponParamsComp'
 	ParamsClasses(1)=Class'M763WeaponParamsClassic' //todo: primary anim, alt + melee
@@ -372,7 +370,9 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
-	PlayerViewOffset=(X=-6,Y=4.800000,Z=-8.400000)
+	PlayerViewOffset=(X=4,Y=4.800000,Z=-5)
+	SightOffset=(X=0,Y=0,Z=2.2)
+	SightPivot=(Pitch=128)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M763'
 	IconCoords=(X2=127,Y2=31)

@@ -351,7 +351,6 @@ defaultproperties
 	 ZoomType=ZT_Logarithmic
      //bNoMeshInScope=True
      //SightPivot=(Pitch=600,Roll=-1024)
-     SightOffset=(X=0.000000,Y=2.900000,Z=16.000000)
      //CrosshairCfg=(Pic1=Texture'BallisticUI2.Crosshairs.A73InA',pic2=Texture'BallisticUI2.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=192),Color2=(B=0,G=0,R=133,A=124),StartSize1=50,StartSize2=47)     GunLength=80.000000
      //CrouchAimFactor=0.600000
      //SprintOffSet=(Pitch=-1000,Yaw=-2048)
@@ -380,7 +379,10 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=9
      PickupClass=Class'BWBP_SKC_Pro.LS440Pickup'
+
      PlayerViewOffset=(X=5.000000,Y=10.000000,Z=-12.000000)
+	 SightOffset=(X=0.000000,Y=2.900000,Z=16.000000)
+	 
      AttachmentClass=Class'BWBP_SKC_Pro.LS440Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.LS440M.SmallIcon_LS440'
      IconCoords=(X2=127,Y2=31)

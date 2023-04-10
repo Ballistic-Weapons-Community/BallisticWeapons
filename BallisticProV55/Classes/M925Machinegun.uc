@@ -259,9 +259,7 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
-	SightAnimScale=0.75
-	SightOffset=(X=-7.000000,Z=15.40000)
-	SightBobScale=0.5
+
 
 	ParamsClasses(0)=Class'M925WeaponParamsComp'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
@@ -284,8 +282,13 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	GroupOffset=1
+	
 	PickupClass=Class'BallisticProV55.M925Pickup'
-	PlayerViewOffset=(X=10.700000,Y=8.600000,Z=-15.000000)
+	PlayerViewOffset=(X=8.5,Y=8.600000,Z=-7)
+	SightOffset=(X=-4,Y=0,Z=3.40000)
+	SightAnimScale=0.75
+	SightBobScale=0.5
+
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'
 	IconCoords=(X2=127,Y2=31)

@@ -399,8 +399,9 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=5,Y=0.050000,Z=11.350000)
-	PlayerViewOffset=(X=0.000000,Y=4.0000,Z=-9.500000)
+
+	PlayerViewOffset=(X=5,Y=4.0000,Z=-4.500000)
+	SightOffset=(X=-1,Y=0.050000,Z=3.9)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1

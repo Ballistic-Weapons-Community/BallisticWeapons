@@ -407,8 +407,6 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
     
 	bNoCrosshairInScope=True
-	SightOffset=(X=-7.00000,Y=-0.030000,Z=6.340000)
-	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'MD24WeaponParamsComp'
 	ParamsClasses(1)=Class'MD24WeaponParamsClassic'
 	ParamsClasses(2)=Class'MD24WeaponParamsRealistic'
@@ -425,7 +423,8 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=6
 	PickupClass=Class'BallisticProV55.MD24Pickup'
-	PlayerViewOffset=(X=5.6,Y=4.300000,Z=-8.00000)
+	PlayerViewOffset=(X=5.5,Y=4.300000,Z=-5.00000)
+	SightOffset=(X=-7.00000,Y=0,Z=1.7)
 	AttachmentClass=Class'BallisticProV55.MD24Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.MD24.SmallIcon_MD24'
 	IconCoords=(X2=127,Y2=31)

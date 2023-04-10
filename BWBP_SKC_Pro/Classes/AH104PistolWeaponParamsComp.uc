@@ -99,7 +99,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
-		SightOffset=(X=-3.750000,Y=-0.510000,Z=17.03000)
+		SightOffset=(X=-11.50000,Y=0,Z=2.030000)
 		//Function
 		InventorySize=5
 		PlayerSpeedFactor=0.95
@@ -120,7 +120,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=4,AIndex=-1,PIndex=-1)
-		SightOffset=(X=-22.500000,Y=-0.530000,Z=20.050000)
+		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
 		//Function
 		InventorySize=5
 		PlayerSpeedFactor=0.95

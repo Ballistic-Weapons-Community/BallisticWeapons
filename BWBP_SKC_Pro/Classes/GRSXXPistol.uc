@@ -767,7 +767,6 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 	WeaponModes(3)=(ModeName="Amplified: Hypermode",ModeID="WM_FullAuto",bUnavailable=True)
 	bNoCrosshairInScope=True
-	SightOffset=(X=-30.000000,Z=13.200000)
 	ParamsClasses(0)=Class'GRSXXPistolWeaponParamsArena'
 	ParamsClasses(1)=Class'GRSXXWeaponParamsClassic'
 	ParamsClasses(2)=Class'GRSXXWeaponParamsRealistic'
@@ -785,7 +784,10 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.GRSXXPickup'
+
 	PlayerViewOffset=(X=12.000000,Y=16.000000,Z=-18.000000)
+	SightOffset=(X=-30.000000,Z=13.200000)
+	
 	AttachmentClass=Class'BWBP_SKC_Pro.GRSXXAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Glock_Gold.SmallIcon_GoldGlock'
 	IconCoords=(X2=127,Y2=31)

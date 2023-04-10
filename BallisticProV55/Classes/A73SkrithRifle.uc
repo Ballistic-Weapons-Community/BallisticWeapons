@@ -317,8 +317,11 @@ defaultproperties
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=68,R=65,A=137),Color2=(B=96,G=185),StartSize1=133,StartSize2=47)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
+
+	PlayerViewOffset=(X=-4,Y=11,Z=-9.1)
+	SightOffset=(X=14,Z=5.5)
 	SightPivot=(Pitch=450)
-	SightOffset=(X=16.000000,Z=19.0000)
+
 	ParamsClasses(0)=Class'A73WeaponParamsComp'
 	ParamsClasses(1)=Class'A73WeaponParamsClassic'
 	ParamsClasses(2)=Class'A73WeaponParamsRealistic'
@@ -337,7 +340,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.A73Pickup'
-	PlayerViewOffset=(X=-16.000000,Y=11.200000,Z=-17.600000)
+
 	AttachmentClass=Class'BallisticProV55.A73Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A73'
 	IconCoords=(X2=127,Y2=31)

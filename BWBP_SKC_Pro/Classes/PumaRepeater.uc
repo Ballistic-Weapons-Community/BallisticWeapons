@@ -849,8 +849,6 @@ defaultproperties
      WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation")
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=150)
-     SightOffset=(X=0,Y=0.00000,Z=16.25)
      GunLength=48.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.PumaPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.PumaSecondaryFire'
@@ -865,7 +863,11 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
+
      PlayerViewOffset=(X=4.170000,Y=3.750000,Z=-13.00000)
+     SightOffset=(X=0,Y=0.00000,Z=16.25)
+	 SightPivot=(Pitch=150)
+	 
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)

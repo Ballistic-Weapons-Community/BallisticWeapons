@@ -105,7 +105,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
         ZoomType=ZT_Smooth
-		SightOffset=(X=12.000000,Y=-1.070000,Z=11.30000)
+     	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000

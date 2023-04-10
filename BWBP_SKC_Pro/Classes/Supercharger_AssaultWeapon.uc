@@ -638,7 +638,6 @@ defaultproperties
     WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
 	ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
-	SightOffset=(X=50.000000,Y=3,Z=22.300000)
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)
     GunLength=16.500000
     LongGunPivot=(Pitch=2000,Yaw=-1024)
@@ -659,7 +658,7 @@ defaultproperties
     InventoryGroup=5
     PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
     PlayerViewOffset=(X=-6.700000,Y=4.20000,Z=-15.800000)
-    BobDamping=2.000000
+	SightOffset=(X=50.000000,Y=3,Z=22.300000)
     AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.SmallIcon_Super'
     IconCoords=(X2=127,Y2=31)

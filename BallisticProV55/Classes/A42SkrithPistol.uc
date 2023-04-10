@@ -278,8 +278,10 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=160,G=44,R=89,A=137),Color2=(B=151,R=0,A=202),StartSize1=84,StartSize2=61)
     NDCrosshairInfo=(SpreadRatios=(X1=0.300000,Y1=0.300000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.700000
+
+	PlayerViewOffset=(X=32,Y=19,Z=-13)
+	SightOffset=(X=-80,Y=-6.7,Z=17.5)
 	SightPivot=(Pitch=1024,Roll=-768)
-	SightOffset=(X=-65.4,Y=-8.4,Z=40.9)
 	SightBobScale=0.35f
 
 	ParamsClasses(0)=Class'A42WeaponParamsComp'
@@ -299,7 +301,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
 	PickupClass=Class'BallisticProV55.A42Pickup'
-	PlayerViewOffset=(X=21.8,Y=19.1,Z=-27.2)
+
 	AttachmentClass=Class'BallisticProV55.A42Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A42'
 	IconCoords=(X2=127,Y2=31)

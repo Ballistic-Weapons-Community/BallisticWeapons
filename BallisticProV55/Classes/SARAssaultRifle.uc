@@ -529,9 +529,11 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
+
+	PlayerViewOffset=(X=3.000000,Y=11.000000,Z=-7.000000)
+	SightOffset=(X=11.000000,Y=-0.010000,Z=3.600000)
 	SightPivot=(Pitch=450)
-	SightOffset=(X=35.000000,Y=-0.010000,Z=13.600000)
-	PlayerViewOffset=(X=-13.000000,Y=11.000000,Z=-13.000000)
+
 	GunLength=16.000000
 	ParamsClasses(0)=Class'SARWeaponParamsComp'
 	ParamsClasses(1)=Class'SARWeaponParamsClassic'

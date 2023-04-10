@@ -376,8 +376,7 @@ defaultproperties
 	
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=24.000000,Y=-0.040000,Z=2.850000)
-	SightBobScale=0.2
+
 	ParamsClasses(0)=Class'MarlinWeaponParamsComp'	 
 	ParamsClasses(1)=Class'MarlinWeaponParamsClassic'	
 	ParamsClasses(2)=Class'MarlinWeaponParamsRealistic'	
@@ -395,7 +394,11 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.MarlinPickup'
-	PlayerViewOffset=(X=3.000000,Y=7.00000,Z=-10.000000)
+
+	PlayerViewOffset=(X=15,Y=7.00000,Z=-10.000000)
+	SightOffset=(X=6.000000,Y=-0.040000,Z=2.850000)
+	SightBobScale=0.2
+
 	AttachmentClass=Class'BallisticProV55.MarlinAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Marlin.SmallIcon_Marlin'
 	IconCoords=(X2=127,Y2=31)

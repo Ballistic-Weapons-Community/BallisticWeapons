@@ -535,8 +535,10 @@ defaultproperties
 	bAltTriggerReload=True
 	bNoCrosshairInScope=True // CHANGE THIS IN BALLSTICWEAPON.UC
 	WeaponModes(0)=(bUnavailable=True)
-	SightOffset=(X=6.75,Y=10.2,Z=14.50000)
-	PlayerViewOffset=(X=0,Y=-1.9,Z=-12.75)
+
+	PlayerViewOffset=(X=4,Y=-4.75,Z=-4.75)
+	SightOffset=(X=1,Y=0,Z=2.13)
+
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 

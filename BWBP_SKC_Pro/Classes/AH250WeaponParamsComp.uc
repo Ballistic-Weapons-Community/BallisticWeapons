@@ -139,7 +139,7 @@ defaultproperties
 		// Zoom
         ZoomType=ZT_Fixed
 		MaxZoom=3
-		SightOffset=(X=26.25000000,Y=-2.76,Z=17.0)
+		SightOffset=(X=18.5000000,Y=0,Z=2.75)
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -157,7 +157,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-3.750000,Y=-2.76,Z=17.03)
+		SightOffset=(X=-11,Y=0,Z=2.78)
 		ZoomType=ZT_Irons
 		
 		//Function
@@ -183,7 +183,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-3.750000,Y=-2.76,Z=15.640000)
+		SightOffset=(X=-11,Y=0,Z=1.39)
 		ZoomType=ZT_Irons
 		
 		PlayerJumpFactor=1.000000

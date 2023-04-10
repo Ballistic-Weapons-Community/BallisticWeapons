@@ -741,8 +741,7 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons
-     SightOffset=(X=18.90000,Y=0.180000,Z=12.69000)
-	 SightingTime=0.250000
+
      FireModeClass(0)=Class'BWBP_SKC_Pro.TyphonPDWPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.TyphonPDWSecondaryFire'
      SelectForce="SwitchToAssaultRifle"
@@ -760,7 +759,11 @@ defaultproperties
 	 InventoryGroup=3
      GroupOffset=18
      PickupClass=Class'BWBP_SKC_Pro.TyphonPDWPickup'
+
      PlayerViewOffset=(X=-6.000000,Y=3.750000,Z=-11.000000)
+	 SightOffset=(X=18.90000,Y=0.180000,Z=12.69000)
+	 SightingTime=0.250000
+
      PutDownTime=0.800000
      BringUpTime=1.000000
 	 CockingBringUpTime=2.000000

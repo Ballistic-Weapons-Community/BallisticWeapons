@@ -194,11 +194,13 @@ defaultproperties
 	GroupOffset=12
 	BobDamping=2f 
 	bNoCrosshairInScope=True
-	SightBobScale=0.15f
-	SightPivot=(Pitch=128)
-	SightOffset=(X=4.500000,Y=-3.170000,Z=13.73000)
 	PickupClass=Class'BWBP_SKC_Pro.T9CNPickup'
+
 	PlayerViewOffset=(X=-3.000000,Y=6.00000,Z=-12.000000)
+	SightOffset=(X=4.500000,Y=-3.170000,Z=13.73000)
+	SightPivot=(Pitch=128)
+	SightBobScale=0.15f
+	
 	AttachmentClass=Class'BWBP_SKC_Pro.T9CNAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.T9CN.SmallIcon_BerSilver'
 	IconCoords=(X2=127,Y2=31)

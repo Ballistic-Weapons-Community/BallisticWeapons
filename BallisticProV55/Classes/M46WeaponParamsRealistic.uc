@@ -119,7 +119,7 @@ defaultproperties
 		Weight=30
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
-		SightOffset=(Y=-1.000000,Z=12.500000)
+		SightOffset=(X=-1,Y=0.050000,Z=3.9)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -150,7 +150,7 @@ defaultproperties
 		Weight=20
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
-		SightOffset=(X=5,Y=0.050000,Z=11.350000)
+		SightOffset=(X=-2.5,Y=-1.000000,Z=3.85)
 		//Function
         SightingTime=0.210000
         MagAmmo=24

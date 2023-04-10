@@ -666,7 +666,6 @@ defaultproperties
 	WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
 	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
-	SightOffset=(X=69.2000000,Y=-17.70000,Z=32.170000)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MK781WeaponParamsComp'
 	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
@@ -684,7 +683,10 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BWBP_SKC_Pro.MK781Pickup'
+
 	PlayerViewOffset=(X=-27.700000,Y=23.10000,Z=-27.700000)
+	SightOffset=(X=69.2000000,Y=-17.70000,Z=32.170000)
+	
 	AttachmentClass=Class'BWBP_SKC_Pro.MK781Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.M1014.SmallIcon_M1014'
 	IconCoords=(X2=127,Y2=35)

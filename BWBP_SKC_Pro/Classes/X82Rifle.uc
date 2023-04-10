@@ -356,8 +356,6 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)
 	
 	bNoCrosshairInScope=True
-	SightPivot=(Roll=-1024)
-	SightOffset=(X=8.700000,Y=-1.070000,Z=4.80000)
 	MinZoom=4.000000
 	MaxZoom=32.000000
 	ZoomStages=3
@@ -386,7 +384,11 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
+	
 	PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-5.00000)
+	SightOffset=(X=8.700000,Y=-1.070000,Z=4.80000)
+	SightPivot=(Roll=-1024)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.X82Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.X82.SmallIcon_X82'
 	IconCoords=(X2=127,Y2=31)

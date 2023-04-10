@@ -609,7 +609,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=21.000000,Z=7.050000)
+
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2
@@ -631,7 +631,8 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=6
 	PickupClass=Class'BallisticProV55.SRS900Pickup'
-	PlayerViewOffset=(X=-6.000000,Y=3.000000,Z=-5.400000)
+	PlayerViewOffset=(X=2.000000,Y=3.000000,Z=-2.900000)
+	SightOffset=(X=9.000000,Z=3.150000)
 	AttachmentClass=Class'BallisticProV55.SRS900Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.SRS900.SmallIcon_SRS900'
 	IconCoords=(X2=127,Y2=31)

@@ -381,9 +381,11 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
 	WeaponModes(1)=(bUnavailable=True)
 	bNoCrosshairInScope=True
+
+	PlayerViewOffset=(X=4,Y=3.75,Z=-3.500000)
+	SightOffset=(X=-6.500000,Y=0,Z=2.7)
 	SightPivot=(Pitch=64)
-	SightOffset=(X=18.900000,Y=-8.60000,Z=17.700000)
-	PlayerViewOffset=(X=-12.900000,Y=9.400000,Z=-13.700000)
+
 	ParamsClasses(0)=Class'AK490WeaponParamsComp'
 	ParamsClasses(1)=Class'AK490WeaponParamsClassic'
 	ParamsClasses(2)=Class'AK490WeaponParamsRealistic'

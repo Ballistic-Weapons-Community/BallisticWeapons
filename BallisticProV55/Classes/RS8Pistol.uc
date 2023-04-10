@@ -505,8 +505,6 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	//SightOffset=(X=-10.000000,Z=8.700000)
-	SightOffset=(X=-10.000000,Y=-2.000000,Z=18.8750000)
-	SightPivot=(Pitch=-200,Roll=-1050)
 	bAdjustHands=true
 	RootAdjust=(Yaw=-290,Pitch=3000)
 	WristAdjust=(Yaw=-3000,Pitch=-000)
@@ -531,7 +529,11 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=7
 	PickupClass=Class'BallisticProV55.RS8Pickup'
-	PlayerViewOffset=(X=-2.000000,Y=5.000000,Z=-12.000000)
+
+	PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-8.000000)
+	SightOffset=(X=-43,Y=-1.4,Z=13.4)
+	SightPivot=(Pitch=-200,Roll=-1050)
+
 	AttachmentClass=Class'BallisticProV55.RS8Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.RS8.SmallIcon_RS8'
 	IconCoords=(X2=127,Y2=31)

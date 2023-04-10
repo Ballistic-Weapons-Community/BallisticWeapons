@@ -219,8 +219,6 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=50)
-	SightOffset=(X=15.000000,Y=0.020000,Z=3.70000)
 	GunLength=80.000000
 	ParamsClasses(0)=Class'R9WeaponParamsComp'
 	ParamsClasses(1)=Class'R9WeaponParamsClassic'
@@ -243,7 +241,9 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.R9Pickup'
-	PlayerViewOffset=(Y=5.700000,Z=-6.600000)
+	PlayerViewOffset=(X=12,Y=5.700000,Z=-5.500000)
+	SightOffset=(X=-3.000000,Y=0.020000,Z=2.20000)
+	SightPivot=(Pitch=50)
 	AttachmentClass=Class'BallisticProV55.R9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_R9'
 	IconCoords=(X2=127,Y2=31)

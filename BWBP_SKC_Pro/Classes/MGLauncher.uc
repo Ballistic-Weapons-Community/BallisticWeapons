@@ -227,8 +227,6 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
 	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=512)
-	SightOffset=(X=35.000000,Y=29.000000,Z=34.30000)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MGLWeaponParamsComp'
 	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
@@ -247,7 +245,11 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.MGLPickup'
+	
 	PlayerViewOffset=(X=-5.000000,Y=-8.000000,Z=-20.00000)
+	SightOffset=(X=35.000000,Y=29.000000,Z=34.30000)
+	SightPivot=(Pitch=512)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.MGLAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MGL.SmallIcon_MGL'
 	IconCoords=(X2=127,Y2=35)

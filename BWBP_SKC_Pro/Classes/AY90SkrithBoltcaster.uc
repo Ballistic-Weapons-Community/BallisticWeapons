@@ -533,9 +533,6 @@ defaultproperties
      WeaponModes(3)=(ModeName="BLaser",bUnavailable=True)
      WeaponModes(4)=(ModeName="CLaser",bUnavailable=True)
      CurrentWeaponMode=0
-     SightPivot=(Pitch=768)
-     SightOffset=(Y=7.500000,Z=11.25000)
-     SightDisplayFOV=40.000000
      ParamsClasses(0)=Class'AY90WeaponParamsArena'
      ParamsClasses(1)=Class'AY90WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AY90WeaponParamsRealistic'
@@ -555,7 +552,11 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=19
      PickupClass=Class'BWBP_SKC_Pro.AY90Pickup'
-     PlayerViewOffset=(X=8.000000,Y=3.200000,Z=-9.600000)
+
+     PlayerViewOffset=(X=11.000000,Y=8.00000,Z=-6.500000)
+     SightOffset=(X=-4.5,Y=0,Z=6)
+	 SightPivot=(Pitch=768)
+
 	 MeleeFireClass=Class'BWBP_SKC_Pro.AY90MeleeFire'
      AttachmentClass=Class'BWBP_SKC_Pro.AY90Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.SkrithBow.SmallIcon_SBow'

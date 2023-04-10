@@ -708,9 +708,11 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
+
+	PlayerViewOffset=(X=4,Y=4.75,Z=-4)
+	SightOffset=(X=7.000000,Y=0,Z=2.44)
 	SightPivot=(Pitch=256)
-	SightOffset=(X=13.000000,Y=10.170000,Z=15.94000)
-	PlayerViewOffset=(X=0,Y=-1.9,Z=-12.75)
+
 	bNoCrosshairInScope=True
 	GunLength=16.500000
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParamsComp' 

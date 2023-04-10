@@ -389,9 +389,7 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
 	WeaponModes(0)=(bUnavailable=True)
-	SightPivot=(Pitch=2000,Roll=-768)
-	SightOffset=(X=-3.600000,Y=9.900000,Z=19.500000)
-	SightZoomFactor=1.2
+
 	GunLength=0.100000
 	ParamsClasses(0)=Class'A49WeaponParamsComp'
 	ParamsClasses(1)=Class'A49WeaponParamsClassic'
@@ -411,7 +409,12 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BWBP_SKC_Pro.A49Pickup'
-	PlayerViewOffset=(Y=3.000000,Z=-7.500000)
+
+	PlayerViewOffset=(X=15,Y=9.67,Z=-5.500000)
+	SightOffset=(X=-26.00000,Y=-0.01,Z=16.5)
+	SightPivot=(Pitch=2000,Roll=-768)
+	SightZoomFactor=1.2
+
 	DrawScale=0.3
 	AttachmentClass=Class'BWBP_SKC_Pro.A49Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.A6.SmallIcon_A49'

@@ -488,8 +488,6 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Laser-Auto",bUnavailable=True,Value=7.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=-3.750000,Y=-0.510000,Z=17.030000)
-	SightDisplayFOV=40.000000
 	GunLength=4.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),StartSize1=61,StartSize2=62)
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
@@ -510,8 +508,11 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=12
 	PickupClass=Class'BWBP_SKC_Pro.AH104Pickup'
-	PlayerViewOffset=(X=3.750000,Y=6.000000,Z=-15.000000)
+
+	PlayerViewOffset=(X=8.50000,Y=5.660000,Z=-5.000000)
+	SightOffset=(X=-11.50000,Y=0,Z=2.030000)
 	SightBobScale=0.4f
+
 	AttachmentClass=Class'BWBP_SKC_Pro.AH104Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AH104.SmallIcon_AH104'
 	IconCoords=(X2=127,Y2=31)

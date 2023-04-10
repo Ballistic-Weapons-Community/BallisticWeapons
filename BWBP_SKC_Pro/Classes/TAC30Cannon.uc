@@ -327,8 +327,6 @@ defaultproperties
      WeaponModes(0)=(ModeName="Double Shot",ModeID="WM_Burst",Value=2.000000)
      WeaponModes(1)=(ModeName="Single Shot",ModeID="WM_FullAuto")
      CurrentWeaponMode=1
-     SightPivot=(Pitch=1024,Roll=2048)
-     SightOffset=(X=0.000000,Y=10.000000,Z=16.000000)
 	 GunLength=32.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.TAC30PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.TAC30SecondaryFire'
@@ -339,7 +337,11 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_SKC_Pro.TAC30Pickup'
+
      PlayerViewOffset=(X=-4.000000,Y=8.000000,Z=-11.000000)
+	 SightOffset=(X=0.000000,Y=10.000000,Z=16.000000)
+	 SightPivot=(Pitch=1024,Roll=2048)
+	 
      AttachmentClass=Class'BWBP_SKC_Pro.TAC30Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.TAC30.SmallIcon_TAC30'
      IconCoords=(X2=127,Y2=30)

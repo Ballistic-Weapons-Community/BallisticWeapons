@@ -146,8 +146,11 @@ defaultproperties
     ReloadAnimRate=1.25
 	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=129),Color2=(B=148,R=0,A=141),StartSize1=99,StartSize2=84)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
-	SightOffset=(X=24.000000,Y=0.160000,Z=56.000000)
-	SightDisplayFOV=40.000000
+
+	PlayerViewOffset=(X=26,Y=14.5,Z=-20)
+	PlayerViewPivot=(Pitch=600)
+	SightOffset=(X=-51,Y=0.160000,Z=38)
+
 	SightZoomFactor=1.2
 	GunLength=48.000000
 	ParamsClasses(0)=Class'A500WeaponParamsComp'
@@ -167,8 +170,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BallisticProV55.A500Pickup'
-	PlayerViewOffset=(X=-24.000000,Y=14.4,Z=-32.000000)
-	PlayerViewPivot=(Pitch=600)
+
 	AttachmentClass=Class'BallisticProV55.A500Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Reptile.SmallIcon_Reptile'
 	IconCoords=(X2=127,Y2=31)

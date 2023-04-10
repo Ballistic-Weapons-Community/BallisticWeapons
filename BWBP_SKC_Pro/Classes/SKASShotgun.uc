@@ -346,8 +346,6 @@ defaultproperties
     //WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
     //WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
     CurrentWeaponMode=0
-    SightPivot=(Pitch=1024)
-    SightOffset=(X=0.000000,Y=11.230000,Z=22.300000)
     GunLength=32.000000
     ParamsClasses(0)=Class'SKASWeaponParamsComp'
     ParamsClasses(1)=Class'SKASWeaponParamsClassic'
@@ -367,7 +365,11 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=4
     PickupClass=Class'BWBP_SKC_Pro.SKASPickup'
+
     PlayerViewOffset=(X=-4.30000,Y=-1.000000,Z=-13.710000)
+    SightOffset=(X=0.000000,Y=11.230000,Z=22.300000)
+	SightPivot=(Pitch=1024)
+
     AttachmentClass=Class'BWBP_SKC_Pro.SKASAttachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SKAS.SmallIcon_SKAS'
     IconCoords=(X2=127,Y2=30)

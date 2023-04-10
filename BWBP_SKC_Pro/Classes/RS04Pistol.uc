@@ -292,10 +292,6 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      WeaponModes(3)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=0
-     SightOffset=(X=4.000000,Y=-1.670000,Z=14.570000)
-	 SightPivot=(Roll=-256)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
 	 bNoCrosshairInScope=True
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=175,G=178,R=176,A=160),Color2=(G=0),StartSize1=52,StartSize2=40)
 	 NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
@@ -315,7 +311,12 @@ defaultproperties
      InventoryGroup=2
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.RS04Pickup'
+
      PlayerViewOffset=(X=-3.4,Y=5.150000,Z=-13.710000)
+	 SightOffset=(X=4.000000,Y=-1.670000,Z=14.570000)
+	 SightPivot=(Roll=-256)
+     SightingTime=0.200000
+
      AttachmentClass=Class'BWBP_SKC_Pro.RS04Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.RS04.SmallIcon_RS04'
      IconCoords=(X2=127,Y2=31)

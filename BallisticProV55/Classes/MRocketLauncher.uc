@@ -518,8 +518,6 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
-	SightDisplayFOV=50.000000
 	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
 	ParamsClasses(0)=Class'MRLWeaponParamsComp'
 	ParamsClasses(1)=Class'MRLWeaponParamsClassic'
@@ -542,8 +540,11 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.MRLPickup'
-	PlayerViewOffset=(X=12.000000,Y=6.000000,Z=-15.000000)
+
+	PlayerViewOffset=(X=16.000000,Y=6.000000,Z=-10.000000)
 	PlayerViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
+	SightOffset=(X=-15.000000,Y=-10.000000,Z=15.00000)
+
 	AttachmentClass=Class'BallisticProV55.MRLAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.MRL.SmallIcon_MRL'
 	IconCoords=(X2=127,Y2=31)

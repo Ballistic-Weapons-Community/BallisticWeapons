@@ -724,9 +724,6 @@ defaultproperties
      bNoMag=True
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=768)
-     SightOffset=(X=-18.000000,Z=23.299999)
-     SightDisplayFOV=40.000000
 	 ParamsClasses(0)=Class'HVPCMk66WeaponParamsComp'
 	 ParamsClasses(1)=Class'HVPCMk66WeaponParamsClassic'
 	 ParamsClasses(2)=Class'HVPCMk66WeaponParamsRealistic'
@@ -749,6 +746,8 @@ defaultproperties
      InventoryGroup=5
      PickupClass=Class'BWBP_SKC_Pro.HVPCMk66Pickup'
      PlayerViewOffset=(X=-3.000000,Y=9.500000,Z=-9.500000)
+     SightOffset=(X=-18.000000,Z=23.299999)
+	 SightPivot=(Pitch=768)
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk66Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.BFG.SmallIcon_BFG'
      IconCoords=(X2=127,Y2=31)

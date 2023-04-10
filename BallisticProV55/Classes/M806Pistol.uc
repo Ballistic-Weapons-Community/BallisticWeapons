@@ -355,12 +355,11 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=5.000000,Y=-4.9,Z=46.00000)
-	SightPivot=(Pitch=-110,Roll=-675)              //Aligned
+           //Aligned
 	bAdjustHands=true
 	RootAdjust=(Yaw=-375,Pitch=3500)
 	WristAdjust=(Yaw=-3500,Pitch=-000)
-	SightBobScale=1f
+
 	ParamsClasses(0)=Class'M806WeaponParamsComp'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'
@@ -380,7 +379,10 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=8
 	PickupClass=Class'BallisticProV55.M806Pickup'
-	PlayerViewOffset=(X=-5.000000,Y=7.000000,Z=-25.000000)
+	PlayerViewOffset=(X=7.000000,Y=7.000000,Z=-19)
+	SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
+	SightPivot=(Pitch=-110,Roll=-675)   
+	SightBobScale=1f
 	AttachmentClass=Class'BallisticProV55.M806Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M806'
 	IconCoords=(X2=127,Y2=31)
