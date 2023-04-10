@@ -446,7 +446,7 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipIn')
 	ClipInFrame=0.650000 
 	CurrentWeaponMode=2
-	SightOffset=(X=25.000000,Y=11.800000,Z=20.280000)
+	SightOffset=(X=21.000000,Y=10.100000,Z=17.380000)
 	GunLength=80.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(B=158,G=150,R=0,A=124),StartSize1=54,StartSize2=59)
     ParamsClasses(0)=Class'XM20WeaponParamsComp'
@@ -466,8 +466,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=4
 	PickupClass=Class'BWBP_OP_Pro.XM20Pickup'
-    PlayerViewOffset=(X=0.000000,Y=-1.000000,Z=-19.000000)
-	BobDamping=1.800000
+    PlayerViewOffset=(X=0.000000,Y=-1.000000,Z=-16.300000)
 	AttachmentClass=Class'BWBP_OP_Pro.XM20Attachment'
 	bUseBigIcon=True
 	IconMaterial=Texture'BWBP_OP_Tex.XM20P.Icon_XM20P'
@@ -480,7 +479,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM20'
-	DrawScale=0.350000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'ONSstructureTextures.CoreGroup.Invisible'
     Skins(2)=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainProtoShine'

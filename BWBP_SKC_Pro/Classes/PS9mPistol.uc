@@ -376,7 +376,6 @@ defaultproperties
 	InventoryGroup=3
 	PickupClass=Class'BWBP_SKC_Pro.PS9mPickup'
 	PlayerViewOffset=(X=3.000000,Y=-5.000000,Z=-8.500000)
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.PS9mAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Stealth.SmallIcon_PS9M'
 	IconCoords=(X2=127,Y2=31)

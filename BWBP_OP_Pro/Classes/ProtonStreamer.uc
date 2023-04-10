@@ -392,7 +392,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=5
 	PickupClass=Class'BWBP_OP_Pro.ProtonStreamPickup'
-	PlayerViewOffset=(X=35.000000,Y=15.000000,Z=-15.000000)
+	PlayerViewOffset=(X=10.000000,Y=7.000000,Z=-8.000000)
 	PlayerViewPivot=(Pitch=1024,Yaw=-1024)
 	AttachmentClass=Class'BWBP_OP_Pro.ProtonStreamAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.ProtonPack.Icon_ProtonPack'
@@ -405,7 +405,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_ProtonPack'
-	DrawScale=0.600000
+	DrawScale=0.300000
 	SoundPitch=56
 	SoundRadius=32.000000
 }

@@ -137,9 +137,8 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.G28Pickup'
-     PlayerViewOffset=(X=22.500000,Z=-9.000000)
+     PlayerViewOffset=(X=16.000000,Z=-8.500000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.G28Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.G28.SmallIcon_G28'
      IconCoords=(X2=127,Y2=31)

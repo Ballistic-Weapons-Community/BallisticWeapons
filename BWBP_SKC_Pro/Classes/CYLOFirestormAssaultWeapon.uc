@@ -736,8 +736,6 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=9
 	PickupClass=Class'BWBP_SKC_Pro.CYLOFirestormPickup'
-
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
 	IconCoords=(X2=127,Y2=31)

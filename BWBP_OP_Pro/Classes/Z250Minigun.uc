@@ -532,7 +532,7 @@ defaultproperties
 	CurrentWeaponMode=1
 	bShowChargingBar=True
 	bNoCrosshairInScope=True
-	SightOffset=(X=0,Y=0,Z=3.35)
+	SightOffset=(X=0,Y=0,Z=1.68)
 	SightingTime=0.550000
 	ParamsClasses(0)=Class'Z250WeaponParamsComp'
 	ParamsClasses(1)=Class'Z250WeaponParamsClassic'
@@ -556,10 +556,9 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	GroupOffset=2
-	BobDamping=0.1
-	SightBobScale=1
+	SightBobScale=0.5
 	PickupClass=Class'BWBP_OP_Pro.Z250Pickup'
-	PlayerViewOffset=(X=25,Y=12,Z=-8.5)
+	PlayerViewOffset=(X=12,Y=6,Z=-4.25)
 	AttachmentClass=Class'BWBP_OP_Pro.Z250Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Z250.Icon_Z250'
 	IconCoords=(X2=127,Y2=31)
@@ -571,6 +570,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Z250'
-	DrawScale=0.600000
+	DrawScale=0.300000
 	SoundRadius=128.000000
 }

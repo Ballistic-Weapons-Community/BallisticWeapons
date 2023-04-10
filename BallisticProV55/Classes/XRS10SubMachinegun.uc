@@ -418,7 +418,7 @@ defaultproperties
 	
 	SightOffset=(X=-22.000000,Z=14.2500000)
 	SightZoomFactor=1.2
-	SightBobScale=0.8f
+	SightBobScale=0.5f
 	ParamsClasses(0)=Class'XRS10WeaponParamsComp'
 	ParamsClasses(1)=Class'XRS10WeaponParamsClassic'
 	ParamsClasses(2)=Class'XRS10WeaponParamsRealistic'

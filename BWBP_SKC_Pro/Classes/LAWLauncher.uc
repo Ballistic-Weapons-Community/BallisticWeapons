@@ -379,7 +379,6 @@ defaultproperties
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LAWPickup'
 	PlayerViewOffset=(X=-3.750000,Y=-2.25,Z=-3.7500000)
-	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.LAWAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LAW.SmallIcon_LAW'
 	IconCoords=(X2=127,Y2=31)

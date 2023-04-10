@@ -532,7 +532,6 @@ defaultproperties
      GroupOffset=4
      PickupClass=Class'BWBP_SKC_Pro.HMCPickup'
      PlayerViewOffset=(X=5.150000,Y=5.150000,Z=-6.90000)
-     BobDamping=1.600000
      AttachmentClass=Class'BWBP_SKC_Pro.HMCAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.SmallIcon_HMC'
      IconCoords=(X2=127,Y2=31)

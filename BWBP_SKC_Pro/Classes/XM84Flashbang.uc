@@ -171,7 +171,6 @@ defaultproperties
      PickupClass=Class'BWBP_SKC_Pro.XM84Pickup'
      PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.XM84Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.XM84.SmallIcon_XM84'
      IconCoords=(X2=127,Y2=31)

@@ -413,7 +413,6 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.A49Pickup'
 	PlayerViewOffset=(Y=3.000000,Z=-7.500000)
 	DrawScale=0.3
-	BobDamping=1.600000
 	AttachmentClass=Class'BWBP_SKC_Pro.A49Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.A6.SmallIcon_A49'
 	IconCoords=(X2=127,Y2=31)

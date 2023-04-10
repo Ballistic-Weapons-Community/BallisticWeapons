@@ -495,7 +495,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=13
 	PickupClass=Class'BWBP_OP_Pro.PD97Pickup'
-	PlayerViewOffset=(X=5,Y=2.7,Z=-3)
+	PlayerViewOffset=(X=7.5,Y=4,Z=-4.5)
 	AttachmentClass=Class'BWBP_OP_Pro.PD97Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Bloodhound.Icon_PD97'
 	IconCoords=(X2=127,Y2=31)
@@ -507,5 +507,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Bloodhound'
-	DrawScale=0.200000
+	DrawScale=0.300000
 }

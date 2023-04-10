@@ -1032,7 +1032,6 @@ defaultproperties
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.MARSPickup'
 	PlayerViewOffset=(X=-5.15000,Y=9.000000,Z=-17.140000)
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.MARSAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000'
 	IconCoords=(X2=127,Y2=31)

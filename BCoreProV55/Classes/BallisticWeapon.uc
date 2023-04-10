@@ -5660,7 +5660,7 @@ defaultproperties
      MinZoom=1.000000
      MaxZoom=2.000000
      ZoomStages=2
-	 SightBobScale=0.15
+	 SightBobScale=0.15f
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
      MagEmptyColor=(B=50,G=50,R=255,A=150)

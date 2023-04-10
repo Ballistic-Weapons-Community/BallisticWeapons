@@ -730,7 +730,7 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=6
 	PickupClass=Class'BWBP_OP_Pro.CX85Pickup'
-	PlayerViewOffset=(X=16,Y=12,Z=-7)
+	PlayerViewOffset=(X=10,Y=7,Z=-4)
 	AttachmentClass=Class'BWBP_OP_Pro.CX85Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.CX85.SmallIcon_CX85'
 	IconCoords=(X2=127,Y2=31)
@@ -742,5 +742,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_CX85'
-	DrawScale=0.500000
+	DrawScale=0.300000
 }

@@ -370,7 +370,6 @@ defaultproperties
 	bNoCrosshairInScope=True
 	PickupClass=Class'BWBP_SKC_Pro.FMPPickup'
 	PlayerViewOffset=(X=-13.000000,Y=9.500000,Z=-16.000000)
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.FMPAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MP40.SmallIcon_MP40'
 	IconCoords=(X2=127,Y2=31)

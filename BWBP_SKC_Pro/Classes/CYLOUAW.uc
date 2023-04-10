@@ -562,7 +562,6 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=10
 	PickupClass=Class'BWBP_SKC_Pro.CYLOPickup'
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'
 	IconCoords=(X2=127,Y2=31)

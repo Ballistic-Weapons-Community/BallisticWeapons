@@ -589,7 +589,6 @@ defaultproperties
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.LK05Pickup'
 	PlayerViewOffset=(X=-11.000000,Y=10.000000,Z=-17.000000)
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.LK05Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LK05.SmallIcon_LK05'
 	IconCoords=(X2=127,Y2=31)

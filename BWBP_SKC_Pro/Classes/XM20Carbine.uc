@@ -605,7 +605,6 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      PickupClass=Class'BWBP_SKC_Pro.XM20Pickup'
      PlayerViewOffset=(X=0.000000,Y=-0.8600000,Z=-16.300000)
-     BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.XM20Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)

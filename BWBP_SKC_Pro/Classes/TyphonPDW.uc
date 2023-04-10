@@ -743,7 +743,6 @@ defaultproperties
 	 ZoomType=ZT_Irons
      SightOffset=(X=18.90000,Y=0.180000,Z=12.69000)
 	 SightingTime=0.250000
-	 BobDamping=1.7
      FireModeClass(0)=Class'BWBP_SKC_Pro.TyphonPDWPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.TyphonPDWSecondaryFire'
      SelectForce="SwitchToAssaultRifle"

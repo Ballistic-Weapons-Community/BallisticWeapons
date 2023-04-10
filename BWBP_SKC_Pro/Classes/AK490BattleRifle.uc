@@ -405,8 +405,7 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.AK490Pickup'
-	BobDamping=1.5
-	SightBobScale=0.15
+	SightBobScale=0.15f
 	AttachmentClass=Class'BWBP_SKC_Pro.AK490Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AK490.SmallIcon_AK490'
 	IconCoords=(X2=127,Y2=31)

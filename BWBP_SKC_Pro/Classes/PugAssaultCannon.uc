@@ -670,7 +670,6 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.PugPickup'
 	PlayerViewOffset=(X=6.000000,Y=6.600000,Z=-12.600000)
-	BobDamping=1.600000
 	AttachmentClass=Class'BWBP_SKC_Pro.PugAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Pug.SmallIcon_Pug'
 	IconCoords=(X2=127,Y2=31)

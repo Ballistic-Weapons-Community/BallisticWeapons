@@ -443,10 +443,10 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 defaultproperties
 {
 	SightPivot=(Roll=11800)
-	SightOffset=(X=0.000000,Y=0.60000,Z=7.92)
+	SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
 
 	ScopeSightPivot=(Pitch=50)
-	ScopeSightOffset=(X=4,Z=9.5)
+	ScopeSightOffset=(X=2.4,Z=5.7)
 
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.R9A1.BigIcon_R9A1'
@@ -494,7 +494,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=3
 	PickupClass=Class'BWBP_OP_Pro.R9A1Pickup'
-	PlayerViewOffset=(X=12,Y=9.00000,Z=-12.000000)
+	PlayerViewOffset=(X=7,Y=5.30000,Z=-7.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.R9A1Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.R9A1.SmallIcon_R9A1'
 	IconCoords=(X2=127,Y2=31)
@@ -506,6 +506,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_R9A1'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	SightAnimScale=0.25
 }

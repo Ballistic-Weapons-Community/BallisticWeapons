@@ -541,7 +541,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
-	SightOffset=(X=-5,Y=0,Z=0.5)
+	SightOffset=(X=-8,Y=0,Z=0.8)
 	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'RaygunWeaponParamsComp'
 	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
@@ -563,7 +563,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BWBP_OP_Pro.RaygunPickup'
-	PlayerViewOffset=(X=10,Y=1,Z=-1.9)
+	PlayerViewOffset=(X=16,Y=1.6,Z=-3)
 	AttachmentClass=Class'BWBP_OP_Pro.RaygunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_128'
 	IconCoords=(X2=127,Y2=31)
@@ -575,7 +575,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Raygun'
-	DrawScale=0.187500
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.Raygun.raygun_body_SH1'
 	Skins(2)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler'

@@ -462,7 +462,6 @@ defaultproperties
 	GunLength=32.000000
 	GroupOffset=3
 	bNoCrosshairInScope=True
-	BobDamping=1
 	SightBobScale=0.35
 	ParamsClasses(0)=Class'MRS138WeaponParamsComp'
 	ParamsClasses(1)=Class'MRS138WeaponParamsClassic'

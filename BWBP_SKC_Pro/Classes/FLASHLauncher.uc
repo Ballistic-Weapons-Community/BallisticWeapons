@@ -213,7 +213,6 @@ defaultproperties
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.FLASHPickup'
 	PlayerViewOffset=(X=-3.750000,Z=-7.500000)
-	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.FLASHAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Flash.SmallIcon_FLASH'
 	IconCoords=(X2=127,Y2=31)

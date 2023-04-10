@@ -1080,7 +1080,6 @@ defaultproperties
 	GroupOffset=4
 	PickupClass=Class'BWBP_SKC_Pro.LS14Pickup'
 	PlayerViewOffset=(X=-5.000000,Y=10.00000,Z=-18.000000)
-	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.LS14Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LS14.SmallIcon_LS14'
 	IconCoords=(X2=127,Y2=31)

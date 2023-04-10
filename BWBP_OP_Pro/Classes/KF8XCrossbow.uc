@@ -556,7 +556,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BWBP_OP_Pro.KF8XPickup'
-	PlayerViewOffset=(X=6,Y=4,Z=-4)
+	PlayerViewOffset=(X=9,Y=6,Z=-6)
 	AttachmentClass=Class'BWBP_OP_Pro.KF8XAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.XBow.Icon_Crossbow'
 	IconCoords=(X2=127,Y2=31)
@@ -568,7 +568,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Crossbow'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.XBow.XBow_SH1'
 }

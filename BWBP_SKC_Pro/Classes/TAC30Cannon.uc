@@ -340,7 +340,6 @@ defaultproperties
      InventoryGroup=6
      PickupClass=Class'BWBP_SKC_Pro.TAC30Pickup'
      PlayerViewOffset=(X=-4.000000,Y=8.000000,Z=-11.000000)
-     BobDamping=1.700000
      AttachmentClass=Class'BWBP_SKC_Pro.TAC30Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.TAC30.SmallIcon_TAC30'
      IconCoords=(X2=127,Y2=30)

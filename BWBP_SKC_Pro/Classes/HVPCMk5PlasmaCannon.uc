@@ -669,7 +669,7 @@ defaultproperties
 	 SightAnimScale=0.5
 	 SightPivot=(Pitch=256)
      SightOffset=(X=26.000000,Y=-0.15,Z=11.27000)
-	 SightBobScale=0.4
+	 SightBobScale=0.4f
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk5SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color2=(B=153,G=168,R=170,A=83),StartSize2=84)
@@ -687,7 +687,6 @@ defaultproperties
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.HVPCMk5Pickup'
      PlayerViewOffset=(X=-8.600000,Y=5.15000,Z=-11.00000)
-     BobDamping=1.600000
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk5Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
      IconCoords=(X2=127,Y2=31)
