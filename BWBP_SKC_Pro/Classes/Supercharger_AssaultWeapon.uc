@@ -638,7 +638,7 @@ defaultproperties
     WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
 	ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
-	SightOffset=(X=60.000000,Y=3.6,Z=26.7500000)
+	SightOffset=(X=50.000000,Y=3,Z=22.300000)
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)
     GunLength=16.500000
     LongGunPivot=(Pitch=2000,Yaw=-1024)
@@ -658,7 +658,7 @@ defaultproperties
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=5
     PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
-    PlayerViewOffset=(X=-8.000000,Y=5.000000,Z=-19.000000)
+    PlayerViewOffset=(X=-6.700000,Y=4.20000,Z=-15.800000)
     BobDamping=2.000000
     AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.SmallIcon_Super'
@@ -671,7 +671,7 @@ defaultproperties
     LightBrightness=150.000000
     LightRadius=4.000000
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
-    DrawScale=0.360000
+    DrawScale=0.300000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
     Skins(2)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'

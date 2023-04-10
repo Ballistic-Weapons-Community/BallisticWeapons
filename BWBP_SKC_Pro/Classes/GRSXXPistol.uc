@@ -767,8 +767,7 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 	WeaponModes(3)=(ModeName="Amplified: Hypermode",ModeID="WM_FullAuto",bUnavailable=True)
 	bNoCrosshairInScope=True
-	SightOffset=(X=-15.000000,Z=6.600000)
-	SightDisplayFOV=60.000000
+	SightOffset=(X=-30.000000,Z=13.200000)
 	ParamsClasses(0)=Class'GRSXXPistolWeaponParamsArena'
 	ParamsClasses(1)=Class'GRSXXWeaponParamsClassic'
 	ParamsClasses(2)=Class'GRSXXWeaponParamsRealistic'
@@ -786,7 +785,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.GRSXXPickup'
-	PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
+	PlayerViewOffset=(X=12.000000,Y=16.000000,Z=-18.000000)
 	AttachmentClass=Class'BWBP_SKC_Pro.GRSXXAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Glock_Gold.SmallIcon_GoldGlock'
 	IconCoords=(X2=127,Y2=31)
@@ -798,7 +797,7 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_GRSXX'
-	DrawScale=0.150000
+	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=128.000000
 }

@@ -357,7 +357,7 @@ defaultproperties
 	
 	bNoCrosshairInScope=True
 	SightPivot=(Roll=-1024)
-	SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
+	SightOffset=(X=8.700000,Y=-1.070000,Z=4.80000)
 	MinZoom=4.000000
 	MaxZoom=32.000000
 	ZoomStages=3
@@ -386,7 +386,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
-	PlayerViewOffset=(X=4.000000,Y=6.000000,Z=-7.500000)
+	PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-5.00000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.X82Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.X82.SmallIcon_X82'
@@ -399,7 +399,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83'
-	DrawScale=0.450000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'
 	Skins(2)=Texture'BW_Core_WeaponTex.Ammo.ClassicSniperAmmoT'

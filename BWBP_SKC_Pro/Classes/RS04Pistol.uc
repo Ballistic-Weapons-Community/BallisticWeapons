@@ -292,7 +292,7 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      WeaponModes(3)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=0
-     SightOffset=(X=5.000000,Y=-1.9500000,Z=17.000000)
+     SightOffset=(X=4.000000,Y=-1.670000,Z=14.570000)
 	 SightPivot=(Roll=-256)
      SightDisplayFOV=40.000000
      SightingTime=0.200000
@@ -315,7 +315,7 @@ defaultproperties
      InventoryGroup=2
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.RS04Pickup'
-     PlayerViewOffset=(X=-4,Y=6.000000,Z=-16.000000)
+     PlayerViewOffset=(X=-3.4,Y=5.150000,Z=-13.710000)
      AttachmentClass=Class'BWBP_SKC_Pro.RS04Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.RS04.SmallIcon_RS04'
      IconCoords=(X2=127,Y2=31)
@@ -331,7 +331,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'RS04WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'RS04WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04'
-     DrawScale=0.350000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.RS04.RS04-MainShine'
 }

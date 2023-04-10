@@ -515,7 +515,7 @@ defaultproperties
      bNonCocking=True
      bWT_Energy=True
      SightPivot=(Pitch=748)
-     SightOffset=(X=-12.000000,Z=14.300000)
+     SightOffset=(X=-10.30000,Z=12.260000)
      MagAmmo=500
      FireModeClass(0)=Class'BWBP_SKC_Pro.HMCPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HMCSecondaryFire'
@@ -531,7 +531,7 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=4
      PickupClass=Class'BWBP_SKC_Pro.HMCPickup'
-     PlayerViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
+     PlayerViewOffset=(X=5.150000,Y=5.150000,Z=-6.90000)
      BobDamping=1.600000
      AttachmentClass=Class'BWBP_SKC_Pro.HMCAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.SmallIcon_HMC'
@@ -544,7 +544,7 @@ defaultproperties
      LightBrightness=192.000000
      LightRadius=12.000000
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RX22A'
-     DrawScale=0.350000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Shader'BWBP_SKC_Tex.BeamCannon.BeamCannonSkin_SD'
 	 Skins(2)=FinalBlend'BWBP_SKC_Tex.BeamCannon.BeamCannonShieldFB'

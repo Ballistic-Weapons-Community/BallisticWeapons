@@ -336,7 +336,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_SKC_Pro.AR23Pickup'
-     PlayerViewOffset=(X=1.000000,Y=5.00000,Z=-12.000000)
+     PlayerViewOffset=(X=5.000000,Y=5.00000,Z=-15.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.AR23Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AR23.SmallIcon_AR23'

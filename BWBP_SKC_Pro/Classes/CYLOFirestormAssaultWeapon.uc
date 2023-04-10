@@ -709,8 +709,8 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
 	SightPivot=(Pitch=256)
-	SightOffset=(X=18.000000,Y=13.565000,Z=21.25000)
-	PlayerViewOffset=(X=0,Y=-2.5,Z=-17)
+	SightOffset=(X=13.000000,Y=10.170000,Z=15.94000)
+	PlayerViewOffset=(X=0,Y=-1.9,Z=-12.75)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParamsComp' 
@@ -749,5 +749,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

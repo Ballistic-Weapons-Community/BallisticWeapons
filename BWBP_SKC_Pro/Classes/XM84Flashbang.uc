@@ -169,7 +169,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=0
      PickupClass=Class'BWBP_SKC_Pro.XM84Pickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.XM84Attachment'
@@ -177,6 +177,6 @@ defaultproperties
      IconCoords=(X2=127,Y2=31)
      ItemName="XM84 Heavy Tech Grenade"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM84'
-     DrawScale=0.400000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

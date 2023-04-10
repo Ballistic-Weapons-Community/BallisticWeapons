@@ -260,7 +260,7 @@ defaultproperties
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
 	SightAnimScale=0.75
-	SightOffset=(X=-38.500000,Z=15.40000)
+	SightOffset=(X=-7.000000,Z=15.40000)
 	SightBobScale=0.5
 
 	ParamsClasses(0)=Class'M925WeaponParamsComp'

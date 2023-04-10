@@ -849,8 +849,8 @@ defaultproperties
      WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation")
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     //SightPivot=(Pitch=150)
-     //SightOffset=(Y=0.250000,Z=16.299999)
+     SightPivot=(Pitch=150)
+     SightOffset=(X=0,Y=0.00000,Z=16.25)
      GunLength=48.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.PumaPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.PumaSecondaryFire'
@@ -865,7 +865,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
-     PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-13.000000)
+     PlayerViewOffset=(X=4.170000,Y=3.350000,Z=-10.830000)
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)
@@ -881,7 +881,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
      ParamsClasses(3)=Class'PUMAWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
-     DrawScale=0.360000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.PUMA.PUMA-MainShine'
      Skins(2)=Shader'BWBP_SKC_Tex.PUMA.PUMA-BackShine'

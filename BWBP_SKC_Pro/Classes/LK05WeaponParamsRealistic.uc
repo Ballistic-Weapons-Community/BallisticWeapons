@@ -108,7 +108,7 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		//SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+		SightOffset=(X=27.000000,Y=-8.550000,Z=24.660000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8,AIndex=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9,AIndex=2)

@@ -180,7 +180,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=19.700000,Y=-6.320000,Z=23.150000)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		ZoomType=ZT_Irons

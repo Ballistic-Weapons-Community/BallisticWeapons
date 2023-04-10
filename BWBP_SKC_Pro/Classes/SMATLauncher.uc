@@ -184,7 +184,7 @@ defaultproperties
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"
 	bNoCrosshairInScope=True
-	SightOffset=(X=-6.000000,Y=-7.500000,Z=5.500000)
+	SightOffset=(X=-8.000000,Y=-9.000000,Z=9.500000)
 	 
      NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(A=192),Color2=(A=192),StartSize1=89,StartSize2=13)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
@@ -212,7 +212,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.SMATPickup'
-     PlayerViewOffset=(X=15.000000,Y=15.000000,Z=-10.000000)
+     PlayerViewOffset=(X=11.250000,Y=11.250000,Z=-7.500000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.SMATAttachment'
      //IconMaterial=Texture'BWBP_SKC_Tex.SMAA.SmallIcon_SMAA'
@@ -225,5 +225,5 @@ defaultproperties
      LightBrightness=192.000000
      LightRadius=12.000000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SMAT'
-     DrawScale=0.400000
+     DrawScale=0.300000
 }

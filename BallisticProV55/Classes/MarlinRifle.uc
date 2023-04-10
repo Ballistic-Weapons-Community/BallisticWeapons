@@ -395,7 +395,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.MarlinPickup'
-	PlayerViewOffset=(X=0.000000,Y=8.400000,Z=-7.800000)
+	PlayerViewOffset=(X=3.000000,Y=7.00000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.MarlinAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Marlin.SmallIcon_Marlin'
 	IconCoords=(X2=127,Y2=31)

@@ -535,8 +535,8 @@ defaultproperties
 	bAltTriggerReload=True
 	bNoCrosshairInScope=True // CHANGE THIS IN BALLSTICWEAPON.UC
 	WeaponModes(0)=(bUnavailable=True)
-	SightOffset=(X=9.0000,Y=13.6,Z=19.30000)
-	PlayerViewOffset=(X=0,Y=-2.5,Z=-17)
+	SightOffset=(X=6.75,Y=10.2,Z=14.50000)
+	PlayerViewOffset=(X=0,Y=-1.9,Z=-12.75)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
@@ -574,5 +574,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOUAW'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

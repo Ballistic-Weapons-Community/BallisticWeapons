@@ -649,7 +649,7 @@ defaultproperties
 	WeaponModes(5)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-18.000000,Y=4.475000,Z=6.800000)
+	SightOffset=(X=-10.800000,Y=2.69000,Z=4.080000)
 	SightDisplayFOV=35.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'PugWeaponParams'
@@ -669,7 +669,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.PugPickup'
-	PlayerViewOffset=(X=10.000000,Y=11.000000,Z=-21.000000)
+	PlayerViewOffset=(X=6.000000,Y=6.600000,Z=-12.600000)
 	BobDamping=1.600000
 	AttachmentClass=Class'BWBP_SKC_Pro.PugAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Pug.SmallIcon_Pug'
@@ -682,5 +682,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Pug'
-	DrawScale=0.500000
+	DrawScale=0.300000
 }

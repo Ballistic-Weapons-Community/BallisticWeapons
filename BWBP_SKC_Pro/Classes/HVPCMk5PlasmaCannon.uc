@@ -668,8 +668,8 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
 	 SightAnimScale=0.5
 	 SightPivot=(Pitch=256)
-     SightOffset=(X=30.000000,Y=-0.175,Z=13.150000)
-	 SightBobScale=0.5
+     SightOffset=(X=26.000000,Y=-0.15,Z=11.27000)
+	 SightBobScale=0.4
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk5SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color2=(B=153,G=168,R=170,A=83),StartSize2=84)
@@ -686,7 +686,7 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.HVPCMk5Pickup'
-     PlayerViewOffset=(X=-10.000000,Y=6.00000,Z=-13.00000)
+     PlayerViewOffset=(X=-8.600000,Y=5.15000,Z=-11.00000)
      BobDamping=1.600000
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk5Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
@@ -703,7 +703,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'HVPCMk5WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'HVPCMk5WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HVPC'
-     DrawScale=0.350000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      bFullVolume=True
      SoundVolume=64

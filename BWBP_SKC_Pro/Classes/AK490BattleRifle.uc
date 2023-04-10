@@ -382,8 +382,8 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=64)
-	SightOffset=(X=22.000000,Y=-10.020000,Z=20.600000)
-	PlayerViewOffset=(X=-15.000000,Y=11.000000,Z=-16.000000)
+	SightOffset=(X=18.900000,Y=-8.60000,Z=17.700000)
+	PlayerViewOffset=(X=-12.900000,Y=9.400000,Z=-13.700000)
 	ParamsClasses(0)=Class'AK490WeaponParamsComp'
 	ParamsClasses(1)=Class'AK490WeaponParamsClassic'
 	ParamsClasses(2)=Class'AK490WeaponParamsRealistic'
@@ -418,6 +418,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AK490'
-	DrawScale=0.350000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

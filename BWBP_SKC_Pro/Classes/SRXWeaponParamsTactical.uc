@@ -211,7 +211,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		SightPivot=(Pitch=-128,Yaw=16)
-		SightOffset=(X=0.000000,Y=0.1,Z=3.7)
+		SightOffset=(X=0.000000,Y=0.06,Z=2.22)
 		//Function
         SightingTime=0.35
 		MagAmmo=20

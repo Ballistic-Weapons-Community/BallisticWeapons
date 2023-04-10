@@ -178,7 +178,7 @@ defaultproperties
     CurrentWeaponMode=0
     bNoCrosshairInScope=True
     SightPivot=(Pitch=150)
-    SightOffset=(X=22.000000,Y=-10.000000,Z=22.500000)
+    SightOffset=(X=19.000000,Y=-8.5700000,Z=19.290000)
     SightDisplayFOV=30
     GunLength=48.000000
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(G=0,A=192),StartSize1=113,StartSize2=120)
@@ -203,7 +203,7 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=7
     PickupClass=Class'BWBP_SKC_Pro.SK410Pickup'
-    PlayerViewOffset=(X=-10.000000,Y=12.000000,Z=-18.000000)
+    PlayerViewOffset=(X=-8.600000,Y=10.300000,Z=-15.430000)
     AttachmentClass=Class'BWBP_SKC_Pro.SK410Attachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SK410.SmallIcon_SK410'
     IconCoords=(X2=127,Y2=35)
@@ -217,7 +217,7 @@ defaultproperties
     LightBrightness=150.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SK410'
-    DrawScale=0.350000
+    DrawScale=0.300000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BWBP_SKC_Tex.SK410.SK410-Main'
     Skins(2)=Texture'BWBP_SKC_Tex.SK410.SK410-Misc'

@@ -417,9 +417,9 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	PlayerViewOffset=(X=-55.000000,Y=0.000000,Z=-25.000000)
+	PlayerViewOffset=(X=-19.000000,Y=0.000000,Z=-8.330000)
 	SightPivot=(Pitch=150)
-	SightOffset=(X=90,Y=19.600000,Z=26.400000)
+	SightOffset=(X=30,Y=6.530000,Z=8.800000)
 	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'LonghornWeaponParamsComp'
 	ParamsClasses(1)=Class'LonghornWeaponParamsClassic'
@@ -440,7 +440,6 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LonghornPickup'
-	BobDamping=0.5
 	SightBobScale=0.3
 	AttachmentClass=Class'BWBP_SKC_Pro.LonghornAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Longhorn.SmallIcon_LHorn'
@@ -453,5 +452,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Longhorn'
-	DrawScale=0.900000
+	DrawScale=0.300000
 }

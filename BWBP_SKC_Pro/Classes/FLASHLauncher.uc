@@ -188,7 +188,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=90.000000
 	bNoCrosshairInScope=True
-	SightOffset=(Y=5.300000,Z=23.299999)
+	SightOffset=(X=0,Y=3.980000,Z=17.48)
 	ParamsClasses(0)=Class'FLASHWeaponParamsComp'
 	ParamsClasses(1)=Class'FLASHWeaponParamsClassic'
 	ParamsClasses(2)=Class'FLASHWeaponParamsRealistic'
@@ -212,7 +212,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.FLASHPickup'
-	PlayerViewOffset=(X=-5.000000,Z=-10.000000)
+	PlayerViewOffset=(X=-3.750000,Z=-7.500000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_SKC_Pro.FLASHAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Flash.SmallIcon_FLASH'
@@ -225,5 +225,5 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FLASH'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

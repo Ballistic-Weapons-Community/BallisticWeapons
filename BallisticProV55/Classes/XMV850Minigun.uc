@@ -461,6 +461,7 @@ defaultproperties
 	bShowChargingBar=True
 	SightPivot=(Pitch=700,Roll=2048)
 	SightOffset=(X=4.000000,Z=15.000000)
+	SightBobScale=1
 	ParamsClasses(0)=Class'XMV850WeaponParamsComp'
 	ParamsClasses(1)=Class'XMV850WeaponParamsClassic' //Todo: state code to support fire while spinning
 	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic' //Todo: state code to support fire while spinning

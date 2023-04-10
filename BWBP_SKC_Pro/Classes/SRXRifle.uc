@@ -531,8 +531,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=0.000000,Y=0.1,Z=3.7)
-	PlayerViewOffset=(X=8.000000,Y=8.00000,Z=-10.000000)
+	SightOffset=(X=0.000000,Y=0.06,Z=2.22)
+	PlayerViewOffset=(X=5.000000,Y=5.00000,Z=-6.000000)
 	GunLength=72.000000
 	ParamsClasses(0)=Class'SRXWeaponParamsComp'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'
@@ -565,7 +565,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_SRX'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark'
     Skins(2)=Texture'BWBP_OP_Tex.SRX.SRX-StockBlack'

@@ -713,8 +713,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=256)
-	SightOffset=(X=-20.000000,Y=13.450000,Z=20.400000)
-	SightDisplayFOV=35.000000
+	SightOffset=(X=-10.000000,Y=6.730000,Z=10.200000)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'BulldogWeaponParamsComp'
 	ParamsClasses(1)=Class'BulldogWeaponParamsClassic'
@@ -734,7 +733,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.BulldogPickup'
-	PlayerViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+	PlayerViewOffset=(X=10.000000,Y=0.000000,Z=-9.000000)
 	BobDamping=1
 	SightBobScale=0.5
 	AttachmentClass=Class'BWBP_SKC_Pro.BulldogAttachment'
@@ -749,5 +748,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_BullDog'
 	//DrawScale=0.200000
-	DrawScale=0.600000
+	DrawScale=0.300000
 }
