@@ -760,8 +760,8 @@ defaultproperties
      GroupOffset=18
      PickupClass=Class'BWBP_SKC_Pro.TyphonPDWPickup'
 
-     PlayerViewOffset=(X=-6.000000,Y=3.750000,Z=-11.000000)
-	 SightOffset=(X=18.90000,Y=0.180000,Z=12.69000)
+     PlayerViewOffset=(X=6.00,Y=3.75,Z=-4.00)
+	 SightOffset=(X=0.00,Y=0.00,Z=2.19)
 	 SightingTime=0.250000
 
      PutDownTime=0.800000

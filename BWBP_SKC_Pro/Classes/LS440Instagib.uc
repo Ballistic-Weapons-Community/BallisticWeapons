@@ -380,9 +380,9 @@ defaultproperties
      InventoryGroup=9
      PickupClass=Class'BWBP_SKC_Pro.LS440Pickup'
 
-     PlayerViewOffset=(X=5.000000,Y=10.000000,Z=-12.000000)
-	 SightOffset=(X=0.000000,Y=2.900000,Z=16.000000)
-	 
+     PlayerViewOffset=(X=20.000000,Y=5.700000,Z=0)
+	 SightOffset=(X=-22.50,Y=9.35,Z=-2.00)
+
      AttachmentClass=Class'BWBP_SKC_Pro.LS440Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.LS440M.SmallIcon_LS440'
      IconCoords=(X2=127,Y2=31)

@@ -200,9 +200,9 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=7
     PickupClass=Class'BWBP_SKC_Pro.SK410Pickup'
-	
-    PlayerViewOffset=(X=-8.600000,Y=10.300000,Z=-15.430000)
-    SightOffset=(X=19.000000,Y=-8.5700000,Z=19.290000)
+
+    PlayerViewOffset=(X=7.00,Y=4.25,Z=-4.5)
+    SightOffset=(X=-5.00,Y=0.01,Z=2.79)
 	SightPivot=(Pitch=150)
 
     AttachmentClass=Class'BWBP_SKC_Pro.SK410Attachment'

@@ -199,7 +199,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=46.15000,Y=-17.63,Z=27.46000)
+		SightOffset=(X=-18.80,Y=0.08,Z=2.26)
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
 		InventorySize=12
@@ -230,7 +230,7 @@ defaultproperties
 		Weight=10
 		LayoutName="Red Dot Sight"
 		//Attachments
-		SightOffset=(X=69.2000000,Y=-17.70000,Z=32.170000)
+		SightOffset=(X=4.20,Y=0.01,Z=6.97)
 		//Function
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000

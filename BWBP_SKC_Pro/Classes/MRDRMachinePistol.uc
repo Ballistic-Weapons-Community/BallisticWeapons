@@ -240,9 +240,9 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.MRDRPickup'
-	
-	PlayerViewOffset=(X=-5.000000,Y=6.000000,Z=-8.000000)
-	SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
+
+	PlayerViewOffset=(X=5.00,Y=7.00,Z=-4.00)
+	SightOffset=(X=25.00,Y=-2.30,Z=7.10)
 	SightPivot=(Pitch=900,Roll=-800)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.MRDRAttachment'

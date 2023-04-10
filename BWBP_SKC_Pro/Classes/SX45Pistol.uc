@@ -546,9 +546,9 @@ defaultproperties
 	GroupOffset=11
 	PickupClass=Class'BWBP_SKC_Pro.SX45Pickup'
 
-	PlayerViewOffset=(X=-3.000000,Y=5.000000,Z=-13.000000)
-	SightOffset=(X=0,Y=-3.140000,Z=14.300000)
-	
+	PlayerViewOffset=(X=7.00,Y=3.00,Z=-5.00)
+	SightOffset=(X=-15.00,Y=0.00,Z=2.30)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.SX45Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.SX45.SmallIcon_SX45'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=175,G=178,R=176,A=160),Color2=(G=0),StartSize1=52,StartSize2=40)

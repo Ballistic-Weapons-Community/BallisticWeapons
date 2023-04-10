@@ -384,9 +384,9 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
-	
-	PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-5.00000)
-	SightOffset=(X=8.700000,Y=-1.070000,Z=4.80000)
+
+	PlayerViewOffset=(X=7.00,Y=4.00,Z=-2.20)
+	SightOffset=(X=-1.5,Y=-1.07,Z=0.60)
 	SightPivot=(Roll=-1024)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.X82Attachment'

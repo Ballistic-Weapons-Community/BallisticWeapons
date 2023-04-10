@@ -210,8 +210,8 @@ defaultproperties
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.SMATPickup'
 
-	PlayerViewOffset=(X=11.250000,Y=11.250000,Z=-7.500000)
-	SightOffset=(X=-8.000000,Y=-9.000000,Z=9.500000)
+	PlayerViewOffset=(X=-8.75,Y=5.25,Z=13.50)
+	SightOffset=(X=24.00,Y=-1.50,Z=-3.50)
 
      AttachmentClass=Class'BWBP_SKC_Pro.SMATAttachment'
      //IconMaterial=Texture'BWBP_SKC_Tex.SMAA.SmallIcon_SMAA'

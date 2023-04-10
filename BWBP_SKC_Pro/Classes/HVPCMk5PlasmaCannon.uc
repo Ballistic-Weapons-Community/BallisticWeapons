@@ -682,8 +682,8 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.HVPCMk5Pickup'
-     PlayerViewOffset=(X=-8.600000,Y=5.15000,Z=-11.00000)
-     SightOffset=(X=26.000000,Y=-0.15,Z=11.27000)
+     PlayerViewOffset=(X=6.00,Y=5,Z=-9.00000)
+     SightOffset=(X=2.50,Y=0.00,Z=8.27)
 	 SightPivot=(Pitch=256)
 	 SightAnimScale=0.5
 	 SightBobScale=0.4f

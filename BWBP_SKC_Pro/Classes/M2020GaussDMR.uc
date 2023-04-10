@@ -584,8 +584,8 @@ defaultproperties
 	GroupOffset=11
 	PickupClass=Class'BWBP_SKC_Pro.M2020GaussPickup'
 
-	PlayerViewOffset=(X=-8.6,Y=6.900000,Z=-11.150000)
-	SightOffset=(X=22.3,Y=-2.150000,Z=15.430000)
+	PlayerViewOffset=(X=3.00,Y=5.50,Z=-2.15)
+	SightOffset=(X=4.00,Y=0.00,Z=1.93)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.M2020GaussAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.M2020.SmallIcon_M2020'

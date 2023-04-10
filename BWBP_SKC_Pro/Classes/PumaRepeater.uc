@@ -864,10 +864,10 @@ defaultproperties
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
 
-     PlayerViewOffset=(X=4.170000,Y=3.750000,Z=-13.00000)
-     SightOffset=(X=0,Y=0.00000,Z=16.25)
+     PlayerViewOffset=(X=6.00,Y=4.00,Z=-3.50)
+     SightOffset=(X=-3.00,Y=0.00,Z=2.00)
 	 SightPivot=(Pitch=150)
-	 
+
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)

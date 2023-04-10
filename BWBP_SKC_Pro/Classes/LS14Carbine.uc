@@ -1078,10 +1078,10 @@ defaultproperties
 	GroupOffset=4
 	PickupClass=Class'BWBP_SKC_Pro.LS14Pickup'
 
-	PlayerViewOffset=(X=-5.000000,Y=10.00000,Z=-18.000000)
-	SightOffset=(X=26.000000,Y=-8.500000,Z=22.500000)
+	PlayerViewOffset=(X=5.00,Y=5.75,Z=-8.00)
+	SightOffset=(X=11.00,Y=-2.05,Z=7.50)
 	SightPivot=(Pitch=600,Roll=-1024)
-	
+
 	AttachmentClass=Class'BWBP_SKC_Pro.LS14Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LS14.SmallIcon_LS14'
 	IconCoords=(X2=127,Y2=31)

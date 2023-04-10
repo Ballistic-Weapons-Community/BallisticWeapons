@@ -366,8 +366,8 @@ defaultproperties
     GroupOffset=4
     PickupClass=Class'BWBP_SKC_Pro.SKASPickup'
 
-    PlayerViewOffset=(X=-4.30000,Y=-1.000000,Z=-13.710000)
-    SightOffset=(X=0.000000,Y=11.230000,Z=22.300000)
+    PlayerViewOffset=(X=10.00,Y=6.50,Z=-4.50)
+    SightOffset=(X=-22.50,Y=0.00,Z=8.80)
 	SightPivot=(Pitch=1024)
 
     AttachmentClass=Class'BWBP_SKC_Pro.SKASAttachment'

@@ -377,8 +377,10 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LAWPickup'
-	PlayerViewOffset=(X=-3.750000,Y=-2.25,Z=-3.7500000)
-	SightOffset=(X=0,Y=4.500000,Z=11.250000)
+
+	PlayerViewOffset=(X=1.00,Y=1.50,Z=2.00)
+	SightOffset=(X=-7.50,Y=-1.50,Z=2.25)
+	
 	AttachmentClass=Class'BWBP_SKC_Pro.LAWAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LAW.SmallIcon_LAW'
 	IconCoords=(X2=127,Y2=31)

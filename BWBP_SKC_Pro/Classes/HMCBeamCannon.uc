@@ -529,9 +529,11 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=4
      PickupClass=Class'BWBP_SKC_Pro.HMCPickup'
-     PlayerViewOffset=(X=5.150000,Y=5.150000,Z=-6.90000)
-     SightOffset=(X=-10.30000,Z=12.260000)
+
+     PlayerViewOffset=(X=5,Y=5,Z=-7)
+     SightOffset=(X=-10.00,Z=12.26)
 	 SightPivot=(Pitch=748)
+	 
      AttachmentClass=Class'BWBP_SKC_Pro.HMCAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.SmallIcon_HMC'
      IconCoords=(X2=127,Y2=31)

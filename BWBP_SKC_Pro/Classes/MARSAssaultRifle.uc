@@ -1030,9 +1030,9 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.MARSPickup'
-	
-	PlayerViewOffset=(X=-5.15000,Y=9.000000,Z=-17.140000)
-	SightOffset=(X=19.710000,Y=-6.290000,Z=23.290000)
+
+	PlayerViewOffset=(X=4.00,Y=4.75,Z=-4.00)
+	SightOffset=(X=6.50,Y=-0.02,Z=3.79)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.MARSAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000'

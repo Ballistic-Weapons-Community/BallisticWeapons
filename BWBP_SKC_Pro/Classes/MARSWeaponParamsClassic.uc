@@ -285,7 +285,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=19.700000,Y=-6.320000,Z=23.150000)
+		SightOffset=(X=6.50,Y=-0.02,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
@@ -313,7 +313,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=19.700000,Y=-6.320000,Z=23.150000)
+		SightOffset=(X=6.50,Y=-0.02,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)

@@ -515,8 +515,8 @@ defaultproperties
 	 GroupOffset=16
      PickupClass=Class'BWBP_SKC_Pro.SawnOffPickup'
 
-     PlayerViewOffset=(X=-2.400000,Y=4.800000,Z=-7.200000)
-     SightOffset=(X=-10.000000,Y=2.8800000,Z=9.600000)
+     PlayerViewOffset=(X=16.00,Y=7.00,Z=-3.50)
+     SightOffset=(X=-37.00,Y=0.00,Z=4.35)
 
      AttachmentClass=Class'BWBP_SKC_Pro.SawnOffAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.TechSawnOff.SmallIcon_SawnOff'

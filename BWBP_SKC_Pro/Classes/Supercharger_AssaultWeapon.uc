@@ -657,8 +657,10 @@ defaultproperties
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=5
     PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
-    PlayerViewOffset=(X=-6.700000,Y=4.20000,Z=-15.800000)
-	SightOffset=(X=50.000000,Y=3,Z=22.300000)
+
+    PlayerViewOffset=(X=8.00,Y=6.50,Z=-3.50)
+	SightOffset=(X=27.50,Y=0.00,Z=4.30)
+
     AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.SmallIcon_Super'
     IconCoords=(X2=127,Y2=31)

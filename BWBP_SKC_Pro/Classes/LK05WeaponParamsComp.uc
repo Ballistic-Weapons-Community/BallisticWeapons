@@ -66,7 +66,7 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Holosight"
-		SightOffset=(X=27.000000,Y=-8.550000,Z=24.660000)
+		SightOffset=(X=9,Y=0,Z=-0.09)
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)	
@@ -86,7 +86,7 @@ defaultproperties
 		Weight=10
 		LayoutName="Iron Sights"
 		//Attachments
-		SightOffset=(X=25.000000,Y=-8.600000,Z=24.250000)
+		SightOffset=(X=7.00,Y=0.00,Z=-0.50)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)		

@@ -312,8 +312,8 @@ defaultproperties
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.RS04Pickup'
 
-     PlayerViewOffset=(X=-3.4,Y=5.150000,Z=-13.710000)
-	 SightOffset=(X=4.000000,Y=-1.670000,Z=14.570000)
+     PlayerViewOffset=(X=2.00,Y=4.00,Z=-4.50)
+	 SightOffset=(X=-3.50,Y=-0.17,Z=1.07)
 	 SightPivot=(Roll=-256)
      SightingTime=0.200000
 

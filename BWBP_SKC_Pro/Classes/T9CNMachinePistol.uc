@@ -196,11 +196,11 @@ defaultproperties
 	bNoCrosshairInScope=True
 	PickupClass=Class'BWBP_SKC_Pro.T9CNPickup'
 
-	PlayerViewOffset=(X=-3.000000,Y=6.00000,Z=-12.000000)
-	SightOffset=(X=4.500000,Y=-3.170000,Z=13.73000)
+	PlayerViewOffset=(X=2.00,Y=4.00,Z=-4.00)
+	SightOffset=(X=-3.00,Y=0.00,Z=1.73)
 	SightPivot=(Pitch=128)
 	SightBobScale=0.15f
-	
+
 	AttachmentClass=Class'BWBP_SKC_Pro.T9CNAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.T9CN.SmallIcon_BerSilver'
 	IconCoords=(X2=127,Y2=31)

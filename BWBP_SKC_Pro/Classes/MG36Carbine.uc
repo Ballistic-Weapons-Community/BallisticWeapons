@@ -540,8 +540,8 @@ defaultproperties
      InventoryGroup=6
      PickupClass=Class'BWBP_SKC_Pro.MG36Pickup'
 
-     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
-	 SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+     PlayerViewOffset=(X=6.50,Y=1.00,Z=8.30)
+	 SightOffset=(X=-29.50,Y=2.40,Z=-51.31)
 
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.MG36Attachment'

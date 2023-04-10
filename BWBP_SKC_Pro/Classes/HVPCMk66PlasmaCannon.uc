@@ -745,9 +745,11 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=5
      PickupClass=Class'BWBP_SKC_Pro.HVPCMk66Pickup'
-     PlayerViewOffset=(X=-3.000000,Y=9.500000,Z=-9.500000)
-     SightOffset=(X=-18.000000,Z=23.299999)
+
+     PlayerViewOffset=(X=-2.00,Y=6.33,Z=-6.33)
+     SightOffset=(X=-12.00,Z=15.53)
 	 SightPivot=(Pitch=768)
+
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk66Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.BFG.SmallIcon_BFG'
      IconCoords=(X2=127,Y2=31)
@@ -756,13 +758,13 @@ defaultproperties
      LightEffect=LE_NonIncidence
      LightHue=180
      LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
+     LightBrightness=192.00
+     LightRadius=12.00
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
-     DrawScale=0.450000
+     DrawScale=0.30
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'
      bFullVolume=True
      SoundVolume=64
-     SoundRadius=128.000000
+     SoundRadius=128.00
 }

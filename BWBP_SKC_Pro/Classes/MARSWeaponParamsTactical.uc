@@ -191,7 +191,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
-		SightOffset=(X=19.710000,Y=-6.290000,Z=23.290000)
+		SightOffset=(X=6.50,Y=-0.02,Z=3.79)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom
@@ -210,7 +210,7 @@ defaultproperties
 		LayoutName="Holosight"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=19.700000,Y=-6.320000,Z=23.150000)
+		SightOffset=(X=6.50,Y=-0.02,Z=3.65)
 		//Function
 		ReloadAnimRate=0.85
 		InventorySize=7
