@@ -129,8 +129,8 @@ defaultproperties
 	 FullZoomFOV=50
      bNoCrosshairInScope=True
 
-	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=25,G=122,R=11,A=255),Color2=(B=255,G=255,R=255,A=255),StartSize1=22,StartSize2=59)     CrouchAimFactor=0.500000
-	 ScopeXScale=1.200000
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=25,G=122,R=11,A=255),Color2=(B=255,G=255,R=255,A=255),StartSize1=22,StartSize2=59)     
+	 CrouchAimFactor=0.500000
      FireModeClass(0)=Class'BWBP_SKC_Pro.VSKPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      PutDownTime=0.700000
@@ -143,8 +143,8 @@ defaultproperties
      InventoryGroup=9
      PickupClass=Class'BWBP_SKC_Pro.VSKPickup'
 	 
-     PlayerViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
-	 SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
+     PlayerViewOffset=(X=0.000000,Y=10.000000,Z=-11.000000)
+	 SightOffset=(X=30.000000,Y=0.5,Z=-1.250000)
 
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.VSKAttachment'

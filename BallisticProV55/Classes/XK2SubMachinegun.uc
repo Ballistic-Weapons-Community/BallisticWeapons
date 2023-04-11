@@ -471,7 +471,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=1
-	SightAnimScale=0.75
+	SightAnimScale=0.45f
 	PickupClass=Class'BallisticProV55.XK2Pickup'
 
 	PlayerViewOffset=(X=10.00,Y=9.00,Z=-12.00)

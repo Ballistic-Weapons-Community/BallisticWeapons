@@ -686,6 +686,7 @@ defaultproperties
 	PlayerViewOffset=(X=6,Y=4.500000,Z=-4.5)
 	SightOffset=(X=-8,Y=0.08,Z=2.7)
 	SightPivot=(Pitch=200)
+	SightAnimScale=0.5
 
 	EffectOffset=(X=100,Z=7)
 	ParamsClasses(0)=Class'M50WeaponParamsComp'

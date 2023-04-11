@@ -25,7 +25,7 @@ defaultproperties
 		FireInterval=1.500000
 		PreFireAnim=
 		FireAnim="FireCycleRotate"
-		FireAnimRate=2.00000	
+		FireAnimRate=1.00000	
 		FireEffectParams(0)=ArenaPrimaryEffectParams
 	End Object
 

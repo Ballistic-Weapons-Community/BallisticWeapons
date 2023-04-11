@@ -555,14 +555,7 @@ simulated function PostBeginPlay()
 	CreateRecoilComponent();
 	CreateAimComponent();
 
-	//Set up channels 1 and 2 for sight fire blending.
-	AnimBlendParams(1,0);
-	AnimBlendParams(2,0);
-
-	// Channel 2 is used to dampen sight fire animations that haven't been dealt with correctly.
-	// We freeze the first idle frame, which is the basic ADS view, and blend it in with the standard animation.
-	SafePlayAnim(IdleAnim, 1.0, 0, 2);
-	FreezeAnimAt(0, 2);
+	OnMeshChanged();
 
 	if (bUseBigIcon)
 	{
@@ -589,6 +582,18 @@ simulated function PostBeginPlay()
 			MeleeFireMode.PostNetBeginPlay();
 		}
 	}
+}
+
+simulated function OnMeshChanged()
+{
+	//Set up channels 1 and 2 for sight fire blending.
+	AnimBlendParams(1,0);
+	AnimBlendParams(2,0);
+
+	// Channel 2 is used to dampen sight fire animations that haven't been dealt with correctly.
+	// We freeze the first idle frame, which is the basic ADS view, and blend it in with the standard animation.
+	SafePlayAnim(IdleAnim, 1.0, 0, 2);
+	FreezeAnimAt(0, 2);
 }
 
 simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
@@ -918,6 +923,7 @@ simulated function OnWeaponParamsChanged()
 	if (WeaponParams.LayoutMesh != None)
 	{
 		LinkMesh(WeaponParams.LayoutMesh);
+		OnMeshChanged();
 	}
 	
 	//Spawn a weapon attachment if required by the layout
@@ -1045,17 +1051,9 @@ simulated final function bool BlendFire()
 			AnimBlendParams(1,1); 
 			AnimBlendParams(2, 1 - SightAnimScale);
 			return true;
+		default:
+			return false;
 	}
-	
-	// this code is unreachable and is equivalent to the SS_Active case. Azarael
-	if (bScopeView)
-	{
-		AnimBlendParams(1,1);
-		AnimBlendParams(2, 1 - SightAnimScale);
-		return true;
-	}
-
-	return false;
 }
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
