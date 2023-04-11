@@ -1,5 +1,5 @@
 //=============================================================================
-// PUMAProjectileRShort.
+// PumaProjectileRanged.
 //
 // Energy explosive. Detonates after set distance. May let user set distance.
 // Firing while shield up is bad idea.
@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class PUMAProjectileRShort extends PUMAProjectile;
+class PumaProjectileRanged extends PUMAProjectile;
 
 var   float 	NewDetonateDelay;	// Detonate delay sent to clients
 var() int		FireModeNum;		// Da fire mode that spawned dis grenade

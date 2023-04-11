@@ -9,7 +9,7 @@ defaultproperties
 	
 	//Impact Det
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryImpactEffectParams
-		ProjectileClass=Class'PumaProjectileFast'
+		ProjectileClass=Class'PUMAProjectileImpact'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=12500.000000
 		Damage=70.000000
@@ -69,7 +69,7 @@ defaultproperties
 
 	//Range Det
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryRangeEffectParams
-		ProjectileClass=Class'PumaProjectileRShort'
+		ProjectileClass=Class'PumaProjectileRanged'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=12500.000000
 		Damage=55.000000
@@ -182,6 +182,7 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryImpactFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryProxyFireParams'
 		FireParams(2)=FireParams'RealisticPrimaryRangeFireParams'
+		FireParams(3)=FireParams'RealisticPrimaryShieldFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 	

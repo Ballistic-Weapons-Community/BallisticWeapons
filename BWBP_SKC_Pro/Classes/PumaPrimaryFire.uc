@@ -10,6 +10,22 @@
 class PumaPrimaryFire extends BallisticProProjectileFire;
 
 var float ModifiedDetonateDelay; //For manual distance det
+var byte LastFireMode;
+
+simulated event ModeDoFire()
+{
+
+	if (!AllowFire())
+		return;
+
+	if (PumaRepeater(Weapon).bShieldUp)
+		PumaRepeater(BW).ParamsClasses[PumaRepeater(BW).GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),3);
+	else
+		PumaRepeater(BW).ParamsClasses[PumaRepeater(BW).GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),LastFireMode);
+	
+		super.ModeDoFire();
+
+}
 
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
@@ -17,15 +33,15 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
-	if (PumaProjectileRShort(Proj) != None)
+	if (PumaProjectileRanged(Proj) != None)
 	{
 
 		if (ModifiedDetonateDelay != default.ModifiedDetonateDelay)
 			DetonateDelay = ModifiedDetonateDelay;
 		else
-			DetonateDelay = PumaProjectileRShort(Proj).DetonateDelay;
-//		PumaProjectileRShort(Proj).InitProgramming(DetonateDelay);
-		PumaProjectileRShort(Proj).NewDetonateDelay= FMax(DetonateDelay,0.1);
+			DetonateDelay = PumaProjectileRanged(Proj).DetonateDelay;
+//		PumaProjectileRanged(Proj).InitProgramming(DetonateDelay);
+		PumaProjectileRanged(Proj).NewDetonateDelay= FMax(DetonateDelay,0.1);
 	}
 }
 
@@ -56,8 +72,9 @@ simulated function AdjustProps(byte NewMode)
 
 simulated function SwitchCannonMode (byte NewMode)
 {
+	LastFireMode = NewMode;
+	
 	FireRate = Params.FireInterval;
-
 	if (PumaRepeater(BW).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
 		if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())

@@ -165,7 +165,7 @@ defaultproperties
      ImpactDamage=90
      ImpactDamageType=Class'BWBP_SKC_Pro.DT_PUMAGrenade'
      ImpactManager=Class'BWBP_SKC_Pro.IM_PumaDet'
-     TrailClass=Class'BWBP_SKC_Pro.PumaProjectileTrail'
+     TrailClass=Class'BWBP_SKC_Pro.PumaProjTrailCorona'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_PUMARadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=300.000000

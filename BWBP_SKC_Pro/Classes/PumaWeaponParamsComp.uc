@@ -8,7 +8,7 @@ defaultproperties
 	
 	//Impact Det
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryImpactEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileFast'
+		ProjectileClass=Class'BWBP_SKC_Pro.PUMAProjectileImpact'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6500.000000
 		Damage=80
@@ -56,7 +56,7 @@ defaultproperties
 	
 	//Range Det
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryRangeEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileRShort'
+		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileRanged'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=8500.000000
 		Damage=70

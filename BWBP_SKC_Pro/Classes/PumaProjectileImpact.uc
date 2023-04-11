@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class PUMAProjectileFast extends BallisticGrenade;
+class PUMAProjectileImpact extends BallisticGrenade;
 
 
 
@@ -100,7 +100,7 @@ defaultproperties
      ImpactDamage=70
      ImpactDamageType=Class'BWBP_SKC_Pro.DT_PUMAGrenade'
      ImpactManager=Class'BWBP_SKC_Pro.IM_PumaDet'
-     TrailClass=Class'BWBP_SKC_Pro.PumaProjectileFastTrail'
+     TrailClass=Class'BWBP_SKC_Pro.PumaProjTrail'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_PUMARadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=350.000000

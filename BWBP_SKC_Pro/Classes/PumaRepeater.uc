@@ -224,7 +224,7 @@ simulated function ClientSwitchCannonMode (byte newMode)
 }
 
 
-//Adjusts fire rate properties for close range airburst and blue rapid-firing variant
+//Adjusts fire rate properties for close range airburst
 function ServerAdjustProps(byte newMode)
 {
 	if (!Instigator.IsLocallyControlled())
@@ -380,10 +380,11 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 
 	if (bShieldUp && !bDepleted && !bBroken)
 	{
-    		Instigator.AmbientSound = ChargingSound;
-    		Instigator.SoundVolume = ShieldSoundVolume;
-    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-        		Attachment.ShieldEffect3rd.bHidden = false;
+		//ParamsClasses[GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),3);
+		Instigator.AmbientSound = ChargingSound;
+		Instigator.SoundVolume = ShieldSoundVolume;
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+			Attachment.ShieldEffect3rd.bHidden = false;
 
 		UpdateScreen();
 
@@ -393,16 +394,16 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 	}
 	else
 	{
-
-    		Attachment = ShieldAttachment(ThirdPersonActor);
+		//ParamsClasses[GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),CurrentWeaponMode);
+		Attachment = ShieldAttachment(ThirdPersonActor);
 		Instigator.AmbientSound = None;
-    		Instigator.SoundVolume = Instigator.Default.SoundVolume;
-    
-    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-    		{
-        		Attachment.ShieldEffect3rd.bHidden = true;
-        		StopForceFeedback( "ShieldNoise" );  // jdf
-    		}
+		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+		{
+			Attachment.ShieldEffect3rd.bHidden = true;
+			StopForceFeedback( "ShieldNoise" );  // jdf
+		}
 
 		if (Arc != None)
 			Emitter(Arc).kill();
