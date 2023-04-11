@@ -52,7 +52,7 @@ defaultproperties
     	Recoil=130.000000
 	    Chaos=0.020000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Pitch=1.1,Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-	    ProjectileClass=Class'BallisticProV55.A73Projectile'
+	    ProjectileClass=Class'BallisticProV55.A73ProjectileBal'
         WarnTargetPct=0.200000
         BotRefireRate=0.5
     End Object
@@ -177,7 +177,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalPowerFireParams_Elite
-        AmmoPerFire=32
+        AmmoPerFire=16
 	    FireEndAnim=
         AimedFireAnim="Fire"
 	    FireInterval=0.850000

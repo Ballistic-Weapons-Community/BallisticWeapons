@@ -39,7 +39,7 @@ defaultproperties
 	
 	//Rapid fire for layout 2
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams_Rapid
-		ProjectileClass=Class'BallisticProV55.A73Projectile'
+		ProjectileClass=Class'BallisticProV55.A73ProjectileBal'
 		SpawnOffset=(X=-5.000000,Y=6.000000,Z=-4.000000)
 		Speed=850.000000
 		MaxSpeed=5000.000000
