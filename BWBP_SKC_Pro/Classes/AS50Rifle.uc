@@ -715,9 +715,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	MagAmmo=8
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.350000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagOut',Volume=1.500000,Radius=32.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagIn',Volume=1.500000,Radius=32.000000)
 	ClipInFrame=0.850000

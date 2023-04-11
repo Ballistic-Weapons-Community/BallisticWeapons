@@ -144,7 +144,6 @@ defaultproperties
 		MaxZoom=4
 		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		//Function
-		ReloadAnimRate=1.000000
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.5

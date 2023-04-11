@@ -355,7 +355,6 @@ defaultproperties
      LongGunOffset=(X=10.000000)
      bWT_Bullet=True
      SightingTime=0.200000
-     ReloadAnimRate=0.850000
      GunLength=50.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.G51PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.G51SecondaryFire'

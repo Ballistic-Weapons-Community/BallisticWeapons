@@ -523,7 +523,6 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire',Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     ReloadAnimRate=1.100000
      FireRate=1.350000
      AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
      AmmoPerFire=5

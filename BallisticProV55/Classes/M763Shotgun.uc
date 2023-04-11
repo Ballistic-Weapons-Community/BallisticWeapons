@@ -330,10 +330,8 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
-	CockAnimRate=1.100000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Cock1')
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=1.100000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763LoadShell1')
 	ClipInFrame=0.375000
 	bCockOnEmpty=True

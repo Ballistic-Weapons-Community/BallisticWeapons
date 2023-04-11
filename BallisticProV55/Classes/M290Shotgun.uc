@@ -118,10 +118,9 @@ defaultproperties
     SpecialInfo(0)=(Info="240.0;20.0;0.5;80.0;0.0;1.0;0.0")
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-    CockAnimRate=1.350000
     CockSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Cock')
     ReloadAnim="ReloadLoop"
-    ReloadAnimRate=1.750000
+
     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290LoadShell')
     bCockOnEmpty=True
     bCanSkipReload=True

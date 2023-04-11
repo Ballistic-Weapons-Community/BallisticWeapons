@@ -689,8 +689,8 @@ defaultproperties
 	ReloadAltAnim(0)="GLReload1"
 	ReloadAltAnim(1)="GLReload2"
 	ReloadAltAnim(2)="GLReload3"
-	GrenadeLoadAnimRate=1.200000
-	ShovelReloadAnimRate=1.500000
+	GrenadeLoadAnimRate=1.0
+	ShovelReloadAnimRate=1.0
 	Grenades=3
 	StartingGrenades=3
 	SightsBone="LadderSight"
@@ -715,7 +715,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
-	ReloadAnimRate=0.750000
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagOut',Volume=1.300000)
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagIn',Volume=1.300000)
 	StartShovelAnim="PrepReload"

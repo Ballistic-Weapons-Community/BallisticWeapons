@@ -446,9 +446,8 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Putaway')
 	CockAnimPostReload="Cock2"
-	CockAnimRate=1.350000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cock')
-	ReloadAnimRate=1.400000
+
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cliphit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Clipout')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Clipin')

@@ -186,7 +186,6 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 		//Function
-		ReloadAnimRate=0.85
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=30
@@ -212,7 +211,6 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		//Function
-		ReloadAnimRate=0.85
 		InventorySize=7
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35

@@ -355,10 +355,8 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	PutDownTime=0.4
-	CockAnimRate=1.700000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Cock',Volume=0.750000)
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=2.000000
 	ClipInSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-ShellIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True

@@ -400,7 +400,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PullOut')
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PutAway')
 	CockAnim="Cock1"
-	CockAnimRate=1.50000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-CockAlt',Volume=0.950000)
 	ReloadAnim="ReloadSingle"
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-CockShut',Volume=1.000000)

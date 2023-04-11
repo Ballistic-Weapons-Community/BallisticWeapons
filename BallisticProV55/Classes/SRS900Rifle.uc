@@ -589,7 +589,6 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	PutDownTime=0.4
 	MagAmmo=20
-	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Cock',Volume=0.650000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
@@ -631,7 +630,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=6
 	PickupClass=Class'BallisticProV55.SRS900Pickup'
-	PlayerViewOffset=(X=3.00,Y=3.00,Z=--4.00)
+	PlayerViewOffset=(X=3.00,Y=3.00,Z=-4.00)
 	SightOffset=(X=9.000000,Z=3.150000)
 	AttachmentClass=Class'BallisticProV55.SRS900Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.SRS900.SmallIcon_SRS900'

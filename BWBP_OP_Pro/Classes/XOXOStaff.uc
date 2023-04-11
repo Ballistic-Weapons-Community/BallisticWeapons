@@ -354,7 +354,6 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_OP_Pro.XOXOMeleeFire'
 	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Pullout')
 	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Putdown')
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagIn',Volume=0.700000)

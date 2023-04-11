@@ -493,7 +493,6 @@ defaultproperties
 	ReleaseStateAnim[4]="ReloadMagReleaseState2"	//6 ammo
 	ReleaseStateAnim[5]="ReloadMagReleaseState1"	//7 ammo
 	ReloadAnim="ReloadStateFinish"
-    ReloadAnimRate=1.25
 	GunArrowBone="1"
 	ArrowBones(0)=(BoneName="2")
 	ArrowBones(1)=(BoneName="3")
@@ -524,7 +523,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockAnim='CockRotateMag'
-	CockAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')

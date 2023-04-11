@@ -159,10 +159,8 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Deploy',Volume=1.100000)
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy',Volume=1.100000)
      MagAmmo=1
-     CockAnimRate=1.000000
      CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
      ReloadAnim="ReloadFancy"
-     ReloadAnimRate=1.000000
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Cycle',Volume=1.100000)
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-RocketIn',Volume=1.600000)
      ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-RocketOut',Volume=1.100000)

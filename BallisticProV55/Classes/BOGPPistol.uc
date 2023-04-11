@@ -280,9 +280,8 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	bNoMag=True
 	CockAnim="Reload"
-	CockAnimRate=1.50000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
-	ReloadAnimRate=1.250000
+
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Close',Volume=1.000000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Open',Volume=1.000000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_GrenLoad',Volume=1.000000)

@@ -157,7 +157,6 @@ function byte BestMode()
 
 defaultproperties
 {
-	ReloadAnimRate=1.200000
 	bUseSights=False
 	GunLength=0.000000
 	bUseSpecialAim=True

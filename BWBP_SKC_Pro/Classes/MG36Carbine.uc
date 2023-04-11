@@ -526,7 +526,6 @@ defaultproperties
      IdleAnimRate=0.500000
      SelectAnimRate=1.000000
      PutDownAnimRate=1.000000
-	 ReloadAnimRate=0.800000
      PutDownTime=0.600000
      BringUpTime=0.650000
 	 CockingBringUpTime=1.300000

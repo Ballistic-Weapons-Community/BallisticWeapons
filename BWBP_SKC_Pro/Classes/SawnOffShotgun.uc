@@ -483,9 +483,6 @@ defaultproperties
      MeleeFireClass=Class'BWBP_SKC_Pro.SawnOffMeleeFire'
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-     CockAnimRate=0.700000
-     SingleReloadAnimRate=1.500000
-     ReloadAnimRate=1.000000
      ClipInFrame=0.800000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)

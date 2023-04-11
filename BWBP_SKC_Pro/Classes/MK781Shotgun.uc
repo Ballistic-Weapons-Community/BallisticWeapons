@@ -657,10 +657,7 @@ defaultproperties
 	bCanSkipReload=True
 	bShovelLoad=True
 	StartShovelAnim="ReloadStart"
-	StartShovelAnimRate=1.500000
-	ReloadAnimRate=1.5
 	EndShovelAnim="ReloadEnd"
-	EndShovelAnimRate=1.500000
 	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)

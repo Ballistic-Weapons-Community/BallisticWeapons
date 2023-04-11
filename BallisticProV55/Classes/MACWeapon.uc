@@ -441,7 +441,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=2.250000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-ShellIn')
 	bNonCocking=True
 	bCanSkipReload=True

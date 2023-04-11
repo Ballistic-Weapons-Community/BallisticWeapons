@@ -440,7 +440,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-	ReloadAnimRate=1.000000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-LeverDown')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipIn')

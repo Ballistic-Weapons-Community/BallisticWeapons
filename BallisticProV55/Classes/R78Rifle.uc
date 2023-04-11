@@ -205,7 +205,6 @@ defaultproperties
      CockAnim="CockQuick"
      //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
 	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock')
-     ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipOut')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipIn')

@@ -471,9 +471,8 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;50.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-	CockAnimRate=1.750000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Cock')
-	ReloadAnimRate=1.750000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellIn')
 	ClipInFrame=0.650000

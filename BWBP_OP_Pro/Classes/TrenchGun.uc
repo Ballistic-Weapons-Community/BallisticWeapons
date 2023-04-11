@@ -668,9 +668,6 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_OP_Pro.TrenchGunMeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-	CockAnimRate=0.700000
-	SingleReloadAnimRate=1.000000
-	ReloadAnimRate=1.250000
 	ClipInFrame=0.800000
 	bNonCocking=True
     bNoCrosshairInScope=True

@@ -167,9 +167,7 @@ defaultproperties
     MeleeFireClass=Class'BWBP_SKC_Pro.SK410MeleeFire'
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-    CockAnimRate=1.250000
     CockSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-Cock',Volume=1.400000)
-    ReloadAnimRate=1.250000
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagOut',Volume=1.300000)
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagIn',Volume=1.300000)
     WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")

@@ -433,7 +433,6 @@ defaultproperties
 	StartShovelAnimRate=1.400000
 	StartShovelAnim="PrepReload"
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
-	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
 	PutDownTime=0.35
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
@@ -480,7 +479,6 @@ defaultproperties
 	CurrentWeaponMode=0
 	CurrentRating=0.800000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Cock',Volume=0.800000)
-	CockAnimRate=1.200000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-ShellIn')
 	ClipInFrame=0.375000
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')

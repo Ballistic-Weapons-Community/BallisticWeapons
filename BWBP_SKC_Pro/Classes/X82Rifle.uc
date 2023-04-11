@@ -339,9 +339,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.700000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
-	ReloadAnimRate=0.70000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Out',Volume=1.500000)
 	ClipInFrame=0.850000

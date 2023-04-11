@@ -619,10 +619,8 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
-     CockAnimRate=1.250000
      CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
      ReloadAnim="ReloadStart"
-     ReloadAnimRate=1.450000
 	 CockingBringUpTime=1.400000
 	 SightFXBone="Muzzle"
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')

@@ -371,7 +371,6 @@ defaultproperties
 	CockAnimPostReload="ReloadEndCock"
 	//CockingBringUpTime=1.300000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=3.500000)
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipHit',Volume=3.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipOut',Volume=3.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipIn',Volume=3.500000)

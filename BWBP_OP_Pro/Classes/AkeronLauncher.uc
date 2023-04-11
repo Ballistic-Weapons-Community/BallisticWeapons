@@ -128,9 +128,7 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
-     CockAnimRate=1.250000
      CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
-     ReloadAnimRate=0.900000
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff')
      bNonCocking=True

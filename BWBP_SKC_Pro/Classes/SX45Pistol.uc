@@ -515,9 +515,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="0.0;-5.0;-999.0;-1.0;0.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-Cock')
-	ReloadAnimRate=1.250000
 	SelectAnimRate=1.500000
 	BringUpTime=0.700000
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-MagOut')

@@ -509,7 +509,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
 	ReloadAnim="Reload1"
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
 	ClipInFrame=0.700000

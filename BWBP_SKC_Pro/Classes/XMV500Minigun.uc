@@ -627,7 +627,6 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
      MagAmmo=800
      CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
-     ReloadAnimRate=0.900000
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipOut')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipIn')
