@@ -8,6 +8,37 @@ class Supercharger_Attachment extends BallisticAttachment;
 
 var Actor 		Pack;			// The Backpack To Add
 
+
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	Pack = Spawn(class'HVCMk9Pack');
+	if (Instigator != None)
+		Instigator.AttachToBone(Pack,'Spine');
+	Pack.SetBoneScale(0, 0.0001, 'Bone03');
+}
+
+simulated function SetOverlayMaterial( Material mat, float time, bool bOverride )
+{
+	Super.SetOverlayMaterial(mat, time, bOverride);
+	if ( Pack != None )
+		Pack.SetOverlayMaterial(mat, time, bOverride);
+}
+
+simulated function Hide(bool NewbHidden)
+{
+	super.Hide(NewbHidden);
+	if (Pack!= None)
+		Pack.bHidden = NewbHidden;
+}
+
+simulated function Destroyed()
+{
+	if (Pack != None)
+		Pack.Destroy();
+	super.Destroyed();
+}
+
 defaultproperties
 {
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
