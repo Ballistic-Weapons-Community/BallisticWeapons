@@ -417,7 +417,7 @@ final simulated function OnADSViewEnd()
 //===========================================================
 final simulated function Rotator CalcViewPivotDelta()
 {
-	return CurrentPivot - LastPivot;
+	return (CurrentPivot - LastPivot) * ViewBindFactor;
 }
 
 //===========================================================
