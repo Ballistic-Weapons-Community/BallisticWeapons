@@ -864,7 +864,7 @@ defaultproperties
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
 
-     PlayerViewOffset=(X=6.00,Y=4.00,Z=-3.50)
+     PlayerViewOffset=(X=5.00,Y=4.00,Z=-3.50)
      SightOffset=(X=-3.00,Y=0.00,Z=2.00)
 	 SightPivot=(Pitch=150)
 

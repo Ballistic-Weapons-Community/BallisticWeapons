@@ -246,7 +246,7 @@ defaultproperties
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.MGLPickup'
 
-	PlayerViewOffset=(X=19.00,Y=11.15,Z=-10.40)
+	PlayerViewOffset=(X=16.00,Y=10.00,Z=-12.00)
 	SightOffset=(X=-1.00,Y=0.00,Z=18.10)
 	SightPivot=(Pitch=512)
 

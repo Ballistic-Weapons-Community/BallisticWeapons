@@ -345,7 +345,7 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50In',USize1=128,VSize1=128,USize2=128,VSize2=128,Color1=(B=0,G=0,R=255,A=158),Color2=(B=0,G=255,R=255,A=255),StartSize1=75,StartSize2=72)
      bNoCrosshairInScope=True
 
-	 PlayerViewOffset=(X=4.00,Y=4.75,Z=-2.00)
+	 PlayerViewOffset=(X=4.00,Y=4.50,Z=-3.00)
      SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
 
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=2.200000)

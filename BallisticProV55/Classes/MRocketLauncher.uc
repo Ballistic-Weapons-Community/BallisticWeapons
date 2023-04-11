@@ -541,7 +541,7 @@ defaultproperties
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.MRLPickup'
 
-	PlayerViewOffset=(X=16.000000,Y=6.000000,Z=-10.000000)
+	PlayerViewOffset=(X=10.000000,Y=8.00,Z=-12.000000)
 	PlayerViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
 	SightOffset=(X=-15.000000,Y=-10.000000,Z=15.00000)
 

@@ -299,7 +299,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	PickupClass=Class'BallisticProV55.M353Pickup'
-	PlayerViewOffset=(X=2.00,Y=3.00,Z=-3.50)
+	PlayerViewOffset=(X=2.00,Y=2.50,Z=-3.50)
 	SightOffset=(X=1,Z=1)
 	AttachmentClass=Class'BallisticProV55.M353Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M353'

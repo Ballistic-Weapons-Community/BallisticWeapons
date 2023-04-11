@@ -785,7 +785,7 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.GRSXXPickup'
 
-	PlayerViewOffset=(X=32.00,Y=16.00,Z=-13.00)
+	PlayerViewOffset=(X=20.00,Y=6.00,Z=-17.00)
 	SightOffset=(X=-60.00,Z=5.70)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.GRSXXAttachment'

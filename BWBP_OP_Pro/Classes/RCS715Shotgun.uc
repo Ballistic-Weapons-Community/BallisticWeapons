@@ -751,7 +751,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=7
 	PickupClass=Class'BWBP_OP_Pro.RCS715Pickup'
-	PlayerViewOffset=(X=9,Y=6,Z=-4)
+	PlayerViewOffset=(X=9.00,Y=4.50,Z=-5.00)
 	AttachmentClass=Class'BWBP_OP_Pro.RCS715Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.AssaultShotgun.SmallIcon_AssaultShotgun'
 	IconCoords=(X2=125,Y2=32)

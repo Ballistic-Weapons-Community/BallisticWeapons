@@ -233,7 +233,7 @@ defaultproperties
     InventoryGroup=9
     GroupOffset=2
     PickupClass=Class'BWBP_OP_Pro.LightningPickup'
-    PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-1.300000)
+    PlayerViewOffset=(X=0.00,Y=4.50,Z=-2.00)
     AttachmentClass=Class'BWBP_OP_Pro.LightningAttachment'
     IconMaterial=Texture'BWBP_OP_Tex.Arc.SmallIcon_LightningRifle'
     IconCoords=(X2=127,Y2=31)

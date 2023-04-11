@@ -475,8 +475,8 @@ defaultproperties
 	SightAnimScale=0.75
 	PickupClass=Class'BallisticProV55.XK2Pickup'
 
-	PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
-	SightOffset=(X=6.000000,Y=0.02,Z=3.7500000)
+	PlayerViewOffset=(X=10.00,Y=9.00,Z=-12.00)
+	SightOffset=(X=6.00,Y=0.02,Z=3.75)
 	SightPivot=(Pitch=64)
 	SightBobScale=0.2f
 

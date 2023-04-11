@@ -439,7 +439,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	Priority=36
-	PlayerViewOffset=(X=10.500000,Y=6,Z=-5.9)
+	PlayerViewOffset=(X=10.00,Y=6.00,Z=-7.00)
 	SightOffset=(X=-6,Z=2.1)
 	PickupClass=Class'BallisticProV55.MRS138Pickup'
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRS'

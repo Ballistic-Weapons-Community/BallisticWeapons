@@ -530,7 +530,7 @@ defaultproperties
 	GroupOffset=7
 	PickupClass=Class'BallisticProV55.RS8Pickup'
 
-	PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-8.000000)
+	PlayerViewOffset=(X=3.00,Y=3.00,Z=-6.00)
 	SightOffset=(X=-43,Y=-1.4,Z=13.4)
 	SightPivot=(Pitch=-200,Roll=-1050)
 

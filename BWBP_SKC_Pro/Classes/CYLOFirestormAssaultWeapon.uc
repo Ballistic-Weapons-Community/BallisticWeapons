@@ -709,8 +709,8 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
 
-	PlayerViewOffset=(X=4,Y=4.75,Z=-4)
-	SightOffset=(X=7.000000,Y=0,Z=2.44)
+	PlayerViewOffset=(X=2.00,Y=4.00,Z=-4.00)
+	SightOffset=(X=7.00,Y=0.01,Z=2.3)
 	SightPivot=(Pitch=256)
 
 	bNoCrosshairInScope=True

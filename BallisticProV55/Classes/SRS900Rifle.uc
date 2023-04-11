@@ -631,7 +631,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=6
 	PickupClass=Class'BallisticProV55.SRS900Pickup'
-	PlayerViewOffset=(X=2.000000,Y=3.000000,Z=-2.900000)
+	PlayerViewOffset=(X=3.00,Y=3.00,Z=--4.00)
 	SightOffset=(X=9.000000,Z=3.150000)
 	AttachmentClass=Class'BallisticProV55.SRS900Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.SRS900.SmallIcon_SRS900'

@@ -380,7 +380,7 @@ defaultproperties
 	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'
     ParamsClasses(3)=Class'AM67WeaponParamsTactical'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
-	PlayerViewOffset=(X=25,Y=6,Z=-10)
+	PlayerViewOffset=(X=25.00,Y=3.00,Z=-10.00)
 	SightOffset=(X=-33,Y=0.06,Z=4.43)
 	Priority=24
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')

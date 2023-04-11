@@ -484,7 +484,7 @@ defaultproperties
 	GroupOffset=12
 	PickupClass=Class'BallisticProV55.E23Pickup'
 
-	PlayerViewOffset=(X=4,Y=6.5,Z=-7.5)
+	PlayerViewOffset=(X=3,Y=6.00,Z=-8.00)
 	SightOffset=(X=15,Z=4)
 
 	AttachmentClass=Class'BallisticProV55.E23Attachment'

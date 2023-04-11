@@ -732,8 +732,8 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.BulldogPickup'
 
-	PlayerViewOffset=(X=5.000000,Y=4.5,Z=-3.5)
-	SightOffset=(X=-2.500000,Y=0,Z=1.95)
+	PlayerViewOffset=(X=7.00,Y=4.50,Z=-4.50)
+	SightOffset=(X=-2.50,Y=0.00,Z=2.20)
 	SightPivot=(Pitch=256)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.BulldogAttachment'

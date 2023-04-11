@@ -313,7 +313,7 @@ defaultproperties
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.XMK5Pickup'
 
-	PlayerViewOffset=(X=2.500000,Y=3.30000,Z=-1.600000)
+	PlayerViewOffset=(X=4.00,Y=3.50,Z=-1.50)
 	SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
 	SightBobScale=0.25f
 	SightZoomFactor=1.2

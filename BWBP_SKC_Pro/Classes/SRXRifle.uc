@@ -532,7 +532,7 @@ defaultproperties
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
 
-	PlayerViewOffset=(X=5.000000,Y=5.00000,Z=-6.000000)
+	PlayerViewOffset=(X=5.000000,Y=4.50000,Z=-6.000000)
 	SightOffset=(X=0.000000,Y=0.06,Z=2.22)
 	SightAnimScale=0.4
 

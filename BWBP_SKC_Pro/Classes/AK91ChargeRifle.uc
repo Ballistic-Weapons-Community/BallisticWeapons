@@ -462,7 +462,7 @@ defaultproperties
 	 GroupOffset=11
      PickupClass=Class'BWBP_SKC_Pro.AK91Pickup'
 
-     PlayerViewOffset=(X=4.0000,Y=4.500000,Z=-4.000000)
+     PlayerViewOffset=(X=5.0000,Y=4.000000,Z=-5.000000)
 	 SightOffset=(X=10.5,Y=0,Z=1.7)
 	 SightAnimScale=0.5
 

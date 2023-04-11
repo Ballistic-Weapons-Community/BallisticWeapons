@@ -530,7 +530,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 
-	PlayerViewOffset=(X=3.000000,Y=11.000000,Z=-7.000000)
+	PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-10.000000)
 	SightOffset=(X=11.000000,Y=-0.010000,Z=3.600000)
 	SightPivot=(Pitch=450)
 

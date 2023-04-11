@@ -589,7 +589,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
-	PlayerViewOffset=(X=10,Y=6,Z=-14.4)
+	PlayerViewOffset=(X=10.00,Y=6.00,Z=-17.00)
 	SightOffset=(X=-45,Z=3.4)
 	SightAnimScale=0.25
 	SightBobScale=0.3

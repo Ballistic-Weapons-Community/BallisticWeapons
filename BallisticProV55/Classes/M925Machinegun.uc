@@ -284,8 +284,8 @@ defaultproperties
 	GroupOffset=1
 	
 	PickupClass=Class'BallisticProV55.M925Pickup'
-	PlayerViewOffset=(X=8.5,Y=8.600000,Z=-7)
-	SightOffset=(X=-4,Y=0,Z=3.40000)
+	PlayerViewOffset=(X=5.00,Y=6.00,Z=-8.00)
+	SightOffset=(X=-4.00,Y=0.00,Z=3.4)
 	SightAnimScale=0.75
 	SightBobScale=0.5
 

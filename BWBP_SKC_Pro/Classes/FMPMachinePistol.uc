@@ -368,7 +368,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	PickupClass=Class'BWBP_SKC_Pro.FMPPickup'
 
-	PlayerViewOffset=(X=4.00,Y=4.50,Z=-4.50)
+	PlayerViewOffset=(X=4.00,Y=3.00,Z=-4.50)
 	SightOffset=(X=-3.50,Y=0.01,Z=1.65)
 	SightingTime=0.200000
 	SightZoomFactor=1.2 // smg

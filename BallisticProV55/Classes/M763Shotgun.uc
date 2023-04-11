@@ -370,7 +370,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
-	PlayerViewOffset=(X=4,Y=4.800000,Z=-5)
+	PlayerViewOffset=(X=3.00,Y=4.00,Z=-5.00)
 	SightOffset=(X=0,Y=0,Z=2.2)
 	SightPivot=(Pitch=128)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'

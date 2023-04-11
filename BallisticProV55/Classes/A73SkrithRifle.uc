@@ -318,8 +318,8 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=68,R=65,A=137),Color2=(B=96,G=185),StartSize1=133,StartSize2=47)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
 
-	PlayerViewOffset=(X=-4,Y=11,Z=-9.1)
-	SightOffset=(X=14,Z=5.5)
+	PlayerViewOffset=(X=-5.00,Y=8.00,Z=-9.00)
+	SightOffset=(X=14.00,Z=5.50)
 	SightPivot=(Pitch=450)
 
 	ParamsClasses(0)=Class'A73WeaponParamsComp'

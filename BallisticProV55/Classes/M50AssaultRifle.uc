@@ -684,7 +684,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=158),StartSize1=84,StartSize2=82)
 	bNoCrosshairInScope=True
 	
-	PlayerViewOffset=(X=5,Y=4.500000,Z=-3)
+	PlayerViewOffset=(X=6,Y=4.500000,Z=-4.5)
 	SightOffset=(X=-8,Y=0.08,Z=2.7)
 	SightPivot=(Pitch=200)
 

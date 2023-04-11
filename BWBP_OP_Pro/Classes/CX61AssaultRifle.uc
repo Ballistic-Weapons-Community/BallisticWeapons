@@ -284,7 +284,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
-	PlayerViewOffset=(X=7,Y=4.7,Z=-2.5)
+	PlayerViewOffset=(X=8,Y=4.00,Z=-3.5)
 	SightOffset=(X=0.0,Y=0.02,Z=1.51)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CX61WeaponParamsComp'

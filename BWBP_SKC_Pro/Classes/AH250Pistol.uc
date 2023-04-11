@@ -406,7 +406,7 @@ defaultproperties
 	GroupOffset=13
 	PickupClass=Class'BWBP_SKC_Pro.AH250Pickup'
 
-	PlayerViewOffset=(X=5,Y=3.16,Z=-4.5)
+	PlayerViewOffset=(X=5.00,Y=3.00,Z=-6.00)
 	SightOffset=(X=18.5000000,Y=0,Z=2.75)
 	SightBobScale=0.3f
 

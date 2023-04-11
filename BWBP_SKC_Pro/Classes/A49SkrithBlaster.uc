@@ -410,8 +410,8 @@ defaultproperties
 	GroupOffset=1
 	PickupClass=Class'BWBP_SKC_Pro.A49Pickup'
 
-	PlayerViewOffset=(X=15,Y=9.67,Z=-5.500000)
-	SightOffset=(X=-26.00000,Y=-0.01,Z=16.5)
+	PlayerViewOffset=(X=10.00,Y=3.00,Z=-6.00)
+	SightOffset=(X=-10.00,Y=0.5,Z=8.00)
 	SightPivot=(Pitch=2000,Roll=-768)
 	SightZoomFactor=1.2
 

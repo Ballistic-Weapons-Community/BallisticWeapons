@@ -248,7 +248,7 @@ defaultproperties
      GroupOffset=2
      PickupClass=Class'BallisticProV55.R78Pickup'
      PlayerViewOffset=(X=8.5,Y=4.500000,Z=-6)
-     SightOffset=(X=-1.500000,Y=-1.070000,Z=5.30000)
+     SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
 	 SightPivot=(Roll=-1024)
      AttachmentClass=Class'BallisticProV55.R78Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_R78'

@@ -494,7 +494,7 @@ defaultproperties
 	InventoryGroup=9
 	PickupClass=Class'BallisticProV55.M75Pickup'
 
-	PlayerViewOffset=(X=0.000000,Y=8.250000,Z=-4.1)
+	PlayerViewOffset=(X=-1.00,Y=7.00,Z=-6.00)
 	SightOffset=(X=15.000000,Z=2.9)
 
 	AttachmentClass=Class'BallisticProV55.M75Attachment'

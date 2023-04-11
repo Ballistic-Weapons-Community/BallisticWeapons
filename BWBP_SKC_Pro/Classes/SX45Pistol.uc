@@ -546,7 +546,7 @@ defaultproperties
 	GroupOffset=11
 	PickupClass=Class'BWBP_SKC_Pro.SX45Pickup'
 
-	PlayerViewOffset=(X=7.00,Y=3.00,Z=-5.00)
+	PlayerViewOffset=(X=8.00,Y=3.00,Z=-6.00)
 	SightOffset=(X=-15.00,Y=0.00,Z=2.30)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.SX45Attachment'

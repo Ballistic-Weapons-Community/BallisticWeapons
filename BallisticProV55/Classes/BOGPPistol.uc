@@ -313,7 +313,7 @@ defaultproperties
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.BOGPPickup'
 
-	PlayerViewOffset=(X=7,Y=3,Z=-4.6)
+	PlayerViewOffset=(X=6.00,Y=1.50,Z=-4.50)
 	SightOffset=(X=-8,Y=0.080000,Z=1.95)
 	SightPivot=(Pitch=300)
 

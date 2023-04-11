@@ -514,7 +514,7 @@ defaultproperties
      InventoryGroup=7
      PickupClass=Class'BWBP_SKC_Pro.CoachGunPickup'
 
-     PlayerViewOffset=(X=5.000000,Y=5.750000,Z=-7.00000)
+     PlayerViewOffset=(X=4.00,Y=4.50,Z=-7.00)
 	 SightOffset=(X=-2.500000,Y=0,Z=1.2)
 
      AttachmentClass=Class'BWBP_SKC_Pro.CoachGunAttachment'

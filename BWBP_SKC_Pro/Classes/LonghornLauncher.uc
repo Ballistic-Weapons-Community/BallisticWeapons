@@ -418,9 +418,9 @@ defaultproperties
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
 
-	PlayerViewOffset=(X=3.00,Y=4.25,Z=-4.5)
+	PlayerViewOffset=(X=5.00,Y=4.00,Z=-5.00)
 	SightPivot=(Pitch=150)
-	SightOffset=(X=-3.00,Y=0.00,Z=2.80)
+	SightOffset=(X=-3.00,Y=0.00,Z=2.30)
 	SightZoomFactor=1.2
 	
 	ParamsClasses(0)=Class'LonghornWeaponParamsComp'

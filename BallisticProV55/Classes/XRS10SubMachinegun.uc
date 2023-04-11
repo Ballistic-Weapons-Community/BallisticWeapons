@@ -431,8 +431,8 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.XRS10Pickup'
 
-	PlayerViewOffset=(X=32,Y=9.000000,Z=-9.500000)
-	SightOffset=(X=-70.000000,Z=3.7500000)
+	PlayerViewOffset=(X=32,Y=8.000000,Z=-12.500000)
+	SightOffset=(X=-40.000000,Z=3.7500000)
 	SightZoomFactor=1.2
 	SightBobScale=0.5f
 
