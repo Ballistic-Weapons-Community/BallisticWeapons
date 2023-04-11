@@ -384,6 +384,7 @@ defaultproperties
 	PlayerViewOffset=(X=5.00,Y=3.50,Z=-4.500000)
 	SightOffset=(X=-6.500000,Y=0.02,Z=2.55)
 	SightPivot=(Pitch=64)
+	SightAnimScale=0.75
 
 	ParamsClasses(0)=Class'AK490WeaponParamsComp'
 	ParamsClasses(1)=Class'AK490WeaponParamsClassic'

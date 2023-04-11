@@ -537,7 +537,8 @@ defaultproperties
 
 	PlayerViewOffset=(X=4.00,Y=3.50,Z=-5.00)
 	SightOffset=(X=1,Y=0,Z=2.13)
-
+	SightAnimScale=0.65
+	
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
