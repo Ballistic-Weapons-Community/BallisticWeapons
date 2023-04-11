@@ -141,8 +141,8 @@ defaultproperties
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		ZoomType=ZT_Logarithmic
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="FSSG-50 12.7mm Anti-Materiel Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

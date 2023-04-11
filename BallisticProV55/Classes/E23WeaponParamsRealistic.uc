@@ -170,8 +170,6 @@ defaultproperties
 		MagAmmo=60
 		//SightOffset=(X=-8.000000,Z=9.300000)
 		SightPivot=(Pitch=256)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		WeaponName="E-23 'Viper' Particle Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

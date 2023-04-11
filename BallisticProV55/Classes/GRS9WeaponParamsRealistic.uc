@@ -173,8 +173,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.400000
+		//CockAnimRate=1.400000
 		WeaponName="GRS9-L2 9mm Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'

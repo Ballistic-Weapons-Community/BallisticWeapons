@@ -102,7 +102,8 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(0)=(BoneName="ElecSight",Slot=54,Scale=0f)
-		CockAnimRate=1.400000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		InventorySize=5
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.35

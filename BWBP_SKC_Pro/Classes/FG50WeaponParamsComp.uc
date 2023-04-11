@@ -201,6 +201,8 @@ defaultproperties
 		InventorySize=6
 		DisplaceDurationMult=1.4
 		MagAmmo=40
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaStandardAimParams'
 		AimParams(1)=AimParams'ArenaControlledAimParams'
@@ -229,6 +231,8 @@ defaultproperties
 		InventorySize=6
 		DisplaceDurationMult=1.4
 		MagAmmo=40
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaStandardAimParams'
 		AimParams(1)=AimParams'ArenaControlledAimParams'

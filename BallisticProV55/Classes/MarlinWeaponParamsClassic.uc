@@ -167,8 +167,8 @@ defaultproperties
 		WeaponModes(1)=(bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -194,8 +194,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Accelerated Shot",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

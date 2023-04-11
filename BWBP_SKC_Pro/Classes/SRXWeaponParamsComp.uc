@@ -180,7 +180,8 @@ defaultproperties
 		SightOffset=(X=0,Y=0,Z=2.5)
 		SightPivot=(Pitch=-128,Yaw=16)
 		//Function
-		CockAnimRate=1.200000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		MagAmmo=20
         InventorySize=6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -202,7 +203,8 @@ defaultproperties
 		SightPivot=(Pitch=-128,Yaw=16)
 		SightOffset=(X=0.000000,Y=0.06,Z=2.22)
 		//Function
-		CockAnimRate=1.200000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		MagAmmo=20
         InventorySize=6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

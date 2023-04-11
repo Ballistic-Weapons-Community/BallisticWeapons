@@ -92,7 +92,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		ReloadAnimRate=0.850000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		MagAmmo=30
         InventorySize=6
 		SightingTime=0.350000	

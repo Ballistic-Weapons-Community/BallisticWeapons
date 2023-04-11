@@ -107,6 +107,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		MagAmmo=25
 		InventorySize=6
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
@@ -124,6 +127,8 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		MaxZoom=3
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		//Function
 		SightingTime=0.300000
 		SightMoveSpeedFactor=0.6

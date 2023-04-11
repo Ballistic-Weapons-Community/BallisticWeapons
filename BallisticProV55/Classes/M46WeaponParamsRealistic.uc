@@ -136,8 +136,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46A2 .310 Battle Rifle"
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -165,8 +163,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46A2 .310 Battle Rifle (RDS)"
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

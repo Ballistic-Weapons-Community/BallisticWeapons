@@ -125,6 +125,8 @@ defaultproperties
 		InventorySize=4
 		DisplaceDurationMult=0.75
 		MagAmmo=7
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
@@ -167,6 +169,9 @@ defaultproperties
 		SightingTime=0.250000
 		DisplaceDurationMult=0.5
 		MagAmmo=7
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		
         RecoilParams(0)=RecoilParams'ArenaRecoilParams_208'
         AimParams(0)=AimParams'ArenaAimParams_208'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_208'
@@ -192,6 +197,9 @@ defaultproperties
 		SightingTime=0.250000
 		DisplaceDurationMult=0.5
 		MagAmmo=7
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		
         RecoilParams(0)=RecoilParams'ArenaRecoilParams_208'
         AimParams(0)=AimParams'ArenaAimParams_208'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_208'

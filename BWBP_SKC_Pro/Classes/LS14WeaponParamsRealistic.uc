@@ -183,8 +183,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="LS14 Directed Energy Weapon"
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -211,8 +211,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="LS10 Laser Carbine"
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticCarbineAimParams'
 		FireParams(0)=FireParams'RealisticCarbinePrimaryFireParams'

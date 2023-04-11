@@ -104,6 +104,8 @@ defaultproperties
 		InventorySize=5
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.900000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		MagAmmo=9
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
@@ -125,6 +127,8 @@ defaultproperties
 		InventorySize=5
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.900000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		MagAmmo=9
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

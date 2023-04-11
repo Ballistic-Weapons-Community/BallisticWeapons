@@ -125,6 +125,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=true)
 		InitialWeaponMode=1
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

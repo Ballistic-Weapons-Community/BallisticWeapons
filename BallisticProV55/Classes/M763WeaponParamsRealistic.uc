@@ -169,8 +169,8 @@ defaultproperties
 		WeaponModes(0)=(bUnavailable=true,ModeName="Long-Range",bUnavailable=true,Value=0.500000)
 		WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=true)
-		ReloadAnimRate=1.300000
-		CockAnimRate=1.100000
+		//ReloadAnimRate=1.300000
+		//CockAnimRate=1.100000
 		WeaponName="M763-CS 12ga Combat Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

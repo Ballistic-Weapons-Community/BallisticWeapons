@@ -200,8 +200,8 @@ defaultproperties
 		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=20
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsInc'
 		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAcid'
@@ -226,8 +226,8 @@ defaultproperties
 		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=20
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsInc'
 		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAcid'

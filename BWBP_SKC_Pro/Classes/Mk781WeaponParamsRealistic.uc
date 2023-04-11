@@ -210,8 +210,8 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
-		ReloadAnimRate=1.200000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.200000
+		//CockAnimRate=1.000000
 		WeaponName="Mk 781 12ga Flechette Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -241,8 +241,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
 		InitialWeaponMode=1
-		ReloadAnimRate=1.200000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.200000
+		//CockAnimRate=1.000000
 		WeaponName="Mk 781 12ga Flechette Shotgun (RDS)"
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=3)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4)

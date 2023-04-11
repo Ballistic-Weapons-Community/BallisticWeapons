@@ -107,8 +107,8 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=7
 		//ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -129,8 +129,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
 		//ViewOffset=(X=8.000000,Y=4.000000,Z=-10.000000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

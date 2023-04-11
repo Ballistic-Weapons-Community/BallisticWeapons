@@ -87,6 +87,8 @@ defaultproperties
 		MagAmmo=4
         ZoomType=ZT_Fixed
 		MaxZoom=2
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

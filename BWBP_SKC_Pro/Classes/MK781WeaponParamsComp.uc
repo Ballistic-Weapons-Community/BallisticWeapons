@@ -173,6 +173,7 @@ defaultproperties
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
 		ReloadAnimRate=1.5
+		CockAnimRate=1.25
 		PlayerJumpFactor=1.000000
 		InventorySize=5
 		SightMoveSpeedFactor=0.9
@@ -199,6 +200,7 @@ defaultproperties
 		SightOffset=(X=4.20,Y=0.01,Z=6.97)
 		//Function
 		ReloadAnimRate=1.5
+		CockAnimRate=1.25
 		
 		PlayerJumpFactor=1.000000
 		InventorySize=5

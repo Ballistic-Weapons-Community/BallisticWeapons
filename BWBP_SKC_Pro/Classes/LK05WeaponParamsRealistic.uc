@@ -126,8 +126,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="LK-05 6.8mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -156,8 +156,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="LK-05 6.8mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

@@ -174,8 +174,8 @@ defaultproperties
 		SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

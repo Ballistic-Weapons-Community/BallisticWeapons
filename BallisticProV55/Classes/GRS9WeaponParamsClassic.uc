@@ -182,8 +182,8 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

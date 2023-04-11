@@ -176,8 +176,8 @@ defaultproperties
 		InventorySize=8
 		MagAmmo=40
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="FG-50 .50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -206,8 +206,8 @@ defaultproperties
 		InventorySize=8
 		MagAmmo=40
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="FG-50 .50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

@@ -113,8 +113,8 @@ defaultproperties
 		WeaponModes(1)=(bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		CockAnimRate=1.700000
-		ReloadAnimRate=2.000000
+		CockAnimRate=1.25
+		ReloadAnimRate=1.25
 		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.400000
 		MagAmmo=8
@@ -140,8 +140,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Accelerated Shot",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		CockAnimRate=1.700000
-		ReloadAnimRate=2.000000
+		CockAnimRate=1.25
+		ReloadAnimRate=1.25
 		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.400000
 		MagAmmo=8

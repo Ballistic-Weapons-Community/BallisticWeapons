@@ -117,7 +117,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		//ViewOffset=(X=25,Y=10,Z=-26)
 		SightingTime=0.750000
-		ReloadAnimRate=0.800000
+		//ReloadAnimRate=0.800000
 		DisplaceDurationMult=1
 		MagAmmo=32
 		bMagPlusOne=True

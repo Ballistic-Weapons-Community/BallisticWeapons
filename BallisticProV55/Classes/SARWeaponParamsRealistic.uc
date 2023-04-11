@@ -168,8 +168,8 @@ defaultproperties
 		//SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
-		ReloadAnimRate=0.925000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.925000
+		//CockAnimRate=1.000000
 		WeaponName="AC-12 5.56mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'

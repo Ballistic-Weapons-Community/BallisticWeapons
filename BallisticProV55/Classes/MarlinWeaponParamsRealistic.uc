@@ -172,8 +172,8 @@ defaultproperties
 		MagAmmo=7
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=6.500000,Z=-12.000000)
-		ReloadAnimRate=1.500000
-		CockAnimRate=1.750000
+		//ReloadAnimRate=1.500000
+		//CockAnimRate=1.750000
 		WeaponName="Redwood 7000 .400 'Bearmaster'"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -203,8 +203,8 @@ defaultproperties
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=6.500000,Z=-12.000000)
 		//SightPivot=(Pitch=0)
-		ReloadAnimRate=1.500000
-		CockAnimRate=1.750000
+		//ReloadAnimRate=1.500000
+		//CockAnimRate=1.750000
 		WeaponName="Redwood 7000 .400 'Bearmaster'"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

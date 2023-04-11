@@ -126,8 +126,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=6
-		ReloadAnimRate=1.100000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.100000
+		//CockAnimRate=1.000000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -154,8 +154,8 @@ defaultproperties
 		SightingTime=0.250000
 		MagAmmo=6
 		bMagPlusOne=True
-		ReloadAnimRate=1.100000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.100000
+		//CockAnimRate=1.000000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")

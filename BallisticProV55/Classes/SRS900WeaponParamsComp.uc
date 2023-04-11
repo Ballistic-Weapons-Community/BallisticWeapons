@@ -128,7 +128,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
 		SightOffset=(X=9.000000,Z=3.150000)
 		//Function
-		CockAnimRate=1.200000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		MagAmmo=20
 		SightingTime=0.50000
 		SightMoveSpeedFactor=0.6
@@ -148,7 +149,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		SightOffset=(X=6.000000,Z=2.03)
 		//Function
-		CockAnimRate=1.200000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.8
@@ -166,7 +168,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		SightOffset=(X=1.000000,Z=1.30000)
 		//Function
-		CockAnimRate=1.200000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.9

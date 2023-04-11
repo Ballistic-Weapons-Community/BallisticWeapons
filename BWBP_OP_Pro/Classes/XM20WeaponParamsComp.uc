@@ -83,7 +83,8 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
-		ReloadAnimRate=1.000000		
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25	
 		PlayerJumpFactor=1
 		InventorySize=5
 		SightMoveSpeedFactor=0.8
