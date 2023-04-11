@@ -12,11 +12,23 @@ class AY90Mine extends BallisticProjectile;
 
 var   bool				bDetonated;		// Been detonated, waiting for net syncronization or something
 var() Sound				ArmingSound;
+var   AY90MineLight			MineEffect;			//scary run away!
 
 replication
 {
 	reliable if(Role == ROLE_Authority)
 		bDetonated;
+}
+
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	
+	if (Role == ROLE_Authority)
+	{
+		MineEffect = Spawn(class'AY90MineLight',self,,Location,Rotation);
+		MineEffect.SetBase(self);
+	}
 }
 
 simulated function PreBeginPlay()
@@ -77,17 +89,32 @@ simulated function Timer()
 simulated function ProcessTouch (Actor Other, vector HitLocation);
 simulated singular function HitWall(vector HitNormal, actor Wall);
 
+
 // Do radius damage;
 function BlowUp(vector HitLocation)
 {
 	if (Role < ROLE_Authority)
 		return;
-
 	if(DamageRadius > 0)
 	{
-		TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation);
+		if(Pawn(Base) != None)
+		{
+			class'BallisticDamageType'.static.GenericHurt
+			(
+				Base,
+				Damage,
+				Instigator,
+				HitLocation,
+				MomentumTransfer * Normal(Base.Location-Location),
+				MyDamageType
+			);
+			
+			TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, Base);
+		}
+		else
+			TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation);
 	}
-
+//	HitActor = None;
 	MakeNoise(1.0);
 }
 
@@ -112,7 +139,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	bExploded=true;
 
 	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
-		GotoState('NetTrapped');
+	{
+		GoToState('NetTrapped');
+	}
 	else
 		Destroy();
 }
@@ -124,8 +153,9 @@ function bool IsStationary()
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SKC_Pro.AY90SkrithBoltcaster'
      ArmingSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-Fuse'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_A73BPower'
+     ImpactManager=Class'BWBP_SKC_Pro.IM_SkrithbowSticky'
      StartDelay=0.300000
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
@@ -148,4 +178,12 @@ defaultproperties
      bCollideWorld=False
      bProjTarget=True
      bNetNotify=True
+
+     LightType=LT_Steady
+     LightEffect=LE_QuadraticNonIncidence
+     LightHue=192
+     LightSaturation=200
+     LightBrightness=200.000000
+     LightRadius=15.000000
+     bDynamicLight=True
 }

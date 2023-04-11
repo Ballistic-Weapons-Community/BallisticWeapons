@@ -1,7 +1,7 @@
 //=============================================================================
-// VSKActorPoison.
+// AY90ActorExploder.
 //
-// Fire attached to players. This is spawned on server to do damage and on
+// An explosive effect. This is spawned on server to do damage and on
 // client for effects.
 //
 // by Nolan "Dark Carnivour" Richert.
@@ -10,16 +10,16 @@
 class AY90ActorExploder extends BallisticEmitter
 	placeable;
 
-var   Actor				Victim;			// The guy on fire
-var() class<DamageType>	DamageType;		// DamageType done to player
-var() class<DamageType>	MyRadiusDamageType;		// DamageType done to people near the player
+var   Actor						Victim;					// The guy who's stuck
+var() class<DamageType>			DamageType;				// DamageType done to player
+var() class<DamageType>			MyRadiusDamageType;		// DamageType done to people near the player
 var() class<BCImpactManager>    ImpactManager;			// Impact manager to spawn on final hit
-var() int				Damage;			// Damage done
-var() int				StickDamage;			// Damage done
-var() int				DamageRadius;	
-var   bool				bDetonated;		// Been detonated, waiting for net syncronization or something
-var		bool			bExploded;
-var() Sound				ArmingSound;
+var() int						Damage;					// Damage done to surrounding players
+var() int						StickDamage;			// Damage done to stuck player
+var() int						DamageRadius;	
+var()	bool						bDetonated;			// Been detonated, waiting for net syncronization or something
+var()	bool					bExploded;
+var() Sound						ArmingSound;
 var Controller	InstigatorController;
 var() ProjectileEffectParams.ERadiusFallOffType        RadiusFallOffType;
 
@@ -27,6 +27,23 @@ replication
 {
 	reliable if(Role == ROLE_Authority)
 		bDetonated;
+	reliable if (Role == ROLE_Authority)
+		Victim;
+}
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (Role < Role_Authority && Victim != None)
+		Initialize(Victim);
+}
+
+function PreBeginPlay()
+{
+	super.PreBeginPlay();
+	Instigator = Pawn(Owner);
+	if (Instigator != None)
+		InstigatorController = Instigator.Controller;
 }
 
 simulated event PostNetReceive()
@@ -69,16 +86,14 @@ simulated event Timer()
 		
 		if (Victim != None && Level.NetMode != NM_Client)
 		{
-		if ( Instigator == None || Instigator.Controller == None )
-			Victim.SetDelayedDamageInstigatorController( InstigatorController );
-		class'BallisticDamageType'.static.GenericHurt (Victim, StickDamage, Instigator, Location, vect(0,0,0), DamageType);
+			if ( Instigator == None || Instigator.Controller == None )
+				Victim.SetDelayedDamageInstigatorController( InstigatorController );
+			class'BallisticDamageType'.static.GenericHurt (Victim, StickDamage, Instigator, Location, vect(0,0,0), DamageType);
 		}
 		
 		Explode(Location, vector(Rotation));
 		Kill();
 	}
-
-
 }
 
 simulated event Tick(float DT)
@@ -196,8 +211,8 @@ defaultproperties
      ArmingSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-Fuse'
      DamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_A73BPower'
-     StickDamage=50
+     ImpactManager=Class'BWBP_SKC_Pro.IM_SkrithbowSticky'
+     StickDamage=150
      Damage=150
      DamageRadius=256.000000
      RadiusFallOffType=RFO_Quadratic
@@ -208,4 +223,104 @@ defaultproperties
      SoundVolume=255
      SoundRadius=128.000000
      bNotOnDedServer=False
+	 
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
+         FadeOut=True
+         FadeIn=True
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         Opacity=0.400000
+         FadeOutStartTime=1.300000
+         FadeInEndTime=1.300000
+         CoordinateSystem=PTCS_Relative
+         MaxParticles=1
+         StartLocationOffset=(X=9.000000)
+         StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
+         InitialParticlesPerSecond=100.000000
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=3.000000,Max=3.000000)
+     End Object
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.AY90ActorExploder.SpriteEmitter0'
+	 
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter2
+         UseColorScale=True
+         FadeIn=True
+         RespawnDeadParticles=False
+         SpinParticles=True
+         UseSizeScale=True
+         UseRegularSizeScale=False
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         ColorScale(0)=(Color=(B=255))
+         ColorScale(1)=(RelativeTime=1.000000)
+         FadeInEndTime=0.250000
+         CoordinateSystem=PTCS_Relative
+         MaxParticles=40
+         StartSpinRange=(X=(Max=1.000000))
+         SizeScale(0)=(RelativeSize=1.000000)
+         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
+         StartSizeRange=(X=(Min=7.000000,Max=7.000000))
+         ParticlesPerSecond=4.000000
+         Texture=Texture'AW-2004Particles.Energy.AirBlast'
+         LifetimeRange=(Min=1.000000,Max=1.000000)
+         InitialDelayRange=(Min=0.300000,Max=0.300000)
+     End Object
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.AY90ActorExploder.SpriteEmitter2'
+
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter3
+         UseColorScale=True
+         RespawnDeadParticles=False
+         SpinParticles=True
+         UseSizeScale=True
+         UseRegularSizeScale=False
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         ColorScale(1)=(RelativeTime=0.750000,Color=(B=255))
+         ColorScale(2)=(RelativeTime=1.000000)
+         Opacity=0.250000
+         CoordinateSystem=PTCS_Relative
+         MaxParticles=40
+         StartSpinRange=(X=(Max=1.000000))
+         SizeScale(0)=(RelativeSize=1.000000)
+         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
+         StartSizeRange=(X=(Min=17.000000,Max=17.000000))
+         ParticlesPerSecond=4.000000
+         Texture=Texture'AW-2004Particles.Energy.EclipseCircle'
+         LifetimeRange=(Min=1.000000,Max=1.000000)
+         InitialDelayRange=(Min=0.500000,Max=0.500000)
+     End Object
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.AY90ActorExploder.SpriteEmitter3'
+
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter5
+         FadeOut=True
+         UniformSize=True
+         Acceleration=(Z=-1500.000000)
+         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         FadeOutStartTime=0.920000
+         MaxParticles=10
+         StartLocationShape=PTLS_Sphere
+         SphereRadiusRange=(Max=25.000000)
+         StartSizeRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))
+         Texture=Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash'
+         TextureUSubdivisions=2
+         TextureVSubdivisions=2
+         SubdivisionStart=1
+         SubdivisionEnd=1
+         LifetimeRange=(Min=0.401000,Max=0.401000)
+         StartVelocityRange=(X=(Min=-150.000000,Max=150.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-150.000000,Max=150.000000))
+     End Object
+     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.AY90ActorExploder.SpriteEmitter5'
+
+     LightType=LT_Steady
+     LightEffect=LE_QuadraticNonIncidence
+     LightHue=192
+     LightSaturation=100
+     LightBrightness=200.000000
+     LightRadius=15.000000
+     bDynamicLight=True
+     RemoteRole=ROLE_SimulatedProxy
 }

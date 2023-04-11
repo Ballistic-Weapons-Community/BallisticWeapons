@@ -160,6 +160,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SKC_Pro.AY90SkrithBoltcaster'
      MyDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
 	 DamageTypeHead=Class'BWBP_SKC_Pro.DTAY90SkrithHead'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
