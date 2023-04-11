@@ -199,7 +199,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=20.000000,Y=-7.645,Z=11.90000)
+		SightOffset=(X=-5.00,Y=0.08,Z=2.65)
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
 		InventorySize=12
@@ -210,8 +210,8 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
-		ReloadAnimRate=1.200000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.200000
+		//CockAnimRate=1.000000
 		WeaponName="Mk 781 12ga Flechette Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -230,7 +230,7 @@ defaultproperties
 		Weight=10
 		LayoutName="Red Dot Sight"
 		//Attachments
-		SightOffset=(X=30.000000,Y=-7.660000,Z=13.940000)
+		SightOffset=(X=4.20,Y=0.01,Z=6.97)
 		//Function
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -241,8 +241,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
 		InitialWeaponMode=1
-		ReloadAnimRate=1.200000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.200000
+		//CockAnimRate=1.000000
 		WeaponName="Mk 781 12ga Flechette Shotgun (RDS)"
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=3)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4)

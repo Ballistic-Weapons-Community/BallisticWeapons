@@ -143,7 +143,7 @@ defaultproperties
 		LayoutName="RDS"
 		Weight=30
 		//Attachments
-		SightOffset=(X=0,y=-3.140000,Z=14.300000)
+		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
 		//Functions
 		InventorySize=3
 		DisplaceDurationMult=0.33
@@ -165,7 +165,7 @@ defaultproperties
 		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
-		SightOffset=(X=0,Y=-3.140000,Z=14.300000)
+		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
 		//Functions
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
@@ -179,8 +179,9 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalRadPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'TacticalParams_Irons'
-	Layouts(1)=WeaponParams'TacticalParams_RDS'
+	//Layouts(1)=WeaponParams'TacticalParams_RDS' // downgrade
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=FNX_Green

@@ -118,10 +118,9 @@ defaultproperties
     SpecialInfo(0)=(Info="240.0;20.0;0.5;80.0;0.0;1.0;0.0")
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-    CockAnimRate=1.350000
     CockSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Cock')
     ReloadAnim="ReloadLoop"
-    ReloadAnimRate=1.750000
+
     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290LoadShell')
     bCockOnEmpty=True
     bCanSkipReload=True
@@ -141,9 +140,8 @@ defaultproperties
 	
     CurrentWeaponMode=0
     bNoCrosshairInScope=True
-    SightPivot=(Pitch=256)
-    SightOffset=(X=-10.000000,Y=-0.040000,Z=14.050000)
-	SightBobScale=0.75
+
+
     ParamsClasses(0)=Class'M290WeaponParamsComp'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
     ParamsClasses(2)=Class'M290WeaponParamsRealistic'
@@ -158,7 +156,10 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=1
     PickupClass=Class'BallisticProV55.M290Pickup'
-    PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-18.000000)
+    PlayerViewOffset=(X=6.5,Y=9.6,Z=-13.5)
+	SightOffset=(X=-7.5,Y=-0.04,Z=6)
+	SightPivot=(Pitch=256)
+	SightBobScale=0.75
     AttachmentClass=Class'BallisticProV55.M290Attachment'
     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M290'
     IconCoords=(X2=127,Y2=31)
@@ -170,7 +171,7 @@ defaultproperties
     LightBrightness=180.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M290'
-    DrawScale=0.280000
+    DrawScale=0.3
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	SightAnimScale=0.5
 }

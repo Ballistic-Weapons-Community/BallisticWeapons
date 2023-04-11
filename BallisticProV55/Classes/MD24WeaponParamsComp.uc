@@ -69,7 +69,7 @@ defaultproperties
 		Weight=30
 		//Attachments
 		//Function
-		ReloadAnimRate=1.350000
+		ReloadAnimRate=1.25
 		//SightOffset=(X=-8.000000,Y=-0.030000,Z=7.400000)
 		SightingTime=0.200000
         DisplaceDurationMult=0.33

@@ -632,9 +632,7 @@ defaultproperties
     SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PullOut',Volume=1.800000)
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PutAway',Volume=1.400000)
-	CockAnimRate=1.000000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-Cock',Volume=1.800000)
-	ReloadAnimRate=1.000000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagHit')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagOut',Volume=1.100000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagIn',Volume=2.100000)
@@ -649,8 +647,6 @@ defaultproperties
 	WeaponModes(5)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-18.000000,Y=4.475000,Z=6.800000)
-	SightDisplayFOV=35.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'PugWeaponParams'
 	ParamsClasses(1)=Class'PugWeaponParamsClassic'
@@ -669,8 +665,10 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.PugPickup'
-	PlayerViewOffset=(X=10.000000,Y=11.000000,Z=-21.000000)
-	BobDamping=1.600000
+
+	PlayerViewOffset=(X=5.00,Y=4.50,Z=-2.50)
+	SightOffset=(X=0.00,Y=0.00,Z=3.00)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.PugAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Pug.SmallIcon_Pug'
 	IconCoords=(X2=127,Y2=31)
@@ -682,5 +680,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Pug'
-	DrawScale=0.500000
+	DrawScale=0.300000
 }

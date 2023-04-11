@@ -143,8 +143,8 @@ defaultproperties
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="Mounted FG-50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -164,8 +164,8 @@ defaultproperties
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="Mounted FG-50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

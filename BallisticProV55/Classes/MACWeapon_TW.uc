@@ -155,7 +155,6 @@ function byte BestMode()
 defaultproperties
 {
 	TeamSkins(0)=(SkinNum=0)
-	ReloadAnimRate=2.500000
 	GunLength=0.000000
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'MACTW_WeaponParamsComp'

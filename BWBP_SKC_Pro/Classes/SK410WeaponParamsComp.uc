@@ -103,7 +103,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=22.000000,Y=-10.000000,Z=21.000000)
+		SightOffset=(X=-4.00,Y=0.01,Z=1.10)
 		SightPivot=(Pitch=150)
 		//Function
 		CockAnimRate=1.250000
@@ -127,7 +127,7 @@ defaultproperties
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=1f)
 		SightPivot=(Pitch=150)
-		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		SightOffset=(X=0.00,Y=0.01,Z=2.40)
 		//Function
 		CockAnimRate=1.250000
     	ReloadAnimRate=1.250000		

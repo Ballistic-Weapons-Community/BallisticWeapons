@@ -168,9 +168,8 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=0
      PickupClass=Class'BWBP_OP_Pro.L8GIPickup'
-     PlayerViewOffset=(X=0.000000,Y=10.000000,Z=-13.000000)
+     PlayerViewOffset=(X=0.000000,Y=7.500000,Z=-10.600000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_OP_Pro.L8GIAttachment'
      IconMaterial=Texture'BWBP_OP_Tex.AmmoPack.SmallIcon_AmmoPack'
      IconCoords=(X2=127,Y2=31)
@@ -180,7 +179,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'L8GIAmmoPackWeaponParamsClassic'
 	 ParamsClasses(2)=Class'L8GIAmmoPackWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'L8GIAmmoPackWeaponParamsComp'
-     DrawScale=0.400000
+     DrawScale=0.300000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Texture'BW_Core_WeaponTex.Ammo.AmmoPackSkin'
 	 Skins(2)=Texture'BW_Core_WeaponTex.A73.A73AmmoSkin'

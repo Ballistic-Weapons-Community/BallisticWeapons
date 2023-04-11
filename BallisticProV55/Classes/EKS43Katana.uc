@@ -74,11 +74,11 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=1
      PickupClass=Class'BallisticProV55.EKS43Pickup'
-     PlayerViewOffset=(X=6.000000,Z=-18.000000)
+     PlayerViewOffset=(X=7.200000,Z=-21.600000)
      AttachmentClass=Class'BallisticProV55.EKS43Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_EKS43'
      IconCoords=(X2=127,Y2=31)
      ItemName="EKS-43 Katana"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Katana'
-     DrawScale=0.250000
+     DrawScale=0.3
 }

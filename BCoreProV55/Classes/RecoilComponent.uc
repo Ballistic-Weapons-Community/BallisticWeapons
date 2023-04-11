@@ -417,7 +417,7 @@ final simulated function OnADSViewEnd()
 //===========================================================
 final simulated function Rotator CalcViewPivotDelta()
 {
-	return CurrentPivot - LastPivot;
+	return (CurrentPivot - LastPivot) * ViewBindFactor;
 }
 
 //===========================================================
@@ -447,6 +447,18 @@ final simulated function Rotator GetEscapePivot()
 		return rot(0,0,0);
 
 	return CurrentPivot * (1 - ViewBindFactor);
+}
+
+//===========================================================
+// GetFireEscapePivot
+//
+// Pivot used to determine shot direction. 
+// Hack to make weapons that escape in sight view appear to 
+// shoot above the front sight, rather than directly onto it.
+//===========================================================
+final simulated function Rotator GetFireEscapePivot()
+{
+	return GetEscapePivot() * Params.EscapeMultiplier;
 }
 
 //===========================================================

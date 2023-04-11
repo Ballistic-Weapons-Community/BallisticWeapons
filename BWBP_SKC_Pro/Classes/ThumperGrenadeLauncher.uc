@@ -97,9 +97,6 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightPivot=(Pitch=-550)
-	SightOffset=(X=-30.000000,Y=-0.030000,Z=34.000000)
-	SightDisplayFOV=40.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'ThumperGrenadeLauncherWeaponParamsArena'
 	ParamsClasses(1)=Class'ThumperGrenadeLauncherWeaponParamsClassic'
@@ -119,8 +116,12 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.ThumperPickup'
+
 	PlayerViewOffset=(X=30.000000,Y=15.000000,Z=-20.000000)
 	PlayerViewPivot=(Pitch=600)
+	SightOffset=(X=-30.000000,Y=-0.030000,Z=34.000000)
+	SightPivot=(Pitch=-550)
+	
 	AttachmentClass=Class'BWBP_SKC_Pro.ThumperAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Thumper.SmallIcon_Thumper'
 	IconCoords=(X2=127,Y2=31)

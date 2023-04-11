@@ -526,7 +526,6 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=22
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.400000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
@@ -535,8 +534,11 @@ defaultproperties
 	bAltTriggerReload=True
 	bNoCrosshairInScope=True // CHANGE THIS IN BALLSTICWEAPON.UC
 	WeaponModes(0)=(bUnavailable=True)
-	SightOffset=(X=9.0000,Y=13.6,Z=19.30000)
-	PlayerViewOffset=(X=0,Y=-2.5,Z=-17)
+
+	PlayerViewOffset=(X=4.00,Y=3.50,Z=-5.00)
+	SightOffset=(X=1,Y=0,Z=2.13)
+	SightAnimScale=0.65
+	
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
@@ -562,7 +564,6 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=10
 	PickupClass=Class'BWBP_SKC_Pro.CYLOPickup'
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'
 	IconCoords=(X2=127,Y2=31)
@@ -574,5 +575,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOUAW'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

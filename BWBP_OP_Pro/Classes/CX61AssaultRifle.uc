@@ -272,7 +272,6 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Cock')
-	ReloadAnimRate=1.100000
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagOut')
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
 	ClipInFrame=0.650000
@@ -284,8 +283,8 @@ defaultproperties
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
-	PlayerViewOffset=(X=-13.000000,Y=5.000000,Z=-15.00000)
-	SightOffset=(X=27.500000,Y=-0.360000,Z=20.26)
+	PlayerViewOffset=(X=8,Y=4.00,Z=-3.5)
+	SightOffset=(X=0.0,Y=0.02,Z=1.51)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CX61WeaponParamsComp'
 	ParamsClasses(1)=Class'CX61WeaponParamsClassic'

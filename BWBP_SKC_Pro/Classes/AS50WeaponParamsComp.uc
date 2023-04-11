@@ -8,8 +8,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=120
-        HeadMult=1.75f
+		Damage=100
+        HeadMult=1.5f
         LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
@@ -20,7 +20,7 @@ defaultproperties
 		PushbackForce=255.000000
 		WallPDamageFactor=0.850000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=450.000000
+		Recoil=3072.000000
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.4
@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.800000
+		FireInterval=1.1
 		FireAnim="CFire"
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -41,7 +41,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
-		Damage=40
+		Damage=75
         HeadMult=1.75f
         LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
@@ -50,7 +50,7 @@ defaultproperties
 		PDamageFactor=0.000000
 		WallPDamageFactor=0.850000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=768.000000
+		Recoil=3072.000000
 		Chaos=1.000000
 		BotRefireRate=0.50000
 		WarnTargetPct=0.40000
@@ -58,7 +58,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-		FireInterval=0.350000
+		FireInterval=1.1
 		FireAnim="CFire"
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
@@ -68,14 +68,14 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=FSSG50RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.15
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.15
 		YRandFactor=0.15
 		MinRandFactor=0.15
-		ClimbTime=0.08
+		ClimbTime=0.2
 		DeclineDelay=0.75
 		DeclineTime=1.5
 		CrouchMultiplier=0.85
@@ -101,7 +101,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		CockAnimRate=1.350000
+		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		//SightOffset=(X=18.000000,Y=15.000000,Z=6.700000)
 		PlayerSpeedFactor=0.9

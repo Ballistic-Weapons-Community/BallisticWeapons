@@ -170,8 +170,8 @@ defaultproperties
 		WeaponMaterialSwaps(5)=(Material=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-WiresProto',Index=5,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(6)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader',Index=6,AIndex=-1,PIndex=-1)
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
-		ReloadAnimRate=1.000000
-		SightOffset=(X=10.000000,Y=11.9500000,Z=20.000000)
+		//ReloadAnimRate=1.000000
+		SightOffset=(X=12.90000,Y=10.0700000,Z=17.14)
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		//Function

@@ -209,8 +209,8 @@ defaultproperties
 		MagAmmo=20
 		bMagPlusOne=True
 		//ViewOffset=(X=-2,Y=8,Z=-25)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="SRK-650 7.62mm Marksman Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticRecoilParamsInc'
@@ -240,8 +240,8 @@ defaultproperties
 		MagAmmo=20
 		bMagPlusOne=True
 		//ViewOffset=(X=-2,Y=8,Z=-25)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="SRK-650 7.62mm Marksman Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticRecoilParamsInc'

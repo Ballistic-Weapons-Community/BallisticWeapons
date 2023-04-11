@@ -97,7 +97,8 @@ defaultproperties
 		LayoutName="Standard"
 		//Attachments
 		//Function
-		ReloadAnimRate=1.250000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		PlayerJumpFactor=1.000000
 		InventorySize=6
 		SightPivot=(Pitch=64)

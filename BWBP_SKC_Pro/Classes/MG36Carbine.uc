@@ -519,8 +519,6 @@ defaultproperties
      WeaponModes(3)=(bUnavailable=True)
      bNoCrosshairInScope=True
 	 ScopeViewTex=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
-     SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
-     SightDisplayFOV=25.000000
      FullZoomFOV=45
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=197),Color2=(B=0,G=255,R=255,A=255),StartSize1=79,StartSize2=55)
      FireModeClass(0)=Class'BWBP_SKC_Pro.MG36PrimaryFire'
@@ -528,7 +526,6 @@ defaultproperties
      IdleAnimRate=0.500000
      SelectAnimRate=1.000000
      PutDownAnimRate=1.000000
-	 ReloadAnimRate=0.800000
      PutDownTime=0.600000
      BringUpTime=0.650000
 	 CockingBringUpTime=1.300000
@@ -541,7 +538,10 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_SKC_Pro.MG36Pickup'
-     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
+
+     PlayerViewOffset=(X=6.00,Y=4.50,Z=-4.50)
+	 SightOffset=(X=-5.00,Y=0.35,Z=2.00)
+
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.MG36Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_SmallIcon'
@@ -557,5 +557,5 @@ defaultproperties
 	 ParamsClasses(1)=Class'MG36WeaponParamsClassic'
 	 ParamsClasses(2)=Class'MG36WeaponParamsRealistic'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36'
-     DrawScale=1.000000
+     DrawScale=0.3
 }

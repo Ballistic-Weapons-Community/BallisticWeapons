@@ -125,6 +125,8 @@ defaultproperties
 		InventorySize=4
 		DisplaceDurationMult=0.75
 		MagAmmo=7
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
@@ -139,7 +141,7 @@ defaultproperties
 		// Zoom
         ZoomType=ZT_Fixed
 		MaxZoom=3
-		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
+		SightOffset=(X=18.5000000,Y=0,Z=2.75)
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -157,7 +159,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-7.350000,Z=45.400002)
+		SightOffset=(X=-11,Y=0,Z=2.78)
 		ZoomType=ZT_Irons
 		
 		//Function
@@ -167,6 +169,9 @@ defaultproperties
 		SightingTime=0.250000
 		DisplaceDurationMult=0.5
 		MagAmmo=7
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		
         RecoilParams(0)=RecoilParams'ArenaRecoilParams_208'
         AimParams(0)=AimParams'ArenaAimParams_208'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_208'
@@ -183,7 +188,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-7.350000,Z=41.700000)
+		SightOffset=(X=-11,Y=0,Z=1.39)
 		ZoomType=ZT_Irons
 		
 		PlayerJumpFactor=1.000000
@@ -192,6 +197,9 @@ defaultproperties
 		SightingTime=0.250000
 		DisplaceDurationMult=0.5
 		MagAmmo=7
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		
         RecoilParams(0)=RecoilParams'ArenaRecoilParams_208'
         AimParams(0)=AimParams'ArenaAimParams_208'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_208'

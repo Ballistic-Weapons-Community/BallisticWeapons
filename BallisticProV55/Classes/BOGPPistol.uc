@@ -280,9 +280,8 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	bNoMag=True
 	CockAnim="Reload"
-	CockAnimRate=1.50000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
-	ReloadAnimRate=1.250000
+
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Close',Volume=1.000000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Open',Volume=1.000000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_GrenLoad',Volume=1.000000)
@@ -292,8 +291,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=300)
-	SightOffset=(X=-5.000000,Y=0.080000,Z=8.550000)
+
 	ParamsClasses(0)=Class'BOGPWeaponParamsComp'
 	ParamsClasses(1)=Class'BOGPWeaponParamsClassic'
 	ParamsClasses(2)=Class'BOGPWeaponParamsRealistic'
@@ -313,7 +311,11 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.BOGPPickup'
-	PlayerViewOffset=(X=5.000000,Y=3.000000,Z=-9.000000)
+
+	PlayerViewOffset=(X=6.00,Y=1.50,Z=-4.50)
+	SightOffset=(X=-8,Y=0.080000,Z=1.95)
+	SightPivot=(Pitch=300)
+
 	AttachmentClass=Class'BallisticProV55.BOGPAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.BOGP.SmallIcon_BOGP'
 	IconCoords=(X2=127,Y2=31)

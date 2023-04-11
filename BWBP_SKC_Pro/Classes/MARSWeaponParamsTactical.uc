@@ -186,11 +186,11 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 		//Function
-		ReloadAnimRate=0.85
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom
@@ -209,11 +209,8 @@ defaultproperties
 		LayoutName="Holosight"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightDisplayFOV=48
-		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
-		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
+		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		//Function
-		ReloadAnimRate=0.85
 		InventorySize=7
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35

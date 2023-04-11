@@ -666,10 +666,6 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
      bNoMag=True
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
-	 SightAnimScale=0.5
-	 SightPivot=(Pitch=256)
-     SightOffset=(X=30.000000,Y=-0.175,Z=13.150000)
-	 SightBobScale=0.5
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk5SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color2=(B=153,G=168,R=170,A=83),StartSize2=84)
@@ -686,8 +682,11 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.HVPCMk5Pickup'
-     PlayerViewOffset=(X=-10.000000,Y=6.00000,Z=-13.00000)
-     BobDamping=1.600000
+     PlayerViewOffset=(X=6.00,Y=5,Z=-9.00000)
+     SightOffset=(X=-2.50,Y=0.00,Z=7.75)
+	 SightPivot=(Pitch=256)
+	 SightAnimScale=0.5
+	 SightBobScale=0.4f
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk5Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
      IconCoords=(X2=127,Y2=31)
@@ -703,7 +702,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'HVPCMk5WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'HVPCMk5WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HVPC'
-     DrawScale=0.350000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      bFullVolume=True
      SoundVolume=64

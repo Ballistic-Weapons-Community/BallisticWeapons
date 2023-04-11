@@ -101,8 +101,8 @@ defaultproperties
 		//ViewOffset=(X=11.000000,Y=-1.000000,Z=-14.000000)
 		//SightOffset=(X=-5.000000,Y=0.000000,Z=4.500000)
 		SightPivot=(Pitch=0,Roll=0)
-		CockAnimRate=0.900000
-		ReloadAnimRate=0.900000
+		//CockAnimRate=0.900000
+		//ReloadAnimRate=0.900000
         WeaponName="Mounted M353 Squad Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

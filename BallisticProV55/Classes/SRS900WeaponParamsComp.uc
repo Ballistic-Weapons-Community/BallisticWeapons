@@ -71,7 +71,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=1.00000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.120000,OutVal=0.11000),(InVal=0.300000,OutVal=0.330000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
 		YRandFactor=0.05000
@@ -84,7 +84,7 @@ defaultproperties
 	 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams_600
 		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=1.00000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.250000,OutVal=-0.030000),(InVal=0.400000,OutVal=0.06000),(InVal=0.800000,OutVal=-0.08000),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.120000,OutVal=0.11000),(InVal=0.300000,OutVal=0.330000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1000
 		YRandFactor=0.1000
@@ -126,9 +126,10 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
-		SightOffset=(X=35.000000,Z=11.750000)
+		SightOffset=(X=9.000000,Z=3.150000)
 		//Function
-		CockAnimRate=1.200000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		MagAmmo=20
 		SightingTime=0.50000
 		SightMoveSpeedFactor=0.6
@@ -146,9 +147,10 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=30.000000,Z=9.88000)
+		SightOffset=(X=6.000000,Z=2.03)
 		//Function
-		CockAnimRate=1.200000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.8
@@ -164,9 +166,10 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=22.000000,Z=8.650000)
+		SightOffset=(X=1.000000,Z=1.30000)
 		//Function
-		CockAnimRate=1.200000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.9

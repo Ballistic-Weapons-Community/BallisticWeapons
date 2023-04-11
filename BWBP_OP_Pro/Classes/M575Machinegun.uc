@@ -619,10 +619,8 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
-     CockAnimRate=1.250000
      CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
      ReloadAnim="ReloadStart"
-     ReloadAnimRate=1.450000
 	 CockingBringUpTime=1.400000
 	 SightFXBone="Muzzle"
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
@@ -637,7 +635,7 @@ defaultproperties
      CurrentWeaponMode=3
      bNoCrosshairInScope=True
 	 bShowChargingBar=True
-     SightOffset=(X=5.000000,Y=-0.35000,Z=12.850000)
+     SightOffset=(X=0,Y=0,Z=2.1)
      FireModeClass(0)=Class'BWBP_OP_Pro.M575PrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.M575SecondaryFire'
      SelectAnimRate=1.350000
@@ -654,7 +652,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_OP_Pro.M575Pickup'
-     PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-10.00000)
+     PlayerViewOffset=(X=6.00,Y=4.50,Z=-4.00)
      AttachmentClass=Class'BWBP_OP_Pro.M575Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.M575.SmallIcon_M575'
      IconCoords=(X2=127,Y2=31)
@@ -670,7 +668,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'M575MachinegunWeaponParamsRealistic'
      ParamsClasses(3)=Class'M575MachinegunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_M575'
-     DrawScale=1
+     DrawScale=0.3
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader'
 	 Skins(2)=Shader'BWBP_OP_Tex.M575.M575_scope_SH1'

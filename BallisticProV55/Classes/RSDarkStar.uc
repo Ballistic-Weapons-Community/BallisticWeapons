@@ -764,7 +764,6 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Putaway')
-     ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemOut',Volume=0.700000)
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemIn',Volume=0.700000)
@@ -779,8 +778,6 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=TexRotator'BW_Core_WeaponTex.DarkStar.DarkInA-Rot',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=209),Color2=(G=181),StartSize1=106,StartSize2=50)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
      NDCrosshairChaosFactor=0.500000
-	 SightAnimScale=0.5
-     SightOffset=(X=0.000000,Y=0,Z=9.000000)
 	 GunLength=128.000000
 	 ParamsClasses(0)=Class'RSDarkWeaponParamsComp'
 	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
@@ -800,7 +797,9 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=2
      PickupClass=Class'BallisticProV55.RSDarkPickup'
-     PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-6.000000)
+     PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-3.000000)
+	 SightOffset=(X=0.000000,Y=0,Z=4.500000)
+	 SightAnimScale=0.5
      AttachmentClass=Class'BallisticProV55.RSDarkAttachment'
      IconMaterial=Texture'BW_Core_WeaponTex.DarkStar.SmallIcon_DarkStar'
      IconCoords=(X2=127,Y2=31)

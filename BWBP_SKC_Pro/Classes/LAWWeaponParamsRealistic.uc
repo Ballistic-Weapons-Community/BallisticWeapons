@@ -116,8 +116,8 @@ defaultproperties
 		MagAmmo=1
 		//SightOffset=(Y=6.000000,Z=15.000000)
 		ZoomType=ZT_Logarithmic
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="FGM-70 "Shockwave" 152mm Anti-Tank Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

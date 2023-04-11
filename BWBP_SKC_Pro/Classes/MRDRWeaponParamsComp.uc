@@ -92,6 +92,8 @@ defaultproperties
         SightingTime=0.200000
         SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

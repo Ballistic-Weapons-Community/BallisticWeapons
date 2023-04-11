@@ -354,7 +354,6 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_OP_Pro.XOXOMeleeFire'
 	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Pullout')
 	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Putdown')
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagIn',Volume=0.700000)
@@ -366,8 +365,7 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
 	CurrentWeaponMode=0
 	SightPivot=(Pitch=768)
-	SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=5.000000,Y=0.650000,Z=0.500000)
 	GunLength=128.000000
 	ParamsClasses(0)=Class'XOXOWeaponParamsComp'
 	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
@@ -389,7 +387,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=2
 	PickupClass=Class'BWBP_OP_Pro.XOXOPickup'
-	PlayerViewOffset=(X=5.000000,Y=4.500000,Z=-12.000000)
+	PlayerViewOffset=(X=5.000000,Y=4.500000,Z=-4.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.XOXOAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.XOXO.SmallIcon_XOXO'
 	IconCoords=(X2=127,Y2=31)

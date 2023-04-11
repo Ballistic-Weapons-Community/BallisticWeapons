@@ -132,8 +132,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=0.850000
-		CockAnimRate=1.200000
+		//ReloadAnimRate=0.850000
+		//CockAnimRate=1.200000
 		WeaponName="MR-DR88 9mm Wrist Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

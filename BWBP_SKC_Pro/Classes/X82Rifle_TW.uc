@@ -188,7 +188,6 @@ simulated function PlayCocking(optional byte Type)
 defaultproperties
 {
 	MountFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire4'
-	ReloadAnimRate=1.300000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipHit',Volume=0.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipOut')
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn',Volume=1.500000)

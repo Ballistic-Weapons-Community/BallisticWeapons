@@ -471,9 +471,8 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;50.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-	CockAnimRate=1.750000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Cock')
-	ReloadAnimRate=1.750000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellIn')
 	ClipInFrame=0.650000
@@ -482,8 +481,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
-	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+
 	bAdjustHands=true
 	RootAdjust=(Yaw=-375,Pitch=2000)
 	WristAdjust=(Yaw=-2500,Pitch=-0000)
@@ -510,7 +508,11 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.D49Pickup'
-	PlayerViewOffset=(X=-10.000000,Y=7.000000,Z=-15.000000)
+
+	PlayerViewOffset=(X=10.00,Y=7.00,Z=-16.5)
+	SightOffset=(X=-11,Y=-4.6,Z=25.5)
+	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+	
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'
 	IconCoords=(X2=127,Y2=31)
@@ -522,7 +524,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_D49'
-	DrawScale=0.220000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.D49.D49Shells-Shiney'

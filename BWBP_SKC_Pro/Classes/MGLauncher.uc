@@ -227,8 +227,6 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
 	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=512)
-	SightOffset=(X=15.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MGLWeaponParamsComp'
 	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
@@ -247,7 +245,11 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.MGLPickup'
-	PlayerViewOffset=(X=-5.000000,Y=-5.000000,Z=-7.000000)
+
+	PlayerViewOffset=(X=16.00,Y=10.00,Z=-12.00)
+	SightOffset=(X=-1.00,Y=0.00,Z=18.10)
+	SightPivot=(Pitch=512)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.MGLAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MGL.SmallIcon_MGL'
 	IconCoords=(X2=127,Y2=35)
@@ -259,7 +261,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MGL'
-	DrawScale=0.130000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.MGL.MGL-Main'
 	Skins(2)=Texture'BWBP_SKC_Tex.MGL.MGL-ScreenBase'

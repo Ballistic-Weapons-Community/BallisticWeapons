@@ -120,7 +120,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
 		//SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
-		SightOffset=(X=-5.000000,Y=-0.680000,Z=22.700000)
+		SightOffset=(X=-11.50000,Y=0,Z=2.030000)
 		//Function
         InventorySize=8
 		WeaponPrice=3000
@@ -145,7 +145,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=4,AIndex=-1,PIndex=-1)
-		SightOffset=(X=-30.000000,Y=-0.700000,Z=26.730000)
+		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
 		//Function
         InventorySize=8
 		WeaponPrice=3000

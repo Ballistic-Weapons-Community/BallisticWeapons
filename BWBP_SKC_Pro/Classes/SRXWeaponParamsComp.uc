@@ -177,10 +177,11 @@ defaultproperties
 		WeaponMaterialSwaps(6)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=11) //A10
 		WeaponMaterialSwaps(7)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=12) //A11
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
-		SightOffset=(X=0.000000,Y=-0.700000,Z=26.100000)
+		SightOffset=(X=0,Y=0,Z=2.5)
 		SightPivot=(Pitch=-128,Yaw=16)
 		//Function
-		CockAnimRate=1.200000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		MagAmmo=20
         InventorySize=6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -201,10 +202,10 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		//SightPivot=(Pitch=-128,Yaw=16)
-		SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
-		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
+		SightOffset=(X=0.000000,Y=0.06,Z=2.22)
 		//Function
-		CockAnimRate=1.200000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		MagAmmo=20
         InventorySize=6
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

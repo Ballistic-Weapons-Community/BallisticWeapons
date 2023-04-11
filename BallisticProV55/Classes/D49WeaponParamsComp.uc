@@ -105,8 +105,8 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams
         WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
-		CockAnimRate=1.750000
-		ReloadAnimRate=1.750000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
         DisplaceDurationMult=0.5
         SightingTime=0.200000
 		SightMoveSpeedFactor=0.9

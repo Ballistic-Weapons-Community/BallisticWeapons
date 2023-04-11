@@ -589,7 +589,6 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	PutDownTime=0.4
 	MagAmmo=20
-	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Cock',Volume=0.650000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
@@ -609,7 +608,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=20.000000,Z=11.750000)
+
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2
@@ -631,7 +630,8 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=6
 	PickupClass=Class'BallisticProV55.SRS900Pickup'
-	PlayerViewOffset=(X=-10.000000,Y=5.000000,Z=-9.000000)
+	PlayerViewOffset=(X=3.00,Y=3.00,Z=-4.00)
+	SightOffset=(X=9.000000,Z=3.150000)
 	AttachmentClass=Class'BallisticProV55.SRS900Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.SRS900.SmallIcon_SRS900'
 	IconCoords=(X2=127,Y2=31)
@@ -643,7 +643,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS900'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	
 	//Arena Scope Stuff
 	GeneralUITexArena=Texture'BW_Core_WeaponTex.SRS900-SUI.SRS900UI'

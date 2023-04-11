@@ -96,6 +96,7 @@ defaultproperties
 		LayoutName="Standard"
 		Weight=30
 		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
         SightingTime=0.35
 		SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=200)

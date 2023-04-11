@@ -692,7 +692,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-Cock')
 	ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-MagOut')
@@ -704,7 +703,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=15.000000,Y=-0.6,Z=34.000000)
+	SightOffset=(X=-5,Y=0,Z=0)
 	SightingTime=0.650000
 	MinZoom=2.000000
 	MaxZoom=8.000000
@@ -727,10 +726,10 @@ defaultproperties
 	Priority=40
 	HudColor=(G=125,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=9
+	InventoryGroup=6
 	GroupOffset=6
 	PickupClass=Class'BWBP_OP_Pro.CX85Pickup'
-	PlayerViewOffset=(X=5.000000,Y=10.000000,Z=-25.000000)
+	PlayerViewOffset=(X=10,Y=7,Z=-4)
 	AttachmentClass=Class'BWBP_OP_Pro.CX85Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.CX85.SmallIcon_CX85'
 	IconCoords=(X2=127,Y2=31)
@@ -742,5 +741,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_CX85'
-	DrawScale=0.500000
+	DrawScale=0.300000
 }

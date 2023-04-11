@@ -415,10 +415,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=145,R=0,A=190),Color2=(B=77),StartSize1=80)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
-	
-	SightOffset=(X=-15.000000,Z=9.500000)
-	SightZoomFactor=1.2
-	SightBobScale=0.8f
+
 	ParamsClasses(0)=Class'XRS10WeaponParamsComp'
 	ParamsClasses(1)=Class'XRS10WeaponParamsClassic'
 	ParamsClasses(2)=Class'XRS10WeaponParamsRealistic'
@@ -433,7 +430,12 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.XRS10Pickup'
-	PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-11.000000)
+
+	PlayerViewOffset=(X=32,Y=8.000000,Z=-12.500000)
+	SightOffset=(X=-40.000000,Z=3.7500000)
+	SightZoomFactor=1.2
+	SightBobScale=0.5f
+
 	AttachmentClass=Class'BallisticProV55.XRS10Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.XRS10.SmallIcon_XRS10'
 	IconCoords=(X2=127,Y2=31)
@@ -445,7 +447,7 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XRS10'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.XRS10.XRS10Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.XRS10.XRS10LaserShiney'

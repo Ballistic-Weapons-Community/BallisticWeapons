@@ -105,7 +105,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
         ZoomType=ZT_Smooth
-		SightOffset=(X=10.500000,Y=0.000000,Z=17.0500000)
+     	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -113,8 +113,8 @@ defaultproperties
 		MagAmmo=5
 		bMagPlusOne=True
 		//ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
 		WeaponName="R87A1 .416 Sniper Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -138,8 +138,8 @@ defaultproperties
 		MagAmmo=5
 		bMagPlusOne=True
 		//ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
 		WeaponName="R87A1 .416 Sniper Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

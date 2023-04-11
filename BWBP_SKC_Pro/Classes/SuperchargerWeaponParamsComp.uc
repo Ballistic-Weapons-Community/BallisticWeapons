@@ -148,6 +148,8 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		MaxZoom=4
 		InitialWeaponMode=2
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Mode: Precise Charge",ModeID="WM_FullAuto")

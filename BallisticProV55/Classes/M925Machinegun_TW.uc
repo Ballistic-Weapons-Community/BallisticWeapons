@@ -247,10 +247,8 @@ defaultproperties
 	SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True

@@ -105,7 +105,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
-		ReloadAnimRate=0.850000
 		MagAmmo=30
         InventorySize=6
 		SightingTime=0.350000

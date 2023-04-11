@@ -515,9 +515,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="0.0;-5.0;-999.0;-1.0;0.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-Cock')
-	ReloadAnimRate=1.250000
 	SelectAnimRate=1.500000
 	BringUpTime=0.700000
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-MagOut')
@@ -529,8 +527,6 @@ defaultproperties
     WeaponModes(2)=(ModeName="Amplified: Radiation",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=0,Y=-3.140000,Z=14.300000)
-	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'SX45WeaponParamsComp'
 	ParamsClasses(1)=Class'SX45WeaponParamsClassic'
 	ParamsClasses(2)=Class'SX45WeaponParamsRealistic'
@@ -547,7 +543,10 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=11
 	PickupClass=Class'BWBP_SKC_Pro.SX45Pickup'
-	PlayerViewOffset=(X=-3.000000,Y=5.000000,Z=-13.000000)
+
+	PlayerViewOffset=(X=8.00,Y=3.00,Z=-6.00)
+	SightOffset=(X=-15.00,Y=0.00,Z=2.30)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.SX45Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.SX45.SmallIcon_SX45'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=175,G=178,R=176,A=160),Color2=(G=0),StartSize1=52,StartSize2=40)

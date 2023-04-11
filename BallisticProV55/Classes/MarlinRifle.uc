@@ -355,10 +355,8 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	PutDownTime=0.4
-	CockAnimRate=1.700000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Cock',Volume=0.750000)
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=2.000000
 	ClipInSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-ShellIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
@@ -376,8 +374,7 @@ defaultproperties
 	
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=40.000000,Y=-0.070000,Z=4.750000)
-	SightBobScale=0.2
+
 	ParamsClasses(0)=Class'MarlinWeaponParamsComp'	 
 	ParamsClasses(1)=Class'MarlinWeaponParamsClassic'	
 	ParamsClasses(2)=Class'MarlinWeaponParamsRealistic'	
@@ -395,7 +392,11 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.MarlinPickup'
-	PlayerViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
+
+	PlayerViewOffset=(X=15,Y=7.00000,Z=-10.000000)
+	SightOffset=(X=6.000000,Y=-0.040000,Z=2.850000)
+	SightBobScale=0.2
+
 	AttachmentClass=Class'BallisticProV55.MarlinAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Marlin.SmallIcon_Marlin'
 	IconCoords=(X2=127,Y2=31)
@@ -407,5 +408,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Marlin'
-	DrawScale=0.500000
+	DrawScale=0.3
 }

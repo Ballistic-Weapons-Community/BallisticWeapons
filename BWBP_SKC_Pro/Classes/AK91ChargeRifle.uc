@@ -439,8 +439,6 @@ defaultproperties
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
      WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=2
-     SightOffset=(X=25.000000,Y=0,Z=16)
-     SightDisplayFOV=20.000000
 	 ParamsClasses(0)=Class'AK91WeaponParamsComp'
 	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AK91WeaponParamsRealistic'
@@ -463,9 +461,11 @@ defaultproperties
      InventoryGroup=4
 	 GroupOffset=11
      PickupClass=Class'BWBP_SKC_Pro.AK91Pickup'
-     PlayerViewOffset=(X=-3.000000,Y=5.000000,Z=-14.000000)
-     BobDamping=2.000000
+
+     PlayerViewOffset=(X=5.0000,Y=4.000000,Z=-5.000000)
+	 SightOffset=(X=10.5,Y=0,Z=1.7)
 	 SightAnimScale=0.5
+
      AttachmentClass=Class'BWBP_SKC_Pro.AK91Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
      IconCoords=(X2=127,Y2=31)
@@ -477,7 +477,7 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=4.000000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AK91'
-     DrawScale=0.350000
+     DrawScale=0.30000
      SoundPitch=56
      SoundRadius=32.000000
 }

@@ -249,8 +249,6 @@ defaultproperties
 		//ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		//SightOffset=(X=-1-.000000,Z=14.300000)
 		SightPivot=(Pitch=450)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		WeaponName="A77 Plasma Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -276,8 +274,6 @@ defaultproperties
 		//ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		//SightOffset=(X=-1-.000000,Z=14.300000)
 		SightPivot=(Pitch=450)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		WeaponName="A77 Plasma Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -303,8 +299,6 @@ defaultproperties
 		//ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		//SightOffset=(X=-1-.000000,Z=14.300000)
 		SightPivot=(Pitch=450)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		WeaponName="A77 Plasma Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

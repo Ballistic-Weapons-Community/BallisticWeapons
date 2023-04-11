@@ -443,7 +443,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;25.0;0.9;80.0;0.2;0.4;0.1")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
-	ReloadAnimRate=1.250000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipIn')
 	ClipInFrame=0.700000
@@ -464,7 +464,7 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
     NDCrosshairChaosFactor=1.000000
 	NDCrosshairScaleFactor=1.000000
-	SightOffset=(X=14.000000,Z=8.700000)
+
 	ParamsClasses(0)=Class'E23WeaponParamsComp'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	ParamsClasses(2)=Class'E23WeaponParamsRealistic'
@@ -483,7 +483,10 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=12
 	PickupClass=Class'BallisticProV55.E23Pickup'
-	PlayerViewOffset=(X=0.000000,Y=4.500000,Z=-9.00000)
+
+	PlayerViewOffset=(X=3,Y=6.00,Z=-8.00)
+	SightOffset=(X=15,Z=4)
+
 	AttachmentClass=Class'BallisticProV55.E23Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.VPR.SmallIcon_VPR'
 	IconCoords=(X2=127,Y2=31)
@@ -496,7 +499,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_VPR'
-	DrawScale=0.200000
+	DrawScale=0.3
 	bFullVolume=True
 	SoundRadius=32.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

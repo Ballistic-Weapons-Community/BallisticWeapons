@@ -112,8 +112,8 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Impact",ModeID="WM_SemiAuto",Value=1)
 		WeaponModes(1)=(ModeName="4-Round Burst",bUnavailable=True)
 		WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="MGL-140 40mm Grenade Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

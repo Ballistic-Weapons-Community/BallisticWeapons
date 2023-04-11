@@ -106,8 +106,8 @@ defaultproperties
 		bMagPlusOne=True
 		//ViewOffset=(X=8.000000,Y=8.000000,Z=-14.000000)
 		//SightOffset=(X=15.7500000,Y=0.000000,Z=24.700000)
-		ReloadAnimRate=1.100000
-		CockAnimRate=1.325000
+		//ReloadAnimRate=1.100000
+		//CockAnimRate=1.325000
 		ZoomType=ZT_Logarithmic
 		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
 		WeaponName="M75-TIC 20mm Infantry Railgun"

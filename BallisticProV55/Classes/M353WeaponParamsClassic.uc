@@ -96,8 +96,8 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=3
-		CockAnimRate=1.000000
-		ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

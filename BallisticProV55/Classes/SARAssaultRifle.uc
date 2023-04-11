@@ -534,9 +534,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	MeleeFireClass=Class'BallisticProV55.SARMeleeFire'
 	CockAnimPostReload="ReloadEndCock"
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
-	ReloadAnimRate=1.100000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')
 	ClipInFrame=0.650000
@@ -545,9 +543,11 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
+
+	PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-10.000000)
+	SightOffset=(X=11.000000,Y=-0.010000,Z=3.600000)
 	SightPivot=(Pitch=450)
-	SightOffset=(X=35.000000,Y=-0.010000,Z=13.600000)
-	PlayerViewOffset=(X=-13.000000,Y=11.000000,Z=-13.000000)
+
 	GunLength=16.000000
 	ParamsClasses(0)=Class'SARWeaponParamsComp'
 	ParamsClasses(1)=Class'SARWeaponParamsClassic'

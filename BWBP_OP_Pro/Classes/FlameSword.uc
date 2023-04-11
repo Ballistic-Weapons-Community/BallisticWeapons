@@ -349,13 +349,12 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=5
      PickupClass=Class'BWBP_OP_Pro.FlameSwordPickup'
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_OP_Pro.FlameSwordAttachment'
      IconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_128'
      IconCoords=(X2=127,Y2=31)
      ItemName="PSI-56 Fire Sword"
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_FlameSword'
-     DrawScale=1.250000
+     DrawScale=0.3
      SoundRadius=32.000000
-	 PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-20.000000)
+	 PlayerViewOffset=(X=5.000000,Y=2.500000,Z=-5.000000)
 }

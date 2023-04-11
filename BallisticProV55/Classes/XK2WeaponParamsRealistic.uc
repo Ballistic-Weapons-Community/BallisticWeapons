@@ -141,8 +141,8 @@ defaultproperties
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=3
-		ReloadAnimRate=0.950000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.950000
+		//CockAnimRate=1.000000
 		WeaponName="XK2-SD 9mm Submachinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

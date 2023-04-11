@@ -347,12 +347,12 @@ defaultproperties
 	ClipInFrame=0.650000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
-	CockAnimRate=1.250000
+
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
 	CurrentWeaponMode=0
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	Description="Another of Enravion's fine creations, the AM67 Assault Pistol was designed for close quarters combat against Cryon and Skrith warriors.|Initially constructed before the second war, Enravion produced the AM67, primarily for anti-Cryon operations, but it later proved to perform well in close-quarters combat when terran forces were ambushed by the stealthy Skrith warriors."
-	DrawScale=0.200000
+	DrawScale=0.3
 	FireModeClass(0)=Class'BallisticProV55.AM67PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.AM67SecondaryFire'
 	GroupOffset=6
@@ -380,7 +380,8 @@ defaultproperties
 	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'
     ParamsClasses(3)=Class'AM67WeaponParamsTactical'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
-	PlayerViewOffset=(X=2.000000,Y=4.000000,Z=-10.000000)
+	PlayerViewOffset=(X=25.00,Y=3.00,Z=-10.00)
+	SightOffset=(X=-33,Y=0.06,Z=4.43)
 	Priority=24
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	PutDownTime=0.600000
@@ -388,11 +389,9 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(R=0,A=194),Color2=(R=0),StartSize1=80,StartSize2=26)
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
 
-	ReloadAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"
-	SightDisplayFOV=60.000000
 	SightFXClass=Class'BallisticProV55.AM67SightLEDs'
-	SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
+
 	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

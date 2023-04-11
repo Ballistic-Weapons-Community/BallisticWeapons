@@ -554,25 +554,19 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Glock.BigIcon_Glock'
 	BigIconCoords=(Y1=30,Y2=230)
 	SightFXBone="SightBone"
-	
 	ManualLines(0)="Automatic fire. Short ranged, but has higher DPS than most pistols. Recoil is moderate."
 	ManualLines(1)="Projects a laser beam. Has extremely low DPS, but consistent damage over range and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing good damage. The GRS-9 is effective at close range."
 	SpecialInfo(0)=(Info="120.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
-	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Cock',Volume=0.600000)
-	ReloadAnimRate=1.350000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipHit',Volume=0.700000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=True
-	SightOffset=(X=-15.000000,Z=5.900000)
-	SightDisplayFOV=60.000000
-	SightBobScale=0.6
 	ParamsClasses(0)=Class'GRS9WeaponParamsComp'
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
 	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
@@ -592,7 +586,10 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
-	PlayerViewOffset=(X=0.000000,Y=3.000000,Z=-10.000000)
+	PlayerViewOffset=(X=10.00,Y=6.00,Z=-17.00)
+	SightOffset=(X=-45,Z=3.4)
+	SightAnimScale=0.25
+	SightBobScale=0.3
 	AttachmentClass=Class'BallisticProV55.GRS9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Glock.SmallIcon_Glock'
 	IconCoords=(X2=127,Y2=31)
@@ -604,10 +601,10 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_GRS9'
-	DrawScale=0.150000
+	DrawScale=0.30000
 	bFullVolume=True
 	SoundRadius=128.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.Glock.Glock_Shiny'
-	SightAnimScale=0.25
+
 }

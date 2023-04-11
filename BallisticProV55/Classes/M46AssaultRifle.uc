@@ -377,9 +377,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_Cock',Volume=1.100000)
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipHit',Volume=1.000000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipOut',Volume=1.000000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipIn',Volume=1.000000)
@@ -399,8 +397,9 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=5,Y=0.050000,Z=11.350000)
-	PlayerViewOffset=(X=0.000000,Y=4.0000,Z=-9.500000)
+
+	PlayerViewOffset=(X=5.00,Y=3.50,Z=-5.00)
+	SightOffset=(X=-1,Y=0.040000,Z=3.9)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1

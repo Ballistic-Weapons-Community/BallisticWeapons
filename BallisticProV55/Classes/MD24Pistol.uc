@@ -394,7 +394,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Cock',Volume=0.675000)
-	ReloadAnimRate=1.350000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipHit',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipOut',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipIn',Volume=0.800000)
@@ -407,8 +406,6 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
     
 	bNoCrosshairInScope=True
-	SightOffset=(X=-8.000000,Y=-0.030000,Z=7.400000)
-	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'MD24WeaponParamsComp'
 	ParamsClasses(1)=Class'MD24WeaponParamsClassic'
 	ParamsClasses(2)=Class'MD24WeaponParamsRealistic'
@@ -425,7 +422,8 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=6
 	PickupClass=Class'BallisticProV55.MD24Pickup'
-	PlayerViewOffset=(X=6.500000,Y=5.000000,Z=-10.00000)
+	PlayerViewOffset=(X=5.00,Y=2.50,Z=-5.00000)
+	SightOffset=(X=-7.00000,Y=0,Z=1.7)
 	AttachmentClass=Class'BallisticProV55.MD24Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.MD24.SmallIcon_MD24'
 	IconCoords=(X2=127,Y2=31)
@@ -437,5 +435,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24'
-	DrawScale=0.350000
+	DrawScale=0.3
 }

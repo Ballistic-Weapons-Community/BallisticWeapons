@@ -116,8 +116,8 @@ defaultproperties
 		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto")
 		WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto")
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

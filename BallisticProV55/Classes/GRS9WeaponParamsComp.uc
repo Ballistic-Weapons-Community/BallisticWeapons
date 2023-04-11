@@ -95,8 +95,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-		CockAnimRate=1.200000
-		ReloadAnimRate=1.350000
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		bDualBlocked=True
         //SightOffset=(X=-5.000000,Z=5.900000)
         DisplaceDurationMult=0.5

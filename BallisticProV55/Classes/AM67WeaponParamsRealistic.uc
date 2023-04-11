@@ -142,8 +142,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=true)
 		WeaponModes(2)=(bUnavailable=true)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.300000
+		//CockAnimRate=1.300000
 		WeaponName="AM67 .50 Assault Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -169,8 +168,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=true)
 		WeaponModes(2)=(bUnavailable=true)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.300000
+		//CockAnimRate=1.300000
 		WeaponName="AM67 .50 Assault Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

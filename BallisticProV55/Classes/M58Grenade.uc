@@ -54,14 +54,14 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=7
      PickupClass=Class'BallisticProV55.M58Pickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.M58Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.M58.SmallIcon_M58'
      IconCoords=(X2=127,Y2=31)
      ItemName="M58 Smoke Grenade"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
-     DrawScale=0.400000
+     DrawScale=0.3
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'
 }

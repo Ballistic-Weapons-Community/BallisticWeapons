@@ -256,8 +256,7 @@ defaultproperties
     
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-30.000000,Y=-0.48,Z=20.000000)
-	SightPivot=(Pitch=768)
+
 	ParamsClasses(0)=Class'AutoGLWeaponParamsArena'
 	ParamsClasses(1)=Class'AutoGLWeaponParamsClassic'
 	FireModeClass(0)=Class'AutoGLPrimaryFire'
@@ -275,7 +274,11 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	PickupClass=Class'BallisticProV55.M353Pickup'
+
 	PlayerViewOffset=(X=15.000000,Y=7.000000,Z=-11.000000)
+	SightOffset=(X=-30.000000,Y=-0.48,Z=20.000000)
+	SightPivot=(Pitch=768)
+	
 	AttachmentClass=Class'BallisticProV55.M353Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M353'
 	IconCoords=(X2=127,Y2=31)

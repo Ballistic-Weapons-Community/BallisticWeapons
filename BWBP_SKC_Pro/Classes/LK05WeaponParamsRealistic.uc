@@ -108,7 +108,7 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		//SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+		SightOffset=(X=9,Y=0,Z=-0.09)
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8,AIndex=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9,AIndex=2)
@@ -126,8 +126,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="LK-05 6.8mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -141,7 +141,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		//SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
-		SightOffset=(X=25.000000,Y=-8.600000,Z=24.250000)
+		SightOffset=(X=7.00,Y=0.00,Z=-0.50)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
@@ -156,8 +156,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="LK-05 6.8mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
