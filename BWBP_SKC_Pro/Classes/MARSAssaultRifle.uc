@@ -1029,7 +1029,7 @@ defaultproperties
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.MARSPickup'
 
-	PlayerViewOffset=(X=4.00,Y=4.50,Z=-3.00)
+	PlayerViewOffset=(X=4.00,Y=4.50,Z=-4.00)
 	SightOffset=(X=6.50,Y=0.01,Z=0.8)
 	SightAnimScale=0.4
 
