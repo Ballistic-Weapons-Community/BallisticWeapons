@@ -10,7 +10,7 @@ class SARPrimaryFire extends BallisticProInstantFire;
 
 function PlayFiring()
 {
-	if (SARAssaultRifle(Weapon).bStockOpen && !SARAssaultRifle(Weapon).bStockBoneOpen)
+	if (SARAssaultRifle(Weapon).bStockExtended && !SARAssaultRifle(Weapon).bStockBoneOpen)
 		SARAssaultRifle(Weapon).SetStockRotation();
 
 	PlayFireAnimations();

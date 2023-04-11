@@ -21,7 +21,7 @@ var   Emitter		LaserDot;
 
 var()   name		StockOpenAnim;
 var()   name		StockCloseAnim;
-var()   bool		bStockOpen, bStockBoneOpen;
+var()   bool		bStockExtended, bStockBoneOpen;
 
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
@@ -40,10 +40,14 @@ replication
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-
+	
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+	{
+		bStockExtended=True;
+	}
 	SetStockRotation();
 
-	if (bStockOpen)
+	if (bStockExtended)
 		OnStockSwitched();
 }
 
@@ -69,7 +73,7 @@ simulated function OnAimParamsChanged()
 
 	if (bLaserOn)
 		ApplyLaserAim();
-	if (bStockOpen)
+	if (bStockExtended)
 		ApplyStockAim();
 }
 
@@ -92,12 +96,16 @@ exec simulated function SwitchWeaponMode (optional byte ModeNum)
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	Log("SAR ServerSwitchWeaponMode: Stock open: "$bStockOpen);
+	Log("SAR ServerSwitchWeaponMode: Stock open: "$bStockExtended);
 	
 	if (ReloadState != RS_None)
 		return;
 		
-	NewMode = byte(!bStockOpen);
+	
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical()) //We'll clean this later
+		NewMode = byte(bStockExtended);
+	else
+		NewMode = byte(!bStockExtended);
 		
 	// can feasibly happen
 	if (NewMode == CurrentWeaponMode)
@@ -111,12 +119,16 @@ function ServerSwitchWeaponMode (byte NewMode)
 simulated function CommonSwitchWeaponMode(byte NewMode)
 {
 	Super.CommonSwitchWeaponMode(NewMode);
-	SwitchStock(NewMode == BURST_MODE);
+	
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+		SwitchStock(NewMode == AUTO_MODE); //Stock is out on auto for A/T
+	else
+		SwitchStock(NewMode == BURST_MODE);//Stock is out on burst for C/R
 }
 
 simulated function OnStockSwitched()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 		ApplyStockAim();
 	else
 		AimComponent.Recalculate();
@@ -126,26 +138,30 @@ simulated function OnStockSwitched()
 
 simulated function SwitchStock(bool bNewValue)
 {
-	if (bNewValue == bStockOpen)
+	if (bNewValue == bStockExtended)
 		return;
 
-	Log("SAR SwitchStock: Stock open: "$bStockOpen);
+	Log("SAR SwitchStock: Stock open: "$bStockExtended);
 	
 	if (Role == ROLE_Authority)
 		bServerReloading = True;
 	ReloadState = RS_GearSwitch;
 	
 	TemporaryScopeDown(0.4);
+	
+	if (!bStockExtended)
+		SetStockRotation();
 
-	bStockOpen = !bStockOpen;
+	bStockExtended = !bStockExtended;
 
-	SetStockRotation();
+	if (!bStockExtended)
+		SetStockRotation();
 
-	//bStockOpen = bNewValue;
+	//bStockExtended = bNewValue;
 	
 	//SetBoneRotation('Stock', rot(0,0,0));
 	
-	if (bStockOpen)
+	if (bStockExtended)
 		PlayAnim(StockOpenAnim);
 	else
 		PlayAnim(StockCloseAnim);
@@ -155,13 +171,13 @@ simulated function SwitchStock(bool bNewValue)
 
 simulated function ApplyStockAim()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 		AimComponent.CrouchMultiplier *= 0.7f;
 }
 
 simulated function AdjustStockProperties()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 	{
 		// Long Gun related
 	    LongGunPivot 	= rot(4000, -12000, 0);
@@ -183,7 +199,7 @@ simulated function AdjustStockProperties()
 
 simulated function SetStockRotation()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 	{
 		SetBoneLocation('Stock',vect(-38.472,0,0),1.0);
 		bStockBoneOpen = true;
@@ -197,7 +213,7 @@ simulated function SetStockRotation()
 
 simulated function PlayIdle()
 {
-	if (bStockOpen && !bStockBoneOpen)
+	if (bStockExtended && !bStockBoneOpen)
 	{
 		SetStockRotation();
 		IdleTweenTime=0.0;
@@ -205,7 +221,7 @@ simulated function PlayIdle()
 		IdleTweenTime=default.IdleTweenTime;
 	}
 	else
-	{	if (!bStockOpen && bStockBoneOpen)
+	{	if (!bStockExtended && bStockBoneOpen)
 			SetStockRotation();
 		super.PlayIdle();
 	}
@@ -495,7 +511,7 @@ simulated function bool ReadyToFire(int Mode)
 
 defaultproperties
 {
-	bStockOpen=True // the weapon expects this to be the default - please don't change it
+	bStockExtended=False //Params set this to true for A/T
 	AIRating=0.72
 	CurrentRating=0.72
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
