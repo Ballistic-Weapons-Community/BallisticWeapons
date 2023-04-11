@@ -715,9 +715,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	MagAmmo=8
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.350000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagOut',Volume=1.500000,Radius=32.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagIn',Volume=1.500000,Radius=32.000000)
 	ClipInFrame=0.850000
@@ -730,7 +728,6 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=15.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=18.000000,Y=15.000000,Z=6.700000)
 	MinZoom=4.000000
 	MaxZoom=16.000000
 	ZoomStages=2
@@ -754,8 +751,10 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BWBP_SKC_Pro.AS50Pickup'
-	PlayerViewOffset=(X=-6.000000,Y=-5.000000,Z=-6.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=4.00,Y=4.00,Z=-5.00)
+	SightOffset=(X=3.00,Y=0.00,Z=3.70)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.AS50Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.FSG50.SmallIcon_FSG50'
 	IconCoords=(X2=127,Y2=31)

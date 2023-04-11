@@ -689,8 +689,8 @@ defaultproperties
 	ReloadAltAnim(0)="GLReload1"
 	ReloadAltAnim(1)="GLReload2"
 	ReloadAltAnim(2)="GLReload3"
-	GrenadeLoadAnimRate=1.200000
-	ShovelReloadAnimRate=1.500000
+	GrenadeLoadAnimRate=1.0
+	ShovelReloadAnimRate=1.0
 	Grenades=3
 	StartingGrenades=3
 	SightsBone="LadderSight"
@@ -715,7 +715,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
-	ReloadAnimRate=0.750000
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagOut',Volume=1.300000)
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagIn',Volume=1.300000)
 	StartShovelAnim="PrepReload"
@@ -728,10 +727,9 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.PentagramOutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=61),Color2=(B=0,G=148,R=255,A=158),StartSize1=90,StartSize2=96)
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	CurrentWeaponMode=0
-	SightOffset=(X=32.000000,Y=2.850000,Z=17.90000)
+	SightOffset=(X=0,Y=0,Z=1.4)
 	bNoCrosshairInScope=True
-	BobDamping=1
-	SightBobScale=
+	SightBobScale=0.35f
 	GunLength=48.000000
 	ParamsClasses(0)=Class'RCS715WeaponParamsComp'
 	ParamsClasses(1)=Class'RCS715WeaponParamsClassic'
@@ -752,7 +750,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=7
 	PickupClass=Class'BWBP_OP_Pro.RCS715Pickup'
-	PlayerViewOffset=(X=-15,Y=4.000000,Z=-15.000000)
+	PlayerViewOffset=(X=9.00,Y=4.50,Z=-5.00)
 	AttachmentClass=Class'BWBP_OP_Pro.RCS715Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.AssaultShotgun.SmallIcon_AssaultShotgun'
 	IconCoords=(X2=125,Y2=32)

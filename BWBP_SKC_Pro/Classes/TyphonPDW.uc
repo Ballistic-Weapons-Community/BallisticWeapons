@@ -741,9 +741,7 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons
-     SightOffset=(X=22.000000,Y=0.210000,Z=14.80000)
-	 SightingTime=0.250000
-	 BobDamping=2.300000
+
      FireModeClass(0)=Class'BWBP_SKC_Pro.TyphonPDWPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.TyphonPDWSecondaryFire'
      SelectForce="SwitchToAssaultRifle"
@@ -761,7 +759,11 @@ defaultproperties
 	 InventoryGroup=3
      GroupOffset=18
      PickupClass=Class'BWBP_SKC_Pro.TyphonPDWPickup'
-     PlayerViewOffset=(X=-7.000000,Y=4.500000,Z=-11.000000)
+
+     PlayerViewOffset=(X=5.00,Y=3.50,Z=-4.00)
+	 SightOffset=(X=0.00,Y=0.00,Z=2.19)
+	 SightingTime=0.250000
+
      PutDownTime=0.800000
      BringUpTime=1.000000
 	 CockingBringUpTime=2.000000
@@ -780,7 +782,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'TyphonPDWWeaponParamsRealistic'
      ParamsClasses(3)=Class'TyphonPDWWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Typhon'
-     DrawScale=0.350000
+     DrawScale=0.30000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.Typhon.Typhon-Shine'
      Skins(2)=Shader'BWBP_SKC_Tex.Typhon.Typhon-ShineMag'

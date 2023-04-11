@@ -11,6 +11,35 @@ defaultproperties
         DecayRange=(Min=4000,Max=12000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
+		Damage=45
+        HeadMult=2.0f
+        LimbMult=0.75f
+		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
+		FlashScaleFactor=1.400000
+		Recoil=512.000000
+		Chaos=0.450000
+		BotRefireRate=0.6
+		WarnTargetPct=0.35
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.3000
+		FireAnimRate=0.9
+		FireEndAnim=
+		//AimedFireAnim="AimedFire"	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+
+	Begin Object Class=InstantEffectParams Name=ArenaFreezeEffectParams
+		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=4000,Max=12000)
+		RangeAtten=0.75
 		Damage=40
         HeadMult=2.0f
         LimbMult=0.75f
@@ -21,35 +50,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=192.000000
-		Chaos=0.450000
-		BotRefireRate=0.6
-		WarnTargetPct=0.35
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
-	End Object
-
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.225000
-		FireEndAnim=
-		AimedFireAnim="AimedFire"	
-		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
-	End Object
-
-	Begin Object Class=InstantEffectParams Name=ArenaFreezeEffectParams
-		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=4000,Max=12000)
-		RangeAtten=0.75
-		Damage=35
-        HeadMult=2.0f
-        LimbMult=0.75f
-		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
-		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
-		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
-		PenetrateForce=150
-		bPenetrate=True
-		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
-		FlashScaleFactor=1.400000
-		Recoil=192.000000
+		Recoil=512.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -57,7 +58,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaFreezeFireParams
-		FireInterval=0.225000
+		FireInterval=0.3
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaFreezeEffectParams'
@@ -68,7 +69,7 @@ defaultproperties
         DecayRange=(Min=4000,Max=12000)
 		WaterTraceRange=5000
 		RangeAtten=0.75
-		Damage=20
+		Damage=25
         HeadMult=2.0f
         LimbMult=0.75f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -78,7 +79,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=192.000000
+		Recoil=256.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -86,7 +87,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaHeatFireParams
-		FireInterval=0.225000
+		FireInterval=0.25
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaHeatEffectParams'
@@ -102,7 +103,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.175000),(InVal=0.400000,OutVal=0.450000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
-		ClimbTime=0.04
+		ClimbTime=0.08
 		DeclineDelay=0.350000
 		DeclineTime=1.00000
 		CrouchMultiplier=0.850000
@@ -136,7 +137,7 @@ defaultproperties
 		SightingTime=0.4	
 		ScopeScale=0.7
 		DisplaceDurationMult=1
-		MagAmmo=15
+		MagAmmo=12
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

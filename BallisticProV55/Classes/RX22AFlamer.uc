@@ -295,7 +295,7 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
 	SightPivot=(Pitch=768)
-	SightOffset=(X=-12.000000,Z=14.300000)
+	SightOffset=(X=-12.000000,Z=7.00000)
 	SightDisplayFOV=40.000000
 	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'RX22AWeaponParamsComp'
@@ -320,7 +320,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.RX22APickup'
-	PlayerViewOffset=(X=6.000000,Y=2.000000,Z=-9.000000)
+	PlayerViewOffset=(X=5.000000,Y=2.000000,Z=-2.000000)
 	AttachmentClass=Class'BallisticProV55.RX22AAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_RX22A'
 	IconCoords=(X2=127,Y2=31)

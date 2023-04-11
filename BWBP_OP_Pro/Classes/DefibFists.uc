@@ -464,13 +464,13 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=1
      PickupClass=Class'BWBP_OP_Pro.DefibFistsPickup'
-     PlayerViewOffset=(X=40.000000,Z=-10.000000)
+     PlayerViewOffset=(X=20.000000,Z=-5.000000)
      AttachmentClass=Class'BWBP_OP_Pro.DefibFistsAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.Defist.Icon_DefibFists'
      IconCoords=(X2=127,Y2=31)
      ItemName="FMD H14 Combat Defibrillator"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FMD'
-     DrawScale=0.600000
+     DrawScale=0.300000
      bFullVolume=True
      SoundVolume=64
      SoundRadius=128.000000

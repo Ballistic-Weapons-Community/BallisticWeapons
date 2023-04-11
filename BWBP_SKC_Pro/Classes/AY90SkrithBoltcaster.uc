@@ -533,9 +533,6 @@ defaultproperties
      WeaponModes(3)=(ModeName="BLaser",bUnavailable=True)
      WeaponModes(4)=(ModeName="CLaser",bUnavailable=True)
      CurrentWeaponMode=0
-     SightPivot=(Pitch=768)
-     SightOffset=(Y=4.700000,Z=8.000000)
-     SightDisplayFOV=40.000000
      ParamsClasses(0)=Class'AY90WeaponParamsArena'
      ParamsClasses(1)=Class'AY90WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AY90WeaponParamsRealistic'
@@ -555,8 +552,11 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=19
      PickupClass=Class'BWBP_SKC_Pro.AY90Pickup'
-     PlayerViewOffset=(X=5.000000,Y=2.000000,Z=-6.000000)
-     BobDamping=2.200000
+
+     PlayerViewOffset=(X=11.000000,Y=8.00000,Z=-6.500000)
+     SightOffset=(X=-4.5,Y=0,Z=5.7)
+	 SightPivot=(Pitch=768)
+
 	 MeleeFireClass=Class'BWBP_SKC_Pro.AY90MeleeFire'
      AttachmentClass=Class'BWBP_SKC_Pro.AY90Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.SkrithBow.SmallIcon_SBow'
@@ -569,7 +569,7 @@ defaultproperties
      LightBrightness=192.000000
      LightRadius=12.000000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SkrithCrossbow'
-     DrawScale=0.188000
+     DrawScale=0.3000
      bFullVolume=True
      SoundVolume=255
      SoundRadius=256.000000

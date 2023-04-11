@@ -122,8 +122,8 @@ defaultproperties
 		//ViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
 		//SightOffset=(X=1.000000,Z=17.750000)
 		SightPivot=(Pitch=200)
-		ReloadAnimRate=1.200000
-		CockAnimRate=1.200000
+		//ReloadAnimRate=1.200000
+		//CockAnimRate=1.200000
 		WeaponName="XMk5 10mm Urban Submachinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

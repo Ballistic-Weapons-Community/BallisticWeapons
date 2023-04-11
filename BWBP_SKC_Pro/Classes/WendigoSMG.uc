@@ -517,7 +517,6 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=22
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.000000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=2.000000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=2.000000)
@@ -525,7 +524,6 @@ defaultproperties
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
 	bNoCrosshairInScope=False
-	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'WendigoWeaponParams' 
 	ParamsClasses(1)=Class'WendigoWeaponParams' 
@@ -551,7 +549,10 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=10
 	PickupClass=Class'BWBP_SKC_Pro.WendigoPickup'
+
 	PlayerViewOffset=(X=8.000000,Y=8.000000,Z=-15.000000)
+	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
+
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.WendigoAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'

@@ -112,8 +112,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		CockAnimRate=1.250000
-		ReloadAnimRate=0.900000
 		//SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
 		//ViewOffset=(X=15.000000,Y=13.000000,Z=-16.000000)
 		WeaponModes(0)=(ModeName="Barrage",ModeID="WM_BigBurst",Value=3)

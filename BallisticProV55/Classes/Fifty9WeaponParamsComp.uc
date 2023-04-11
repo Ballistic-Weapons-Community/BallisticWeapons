@@ -144,6 +144,7 @@ defaultproperties
 		DisplaceDurationMult=0.5
         MagAmmo=25        
 		InventorySize=3
+		ReloadAnimRate=1.250000
 		SightingTime=0.2
 		SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=128)

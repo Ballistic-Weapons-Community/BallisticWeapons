@@ -167,9 +167,7 @@ defaultproperties
     MeleeFireClass=Class'BWBP_SKC_Pro.SK410MeleeFire'
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-    CockAnimRate=1.250000
     CockSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-Cock',Volume=1.400000)
-    ReloadAnimRate=1.250000
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagOut',Volume=1.300000)
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagIn',Volume=1.300000)
     WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
@@ -177,9 +175,6 @@ defaultproperties
     WeaponModes(2)=(ModeName="0451-EXECUTE",bUnavailable=True)
     CurrentWeaponMode=0
     bNoCrosshairInScope=True
-    SightPivot=(Pitch=150)
-    SightOffset=(X=22.000000,Y=-10.000000,Z=22.500000)
-    SightDisplayFOV=30
     GunLength=48.000000
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(G=0,A=192),StartSize1=113,StartSize2=120)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
@@ -203,13 +198,16 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=7
     PickupClass=Class'BWBP_SKC_Pro.SK410Pickup'
-    PlayerViewOffset=(X=-10.000000,Y=12.000000,Z=-18.000000)
+
+    PlayerViewOffset=(X=7.00,Y=4.50,Z=-5.00)
+    SightOffset=(X=0.00,Y=0.01,Z=2.40)
+	SightPivot=(Pitch=150)
+
     AttachmentClass=Class'BWBP_SKC_Pro.SK410Attachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SK410.SmallIcon_SK410'
     IconCoords=(X2=127,Y2=35)
     ItemName="SK-410 Assault Shotgun"
-	BobDamping=1.5
-	SightBobScale=0.3
+	SightBobScale=0.3f
     LightType=LT_Pulse
     LightEffect=LE_NonIncidence
     LightHue=25
@@ -217,7 +215,7 @@ defaultproperties
     LightBrightness=150.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SK410'
-    DrawScale=0.350000
+    DrawScale=0.300000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BWBP_SKC_Tex.SK410.SK410-Main'
     Skins(2)=Texture'BWBP_SKC_Tex.SK410.SK410-Misc'

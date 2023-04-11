@@ -127,8 +127,8 @@ defaultproperties
 		//ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
 		//SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
 		SightPivot=(Pitch=200)
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="Bulldog .75 Assault Cannon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

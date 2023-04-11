@@ -466,7 +466,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
@@ -474,8 +473,7 @@ defaultproperties
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=0.000000,Y=0.0000,Z=0.00000)
 	SightingTime=0.200000
 	ParamsClasses(0)=Class'PD97WeaponParamsComp'
 	ParamsClasses(1)=Class'PD97WeaponParamsClassic'
@@ -496,7 +494,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=13
 	PickupClass=Class'BWBP_OP_Pro.PD97Pickup'
-	PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-11.000000)
+	PlayerViewOffset=(X=7.5,Y=4,Z=-4.5)
 	AttachmentClass=Class'BWBP_OP_Pro.PD97Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Bloodhound.Icon_PD97'
 	IconCoords=(X2=127,Y2=31)
@@ -508,5 +506,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Bloodhound'
-	DrawScale=0.200000
+	DrawScale=0.300000
 }

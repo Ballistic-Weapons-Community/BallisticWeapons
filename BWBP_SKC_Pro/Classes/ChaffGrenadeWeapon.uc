@@ -275,13 +275,12 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=0
      PickupClass=Class'BWBP_SKC_Pro.ChaffPickup'
-     PlayerViewOffset=(Y=4.000000,Z=-15.000000)
+     PlayerViewOffset=(Y=3.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.ChaffAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.M4A1.SmallIcon_MOAC'
      IconCoords=(X2=127,Y2=31)
      ItemName="MOA-C Chaff Grenade"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MOAC'
-     DrawScale=0.400000
+     DrawScale=0.300000
 }

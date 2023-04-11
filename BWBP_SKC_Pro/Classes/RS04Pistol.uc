@@ -292,10 +292,6 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      WeaponModes(3)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=0
-     SightOffset=(X=5.000000,Y=-1.9500000,Z=17.000000)
-	 SightPivot=(Roll=-256)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
 	 bNoCrosshairInScope=True
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=175,G=178,R=176,A=160),Color2=(G=0),StartSize1=52,StartSize2=40)
 	 NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
@@ -315,7 +311,12 @@ defaultproperties
      InventoryGroup=2
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.RS04Pickup'
-     PlayerViewOffset=(X=-4,Y=6.000000,Z=-16.000000)
+
+     PlayerViewOffset=(X=3.00,Y=3.00,Z=-6.00)
+	 SightOffset=(X=-3.50,Y=-0.17,Z=1.07)
+	 SightPivot=(Roll=-256)
+     SightingTime=0.200000
+
      AttachmentClass=Class'BWBP_SKC_Pro.RS04Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.RS04.SmallIcon_RS04'
      IconCoords=(X2=127,Y2=31)
@@ -331,7 +332,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'RS04WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'RS04WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04'
-     DrawScale=0.350000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.RS04.RS04-MainShine'
 }

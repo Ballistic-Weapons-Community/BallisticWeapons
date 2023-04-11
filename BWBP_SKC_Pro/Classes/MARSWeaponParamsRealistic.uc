@@ -164,8 +164,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="MARS-2 5.56mm Bullpup Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'RealisticAimParams_HeavyBarrel'
@@ -180,7 +180,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		ZoomType=ZT_Irons
@@ -196,8 +196,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="MARS-3 5.56mm Bullpup Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

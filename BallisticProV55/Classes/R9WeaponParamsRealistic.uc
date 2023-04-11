@@ -108,8 +108,8 @@ defaultproperties
 		//ViewOffset=(X=-4.000000,Y=9.00000,Z=-13.000000)
 		//SightOffset=(X=25.000000,Y=0.025000,Z=6.290000)
 		SightPivot=(Pitch=64,Yaw=0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
 		WeaponName="R9E2 .308 Ranger Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

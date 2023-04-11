@@ -119,7 +119,7 @@ defaultproperties
 		Weight=30
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
-		SightOffset=(Y=-1.000000,Z=12.500000)
+		SightOffset=(X=-1,Y=0.050000,Z=3.9)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -136,8 +136,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46A2 .310 Battle Rifle"
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -150,7 +148,7 @@ defaultproperties
 		Weight=20
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
-		SightOffset=(X=5,Y=0.050000,Z=11.350000)
+		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
 		//Function
         SightingTime=0.210000
         MagAmmo=24
@@ -165,8 +163,6 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46A2 .310 Battle Rifle (RDS)"
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

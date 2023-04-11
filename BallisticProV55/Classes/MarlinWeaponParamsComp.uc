@@ -107,14 +107,14 @@ defaultproperties
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
-		SightOffset=(X=40.000000,Y=-0.070000,Z=4.750000)
+		SightOffset=(X=6.000000,Y=-0.040000,Z=2.850000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=True)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		CockAnimRate=1.700000
-		ReloadAnimRate=2.000000
+		CockAnimRate=1.25
+		ReloadAnimRate=1.25
 		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.400000
 		MagAmmo=8
@@ -134,14 +134,14 @@ defaultproperties
 		Weight=5
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
-		SightOffset=(X=40.000000,Y=-0.100000,Z=9.100000)
+		SightOffset=(X=6.000000,Y=-0.060000,Z=6.300000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Accelerated Shot",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
-		CockAnimRate=1.700000
-		ReloadAnimRate=2.000000
+		CockAnimRate=1.25
+		ReloadAnimRate=1.25
 		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
 		SightingTime=0.400000
 		MagAmmo=8

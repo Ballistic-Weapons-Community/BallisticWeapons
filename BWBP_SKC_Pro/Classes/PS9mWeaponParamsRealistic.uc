@@ -121,8 +121,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=0
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.200000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.200000
 		WeaponName="PS9 7mm Tranq Pistol"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

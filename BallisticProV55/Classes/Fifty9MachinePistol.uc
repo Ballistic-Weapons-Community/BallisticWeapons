@@ -327,9 +327,6 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=114),Color2=(B=99,G=228),StartSize1=126,StartSize2=33)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
     NDCrosshairChaosFactor=0.300000
-	
-	SightPivot=(Pitch=128)
-	SightOffset=(X=-7.000000,Z=10.80000)
 	SightZoomFactor=1.2
 	ParamsClasses(0)=Class'Fifty9WeaponParamsComp'	
 	ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
@@ -341,13 +338,17 @@ defaultproperties
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
-	Description="Krome Firepower is a reletively new arms company, with the aim of producing guns with 'style'. The Fifty-9 is one such weapon. Taking an original small arm, and replacing certain parts, adding new attachments, custom paint jobs, etc. Krome weapons are designed for civilian purposes, self defense, bounty hunters, enthusiasts, and collectors. This particular model comes with attached Krome blades, to add some extra flair to the weapon."
+	Description="Krome Firepower is a relatively new arms company created with the aim of producing guns with 'style'. The Fifty-9 is one such weapon. Taking an original small arm, and replacing certain parts, adding new attachments, custom paint jobs, etc. Krome weapons are designed for civilian purposes, self defense, bounty hunters, enthusiasts, and collectors. This particular model comes with attached Krome blades, to add some extra flair to the weapon."
 	Priority=31
 	HudColor=(B=255,G=125,R=75)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	PickupClass=Class'BallisticProV55.Fifty9Pickup'
-	PlayerViewOffset=(X=7.000000,Y=3.000000,Z=-10.000000)
+
+	PlayerViewOffset=(X=10,Y=4,Z=-6)
+	SightOffset=(X=-10,Z=3.3)
+	SightPivot=(Pitch=128)
+
 	AttachmentClass=Class'BallisticProV55.Fifty9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_Fifty9'
 	IconCoords=(X2=127,Y2=31)

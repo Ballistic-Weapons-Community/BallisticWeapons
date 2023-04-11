@@ -137,13 +137,12 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=10
      PickupClass=Class'BWBP_SKC_Pro.G28Pickup'
-     PlayerViewOffset=(X=30.000000,Z=-12.000000)
+     PlayerViewOffset=(X=16.000000,Z=-8.500000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.G28Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.G28.SmallIcon_G28'
      IconCoords=(X2=127,Y2=31)
      ItemName="FMD G28 Medicinal Aerosol"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_G28'
-     DrawScale=0.400000
+     DrawScale=0.300000
 }

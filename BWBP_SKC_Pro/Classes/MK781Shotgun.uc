@@ -657,17 +657,12 @@ defaultproperties
 	bCanSkipReload=True
 	bShovelLoad=True
 	StartShovelAnim="ReloadStart"
-	StartShovelAnimRate=1.500000
-	ReloadAnimRate=1.5
 	EndShovelAnim="ReloadEnd"
-	EndShovelAnimRate=1.500000
 	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
 	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
-	SightOffset=(X=30.000000,Y=-7.660000,Z=13.940000)
-	SightDisplayFOV=20.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MK781WeaponParamsComp'
 	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
@@ -685,8 +680,11 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BWBP_SKC_Pro.MK781Pickup'
-	PlayerViewOffset=(X=-12.000000,Y=10.000000,Z=-12.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=15.00,Y=9.00,Z=-11.50)
+	SightOffset=(X=4.20,Y=0.01,Z=6.97)
+	SightAnimScale=0.75
+
 	AttachmentClass=Class'BWBP_SKC_Pro.MK781Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.M1014.SmallIcon_M1014'
 	IconCoords=(X2=127,Y2=35)
@@ -698,7 +696,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MK781'
-	DrawScale=0.130000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.M1014.M1014-Shine'
 	Skins(2)=Shader'BWBP_SKC_Tex.M1014.M1014-MiscShine'

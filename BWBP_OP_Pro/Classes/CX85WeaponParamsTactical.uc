@@ -104,8 +104,6 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//SightOffset=(X=15.000000,Y=-0.6,Z=34.000000)
-		CockAnimRate=1.200000
-		ReloadAnimRate=0.85
 		PlayerSpeedFactor=0.95
 		InventorySize=6
 		SightMoveSpeedFactor=0.35

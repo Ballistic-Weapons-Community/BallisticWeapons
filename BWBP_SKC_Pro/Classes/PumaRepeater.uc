@@ -850,8 +850,6 @@ defaultproperties
      WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation")
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     //SightPivot=(Pitch=150)
-     //SightOffset=(Y=0.250000,Z=16.299999)
      GunLength=48.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.PumaPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.PumaSecondaryFire'
@@ -860,13 +858,17 @@ defaultproperties
      AIRating=0.600000
      CurrentRating=0.600000
      bShowChargingBar=True
-	 SightBobScale=0.35
+	 SightBobScale=0.35f
      Description="PUMA-77 Repeating Pulse Rifle||Manufacturer: Majestic Firearms 12|Primary: Programmable Smart Round|Secondary: Shield Projector||The Type-77 RPR, better known as the 'PUMA', is one of the more recognizable light grenade launchers on the market. It was used extensively by the UTC before their widespread adoption of the SRAC-21/G during the first Skrith war. This powerful weapon differs from other conventional grenade launchers in that it utilizes specialized fission batteries as ammunition, which both power and act as the carrier of the projectile. The projectiles themselves can be programmed by the side-mounted rangefinding module and allow soldiers to selectively airburst the rounds to hit targets behind cover. The PUMA-77s seen here are equipped with Frontier Tech's lightweight X57 shield projector, which is a reverse-engineered prototype of the Skrith personal energy shields."
      Priority=245
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
-     PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-13.000000)
+
+     PlayerViewOffset=(X=5.00,Y=4.00,Z=-3.50)
+     SightOffset=(X=-3.00,Y=0.00,Z=2.00)
+	 SightPivot=(Pitch=150)
+
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)
@@ -882,7 +884,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
      ParamsClasses(3)=Class'PUMAWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
-     DrawScale=0.360000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.PUMA.PUMA-MainShine'
      Skins(2)=Shader'BWBP_SKC_Tex.PUMA.PUMA-BackShine'

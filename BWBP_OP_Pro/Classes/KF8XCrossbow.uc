@@ -493,7 +493,6 @@ defaultproperties
 	ReleaseStateAnim[4]="ReloadMagReleaseState2"	//6 ammo
 	ReleaseStateAnim[5]="ReloadMagReleaseState1"	//7 ammo
 	ReloadAnim="ReloadStateFinish"
-    ReloadAnimRate=1.25
 	GunArrowBone="1"
 	ArrowBones(0)=(BoneName="2")
 	ArrowBones(1)=(BoneName="3")
@@ -524,7 +523,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockAnim='CockRotateMag'
-	CockAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
@@ -533,8 +531,7 @@ defaultproperties
 	ScopeViewTex=Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1'
 	FullZoomFOV=50.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=4.000000,Y=5.000000,Z=5.100000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=0,Y=0,Z=0)
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=3
@@ -557,7 +554,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BWBP_OP_Pro.KF8XPickup'
-	PlayerViewOffset=(X=2.000000,Y=1.000000,Z=-6.000000)
+	PlayerViewOffset=(X=9,Y=6,Z=-6)
 	AttachmentClass=Class'BWBP_OP_Pro.KF8XAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.XBow.Icon_Crossbow'
 	IconCoords=(X2=127,Y2=31)
@@ -569,7 +566,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Crossbow'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.XBow.XBow_SH1'
 }

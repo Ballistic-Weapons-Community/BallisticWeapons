@@ -535,7 +535,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Cock',Volume=0.650000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipIn')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
@@ -546,9 +545,11 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
-	PlayerViewOffset=(X=-5.000000,Y=10.000000,Z=-22.000000)
-	SightDisplayFOV=25.000000
+
+	PlayerViewOffset=(X=5.000000,Y=4.50000,Z=-6.000000)
+	SightOffset=(X=0.000000,Y=0.06,Z=2.22)
+	SightAnimScale=0.4
+
 	GunLength=72.000000
 	ParamsClasses(0)=Class'SRXWeaponParamsComp'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'
@@ -569,7 +570,6 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.SRXPickup'
-
 	AttachmentClass=Class'BWBP_SKC_Pro.SRXAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.SRX.SmallIcon_SRXRifle'
 	IconCoords=(X2=127,Y2=31)
@@ -581,7 +581,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_SRX'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark'
     Skins(2)=Texture'BWBP_OP_Tex.SRX.SRX-StockBlack'

@@ -339,9 +339,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.700000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
-	ReloadAnimRate=0.70000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Out',Volume=1.500000)
 	ClipInFrame=0.850000
@@ -356,8 +354,6 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)
 	
 	bNoCrosshairInScope=True
-	SightPivot=(Roll=-1024)
-	SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 	MinZoom=4.000000
 	MaxZoom=32.000000
 	ZoomStages=3
@@ -386,8 +382,11 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
-	PlayerViewOffset=(X=4.000000,Y=6.000000,Z=-7.500000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=7.00,Y=4.50,Z=-3.00)
+	SightOffset=(X=5.00,Y=0.00,Z=0.75)
+	SightPivot=(Roll=-1024)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.X82Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.X82.SmallIcon_X82'
 	IconCoords=(X2=127,Y2=31)
@@ -399,7 +398,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83'
-	DrawScale=0.450000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'
 	Skins(2)=Texture'BW_Core_WeaponTex.Ammo.ClassicSniperAmmoT'

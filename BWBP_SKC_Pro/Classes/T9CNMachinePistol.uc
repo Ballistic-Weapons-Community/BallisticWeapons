@@ -194,11 +194,13 @@ defaultproperties
 	GroupOffset=12
 	BobDamping=2f 
 	bNoCrosshairInScope=True
-	SightBobScale=0.15f
-	SightPivot=(Pitch=128)
-	SightOffset=(X=3.000000,Y=-2.110000,Z=9.15000)
 	PickupClass=Class'BWBP_SKC_Pro.T9CNPickup'
-	PlayerViewOffset=(X=-2.000000,Y=4.00000,Z=-8.000000)
+
+	PlayerViewOffset=(X=4.00,Y=3.00,Z=-6.00)
+	SightOffset=(X=-3.00,Y=0.00,Z=1.73)
+	SightPivot=(Pitch=128)
+	SightBobScale=0.15f
+
 	AttachmentClass=Class'BWBP_SKC_Pro.T9CNAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.T9CN.SmallIcon_BerSilver'
 	IconCoords=(X2=127,Y2=31)
@@ -210,5 +212,5 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CNRC'
-	DrawScale=0.200000
+	DrawScale=0.300000
 }

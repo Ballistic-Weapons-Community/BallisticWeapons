@@ -452,11 +452,8 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
 	
-	CockAnimRate=1.25
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=64)
-	SightOffset=(X=22.000000,Y=0.01,Z=11.500000)
-	SightBobScale=0.15f
+
 	AIRating=0.8
 	CurrentRating=0.8
 	SightZoomFactor=1.2
@@ -474,9 +471,14 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=1
-	SightAnimScale=0.75
+	SightAnimScale=0.45f
 	PickupClass=Class'BallisticProV55.XK2Pickup'
-	PlayerViewOffset=(X=-8.000000,Y=5.000000,Z=-12.000000)
+
+	PlayerViewOffset=(X=10.00,Y=9.00,Z=-12.00)
+	SightOffset=(X=6.00,Y=0.02,Z=3.75)
+	SightPivot=(Pitch=64)
+	SightBobScale=0.2f
+
 	AttachmentClass=Class'BallisticProV55.Xk2Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XK2'
 	IconCoords=(X2=127,Y2=31)
@@ -488,7 +490,7 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XK2'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
     Skins(2)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'

@@ -482,9 +482,6 @@ defaultproperties
      MeleeFireClass=Class'BWBP_SKC_Pro.CoachGunMeleeFire'
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-     CockAnimRate=0.700000
-     SingleReloadAnimRate=1.500000
-     ReloadAnimRate=1.500000
      ClipInFrame=0.800000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)
@@ -494,7 +491,6 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,A=101),Color2=(G=0,R=0),StartSize1=92,StartSize2=82)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
      NDCrosshairChaosFactor=0.600000
-     SightOffset=(X=20.000000,Y=2.800000,Z=6.000000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
@@ -514,7 +510,10 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=7
      PickupClass=Class'BWBP_SKC_Pro.CoachGunPickup'
-     PlayerViewOffset=(X=-10.000000,Y=4.000000,Z=-10.000000)
+
+     PlayerViewOffset=(X=4.00,Y=4.50,Z=-7.00)
+	 SightOffset=(X=-2.500000,Y=0,Z=1.2)
+
      AttachmentClass=Class'BWBP_SKC_Pro.CoachGunAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.CoachGun.SmallIcon_Coach'
      IconCoords=(X2=127,Y2=40)

@@ -118,7 +118,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		SightOffset=(X=-4.00,Y=0.01,Z=1.10)
 		SightPivot=(Pitch=150)
 		//Function
 		InventorySize=4
@@ -126,8 +126,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=6
-		ReloadAnimRate=1.100000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.100000
+		//CockAnimRate=1.000000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -146,7 +146,7 @@ defaultproperties
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=1f)
 		SightPivot=(Pitch=150)
-		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		SightOffset=(X=0.00,Y=0.01,Z=2.40)
 		//Function
 		InventorySize=4
 		PlayerSpeedFactor=1.050000
@@ -154,8 +154,8 @@ defaultproperties
 		SightingTime=0.250000
 		MagAmmo=6
 		bMagPlusOne=True
-		ReloadAnimRate=1.100000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.100000
+		//CockAnimRate=1.000000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")

@@ -166,13 +166,14 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		//Function
-		CockAnimRate=1.10000
-		ReloadAnimRate=1.10000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		PlayerJumpFactor=1
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.4	
 		// Zoom
@@ -192,10 +193,10 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
-		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		//Function
-		CockAnimRate=1.10000
-		ReloadAnimRate=1.10000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		InventorySize=6
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.350000		

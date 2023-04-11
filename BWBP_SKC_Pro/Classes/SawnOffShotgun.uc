@@ -483,16 +483,12 @@ defaultproperties
      MeleeFireClass=Class'BWBP_SKC_Pro.SawnOffMeleeFire'
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-     CockAnimRate=0.700000
-     SingleReloadAnimRate=1.500000
-     ReloadAnimRate=1.000000
      ClipInFrame=0.800000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)
      WeaponModes(1)=(ModeName="Slug",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
@@ -515,7 +511,10 @@ defaultproperties
      InventoryGroup=2
 	 GroupOffset=16
      PickupClass=Class'BWBP_SKC_Pro.SawnOffPickup'
-     PlayerViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
+
+     PlayerViewOffset=(X=16.00,Y=7.00,Z=-3.50)
+     SightOffset=(X=-37.00,Y=0.00,Z=4.35)
+
      AttachmentClass=Class'BWBP_SKC_Pro.SawnOffAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.TechSawnOff.SmallIcon_SawnOff'
      IconCoords=(X2=127,Y2=38)
@@ -527,7 +526,7 @@ defaultproperties
      LightBrightness=180.000000
      LightRadius=5.000000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_ScifiSawnOff'
-     DrawScale=1.250000
+     DrawScale=0.3
      bShowChargingBar=True
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Texture'BWBP_SKC_Tex.TechSawnOff.mat_doublebarrel_2D_View'

@@ -244,8 +244,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
@@ -269,8 +269,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="MARS-3 Adv Assault Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -285,7 +285,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
@@ -297,8 +297,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -313,7 +313,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		SightOffset=(X=23.000000,Y=-7.370000,Z=27.010000)
+		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
@@ -325,8 +325,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

@@ -74,7 +74,7 @@ defaultproperties
 
     Begin Object Class=RecoilParams Name=TacticalRecoilParams
         ViewBindFactor=0.65
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.8
         XCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.400000,OutVal=0.120000),(InVal=0.600000,OutVal=0.15000),(InVal=0.750000,OutVal=0.250000),(InVal=1.000000,OutVal=0.32)))
         YCurve=(Points=(,(InVal=0.5,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.15
@@ -107,7 +107,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=22.000000,Y=-10.000000,Z=21.000000)
+		SightOffset=(X=-4.00,Y=0.01,Z=1.10)
 		SightPivot=(Pitch=150)
 		//Function
 		InventorySize=5
@@ -128,7 +128,7 @@ defaultproperties
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=1f)
 		SightPivot=(Pitch=150)
-		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		SightOffset=(X=0.00,Y=0.01,Z=2.40)
 		//Function
 		InventorySize=5
 		SightMoveSpeedFactor=0.6

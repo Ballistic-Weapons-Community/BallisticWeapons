@@ -727,7 +727,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Putaway')
 	PutDownAnimRate=1.4
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalIn',Volume=0.700000)
 	ClipInFrame=0.700000
@@ -737,7 +736,6 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
 	WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=-10.000000,Z=10.000000)
 	GunLength=128.000000
 	ParamsClasses(0)=Class'RSNovaWeaponParamsComp'
 	ParamsClasses(1)=Class'RSNovaWeaponParamsClassic'
@@ -762,7 +760,10 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.RSNovaPickup'
-	PlayerViewOffset=(X=10.000000,Y=5.000000,Z=-7.500000)
+	
+	PlayerViewOffset=(X=10.000000,Y=5.000000,Z=-4.500000)
+	SightOffset=(X=-10.000000,Z=5.500000)
+
 	AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.SmallIcon_NovaStaff'
 	IconCoords=(X2=127,Y2=31)

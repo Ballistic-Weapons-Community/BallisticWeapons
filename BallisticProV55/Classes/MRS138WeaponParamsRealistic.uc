@@ -120,8 +120,8 @@ defaultproperties
 		//ViewOffset=(X=-1.000000,Y=8.500000,Z=-16.000000)
 		//SightOffset=(X=-3.000000,Z=17.150000)
 		SightPivot=(Pitch=0,Yaw=0,Roll=0)
-		ReloadAnimRate=1.250000
-		CockAnimRate=1.400000
+		//ReloadAnimRate=1.250000
+		//CockAnimRate=1.400000
 		WeaponName="MRS138 10ga Riot Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

@@ -220,9 +220,6 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Small Burst",Value=5.000000)
 	bUseSights=False
-	SightPivot=(Pitch=900,Roll=-800)
-	SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
-	SightDisplayFOV=40.000000
 	GunLength=0.100000
 	AIRating=0.6
 	CurrentRating=0.6
@@ -243,7 +240,11 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.MRDRPickup'
-	PlayerViewOffset=(X=-5.000000,Y=6.000000,Z=-8.000000)
+
+	PlayerViewOffset=(X=5.00,Y=7.00,Z=-4.00)
+	SightOffset=(X=-5.00,Y=-0.6,Z=7.10)
+	SightPivot=(Pitch=900,Roll=-800)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.MRDRAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MRDR.SmallIcon_MRDR'
 	IconCoords=(X2=127,Y2=31)

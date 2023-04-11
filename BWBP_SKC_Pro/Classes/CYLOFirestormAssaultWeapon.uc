@@ -702,15 +702,16 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=22
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.400000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
+
+	PlayerViewOffset=(X=2.00,Y=4.00,Z=-4.00)
+	SightOffset=(X=7.00,Y=0.01,Z=2.3)
 	SightPivot=(Pitch=256)
-	SightOffset=(X=18.000000,Y=13.565000,Z=21.25000)
-	PlayerViewOffset=(X=0,Y=-2.5,Z=-17)
+
 	bNoCrosshairInScope=True
 	GunLength=16.500000
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParamsComp' 
@@ -736,8 +737,6 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=9
 	PickupClass=Class'BWBP_SKC_Pro.CYLOFirestormPickup'
-
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
 	IconCoords=(X2=127,Y2=31)
@@ -749,5 +748,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

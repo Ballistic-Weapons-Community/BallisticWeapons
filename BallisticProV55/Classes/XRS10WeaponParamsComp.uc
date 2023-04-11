@@ -84,6 +84,8 @@ defaultproperties
 		bDualBlocked=True
 		//SightOffset=(X=-15.000000,Z=9.500000)
 		DisplaceDurationMult=0.5
+		ReloadAnimRate=1.250000
+		CockAnimRate=1.250000
 		MagAmmo=30
 		SightingTime=0.200000
         InventorySize=3

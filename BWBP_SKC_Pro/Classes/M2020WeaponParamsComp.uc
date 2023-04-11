@@ -171,6 +171,8 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=10
         ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		RecoilParams(0)=RecoilParams'ArenaRechargeRecoilParams'
 		RecoilParams(1)=RecoilParams'ArenaPowerRecoilParams'
 		RecoilParams(2)=RecoilParams'ArenaOfflineRecoilParams'

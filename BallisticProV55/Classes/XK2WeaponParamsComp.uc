@@ -111,6 +111,8 @@ defaultproperties
 		bDualBlocked=True
 		DisplaceDurationMult=0.75
 		SightMoveSpeedFactor=0.9
+		ReloadAnimRate=1.250000
+		CockAnimRate=1.250000
 		MagAmmo=30
 		SightingTime=0.250000
 		SightPivot=(Pitch=64)

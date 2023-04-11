@@ -442,8 +442,12 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
+	SightPivot=(Roll=11800)
+	SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
+
 	ScopeSightPivot=(Pitch=50)
-	ScopeSightOffset=(X=35.000000,Y=0.050000,Z=12.550000)
+	ScopeSightOffset=(X=2.4,Z=5.7)
+
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.R9A1.BigIcon_R9A1'
 	
@@ -454,9 +458,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
@@ -467,9 +469,6 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=25.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Roll=11800)
-	SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)
-	SightDisplayFOV=25.000000
 	GunLength=80.000000
 	ParamsClasses(0)=Class'R9A1WeaponParamsComp'
 	ParamsClasses(1)=Class'R9A1WeaponParamsClassic'
@@ -493,7 +492,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=3
 	PickupClass=Class'BWBP_OP_Pro.R9A1Pickup'
-	PlayerViewOffset=(X=-5,Y=12.00000,Z=-13.000000)
+	PlayerViewOffset=(X=7,Y=5.30000,Z=-7.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.R9A1Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.R9A1.SmallIcon_R9A1'
 	IconCoords=(X2=127,Y2=31)
@@ -505,5 +504,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_R9A1'
-	DrawScale=0.500000
+	DrawScale=0.300000
+	SightAnimScale=0.25
 }

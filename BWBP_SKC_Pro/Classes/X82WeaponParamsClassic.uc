@@ -103,8 +103,8 @@ defaultproperties
 		//SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 		SightPivot=(Roll=-1024)
 		ZoomType=ZT_Logarithmic
-		CockAnimRate=1.000000
-		ReloadAnimRate=0.400000
+		//CockAnimRate=1.000000
+		//ReloadAnimRate=0.400000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

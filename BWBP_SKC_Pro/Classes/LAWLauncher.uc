@@ -346,7 +346,6 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=10.000000
 	bNoCrosshairInScope=True
-	SightOffset=(Y=6.000000,Z=15.000000)
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=6
@@ -378,8 +377,10 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LAWPickup'
-	PlayerViewOffset=(X=-5.000000,Y=-3,Z=-5.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=1.00,Y=4.00,Z=5.00)
+	SightOffset=(X=12.00,Y=-1.25,Z=1.90)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.LAWAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LAW.SmallIcon_LAW'
 	IconCoords=(X2=127,Y2=31)
@@ -391,5 +392,5 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LAW'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

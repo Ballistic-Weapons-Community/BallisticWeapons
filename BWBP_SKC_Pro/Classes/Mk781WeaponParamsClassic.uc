@@ -199,7 +199,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=20.000000,Y=-7.645,Z=11.90000)
+		SightOffset=(X=-5.00,Y=0.08,Z=2.65)
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
 		InventorySize=7
@@ -207,8 +207,8 @@ defaultproperties
 		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=6
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -226,15 +226,15 @@ defaultproperties
 		Weight=10
 		LayoutName="Red Dot Sight"
 		//Attachments
-		SightOffset=(X=30.000000,Y=-7.660000,Z=13.940000)
+		SightOffset=(X=4.20,Y=0.01,Z=6.97)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=6
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

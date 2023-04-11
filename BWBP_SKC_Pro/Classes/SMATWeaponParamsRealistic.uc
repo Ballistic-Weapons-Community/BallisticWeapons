@@ -90,8 +90,8 @@ defaultproperties
 		MagAmmo=2
 		//ViewOffset=(X=9.000000,Y=9.500000,Z=-3.000000)
 		//SightOffset=(X=20.000000,Y=15.000000,Z=-10.000000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="S.M.A.T. 105mm Recoilless Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

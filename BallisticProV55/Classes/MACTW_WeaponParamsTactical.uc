@@ -79,7 +79,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		ReloadAnimRate=1.25
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9

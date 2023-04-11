@@ -143,6 +143,8 @@ defaultproperties
 		SightPivot=(Pitch=1024)
 		DisplaceDurationMult=1
 		MagAmmo=24
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

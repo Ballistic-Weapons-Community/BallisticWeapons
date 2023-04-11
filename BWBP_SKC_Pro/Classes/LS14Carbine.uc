@@ -1033,7 +1033,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-	ReloadAnimRate=1.150000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
@@ -1051,8 +1050,6 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=600,Roll=-1024)
-	SightOffset=(X=26.000000,Y=-8.500000,Z=22.500000)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
@@ -1079,8 +1076,11 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=4
 	PickupClass=Class'BWBP_SKC_Pro.LS14Pickup'
-	PlayerViewOffset=(X=-10.000000,Y=9.500000,Z=-15.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=2.00,Y=4.50,Z=-7.00)
+	SightOffset=(X=11.00,Y=-0.5,Z=7.50)
+	SightPivot=(Pitch=600,Roll=-1024)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.LS14Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LS14.SmallIcon_LS14'
 	IconCoords=(X2=127,Y2=31)

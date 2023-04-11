@@ -117,8 +117,8 @@ defaultproperties
 		MagAmmo=4
 		//SightOffset=(X=0.000000,Y=5.300000,Z=23.300000)
 		ZoomType=ZT_Fixed
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="AT40 STREAK 66mm Incendiary Rocket Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

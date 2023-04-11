@@ -114,7 +114,7 @@ defaultproperties
 		MaxZoom=3
 		ScopeScale=0.65
 		SightPivot=(Pitch=600,Roll=-1024)
-		SightOffset=(Y=-1.000000,Z=12.500000)
+		SightOffset=(X=-1,Y=0.050000,Z=3.9)
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
@@ -127,7 +127,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6
-		SightOffset=(X=5,Y=0.050000,Z=11.350000)
+		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

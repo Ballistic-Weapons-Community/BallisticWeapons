@@ -205,7 +205,6 @@ defaultproperties
      CockAnim="CockQuick"
      //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
 	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock')
-     ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipOut')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipIn')
@@ -225,8 +224,6 @@ defaultproperties
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
      bNoCrosshairInScope=True
-     SightPivot=(Roll=-1024)
-     SightOffset=(X=18.000000,Y=-1.600000,Z=17.000000)
      MinZoom=4.000000
      MaxZoom=16.000000
      ZoomStages=2
@@ -249,7 +246,9 @@ defaultproperties
      InventoryGroup=9
      GroupOffset=2
      PickupClass=Class'BallisticProV55.R78Pickup'
-     PlayerViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
+     PlayerViewOffset=(X=8.5,Y=4.500000,Z=-6)
+     SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
+	 SightPivot=(Roll=-1024)
      AttachmentClass=Class'BallisticProV55.R78Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_R78'
      IconCoords=(X2=127,Y2=31)
@@ -261,5 +260,5 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=5.000000
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R78'
-     DrawScale=0.450000
+     DrawScale=0.3
 }

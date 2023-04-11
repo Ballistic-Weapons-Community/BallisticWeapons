@@ -90,6 +90,8 @@ defaultproperties
 		SightingTime=0.40000		
 		DisplaceDurationMult=1
 		MagAmmo=6
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

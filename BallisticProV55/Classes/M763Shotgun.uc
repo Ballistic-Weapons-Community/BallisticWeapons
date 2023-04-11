@@ -330,10 +330,8 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
-	CockAnimRate=1.100000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Cock1')
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=1.100000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763LoadShell1')
 	ClipInFrame=0.375000
 	bCockOnEmpty=True
@@ -349,9 +347,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=25.000000,Z=12.900000)
-	SightDisplayFOV=60.000000
-	SightPivot=(Pitch=128)
+
 	GunLength=48.000000
 	ParamsClasses(0)=Class'M763WeaponParamsComp'
 	ParamsClasses(1)=Class'M763WeaponParamsClassic' //todo: primary anim, alt + melee
@@ -372,13 +368,14 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
-	PlayerViewOffset=(X=-10,Y=8.000000,Z=-14.000000)
+	PlayerViewOffset=(X=3.00,Y=4.00,Z=-5.00)
+	SightOffset=(X=0,Y=0,Z=2.2)
+	SightPivot=(Pitch=128)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M763'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M763 Shotgun"
 	bNoCrosshairInScope=True
-	BobDamping=0.8
 	SightBobScale=0.35
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
@@ -387,5 +384,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M763'
-	DrawScale=0.500000
+	DrawScale=0.3
 }

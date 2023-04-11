@@ -251,17 +251,13 @@ defaultproperties
     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
-	ReloadAnimRate=1.150000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
-	SightAnimScale=0.75
-	SightOffset=(X=-6.000000,Z=7.100000)
-	SightBobScale=0.5
+
 
 	ParamsClasses(0)=Class'M925WeaponParamsComp'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
@@ -284,8 +280,13 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	GroupOffset=1
+	
 	PickupClass=Class'BallisticProV55.M925Pickup'
-	PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-7.000000)
+	PlayerViewOffset=(X=5.00,Y=6.00,Z=-8.00)
+	SightOffset=(X=-4.00,Y=0.00,Z=3.4)
+	SightAnimScale=0.75
+	SightBobScale=0.5
+
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'
 	IconCoords=(X2=127,Y2=31)
@@ -297,7 +298,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925'
-	DrawScale=0.140000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Main'
 	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Small'

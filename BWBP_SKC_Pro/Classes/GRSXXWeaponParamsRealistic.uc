@@ -200,8 +200,8 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
 		WeaponModes(3)=(ModeName="Amp: Hypermode",ModeID="WM_FullAuto",RecoilParamsIndex=1,bUnavailable=True)
 		InitialWeaponMode=2
-		ReloadAnimRate=0.700000
-		CockAnimRate=1.400000
+		//ReloadAnimRate=0.700000
+		//CockAnimRate=1.400000
 		WeaponName="GRS-XX 9mm Golden Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'

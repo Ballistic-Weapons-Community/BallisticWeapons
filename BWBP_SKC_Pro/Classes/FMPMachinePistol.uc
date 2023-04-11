@@ -354,9 +354,7 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Amplified: Incendiary",ModeID="WM_FullAuto",bUnavailable=True)
 	WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_FullAuto",bUnavailable=True)
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50In',Color1=(A=158),StartSize1=75,StartSize2=72)
-	SightOffset=(X=22.000000,Y=-7.690000,Z=18.900000)
-	SightDisplayFOV=40.000000
-	SightingTime=0.200000
+
 	AIRating=0.8
 	CurrentRating=0.8
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FMPPrimaryFire'
@@ -369,8 +367,12 @@ defaultproperties
 	InventoryGroup=3
 	bNoCrosshairInScope=True
 	PickupClass=Class'BWBP_SKC_Pro.FMPPickup'
-	PlayerViewOffset=(X=-13.000000,Y=9.500000,Z=-16.000000)
-	BobDamping=2.000000
+
+	PlayerViewOffset=(X=4.00,Y=3.00,Z=-4.50)
+	SightOffset=(X=-3.50,Y=0.01,Z=1.65)
+	SightingTime=0.200000
+	SightZoomFactor=1.2 // smg
+
 	AttachmentClass=Class'BWBP_SKC_Pro.FMPAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MP40.SmallIcon_MP40'
 	IconCoords=(X2=127,Y2=31)

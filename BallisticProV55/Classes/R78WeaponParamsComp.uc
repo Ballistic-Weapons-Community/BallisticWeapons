@@ -70,7 +70,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
         ZoomType=ZT_Logarithmic
-		SightOffset=(X=18.000000,Y=-1.600000,Z=17.000000)
+     	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
 		SightPivot=(Roll=-1024)
 		SightingTime=0.4500
 		ScopeScale=0.6

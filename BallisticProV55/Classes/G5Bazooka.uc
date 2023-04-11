@@ -698,10 +698,9 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=1.250000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Load')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-LoadHatch')
 	bCanSkipReload=True
@@ -728,10 +727,8 @@ defaultproperties
 
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.G5OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=228),Color2=(B=0,G=255,R=255,A=228),StartSize1=97,StartSize2=103)
- 
 
 	bNoCrosshairInScope=True
-	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	SightingTime=0.500000
 	ParamsClasses(0)=Class'G5WeaponParamsComp'
 	ParamsClasses(1)=Class'G5WeaponParamsClassic' //todo: seeker stats
@@ -755,6 +752,7 @@ defaultproperties
 	InventoryGroup=8
 	PickupClass=Class'BallisticProV55.G5Pickup'
 	PlayerViewOffset=(X=0.000000,Y=8.00000,Z=-3.000000)
+	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	AttachmentClass=Class'BallisticProV55.G5Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_G5'
 	IconCoords=(X2=127,Y2=31)

@@ -371,7 +371,6 @@ defaultproperties
 	CockAnimPostReload="ReloadEndCock"
 	//CockingBringUpTime=1.300000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=3.500000)
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipHit',Volume=3.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipOut',Volume=3.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipIn',Volume=3.500000)
@@ -381,9 +380,12 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
 	WeaponModes(1)=(bUnavailable=True)
 	bNoCrosshairInScope=True
+
+	PlayerViewOffset=(X=5.00,Y=3.50,Z=-4.500000)
+	SightOffset=(X=-6.500000,Y=0.02,Z=2.55)
 	SightPivot=(Pitch=64)
-	SightOffset=(X=22.000000,Y=-10.020000,Z=20.600000)
-	PlayerViewOffset=(X=-15.000000,Y=11.000000,Z=-16.000000)
+	SightAnimScale=0.75
+
 	ParamsClasses(0)=Class'AK490WeaponParamsComp'
 	ParamsClasses(1)=Class'AK490WeaponParamsClassic'
 	ParamsClasses(2)=Class'AK490WeaponParamsRealistic'
@@ -405,8 +407,7 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.AK490Pickup'
-	BobDamping=1.5
-	SightBobScale=0.15
+	SightBobScale=0.15f
 	AttachmentClass=Class'BWBP_SKC_Pro.AK490Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AK490.SmallIcon_AK490'
 	IconCoords=(X2=127,Y2=31)
@@ -418,6 +419,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AK490'
-	DrawScale=0.350000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

@@ -125,7 +125,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=1f)
-		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400000)
+		SightOffset=(X=18.5000000,Y=0,Z=2.75)
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		SightingTime=0.300000
@@ -152,7 +152,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-7.350000,Z=45.400002)
+		SightOffset=(X=-11,Y=0,Z=2.78)
 		ZoomType=ZT_Irons
 		SightingTime=0.250000
 		
@@ -179,7 +179,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
-		SightOffset=(X=-10.000000,Y=-7.350000,Z=41.700000)
+		SightOffset=(X=-11,Y=0,Z=1.39)
 		ZoomType=ZT_Irons
 		SightingTime=0.250000
 		

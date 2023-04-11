@@ -116,8 +116,6 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams
         WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
-		CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
         DisplaceDurationMult=0.5
         SightingTime=0.2
         SightMoveSpeedFactor=0.6

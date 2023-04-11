@@ -187,7 +187,7 @@ defaultproperties
     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
     FullZoomFOV=20.000000
     bNoCrosshairInScope=True
-    SightOffset=(X=35,Z=51.000000)
+    SightOffset=(X=13,Y=0.0,Z=0.000000)
     MinZoom=2.000000
     MaxZoom=8.000000
     ZoomStages=4
@@ -201,7 +201,6 @@ defaultproperties
     SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup')
     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
-    ReloadAnimRate=0.9
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.Law-TubeLock')
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
     ClipInFrame=0.650000
@@ -213,7 +212,6 @@ defaultproperties
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
     CurrentWeaponMode=0
     GunLength=60.000000
-    BobDamping=0.800000
     ParamsClasses(0)=Class'LightningWeaponParamsComp'
     ParamsClasses(1)=Class'LightningWeaponParamsComp'
     ParamsClasses(2)=Class'LightningWeaponParamsTactical'
@@ -234,7 +232,7 @@ defaultproperties
     InventoryGroup=9
     GroupOffset=2
     PickupClass=Class'BWBP_OP_Pro.LightningPickup'
-    PlayerViewOffset=(X=10.000000,Y=13.000000,Z=-35.000000)
+    PlayerViewOffset=(X=0.00,Y=4.50,Z=-2.00)
     AttachmentClass=Class'BWBP_OP_Pro.LightningAttachment'
     IconMaterial=Texture'BWBP_OP_Tex.Arc.SmallIcon_LightningRifle'
     IconCoords=(X2=127,Y2=31)
@@ -246,5 +244,5 @@ defaultproperties
     LightBrightness=150.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_LightningRifle'
-    DrawScale=0.800000
+    DrawScale=0.300000
 }

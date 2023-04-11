@@ -134,8 +134,8 @@ defaultproperties
 		SightPivot=(Pitch=32)
 		SightingTime=0.010000		
 		ZoomType=ZT_Logarithmic
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="Mounted FSSG-50 AMR"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
