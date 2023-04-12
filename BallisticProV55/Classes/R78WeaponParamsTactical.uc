@@ -19,7 +19,7 @@ defaultproperties
 		PenetrateForce=250
 		PenetrationEnergy=96
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-		Recoil=1024.000000
+		Recoil=2048.000000
 		Chaos=0.5
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
@@ -39,10 +39,10 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))
+		XCurve=(Points=(,(InVal=1.000000,OutVal=0.15)))
 		XRandFactor=0.25
 		YRandFactor=0.25
-        ClimbTime=0.075
+        ClimbTime=0.12
 		DeclineDelay=0.22
         DeclineTime=0.75
 		CrouchMultiplier=0.850000
@@ -99,8 +99,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
 		ZoomType=ZT_Irons
-		SightPivot=(Pitch=-32,Roll=-1024)
-		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		SightPivot=(Pitch=-64)
+		SightOffset=(X=5.00,Y=0.00,Z=1.9)
 		//Function
 		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		SightingTime=0.4

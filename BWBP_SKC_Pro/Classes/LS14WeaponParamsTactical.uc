@@ -18,7 +18,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
 		FlashScaleFactor=0.400000
-		Recoil=150.000000
+		Recoil=128.000000
 		Chaos=0.300000
 		BotRefireRate=0.99
 		WarnTargetPct=0.30000
@@ -26,7 +26,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.150000
+		FireInterval=0.250000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -47,7 +47,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Rocket-Launch')
 		FlashScaleFactor=2.600000
-		Recoil=256.000000
+		Recoil=512.000000
 		BotRefireRate=0.600000
 		WarnTargetPct=0.300000	
 	End Object

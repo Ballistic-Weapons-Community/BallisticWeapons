@@ -27,7 +27,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
         FlashScaleFactor=0.400000
-        Recoil=144.000000
+        Recoil=340.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 	    SplashDamage=False
 	    RecommendSplashDamage=False
@@ -51,7 +51,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
         FlashScaleFactor=0.400000
-        Recoil=144.000000
+        Recoil=210.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 	    SplashDamage=False
 	    RecommendSplashDamage=False
@@ -109,7 +109,7 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=6144
-		ClimbTime=0.04
+		ClimbTime=0.03
 		DeclineDelay=0.14
 		DeclineTime=1.1
 		CrouchMultiplier=1
@@ -125,7 +125,7 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=6144
-		ClimbTime=0.04
+		ClimbTime=0.03
 		DeclineDelay=0.14
 		DeclineTime=1.1
 		CrouchMultiplier=0.85

@@ -20,7 +20,7 @@ defaultproperties
      	DamageTypeHead=Class'BallisticProV55.DTXRS10SMGHead'
     	DamageTypeArm=Class'BallisticProV55.DTXRS10SMG'
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		Recoil=140.000000
+		Recoil=240.000000
      	Inaccuracy=(X=64,Y=64)
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
 	End Object
@@ -56,7 +56,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.220000),(InVal=0.400000,OutVal=0.400000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05
 		YRandFactor=0.05
-		MaxRecoil=4096.000000
+		MaxRecoil=6144.000000
 		ClimbTime=0.04
 		DeclineDelay=0.13
 		DeclineTime=0.75

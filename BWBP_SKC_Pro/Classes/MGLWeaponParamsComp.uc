@@ -13,7 +13,7 @@ defaultproperties
 		Damage=140
 		DamageRadius=768.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		Recoil=768.000000
+		Recoil=1536.000000
 		Chaos=0.650000
 		BotRefireRate=0.5
 		WarnTargetPct=0.75	
@@ -37,7 +37,7 @@ defaultproperties
 		Damage=140
 		DamageRadius=768.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		Recoil=768.000000
+		Recoil=1536.000000
 		Chaos=0.650000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
@@ -59,9 +59,9 @@ defaultproperties
 		YawFactor=0.000000
 		XRandFactor=0.400000
 		YRandFactor=0.400000
-		MaxRecoil=6144.000000
+		MaxRecoil=8192.000000
 		ClimbTime=0.06
-		DeclineDelay=0.5
+		DeclineDelay=0.25
 		DeclineTime=0.75
 		HipMultiplier=1.5
 	End Object

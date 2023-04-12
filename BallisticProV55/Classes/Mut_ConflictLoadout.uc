@@ -55,7 +55,6 @@ function PreBeginPlay()
 	{
 		log("Weapons: " $ ConflictWeapons[i].ClassName);	
 	}
-
 }
 //================================================
 // PostBeginPlay

@@ -763,6 +763,7 @@ defaultproperties
      PlayerViewOffset=(X=5.00,Y=3.50,Z=-4.00)
 	 SightOffset=(X=0.00,Y=0.00,Z=2.19)
 	 SightingTime=0.250000
+	 SightAnimScale=0.65
 
      PutDownTime=0.800000
      BringUpTime=1.000000

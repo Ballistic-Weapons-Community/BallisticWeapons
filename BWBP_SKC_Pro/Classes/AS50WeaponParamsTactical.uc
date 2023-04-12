@@ -67,7 +67,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.040000),(InVal=0.400000,OutVal=0.060000),(InVal=0.800000,OutVal=0.1300000),(InVal=1.000000,OutVal=0.17)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.45
 		YRandFactor=0.25

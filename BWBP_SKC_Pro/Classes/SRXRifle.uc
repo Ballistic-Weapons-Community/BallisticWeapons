@@ -547,7 +547,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 
 	PlayerViewOffset=(X=5.000000,Y=4.50000,Z=-6.000000)
-	SightOffset=(X=0.000000,Y=0.06,Z=2.22)
+	SightOffset=(X=0.000000,Y=0.06,Z=2.7)
 	SightAnimScale=0.4
 
 	GunLength=72.000000

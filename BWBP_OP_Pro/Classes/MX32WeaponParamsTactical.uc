@@ -27,7 +27,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.300000
-		Recoil=128
+		Recoil=100
 		Chaos=0.03
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)

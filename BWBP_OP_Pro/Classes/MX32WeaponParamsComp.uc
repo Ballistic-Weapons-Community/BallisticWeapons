@@ -19,7 +19,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.300000
-		Recoil=128
+		Recoil=100
 		Chaos=0.03
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M51.M51-Fire444',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
@@ -92,7 +92,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.200000
-		XCurve=(Points=(,(InVal=0.150000,OutVal=0.06),(InVal=0.40000,OutVal=0.21000),(InVal=0.6500000,OutVal=0.25000),(InVal=0.800000,OutVal=0.050000),(InVal=1.00000,OutVal=0.150000)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.04),(InVal=0.200000,OutVal=-0.02),(InVal=0.300000,OutVal=-0.04),(InVal=0.40000,OutVal=0.06000),(InVal=0.600000,OutVal=0.08000),(InVal=0.800000,OutVal=0.040000),(InVal=1.00000,OutVal=-0.020000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000

@@ -13,6 +13,7 @@ defaultproperties
         Speed=4200.000000
         Damage=120.000000
         DamageRadius=512.000000
+		Recoil=3072
         Chaos=0.700000
         Inaccuracy=(X=64,Y=64)
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.BOGP.BOGP_Fire',Volume=1.750000)
@@ -37,6 +38,7 @@ defaultproperties
         Damage=40.000000
         DamageRadius=64.000000
         MomentumTransfer=0.000000
+		Recoil=1536
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
         Chaos=0.700000
         Inaccuracy=(X=64,Y=64)

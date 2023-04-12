@@ -14,8 +14,8 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=TacticalPriEffectParams
         DecayRange=(Min=1050,Max=2100)
         PenetrationEnergy=16
-        Damage=45.000000
-        HeadMult=2.75f
+        Damage=70.000000
+        HeadMult=2.5f
         LimbMult=0.75f
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTAM67Pistol'
@@ -36,7 +36,7 @@ defaultproperties
     Begin Object Class=FireParams Name=TacticalPriFireParams
         AimedFireAnim="SightFire"
         FireEndAnim=
-        FireInterval=0.3
+        FireInterval=0.325
         FireEffectParams(0)=InstantEffectParams'TacticalPriEffectParams'
     End Object 
 

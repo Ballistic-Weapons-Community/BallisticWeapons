@@ -27,7 +27,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XMk5FlashEmitter'
 		FlashScaleFactor=0.800000
-		Recoil=150.000000
+		Recoil=180.000000
 		Chaos=0.035000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)

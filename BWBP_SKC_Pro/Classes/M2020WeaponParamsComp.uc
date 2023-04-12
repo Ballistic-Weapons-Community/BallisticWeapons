@@ -22,7 +22,7 @@ defaultproperties
 		PushbackForce=120.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
 		FlashScaleFactor=1.200000
-		Recoil=320.000000
+		Recoil=400.000000
 		Chaos=0.600000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.400000
@@ -54,7 +54,7 @@ defaultproperties
 		WallPDamageFactor=0.750000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
 		FlashScaleFactor=1.600000
-		Recoil=1024.000000
+		Recoil=2048.000000
 		Chaos=1.000000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.400000
@@ -107,7 +107,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRechargeRecoilParams
 		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.380000,OutVal=-0.0500000),(InVal=0.550000,OutVal=0.07000),(InVal=0.720000,OutVal=-0.10000),(InVal=1.000000,OutVal=-0.15)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
@@ -120,11 +120,11 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaPowerRecoilParams
 		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
+		XCurve=(Points=(,(InVal=1.000000,OutVal=0.16)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.2
 		YRandFactor=0.2
-		ClimbTime=0.1
+		ClimbTime=0.16
 		DeclineDelay=0.7
 		DeclineTime=1.00000
 		CrouchMultiplier=0.750000
@@ -133,7 +133,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaOfflineRecoilParams
 		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.800000,OutVal=0.010000),(InVal=1.000000,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.0500000
 		YRandFactor=0.0500000

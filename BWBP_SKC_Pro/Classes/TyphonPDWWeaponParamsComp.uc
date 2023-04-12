@@ -14,14 +14,14 @@ defaultproperties
 		DecayRange=(Min=1050,Max=2100)
 		PenetrationEnergy=32
 		TraceRange=(Max=6000.000000)
-		Damage=25.000000
-		RangeAtten=0.75
+		Damage=30.000000
+		RangeAtten=0.75f
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.TyphonPDWFlashEmitter'
-		FlashScaleFactor=0.350000
-		Recoil=48.000000
+		FlashScaleFactor=0.50000
+		Recoil=200.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Fire',Volume=9.500000,Slot=SLOT_Interact,bNoOverride=False)
 		BotRefireRate=0.900000
@@ -45,14 +45,14 @@ defaultproperties
 		DecayRange=(Min=1575,Max=3675)
 		TraceRange=(Max=6000.000000)
 		PenetrationEnergy=64
-		Damage=48.000000
-		RangeAtten=0.75
+		Damage=45.000000
+		RangeAtten=0.75f
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
-		FlashScaleFactor=0.350000
-		Recoil=140.000000
+		FlashScaleFactor=0.50000
+		Recoil=768.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Overblast',Volume=7.800000)
 		BotRefireRate=0.900000
@@ -60,7 +60,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParamsCharged
-		FireInterval=0.400000
+		FireInterval=0.225000
 		FireAnim="Fire"
 		AimedFireAnim="SightFire"
 		AmmoPerFire=2

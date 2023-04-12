@@ -19,7 +19,7 @@ defaultproperties
 			bPenetrate=True
 			MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
 			FlashScaleFactor=0.050000
-			Recoil=200.000000
+			Recoil=110.000000
 			WarnTargetPct=0.200000
 			FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
 		End Object

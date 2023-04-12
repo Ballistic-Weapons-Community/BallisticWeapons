@@ -19,7 +19,7 @@ defaultproperties
 		PushbackForce=255.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=768.000000
+		Recoil=3072.000000
 		Chaos=0.700000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.700000
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.750000
+		FireInterval=1.25
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -51,12 +51,13 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.1
-		XRandFactor=0.600000
-		YRandFactor=0.300000
+		XRandFactor=0.45
+		YRandFactor=0.25
+		MinRandFactor=0.45
 		MaxRecoil=8192
-		ClimbTime=0.08
-		DeclineDelay=0.75
-		DeclineTime=1.5
+		ClimbTime=0.2
+		DeclineDelay=0.35
+		DeclineTime=1
 		CrouchMultiplier=0.750000
 		HipMultiplier=2
 	End Object

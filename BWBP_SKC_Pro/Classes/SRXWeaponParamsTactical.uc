@@ -117,7 +117,7 @@ defaultproperties
 		ViewBindFactor=0.1
 		ADSViewBindFactor=0.85
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
-		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
+		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
 		XRandFactor=0.2
 		YRandFactor=0.2
 		ClimbTime=0.05
@@ -132,7 +132,7 @@ defaultproperties
 		ViewBindFactor=0.1
 		ADSViewBindFactor=0.85
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
-		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
+		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
 		YRandFactor=0.2
 		ClimbTime=0.05
 		DeclineDelay=0.32
@@ -146,7 +146,7 @@ defaultproperties
 		ViewBindFactor=0.1
 		ADSViewBindFactor=0.85
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
-		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
+		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
 		YRandFactor=0.08
 		ClimbTime=0.05
 		DeclineDelay=0.2
@@ -212,7 +212,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		//SightPivot=(Pitch=-128,Yaw=16)
-		SightOffset=(X=0.000000,Y=0.06,Z=2.22)
+		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
 		//Function
         SightingTime=0.35
 		MagAmmo=20

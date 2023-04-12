@@ -32,7 +32,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.750000
+		FireInterval=1.25
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -58,10 +58,10 @@ defaultproperties
 		ViewBindFactor=0.1
 		XRandFactor=0.45
 		YRandFactor=0.25
-		MinRandFactor=0.35
+		MinRandFactor=0.45
 		MaxRecoil=8192
-		ClimbTime=0.08
-		DeclineDelay=0.75
+		ClimbTime=0.2
+		DeclineDelay=0.35
 		DeclineTime=1.5
 		CrouchMultiplier=0.750000
 		HipMultiplier=2

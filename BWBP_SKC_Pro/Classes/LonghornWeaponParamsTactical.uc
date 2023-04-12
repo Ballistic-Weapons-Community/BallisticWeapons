@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
-		Recoil=1024.000000
+		Recoil=2048.000000
 		PushbackForce=300.000000
 		Chaos=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
@@ -37,7 +37,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
-		Recoil=1024.000000
+		Recoil=2048.000000
      	PushbackForce=800.000000
      	Chaos=1.000000
 		Inaccuracy=(X=256,Y=256)
@@ -70,8 +70,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		XRandFactor=1.500000
 		YRandFactor=0.700000
-		ClimbTime=0.06
-		DeclineDelay=0.5
+		ClimbTime=0.08
+		DeclineDelay=0.25
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
 		MaxMoveMultiplier=2

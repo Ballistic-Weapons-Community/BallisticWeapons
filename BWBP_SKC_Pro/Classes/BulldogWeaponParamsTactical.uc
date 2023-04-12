@@ -22,7 +22,7 @@ defaultproperties
 		PushbackForce=3000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=1.100000
-		Recoil=1024.000000
+		Recoil=2560.000000
 		Chaos=1.000000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
@@ -52,7 +52,7 @@ defaultproperties
 		DamageRadius=768.000000
 		MomentumTransfer=60000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		Recoil=2048.000000
+		Recoil=3072.000000
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.75	
@@ -76,9 +76,9 @@ defaultproperties
 		XRandFactor=0.350000
 		YRandFactor=0.350000
 		MaxRecoil=8192
-		ClimbTime=0.08
-		DeclineDelay=0.400000
-		DeclineTime=1.25
+		ClimbTime=0.1
+		DeclineDelay=0.250000
+		DeclineTime=1
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
 		MaxMoveMultiplier=3

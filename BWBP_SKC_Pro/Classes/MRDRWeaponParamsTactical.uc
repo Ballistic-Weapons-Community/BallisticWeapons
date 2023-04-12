@@ -27,7 +27,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
         PenetrationEnergy=16
 		FlashScaleFactor=0.600000
-		Recoil=64.000000
+		Recoil=240.000000
 		Chaos=0.100000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Fire')
 	End Object
@@ -67,7 +67,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.5
 		ADSViewBindFactor=0.85
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=0.250000),(InVal=1.000000,OutVal=0.100000)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.800000,OutVal=0.050000),(InVal=1.000000,OutVal=0.100000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.200000),(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.550000),(InVal=0.600000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1

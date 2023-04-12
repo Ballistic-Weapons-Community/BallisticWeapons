@@ -36,6 +36,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.0825 // 800 rpm
 		FireEndAnim=
+		FireAnim="AimedFire"
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -73,7 +74,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.35
 		ADSViewBindFactor=0.85
-		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.150000,OutVal=0.00),(InVal=0.40000,OutVal=0.02),(InVal=0.6500000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.050000),(InVal=1.00000,OutVal=0.07000)))
+		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.150000,OutVal=0.03),(InVal=0.30000,OutVal=0.04),(InVal=0.40000,OutVal=0.01),(InVal=0.600000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.070000),(InVal=1.00000,OutVal=0.00000)))
 		YCurve=(Points=((InVal=0,OutVal=0),(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1

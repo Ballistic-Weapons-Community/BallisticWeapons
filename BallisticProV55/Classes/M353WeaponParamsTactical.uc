@@ -27,7 +27,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
 		FlashScaleFactor=0.700000
-		Recoil=96.000000
+		Recoil=110.000000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
@@ -63,7 +63,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.5
 		ADSViewBindFactor=0.9
-		XCurve=(Points=(,(InVal=0.070000,OutVal=0.050000),(InVal=0.100000,OutVal=0.085000),(InVal=0.180000,OutVal=0.060000),(InVal=0.300000,OutVal=0.100000),(InVal=0.5,OutVal=0.200000),(InVal=0.650000,OutVal=0.300000),(InVal=0.700000,OutVal=0.4500000),(InVal=0.850000,OutVal=0.400000),(InVal=1.000000,OutVal=0.55)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.01000),(InVal=0.180000,OutVal=-0.020000),(InVal=0.300000,OutVal=0.040000),(InVal=0.500000,OutVal=0.030000),(InVal=0.650000,OutVal=0.00000),(InVal=0.700000,OutVal=-0.0200000),(InVal=0.850000,OutVal=0.010000),(InVal=1.000000,OutVal=0.00)))
 		YCurve=(Points=(,(InVal=0.050000,OutVal=0.070000),(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.400000),(InVal=0.550000,OutVal=0.650000),(InVal=0.650000,OutVal=0.750000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
