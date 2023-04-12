@@ -327,7 +327,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=114),Color2=(B=99,G=228),StartSize1=126,StartSize2=33)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
     NDCrosshairChaosFactor=0.300000
-	SightZoomFactor=1.2
+
 	ParamsClasses(0)=Class'Fifty9WeaponParamsComp'	
 	ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
 	ParamsClasses(2)=Class'Fifty9WeaponParamsRealistic'	
@@ -348,6 +348,8 @@ defaultproperties
 	PlayerViewOffset=(X=10,Y=4,Z=-6)
 	SightOffset=(X=-10,Z=3.3)
 	SightPivot=(Pitch=128)
+	SightZoomFactor=1.2
+	SightBobScale=0.3f
 
 	AttachmentClass=Class'BallisticProV55.Fifty9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_Fifty9'

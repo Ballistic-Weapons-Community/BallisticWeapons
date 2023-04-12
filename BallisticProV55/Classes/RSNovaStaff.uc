@@ -763,6 +763,7 @@ defaultproperties
 	
 	PlayerViewOffset=(X=10.000000,Y=5.000000,Z=-4.500000)
 	SightOffset=(X=-10.000000,Z=5.500000)
+	SightBobScale=0.7
 
 	AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.SmallIcon_NovaStaff'

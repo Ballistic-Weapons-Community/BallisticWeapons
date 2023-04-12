@@ -434,7 +434,7 @@ defaultproperties
 	PlayerViewOffset=(X=32,Y=8.000000,Z=-12.500000)
 	SightOffset=(X=-40.000000,Z=3.7500000)
 	SightZoomFactor=1.2
-	SightBobScale=0.5f
+	SightBobScale=1f
 
 	AttachmentClass=Class'BallisticProV55.XRS10Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.XRS10.SmallIcon_XRS10'

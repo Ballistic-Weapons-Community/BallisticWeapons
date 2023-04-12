@@ -316,7 +316,8 @@ defaultproperties
 	SightOffset=(X=-8,Y=0.080000,Z=1.95)
 	SightPivot=(Pitch=300)
 	SightAnimScale=0.5
-
+	SightBobScale=0.75
+	
 	AttachmentClass=Class'BallisticProV55.BOGPAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.BOGP.SmallIcon_BOGP'
 	IconCoords=(X2=127,Y2=31)

@@ -395,7 +395,7 @@ defaultproperties
 
 	PlayerViewOffset=(X=15,Y=7.00000,Z=-10.000000)
 	SightOffset=(X=6.000000,Y=-0.040000,Z=2.850000)
-	SightBobScale=0.2
+	SightBobScale=0.45
 
 	AttachmentClass=Class'BallisticProV55.MarlinAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Marlin.SmallIcon_Marlin'

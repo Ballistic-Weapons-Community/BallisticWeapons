@@ -383,7 +383,8 @@ defaultproperties
 	PlayerViewOffset=(X=20.00,Y=3.00,Z=-8.00)
 	SightOffset=(X=-24,Y=0.06,Z=4.43)
 	SightAnimScale=0.5
-
+	SightBobScale=1f 
+	
 	Priority=24
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	PutDownTime=0.600000

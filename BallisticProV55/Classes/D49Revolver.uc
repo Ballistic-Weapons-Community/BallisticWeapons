@@ -512,6 +512,7 @@ defaultproperties
 	PlayerViewOffset=(X=10.00,Y=7.00,Z=-16.5)
 	SightOffset=(X=-11,Y=-4.6,Z=25.5)
 	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+	SightBobScale=1.5f
 	
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'

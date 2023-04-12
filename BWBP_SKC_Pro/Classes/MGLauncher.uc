@@ -249,6 +249,7 @@ defaultproperties
 	PlayerViewOffset=(X=16.00,Y=10.00,Z=-12.00)
 	SightOffset=(X=-1.00,Y=0.00,Z=18.10)
 	SightPivot=(Pitch=512)
+	SightBobScale=2
 
 	AttachmentClass=Class'BWBP_SKC_Pro.MGLAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MGL.SmallIcon_MGL'

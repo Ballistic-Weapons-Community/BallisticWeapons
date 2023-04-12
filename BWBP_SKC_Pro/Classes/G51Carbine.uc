@@ -347,6 +347,7 @@ defaultproperties
 
 	 PlayerViewOffset=(X=4.00,Y=4.50,Z=-3.00)
      SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
+	 SightBobScale=0.2
 
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=2.200000)
      ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagIn',Volume=2.200000)

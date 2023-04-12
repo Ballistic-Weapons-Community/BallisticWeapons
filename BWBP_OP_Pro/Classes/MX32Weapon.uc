@@ -599,7 +599,7 @@ defaultproperties
      ClipInFrame=0.650000
      bNoCrosshairInScope=True
      SightOffset=(X=0,Y=0,Z=1.72)
-	 SightBobScale=0.3
+	 SightBobScale=0.4
      FireModeClass(0)=Class'BWBP_OP_Pro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.MX32SecondaryFire'
 	 WeaponModes(0)=(ModeName="Auto Rockets",ModeID="WM_FullAuto")

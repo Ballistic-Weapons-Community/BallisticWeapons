@@ -590,7 +590,7 @@ defaultproperties
 	PlayerViewOffset=(X=10.00,Y=6.00,Z=-17.00)
 	SightOffset=(X=-20,Z=3.4)
 	SightAnimScale=0.25
-	SightBobScale=0.3
+	SightBobScale=1f
 	AttachmentClass=Class'BallisticProV55.GRS9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Glock.SmallIcon_Glock'
 	IconCoords=(X2=127,Y2=31)

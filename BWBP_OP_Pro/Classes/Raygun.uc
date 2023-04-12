@@ -563,7 +563,10 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BWBP_OP_Pro.RaygunPickup'
+
 	PlayerViewOffset=(X=16,Y=1.6,Z=-3)
+	SightBobScale=0.35
+	
 	AttachmentClass=Class'BWBP_OP_Pro.RaygunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_128'
 	IconCoords=(X2=127,Y2=31)

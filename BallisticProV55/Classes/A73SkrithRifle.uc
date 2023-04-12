@@ -320,6 +320,7 @@ defaultproperties
 	PlayerViewOffset=(X=-5.00,Y=8.00,Z=-9.00)
 	SightOffset=(X=14.00,Z=5.50)
 	SightPivot=(Pitch=450)
+	SightBobScale=1.25
 
 	ParamsClasses(0)=Class'A73WeaponParamsComp'
 	ParamsClasses(1)=Class'A73WeaponParamsClassic'

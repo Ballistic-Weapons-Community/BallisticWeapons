@@ -711,6 +711,7 @@ defaultproperties
 	PlayerViewOffset=(X=2.00,Y=4.00,Z=-4.00)
 	SightOffset=(X=7.00,Y=0.01,Z=2.3)
 	SightPivot=(Pitch=256)
+	SightBobScale=0.35
 
 	bNoCrosshairInScope=True
 	GunLength=16.500000

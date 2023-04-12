@@ -733,6 +733,7 @@ defaultproperties
 	PlayerViewOffset=(X=7.00,Y=4.50,Z=-4.50)
 	SightOffset=(X=-2.50,Y=0.00,Z=2.20)
 	SightPivot=(Pitch=256)
+	SightBobScale=0.6
 
 	AttachmentClass=Class'BWBP_SKC_Pro.BulldogAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Bulldog.SmallIcon_Bulldog'

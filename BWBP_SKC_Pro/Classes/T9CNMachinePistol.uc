@@ -197,9 +197,9 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.T9CNPickup'
 
 	PlayerViewOffset=(X=4.00,Y=3.00,Z=-6.00)
-	SightOffset=(X=-3.00,Y=0.00,Z=1.73)
+	SightOffset=(X=0.00,Y=0.00,Z=1.73)
 	SightPivot=(Pitch=128)
-	SightBobScale=0.15f
+	SightBobScale=0.25f
 
 	AttachmentClass=Class'BWBP_SKC_Pro.T9CNAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.T9CN.SmallIcon_BerSilver'

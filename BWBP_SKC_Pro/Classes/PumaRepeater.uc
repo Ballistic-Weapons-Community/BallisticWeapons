@@ -858,7 +858,7 @@ defaultproperties
      AIRating=0.600000
      CurrentRating=0.600000
      bShowChargingBar=True
-	 SightBobScale=0.35f
+	 SightBobScale=0.5f
      Description="PUMA-77 Repeating Pulse Rifle||Manufacturer: Majestic Firearms 12|Primary: Programmable Smart Round|Secondary: Shield Projector||The Type-77 RPR, better known as the 'PUMA', is one of the more recognizable light grenade launchers on the market. It was used extensively by the UTC before their widespread adoption of the SRAC-21/G during the first Skrith war. This powerful weapon differs from other conventional grenade launchers in that it utilizes specialized fission batteries as ammunition, which both power and act as the carrier of the projectile. The projectiles themselves can be programmed by the side-mounted rangefinding module and allow soldiers to selectively airburst the rounds to hit targets behind cover. The PUMA-77s seen here are equipped with Frontier Tech's lightweight X57 shield projector, which is a reverse-engineered prototype of the Skrith personal energy shields."
      Priority=245
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

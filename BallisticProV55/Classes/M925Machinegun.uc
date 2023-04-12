@@ -285,7 +285,7 @@ defaultproperties
 	PlayerViewOffset=(X=5.00,Y=6.00,Z=-8.00)
 	SightOffset=(X=-4.00,Y=0.00,Z=3.4)
 	SightAnimScale=0.75
-	SightBobScale=0.5
+	SightBobScale=2
 
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'

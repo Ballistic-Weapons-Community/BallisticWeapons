@@ -797,9 +797,12 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=2
      PickupClass=Class'BallisticProV55.RSDarkPickup'
+	 
      PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-3.000000)
 	 SightOffset=(X=0.000000,Y=0,Z=4.500000)
 	 SightAnimScale=0.5
+	 SightBobScale=0.75
+
      AttachmentClass=Class'BallisticProV55.RSDarkAttachment'
      IconMaterial=Texture'BW_Core_WeaponTex.DarkStar.SmallIcon_DarkStar'
      IconCoords=(X2=127,Y2=31)
