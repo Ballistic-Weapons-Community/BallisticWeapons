@@ -143,6 +143,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
      ImpactManager=Class'BWBP_SKC_Pro.IM_HVPCProjectile'
      PenetrateManager=Class'BWBP_SKC_Pro.IM_HVPCProjectile'
      bPenetrate=True

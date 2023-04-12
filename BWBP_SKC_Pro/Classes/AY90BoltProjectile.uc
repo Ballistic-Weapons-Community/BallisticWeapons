@@ -39,8 +39,8 @@ simulated event ProcessTouch(Actor Other, vector HitLocation )
 	{
 		StuckActor = Other;
 		HitActor = Other;
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
 		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+		Explode(HitLocation, Normal(HitLocation-Other.Location));
 	}
 	else
 		Super.ProcessTouch(Other,HitLocation);
@@ -108,11 +108,13 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		Proj.Instigator = Instigator;
 		Proj.bHardAttach = true;
 		Proj.SetBase(LastTrace);
+		Proj.SetRotation(R);
+		Proj.Velocity = vect(0,0,0);
 	}
 	else
 	{
-		StickActor(StuckActor);
-		/*Proj = Spawn (class'AY90Mine',,, LastHitLoc, R);
+		//StickActor(StuckActor);
+		Proj = Spawn (class'AY90Mine',,, LastHitLoc, R);
 		Proj.Instigator = Instigator;
 		Proj.SetPhysics(PHYS_None);
 		Proj.bHardAttach = true;
@@ -120,10 +122,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			StuckActor.AttachToBone(Proj, StuckActor.GetClosestBone(LastHitLoc, Velocity, BoneDist));
 		else
 			Proj.SetBase(StuckActor);
-			*/
+			
 	}
-	Proj.SetRotation(R);
-	Proj.Velocity = vect(0,0,0);
 
 	Destroy();
 }
@@ -162,40 +162,43 @@ simulated event Timer()
 
 defaultproperties
 {
-     ImpactManager=Class'BallisticProV55.IM_A73Projectile'
-     bCheckHitSurface=True
-     bRandomStartRotation=False
-     TrailClass=Class'BallisticProV55.A73TrailEmitter'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=1024.000000
-     MotionBlurRadius=200.000000
-     Speed=2000.000000
-     AccelSpeed=35000.000000
-     MaxSpeed=35000.000000
-	 DetonateDelay=0.00000
-     ImpactDamage=30.000000
-     DamageRadius=30.000000
-     MomentumTransfer=30000.000000
-	 LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=150
-     LightSaturation=0
-     LightBrightness=192.000000
-     LightRadius=6.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
-	 Skins(1)=FinalBlend'BWBP_SKC_Tex.SkrithBow.AY90ProjectileFast1-Final'
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.A73b.AY90Projectile2-Final'
-     bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
-     LifeSpan=6.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
-	 DamageTypeHead=Class'BWBP_SKC_Pro.DTAY90SkrithHead'
-     DrawScale3D=(X=0.500000,Y=1.000000,Z=1.000000)
-     DrawScale=0.500000
-     Style=STY_Additive
-     SoundVolume=255
-     SoundRadius=75.000000
-     bFixedRotationDir=True
-     RotationRate=(Roll=12384)
+	WeaponClass=Class'BWBP_SKC_Pro.AY90SkrithBoltcaster'
+     DetonateOn=DT_Impact
+	ImpactManager=Class'BallisticProV55.IM_A73Projectile'
+	bCheckHitSurface=True
+	bRandomStartRotation=False
+	TrailClass=Class'BallisticProV55.A73TrailEmitter'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=1024.000000
+	MotionBlurRadius=200.000000
+	Speed=2000.000000
+	AccelSpeed=35000.000000
+	MaxSpeed=35000.000000
+	DetonateDelay=0.00000
+	ImpactDamage=30.000000
+	DamageRadius=30.000000
+	MomentumTransfer=30000.000000
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=150
+	LightSaturation=0
+	LightBrightness=192.000000
+	LightRadius=6.000000
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
+	Skins(1)=FinalBlend'BWBP_SKC_Tex.SkrithBow.AY90ProjectileFast1-Final'
+	Skins(0)=FinalBlend'BWBP_SKC_Tex.A73b.AY90Projectile2-Final'
+	bDynamicLight=True
+	AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
+	LifeSpan=6.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTAY90SkrithHead'
+	DrawScale3D=(X=0.500000,Y=1.000000,Z=1.000000)
+	DrawScale=0.500000
+	Style=STY_Additive
+	SoundVolume=255
+	SoundRadius=75.000000
+	bFixedRotationDir=True
+	RotationRate=(Roll=12384)
 }
