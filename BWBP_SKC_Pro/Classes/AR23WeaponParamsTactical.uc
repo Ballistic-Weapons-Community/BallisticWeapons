@@ -31,7 +31,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=0.5
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=600.000000
+		Recoil=1024.000000
 		Chaos=0.080000
 		WarnTargetPct=0.200000
 	End Object
@@ -67,7 +67,7 @@ defaultproperties
 		MomentumTransfer=50.000000
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=2
-		Recoil=768.000000
+		Recoil=1536.000000
 		Chaos=0.25
 		Inaccuracy=(X=256,Y=256)
 		BotRefireRate=0.300000

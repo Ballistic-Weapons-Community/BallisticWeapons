@@ -18,7 +18,7 @@ defaultproperties
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.500000
-		Recoil=120.000000
+		Recoil=150.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -43,7 +43,7 @@ defaultproperties
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.500000
-		Recoil=140.000000
+		Recoil=150.000000
 		Chaos=0.02000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)

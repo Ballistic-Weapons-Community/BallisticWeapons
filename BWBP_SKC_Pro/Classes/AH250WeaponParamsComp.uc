@@ -22,7 +22,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.500000
-		Recoil=1536.000000
+		Recoil=2048.000000
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -75,10 +75,10 @@ defaultproperties
 		ViewBindFactor=0.5
 		XRandFactor=0.150000
 		YRandFactor=0.150000
-		MaxRecoil=6144.000000
-		ClimbTime=0.06
-		DeclineDelay=0.45
-        DeclineTime=1.5
+		MaxRecoil=8192.000000
+		ClimbTime=0.1
+		DeclineDelay=0.3
+        DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 	End Object
@@ -88,10 +88,10 @@ defaultproperties
         ViewBindFactor=0.5
         XRandFactor=0.100000
         YRandFactor=0.100000
-        MaxRecoil=6144.000000
-		ClimbTime=0.06
-		DeclineDelay=0.45
-        DeclineTime=1.5
+        MaxRecoil=8192.000000
+		ClimbTime=0.1
+		DeclineDelay=0.3
+        DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
     End Object

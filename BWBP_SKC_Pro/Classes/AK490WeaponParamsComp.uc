@@ -12,7 +12,7 @@ defaultproperties
         DecayRange=(Min=2363,Max=6000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=26
+		Damage=28
         HeadMult=2.0f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
@@ -22,7 +22,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK490FlashEmitter'
 		FlashScaleFactor=0.900000
-		Recoil=192.000000
+		Recoil=340.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)

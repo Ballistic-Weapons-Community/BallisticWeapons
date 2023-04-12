@@ -20,7 +20,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-		Recoil=256.000000
+		Recoil=1024.000000
 		Chaos=0.2
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -59,8 +59,8 @@ defaultproperties
 		XRandFactor=0.050000
 		YRandFactor=0.050000
 		ClimbTime=0.06
-		DeclineDelay=0.4000
 		DeclineTime=0.75
+		DeclineDelay=0.25
 		CrouchMultiplier=1
 	End Object
 

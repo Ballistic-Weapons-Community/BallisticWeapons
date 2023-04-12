@@ -28,7 +28,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
-		Recoil=1536.000000
+		Recoil=2048.000000
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -84,9 +84,9 @@ defaultproperties
 		XRandFactor=0.2
 		YRandFactor=0.2
 		MaxRecoil=8192
-		ClimbTime=0.06
-		DeclineDelay=0.45
-        DeclineTime=1.5
+		ClimbTime=0.1
+		DeclineDelay=0.3
+        DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -98,9 +98,9 @@ defaultproperties
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=8192
-		ClimbTime=0.06
-		DeclineDelay=0.45
-        DeclineTime=1.5
+		ClimbTime=0.1
+		DeclineDelay=0.3
+        DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2

@@ -18,7 +18,7 @@ defaultproperties
 		DamageGainEndTime=0.2
 		MuzzleFlashClass=Class'BWBP_OP_Pro.RaygunMuzzleFlashAlt'
 		FlashScaleFactor=2.500000
-		Recoil=108.000000
+		Recoil=260.000000
 		Chaos=0.070000
 		BotRefireRate=0.70000
 		WarnTargetPct=0.200000	
@@ -71,7 +71,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.150000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=0.320000),(InVal=0.450000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
-		ClimbTime=0.04
+		ClimbTime=0.06
 		DeclineDelay=0.180000
 		DeclineTime=1
 		HipMultiplier=1.25

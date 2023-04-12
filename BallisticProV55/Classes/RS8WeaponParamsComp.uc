@@ -20,7 +20,7 @@ defaultproperties
 		PenetrateForce=135
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		Recoil=192.000000
+		Recoil=450.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
@@ -57,7 +57,7 @@ defaultproperties
 		ViewBindFactor=0.6
 		XRandFactor=0.05
 		YRandFactor=0.05
-		ClimbTime=0.04
+		ClimbTime=0.05
 		DeclineDelay=0.240000
 		DeclineTime=0.75
 		CrouchMultiplier=1

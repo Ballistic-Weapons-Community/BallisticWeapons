@@ -21,7 +21,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
         FlashScaleFactor=2.500000
-        Recoil=340.000000
+        Recoil=550.000000
         Chaos=0.120000
         BotRefireRate=0.99
         WarnTargetPct=0.2
@@ -31,6 +31,7 @@ defaultproperties
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
         FireInterval=0.055
         FireEndAnim=
+		BurstFireRateFactor=1
         //AimedFireAnim='SightFire'
         FireAnimRate=1.700000	
         FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -71,8 +72,8 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
         XRandFactor=0.10000
         YRandFactor=0.10000
-        MaxRecoil=6144
-		ClimbTime=0.04
+        MaxRecoil=8192
+		ClimbTime=0.05
         DeclineTime=1.1
         DeclineDelay=0.250000
 		CrouchMultiplier=1

@@ -24,7 +24,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
-		Recoil=512.000000
+		Recoil=1024.000000
 		Chaos=1.000000
 		PushbackForce=1200.000000
 		BotRefireRate=0.60000

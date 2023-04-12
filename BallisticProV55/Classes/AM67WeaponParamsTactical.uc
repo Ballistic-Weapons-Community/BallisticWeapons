@@ -25,7 +25,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
         FlashScaleFactor=0.900000
-        Recoil=1024.000000
+        Recoil=1536.000000
         Chaos=0.2
         Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
@@ -34,9 +34,8 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalPriFireParams
-        AimedFireAnim="SightFire"
         FireEndAnim=
-        FireInterval=0.325
+        FireInterval=0.5
         FireEffectParams(0)=InstantEffectParams'TacticalPriEffectParams'
     End Object 
 
@@ -72,8 +71,8 @@ defaultproperties
 		YRandFactor=0.1
 		MaxRecoil=8192
 		ViewBindFactor=0.5
-		ClimbTime=0.075
-		DeclineDelay=0.4
+		ClimbTime=0.1
+		DeclineDelay=0.25
         DeclineTime=1.5
 		CrouchMultiplier=1
 		HipMultiplier=1.25

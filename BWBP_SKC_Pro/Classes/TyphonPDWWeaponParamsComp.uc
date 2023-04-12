@@ -52,7 +52,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
 		FlashScaleFactor=0.50000
-		Recoil=768.000000
+		Recoil=384.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Overblast',Volume=7.800000)
 		BotRefireRate=0.900000

@@ -30,7 +30,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.SCAR-Fire',Volume=2.600000)
-		Recoil=170.000000
+		Recoil=150.000000
 		Chaos=0.040000
 		WarnTargetPct=0.200000
 	End Object

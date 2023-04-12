@@ -23,7 +23,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
-		Recoil=500.000000
+		Recoil=600.000000
 		Chaos=0.2
 		BotRefireRate=0.300000
 		WarnTargetPct=0.100000
@@ -40,7 +40,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.67
-		Damage=33
+		Damage=27
         HeadMult=3
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
@@ -51,7 +51,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
-		Recoil=500.000000
+		Recoil=600.000000
 		Chaos=0.2
 		BotRefireRate=0.300000
 		WarnTargetPct=0.100000
@@ -71,19 +71,13 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		MaxRecoil=1768.000000
-		ViewBindFactor=0.4
-		PitchFactor=0.650000
-		YawFactor=0.100000
-		XRandFactor=0.450000
-		YRandFactor=0.450000
-		ClimbTime=0.04
-		DeclineDelay=0.100000
-		DeclineTime=0.300000
-		CrouchMultiplier=0.85
-		HipMultiplier=1
-		MaxMoveMultiplier=1.5
+		ViewBindFactor=0.7
+		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.12),(InVal=0.7,OutVal=0.2),(InVal=1.0,OutVal=0.3)))
+		XRandFactor=0.15000
+		YRandFactor=0.15000
+		ClimbTime=0.06
+		DeclineDelay=0.250000
+		DeclineTime=0.5
 	End Object
 
 	//=================================================================

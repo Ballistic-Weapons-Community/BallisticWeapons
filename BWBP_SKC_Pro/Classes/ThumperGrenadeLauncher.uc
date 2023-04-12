@@ -117,9 +117,9 @@ defaultproperties
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.ThumperPickup'
 
-	PlayerViewOffset=(X=30.000000,Y=15.000000,Z=-20.000000)
+	PlayerViewOffset=(X=0.000000,Y=5.000000,Z=-3.000000)
 	PlayerViewPivot=(Pitch=600)
-	SightOffset=(X=-30.000000,Y=-0.030000,Z=34.000000)
+	SightOffset=(X=10.000000,Y=0.00,Z=0.00)
 	SightPivot=(Pitch=-550)
 	
 	AttachmentClass=Class'BWBP_SKC_Pro.ThumperAttachment'

@@ -18,7 +18,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
 		FlashScaleFactor=0.800000
 		PushbackForce=150.000000
-		Recoil=128.000000
+		Recoil=180.000000
 		Chaos=0.120000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,Pitch=0.750000,bNoOverride=False)

@@ -18,14 +18,14 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Fire',Volume=3.500000)
 		Chaos=0.700000
 		SplashDamage=True
-		Recoil=56
+		Recoil=768
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.55
+		FireInterval=0.6
 		PreFireAnim=	
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams'
@@ -52,7 +52,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-		FireInterval=0.45
+		FireInterval=0.6
 		PreFireAnim=	
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'

@@ -22,7 +22,7 @@ defaultproperties
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
         FlashScaleFactor=1.200000
 		PushbackForce=1200.000000
-        Recoil=1024.000000
+        Recoil=3072.000000
         Chaos=0.450000
         BotRefireRate=0.7
         WarnTargetPct=0.75	
@@ -59,7 +59,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
         FlashScaleFactor=1.200000
-        Recoil=378.000000
+        Recoil=1536.000000
         Chaos=0.200000
         BotRefireRate=0.7
         WarnTargetPct=0.5	
@@ -84,8 +84,8 @@ defaultproperties
         YCurve=(Points=(,(InVal=0.300000,OutVal=0.5),(InVal=1.000000,OutVal=1.000000)))
         XRandFactor=0.2
         YRandFactor=0.200000
-		ClimbTime=0.075
-		DeclineDelay=0.4
+		ClimbTime=0.08
+		DeclineDelay=0.25
         DeclineTime=0.750000
 		CrouchMultiplier=1
 		HipMultiplier=1.25

@@ -19,7 +19,7 @@ defaultproperties
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
-    	Recoil=130.000000
+    	Recoil=200.000000
 	    Chaos=0.020000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	    ProjectileClass=Class'BallisticProV55.A73Projectile'
@@ -69,7 +69,7 @@ defaultproperties
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
-    	Recoil=160.000000
+    	Recoil=1536.000000
 	    Chaos=0.020000
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
@@ -101,7 +101,7 @@ defaultproperties
         MaxDamageGainFactor=1.00
         DamageGainStartTime=0.05
         DamageGainEndTime=0.7
-        Recoil=960.000000
+        Recoil=1536.000000
         Chaos=0.500000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         ProjectileClass=Class'BallisticProV55.A73PowerProjectile'
@@ -130,7 +130,7 @@ defaultproperties
         MaxDamageGainFactor=1.00
         DamageGainStartTime=0.05
         DamageGainEndTime=0.7
-        Recoil=960.000000
+        Recoil=1536.000000
         Chaos=0.500000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         ProjectileClass=Class'BallisticProV55.A73PowerProjectileBal'

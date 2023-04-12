@@ -28,7 +28,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=310.000000
+		Recoil=512.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
@@ -92,7 +92,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 		FlashScaleFactor=2.5
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyRadFire',Volume=2.200000)
-		Recoil=128.000000
+		Recoil=256.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
@@ -113,9 +113,9 @@ defaultproperties
 		ViewBindFactor=0.6
 		XRandFactor=0.1
 		YRandFactor=0.1
-		ClimbTime=0.04
-		DeclineDelay=0.240000
-		DeclineTime=0.7500000
+		ClimbTime=0.05
+		DeclineDelay=0.200000
+		DeclineTime=0.500000
 		CrouchMultiplier=1
 		HipMultiplier=1
 		MaxMoveMultiplier=1.5
@@ -137,27 +137,7 @@ defaultproperties
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
-	
-	Begin Object Class=WeaponParams Name=TacticalParams_RDS
-		//Layout core
-		LayoutName="RDS"
-		Weight=30
-		//Attachments
-		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
-		//Functions
-		InventorySize=3
-		DisplaceDurationMult=0.33
-		SightMoveSpeedFactor=0.6
-		SightingTime=0.200000
-		MagAmmo=15
-		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-		AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalStandardPrimaryFireParams'
-		FireParams(1)=FireParams'TacticalCryoPrimaryFireParams'
-		FireParams(2)=FireParams'TacticalRadPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
-	End Object
-	
+
 	Begin Object Class=WeaponParams Name=TacticalParams_Irons
 		//Layout core
 		LayoutName="Iron Sights"
@@ -180,6 +160,26 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
 
+	Begin Object Class=WeaponParams Name=TacticalParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		Weight=30
+		//Attachments
+		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
+		//Functions
+		InventorySize=3
+		DisplaceDurationMult=0.33
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.200000
+		MagAmmo=15
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalStandardPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalCryoPrimaryFireParams'
+		FireParams(2)=FireParams'TacticalRadPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'TacticalParams_Irons'
 	//Layouts(1)=WeaponParams'TacticalParams_RDS' // downgrade
 	

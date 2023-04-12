@@ -21,7 +21,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter'
 		FlashScaleFactor=0.250000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
-		Recoil=208.000000
+		Recoil=320.000000
 		Chaos=0.065000
 		WarnTargetPct=0.200000
 	End Object
@@ -53,7 +53,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=512.000000
+		Recoil=1024.000000
 		Chaos=0.30000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5	
@@ -86,7 +86,7 @@ defaultproperties
 		PushbackForce=200.000000
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000,Radius=256.000000)
-		Recoil=512.000000
+		Recoil=1024.000000
 		Chaos=0.5
 		SplashDamage=True
 		BotRefireRate=0.7

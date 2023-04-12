@@ -20,7 +20,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1
-		Recoil=128
+		Recoil=150
 		Chaos=0.03
 		WarnTargetPct=0.200000
 		Inaccuracy=(X=48,Y=48)

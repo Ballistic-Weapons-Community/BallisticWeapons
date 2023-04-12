@@ -16,7 +16,7 @@ defaultproperties
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
-		Recoil=512.000000
+		Recoil=1024.000000
 		Chaos=0.5
 		SplashDamage=True
 		RecommendSplashDamage=True
@@ -40,7 +40,7 @@ defaultproperties
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
-		Recoil=512.000000
+		Recoil=1024.000000
 		Chaos=0.5
 		SplashDamage=True
 		RecommendSplashDamage=True
@@ -64,7 +64,7 @@ defaultproperties
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
-		Recoil=512.000000
+		Recoil=1024.000000
 		Chaos=0.5
 		SplashDamage=True
 		RecommendSplashDamage=True
@@ -139,8 +139,8 @@ defaultproperties
 		XRandFactor=0.200000
 		YRandFactor=0.200000
 		MaxRecoil=4096
-		ClimbTime=0.05
-		DeclineDelay=0.350000
+		ClimbTime=0.06
+		DeclineDelay=0.25
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25

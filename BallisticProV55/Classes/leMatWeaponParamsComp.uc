@@ -18,7 +18,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.600000
-		Recoil=300.000000
+		Recoil=800.000000
 		Chaos=0.0400000
 		BotRefireRate=0.9
 		WarnTargetPct=0.35
@@ -52,7 +52,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=2.000000
-		Recoil=512.000000
+		Recoil=1536.000000
 		Chaos=0.300000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5	
@@ -75,9 +75,9 @@ defaultproperties
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.2,OutVal=0.03),(InVal=0.36,OutVal=0.07),(InVal=0.62,OutVal=0.09),(InVal=0.6,OutVal=0.11),(InVal=1,OutVal=0.15)))
 		XRandFactor=0.150000
 		YRandFactor=0.150000
-		ClimbTime=0.04
-		DeclineTime=0.75
-		DeclineDelay=0.34
+		ClimbTime=0.08
+		DeclineTime=0.5
+		DeclineDelay=0.25
 		CrouchMultiplier=1
 	End Object
 

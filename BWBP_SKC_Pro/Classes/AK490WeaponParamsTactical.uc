@@ -28,7 +28,7 @@ defaultproperties
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'AK490FlashEmitter'
 		FlashScaleFactor=0.9
-		Recoil=260.000000
+		Recoil=340.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)

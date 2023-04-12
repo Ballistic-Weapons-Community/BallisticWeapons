@@ -27,7 +27,7 @@ defaultproperties
 		Inaccuracy=(X=48,Y=48)
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1
-		Recoil=220.000000
+		Recoil=320.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)

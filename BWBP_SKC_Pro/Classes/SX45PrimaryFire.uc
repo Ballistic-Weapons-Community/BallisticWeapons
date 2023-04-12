@@ -211,7 +211,7 @@ defaultproperties
      BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=1.200000)
      bPawnRapidFireAnim=True
 	 FireEndAnim=
-     FireAnimRate=1
+     FireAnimRate=1.25
 	 AimedFireAnim="SightFire"
      FireRate=0.20000
      AmmoClass=Class'BallisticProV55.Ammo_45HV'

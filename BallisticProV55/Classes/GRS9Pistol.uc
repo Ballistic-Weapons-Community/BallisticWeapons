@@ -566,6 +566,7 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
+	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
 	ParamsClasses(0)=Class'GRS9WeaponParamsComp'
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
@@ -587,7 +588,7 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
 	PlayerViewOffset=(X=10.00,Y=6.00,Z=-17.00)
-	SightOffset=(X=-45,Z=3.4)
+	SightOffset=(X=-20,Z=3.4)
 	SightAnimScale=0.25
 	SightBobScale=0.3
 	AttachmentClass=Class'BallisticProV55.GRS9Attachment'

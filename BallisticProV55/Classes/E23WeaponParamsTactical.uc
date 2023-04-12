@@ -23,7 +23,7 @@ defaultproperties
         FlashScaleFactor=0.750000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         Chaos=0.06
-        Recoil=96
+        Recoil=160
         WarnTargetPct=0.1
         BotRefireRate=0.99	
     End Object

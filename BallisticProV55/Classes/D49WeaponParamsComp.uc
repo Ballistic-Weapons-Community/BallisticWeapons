@@ -10,7 +10,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
-        Damage=45.000000
+        Damage=55.000000
         HeadMult=2.0f
         LimbMult=0.75f
         DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -21,7 +21,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
         FlashScaleFactor=1.200000
-        Recoil=1024.000000
+        Recoil=1536.000000
         Chaos=0.400000
         Inaccuracy=(X=48,Y=48)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-FireSingle',Volume=1.200000)
@@ -45,7 +45,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16.000000
-        Damage=90.000000
+        Damage=110.000000
         HeadMult=1.5f
         LimbMult=0.75f
         RangeAtten=0.5
@@ -56,7 +56,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
         FlashScaleFactor=1.200000
-        Recoil=2048.000000
+        Recoil=3072.000000
         Chaos=0.800000
         Inaccuracy=(X=48,Y=48)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Fire',Volume=1.300000)
@@ -80,10 +80,10 @@ defaultproperties
 		ViewBindFactor=0.65
 		XRandFactor=0.10000
 		YRandFactor=0.10000
-		MaxRecoil=6144
-		ClimbTime=0.05
-		DeclineDelay=0.440000
-		DeclineTime=1.1
+		MaxRecoil=8192
+		ClimbTime=0.1
+		DeclineDelay=0.250000
+		DeclineTime=1
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 	End Object

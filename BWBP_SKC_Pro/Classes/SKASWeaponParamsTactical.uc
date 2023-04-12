@@ -23,7 +23,7 @@ defaultproperties
         PenetrateForce=100
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-        Recoil=450.000000
+        Recoil=550.000000
         Chaos=0.300000
         BotRefireRate=0.800000
         WarnTargetPct=0.400000	
@@ -117,7 +117,7 @@ defaultproperties
 
     Begin Object Class=RecoilParams Name=TacticalRecoilParams
         ViewBindFactor=0.45
-        XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
+        XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.050000),(InVal=1.000000,OutVal=0.000000)))
         YCurve=(Points=(,(InVal=0.300000,OutVal=0.5),(InVal=1.000000,OutVal=1.000000)))
         XRandFactor=0.15
         YRandFactor=0.15

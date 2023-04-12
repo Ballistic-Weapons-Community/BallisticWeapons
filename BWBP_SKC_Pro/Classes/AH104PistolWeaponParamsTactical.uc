@@ -26,7 +26,7 @@ defaultproperties
 			MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 			FlashScaleFactor=0.900000
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
-			Recoil=1024.000000
+			Recoil=2048.000000
 			Chaos=0.2
 			WarnTargetPct=0.400000
 			BotRefireRate=0.7
@@ -35,7 +35,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 			AimedFireAnim="SightFire"
 			FireEndAnim=
-			FireInterval=0.35
+			FireInterval=0.75
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 		End Object
 		
@@ -72,7 +72,7 @@ defaultproperties
 		XRandFactor=0.150000
 		YRandFactor=0.150000
 		MaxRecoil=8192.000000
-		ClimbTime=0.06
+		ClimbTime=0.1
 		DeclineTime=1.5
 		DeclineDelay=0.400000
 		CrouchMultiplier=0.85

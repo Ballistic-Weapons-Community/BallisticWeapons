@@ -20,7 +20,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=512.000000
+		Recoil=768.000000
 		Chaos=0.200000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -49,7 +49,7 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=384.000000
+		Recoil=512.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2',Volume=7.100000,Pitch=1.000000,Slot=SLOT_Interact,bNoOverride=False)
@@ -79,7 +79,7 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.500000
-		Recoil=512.000000
+		Recoil=768.000000
 		WarnTargetPct=0.600000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Heat=1.5
@@ -107,7 +107,7 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.500000
-		Recoil=384.000000
+		Recoil=512.000000
 		Chaos=0.5
 		WarnTargetPct=0.600000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2',Volume=7.100000,Pitch=1.000000,Slot=SLOT_Interact,bNoOverride=False)

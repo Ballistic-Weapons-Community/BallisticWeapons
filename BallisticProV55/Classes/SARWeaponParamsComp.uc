@@ -45,7 +45,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'FlashEmitter_AR'
 		FlashScaleFactor=0.900000
-		Recoil=128.000000
+		Recoil=180.000000
 		Chaos=0.030000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Fire',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)

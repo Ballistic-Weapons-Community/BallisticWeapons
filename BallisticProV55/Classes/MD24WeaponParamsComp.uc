@@ -21,7 +21,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.750000
-		Recoil=140.000000
+		Recoil=512.000000
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.300000
@@ -44,7 +44,7 @@ defaultproperties
 		ViewBindFactor=0.65
 		XRandFactor=0.03000
 		YRandFactor=0.03000
-		ClimbTime=0.04
+		ClimbTime=0.06
 		DeclineDelay=0.170000
 		DeclineTime=0.75
 		CrouchMultiplier=1

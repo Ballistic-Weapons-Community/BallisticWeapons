@@ -21,7 +21,7 @@ defaultproperties
         MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
         FlashScaleFactor=0.900000
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
-        Recoil=1024.000000
+        Recoil=2048.000000
         Chaos=0.2
         Inaccuracy=(X=16,Y=16)
         WarnTargetPct=0.400000
@@ -31,7 +31,7 @@ defaultproperties
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
         AimedFireAnim="SightFire"
         FireEndAnim=
-        FireInterval=0.39
+        FireInterval=0.75
     FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
     End Object
 		

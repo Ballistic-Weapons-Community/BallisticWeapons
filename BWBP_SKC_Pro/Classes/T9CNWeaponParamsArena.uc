@@ -18,7 +18,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.T9CNFlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireOld',Volume=1.300000)
-		Recoil=80.000000
+		Recoil=450.000000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -37,8 +37,10 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000
+		MaxRecoil=6144
+		ClimbTime=0.04
+		DeclineDelay=0.3
 		DeclineTime=0.5
-		DeclineDelay=0.15
 		CrouchMultiplier=0.800000
 	End Object
 
