@@ -273,15 +273,14 @@ function FireSinge(Pawn P, Pawn InstigatedBy)
 // Sources: Flame firemode hit detection or preordered hits
 simulated function DoFlameHit(FlameHit Hit)
 {
-	//local int i;
+	local int i;
 	local BW_FuelPatch Other;
 
 	BurnRadius(2, 256, class'DTRX22ABurned', 0, Hit.HitLoc, Hit.Instigator);
 
 	if (NearFire(Hit.HitLoc, Other))
 		Other.AddFuel(0.5);
-	/*
-	else
+	else if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		for(i=0;i<SingeSpots.length;i++)
 			if (VSize(SingeSpots[i].Loc-Hit.HitLoc) < 128)
@@ -305,7 +304,7 @@ simulated function DoFlameHit(FlameHit Hit)
 			class'IM_RX22AScorch'.static.StartSpawn(Hit.HitLoc, Hit.HitNorm, 0, self);
 		}
 	}
-	*/
+	
 }
 
 // Purpose: Create a surface fuel deposit

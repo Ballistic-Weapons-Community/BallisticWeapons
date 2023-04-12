@@ -81,6 +81,8 @@ function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Mo
 		// GearSafe damage does not harm the gear, just the guy inside...
 		if (class<BallisticDamageType>(DamageType).static.IsDamage(",GearSafe,"))
 			return;
+		if (class'BallisticReplicationInfo'.static.IsRealism() && !class<BallisticDamageType>(DamageType).default.bIgniteFires)
+			return;
 		else if (/*class<BallisticDamageType>(DamageType).static.IsDamage(",Flame,") || */class<BallisticDamageType>(DamageType).default.bIgniteFires)
 		{
 			Damage = Max(1, Damage * 0.2);
