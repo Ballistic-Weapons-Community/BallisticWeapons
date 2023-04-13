@@ -163,13 +163,6 @@ var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
 var     bool                bCanDodge;
 
-//Eyeheightfix variables
-var EPhysics OldPhysics2;
-var vector OldLocation;
-var float OldBaseEyeHeight;
-var int IgnoreZChangeTicks;
-var float EyeHeightOffset;
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -179,8 +172,6 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	OldBaseEyeHeight = default.BaseEyeHeight;
-    OldLocation = Location;
 
 	if (!class'BallisticReplicationInfo'.default.bBrightPlayers)
 	{
@@ -3056,79 +3047,11 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	OldMovementSpeed = VSize(Velocity);
 }
 
-//===========================================================================
-//Eyeheight fix 
-//===========================================================================
-simulated function ClientRestart()
-{
-    super.ClientRestart();
-    IgnoreZChangeTicks = 1;
-}
-
-simulated function Touch(Actor Other) {
-    super.Touch(Other);
-
-    if (Other.IsA('Teleporter'))
-        IgnoreZChangeTicks = 2;
-}
-
-event UpdateEyeHeight( float DeltaTime )
-{
-    local vector Delta;
-
-    if (BallisticPlayer(Controller) == none || BallisticPlayer(Controller).bUseNewEyeHeightAlgorithm == false) {
-        super.UpdateEyeHeight(DeltaTime);
-        return;
-    }
-
-    if ( Controller == None )
-    {
-        EyeHeight = 0;
-        return;
-    }
-    if ( Level.NetMode == NM_DedicatedServer )
-    {
-        Eyeheight = BaseEyeheight;
-        return;
-    }
-    if ( bTearOff )
-    {
-        EyeHeight = Default.BaseEyeheight;
-        bUpdateEyeHeight = false;
-        return;
-    }
-
-    if (Controller.WantsSmoothedView()) {
-        Delta = Location - OldLocation;
-
-        // remove lifts from the equation.
-        if (Base != none)
-            Delta -= DeltaTime * Base.Velocity;
-
-        // Step detection heuristic
-        if (IgnoreZChangeTicks == 0 && Abs(Delta.Z) > DeltaTime * GroundSpeed)
-            EyeHeightOffset += FClamp(Delta.Z, -MAXSTEPHEIGHT, MAXSTEPHEIGHT);
-    }
-
-    OldLocation = Location;
-    OldPhysics2 = Physics;
-    if (IgnoreZChangeTicks > 0) IgnoreZChangeTicks--;
-
-    if (Controller.WantsSmoothedView())
-        EyeHeightOffset += BaseEyeHeight - OldBaseEyeHeight;
-    OldBaseEyeHeight = BaseEyeHeight;
-
-    EyeHeightOffset *= Exp(-9.0 * DeltaTime);
-    EyeHeight = BaseEyeHeight - EyeHeightOffset;
-
-    Controller.AdjustView(DeltaTime);
-}
-
 defaultproperties
 {
-	 bAlwaysRelevant=True
-     bCanDodge=True
-     bCanDoubleJump=True
+	bAlwaysRelevant=True
+    bCanDodge=True
+    bCanDoubleJump=True
      MoverLeaveGrace=1.000000
      MinDragDistance=40.000000
      MaxPoolVelocity=20.000000

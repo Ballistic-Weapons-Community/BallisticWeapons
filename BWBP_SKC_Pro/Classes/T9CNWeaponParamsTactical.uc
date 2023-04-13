@@ -1,4 +1,4 @@
-class T9CNWeaponParamsArena extends BallisticWeaponParams;
+class T9CNWeaponParamsTactical extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,61 +7,123 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-		RangeAtten=0.500000
-		Damage=15
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
+        TraceRange=(Min=4000.000000,Max=4000.000000)
+        DecayRange=(Min=525,Max=1225)
+		Inaccuracy=(X=128,Y=128)
+        RangeAtten=0.5
+        Damage=24
+        HeadMult=2.75f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
-		PenetrateForce=180
-		bPenetrate=True
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.T9CNFlashEmitter'
-		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireOld',Volume=1.300000)
-		Recoil=450.000000
+        PenetrationEnergy=16
+        PenetrateForce=100
+        bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
+		Recoil=300.000000
+		Chaos=0.150000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.080000
-		AimedFireAnim="SightFire"	
-	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+		FireInterval=0.130000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1.550000	
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
-		
+
+	//Burst
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryBurstEffectParams
+        TraceRange=(Min=4000.000000,Max=4000.000000)
+        DecayRange=(Min=525,Max=1225)
+		Inaccuracy=(X=128,Y=128)
+        RangeAtten=0.5
+        Damage=24
+        HeadMult=2.75f
+        LimbMult=0.75f
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+        PenetrationEnergy=16
+        PenetrateForce=100
+        bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
+		Recoil=425.000000
+		Chaos=0.070000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryBurstFireParams
+		FireInterval=0.060000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1.550000	
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryBurstEffectParams'
+	End Object
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.3
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.12),(InVal=0.300000,OutVal=0.150000),(InVal=0.4,OutVal=0.02),(InVal=0.550000,OutVal=-0.120000),(InVal=0.700000,OutVal=0.050000),(InVal=1.000000,OutVal=0.200000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
-		MaxRecoil=6144
-		ClimbTime=0.04
-		DeclineDelay=0.3
-		DeclineTime=0.5
-		CrouchMultiplier=0.800000
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams
+		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=0.500000
+		YawFactor=0.000000
+		XRandFactor=0.3500000
+		YRandFactor=0.350000
+		MaxRecoil=8192.000000
+		DeclineTime=0.400000
+		DeclineDelay=0.120000
+		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+	End Object
+	
+	//Burst
+	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
+		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=0.600000
+		YawFactor=0.100000
+		XRandFactor=0.4000000
+		YRandFactor=0.400000
+		MaxRecoil=8192.000000
+		DeclineTime=0.600000
+		DeclineDelay=0.180000
+		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
 	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ViewBindFactor=0.05
-		ADSMultiplier=0.400000
-		AimAdjustTime=1.200000
-		AimSpread=(Min=16,Max=512)
-		ChaosDeclineTime=0.500000
-		ChaosSpeedThreshold=850.000000
+	Begin Object Class=AimParams Name=TacticalAimParams
+        AimSpread=(Min=256,Max=768)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
+        ADSMultiplier=0.75
+        SprintChaos=0.050000
+        AimAdjustTime=0.450000
+        ChaosDeclineTime=0.450000
+        ChaosSpeedThreshold=300
 	End Object
     
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ArenaParams_Burst
+	Begin Object Class=WeaponParams Name=TacticalParams_Robocop
 		//Layout core
 		LayoutName="Gauss Mod"
 		Weight=10
@@ -75,25 +137,25 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		//Functions
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000,RecoilParamsIndex=1)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
-		InitialWeaponMode=1
-		DisplaceDurationMult=0.75
-		PlayerSpeedFactor=1.050000
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.250000
-        InventorySize=4
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		WeaponPrice=1200
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.130000
 		MagAmmo=18
 		SightPivot=(Pitch=128)
-		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
-		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		RecoilParams(1)=RecoilParams'TacticalBurstRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ArenaParams_Auto
+	Begin Object Class=WeaponParams Name=TacticalParams_Auto
 		//Layout core
 		LayoutName="Automatic Mod"
 		Weight=10
@@ -102,44 +164,46 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		//Functions
-		DisplaceDurationMult=0.75
-		PlayerSpeedFactor=1.050000
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.250000
-        InventorySize=4
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		WeaponPrice=1200
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.130000
 		MagAmmo=18
 		SightPivot=(Pitch=128)
-		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
-		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		RecoilParams(1)=RecoilParams'TacticalBurstRecoilParams'
+		RecoilParams(2)=RecoilParams'TacticalBurstRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
+		FireParams(2)=FireParams'TacticalPrimaryBurstFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'ArenaParams_Burst'
-	Layouts(1)=WeaponParams'ArenaParams_Auto'
+	Layouts(0)=WeaponParams'TacticalParams_Robocop'
+	Layouts(1)=WeaponParams'TacticalParams_Auto'
 	
 	//Camos =====================================
 	
-	Begin Object Class=WeaponCamo Name=M9_Inox
-		Index=0
-		CamoName="Inox"
-		Weight=30
-	End Object
-	
 	Begin Object Class=WeaponCamo Name=M9_Silver
-		Index=1
+		Index=0
 		CamoName="Silver"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-SlideSilverShine',Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M9_Inox
+		Index=1
+		CamoName="Inox"
+		Weight=30
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M9_BlackWorn
@@ -202,8 +266,8 @@ defaultproperties
 		Weight=1
 	End Object
 	
-	Camos(0)=WeaponCamo'M9_Inox'
-	Camos(1)=WeaponCamo'M9_Silver'
+	Camos(0)=WeaponCamo'M9_Silver'
+	Camos(1)=WeaponCamo'M9_Inox'
 	Camos(2)=WeaponCamo'M9_BlackWorn'
 	Camos(3)=WeaponCamo'M9_BlackWood'
 	Camos(4)=WeaponCamo'M9_Tan'

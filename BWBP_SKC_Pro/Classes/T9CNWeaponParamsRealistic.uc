@@ -66,7 +66,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryBurstFireParams
-		FireInterval=0.054000
+		FireInterval=0.060000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.550000	
@@ -134,11 +134,20 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=RealisticParams
-		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
+	Begin Object Class=WeaponParams Name=RealisticParams_Robocop
+		//Layout core
+		LayoutName="Gauss Mod"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=1f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
+		//Functions
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		WeaponPrice=1200
@@ -153,31 +162,67 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
 		InitialWeaponMode=1
-		WeaponName="T9CN 9mm Police Pistol"
+		WeaponName="T9CN 9mm Autopistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
 	End Object
-	Layouts(0)=WeaponParams'RealisticParams'
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Auto
+		//Layout core
+		LayoutName="Automatic Mod"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
+		//Functions
+		PlayerSpeedFactor=1.100000
+		InventorySize=6
+		WeaponPrice=1200
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.130000
+		MagAmmo=18
+		bMagPlusOne=True
+		SightPivot=(Pitch=128)
+		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
+		//ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		WeaponName="T9CN 9mm Police Pistol"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
+		RecoilParams(2)=RecoilParams'RealisticBurstRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryBurstFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'RealisticParams_Robocop'
+	Layouts(1)=WeaponParams'RealisticParams_Auto'
 	
 	//Camos =====================================
 	
-	Begin Object Class=WeaponCamo Name=M9_Inox
-		Index=0
-		CamoName="Inox"
-		Weight=30
-	End Object
-	
 	Begin Object Class=WeaponCamo Name=M9_Silver
-		Index=1
+		Index=0
 		CamoName="Silver"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-SlideSilverShine',Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M9_Inox
+		Index=1
+		CamoName="Inox"
+		Weight=30
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M9_BlackWorn
@@ -240,8 +285,8 @@ defaultproperties
 		Weight=1
 	End Object
 	
-	Camos(0)=WeaponCamo'M9_Inox'
-	Camos(1)=WeaponCamo'M9_Silver'
+	Camos(0)=WeaponCamo'M9_Silver'
+	Camos(1)=WeaponCamo'M9_Inox'
 	Camos(2)=WeaponCamo'M9_BlackWorn'
 	Camos(3)=WeaponCamo'M9_BlackWood'
 	Camos(4)=WeaponCamo'M9_Tan'
