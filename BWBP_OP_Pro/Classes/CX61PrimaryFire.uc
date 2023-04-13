@@ -97,13 +97,6 @@ defaultproperties
 	 ProjectileClass="BWBP_OP_Pro.CX61Flechette"
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
      TraceRange=(Min=9000.000000,Max=9000.000000)
-     
-     WallPenetrationForce=16.000000
-     
-     Damage=22.000000
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
-	 
      DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
      DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
      DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'

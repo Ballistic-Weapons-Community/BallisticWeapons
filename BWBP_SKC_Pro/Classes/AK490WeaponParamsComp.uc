@@ -12,9 +12,9 @@ defaultproperties
         DecayRange=(Min=2363,Max=6000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=28
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=35
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
@@ -47,7 +47,7 @@ defaultproperties
 		Damage=90
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=1.350000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.5,Radius=16,bAtten=True)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

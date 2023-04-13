@@ -104,7 +104,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 defaultproperties
 {
      DamageType=Class'BWBP_OP_Pro.DT_RCS715Immolation'
-     Damage=9.000000
+     Damage=12.000000
      BurnTime=6.000000
      Begin Object Class=SpriteEmitter Name=SpriteEmitter11
          FadeOut=True

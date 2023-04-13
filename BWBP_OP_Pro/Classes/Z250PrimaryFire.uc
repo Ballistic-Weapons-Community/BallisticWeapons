@@ -451,13 +451,6 @@ defaultproperties
 {
 	 TraceCount=1
      TraceRange=(Min=12000.000000,Max=12000.000000)
-     WallPenetrationForce=0
-     
-     Damage=22.000000
-     HeadMult=1.5f
-     LimbMult=0.8f
-     
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
      DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
      DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'

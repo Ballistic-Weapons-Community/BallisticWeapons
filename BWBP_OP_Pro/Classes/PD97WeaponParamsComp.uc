@@ -34,7 +34,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.PD97TazerProj'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=10240.000000
-		Damage=5
+		Damage=8
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)

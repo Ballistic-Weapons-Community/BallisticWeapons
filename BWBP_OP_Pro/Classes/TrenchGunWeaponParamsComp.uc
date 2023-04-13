@@ -14,7 +14,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 		MaxHits=14 // inflict maximum of 156 damage to a single target
-		Damage=12
+		Damage=15
 		Inaccuracy=(X=220,Y=220)
 		DamageType=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
@@ -52,7 +52,7 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
 		MaxHits=0
-		Damage=7
+		Damage=9
 		Inaccuracy=(X=150,Y=150)
 		DamageType=Class'DT_TrenchGunElectro'
 		DamageTypeArm=Class'DT_TrenchGunElectro'

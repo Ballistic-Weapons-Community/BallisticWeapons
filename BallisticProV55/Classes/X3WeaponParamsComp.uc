@@ -9,7 +9,7 @@ defaultproperties
 	
 	Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=130.000000,Max=130.000000)
-		Damage=35.0
+		Damage=45.0
 		HeadMult=1.0
 		LimbMult=1.0
 		DamageType=Class'BallisticProV55.DTX3Knife'
@@ -37,9 +37,9 @@ defaultproperties
 	//Projectile
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryProjEffectParams
 		Speed=3000
-		Damage=40.0
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=50.0
+        HeadMult=2.00
+        LimbMult=0.75
 		SpreadMode=FSM_Rectangle
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifeThrow',Volume=0.5,Radius=12.000000,bAtten=True)
 		Recoil=0.0
@@ -62,9 +62,9 @@ defaultproperties
 	
 	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=130.000000,Max=130.000000)
-		Damage=50.0
-		HeadMult=1.5
-		LimbMult=0.5
+		Damage=65.0
+		HeadMult=1.50
+		LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTX3Knife'
 		DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
 		DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'

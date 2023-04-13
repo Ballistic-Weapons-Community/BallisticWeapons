@@ -10,7 +10,7 @@ defaultproperties
 		//TraceRange=(Min=1800.000000,Max=1800.000000)
 		Speed=3000
 		MaxSpeed=3000
-		Damage=15
+		Damage=20
 		//PenetrateForce=50
 		Chaos=0.050000
 		BotRefireRate=0.99

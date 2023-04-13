@@ -19,12 +19,6 @@ defaultproperties
      //WallPenetrationForce=48.000000
      //MaxWalls=3
 	 //PenetrateForce=250
-	 
-	 Damage=60.000000
-     HeadMult=1.4f
-     LimbMult=0.5f
-	 
-     WaterRangeAtten=0.800000
      KickForce=16000
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)

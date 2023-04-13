@@ -13,7 +13,7 @@ defaultproperties
         Speed=5500.000000
         MaxSpeed=14000.000000
         AccelSpeed=100000.000000
-        Damage=35.000000
+        Damage=43.000000
         DamageRadius=16.000000
         MaxDamageGainFactor=0.6
         DamageGainStartTime=0.05
@@ -33,7 +33,7 @@ defaultproperties
         Speed=5500.000000
         MaxSpeed=5500.000000
         AccelSpeed=60000.000000
-        Damage=35.000000
+        Damage=43.000000
         DamageRadius=64.000000
         MaxDamageGainFactor=0.25
         DamageGainEndTime=0.3
@@ -52,7 +52,7 @@ defaultproperties
         Speed=5500.000000
         MaxSpeed=50000.000000
         AccelSpeed=100000.000000
-        Damage=35.000000
+        Damage=43.000000
 		MaxDamageGainFactor=1
 		DamageGainEndTime=0.35
         DamageRadius=64.000000
@@ -96,9 +96,9 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaLaserEffectParams
         TraceRange=(Min=10000.000000,Max=10000.000000)
         WaterTraceRange=5000
-        Damage=11.000000
-        HeadMult=2.0f
-        LimbMult=0.75f
+        Damage=18.000000
+        HeadMult=2.00
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTVPRLaser'
         DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'
         DamageTypeArm=Class'BallisticProV55.DTVPRLaser'
@@ -107,7 +107,7 @@ defaultproperties
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
         FlashScaleFactor=0.750000
         Chaos=0.000000
-	    Recoil=0
+	    Recoil=64
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         WarnTargetPct=0.2
     End Object

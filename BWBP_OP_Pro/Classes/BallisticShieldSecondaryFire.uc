@@ -37,9 +37,6 @@ defaultproperties
      WallHitPoint=1
      NumSwipePoints=3
      FatiguePerStrike=0.50000
-     Damage=80.000000
-     
-     
      DamageType=Class'BWBP_OP_Pro.DTBallisticShield'
      DamageTypeHead=Class'BWBP_OP_Pro.DTBallisticShield'
      DamageTypeArm=Class'BWBP_OP_Pro.DTBallisticShield'

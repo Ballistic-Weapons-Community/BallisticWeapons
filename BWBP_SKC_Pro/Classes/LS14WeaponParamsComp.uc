@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=12
+		Damage=20
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
@@ -39,7 +39,7 @@ defaultproperties
 		Speed=750.000000
 		MaxSpeed=9000.000000
 		AccelSpeed=6750.000000
-		Damage=70
+		Damage=80
 		DamageRadius=384.000000
 		MomentumTransfer=50000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

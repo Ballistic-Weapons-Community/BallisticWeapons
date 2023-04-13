@@ -88,49 +88,46 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
-	 HipSpreadFactor=1
-     TraceCount=10
-     TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
-     TraceRange=(Min=2560.000000,Max=2560.000000)
-     Damage=12.000000
-
-	RangeAtten=0.250000
+	HipSpreadFactor=1
+	TraceCount=10
+	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+	ImpactManager=Class'BallisticProV55.IM_Shell'
+	TraceRange=(Min=2560.000000,Max=2560.000000)
 	DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
 	DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
-     KickForce=600
-     PenetrateForce=100
-     bPenetrate=True
-     bCockAfterFire=False
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     FlashScaleFactor=2
-     BrassClass=Class'BallisticProV55.Brass_M290Left'
-     BrassBone="EjectorR"
-     bBrassOnCock=True
-     BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
-     FireRecoil=768.000000
-     FirePushbackForce=600.000000
-     FireChaos=0.250000
-     XInaccuracy=256.000000
-     YInaccuracy=256.000000
+	KickForce=600
+	PenetrateForce=100
+	bPenetrate=True
+	bCockAfterFire=False
+	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+	FlashScaleFactor=2
+	BrassClass=Class'BallisticProV55.Brass_M290Left'
+	BrassBone="EjectorR"
+	bBrassOnCock=True
+	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
+	FireRecoil=768.000000
+	FirePushbackForce=600.000000
+	FireChaos=0.250000
+	XInaccuracy=256.000000
+	YInaccuracy=256.000000
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
-     FireAnim="SightFire"
-     FireRate=0.400000
-	 AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-	 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.7
-     WarnTargetPct=0.5
+	FireAnim="SightFire"
+	FireRate=0.400000
+	AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
+	ShakeRotMag=(X=128.000000,Y=64.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-30.000000)
+	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetTime=2.000000
+
+	// AI
+	bInstantHit=True
+	bLeadTarget=False
+	bTossed=False
+	bSplashDamage=False
+	bRecommendSplashDamage=False
+	BotRefireRate=0.7
+	WarnTargetPct=0.5
 }

@@ -169,14 +169,7 @@ defaultproperties
 {
      HeatPerShot=0.900000
      TraceRange=(Min=10000.000000,Max=12000.000000)
-	 
 	 bPenetrate=False
-     WallPenetrationForce=0.000000
-     
-     Damage=30.000000
-
-     RangeAtten=0.350000
-     WaterRangeAtten=0.200000
      DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'

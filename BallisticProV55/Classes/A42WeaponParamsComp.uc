@@ -12,7 +12,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
     	ProjectileClass=Class'BallisticProV55.A42Projectile'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
-        Damage=30.000000
+        Damage=38.000000
         Speed=3000.000000
         MaxSpeed=4500.000000
         DamageRadius=48.000000
@@ -42,7 +42,7 @@ defaultproperties
     	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
     	TraceRange=(Min=8000.000000,Max=8000.000000)
         PenetrateForce=150
-        Damage=50.000000
+        Damage=65.000000
         DamageType=Class'BallisticProV55.DTA42SkrithBeam'
         DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
         DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'

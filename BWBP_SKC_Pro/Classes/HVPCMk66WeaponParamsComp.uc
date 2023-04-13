@@ -11,7 +11,7 @@ defaultproperties
 		SpawnOffset=(X=100.000000,Y=10.000000,Z=-9.000000)
 		Speed=3000.000000
 		MaxSpeed=3000.000000
-		Damage=500
+		Damage=200
 		DamageRadius=1280.000000
 		MomentumTransfer=100000.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.BFGFlashEmitter'

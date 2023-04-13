@@ -82,13 +82,6 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-    WallPenetrationForce=24.000000
-    
-    Damage=14.000000
-    
-    
-    RangeAtten=0.200000
-    WaterRangeAtten=0.600000
     DamageType=Class'BallisticProV55.DTXK2Freeze'
     DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
     DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'

@@ -10,14 +10,6 @@ defaultproperties
 {
      TraceRange=(Min=12000.000000,Max=13000.000000)
      
-     WallPenetrationForce=24.000000
-     
-     Damage=28.000000
-     HeadMult=1.5f
-     LimbMult=0.75f
-     
-     RangeAtten=0.40000
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'

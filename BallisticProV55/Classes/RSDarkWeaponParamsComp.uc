@@ -12,7 +12,7 @@ defaultproperties
         Speed=5500
         AccelSpeed=100000
         MaxSpeed=14000
-        Damage=70
+        Damage=90
 		DamageRadius=128
 		MomentumTransfer=10000
     	Recoil=512.000000
@@ -36,7 +36,7 @@ defaultproperties
         Speed=5500
         AccelSpeed=100000
         MaxSpeed=14000
-        Damage=40
+        Damage=50
 		DamageRadius=0
 		MomentumTransfer=100
     	Recoil=96.000000
@@ -61,7 +61,7 @@ defaultproperties
         Speed=3000.000000
         AccelSpeed=0.000000
         MaxSpeed=3000.000000
-        Damage=12.000000
+        Damage=15.000000
 		DamageRadius=192.000000
 		MomentumTransfer=0.000000
     	Recoil=7.000000
@@ -87,7 +87,7 @@ defaultproperties
         Speed=
         AccelSpeed=
         MaxSpeed=
-        Damage=50.000000
+        Damage=60.000000
 		DamageRadius=
 		MomentumTransfer=
 		MaxDamageGainFactor=
@@ -114,8 +114,8 @@ defaultproperties
         Speed=4000.000000
         AccelSpeed=0.000000
         MaxSpeed=4000.000000
-        Damage=130.000000
-		DamageRadius=256.000000
+        Damage=100.000000
+		DamageRadius=768.000000
 		MomentumTransfer=80000.000000
     	Recoil=1024.000000
 	    Chaos=0.150000
@@ -140,9 +140,9 @@ defaultproperties
 	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=180.000000,Max=180.000000)
 		WaterTraceRange=5000.0
-		Damage=50.0
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=25.0
+        HeadMult=1.0f
+        LimbMult=1.0
 		DamageType=Class'BallisticProV55.DT_RSDarkStab'
 		DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
 		DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
@@ -153,7 +153,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Radius=32.000000,bAtten=True)
 		Recoil=0.0
-		Chaos=-1.0
+		Chaos=0.0
 		BotRefireRate=0.800000
 		WarnTargetPct=0.050000
 	End Object

@@ -13,9 +13,9 @@ defaultproperties
         DecayRange=(Min=525,Max=1225)
 		PenetrationEnergy=16
         RangeAtten=0.5
-		Damage=15
-        HeadMult=2.25f
-        LimbMult=0.75f
+		Damage=20
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
@@ -38,7 +38,7 @@ defaultproperties
 	
 	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=130.000000,Max=130.000000)
-		Damage=45
+		Damage=55
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Spike'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88SpikeHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Spike'

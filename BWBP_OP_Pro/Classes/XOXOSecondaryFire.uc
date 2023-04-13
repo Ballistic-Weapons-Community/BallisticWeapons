@@ -243,7 +243,6 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 
 defaultproperties
 {
-     Damage=7.000000
      MaxWaterTraceRange=5000
      DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
      MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'

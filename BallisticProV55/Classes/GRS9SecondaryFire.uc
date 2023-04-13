@@ -84,27 +84,23 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BW_Core_WeaponSound.Glock.Glk-LaserBurn'
-	 RangeAtten=0.2
-     Damage=14.000000
-     
-     
-     DamageType=Class'BallisticProV55.DTGRS9Laser'
-     DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
-     DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'
-     PenetrateForce=200
-     bPenetrate=True
-     bUseWeaponMag=False
-     FlashBone="tip2"
-     FireChaos=0.000000
-     XInaccuracy=2.000000
-     YInaccuracy=2.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
-     FireAnim="Idle"
-     FireRate=0.080000
-     AmmoClass=Class'BallisticProV55.Ammo_GRSNine'
-     AmmoPerFire=0
-     BotRefireRate=0.999000
-     WarnTargetPct=0.010000
-     aimerror=900.000000
+	FireSoundLoop=Sound'BW_Core_WeaponSound.Glock.Glk-LaserBurn'
+	DamageType=Class'BallisticProV55.DTGRS9Laser'
+	DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
+	DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'
+	PenetrateForce=200
+	bPenetrate=True
+	bUseWeaponMag=False
+	FlashBone="tip2"
+	FireChaos=0.000000
+	XInaccuracy=2.000000
+	YInaccuracy=2.000000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
+	FireAnim="Idle"
+	FireRate=0.080000
+	AmmoClass=Class'BallisticProV55.Ammo_GRSNine'
+	AmmoPerFire=0
+	BotRefireRate=0.999000
+	WarnTargetPct=0.010000
+	aimerror=900.000000
 }

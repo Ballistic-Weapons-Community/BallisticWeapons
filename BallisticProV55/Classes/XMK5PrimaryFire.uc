@@ -12,14 +12,6 @@ class XMK5PrimaryFire extends BallisticProInstantFire;
 defaultproperties
 {
      TraceRange=(Min=4096.000000,Max=4096.000000)
-     WallPenetrationForce=8.000000
-     
-     Damage=22.000000
-     HeadMult=1.4f
-     LimbMult=0.6f
-     
-     RangeAtten=0.200000
-     WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
      DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
      DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'

@@ -84,11 +84,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BWBP_SKC_Sounds.Glock_Gold.G-Glk-LaserBurn'
-	 RangeAtten=0.2
-     Damage=18.000000
-     
-     
+     FireSoundLoop=Sound'BWBP_SKC_Sounds.Glock_Gold.G-Glk-LaserBurn'    
      DamageType=Class'BWBP_SKC_Pro.DTGRSXXLaser'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTGRSXXLaserHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTGRSXXLaser'

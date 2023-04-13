@@ -12,7 +12,7 @@ defaultproperties
         DecayRange=(Min=2363,Max=5000)
 		PenetrationEnergy=32
 		RangeAtten=0.67
-		Damage=18
+		Damage=23
 		DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'
@@ -41,7 +41,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=5
+		Damage=15
 		DamageType=Class'DTCX85Dart'
 		DamageTypeHead=Class'DTCX85Dart'
 		DamageTypeArm=Class'DTCX85Dart'

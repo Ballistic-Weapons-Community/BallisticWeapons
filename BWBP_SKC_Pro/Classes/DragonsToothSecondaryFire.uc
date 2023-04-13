@@ -169,7 +169,6 @@ defaultproperties
 	 bCanBackstab=False
 	 bNoPositionalDamage=True
 	 bUseRunningDamage=False
-     Damage=120.000000
      DamageType=Class'BWBP_SKC_Pro.DT_DTSChest'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSLimb'

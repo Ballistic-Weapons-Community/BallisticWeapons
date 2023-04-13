@@ -12,7 +12,7 @@ defaultproperties
         Speed=5500
         AccelSpeed=100000
         MaxSpeed=14000
-        Damage=60.000000
+        Damage=75.000000
 		DamageRadius=128.000000
 		MomentumTransfer=70000.000000
     	Recoil=512.000000
@@ -36,7 +36,7 @@ defaultproperties
         Speed=5500
         AccelSpeed=100000
         MaxSpeed=14000
-        Damage=25.000000
+        Damage=32.000000
 		DamageRadius=48.000000
 		MomentumTransfer=10000.000000
 		MaxDamageGainFactor=0.6
@@ -64,7 +64,7 @@ defaultproperties
         Speed=
         AccelSpeed=
         MaxSpeed=
-        Damage=2.000000
+        Damage=3.000000
 		DamageRadius=
 		MomentumTransfer=
 		MaxDamageGainFactor=
@@ -93,7 +93,7 @@ defaultproperties
         Speed=
         AccelSpeed=
         MaxSpeed=
-        Damage=145.000000
+        Damage=140.000000
 		DamageRadius=
 		MomentumTransfer=
 		MaxDamageGainFactor=
@@ -150,9 +150,7 @@ defaultproperties
 	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=200.000000,Max=200.000000)
 		WaterTraceRange=5000.0
-		Damage=50.0
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=65.0
 		DamageType=Class'BallisticProV55.DT_RSNovaStab'
 		DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
 		DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'

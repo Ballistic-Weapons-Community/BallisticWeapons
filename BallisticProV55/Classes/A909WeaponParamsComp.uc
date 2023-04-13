@@ -8,7 +8,7 @@ defaultproperties
 
     Begin Object Class=MeleeEffectParams Name=ArenaPriEffectParams
         TraceRange=(Min=150.000000,Max=150.000000)
-        Damage=45.000000
+        Damage=55.000000
         Fatigue=0.030000
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.7,Radius=24.000000,bAtten=True)
         DamageType=Class'BallisticProV55.DTA909Blades'
@@ -34,7 +34,7 @@ defaultproperties
     Begin Object Class=MeleeEffectParams Name=ArenaSecEffectParams
         Fatigue=0.200000
         TraceRange=(Min=150.000000,Max=150.000000)
-        Damage=60.000000
+        Damage=75.000000
         DamageType=Class'BallisticProV55.DTA909Blades'
         DamageTypeHead=Class'BallisticProV55.DTA909Head'
         DamageTypeArm=Class'BallisticProV55.DTA909Limb'

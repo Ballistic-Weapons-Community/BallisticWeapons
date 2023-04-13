@@ -13,9 +13,9 @@ defaultproperties
      	PenetrationEnergy=16
 		PenetrateForce=135
 		bPenetrate=True
-     	Damage=15.000000
-        HeadMult=2.25f
-        LimbMult=0.75f
+     	Damage=20.000000
+        HeadMult=2.00f
+        LimbMult=0.75
      	DamageType=Class'BallisticProV55.DTXRS10SMG'
      	DamageTypeHead=Class'BallisticProV55.DTXRS10SMGHead'
     	DamageTypeArm=Class'BallisticProV55.DTXRS10SMG'

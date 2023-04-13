@@ -91,7 +91,7 @@ defaultproperties
 {
      Fuel=2.000000
      MaxFuel=10.000000
-     Damage=10.000000
+     Damage=12.000000
      DamageType=Class'DT_FlameSwordImmolation'
      Begin Object Class=SpriteEmitter Name=SpriteEmitter11
          UseColorScale=True

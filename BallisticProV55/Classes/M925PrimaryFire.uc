@@ -33,15 +33,7 @@ simulated function PreBeginPlay()
 
 defaultproperties
 {
-	 RangeAtten=0.65
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WallPenetrationForce=48.000000
-     
-     Damage=50.000000
-     HeadMult=1.5f
-     LimbMult=0.85f
-     
-     WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTM925MG'
      DamageTypeHead=Class'BallisticProV55.DTM925MGHead'
      DamageTypeArm=Class'BallisticProV55.DTM925MG'

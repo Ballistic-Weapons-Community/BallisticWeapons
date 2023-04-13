@@ -13,7 +13,7 @@ defaultproperties
 		Speed=5000.000000
 		MaxSpeed=8000.000000
 		AccelSpeed=90000.000000
-		Damage=85
+		Damage=120
 		DamageRadius=512.000000
 		MomentumTransfer=65000.000000
 		MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
@@ -39,10 +39,10 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk5ProjectileSmall'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-		Speed=200.000000
-		MaxSpeed=2000000.000000
+		Speed=4000.000000
+		MaxSpeed=11000.000000
 		AccelSpeed=150000.000000
-		Damage=45
+		Damage=60
 		DamageRadius=122.000000
 		MomentumTransfer=12500.000000
 		FlashScaleFactor=0.400000

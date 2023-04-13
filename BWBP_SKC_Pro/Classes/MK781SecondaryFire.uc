@@ -255,9 +255,6 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
      ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
      TraceRange=(Min=2000.000000,Max=4000.000000)
-     Damage=10.000000
-     
-     
      DamageType=Class'BWBP_SKC_Pro.DT_Mk781Electro'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_Mk781Electro'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_Mk781Electro'

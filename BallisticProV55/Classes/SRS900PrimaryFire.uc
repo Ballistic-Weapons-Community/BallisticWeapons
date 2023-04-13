@@ -148,13 +148,6 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=0.750000
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=24.000000
-     Damage=34.000000
-     HeadMult=1.5f
-     LimbMult=0.8f
-     
-     RangeAtten=0.450000
-     WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTSRS900Rifle'
      DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
      DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'

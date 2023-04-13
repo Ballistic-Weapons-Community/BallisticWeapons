@@ -25,13 +25,6 @@ defaultproperties
 {
      DecayRange=(Min=768,Max=2816)
      TraceRange=(Min=8000.000000,Max=8000.000000)
-     WallPenetrationForce=8.000000
-     
-     Damage=45.000000
-     
-     
-     RangeAtten=0.40000
-     WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTleMatRevolver'
      DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
      DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'

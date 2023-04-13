@@ -9,9 +9,9 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaPriEffectParams
         DecayRange=(Min=1050,Max=2100)
         PenetrationEnergy=16
-        Damage=50.000000
-        HeadMult=2.0f
-        LimbMult=0.75f
+        Damage=62.000000
+        HeadMult=2.00
+        LimbMult=0.75
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTAM67Pistol'
         DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'

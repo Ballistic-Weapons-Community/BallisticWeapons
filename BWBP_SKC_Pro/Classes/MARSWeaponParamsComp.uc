@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		PenetrationEnergy=32
 		RangeAtten=0.67
-		Damage=18
+		Damage=23
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
@@ -36,7 +36,7 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		PenetrationEnergy=32
 		RangeAtten=0.67
-		Damage=18
+		Damage=23
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
@@ -65,8 +65,8 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000
-		Damage=50
-		DamageRadius=256.000000
+		Damage=65
+		DamageRadius=512.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=1024.000000
 		Chaos=0.500000
@@ -88,7 +88,7 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3500.000000
 		Damage=50
-		DamageRadius=512.000000
+		DamageRadius=768.000000
 		MomentumTransfer=0.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=1024.000000

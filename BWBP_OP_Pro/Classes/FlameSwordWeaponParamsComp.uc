@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=165.000000,Max=165.000000)
-        Damage=70
+        Damage=90
 		Fatigue=0.150000
         DamageType=Class'BWBP_OP_Pro.DT_FlameSwordChest'
         DamageTypeHead=Class'BWBP_OP_Pro.DT_FlameSwordHead'

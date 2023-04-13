@@ -289,9 +289,6 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 defaultproperties
 {
      ChargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Charge'
-     Damage=200.000000
-     HeadMult=1f
-     LimbMult=1f
      DamageType=Class'BallisticProV55.DT_HVCRedLightning'
      DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
      DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'

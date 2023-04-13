@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		PenetrationEnergy=16
 		RangeAtten=0.5
-		Damage=16
-        HeadMult=2.25f
-        LimbMult=0.75f
+		Damage=20
+        HeadMult=2.00f
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
@@ -36,9 +36,9 @@ defaultproperties
 		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		Damage=14
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=22
+        HeadMult=2.00f
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'

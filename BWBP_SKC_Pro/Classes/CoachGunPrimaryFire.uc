@@ -500,7 +500,6 @@ defaultproperties
 
 	WallPenetrationForce=0
 
-	Damage=12.000000
     MaxHits=14 // inflict maximum of 156 damage to a single target
     SlugDamage=80
     SlugDoubleDamage=70

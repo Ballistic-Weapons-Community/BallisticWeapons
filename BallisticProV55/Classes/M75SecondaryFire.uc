@@ -93,10 +93,6 @@ defaultproperties
 	 RailWallPenetrationForceBonus=1280
 	 
 	 bCockAfterFire=True
-
-	 Damage=80.000000
-     HeadMult=1.5f
-     LimbMult=0.9f
 	 
 	 RailDamageBonusFactor=0.75
 	 

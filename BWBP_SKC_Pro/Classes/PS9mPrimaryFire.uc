@@ -73,12 +73,6 @@ function PlayFiring()
 defaultproperties
 {
      TraceRange=(Min=3000.000000)
-     WallPenetrationForce=0
-     
-     Damage=10.000000
-     HeadMult=1f
-     LimbMult=1f
-     
      DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'

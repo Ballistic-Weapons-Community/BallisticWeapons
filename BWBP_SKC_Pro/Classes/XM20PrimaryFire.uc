@@ -39,9 +39,6 @@ defaultproperties
      HeatPerShot=8.000000
      TraceRange=(Min=5000.000000,Max=7500.000000)
      MaxWaterTraceRange=5000
-     Damage=16
-     RangeAtten=0.900000
-     WaterRangeAtten=0.700000
      DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'

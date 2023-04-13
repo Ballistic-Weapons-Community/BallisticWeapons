@@ -173,8 +173,6 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 defaultproperties
 {
      TraceRange=(Min=12000.000000,Max=13000.000000)
-     Damage=30
-     WaterRangeAtten=0.800000
      KickForce=22000
      PenetrateForce=180
      bPenetrate=True

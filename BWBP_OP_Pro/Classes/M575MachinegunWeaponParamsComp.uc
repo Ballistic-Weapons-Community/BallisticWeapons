@@ -6,59 +6,56 @@ defaultproperties
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
-	
-	
-		Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-			TraceRange=(Min=15000.000000,Max=15000.000000)
-            DecayRange=(Min=2363,Max=5000)
-			PenetrationEnergy=32
-			RangeAtten=0.67
-			Damage=18
-			DamageType=Class'BWBP_OP_Pro.DTM575MG'
-			DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
-			DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
-			PenetrateForce=150
-			bPenetrate=True
-			MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-			FlashScaleFactor=0.050000
-			Recoil=110.000000
-			WarnTargetPct=0.200000
-			FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
-		End Object
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		DecayRange=(Min=2363,Max=5000)
+		PenetrationEnergy=32
+		RangeAtten=0.67
+		Damage=23
+		DamageType=Class'BWBP_OP_Pro.DTM575MG'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+		FlashScaleFactor=0.050000
+		Recoil=110.000000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+	End Object
 
-		Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-			FireInterval=0.082000
-			FireEndAnim=
-			AimedFireAnim="SightFire"	
-		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.082000
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
-	
-		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
-            DecayRange=(Min=2363,Max=5000)
-			RangeAtten=0.200000
-			Damage=14
-			DamageType=Class'BWBP_OP_Pro.DTM575Freeze'
-			DamageTypeHead=Class'BWBP_OP_Pro.DTM575Freeze'
-			DamageTypeArm=Class'BWBP_OP_Pro.DTM575Freeze'
-			PenetrateForce=150
-			bPenetrate=True
-			MuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'
-			FlashScaleFactor=0.250000
-			Recoil=70.000000
-			Chaos=0.050000
-			FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
-		End Object
 
-		Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-			FireInterval=0.090000
-			AimedFireAnim="SightFire"	
-		FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
-		End Object
+	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
+		DecayRange=(Min=2363,Max=5000)
+		RangeAtten=0.200000
+		Damage=25
+		DamageType=Class'BWBP_OP_Pro.DTM575Freeze'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTM575Freeze'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTM575Freeze'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'
+		FlashScaleFactor=0.250000
+		Recoil=70.000000
+		Chaos=0.050000
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.090000
+		AimedFireAnim="SightFire"	
+	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

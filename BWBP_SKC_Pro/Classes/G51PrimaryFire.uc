@@ -26,10 +26,6 @@ simulated event ModeDoFire()
 defaultproperties
 {
      TraceRange=(Min=10000.000000,Max=13000.000000)
-     WallPenetrationForce=18.000000
-     Damage=26.000000
-     RangeAtten=0.900000
-     WaterRangeAtten=0.700000
      DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'

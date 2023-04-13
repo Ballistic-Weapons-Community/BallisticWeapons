@@ -13,7 +13,7 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=10
+		Damage=12
 		DamageType=Class'BallisticProV55.DTM763Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
@@ -44,7 +44,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=768.000000,Max=768.000000)
 		RangeAtten=0.25
-		Damage=35
+		Damage=44
 		DamageType=Class'BallisticProV55.DTM763Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'

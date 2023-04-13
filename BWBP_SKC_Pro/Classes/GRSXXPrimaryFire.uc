@@ -123,14 +123,7 @@ defaultproperties
 	 
 	 DecayRange=(Min=768,Max=2304)
      TraceRange=(Min=4000.000000,Max=4000.000000)
-     WallPenetrationForce=8.000000
-     
-     Damage=24.000000
-     HeadMult=1.4f
-     LimbMult=0.5f
-     
-     RangeAtten=0.200000
-     WaterRangeAtten=0.500000
+
      DamageType=Class'BWBP_SKC_Pro.DTGRSXXPistol'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTGRSXXPistolHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTGRSXXPistol'

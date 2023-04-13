@@ -12,7 +12,7 @@ defaultproperties
 		WarnTargetPct=0.9	
 		Speed=1000.000000
 		MaxSpeed=1500.000000
-		Damage=20.000000
+		Damage=25.000000
 		DamageRadius=200.000000
 		HeadMult=1.0
 		LimbMult=1.0
@@ -37,7 +37,7 @@ defaultproperties
 		SpawnOffset=(Z=-14.000000)
 		Speed=1000.000000
 		MaxSpeed=1500.000000
-		Damage=20.000000
+		Damage=25.000000
 		DamageRadius=200.000000
 		HeadMult=1.0
 		LimbMult=1.0

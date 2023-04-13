@@ -50,10 +50,6 @@ defaultproperties
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=5000.000000,Max=5000.000000)
-     Damage=10.000000
-     
-     
-     RangeAtten=0.750000
      DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOShotgun'

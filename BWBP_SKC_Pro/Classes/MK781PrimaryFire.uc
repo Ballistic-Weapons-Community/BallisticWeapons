@@ -108,9 +108,6 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=2560.000000,Max=2560.000000)
-     Damage=10.000000
-
-     RangeAtten=0.40000
      DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'

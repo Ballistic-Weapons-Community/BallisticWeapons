@@ -234,7 +234,7 @@ defaultproperties
 {
      DamageRadius=256.000000
      ImpactManager=Class'BallisticProV55.IM_FireExplode'
-     Damage=25.000000
+     Damage=30.000000
      BaseDamage=40.000000
      RepulsionForceMag=250.000000
      LightType=LT_Flicker

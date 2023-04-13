@@ -13,7 +13,7 @@ defaultproperties
         TraceCount=7
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
         ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
-        Damage=9
+        Damage=11
         DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
@@ -45,7 +45,7 @@ defaultproperties
         Speed=8000.000000
         MaxSpeed=15000.000000
         AccelSpeed=3000.000000
-        Damage=50
+        Damage=75
         DamageRadius=256.000000
 		PushbackForce=180.000000
         MomentumTransfer=100000.000000

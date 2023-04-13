@@ -11,7 +11,7 @@ defaultproperties
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Speed=800.000000
         MaxSpeed=1200.000000
-		Damage=120
+		Damage=15
         DamageRadius=300.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
     End Object

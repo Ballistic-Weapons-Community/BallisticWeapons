@@ -5373,6 +5373,22 @@ exec function PrimaryRecoil(float f)
 	} 
 }
 
+exec function ADSBind(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.Params.ADSViewBindFactor = f; 
+	} 
+}
+
+exec function EscapeMult(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.Params.EscapeMultiplier = f; 
+	} 
+}
+
 delegate DumpHead(array<CacheManager.WeaponRecord> Recs);
 delegate DumpLine(class<BallisticWeapon> Weap, int Line);
 delegate DumpTail(array<CacheManager.WeaponRecord> Recs);

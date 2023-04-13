@@ -107,11 +107,6 @@ defaultproperties
 	 RangeAtten=0.75
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
-     
-     Damage=65.000000
-     HeadMult=1.5f
-     LimbMult=0.85f
-     
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTMarlinRifle'
      DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'

@@ -216,12 +216,6 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=0.750000
      TraceRange=(Min=9000.000000,Max=11000.000000)
-     WallPenetrationForce=16.000000
-     
-     Damage=25.000000
-
-     RangeAtten=0.400000
-     WaterRangeAtten=0.700000
      DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'

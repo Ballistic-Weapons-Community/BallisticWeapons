@@ -52,11 +52,6 @@ defaultproperties
   TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
   ImpactManager=Class'BallisticProV55.IM_Shell'
   TraceRange=(Min=2048.000000,Max=2048.000000)
-  WallPenetrationForce=0
-  
-  Damage=13.000000
-
-  RangeAtten=0.200000
   DamageType=Class'BallisticProV55.DTMRS138Shotgun'
   DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
   DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'

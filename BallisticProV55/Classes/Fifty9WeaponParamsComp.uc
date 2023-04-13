@@ -10,9 +10,9 @@ defaultproperties
         DecayRange=(Min=525,Max=1225)
         PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
-        Damage=15.000000
-        HeadMult=2.25f
-        LimbMult=0.75f
+        Damage=19.000000
+        HeadMult=2.00
+        LimbMult=0.75
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
@@ -34,9 +34,9 @@ defaultproperties
         DecayRange=(Min=525,Max=1225)
         PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
-        Damage=15.000000
-        HeadMult=2.25f
-        LimbMult=0.75f
+        Damage=19.000000
+        HeadMult=2.00
+        LimbMult=0.75
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
@@ -74,7 +74,7 @@ defaultproperties
     Begin Object Class=MeleeEffectParams Name=MeleeSwipeEffect
         Fatigue=0.090000
         TraceRange=(Min=150.000000,Max=150.000000)
-        Damage=45.000000
+        Damage=55.000000
         DamageType=Class'BallisticProV55.DTFifty9Blade'
         DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'

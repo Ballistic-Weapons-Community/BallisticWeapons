@@ -33,12 +33,6 @@ defaultproperties
 {
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WallPenetrationForce=8.000000
-     
-     Damage=25.000000
-     HeadMult=1.5f
-     LimbMult=0.5f
-     
-     RangeAtten=0.200000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTMD24Pistol'
      DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'

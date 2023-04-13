@@ -13,7 +13,7 @@ defaultproperties
 		Speed=5500.000000
 		MaxSpeed=14000.000000
 		AccelSpeed=100000.000000
-		Damage=38
+		Damage=48
 		DamageRadius=48.000000
 		MomentumTransfer=-1000.000000
 		MaxDamageGainFactor=0.6
@@ -45,7 +45,7 @@ defaultproperties
 		MaxSpeed=0000.000000
 		AccelSpeed=100000.000000
 		Damage=100
-		DamageRadius=768.000000
+		DamageRadius=1024.000000
 		MomentumTransfer=-30000.000000
 		MaxDamageGainFactor=0.6
 		DamageGainStartTime=0.05
@@ -59,7 +59,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaBombPrimaryFireParams
 		FireInterval=1.350000
-		AmmoPerFire=16
+		AmmoPerFire=35
 		FireAnim="Fire"
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ArenaBombPrimaryEffectParams'
@@ -73,8 +73,8 @@ defaultproperties
 		Damage=80
 		//DamageRadius=1024.000000
 		MomentumTransfer=4000.000000
-        HeadMult=2.0f
-        LimbMult=0.75f
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
@@ -127,7 +127,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
-		Damage=7
+		Damage=13
 		DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		Recoil=0.000000

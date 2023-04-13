@@ -123,13 +123,6 @@ defaultproperties
      LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
      HeatPerShot=45
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=64.000000
-     
-     Damage=45.000000
-     HeadMult=1.5
-     LimbMult=0.85
-     
-     WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTR9Rifle'
      DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
      DamageTypeArm=Class'BallisticProV55.DTR9Rifle'

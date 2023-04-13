@@ -13,7 +13,7 @@ defaultproperties
 		MaxSpeed=35000.000000
 		AccelSpeed=100000.000000
 		Damage=90
-		DamageRadius=300.000000
+		DamageRadius=400.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
 		Recoil=128.000000
@@ -36,8 +36,8 @@ defaultproperties
 		Speed=3000.000000
 		MaxSpeed=20000.000000
 		AccelSpeed=100000.000000
-		Damage=70
-		DamageRadius=300.000000
+		Damage=90
+		DamageRadius=400.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
 		Recoil=256.000000
@@ -65,8 +65,8 @@ defaultproperties
 		Speed=4000.000000
 		MaxSpeed=35000.000000
 		AccelSpeed=100000.000000
-		Damage=105
-		DamageRadius=300.000000
+		Damage=90
+		DamageRadius=400.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
 		Recoil=64.000000

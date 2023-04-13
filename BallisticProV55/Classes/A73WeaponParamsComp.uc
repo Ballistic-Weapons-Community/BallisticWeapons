@@ -15,7 +15,7 @@ defaultproperties
         Speed=5500.000000
         AccelSpeed=100000.000000
         MaxSpeed=14000.000000
-        Damage=36.000000
+        Damage=45.000000
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
@@ -40,7 +40,7 @@ defaultproperties
         Speed=3500.000000
         AccelSpeed=70000.000000
         MaxSpeed=12000.000000
-        Damage=28.000000
+        Damage=35.000000
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
@@ -65,7 +65,7 @@ defaultproperties
         Speed=6500.000000
         AccelSpeed=150000.000000
         MaxSpeed=18000.000000
-        Damage=50.000000
+        Damage=62.000000
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
@@ -95,7 +95,7 @@ defaultproperties
         Speed=3000.000000
         AccelSpeed=8000.000000
         MaxSpeed=7000.000000
-        Damage=70.000000
+        Damage=87.000000
         DamageRadius=100.000000
         MomentumTransfer=2000.000000
         MaxDamageGainFactor=1.00
@@ -124,7 +124,7 @@ defaultproperties
         Speed=3000.000000
         AccelSpeed=8000.000000
         MaxSpeed=7000.000000
-        Damage=70.000000
+        Damage=87.000000
         DamageRadius=100.000000
         MomentumTransfer=2000.000000
         MaxDamageGainFactor=1.00
@@ -153,7 +153,7 @@ defaultproperties
         Speed=1500.000000
         AccelSpeed=0.000000
         MaxSpeed=2000.000000
-        Damage=90.000000
+        Damage=115.000000
         DamageRadius=200.000000
         MomentumTransfer=2000.000000
 		SplashDamage=True

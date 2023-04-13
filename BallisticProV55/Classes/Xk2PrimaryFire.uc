@@ -174,15 +174,6 @@ defaultproperties
      SFlashScaleFactor=1.000000
 
      TraceRange=(Min=4096.000000,Max=4096.000000)
-	 RangeAtten=0.2
-	 WaterRangeAtten=0.200000
-	 
-     WallPenetrationForce=8.000000
-     
-     Damage=20.000000
-     HeadMult=1.4f
-     LimbMult=0.6f
-
      DamageType=Class'BallisticProV55.DTXK2SMG'
      DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
      DamageTypeArm=Class'BallisticProV55.DTXK2SMG'

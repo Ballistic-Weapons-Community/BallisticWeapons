@@ -107,7 +107,7 @@ defaultproperties
 {
 	Duration=2.000000
 	MaxDuration=10.000000
-	Damage=5.000000
+	Damage=8.000000
 	DamageType=Class'BWBP_SKC_Pro.DTSX45PistolPlague'
 
     Begin Object Class=SpriteEmitter Name=SpriteEmitter0

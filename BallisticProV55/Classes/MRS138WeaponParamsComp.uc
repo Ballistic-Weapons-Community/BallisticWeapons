@@ -13,7 +13,7 @@ defaultproperties
 		TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=13
+		Damage=16
 		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'
@@ -42,7 +42,7 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=12800.000000
 		MaxSpeed=12800.000000
-		Damage=5
+		Damage=8
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)

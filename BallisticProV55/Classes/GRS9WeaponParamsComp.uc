@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=525,Max=1225)
 		PenetrationEnergy=16
         RangeAtten=0.5
-        Damage=15
-        HeadMult=2.25f
-        LimbMult=0.75f
+        Damage=19
+        HeadMult=2.00
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
@@ -43,7 +43,7 @@ defaultproperties
 	
     Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
         RangeAtten=0.5
-        Damage=14
+        Damage=18
         DamageType=Class'BallisticProV55.DTGRS9Laser'
         DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'

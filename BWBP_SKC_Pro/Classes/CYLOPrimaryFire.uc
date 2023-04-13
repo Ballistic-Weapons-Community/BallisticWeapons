@@ -34,12 +34,6 @@ defaultproperties
      RifleFireSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire'
      MeleeFireSound=Sound'BW_Core_WeaponSound.A73.A73Stab'
      TraceRange=(Min=8000.000000,Max=12000.000000)
-     WallPenetrationForce=24.000000
-     
-     Damage=28.000000
-    
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'

@@ -11,9 +11,9 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=9000.000000
 		MaxSpeed=9000.000000
-		Damage=30.000000
-		HeadMult=2.75f
-		LimbMult=0.85f
+		Damage=40.000000
+		HeadMult=2.00
+		LimbMult=0.85
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=32.000000)
 		Recoil=0.0
 		Chaos=0.15

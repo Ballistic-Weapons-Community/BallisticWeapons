@@ -111,12 +111,7 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-	 
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WallPenetrationForce=16.000000
-     Damage=20.000000
-     RangeAtten=0.350000
-	 
      DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'

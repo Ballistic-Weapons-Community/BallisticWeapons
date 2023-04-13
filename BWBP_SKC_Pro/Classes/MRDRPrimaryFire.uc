@@ -26,14 +26,6 @@ function PlayFiring()
 
 defaultproperties
 {
-     WallPenetrationForce=8.000000
-     
-     Damage=20.000000
-     HeadMult=1.5f
-     LimbMult=0.5f
-     
-     RangeAtten=0.200000
-     WaterRangeAtten=0.200000
      DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'

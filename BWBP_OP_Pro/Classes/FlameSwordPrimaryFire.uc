@@ -79,8 +79,6 @@ defaultproperties
      FatiguePerStrike=0.100000
      bCanBackstab=False
      TraceRange=(Min=165.000000,Max=165.000000)
-     Damage=70.000000
-    
      DamageType=Class'BWBP_OP_Pro.DT_FlameSwordChest'
      DamageTypeHead=Class'BWBP_OP_Pro.DT_FlameSwordHead'
      DamageTypeArm=Class'BWBP_OP_Pro.DT_FlameSwordChest'

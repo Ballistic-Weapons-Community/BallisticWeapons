@@ -142,17 +142,11 @@ simulated function vector GetFireDir(out Vector StartTrace)
 
 defaultproperties
 {
-	 DecayRange=(Min=2560,Max=4096)
-	 RangeAtten=0.35
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WallPenetrationForce=24.000000
-     Damage=20.000000
-	 
 	 AmpDrainPerShot=-0.1
 	 AmpFlashBone="tip2"
      AmpFlashScaleFactor=0.300000
      MuzzleFlashClassAmp=Class'BallisticProV55.XK2SilencedFlash'
-	 
      WaterRangeAtten=0.800000
      DamageType=Class'BWBP_OP_Pro.DTM575MG'
      DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'

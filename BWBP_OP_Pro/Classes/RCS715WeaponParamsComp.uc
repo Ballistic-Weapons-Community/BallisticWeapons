@@ -10,10 +10,10 @@ defaultproperties
 		TraceRange=(Min=4000.000000,Max=6000.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.3
-		TraceCount=6
+		TraceCount=7
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=9
+		Damage=10
 		DamageType=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_RCS715ShotgunHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
@@ -49,8 +49,8 @@ defaultproperties
 		Speed=4000.000000
 		MaxSpeed=15000.000000
 		AccelSpeed=3000.000000
-		Damage=50
-		DamageRadius=128.000000
+		Damage=60
+		DamageRadius=256.000000
 		MomentumTransfer=0.000000
 		PushbackForce=180.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'

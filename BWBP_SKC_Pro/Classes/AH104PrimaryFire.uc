@@ -48,11 +48,8 @@ defaultproperties
      TraceRange=(Min=6000.000000,Max=6500.000000)
      PDamageFactor=0.800000
      WallPDamageFactor=0.800000
-     Damage=100
 	 SplashDamage=10
 	 SplashDamageRadius=32
-     RangeAtten=0.350000
-     WaterRangeAtten=0.600000
      DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_AH104Pistol'

@@ -10,7 +10,7 @@ defaultproperties
 		ProjectileClass=Class'BallisticProV55.BX5VehicleMine'
 		SpawnOffset=(X=15.000000,Y=-10.000000,Z=-5.000000)
 		Damage=70
-		DamageRadius=128.000000
+		DamageRadius=256.000000
 		MomentumTransfer=90000.000000
 		BotRefireRate=0.300000	
 	End Object

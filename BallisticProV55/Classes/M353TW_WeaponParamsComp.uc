@@ -9,9 +9,9 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		RangeAtten=0.67
-		Damage=18
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=23
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM353MGDeploy'
 		DamageTypeHead=Class'BallisticProV55.DTM353MGDeployHead'
 		DamageTypeArm=Class'BallisticProV55.DTM353MGDeploy'

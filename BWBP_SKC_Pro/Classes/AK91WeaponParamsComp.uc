@@ -10,9 +10,9 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.75
-		Damage=23
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=29
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'

@@ -10,9 +10,9 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=45
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=56
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -37,9 +37,9 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaFreezeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=40
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=50
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -64,9 +64,9 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaHeatEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=35
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=42
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'

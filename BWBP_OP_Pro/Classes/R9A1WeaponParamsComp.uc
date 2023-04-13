@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=4000,Max=12000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=45
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=55
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -40,9 +40,9 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=4000,Max=12000)
 		RangeAtten=0.75
-		Damage=40
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=50
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -69,9 +69,9 @@ defaultproperties
         DecayRange=(Min=4000,Max=12000)
 		WaterTraceRange=5000
 		RangeAtten=0.75
-		Damage=25
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=32
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'

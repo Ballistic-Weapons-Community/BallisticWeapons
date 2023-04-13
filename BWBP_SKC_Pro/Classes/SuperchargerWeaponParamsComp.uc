@@ -10,7 +10,7 @@ defaultproperties
 	/*Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
-		Damage=7
+		Damage=9
 		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
@@ -34,7 +34,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
-		Damage=7
+		Damage=9
 		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
@@ -60,7 +60,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimarySpreadEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
-		Damage=7
+		Damage=9
 		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'

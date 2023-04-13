@@ -10,7 +10,7 @@ defaultproperties
 		Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
 			TraceRange=(Min=96.000000,Max=96.000000)
 			WaterTraceRange=5000.0
-			Damage=45
+			Damage=55
 			DamageType=Class'BWBP_SKC_Pro.DTX8Knife'
 			DamageTypeHead=Class'BWBP_SKC_Pro.DTX8Knife'
 			DamageTypeArm=Class'BWBP_SKC_Pro.DTX8Knife'
@@ -40,7 +40,7 @@ defaultproperties
 			MaxSpeed=7500.000000
 			Damage=100.000000
 			MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.5,Radius=24.000000,bAtten=True)
+			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.5,Radius=16.000000,bAtten=True)
 			WarnTargetPct=0.500000	
 		End Object
 

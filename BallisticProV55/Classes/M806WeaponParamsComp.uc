@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		PenetrationEnergy=16
         RangeAtten=0.67
-		Damage=26
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=33
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'

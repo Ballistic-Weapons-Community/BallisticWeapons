@@ -141,7 +141,6 @@ defaultproperties
 	 RequiredBonusCharge=20
 	 ElectroDamageBonus=30
 	 ElectroHeal=10
-     Damage=25.000000
 	 TraceRange=(Min=130,Max=130)
      DamageType=Class'BWBP_OP_Pro.DTShockGauntlet'
      DamageTypeHead=Class'BWBP_OP_Pro.DTShockGauntlet'

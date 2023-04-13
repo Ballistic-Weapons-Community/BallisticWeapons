@@ -183,11 +183,7 @@ defaultproperties
      WallPenetrationForce=128.000000
      
 	 bCockAfterFire=True
-	 
-     Damage=80.000000
-     HeadMult=1.5f
-     LimbMult=0.9f
-     
+	      
      DamageType=Class'BallisticProV55.DTM75Railgun'
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM75Railgun'

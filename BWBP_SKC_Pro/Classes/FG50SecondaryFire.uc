@@ -428,12 +428,6 @@ defaultproperties
      HeatPerShot=1.500000
      SpecialFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WallPenetrationForce=72.000000
-     
-     Damage=65.000000
-     
-     
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'

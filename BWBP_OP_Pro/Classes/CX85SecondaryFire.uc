@@ -93,13 +93,7 @@ defaultproperties
 
 	TraceRange=(Min=30000.000000,Max=30000.000000)
     MaxWaterTraceRange=5000
-    WallPenetrationForce=0.000000
 
-	Damage=5.000000
-	HeadMult=1f
-    LimbMult=1f
-
-    WaterRangeAtten=0.600000
     DamageType=Class'DTCX85Dart'
     DamageTypeHead=Class'DTCX85Dart'
     DamageTypeArm=Class'DTCX85Dart'

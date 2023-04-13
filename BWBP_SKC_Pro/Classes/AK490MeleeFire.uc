@@ -25,7 +25,7 @@ simulated function SwitchBladeMode (bool bLoaded)
 		PreFireAnim='PrepBash';
 		FireAnim='Bash';
 		FireAnimRate=default.FireAnimRate;
-		Damage=40;
+		Damage=60;
 	}
 
 	if (Weapon.bBerserk)

@@ -143,9 +143,6 @@ defaultproperties
 	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20B.XM20-Lase'
      ChargeSound=Sound'BWBP_SKC_Sounds.LS440.LS440-SpinUp'
      TraceRange=(Min=1500000.000000,Max=1500000.000000)
-     Damage=45
-     HeadMult=2.0
-     LimbMult=1.0
 	 SplashDamage=10
 	 SplashDamageRadius=32
      DamageType=Class'BWBP_SKC_Pro.DT_LS440Body'

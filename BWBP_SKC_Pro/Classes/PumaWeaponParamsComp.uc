@@ -11,7 +11,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.PUMAProjectileImpact'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6500.000000
-		Damage=80
+		Damage=100
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -35,7 +35,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectile'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=4000.000000
-		Damage=70
+		Damage=85
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -59,7 +59,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileRanged'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=8500.000000
-		Damage=70
+		Damage=85
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

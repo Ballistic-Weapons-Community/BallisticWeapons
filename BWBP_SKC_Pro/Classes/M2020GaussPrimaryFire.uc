@@ -130,13 +130,6 @@ defaultproperties
      LowPowerFireSound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFireLow'
      MuzzleFlashClass2=Class'BallisticProV55.M50FlashEmitter'
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=48.000000
-     
-     Damage=50.000000
-     HeadMult=1.5f
-     LimbMult=0.85f
-     
-     WaterRangeAtten=0.700000
      DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'

@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=130.000000,Max=130.000000)
-        Damage=55
+        Damage=70
 		Fatigue=0.060000
         DamageType=Class'BallisticProV55.DTX4Knife'
         DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
@@ -32,7 +32,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
         TraceRange=(Min=130.000000,Max=130.000000)
-        Damage=70
+        Damage=90
 		Fatigue=0.200000
         DamageType=Class'BallisticProV55.DTX4Knife'
         DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'

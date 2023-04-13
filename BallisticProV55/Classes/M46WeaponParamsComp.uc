@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=2363,Max=5000)
 		PenetrationEnergy=48
         RangeAtten=0.75
-        Damage=30
-        HeadMult=2.0f
-        LimbMult=0.75f
+        Damage=38
+        HeadMult=2.00
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTM46Assault'
         DamageTypeHead=Class'BallisticProV55.DTM46AssaultHead'
         DamageTypeArm=Class'BallisticProV55.DTM46Assault'
@@ -43,8 +43,8 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.M46Grenade'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         Speed=2700.000000
-        Damage=90.000000
-		DamageRadius=384.000000
+        Damage=100.000000
+		DamageRadius=512.000000
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
         Recoil=None
         Chaos=None

@@ -13,7 +13,7 @@ defaultproperties
         TraceCount=7
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=13
+        Damage=17
         PushbackForce=180.000000
 		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
@@ -44,7 +44,7 @@ defaultproperties
         TraceCount=7
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=13
+        Damage=17
         DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
@@ -80,7 +80,7 @@ defaultproperties
         TraceCount=30
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=10
+        Damage=13
         PushbackForce=850.000000
 		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgunAlt'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'

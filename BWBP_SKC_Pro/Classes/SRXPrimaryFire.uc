@@ -212,14 +212,7 @@ defaultproperties
      SFlashScaleFactor=0.750000
 	 
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=24.000000
-     
-     Damage=34.000000
-     HeadMult=1.4f
-     LimbMult=0.8f
-     
-     RangeAtten=0.450000
-     WaterRangeAtten=0.800000
+
      DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'

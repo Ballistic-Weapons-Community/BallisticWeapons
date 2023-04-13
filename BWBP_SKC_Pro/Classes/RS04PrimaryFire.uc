@@ -50,9 +50,6 @@ simulated function PlayFireAnimations()
 defaultproperties
 {
      TraceRange=(Max=5500.000000)
-     Damage=28
-     RangeAtten=0.900000
-     WaterRangeAtten=0.500000
      DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'

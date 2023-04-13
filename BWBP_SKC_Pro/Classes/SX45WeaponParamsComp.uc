@@ -11,9 +11,9 @@ defaultproperties
 		TraceRange=(Min=4000.000000,Max=4000.000000)
 		DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		Damage=26
-		HeadMult=2f
-		LimbMult=0.67f
+		Damage=29
+		HeadMult=2.00
+		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams
-		FireInterval=0.20000
+		FireInterval=0.175000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -43,9 +43,9 @@ defaultproperties
 		TraceRange=(Min=4000.000000,Max=4000.000000)
 		DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		Damage=26
-		HeadMult=2f
-		LimbMult=0.67f
+		Damage=35
+		HeadMult=2.00
+		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead_Cryo'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
@@ -60,7 +60,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaCryoPrimaryFireParams
-		FireInterval=0.240000
+		FireInterval=0.225000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -76,8 +76,8 @@ defaultproperties
 		DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
 		Damage=26
-		HeadMult=2f
-		LimbMult=0.67f
+		HeadMult=2.00
+		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead_RAD'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'
@@ -92,7 +92,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaRadPrimaryFireParams
-		FireInterval=0.500000
+		FireInterval=0.225000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	

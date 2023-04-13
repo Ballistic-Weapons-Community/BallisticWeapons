@@ -321,15 +321,8 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-	 RangeAtten=0.35
      TraceCount=1
      TraceRange=(Min=12000.000000,Max=12000.000000)
-     WallPenetrationForce=16.000000
-     
-     Damage=22.000000
-     
-     
-     WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTXMV850MG'
      DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
      DamageTypeArm=Class'BallisticProV55.DTXMV850MG'

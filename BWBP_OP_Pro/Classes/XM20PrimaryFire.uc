@@ -35,11 +35,6 @@ defaultproperties
 	HeatPerShot=8.000000
 	TraceRange=(Min=11000.000000,Max=12000.000000)
     MaxWaterTraceRange=11000
-	WallPenetrationForce=64.000000
-
-	Damage=12.000000
-	
-	
 	DamageType=Class'BWBP_OP_Pro.DTXM20Body'
 	DamageTypeHead=Class'BWBP_OP_Pro.DTXM20Head'
 	DamageTypeArm=Class'BWBP_OP_Pro.DTXM20Body'

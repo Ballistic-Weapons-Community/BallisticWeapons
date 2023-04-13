@@ -40,10 +40,7 @@ defaultproperties
      SliceAnims(3)="Slice4"
      FatiguePerStrike=0.035000
      bCanBackstab=False
-     TraceRange=(Min=130.000000,Max=130.000000)
-     Damage=35.000000
-     
-     
+     TraceRange=(Min=130.000000,Max=130.000000)     
      DamageType=Class'BallisticProV55.DTX3Knife'
      DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
      DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'

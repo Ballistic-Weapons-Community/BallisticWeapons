@@ -15,14 +15,6 @@ class M46PrimaryFire extends BallisticProInstantFire;
 defaultproperties
 {
      TraceRange=(Min=12000.000000,Max=15000.000000)
-     WallPenetrationForce=24.000000
-     
-     Damage=30.000000
-     HeadMult=1.5f
-     LimbMult=0.75f
-     
-     RangeAtten=0.50000
-     WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTM46Assault'
      DamageTypeHead=Class'BallisticProV55.DTM46AssaultHead'
      DamageTypeArm=Class'BallisticProV55.DTM46Assault'

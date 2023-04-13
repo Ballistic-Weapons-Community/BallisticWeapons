@@ -104,7 +104,7 @@ defaultproperties
 {
 	Duration=8.000000
 	MaxDuration=16.000000
-	Damage=5.000000
+	Damage=8.000000
 	DamageType=Class'BWBP_OP_Pro.DTRaygunPlague'
     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
         UseColorScale=True

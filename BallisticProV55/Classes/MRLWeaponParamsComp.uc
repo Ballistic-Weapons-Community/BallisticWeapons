@@ -12,7 +12,7 @@ defaultproperties
 		Speed=4500.000000
 		MaxSpeed=25000.000000
 		AccelSpeed=10000.000000
-		Damage=35.000000
+		Damage=42.000000
 		DamageRadius=420.000000
 		MomentumTransfer=20000.000000
 		SpreadMode=FSM_Rectangle
@@ -40,7 +40,7 @@ defaultproperties
 		Speed=4500.000000
 		MaxSpeed=25000.000000
 		AccelSpeed=10000.000000
-		Damage=35.000000
+		Damage=42.000000
 		DamageRadius=420.000000
 		MomentumTransfer=20000.000000
 		SpreadMode=FSM_Rectangle

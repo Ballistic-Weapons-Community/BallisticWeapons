@@ -10,7 +10,7 @@ defaultproperties
         ProjectileClass=Class'BWBP_SKC_Pro.ChaffGrenade'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Speed=1750.000000
-        Damage=40
+        Damage=50
         DamageRadius=256.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
     End Object
@@ -28,7 +28,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
         TraceRange=(Min=140.000000,Max=140.000000)
-        Damage=50
+        Damage=65
         DamageType=Class'BWBP_SKC_Pro.DTChaffSmack'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTChaffSmack'
         DamageTypeArm=Class'BWBP_SKC_Pro.DTChaffSmack'

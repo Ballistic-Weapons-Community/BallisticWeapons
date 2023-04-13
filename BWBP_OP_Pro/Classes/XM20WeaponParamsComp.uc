@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=11000.000000,Max=12000.000000)
         DecayRange=(Min=0,Max=4500)
-		Damage=12
+		Damage=15
 		DamageType=Class'BWBP_OP_Pro.DTXM20Body'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTXM20Head'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTXM20Body'

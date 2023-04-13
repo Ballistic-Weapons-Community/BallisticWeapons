@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		PenetrationEnergy=32
 		RangeAtten=0.67
-		Damage=18
+		Damage=23
 		DamageType=Class'BallisticProV55.DTM50Assault'
 		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
 		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
@@ -43,7 +43,7 @@ defaultproperties
 		Speed=4200.000000 // 80 m/s
 		MaxSpeed=4200.000000
 		Damage=100
-        ImpactDamage=200
+        ImpactDamage=150
 		DamageRadius=1050.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		BotRefireRate=0.3

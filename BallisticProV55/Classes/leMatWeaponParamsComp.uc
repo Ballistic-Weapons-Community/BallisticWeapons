@@ -10,7 +10,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		PenetrationEnergy=24
 		RangeAtten=0.5
-		Damage=30
+		Damage=38
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
 		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'
@@ -44,7 +44,7 @@ defaultproperties
 		TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=10
+		Damage=12
 		DamageType=Class'BallisticProV55.DTleMatShotgun'
 		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'

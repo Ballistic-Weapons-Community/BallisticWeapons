@@ -30,7 +30,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=5000.000000,Max=7500.000000)
-		Damage=16
+		Damage=20
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
@@ -56,18 +56,18 @@ defaultproperties
     //=================================================================	
 	
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
-            Damage=16
-            HeadMult=2.0f
-            LimbMult=0.75f
+            Damage=20
+            HeadMult=2.00
+            LimbMult=0.75
             Chaos=0
             Recoil=32
             FlashScaleFactor=0.100000
 		End Object
 		
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParamsOvercharge
-            Damage=15
-            HeadMult=2.0f
-            LimbMult=0.75f
+            Damage=18
+            HeadMult=2.00
+            LimbMult=0.75
             Chaos=0
             Recoil=32
             FlashScaleFactor=0.200000

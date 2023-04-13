@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=2363,Max=7000)
 		PenetrationEnergy=128
 		RangeAtten=0.5
-		Damage=80
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=100
+        HeadMult=1.50
+        LimbMult=0.90
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTBulldogHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'
@@ -46,7 +46,7 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000
-		Damage=110
+		Damage=120.0f
 		PushbackForce=100.000000
 		DamageRadius=512.000000
 		MomentumTransfer=60000.000000

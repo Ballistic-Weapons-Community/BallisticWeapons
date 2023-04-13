@@ -122,18 +122,10 @@ function PlayFiring()
 
 defaultproperties
 {
-	 RangeAtten=0.5
      FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
      LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
      HeatPerShot=25
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=32.000000
-     
-     Damage=40.000000
-     HeadMult=1.5
-     LimbMult=0.85
-     
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
      DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
      DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'

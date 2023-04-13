@@ -68,10 +68,6 @@ defaultproperties
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=9.000000
-     
-     
-     RangeAtten=0.300000
      DamageType=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
      DamageTypeHead=Class'BWBP_OP_Pro.DT_RCS715ShotgunHead'
      DamageTypeArm=Class'BWBP_OP_Pro.DT_RCS715Shotgun'

@@ -12,7 +12,7 @@ defaultproperties
 		Speed=4500.000000
 		MaxSpeed=10000.000000
 		AccelSpeed=80000.000000
-		Damage=42
+		Damage=50
 		MaxDamageGainFactor=0.5
 		DamageGainStartTime=0.05
 		DamageGainEndTime=0.2
@@ -38,7 +38,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
-		Damage=10
+		Damage=30
 		DamageType=Class'BWBP_OP_Pro.DTRaygunCharged'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTRaygunCharged'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTRaygunCharged'

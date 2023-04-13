@@ -187,13 +187,6 @@ defaultproperties
 	 FlashBone="tip"
 	 FlashScaleFactor=0.9
 	 TraceRange=(Min=4000.000000,Max=4000.000000)
-	 DecayRange=(Min=768.000000,Max=2048.000000)
-	 RangeAtten=0.3
-     WallPenetrationForce=8.000000
-     Damage=32.000000
-     HeadMult=1.5f
-     LimbMult=0.5f
-     WaterRangeAtten=0.400000
      DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'

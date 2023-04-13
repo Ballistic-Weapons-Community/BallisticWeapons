@@ -10,7 +10,9 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
-		Damage=50
+		Damage=62
+		HeadMult=2.00
+		LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23HR'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AR23HRHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23HR'

@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=12000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=22
+		Damage=23
 		DamageType=Class'BallisticProV55.DTXMV850MG'
 		DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMV850MG'

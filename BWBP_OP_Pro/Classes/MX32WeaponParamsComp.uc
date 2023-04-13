@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		PenetrationEnergy=32
 		RangeAtten=0.67
-		Damage=18
+		Damage=23
 		DamageType=Class'BWBP_OP_Pro.DTMX32Primary'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTMX32PrimaryHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTMX32PrimaryLimb'
@@ -42,8 +42,8 @@ defaultproperties
 		Speed=500.000000
 		MaxSpeed=30000.000000
 		AccelSpeed=10000.000000
-		Damage=32
-		DamageRadius=150.000000
+		Damage=40
+		DamageRadius=256.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FlashScaleFactor=0.500000
 		Recoil=192
@@ -67,8 +67,8 @@ defaultproperties
 		Speed=500.000000
 		MaxSpeed=30000.000000
 		AccelSpeed=10000.000000
-		Damage=32
-		DamageRadius=150.000000
+		Damage=40
+		DamageRadius=256.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FlashScaleFactor=0.500000
 		Recoil=96

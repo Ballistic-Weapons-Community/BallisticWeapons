@@ -55,10 +55,6 @@ function EjectBrass()
 defaultproperties
 {
      TraceRange=(Min=9000.000000,Max=9000.000000)
-     WallPenetrationForce=16.000000
-     Damage=20.000000
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTSARRifle'
      DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
      DamageTypeArm=Class'BallisticProV55.DTSARRifle'

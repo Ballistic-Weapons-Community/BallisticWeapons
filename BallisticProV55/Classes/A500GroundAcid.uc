@@ -128,7 +128,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 defaultproperties
 {
      BurnTime=8.000000
-     Damage=20.000000
+     Damage=25.000000
      DamageType=Class'BallisticProV55.DTA500Pool'
      Begin Object Class=SpriteEmitter Name=SpriteEmitter12
          UseDirectionAs=PTDU_Up

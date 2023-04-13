@@ -316,13 +316,6 @@ defaultproperties
 	 TraceCount=1
 
      MaxWaterTraceRange=5000
-	 
-	 Damage=16
-	 HeadMult=1.5f
-     LimbMult=0.5f
-
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'

@@ -19,13 +19,6 @@ simulated function PreBeginPlay()
 defaultproperties
 {
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=128.000000
-     
-     Damage=95.000000
-     HeadMult=1.5f
-     LimbMult=0.9f
-     
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'

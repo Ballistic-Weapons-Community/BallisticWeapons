@@ -14,7 +14,7 @@ defaultproperties
 		DecayRange=(Min=1050,Max=2100)
 		PenetrationEnergy=32
 		TraceRange=(Max=6000.000000)
-		Damage=30.000000
+		Damage=38.000000
 		RangeAtten=0.75f
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150
@@ -45,7 +45,7 @@ defaultproperties
 		DecayRange=(Min=1575,Max=3675)
 		TraceRange=(Max=6000.000000)
 		PenetrationEnergy=64
-		Damage=45.000000
+		Damage=54.000000
 		RangeAtten=0.75f
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150

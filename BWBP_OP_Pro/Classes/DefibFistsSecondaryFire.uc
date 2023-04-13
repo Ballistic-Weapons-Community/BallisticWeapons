@@ -223,7 +223,6 @@ defaultproperties
 	 ElectroHeal=25
      FatiguePerStrike=0.150000
      bCanBackstab=False
-     Damage=50.000000
      TraceRange=(Min=130,Max=130)
      DamageType=Class'BWBP_OP_Pro.DTShockGauntletAlt'
      DamageTypeHead=Class'BWBP_OP_Pro.DTShockGauntletAlt'

@@ -9,9 +9,9 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
         DecayRange=(Min=1536,Max=2560)
         PenetrationEnergy=64
-        Damage=80.000000
-        HeadMult=2.0f
-        LimbMult=0.75f
+        Damage=100.000000
+        HeadMult=1.50
+        LimbMult=0.90
         RangeAtten=0.5
         DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'
@@ -43,7 +43,7 @@ defaultproperties
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
         Recoil=0.01
         Chaos=0.05
-        Damage=12.000000
+        Damage=15.000000
         DamageRadius=192
         Inaccuracy=(X=0,Y=0)
         BotRefireRate=0.300000

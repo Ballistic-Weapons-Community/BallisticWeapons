@@ -8,9 +8,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=80
-        HeadMult=1.75f
-        LimbMult=0.85f
+		Damage=85
+        HeadMult=1.50
+        LimbMult=0.90
 		DamageType=Class'BWBP_OP_Pro.DT_LightningRifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_LightningHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_LightningRifle'
@@ -42,8 +42,8 @@ defaultproperties
 		Speed=750.000000
 		MaxSpeed=1500.000000
 		AccelSpeed=1500.000000
-		Damage=70
-		DamageRadius=100.000000
+		Damage=80
+		DamageRadius=384.000000
 		PushbackForce=256.000000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
 		FlashScaleFactor=0.600000

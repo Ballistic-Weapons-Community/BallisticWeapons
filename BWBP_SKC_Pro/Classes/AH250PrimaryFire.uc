@@ -27,14 +27,6 @@ function PlayFiring()
 defaultproperties
 {
      TraceRange=(Min=8000.000000,Max=9000.000000)
-     WallPenetrationForce=16.000000
-     
-     Damage=40.000000
-     HeadMult=1.5f
-     LimbMult=0.85f
-     
-     RangeAtten=0.50000
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'

@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		PenetrationEnergy=16
 		RangeAtten=0.5
-		Damage=16
-        HeadMult=2.25f
-        LimbMult=0.75f
+		Damage=22
+        HeadMult=2.00f
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
 		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
@@ -42,7 +42,7 @@ defaultproperties
 		ProjectileClass=Class'BallisticProV55.XMK5Dart'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=10000.000000
-		Damage=30
+		Damage=35
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=1.350000)

@@ -12,7 +12,7 @@ defaultproperties
         DecayRange=(Min=1250,Max=3750)
 		PenetrationEnergy=32
 		RangeAtten=0.67
-		Damage=18
+		Damage=23
 		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'

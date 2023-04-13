@@ -120,13 +120,7 @@ defaultproperties
 	SFlashBone="tip2"
 	SFlashScaleFactor=0.750000
 	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilenceFire',Pitch=0.85,Volume=1.000000,Radius=1536.000000,bAtten=True)
-
 	TraceRange=(Min=30000.000000,Max=30000.000000)
-	Damage=80.000000
-    HeadMult=1.5f
-    LimbMult=0.9f
-
-	WaterRangeAtten=0.800000
 	DamageType=Class'BallisticProV55.DTR78Rifle'
 	DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
 	DamageTypeArm=Class'BallisticProV55.DTR78Rifle'

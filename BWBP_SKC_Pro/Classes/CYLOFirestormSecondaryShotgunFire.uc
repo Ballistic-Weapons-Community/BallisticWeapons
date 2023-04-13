@@ -115,8 +115,6 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
      TraceRange=(Min=1500.000000,Max=1500.000000)
-     Damage=15.000000
-     RangeAtten=0.20000
      DamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgunHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'

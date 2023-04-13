@@ -205,9 +205,6 @@ defaultproperties
 	 MuzzleFlashClassRed=Class'BallisticProV55.M50FlashEmitter'
      MuzzleFlashClassGreen=Class'BallisticProV55.A500FlashEmitter'
 	 TraceRange=(Min=9000.000000,Max=9000.000000)
-     Damage=25
-     RangeAtten=0.700000
-     WaterRangeAtten=0.700000
      DamageType=Class'BWBP_SKC_Pro.DT_MP40'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40'

@@ -11,9 +11,9 @@ defaultproperties
         DecayRange=(Min=2300,Max=6000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=50
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=60
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
@@ -40,9 +40,9 @@ defaultproperties
         DecayRange=(Min=2300,Max=6000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
-		Damage=50
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=60
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'

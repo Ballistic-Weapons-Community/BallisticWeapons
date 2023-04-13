@@ -8,9 +8,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=12000.000000)
-		Damage=22
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=28
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
@@ -37,7 +37,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.Z250Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=4000.000000
-		Damage=30
+		Damage=45
 		DamageRadius=64.000000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.Z250GrenadeFlashEmitter'
 		BotRefireRate=0.300000

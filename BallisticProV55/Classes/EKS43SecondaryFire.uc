@@ -39,7 +39,6 @@ defaultproperties
      NumSwipePoints=3
      FatiguePerStrike=0.250000
      TraceRange=(Min=165.000000,Max=165.000000)
-     Damage=75.000000
      DamageType=Class'BallisticProV55.DTEKS43Katana'
      DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
      DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'

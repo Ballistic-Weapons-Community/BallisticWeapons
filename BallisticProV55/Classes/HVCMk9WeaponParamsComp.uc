@@ -7,9 +7,9 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-		Damage=10
-        HeadMult=2.0f
-        LimbMult=0.75f
+		Damage=13
+        HeadMult=2.00
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeArm=Class'BallisticProV55.DT_HVCLightning'
@@ -31,8 +31,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		Damage=200
-        HeadMult=1.5f
-        LimbMult=0.75f
+        HeadMult=1.50
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DT_HVCRedLightning'
 		DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
 		DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'

@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=130,Max=130)
-        Damage=25
+        Damage=40
 		Fatigue=0.015000
         DamageType=Class'BWBP_OP_Pro.DTShockGauntlet'
         DamageTypeHead=Class'BWBP_OP_Pro.DTShockGauntlet'
@@ -32,7 +32,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
         TraceRange=(Min=130,Max=130)
-        Damage=50
+        Damage=65
 		Fatigue=0.030000
         DamageType=Class'BWBP_OP_Pro.DTShockGauntletAlt'
         DamageTypeHead=Class'BWBP_OP_Pro.DTShockGauntletAlt'

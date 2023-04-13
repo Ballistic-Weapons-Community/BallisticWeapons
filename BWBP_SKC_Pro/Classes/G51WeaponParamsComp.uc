@@ -12,7 +12,7 @@ defaultproperties
 		DecayRange=(Min=1575,Max=3675)
 		PenetrationEnergy=32
 		RangeAtten=0.670000
-		Damage=18
+		Damage=23
 		DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
@@ -43,7 +43,7 @@ defaultproperties
 		Speed=3750.000000
 		MaxSpeed=4500.000000
 		Damage=65
-		DamageRadius=192.000000
+		DamageRadius=512.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51AltFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
 		SplashDamage=True
