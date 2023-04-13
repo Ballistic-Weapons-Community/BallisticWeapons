@@ -9,6 +9,7 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
+		SpawnOffset=(X=20,Y=4,Z=-6)
 		Recoil=2048.000000
 		PushbackForce=300.000000
 		Chaos=1.000000
@@ -40,6 +41,7 @@ defaultproperties
 		Recoil=2048.000000
      	PushbackForce=800.000000
      	Chaos=1.000000
+		SpawnOffset=(X=20,Y=4,Z=-6)
 		Inaccuracy=(X=256,Y=256)
 		SplashDamage=True
 		RecommendSplashDamage=True
@@ -68,8 +70,9 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		XRandFactor=1.500000
-		YRandFactor=0.700000
+		XRandFactor=0.35
+		YRandFactor=0.200000
+		MinRandFactor=0.2
 		ClimbTime=0.08
 		DeclineDelay=0.25
 		CrouchMultiplier=0.85

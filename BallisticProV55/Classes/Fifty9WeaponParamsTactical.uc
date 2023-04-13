@@ -93,8 +93,8 @@ defaultproperties
 
     Begin Object Class=FireParams Name=MeleeFireParams
         FireAnim="Melee1"
-        FireAnimRate=1.5
-        FireInterval=0.300000
+        FireAnimRate=1
+        FireInterval=0.450000
         AmmoPerFire=0
         FireEffectParams(0)=MeleeEffectParams'MeleeSwipeEffect'
     End Object
@@ -103,7 +103,10 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
+	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams // for no stock
+		ViewBindFactor=0.2
+		ADSViewBindFactor=0.3
+		EscapeMultiplier=1.2
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
@@ -115,25 +118,23 @@ defaultproperties
 		CrouchMultiplier=1
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
-		ViewBindFactor=0.2
-		ADSViewBindFactor=0.7 // no stock
 	End Object
 
-	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
+	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams // for stock
+		ViewBindFactor=0.2
+		ADSViewBindFactor=0.5
+		EscapeMultiplier=1.2
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=6144
-		ClimbTime=0.03
+		ClimbTime=0.04
 		DeclineDelay=0.14
 		DeclineTime=1.1
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
-		ViewBindFactor=0.2
-		ADSViewBindFactor=0.85 // stock
-
 	End Object
 
 	//=================================================================

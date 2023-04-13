@@ -149,7 +149,6 @@ simulated final function ApplyFireParams()
 	
     AmmoPerFire             		= Params.AmmoPerFire;
 	default.AmmoPerFire    			= Params.AmmoPerFire;
-	Load							= Params.AmmoPerFire;
 
     PreFireTime             		= Params.PreFireTime;
     MaxHoldTime             		= Params.MaxHoldTime;

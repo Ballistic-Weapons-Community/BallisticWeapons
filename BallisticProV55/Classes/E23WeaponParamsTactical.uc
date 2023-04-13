@@ -8,7 +8,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=TacticalSeriesEffectParams
         ProjectileClass=Class'BallisticProV55.E23Projectile_Std'
-        SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=6.000000,Z=-12.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
         Speed=5500.000000
         MaxSpeed=14000.000000
@@ -30,7 +30,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=TacticalMultiEffectParams
         ProjectileClass=Class'BallisticProV55.E23Projectile_SG'
-        SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=6.000000,Z=-12.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
         Speed=5500.000000
         MaxSpeed=5500.000000
@@ -51,7 +51,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=TacticalSniperEffectParams
         ProjectileClass=Class'BallisticProV55.E23Projectile_Snpr'
-        SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=6.000000,Z=-12.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
         Speed=5500.000000
         MaxSpeed=50000.000000

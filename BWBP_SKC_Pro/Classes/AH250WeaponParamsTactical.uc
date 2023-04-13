@@ -79,8 +79,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
+		ViewBindFactor=0.15
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.02),(InVal=0.7,OutVal=-0.06),(InVal=1.0,OutVal=0.0)))
-		ViewBindFactor=0.5
 		XRandFactor=0.2
 		YRandFactor=0.2
 		MaxRecoil=8192
@@ -93,8 +93,10 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_208
+		ViewBindFactor=0.15
+		ADSViewBindFactor=0.3
+		EscapeMultiplier=1.4
         XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.03),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.00),(InVal=0.7,OutVal=0.03),(InVal=1.0,OutVal=0.00)))
-        ViewBindFactor=0.5
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=8192

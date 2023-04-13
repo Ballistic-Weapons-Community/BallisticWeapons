@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=3000.000000,Max=3000.000000)
 		Inaccuracy=(X=128,Y=128)
-		Damage=10
+		Damage=5
 		HeadMult=1f
 		LimbMult=1f
 		DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
@@ -18,7 +18,7 @@ defaultproperties
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 		FlashScaleFactor=0.800000
-		Recoil=64.000000
+		Recoil=96.000000
 		Chaos=0.050000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
@@ -57,7 +57,9 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.4
+		ViewBindFactor=0.15
+		ADSViewBindFactor=0.3
+		EscapeMultiplier=1.1
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.000000),(InVal=0.50000,OutVal=0.120000),,(InVal=0.7000,OutVal=-0.010000),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.4500000,OutVal=0.40000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1

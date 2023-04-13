@@ -62,7 +62,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_Smoke
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
-		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000
 		Damage=65
@@ -85,7 +85,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_Ice
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Ice'
-		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
 		Speed=3500.000000
 		Damage=50
 		DamageRadius=768.000000
@@ -110,7 +110,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.25000,OutVal=0.0800),(InVal=0.3500000,OutVal=0.070000),(InVal=0.4800000,OutVal=0.0900),(InVal=0.600000,OutVal=-0.020000),(InVal=0.750000,OutVal=0.030000),(InVal=0.900000,OutVal=0.06),(InVal=1.000000,OutVal=0.1)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
@@ -123,7 +123,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams_CQC
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.25000,OutVal=0.0800),(InVal=0.3500000,OutVal=0.070000),(InVal=0.4800000,OutVal=0.0900),(InVal=0.600000,OutVal=-0.020000),(InVal=0.750000,OutVal=0.030000),(InVal=0.900000,OutVal=0.06),(InVal=1.000000,OutVal=0.1)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000

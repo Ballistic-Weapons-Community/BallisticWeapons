@@ -11,7 +11,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-    	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+    	SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=5500.000000
         AccelSpeed=100000.000000
         MaxSpeed=14000.000000
@@ -36,7 +36,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams_Rapid
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-    	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+    	SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=3500.000000
         AccelSpeed=70000.000000
         MaxSpeed=12000.000000
@@ -61,7 +61,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams_Elite
 		ProjectileClass=Class'BallisticProV55.A73ProjectileB'
-    	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+    	SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=6500.000000
         AccelSpeed=150000.000000
         MaxSpeed=18000.000000
@@ -91,7 +91,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=ArenaPowerEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=3000.000000
         AccelSpeed=8000.000000
         MaxSpeed=7000.000000
@@ -120,7 +120,7 @@ defaultproperties
 	//Pink alt for layout 2
     Begin Object Class=ProjectileEffectParams Name=ArenaPowerEffectParams_Rapid
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterBal'
-        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=3000.000000
         AccelSpeed=8000.000000
         MaxSpeed=7000.000000
@@ -149,7 +149,7 @@ defaultproperties
 	//Elite layout alt
 	Begin Object Class=ProjectileEffectParams Name=ArenaPowerEffectParams_Elite
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
-        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=1500.000000
         AccelSpeed=0.000000
         MaxSpeed=2000.000000

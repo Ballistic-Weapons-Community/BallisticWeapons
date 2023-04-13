@@ -11,7 +11,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=TacticalProjEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-    	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+    	SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=5500.000000
         AccelSpeed=100000.000000
         MaxSpeed=14000.000000
@@ -39,7 +39,7 @@ defaultproperties
 	//Rapid fire
     Begin Object Class=ProjectileEffectParams Name=TacticalProjEffectParams_Rapid
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-    	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+    	SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=5500.000000
         AccelSpeed=100000.000000
         MaxSpeed=14000.000000
@@ -67,7 +67,7 @@ defaultproperties
 	//Elite, slow powerful
     Begin Object Class=ProjectileEffectParams Name=TacticalProjEffectParams_Elite
 		ProjectileClass=Class'BallisticProV55.A73ProjectileB'
-    	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+    	SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=7500.000000
         AccelSpeed=150000.000000
         MaxSpeed=14000.000000
@@ -99,7 +99,7 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=TacticalPowerEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=3000.000000
         AccelSpeed=8000.000000
         MaxSpeed=7000.000000
@@ -128,7 +128,7 @@ defaultproperties
 	//Pink alt for layout 2
     Begin Object Class=ProjectileEffectParams Name=TacticalPowerEffectParams_Rapid
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterBal'
-        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=3000.000000
         AccelSpeed=8000.000000
         MaxSpeed=7000.000000
@@ -157,7 +157,7 @@ defaultproperties
 	//Elite layout alt orb
 	Begin Object Class=ProjectileEffectParams Name=TacticalPowerEffectParams_Elite
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
-        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=1500.000000
         AccelSpeed=0.000000
         MaxSpeed=2000.000000
@@ -189,8 +189,9 @@ defaultproperties
     //=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.3
-		ADSViewBindFactor=0.9
+		ViewBindFactor=0.25
+		ADSViewBindFactor=0.5
+		EscapeMultiplier=1.4
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=-0.060000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1

@@ -136,6 +136,8 @@ var()   float            	FootstepRadius;
 // Cover from decorations -----------------------------
 var 	array<Actor>		CoverAnchors;
 
+var		int					CrouchEyeHeight;
+
 // Flying exploit
 var 	bool				bPendingNegation;
 
@@ -2230,6 +2232,16 @@ simulated function HideBone(name boneName)
     SetBoneScale(BoneScaleSlot, 0.01, BoneName);
 }
 
+simulated function SetBaseEyeheight()
+{
+	if ( !bIsCrouched )
+		BaseEyeheight = Default.BaseEyeheight;
+	else
+		BaseEyeheight = CrouchEyeHeight;
+
+	Eyeheight = BaseEyeheight;
+}
+
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
 // It causes BaseEyeHeight to be forced to 38 on the server for non local players (unless the server player is first person spectating that client)
 simulated function vector EyePosition()
@@ -3085,7 +3097,9 @@ defaultproperties
      FootstepVolume=0.5
      FootstepRadius=22.000000
 
-	 BaseEyeHeight=36
+	 BaseEyeHeight=32
+	 CrouchEyeHeight=19
+
      CollisionRadius=19.000000
 
 	 CrouchHeight=32

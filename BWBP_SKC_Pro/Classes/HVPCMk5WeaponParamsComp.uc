@@ -9,7 +9,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk5Projectile'
-		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=25.000000,Y=3.000000,Z=-6.000000)
 		Speed=5000.000000
 		MaxSpeed=8000.000000
 		AccelSpeed=90000.000000
@@ -38,7 +38,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk5ProjectileSmall'
-		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=25.000000,Y=3.000000,Z=-6.000000)
 		Speed=4000.000000
 		MaxSpeed=11000.000000
 		AccelSpeed=150000.000000

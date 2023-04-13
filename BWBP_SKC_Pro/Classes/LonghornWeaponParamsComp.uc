@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		SpawnOffset=(X=20,Y=4,Z=-6)
 		FlashScaleFactor=1.500000
 		Recoil=2048.000000
 		PushbackForce=300.000000
@@ -37,6 +38,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		Recoil=2048.000000
+		SpawnOffset=(X=20,Y=4,Z=-6)
      	PushbackForce=800.000000
      	Chaos=1.000000
 		Inaccuracy=(X=256,Y=256)
@@ -66,8 +68,9 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XRandFactor=1.500000
-		YRandFactor=0.700000
+		XRandFactor=0.35
+		YRandFactor=0.200000
+		MinRandFactor=0.2
 		ClimbTime=0.08
 		DeclineDelay=0.25
 		CrouchMultiplier=0.85

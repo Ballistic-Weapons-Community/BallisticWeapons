@@ -73,7 +73,7 @@ defaultproperties
 	
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Smoke
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
-		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000
 		Damage=80
@@ -97,7 +97,7 @@ defaultproperties
 	
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Ice
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Ice' //DT's need updating to point to MARS-2
-		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
 		Speed=3500.000000
 		Damage=80
         ImpactDamage=80
@@ -124,7 +124,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.25000,OutVal=0.0800),(InVal=0.3500000,OutVal=0.070000),(InVal=0.4800000,OutVal=0.0900),(InVal=0.600000,OutVal=-0.020000),(InVal=0.750000,OutVal=0.030000),(InVal=0.900000,OutVal=0.06),(InVal=1.000000,OutVal=0.1)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
@@ -138,7 +138,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_CQC
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
+		ViewBindFactor=0.2
+		ADSViewBindFactor=0.5
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.25000,OutVal=0.0800),(InVal=0.3500000,OutVal=0.070000),(InVal=0.4800000,OutVal=0.0900),(InVal=0.600000,OutVal=-0.020000),(InVal=0.750000,OutVal=0.030000),(InVal=0.900000,OutVal=0.06),(InVal=1.000000,OutVal=0.1)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
@@ -148,8 +150,6 @@ defaultproperties
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
-		ViewBindFactor=0.4
-		ADSViewBindFactor=0.85
 	End Object
 	
 	//=================================================================

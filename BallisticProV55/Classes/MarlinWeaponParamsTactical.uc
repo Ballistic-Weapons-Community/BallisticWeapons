@@ -36,7 +36,6 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 	
-	
 	Begin Object Class=InstantEffectParams Name=TacticalGaussEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
@@ -72,7 +71,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.65
+		ViewBindFactor=0.3
+		ADSViewBindFactor=0.3
 		XCurve=(Points=(,(InVal=1.000000,OutVal=0.12)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		MaxRecoil=8192

@@ -24,7 +24,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
-		Recoil=300.000000
+		Recoil=425.000000
 		Chaos=0.150000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -34,7 +34,7 @@ defaultproperties
 		FireInterval=0.130000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
-		FireAnimRate=1.550000	
+		FireAnimRate=1
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 
@@ -66,7 +66,7 @@ defaultproperties
 		FireInterval=0.060000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
-		FireAnimRate=1.550000	
+		FireAnimRate=1
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryBurstEffectParams'
 	End Object
 	
@@ -75,34 +75,32 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		PitchFactor=0.500000
-		YawFactor=0.000000
-		XRandFactor=0.3500000
-		YRandFactor=0.350000
+		ViewBindFactor=0.25
+		ADSViewBindFactor=0.5
+		EscapeMultiplier=1.1
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.050000
+		YRandFactor=0.050000
 		MaxRecoil=8192.000000
-		DeclineTime=0.400000
+		ClimbTime=0.04
 		DeclineDelay=0.120000
-		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
-		HipMultiplier=1.000000
-		CrouchMultiplier=0.700000
+		DeclineTime=0.750000
 	End Object
 	
 	//Burst
 	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
-		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		PitchFactor=0.600000
-		YawFactor=0.100000
-		XRandFactor=0.4000000
-		YRandFactor=0.400000
+		ViewBindFactor=0.15
+		ADSViewBindFactor=0.3
+		EscapeMultiplier=1.1
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.050000
+		YRandFactor=0.050000
 		MaxRecoil=8192.000000
-		DeclineTime=0.600000
-		DeclineDelay=0.180000
-		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
-		HipMultiplier=1.000000
-		CrouchMultiplier=0.700000
+		ClimbTime=0.04
+		DeclineDelay=0.120000
+		DeclineTime=0.750000
 	End Object
 
 	//=================================================================
@@ -137,11 +135,10 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		//Functions
-		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		WeaponPrice=1200
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.130000
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.2
 		MagAmmo=18
 		SightPivot=(Pitch=128)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -165,11 +162,10 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
 		//Functions
-		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		WeaponPrice=1200
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.130000
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.2
 		MagAmmo=18
 		SightPivot=(Pitch=128)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

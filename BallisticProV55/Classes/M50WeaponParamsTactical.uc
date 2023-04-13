@@ -47,7 +47,7 @@ defaultproperties
 	
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.M50Grenade'
-		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
 		Speed=4200.000000 // 80 m/s
 		MaxSpeed=4200.000000
 		Damage=150
@@ -72,8 +72,9 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.35
-		ADSViewBindFactor=0.85
+		ViewBindFactor=0.2
+		ADSViewBindFactor=0.5
+		EscapeMultiplier=1.5
 		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.150000,OutVal=0.03),(InVal=0.30000,OutVal=0.04),(InVal=0.40000,OutVal=0.01),(InVal=0.600000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.070000),(InVal=1.00000,OutVal=0.00000)))
 		YCurve=(Points=((InVal=0,OutVal=0),(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1

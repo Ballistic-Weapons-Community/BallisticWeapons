@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.RaygunProjectile'
-		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=40.000000,Y=3.000000,Z=-15.000000)
 		Speed=4500.000000
 		MaxSpeed=10000.000000
 		AccelSpeed=80000.000000

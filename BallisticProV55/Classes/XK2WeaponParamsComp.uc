@@ -20,7 +20,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		Recoil=180.000000
+		Recoil=150.000000
 		Chaos=0.025000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.500000,Radius=384.000000)
 	End Object
@@ -46,7 +46,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.250000
-		Recoil=210.000000
+		Recoil=190.000000
 		Chaos=0.050000
 		Inaccuracy=(X=96,Y=96)
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)

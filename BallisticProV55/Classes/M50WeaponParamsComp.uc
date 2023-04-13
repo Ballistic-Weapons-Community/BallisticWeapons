@@ -39,7 +39,7 @@ defaultproperties
 	
 	Begin Object Class=GrenadeEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.M50Grenade'
-		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
 		Speed=4200.000000 // 80 m/s
 		MaxSpeed=4200.000000
 		Damage=100

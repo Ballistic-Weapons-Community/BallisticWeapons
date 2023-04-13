@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.RaygunProjectile'
-		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=40.000000,Y=3.000000,Z=-15.000000)
 		Speed=4500.000000
 		MaxSpeed=10000.000000
 		AccelSpeed=80000.000000
@@ -68,8 +68,9 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.35
-		ADSViewBindFactor=0.9
+		ViewBindFactor=0.25
+		ADSViewBindFactor=0.5
+		EscapeMultiplier=1.2
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.140000),(InVal=0.600000,OutVal=0.120000),(InVal=0.700000,OutVal=0.120000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.150000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=0.320000),(InVal=0.450000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
