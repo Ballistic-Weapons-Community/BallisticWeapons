@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%o was silently downed by %k's MG36."
      SimpleKillString="MG36 Night Ops Suppressed"
      DamageIdent="Assault"
-     WeaponClass=Class'BWBP_SKC_Pro.MG36Carbine'
+     WeaponClass=Class'BWBP_SKC_Pro.MG36Machinegun'
      DeathString="%k quietly eliminated %o with the MG36."
      FemaleSuicide="%o is quite horrible with firearms."
      MaleSuicide="%o is quite horrible with firearms."

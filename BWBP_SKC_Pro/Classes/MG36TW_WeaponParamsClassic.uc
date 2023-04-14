@@ -1,4 +1,4 @@
-class MG36WeaponParamsClassic extends BallisticWeaponParams;
+class MG36TW_WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -26,7 +26,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
 		FlashScaleFactor=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=128.000000
+		Recoil=80.000000
 		Chaos=-1.0
 		Inaccuracy=(X=3,Y=3)
 		WarnTargetPct=0.200000
@@ -45,14 +45,15 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		YawFactor=0.300000
-		XRandFactor=0.200000
-		YRandFactor=0.200000
-		MaxRecoil=3200
-		DeclineTime=2.2
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.150000),(InVal=0.600000,OutVal=0.300000),(InVal=0.800000,OutVal=0.500000),(InVal=1.000000,OutVal=0.300000)))
+		YawFactor=0.100000
+		PitchFactor=0.05
+		XRandFactor=0.150000
+		YRandFactor=0.150000
+		MaxRecoil=1200
+		DeclineTime=0.9
 		DeclineDelay=0.3
-		ViewBindFactor=0.100000
+		ViewBindFactor=1.000000
 		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.500000
@@ -67,7 +68,7 @@ defaultproperties
 		AimSpread=(Min=32,Max=2560)
 		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
-		ViewBindFactor=0.300000
+		ViewBindFactor=1.000000
 		SprintChaos=0.450000
 		SprintOffset=(Pitch=-3000,Yaw=-5000)
 		JumpChaos=0.450000
@@ -87,7 +88,6 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
 		MagAmmo=100
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic

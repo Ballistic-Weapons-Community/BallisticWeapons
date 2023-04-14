@@ -35,7 +35,7 @@ defaultproperties
      DeathStrings(3)="%o head is now a trophy for %k's collection."
 	 bHeaddie=True
      DamageIdent="Assault"
-     WeaponClass=Class'BWBP_SKC_Pro.MG36Carbine'
+     WeaponClass=Class'BWBP_SKC_Pro.MG36Machinegun'
      DeathString="%k spotted %o. with night vision and put a bullet through his skull."
      FemaleSuicide="%o took the easy way out."
      MaleSuicide="%o took the easy way out."

@@ -3,12 +3,13 @@
 //
 // A rapid fire, but inaccurate machine gun. Has two scope settings and bipod.
 // Low zoom scope is an unmagified Red Dot Sight, High Zoom is a 3x G36 scope.
+// Can equip a suppressor.
 //
 // Gun code by Sergeant Kelly
 // Ballisic Weapon Code by Dark Carnivour
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MG36Carbine extends BallisticWeapon;
+class MG36Machinegun extends BallisticWeapon;
 
 var   byte		GearStatus;
 
@@ -30,6 +31,12 @@ var   float				LastSendTargetTime;
 var   vector			TargetLocation;
 var   Actor				NVLight;
 
+var Texture ScopeViewTex1X; //Red Dot
+var Texture ScopeViewTex3X; //Zoomed Sight
+var Texture ScopeViewTexThermal; //IRNV
+var Texture ScopeViewTexTracker; //Target Detector
+var	bool	bLowZoom; //We're using the RDS
+
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer
 var() sound		SilencerOnSound;		// Silencer stuck on sound
@@ -40,7 +47,7 @@ var() name		SilencerOffAnim;		//
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		Target, bMeatVision;
+		Target, bMeatVision, bLowZoom;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal;
 }
@@ -48,6 +55,61 @@ replication
 //==============================================
 //=========== Scope Code - Targetting + IRNV ===
 //==============================================
+
+//This is a special double fixed scope, uses code as if was logarithmic
+simulated function ChangeZoom (float Value)
+{
+	local PlayerController PC;
+	local float OldZoomLevel;
+	local float NewZoomLevel;
+	local int SoughtFOV;
+	
+	PC = PlayerController(InstigatorController);
+	if (PC == None /*|| PC.DesiredZoomLevel != PC.ZoomLevel*/)
+		return;
+		
+	if (bInvertScope)
+		Value*=-1;
+
+	OldZoomLevel = PC.ZoomLevel;
+
+	switch(ZoomType)
+	{
+		case ZT_Smooth:
+			NewZoomLevel = FClamp(PC.ZoomLevel+Value, 0.05, (90-FullZoomFOV)/88);
+			break;
+		case ZT_Minimum:
+			NewZoomLevel = FClamp(PC.ZoomLevel + Value * (  (90-FullZoomFOV)/88 - ((90-FullZoomFOV)/88 * MinFixedZoomLevel)   ), MinFixedZoomLevel, (90-FullZoomFOV)/88);
+			break;
+		case ZT_Logarithmic:
+			Value *= 1f - (loge(MinZoom)/loge(MaxZoom));
+			LogZoomLevel = FClamp(LogZoomLevel + Value, loge(MinZoom)/loge(MaxZoom), 1);
+			SoughtFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, 2 **((loge(MaxZoom)/loge(2)) * LogZoomLevel)); 
+			NewZoomLevel = (90 - SoughtFOV) / 88;
+	}
+	if (NewZoomLevel > OldZoomLevel)
+	{
+		bLowZoom=false;
+		if (ZoomInSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomInSound);
+	}
+	else if (NewZoomLevel < OldZoomLevel)
+	{
+		bLowZoom=true;
+		if (ZoomOutSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
+	}
+	
+	PC.bZooming = true;
+	
+	if (NewZoomLevel == OldZoomLevel)
+		return; //our zoom was max or min
+		
+	if (ZoomType == ZT_Logarithmic)
+	{
+		PC.SetFOV(SoughtFOV);
+		PC.ZoomLevel = NewZoomLevel;
+	}
+	PC.DesiredZoomLevel = NewZoomLevel;
+}
 function ServerWeaponSpecial(optional byte i)
 {
 	bMeatVision = !bMeatVision;
@@ -65,7 +127,7 @@ simulated event WeaponTick(float DT)
 
 	super.WeaponTick(DT);
 
-	if (bThermal && bScopeView)
+	if (bThermal && bScopeView && !bLowZoom)
 	{
 		SetNVLight(true);
 
@@ -116,17 +178,19 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
 simulated event DrawScopeOverlays(Canvas C)
 {
-	if (bThermal)
-		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed';
+	if (bLowZoom)
+		ScopeViewTex = ScopeViewTex1X;
+	else if (bThermal)
+		ScopeViewTex = ScopeViewTexThermal;
 	else if (bMeatVision)
-		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget';
+		ScopeViewTex = ScopeViewTexTracker;
 	else 
-		ScopeViewTex = Texture'BWBP_SKC_Tex.MARS.MARS-Scope';
+		ScopeViewTex = ScopeViewTex3X;
 
-	if (bThermal)
+	if (bThermal && !bLowZoom)
 		DrawThermalMode(C);
 
-	if (bMeatVision)
+	if (bMeatVision && !bLowZoom)
 		DrawMeatVisionMode(C);
 
 	Super.DrawScopeOverlays(C);
@@ -288,6 +352,11 @@ function ServerAdjustThermal(bool bNewValue)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
+	if (!bScopeView) //Not in scope, lets play with the suppressor
+	{
+		SwitchSilencer();
+		return;
+	}
 	if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
 	{
 		bThermal = !bThermal;
@@ -428,6 +497,105 @@ simulated function BringUp(optional Weapon PrevWeapon)
 }
 
 //=================================
+//Mount Code
+//=================================
+function InitWeaponFromTurret(BallisticTurret Turret)
+{
+	bNeedCock = false;
+	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
+	if (!Instigator.IsLocallyControlled())
+		ClientInitWeaponFromTurret(Turret);
+}
+
+simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
+{
+	bNeedCock=false;
+}
+
+function Notify_Deploy()
+{
+	local vector HitLoc, HitNorm, Start, End;
+	local actor T;
+	local Rotator CompressedEq;
+    local BallisticTurret Turret;
+    local int Forward;
+
+	if (Instigator.HeadVolume.bWaterVolume)
+		return;
+	// Trace forward and then down. make sure turret is being deployed:
+	//   on world geometry, at least 30 units away, on level ground, not on the other side of an obstacle
+	// BallisticPro specific: Can be deployed upon sandbags providing that sandbag is not hosting
+	// another weapon already. When deployed upon sandbags, the weapon is automatically deployed 
+	// to the centre of the bags.
+	
+	Start = Instigator.Location + Instigator.EyePosition();
+	for (Forward=75;Forward>=45;Forward-=15)
+	{
+		End = Start + vector(Instigator.Rotation) * Forward;
+		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
+		if (T != None && VSize(HitLoc - Start) < 30)
+			return;
+		if (T == None)
+			HitLoc = End;
+		End = HitLoc - vect(0,0,100);
+		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
+		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+			break;
+		if (Forward <= 45)
+			return;
+	}
+
+	FireMode[1].bIsFiring = false;
+   	FireMode[1].StopFiring();
+
+	if(Sandbag(T) != None)
+	{
+		HitLoc = T.Location;
+		HitLoc.Z += class'MG36Turret'.default.CollisionHeight + 15;
+	}
+	
+	else
+	{
+		HitLoc.Z += class'MG36Turret'.default.CollisionHeight - 9;
+	}
+	
+	CompressedEq = Instigator.Rotation;
+		
+	//Rotator compression causes disparity between server and client rotations,
+	//which then plays hob with the turret's aim.
+	//Do the compression first then use that to spawn the turret.
+	
+	CompressedEq.Pitch = (CompressedEq.Pitch >> 8) & 255;
+	CompressedEq.Yaw = (CompressedEq.Yaw >> 8) & 255;
+	CompressedEq.Pitch = (CompressedEq.Pitch << 8);
+	CompressedEq.Yaw = (CompressedEq.Yaw << 8);
+
+	Turret = Spawn(class'MG36Turret', None,, HitLoc, CompressedEq);
+	
+    if (Turret != None)
+    {
+    	if (Sandbag(T) != None)
+			Sandbag(T).AttachedWeapon = Turret;
+		Turret.InitDeployedTurretFor(self);
+		Turret.TryToDrive(Instigator);
+		Destroy();
+    }
+    else
+		log("Notify_Deploy: Could not spawn turret for X82 Rifle");
+}
+
+simulated function bool HasAmmo()
+{
+	//First Check the magazine
+	if (FireMode[0] != None && MagAmmo >= FireMode[0].AmmoPerFire)
+		return true;
+	//If it is a non-mag or the magazine is empty
+	if (Ammo[0] != None && FireMode[0] != None && Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire)
+			return true;
+	return false;	//This weapon is empty
+}
+
+//=================================
 // Bot crap
 //=================================
 simulated function float RateSelf()
@@ -492,11 +660,6 @@ defaultproperties
      Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
      ThermalRange=2500.000000
 	 SilencerBone="Silencer"
-	 ZoomType=ZT_Logarithmic
-	 MinZoom=2.000000
-     MaxZoom=5.000000
-	 ZoomStages=3
-	 SightingTime=0.850000
      SilencerOnSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOn'
      SilencerOffSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOff'
      SilencerOnAnim="SilencerOn"
@@ -519,7 +682,17 @@ defaultproperties
      WeaponModes(3)=(bUnavailable=True)
      bNoCrosshairInScope=True
 	 ScopeViewTex=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
+     ScopeViewTex1X=Texture'BWBP_SKC_Tex.MG36.G36ScopeViewDot'
+     ScopeViewTex3X=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
+	 ScopeViewTexThermal = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed';
+	 ScopeViewTexTracker = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget';
      FullZoomFOV=45
+	 bLowZoom=True
+	 ZoomType=ZT_Logarithmic
+	 MinZoom=1.000000
+	 MaxZoom=3.000000
+	 ZoomStages=1
+	 SightingTime=0.850000
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=197),Color2=(B=0,G=255,R=255,A=255),StartSize1=79,StartSize2=55)
      FireModeClass(0)=Class'BWBP_SKC_Pro.MG36PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.MG36SecondaryFire'
@@ -553,9 +726,10 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-	 ParamsClasses(0)=Class'MG36CarbineWeaponParamsArena'
+	 ParamsClasses(0)=Class'MG36WeaponParamsArena'
 	 ParamsClasses(1)=Class'MG36WeaponParamsClassic'
 	 ParamsClasses(2)=Class'MG36WeaponParamsRealistic'
+	 ParamsClasses(3)=Class'MG36WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36'
      DrawScale=0.3
 }

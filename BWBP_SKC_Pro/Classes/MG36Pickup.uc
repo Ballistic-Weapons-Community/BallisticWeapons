@@ -7,7 +7,7 @@ class MG36Pickup extends BallisticWeaponPickup
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MG36.MG36_Weapon'
-     InventoryType=Class'BWBP_SKC_Pro.MG36Carbine'
+     InventoryType=Class'BWBP_SKC_Pro.MG36Machinegun'
      RespawnTime=20.000000
      PickupMessage="You picked up the MK.88 Light Support Weapon"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

@@ -1,4 +1,4 @@
-class MG36CarbineWeaponParamsArena extends BallisticWeaponParams;
+class MG36WeaponParamsArena extends BallisticWeaponParams;
 
 defaultproperties
 {

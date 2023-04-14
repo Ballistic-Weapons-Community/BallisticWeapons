@@ -35,7 +35,7 @@ defaultproperties
      SimpleKillString="MG36 Night Ops Suppressed"
      bHeaddie=True
      DamageIdent="Assault"
-     WeaponClass=Class'BWBP_SKC_Pro.MG36Carbine'
+     WeaponClass=Class'BWBP_SKC_Pro.MG36Machinegun'
      DeathString="%o's head was picked off by %k's silent MG36."
      FemaleSuicide="%o saw a bullet coming up the barrel of her MG36."
      MaleSuicide="%o saw a bullet coming up the barrel of his MG36."
