@@ -4676,14 +4676,23 @@ simulated final function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreView
 	return AimComponent.CalcFutureAim(ExtraTime, bIgnoreViewAim);
 }
 
+// visual rotation of weapon from component of recoil that is not bound
+// due to fovs and simplified calculations, this varies with the FOV...
 simulated final function Rotator GetRecoilPivot()
 {
-	return RcComponent.GetEscapePivot();
+	local float mult_factor;
+
+	mult_factor = DisplayFOV / Instigator.Controller.FOVAngle;
+
+	// if (Instigator.Weapon == self)
+	//		log("GetRecoilPivot: MultFactor "$mult_factor$" Display FOV "$DisplayFOV$" FOV angle: "$Instigator.Controller.FOVAngle);
+
+	return RcComponent.GetViewEscapePivot() * mult_factor;
 }
 
 simulated final function Rotator GetFireRot()
 {
-	return GetAimPivot() + RcComponent.GetFireEscapePivot();
+	return GetAimPivot() + RcComponent.GetEscapePivot();
 }
 
 simulated final function Vector GetFireDir()

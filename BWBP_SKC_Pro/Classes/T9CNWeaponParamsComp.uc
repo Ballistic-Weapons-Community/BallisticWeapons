@@ -1,8 +1,7 @@
-class T9CNWeaponParamsArena extends BallisticWeaponParams;
+class T9CNWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {
-
 	//=================================================================
 	// PRIMARY FIRE
 	//=================================================================	
@@ -76,8 +75,8 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		//Functions
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000,RecoilParamsIndex=1)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
 		DisplaceDurationMult=0.75
 		PlayerSpeedFactor=1.050000

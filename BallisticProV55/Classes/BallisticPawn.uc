@@ -2232,6 +2232,8 @@ simulated function HideBone(name boneName)
     SetBoneScale(BoneScaleSlot, 0.01, BoneName);
 }
 
+// Eye height
+// Override crouch eye height - don't want it at the top of the cylinder...
 simulated function SetBaseEyeheight()
 {
 	if ( !bIsCrouched )
@@ -2242,12 +2244,29 @@ simulated function SetBaseEyeheight()
 	Eyeheight = BaseEyeheight;
 }
 
+// Stub events called when physics actually allows crouch to begin or end
+// use these for changing the animation (if script controlled)
+event StartCrouch(float HeightAdjust)
+{
+	EyeHeight += HeightAdjust;
+	OldZ -= HeightAdjust;
+	BaseEyeHeight = CrouchEyeHeight;
+}
+
+event EndCrouch(float HeightAdjust)
+{
+	EyeHeight -= HeightAdjust;
+	OldZ += HeightAdjust;
+	BaseEyeHeight = Default.BaseEyeHeight;
+}
+
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
 // It causes BaseEyeHeight to be forced to 38 on the server for non local players (unless the server player is first person spectating that client)
 simulated function vector EyePosition()
 {
 	if (Role == ROLE_Authority && bIsCrouched && !IsLocallyControlled() && PlayerController(Controller) != None && !PlayerController(Controller).bBehindView && BaseEyeHeight == default.BaseEyeHeight)
-		return (EyeHeight-19) * vect(0,0,1) + WalkBob;
+		return CrouchEyeHeight * vect(0,0,1) + WalkBob;
+
 	return super.EyePosition();
 }
 

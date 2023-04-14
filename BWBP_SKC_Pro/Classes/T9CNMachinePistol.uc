@@ -172,7 +172,7 @@ defaultproperties
 	GunLength=0.100000
 	AIRating=0.6
 	CurrentRating=0.6
-	ParamsClasses(0)=Class'T9CNWeaponParamsArena'
+	ParamsClasses(0)=Class'T9CNWeaponParamsComp'
 	ParamsClasses(1)=Class'T9CNWeaponParamsClassic'
 	ParamsClasses(2)=Class'T9CNWeaponParamsRealistic'
 	ParamsClasses(3)=Class'T9CNWeaponParamsTactical'

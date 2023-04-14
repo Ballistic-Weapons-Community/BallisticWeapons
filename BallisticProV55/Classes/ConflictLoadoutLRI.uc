@@ -57,6 +57,7 @@ struct InventoryEntry
     var string  ItemName;
     var byte    InventoryGroup;
     var byte    InventorySize;
+	var byte	Teams;			// teams weapon is valid for
 };
 
 var array<InventoryEntry> 		FullInventoryList;					// List of all weapons available
@@ -297,25 +298,32 @@ simulated function GiveClientSkillInfo(SkillInfo SI)
 function RequestFullList()
 {
 	local int i;
+	local byte teams;
 
 	for (i=0;i<LoadoutMut.ConflictWeapons.Length;i++)
 	{
 		// Don't send a weapon allocated to neither team, but send the others
 		if (!LoadoutMut.ConflictWeapons[i].bRed && !LoadoutMut.ConflictWeapons[i].bBlue)
 			continue;
-		ClientReceiveWeaponReq(LoadoutMut.ConflictWeapons[i].ClassName, LoadoutMut.FullRequirementsList[i]);
+
+		teams = int(LoadoutMut.ConflictWeapons[i].bRed) + int(LoadoutMut.ConflictWeapons[i].bBlue) * 2;
+
+		ClientReceiveWeaponReq(LoadoutMut.ConflictWeapons[i].ClassName, teams, LoadoutMut.FullRequirementsList[i]);
 	}
 	ClientReceiveEnd();
 }
 
-simulated function ClientReceiveWeaponReq(string ClassString, Mut_Loadout.LORequirements Requirements)
+simulated function ClientReceiveWeaponReq(string ClassString, byte teams, Mut_Loadout.LORequirements Requirements)
 {
     local InventoryEntry entry;
 
     entry.ClassName = ClassString;
+	entry.Teams = teams;
 
 	FullInventoryList[FullInventoryList.length] = entry;
 	RequirementsList[RequirementsList.length] = Requirements;
+
+	//log("Inventory: "$FullInventoryList[FullInventoryList.length-1].ClassName$" for team flags "$entry.Teams);
 }
 
 simulated function ClientReceiveEnd()
@@ -395,6 +403,7 @@ simulated function SortList()
 
         // convert weapon class to inventory entry
         Current = GenerateFromWeaponInfo(WI);
+		Current.Teams = FullInventoryList[i].Teams;
 
         if (Sorted.Length == 0)
         {
@@ -611,29 +620,59 @@ simulated function bool ValidateWeapon (string WeaponName)
 	return false;
 }
 
-simulated function bool TeamAllowed(WeaponList_ConflictLoadout.Entry weapon)
+simulated final function int GetTeamFlags()
 {
+	local int team_index;
+
 	if (myController == None)
 	{
-		log("TEAMALLOWED - NO CONTROLLER!");
-		return false;
+		log("GETTEAM_INDEX - NO CONTROLLER!");
+		return 0;
 	}
 
-	if (myController.PlayerReplicationInfo.Team != None)
+	if (myController.PlayerReplicationInfo.Team == None)
+		return 3; // both teams
+
+	team_index = myController.PlayerReplicationInfo.Team.TeamIndex;
+
+	// red means attacking in Assault
+	if (ASGameReplicationInfo(Level.Game.GameReplicationInfo) != None && !ASGameReplicationInfo(Level.Game.GameReplicationInfo).bTeamZeroIsAttacking)
 	{
-		switch (myController.PlayerReplicationInfo.Team.TeamIndex)
-		{
-			case 0:
-				return weapon.bRed;
-			case 1:
-				return weapon.bBlue;
-			default:
-				return weapon.bRed || weapon.bBlue;
-		}
+		team_index = 1 - team_index; 
 	}
-	else // dm
+
+	return team_index + 1;
+}
+
+simulated final function bool CanUseWeaponAtIndex(int index)
+{
+	local int team_flags;
+
+	team_flags = GetTeamFlags();
+
+	//log("CanUseWeaponAtIndex: Checking "$ FullInventoryList[index].ClassName $ " - weapon flags: "$ FullInventoryList[index].Teams $ " team flags: "$ team_flags);
+
+	return (FullInventoryList[index].Teams & GetTeamFlags()) > 0;
+}
+
+simulated function bool TeamAllowed(WeaponList_ConflictLoadout.Entry weapon)
+{
+	local int team_flags;
+
+	team_flags = GetTeamFlags();
+
+	//log("TeamAllowed: Checking "$weapon.ClassName$" - red: "$weapon.bRed$" blue: "$weapon.bBlue$" team flags: "$team_flags);
+
+	switch (team_flags)
 	{
-		return weapon.bRed || weapon.bBlue;
+		case 1:
+			return weapon.bRed;
+		case 2:
+			return weapon.bBlue;
+		case 3:
+			return weapon.bRed || weapon.bBlue;
+		default:
+			return false;
 	}
 }
 

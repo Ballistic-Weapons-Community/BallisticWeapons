@@ -438,8 +438,8 @@ final simulated function Rotator GetViewPivot()
 // GetEscapePivot
 //
 // Returns a Rotator for the component of recoil that is 
-// not being applied to the player's view (and appears to 
-// be offsetting the weapon relative to the view.)
+// not being applied to the player's view. 
+// Used to trace shot direction.
 //===========================================================
 final simulated function Rotator GetEscapePivot()
 {
@@ -450,15 +450,14 @@ final simulated function Rotator GetEscapePivot()
 }
 
 //===========================================================
-// GetFireEscapePivot
+// GetViewEscapePivot
 //
-// Pivot used to determine shot direction. 
 // Hack to make weapons that escape in sight view appear to 
 // shoot above the front sight, rather than directly onto it.
 //===========================================================
-final simulated function Rotator GetFireEscapePivot()
+final simulated function Rotator GetViewEscapePivot()
 {
-	return GetEscapePivot() * Params.EscapeMultiplier;
+	return GetEscapePivot() * (1f / Params.EscapeMultiplier);
 }
 
 //===========================================================

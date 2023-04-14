@@ -49,10 +49,8 @@ struct LOItem
 };
 var() config array<LOItem>		Items;
 
-
-
 var() config string 			LoadOut[5];			// Loadout info saved seperately on each client
-var   Array<ClientLoadoutinterface>	COIPond;	// Jump right in, they won't bite, probably...
+var   Array<ClientLoadoutinterface>	COIPond;		// Jump right in, they won't bite, probably...
 var   PlayerController			PCPendingCOI;		// The PlayerController that is about to get its COI
 
 var Rules_Loadout LoadoutRules;

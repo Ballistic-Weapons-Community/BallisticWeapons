@@ -15,6 +15,7 @@ class Mut_ConflictLoadout extends Mut_Ballistic
 var() array<WeaponList_ConflictLoadout.Entry>	ConflictWeapons;	// Big list of all available weapons and the teams for which they are selectable
 var() byte										LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
 
+var() config bool								bSeparateAssaultList;
 // Assigned from game style
 var protected int 								MaxInventorySize;			
 	
@@ -30,6 +31,7 @@ function PreBeginPlay()
 	local int i;
 	local class<BC_GameStyle> game_style;
 	local WeaponList_ConflictLoadout list;
+	local string loader_string;
 
 	Super.PreBeginPlay();
 
@@ -38,9 +40,14 @@ function PreBeginPlay()
 	// FIXME - exploitable
 	MaxInventorySize = game_style.default.ConflictWeaponSlots + game_style.default.ConflictEquipmentSlots;
 
-	log("Loading Conflict Loadout weapon list from "$game_style.default.StyleName);
+	loader_string = game_style.default.StyleName;
 
-	list = new(None, game_style.default.StyleName) class'WeaponList_ConflictLoadout';
+	if (bSeparateAssaultList && ASGameInfo(Level.Game) != None)
+		loader_string $= "Assault";
+
+	log("Loading Conflict Loadout weapon list from "$loader_string);
+
+	list = new(None, loader_string) class'WeaponList_ConflictLoadout';
 
 	ConflictWeapons.Length = list.ConflictWeapons.Length;
 
@@ -51,10 +58,12 @@ function PreBeginPlay()
 
 	LoadoutOption = list.LoadoutOption;
 
+/*
 	for (i = 0; i < ConflictWeapons.Length; ++i)
 	{
 		log("Weapons: " $ ConflictWeapons[i].ClassName);	
 	}
+*/
 }
 //================================================
 // PostBeginPlay

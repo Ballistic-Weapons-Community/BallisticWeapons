@@ -992,22 +992,40 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
         Canvas.DrawTile(Controller.DefaultPens[0], W, H, 0, 0, 2, 2);
     }
 
-    style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
-    style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
-
     inv_offset = int(li_Weapons.GetExtraAtIndex(i));
 
     inv_size = CLRI.FullInventoryList[inv_offset].InventorySize;
 
-    if (inv_size != 1)
-    {
-        s = inv_size $ " slots"; 
-    }
-    else 
-        s = "1 slot";
+	// validation step
+	if (CLRI.CanUseWeaponAtIndex(inv_offset))
+	{
+		style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+		style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
 
-    style.TextSize(Canvas, m, s, XL, YL, F);
-    style.DrawText( Canvas, m, X + W - XL, Y, XL, YL, TXTA_Right, s, F);
+		if (inv_size > 1)
+			s = inv_size $ " slots"; 
+		else if (inv_size == 1)
+			s = "1 slot";
+		else 
+			s = "Free";
+
+		style.TextSize(Canvas, m, s, XL, YL, F);
+		style.DrawText( Canvas, m, X + W - XL, Y, XL, YL, TXTA_Right, s, F);
+	}
+
+	else 
+	{
+		Canvas.SetDrawColor(64,64,64,255);		// FIXME: Add a var
+
+		// can we force the style to be set?
+		style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+		Canvas.SetPos(X, Y);
+		Canvas.DrawText(li_Weapons.GetItemAtIndex(i));
+
+		Canvas.TextSize("Disabled", XL, YL);
+		Canvas.SetPos(X + W - XL, Y);
+		Canvas.DrawText("Disabled");
+	}
 }
 
 //=========================================================
