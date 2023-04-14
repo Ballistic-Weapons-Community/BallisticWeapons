@@ -74,6 +74,12 @@ simulated state Scope
 		bUseWeaponMag=False;
 		bFireOnRelease=True;
 		bModeExclusive=False;
+
+		if (bFireOnRelease)
+			bWaitForRelease = true;
+
+		if (bWaitForRelease)
+			bNowWaiting = true;
 	}
 	
 	// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't

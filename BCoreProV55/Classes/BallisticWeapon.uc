@@ -1316,7 +1316,7 @@ simulated final function bool CheckFireAnim()
 
 simulated function TickFireCounter (float DT)
 {
-	if (!IsFiring() && FireCount > 0)
+	if (((!FireMode[1].bModeExclusive && !FireMode[0].bIsFiring) || !IsFiring()) && FireCount > 0) //afaik no alts use burst, this fixes hold to zoom scopes + semi weapons
 		FireCount = 0;
 }
 
