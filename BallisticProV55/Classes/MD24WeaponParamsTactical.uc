@@ -48,13 +48,13 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.3
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.1
 		XRandFactor=0.1
 		YRandFactor=0.1
 		ClimbTime=0.06
-		DeclineDelay=0.170000
-		DeclineTime=0.75
+		DeclineDelay=0.250000
+		DeclineTime=0.35
 		CrouchMultiplier=1
 		HipMultiplier=1
 		MaxMoveMultiplier=1.5

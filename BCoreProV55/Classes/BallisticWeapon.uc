@@ -5374,6 +5374,22 @@ exec function ClimbTime(float f)
 	} 
 }
 
+exec function DeclineDelay(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.DeclineDelay = f; 
+	} 
+}
+
+exec function DeclineTime(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.DeclineTime = f; 
+	} 
+}
+
 exec function PrimaryRecoil(float f)
 {
 	if (Level.NetMode == NM_Standalone) 
