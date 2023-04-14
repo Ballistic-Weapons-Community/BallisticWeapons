@@ -726,7 +726,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-	 ParamsClasses(0)=Class'MG36WeaponParamsArena'
+	 ParamsClasses(0)=Class'MG36WeaponParamsComp'
 	 ParamsClasses(1)=Class'MG36WeaponParamsClassic'
 	 ParamsClasses(2)=Class'MG36WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'MG36WeaponParamsTactical'
