@@ -82,6 +82,17 @@ function InitPanel()
 	Initialize();
 }
 
+function ShowPanel(bool bShow)	
+{
+	super.ShowPanel(bShow);
+	
+	if (li_Weapons != None && li_Weapons.IsSection())
+	{
+		cb_WeapLayoutIndex.SetVisibility(false); //begone boxes!
+		cb_WeapCamoIndex.SetVisibility(false); //begone from me!
+	}
+}
+
 function Initialize()
 {
 	local class<BC_GameStyle> style;

@@ -1,5 +1,10 @@
 class XM84WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function OnInitialize(BallisticWeapon BW)
+{
+	XM84Flashbang(BW).bCookable=False;
+}
+
 defaultproperties
 {    
     //=================================================================

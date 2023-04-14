@@ -355,7 +355,7 @@ function InternalOnChange(GUIComponent Sender)
 		Item_Streak1.SetItem(cb_Streak1.GetExtra());
 		Item_Streak1.OnItemChange(Item_Streak1);
 		LoadLayouts(0, Item_Streak1.Index, cb_Streak1_LI);
-		LoadCamos(0, 0, Item_Streak1.Index, cb_Streak2_CI);
+		LoadCamos(0, 0, Item_Streak1.Index, cb_Streak1_CI);
 	}
 	
 	else if (Sender == cb_Streak2)
@@ -416,7 +416,7 @@ defaultproperties
      Begin Object Class=GUIComboBox Name=cb_Streak1ComBox
          MaxVisibleItems=16
          Hint="Quick list of Streak1 items"
-         WinTop=0.400000
+         WinTop=0.430000
          WinLeft=0.251563
          WinWidth=0.196094
          WinHeight=0.040000
@@ -429,10 +429,10 @@ defaultproperties
 	Begin Object Class=GUIComboBox Name=cb_Streak1ComBox_LI
          MaxVisibleItems=16
          Hint="Streak 1 layouts."
-         WinTop=0.440000
-         WinLeft=0.241563
-         WinWidth=0.116094
-         WinHeight=0.035000
+         WinTop=0.480000
+         WinLeft=0.251563
+         WinWidth=0.196094
+         WinHeight=0.040000
          TabOrder=0
          OnChange=MidGameTab_Killstreaks.InternalOnChange
          OnKeyEvent=cb_Streak1ComBox_LI.InternalOnKeyEvent
@@ -442,10 +442,10 @@ defaultproperties
 	Begin Object Class=GUIComboBox Name=cb_Streak1ComBox_CI
          MaxVisibleItems=16
          Hint="Streak 1 camos."
-         WinTop=0.440000
-         WinLeft=0.361563
-         WinWidth=0.116094
-         WinHeight=0.035000
+         WinTop=0.530000
+         WinLeft=0.251563
+         WinWidth=0.196094
+         WinHeight=0.040000
          TabOrder=0
          OnChange=MidGameTab_Killstreaks.InternalOnChange
          OnKeyEvent=cb_Streak1ComBox_CI.InternalOnKeyEvent
@@ -455,7 +455,7 @@ defaultproperties
      Begin Object Class=GUIComboBox Name=cb_Streak2Box
          MaxVisibleItems=16
          Hint="Quick list of Streak2 items"
-         WinTop=0.400000
+         WinTop=0.430000
          WinLeft=0.550977
          WinWidth=0.196094
          WinHeight=0.040000
@@ -468,10 +468,10 @@ defaultproperties
 	Begin Object Class=GUIComboBox Name=cb_Streak2ComBox_LI
          MaxVisibleItems=16
          Hint="Streak 2 layouts."
-         WinTop=0.440000
-         WinLeft=0.540977
-         WinWidth=0.116094
-         WinHeight=0.035000
+         WinTop=0.480000
+         WinLeft=0.550977
+         WinWidth=0.196094
+         WinHeight=0.040000
          TabOrder=0
          OnChange=MidGameTab_Killstreaks.InternalOnChange
          OnKeyEvent=cb_Streak2ComBox_LI.InternalOnKeyEvent
@@ -481,10 +481,10 @@ defaultproperties
 	Begin Object Class=GUIComboBox Name=cb_Streak2ComBox_CI
          MaxVisibleItems=16
          Hint="Streak 2 camos."
-         WinTop=0.440000
-         WinLeft=0.660977
-         WinWidth=0.116094
-         WinHeight=0.035000
+         WinTop=0.530000
+         WinLeft=0.550977
+         WinWidth=0.196094
+         WinHeight=0.040000
          TabOrder=0
          OnChange=MidGameTab_Killstreaks.InternalOnChange
          OnKeyEvent=cb_Streak2ComBox_CI.InternalOnKeyEvent

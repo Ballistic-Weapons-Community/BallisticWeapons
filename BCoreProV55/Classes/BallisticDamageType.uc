@@ -65,9 +65,12 @@ var() bool	bUseMotionBlur;							// use motion blur effects for this DT
 //===================================================================================
 // FLASH
 //===================================================================================
+var globalconfig bool				bLessDisruptiveFlash; //Changes white blinding flashes to black
 var int								FlashThreshold;
 var vector 							FlashV;
 var float							FlashF;
+var vector 							AltFlashV;
+var float							AltFlashF;
 //===================================================================================
 // BLOCKING
 //===================================================================================
@@ -373,7 +376,12 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 		if (Damage >= default.FlashThreshold)
 		{
 			if (PlayerController(Victim.Controller) != None)
-				PlayerController(Victim.Controller).ClientFlash(default.FlashF, default.FlashV);
+			{
+				if (default.bLessDisruptiveFlash && default.AltFlashF != 0 && default.AltFlashV != vect(0,0,0))
+					PlayerController(Victim.Controller).ClientFlash(default.AltFlashF, default.AltFlashV);
+				else
+					PlayerController(Victim.Controller).ClientFlash(default.FlashF, default.FlashV);
+			}
 		}
 	}
 	return super.GetPawnDamageEffect(HitLocation, Damage, Momentum, Victim, bLowDetail);
@@ -465,6 +473,7 @@ defaultproperties
 	MotionBlurDamageRange=80.000000
 	MotionBlurFactor=4.000000
 	MotionBlurTime=3.000000
+	bLessDisruptiveFlash=False
 	bDetonatesGoop=True
 	bKUseTearOffMomentum=True
 	bExtraMomentumZ=False

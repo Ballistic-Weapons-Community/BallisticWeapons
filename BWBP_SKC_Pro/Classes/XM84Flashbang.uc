@@ -60,6 +60,93 @@ simulated function CheckNoGrenades()
 		PlayAnim(SelectAnim, 1, 0.0);
 }
 
+// Hurt radius that uses delayed damage and makes sure if instigator is hit, he'll go last
+// Spawns an actor corrupter here
+simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation )
+{
+	local actor Victims;
+	local float damageScale, dist;
+	local vector dir;
+	local bool bHitInstigator;
+	local XM84ActorCorrupt PF;
+
+	if( bHurtEntry )
+		return;
+
+	bHurtEntry = true;
+	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
+	{
+		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
+		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) )
+		{
+			if (Victims == Instigator && Instigator != None)
+			{
+				bHitInstigator=true;
+				continue;
+			}
+			dir = Victims.Location - HitLocation;
+			dist = FMax(1,VSize(dir));
+			dir = dir/dist;
+			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			if ( Instigator == None || Instigator.Controller == None )
+				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+			class'BallisticDamageType'.static.GenericHurt
+			(
+				Victims,
+				damageScale * DamageAmount,
+				Instigator,
+				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				(damageScale * Momentum * dir),
+				DamageType
+			);
+
+			PF = Spawn(class'XM84ActorCorrupt',self, ,Victims.Location);
+			PF.Instigator = Instigator;
+
+			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
+				PF.InstigatorController = Instigator.Controller;
+			PF.Initialize(Victims);
+			
+			if (Victims != None)
+				ApplySlowdown(Pawn(Victims), DamageAmount/4);
+		}
+	}
+	if (bHitInstigator)
+	{
+		Victims = Instigator;
+		dir = Victims.Location - HitLocation;
+		dist = FMax(1,VSize(dir));
+		dir = dir/dist;
+		if ( Instigator == None || Instigator.Controller == None )
+			Victims.SetDelayedDamageInstigatorController( InstigatorController );
+		class'BallisticDamageType'.static.GenericHurt
+		(
+			Victims,
+			DamageAmount*5, //More lethal to holder
+			Instigator,
+			Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+			(1 * Momentum * dir),
+			DamageType
+		);
+
+			PF = Spawn(class'XM84ActorCorrupt',self, ,Victims.Location);
+			PF.Instigator = Instigator;
+
+			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
+				PF.InstigatorController = Instigator.Controller;
+			PF.Initialize(Victims);
+			
+			if (Victims != None)
+				ApplySlowdown(Pawn(Victims), DamageAmount/4);
+	}
+	bHurtEntry = false;
+}
+
+function ApplySlowdown(Pawn P, float Duration)
+{
+	class'BCSprintControl'.static.AddSlowTo(P, 0.6, Duration);
+}
+
 // AI Interface =====
 function byte BestMode()
 {
@@ -122,12 +209,13 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
+	 bCookable=True
      MatGlow1=Shader'BWBP_SKC_Tex.XM84.XM84-Glow2'
      MatGlow2=Shader'BWBP_SKC_Tex.XM84.XM84-Glow4'
      MatGlow3=Shader'BWBP_SKC_Tex.XM84.XM84-Glow3'
      MatSparks=Shader'BWBP_SKC_Tex.XM84.XM84-Glow'
      FuseDelay=2.000000
-     HeldDamage=110
+     HeldDamage=45
      HeldRadius=350
      HeldMomentum=75000
      HeldDamageType=Class'BWBP_SKC_Pro.DTXM84Held'

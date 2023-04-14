@@ -1,5 +1,5 @@
 //=============================================================================
-// DTMRS138Tazer.
+// DTXM84AfterShock.
 //?/ a/sf/ a/s/ Headache grenades!
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -13,8 +13,11 @@ defaultproperties
      DeathStrings(2)="%o painfully succumbed to %k's XM84 aftershock."
      FlashThreshold=0
      FlashF=-1.250000
-     FlashV=(X=1600.000000,Y=1600.000000,Z=4000.000000)
+     FlashV=(X=1900.000000,Y=1900.000000,Z=2000.000000)
+     AltFlashF=-4.000000
+	 AltFlashV=(X=1.000000,Y=1.000000,Z=1200.000000)
      bDetonatesBombs=False
+	 bArmorStops=False
      DamageIdent="Grenade"
 	 InvasionDamageScaling=3
      DamageDescription=",Gas,GearSafe,Hazard,"

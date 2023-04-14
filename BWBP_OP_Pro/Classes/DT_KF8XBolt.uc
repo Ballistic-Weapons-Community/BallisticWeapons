@@ -25,6 +25,11 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
 	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
 		Return;
 
+    if (Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
+    {
+        class'BCSprintControl'.static.AddSlowTo(Pawn(Victim), 0.7, 1.5);
+    }
+
 	if (PlayerController(Pawn(Victim).Owner) != None)
 	{
 		for (i=0;i<Pawn(Victim).Owner.Attached.length;i++)

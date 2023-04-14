@@ -15,6 +15,7 @@ class BC_GameStyle_Config extends BC_GameStyle
 var() config bool		    bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 var() config bool		    bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
 var() config bool		    bNoReloading;			    // Disables reloading and weapons use boring old style ammo handling...
+var() config bool		    bNoRandomCamo;			    // Disables camo and layout randomizer
 var() config bool           bAlternativePickups;	    // Press Use to Pickup Weapon
 
 //=============================================================================
@@ -73,6 +74,7 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.bWeaponJumpOffsetting		= default.bWeaponJumpOffsetting;
 	rep.bLongWeaponOffsetting		= default.bLongWeaponOffsetting;
 	rep.bNoReloading				= default.bNoReloading;
+	rep.bNoRandomCamo				= default.bNoRandomCamo;
 
 	rep.bAlternativePickups 		= default.bAlternativePickups;
 

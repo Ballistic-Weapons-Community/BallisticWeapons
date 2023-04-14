@@ -31,6 +31,7 @@ var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
 var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
 var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
+var bool		    		bNoRandomCamo;			    // Disables camo and layout randomizer
 
 //=============================================================================
 // INVENTORY
@@ -111,6 +112,7 @@ var struct GeneralRep
 	var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 	var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
 	var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
+	var bool		    		bNoRandomCamo;				// Disables camo and layout randomizer
 	var int						MaxInventoryCapacity;		// Maximum inventory size player can hold
 	var bool         			bAlternativePickups;		// Press Use to Pickup Weapon
 	var bool					bUniversalMineLights;   	// All BX5 mines are lit.
@@ -173,6 +175,7 @@ final function BindToReplication()
 	GRep.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	GRep.bLongWeaponOffsetting			= bLongWeaponOffsetting;
 	GRep.bNoReloading					= bNoReloading;
+	GRep.bNoRandomCamo					= bNoRandomCamo;
 
 	GRep.MaxInventoryCapacity			= MaxInventoryCapacity;
 
@@ -233,6 +236,7 @@ simulated final function BindFromReplication()
 	bWeaponJumpOffsetting			= GRep.bWeaponJumpOffsetting;
 	bLongWeaponOffsetting			= GRep.bLongWeaponOffsetting;
 	bNoReloading					= GRep.bNoReloading;
+	bNoRandomCamo					= GRep.bNoRandomCamo;
 
 	MaxInventoryCapacity			= GRep.MaxInventoryCapacity;
 
@@ -280,6 +284,7 @@ simulated final function BindDefaults()
 	class.default.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	class.default.bLongWeaponOffsetting			= bLongWeaponOffsetting;
 	class.default.bNoReloading					= bNoReloading;
+	class.default.bNoRandomCamo					= bNoRandomCamo;
 	class.default.MaxInventoryCapacity			= MaxInventoryCapacity;
 	class.default.bAlternativePickups 	        = bAlternativePickups;
 	class.default.bUniversalMineLights          = bUniversalMineLights;
@@ -328,6 +333,7 @@ simulated final function BindDefaults()
 	Log("Sprint/Jump Weapon Offsetting: "$bWeaponJumpOffsetting);
 	Log("Long Weapon Offsetting: "$bLongWeaponOffsetting);
 	Log("Reloading: "$ !bNoReloading);
+	Log("Camo Randomizer: "$ !bNoRandomCamo);
 	Log("Bright Players: "$bBrightPlayers);
 	Log("Dodging: "$bAllowDodging);
 	Log("Double Jumping: "$bAllowDoubleJump);
@@ -393,6 +399,7 @@ defaultproperties
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bNoReloading=False
+	bNoRandomCamo=False
 
 	bAlternativePickups=False
 	bUniversalMineLights=True
