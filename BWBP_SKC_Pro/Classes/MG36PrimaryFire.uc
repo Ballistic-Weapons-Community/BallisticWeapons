@@ -45,9 +45,9 @@ function FlashMuzzleFlash()
 		return;
 	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
 		return;
-    if (!MG36Carbine(Weapon).bSilenced && MuzzleFlash != None)
+    if (!MG36Machinegun(Weapon).bSilenced && MuzzleFlash != None)
         MuzzleFlash.Trigger(Weapon, Instigator);
-    else if (MG36Carbine(Weapon).bSilenced && SMuzzleFlash != None)
+    else if (MG36Machinegun(Weapon).bSilenced && SMuzzleFlash != None)
         SMuzzleFlash.Trigger(Weapon, Instigator);
 
 	if (!bBrassOnCock)
@@ -75,13 +75,13 @@ function InitEffects()
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
-	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, MG36Carbine(Weapon).bSilenced, WaterHitLoc);
+	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, MG36Machinegun(Weapon).bSilenced, WaterHitLoc);
 }
 
 //// server propagation of firing ////
 function ServerPlayFiring()
 {
-	if (MG36Carbine(Weapon) != None && MG36Carbine(Weapon).bSilenced && SilencedFireSound.Sound != None)
+	if (MG36Machinegun(Weapon) != None && MG36Machinegun(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,SilencedFireSound.bNoOverride,SilencedFireSound.Radius,SilencedFireSound.Pitch,SilencedFireSound.bAtten);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
@@ -100,7 +100,7 @@ function PlayFiring()
     FireCount++;
 	// End code from normal PlayFiring()
 
-	if (MG36Carbine(Weapon) != None && MG36Carbine(Weapon).bSilenced && SilencedFireSound.Sound != None)
+	if (MG36Machinegun(Weapon) != None && MG36Machinegun(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,SilencedFireSound.bNoOverride,SilencedFireSound.Radius,SilencedFireSound.Pitch,SilencedFireSound.bAtten);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
@@ -137,7 +137,7 @@ simulated function SwitchSilencerMode (bool bNewMode)
 //FIXME
 simulated event ModeDoFire()
 {
-	if (MG36Carbine(Weapon).bSilenced)
+	if (MG36Machinegun(Weapon).bSilenced)
 	{
     		if (!AllowFire())
 		{
@@ -160,7 +160,7 @@ simulated function ModeTick(float DT)
 {
 	Super.ModeTick(DT);
 
-	if (bIsFiring && MG36Carbine(Weapon).bSilenced && MG36Carbine(Weapon).CurrentWeaponMode != 0 && MG36Carbine(Weapon).CurrentWeaponMode != 1)
+	if (bIsFiring && MG36Machinegun(Weapon).bSilenced && MG36Machinegun(Weapon).CurrentWeaponMode != 0 && MG36Machinegun(Weapon).CurrentWeaponMode != 1)
 		Instigator.AmbientSound = FireSoundLoop;
 	else
 		Instigator.AmbientSound = BW.UsedAmbientSound;

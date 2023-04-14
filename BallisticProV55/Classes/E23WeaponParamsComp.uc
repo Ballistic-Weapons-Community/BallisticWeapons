@@ -58,7 +58,7 @@ defaultproperties
         DamageRadius=64.000000
         FlashScaleFactor=0.750000
         Chaos=0.350000
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-SRFire',Volume=1.300000,Slot=SLOT_Interact,bNoOverride=False)
         Recoil=768.000000
         WarnTargetPct=0.1
         BotRefireRate=0.99	

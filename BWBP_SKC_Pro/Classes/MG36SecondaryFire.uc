@@ -1,29 +1,18 @@
-//=============================================================================
-// MG36SecondaryFire.
-//
-// Silencer
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2007 RuneStorm. All Rights Reserved.
-//=============================================================================
-class MG36SecondaryFire extends BallisticFire;
+class MG36SecondaryFire extends M353SecondaryFire;
 
-simulated event ModeDoFire()
+function DoFireEffect()
 {
-    if (!Instigator.IsLocallyControlled())
-    	return;
-		MG36Carbine(Weapon).SwitchSilencer();
+	if (BallisticTurret(Instigator) != None)
+	{
+		FireAnim='Undeploy';
+		MG36MG_TW(Weapon).Notify_Undeploy();
+	}
+	else
+		MG36Machinegun(Weapon).Notify_Deploy();
 }
 
 defaultproperties
 {
-     bUseWeaponMag=False
-     bAISilent=True
-     //EffectString="Attach suppressor"
-     bWaitForRelease=True
-     bModeExclusive=False
      FireRate=1.000000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_68mm'
-     AmmoPerFire=0
-     BotRefireRate=0.300000
 }

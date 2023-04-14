@@ -324,6 +324,4 @@ defaultproperties
 	Camos(2)=WeaponCamo'FG50_Desert'
 	Camos(3)=WeaponCamo'FG50_Dazzle'
 	Camos(4)=WeaponCamo'FG50_Gold'
-
-
 }

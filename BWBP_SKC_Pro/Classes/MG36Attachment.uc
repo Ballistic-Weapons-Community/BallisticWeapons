@@ -22,6 +22,13 @@ replication
 		//LaserRot;
 }
 
+simulated Event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BallisticTurret(Instigator) != None)
+		bHidden=true;
+}
+
 simulated event PostNetReceive()
 {
 	if (bSilenced != bOldSilenced)

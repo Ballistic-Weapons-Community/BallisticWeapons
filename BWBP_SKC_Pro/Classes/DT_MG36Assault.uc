@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%k found %o using tracer vision before shooting him with a MG36."
      DeathStrings(3)="%o took a drum full of bullets from %k's MG36."
      DamageIdent="Assault"
-     WeaponClass=Class'BWBP_SKC_Pro.MG36Carbine'
+     WeaponClass=Class'BWBP_SKC_Pro.MG36Machinegun'
      DeathString="%k's MG36 confirmed a kill on %o."
      FemaleSuicide="%o took the easy way out with an MG36."
      MaleSuicide="%o took the easy way out with an MG36."
