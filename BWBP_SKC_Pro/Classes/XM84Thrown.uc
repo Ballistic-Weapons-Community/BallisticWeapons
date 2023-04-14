@@ -112,9 +112,17 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
 				PF.InstigatorController = Instigator.Controller;
 			PF.Initialize(Victims);
+			
+			if (Victims != None)
+				ApplySlowdown(Victims, Damage/4);
 		}
 	}
 	bHurtEntry = false;
+}
+
+function ApplySlowdown(Pawn P, float Duration)
+{
+	class'BCSprintControl'.static.AddSlowTo(P, 0.6, Duration);
 }
 
 defaultproperties

@@ -11,7 +11,7 @@ class ConfigTab_GameplayPrefs extends ConfigTabBase;
 
 var automated moComboBox		co_Crosshairs, co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
-var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages;
+var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
 
 function LoadSettings()
 {
@@ -37,6 +37,7 @@ function LoadSettings()
 
 	ch_WeaponUI.Checked(class'BallisticPlayer'.default.bUseWeaponUI);
 	ch_SimpleDeathMessages.Checked(class'BallisticDamageType'.default.bSimpleDeathMessages);
+	ch_LessDisruptiveFlash.Checked(class'BallisticDamageType'.default.bLessDisruptiveFlash);
 }
 
 function SaveSettings()
@@ -50,6 +51,7 @@ function SaveSettings()
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
 	class'BallisticPlayer'.default.bUseWeaponUI 			= ch_WeaponUI.IsChecked();
 	class'BallisticDamageType'.default.bSimpleDeathMessages	= ch_SimpleDeathMessages.IsChecked();
+	class'BallisticDamageType'.default.bLessDisruptiveFlash	= ch_LessDisruptiveFlash.IsChecked();
 
 	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'BallisticDamageType'.static.StaticSaveConfig();
@@ -145,4 +147,17 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_SimpleDeathMessages=moCheckBox'ch_SimpleDeathMessagesCheck'	 
+
+	 Begin Object Class=moCheckBox Name=ch_LessDisruptiveFlashCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Reduce Flash Intensity"
+         OnCreateComponent=ch_LessDisruptiveFlashCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Changes white blinding flashes to black"
+         WinTop=0.40
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_LessDisruptiveFlash=moCheckBox'ch_LessDisruptiveFlashCheck'	 
 }

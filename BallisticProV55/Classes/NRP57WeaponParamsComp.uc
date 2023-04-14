@@ -1,5 +1,10 @@
 class NRP57WeaponParamsComp extends BallisticWeaponParams;
 
+static simulated function OnInitialize(BallisticWeapon BW)
+{
+	NRP57Grenade(BW).bCookable=False;
+}
+
 defaultproperties
 {    
     //=================================================================

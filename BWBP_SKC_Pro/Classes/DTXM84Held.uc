@@ -19,7 +19,7 @@ defaultproperties
      MaleSuicides(1)="%o threw the pin and not the grenade."
      FlashThreshold=0
      FlashV=(X=2500.000000,Y=2500.000000,Z=2500.000000)
-     FlashF=-0.600000
+     FlashF=-5.000000
      DamageIdent="Grenade"
      MinMotionBlurDamage=1.000000
      MotionBlurDamageRange=20.000000

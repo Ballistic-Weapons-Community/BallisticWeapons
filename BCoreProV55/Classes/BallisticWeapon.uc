@@ -694,7 +694,7 @@ simulated function GenerateLayout(byte Index)
 	if (!bLayoutSet)
 	{
 		//Build a weighted list of random layouts and return a random layout index
-		if (Layouts.length > 0 /* && BCRepClass.default.bRandomCamo*/)
+		if (Layouts.length > 0 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
 		{
 					
 			//Build the weighted list
@@ -770,7 +770,7 @@ simulated function GenerateCamo(byte Index)
 			}
 		}
 		//Build a weighted list of random camos and return a random layout index
-		if (CamoSublist.length > 0 /* && BCRepClass.default.bRandomCamo*/)
+		if (CamoSublist.length > 0 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
 		{
 			//Build the weighted list
 			for (i=0; i<CamoSublist.length; i++)

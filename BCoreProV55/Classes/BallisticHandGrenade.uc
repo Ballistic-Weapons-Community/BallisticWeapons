@@ -186,7 +186,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 		dir = Victims.Location - HitLocation;
 		dist = FMax(1,VSize(dir));
 		dir = dir/dist;
-		damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+		damageScale = 2;
 		if ( Instigator == None || Instigator.Controller == None )
 			Victims.SetDelayedDamageInstigatorController( InstigatorController );
 		class'BallisticDamageType'.static.GenericHurt
@@ -195,7 +195,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 			damageScale * DamageAmount,
 			Instigator,
 			Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-			(damageScale * Momentum * dir),
+			(1 * Momentum * dir),
 			DamageType
 		);
 	}

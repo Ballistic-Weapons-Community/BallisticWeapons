@@ -1,5 +1,10 @@
 class T10WeaponParamsComp extends BallisticWeaponParams;
 
+static simulated function OnInitialize(BallisticWeapon BW)
+{
+	T10Grenade(BW).bCookable=False;
+}
+
 defaultproperties
 {    
     //=================================================================

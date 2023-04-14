@@ -47,9 +47,9 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
-     bCookable=False
-     HeldDamage=150
-     HeldRadius=350
+     bCookable=True
+     HeldDamage=250
+     HeldRadius=450
      HeldMomentum=75000
      HeldDamageType=Class'BallisticProV55.DTNRP57Held'
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'

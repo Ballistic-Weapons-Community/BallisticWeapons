@@ -16,6 +16,8 @@ defaultproperties
      FlashThreshold=0
      FlashF=-5.000000
      FlashV=(X=2500.000000,Y=2500.000000,Z=2500.000000)
+     AltFlashF=-5.000000
+	 AltFlashV=(X=100.000000,Y=100.000000,Z=1200.000000)
      DamageIdent="Grenade"
      MinMotionBlurDamage=1.000000
      MotionBlurDamageRange=20.000000
