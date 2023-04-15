@@ -29,9 +29,9 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o got %vh brain shredded by %k's MJ53."
-     DeathStrings(1)="%o lost his head thanks to %k's MJ53."
-     DeathStrings(2)="%k's MJ53 lifted %o's head off %vh shoulders."
+     DeathStrings(0)="%o got %vh brain shredded by %k's G51."
+     DeathStrings(1)="%o lost his head thanks to %k's G51."
+     DeathStrings(2)="%k's G51 lifted %o's head off %vh shoulders."
      bHeaddie=True
      WeaponClass=Class'BWBP_SKC_Pro.G51Carbine'
      DeathString="%o got %vh brain shredded by %k's MJ53."
