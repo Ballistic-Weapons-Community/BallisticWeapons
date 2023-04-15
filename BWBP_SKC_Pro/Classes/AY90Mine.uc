@@ -61,7 +61,7 @@ simulated function InitProjectile()
 
 	if (Role==ROLE_Authority)
 	{
-		PlaySound(ArmingSound,,2.0,,256,,);
+		PlaySound(ArmingSound,,2.0,,512,,);
 		SetTimer(1.00, false);
 	}
 

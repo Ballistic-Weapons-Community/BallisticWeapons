@@ -31,6 +31,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		TargetState="TimedCharge"
 		FireInterval=0.40000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	

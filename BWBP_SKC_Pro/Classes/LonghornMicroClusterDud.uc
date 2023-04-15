@@ -4,6 +4,8 @@
 // Small cluster bomb used by alt fire. Moves very fast but otherwise behaves
 // very much like LonghornMicroClusterFlak.
 //
+// Won't detonate.
+//
 // by Casey "Xavious" Johnson.
 // Copyright(c) 2012 Casey Johnson. All Rights Reserved.
 //=============================================================================
@@ -137,14 +139,14 @@ defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
 	 bApplyParams=False
-     FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
+     FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlareDud'
      DetonateOn=DT_None
 	 DampenFactor=0.05
      DampenFactorParallel=0.250000
      bAlignToVelocity=True
      DetonateDelay=1.250000
      ImpactManager=Class'BWBP_SKC_Pro.IM_LonghornCluster'
-     TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrailAlt'
+     TrailClass=None
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=512.000000
