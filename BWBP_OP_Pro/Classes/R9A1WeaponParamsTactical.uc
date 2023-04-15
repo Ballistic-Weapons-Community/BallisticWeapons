@@ -126,7 +126,20 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="Hybrid Scope"
+		LayoutTags="hybrid"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Optics",Slot=55,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="EOTech",Slot=56,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Scope",Slot=57,Scale=1f)
 		SightPivot=(Roll=11800)
+		SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
+		MinZoom=4 // sniper 4-8x
+		MaxZoom=8
+		ZoomStages=1
+		//Function
 		//SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
@@ -134,10 +147,52 @@ defaultproperties
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=12
-		// sniper 4-8x
-		MinZoom=4
-		MaxZoom=8
-		ZoomStages=1
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalFreezeFireParams'
+		FireParams(2)=FireParams'TacticalHeatFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Holo
+		//Layout core
+		Weight=30
+		LayoutName="Holosight"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.020000,Z=3.100000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=1f)
+		//Function
+		InventorySize=6
+		SightMoveSpeedFactor=0.45
+		SightingTime=0.4	
+		ScopeScale=0.7
+		DisplaceDurationMult=1
+		MagAmmo=12
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalFreezeFireParams'
+		FireParams(2)=FireParams'TacticalHeatFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Irons
+		//Layout core
+		Weight=10
+		LayoutName="Iron Sights"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.000000,Z=2.000000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=0f)
+		//Function
+		InventorySize=6
+		SightMoveSpeedFactor=0.45
+		SightingTime=0.4	
+		ScopeScale=0.7
+		DisplaceDurationMult=1
+		MagAmmo=12
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -145,6 +200,8 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalHeatFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Holo'
+    Layouts(2)=WeaponParams'TacticalParams_Irons'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=R9_Orange

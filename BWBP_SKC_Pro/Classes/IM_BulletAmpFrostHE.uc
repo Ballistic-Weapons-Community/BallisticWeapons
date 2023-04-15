@@ -1,12 +1,12 @@
 //=============================================================================
-// IM_BulletFrostHE.
+// IM_BulletAmpFrostHE.
 // 
 // ImpactManager subclass for explosive ice bullets
 // 
 // by Sarge
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IM_BulletFrostHE extends BCImpactManager;
+class IM_BulletAmpFrostHE extends BCImpactManager;
 
 defaultproperties
 {

@@ -40,7 +40,7 @@ function IceUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int 
 	mHitNormal = HitNormal;
 	mHitActor = HitActor;
 	mHitLocation = HitLocation;
-	FiringMode = 2;
+	FiringMode = 1;
 	IceFireCount++;
 	NetUpdateTime = Level.TimeSeconds - 1;
 	ThirdPersonEffects();
@@ -70,7 +70,7 @@ simulated event PostNetReceive()
 	}
 	if (IceFireCount != OldIceFireCount)
 	{
-		FiringMode = 2;
+		FiringMode = 1;
 		ThirdPersonEffects();
 		OldIceFireCount = IceFireCount;
 		/*if (bAmped)
@@ -88,6 +88,11 @@ simulated event ThirdPersonEffects()
 			SetBoneScale (0, 1.0, 'Silencer');
 		else
 			SetBoneScale (0, 0.0, 'Silencer');
+		
+		if (FiringMode == 1 && bAmped)
+			SetBoneScale (1, 1.0, 'AMP');
+		else
+			SetBoneScale (1, 0.0, 'AMP');
     }
 	super.ThirdPersonEffects();
 }
@@ -159,7 +164,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 		return;
 
 	// no tracers if suppressed
-	if (Mode == 1)
+	if (Mode == 1 && !bAmped)
 		return;
 
 	TipLoc = GetModeTipLocation();

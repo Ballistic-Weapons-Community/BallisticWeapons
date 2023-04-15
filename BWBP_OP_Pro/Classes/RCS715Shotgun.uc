@@ -715,6 +715,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
+	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagOut',Volume=1.300000)
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagIn',Volume=1.300000)
 	StartShovelAnim="PrepReload"
@@ -740,7 +741,7 @@ defaultproperties
 	SelectAnimRate=0.900000
 	PutDownTime=0.550000
 	BringUpTime=0.700000
-	CockingBringUpTime=1.500000
+	CockingBringUpTime=1.700000
 	AIRating=0.850000
 	CurrentRating=0.850000
 	Description="RCS-715 Tactical Buster||Manufacturer: JAX Industrial Firm|Primary: Automatic Shotgun Blast|Secondary: Incendiary Grenade||While not as prevalent as the Skrith menace, Cryon and Krao are just as deadly if not more in some situations.  The skrith may think they're inferior, but the combined menace has wreaked some damage across the universe, such as the tragedy that was the fall of Neo Cairo. Jaeger Firearms and Axo-tek Industries saw the damage to their home, deciding to team up under a new banner. The newly JAX Industrial Firm combined their forces to create not just a potent anti-krao weapon, but an anti-cryon weapon as well. The result is the RCS-715 Tactical Buster shotgun, a low recoil, high damaging shotgun that can destroy not just the Krao or Cryon, but the Skrith as well.  Though chambered in 12 gauge buckshot, it can also fire FRAG-12 or Inciendary shells without damaging the bolt."

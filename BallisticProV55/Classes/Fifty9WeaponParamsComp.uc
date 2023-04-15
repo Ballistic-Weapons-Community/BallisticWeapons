@@ -144,6 +144,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams
 		DisplaceDurationMult=0.5
         MagAmmo=25        
+		bDualBlocked=True
 		InventorySize=3
 		ReloadAnimRate=1.250000
 		SightingTime=0.2

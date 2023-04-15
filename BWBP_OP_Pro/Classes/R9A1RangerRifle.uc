@@ -2,13 +2,30 @@ class R9A1RangerRifle extends BallisticWeapon;
 
 #exec OBJ LOAD File=BWBP_OP_Tex.utx
 
+//Layouts
+var()   bool		bHasHybridScope;				// Uses two scopes
+
 var float LastModeChangeTime;
 
-var rotator ScopeSightPivot;
-var vector ScopeSightOffset;
+var() rotator ScopeSightPivot;
+var() vector ScopeSightOffset;
 
-var rotator IronSightPivot;
-var vector IronSightOffset;
+var() rotator IronSightPivot;
+var() vector IronSightOffset;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasHybridScope=False;
+
+	if (InStr(WeaponParams.LayoutTags, "hybrid") != -1)
+	{
+		bHasHybridScope=True;
+	}
+}
 
 simulated function PostBeginPlay()
 {
@@ -218,64 +235,72 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 //===========================================================================
 exec simulated function ScopeView()
 {
-	if (ZoomType == ZT_Fixed && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
-	if (SightingState == SS_None)
+	if (bHasHybridScope)
 	{
-		if (ZoomType == ZT_Fixed)
+		if (ZoomType == ZT_Fixed && SightingState != SS_None && SightingState != SS_Active)
+			return;
+			
+		if (SightingState == SS_None)
 		{
-			SightPivot = IronSightPivot;
-			SightOffset = IronSightOffset;
-			ZoomType = ZT_Irons;
-			ScopeViewTex = None;
-			SightingTime = default.SightingTime;
+			if (ZoomType == ZT_Fixed)
+			{
+				SightPivot = IronSightPivot;
+				SightOffset = IronSightOffset;
+				ZoomType = ZT_Irons;
+				ScopeViewTex = None;
+				SightingTime = default.SightingTime;
+			}
 		}
 	}
-	
 	Super.ScopeView();
 }
 
 exec simulated function ScopeViewRelease()
 {
-	if (ZoomType != ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
+	if (bHasHybridScope)
+	{
+		if (ZoomType != ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
+			return;
+	}
 	Super.ScopeViewRelease();
 }
 
 simulated function ScopeViewTwo()
 {
-	if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
-	if (SightingState == SS_None)
+	if (bHasHybridScope)
 	{
-		switch(CurrentWeaponMode)
+		if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
+			return;
+			
+		if (SightingState == SS_None)
 		{
-			case 1: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB1'; break;
-			case 2: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB2'; break;
-			default: ScopeViewTex = Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1';
-		}
-		
-		if (ZoomType == ZT_Irons)
-		{
-			SightPivot = ScopeSightPivot;
-			SightOffset = ScopeSightOffset;
-			ZoomType = ZT_Fixed;
-			MaxZoom = 4;
-			SightingTime = 0.4;
+			switch(CurrentWeaponMode)
+			{
+				case 1: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB1'; break;
+				case 2: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB2'; break;
+				default: ScopeViewTex = Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1';
+			}
+			
+			if (ZoomType == ZT_Irons)
+			{
+				SightPivot = ScopeSightPivot;
+				SightOffset = ScopeSightOffset;
+				ZoomType = ZT_Fixed;
+				MaxZoom = 4;
+				SightingTime = 0.4;
+			}
 		}
 	}
-	
 	Super.ScopeView();
 }
 
 simulated function ScopeViewTwoRelease()
 {
-	if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
+	if (bHasHybridScope)
+	{
+		if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
+			return;
+	}
 	Super.ScopeViewRelease();
 }
 
@@ -286,7 +311,7 @@ simulated function SetHand(float InHand)
 	IronSightOffset = default.SightOffset;
 
 	super.SetHand(InHand);
-	if (Hand < 0)
+	if (Hand < 0 && bHasHybridScope)
 	{
 		if (ZoomType != ZT_Irons)
 		{

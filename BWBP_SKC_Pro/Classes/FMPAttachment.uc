@@ -289,7 +289,7 @@ defaultproperties
      TracerClassGreen=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
 	 
      ImpactManagerRed=Class'BWBP_SKC_Pro.IM_BulletHE'
-     ImpactManagerGreen=Class'BWBP_SKC_Pro.IM_BulletAcid'
+     ImpactManagerGreen=Class'BWBP_SKC_Pro.IM_BulletAmpAcid'
 	 
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      InstantMode=MU_Both

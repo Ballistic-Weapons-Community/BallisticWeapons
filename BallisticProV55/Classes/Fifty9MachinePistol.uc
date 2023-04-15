@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Fifty9MachinePistol extends BallisticWeapon;
+class Fifty9MachinePistol extends BallisticHandgun;
 
 var   name		StockOpenAnim;
 var   name		StockCloseAnim;

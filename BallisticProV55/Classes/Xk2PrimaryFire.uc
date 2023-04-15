@@ -58,10 +58,10 @@ function FlashMuzzleFlash()
 		return;
 	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
 		return;
-    if (!XK2SubMachinegun(Weapon).bSilenced && MuzzleFlash != None)
-        MuzzleFlash.Trigger(Weapon, Instigator);
-    else if (MuzzleFlashAmp != None && XK2Submachinegun(Weapon).CurrentWeaponMode == 4)
+	if (XK2Submachinegun(Weapon).CurrentWeaponMode == 4 && XK2Submachinegun(Weapon).AmpCharge > 0 && MuzzleFlashAmp != None )
        	MuzzleFlashAmp.Trigger(Weapon, Instigator);
+    else if (!XK2SubMachinegun(Weapon).bSilenced && XK2Submachinegun(Weapon).CurrentWeaponMode != 4 && MuzzleFlash != None)
+        MuzzleFlash.Trigger(Weapon, Instigator);
     else if (XK2SubMachinegun(Weapon).bSilenced && SMuzzleFlash != None)
         SMuzzleFlash.Trigger(Weapon, Instigator);
 
