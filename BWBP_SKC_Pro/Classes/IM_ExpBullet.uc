@@ -1,7 +1,7 @@
 //=============================================================================
-// IM_Bullet.
+// IM_ExpBullet.
 //
-// ImpactManager subclass for ordinary bullets
+// ImpactManager subclass for explosive rounds
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

@@ -32,6 +32,17 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	LastGrenade = LonghornGrenade(Proj);
 }
 
+simulated state TimedCharge //Explodes regardless of being held
+{
+	function SpawnProjectile (Vector Start, Rotator Dir)
+	{
+		Proj = Spawn (ProjectileClass,,, Start, Dir);
+		Proj.Instigator = Instigator;
+		LonghornGrenade(Proj).DetonationType = DET_ImpactTimed;
+		LastGrenade = LonghornGrenade(Proj);
+	}
+}
+
 function StopFiring()
 {
 	Super.StopFiring();

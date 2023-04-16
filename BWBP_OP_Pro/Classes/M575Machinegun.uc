@@ -597,10 +597,10 @@ defaultproperties
 	 ScopeScopeViewTex=Texture'BWBP_OP_Tex.M575.M575Scope'
 	 ScopeOnRot=(Roll=0)
 	 ScopeOffRot=(Roll=-21845)
-     BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOn')
-     BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOff')
-     FlapUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapUp')
-     FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapDown')
+     BoxOnSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-BoxOn',Volume=1.500000)
+     BoxOffSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-BoxOff',Volume=1.500000)
+     FlapUpSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Open',Volume=1.500000)
+     FlapDownSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Close',Volume=1.500000)
      PlayerSpeedFactor=0.90000
      PlayerJumpFactor=0.900000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -617,13 +617,14 @@ defaultproperties
      ManualLines(2)="Enable the Hybrid Scope. While the hybrid scope is enabled, you will have access to a fixed 2X Scope, which can be taken off when out of combat."
 	 ManualLines(3)="In response to not just the regular UTC troops demanding a new LMG, but also the ODST troops finding the M353 to be inadequate in stopping skrith dead in their tracks, Enravion updated the platform into the new M575 Machine Gun. In addition to firing 7.62mm rounds instead of the old 5.56mm rounds, the M575 also has rail support for all the optics one could ever ask for; when the weapon first debuted, it came with a C-All Red Dot Sight along with a 2x magnifier scope. While the M353 is still hanging around, it is slated to be phased by the M575 within 6 months if all goes well."
      SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
-     CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout',Pitch=0.9)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway',Pitch=0.9)
+     CockSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-BoltQuick',Volume=1.500000)
+	 CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-BoltQuick',Volume=1.500000)
      ReloadAnim="ReloadStart"
-	 CockingBringUpTime=1.400000
-	 SightFXBone="Muzzle"
-     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
+	 CockingBringUpTime=2.100000
+	 //SightFXBone="Muzzle"
+     ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Belt')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellIn')
      ClipInFrame=0.650000
      bCockOnEmpty=True

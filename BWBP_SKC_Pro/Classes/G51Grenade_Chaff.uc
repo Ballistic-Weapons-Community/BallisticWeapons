@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G51ChaffRifleGrenade extends BallisticGrenade;
+class G51Grenade_Chaff extends BallisticGrenade;
 
 
 simulated function Explode(vector HitLocation, vector HitNormal)

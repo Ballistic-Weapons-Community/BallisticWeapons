@@ -220,6 +220,7 @@ defaultproperties
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=2
+		bNeedCock=True
 		WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000,bUnavailable=True)
 		WeaponModes(1)=(ModeName="Ammo: Electro",Value=1.000000)
 		WeaponModes(2)=(ModeName="Ammo: Cryogenic",Value=1.000000,bUnavailable=True)

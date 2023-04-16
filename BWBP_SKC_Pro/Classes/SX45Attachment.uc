@@ -391,8 +391,8 @@ defaultproperties
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
 	 TracerClassAmp1=Class'BWBP_SKC_Pro.TraceEmitter_FreezeBig'
      TracerClassAmp2=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-	 ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletFrostHE'
-     ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletRad'
+	 ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletAmpFrostHE'
+     ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAmpRad'
      TracerMix=-3
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both

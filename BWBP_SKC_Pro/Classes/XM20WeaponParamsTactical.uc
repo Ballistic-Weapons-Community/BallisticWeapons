@@ -67,6 +67,9 @@ defaultproperties
 		LimbMult=0.75f
 		Chaos=0
 		Recoil=64
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		FlashScaleFactor=0.200000
 	End Object
 	

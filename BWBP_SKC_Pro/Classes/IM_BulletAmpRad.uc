@@ -1,12 +1,12 @@
 //=============================================================================
-// IM_BulletRad.
+// IM_BulletAmpRad.
 // 
 // ImpactManager subclass for amp'd rad bullets
 // 
 // by Sarge + other pack dudes
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IM_BulletRad extends BCImpactManager;
+class IM_BulletAmpRad extends BCImpactManager;
 
 defaultproperties
 {

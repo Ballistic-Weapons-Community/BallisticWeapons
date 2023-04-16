@@ -135,12 +135,82 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
 		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.000000,Z=2.000000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=0f)
+		//Function
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Heat Ray",ModeID="WM_SemiAuto",Value=1.000000)
+		InitialWeaponMode=0
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		SightPivot=(Roll=6000)
+		//SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicFreezeFireParams'
+		FireParams(2)=FireParams'ClassicHeatFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Holosight
+		//Layout core
+		Weight=30
+		LayoutName="Holosight"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.020000,Z=3.100000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=1f)
+		//Function
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Heat Ray",ModeID="WM_SemiAuto",Value=1.000000)
+		InitialWeaponMode=0
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
+		//SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicFreezeFireParams'
+		FireParams(2)=FireParams'ClassicHeatFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Scoped
+		//Layout core
+		Weight=30
+		LayoutName="Hybrid Scope"
+		LayoutTags="hybrid"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Optics",Slot=55,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="EOTech",Slot=56,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Scope",Slot=57,Scale=1f)
+		SightPivot=(Roll=11800)
+		SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
+		MinZoom=2// sniper 2-8x
+		MaxZoom=8
+		ZoomStages=1
+		//Function
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
 		//SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
@@ -153,6 +223,8 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Holosight'
+	Layouts(2)=WeaponParams'ClassicParams_Scoped'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=R9_Orange

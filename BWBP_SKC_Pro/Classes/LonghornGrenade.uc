@@ -20,6 +20,7 @@ var bool                 		bNoArtillery;
 enum EDetonationType
 {
 	DET_Shatter,
+	DET_ImpactTimed,
 	DET_Manual,
 	DET_Artillery,
 	DET_Direct
@@ -72,7 +73,7 @@ function ManualDetonate(bool bBig)
 	
 	if (bBig)
 	{
-		FlakClass		= Class'LonghornMicroClusterImpact';
+		FlakClass		= Class'LonghornMicroClusterFlakArtillery';
 		DamageRadius 	*= 2;
 		DetonationType 	= DET_Artillery;
 	 }
@@ -93,7 +94,14 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 	if (Role == ROLE_Authority) // server will manage detonation for Longhorn primary
 	{
-		if (DetonateOn == DT_Impact || (DetonateOn == DT_ImpactTimed && bFireReleased && !bHasImpacted))
+		if (DetonationType == DET_ImpactTimed && DetonateOn == DT_ImpactTimed && bFireReleased && !bHasImpacted)
+		{
+			if (ImpactSound != None)
+				PlaySound(ImpactSound, SLOT_Misc );
+			FlakClass = Class'LonghornMicroClusterFlak';
+			SetTimer(DetonateDelay, false);
+		}
+		else if (DetonateOn == DT_Impact || (DetonateOn == DT_ImpactTimed && bFireReleased && !bHasImpacted))
 		{
 			if (ImpactSound != None)
 				PlaySound(ImpactSound, SLOT_None , , ,TransientSoundRadius * FMin(Speed/3500,1));
@@ -200,7 +208,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	switch (DetonationType)
 	{
 		case DET_Shatter:
-			ImpactManager = None;
+			ImpactManager = Class'IM_LonghornShatter';
 			break;
 		case DET_Direct:
 			ImpactManager=Class'IM_LonghornMax';
@@ -287,6 +295,7 @@ defaultproperties
 	DamageDropoffFactor=0.100000
 	ExplosiveImpactDamage=130
 	ArmingDelay=0.180000
+	DetonateDelay=0.65
 	DetonateOn=DT_ImpactTimed
 	PlayerImpactType=PIT_Detonate
 	DampenFactor=0.300000

@@ -145,8 +145,9 @@ defaultproperties
      TraceRange=(Min=15000.000000,Max=15000.000000)
 	 AmpDrainPerShot=-0.1
 	 AmpFlashBone="tip2"
-     AmpFlashScaleFactor=0.300000
-     MuzzleFlashClassAmp=Class'BallisticProV55.XK2SilencedFlash'
+     AmpFlashScaleFactor=0.700000
+     MuzzleFlashClassAmp=Class'BWBP_SKC_Pro.SX45CryoFlash'
+	 
      WaterRangeAtten=0.800000
      DamageType=Class'BWBP_OP_Pro.DTM575MG'
      DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'

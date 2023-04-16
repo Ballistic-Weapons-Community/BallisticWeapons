@@ -24,8 +24,8 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-		FlashScaleFactor=0.100000
+		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter_C'
+		FlashScaleFactor=0.700000
 		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.M575.M575-Fire',Volume=1.400000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=80.000000
 		Chaos=-1.0
@@ -41,6 +41,7 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 
+	//Ice
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryIceEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
 		WaterTraceRange=5000.0
@@ -58,9 +59,9 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=0.250000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-FireFrost',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=70.000000
 		Chaos=0.050000
 		Inaccuracy=(X=16,Y=16)

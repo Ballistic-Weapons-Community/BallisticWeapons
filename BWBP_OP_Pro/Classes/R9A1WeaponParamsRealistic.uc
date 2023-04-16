@@ -140,13 +140,23 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		Weight=30
+		LayoutName="Hybrid Scope"
+		LayoutTags="hybrid"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Optics",Slot=55,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="EOTech",Slot=56,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Scope",Slot=57,Scale=1f)
+		SightPivot=(Roll=11800)
+		SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
+		//Function
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.23
+		SightingTime=0.28
 		MagAmmo=12
 		bMagPlusOne=True
 		//ViewOffset=(X=-4.000000,Y=9.00000,Z=-13.000000)
-		SightPivot=(Roll=6000)
 		//SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.250000
@@ -158,7 +168,66 @@ defaultproperties
 		FireParams(2)=FireParams'RealisticHeatFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Holo
+		//Layout core
+		Weight=10
+		LayoutName="Holosight"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.020000,Z=3.100000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=1f)
+		//Function
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.23
+		MagAmmo=12
+		bMagPlusOne=True
+		//ViewOffset=(X=-4.000000,Y=9.00000,Z=-13.000000)
+		//SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
+		WeaponName="R9 .308 Ranger Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticFreezeFireParams'
+		FireParams(2)=FireParams'RealisticHeatFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Irons
+		//Layout core
+		Weight=10
+		LayoutName="Iron Sights"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.000000,Z=2.000000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=0f)
+		//Function
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.23
+		MagAmmo=12
+		bMagPlusOne=True
+		//ViewOffset=(X=-4.000000,Y=9.00000,Z=-13.000000)
+		//SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
+		WeaponName="R9 .308 Ranger Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticFreezeFireParams'
+		FireParams(2)=FireParams'RealisticHeatFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Holo'
+	Layouts(2)=WeaponParams'RealisticParams_Irons'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=R9_Orange

@@ -127,9 +127,19 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		Weight=30
+		LayoutName="Hybrid Scope"
+		LayoutTags="hybrid"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Optics",Slot=55,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="EOTech",Slot=56,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Scope",Slot=57,Scale=1f)
+		SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
+		SightPivot=(Roll=11800)
+		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightPivot=(Roll=11800)
 		//SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)	
 		PlayerJumpFactor=1
 		InventorySize=6
@@ -144,7 +154,64 @@ defaultproperties
 		FireParams(1)=FireParams'ArenaFreezeFireParams'
 		FireParams(2)=FireParams'ArenaHeatFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Holo
+		//Layout core
+		Weight=10
+		LayoutName="Holosight"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.020000,Z=3.100000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=1f)
+		//Function
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
+		//SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)	
+		PlayerJumpFactor=1
+		InventorySize=6
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.4	
+		ScopeScale=0.7
+		DisplaceDurationMult=1
+		MagAmmo=12
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaFreezeFireParams'
+		FireParams(2)=FireParams'ArenaHeatFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Irons
+		//Layout core
+		Weight=10
+		LayoutName="Iron Sights"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		SightOffset=(X=-5.000000,Y=-0.000000,Z=2.000000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=0f)
+		//Function
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
+		//SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)	
+		PlayerJumpFactor=1
+		InventorySize=6
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.4	
+		ScopeScale=0.7
+		DisplaceDurationMult=1
+		MagAmmo=12
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaFreezeFireParams'
+		FireParams(2)=FireParams'ArenaHeatFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Holo'
+    Layouts(2)=WeaponParams'ArenaParams_Irons'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=R9_Orange

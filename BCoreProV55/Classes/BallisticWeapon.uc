@@ -915,9 +915,6 @@ simulated function OnWeaponParamsChanged()
 			}
 		}
 	}
-
-    for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
-        SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
 	
 	//Change mesh if layout dictates it
 	if (WeaponParams.LayoutMesh != None)
@@ -925,6 +922,9 @@ simulated function OnWeaponParamsChanged()
 		LinkMesh(WeaponParams.LayoutMesh);
 		OnMeshChanged();
 	}
+
+    for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
+        SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
 	
 	//Spawn a weapon attachment if required by the layout
     for (i = 0; i < WeaponParams.GunAugments.Length; ++i)

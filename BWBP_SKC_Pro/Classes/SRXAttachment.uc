@@ -322,7 +322,7 @@ defaultproperties
      MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
 	 
      ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletAmpInc'
-     ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAcid'
+     ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAmpAcid'
 	 
 	 TracerClassAmp1=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
      TracerClassAmp2=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'

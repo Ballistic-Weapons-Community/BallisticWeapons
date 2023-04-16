@@ -24,7 +24,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-		FlashScaleFactor=0.100000
+		FlashScaleFactor=0.700000
 		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.M575.M575-FireHeavy',Volume=2.300000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=580.000000
 		Chaos=0.080000
@@ -60,9 +60,9 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=0.250000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-FireFrost',Volume=1.900000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=470.000000
 		Chaos=0.050000
 		Inaccuracy=(X=16,Y=16)
@@ -119,7 +119,7 @@ defaultproperties
 		PlayerSpeedFactor=0.850000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=100
+		MagAmmo=50
 		//ViewOffset=(X=5.000000,Y=2.000000,Z=-9.000000)
 		//SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
 		SightPivot=(Pitch=128)
