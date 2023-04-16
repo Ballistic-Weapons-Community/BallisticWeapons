@@ -77,7 +77,7 @@ defaultproperties
 
     Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.5
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.1
         YawFactor=0.000000
         XRandFactor=0.250000

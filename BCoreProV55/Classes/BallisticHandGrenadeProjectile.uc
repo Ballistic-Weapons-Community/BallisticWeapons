@@ -88,6 +88,10 @@ function SetThrowPowerAndDelay(float NewThrowPower, float NewDelay)
     else 
         DetonateDelay = NewDelay;
 
+	// set after PostNetBeginPlay
+	if (DetonateOn == DT_Timer)
+        SetTimer(DetonateDelay, false);
+
     ClientDetonateDelay = DetonateDelay - StartDelay;
 }
 

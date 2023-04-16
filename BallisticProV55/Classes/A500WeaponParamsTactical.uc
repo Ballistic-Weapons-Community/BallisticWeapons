@@ -9,16 +9,17 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalMultiEffectParams
         ProjectileClass=Class'BallisticProV55.A500Projectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'  
-        Speed=3500.000000
-        AccelSpeed=0.000000
-        MaxSpeed=3500.000000
-        Damage=22.000000
+		SpawnOffset=(X=20,Y=6,Z=-8)
+        Speed=5500.000000
+        MaxSpeed=6500.000000
+        AccelSpeed=3000.000000
+        Damage=24.000000
         HeadMult=1.75f
         LimbMult=0.85f
         MomentumTransfer=1000.000000
         MaxDamageGainFactor=0.2
         DamageGainEndTime=0.3
-        Recoil=378.000000
+        Recoil=450.000000
         Chaos=0.400000
         Inaccuracy=(X=220,Y=220)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -42,9 +43,10 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalChargeEffectParams
         ProjectileClass=Class'BallisticProV55.A500AltProjectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+		SpawnOffset=(X=20,Y=6,Z=-8)
         Speed=6000.000000
         MaxSpeed=6000.000000
-        Damage=80.000000
+        Damage=75.000000
         DamageRadius=768.000000
         RadiusFallOffType=RFO_None
         Chaos=0.5
@@ -69,7 +71,7 @@ defaultproperties
 
     Begin Object Class=RecoilParams Name=TacticalRecoilParams
         ViewBindFactor=0.65
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.6
         CrouchMultiplier=1
         XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.270000),(InVal=0.600000,OutVal=0.350000),(InVal=0.700000,OutVal=0.40000),(InVal=1.000000,OutVal=0.4500000)))
         YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.170000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.100000),(InVal=1.000000,OutVal=0.5)))
@@ -105,8 +107,8 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
         SightMoveSpeedFactor=0.6
         InventorySize=5
-		MagAmmo=5
-        SightingTime=0.3
+		MagAmmo=8
+        SightingTime=0.25
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalMultiFireParams'

@@ -128,12 +128,12 @@ var private ERecoilState		MoveState;
 //
 // True if recoil can decline
 //===========================================================
-final simulated function bool CanDeclineRecoil()
+final function bool CanDeclineRecoil()
 {
     return LastRecoilTime + DeclineDelay < Level.TimeSeconds;
 }
 
-final simulated function bool ShouldShift()
+final function bool ShouldShift()
 {
 	return MoveState != ERecoilState.Holding;
 }
@@ -144,7 +144,7 @@ final simulated function bool ShouldShift()
 // Called by weapon to determine if delta recoil 
 // should be added to the view rotation on this tick
 //===========================================================
-final simulated function bool ShouldUpdateView()
+final function bool ShouldUpdateView()
 {
 	return bViewDecline || MoveState != ERecoilState.Declining;
 }
@@ -160,7 +160,7 @@ final simulated function bool ShouldUpdateView()
 // to the pool
 //===========================================================
 
-final simulated function Cleanup()
+final function Cleanup()
 {
 	BW = None;
 	Level = None;
@@ -206,7 +206,7 @@ final simulated function Cleanup()
 // Called when parameters are change to assign internal 
 // state variables
 //===========================================================
-final simulated function Recalculate()
+final function Recalculate()
 {
     assert(Params != None);
     
@@ -236,7 +236,7 @@ final simulated function Recalculate()
 // Interpolates the recoil between start and end.
 // Initiates view decline if needed.
 //=============================================================
-final simulated function UpdateRecoil(float dt)
+final function UpdateRecoil(float dt)
 {
 	LastPivot = CurrentPivot;
 
@@ -361,10 +361,10 @@ final function StartRecoilDecline()
 	AdjustmentPhase = 0;
 	AdjustmentTime = DeclineTime * (float(Current.Recoil) / float(MaxRecoil));
 
-	BW.SendNetRecoil(0,0,AdjustmentTime);
+	BW.SendNetRecoil(0, 0, AdjustmentTime);
 }
 
-final simulated function float ScaleRecoilAmount(float amount)
+final function float ScaleRecoilAmount(float amount)
 {
 	if (VSize(BW.Instigator.Velocity) >= 30) // moving modifiers
 	{
@@ -393,17 +393,17 @@ final simulated function float ScaleRecoilAmount(float amount)
 // Display
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-final simulated function UpdateADSTransition(float delta)
+final function UpdateADSTransition(float delta)
 {
     ViewBindFactor = Smerp(delta, Params.ViewBindFactor, Params.ADSViewBindFactor);
 }
 
-final simulated function OnADSViewStart()
+final function OnADSViewStart()
 {
     ViewBindFactor = Params.ADSViewBindFactor;
 }
 
-final simulated function OnADSViewEnd()
+final function OnADSViewEnd()
 {
     // BallisticWeapon's PositionSights will handle this for clients
     if (Level.NetMode == NM_DedicatedServer)
@@ -415,7 +415,7 @@ final simulated function OnADSViewEnd()
 //
 // Calculates the change in view offsetting.
 //===========================================================
-final simulated function Rotator CalcViewPivotDelta()
+final function Rotator CalcViewPivotDelta()
 {
 	return (CurrentPivot - LastPivot) * ViewBindFactor;
 }
@@ -426,7 +426,7 @@ final simulated function Rotator CalcViewPivotDelta()
 // Returns a Rotator for the component of recoil that is 
 // being applied to the player's view.
 //===========================================================
-final simulated function Rotator GetViewPivot()
+final function Rotator GetViewPivot()
 {
 	if (BW.Instigator.Controller == None || PlayerController(BW.Instigator.Controller) == None || PlayerController(BW.Instigator.Controller).bBehindView)
 		return CurrentPivot;
@@ -441,7 +441,7 @@ final simulated function Rotator GetViewPivot()
 // not being applied to the player's view. 
 // Used to trace shot direction.
 //===========================================================
-final simulated function Rotator GetEscapePivot()
+final function Rotator GetEscapePivot()
 {
 	if (ViewBindFactor == 1)
 		return rot(0,0,0);
@@ -455,7 +455,7 @@ final simulated function Rotator GetEscapePivot()
 // Hack to make weapons that escape in sight view appear to 
 // shoot above the front sight, rather than directly onto it.
 //===========================================================
-final simulated function Rotator GetViewEscapePivot()
+final function Rotator GetViewEscapePivot()
 {
 	return GetEscapePivot() * (1f / Params.EscapeMultiplier);
 }
@@ -466,7 +466,7 @@ final simulated function Rotator GetViewEscapePivot()
 // Calculates the offset for the current recoil state by 
 // using random factors and the recoil pattern.
 //===========================================================
-private final simulated function Rotator CalculateRecoil(StateData state)
+private final function Rotator CalculateRecoil(StateData state)
 {
 	local Rotator R;
 	local float AdjustedRecoil;
@@ -522,7 +522,7 @@ final function bool BotShouldFire(float Dist)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Replication
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-final simulated function ReceiveNetRecoil(int pitch, int yaw, float shift_time)
+final function ReceiveNetRecoil(int pitch, int yaw, float shift_time)
 {
 	StartPivot = CurrentPivot;
 
@@ -541,7 +541,7 @@ final simulated function ReceiveNetRecoil(int pitch, int yaw, float shift_time)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Debug
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-final simulated function int DrawDebug(Canvas Canvas, int YPos, int YL)
+final function int DrawDebug(Canvas Canvas, int YPos, int YL)
 {
     Canvas.DrawText("Recoil: "$ Current.Recoil $"/"$ MaxRecoil $", XRand "$ Current.XRand $", YRand "$ Current.YRand $" (Lerp "$ Start.Recoil $"-"$Target.Recoil $", XRand "$ Start.XRand $"-"$Target.XRand $", YRand "$ Start.YRand $"-"$Target.YRand $", Time "$AdjustmentTime$", Phase "$AdjustmentPhase$")");
 	YPos += YL;

@@ -95,7 +95,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalStockOutRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.6
 		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.30000,OutVal=-0.030000),(InVal=0.4500000,OutVal=-0.050000),(InVal=0.600000,OutVal=0.060000),(InVal=0.800000,OutVal=0.04000),(InVal=1.000000,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
@@ -111,7 +111,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalStockInRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.5
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.30000,OutVal=-0.030000),(InVal=0.4500000,OutVal=-0.050000),(InVal=0.600000,OutVal=0.060000),(InVal=0.800000,OutVal=0.04000),(InVal=1.000000,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))

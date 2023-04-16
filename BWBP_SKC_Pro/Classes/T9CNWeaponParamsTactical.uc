@@ -76,7 +76,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.6
 		EscapeMultiplier=1.1
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
@@ -91,7 +91,7 @@ defaultproperties
 	//Burst
 	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.5
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.1
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))

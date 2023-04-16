@@ -98,6 +98,8 @@ var localized string MenuName, MenuHelp; // Stuff for the menu
 
 var private editconst bool bMenuModified, bMenuAdd;
 
+var ASGameReplicationInfo AS_GRI;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -623,6 +625,8 @@ simulated function bool ValidateWeapon (string WeaponName)
 simulated final function int GetTeamFlags()
 {
 	local int team_index;
+	local ASGameReplicationInfo AS_GRI;
+
 
 	if (myController == None)
 	{
@@ -635,10 +639,13 @@ simulated final function int GetTeamFlags()
 
 	team_index = myController.PlayerReplicationInfo.Team.TeamIndex;
 
-	// red means attacking in Assault
-	if (ASGameReplicationInfo(Level.Game.GameReplicationInfo) != None && !ASGameReplicationInfo(Level.Game.GameReplicationInfo).bTeamZeroIsAttacking)
+	// red team = attacking team in AS
+	if (PlayerController(myController) != None)
 	{
-		team_index = 1 - team_index; 
+		AS_GRI = ASGameReplicationInfo(PlayerController(myController).GameReplicationInfo);
+
+		if (AS_GRI != None)
+			team_index = int(AS_GRI.IsDefender(team_index));
 	}
 
 	return team_index + 1;

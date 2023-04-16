@@ -129,7 +129,7 @@ defaultproperties
 	bWT_Hazardous=True
 	bWT_Projectile=True
 	ManualLines(0)="Blasts the enemy with multiple acid projectiles. These projectiles gain damage over range and inflict a short-duration blind on a headshot. Good shoulder fire properties."
-	ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power, number of pools and radius of coverage all increase with charge."
+	ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Power, number of pools and radius of coverage all increase with charge, while speed decreases."
 	ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
 	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
@@ -147,9 +147,9 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=129),Color2=(B=148,R=0,A=141),StartSize1=99,StartSize2=84)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
 
-	PlayerViewOffset=(X=26,Y=14.5,Z=-20)
-	PlayerViewPivot=(Pitch=600)
-	SightOffset=(X=-51,Y=0.160000,Z=38)
+	PlayerViewOffset=(X=10.00,Y=12.00,Z=-14.00)
+	SightOffset=(X=10.00,Y=0.16,Z=14.00)
+	SightAnimScale=0.35
 
 	SightZoomFactor=1.2
 	GunLength=48.000000

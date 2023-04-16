@@ -4608,16 +4608,16 @@ simulated final function ReceiveNetAim(float Yaw, float Pitch, float Time, float
 final function SendNetRecoil(int pitch, int yaw, float shift_time)
 {
 	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer && !Instigator.IsLocallyControlled())
-		ReceiveNetRecoil(pitch, yaw, int(shift_time * 255) );
+		ReceiveNetRecoil(pitch, yaw, int(shift_time * 100) );
 }
 
 // Apply recoil from server.
-simulated final function ReceiveNetRecoil(int pitch, int yaw, byte shift_time)
+simulated final function ReceiveNetRecoil(int pitch, int yaw, int shift_time)
 {
 	if (Role == ROLE_Authority)
 		return;
 
-	RcComponent.ReceiveNetRecoil(pitch, yaw, shift_time / 255.0f);
+	RcComponent.ReceiveNetRecoil(pitch, yaw, shift_time * 0.01f);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

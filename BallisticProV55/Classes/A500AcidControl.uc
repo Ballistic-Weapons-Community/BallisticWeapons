@@ -10,7 +10,7 @@
 //=============================================================================
 class A500AcidControl extends Actor;
 
-var float BaseSpreadRadius;
+var float MaxSpreadRadius;
 
 struct AcidPoolStruct
 {
@@ -18,16 +18,19 @@ struct AcidPoolStruct
 	var byte bStuck;
 };
 
+const MAX_FIRE_SPOTS = 40;
+
 struct HitPawnInfo
 {
 	var Pawn HitPawn;
 	var float HitTime;
 };
 
-var int			Ident;
-var() float		DamageRadius;			// Radius in which to corrode players
-var   AcidPoolStruct	AcidSpots[10];			// Info sent to client to tell it where to spawn pools
-var array<HitPawnInfo>	HitPawnData;
+var 	int								Ident;
+var() 	float							DamageRadius;			// Radius in which to corrode players
+var   	AcidPoolStruct					AcidSpots[10];			// Info sent to client to tell it where to spawn pools
+var 	array<HitPawnInfo>				HitPawnData;
+var 	float			           		RepulsionForceMag;
 
 replication
 {
@@ -44,6 +47,7 @@ function Reset()
 function TryDamage (Pawn Victim, float Interval, float Damage, class<DamageType> DamageType)
 {	
 	local int Index;
+	local Vector XYVel;
 
 	Index = FindIndex(Victim);
 
@@ -51,6 +55,13 @@ function TryDamage (Pawn Victim, float Interval, float Damage, class<DamageType>
 	{
 		HitPawnData[Index].HitTime = Level.TimeSeconds;
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
+		if (Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
+		{
+			//bog down allies attempting to crawl through acid
+			XYVel = -Victim.Velocity;
+			XYVel.Z = 0;
+			Victim.AddVelocity(XYVel + RepulsionForceMag * Normal(Victim.Location - Location) + vect(0,0,20));
+		}
 	}
 }
 
@@ -71,7 +82,6 @@ function int FindIndex (Pawn Sought)
 
 simulated function Initialize(vector HitNormal, float LoadFactor)
 {
-    local int Load;
     local int i, Count, SpreadRadius;
 	local vector Start, End, HitLoc, HitNorm;
 	local Actor T;
@@ -81,10 +91,8 @@ simulated function Initialize(vector HitNormal, float LoadFactor)
 	if (level.NetMode == NM_Client)
 		return;
 
-    Load = LoadFactor * 4;
-
-	SpreadRadius = BaseSpreadRadius * (Load ** 0.4f);
-	Count = 2 * (Load ** 1.35f);
+	SpreadRadius = MaxSpreadRadius * (LoadFactor ** 0.4f);
+	Count = 40 * (LoadFactor ** 1.35f);
 
 	// Spawn all the pools to set up an area of destruction
 	Start = Location+(HitNormal*8);
@@ -108,10 +116,12 @@ simulated function Initialize(vector HitNormal, float LoadFactor)
 		if (GF!=None)
 		{
 			GF.Instigator = Instigator;
+
 			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
 				GF.InstigatorController = Instigator.Controller;
-				GF.AcidControl = self;
-				GF.Timer();
+
+			GF.AcidControl = self;
+			GF.Timer();
 
 			if(level.NetMode != NM_DedicatedServer && GF.bStuck && T != None && T.bWorldGeometry)
 			{
@@ -125,20 +135,21 @@ simulated function Initialize(vector HitNormal, float LoadFactor)
 
 defaultproperties
 {
-     BaseSpreadRadius=128.000000
-     DamageRadius=384.000000
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=54
-     LightSaturation=100
-     LightBrightness=200.000000
-     LightRadius=15.000000
-     bHidden=True
-     bDynamicLight=True
-     bAlwaysRelevant=True
-     RemoteRole=ROLE_SimulatedProxy
-     LifeSpan=10.000000
-     bFullVolume=True
-     SoundVolume=255
-     SoundRadius=192.000000
+	MaxSpreadRadius=256.000000
+	DamageRadius=384.000000
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=54
+	LightSaturation=100
+	LightBrightness=200.000000
+	LightRadius=15.000000
+	bHidden=True
+	bDynamicLight=True
+	bAlwaysRelevant=True
+	RemoteRole=ROLE_SimulatedProxy
+	LifeSpan=10.000000
+	bFullVolume=True
+	SoundVolume=255
+	SoundRadius=192.000000
+	RepulsionForceMag=250.000000
 }

@@ -84,7 +84,7 @@ defaultproperties
     WeaponClass=Class'BallisticProV55.T10Grenade'
 	DampenFactor=0.050000
 	DampenFactorParallel=0.350000
-	DetonateDelay=2.000000
+	DetonateDelay=2
 	ImpactDamage=15
 	ImpactDamageType=Class'BallisticProV55.DTT10Grenade'
 	ImpactManager=Class'BallisticProV55.IM_Grenade'

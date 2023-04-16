@@ -173,8 +173,9 @@ defaultproperties
      SoundVolume=150
      TransientSoundVolume=0.400000
      TransientSoundRadius=128.000000
-     CollisionRadius=50.000000
-     CollisionHeight=30.000000
+     CollisionRadius=35.000000
+     CollisionHeight=21.000000
+	 DrawScale=0.7
      bBlockPlayers=True
      bBlockProjectiles=True
      bProjTarget=True

@@ -96,7 +96,7 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaLaserEffectParams
         TraceRange=(Min=10000.000000,Max=10000.000000)
         WaterTraceRange=5000
-        Damage=18.000000
+        Damage=11.000000
         HeadMult=2.00
         LimbMult=0.75
         DamageType=Class'BallisticProV55.DTVPRLaser'
@@ -116,7 +116,7 @@ defaultproperties
         FireAnim=
         FireLoopAnim="'"
         FireEndAnim=
-        FireInterval=0.085000
+        FireInterval=0.07000
         FireEffectParams(0)=InstantEffectParams'ArenaLaserEffectParams'
     End Object
 

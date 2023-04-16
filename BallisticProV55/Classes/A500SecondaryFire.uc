@@ -10,10 +10,9 @@
 //=============================================================================
 class A500SecondaryFire extends BallisticProProjectileFire;
 
-var Sound ChargingSound;
-var int AcidLoad;
-
-const ACIDMAX = 5;
+var Sound 			ChargingSound;
+var int 			AcidLoad;
+var const int 		MaxAcidLoad;
 
 function ModeHoldFire()
 {
@@ -30,7 +29,7 @@ state Hold
     simulated function BeginState()
     {
         AcidLoad = 0;
-        SetTimer(1.25, true);
+        SetTimer(0.5, true);
         Instigator.AmbientSound = ChargingSound;
 		Instigator.SoundRadius = 256;
 		Instigator.SoundVolume = 255;
@@ -40,9 +39,12 @@ state Hold
     simulated function Timer()
     {
 		if (BW.HasMagAmmo(ThisModeNum))
+		{
 			AcidLoad++;
-        BW.ConsumeMagAmmo(ThisModeNum, 1);
-        if (AcidLoad == ACIDMAX || !BW.HasMagAmmo(ThisModeNum))
+        	BW.ConsumeMagAmmo(ThisModeNum, 1);
+		}
+		
+        if (AcidLoad == MaxAcidLoad || !BW.HasMagAmmo(ThisModeNum))
             SetTimer(0.0, false);
     }
 
@@ -66,17 +68,19 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 		return;
 		
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
+	
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		A500AltProjectile(Proj).AcidLoad = float(AcidLoad)/float(ACIDMAX);
+		A500AltProjectile(Proj).AcidLoad = float(AcidLoad)/float(MaxAcidLoad);
 		A500AltProjectile(Proj).AdjustSpeed();
 	}
 }
 
 defaultproperties
 {
-	 AcidLoad=2.5
+	 AcidLoad=1
+	 MaxAcidLoad=8
      ChargingSound=Sound'GeneralAmbience.texture22'
      bFireOnRelease=True
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'

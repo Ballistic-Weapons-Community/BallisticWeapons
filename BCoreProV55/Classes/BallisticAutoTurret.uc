@@ -159,6 +159,8 @@ function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocatio
 
 	if ( InGodMode() )
  		Damage = 0;
+
+	/*
 	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
     {
         DriverEyeZ = Driver.Location.Z + Driver.EyePosition().Z;
@@ -167,10 +169,12 @@ function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocatio
 
  		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp( (DriverEyeZ - TurretBottomZ) / DriverHeight, 0, 1);
     }
+	*/
 
 	Momentum = vect(0,0,0);
 }
 
+/*
 function bool CheckDefense(Vector EnemyLocation)
 {
     local Vector AttackDir;
@@ -184,6 +188,7 @@ function bool CheckDefense(Vector EnemyLocation)
 
     return false;
 }
+*/
 
 simulated function SetViewRotation (rotator NewRotation)
 {
@@ -1009,7 +1014,16 @@ function bool TryToDrive(Pawn P)
 	     || P.IsA('Vehicle') || Health <= 0)
 		return false;
 
-	if (P.Location.Z - MyUseTrigger.Location.Z > 60 || P.Location.Z - MyUseTrigger.Location.Z < -100)
+	// check on ground
+	if (P.Physics != PHYS_Walking)
+		return false;
+		
+	// check not too high
+	if (MyUseTrigger.Location.Z - CollisionHeight > P.Location.Z + P.EyePosition().Z - class'BallisticTurret'.default.MinTurretEyeDepth)
+		return false;
+	
+	// check not too low
+	if (MyUseTrigger.Location.Z < P.Location.Z - P.CollisionHeight)
 		return false;
 
 	if (VSize((P.Location - MyUseTrigger.Location)*vect(1,1,0)) > 40)

@@ -29,7 +29,7 @@ defaultproperties
      DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
-     KickForce=18000
+     KickForce=0
      PenetrateForce=150
      bPenetrate=True
      BrassClass=Class'BallisticProV55.Brass_Rifle'

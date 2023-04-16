@@ -147,8 +147,12 @@ function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocatio
 {
 	if ( InGodMode() )
  		Damage = 0;
+
+	/*
 	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
  		Damage *= DriverDamageMult;
+	*/
+	
 	Momentum = vect(0,0,0);
 }
 

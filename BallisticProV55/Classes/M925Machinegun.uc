@@ -42,18 +42,26 @@ function Notify_Deploy()
 	// to the centre of the bags.
 	
 	Start = Instigator.Location + Instigator.EyePosition();
+
 	for (Forward=75;Forward>=45;Forward-=15)
 	{
 		End = Start + vector(Instigator.Rotation) * Forward;
+
 		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
+
 		if (T != None && VSize(HitLoc - Start) < 30)
 			return;
+
 		if (T == None)
 			HitLoc = End;
+
 		End = HitLoc - vect(0,0,100);
+
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
+
 		if (Forward <= 45)
 			return;
 	}
@@ -64,7 +72,7 @@ function Notify_Deploy()
 	if(Sandbag(T) != None)
 	{
 		HitLoc = T.Location;
-		HitLoc.Z += class'M925Turret'.default.CollisionHeight + 15;
+		HitLoc.Z += class'M925Turret'.default.CollisionHeight + T.CollisionHeight * 0.75;
 	}
 	
 	else

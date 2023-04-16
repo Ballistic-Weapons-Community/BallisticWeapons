@@ -56,6 +56,8 @@ class BallisticTurret extends Vehicle Abstract placeable config(BallisticProV55)
 		DriverPosition			Position where OldPawn should be moved to when driving. Refpoint for drivers to 'Use'
 */
 
+var() const int MinTurretEyeDepth;
+
 // Info saved by weapons
 var() int		AmmoAmount[2];
 var() int		MagAmmoAmount;
@@ -151,20 +153,24 @@ function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocatio
 {
     local float DriverEyeZ, TurretBottomZ, DriverHeight;
 
+	Momentum = vect(0,0,0);
+
 	if ( InGodMode() )
  		Damage = 0;
-	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
+
+	/*
+	if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
     {
         DriverEyeZ = Driver.Location.Z + Driver.EyePosition().Z;
         TurretBottomZ = Location.Z - CollisionHeight;
         DriverHeight = 2 * Driver.CollisionHeight;
 
- 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp( (DriverEyeZ - TurretBottomZ) / DriverHeight, 0, 1);
+ 		Damage *= DriverDamageMult;
     }
-
-	Momentum = vect(0,0,0);
+	*/
 }
 
+/*
 function bool CheckDefense(Vector EnemyLocation)
 {
     local Vector AttackDir;
@@ -178,6 +184,7 @@ function bool CheckDefense(Vector EnemyLocation)
 
     return false;
 }
+*/
 
 simulated function SetViewRotation (rotator NewRotation)
 {
@@ -1047,13 +1054,22 @@ function bool TryToDrive(Pawn P)
 	if (bNonHumanControl || (PlayerController(P.Controller) == None) || (Driver != None) || (P.DrivenVehicle != None) || !P.Controller.bIsPlayer
 	     || P.IsA('Vehicle') || Health <= 0)
 		return false;
-		
-	if (P.Location.Z - MyUseTrigger.Location.Z > 60 || P.Location.Z - MyUseTrigger.Location.Z < -100)
+
+	// check on ground
+	if (P.Physics != PHYS_Walking)
 		return false;
 		
-	if (VSize((P.Location - MyUseTrigger.Location)*vect(1,1,0)) > 40)
+	// check not too high
+	if (MyUseTrigger.Location.Z - CollisionHeight > P.Location.Z + P.EyePosition().Z - MinTurretEyeDepth)
+		return false;
+	
+	// check not too low
+	if (MyUseTrigger.Location.Z < P.Location.Z - P.CollisionHeight)
+		return false;
+
+	if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 40)
 	{
-		if (VSize((P.Location - MyUseTrigger.Location)*vect(1,1,0)) > 120)
+		if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 120)
 			return false;
 		if (vector(Rotation) Dot Normal(Location - P.Location) < 0.2)
 			return false;
@@ -1159,6 +1175,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 defaultproperties
 {
+	MinTurretEyeDepth=10
      GunYawBounds=(Min=-16384.000000,Max=16384.000000)
      GunPitchBounds=(Min=-8192.000000,Max=11000.000000)
      CamYawBounds=(Min=-20000.000000,Max=20000.000000)
@@ -1186,7 +1203,6 @@ defaultproperties
      bRemoteControlled=True
      bDesiredBehindView=False
      DriveAnim="Idle_Rest"
-     DriverDamageMult=0.20000
      VehicleNameString="Ballistic Turret"
      MaxDesireability=2.000000
      bIgnoreForces=True
