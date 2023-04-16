@@ -1,14 +1,14 @@
 //=============================================================================
-// G51Mine_Sensor
-// A pulsing radar that pings nearby pawns.
+// MARSMine_Sensor
+// A pulsing radar that pings nearby pawns, adds them to scope view
 //
-// Will emit 3 radar beeps
+// Will emit 1 radar ping, not as strong as G51 sensor
 //
 // by SK and Aza
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G51Mine_Sensor extends BallisticProjectile;
+class MARSMine_Sensor extends BallisticProjectile;
 
 var() Sound			DetonateSound;
 var() Sound			PingSound;
@@ -168,16 +168,25 @@ function Ping(vector HitLocation)
 {
 	local Actor A;
 	
-	if (Role < ROLE_Authority)
+	if (Role < ROLE_Authority || Instigator == None || Instigator.Controller == None)
 		return;
+	
 	foreach CollidingActors( class 'Actor', A, SensorRadius, Location )
 	{
-		if (A.bCanBeDamaged)
+		if (A.bCanBeDamaged && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
 		{
 			if (FastTrace(A.Location, Location))
-				A.PlaySound(PingDirectSound,,2.0,,256,,);
+			{
+				A.PlaySound(PingDirectSound,,2.0,,768,,);
+				if (Owner != None && Pawn(A) != None)
+					MARSAssaultRifle(Owner).AddTarget(Pawn(A));
+			}
 			else 
-				A.PlaySound(PingSound,,2.0,,256,,);
+			{
+				A.PlaySound(PingSound,,2.0,,768,,);
+				if (Owner != None && Pawn(A) != None)
+					MARSAssaultRifle(Owner).AddTarget(Pawn(A));
+			}
 		}
 	}
 	PulseNum++;
@@ -192,11 +201,12 @@ function bool IsStationary()
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
-	 MaxPulseNum=5
+	 MaxPulseNum=2
      DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
-	 PingSound=Sound'GeneralAmbience.beep7'
-	 PingDirectSound=Sound'GeneralAmbience.beep6'
+	 PingSound=Sound'GeneralAmbience.beep6'
+	 PingDirectSound=Sound'GeneralAmbience.beep7'
      SensorRadius=768
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'

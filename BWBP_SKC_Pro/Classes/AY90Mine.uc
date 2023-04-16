@@ -13,6 +13,9 @@ class AY90Mine extends BallisticProjectile;
 var   bool				bDetonated;		// Been detonated, waiting for net syncronization or something
 var() Sound				ArmingSound;
 var   AY90MineLight			MineEffect;			//scary run away!
+var int StuckDamage;
+var() class<DamageType>	MyStuckDamageType;
+var() class<DamageType>	MyStuckRadiusDamageType;
 
 replication
 {
@@ -102,14 +105,14 @@ function BlowUp(vector HitLocation)
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Base,
-				Damage,
+				StuckDamage,
 				Instigator,
 				HitLocation,
 				MomentumTransfer * Normal(Base.Location-Location),
-				MyDamageType
+				MyStuckDamageType
 			);
 			
-			TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, Base);
+			TargetedHurtRadius(Damage, DamageRadius, MyStuckRadiusDamageType, MomentumTransfer, HitLocation, Base);
 		}
 		else
 			TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation);
@@ -157,13 +160,16 @@ defaultproperties
      ArmingSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-Fuse'
      ImpactManager=Class'BWBP_SKC_Pro.IM_SkrithbowSticky'
      StartDelay=0.300000
+     MyStuckDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith_BoltStuckExplode'
+     MyStuckRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith_BoltStuckExplodeRadius'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=1000.000000
      MotionBlurRadius=384.000000
      MotionBlurFactor=1.500000
      MotionBlurTime=3.000000
-     Damage=150.000000
+     StuckDamage=180
+     Damage=150
      DamageRadius=256.000000
      DrawScale=0.500000
      MyDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'

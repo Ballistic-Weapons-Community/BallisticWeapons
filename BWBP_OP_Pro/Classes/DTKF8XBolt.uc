@@ -15,4 +15,5 @@ defaultproperties
      bFastInstantHit=True
      GibPerterbation=0.100000
      KDamageImpulse=10000.000000
+     bDelayedDamage=True
 }

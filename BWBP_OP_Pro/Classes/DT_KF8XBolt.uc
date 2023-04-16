@@ -66,8 +66,6 @@ defaultproperties
      DeathStrings(0)="%o was assassinated from the shadows by %k's KF-8X bolt."
      DeathStrings(1)="%k planted a crossbow bolt into %o."
      DeathStrings(2)="%o was discreetly decommissioned by %k's silent bolt."
-     DeathStrings(3)="%o was SHOT TO THE HEART, AND %k WAS TO BLAME. GIVING LOVE A BAD NAME."
-     DeathStrings(4)="%k managed to put %o to sleep without needing to read a bedtime story to %vm.
      FlashThreshold=0
      FlashV=(Y=2000.000000)
      FlashF=0.300000
@@ -84,4 +82,5 @@ defaultproperties
      KDamageImpulse=3000.000000
      VehicleDamageScaling=0.100000
      VehicleMomentumScaling=0.100000
+     bDelayedDamage=True
 }
