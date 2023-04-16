@@ -48,7 +48,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.G51ChaffRifleGrenade'
+		ProjectileClass=Class'BWBP_SKC_Pro.G51Grenade_Chaff'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3750.000000
 		MaxSpeed=4500.000000

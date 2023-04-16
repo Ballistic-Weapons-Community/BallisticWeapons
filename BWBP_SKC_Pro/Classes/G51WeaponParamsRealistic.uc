@@ -45,7 +45,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.G51HeGrenade'
+		ProjectileClass=Class'BWBP_SKC_Pro.G51Grenade_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3600.000000
 		Damage=200.000000

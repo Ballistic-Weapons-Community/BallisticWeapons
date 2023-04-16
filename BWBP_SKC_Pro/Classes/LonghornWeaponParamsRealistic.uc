@@ -8,7 +8,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
-		//ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenadeNoDud'
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenade'
 		Speed=3500.000000
 		MaxSpeed=3500.000000
