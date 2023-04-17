@@ -593,7 +593,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_APC_Pro.HydraPickup'
-	PlayerViewOffset=(X=7.000000,Y=11.000000,Z=-7.000000)
+	PlayerViewOffset=(X=2.000000,Y=11.000000,Z=-7.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.HydraAttachment'
 	IconMaterial=Texture'BWBP_CC_Tex.RL.SmallIcon_CruRL'
 	IconCoords=(X2=127,Y2=31)

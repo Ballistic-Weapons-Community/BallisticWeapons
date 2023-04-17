@@ -344,7 +344,7 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=1
      PickupClass=Class'BWBP_APC_Pro.ParticleStreamPickup'
-     PlayerViewOffset=(X=40.000000,Y=15.000000,Z=-20.000000)
+     PlayerViewOffset=(X=35.000000,Y=15.000000,Z=-20.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BWBP_APC_Pro.ParticleStreamAttachment'
      IconMaterial=Texture'BWBP_OP_Tex.ProtonPack.Icon_ProtonPack'

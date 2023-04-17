@@ -382,7 +382,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_APC_Pro.PKMPickup'
-     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-12.000000)
+     PlayerViewOffset=(X=0.000000,Y=5.000000,Z=-11.000000)
 	 SightOffset=(X=5.000000,Y=-1.1150000,Z=14.10000)
 	 SightPivot=(Pitch=-64)
      AttachmentClass=Class'BWBP_APC_Pro.PKMAttachment'

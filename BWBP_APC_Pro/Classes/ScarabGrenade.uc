@@ -98,7 +98,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=0
      PickupClass=Class'BWBP_APC_Pro.ScarabPickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=3.000000,Y=10.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BWBP_APC_Pro.ScarabAttachment'
      IconMaterial=Texture'BWBP_CC_Tex.Grenade.SmallIcon_CruGren'
