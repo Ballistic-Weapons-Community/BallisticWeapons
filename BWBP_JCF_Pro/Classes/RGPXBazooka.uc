@@ -314,7 +314,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	SightPivot=(Yaw=-512)
-    PlayerViewOffset=(X=10.000000,Y=20.000000,Z=-22.000000)
+    PlayerViewOffset=(X=5.000000,Y=20.000000,Z=-22.000000)
 	SightOffset=(X=-5.000000,Y=-30.000000,Z=24.300000)
 	SightingTime=0.350000
 	ParamsClasses(0)=Class'RGPXWeaponParamsArena'

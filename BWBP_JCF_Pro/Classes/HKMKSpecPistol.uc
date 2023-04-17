@@ -558,7 +558,7 @@ defaultproperties
 	GroupOffset=14
 	PickupClass=Class'BWBP_JCF_Pro.HKMKSpecPickup'
 	SightOffset=(X=0.000000,Y=-4.300000,Z=11.600000)
-	PlayerViewOffset=(X=-2.000000,Y=7.000000,Z=-11.000000)
+	PlayerViewOffset=(X=-7.000000,Y=7.000000,Z=-11.000000)
 	AttachmentClass=Class'BWBP_JCF_Pro.HKMKSpecAttachment'
 	IconMaterial=Texture'BWBP_JCF_Tex.HKMK.SmallIcon_HKMK'
 	IconCoords=(X2=127,Y2=31)
