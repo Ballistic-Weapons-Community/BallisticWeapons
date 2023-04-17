@@ -101,7 +101,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=5
 	PickupClass=Class'BWBP_SWC_Pro.A2WPickup'
-	PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-15.000000)
+	PlayerViewOffset=(X=3.000000,Y=10.000000,Z=-15.000000)
 	AttachmentClass=Class'BWBP_SWC_Pro.A2WAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A42'
 	IconCoords=(X2=127,Y2=31)

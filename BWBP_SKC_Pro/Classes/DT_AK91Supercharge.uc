@@ -43,4 +43,5 @@ defaultproperties
      DamageOverlayTime=0.900000
      GibPerterbation=1.200000
      KDamageImpulse=20000.000000
+     bDelayedDamage=True
 }

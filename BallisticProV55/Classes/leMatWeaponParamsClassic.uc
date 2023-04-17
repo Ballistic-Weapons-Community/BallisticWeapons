@@ -131,8 +131,12 @@ defaultproperties
 		//SightOffset=(X=-30.000000,Y=-0.550000,Z=12.300000)
 		//SightPivot=(Pitch=768,Roll=-1024)
 		SightPivot=(Pitch=512,Roll=-50)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-350,Pitch=2500)
+		WristAdjust=(Yaw=-3000,Pitch=-0000)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=-2,Y=10.00,Z=-8.5)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -154,8 +158,12 @@ defaultproperties
 		//SightOffset=(X=-30.000000,Y=-0.550000,Z=12.300000)
 		//SightPivot=(Pitch=768,Roll=-1024)
 		SightPivot=(Pitch=512,Roll=-50)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-350,Pitch=2500)
+		WristAdjust=(Yaw=-3000,Pitch=-0000)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=-2,Y=10.00,Z=-8.5)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

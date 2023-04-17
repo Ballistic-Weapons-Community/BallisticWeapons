@@ -87,7 +87,7 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      ImpactDamage=65
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSGrenadeChaff'
+     ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSGrenadeDirect'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ChaffGrenade'
      TrailClass=Class'BWBP_SKC_Pro.ChaffTrail'
      TrailOffset=(X=1.600000,Z=6.400000)

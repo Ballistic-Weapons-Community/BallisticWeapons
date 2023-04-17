@@ -230,6 +230,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		//SightOffset=(Y=4.700000,Z=8.000000)
 		SightPivot=(Pitch=768)
+		ViewOffset=(X=1,Y=7.00,Z=-6)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParamsNoCharge'

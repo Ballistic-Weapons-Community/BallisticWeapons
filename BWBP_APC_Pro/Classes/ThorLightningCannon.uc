@@ -222,7 +222,7 @@ defaultproperties
      GroupOffset=1
 	 bShowChargingBar=True
      PickupClass=Class'BWBP_APC_Pro.ThorLCPickup'
-     PlayerViewOffset=(X=12.000000,Y=10.000000,Z=-10.000000)
+     PlayerViewOffset=(X=7.000000,Y=10.000000,Z=-10.000000)
      AttachmentClass=Class'BWBP_APC_Pro.ThorLCAttachment'
      IconMaterial=Texture'BWBP_OP_Tex.ProtonPack.Icon_ProtonPack'
      IconCoords=(X2=127,Y2=31)

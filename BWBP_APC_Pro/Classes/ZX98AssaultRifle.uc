@@ -309,7 +309,7 @@ defaultproperties
      InventoryGroup=4
      GroupOffset=10
      PickupClass=Class'BWBP_APC_Pro.ZX98Pickup'
-     PlayerViewOffset=(X=7.000000,Y=5.000000,Z=-10.500000)
+     PlayerViewOffset=(X=2.000000,Y=5.000000,Z=-10.500000)
      BobDamping=2.250000
      AttachmentClass=Class'BWBP_APC_Pro.ZX98Attachment'
      IconMaterial=Texture'BWBP_CC_Tex.AR.ARSmallIcon'

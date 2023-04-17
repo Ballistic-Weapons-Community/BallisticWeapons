@@ -159,14 +159,18 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=14
-		ViewOffset=(X=-3.000000,Y=9.000000,Z=-12.000000)
+		//ViewOffset=(X=-3.000000,Y=9.000000,Z=-12.000000)
 		//SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
-		SightPivot=(Pitch=768,Roll=-1024)
+		SightPivot=(Pitch=-200,Roll=-1050)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-290,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -189,12 +193,16 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=14
 		//SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
-		SightPivot=(Pitch=768,Roll=-1024)
+		SightPivot=(Pitch=-200,Roll=-1050)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-290,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'

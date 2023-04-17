@@ -1,5 +1,10 @@
 class FG50WeaponParamsClassic extends BallisticWeaponParams;
 
+static simulated function OnInitialize(BallisticWeapon BW)
+{
+	FG50Machinegun(BW).HeatDecayRate=0.1;
+}
+
 defaultproperties
 {
 
@@ -236,6 +241,7 @@ defaultproperties
 		//ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		AimParams(1)=AimParams'ClassicControlledAimParams'
@@ -266,6 +272,7 @@ defaultproperties
 		//ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		AimParams(1)=AimParams'ClassicControlledAimParams'

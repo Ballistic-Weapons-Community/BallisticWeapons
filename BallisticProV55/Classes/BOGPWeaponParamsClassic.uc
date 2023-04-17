@@ -133,13 +133,14 @@ defaultproperties
 		SightPivot=(Pitch=300)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=3,Y=5.00,Z=-2.0)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicGrenadeFireParams'
 		FireParams(1)=FireParams'ClassicFlareFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-	
+	/*
 	Begin Object Class=WeaponParams Name=ClassicParams-W
 		LayoutName="White"
 		Weight=30
@@ -202,10 +203,10 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicFlareFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-	
+	*/
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-W'
-	Layouts(2)=WeaponParams'ClassicParams-F'
-	Layouts(3)=WeaponParams'ClassicParams-M'
+	//Layouts(1)=WeaponParams'ClassicParams-W'
+	//Layouts(2)=WeaponParams'ClassicParams-F'
+	//Layouts(3)=WeaponParams'ClassicParams-M'
 
 }

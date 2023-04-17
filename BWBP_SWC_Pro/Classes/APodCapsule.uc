@@ -78,7 +78,7 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=20
      PickupClass=Class'BWBP_SWC_Pro.APodPickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=3.000000,Y=10.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBP_SWC_Pro.APodAttachment'

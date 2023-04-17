@@ -520,7 +520,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=10
 	PickupClass=Class'BWBP_APC_Pro.RS8X3Pickup'
-	PlayerViewOffset=(X=3.000000,Y=9.000000,Z=-12.000000)
+	PlayerViewOffset=(X=-2.000000,Y=9.000000,Z=-12.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.RS8X3Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.RS8.SmallIcon_RS8'
 	IconCoords=(X2=127,Y2=31)

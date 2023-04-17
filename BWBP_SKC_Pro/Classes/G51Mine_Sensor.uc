@@ -172,12 +172,16 @@ function Ping(vector HitLocation)
 		return;
 	foreach CollidingActors( class 'Actor', A, SensorRadius, Location )
 	{
-		if (A.bCanBeDamaged)
+		if (A.bCanBeDamaged && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
 		{
 			if (FastTrace(A.Location, Location))
-				A.PlaySound(PingDirectSound,,2.0,,256,,);
+			{
+				A.PlaySound(PingDirectSound,,2.0,,768,,);
+			}
 			else 
-				A.PlaySound(PingSound,,2.0,,256,,);
+			{
+				A.PlaySound(PingSound,,2.0,,768,,);
+			}
 		}
 	}
 	PulseNum++;
@@ -200,7 +204,7 @@ defaultproperties
      SensorRadius=768
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'
-     ImpactManager2=Class'BWBP_SKC_Pro.IM_F2000Wave'
+     ImpactManager2=Class'BWBP_SKC_Pro.IM_RadarWave' //Ping fx
      Health=40
      EndDamageRadius=256.000000
      TeamLightColor=128

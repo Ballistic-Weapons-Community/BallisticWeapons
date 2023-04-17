@@ -158,12 +158,13 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		//SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
-		SightPivot=(Pitch=-800)
+		//SightPivot=(Pitch=-800)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=9
+		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -180,12 +181,13 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0.1f)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
 		//SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
-		SightPivot=(Pitch=-800)
+		//SightPivot=(Pitch=-800)
 		//Function
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=9
+		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -203,12 +205,13 @@ defaultproperties
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
 		//SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
-		SightPivot=(Pitch=-800)
+		//SightPivot=(Pitch=-800)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=9
+		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'
@@ -223,12 +226,13 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Holo",Slot=52,Scale=0f)
 		//SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
-		SightPivot=(Pitch=-800)
+		//SightPivot=(Pitch=-800)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=9
+		ViewOffset=(X=5,Y=6,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

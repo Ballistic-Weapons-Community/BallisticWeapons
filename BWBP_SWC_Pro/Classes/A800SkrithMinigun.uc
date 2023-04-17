@@ -273,7 +273,8 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_SWC_Pro.A800MinigunPickup'
-     PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
+     PlayerViewOffset=(X=25.000000,Y=25.000000,Z=-15.000000)
+     //PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
 	 PlayerViewPivot=(Roll=-256)
      BobDamping=2.200000
      AttachmentClass=Class'BWBP_SWC_Pro.A800MinigunAttachment'

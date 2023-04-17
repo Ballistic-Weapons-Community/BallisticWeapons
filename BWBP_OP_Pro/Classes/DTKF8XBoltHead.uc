@@ -21,19 +21,21 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o was assassinated from the shadows by %k's KF8X bolt."
-     DeathStrings(1)="%k planted a crossbow bolt into %o."
+     DeathStrings(0)="%o was assassinated from the shadows by %k's KF-8X bolt."
+     DeathStrings(1)="%k planted a crossbow bolt into %o head."
      DeathStrings(2)="%o was discreetly decommissioned by %k's silent bolt."
-     SimpleKillString="KF8X Crossbow Bolt"
+     DeathStrings(3)="%k planted a crossbow dart between %o's eyes."
+     SimpleKillString="KF-8X Crossbow Bolt"
      DamageIdent="Sniper"
      bMetallic=True
 	 bHeaddie=True
 	 InvasionDamageScaling=2
      WeaponClass=Class'BWBP_OP_Pro.KF8XCrossbow'
-     DeathString="%%o was assassinated from the shadows by %k's KF8X bolt."
+     DeathString="%o was assassinated from the shadows by %k's KF-8X bolt."
      FemaleSuicide="%o dropped her own crossbow."
      MaleSuicide="%o dropped his own crossbow."
      bFastInstantHit=True
      GibPerterbation=0.100000
      KDamageImpulse=10000.000000
+     bDelayedDamage=True
 }

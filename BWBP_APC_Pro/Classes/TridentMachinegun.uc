@@ -355,7 +355,7 @@ defaultproperties
 	InventoryGroup=6
 	PickupClass=Class'BWBP_APC_Pro.TridentPickup'
 	SightOffset=(X=5.000000,Y=-0.900000,Z=19.30000)
-	PlayerViewOffset=(X=0.000000,Y=10.000000,Z=-16.000000)
+	PlayerViewOffset=(X=-5.000000,Y=10.000000,Z=-16.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.TridentAttachment'
 	IconMaterial=Texture'BWBP_CC_Tex.CruMg.SmallIcon_CruML'
 	IconCoords=(X2=127,Y2=31)

@@ -32,11 +32,13 @@ defaultproperties
      DeathString="%k SUPERCHARGED %o!"
      FemaleSuicide="%o SUPERCHARGED herself!"
      MaleSuicide="%o SUPERCHARGED himself!"
+     SimpleKillString="SUPERCHARGE"
      bInstantHit=True
      bSkeletize=True
      bCauseConvulsions=True
      bCausesBlood=True
      bNeverSevers=False
+     bDelayedDamage=True
      bFlaming=True
      GibModifier=5.500000
      DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LightningHit'

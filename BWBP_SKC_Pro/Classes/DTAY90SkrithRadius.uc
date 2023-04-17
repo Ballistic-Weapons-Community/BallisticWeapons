@@ -10,22 +10,23 @@ class DTAY90SkrithRadius extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%k burned a hole through %o with the AY90."
-     DeathStrings(1)="%o was scorched in half by %k's AY90."
-     DeathStrings(2)="%o saw the light of %k's AY90."
-     DeathStrings(3)="%k lit up %o with the AY90."
-     DeathStrings(4)="%k's sapphire energy stream effortlessly pierced %o."
+     DeathStrings(0)="%k's boltcaster slagged a fleeing %o."
+     DeathStrings(1)="%o was hunted by %k's boltcaster."
+     DeathStrings(2)="%o was slain by %k's AY90 Wyvern."
+     DeathStrings(3)="%k gave %o a lethal glow up with the AY90."
+     DeathStrings(4)="%k's Wyvern took chunks out of %o."
      SimpleKillString="AY90 Radius"
-     BloodManagerName="BWBP_SKC_Pro.BloodMan_A73B"
+	 BloodManagerName="BallisticProV55.BloodMan_A73Burn"
      bIgniteFires=True
      bOnlySeverLimbs=True
      DamageDescription=",Flame,Plasma,"
      WeaponClass=Class'BWBP_SKC_Pro.AY90SkrithBoltcaster'
-     DeathString="%k fused parts of %o with the AY90."
-     FemaleSuicide="%o's AY90 turned on her."
-     MaleSuicide="%o's AY90 turned on him."
+     DeathString="%k's boltcaster slagged a fleeing %o."
+     FemaleSuicide="%o's own Wyvern ate her."
+     MaleSuicide="%o's own Wyvern ate him."
      GibModifier=2.000000
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.900000
+     bDelayedDamage=True
 }

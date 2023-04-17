@@ -144,7 +144,7 @@ defaultproperties
      InventoryGroup=7
      GroupOffset=31
      PickupClass=Class'BWBP_JCF_Pro.SPASPickup'
-     PlayerViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
+     PlayerViewOffset=(X=-6.000000,Y=4.000000,Z=-10.000000)
 	 SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
      AttachmentClass=Class'BWBP_JCF_Pro.SPASAttachment'
      IconMaterial=Texture'BWBP_JCF_Tex.SPAS.SmallIcon_SPAS'
