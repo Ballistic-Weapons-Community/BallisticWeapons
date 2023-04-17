@@ -151,6 +151,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ViewOffset=(X=6.000000,Y=5.000000,Z=-4.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'

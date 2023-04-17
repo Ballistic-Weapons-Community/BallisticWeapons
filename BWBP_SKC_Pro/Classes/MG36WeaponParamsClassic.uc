@@ -24,7 +24,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
-		FlashScaleFactor=0.200000
+		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=128.000000
 		Chaos=-1.0
@@ -90,6 +90,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=100
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		ViewOffset=(X=8,Y=8,Z=-4)
 		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

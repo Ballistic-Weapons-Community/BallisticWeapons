@@ -172,12 +172,16 @@ function Ping(vector HitLocation)
 		return;
 	foreach CollidingActors( class 'Actor', A, SensorRadius, Location )
 	{
-		if (A.bCanBeDamaged)
+		if (A.bCanBeDamaged && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
 		{
 			if (FastTrace(A.Location, Location))
-				A.PlaySound(PingDirectSound,,2.0,,256,,);
+			{
+				A.PlaySound(PingDirectSound,,2.0,,768,,);
+			}
 			else 
-				A.PlaySound(PingSound,,2.0,,256,,);
+			{
+				A.PlaySound(PingSound,,2.0,,768,,);
+			}
 		}
 	}
 	PulseNum++;

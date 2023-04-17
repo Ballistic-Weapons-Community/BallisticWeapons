@@ -157,6 +157,7 @@ defaultproperties
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=15
+		ViewOffset=(X=4,Y=6.00,Z=-4.5)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -178,6 +179,7 @@ defaultproperties
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=15
+		ViewOffset=(X=4,Y=6.00,Z=-4.5)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

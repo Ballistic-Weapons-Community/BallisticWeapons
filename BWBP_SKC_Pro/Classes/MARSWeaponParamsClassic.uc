@@ -273,6 +273,7 @@ defaultproperties
 		InitialWeaponMode=2
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
@@ -298,6 +299,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		WeaponName="MARS-3 Adv Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -323,6 +325,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		WeaponName="MARS-3 Adv Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -353,6 +356,7 @@ defaultproperties
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -380,6 +384,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		WeaponName="MARS-3 CQB Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

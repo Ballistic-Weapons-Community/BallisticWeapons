@@ -24,6 +24,7 @@ var   		bool				bStriking;
 var(FG50)	FG50Heater			Heater;
 var(FG50)	float				HeatLevel;
 var(FG50)	float 				HeatDeclineDelay;
+var(FG50)	float				HeatDecayRate;
 var(FG50) 	Sound			    OverHeatSound;		// Sound to play when it overheats
 var(FG50) 	bool				bDecorativeHeat;	//Heat is harmless, used for C and R
 
@@ -407,7 +408,7 @@ simulated event Tick (float DT)
 		
 	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
 	{
-		HeatLevel = FMax(0, HeatLevel - 7 * DT);
+		HeatLevel = FMax(0, HeatLevel - HeatDecayRate * DT);
 		if (Heater != None)
 			Heater.SetHeat(HeatLevel/10);
 	}
@@ -516,7 +517,7 @@ function Notify_Deploy()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth - 4 && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
 			return;
@@ -528,7 +529,7 @@ function Notify_Deploy()
 	if(Sandbag(T) != None)
 	{
 		HitLoc = T.Location;
-		HitLoc.Z += class'FG50Turret'.default.CollisionHeight + T.CollisionHeight * 0.75;
+		HitLoc.Z += class'FG50Turret'.default.CollisionHeight + 15;
 	}
 	
 	else
@@ -609,6 +610,7 @@ defaultproperties
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	HeatDeclineDelay=0.400000
+	HeatDecayRate=7
 	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
 	ScopeBone="Holosight"
 	BulletBone="Bullet"

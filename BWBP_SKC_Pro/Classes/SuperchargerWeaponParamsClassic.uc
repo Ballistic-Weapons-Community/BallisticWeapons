@@ -133,6 +133,7 @@ defaultproperties
 		//SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
         ZoomType=ZT_Fixed
+		ViewOffset=(X=1,Y=10.00,Z=0)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -147,6 +148,7 @@ defaultproperties
 		//SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
         ZoomType=ZT_Fixed
+		ViewOffset=(X=1,Y=10.00,Z=0)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sniper'

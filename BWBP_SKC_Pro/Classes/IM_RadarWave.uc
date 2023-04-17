@@ -13,7 +13,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBP_SKC_Pro.IE_RadarWave'
      HitSounds(0)=Sound'BWBP_SKC_Sounds.MJ51.MJ51-SensorPing'
-     HitSoundVolume=0.750000
+     HitSoundVolume=0.650000
      HitSoundRadius=900.000000
      EffectBackOff=96.000000
 }
