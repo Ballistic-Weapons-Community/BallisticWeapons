@@ -28,7 +28,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
-		Recoil=2048.000000
+		Recoil=1536.000000
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -60,7 +60,7 @@ defaultproperties
 		Inaccuracy=(X=72,Y=72)
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.5
-		Recoil=2048.000000
+		Recoil=1536.000000
 		Chaos=0.350000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000

@@ -24,7 +24,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
-		Recoil=425.000000
+		Recoil=210.000000
 		Chaos=0.150000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -56,7 +56,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
-		Recoil=425.000000
+		Recoil=210.000000
 		Chaos=0.070000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -86,6 +86,7 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
+		MaxMoveMultiplier=2
 	End Object
 	
 	//Burst
@@ -101,6 +102,7 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

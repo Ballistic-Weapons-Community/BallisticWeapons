@@ -27,7 +27,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
         PenetrationEnergy=16
 		FlashScaleFactor=0.600000
-		Recoil=240.000000
+		Recoil=200.000000
 		Chaos=0.100000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Fire')
 	End Object
@@ -77,7 +77,7 @@ defaultproperties
 		DeclineTime=0.750000
 		CrouchMultiplier=1
 		HipMultiplier=1
-		MaxMoveMultiplier=1.5
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

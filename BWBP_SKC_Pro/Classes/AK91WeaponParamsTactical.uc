@@ -79,7 +79,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2	
+		MaxMoveMultiplier=2.5	
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
@@ -94,7 +94,7 @@ defaultproperties
 		DeclineTime=0.75	
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================

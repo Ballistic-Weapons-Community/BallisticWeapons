@@ -162,6 +162,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_IRONS
 		//Layout core
 		LayoutName="Irons"
+		LayoutTags="irons"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)

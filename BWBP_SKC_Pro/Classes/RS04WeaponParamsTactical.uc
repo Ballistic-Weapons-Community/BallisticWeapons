@@ -23,7 +23,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
-		Recoil=600.000000
+		Recoil=300.000000
 		Chaos=0.2
 		BotRefireRate=0.300000
 		WarnTargetPct=0.100000
@@ -51,7 +51,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
-		Recoil=600.000000
+		Recoil=300.000000
 		Chaos=0.2
 		BotRefireRate=0.300000
 		WarnTargetPct=0.100000
@@ -80,6 +80,7 @@ defaultproperties
 		ClimbTime=0.06
 		DeclineDelay=0.250000
 		DeclineTime=0.5
+		MaxMoveMultiplier=1.5
 	End Object
 
 	//=================================================================

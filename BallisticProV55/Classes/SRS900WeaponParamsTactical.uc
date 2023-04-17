@@ -84,7 +84,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_600
@@ -100,7 +100,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 	
 	//=================================================================
@@ -173,6 +173,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_IRONS
 		//Layout core
 		LayoutName="Irons"
+		LayoutTags="irons"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
