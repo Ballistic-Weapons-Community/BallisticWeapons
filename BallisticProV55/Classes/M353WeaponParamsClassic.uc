@@ -98,6 +98,7 @@ defaultproperties
 		InitialWeaponMode=3
 		//CockAnimRate=1.000000
 		//ReloadAnimRate=1.000000
+		ViewOffset=(X=3,Y=3,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
