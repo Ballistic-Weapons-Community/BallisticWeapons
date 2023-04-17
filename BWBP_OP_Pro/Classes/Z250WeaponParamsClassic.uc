@@ -117,7 +117,6 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.550000
 		MagAmmo=50
-		ViewOffset=(X=-40,Y=18.000000,Z=-32.000000)
 		//SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 		WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
@@ -125,6 +124,7 @@ defaultproperties
 		WeaponModes(3)=(ModeName="900 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(4)=(ModeName="1200 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=0
+		ViewOffset=(X=7,Y=7,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

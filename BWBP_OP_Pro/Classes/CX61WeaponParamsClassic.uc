@@ -30,6 +30,7 @@ defaultproperties
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.000000	
+		BurstFireRateFactor=1.00
 		TargetState="Flechette"
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
