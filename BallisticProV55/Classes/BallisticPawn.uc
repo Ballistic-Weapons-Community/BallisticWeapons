@@ -509,6 +509,48 @@ event Landed(vector HitNormal)
 }
 
 //===========================================================================
+// PawnCheckBob
+// Version of Engine.Pawn CheckBob, but prevents client disabling it
+//===========================================================================
+function PawnCheckBob(float DeltaTime, vector Y)
+{
+	local float Speed2D;
+
+    if(bJustLanded )
+    {
+		BobTime = 0;
+		WalkBob = Vect(0,0,0);
+        return;
+    }
+	Bob = FClamp(Bob, -0.01, 0.01);
+	if (Physics == PHYS_Walking )
+	{
+		Speed2D = VSize(Velocity);
+		if ( Speed2D < 10 )
+			BobTime += 0.2 * DeltaTime;
+		else
+			BobTime += DeltaTime * (0.3 + 0.7 * Speed2D/GroundSpeed);
+		WalkBob = Y * Bob * Speed2D * sin(8 * BobTime);
+		AppliedBob = AppliedBob * (1 - FMin(1, 16 * deltatime));
+		WalkBob.Z = AppliedBob;
+		if ( Speed2D > 10 )
+			WalkBob.Z = WalkBob.Z + 0.75 * Bob * Speed2D * sin(16 * BobTime);
+	}
+	else if ( Physics == PHYS_Swimming )
+	{
+		BobTime += DeltaTime;
+		Speed2D = Sqrt(Velocity.X * Velocity.X + Velocity.Y * Velocity.Y);
+		WalkBob = Y * Bob *  0.5 * Speed2D * sin(4.0 * BobTime);
+		WalkBob.Z = Bob * 1.5 * Speed2D * sin(8.0 * BobTime);
+	}
+	else
+	{
+		BobTime = 0;
+		WalkBob = WalkBob * (1 - FMin(1, 8 * deltatime));
+	}
+}
+
+//===========================================================================
 // CheckBob
 // Play footsteps even when crouched or "walking" (aim key)
 // Always play own footsteps
@@ -522,7 +564,7 @@ function CheckBob(float DeltaTime, vector Y)
 
 	OldBobTime = BobTime;
 
-	Super(Pawn).CheckBob(DeltaTime,Y);
+	PawnCheckBob(DeltaTime,Y);
 
 	if ( (Physics != PHYS_Walking) || bIsCrouched || (VSize(Velocity) < 10) || ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
 		return;
@@ -3113,8 +3155,8 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.5
-     FootstepRadius=22.000000
+     FootstepVolume=0.7
+     FootstepRadius=36.000000
 
 	 BaseEyeHeight=32
 	 CrouchEyeHeight=19
@@ -3123,7 +3165,7 @@ defaultproperties
 
 	 CrouchHeight=32
 
-     GruntVolume=0.5
+     GruntVolume=0.3
      GruntRadius=20.000000
 
      DeResTime=4.000000

@@ -9,7 +9,7 @@ class Ammo_Chaff extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=2
-     InitialAmount=1
+     MaxAmmo=3
+     InitialAmount=2
      ItemName="MOAC Chaff Ammo"
 }

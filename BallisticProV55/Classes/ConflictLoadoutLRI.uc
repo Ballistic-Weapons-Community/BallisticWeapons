@@ -697,10 +697,13 @@ simulated function bool WeaponRequirementsOk (Mut_Loadout.LORequirements Require
 		log("WEPREQS - NO CONTROLLER!");
 		return false;
 	}
+	
 	if (LoadoutOption == 0 || LoadoutOption == 2)
 		return true;
+
 	if (myController.PlayerReplicationInfo.Score < Requirements.Frags)
 		return false;
+
 	if (Role == ROLE_Authority)
 	{
 		if (Level.Game.GameReplicationInfo.ElapsedTime < Requirements.MatchTime)

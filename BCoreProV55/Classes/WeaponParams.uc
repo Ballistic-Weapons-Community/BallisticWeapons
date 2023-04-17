@@ -66,6 +66,7 @@ var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holdi
 // Conflict Loadout
 //-----------------------------------------------------------------------------
 var() byte					InventorySize;			// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
+var() byte					MaxInventoryCount;		// Maximum number that may be requested from Conflict Loadout
 var() int					WeaponPrice;			// How many cash should this cost
 //-----------------------------------------------------------------------------
 // Handling

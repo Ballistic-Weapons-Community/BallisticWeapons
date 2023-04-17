@@ -55,7 +55,7 @@ function bool HandlePickupQuery( pickup Item )
 
 defaultproperties
 {
-     MaxAmmo=4
+     MaxAmmo=3
      InitialAmount=2
      IconFlashMaterial=Shader'BW_Core_WeaponTex.OA-AR.AmmoIcon_OAARFlash'
      PickupClass=Class'BallisticProV55.AP_M46Clip'

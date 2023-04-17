@@ -1027,6 +1027,10 @@ static final operator(34) XYRange /= (out XYRange A, float B)
 	return A;
 }
 
+static simulated final function class<BallisticWeaponParams> GetParams()
+{
+	return default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle];
+}
 //===========================================================================
 // BlendFire
 //
