@@ -84,7 +84,7 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=21
      PickupClass=Class'BWBP_SWC_Pro.NTovPickup'
-     PlayerViewOffset=(X=30.000000,Y=10.000000,Z=-8.000000)
+     PlayerViewOffset=(X=25.000000,Y=10.000000,Z=-8.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBP_SWC_Pro.NTOVAttachment'
