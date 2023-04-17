@@ -1773,6 +1773,26 @@ exec simulated function ScopeViewRelease()
 		PlayerController(InstigatorController).StopZoom();
 }
 
+simulated final function bool CanContinueScope()
+{
+	if (AimComponent.IsDisplaced())
+		return false;
+
+	if (ReloadState != RS_None && ReloadState != RS_Cocking)
+		return false;
+
+	if (Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking)
+		return false;
+	
+	if (SprintControl != None && SprintControl.bSprinting)
+		return false;
+
+	if (!class'BallisticReplicationInfo'.static.IsArena() && Instigator.Physics == PHYS_Falling)
+		return false;
+
+	return true;
+}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // CheckScope
 //
@@ -1785,12 +1805,7 @@ simulated function bool CheckScope()
 
 	NextCheckScopeTime = level.TimeSeconds + 0.25;
 		
-	if 
-	(	AimComponent.IsDisplaced() ||
-		(ReloadState != RS_None && ReloadState != RS_Cocking) || 
-		(Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || 
-		(SprintControl != None && SprintControl.bSprinting)
-	)
+	if (!CanContinueScope())
 	{
 		StopScopeView();
 		return false;
@@ -4843,7 +4858,9 @@ function OwnerEvent(name EventName)
 		{
 			ClientDodged();
 			AimComponent.OnPlayerJumped();
-			NextCheckScopeTime = Level.TimeSeconds + 0.5;
+
+			if (class'BallisticReplicationInfo'.static.IsArena())
+				NextCheckScopeTime = Level.TimeSeconds + 0.5;
 		}
 		else if ((EventName == 'Jumped' || EventName == 'Dodged') && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && !AimComponent.PendingForcedReaim())
 		{
@@ -4885,7 +4902,7 @@ simulated function ClientDodged()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView)
+	if(bScopeView && class'BallisticReplicationInfo'.static.IsArena())
 		NextCheckScopeTime = Level.TimeSeconds + 0.75;
 
 	AimComponent.OnPlayerJumped();
@@ -4896,7 +4913,7 @@ simulated function ClientJumped()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView)
+	if(bScopeView && class'BallisticReplicationInfo'.static.IsArena())
 		NextCheckScopeTime = Level.TimeSeconds + 1;
 
 	AimComponent.OnPlayerJumped();

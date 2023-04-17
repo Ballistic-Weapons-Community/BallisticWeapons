@@ -35,7 +35,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.25000
 		FireEndAnim=	
-		//AimedFireAnim="AimedFire"
+		AimedFireAnim="AimedFire"
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		
@@ -65,7 +65,7 @@ defaultproperties
 		FireInterval=0.25000
 		FireEndAnim=
 		FireAnimRate=0.85
-		//AimedFireAnim="AimedFire"	
+		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_600'
 	End Object
 	
@@ -178,7 +178,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
-		SightOffset=(X=2.000000,Z=1.30000)
+		SightOffset=(X=3.000000,Z=1.30000)
 		MagAmmo=20
         InventorySize=6
 		SightMoveSpeedFactor=0.9

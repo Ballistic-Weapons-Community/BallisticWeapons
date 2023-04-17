@@ -13,6 +13,15 @@ replication
 	reliable if (Role == ROLE_Authority)
 		ClientSetViewRotation;
 }
+
+simulated function PreBeginPlay()
+{
+	if (class'BallisticReplicationInfo'.static.IsTactical())
+		FireModeClass[1] = class'BallisticScopeFire';
+
+	Super.PreBeginPlay();
+}
+
 function LostWarhead()
 {
 	GoToState('ControllerRecovery');

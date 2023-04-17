@@ -55,9 +55,9 @@ defaultproperties
 	PlayerCrouchSpeedFactor=0.35f
 
 	bEnableSprint=True
-	StaminaChargeRate=10
-	StaminaDrainRate=15
-	SprintSpeedFactor=1.35f
+	StaminaChargeRate=25
+	StaminaDrainRate=20
+	SprintSpeedFactor=1.4f
 	JumpDrain=10
 
 	HealthKillReward=0

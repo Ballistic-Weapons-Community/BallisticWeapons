@@ -31,7 +31,7 @@ defaultproperties
 		FireInterval=0.25000
 		BurstFireRateFactor=0.55
 		FireEndAnim=	
-		//AimedFireAnim="AimedFire"
+		AimedFireAnim="AimedFire"
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		
@@ -61,7 +61,7 @@ defaultproperties
 		FireAnimRate=0.85
 		BurstFireRateFactor=0.55
 		FireEndAnim=
-		//="AimedFire"	
+		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_600'
 	End Object
 		
@@ -166,7 +166,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=1.000000,Z=1.30000)
+		SightOffset=(X=3.000000,Z=1.30000)
 		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000

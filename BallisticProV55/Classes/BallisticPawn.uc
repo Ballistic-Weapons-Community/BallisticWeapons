@@ -218,9 +218,9 @@ simulated function vector CalcDrawOffset(inventory Inv)
 	else
 	{
 		DrawOffset.Z += EyeHeight;
-        if( bWeaponBob )
-		    DrawOffset += WeaponBob(Inv.BobDamping);
-         DrawOffset += CameraShake();
+        //if( bWeaponBob )
+		DrawOffset += WeaponBob(Inv.BobDamping);
+        DrawOffset += CameraShake();
 	}
 
 	return DrawOffset;
@@ -579,11 +579,14 @@ function CheckBob(float DeltaTime, vector Y)
 		FootStepping(0);
 	}
 
+	// always have weapon bob on.
+	/*
 	else if ( !bWeaponBob && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) ) // fixme: link to animation speeds
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
 	}
+	*/
 }
 
 simulated final function float FootstepSurfaceScale (int Surf)
@@ -620,15 +623,15 @@ simulated function FootStepping(int Side)
 	// walk/ADS - quieter
 	if (bIsWalking)
 	{
-		SoundVolumeScale = 0.5f;
-		SoundRadiusScale = 0.5f;
+		SoundVolumeScale = 0.6f;
+		SoundRadiusScale = 0.6f;
 	}
 
 	// sprint - much louder
 	else if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
 	{
 		SoundVolumeScale = 1.25f;
-		SoundRadiusScale = 1.25f;
+		SoundRadiusScale = 1.4f;
 	}
 
 	// run - default
@@ -3155,18 +3158,25 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.7
-     FootstepRadius=36.000000
 
-	 BaseEyeHeight=32
+     FootstepVolume=0.7
+     FootstepRadius=24.000000
+	 GruntVolume=0.3
+     GruntRadius=48.000000
+	 // used to play footsteps at consistent volume regardless of position
+	 // the fine sound controls, like occlusion factors and rolloff curves, are native
+	 // so we're forced into this to get the footstep behaviour we want
+	 // thankfully, it won't affect sounds we play through our weapons or attachments
+	 SoundOcclusion=OCCLUSION_None
+
+	 BaseEyeHeight=30
 	 CrouchEyeHeight=19
 
      CollisionRadius=19.000000
 
 	 CrouchHeight=32
 
-     GruntVolume=0.3
-     GruntRadius=20.000000
+
 
      DeResTime=4.000000
      RagDeathUpKick=0.000000
@@ -3174,6 +3184,7 @@ defaultproperties
      bSpecialHUD=True
      Visibility=64
      HeadRadius=13.000000
+	
      TransientSoundVolume=0.300000
 	 
 	 StrafeScale=1.000000
