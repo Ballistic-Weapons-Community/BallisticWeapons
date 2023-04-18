@@ -45,14 +45,14 @@ simulated function PostBeginPlay()
 		{
 			TeamLightColor = 0;
 			if (Level.NetMode != NM_DedicatedServer)
-				TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+				TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		}
 		
 		else 
 		{
 			TeamLightColor = 1;
 			if (Level.NetMode != NM_DedicatedServer)
-				TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+				TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		}
 		TeamLight.SetBase(self);	
 	}
@@ -65,8 +65,8 @@ simulated event PostNetReceive()
 	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
 	{
 		if (TeamLightColor == 0)
-			TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
-		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+			TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
+		else TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		TeamLight.SetBase(self);
 	}	
 
@@ -159,7 +159,7 @@ simulated function EmitPulse(vector HitLocation, vector HitNormal)
 		if (Instigator == None)
 			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
 		else
-			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator, TeamLightColor);
+			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
 	}
 
 	Ping(HitLocation);
@@ -202,7 +202,7 @@ defaultproperties
 	 PingSound=Sound'GeneralAmbience.beep7'
 	 PingDirectSound=Sound'GeneralAmbience.beep6'
 	 PingSoundRadius=72 // PlaySound mechanics - see UDN
-     SensorRadius=768
+     SensorRadius=1024
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'
      ImpactManager2=Class'BWBP_SKC_Pro.IM_RadarWave' //Ping fx

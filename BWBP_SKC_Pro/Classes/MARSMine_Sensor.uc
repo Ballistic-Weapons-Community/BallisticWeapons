@@ -44,14 +44,14 @@ simulated function PostBeginPlay()
 		{
 			TeamLightColor = 0;
 			if (Level.NetMode != NM_DedicatedServer)
-				TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+				TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		}
 		
 		else 
 		{
 			TeamLightColor = 1;
 			if (Level.NetMode != NM_DedicatedServer)
-				TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+				TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		}
 		TeamLight.SetBase(self);	
 	}
@@ -63,8 +63,8 @@ simulated event PostNetReceive()
 	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
 	{
 		if (TeamLightColor == 0)
-			TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
-		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+			TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
+		else TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		TeamLight.SetBase(self);
 	}	
 	if (bPulse != bOldPulse)
@@ -157,7 +157,7 @@ simulated function EmitPulse(vector HitLocation, vector HitNormal)
 		if (Instigator == None)
 			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
 		else
-			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator, TeamLightColor);
+			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
 	}
 	Ping(HitLocation);
 
