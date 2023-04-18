@@ -49,15 +49,16 @@ defaultproperties
 	PlayerAirSpeed=210
 	PlayerAccelRate=1536
 	PlayerJumpZ=294
+	PlayerDodgeSpeedFactor=1.5
 	PlayerDodgeZ=170
 
 	PlayerWalkSpeedFactor=0.6f
 	PlayerCrouchSpeedFactor=0.35f
 
 	bEnableSprint=True
-	StaminaChargeRate=5
-	StaminaDrainRate=5
-	SprintSpeedFactor=1.5f
+	StaminaChargeRate=25
+	StaminaDrainRate=20
+	SprintSpeedFactor=1.4f
 	JumpDrain=10
 
 	HealthKillReward=0

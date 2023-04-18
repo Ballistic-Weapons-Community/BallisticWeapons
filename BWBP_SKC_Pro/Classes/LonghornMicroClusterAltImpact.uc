@@ -1,5 +1,5 @@
 //=============================================================================
-// LonghornMicroClusterAltImpact.
+// LonghornMicroClusterAltImpact. Used in Classic
 //
 // Small cluster bomb used by alt fire. Moves very fast but otherwise behaves
 // very much like LonghornMicroClusterFlak.
@@ -18,7 +18,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	if (!bHasImpacted) // Detonated from direct hit - does extra damage
 	{
-		FlakClass=Class'BWBP_SKC_Pro.LonghornMicroClusterImpact';
+		FlakClass=Class'BWBP_SKC_Pro.LonghornMicroClusterFlakArtillery';
 		ImpactManager=Class'BWBP_SKC_Pro.IM_LonghornCluster';
 	}
 

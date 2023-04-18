@@ -81,7 +81,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 function AdjustSpeed()
 {
-	Velocity = Vector(Rotation) * ((default.Speed * 0.25) + (default.Speed * 0.75 * AcidLoad));
+	Velocity = Vector(Rotation) * (default.Speed - (default.Speed * 0.5 * AcidLoad));
 }
 
 defaultproperties

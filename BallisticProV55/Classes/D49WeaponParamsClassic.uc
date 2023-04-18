@@ -131,8 +131,12 @@ defaultproperties
 		//SightOffset=(X=-20.000000,Y=-1.800000,Z=25.100000)
 		//SightPivot=(Pitch=768,Roll=-1024)
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-375,Pitch=2000)
+		WristAdjust=(Yaw=-2500,Pitch=-0000)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=-7,Y=18.00,Z=-8.5)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

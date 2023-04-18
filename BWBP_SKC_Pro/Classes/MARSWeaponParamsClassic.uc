@@ -99,13 +99,38 @@ defaultproperties
 		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Smoke'
 	End Object
 	
-	//Smoke Grenade
+	//Sensor Grenade
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_Sensor
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Sensor'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=7000.000000
+		MaxSpeed=7000.000000
+		Damage=10
+		DamageRadius=10.000000
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		Recoil=1024.000000
+		Chaos=0.500000
+		BotRefireRate=0.3
+		WarnTargetPct=0.5
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Sensor
+		FireInterval=0.800000
+		PreFireAnim="GLPrepFire"
+		FireAnim="GLFire"
+		AimedFireAnim="GLSightFireFromPrep"	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Sensor'
+	End Object
+	
+	//HE Grenade
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_HE
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_HETimed'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000
-		Damage=50
+		Damage=150
 		DamageRadius=256.000000
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -124,7 +149,7 @@ defaultproperties
 		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_HE'
 	End Object	
 	
-	//Smoke Grenade
+	//Shockwave Grenade
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_Shockwave
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Shockwave'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
@@ -226,15 +251,17 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_Marksman //IRNV, Heavy Barrel
+	Begin Object Class=WeaponParams Name=ClassicParams_Marksman //IRNV, Tracker, Heavy Barrel
 		//Layout core
 		Weight=30
-		LayoutName="Thermal Marksman"
-		LayoutTags="thermal"
+		LayoutName="Marksman"
+		LayoutTags="IRNV,tracker"
+		
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
 		ZoomType=ZT_Logarithmic
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		
 		//Function
 		InventorySize=6
 		bNeedCock=True
@@ -246,21 +273,23 @@ defaultproperties
 		InitialWeaponMode=2
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_Tactical //IRNV, Smoke GL
+	Begin Object Class=WeaponParams Name=ClassicParams_Smoker //IRNV, Smoke GL
 		//Layout core
-		Weight=30
-		LayoutName="IRNV Smoker"
-		LayoutTags="thermal"
+		Weight=10
+		LayoutName="Smoker"
+		LayoutTags="IRNV"
+		
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
-		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		ZoomType=ZT_Logarithmic
+		
 		//Function
 		InventorySize=6
 		bNeedCock=True
@@ -269,26 +298,53 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MARS-3 Adv Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Smoke'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Tracker //Target scope, sensor mine
+		//Layout core
+		Weight=10
+		LayoutName="Tracker"
+		LayoutTags="tracker"
+		
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		ZoomType=ZT_Logarithmic
+		
+		//Function
+		InventorySize=6
+		bNeedCock=True
+		SightMoveSpeedFactor=0.500000
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		WeaponName="MARS-3 Adv Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Sensor'
+	End Object
+	
 	Begin Object Class=WeaponParams Name=ClassicParams_CQC //Holo, Suppressor, HE GL
 		//Layout core
 		Weight=30
-		LayoutName="CQC Holosight"
+		LayoutName="CQC Bomber"
 		LayoutTags="suppressor"
+		
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		
 		//Function
 		InventorySize=6
 		bNeedCock=True
@@ -300,6 +356,7 @@ defaultproperties
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -309,14 +366,15 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Shockwave //Holo, Suppressor, Shockwave GL
 		//Layout core
 		Weight=10
-		LayoutName="Shockwave"
+		LayoutName="CQC Shockwave"
 		LayoutTags="suppressor"
+		
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
-		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		
 		//Function
 		InventorySize=4
 		bNeedCock=True
@@ -325,9 +383,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -335,9 +392,10 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams_Marksman'
-	Layouts(1)=WeaponParams'ClassicParams_Tactical'
-	Layouts(2)=WeaponParams'ClassicParams_CQC'
-	Layouts(3)=WeaponParams'ClassicParams_Shockwave'
+	Layouts(1)=WeaponParams'ClassicParams_Smoker'
+	Layouts(2)=WeaponParams'ClassicParams_Tracker'
+	Layouts(3)=WeaponParams'ClassicParams_CQC'
+	Layouts(4)=WeaponParams'ClassicParams_Shockwave'
 	
 	
 	//Camos =========================================

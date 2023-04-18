@@ -46,11 +46,38 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+	//HE GL
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams_HE
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_HETimed'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=7000.000000
-		MaxSpeed=7000.000000
+		Speed=6000.000000
+		MaxSpeed=6000.000000
+		Damage=250
+		DamageRadius=400.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=1024.000000
+		Chaos=-1.0
+		Inaccuracy=(X=6,Y=6)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_HE
+		FireInterval=2.000000
+		BurstFireRateFactor=1.00
+		PreFireAnim="GLPrepFire"
+		FireAnim="GLFire"
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_HE'
+	End Object
+	
+	//Smoke GL
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams_Smoke
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=6000.000000
+		MaxSpeed=6000.000000
 		Damage=50
 		DamageRadius=256.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
@@ -63,12 +90,50 @@ defaultproperties
 		WarnTargetPct=0.300000	
 	End Object
 
-	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Smoke
 		FireInterval=2.000000
 		BurstFireRateFactor=1.00
 		PreFireAnim="GLPrepFire"
 		FireAnim="GLFire"
-	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Smoke'
+	End Object
+	
+	//Sensor GL
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams_Sensor
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Sensor'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=6000.000000
+		MaxSpeed=6000.000000
+		Damage=15
+		DamageRadius=16.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=1024.000000
+		Chaos=-1.0
+		Inaccuracy=(X=6,Y=6)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Sensor
+		FireInterval=2.000000
+		BurstFireRateFactor=1.00
+		PreFireAnim="GLPrepFire"
+		FireAnim="GLFire"
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Sensor'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		FireInterval=0.200000
+		AmmoPerFire=0
+		TargetState=Scope
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
 	End Object
 		
 	//=================================================================
@@ -143,11 +208,11 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=RealisticParams
+	Begin Object Class=WeaponParams Name=RealisticParams_AdvScope
 		//Layout core
 		Weight=30
 		LayoutName="Thermal Marksman"
-		LayoutTags="thermal"
+		LayoutTags="IRNV, tracker"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
 		ZoomType=ZT_Logarithmic
@@ -171,6 +236,36 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams_HeavyBarrel'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Sensor
+		//Layout core
+		Weight=30
+		LayoutName="Sensor Suite"
+		LayoutTags="tracker"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
+		ZoomType=ZT_Logarithmic
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
+		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		//Function
+		InventorySize=7
+		WeaponPrice=2800
+		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
+		MagAmmo=30
+		bMagPlusOne=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		WeaponName="MARS-2 5.56mm Bullpup Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Sensor'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Holo
@@ -202,11 +297,12 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_HE'
 	End Object
 	
-	Layouts(0)=WeaponParams'RealisticParams'
-	Layouts(1)=WeaponParams'RealisticParams_Holo'
+	Layouts(0)=WeaponParams'RealisticParams_AdvScope'
+	Layouts(1)=WeaponParams'RealisticParams_Sensor'
+	Layouts(2)=WeaponParams'RealisticParams_Holo'
 	
 	
 	//Camos =========================================

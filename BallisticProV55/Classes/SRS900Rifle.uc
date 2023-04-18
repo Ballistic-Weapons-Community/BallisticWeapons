@@ -59,13 +59,19 @@ replication
 		ServerSwitchSilencer;
 }
 
-simulated event PostNetBeginPlay()
+simulated function PostNetBeginPlay()
 {
 	local NavigationPoint N;
 	local float TotalZ;
 	local int ZCount;
 
 	super.PostNetBeginPlay();
+
+	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
+	{
+		SightAnimScale = 0.75;
+		SightBobScale = 0.1 *class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+	}
 
 	for(n=level.NavigationPointList;N!=None;N=N.nextNavigationPoint)
 	{
@@ -632,6 +638,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.SRS900Pickup'
 	PlayerViewOffset=(X=3.00,Y=3.00,Z=-4.00)
 	SightOffset=(X=9.000000,Z=3.150000)
+	
 	AttachmentClass=Class'BallisticProV55.SRS900Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.SRS900.SmallIcon_SRS900'
 	IconCoords=(X2=127,Y2=31)
@@ -656,6 +663,4 @@ defaultproperties
 	Skins(3)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
 	Skins(4)=FinalBlend'BW_Core_WeaponTex.SRS.SRS-HSight-FB'
 	Skins(5)=Shader'BW_Core_WeaponTex.SRS.SRS-HSight-S'
-
-	SightAnimScale=0.1
 }

@@ -21,7 +21,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
 		FlashScaleFactor=0.600000
-		Recoil=240.000000
+		Recoil=200.000000
 		Chaos=0.100000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Fire')
 	End Object

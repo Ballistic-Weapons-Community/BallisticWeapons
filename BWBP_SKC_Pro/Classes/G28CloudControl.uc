@@ -32,8 +32,10 @@ function PostBeginPlay()
 
 function ServeCustomers()
 {
-	local int i,j,k;
+	local int i,j,k, HealthCap;
 	local array<Actor> Served;
+
+
 	for(i=0;i<Clouds.length;i++)
 		for(j=0;j<Clouds[i].Touching.length;j++)
 		{
@@ -46,9 +48,16 @@ function ServeCustomers()
 			{
 				if(Clouds[i].Touching[j].bProjTarget || Pawn(Clouds[i].Touching[j]) == Instigator || (Instigator.Controller != None && Pawn(Clouds[i].Touching[j]).Controller.SameTeamAs(Instigator.Controller)))
 				{
+					if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+						HealthCap = Pawn(Clouds[i].Touching[j]).HealthMax;
+					else 
+						HealthCap = Pawn(Clouds[i].Touching[j]).SuperHealthMax;
+					
 					if(BallisticPawn(Clouds[i].Touching[j]) != None)
-						BallisticPawn(Clouds[i].Touching[j]).GiveAttributedHealth(Damage, Pawn(Clouds[i].Touching[j]).SuperHealthMax, Instigator);
-					else Pawn(Clouds[i].Touching[j]).GiveHealth(Damage, Pawn(Clouds[i].Touching[j]).SuperHealthMax);
+						BallisticPawn(Clouds[i].Touching[j]).GiveAttributedHealth(Damage, HealthCap, Instigator);
+					else 
+						Pawn(Clouds[i].Touching[j]).GiveHealth(Damage, HealthCap);
+
 					Served[Served.length] = Clouds[i].Touching[j];	
 				}
 			}

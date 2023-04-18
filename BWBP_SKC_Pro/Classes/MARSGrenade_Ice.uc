@@ -178,18 +178,18 @@ defaultproperties
      bAlignToVelocity=True
      DetonateDelay=1.000000
      ImpactDamage=50
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSIceGrenade'
+     ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSGrenadeDirect'
      ImpactManager=Class'BWBP_SKC_Pro.IM_CryoGrenade'
 	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BWBP_SKC_Pro.ChaffTrail'
      TrailOffset=(X=1.600000,Z=6.400000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_MARSIceGrenade'
+     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_MARSGrenadeIceRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=3500.000000
      Damage=50.000000
      DamageRadius=512.000000
      MomentumTransfer=0.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_MARSIceGrenade'
+     MyDamageType=Class'BWBP_SKC_Pro.DT_MARSGrenadeIceRadius'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
      bUnlit=False

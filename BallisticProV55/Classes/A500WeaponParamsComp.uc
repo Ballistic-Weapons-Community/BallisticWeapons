@@ -9,14 +9,15 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaMultiEffectParams
         ProjectileClass=Class'BallisticProV55.A500Projectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'  
+		SpawnOffset=(X=20,Y=6,Z=-8)
         Speed=5500.000000
         MaxSpeed=6500.000000
         AccelSpeed=3000.000000
-        Damage=25.000000
+        Damage=34.000000
         MomentumTransfer=1000.000000
         MaxDamageGainFactor=0.2
         DamageGainEndTime=0.3
-        Recoil=378.000000
+        Recoil=450.000000
         Chaos=0.400000
         Inaccuracy=(X=220,Y=220)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -29,7 +30,7 @@ defaultproperties
     Begin Object Class=FireParams Name=ArenaMultiFireParams
         FireEndAnim=
         FireAnimRate=1.300000
-        FireInterval=0.4
+        FireInterval=0.40
         FireEffectParams(0)=ProjectileEffectParams'ArenaMultiEffectParams'
     End Object
 
@@ -40,6 +41,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaChargeEffectParams
         ProjectileClass=Class'BallisticProV55.A500AltProjectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+		SpawnOffset=(X=20,Y=6,Z=-8)
         Speed=6000.000000
         MaxSpeed=6000.000000
         Damage=32.000000
@@ -99,8 +101,8 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		ReloadAnimRate=1.250000
-		MagAmmo=5
-        SightingTime=0.300000
+		MagAmmo=8
+        SightingTime=0.25
 		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

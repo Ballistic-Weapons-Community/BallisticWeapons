@@ -1,12 +1,12 @@
 //=============================================================================
-// G51HEGrenade.
+// G51Grenade_HE.
 //
 // Rifle grenade fired by the G51
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G51HEGrenade extends BallisticGrenade;
+class G51Grenade_HE extends BallisticGrenade;
 
 
 defaultproperties

@@ -11,7 +11,7 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
 		Speed=15000.000000
 		Damage=30
-		Recoil=256.000000
+		Recoil=128.000000
 		Chaos=0.150000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.300000	
@@ -54,7 +54,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.3
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.1
 		XRandFactor=0.10000
 		YRandFactor=0.10000

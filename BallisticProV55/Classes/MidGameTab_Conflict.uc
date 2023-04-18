@@ -475,13 +475,19 @@ function int CountExisting(string weapon_name)
 	return count;
 }
 
-function int GetMaxCount(class<Weapon> weapon)
+function int GetMaxCount(class<BallisticWeapon> weapon)
 {
 	local int base_ammo, max_ammo;
 
+	// may have 2 of any dual wieldable handgun
 	if (class<BallisticHandgun>(weapon) != None && class<BallisticHandgun>(weapon).default.bShouldDualInLoadout)
 		return 2;
 
+	// allow game styles to limit the maximum count of some weapons (used for grenades)
+	if (weapon.static.GetParams() != None && weapon.static.GetParams().default.Layouts[0].MaxInventoryCount > 0)
+		return weapon.static.GetParams().default.Layouts[0].MaxInventoryCount;
+
+	// otherwise, allow copies for extra ammo
 	base_ammo = Max(1, weapon.default.FireModeClass[0].default.AmmoClass.default.InitialAmount);
 	max_ammo = weapon.default.FireModeClass[0].default.AmmoClass.default.MaxAmmo;
 
@@ -491,7 +497,7 @@ function int GetMaxCount(class<Weapon> weapon)
 	return Max(1, Ceil(float(max_ammo) / float(base_ammo)));
 }
 
-function bool MaxReached(class<Weapon> weapon, string class_name)
+function bool MaxReached(class<BallisticWeapon> weapon, string class_name)
 {
 	return CountExisting(class_name) >= GetMaxCount(weapon);
 }
@@ -567,8 +573,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 {
 	local int i, Size, A;
     local int SectionIndex;
-	local class<BallisticWeapon> 	Weap;
-	local class<Weapon> 			WeaponClass;
+	local class<BallisticWeapon> WeaponClass;
 
 	if (InvClass == None)
 	{
@@ -579,13 +584,13 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	if (class<ConflictItem>(InvClass) != None)
 		return HandleConflictItem(InvClass, FriendlyName);
 	
-	if (class<Weapon>(InvClass) == None)
+	WeaponClass = class<BallisticWeapon>(InvClass);
+
+	if (WeaponClass == None)
 	{
-		Log("MidGameTab_Conflict::AddInventory: InvClass was not a Weapon");
+		Log("MidGameTab_Conflict::AddInventory: InvClass was not a Ballistic weapon.");
 		return false;
 	}
-
-	WeaponClass = class<Weapon>(InvClass);
 
 	if (MaxReached(WeaponClass, ClassName))
 	{
@@ -593,9 +598,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 		return false;
 	}
 
-	Weap = class<BallisticWeapon>(WeaponClass);
-
-    SectionIndex = GetSectionIndex(Weap);
+    SectionIndex = GetSectionIndex(WeaponClass);
 
 	Size = GetItemSize(WeaponClass);
 
@@ -607,14 +610,14 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 
 	SpaceUsed[SectionIndex] += Size;
 	
-	i = GetInsertionPoint(Weap);
+	i = GetInsertionPoint(WeaponClass);
 	
 	Inventory.Insert(i, 1);
 	
 	Inventory[i].ClassName = string(WeaponClass);
 	Inventory[i].Size = Size;
 	Inventory[i].Title = FriendlyName;
-	Inventory[i].InventoryGroup = Weap.default.InventoryGroup;
+	Inventory[i].InventoryGroup = WeaponClass.default.InventoryGroup;
 	Inventory[i].CamoIndex = PassedCamoIndex;
 	Inventory[i].LayoutIndex = PassedLayoutIndex;
     Inventory[i].SectionIndex = SectionIndex;
@@ -622,23 +625,19 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	
 	A = WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
 
-	if (Weap!=None)
-	{
-		if (!Weap.default.bNoMag)
-			A += Weap.default.MagAmmo;
-		Inventory[i].Icon = Weap.default.BigIconMaterial;
-	}
-	else
-	{
-		Inventory[i].Icon = None;
-	}
+	if (!WeaponClass.default.bNoMag)
+		A += WeaponClass.default.MagAmmo;
+	
+	Inventory[i].Icon = WeaponClass.default.BigIconMaterial;
 	
 	Inventory[i].Ammo = string(A);
 	
 	if (WeaponClass.default.FireModeClass[1].default.AmmoClass != None &&
 		WeaponClass.default.FireModeClass[1].default.AmmoClass != WeaponClass.default.FireModeClass[0].default.AmmoClass &&
 		WeaponClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount > 0)
+	{
 		Inventory[i].Ammo = WeaponClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount $ " / " $ Inventory[i].Ammo;
+	}
 	
 	if (!CLRI.ValidateWeapon(ClassName))
 		Inventory[i].bBad = true;
@@ -1003,22 +1002,40 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
         Canvas.DrawTile(Controller.DefaultPens[0], W, H, 0, 0, 2, 2);
     }
 
-    style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
-    style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
-
     inv_offset = int(li_Weapons.GetExtraAtIndex(i));
 
     inv_size = CLRI.FullInventoryList[inv_offset].InventorySize;
 
-    if (inv_size != 1)
-    {
-        s = inv_size $ " slots"; 
-    }
-    else 
-        s = "1 slot";
+	// validation step
+	if (CLRI.CanUseWeaponAtIndex(inv_offset))
+	{
+		style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+		style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
 
-    style.TextSize(Canvas, m, s, XL, YL, F);
-    style.DrawText( Canvas, m, X + W - XL, Y, XL, YL, TXTA_Right, s, F);
+		if (inv_size > 1)
+			s = inv_size $ " slots"; 
+		else if (inv_size == 1)
+			s = "1 slot";
+		else 
+			s = "Free";
+
+		style.TextSize(Canvas, m, s, XL, YL, F);
+		style.DrawText( Canvas, m, X + W - XL, Y, XL, YL, TXTA_Right, s, F);
+	}
+
+	else 
+	{
+		Canvas.SetDrawColor(64,64,64,255);		// FIXME: Add a var
+
+		// can we force the style to be set?
+		style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+		Canvas.SetPos(X, Y);
+		Canvas.DrawText(li_Weapons.GetItemAtIndex(i));
+
+		Canvas.TextSize("Disabled", XL, YL);
+		Canvas.SetPos(X + W - XL, Y);
+		Canvas.DrawText("Disabled");
+	}
 }
 
 //=========================================================

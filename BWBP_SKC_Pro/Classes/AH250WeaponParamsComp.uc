@@ -22,7 +22,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.500000
-		Recoil=2048.000000
+		Recoil=1536.000000
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -52,7 +52,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.500000
-		Recoil=2048.000000
+		Recoil=1536.000000
 		Chaos=0.350000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000

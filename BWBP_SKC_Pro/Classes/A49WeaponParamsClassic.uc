@@ -132,12 +132,14 @@ defaultproperties
         InventorySize=3
 		MagAmmo=40
 		SightMoveSpeedFactor=0.500000
+		//ViewOffset=(X=15.000000,Y=16.7,Z=-23.000000)
 		//SightOffset=(X=-12.000000,Z=35.000000)
 		SightPivot=(Pitch=768)
 		WeaponModes(0)=(ModeName="Concussive Fire",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
 		InitialWeaponMode=0
+		ViewOffset=(X=8.000000,Y=8.000000,Z=-5.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryLobFireParams'

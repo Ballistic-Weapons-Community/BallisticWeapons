@@ -86,6 +86,7 @@ defaultproperties
 		ViewPivot=(Pitch=1024,Yaw=-1024)
         MagAmmo=1
         InventorySize=1
+		MaxInventoryCount=1
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

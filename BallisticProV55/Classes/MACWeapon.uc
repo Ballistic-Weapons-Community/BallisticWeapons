@@ -219,7 +219,7 @@ simulated function Notify_Deploy ()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && T.bWorldGeometry && HitNorm.Z >= 0.7 && FastTrace(HitLoc, Start))
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth - 4 && T.bWorldGeometry && HitNorm.Z >= 0.7 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
 		{

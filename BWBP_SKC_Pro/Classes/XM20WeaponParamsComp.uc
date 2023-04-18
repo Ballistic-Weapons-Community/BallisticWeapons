@@ -2,13 +2,82 @@ class XM20WeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 { 
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=5000.000000,Max=7500.000000)
+		Damage=25
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		PenetrateForce=600
+		bPenetrate=False
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
+		FlashScaleFactor=0.300000
+		Recoil=16.000000
+		BotRefireRate=0.90
+		WarnTargetPct=0.10000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.135000
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+	
+	//=================================================================
+    // SECONDARY FIRE - QUICK CHARGE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
+		Damage=12
+		HeadMult=2.00
+		LimbMult=0.75
+		Chaos=0
+		Recoil=16
+		FlashScaleFactor=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.070000
+		PreFireAnim="LoopStart"
+		FireLoopAnim="LoopFire"
+		FireEndAnim="LoopEnd"	
+	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	End Object
+
+	//=================================================================
+    // SECONDARY FIRE - OVERCHARGE
+    //=================================================================	
+
+	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParamsOvercharge
+		Damage=18
+		HeadMult=2.00
+		LimbMult=0.75
+		Chaos=0
+		Recoil=64
+		FlashScaleFactor=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParamsOvercharge
+		FireInterval=0.07000
+		PreFireAnim="LoopOpenStart"
+		FireLoopAnim="LoopOpenFire"
+		FireEndAnim="LoopOpenEnd"
+	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParamsOvercharge'
+	End Object
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.15
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
 		YRandFactor=0.1
-		ClimbTime=0.04
+		ClimbTime=0.02
 		DeclineDelay=0.2
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
@@ -23,71 +92,6 @@ defaultproperties
 		ChaosDeclineDelay=0.3
 		ChaosSpeedThreshold=300
 	End Object
-	
-    //=================================================================
-    // PRIMARY FIRE
-    //=================================================================	
-	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-		TraceRange=(Min=5000.000000,Max=7500.000000)
-		Damage=20
-		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
-		PenetrateForce=600
-		bPenetrate=False
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
-		FlashScaleFactor=0.300000
-		Recoil=96.000000
-		BotRefireRate=0.90
-		WarnTargetPct=0.10000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
-	End Object
-
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.135000
-		FireEndAnim=
-		AimedFireAnim="SightFire"	
-		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
-	End Object
-	
-	//=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
-	
-		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
-            Damage=20
-            HeadMult=2.00
-            LimbMult=0.75
-            Chaos=0
-            Recoil=32
-            FlashScaleFactor=0.100000
-		End Object
-		
-		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParamsOvercharge
-            Damage=18
-            HeadMult=2.00
-            LimbMult=0.75
-            Chaos=0
-            Recoil=32
-            FlashScaleFactor=0.200000
-		End Object
-		
-		Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-			FireInterval=0.070000
-			PreFireAnim="LoopStart"
-			FireLoopAnim="LoopFire"
-			FireEndAnim="LoopEnd"	
-		FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
-		End Object
-		
-		Begin Object Class=FireParams Name=ArenaSecondaryFireParamsOvercharge
-			FireInterval=0.045000
-			PreFireAnim="LoopOpenStart"
-			FireLoopAnim="LoopOpenFire"
-			FireEndAnim="LoopOpenEnd"
-		FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParamsOvercharge'
-		End Object
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
@@ -145,7 +149,7 @@ defaultproperties
 		PlayerJumpFactor=1
 		InventorySize=6
 		DisplaceDurationMult=1
-		MagAmmo=50
+		MagAmmo=34
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'

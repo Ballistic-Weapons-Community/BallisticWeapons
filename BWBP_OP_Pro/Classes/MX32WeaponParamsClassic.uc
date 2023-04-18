@@ -145,6 +145,7 @@ defaultproperties
 		SightingTime=0.55
 		DisplaceDurationMult=1.4
         InventorySize=7
+		ViewOffset=(X=8,Y=8,Z=-4)
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

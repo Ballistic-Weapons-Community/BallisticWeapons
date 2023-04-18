@@ -21,7 +21,7 @@ replication
 }
 
 // WallPenetrationUtil will conflict with this change causing a crash. "it's rare to be able to get unrealscript to foul up that badly"
-/*simulated function InitProjectile ()
+simulated function InitProjectile ()
 {
 	super.InitProjectile();
 	if (Role == ROLE_Authority && DamageHull == None)
@@ -29,7 +29,7 @@ replication
 		DamageHull = Spawn(class'G5MortarDamageHull',Instigator,,location,Rotation);
 		DamageHull.SetBase(Self);
 	}
-}*/
+}
 
 // Got hit, explode with a tiny delay
 event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
@@ -54,6 +54,13 @@ function HitWall(vector HitNormal, actor Wall)
 	if (G5MortarDamageHull(Wall) != None && (Wall == DamageHull || DamageHull == None))
 		return;
 
+	if (DamageHull != None)
+	{
+		DamageHull.SetBase(None);
+		DamageHull.SetOwner(None);
+		DamageHull.Destroy();
+	}
+	
 	if ( !Wall.bStatic && !Wall.bWorldGeometry )
 	{
 		if ( Instigator == None || Instigator.Controller == None )

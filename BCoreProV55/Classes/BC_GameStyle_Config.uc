@@ -50,6 +50,7 @@ var() config float			PlayerGroundSpeed;
 var() config float			PlayerAirSpeed;
 var() config float			PlayerAccelRate;
 var() config float			PlayerJumpZ;
+var() config float			PlayerDodgeSpeedFactor;
 var() config float			PlayerDodgeZ;
 
 //=============================================================================
@@ -99,6 +100,7 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.PlayerAirSpeed 				= default.PlayerAirSpeed;
 	rep.PlayerAccelRate 			= default.PlayerAccelRate;
     rep.PlayerJumpZ 				= default.PlayerJumpZ;
+	rep.PlayerDodgeSpeedFactor		= default.PlayerDodgeSpeedFactor;
     rep.PlayerDodgeZ 				= default.PlayerDodgeZ;
 
 	rep.bEnableSprint				= default.bEnableSprint;

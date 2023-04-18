@@ -669,8 +669,6 @@ simulated function CheckSetBurstMode()
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
-
-		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 	}
 }
 
@@ -1027,6 +1025,10 @@ static final operator(34) XYRange /= (out XYRange A, float B)
 	return A;
 }
 
+static simulated final function class<BallisticWeaponParams> GetParams()
+{
+	return default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle];
+}
 //===========================================================================
 // BlendFire
 //
@@ -1769,6 +1771,26 @@ exec simulated function ScopeViewRelease()
 		PlayerController(InstigatorController).StopZoom();
 }
 
+simulated final function bool CanContinueScope()
+{
+	if (AimComponent.IsDisplaced())
+		return false;
+
+	if (ReloadState != RS_None && ReloadState != RS_Cocking)
+		return false;
+
+	if (Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking)
+		return false;
+	
+	if (SprintControl != None && SprintControl.bSprinting)
+		return false;
+
+	if (class'BallisticReplicationInfo'.static.IsRealism() && Instigator.Physics == PHYS_Falling)
+		return false;
+
+	return true;
+}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // CheckScope
 //
@@ -1781,12 +1803,7 @@ simulated function bool CheckScope()
 
 	NextCheckScopeTime = level.TimeSeconds + 0.25;
 		
-	if 
-	(	AimComponent.IsDisplaced() ||
-		(ReloadState != RS_None && ReloadState != RS_Cocking) || 
-		(Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || 
-		(SprintControl != None && SprintControl.bSprinting)
-	)
+	if (!CanContinueScope())
 	{
 		StopScopeView();
 		return false;
@@ -3087,24 +3104,6 @@ simulated function CheckBurstMode()
 	else if(BFireMode[0].bBurstMode)
 	{	
 		BFireMode[0].bBurstMode = False;
-	}
-	
-	RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
-
-}
-
-simulated function float CalculateBurstRecoilDelay(bool burst)
-{
-	if (burst && BFireMode[0].BurstFireRateFactor < 1)
-	{
-		return
-			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
-			+ (RcComponent.DeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
-	}
-	
-	else
-	{
-		return RcComponent.DeclineDelay;
 	}
 }
 
@@ -4608,16 +4607,16 @@ simulated final function ReceiveNetAim(float Yaw, float Pitch, float Time, float
 final function SendNetRecoil(int pitch, int yaw, float shift_time)
 {
 	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer && !Instigator.IsLocallyControlled())
-		ReceiveNetRecoil(pitch, yaw, int(shift_time * 255) );
+		ReceiveNetRecoil(pitch, yaw, int(shift_time * 100) );
 }
 
 // Apply recoil from server.
-simulated final function ReceiveNetRecoil(int pitch, int yaw, byte shift_time)
+simulated final function ReceiveNetRecoil(int pitch, int yaw, int shift_time)
 {
 	if (Role == ROLE_Authority)
 		return;
 
-	RcComponent.ReceiveNetRecoil(pitch, yaw, shift_time / 255.0f);
+	RcComponent.ReceiveNetRecoil(pitch, yaw, shift_time * 0.01f);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -4676,14 +4675,23 @@ simulated final function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreView
 	return AimComponent.CalcFutureAim(ExtraTime, bIgnoreViewAim);
 }
 
+// visual rotation of weapon from component of recoil that is not bound
+// due to fovs and simplified calculations, this varies with the FOV...
 simulated final function Rotator GetRecoilPivot()
 {
-	return RcComponent.GetEscapePivot();
+	local float mult_factor;
+
+	mult_factor = DisplayFOV / Instigator.Controller.FOVAngle;
+
+	// if (Instigator.Weapon == self)
+	//		log("GetRecoilPivot: MultFactor "$mult_factor$" Display FOV "$DisplayFOV$" FOV angle: "$Instigator.Controller.FOVAngle);
+
+	return RcComponent.GetViewEscapePivot() * mult_factor;
 }
 
 simulated final function Rotator GetFireRot()
 {
-	return GetAimPivot() + RcComponent.GetFireEscapePivot();
+	return GetAimPivot() + RcComponent.GetEscapePivot();
 }
 
 simulated final function Vector GetFireDir()
@@ -4830,7 +4838,9 @@ function OwnerEvent(name EventName)
 		{
 			ClientDodged();
 			AimComponent.OnPlayerJumped();
-			NextCheckScopeTime = Level.TimeSeconds + 0.5;
+
+			if (!class'BallisticReplicationInfo'.static.IsRealism())
+				NextCheckScopeTime = Level.TimeSeconds + 0.5;
 		}
 		else if ((EventName == 'Jumped' || EventName == 'Dodged') && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && !AimComponent.PendingForcedReaim())
 		{
@@ -4872,7 +4882,7 @@ simulated function ClientDodged()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView)
+	if(bScopeView && !class'BallisticReplicationInfo'.static.IsRealism())
 		NextCheckScopeTime = Level.TimeSeconds + 0.75;
 
 	AimComponent.OnPlayerJumped();
@@ -4883,7 +4893,7 @@ simulated function ClientJumped()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView)
+	if(bScopeView && !class'BallisticReplicationInfo'.static.IsRealism())
 		NextCheckScopeTime = Level.TimeSeconds + 1;
 
 	AimComponent.OnPlayerJumped();
@@ -5362,6 +5372,22 @@ exec function ClimbTime(float f)
 	if (Level.NetMode == NM_Standalone) 
 	{ 
 		RcComponent.Params.ClimbTime = f; 
+	} 
+}
+
+exec function DeclineDelay(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.DeclineDelay = f; 
+	} 
+}
+
+exec function DeclineTime(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.DeclineTime = f; 
 	} 
 }
 

@@ -8,11 +8,10 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
-		//ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenadeNoDud'
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenade'
 		Speed=3500.000000
 		MaxSpeed=3500.000000
-		Damage=70
+		Damage=200
 		DamageRadius=450.000000
 		MomentumTransfer=20000.000000
 		HeadMult=1.0
@@ -31,6 +30,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		TargetState="TimedCharge"
 		FireInterval=0.40000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	

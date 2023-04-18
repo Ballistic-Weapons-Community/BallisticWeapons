@@ -48,6 +48,7 @@ var() float			PlayerGroundSpeed;
 var() float			PlayerAirSpeed;
 var() float			PlayerAccelRate;
 var() float			PlayerJumpZ;
+var() float			PlayerDodgeSpeedFactor;
 var() float			PlayerDodgeZ;
 
 //=============================================================================
@@ -95,6 +96,7 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.PlayerAirSpeed 				= default.PlayerAirSpeed;
 	rep.PlayerAccelRate 			= default.PlayerAccelRate;
     rep.PlayerJumpZ 				= default.PlayerJumpZ;
+	rep.PlayerDodgeSpeedFactor		= default.PlayerDodgeSpeedFactor;
     rep.PlayerDodgeZ 				= default.PlayerDodgeZ;
 
 	rep.bEnableSprint				= default.bEnableSprint;

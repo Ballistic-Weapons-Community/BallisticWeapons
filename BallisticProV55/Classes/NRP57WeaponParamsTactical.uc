@@ -16,7 +16,7 @@ defaultproperties
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Speed=1400.000000
         MaxSpeed=1500.000000
-        Damage=200
+        Damage=150
         DamageRadius=1024.000000
 		HeadMult=1.0
 		LimbMult=1.0
@@ -40,7 +40,7 @@ defaultproperties
 		SpawnOffset=(Z=-14.000000)
         Speed=1400.000000
         MaxSpeed=1500.000000
-        Damage=200
+        Damage=150
         DamageRadius=1024.000000
 		HeadMult=1.0
 		LimbMult=1.0
@@ -81,6 +81,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=UniversalParams
         MagAmmo=1
         InventorySize=1
+		MaxInventoryCount=1
 		//ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
 		ViewPivot=(Pitch=1024,Yaw=-1024)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'

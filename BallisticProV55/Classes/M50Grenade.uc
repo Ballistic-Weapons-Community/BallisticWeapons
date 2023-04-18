@@ -8,8 +8,8 @@
 //=============================================================================
 class M50Grenade extends BallisticGrenade;
 
-var bool bArmed;
-var float ArmingDelay;
+var bool 	bArmed;
+var float 	ArmingDelay;
 
 simulated function PostNetBeginPlay()
 {

@@ -161,7 +161,7 @@ defaultproperties
 		DeclineTime=1.500000
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalBombRecoilParams
@@ -175,7 +175,7 @@ defaultproperties
 		DeclineTime=1.500000
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalLustRecoilParams
@@ -189,7 +189,7 @@ defaultproperties
 		DeclineTime=1.500000
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalNukeRecoilParams
@@ -203,7 +203,7 @@ defaultproperties
 		DeclineTime=1.500000
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================

@@ -193,6 +193,7 @@ defaultproperties
 		MagAmmo=28
 		//SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
 		SightPivot=(YAW=10)
+		ViewOffset=(X=8.000000,Y=6.000000,Z=-3.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicIncRecoilParams'
 		RecoilParams(2)=RecoilParams'ClassicCorrosiveRecoilParams'

@@ -5,7 +5,9 @@ class MARSAssaultRifle extends BallisticWeapon;
 
 //Layouts
 var()   bool		bHasSuppressor;				// Can be silenced
-var()   bool		bHasThermalSight;			// Can follow heat signatures
+var()   bool		bHasNightvisionSight;		// Can use NV
+var()   bool		bHasThermalSight;			// Can follow heat signatures, requires NV
+var()   bool		bHasTrackingSight;			// Can target lock
 
 //Grenade
 var() Sound		GrenOpenSound;		//Sounds for grenade reloading
@@ -36,19 +38,23 @@ var()   Pawn					UpdatedPawns[16];// List of pawns to view in thermal scope
 var() material				Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var() float					ThermalRange;	// Maximum range at which it is possible to see enemies through walls
 var()   ColorModifier		ColorMod;
+
 var()   bool					bMeatVision;
+var()	float					LastPingTime;
+var()	float					MaxTrackTime;
 var()   Pawn					Target;
+var()   Array<Pawn>				TrackedTargets;
 var()   float					TargetTime;
 var()   float					LastSendTargetTime;
-var()   float                 NextTargetFindTime, TargetFindInterval;
-var()   vector				TargetLocation;
+var()   float                 	NextTargetFindTime, TargetFindInterval;
+var()   vector					TargetLocation;
 var()   Actor					NVLight;
-var()   float				NextPawnListUpdateTime;
+var()   float					NextPawnListUpdateTime;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		Target, bMeatVision, ClientGrenadePickedUp;
+		Target, bMeatVision, ClientGrenadePickedUp, ClientAddTarget;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal, ServerSwitchSilencer;
 }
@@ -61,15 +67,23 @@ simulated function OnWeaponParamsChanged()
 	
 	bHasSuppressor=False;
 	bHasThermalSight=False;
+	bHasTrackingSight=False;
 
 	if (InStr(WeaponParams.LayoutTags, "suppressor") != -1)
 	{
 		bHasSuppressor=True;
 	}
-
-	if (InStr(WeaponParams.LayoutTags, "thermal") != -1)
+	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
 	{
 		bHasThermalSight=True;
+	}
+	if (InStr(WeaponParams.LayoutTags, "NV") != -1)
+	{
+		bHasNightvisionSight=True;
+	}
+	if (InStr(WeaponParams.LayoutTags, "tracker") != -1)
+	{
+		bHasTrackingSight=True;
 	}
 }
 
@@ -339,6 +353,80 @@ simulated function BringUp(optional Weapon PrevWeapon)
 //==============================================
 //=========== Scope Code - Targetting + IRNV ===
 //==============================================
+
+//simulated function DoWeaponSpecial(optional byte i)
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (bHasSuppressor)
+	{
+		if (ReloadState != RS_None || SightingState != SS_None)
+			return;
+		if (Clientstate != WS_ReadyToFire)
+			return;
+		TemporaryScopeDown(0.5);
+		bSilenced = !bSilenced;
+		ServerSwitchSilencer(bSilenced);
+		SwitchSilencer(bSilenced);
+	}
+	
+	if (ZoomType != ZT_Irons )
+	{
+		if (!bThermal && !bMeatVision && bHasThermalSight) //Nothing on, turn on IRNV!
+		{
+			bThermal = !bThermal;
+			if (bThermal)
+					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+			else
+					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+			AdjustThermalView(bThermal);
+			if (!bScopeView)
+				PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
+			return;
+		}
+		if ((bThermal || !bHasThermalSight) && !bMeatVision) //IRNV on! turn it off and turn on targeting!
+		{
+			if (bHasThermalSight)
+			{
+				bThermal = !bThermal;
+				if (bThermal)
+						class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+				else
+						class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+				AdjustThermalView(bThermal);
+			}
+
+			if (!bScopeView)
+				PlayerController(InstigatorController).ClientMessage("Activated infrared targeting scope.");
+
+			if (!bHasTrackingSight)
+			{
+				if (!bScopeView)
+					PlayerController(InstigatorController).ClientMessage("Activated standard scope.");
+				return;
+			}
+
+			bMeatVision = !bMeatVision;
+
+			if (bMeatVision)
+					class'BUtil'.static.PlayFullSound(self, NVOnSound);
+			else
+					class'BUtil'.static.PlayFullSound(self, NVOffSound);
+			return;
+		}
+		if (!bThermal && bMeatVision) //targeting on! turn it off!
+		{
+			bMeatVision = !bMeatVision;
+			if (bMeatVision)
+					class'BUtil'.static.PlayFullSound(self, NVOnSound);
+			else
+					class'BUtil'.static.PlayFullSound(self, NVOffSound);
+			if (!bScopeView)
+				PlayerController(InstigatorController).ClientMessage("Activated standard scope.");
+			return;
+		}
+	}
+}
+
 function ServerWeaponSpecial(optional byte i)
 {
 	if (bHasSuppressor)
@@ -361,6 +449,18 @@ function ServerWeaponSpecial(optional byte i)
 			class'BUtil'.static.PlayFullSound(self, NVOffSound);
 	}
 }
+
+simulated function AddTarget(Pawn Target)
+{
+	LastPingTime = Level.TimeSeconds;
+	TrackedTargets[TrackedTargets.Length] = Target;
+	ClientAddTarget(Target);
+}
+simulated function ClientAddTarget(Pawn Target)
+{
+	TrackedTargets[TrackedTargets.Length] = Target;
+}
+
 simulated event WeaponTick(float DT)
 {
 	local actor T;
@@ -395,8 +495,12 @@ simulated event WeaponTick(float DT)
 	else
 		SetNVLight(false);
 
+	//Targeting
 	if (!bScopeView || Role < ROLE_Authority || Level.TimeSeconds < NextTargetFindTime)
 		return;
+
+	if (TrackedTargets.Length != 0 && Level.TimeSeconds - LastPingTime > MaxTrackTime)
+		TrackedTargets.Length = 0; //remove grenade locks after a period of time
 
     NextTargetFindTime = Level.TimeSeconds + TargetFindInterval;
 
@@ -514,6 +618,7 @@ simulated event DrawMeatVisionMode (Canvas C)
 {
 	local Vector V, V2, V3, X, Y, Z;
 	local float ScaleFactor;
+	local int i;
 
 	// Draw RED stuff
 	C.Style = ERenderStyle.STY_Modulated;
@@ -527,12 +632,32 @@ simulated event DrawMeatVisionMode (Canvas C)
 
     C.Style = ERenderStyle.STY_Alpha;
 	
+
+	ScaleFactor = C.ClipX / 1600;
+	GetViewAxes(X, Y, Z);
+	
+	// Draw Target Boxes - Sensor Targets
+	if (TrackedTargets.Length > 0)
+	{
+		for (i = 0; i < TrackedTargets.Length; i++)
+		{
+			if (TrackedTargets[i] == None || TrackedTargets[i].Health < 1 || !TrackedTargets[i].bProjTarget)
+				continue;
+			if (Normal(TrackedTargets[i].Location - Location) Dot Vector(Instigator.GetViewRotation()) < 0.8)
+				continue;
+			V  = C.WorldToScreen(TrackedTargets[i].Location - Y*TrackedTargets[i].CollisionRadius + Z*TrackedTargets[i].CollisionHeight);
+			V.X -= 32*ScaleFactor;
+			V.Y -= 32*ScaleFactor;
+			C.SetPos(V.X, V.Y);
+			V2 = C.WorldToScreen(TrackedTargets[i].Location + Y*TrackedTargets[i].CollisionRadius - Z*TrackedTargets[i].CollisionHeight);
+			C.SetDrawColor(255,255,255,255);
+			C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+		}
+	}
+	// Draw Target Boxes - Manual Target
 	if (Target == None)
 		return;
 
-	// Draw Target Boxers
-	ScaleFactor = C.ClipX / 1600;
-	GetViewAxes(X, Y, Z);
 	V  = C.WorldToScreen(Target.Location - Y*Target.CollisionRadius + Z*Target.CollisionHeight);
 	V.X -= 32*ScaleFactor;
 	V.Y -= 32*ScaleFactor;
@@ -541,10 +666,10 @@ simulated event DrawMeatVisionMode (Canvas C)
 	C.SetDrawColor(160,185,200,255);
       C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 
-    V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);
+    V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);	
 }
 
-// Draws players through walls and all the other Thermal Mode stuff
+// Draws players with an orange glow and all the other Thermal Mode stuff
 simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
@@ -699,78 +824,6 @@ function ServerAdjustThermal(bool bNewValue)
 	}
 }
 
-//simulated function DoWeaponSpecial(optional byte i)
-exec simulated function WeaponSpecial(optional byte i)
-{
-	if (bHasSuppressor)
-	{
-		if (ReloadState != RS_None || SightingState != SS_None)
-			return;
-		if (Clientstate != WS_ReadyToFire)
-			return;
-		TemporaryScopeDown(0.5);
-		bSilenced = !bSilenced;
-		ServerSwitchSilencer(bSilenced);
-		SwitchSilencer(bSilenced);
-	}
-	
-	if (ZoomType != ZT_Irons )
-	{
-		if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
-		{
-			bThermal = !bThermal;
-			if (bThermal)
-					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-			AdjustThermalView(bThermal);
-			if (!bScopeView)
-				PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
-			return;
-		}
-		if (bThermal && !bMeatVision) //IRNV on! turn it off and turn on targeting!
-		{
-			bThermal = !bThermal;
-			if (bThermal)
-					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-			AdjustThermalView(bThermal);
-
-
-			if (!bScopeView)
-				PlayerController(InstigatorController).ClientMessage("Activated infrared targeting scope.");
-
-			// I don't have time to do this refactor atm
-			if (class'BallisticReplicationInfo'.static.IsTactical())
-			{
-				if (!bScopeView)
-					PlayerController(InstigatorController).ClientMessage("Activated standard scope.");
-				return;
-			}
-
-			bMeatVision = !bMeatVision;
-
-			if (bMeatVision)
-					class'BUtil'.static.PlayFullSound(self, NVOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, NVOffSound);
-			return;
-		}
-		if (!bThermal && bMeatVision) //targeting on! turn it off!
-		{
-			bMeatVision = !bMeatVision;
-			if (bMeatVision)
-					class'BUtil'.static.PlayFullSound(self, NVOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, NVOffSound);
-			if (!bScopeView)
-				PlayerController(InstigatorController).ClientMessage("Activated standard scope.");
-			return;
-		}
-	}
-}
-
 //==============================================
 //=========== Bullet in mag ====================
 //==============================================
@@ -791,6 +844,8 @@ simulated event Destroyed()
 	if (NVLight != None)
 		NVLight.Destroy();
 		
+	TrackedTargets.Length = 0;
+	
 	Instigator.AmbientSound = UsedAmbientSound;
 	Instigator.SoundVolume = default.SoundVolume;
 	Instigator.SoundPitch = default.SoundPitch;
@@ -970,9 +1025,13 @@ defaultproperties
 	ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
 	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
 	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+	
 	WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
 	Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
 	ThermalRange=2500.000000
+    TargetFindInterval=0.2
+	MaxTrackTime=5
+	
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000'
@@ -989,9 +1048,6 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
 	WeaponModes(2)=(ModeName="Auto")
-
-    TargetFindInterval=0.2
-	
 	CurrentWeaponMode=2
 	
 	CockAnimPostReload="ReloadEndCock"

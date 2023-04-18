@@ -326,7 +326,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=3
      PickupClass=Class'BWBP_APC_Pro.SRKSmgPickup'
-     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-14.000000)
+     PlayerViewOffset=(X=0.000000,Y=6.000000,Z=-14.000000)
      BobDamping=2.250000
      AttachmentClass=Class'BWBP_APC_Pro.SRKSmgAttachment'
      IconMaterial=Texture'BWBP_CC_Tex.SRKSmg.SmallIcon_SPXSmg'

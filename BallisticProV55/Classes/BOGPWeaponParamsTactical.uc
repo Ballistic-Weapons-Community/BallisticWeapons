@@ -10,8 +10,8 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.BOGPGrenade'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-        Speed=2500.000000
-        MaxSpeed=2500.000000
+        Speed=2100.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
+        MaxSpeed=2100.000000
         AccelSpeed=0
         Damage=150.000000
         ImpactDamage=50
@@ -77,7 +77,7 @@ defaultproperties
 
     Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.3
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.1
         YawFactor=0.000000
         XRandFactor=0.250000
@@ -87,7 +87,7 @@ defaultproperties
         DeclineTime=1.000000
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.5
     End Object
 
 	//=================================================================

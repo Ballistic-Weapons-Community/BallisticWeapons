@@ -342,7 +342,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BWBP_APC_Pro.FM14Pickup'
-	PlayerViewOffset=(X=-9.000000,Y=5.000000,Z=-25.000000)
+	PlayerViewOffset=(X=-14.000000,Y=5.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.FM14Attachment'
 	IconMaterial=Texture'BWBP_CC_Tex.FM14.SmallIcon_FM14'
 	IconCoords=(X2=127,Y2=31)

@@ -110,6 +110,8 @@ var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
 var   BCSprintControl   Sprinter;
+var	  float				LastDodgeTime;
+var	  float				DodgeInterval;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -218,9 +220,9 @@ simulated function vector CalcDrawOffset(inventory Inv)
 	else
 	{
 		DrawOffset.Z += EyeHeight;
-        if( bWeaponBob )
-		    DrawOffset += WeaponBob(Inv.BobDamping);
-         DrawOffset += CameraShake();
+        //if( bWeaponBob )
+		DrawOffset += WeaponBob(Inv.BobDamping);
+        DrawOffset += CameraShake();
 	}
 
 	return DrawOffset;
@@ -238,6 +240,7 @@ simulated final function BindDefaultMovement()
 	default.LadderSpeed = LadderSpeed;
     default.AccelRate = AccelRate;
     default.JumpZ = JumpZ;
+	default.DodgeSpeedFactor = DodgeSpeedFactor;
     default.DodgeSpeedZ = DodgeSpeedZ;
 
     default.WalkAnims[0] = WalkAnims[0];
@@ -268,7 +271,14 @@ simulated function ApplyMovementOverrides()
 	LadderSpeed = GroundSpeed * 0.65f;
 	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
 	JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+	DodgeSpeedFactor = class'BallisticReplicationInfo'.default.PlayerDodgeSpeedFactor;
 	DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
+
+	if (class'BallisticReplicationInfo'.static.IsTactical())
+	{
+		DodgeInterval = 1;
+		bCanWallDodge = false;
+	}
 
 	BindDefaultMovement();
 }
@@ -504,8 +514,50 @@ event Landed(vector HitNormal)
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
+	
+     //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
+}
 
-        //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
+//===========================================================================
+// PawnCheckBob
+// Version of Engine.Pawn CheckBob, but prevents client disabling it
+//===========================================================================
+function PawnCheckBob(float DeltaTime, vector Y)
+{
+	local float Speed2D;
+
+    if(bJustLanded )
+    {
+		BobTime = 0;
+		WalkBob = Vect(0,0,0);
+        return;
+    }
+	Bob = FClamp(Bob, -0.01, 0.01);
+	if (Physics == PHYS_Walking )
+	{
+		Speed2D = VSize(Velocity);
+		if ( Speed2D < 10 )
+			BobTime += 0.2 * DeltaTime;
+		else
+			BobTime += DeltaTime * (0.3 + 0.7 * Speed2D/GroundSpeed);
+		WalkBob = Y * Bob * Speed2D * sin(8 * BobTime);
+		AppliedBob = AppliedBob * (1 - FMin(1, 16 * deltatime));
+		WalkBob.Z = AppliedBob;
+		if ( Speed2D > 10 )
+			WalkBob.Z = WalkBob.Z + 0.75 * Bob * Speed2D * sin(16 * BobTime);
+	}
+	else if ( Physics == PHYS_Swimming )
+	{
+		BobTime += DeltaTime;
+		Speed2D = Sqrt(Velocity.X * Velocity.X + Velocity.Y * Velocity.Y);
+		WalkBob = Y * Bob *  0.5 * Speed2D * sin(4.0 * BobTime);
+		WalkBob.Z = Bob * 1.5 * Speed2D * sin(8.0 * BobTime);
+	}
+	else
+	{
+		BobTime = 0;
+		WalkBob = WalkBob * (1 - FMin(1, 8 * deltatime));
+	}
 }
 
 //===========================================================================
@@ -522,7 +574,7 @@ function CheckBob(float DeltaTime, vector Y)
 
 	OldBobTime = BobTime;
 
-	Super(Pawn).CheckBob(DeltaTime,Y);
+	PawnCheckBob(DeltaTime,Y);
 
 	if ( (Physics != PHYS_Walking) || bIsCrouched || (VSize(Velocity) < 10) || ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
 		return;
@@ -537,11 +589,14 @@ function CheckBob(float DeltaTime, vector Y)
 		FootStepping(0);
 	}
 
+	// always have weapon bob on.
+	/*
 	else if ( !bWeaponBob && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) ) // fixme: link to animation speeds
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
 	}
+	*/
 }
 
 simulated final function float FootstepSurfaceScale (int Surf)
@@ -550,17 +605,42 @@ simulated final function float FootstepSurfaceScale (int Surf)
 	{
 		Case 0:/*EST_Default*/	return 1.0; 	// bricks, concrete, drywall and such
 		Case 1:/*EST_Rock*/		return 1.0;		// rocks
-		Case 2:/*EST_Dirt*/		return 0.75;	// sand, etc - we assume it dampens
-		Case 3:/*EST_Metal*/	return 3.0;		// metal is damn loud
-		Case 4:/*EST_Wood*/		return 2.0;		// we assume floorboards and amp it
-		Case 5:/*EST_Plant*/	return 0.5;		// dampens sound well
+		Case 2:/*EST_Dirt*/		return 1.0;	// sand, etc - we assume it dampens
+		Case 3:/*EST_Metal*/	return 2.0;		// metal is damn loud
+		Case 4:/*EST_Wood*/		return 1.5;		// we assume floorboards and amp it
+		Case 5:/*EST_Plant*/	return 0.75;		// dampens sound well
 		Case 6:/*EST_Flesh*/	return 2.0;	 	// disgusting
 		Case 7:/*EST_Ice*/		return 1.0;
-		Case 8:/*EST_Snow*/		return 2.0;		// compacting snow makes a fair bit of noise
-		Case 9:/*EST_Water*/	return 3.0;		// almost never going to see this one
+		Case 8:/*EST_Snow*/		return 1.5;		// compacting snow makes a fair bit of noise
+		Case 9:/*EST_Water*/	return 2.0;		// almost never going to see this one
 		Case 10:/*EST_Glass*/	return 1.0;		// nor this one
 		default:				return 1.0;
 	}
+}
+
+simulated function ClientPlayLinearSound(Sound sound, ESoundSlot slot, float volume, float radius)
+{
+	local float dist;
+
+	if (IsLocallyControlled())
+		volume *= 0.65f;
+	else if (!FastTrace(Location, Level.GetLocalPlayerController().ViewTarget.Location))
+		volume *= 0.65f;
+
+	// have to manually calculate a volume and radius in order to bypass NATIVE BULLSHIT
+	// we play the sound with the volume we want, 
+	// and the radius set exactly to the dist, to make sure we get the full volume at this dist without needing bFullVolume
+	// which would cause issues if we change view target while the sound is playing
+	dist = FMax(64, VSize(Location - Level.GetLocalPlayerController().ViewTarget.Location));
+
+	//log("Footsteps: Sound Rad: "$FSoundRad$" FootstepRadius: "$FootstepRadius);
+
+	if (dist > radius)
+		return;
+
+	volume *= (1f - (dist / radius));
+
+	PlaySound(sound, slot, volume, , dist);
 }
 
 simulated function FootStepping(int Side)
@@ -570,7 +650,9 @@ simulated function FootStepping(int Side)
 	local material FloorMat;
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
 	local float SoundVolumeScale, SoundRadiusScale;
-	
+	local float FSoundVol, FSoundRad;
+	local float Dist;
+
 	// crouch - no sound
 	if (bIsCrouched)
 		return;
@@ -585,8 +667,8 @@ simulated function FootStepping(int Side)
 	// sprint - much louder
 	else if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
 	{
-		SoundVolumeScale = 1.25f;
-		SoundRadiusScale = 1.25f;
+		SoundVolumeScale = 1.35f;
+		SoundRadiusScale = 1.35f;
 	}
 
 	// run - default
@@ -596,20 +678,19 @@ simulated function FootStepping(int Side)
 		SoundRadiusScale = 1f;
 	}
 
-	// footsteps are slightly quieter if we are local pawn - hear others better
-	if (IsLocallyControlled())
-		SoundVolumeScale *= 0.65f;
-
 	// handle water
     for ( i=0; i<Touching.Length; i++ )
 	{
 		if ( ((PhysicsVolume(Touching[i]) != None) && PhysicsVolume(Touching[i]).bWaterVolume)
 			|| (FluidSurfaceInfo(Touching[i]) != None) )
 		{
+			SoundVolumeScale *= 1.5f;
+			SoundRadiusScale *= 1.5f;
+
 			if ( FRand() < 0.5 )
-				PlaySound(sound'PlayerSounds.FootStepWater2', SLOT_Interact, FootstepVolume * 2 * SoundVolumeScale,, FootstepRadius * SoundRadiusScale);
+				ClientPlayLinearSound(sound'PlayerSounds.FootStepWater2', SLOT_Interact, FootstepVolume * SoundVolumeScale, FootstepRadius * SoundRadiusScale);
 			else
-				PlaySound(sound'PlayerSounds.FootStepWater1', SLOT_Interact, FootstepVolume * 2 * SoundVolumeScale,, FootstepRadius * SoundRadiusScale);
+				ClientPlayLinearSound(sound'PlayerSounds.FootStepWater1', SLOT_Interact, FootstepVolume * SoundVolumeScale, FootstepRadius * SoundRadiusScale);
 				
 			if ( !Level.bDropDetail && (Level.DetailMode != DM_Low) && (Level.NetMode != NM_DedicatedServer)
 				&& !Touching[i].TraceThisActor(HitLocation, HitNormal,Location - CollisionHeight*vect(0,0,1.1), Location) )
@@ -636,7 +717,7 @@ simulated function FootStepping(int Side)
 
 	SoundRadiusScale *= FootstepSurfaceScale(SurfaceNum);
 
-	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundVolumeScale,, FootstepRadius * SoundRadiusScale );
+	ClientPlayLinearSound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundVolumeScale, FootstepRadius * SoundRadiusScale);
 }
 
 simulated function AssignInitialPose()
@@ -2232,6 +2313,8 @@ simulated function HideBone(name boneName)
     SetBoneScale(BoneScaleSlot, 0.01, BoneName);
 }
 
+// Eye height
+// Override crouch eye height - don't want it at the top of the cylinder...
 simulated function SetBaseEyeheight()
 {
 	if ( !bIsCrouched )
@@ -2242,12 +2325,29 @@ simulated function SetBaseEyeheight()
 	Eyeheight = BaseEyeheight;
 }
 
+// Stub events called when physics actually allows crouch to begin or end
+// use these for changing the animation (if script controlled)
+event StartCrouch(float HeightAdjust)
+{
+	EyeHeight += HeightAdjust;
+	OldZ -= HeightAdjust;
+	BaseEyeHeight = CrouchEyeHeight;
+}
+
+event EndCrouch(float HeightAdjust)
+{
+	EyeHeight -= HeightAdjust;
+	OldZ += HeightAdjust;
+	BaseEyeHeight = Default.BaseEyeHeight;
+}
+
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
 // It causes BaseEyeHeight to be forced to 38 on the server for non local players (unless the server player is first person spectating that client)
 simulated function vector EyePosition()
 {
 	if (Role == ROLE_Authority && bIsCrouched && !IsLocallyControlled() && PlayerController(Controller) != None && !PlayerController(Controller).bBehindView && BaseEyeHeight == default.BaseEyeHeight)
-		return (EyeHeight-19) * vect(0,0,1) + WalkBob;
+		return CrouchEyeHeight * vect(0,0,1) + WalkBob;
+
 	return super.EyePosition();
 }
 
@@ -2366,8 +2466,13 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
 	if (!bCanDodge)
 		return false;
 
+	if (Level.TimeSeconds - LastDodgeTime < DodgeInterval)
+		return false;
+
     if (super.Dodge(DoubleClickMove))
     {
+		LastDodgeTime = Level.TimeSeconds;
+
         if (Role == ROLE_Authority)
             Inventory.OwnerEvent('Dodged');
         return true;
@@ -2436,7 +2541,6 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 {
     local float VelocityZ;
     local name Anim;
-    local float DodgeGroundSpeed;
 
     if ( Physics == PHYS_Falling )
     {
@@ -2460,15 +2564,14 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 
     VelocityZ = Velocity.Z;
 
-    DodgeGroundSpeed = GroundSpeed;
+    Velocity = DodgeSpeedFactor * GroundSpeed * Dir + (Velocity Dot Cross) * Cross;
 
-    // arena allows increased dodge distance when sprint is on
-    if (!class'BallisticReplicationInfo'.static.IsArena() && class'BallisticReplicationInfo'.default.PlayerGroundSpeed < GroundSpeed)
-    {
-        DodgeGroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-    }
-
-    Velocity = DodgeSpeedFactor*DodgeGroundSpeed*Dir + (Velocity Dot Cross)*Cross;
+	// clamp dodge speed in realism and tactical
+	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism())
+	{
+		if (VSize(Velocity) > GroundSpeed * DodgeSpeedFactor)
+			Velocity = Normal(Velocity) * GroundSpeed * DodgeSpeedFactor;
+	}
 
 	if ( !bCanDodgeDoubleJump )
 		MultiJumpRemaining = 0;
@@ -3055,7 +3158,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			Velocity *= NewSpeed;
 		}
 	}
-	
+
 	OldMovementSpeed = VSize(Velocity);
 }
 
@@ -3094,18 +3197,25 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.5
-     FootstepRadius=22.000000
+     FootstepVolume=0.15
+     FootstepRadius=1536.000000
+	 GruntVolume=0.3
+     GruntRadius=48.000000
 
-	 BaseEyeHeight=32
+	 // used to play footsteps at consistent volume regardless of position
+	 // the fine sound controls, like occlusion factors and rolloff curves, are native
+	 // so we're forced into this to get the footstep behaviour we want
+	 // thankfully, it won't affect sounds we play through our weapons or attachments
+	 SoundOcclusion=OCCLUSION_None
+
+	 BaseEyeHeight=30
 	 CrouchEyeHeight=19
 
      CollisionRadius=19.000000
 
 	 CrouchHeight=32
 
-     GruntVolume=0.5
-     GruntRadius=20.000000
+
 
      DeResTime=4.000000
      RagDeathUpKick=0.000000
@@ -3113,6 +3223,7 @@ defaultproperties
      bSpecialHUD=True
      Visibility=64
      HeadRadius=13.000000
+	
      TransientSoundVolume=0.300000
 	 
 	 StrafeScale=1.000000

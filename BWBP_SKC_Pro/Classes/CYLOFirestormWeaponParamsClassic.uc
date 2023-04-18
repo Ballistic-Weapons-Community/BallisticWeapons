@@ -149,9 +149,10 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=35
 		//SightOffset=(X=-3.000000,Y=13.565000,Z=24.785000)
-		SightPivot=(Pitch=900)
+		SightPivot=(Pitch=256)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=9,Y=7.00,Z=-4)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

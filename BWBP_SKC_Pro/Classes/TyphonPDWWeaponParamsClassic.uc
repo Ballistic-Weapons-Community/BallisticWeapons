@@ -112,6 +112,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		bNeedCock=True
 		MagAmmo=25
+		ViewOffset=(X=5.000000,Y=4.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

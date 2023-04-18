@@ -28,7 +28,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=512.000000
+		Recoil=256.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
@@ -60,7 +60,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=0.06
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFrostFire',Volume=2.800000)
-		Recoil=512.000000
+		Recoil=256.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
@@ -111,7 +111,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.3
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.1
 		XRandFactor=0.1
 		YRandFactor=0.1

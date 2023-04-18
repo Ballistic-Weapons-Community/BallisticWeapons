@@ -1,5 +1,5 @@
 //=============================================================================
-// LonghornMicroClusterImpact.
+// LonghornMicroClusterFlakArtillery.
 //
 // Small cluster bomb spawned from LonghornGrenade when used as artillery.
 // Does a lot of damage with large radius.
@@ -8,7 +8,7 @@
 // Copyright(c) 2012 Casey Johnson. All Rights Reserved.
 //=============================================================================
 
-class LonghornMicroClusterImpact extends LonghornMicroClusterFlak; //Artillery
+class LonghornMicroClusterFlakArtillery extends LonghornMicroClusterFlak; //Artillery
 
 simulated function InitProjectile ()
 {

@@ -71,11 +71,12 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Smoke GL
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Smoke
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
-		Speed=7000.000000
-		MaxSpeed=7000.000000
+        Speed=4200.000000
+		MaxSpeed=4200.000000
 		Damage=80
         ImpactDamage=80
 		DamageRadius=256.000000
@@ -95,10 +96,37 @@ defaultproperties
 		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams_Smoke'
 	End Object
 	
-	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Ice
-		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Ice' //DT's need updating to point to MARS-2
+	//Sensor GL
+	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Sensor
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Sensor'
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
-		Speed=3500.000000
+        Speed=4200.000000
+		MaxSpeed=4200.000000
+		Damage=10
+        ImpactDamage=80
+		DamageRadius=16.000000
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		Recoil=1024.000000
+		Chaos=0.5
+		BotRefireRate=0.3
+		WarnTargetPct=0.5
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Sensor
+		FireInterval=0.800000
+		PreFireAnim="GLPrepFire"
+		FireAnim="GLFire"
+		AimedFireAnim="GLSightFireFromPrep"	
+		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams_Sensor'
+	End Object
+	
+	//Ice GL
+	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Ice
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Ice'
+		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
+        Speed=4200.000000
+		MaxSpeed=4200.000000
 		Damage=80
         ImpactDamage=80
 		DamageRadius=512.000000
@@ -117,7 +145,19 @@ defaultproperties
 		FireAnim="GLFire"
 		AimedFireAnim="GLSightFireFromPrep"	
 	FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams_Ice'
-	End Object		
+	End Object	
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		FireInterval=0.200000
+		AmmoPerFire=0
+		TargetState=Scope
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 	
 	//=================================================================
 	// RECOIL
@@ -133,13 +173,13 @@ defaultproperties
 		DeclineDelay=0.130000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 		ViewBindFactor=0.4
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_CQC
 		ViewBindFactor=0.2
-		ADSViewBindFactor=0.5
+		ADSViewBindFactor=0.6
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.25000,OutVal=0.0800),(InVal=0.3500000,OutVal=0.070000),(InVal=0.4800000,OutVal=0.0900),(InVal=0.600000,OutVal=-0.020000),(InVal=0.750000,OutVal=0.030000),(InVal=0.900000,OutVal=0.06),(InVal=1.000000,OutVal=0.1)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
@@ -149,7 +189,7 @@ defaultproperties
 		DeclineDelay=0.130000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 	
 	//=================================================================
@@ -178,10 +218,11 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=TacticalParams_Scope
+	Begin Object Class=WeaponParams Name=TacticalParams_Smoker
 		//Layout core
 		Weight=30
-		LayoutName="Adv Scope"
+		LayoutName="NV + Smoke"
+		LayoutTags="NV,tracker"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
@@ -202,11 +243,37 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Smoke'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Sensor
+		//Layout core
+		Weight=30
+		LayoutName="TScope + Sensor"
+		LayoutTags="tracker"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
+		//Function
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=30
+		// ADS handling
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.4	
+		// Zoom
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		ScopeScale=0.6
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Sensor'
+    End Object 
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Holosight
 		//Layout core
 		Weight=30
-		LayoutName="Holosight"
+		LayoutName="Holo + Ice"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
@@ -222,8 +289,9 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Ice'
     End Object 	
 
-	Layouts(0)=TacticalParams_Scope
-    Layouts(1)=TacticalParams_Holosight
+	Layouts(0)=TacticalParams_Smoker
+	Layouts(1)=TacticalParams_Sensor
+    Layouts(2)=TacticalParams_Holosight
 	
 	//Camos =========================================
 	Begin Object Class=WeaponCamo Name=MARS_Black

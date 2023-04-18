@@ -41,6 +41,7 @@ defaultproperties
 	PlayerAnimationGroundSpeed=440
     PlayerAccelRate=2048.000000
     PlayerJumpZ=294
+	PlayerDodgeSpeedFactor=1.5
     PlayerDodgeZ=210
 
 	bEnableSprint=true

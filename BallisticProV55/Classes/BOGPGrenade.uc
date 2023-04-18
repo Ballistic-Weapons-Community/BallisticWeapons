@@ -92,27 +92,27 @@ defaultproperties
 {
 	ArmingDelay=0.3
     WeaponClass=Class'BallisticProV55.BOGPPistol'
-     DetonateOn=DT_ImpactTimed
-	 PlayerImpactType=PIT_Bounce
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=1.000000
-     ImpactDamage=25
-     ImpactDamageType=Class'BallisticProV55.DTBOGPGrenade'
-     ImpactManager=Class'BallisticProV55.IM_M50Grenade'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BallisticProV55.MRLTrailEmitter'
-     TrailOffset=(X=-4.000000)
-     MyRadiusDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=256.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     WallPenetrationForce=64
-     MyDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'
-     DrawScale=0.300000
-     bIgnoreTerminalVelocity=True
+	DetonateOn=DT_ImpactTimed
+	PlayerImpactType=PIT_Bounce
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	DetonateDelay=1.000000
+	ImpactDamage=25
+	ImpactDamageType=Class'BallisticProV55.DTBOGPGrenade'
+	ImpactManager=Class'BallisticProV55.IM_M50Grenade'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BallisticProV55.MRLTrailEmitter'
+	TrailOffset=(X=-4.000000)
+	MyRadiusDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=256.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	WallPenetrationForce=64
+	MyDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'
+	DrawScale=0.300000
+	bIgnoreTerminalVelocity=True
 }

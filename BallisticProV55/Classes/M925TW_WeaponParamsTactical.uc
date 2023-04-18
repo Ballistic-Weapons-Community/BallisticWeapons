@@ -24,7 +24,7 @@ defaultproperties
 		PenetrateForce=300
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=250.000000
+		Recoil=378.000000
 		Chaos=0.150000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.M925.M925-Fire',Volume=0.800000)

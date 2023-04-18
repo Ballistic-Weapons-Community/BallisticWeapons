@@ -237,6 +237,7 @@ defaultproperties
 		SightPivot=(Pitch=450)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=3.000000,Y=13.000000,Z=-6.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -261,6 +262,7 @@ defaultproperties
 		SightPivot=(Pitch=450)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=3.000000,Y=13.000000,Z=-6.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Rapid'
@@ -285,6 +287,7 @@ defaultproperties
 		SightPivot=(Pitch=450)
 		//ReloadAnimRate=0.800000
 		//CockAnimRate=0.800000
+		ViewOffset=(X=3.000000,Y=13.000000,Z=-6.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Elite'

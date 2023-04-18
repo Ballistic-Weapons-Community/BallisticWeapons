@@ -24,7 +24,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
-		Recoil=425.000000
+		Recoil=210.000000
 		Chaos=0.150000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -56,7 +56,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
-		Recoil=425.000000
+		Recoil=210.000000
 		Chaos=0.070000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -76,7 +76,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
-		ADSViewBindFactor=0.5
+		ADSViewBindFactor=0.6
 		EscapeMultiplier=1.1
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
@@ -86,12 +86,13 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
+		MaxMoveMultiplier=2
 	End Object
 	
 	//Burst
 	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.3
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.1
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
@@ -101,6 +102,7 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================

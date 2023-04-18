@@ -153,9 +153,6 @@ defaultproperties
      DrawScale=0.500000
      SoundVolume=192
      SoundRadius=128.000000
-     CollisionRadius=4.000000
-     CollisionHeight=4.000000
-     bUseCollisionStaticMesh=True
      bFixedRotationDir=True
      RotationRate=(Roll=32768)
 }

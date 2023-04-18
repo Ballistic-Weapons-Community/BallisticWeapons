@@ -17,16 +17,16 @@ struct HitPawnInfo
 	var float HitTime;
 };
 
-var 	int				        Ident;
-var() float			            DamageRadius;			// Radius in which to immolate players
-var	bool			            bHeld;					// This fire was detonated in hand. Use held messages
-var	Vector		                GroundFireSpots[MAX_FIRE_SPOTS];	// Vectors sent to client to tell it where to spawn fires
-var() class<BCImpactManager>	ImpactManager;	// Impact manager to spawn on final hit
-var	array<HitPawnInfo>	        HitPawnData;
-var	float			            Damage, BaseDamage;
-var   float			            RepulsionForceMag;
-var array<FP7GroundFire>	    Fires;
-var	bool 			            bClientFiresSpawned;
+var 	int				        	Ident;
+var() 	float			            DamageRadius;			// Radius in which to immolate players
+var		bool			            bHeld;					// This fire was detonated in hand. Use held messages
+var		Vector		                GroundFireSpots[MAX_FIRE_SPOTS];	// Vectors sent to client to tell it where to spawn fires
+var() 	class<BCImpactManager>		ImpactManager;	// Impact manager to spawn on final hit
+var		array<HitPawnInfo>	        HitPawnData;
+var		float			            Damage, BaseDamage;
+var 	float			            RepulsionForceMag;
+var 	array<FP7GroundFire>	    Fires;
+var		bool 			            bClientFiresSpawned;
 
 replication
 {
@@ -51,7 +51,7 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 	{
 		HitPawnData[Index].HitTime = Level.TimeSeconds;
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
-		if ( /*Instigator != Victim &&*/ Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
+		if (Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
 		{
 			//bog down allies attempting to crawl through this fp7's fire
 			XYVel = -Victim.Velocity;
@@ -142,18 +142,25 @@ simulated function Initialize()
 		End = VRand();
 		End.Z = Abs(End.Z);
 		End = Start + End *DamageRadius * 0.7;
+
 		T = Trace(HitLoc, HitNorm, End, Start,, vect(6,6,6));
+
 		if (T==None) 
 			HitLoc=End;
 
 		GF = Spawn(class'FP7GroundFire',self,,HitLoc, rot(0,0,0));
+
 		if (GF!=None)
 		{
 			GF.Velocity = HitLoc - Location;
+
 			GF.Instigator = Instigator;
+
 		    if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
 				GF.InstigatorController = Instigator.Controller;
-				GF.FireControl = self;
+
+			GF.FireControl = self;
+
 			// Tell client where to spawn them
 			GroundFireSpots[i] = HitLoc;
 			if (bHeld)

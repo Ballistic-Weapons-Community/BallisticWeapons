@@ -2,37 +2,14 @@ class XM20WeaponParamsTactical extends BallisticWeaponParams;
 
 defaultproperties
 { 
-	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.15
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.5,OutVal=0.600000),(InVal=0.600000,OutVal=0.67),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.1
-		YRandFactor=0.1
-		ClimbTime=0.04
-		DeclineDelay=0.2
-		DeclineTime=0.75
-		CrouchMultiplier=0.85
-		HipMultiplier=1.25
-		MaxMoveMultiplier=2
-	End Object
-
-	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=256,Max=1024)
-        ADSMultiplier=0.5
-		SprintOffSet=(Pitch=-1000,Yaw=-2048)
-		ChaosDeclineTime=0.75
-		ChaosDeclineDelay=0.3
-		ChaosSpeedThreshold=300
-	End Object
-	
-    //=================================================================
+	 //=================================================================
     // PRIMARY FIRE
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=5000.000000,Max=7500.000000)
-		Damage=26
-        HeadMult=2.25
+		Damage=20
+        HeadMult=2.25f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
@@ -42,7 +19,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
 		FlashScaleFactor=0.300000
-		Recoil=96.000000
+		Recoil=16.000000
 		BotRefireRate=0.90
 		WarnTargetPct=0.10000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
@@ -56,46 +33,77 @@ defaultproperties
 	End Object
 	
 	//=================================================================
-    // SECONDARY FIRE
+    // SECONDARY FIRE - QUICK CHARGE
+    //=================================================================	
+
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
+		Damage=14
+		HeadMult=2.25
+		LimbMult=0.75f
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		Inaccuracy=(X=16,Y=16)
+		Chaos=0
+		Recoil=16
+		FlashScaleFactor=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		FireInterval=0.070000
+		PreFireAnim="LoopStart"
+		FireLoopAnim="LoopFire"
+		FireEndAnim="LoopEnd"	
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams'
+	End Object
+
+	//=================================================================
+    // SECONDARY FIRE - OVERCHARGE
     //=================================================================	
 	
-		Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
-			Damage=26
-			HeadMult=2.25
-			LimbMult=0.75f
-			DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
-			Inaccuracy=(X=16,Y=16)
-			Chaos=0
-			Recoil=32
-			FlashScaleFactor=0.100000
-		End Object
-		
-		Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParamsOvercharge
-			Damage=25
-			HeadMult=2.25
-			LimbMult=0.75f
-			Chaos=0
-			Recoil=32
-			FlashScaleFactor=0.200000
-		End Object
-		
-		Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-			FireInterval=0.070000
-			PreFireAnim="LoopStart"
-			FireLoopAnim="LoopFire"
-			FireEndAnim="LoopEnd"	
-		FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams'
-		End Object
-		
-		Begin Object Class=FireParams Name=TacticalSecondaryFireParamsOvercharge
-			FireInterval=0.045000
-			PreFireAnim="LoopOpenStart"
-			FireLoopAnim="LoopOpenFire"
-			FireEndAnim="LoopOpenEnd"
-		FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParamsOvercharge'
-		End Object
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParamsOvercharge
+		Damage=22
+		HeadMult=2.25f
+		LimbMult=0.75f
+		Chaos=0
+		Recoil=64
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		FlashScaleFactor=0.200000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParamsOvercharge
+		FireInterval=0.07000
+		PreFireAnim="LoopOpenStart"
+		FireLoopAnim="LoopOpenFire"
+		FireEndAnim="LoopOpenEnd"
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParamsOvercharge'
+	End Object
+
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams
+		ViewBindFactor=0.15
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.5,OutVal=0.600000),(InVal=0.600000,OutVal=0.67),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		ClimbTime=0.02
+		DeclineDelay=0.2
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2.5
+	End Object
+
+	Begin Object Class=AimParams Name=TacticalAimParams
+		AimSpread=(Min=256,Max=1024)
+        ADSMultiplier=0.5
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		ChaosDeclineTime=0.75
+		ChaosDeclineDelay=0.3
+		ChaosSpeedThreshold=300
+	End Object
+
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
@@ -149,7 +157,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.5
 		DisplaceDurationMult=1
-		MagAmmo=50
+		MagAmmo=34
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'

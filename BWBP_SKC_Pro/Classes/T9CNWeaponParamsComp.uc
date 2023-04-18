@@ -1,8 +1,7 @@
-class T9CNWeaponParamsArena extends BallisticWeaponParams;
+class T9CNWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {
-
 	//=================================================================
 	// PRIMARY FIRE
 	//=================================================================	
@@ -18,7 +17,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.T9CNFlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireOld',Volume=1.300000)
-		Recoil=450.000000
+		Recoil=225.000000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

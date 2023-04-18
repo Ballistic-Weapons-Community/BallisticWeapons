@@ -173,12 +173,62 @@ event InitGame( string Options, out string Error )
 {
 	local int i;
 
-	Super.InitGame(Options, Error);
+	Super(xTeamGame).InitGame(Options, Error);
+
+	RoundTimeLimit		= Max( 0, GetIntOption( Options, "RoundTimeLimit", RoundTimeLimit ) );
+	PracticeTimeLimit	= Max( 0, GetIntOption( Options, "PracticeTimeLimit", PracticeTimeLimit ) );
+
+	RoundLimit	= Max( 0, GetIntOption( Options, "RoundLimit", RoundLimit ) );
+	MaxRounds	= RoundLimit * 2; // number of rounds played
+
+	FirstAttackingTeam	= Rand(2);
+	ResetTimeDelay		= Max(0, GetIntOption( Options, "ResetTimeDelay", ResetTimeDelay ));
+	ReinforcementsFreq	= Max(0, GetIntOption( Options, "ReinforcementsFreq", ReinforcementsFreq ));
+
+	// Disable TimeLimit
+	TimeLimit		= 0;
+	RemainingTime	= (RoundTimeLimit + ResetTimeDelay + 1) * 60 * (MaxRounds + 2) + PracticeTimeLimit;
+	if ( GameReplicationInfo != None )
+		GameReplicationInfo.RemainingTime = RemainingTime;
+
 	class'LDGFlags'.static.AllowFlag("RESERVED_SLOT");
 	class'LDGFlags'.static.AllowFlag("PREMIUM");
 
 	for (i = 0; i < BWMutators.Length; i++)
 		AddMutator(BWMutators[i], false);
+}
+
+State MatchInProgress
+{
+	function float SpawnWait(AIController B)
+	{
+		if ( B.IsA('xBot') && GameReplicationInfo.bMatchHasBegun && ResetCountDown == 0 && !bDisableReinforcements && B.GetTeamNum() != CurrentAttackingTeam)
+		{
+			if ( ReinforcementsCount >= ReinforcementsFreq )
+				return (ReinforcementsValidTime - (ReinforcementsCount - ReinforcementsFreq)) * FRand();
+			else
+				return (ReinforcementsFreq - ReinforcementsCount) + ReinforcementsValidTime * FRand();
+		}
+		else
+			return super.SpawnWait( B );
+	}
+
+	// Player Can be restarted ?
+  	function bool PlayerCanRestart( PlayerController aPlayer )
+  	{
+  		if ( GameReplicationInfo.bMatchHasBegun && ResetCountDown == 0 && !bDisableReinforcements )
+  		{
+  			if ( aPlayer.GetTeamNum() != CurrentAttackingTeam && ReinforcementsCount < ReinforcementsFreq )
+			{
+				ASPlayerReplicationInfo(aPlayer.PlayerReplicationInfo).bAutoRespawn = true;
+  				return false;
+			}
+  			else
+  				return true;
+  		}
+  		else
+  			return true;
+  	}
 }
 
 static function FillPlayInfo(PlayInfo PlayInfo)

@@ -66,6 +66,17 @@ function StopFiring()
         Weapon.PlayAnim(Weapon.IdleAnim, 1.0, 0.5);
 }
 
+function SpawnProjectile (Vector Start, Rotator Dir)
+{
+	Proj = Spawn (ProjectileClass,,, Start, Dir);
+	if (Proj != None)
+	{
+		Proj.Instigator = Instigator;
+		if (MARSGrenade_Sensor(Proj) != None)
+			MARSGrenade_Sensor(Proj).Rifle = MARSAssaultRifle(BW);
+	}
+}
+
 simulated state Scope
 {
 	simulated function ApplyFireEffectParams(FireEffectParams effect_params)

@@ -106,7 +106,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     ProjectileCount=5
+     ProjectileCount=4
      HipSpreadFactor=1.750000
      bNoRandomFire=True
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'

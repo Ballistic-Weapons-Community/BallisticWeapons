@@ -40,7 +40,7 @@ defaultproperties
 		MaxRecoil=4096.000000
 		DeclineTime=1.500000
 		DeclineDelay=0.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1
 	End Object
 
 	//=================================================================

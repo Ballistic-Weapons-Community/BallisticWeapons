@@ -89,8 +89,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ClassicParams
-		//SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
-		//ViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
 		InventorySize=3
@@ -103,6 +101,7 @@ defaultproperties
 		InitialWeaponMode=2
 		bNeedCock=True
 		MagAmmo=5
+		ViewOffset=(X=1.000000,Y=7.000000,Z=-1.800000)
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

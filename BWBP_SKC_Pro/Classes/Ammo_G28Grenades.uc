@@ -10,8 +10,8 @@ class Ammo_G28Grenades extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=4
-     InitialAmount=2
+     MaxAmmo=3
+     InitialAmount=1
      IconFlashMaterial=Shader'BWBP_SKC_Tex.G28.AmmoIcon_MedFlash'
      PickupClass=Class'BWBP_SKC_Pro.G28Pickup'
      IconMaterial=Texture'BWBP_SKC_Tex.G28.AmmoIcon_Med'

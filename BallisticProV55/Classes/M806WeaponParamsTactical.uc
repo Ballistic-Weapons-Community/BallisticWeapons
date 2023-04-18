@@ -26,7 +26,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-		Recoil=1024.000000
+		Recoil=512.000000
 		Chaos=0.2
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -62,7 +62,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.3
+		ADSViewBindFactor=0.4
 		EscapeMultiplier=1.2
 		XRandFactor=0.1
 		YRandFactor=0.1

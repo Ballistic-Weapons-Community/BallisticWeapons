@@ -150,7 +150,6 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
 		SightOffset=(X=-11,Y=0,Z=1.39)
-		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
 		ZoomType=ZT_Irons
 		
 		//Function
@@ -158,6 +157,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
+		ViewOffset=(X=1.000000,Y=5.000000,Z=-2.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -175,13 +175,13 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
 		ZoomType=ZT_Irons
 		SightOffset=(X=-11,Y=0,Z=2.78)
-		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
 		
 		//Function
         InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
+		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -198,7 +198,6 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=1f)
 		SightOffset=(X=18.5000000,Y=0,Z=2.75)
-		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		
@@ -207,6 +206,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
+		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_Compensated'
 		AimParams(0)=AimParams'ClassicAimParams_Compensated'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Compensated'

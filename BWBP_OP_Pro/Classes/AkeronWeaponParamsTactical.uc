@@ -93,7 +93,7 @@ defaultproperties
 		DeclineTime=1.000000
 		CrouchMultiplier=0.85
 		HipMultiplier=1 // shoulder fire
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
