@@ -224,6 +224,13 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 {
 	if (G5MortarDamageHull(Wall) != None && (Wall == DamageHull || DamageHull == None))
 		return;
+
+	if (DamageHull != None)
+	{
+		DamageHull.SetBase(None);
+		DamageHull.SetOwner(None);
+		DamageHull.Destroy();
+	}
 		
 	if ( !Wall.bStatic && !Wall.bWorldGeometry )
 	{

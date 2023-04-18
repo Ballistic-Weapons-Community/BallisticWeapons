@@ -254,8 +254,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Marksman //IRNV, Tracker, Heavy Barrel
 		//Layout core
 		Weight=30
-		LayoutName="Adv Scope, Heavy Barrel"
-		LayoutTags="thermal,tracker"
+		LayoutName="Marksman"
+		LayoutTags="IRNV,tracker"
 		
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
@@ -283,8 +283,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Smoker //IRNV, Smoke GL
 		//Layout core
 		Weight=10
-		LayoutName="IRNV Scope, Smoke GL"
-		LayoutTags="thermal"
+		LayoutName="Smoker"
+		LayoutTags="IRNV"
 		
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
@@ -309,7 +309,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Tracker //Target scope, sensor mine
 		//Layout core
 		Weight=10
-		LayoutName="Target Scope, Sensor GL"
+		LayoutName="Tracker"
 		LayoutTags="tracker"
 		
 		//Attachments
@@ -335,7 +335,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_CQC //Holo, Suppressor, HE GL
 		//Layout core
 		Weight=30
-		LayoutName="Stealth Holo, HE GL"
+		LayoutName="CQC Bomber"
 		LayoutTags="suppressor"
 		
 		//Attachments
@@ -366,7 +366,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Shockwave //Holo, Suppressor, Shockwave GL
 		//Layout core
 		Weight=10
-		LayoutName="Stealth Holo, Pulse GL"
+		LayoutName="CQC Shockwave"
 		LayoutTags="suppressor"
 		
 		//Attachments

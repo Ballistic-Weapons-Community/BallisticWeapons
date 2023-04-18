@@ -11,7 +11,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenade'
 		Speed=3500.000000
 		MaxSpeed=3500.000000
-		Damage=70
+		Damage=200
 		DamageRadius=450.000000
 		MomentumTransfer=20000.000000
 		HeadMult=1.0
