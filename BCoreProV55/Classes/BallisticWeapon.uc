@@ -669,8 +669,6 @@ simulated function CheckSetBurstMode()
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
-
-		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 	}
 }
 
@@ -3106,24 +3104,6 @@ simulated function CheckBurstMode()
 	else if(BFireMode[0].bBurstMode)
 	{	
 		BFireMode[0].bBurstMode = False;
-	}
-	
-	RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
-
-}
-
-simulated function float CalculateBurstRecoilDelay(bool burst)
-{
-	if (burst && BFireMode[0].BurstFireRateFactor < 1)
-	{
-		return
-			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
-			+ (RcComponent.DeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
-	}
-	
-	else
-	{
-		return RcComponent.DeclineDelay;
 	}
 }
 

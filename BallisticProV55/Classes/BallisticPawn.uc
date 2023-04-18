@@ -110,6 +110,8 @@ var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
 var   BCSprintControl   Sprinter;
+var	  float				LastDodgeTime;
+var	  float				DodgeInterval;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -271,6 +273,12 @@ simulated function ApplyMovementOverrides()
 	JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
 	DodgeSpeedFactor = class'BallisticReplicationInfo'.default.PlayerDodgeSpeedFactor;
 	DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
+
+	if (class'BallisticReplicationInfo'.static.IsTactical())
+	{
+		DodgeInterval = 1;
+		bCanWallDodge = false;
+	}
 
 	BindDefaultMovement();
 }
@@ -506,14 +514,7 @@ event Landed(vector HitNormal)
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
-
-	// adjust velocity
-	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism())
-	{
-		Velocity *= 0.25f;
-		AccelRate *= 0.35f;
-	}
-
+	
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
 
@@ -1530,12 +1531,6 @@ simulated event Tick(float DT)
 		bPendingNegation=False;
 	}
 
-	// for landed slow
-	if (AccelRate < default.AccelRate)
-	{
-		AccelRate += DT * 0.5 * default.AccelRate;
-	}
-
 	// Check for new hits on clients
 	if (level.NetMode == NM_Client && HitCounter != OldHitCounter)
 	{
@@ -2471,8 +2466,13 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
 	if (!bCanDodge)
 		return false;
 
+	if (Level.TimeSeconds - LastDodgeTime < DodgeInterval)
+		return false;
+
     if (super.Dodge(DoubleClickMove))
     {
+		LastDodgeTime = Level.TimeSeconds;
+
         if (Role == ROLE_Authority)
             Inventory.OwnerEvent('Dodged');
         return true;
@@ -2541,7 +2541,6 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 {
     local float VelocityZ;
     local name Anim;
-    local float DodgeGroundSpeed;
 
     if ( Physics == PHYS_Falling )
     {
@@ -2565,15 +2564,14 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 
     VelocityZ = Velocity.Z;
 
-    DodgeGroundSpeed = GroundSpeed;
+    Velocity = DodgeSpeedFactor * GroundSpeed * Dir + (Velocity Dot Cross) * Cross;
 
-    // restrict dodge boost in tactical and realism
-    if ((class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism()) && class'BallisticReplicationInfo'.default.PlayerGroundSpeed < GroundSpeed)
-    {
-        DodgeGroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-    }
-
-    Velocity = DodgeSpeedFactor*DodgeGroundSpeed*Dir + (Velocity Dot Cross)*Cross;
+	// clamp dodge speed in realism and tactical
+	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism())
+	{
+		if (VSize(Velocity) > GroundSpeed * DodgeSpeedFactor)
+			Velocity = Normal(Velocity) * GroundSpeed * DodgeSpeedFactor;
+	}
 
 	if ( !bCanDodgeDoubleJump )
 		MultiJumpRemaining = 0;
@@ -3160,7 +3158,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			Velocity *= NewSpeed;
 		}
 	}
-	
+
 	OldMovementSpeed = VSize(Velocity);
 }
 
