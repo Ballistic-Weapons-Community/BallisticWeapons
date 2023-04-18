@@ -669,8 +669,6 @@ simulated function CheckSetBurstMode()
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
-
-		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 	}
 }
 
@@ -1787,7 +1785,7 @@ simulated final function bool CanContinueScope()
 	if (SprintControl != None && SprintControl.bSprinting)
 		return false;
 
-	if (!class'BallisticReplicationInfo'.static.IsArena() && Instigator.Physics == PHYS_Falling)
+	if (class'BallisticReplicationInfo'.static.IsRealism() && Instigator.Physics == PHYS_Falling)
 		return false;
 
 	return true;
@@ -3106,24 +3104,6 @@ simulated function CheckBurstMode()
 	else if(BFireMode[0].bBurstMode)
 	{	
 		BFireMode[0].bBurstMode = False;
-	}
-	
-	RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
-
-}
-
-simulated function float CalculateBurstRecoilDelay(bool burst)
-{
-	if (burst && BFireMode[0].BurstFireRateFactor < 1)
-	{
-		return
-			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
-			+ (RcComponent.DeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
-	}
-	
-	else
-	{
-		return RcComponent.DeclineDelay;
 	}
 }
 
@@ -4859,7 +4839,7 @@ function OwnerEvent(name EventName)
 			ClientDodged();
 			AimComponent.OnPlayerJumped();
 
-			if (class'BallisticReplicationInfo'.static.IsArena())
+			if (!class'BallisticReplicationInfo'.static.IsRealism())
 				NextCheckScopeTime = Level.TimeSeconds + 0.5;
 		}
 		else if ((EventName == 'Jumped' || EventName == 'Dodged') && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && !AimComponent.PendingForcedReaim())
@@ -4902,7 +4882,7 @@ simulated function ClientDodged()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView && class'BallisticReplicationInfo'.static.IsArena())
+	if(bScopeView && !class'BallisticReplicationInfo'.static.IsRealism())
 		NextCheckScopeTime = Level.TimeSeconds + 0.75;
 
 	AimComponent.OnPlayerJumped();
@@ -4913,7 +4893,7 @@ simulated function ClientJumped()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView && class'BallisticReplicationInfo'.static.IsArena())
+	if(bScopeView && !class'BallisticReplicationInfo'.static.IsRealism())
 		NextCheckScopeTime = Level.TimeSeconds + 1;
 
 	AimComponent.OnPlayerJumped();

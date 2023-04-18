@@ -6,27 +6,28 @@
 //
 // by SK and Aza
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class G51Mine_Sensor extends BallisticProjectile;
 
-var() Sound			DetonateSound;
-var() Sound			PingSound;
-var() Sound			PingDirectSound;
-var	int					SensorRadius;
+var() Sound						DetonateSound;
+var() Sound						PingSound;
+var() Sound						PingDirectSound;
+var() float						PingSoundRadius;
+var	int							SensorRadius;
 
 var() class<DamageType>			MyShotDamageType;	// Damagetype to use when you get pulsed
 var() class<DamageType>			MyPulseDamageType;	// Damagetype to use when detonated by damage
-var() class<BCImpactManager>		ImpactManager2;		// Impact manager to spawn on final hit
+var() class<BCImpactManager>	ImpactManager2;		// Impact manager to spawn on final hit
 
-var	int						Health;			// dont hurt the poor sonar
-var	Emitter				TeamLight;		// A flare emitter to show the glowing core
-var	byte					PulseNum;		// 
-var byte					MaxPulseNum;
-var	bool					bPulse, bOldPulse;
-var	float					EndDamageRadius;
-var	byte					TeamLightColor;
-var	float					ActivationDelay;
+var	int							Health;			// dont hurt the poor sonar
+var	Emitter						TeamLight;		// A flare emitter to show the glowing core
+var	byte						PulseNum;		// 
+var byte						MaxPulseNum;
+var	bool						bPulse, bOldPulse;
+var	float						EndDamageRadius;
+var	byte						TeamLightColor;
+var	float						ActivationDelay;
 
 replication
 {
@@ -60,6 +61,7 @@ simulated function PostBeginPlay()
 simulated event PostNetReceive()
 {
 	Super.PostNetReceive();
+
 	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
 	{
 		if (TeamLightColor == 0)
@@ -67,6 +69,7 @@ simulated event PostNetReceive()
 		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
 		TeamLight.SetBase(self);
 	}	
+
 	if (bPulse != bOldPulse)
 	{
 		bOldPulse = bPulse;
@@ -129,7 +132,6 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 	}
 }
 
-
 // Do radius damage;
 function BlowUp(vector HitLocation)
 {
@@ -150,7 +152,7 @@ simulated function EmitPulse(vector HitLocation, vector HitNormal)
 	if (ShakeRadius > 0 || MotionBlurRadius > 0)
 		ShakeView(HitLocation);
 
-    	if (ImpactManager2 != None && level.NetMode != NM_DedicatedServer)
+    if (ImpactManager2 != None && level.NetMode != NM_DedicatedServer)
 	{
 		if (bCheckHitSurface)
 			CheckSurface(HitLocation, HitNormal, Surf);
@@ -159,28 +161,26 @@ simulated function EmitPulse(vector HitLocation, vector HitNormal)
 		else
 			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator, TeamLightColor);
 	}
-	Ping(HitLocation);
 
+	Ping(HitLocation);
 }
 
 // Search for players
 function Ping(vector HitLocation)
 {
-	local Actor A;
-	
-	if (Role < ROLE_Authority)
-		return;
-	foreach CollidingActors( class 'Actor', A, SensorRadius, Location )
+	local xPawn P;
+
+	foreach CollidingActors( class'xPawn', P, SensorRadius, Location )
 	{
-		if (A.bCanBeDamaged && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
+		if (P.Controller != None && P.bCanBeDamaged && P != Instigator && (!Level.Game.bTeamGame || !Instigator.Controller.SameTeamAs(P.Controller)))
 		{
-			if (FastTrace(A.Location, Location))
+			if (FastTrace(P.Location, Location))
 			{
-				A.PlaySound(PingDirectSound,,2.0,,768,,);
+				P.PlaySound(PingDirectSound, , 2.0, , PingSoundRadius);
 			}
 			else 
 			{
-				A.PlaySound(PingSound,,2.0,,768,,);
+				P.PlaySound(PingSound, , 2.0, , PingSoundRadius);	// ditto
 			}
 		}
 	}
@@ -201,6 +201,7 @@ defaultproperties
      DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep7'
 	 PingDirectSound=Sound'GeneralAmbience.beep6'
+	 PingSoundRadius=72 // PlaySound mechanics - see UDN
      SensorRadius=768
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'

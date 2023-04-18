@@ -74,8 +74,8 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Smoke
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
-		Speed=7000.000000
-		MaxSpeed=7000.000000
+        Speed=4200.000000
+		MaxSpeed=4200.000000
 		Damage=80
         ImpactDamage=80
 		DamageRadius=256.000000
@@ -98,7 +98,8 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Ice
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Ice' //DT's need updating to point to MARS-2
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
-		Speed=3500.000000
+        Speed=4200.000000
+		MaxSpeed=4200.000000
 		Damage=80
         ImpactDamage=80
 		DamageRadius=512.000000

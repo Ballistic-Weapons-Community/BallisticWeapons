@@ -36,13 +36,15 @@ var int             RoundTime;              // number of seconds remaining befor
 var bool            bRoundOT;               // true if we're in round-OT
 var int             RoundOTTime;            // how long we've been in round-OT
 var config int      OTDamage;               // the amount of damage players take in round-OT every...
-var config int      OTInterval;             // <OTInterval> seconds
+var config int      OTInterval;             // <OTInterval> seconds...
+var int				RoundPlayerCounts[2];	// based on these values versus the count of players alive
+var config int		MaxOTDamagePlayerDiff;	// max diff for scaling OT damage
 /* overtime related */
 
 /* camping related */
 var config float    CampThreshold;          // area a player must stay in to be considered camping
 var int             CampInterval;           // time between flagging the same player
-var int 		MaxWaterCampChecks;  //number of times anticamp checks will tolerate player being in fog dense zone
+var int 			MaxWaterCampChecks;  //number of times anticamp checks will tolerate player being in fog dense zone
 var config bool     bKickExcessiveCampers;  // kick players that camp 4 consecutive times
 /* camping related */
 
@@ -198,6 +200,7 @@ static function FillPlayInfo(PlayInfo PI)
     PI.AddSetting("3SPN", "MinsPerRound", "Minutes per Round", 0, 120, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTDamage", "Overtime Damage", 0, 121, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTInterval", "Overtime Damage Interval", 0, 122, "Text", "3;0:999");
+	PI.AddSetting("3SPN", "MaxOTDamagePlayerDiff", "Max Overtime Damage Player Diff", 0, 122, "Text", "3;0:999");
 
     PI.AddSetting("3SPN", "bPracticeRound", "Practice Round", 0, 309, "Check",,, True);
     PI.AddSetting("3SPN", "PracticeRoundLength", "Practice Round Duration", 0, 310, "Text", "3;0:999",, True);
@@ -231,20 +234,21 @@ static event string GetDescriptionText(string PropName)
 { 
     switch(PropName)
     {
-        case "StartingHealth":      return "Base health at round start.";
-        case "StartingArmor":       return "Base armor at round start.";
+        case "StartingHealth":      	return "Base health at round start.";
+        case "StartingArmor":       	return "Base armor at round start.";
 
-        case "MinsPerRound":        return "Round time-limit before overtime.";
-        case "OTDamage":            return "The amount of damage all players while in OT.";
-        case "OTInterval":          return "The interval at which OT damage is given.";
-        	
-        case "bPracticeRound":      return "Whether to have a practice round at the beginning.";
+        case "MinsPerRound":        	return "Round time-limit before overtime.";
+        case "OTDamage":            	return "The amount of damage all players while in OT.";
+        case "OTInterval":          	return "The interval at which OT damage is given.";
+        case "MaxOTDamagePlayerDiff": 	return "Maximum player difference for scaling OT damage.";
+
+        case "bPracticeRound":      	return "Whether to have a practice round at the beginning.";
         case "PracticeRoundLength":    return "Practice run duration in seconds.";
             
-        case "MaxHealth":           return "The maximum amount of health and armor a player can have.";
+        case "MaxHealth":           	return "The maximum amount of health and armor a player can have.";
 
-        case "CampThreshold":       return "The area a player must stay in to be considered camping.";
-        case "bKickExcessiveCampers": return "Kick players that camp 4 consecutive times.";
+        case "CampThreshold":       	return "The area a player must stay in to be considered camping.";
+        case "bKickExcessiveCampers": 	return "Kick players that camp 4 consecutive times.";
             
         case "bDisableSpeed":       return "Disable the Speed adrenaline combo.";
         case "bDisableInvis":       return "Disable the Invisibility adrenaline combo.";
@@ -298,6 +302,10 @@ function ParseOptions(string Options)
     InOpt = ParseOption(Options, "OTInterval");
     if(InOpt != "")
         OTInterval = int(InOpt);
+
+	InOpt = ParseOption(Options, "MaxOTDamagePlayerDiff");
+    if(InOpt != "")
+        MaxOTDamagePlayerDiff = int(InOpt);
 
     InOpt = ParseOption(Options, "CampThreshold");
     if(InOpt != "")
@@ -1409,12 +1417,63 @@ function int CheckOTDamage(Controller c)
 	return OTDamage;
 }
 
+function DoOvertimeDamage()
+{		
+	local int RealOTDamage;
+	local Controller C;
+
+	local int AliveCount[2];
+	local int DeadCount[2];
+	local int DamagedTeam;
+
+    for(C = Level.ControllerList; C != None; C = C.NextController)
+    {
+        if(C.Pawn != None && C.PlayerReplicationInfo != None && C.bIsPlayer && !C.PlayerReplicationInfo.bOutOfLives && !C.PlayerReplicationInfo.bOnlySpectator)
+			AliveCount[C.GetTeamNum()]++;
+    }
+
+	DeadCount[0] = RoundPlayerCounts[0] - AliveCount[0];
+	DeadCount[1] = RoundPlayerCounts[1] - AliveCount[1];
+
+	if (DeadCount[0] == DeadCount[1])
+		return;
+
+	if (DeadCount[1] > DeadCount[0])
+		DamagedTeam = 1;
+	else
+		DamagedTeam = 0;
+
+	for(c = Level.ControllerList; c != None; c = c.NextController)
+	{
+		if(c.Pawn == None || c.PlayerReplicationInfo == None || c.GetTeamNum() != DamagedTeam)
+			continue;
+			
+		RealOTDamage = CheckOTDamage(C) * Min(MaxOTDamagePlayerDiff, Abs(DeadCount[1] - DeadCount[0]));
+		
+		if (RealOTDamage == 0)
+			continue;
+
+		if(c.Pawn.Health <= RealOTDamage && c.Pawn.ShieldStrength <= 0)
+			c.Pawn.TakeDamage(1000, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
+		else
+		{                 
+			/*   what the fuck, seriously?       
+			if(int(c.Pawn.ShieldStrength) > 0)
+				c.Pawn.ShieldStrength = int(c.Pawn.ShieldStrength) - Min(c.Pawn.ShieldStrength, RealOTDamage);
+			else
+				c.Pawn.Health -= RealOTDamage;
+			*/
+
+			c.Pawn.TakeDamage(RealOTDamage, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
+		}
+	}
+}
+
 state MatchInProgress
 {
     function Timer()
     {
         local Controller c;
-        local int RealOTDamage;
 
         if(TimeOutCount > 0)
         {
@@ -1465,30 +1524,8 @@ state MatchInProgress
         {
             RoundOTTime++;
 
-            if(RoundOTTime % OTInterval == 0)
-            {
-                for(c = Level.ControllerList; c != None; c = c.NextController)
-                {
-                    if(c.Pawn == None)
-                        continue;
-                        
-                    RealOTDamage = CheckOTDamage(C);
-                    
-                    if (RealOTDamage == 0)
-                    	continue;
-
-                    if(c.Pawn.Health <= RealOTDamage && c.Pawn.ShieldStrength <= 0)
-                        c.Pawn.TakeDamage(1000, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
-                    else
-                    {                           
-                        if(int(c.Pawn.ShieldStrength) > 0)
-                            c.Pawn.ShieldStrength = int(c.Pawn.ShieldStrength) - Min(c.Pawn.ShieldStrength, RealOTDamage);
-                        else
-                            c.Pawn.Health -= RealOTDamage;
-                        c.Pawn.TakeDamage(0.01, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
-                    }
-                }
-            }
+			if(RoundOTTime % OTInterval == 0)
+				DoOvertimeDamage();
         }
         else if(LockTime > 0)
         {
@@ -1764,7 +1801,7 @@ function CheckForCampers()
 			HistoryBox.Max.Y = p.LocationHistory[0].Y;
 			HistoryBox.Max.Z = p.LocationHistory[0].Z;
 
-		for(i = 1; i < 10; i++)
+			for(i = 1; i < 10; i++)
 			{
 				HistoryBox.Min.X = FMin(HistoryBox.Min.X, p.LocationHistory[i].X);
 				HistoryBox.Min.Y = FMin(HistoryBox.Min.Y, p.LocationHistory[i].Y);
@@ -2095,6 +2132,7 @@ function bool CheckMaxLives(PlayerReplicationInfo Scorer)
 		Living = Scorer;
     
     bNoneLeft = true;
+	
     for(C = Level.ControllerList; C != None; C = C.NextController)
     {
         if((C.PlayerReplicationInfo != None) && C.bIsPlayer
@@ -2145,6 +2183,9 @@ function OnNewRoundStart()
     local Controller C;
     local ConflictLoadoutLRI CLRI;
 
+	RoundPlayerCounts[0] = 0;
+	RoundPlayerCounts[1] = 0;
+
     for ( C = Level.ControllerList; C != None; C = C.NextController )
 	{
         if ( C.PlayerReplicationInfo == None )
@@ -2154,6 +2195,11 @@ function OnNewRoundStart()
     
         if (CLRI != None)
             CLRI.SetDelayedMode();
+
+		if (C.PlayerReplicationInfo.bOnlySpectator)
+			continue;
+
+		RoundPlayerCounts[C.GetTeamNum()]++;
 	}
 }
 
@@ -2628,8 +2674,9 @@ defaultproperties
      bForceRUP=True
      ForceSeconds=60
      MinsPerRound=2
-     OTDamage=5
+     OTDamage=2
      OTInterval=3
+	 MaxOTDamagePlayerDiff=4
      CampThreshold=400.000000
      CampInterval=5
      MaxWaterCampChecks=2

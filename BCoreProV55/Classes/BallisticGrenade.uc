@@ -79,6 +79,16 @@ simulated function ApplyParams(ProjectileEffectParams params)
 
     ImpactDamage = gren_params.ImpactDamage;
     default.ImpactDamage = gren_params.ImpactDamage;
+	
+	// ArmingDelay = gren_params.ArmingDelay;
+	// default.ArmingDelay = gren_params.ArmingDelay;
+	// DetonateDelay = gren_params.DetonateDelay;
+	// default.DetonateDelay = gren_params.DetonateDelay;
+
+	/*
+	if (DetonateOn == DT_Timer)
+        SetTimer(DetonateDelay, false);
+	*/
 }
 
 simulated event Timer()

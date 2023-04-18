@@ -48,8 +48,8 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.M50Grenade'
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
-		Speed=4200.000000 // 80 m/s
-		MaxSpeed=4200.000000
+		Speed=2700.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
+		MaxSpeed=2700.000000
 		Damage=150
         ImpactDamage=200
 		DamageRadius=1050.000000
