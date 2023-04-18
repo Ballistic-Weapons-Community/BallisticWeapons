@@ -176,7 +176,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Chaff'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Sensor
