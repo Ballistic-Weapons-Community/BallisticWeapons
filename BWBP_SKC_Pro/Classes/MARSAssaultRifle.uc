@@ -5,7 +5,8 @@ class MARSAssaultRifle extends BallisticWeapon;
 
 //Layouts
 var()   bool		bHasSuppressor;				// Can be silenced
-var()   bool		bHasThermalSight;			// Can follow heat signatures
+var()   bool		bHasNightvisionSight;		// Can use NV
+var()   bool		bHasThermalSight;			// Can follow heat signatures, requires NV
 var()   bool		bHasTrackingSight;			// Can target lock
 
 //Grenade
@@ -72,9 +73,13 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasSuppressor=True;
 	}
-	if (InStr(WeaponParams.LayoutTags, "thermal") != -1)
+	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
 	{
 		bHasThermalSight=True;
+	}
+	if (InStr(WeaponParams.LayoutTags, "NV") != -1)
+	{
+		bHasNightvisionSight=True;
 	}
 	if (InStr(WeaponParams.LayoutTags, "tracker") != -1)
 	{
@@ -366,7 +371,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	
 	if (ZoomType != ZT_Irons )
 	{
-		if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
+		if (!bThermal && !bMeatVision && bHasThermalSight) //Nothing on, turn on IRNV!
 		{
 			bThermal = !bThermal;
 			if (bThermal)
@@ -378,15 +383,17 @@ exec simulated function WeaponSpecial(optional byte i)
 				PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
 			return;
 		}
-		if (bThermal && !bMeatVision) //IRNV on! turn it off and turn on targeting!
+		if ((bThermal || !bHasThermalSight) && !bMeatVision) //IRNV on! turn it off and turn on targeting!
 		{
-			bThermal = !bThermal;
-			if (bThermal)
-					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-			AdjustThermalView(bThermal);
-
+			if (bHasThermalSight)
+			{
+				bThermal = !bThermal;
+				if (bThermal)
+						class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+				else
+						class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+				AdjustThermalView(bThermal);
+			}
 
 			if (!bScopeView)
 				PlayerController(InstigatorController).ClientMessage("Activated infrared targeting scope.");

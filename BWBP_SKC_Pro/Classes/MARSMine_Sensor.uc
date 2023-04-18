@@ -219,8 +219,8 @@ defaultproperties
      StartDelay=0.300000
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_MARSMineDet'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=1000.000000
-     MotionBlurRadius=384.000000
+     ShakeRadius=16.000000
+     MotionBlurRadius=16.000000
      MotionBlurFactor=1.500000
      MotionBlurTime=3.000000
      Damage=0.000000
