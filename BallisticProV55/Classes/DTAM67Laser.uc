@@ -10,9 +10,10 @@ class DTAM67Laser extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was cut down by %k's AM67 laser."
-     DeathStrings(1)="%k burned through %o with %kh AM67."
-     DeathStrings(2)="%o discovered %k's AM67 laser."
+     DeathStrings(0)="%o discovered that %k's AM67 didn't have a flash bulb, but a laser instead."
+     DeathStrings(1)="%k burned straight through %o's ribcage to get to %vh heart."
+     DeathStrings(2)="%o thought it was a laser-sight, not %k's pistol laser."
+     DeathStrings(3)-"%k made %o dance like a bear by pointing %kh AM67 laser at %vh feet."
      BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
      bIgniteFires=True
      WeaponClass=Class'BallisticProV55.AM67Pistol'

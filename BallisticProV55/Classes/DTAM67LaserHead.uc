@@ -19,9 +19,10 @@ defaultproperties
 {
      FlashF=0.300000
      FlashV=(X=2000.000000,Y=700.000000,Z=700.000000)
-     DeathStrings(0)="%o's head was illuminated off by %k's AM67 beam."
-     DeathStrings(1)="%k burned %o's eye out with %kh laser."
-     DeathStrings(2)="%k carved a smile on %o's face with %kh AM67 laser."
+     DeathStrings(0)="%o looked at %k's red beam of death emanating from the AM67."
+     DeathStrings(1)="%k scorched through %o's retinas with an AM67 laser, bye-bye medical license."
+     DeathStrings(2)="%o's brains are now foamy and burnt thanks to %k's AM67."
+     DeathStrings(3)="%k used laser surgery to open up %o's third eye."
      BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
      bIgniteFires=True
      MinMotionBlurDamage=5.000000
