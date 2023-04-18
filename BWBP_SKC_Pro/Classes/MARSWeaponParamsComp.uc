@@ -63,8 +63,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_Smoke
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
-		Speed=7000.000000
-		MaxSpeed=7000.000000
+		Speed=4200.000000
+		MaxSpeed=4200.000000
 		Damage=65
 		DamageRadius=512.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -86,7 +86,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_Ice
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Ice'
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
-		Speed=3500.000000
+		Speed=4200.000000
+		MaxSpeed=4200.000000
 		Damage=50
 		DamageRadius=768.000000
 		MomentumTransfer=0.000000

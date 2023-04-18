@@ -66,9 +66,9 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3750.000000
 		MaxSpeed=4500.000000
-		Damage=130
-        ImpactDamage=260
-		DamageRadius=1050.000000
+		Damage=120
+        ImpactDamage=150
+		DamageRadius=1024.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51AltFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
 		SplashDamage=True
@@ -149,6 +149,12 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="HoloSightLower",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
+
+		// Need it auto in Pro
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=False)
+		InitialWeaponMode=2
 		
 		//Function
 		ReloadAnimRate=1.25
@@ -174,6 +180,12 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=1f)
 		SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
+
+		// Need it auto in Pro
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=False)
+		InitialWeaponMode=2
 		
 		//Function
 		ReloadAnimRate=1.25
@@ -199,6 +211,12 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
+
+		// Need it auto in Pro
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=False)
+		InitialWeaponMode=2
 		
 		//Function
 		ReloadAnimRate=1.25

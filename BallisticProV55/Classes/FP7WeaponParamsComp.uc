@@ -1,10 +1,5 @@
 class FP7WeaponParamsComp extends BallisticWeaponParams;
 
-static simulated function OnInitialize(BallisticWeapon BW)
-{
-	FP7Grenade(BW).bCookable=False;
-}
-
 defaultproperties
 {    
     //=================================================================

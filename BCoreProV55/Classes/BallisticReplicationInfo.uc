@@ -69,6 +69,7 @@ var float					PlayerGroundSpeed;
 var float					PlayerAirSpeed;
 var float					PlayerAccelRate;
 var float					PlayerJumpZ;
+var float					PlayerDodgeSpeedFactor;
 var float					PlayerDodgeZ;
 //=============================================================================
 // SPRINT
@@ -142,6 +143,7 @@ var struct MoveRep
 	var float					PlayerAirSpeed;
 	var float					PlayerAccelRate;
 	var float					PlayerJumpZ;
+	var float					PlayerDodgeSpeedFactor;
 	var float					PlayerDodgeZ;
 } MRep;
 
@@ -201,13 +203,14 @@ final function BindToReplication()
 	MRep.PlayerAirSpeed                	= PlayerAirSpeed;
 	MRep.PlayerAccelRate               	= PlayerAccelRate;
     MRep.PlayerJumpZ                   	= PlayerJumpZ;
+	MRep.PlayerDodgeSpeedFactor         = PlayerDodgeSpeedFactor;
 	MRep.PlayerDodgeZ                  	= PlayerDodgeZ;
 
 	SRep.bEnableSprint					= true;
 	SRep.StaminaChargeRate				= StaminaChargeRate;
 	SRep.StaminaDrainRate				= StaminaDrainRate;
     SRep.SprintSpeedFactor				= SprintSpeedFactor;
-	SRep.JumpDrain				= JumpDrain;
+	SRep.JumpDrain						= JumpDrain;
 }
 
 // Set all defaults to match server vars here
@@ -262,6 +265,7 @@ simulated final function BindFromReplication()
 	PlayerAirSpeed                	= MRep.PlayerAirSpeed;
 	PlayerAccelRate               	= MRep.PlayerAccelRate;
     PlayerJumpZ                   	= MRep.PlayerJumpZ;
+	PlayerDodgeSpeedFactor        	= MRep.PlayerDodgeSpeedFactor;
 	PlayerDodgeZ                  	= MRep.PlayerDodgeZ;
 
 	bEnableSprint					= true;
@@ -308,6 +312,7 @@ simulated final function BindDefaults()
 	class.default.PlayerAirSpeed                = PlayerAirSpeed;
 	class.default.PlayerAccelRate               = PlayerAccelRate;
     class.default.PlayerJumpZ                   = PlayerJumpZ;
+	class.default.PlayerDodgeSpeedFactor        = PlayerDodgeSpeedFactor;
 	class.default.PlayerDodgeZ                  = PlayerDodgeZ;
 
 	class.default.bEnableSprint					= true;
@@ -421,5 +426,6 @@ defaultproperties
 	PlayerAirSpeed=260
 	PlayerAccelRate=2048
     PlayerJumpZ=294
+	PlayerDodgeSpeedFactor=1.5
 	PlayerDodgeZ=210
 }

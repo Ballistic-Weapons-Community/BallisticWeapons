@@ -49,6 +49,7 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.M46Grenade'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         Speed=2700.000000
+		MaxSpeed=2700.000000
         Damage=90.000000
 		DamageRadius=384.000000
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

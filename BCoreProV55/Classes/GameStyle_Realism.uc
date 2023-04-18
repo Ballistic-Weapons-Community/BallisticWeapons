@@ -42,6 +42,7 @@ defaultproperties
 	PlayerAirSpeed=200
 	PlayerAccelRate=1536
 	PlayerJumpZ=294
+	PlayerDodgeSpeedFactor=1.25
 	PlayerDodgeZ=170
 
 	PlayerWalkSpeedFactor=0.5f

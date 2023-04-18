@@ -338,7 +338,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)
      PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=2.200000)
      WeaponModes(0)=(ModeName="Semi-Auto")
-     WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000)
+     WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
      WeaponModes(2)=(bUnavailable=True)
      WeaponModes(3)=(ModeName="Automatic",bUnavailable=True,ModeID="WM_FullAuto")
      CurrentWeaponMode=1
@@ -371,7 +371,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
      PickupClass=Class'BWBP_SKC_Pro.G51Pickup'
-	 SightAnimScale=0.25
+	 SightAnimScale=0.3
      AttachmentClass=Class'BWBP_SKC_Pro.G51Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.G51.SmallIcon_G51'
      IconCoords=(X2=127,Y2=31)

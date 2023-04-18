@@ -100,9 +100,9 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalPowerEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
         SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
-        Speed=3000.000000
+        Speed=3500.000000
         AccelSpeed=8000.000000
-        MaxSpeed=7000.000000
+        MaxSpeed=4500.000000
         Damage=105.000000
         DamageRadius=100.000000
         MomentumTransfer=2000.000000
@@ -129,9 +129,9 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalPowerEffectParams_Rapid
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterBal'
         SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
-        Speed=3000.000000
+        Speed=3500.000000
         AccelSpeed=8000.000000
-        MaxSpeed=7000.000000
+        MaxSpeed=4500.000000
         Damage=105.000000
         DamageRadius=100.000000
         MomentumTransfer=2000.000000
