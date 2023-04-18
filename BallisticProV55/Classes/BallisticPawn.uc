@@ -276,7 +276,7 @@ simulated function ApplyMovementOverrides()
 
 	if (class'BallisticReplicationInfo'.static.IsTactical())
 	{
-		DodgeInterval = 1;
+		DodgeInterval = 1.25;
 		bCanWallDodge = false;
 	}
 
@@ -2541,6 +2541,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 {
     local float VelocityZ;
     local name Anim;
+	local float DodgeGroundSpeed;
 
     if ( Physics == PHYS_Falling )
     {
@@ -2564,17 +2565,26 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 
     VelocityZ = Velocity.Z;
 
-    Velocity = DodgeSpeedFactor * GroundSpeed * Dir + (Velocity Dot Cross) * Cross;
+    DodgeGroundSpeed = GroundSpeed;
+
+    // prevent boost dodging with sprint
+    if ((class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism()) && class'BallisticReplicationInfo'.default.PlayerGroundSpeed < GroundSpeed)
+    {
+        DodgeGroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+    }
+
+    Velocity = DodgeSpeedFactor * DodgeGroundSpeed * Dir + (Velocity Dot Cross) * Cross;
 
 	// clamp dodge speed in realism and tactical
 	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism())
 	{
-		if (VSize(Velocity) > GroundSpeed * DodgeSpeedFactor)
-			Velocity = Normal(Velocity) * GroundSpeed * DodgeSpeedFactor;
+		if (VSize(Velocity) > DodgeGroundSpeed * DodgeSpeedFactor)
+			Velocity = Normal(Velocity) * DodgeGroundSpeed * DodgeSpeedFactor;
 	}
 
 	if ( !bCanDodgeDoubleJump )
 		MultiJumpRemaining = 0;
+
 	if ( bCanBoostDodge || (Velocity.Z < -100) )
 		Velocity.Z = VelocityZ + DodgeSpeedZ;
 	else
