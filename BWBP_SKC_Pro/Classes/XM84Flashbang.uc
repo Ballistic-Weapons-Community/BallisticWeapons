@@ -235,7 +235,7 @@ defaultproperties
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-	 CurrentWeaponMode=1
+	 CurrentWeaponMode=0
 	 ParamsClasses(0)=Class'XM84WeaponParamsComp'
 	 ParamsClasses(1)=Class'XM84WeaponParamsClassic'
 	 ParamsClasses(2)=Class'XM84WeaponParamsRealistic'

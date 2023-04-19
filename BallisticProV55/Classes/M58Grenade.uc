@@ -33,7 +33,7 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-     CurrentWeaponMode=1
+     CurrentWeaponMode=0
      FireModeClass(0)=Class'BallisticProV55.M58PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M58SecondaryFire'
 	 

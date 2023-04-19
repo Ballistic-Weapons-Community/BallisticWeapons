@@ -54,7 +54,7 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),Color2=(A=212),StartSize1=98,StartSize2=101)
      NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
 	 
-     CurrentWeaponMode=1
+     CurrentWeaponMode=0
      ParamsClasses(0)=Class'FP7WeaponParamsComp'
      ParamsClasses(1)=Class'FP7WeaponParamsClassic'
      ParamsClasses(2)=Class'FP7WeaponParamsRealistic'

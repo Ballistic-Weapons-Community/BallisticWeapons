@@ -431,9 +431,8 @@ simulated function Notify_GrenadeClipOff ()
 simulated function float ChargeBar()
 {
 	if (FireMode[1].bIsFiring)
-		return FClamp(FireMode[1].HoldTime - 0.5,  0, 2) / 2;
-	else
-		return FClamp(FireMode[0].HoldTime - 0.5,  0, 2) / 2;
+		return BallisticHandGrenadeFire(FireMode[1]).CalculateThrowPower();
+	return BallisticHandGrenadeFire(FireMode[0]).CalculateThrowPower();
 }
 
 function DropFrom(vector StartLocation)
@@ -519,7 +518,7 @@ defaultproperties
 	DropThreshold=75
 	MagAmmo=1
 	bNoMag=True
-	WeaponModes(0)=(ModeName="Auto Throw",ModeID="WM_None",Value=0.000000)
+	WeaponModes(0)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.000000)
 	WeaponModes(1)=(ModeName="Long Throw",ModeID="WM_None",Value=1.000000)
 	WeaponModes(2)=(ModeName="Short Throw",ModeID="WM_None",Value=2.000000)
 	CurrentWeaponMode=0

@@ -58,7 +58,7 @@ simulated event PostBeginPlay()
         RandSpin(RandomSpin);
 }
 
-simulated function InitProjectile ()
+simulated function InitProjectile()
 {
     Super.InitProjectile();
 

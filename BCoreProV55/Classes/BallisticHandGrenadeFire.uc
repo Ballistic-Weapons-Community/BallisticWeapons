@@ -56,37 +56,57 @@ simulated event ModeDoFire()
 		BallisticHandGrenade(Weapon).ClipReleaseTime=-1.0;
 }
 
+function float CalculateThrowPower()
+{
+	if (BW == None)
+		return 1f;
+
+	if (BW.WeaponModes[BW.CurrentWeaponMode].Value > 0)
+		return 1f / BW.WeaponModes[BW.CurrentWeaponMode].Value;
+
+	return 0.2 + FClamp(HoldTime - 0.2, 0, 1) / 0.8;
+}
+
+function float CalculateThrowSpeed(float ProjSpeed)
+{
+	local vector EnemyDir;
+
+	if (PlayerController(Instigator.Controller) != None)
+		return ProjSpeed * CalculateThrowPower();
+
+	if (Instigator.Controller.Enemy != None)
+	{
+		EnemyDir = Instigator.Controller.Enemy.Location - Instigator.Location;
+		return FMin( ProjSpeed, (1+Normal(EnemyDir).Z) * (VSize(EnemyDir)/1.5) + VSize(Instigator.Controller.Enemy.Velocity) * (Normal(Instigator.Controller.Enemy.Velocity) Dot Normal(EnemyDir)) );
+	}
+	
+	return ProjSpeed;
+}
+
+function float CalculateDetonateDelay(float DetonateDelay)
+{
+	if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
+		return DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
+		
+	return DetonateDelay;
+}
+
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	local float Speed, DetonateDelay;
-	local vector EnemyDir;
+
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
 
-	if (BallisticHandGrenadeProjectile(Proj) != None)
-	{
-		if (AIController(Instigator.Controller) == None)
-		{
-			if (BW != None && BW.WeaponModes[BW.CurrentWeaponMode].Value == 0)
-				Speed = Proj.Speed * FClamp(HoldTime-0.5, 0, 2) / 2;
-			else if (BW != None)
-				Speed = Proj.Speed / BW.WeaponModes[BW.CurrentWeaponMode].Value;
-		}
-		else if (Instigator.Controller.Enemy != None)
-		{
-			EnemyDir = Instigator.Controller.Enemy.Location - Instigator.Location;
-			Speed = FMin( Proj.Speed, (1+Normal(EnemyDir).Z) * (VSize(EnemyDir)/1.5) + VSize(Instigator.Controller.Enemy.Velocity) * (Normal(Instigator.Controller.Enemy.Velocity) Dot Normal(EnemyDir)) );
-		}
-		else
-			Speed = Proj.Speed;
-		if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
-			DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
-		else
-			DetonateDelay = BallisticHandGrenadeProjectile(Proj).DetonateDelay;
-			
-		BallisticHandGrenadeProjectile(Proj).SetThrowPowerAndDelay(Speed, DetonateDelay);
-	}
+	if (BallisticHandGrenadeProjectile(Proj) == None)
+		return;
+
+	BallisticHandGrenadeProjectile(Proj).SetSpeedAndDelay
+	(
+		CalculateThrowSpeed(Proj.Speed), 
+		CalculateDetonateDelay(BallisticHandGrenadeProjectile(Proj).DetonateDelay)
+	);
 }
 
 defaultproperties

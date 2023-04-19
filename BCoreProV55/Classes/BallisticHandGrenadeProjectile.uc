@@ -9,42 +9,45 @@ class BallisticHandGrenadeProjectile extends BallisticGrenade
 	abstract;
 
 var() int		FireModeNum;		// Da fire mode that spawned dis grenade
+
+var float   	ClientSpeed;
 var float   	ClientDetonateDelay;
-var float   	ThrowPower;
 
 replication
 {
-	reliable if (Role == ROLE_Authority)
-		ThrowPower, ClientDetonateDelay;
+	reliable if (Role == ROLE_Authority && bNetInitial)
+		ClientSpeed, ClientDetonateDelay;
 }
 
 //==================================================================
-// PostBeginPlay
+// ApplyParams
 //
-// Hardcode ThrowPower temporarily
+// Override values set by params with client replicated values
 //==================================================================
-simulated event PostBeginPlay()
+simulated function ApplyParams(ProjectileEffectParams params)
 {
-    ThrowPower = 1f; // FIXME: Hardcode. Don't have time
+    Super.ApplyParams(params);
 
-	Super.PostBeginPlay();
+	if (Role < ROLE_Authority)
+	{
+		Speed = ClientSpeed;
+		DetonateDelay = ClientDetonateDelay;
+	}
 }
 
 //==================================================================
 // SetInitialSpeed
 //
-// Speed depends on ThrowPower
+// Always set speed
 //==================================================================
 simulated function SetInitialSpeed(optional bool force_speed) // ignored here, we always set the speed
 {
     local Rotator R;
 
-    //Log("Hand grenade initial speed: "$Speed$" * "$ThrowPower);
-
     // override physics from start delay...
     SetPhysics(default.Physics);
 
-    Velocity = Speed * ThrowPower * Vector(Rotation);
+    Velocity = Vector(Rotation) * Speed;
 
 	R = Rotation;
 	R.Roll = -8192;
@@ -54,30 +57,18 @@ simulated function SetInitialSpeed(optional bool force_speed) // ignored here, w
 }
 
 //==================================================================
-// PostNetBeginPlay
-//
-// Handle interaction of detonation delay and start delay
-//==================================================================
-simulated event PostNetBeginPlay()
-{
-    if (Level.NetMode == NM_Client)
-    {
-        DetonateDelay = ClientDetonateDelay;
-    }
-
-	super.PostNetBeginPlay();
-}
-
-//==================================================================
-// SetThrowPowerAndDelay
+// SetSpeedAndDelay
 //
 // Server side only.
 //
 // Set throw power and detonation delay from firemode, which is 
 // aware of both
 //==================================================================
-function SetThrowPowerAndDelay(float NewThrowPower, float NewDelay)
+function SetSpeedAndDelay(float NewSpeed, float NewDelay)
 {
+	Speed = NewSpeed;
+	ClientSpeed = NewSpeed;
+
 	NewDelay = FMax(NewDelay, 0.1);
 
     if (NewDelay < StartDelay)
@@ -88,11 +79,14 @@ function SetThrowPowerAndDelay(float NewThrowPower, float NewDelay)
     else 
         DetonateDelay = NewDelay;
 
-	// set after PostNetBeginPlay
+	 ClientDetonateDelay = DetonateDelay - StartDelay;
+
+	// this function is called after PostNetBeginPlay
+	// so these need to be redone
+	SetInitialSpeed();
+
 	if (DetonateOn == DT_Timer)
         SetTimer(DetonateDelay, false);
-
-    ClientDetonateDelay = DetonateDelay - StartDelay;
 }
 
 //==================================================================
@@ -101,7 +95,7 @@ function SetThrowPowerAndDelay(float NewThrowPower, float NewDelay)
 // Either set projectile as visible, when start delay expires,
 // or cause explosion
 //==================================================================
-simulated event Timer()
+simulated function Timer()
 {
 	if (StartDelay > 0)
 	{
