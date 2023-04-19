@@ -20,20 +20,51 @@ var() class<DamageType>			MyShotDamageType;	// Damagetype to use when detonated 
 var() class<BCImpactManager>	ImpactManager2;		// Impact manager to spawn on final hit
 
 var   int						Health;			// Distance from his glorious holiness, the source. Wait, thats not what this is...
-var   LAWSparkEmitter			TeamLight;		// A flare emitter to show the glowing core
+var   Emitter					TeamLight;		// A flare emitter to show the glowing core
 var   int						PulseNum;
 var bool						bPulse, bOldPulse;
 var bool						bShot;
+var	byte						TeamLightColor;
 
 replication
 {
 	reliable if(Role == ROLE_Authority)
-		bPulse;
+		bPulse, TeamLightColor;
+}
+
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	
+	if (Role == ROLE_Authority)
+	{
+		if (Level.Game.bTeamGame && Instigator != None && Instigator.GetTeamNum() == 0)
+		{
+			TeamLightColor = 0;
+			if (Level.NetMode != NM_DedicatedServer)
+				TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+		}
+		
+		else 
+		{
+			TeamLightColor = 1;
+			if (Level.NetMode != NM_DedicatedServer)
+				TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+		}
+		TeamLight.SetBase(self);	
+	}
 }
 
 simulated event PostNetReceive()
 {
 	Super.PostNetReceive();
+	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
+	{
+		if (TeamLightColor == 0)
+			TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+		TeamLight.SetBase(self);
+	}	
 	if (bPulse != bOldPulse)
 	{
 		bOldPulse = bPulse;
@@ -137,7 +168,7 @@ simulated function ShockwaveExplode(vector HitLocation, vector HitNormal)
 		if (Instigator == None)
 			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
 		else
-			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
+			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator, TeamLightColor);
 	}
 	Shockwave(HitLocation);
 

@@ -19,6 +19,10 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
+		
+	if (Flags == 1)
+		HitEffects[0]=Class'IE_Shockwave';
+	else HitEffects[0]=Class'IE_ShockwaveRed';
 
 	if (PhysicsVolume.bWaterVolume)
 	{

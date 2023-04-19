@@ -106,8 +106,8 @@ defaultproperties
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=160
-     LightSaturation=150
+     LightSaturation=200
      LightBrightness=80.000000
-     LightRadius=252.000000
+     LightRadius=48.000000
      LightPeriod=3
 }

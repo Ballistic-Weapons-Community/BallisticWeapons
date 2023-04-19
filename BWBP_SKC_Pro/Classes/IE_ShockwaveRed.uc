@@ -1,13 +1,12 @@
 //=============================================================================
-// IE_RadarWave.
-//
-// In this universe you can taste and feel the radar waves
+// IE_ShockwaveRed.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IE_RadarWave extends BallisticEmitter
+class IE_ShockwaveRed extends BallisticEmitter
 	placeable;
+
 
 simulated event PostBeginPlay()
 {
@@ -29,24 +28,22 @@ defaultproperties
          RespawnDeadParticles=False
          UseSizeScale=True
          UseRegularSizeScale=False
-		 UseColorScale=True
          UniformSize=True
          AutomaticInitialSpawning=False
-         ColorScale(0)=(Color=(B=100,G=0,R=0,A=0))
-         ColorScale(1)=(RelativeTime=1.000000,Color=(B=50,G=0,R=0,A=0))
-         ColorMultiplierRange=(X=(Min=0.300000,Max=0.300000),Y=(Min=0.200000,Max=0.200000),Z=(Min=0.600000,Max=0.600000))
-		 Opacity=0.6
+         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         ColorMultiplierRange=(X=(Min=0.400000,Max=0.400000),Y=(Min=0.150000,Max=0.150000),Z=(Min=0.150000,Max=0.150000))
          FadeOutStartTime=0.200000
          MaxParticles=1
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=5.000000)
-         StartSizeRange=(X=(Min=450.000000,Max=450.000000))
+         StartSizeRange=(X=(Min=750.000000,Max=750.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
          Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.900000,Max=0.900000)
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_RadarWave.SpriteEmitter1'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_ShockwaveRed.SpriteEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter4
          UseCollision=True
@@ -58,14 +55,14 @@ defaultproperties
          DampingFactorRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.500000,Max=0.500000),Z=(Min=0.700000,Max=0.700000))
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.800000),Y=(Min=0.700000,Max=0.800000),Z=(Min=0.100000,Max=0.200000))
+         ColorMultiplierRange=(X=(Min=0.800000),Y=(Min=0.400000,Max=0.400000),Z=(Min=0.100000,Max=0.200000))
          Opacity=0.630000
          FadeOutStartTime=0.050000
          MaxParticles=9
          AddLocationFromOtherEmitter=5
          AlphaRef=128
          SpinsPerSecondRange=(X=(Max=2.000000))
-         StartSizeRange=(X=(Min=30.000000,Max=40.000000),Y=(Min=30.000000,Max=40.000000),Z=(Min=30.000000,Max=40.000000))
+         StartSizeRange=(X=(Min=70.000000,Max=80.000000),Y=(Min=70.000000,Max=80.000000),Z=(Min=70.000000,Max=80.000000))
          InitialParticlesPerSecond=50000.000000
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
@@ -74,14 +71,44 @@ defaultproperties
          VelocityLossRange=(X=(Min=0.400000,Max=0.400000),Y=(Min=0.400000,Max=0.400000),Z=(Min=0.300000,Max=0.400000))
          AddVelocityFromOtherEmitter=5
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_RadarWave.SpriteEmitter4'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_ShockwaveRed.SpriteEmitter4'
+
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter5
+         FadeOut=True
+         FadeIn=True
+         RespawnDeadParticles=False
+         SpinParticles=True
+         UseSizeScale=True
+         UseRegularSizeScale=False
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         ColorMultiplierRange=(X=(Min=0.000000,Max=0.100000),Y=(Min=0.000000,Max=0.100000))
+         Opacity=0.320000
+         FadeOutStartTime=0.189000
+         FadeInEndTime=0.038500
+         MaxParticles=12
+         StartLocationRange=(X=(Min=-75.000000,Max=75.000000),Y=(Min=-75.000000,Max=75.000000))
+         SpinsPerSecondRange=(X=(Max=0.250000))
+         StartSpinRange=(X=(Max=1.000000))
+         SizeScale(0)=(RelativeSize=0.250000)
+         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
+         StartSizeRange=(X=(Min=150.000000,Max=300.000000),Y=(Min=150.000000,Max=300.000000),Z=(Min=150.000000,Max=300.000000))
+         InitialParticlesPerSecond=40.000000
+         DrawStyle=PTDS_Brighten
+         Texture=Texture'BWBP_SKC_Tex.BFG.BFGProj2'
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=0.650000,Max=0.650000)
+     End Object
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_ShockwaveRed.SpriteEmitter5'
 
      AutoDestroy=True
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=160
      LightSaturation=150
-     LightBrightness=20.000000
-     LightRadius=16.000000
+     LightBrightness=80.000000
+     LightRadius=252.000000
      LightPeriod=3
 }
