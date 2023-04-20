@@ -30,9 +30,9 @@ simulated function GenerateModeInfo()
 {
     Super.GenerateModeInfo();
 
-    ModeInfos[1].ImpactManager = class'BallisticProV55.IM_Bullet';
+    ModeInfos[1].ImpactManager = class'IM_Bullet';
     ModeInfos[1].TracerClass = class'TraceEmitter_KF8XCrossbow';
-    ModeInfos[1].WaterTracerClass = class'BallisticProV55.TraceEmitter_WaterBullet';
+    ModeInfos[1].WaterTracerClass = class'TraceEmitter_WaterBullet';
     ModeInfos[1].TracerChance = 1;
     ModeInfos[1].TracerMix = 0;
     ModeInfos[1].bTrackAnim = false;
@@ -142,15 +142,15 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'CX85AssaultWeapon'
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     MuzzleFlashClass=class'M50FlashEmitter'
+     AltMuzzleFlashClass=class'M50M900FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     BrassClass=class'Brass_Rifle'
      FlashMode=MU_Primary
      LightMode=MU_Primary
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.CX85_TPm'

@@ -441,7 +441,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LonghornPickup'
-	SightBobScale=0.3f
+	SightBobScale=0.15f
 	AttachmentClass=Class'BWBP_SKC_Pro.LonghornAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Longhorn.SmallIcon_LHorn'
 	IconCoords=(X2=127,Y2=31)

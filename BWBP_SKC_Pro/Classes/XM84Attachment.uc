@@ -10,8 +10,9 @@ class XM84Attachment extends BallisticGrenadeAttachment;
 
 defaultproperties
 {
-     ExplodeManager=Class'BWBP_SKC_Pro.IM_XM84Grenade'
-     GrenadeSmokeClass=Class'BWBP_SKC_Pro.XM84Trail'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.XM84_TPm'
-     DrawScale=0.500000
+	WeaponClass=class'XM84Flashbang'
+	ExplodeManager=Class'BWBP_SKC_Pro.IM_XM84Grenade'
+	GrenadeSmokeClass=Class'BWBP_SKC_Pro.XM84Trail'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM84_TPm'
+	DrawScale=0.500000
 }

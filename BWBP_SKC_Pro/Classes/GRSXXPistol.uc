@@ -784,7 +784,7 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.GRSXXPickup'
 
 	PlayerViewOffset=(X=20.00,Y=6.00,Z=-17.00)
-	SightOffset=(X=-60.00,Z=5.70)
+	SightOffset=(X=-20.00,Z=5.70)
 
 	AttachmentClass=Class'BWBP_SKC_Pro.GRSXXAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Glock_Gold.SmallIcon_GoldGlock'

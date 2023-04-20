@@ -143,7 +143,7 @@ simulated function Tick(float DT)
 		return;
 
 	if (Laser == None)
-		Laser = Spawn(class'BallisticProV55.LaserActor_Third',,,Location);
+		Laser = Spawn(class'LaserActor_Third',,,Location);
 
 	if (bLaserOn != bOldLaserOn)
 		bOldLaserOn = bLaserOn;
@@ -403,16 +403,17 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 
 defaultproperties
 {
-     FireClass=Class'BWBP_SKC_Pro.XMV500MinigunPrimaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     ImpactManager=Class'IM_IncendiaryHMGBullet'
-     BrassClass=Class'BallisticProV55.Brass_Minigun'
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary' //todo: fix inc emmitters for classic pro guns
-     TracerChance=0.800000
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_TPm'
-     DrawScale=0.300000
+	WeaponClass=class'XMV500Minigun'
+	FireClass=Class'BWBP_SKC_Pro.XMV500MinigunPrimaryFire'
+	MuzzleFlashClass=class'XK2FlashEmitter'
+	AltMuzzleFlashClass=class'XK2FlashEmitter'
+	ImpactManager=Class'IM_IncendiaryHMGBullet'
+	BrassClass=class'Brass_Minigun'
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary' //todo: fix inc emmitters for classic pro guns
+	TracerChance=0.800000
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	bHeavy=True
+	bRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_TPm'
+	DrawScale=0.300000
 }

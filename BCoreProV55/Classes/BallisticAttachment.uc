@@ -159,9 +159,19 @@ simulated function PostBeginPlay()
 	super.PostBeginPlay();
 
     GenerateModeInfo();
-	
-	if (Role == ROLE_Authority && BallisticWeapon(Instigator.Weapon) != None)
-		CamoIndex = BallisticWeapon(Instigator.Weapon).CamoIndex;
+}
+
+//==========================================================
+// InitFor
+//
+// Applies camo on the server
+//==========================================================
+function InitFor(Inventory BW)
+{
+	Super.InitFor(BW);
+
+	CamoIndex = BallisticWeapon(BW).CamoIndex;
+	ApplyCamo();
 }
 
 //==========================================================
@@ -221,35 +231,65 @@ simulated function GenerateModeInfo()
 		WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetAttachmentParams(self);
 }
 
+//==========================================================
+// PostNetBeginPlay
+//
+// Applies camo on the client
+//==========================================================
 simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+
+	bHeavy = bIsAimed;
+	
+	if (Role < ROLE_Authority)
+		ApplyCamo();
+}
+
+simulated function ApplyCamo()
 {
 	local int i;
 	local WeaponCamo WC;
 	local Material M;
-	
-	Super.PostNetBeginPlay();
-	bHeavy = bIsAimed;
-	
-	if (BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).WeaponCamo != None) //refactor and put this somewhere else later, maybe pass the material in
+
+	// must read the params class
+	if (WeaponClass == None)
 	{
-		WC = BallisticWeapon(Instigator.Weapon).WeaponCamo;
-		for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
-		{
-			if (WC.WeaponMaterialSwaps[i].AIndex != -1)
-			{				
-				if (WC.WeaponMaterialSwaps[i].Material != None)
+		log(Name$"::ApplyCamo: No weapon class set - cannot read params to set camo!");
+		return;
+	}
+
+	if (CamoIndex >= WeaponClass.static.GetParams().default.Camos.Length)
+	{
+		log(Name$"::ApplyCamo: Camo index out of range: got "$CamoIndex$", length "$WeaponClass.static.GetParams().default.Camos.Length);
+		return;
+	}
+
+	log(Name$"::ApplyCamo: Camo index "$CamoIndex);
+
+	WC = WeaponClass.static.GetParams().default.Camos[CamoIndex];
+	
+	for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
+	{
+		if (WC.WeaponMaterialSwaps[i].AIndex != -1)
+		{				
+			if (WC.WeaponMaterialSwaps[i].Material == None)
+			{
+				// Azarael - cache the material to the camo params, to save a DLO every single time
+				WC.WeaponMaterialSwaps[i].Material = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+
+				if (WC.WeaponMaterialSwaps[i].Material == None)
 				{
-					log("Material is " $WC.WeaponMaterialSwaps[i].Material);
-					Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
-				}
-				if (WC.WeaponMaterialSwaps[i].MaterialName != "")
-				{
-					M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
-					log("D Material is " $M);
-					if (M != None)
-						Skins[WC.WeaponMaterialSwaps[i].AIndex] = M;
+					// Azarael - disable loading this particular entry if it was not found
+					log(Name$"::ApplyCamo: Failed dynamically loading material " $WC.WeaponMaterialSwaps[i].MaterialName);
+
+					WC.WeaponMaterialSwaps[i].AIndex = -1;
+					continue;
 				}
 			}
+
+			//log(Name$"::ApplyCamo: Material is " $ WC.WeaponMaterialSwaps[i].Material);
+			Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
 		}
 	}
 }

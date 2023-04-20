@@ -95,18 +95,19 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
-	 SpawnOffset=(X=-200.000000)
-	 InstantMode=MU_Both
-	 TracerMode=MU_Both
-     MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
-     ImpactManager=Class'BWBP_OP_Pro.IM_Lightning'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TracerClass=Class'BWBP_OP_Pro.TraceEmitter_Lightning'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_TPm'
-	 RelativeRotation=(Pitch=32768,Yaw=2048)
-     DrawScale=0.600000
+	WeaponClass=class'LightningRifle'
+	SpawnOffset=(X=-200.000000)
+	InstantMode=MU_Both
+	TracerMode=MU_Both
+	MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
+	ImpactManager=Class'BWBP_OP_Pro.IM_Lightning'
+	BrassClass=class'Brass_Rifle'
+	TracerClass=Class'BWBP_OP_Pro.TraceEmitter_Lightning'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	CockAnimRate=1.400000
+	Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_TPm'
+	RelativeRotation=(Pitch=32768,Yaw=2048)
+	DrawScale=0.600000
 }

@@ -150,7 +150,7 @@ defaultproperties
 	PlayerViewOffset=(X=10.00,Y=12.00,Z=-14.00)
 	SightOffset=(X=10.00,Y=0.16,Z=14.00)
 	SightAnimScale=0.35
-
+	SightBobScale=1.5
 	SightZoomFactor=1.2
 	GunLength=48.000000
 	ParamsClasses(0)=Class'A500WeaponParamsComp'

@@ -730,7 +730,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightOffset=(X=0,Y=0,Z=1.4)
 	bNoCrosshairInScope=True
-	SightBobScale=0.35f
+	SightBobScale=0.2f
 	GunLength=48.000000
 	ParamsClasses(0)=Class'RCS715WeaponParamsComp'
 	ParamsClasses(1)=Class'RCS715WeaponParamsClassic'

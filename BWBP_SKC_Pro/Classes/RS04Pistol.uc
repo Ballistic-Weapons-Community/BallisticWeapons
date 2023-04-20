@@ -316,7 +316,7 @@ defaultproperties
 	 SightOffset=(X=-3.50,Y=0.2,Z=1.07)
 	 SightPivot=(Roll=-256)
      SightingTime=0.200000
-	 SightBobScale=0.5f
+	 SightBobScale=0.35f
 
      AttachmentClass=Class'BWBP_SKC_Pro.RS04Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.RS04.SmallIcon_RS04'

@@ -92,17 +92,18 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     TracerChance=0.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_AR"
-     CockingAnim="Cock_RearPull"
-     CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.R78_TPm'
-     DrawScale=0.200000
+	WeaponClass=class'R78Rifle'
+	MuzzleFlashClass=class'R78FlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	BrassClass=class'Brass_Rifle'
+	TracerClass=class'TraceEmitter_Default'
+	TracerChance=0.000000
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_AR"
+	CockingAnim="Cock_RearPull"
+	CockAnimRate=1.400000
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.R78_TPm'
+	DrawScale=0.200000
 }

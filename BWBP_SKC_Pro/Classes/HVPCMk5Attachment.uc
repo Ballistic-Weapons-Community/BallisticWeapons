@@ -78,15 +78,16 @@ simulated function DoWaterDischarge()
 
 defaultproperties
 {
-     DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
-     AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HVPCMuzzleFlash'
-     ImpactManager=Class'BallisticProV55.IM_HVCRedLightning'
-     bDoWaterSplash=False
-     FlashScale=2.500000
-     TracerClass=Class'BallisticProV55.TraceEmitter_HVCRedLightning'
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.HVPC_TPm'
-     DrawScale=1.000000
-	 RelativeRotation=(Pitch=32768)
+	WeaponClass=class'HVPCMk5PlasmaCannon'
+	DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
+	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HVPCMuzzleFlash'
+	ImpactManager=class'IM_HVCRedLightning'
+	bDoWaterSplash=False
+	FlashScale=2.500000
+	TracerClass=class'TraceEmitter_HVCRedLightning'
+	bHeavy=True
+	bRapidFire=True
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.HVPC_TPm'
+	DrawScale=1.000000
+	RelativeRotation=(Pitch=32768)
 }

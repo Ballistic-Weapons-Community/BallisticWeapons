@@ -15,7 +15,7 @@ simulated event PreBeginPlay()
 	super.PreBeginPlay();
 	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
-		ImpactManager=Class'BallisticProV55.IM_MRLRocket';
+		ImpactManager=class'IM_MRLRocket';
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG';
 	}
 }
@@ -51,7 +51,7 @@ defaultproperties
      BrassMode=MU_Both
      FlashMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Bulldog'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      Mesh=SkeletalMesh'BWBP_SKC_Anim.Bulldog_TPm'

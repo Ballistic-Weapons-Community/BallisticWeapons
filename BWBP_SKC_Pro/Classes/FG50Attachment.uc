@@ -164,6 +164,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'FG50Machinegun'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
      ImpactManager=Class'IM_IncendiaryHMGBullet'
@@ -174,7 +175,7 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
      TracerChance=2.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"

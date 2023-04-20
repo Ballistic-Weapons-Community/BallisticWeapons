@@ -521,10 +521,11 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'RSNovaStaff'
      WingSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Flying'
-     MuzzleFlashClass=Class'BallisticProV55.RSNovaLightMuzzleFlash'
-     AltMuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
-     ImpactManager=Class'BallisticProV55.IM_NovaStaffBlades'
+     MuzzleFlashClass=class'RSNovaLightMuzzleFlash'
+     AltMuzzleFlashClass=class'RSNovaSlowMuzzleFlash'
+     ImpactManager=class'IM_NovaStaffBlades'
      FlashScale=0.450000
      BrassMode=MU_None
      InstantMode=MU_Secondary

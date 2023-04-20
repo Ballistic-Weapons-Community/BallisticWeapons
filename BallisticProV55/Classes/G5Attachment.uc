@@ -128,10 +128,10 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-	WeaponClass=class'BallisticProV55.G5Bazooka'
-     MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.G5BackFlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+	WeaponClass=class'G5Bazooka'
+     MuzzleFlashClass=class'G5FlashEmitter'
+     AltMuzzleFlashClass=class'G5BackFlashEmitter'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
      FlashScale=1.200000
      BrassMode=MU_None

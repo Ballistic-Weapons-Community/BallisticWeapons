@@ -97,7 +97,7 @@ simulated function SpawnLaserDot(vector Loc)
 	if (LaserDot == None)
 	{
 		if ( (Instigator.PlayerReplicationInfo.Team != None) && (Instigator.PlayerReplicationInfo.Team.TeamIndex == 0) || bRedTeam )
-			LaserDot = Spawn(class'BallisticProV55.IE_GRS9LaserHit',,,Loc);
+			LaserDot = Spawn(class'IE_GRS9LaserHit',,,Loc);
 		else
 			LaserDot = Spawn(class'BWBP_SKC_Pro.IE_HMCLase',,,Loc);
 		laserDot.bHidden=false;
@@ -224,7 +224,7 @@ simulated function PostNetBeginPlay()
 	if (bRedTeam)
 	{
 		Skins[0] = Shader'BWBP_SKC_Tex.BeamCannon.RedCannonSD';
-     	TracerClass=Class'BallisticProV55.TraceEmitter_HVCRedLightning';
+     	TracerClass=class'TraceEmitter_HVCRedLightning';
      	MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCRedEmitter';
      	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HMCRedEmitter';
      }
@@ -272,6 +272,7 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'HMCBeamCannon'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_HMCBlast'

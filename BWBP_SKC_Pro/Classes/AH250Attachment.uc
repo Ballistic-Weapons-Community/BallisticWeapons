@@ -95,14 +95,14 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'AH250Pistol'
-     MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_BigBullet'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+     MuzzleFlashClass=class'D49FlashEmitter'
+     ImpactManager=class'IM_BigBullet'
+     MeleeImpactManager=class'IM_GunHit'
      FlashScale=0.250000
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      BrassBone="Scope"
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Pistol'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"

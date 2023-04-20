@@ -64,7 +64,7 @@ function float CalculateThrowPower()
 	if (BW.WeaponModes[BW.CurrentWeaponMode].Value > 0)
 		return 1f / BW.WeaponModes[BW.CurrentWeaponMode].Value;
 
-	return 0.2 + FClamp(HoldTime - 0.2, 0, 1) / 0.8;
+	return 0.2 + FClamp(HoldTime - 0.2, 0, 1) * 0.8;
 }
 
 function float CalculateThrowSpeed(float ProjSpeed)

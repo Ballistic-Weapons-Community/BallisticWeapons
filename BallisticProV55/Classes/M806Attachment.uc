@@ -86,14 +86,14 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'M806Pistol'
-     MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
-     TracerChance=0.600000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M806_TPm'
-     DrawScale=0.038000
+	MuzzleFlashClass=class'M806FlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	BrassClass=class'Brass_Pistol'
+	TracerClass=class'TraceEmitter_Pistol'
+	TracerChance=0.600000
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M806_TPm'
+	DrawScale=0.038000
 }

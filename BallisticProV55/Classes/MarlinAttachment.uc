@@ -151,20 +151,21 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-	 GaussTracerClass=Class'BallisticProV55.TraceEmitter_MarlinZap'
-	 GaussImpactManager=Class'BallisticProV55.IM_HVCBlueLightning'
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
-     FlashScale=1.800000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-	 TracerMode=MU_Primary
-	 InstantMode=MU_Primary
-	 FlashMode=MU_Primary
-     FlyByMode=MU_Primary
-     MeleeStrikeAnim="Melee_Smash"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_TPm'
-     DrawScale=0.125000
+	WeaponClass=class'MarlinRifle'
+	GaussTracerClass=class'TraceEmitter_MarlinZap'
+	GaussImpactManager=class'IM_HVCBlueLightning'
+	MuzzleFlashClass=class'R78FlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	MeleeImpactManager=class'IM_GunHit'
+	FlashScale=1.800000
+	BrassClass=class'Brass_Rifle'
+	TracerClass=class'TraceEmitter_Default'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	TracerMode=MU_Primary
+	InstantMode=MU_Primary
+	FlashMode=MU_Primary
+	FlyByMode=MU_Primary
+	MeleeStrikeAnim="Melee_Smash"
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_TPm'
+	DrawScale=0.125000
 }

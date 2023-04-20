@@ -11,7 +11,7 @@ defaultproperties
 	Index=GS_Classic
 	StyleName="Classic"
 	bRunInADS=False
-	SightBobScale=1f
+	SightBobScale=0.3f
 
 	// General
 	MaxInventoryCapacity=0

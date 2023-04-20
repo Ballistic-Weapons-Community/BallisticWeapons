@@ -30,15 +30,15 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 defaultproperties
 {
 	WeaponClass=class'M46AssaultRifle'
-	MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-	AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-	ImpactManager=Class'BallisticProV55.IM_Bullet'
+	MuzzleFlashClass=class'M50FlashEmitter'
+	AltMuzzleFlashClass=class'M50M900FlashEmitter'
+	ImpactManager=class'IM_Bullet'
 	AltFlashBone="tip2"
-	BrassClass=Class'BallisticProV55.Brass_M46AR'
+	BrassClass=class'Brass_M46AR'
 	FlashMode=MU_Both
 	LightMode=MU_Both
-	TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-	WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+	TracerClass=class'TraceEmitter_Default'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	ReloadAnim="Reload_AR"
 	CockingAnim="Cock_RearPull"

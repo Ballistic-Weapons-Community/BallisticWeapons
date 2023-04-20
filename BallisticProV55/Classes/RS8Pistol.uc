@@ -531,7 +531,7 @@ defaultproperties
 	PlayerViewOffset=(X=20.00,Y=3.00,Z=-8.00)
 	SightOffset=(X=-43,Y=-1.4,Z=13.4)
 	SightPivot=(Pitch=-200,Roll=-1050)
-	SightBobScale=0.7f
+	SightBobScale=0.5f
 
 	AttachmentClass=Class'BallisticProV55.RS8Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.RS8.SmallIcon_RS8'

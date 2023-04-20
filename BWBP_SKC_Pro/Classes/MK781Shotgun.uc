@@ -684,6 +684,7 @@ defaultproperties
 	PlayerViewOffset=(X=15.00,Y=9.00,Z=-11.50)
 	SightOffset=(X=4.20,Y=0.01,Z=6.97)
 	SightAnimScale=0.75
+	SightBobScale=0.35
 
 	AttachmentClass=Class'BWBP_SKC_Pro.MK781Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.M1014.SmallIcon_M1014'

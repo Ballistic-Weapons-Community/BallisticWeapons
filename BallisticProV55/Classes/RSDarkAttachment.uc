@@ -330,9 +330,10 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.RSDarkMuzzleFlame'
-     AltMuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
-     ImpactManager=Class'BallisticProV55.IM_DarkStarSaw'
+	WeaponClass=class'RSDarkStar'
+     MuzzleFlashClass=class'RSDarkMuzzleFlame'
+     AltMuzzleFlashClass=class'RSDarkSlowMuzzleFlash'
+     ImpactManager=class'IM_DarkStarSaw'
      WeaponLightTime=0.200000
      BrassMode=MU_None
      InstantMode=MU_Secondary

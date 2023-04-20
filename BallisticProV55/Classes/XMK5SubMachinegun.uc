@@ -313,7 +313,7 @@ defaultproperties
 
 	PlayerViewOffset=(X=4.00,Y=3.50,Z=-1.50)
 	SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
-	SightBobScale=0.25f
+	SightBobScale=0.15f
 	SightAnimScale=0.5f
 	SightZoomFactor=1.2
 

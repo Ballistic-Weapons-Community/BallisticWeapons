@@ -565,7 +565,7 @@ defaultproperties
 	PickupClass=Class'BWBP_OP_Pro.RaygunPickup'
 
 	PlayerViewOffset=(X=16,Y=1.6,Z=-3)
-	SightBobScale=0.35
+	SightBobScale=0.25
 	
 	AttachmentClass=Class'BWBP_OP_Pro.RaygunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_128'

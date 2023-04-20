@@ -374,8 +374,9 @@ defaultproperties
 	InventoryGroup=3
 	PickupClass=Class'BWBP_SKC_Pro.PS9mPickup'
 
-	PlayerViewOffset=(X=8.00,Y=2.50,Z=-4.00)
-	SightOffset=(X=-17.00,Y=0.00,Z=1.15)
+	PlayerViewOffset=(X=5.00,Y=2.50,Z=-5.00)
+	SightOffset=(X=-10.00,Y=0.00,Z=1.15)
+	SightAnimScale=0.35
 
 	AttachmentClass=Class'BWBP_SKC_Pro.PS9mAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Stealth.SmallIcon_PS9M'

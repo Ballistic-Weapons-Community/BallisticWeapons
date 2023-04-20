@@ -12,11 +12,11 @@ defaultproperties
 {
      WeaponClass=Class'BWBP_OP_Pro.RCS715Shotgun'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+     ImpactManager=class'IM_Shell'
+     MeleeImpactManager=class'IM_GunHit'
      FlashScale=0.6
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+     BrassClass=class'Brass_MRS138Shotgun'
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      TracerChance=0.500000
      ReloadAnim="Reload_RCS715"

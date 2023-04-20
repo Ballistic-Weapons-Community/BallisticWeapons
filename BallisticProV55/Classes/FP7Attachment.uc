@@ -10,8 +10,9 @@ class FP7Attachment extends BallisticGrenadeAttachment;
 
 defaultproperties
 {
-     ExplodeManager=Class'BallisticProV55.IM_Grenade'
-     GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP7_TPm'
-     DrawScale=0.250000
+	WeaponClass=class'FP7Grenade'
+	ExplodeManager=class'IM_Grenade'
+	GrenadeSmokeClass=class'NRP57Trail'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP7_TPm'
+	DrawScale=0.250000
 }

@@ -11,8 +11,8 @@ class AY90Attachment extends A73Attachment;
 defaultproperties
 {
      MuzzleFlashClass=Class'BWBP_SKC_Pro.A73BFlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_A73Knife'
-     MeleeImpactManager=Class'BallisticProV55.IM_A73Knife'
+     ImpactManager=class'IM_A73Knife'
+     MeleeImpactManager=class'IM_A73Knife'
      FlashScale=0.100000
      BrassMode=MU_None
      ReloadAnim="Reload_MG"

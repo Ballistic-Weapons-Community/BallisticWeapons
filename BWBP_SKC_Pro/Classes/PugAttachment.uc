@@ -30,6 +30,7 @@ simulated function EjectBrass(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'PugAssaultCannon'
      AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
@@ -41,7 +42,7 @@ defaultproperties
      BrassMode=MU_Both
      FlashMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      Mesh=SkeletalMesh'BWBP_SKC_Anim.Pug_TPm'

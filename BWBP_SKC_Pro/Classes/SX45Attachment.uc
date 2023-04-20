@@ -382,19 +382,19 @@ defaultproperties
      MuzzleFlashClassAmp2=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 	 MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      BrassMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+     TracerClass=class'TraceEmitter_Default'
 	 TracerClassAmp1=Class'BWBP_SKC_Pro.TraceEmitter_FreezeBig'
      TracerClassAmp2=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
 	 ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletAmpFrostHE'
      ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAmpRad'
      TracerMix=-3
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"

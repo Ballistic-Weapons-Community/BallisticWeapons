@@ -40,21 +40,22 @@ simulated function PostNetBeginPlay()
 
 defaultproperties
 {
-     ImpactManager=Class'BWBP_SKC_Pro.IM_DTS'
-     BrassMode=MU_None
-     InstantMode=MU_Both
-     FlashMode=MU_None
-     LightMode=MU_None
-     TrackAnimMode=MU_Both
-     bHeavy=True
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=160
-     LightSaturation=64
-     LightBrightness=150.000000
-     LightRadius=64.000000
-     bDynamicLight=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.DTS_TPm'
-     RelativeLocation=(Z=6.000000)
-     DrawScale=0.120000
+	WeaponClass=class'DragonsToothSword'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_DTS'
+	BrassMode=MU_None
+	InstantMode=MU_Both
+	FlashMode=MU_None
+	LightMode=MU_None
+	TrackAnimMode=MU_Both
+	bHeavy=True
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=160
+	LightSaturation=64
+	LightBrightness=150.000000
+	LightRadius=64.000000
+	bDynamicLight=True
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.DTS_TPm'
+	RelativeLocation=(Z=6.000000)
+	DrawScale=0.120000
 }

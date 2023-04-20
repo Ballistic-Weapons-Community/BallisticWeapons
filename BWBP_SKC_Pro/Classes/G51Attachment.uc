@@ -78,7 +78,7 @@ simulated function Tick(float DT)
 		return;
 
 	if (Laser == None)
-		Laser = Spawn(class'BallisticProV55.LaserActor_Third',,,Location);
+		Laser = Spawn(class'LaserActor_Third',,,Location);
 
 	if (bLaserOn != bOldLaserOn)
 		bOldLaserOn = bLaserOn;
@@ -127,16 +127,16 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=Class'G51Carbine'
-	MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-	AltMuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-	ImpactManager=Class'BallisticProV55.IM_Bullet'
+	MuzzleFlashClass=class'M50FlashEmitter'
+	AltMuzzleFlashClass=class'M50FlashEmitter'
+	ImpactManager=class'IM_Bullet'
 	FlashScale=0.500000
-	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	BrassClass=class'Brass_Rifle'
 	InstantMode=MU_Both
 	FlashMode=MU_Both
 	LightMode=MU_Both
-	TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-	WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+	TracerClass=class'TraceEmitter_Default'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	bRapidFire=True

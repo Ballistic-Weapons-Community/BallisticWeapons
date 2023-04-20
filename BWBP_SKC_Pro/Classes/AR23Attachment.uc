@@ -119,15 +119,15 @@ defaultproperties
 	WeaponClass=class'AR23HeavyRifle'
 	 FireClass=Class'BWBP_SKC_Pro.AR23SecondaryFire'
      ScopedTracerOffset=(Y=-14.000000,Z=-2.000000)
-     MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_BigBullet'
+     MuzzleFlashClass=class'M925FlashEmitter'
+     AltMuzzleFlashClass=class'M50M900FlashEmitter'
+     ImpactManager=class'IM_BigBullet'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_M46AR'
+     BrassClass=class'Brass_M46AR'
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.AR23_TPm'

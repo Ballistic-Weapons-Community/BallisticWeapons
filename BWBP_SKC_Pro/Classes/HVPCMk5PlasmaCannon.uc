@@ -686,7 +686,7 @@ defaultproperties
      SightOffset=(X=-2.50,Y=0.00,Z=7.75)
 	 SightPivot=(Pitch=256)
 	 SightAnimScale=0.5
-	 SightBobScale=1f
+	 SightBobScale=0.35f
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk5Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
      IconCoords=(X2=127,Y2=31)

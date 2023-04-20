@@ -166,14 +166,14 @@ defaultproperties
 {
 	WeaponClass=class'AS50Rifle'
      AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
-     MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+     MuzzleFlashClass=class'M925FlashEmitter'
      ImpactManager=Class'IM_IncendiaryBullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
      TracerMode=MU_Secondary
      InstantMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
      TracerChance=2.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.500000)
      ReloadAnim="Reload_AR"

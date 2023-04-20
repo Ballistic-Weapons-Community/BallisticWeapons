@@ -50,13 +50,13 @@ defaultproperties
 {
 	WeaponClass=class'MRDRMachinePistol'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     ImpactManager=class'IM_Bullet'
      FlashScale=0.800000
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      TrackAnimMode=MU_Secondary
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+     TracerClass=class'TraceEmitter_Default'
      TracerChance=0.500000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"

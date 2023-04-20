@@ -266,6 +266,7 @@ simulated function Tick(float deltaTime)
 
 defaultproperties
 {
+	WeaponClass=class'KF8XCrossbow'
      Fades(0)=Texture'BW_Core_WeaponTex.Icons.stealth_8'
      Fades(1)=Texture'BW_Core_WeaponTex.Icons.stealth_16'
      Fades(2)=Texture'BW_Core_WeaponTex.Icons.stealth_24'
@@ -285,10 +286,10 @@ defaultproperties
 	 
 	 TracerClass=Class'TraceEmitter_KF8XCrossbow'
      TracerChance=1.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
 	 
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone=
      FlashMode=MU_None
      LightMode=MU_None

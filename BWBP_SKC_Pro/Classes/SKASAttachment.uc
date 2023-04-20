@@ -55,16 +55,16 @@ function SKASUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 defaultproperties
 {
      WeaponClass=Class'BWBP_SKC_Pro.SKASShotgun'
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
+     MuzzleFlashClass=class'MRT6FlashEmitter'
+     AltMuzzleFlashClass=class'MRT6FlashEmitter'
+     ImpactManager=class'IM_Shell'
      FlashScale=1.800000
-     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+     BrassClass=class'Brass_MRS138Shotgun'
      BrassMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+     TracerClass=class'TraceEmitter_Shotgun'
      TracerChance=0.500000
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.950000

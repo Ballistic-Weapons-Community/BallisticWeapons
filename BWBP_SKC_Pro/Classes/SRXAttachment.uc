@@ -319,7 +319,7 @@ defaultproperties
 	 CamoMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
 	 
      MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SRXFlashEmitter'
-     MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
+     MuzzleFlashClassAmp2=class'A500FlashEmitter'
 	 
      ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletAmpInc'
      ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAmpAcid'
@@ -327,14 +327,14 @@ defaultproperties
 	 TracerClassAmp1=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
      TracerClassAmp2=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
 	 
-	 MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	 MuzzleFlashClass=class'M50FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SRXSilencedFlash'
      AltFlashBone="tip2"
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     ImpactManager=class'IM_Bullet'
      FlashScale=0.900000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     BrassClass=class'Brass_Rifle'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bRapidFire=True

@@ -181,20 +181,21 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
-	 FlashBone="Muzzle"
-     AltFlashBone="Muzzle"
-	 MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_XM20Laser'
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-	 TracerMode=MU_Primary
-	 TracerChance=1
-	 TracerMix=0
-     RelativeLocation=(X=-6.000000,Z=12.000000)
-     RelativeRotation=(Pitch=32768)
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_TPm'
-     DrawScale=0.200000
+	WeaponClass=class'XM20Carbine'
+	FlashBone="Muzzle"
+	AltFlashBone="Muzzle"
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_XM20Laser'
+	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerMode=MU_Primary
+	TracerChance=1
+	TracerMix=0
+	RelativeLocation=(X=-6.000000,Z=12.000000)
+	RelativeRotation=(Pitch=32768)
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_TPm'
+	DrawScale=0.200000
 }

@@ -124,24 +124,25 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
-	 FireClass=Class'BWBP_SKC_Pro.WendigoSecondaryFire'
-     AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-     MeleeImpactManager=Class'BallisticProV55.IM_Knife'
-     AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Shotgun'
-     BrassMode=MU_Secondary
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse'
-     //AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.CYLOUAW_TPm'
-     RelativeLocation=(Z=1.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.300000
+	WeaponClass=class'WendigoSMG'
+	MuzzleFlashClass=class'XK2FlashEmitter'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
+	FireClass=Class'BWBP_SKC_Pro.WendigoSecondaryFire'
+	AltMuzzleFlashClass=class'M50M900FlashEmitter'
+	MeleeImpactManager=class'IM_Knife'
+	AltFlashBone="tip2"
+	BrassClass=class'Brass_Shotgun'
+	BrassMode=MU_Secondary
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse'
+	//AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
+	bHeavy=True
+	bRapidFire=True
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.CYLOUAW_TPm'
+	RelativeLocation=(Z=1.000000)
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.300000
 }

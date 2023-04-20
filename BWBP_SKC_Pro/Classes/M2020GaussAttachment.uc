@@ -209,17 +209,17 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'M2020GaussDMR'
-     MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     MuzzleFlashClass=class'M806FlashEmitter'
+     AltMuzzleFlashClass=class'M806FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_BulletGauss'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     BrassClass=class'Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussSuper'
      TracerChance=2.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'

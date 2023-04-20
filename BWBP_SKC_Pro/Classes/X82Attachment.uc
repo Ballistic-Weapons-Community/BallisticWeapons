@@ -118,11 +118,11 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'X82Rifle'
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+     MuzzleFlashClass=class'R78FlashEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMG'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
      ReloadAnim="Reload_AR"

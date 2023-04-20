@@ -273,10 +273,10 @@ defaultproperties
      TracerClassAlt=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
      WeaponClass=Class'BWBP_SKC_Pro.MK781Shotgun'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
+     AltMuzzleFlashClass=class'XK2SilencedFlash'
+     ImpactManager=class'IM_Shell'
      FlashScale=1.800000
-     BrassClass=Class'BallisticProV55.Brass_Shotgun'
+     BrassClass=class'Brass_Shotgun'
      BrassMode=MU_Both
      TracerMode=MU_Both
      InstantMode=MU_Both

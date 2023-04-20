@@ -31,20 +31,21 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     ImpactManager=Class'BallisticProV55.IM_GunHit'
-     BrassMode=MU_None
-     InstantMode=MU_Both
-     FlashMode=MU_None
-     LightMode=MU_None
-     TrackAnimMode=MU_Both
-     AttachmentBone="bip01 l hand"	 
-     Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShield_TPm'
-	 RelativeLocation=(X=-10.000000)
-     RelativeRotation=(Yaw=-16384,Pitch=25000)
-     DrawScale=0.450000
-	 IdleHeavyAnim="Blade_Idle"
-     IdleRifleAnim="Blade_Idle"
-	 MeleeStrikeAnim="Blade_Smack"
-	 MeleeAltStrikeAnim="Blade_Swing"
-	 MeleeBlockAnim="Blade_ShieldBlock"
+	WeaponClass=class'BallisticShieldWeapon'
+	ImpactManager=class'IM_GunHit'
+	BrassMode=MU_None
+	InstantMode=MU_Both
+	FlashMode=MU_None
+	LightMode=MU_None
+	TrackAnimMode=MU_Both
+	AttachmentBone="bip01 l hand"	 
+	Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShield_TPm'
+	RelativeLocation=(X=-10.000000)
+	RelativeRotation=(Yaw=-16384,Pitch=25000)
+	DrawScale=0.450000
+	IdleHeavyAnim="Blade_Idle"
+	IdleRifleAnim="Blade_Idle"
+	MeleeStrikeAnim="Blade_Smack"
+	MeleeAltStrikeAnim="Blade_Swing"
+	MeleeBlockAnim="Blade_ShieldBlock"
 }

@@ -71,18 +71,18 @@ function MRT6UpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     WeaponClass=Class'BallisticProV55.MRT6Shotgun'
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
+     WeaponClass=class'MRT6Shotgun'
+     MuzzleFlashClass=class'MRT6FlashEmitter'
+     AltMuzzleFlashClass=class'MRT6FlashEmitter'
+     ImpactManager=class'IM_Shell'
      AltFlashBone="tip2"
      FlashScale=1.800000
-     BrassClass=Class'BallisticProV55.Brass_MRT6Left'
+     BrassClass=class'Brass_MRT6Left'
      BrassMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+     TracerClass=class'TraceEmitter_MRTsix'
      TracerChance=0.500000
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"

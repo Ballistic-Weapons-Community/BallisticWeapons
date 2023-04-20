@@ -19,6 +19,7 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'Raygun'
      TracerClass=Class'TraceEmitter_Raygun'
 	 TracerChance=1
 	 ImpactManager=Class'IM_Raygun'

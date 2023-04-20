@@ -162,15 +162,15 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-     AltTracerClass=Class'BallisticProV55.TraceEmitter_M763Gas'
-     WeaponClass=Class'BallisticProV55.M763Shotgun'
-     MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+     AltTracerClass=class'TraceEmitter_M763Gas'
+     WeaponClass=class'M763Shotgun'
+     MuzzleFlashClass=class'M763FlashEmitter'
+     ImpactManager=class'IM_Shell'
+     MeleeImpactManager=class'IM_GunHit'
      FlashScale=1.800000
-     BrassClass=Class'BallisticProV55.Brass_Shotgun'
+     BrassClass=class'Brass_Shotgun'
      TracerMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+     TracerClass=class'TraceEmitter_Shotgun'
      TracerChance=0.500000
      MeleeStrikeAnim="Melee_swing"
      SingleFireAnim="RifleHip_FireCock"

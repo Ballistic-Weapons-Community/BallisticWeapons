@@ -70,7 +70,7 @@ simulated function PostNetBeginPlay()
 	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
 	{
 		SightAnimScale = 0.75;
-		SightBobScale = 0.1 *class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+		SightBobScale = 0.075 *class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
 	}
 
 	for(n=level.NavigationPointList;N!=None;N=N.nextNavigationPoint)

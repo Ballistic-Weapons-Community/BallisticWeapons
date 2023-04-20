@@ -325,11 +325,12 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'Z250Minigun'
      FireClass=Class'BWBP_OP_Pro.Z250PrimaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_MinigunBullet'
-     BrassClass=Class'BallisticProV55.Brass_Minigun'
+     MuzzleFlashClass=class'XK2FlashEmitter'
+     AltMuzzleFlashClass=class'XK2FlashEmitter'
+     ImpactManager=class'IM_MinigunBullet'
+     BrassClass=class'Brass_Minigun'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"

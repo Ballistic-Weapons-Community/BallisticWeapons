@@ -234,7 +234,7 @@ simulated function Tick(float DT)
 		return;
 
 	if (Laser == None)
-		Laser = Spawn(class'BallisticProV55.LaserActor_Third',,,Location);
+		Laser = Spawn(class'LaserActor_Third',,,Location);
 
 	if (bLaserOn != bOldLaserOn)
 		bOldLaserOn = bLaserOn;
@@ -290,10 +290,10 @@ defaultproperties
      AltFlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
      ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
      AltFlashBone="ejector"
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      FlashMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.500000)
      Mesh=SkeletalMesh'BWBP_SKC_Anim.AH104_TPm'

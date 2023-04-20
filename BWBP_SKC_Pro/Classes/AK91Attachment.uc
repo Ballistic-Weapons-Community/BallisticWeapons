@@ -10,18 +10,19 @@ class AK91Attachment extends BallisticAttachment;
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-	 TracerMode=MU_Both      
-	 InstantMode=MU_Both
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
-     bRapidFire=True
-     RelativeRotation=(Pitch=32768)
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.AK91_TPm'
-     DrawScale=0.250000
-	 TracerMix=1
+	WeaponClass=class'AK91ChargeRifle'
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
+	BrassClass=class'Brass_Rifle'
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	TracerMode=MU_Both      
+	InstantMode=MU_Both
+	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
+	bRapidFire=True
+	RelativeRotation=(Pitch=32768)
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.AK91_TPm'
+	DrawScale=0.250000
+	TracerMix=1
 }

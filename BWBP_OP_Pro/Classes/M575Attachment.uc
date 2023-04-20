@@ -28,7 +28,7 @@ simulated Event PreBeginPlay()
 	
 	if (!class'BallisticReplicationInfo'.static.IsArena())
 	{
-		TracerClass=Class'BallisticProV55.TraceEmitter_FiftyNine';
+		TracerClass=class'TraceEmitter_FiftyNine';
 	}
 }
 simulated event PostBeginPlay()
@@ -311,14 +311,14 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'M575Machinegun'
-     IceTracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
+     IceTracerClass=class'TraceEmitter_Freeze'
      IceImpactManager=Class'BWBP_SKC_Pro.IM_BulletAmpFrostHE'
-	 MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+	 MuzzleFlashClass=class'Fifty9FlashEmitter'
 	 AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     BrassClass=Class'BallisticProV55.Brass_MG'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     ImpactManager=class'IM_Bullet'
+     BrassClass=class'Brass_MG'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
 	 TracerMode=MU_Both
 	 BrassMode=MU_Both

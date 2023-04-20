@@ -105,10 +105,11 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-     FlashScale=2.500000
-     BrassClass=Class'BallisticProV55.Brass_HAMR'
-     InstantMode=MU_None
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMR_TPm'
-     DrawScale=0.200000
+	WeaponClass=class'MACWeapon'
+	MuzzleFlashClass=class'R78FlashEmitter'
+	FlashScale=2.500000
+	BrassClass=class'Brass_HAMR'
+	InstantMode=MU_None
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMR_TPm'
+	DrawScale=0.200000
 }

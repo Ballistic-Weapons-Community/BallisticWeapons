@@ -118,25 +118,26 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
-//     SpawnOffset=(X=-160.000000,Z=2.000000)
-     SpawnOffset=(X=-30.000000)
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXLaserFlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_HVPCProjectile'
-     BrassClass=Class'BallisticProV55.Brass_Railgun'
-     AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_LS14RR'
+	WeaponClass=class'LS440Instagib'
+	//     SpawnOffset=(X=-160.000000,Z=2.000000)
+	SpawnOffset=(X=-30.000000)
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXLaserFlashEmitter'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_HVPCProjectile'
+	BrassClass=class'Brass_Railgun'
+	AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_LS14RR'
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_LS14RR'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerMode=MU_Both
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.700000)
-     FlyByBulletSpeed=-1.000000
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerMode=MU_Both
+	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.700000)
+	FlyByBulletSpeed=-1.000000
 	bRapidFire=true;
-     RelativeLocation=(X=-3.000000,Z=2.000000)
-     RelativeRotation=(Pitch=32768)
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.LS14_TPm'
-     DrawScale=0.200000
-     Skins(0)=Shader'BWBP_SKC_Tex.LS440M.LS440_SD'
+	RelativeLocation=(X=-3.000000,Z=2.000000)
+	RelativeRotation=(Pitch=32768)
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.LS14_TPm'
+	DrawScale=0.200000
+	Skins(0)=Shader'BWBP_SKC_Tex.LS440M.LS440_SD'
 }

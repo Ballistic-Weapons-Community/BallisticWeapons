@@ -392,18 +392,18 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
-    TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-    ImpactManager=Class'BallisticProV55.IM_Shell'
+    TracerClass=class'TraceEmitter_Shotgun'
+    ImpactManager=class'IM_Shell'
     TracerClassAlt=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
     ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_ExpBullet'
-    MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+    MeleeImpactManager=class'IM_GunHit'
     WeaponClass=Class'BWBP_SKC_Pro.SawnOffShotgun'
-    MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+    MuzzleFlashClass=class'MRT6FlashEmitter'
     FlashBone="Tip"
     AltFlashBone="tip2"
     FlashScale=1.500000
     InstantMode = MU_Both
-    BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+    BrassClass=class'Brass_MRS138Shotgun'
     TrackAnimMode=MU_None
     Mesh=SkeletalMesh'BWBP_SKC_Anim.ScifiSawnOff_TPm'
     DrawScale=0.150000

@@ -168,20 +168,20 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	 WeaponClass=class'leMatRevolver'
-     FireClass=Class'BallisticProV55.leMatSecondaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     FireClass=class'leMatSecondaryFire'
+     MuzzleFlashClass=class'D49FlashEmitter'
+     AltMuzzleFlashClass=class'MRT6FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Magnum'
+     BrassClass=class'Brass_Magnum'
      BrassBone="leMat-3rd"
      TracerMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
+     TracerClass=class'TraceEmitter_Pistol'
      TracerChance=0.600000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_TPm'

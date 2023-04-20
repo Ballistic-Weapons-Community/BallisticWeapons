@@ -8,7 +8,6 @@
 //=============================================================================
 class ChaffAttachment extends BallisticGrenadeAttachment;
 
-
 simulated function InstantFireEffects(byte Mode)
 {
 	if (FiringMode != 0)
@@ -71,14 +70,15 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
-     ExplodeManager=Class'BWBP_SKC_Pro.IM_ChaffGrenade'
-     GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
-     TrackAnimMode=MU_Primary
-	 InstantMode=MU_Secondary
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_TPm'
-     RelativeLocation=(X=-2.000000,Y=-3.000000,Z=20.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.650000
-     ImpactManager=Class'BallisticProV55.IM_Katana'
+	WeaponClass=class'ChaffGrenadeWeapon'
+	MeleeImpactManager=class'IM_GunHit'
+	ExplodeManager=Class'BWBP_SKC_Pro.IM_ChaffGrenade'
+	GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
+	TrackAnimMode=MU_Primary
+	InstantMode=MU_Secondary
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_TPm'
+	RelativeLocation=(X=-2.000000,Y=-3.000000,Z=20.000000)
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.650000
+	ImpactManager=class'IM_Katana'
 }

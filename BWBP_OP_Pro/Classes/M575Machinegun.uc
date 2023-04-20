@@ -609,7 +609,7 @@ defaultproperties
      BigIconCoords=(Y1=50,Y2=240)
 	 SightAnimScale=0.5
      SightFXClass=Class'BWBP_OP_Pro.M575SightLEDs'
-	 SightBobScale=1
+	 SightBobScale=0.6
      bWT_Bullet=True
      bWT_Machinegun=True
      ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
@@ -649,7 +649,7 @@ defaultproperties
      CurrentRating=0.7500000
      Description="In response to not just the regular UTC troops demanding a new LMG, but also the ODST troops finding the M353 to be inadequate in stopping skrith dead in their tracks, Enravion updated the platform into the new M575 Machine Gun. In addition to firing 7.62mm rounds instead of the old 5.56mm rounds, the M575 also has rail support for all the optics one could ever ask for; when the weapon first debuted, it came with a C-All Red Dot Sight along with a 2x magnifier scope. While the M353 is still hanging around, it is slated to be phased by the M575 within 6 months if all goes well."
      Priority=43
-     HudColor=(G=150,R=100)
+     HudColor=(R=15,G=175,B=200)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_OP_Pro.M575Pickup'
@@ -657,7 +657,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_OP_Pro.M575Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.M575.SmallIcon_M575'
      IconCoords=(X2=127,Y2=31)
-     ItemName="M575 GP Machinegun"
+     ItemName="M575 Medium Machinegun"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

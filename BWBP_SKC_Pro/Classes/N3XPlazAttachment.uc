@@ -61,9 +61,10 @@ simulated function DoShockWave()
 
 defaultproperties
 {
+	WeaponClass=class'N3XPlaz'
      DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
      MeleeAltStrikeAnim="Punchies_UppercutRight"
-     ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'
+     ImpactManager=class'IM_MRS138TazerHit'
      BrassMode=MU_None
      InstantMode=MU_Both
      FlashMode=MU_None

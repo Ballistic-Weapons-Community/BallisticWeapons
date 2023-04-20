@@ -94,17 +94,17 @@ simulated event ThirdPersonEffects()
 defaultproperties
 {
 	WeaponClass=class'RS8Pistol'
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     MuzzleFlashClass=class'XK2FlashEmitter'
+     AltMuzzleFlashClass=class'XK2SilencedFlash'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      BrassMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+     TracerClass=class'TraceEmitter_Default'
      TracerMix=-3
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"

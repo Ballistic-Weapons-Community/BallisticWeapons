@@ -10,6 +10,7 @@ class MAG78Attachment extends BallisticMeleeAttachment;
 
 defaultproperties
 {
+	WeaponClass=class'MAG78Longsword'
 	 IdleHeavyAnim="TwoHand_Idle"
      IdleRifleAnim="TwoHand_Idle"
 	 MeleeStrikeAnim="TwoHand_Slam"

@@ -2,17 +2,18 @@ class AutoGLAttachment extends BallisticAttachment;
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+	WeaponClass=class'AutoGLauncher'
+     MuzzleFlashClass=class'M50FlashEmitter'
+     AltMuzzleFlashClass=class'M50FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_Longhorn'
      BrassMode=MU_None
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+     TracerClass=class'TraceEmitter_Default'
      TracerMix=-3
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"

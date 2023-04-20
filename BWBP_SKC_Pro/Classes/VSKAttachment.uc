@@ -30,17 +30,18 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
-	 RelativeRotation=(Pitch=32768)
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_Tranq'
-     FlashScale=0.300000
-     BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
-     TracerMix=0
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.VSKS_TPm'
-     DrawScale=1.000000
+	WeaponClass=class'VSKTranqRifle'
+	RelativeRotation=(Pitch=32768)
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_Tranq'
+	FlashScale=0.300000
+	BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
+	TracerMix=0
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	bRapidFire=True
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.VSKS_TPm'
+	DrawScale=1.000000
 }

@@ -10,10 +10,10 @@ class A73Attachment extends BallisticAttachment;
 
 defaultproperties
 {
-	WeaponClass=class'BallisticProV55.A73SkrithRifle'
-	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-	ImpactManager=Class'BallisticProV55.IM_A73Knife'
-	MeleeImpactManager=Class'BallisticProV55.IM_A73Knife'
+	WeaponClass=class'A73SkrithRifle'
+	MuzzleFlashClass=class'A73FlashEmitter'
+	ImpactManager=class'IM_A73Knife'
+	MeleeImpactManager=class'IM_A73Knife'
 	FlashScale=0.100000
 	BrassMode=MU_None
 	ReloadAnim="Reload_MG"

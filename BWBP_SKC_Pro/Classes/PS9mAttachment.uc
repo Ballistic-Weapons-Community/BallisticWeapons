@@ -195,13 +195,14 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
+	WeaponClass=class'PS9mPistol'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
      ImpactManager=Class'BWBP_SKC_Pro.IM_Tranq'
 	 TracerChance=0
      FlashScale=0.300000
      BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"

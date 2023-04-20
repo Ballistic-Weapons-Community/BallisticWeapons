@@ -58,6 +58,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'FLASHLauncher'
      BackBones(0)="back1"
      BackBones(1)="back2"
      BackBones(2)="back3"
@@ -66,9 +67,9 @@ defaultproperties
      FrontBones(1)="tip2"
      FrontBones(2)="tip3"
      FrontBones(3)="tip4"
-     MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.G5BackFlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     MuzzleFlashClass=class'G5FlashEmitter'
+     AltMuzzleFlashClass=class'G5BackFlashEmitter'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="back1"
      FlashScale=1.200000
      BrassMode=MU_None

@@ -85,13 +85,13 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_OP_Pro.XM20FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_OP_Pro.XM20FlashEmitter'
      ImpactManager=Class'BWBP_OP_Pro.IM_XM20Impacted'
-     BrassClass=Class'BallisticProV55.Brass_Railgun'
+     BrassClass=class'Brass_Railgun'
      FlashMode=MU_Primary
      LightMode=MU_Both
 	 InstantMode=MU_Primary
 	 TracerMode=MU_Primary
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_XM20Las'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Primary
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
      FlyByBulletSpeed=-1.000000

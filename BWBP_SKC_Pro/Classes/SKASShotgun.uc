@@ -367,7 +367,8 @@ defaultproperties
     PlayerViewOffset=(X=10.00,Y=5.00,Z=-4.50)
     SightOffset=(X=-22.50,Y=0.00,Z=8.80)
 	SightPivot=(Pitch=1024)
-
+	SightBobScale=0.75
+	
     AttachmentClass=Class'BWBP_SKC_Pro.SKASAttachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SKAS.SmallIcon_SKAS'
     IconCoords=(X2=127,Y2=30)
