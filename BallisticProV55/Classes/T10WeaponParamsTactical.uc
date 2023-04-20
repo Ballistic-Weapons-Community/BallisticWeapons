@@ -79,6 +79,11 @@ defaultproperties
         InventorySize=1
 		MaxInventoryCount=1
 		//ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+				
+		WeaponModes(0)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.000000)
+		WeaponModes(1)=(bUnavailable=True)
+		WeaponModes(2)=(bUnavailable=True)
+
 		ViewPivot=(Pitch=1024,Yaw=-1024)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'

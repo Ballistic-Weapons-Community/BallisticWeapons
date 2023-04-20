@@ -26,7 +26,7 @@ defaultproperties
         PenetrateForce=135
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-        FlashScaleFactor=0.400000
+        FlashScaleFactor=0.600000
         Recoil=260.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 	    SplashDamage=False
@@ -50,7 +50,7 @@ defaultproperties
         PenetrateForce=135
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-        FlashScaleFactor=0.400000
+        FlashScaleFactor=0.600000
         Recoil=210.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 	    SplashDamage=False
@@ -105,7 +105,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams // for no stock
 		ViewBindFactor=0.2
-		ADSViewBindFactor=0.4
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.2
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
@@ -117,12 +117,12 @@ defaultproperties
 		DeclineTime=1.1
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams // for stock
 		ViewBindFactor=0.2
-		ADSViewBindFactor=0.6
+		ADSViewBindFactor=0.7
 		EscapeMultiplier=1.2
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
@@ -134,7 +134,7 @@ defaultproperties
 		DeclineTime=1.1
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
 	End Object
 
 	//=================================================================
@@ -142,18 +142,20 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalBurstAimParams
+		ADSViewBindFactor=0
+		ADSMultiplier=0.25
+		AimAdjustTime=0.5
         AimSpread=(Min=256,Max=768)
-        ADSMultiplier=1
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
-		AimAdjustTime=0.45000
         ChaosSpeedThreshold=300
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalAutoAimParams
+		ADSViewBindFactor=0
+		ADSMultiplier=0.25
+		AimAdjustTime=0.6
         AimSpread=(Min=256,Max=768)
-        ADSMultiplier=0.75
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
-		AimAdjustTime=0.600000
         ChaosSpeedThreshold=300
 	End Object
 

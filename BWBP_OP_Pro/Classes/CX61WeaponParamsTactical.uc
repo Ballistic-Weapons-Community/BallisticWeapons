@@ -26,7 +26,7 @@ defaultproperties
 		bPenetrate=True
 		Inaccuracy=(X=48,Y=48)
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		FlashScaleFactor=1
+		FlashScaleFactor=1.6
 		Recoil=150
 		Chaos=0.03
 		WarnTargetPct=0.200000
@@ -74,7 +74,7 @@ defaultproperties
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.4
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.2,OutVal=-0.03),(InVal=0.4,OutVal=0.11),(InVal=0.5,OutVal=0.05),(InVal=0.6,OutVal=-0.02),(InVal=0.8,OutVal=0.04),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.190000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.620000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
@@ -85,7 +85,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -93,10 +93,11 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
+		ADSMultiplier=0.25
+		AimAdjustTime=0.6
 		AimSpread=(Min=256,Max=1024)
-		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
-		AimAdjustTime=0.600000
 		ChaosDeclineTime=1.250000
 		ChaosSpeedThreshold=300
 	End Object

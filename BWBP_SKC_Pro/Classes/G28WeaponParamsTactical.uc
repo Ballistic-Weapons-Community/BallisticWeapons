@@ -67,6 +67,11 @@ defaultproperties
         MagAmmo=1
         InventorySize=1
 		MaxInventoryCount=1
+				
+		WeaponModes(0)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.000000)
+		WeaponModes(1)=(bUnavailable=True)
+		WeaponModes(2)=(bUnavailable=True)
+
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

@@ -42,12 +42,12 @@ defaultproperties
 		XCurve=(Points=(,(InVal=1.000000,OutVal=0.15)))
 		XRandFactor=0.25
 		YRandFactor=0.25
-        ClimbTime=0.12
+        ClimbTime=0.125
 		DeclineDelay=0.22
         DeclineTime=0.75
 		CrouchMultiplier=0.850000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -57,7 +57,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
-		AimAdjustTime=0.800000
+		AimAdjustTime=0.700000
 		AimSpread=(Min=384,Max=1280)
 		ChaosSpeedThreshold=300
 	End Object

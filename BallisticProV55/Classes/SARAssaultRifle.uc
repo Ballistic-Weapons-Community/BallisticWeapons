@@ -547,7 +547,7 @@ defaultproperties
 	PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-10.000000)
 	SightOffset=(X=11.000000,Y=-0.010000,Z=3.600000)
 	SightPivot=(Pitch=450)
-	SightBobScale=0.6
+	SightBobScale=0.3
 
 	GunLength=16.000000
 	ParamsClasses(0)=Class'SARWeaponParamsComp'

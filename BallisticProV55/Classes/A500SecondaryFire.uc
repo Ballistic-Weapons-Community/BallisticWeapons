@@ -81,6 +81,7 @@ defaultproperties
 {
 	 AcidLoad=1
 	 MaxAcidLoad=8
+	 AmmoPerFire=1
      ChargingSound=Sound'GeneralAmbience.texture22'
      bFireOnRelease=True
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'

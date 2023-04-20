@@ -166,7 +166,7 @@ defaultproperties
 		XRandFactor=0.300000
 		YRandFactor=0.300000
 		MaxRecoil=8192.000000
-		ClimbTime=0.2
+		ClimbTime=0.15
 		DeclineTime=1.500000
 		ViewBindFactor=0.150000
 		HipMultiplier=2

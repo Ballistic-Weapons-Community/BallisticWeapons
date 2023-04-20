@@ -84,28 +84,28 @@ defaultproperties
 		XRandFactor=0.2
 		YRandFactor=0.2
 		MaxRecoil=8192
-		ClimbTime=0.1
+		ClimbTime=0.08
 		DeclineDelay=0.3
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_208
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.4
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.4
         XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.03),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.00),(InVal=0.7,OutVal=0.03),(InVal=1.0,OutVal=0.00)))
 		XRandFactor=0.1
 		YRandFactor=0.1
 		MaxRecoil=8192
-		ClimbTime=0.1
+		ClimbTime=0.08
 		DeclineDelay=0.3
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
     End Object
 
 	//=================================================================
@@ -116,16 +116,17 @@ defaultproperties
 		ADSMultiplier=0.75
 		AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
-		AimAdjustTime=0.700000
+		AimAdjustTime=0.7
 		ChaosDeclineTime=0.60000
         ChaosSpeedThreshold=300
 	End Object
 	
     Begin Object Class=AimParams Name=TacticalAimParams_208
-        ADSMultiplier=0.75
+		ADSViewBindFactor=0
+		ADSMultiplier=0.5
+		AimAdjustTime=0.6
         AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
-		AimAdjustTime=0.5
         ChaosDeclineTime=0.60000
         ChaosSpeedThreshold=300
     End Object

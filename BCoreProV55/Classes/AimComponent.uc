@@ -61,6 +61,7 @@ var	float				        DisplaceDurationMult;   // Duration multiplier for aim disp
 var private Rotator				Aim;				    // How far aim pointer is from crosshair
 var private Rotator				NewAim;				    // New destination for aim pointer
 var private Rotator				OldAim;				    // Where aim pointer was before it started moving
+var private float				AimMultiplier;
 
 var	private float				ReaimTime;			    // Time it should take to move aim pointer to new position
 var private float				ReaimPhase;			    // How far along pointer is in its movement from old to new
@@ -122,17 +123,23 @@ final simulated function bool PendingForcedReaim()
     return bForceReaim;
 }
 
+final function Rotator GetBaseAim()
+{
+	return Aim * AimMultiplier;
+}
+
 // Returns the interpolated base aim with its offset, chaos, etc and view aim removed in the form of a single rotator
 final simulated function Rotator GetAimPivot(optional bool bIgnoreViewAim)
 {
 	if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None || PlayerController(BW.InstigatorController).bBehindView)
-		return AimOffset + Aim + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
-	return AimOffset + Aim * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
+		return AimOffset + GetBaseAim() + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
+
+	return AimOffset + GetBaseAim() * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
 }
 
 final simulated function Rotator GetViewPivot()
 {
-    return Aim * ViewBindFactor;
+    return GetBaseAim() * ViewBindFactor;
 }
 
 //Firemodes use this to convert the portion of ChaosAimSpread not used for movement-related shenanigans
@@ -155,7 +162,7 @@ private final simulated function Rotator GetAimOffsets()
 
 private final simulated function Rotator GetFutureAim(float ExtraTime)
 {
-	return class'BUtil'.static.RSmerp(FMin((ReaimPhase+ExtraTime)/ReaimTime, 1.0), OldAim, NewAim);
+	return class'BUtil'.static.RSmerp(FMin((ReaimPhase+ExtraTime)/ReaimTime, 1.0), OldAim, NewAim) * AimMultiplier;
 }
 
 private final simulated function Rotator GetFutureAimOffset(float ExtraTime)
@@ -214,6 +221,7 @@ final simulated function Cleanup()
     Aim = rot(0,0,0);
     NewAim = rot(0,0,0);
     OldAim = rot(0,0,0);
+	AimMultiplier = 1;
 
     ReaimTime = 0;
     ReaimPhase = 0;
@@ -290,7 +298,8 @@ final simulated function OnWeaponSelected()
 //=============================================================
 final simulated function UpdateADSTransition(float delta)
 {
-    ViewBindFactor = Smerp(delta, Params.ViewBindFactor, 1);
+    ViewBindFactor = Smerp(delta, Params.ViewBindFactor, Params.ADSViewBindFactor);
+	AimMultiplier = Lerp(delta, 1, Params.ADSMultiplier);
 }
 
 final simulated function bool AllowADS()
@@ -301,17 +310,19 @@ final simulated function bool AllowADS()
 final simulated function ApplyADSModifiers()
 {
 	AimSpread.Min = 0;
-    AimSpread.Max *= Params.ADSMultiplier;
+    //AimSpread.Max *= Params.ADSMultiplier;
 }
 
 final simulated function OnADSViewStart()
 {
-    ViewBindFactor = 1.0;
+    ViewBindFactor = Params.ADSViewBindFactor;
+	AimMultiplier = Params.ADSMultiplier;
 }
 
 final simulated function OnADSViewEnd()
 {
     ViewBindFactor = Params.ViewBindFactor;
+	AimMultiplier = 1;
 }
 
 // this function is never called
@@ -723,4 +734,9 @@ final simulated function float CalcCrosshairOffset(Canvas C)
 final simulated function DrawDebug(Canvas Canvas)
 {
     Canvas.DrawText("AimComponent: Chaos: "$Chaos$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch$" Aim Adjust Time: "$AimAdjustTime);
+}
+
+defaultproperties
+{
+	AimMultiplier = 1
 }

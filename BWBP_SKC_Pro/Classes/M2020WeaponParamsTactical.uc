@@ -116,7 +116,7 @@ defaultproperties
 		DeclineTime=1.00000
 		CrouchMultiplier=0.750000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalPowerRecoilParams
@@ -125,7 +125,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.45
 		YRandFactor=0.45
-		ClimbTime=0.16
+		ClimbTime=0.125
 		DeclineDelay=0.7
 		DeclineTime=1.00000
 		CrouchMultiplier=0.750000
@@ -144,7 +144,7 @@ defaultproperties
 		DeclineTime=1.00000
 		CrouchMultiplier=0.750000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -153,7 +153,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=512,Max=2560)
-		AimAdjustTime=0.5
+		AimAdjustTime=0.7
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		JumpOffset=(Pitch=-2048,Yaw=512)
