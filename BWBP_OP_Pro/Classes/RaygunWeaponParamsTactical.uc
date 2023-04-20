@@ -40,7 +40,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
-		Damage=70
+		Damage=10
 		DamageType=Class'BWBP_OP_Pro.DTRaygunCharged'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTRaygunCharged'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTRaygunCharged'

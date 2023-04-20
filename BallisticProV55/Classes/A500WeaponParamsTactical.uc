@@ -44,8 +44,8 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.A500AltProjectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 		SpawnOffset=(X=20,Y=6,Z=-8)
-        Speed=6000.000000
-        MaxSpeed=6000.000000
+        Speed=3000.000000
+        MaxSpeed=3000.000000
         Damage=75.000000
         DamageRadius=768.000000
         RadiusFallOffType=RFO_None
@@ -58,7 +58,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalChargeFireParams
-        AmmoPerFire=1
+        AmmoPerFire=0
         FireEndAnim=
         FireInterval=1.500000
         MaxHoldTime=6.000000

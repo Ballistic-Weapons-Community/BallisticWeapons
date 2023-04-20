@@ -26,6 +26,37 @@ function ModeHoldFire()
 
 state Hold
 {
+	simulated function bool AllowFire()
+	{
+		if (!CheckReloading())
+			return false;		// Is weapon busy reloading
+		if (!CheckWeaponMode())
+			return false;		// Will weapon mode allow further firing
+
+		if (BW.MagAmmo == 0 && HoldTime == 0)
+		{
+			if (!bPlayedDryFire && DryFireSound.Sound != None)
+			{
+				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
+				bPlayedDryFire=true;
+			}
+			if (bDryUncock)
+				BW.bNeedCock=true;
+
+			BW.bNeedReload = BW.MayNeedReload(ThisModeNum, 0);
+
+			BW.EmptyFire(ThisModeNum);
+
+			return false;		// Is there ammo in weapon's mag
+		}
+		else if (BW.bNeedReload)
+			return false;
+		else if (BW.bNeedCock)
+			return false;		// Is gun cocked
+
+		return true;
+	}
+
     simulated function BeginState()
     {
         AcidLoad = 0;
@@ -81,7 +112,7 @@ defaultproperties
 {
 	 AcidLoad=1
 	 MaxAcidLoad=8
-	 AmmoPerFire=1
+	 AmmoPerFire=0
      ChargingSound=Sound'GeneralAmbience.texture22'
      bFireOnRelease=True
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'

@@ -56,7 +56,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ArenaChargeFireParams
-        AmmoPerFire=1
+        AmmoPerFire=0
         FireEndAnim=
         FireInterval=1.500000
         MaxHoldTime=6.000000
