@@ -54,7 +54,7 @@ var()   float					NextPawnListUpdateTime;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		Target, bMeatVision, ClientGrenadePickedUp, ClientAddTarget;
+		Target, bMeatVision, ClientGrenadePickedUp, ClientAddTarget, ClientClearTargets;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal, ServerSwitchSilencer;
 }
@@ -456,9 +456,15 @@ simulated function AddTarget(Pawn Target)
 	TrackedTargets[TrackedTargets.Length] = Target;
 	ClientAddTarget(Target);
 }
+
 simulated function ClientAddTarget(Pawn Target)
 {
 	TrackedTargets[TrackedTargets.Length] = Target;
+}
+
+simulated function ClientClearTargets()
+{
+	TrackedTargets.Remove(0, TrackedTargets.Length);
 }
 
 simulated event WeaponTick(float DT)
@@ -500,7 +506,10 @@ simulated event WeaponTick(float DT)
 		return;
 
 	if (TrackedTargets.Length != 0 && Level.TimeSeconds - LastPingTime > MaxTrackTime)
+	{
 		TrackedTargets.Length = 0; //remove grenade locks after a period of time
+		ClientClearTargets();
+	}
 
     NextTargetFindTime = Level.TimeSeconds + TargetFindInterval;
 

@@ -156,28 +156,28 @@ defaultproperties
 	
 	//Camos ==========================================
 
-	Begin Object Class=WeaponCamo Name=R9_IceFire
+	Begin Object Class=WeaponCamo Name=R9_OrangeShine
 		Index=0
+		CamoName="Fresh Orange"
+		Weight=15
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH2",Index=1,AIndex=0,PIndex=0)
+	End Object
+
+	Begin Object Class=WeaponCamo Name=R9_IceFire
+		Index=1
 		CamoName="Fire & Ice"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_OP_Tex.R9A1.R9_body_SH1",Index=1,AIndex=0,PIndex=0)
 	End Object
 
-	Begin Object Class=WeaponCamo Name=R9_OrangeShine
-		Index=1
-		CamoName="Fresh Orange"
-		Weight=15
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH2",Index=1,AIndex=0,PIndex=0)
-	End Object
-	
-	Begin Object Class=WeaponCamo Name=R9_Gray
+	Begin Object Class=WeaponCamo Name=R9_Jungle
 		Index=2
-		CamoName="Gray"
+		CamoName="Jungle"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH4",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH3",Index=1,AIndex=0,PIndex=0)
 	End Object
 
 	Begin Object Class=WeaponCamo Name=R9_Orange
@@ -186,14 +186,14 @@ defaultproperties
 		Weight=30
 	End Object
 	
-	Begin Object Class=WeaponCamo Name=R9_Jungle
+	Begin Object Class=WeaponCamo Name=R9_Gray
 		Index=4
-		CamoName="Jungle"
+		CamoName="Gray"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH3",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH4",Index=1,AIndex=0,PIndex=0)
 	End Object
-	
+
 	Begin Object Class=WeaponCamo Name=R9_Winter
 		Index=5
 		CamoName="Winter"
@@ -202,10 +202,10 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH5",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
-	Camos(0)=R9_IceFire
-	Camos(1)=R9_OrangeShine
-	Camos(2)=R9_Gray
+	Camos(0)=R9_OrangeShine
+	Camos(1)=R9_IceFire
+	Camos(2)=R9_Jungle
 	Camos(3)=R9_Orange
-	Camos(4)=R9_Jungle
+	Camos(4)=R9_Gray
 	Camos(5)=R9_Winter
 }

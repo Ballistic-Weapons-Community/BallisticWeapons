@@ -53,12 +53,13 @@ defaultproperties
 	bPawnRapidFireAnim=True
 
 	AmmoClass=Class'BallisticProV55.Ammo_Cells'
-	ShakeRotMag=(X=32.000000,Y=8.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-	ShakeRotTime=1.500000
+
+	ShakeRotMag=(X=64.000000)
+	ShakeRotRate=(X=960.000000)
+	ShakeRotTime=2.000000
 	ShakeOffsetMag=(X=-7.00)
-	ShakeOffsetRate=(X=-1000.000000)
-	ShakeOffsetTime=1.500000
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
 
 	//AI info - bot aid for close-range A73 - it's fast and they won't dodge it if it's too close
     bLeadTarget=True
