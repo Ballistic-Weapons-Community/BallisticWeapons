@@ -84,12 +84,12 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_600
 		ViewBindFactor=0.25
-		ADSViewBindFactor=0.6
+		ADSViewBindFactor=0.7
 		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.250000,OutVal=-0.020000),(InVal=0.400000,OutVal=0.1000),(InVal=0.800000,OutVal=-0.04000),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.120000,OutVal=0.11000),(InVal=0.300000,OutVal=0.330000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
@@ -100,7 +100,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2
 	End Object
 	
 	//=================================================================
@@ -117,10 +117,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalAimParams_600
+		ADSViewBindFactor=0
+		ADSMultiplier=0.25
+		AimAdjustTime=0.6
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=384,Max=1280)
-		AimAdjustTime=0.600000
-        ADSMultiplier=0.5
 		ChaosDeclineTime=0.75
         ChaosSpeedThreshold=300
 	End Object

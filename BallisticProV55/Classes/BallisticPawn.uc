@@ -625,7 +625,10 @@ simulated function ClientPlayLinearSound(Sound sound, ESoundSlot slot, float vol
 	if (IsLocallyControlled())
 		volume *= 0.65f;
 	else if (!FastTrace(Location, Level.GetLocalPlayerController().ViewTarget.Location))
-		volume *= 0.65f;
+	{
+		volume *= 0.9f;
+		radius *= 0.75f;
+	}
 
 	// have to manually calculate a volume and radius in order to bypass NATIVE BULLSHIT
 	// we play the sound with the volume we want, 

@@ -27,7 +27,7 @@ defaultproperties
 		bPenetrate=True
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'AK490FlashEmitter'
-		FlashScaleFactor=0.9
+		FlashScaleFactor=1.1
 		Recoil=340.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000
@@ -72,7 +72,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
-		ADSViewBindFactor=0.6
+		ADSViewBindFactor=0.7
 		EscapeMultiplier=1.25
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.05000),(InVal=0.200000,OutVal=0.060000),(InVal=0.300000,OutVal=0.10000),(InVal=0.400000,OutVal=0.150000),(InVal=0.5,OutVal=0.170000),(InVal=0.65000000,OutVal=0.100000),(InVal=0.75000000,OutVal=0.05000),(InVal=1.000000,OutVal=0.080000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.300000,OutVal=0.35000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
@@ -84,7 +84,7 @@ defaultproperties
 		DeclineTime=1.25
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2
 	End Object
 	
 	//=================================================================
@@ -92,9 +92,10 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=256,Max=1024)
+		ADSViewBindFactor=0
+		ADSMultiplier=0.25
 		AimAdjustTime=0.6
-        ADSMultiplier=0.5
+		AimSpread=(Min=256,Max=1024)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
 		ChaosSpeedThreshold=300

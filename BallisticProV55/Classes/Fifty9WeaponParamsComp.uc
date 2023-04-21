@@ -20,7 +20,7 @@ defaultproperties
         PenetrateForce=135
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-        FlashScaleFactor=0.400000
+        FlashScaleFactor=0.500000
         Recoil=260.000000
         Inaccuracy=(X=72,Y=72)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
@@ -44,7 +44,7 @@ defaultproperties
         PenetrateForce=135
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-        FlashScaleFactor=0.400000
+        FlashScaleFactor=0.500000
         Recoil=210.000000
         Inaccuracy=(X=72,Y=72)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)

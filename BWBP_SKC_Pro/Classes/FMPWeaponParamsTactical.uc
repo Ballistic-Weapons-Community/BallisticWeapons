@@ -131,7 +131,7 @@ defaultproperties
 		ADSViewBindFactor=1.000000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
 	End Object
 	
 	//=================================================================
@@ -149,7 +149,7 @@ defaultproperties
 		ViewBindFactor=0.45
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
 	End Object
 	
 	//=================================================================
@@ -167,7 +167,7 @@ defaultproperties
 		ViewBindFactor=0.45
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
 	End Object
 
 	//=================================================================
@@ -175,10 +175,11 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-    	AimSpread=(Min=256,Max=1224)
+		ADSViewBindFactor=0
+		ADSMultiplier=0.25
+		AimAdjustTime=0.6
+    	AimSpread=(Min=256,Max=1024)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
-		AimAdjustTime=0.450000
-		ADSMultiplier=1
         ChaosSpeedThreshold=300
 	End Object
     

@@ -34,7 +34,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
-         StartSizeRange=(Y=(Min=1.50000,Max=1.50000),Z=(Min=1.500000,Max=1.500000))
+         StartSizeRange=(Y=(Min=2.00,Max=2.00),Z=(Min=2.00,Max=2.00))
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.10000,Max=0.10000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -60,7 +60,7 @@ defaultproperties
          MaxParticles=1
 		 Opacity=0.55
          StartLocationOffset=(X=20.000000)
-         StartSizeRange=(X=(Min=75.000000,Max=75.000000),Y=(Min=75.000000,Max=75.000000),Z=(Min=75.000000,Max=75.000000))
+         StartSizeRange=(X=(Min=100.000000,Max=100.000000),Y=(Min=100.000000,Max=100.000000),Z=(Min=100.000000,Max=100.000000))
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.10000,Max=0.10000)

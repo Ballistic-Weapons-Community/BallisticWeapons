@@ -26,8 +26,8 @@ var() Rotator				SprintOffset;		// Rotation applied to AimOffset when sprinting
 var() Rotator				JumpOffset;			// Temporarily offset aim by this when jumping
 
 // View Bind
-var() float					ViewBindFactor;		// How much of the Aim is applied to the player's view rotation. 0.0 - 1.0
-
+var() float					ViewBindFactor;		// How much of the aim is applied to the player's view rotation. 0.0 - 1.0
+var() float					ADSViewBindFactor;	// How much of aim is applied to view in ADS mode.
 // Chaos
 var() float					JumpChaos;			// Chaos applied for jump event
 var() float					FallingChaos;		// Chaos applied when falling
@@ -41,17 +41,18 @@ var() int					ChaosTurnThreshold; // Speed(Rotator units per second) of view rot
 defaultproperties
 {
     AimSpread=(Min=16,Max=128)
-    AimAdjustTime=0.500000
-    OffsetAdjustTime=0.300000
+    AimAdjustTime=0.50
+    OffsetAdjustTime=0.30
 	VelocityAimAdjustMult=0.67f
-    CrouchMultiplier=0.800000
-    ADSMultiplier=1.000000
-    ViewBindFactor=0.000000
+    CrouchMultiplier=0.80
+    ADSMultiplier=1.00
+    ViewBindFactor=0.00
+	ADSViewBindFactor=1.00
 	SprintOffSet=(Pitch=0,Yaw=0)
     SprintChaos=0.100000
     AimDamageThreshold=100
-    ChaosDeclineTime=0.640000
-    ChaosDeclineDelay=0.000000
-    ChaosSpeedThreshold=500.000000
-    ChaosTurnThreshold=131072.000000
+    ChaosDeclineTime=0.64
+    ChaosDeclineDelay=0.00
+    ChaosSpeedThreshold=500.00
+    ChaosTurnThreshold=131072.00
 }

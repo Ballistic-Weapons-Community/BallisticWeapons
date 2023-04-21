@@ -72,7 +72,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.4
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.1
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.12),(InVal=0.7,OutVal=0.2),(InVal=1.0,OutVal=0.3)))
 		XRandFactor=0.15000
@@ -80,7 +80,7 @@ defaultproperties
 		ClimbTime=0.06
 		DeclineDelay=0.250000
 		DeclineTime=0.5
-		MaxMoveMultiplier=1.5
+		MaxMoveMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -88,9 +88,10 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
+		ADSMultiplier=0.35
+		AimAdjustTime=0.5
 		AimSpread=(Min=256,Max=768)
-        ADSMultiplier=0.75
-		AimAdjustTime=0.450000
 		ChaosDeclineTime=0.320000
         ChaosSpeedThreshold=300
 	End Object

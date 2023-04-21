@@ -11,7 +11,7 @@ defaultproperties
 	Index=GS_Tactical
 	StyleName="Tactical"
 	
-	RecoilScale=0.75
+	RecoilScale=1 // 0.75
 	RecoilShotScale=1
 
 	bRunInADS=False

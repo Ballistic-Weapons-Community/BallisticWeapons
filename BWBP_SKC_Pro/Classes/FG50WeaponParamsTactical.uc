@@ -20,7 +20,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=768.000000
+		Recoil=1024.000000
 		Chaos=0.200000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -143,14 +143,14 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
-		ADSViewBindFactor=0.6
+		ADSViewBindFactor=0.7
 		EscapeMultiplier=1.4
 		XCurve=(Points=(,(InVal=0.15,OutVal=0.03),(InVal=0.400000,OutVal=-0.090000),(InVal=0.550000,OutVal=0.05000),(InVal=0.700000,OutVal=-0.07500),(InVal=1.000000,OutVal=0.1000)))
 		YCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
 		MaxRecoil=8192
-		ClimbTime=0.15
+		ClimbTime=0.1
 		DeclineDelay=0.3
 		DeclineTime=2
 		CrouchMultiplier=0.85
@@ -163,7 +163,9 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalStandardAimParams
-		ADSMultiplier=0.5
+		ADSViewBindFactor=0
+		ADSMultiplier=0.2
+		AimAdjustTime=0.6
 		AimSpread=(Min=512,Max=2560)
 		ChaosDeclineTime=1.750000
 		ChaosSpeedThreshold=300
@@ -172,8 +174,9 @@ defaultproperties
 	End Object 
 
 	Begin Object Class=AimParams Name=TacticalControlledAimParams
-		AimAdjustTime=0.8
-		ADSMultiplier=0.4
+		ADSViewBindFactor=0
+		ADSMultiplier=0.15
+		AimAdjustTime=0.6
 		AimSpread=(Min=384,Max=1280)
 		ChaosDeclineTime=1.25
 		ChaosSpeedThreshold=300

@@ -44,8 +44,8 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.A500AltProjectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 		SpawnOffset=(X=20,Y=6,Z=-8)
-        Speed=6000.000000
-        MaxSpeed=6000.000000
+        Speed=3000.000000
+        MaxSpeed=3000.000000
         Damage=75.000000
         DamageRadius=768.000000
         RadiusFallOffType=RFO_None
@@ -71,7 +71,7 @@ defaultproperties
 
     Begin Object Class=RecoilParams Name=TacticalRecoilParams
         ViewBindFactor=0.65
-		ADSViewBindFactor=0.6
+		ADSViewBindFactor=0.7
         CrouchMultiplier=1
         XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.270000),(InVal=0.600000,OutVal=0.350000),(InVal=0.700000,OutVal=0.40000),(InVal=1.000000,OutVal=0.4500000)))
         YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.170000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.100000),(InVal=1.000000,OutVal=0.5)))
@@ -79,7 +79,7 @@ defaultproperties
         YRandFactor=0.200000
         DeclineTime=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.65
     End Object
 
     //=================================================================
@@ -87,9 +87,10 @@ defaultproperties
 	//=================================================================
 
     Begin Object Class=AimParams Name=TacticalAimParams
-        ADSMultiplier=0.5
+		ADSViewBindFactor=0.00
+		ADSMultiplier=0.25
+		AimAdjustTime=0.60
         SprintOffset=(Pitch=-2048,Yaw=-2048)
-        AimAdjustTime=0.600000
         AimSpread=(Min=256,Max=768)
         AimDamageThreshold=75.000000
         ChaosDeclineTime=0.320000

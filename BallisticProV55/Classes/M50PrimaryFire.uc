@@ -25,7 +25,7 @@ defaultproperties
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     FlashScaleFactor=0.800000
+     FlashScaleFactor=1.25
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
@@ -40,12 +40,14 @@ defaultproperties
      FireEndAnim=
      FireRate=0.090000
      AmmoClass=Class'BallisticProV55.Ammo_556mm'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+
+     ShakeRotMag=(X=48.000000)
+     ShakeRotRate=(X=960.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetMag=(X=-3.000000)
+     ShakeOffsetRate=(X=-100.000000)
      ShakeOffsetTime=2.000000
+	 
      WarnTargetPct=0.200000
      aimerror=900.000000
 }
