@@ -4,5 +4,5 @@ class WeaponInfoCache_Pro extends BC_WeaponInfoCache_GameStyle
 
 defaultproperties
 {
-	Revision=2
+	Revision=3
 }

@@ -9,7 +9,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=5000.000000,Max=7500.000000)
 		Damage=20
-        HeadMult=2.25f
+		Heat=15
+        HeadMult=2f
         LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
@@ -19,14 +20,14 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
 		FlashScaleFactor=0.300000
-		Recoil=16.000000
+		Recoil=8.000000
 		BotRefireRate=0.90
 		WarnTargetPct=0.10000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.135000
+		FireInterval=0.15
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -37,15 +38,15 @@ defaultproperties
     //=================================================================	
 
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
-		Damage=14
-		HeadMult=2.25
+		Damage=10
+		HeadMult=2f
 		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		Inaccuracy=(X=16,Y=16)
 		Chaos=0
-		Recoil=16
+		Recoil=8
 		FlashScaleFactor=0.100000
 	End Object
 
@@ -62,11 +63,11 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParamsOvercharge
-		Damage=22
-		HeadMult=2.25f
+		Damage=16
+		HeadMult=2f
 		LimbMult=0.75f
 		Chaos=0
-		Recoil=64
+		Recoil=16
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
@@ -124,7 +125,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.5
 		DisplaceDurationMult=1
-		MagAmmo=50
+		MagAmmo=34
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'

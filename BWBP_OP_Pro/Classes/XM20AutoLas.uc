@@ -371,6 +371,7 @@ function int ManageHeatInteraction(Pawn P, int HeatPerShot)
 	
 	foreach P.BasedActors(class'XM20HeatManager', HM)
 		break;
+		
 	if (HM == None)
 	{
 		HM = Spawn(class'XM20HeatManager',P,,P.Location + vect(0,0,-30));

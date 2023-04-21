@@ -23,7 +23,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.135000
+		FireInterval=0.15
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -113,7 +113,7 @@ defaultproperties
 		PlayerJumpFactor=1
 		InventorySize=6
 		DisplaceDurationMult=1
-		MagAmmo=50
+		MagAmmo=34
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'

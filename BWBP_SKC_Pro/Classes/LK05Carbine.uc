@@ -588,8 +588,8 @@ defaultproperties
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.LK05Pickup'
 
-	PlayerViewOffset=(X=1.00,Y=3.50,Z=-0.5)
-	SightOffset=(X=9,Y=0,Z=-0.09)
+	PlayerViewOffset=(X=6.00,Y=3.50,Z=-2.00)
+	SightOffset=(X=1.5,Y=0,Z=2.16)
 	SightAnimScale=0.5
 
 	AttachmentClass=Class'BWBP_SKC_Pro.LK05Attachment'

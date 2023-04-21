@@ -7,8 +7,8 @@ class RaygunPlagueEffect extends BallisticEmitter
 var   Actor							Victim;
 var   float							Duration, MaxDuration, Damage;
 var   Controller					InstigatorController;
-var 	RaygunPlagueTrigger		PlagueTrigger;
-var	class<DamageType>	DamageType;
+var 	RaygunPlagueTrigger			PlagueTrigger;
+var	class<DamageType>				DamageType;
 
 function Reset()
 {
@@ -104,8 +104,9 @@ defaultproperties
 {
 	Duration=8.000000
 	MaxDuration=16.000000
-	Damage=8.000000
+	Damage=4.000000
 	DamageType=Class'BWBP_OP_Pro.DTRaygunPlague'
+	
     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
         UseColorScale=True
         FadeOut=True
