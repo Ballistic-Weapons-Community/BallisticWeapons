@@ -20,16 +20,6 @@ replication
 		ClientSetHeat;
 }
 
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
-	{
-		A73PrimaryFire(FireMode[0]).HeatPerShot = 0;
-		A73SecondaryFire(FireMode[1]).HeatPerShot = 0;
-	}
-}
-
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);

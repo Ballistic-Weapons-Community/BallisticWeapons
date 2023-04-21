@@ -56,6 +56,14 @@ simulated function OnWeaponParamsChanged()
 		SetBoneScale(3, 0.0, 'IronsFront');
 		SetBoneRotation('Sight',RearSightBoneRot);
 	}
+	else
+	{
+		Skins[4]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[5]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[6]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[11]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[12]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+	}
 }
 
 //==============================================
@@ -504,11 +512,11 @@ defaultproperties
     AmpMaterials[5]=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	
 	MyFontColor=(R=255,G=255,B=255,A=255)
-    WeaponScreen=ScriptedTexture'BWBP_OP_Tex.SRX.SRX-ScriptLCD'
-    WeaponScreenShader=Shader'BWBP_OP_Tex.SRX.SRX-ScriptLCD-SD'
-	ScreenBase=Texture'BWBP_OP_Tex.SRX.SRX-Screen'
-	ScreenAmmoBlue=Texture'BWBP_OP_Tex.SRX.SRX-Screen'
-	ScreenAmmoRed=FinalBlend'BWBP_OP_Tex.SRX.SRX-ScreenRed-FB'
+    WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.SRX.SRX-ScriptLCD'
+    WeaponScreenShader=Shader'BWBP_SKC_Tex.SRX.SRX-ScriptLCD-SD'
+	ScreenBase=Texture'BWBP_SKC_Tex.SRX.SRX-Screen'
+	ScreenAmmoBlue=Texture'BWBP_SKC_Tex.SRX.SRX-Screen'
+	ScreenAmmoRed=FinalBlend'BWBP_SKC_Tex.SRX.SRX-ScreenRed-FB'
 	
 	AmplifierBone="Amp"
     AmplifierOnAnim="AddAMP"
@@ -525,7 +533,7 @@ defaultproperties
 	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
 	
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.SRX.BigIcon_SRXRifle'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.SRX.BigIcon_SRXRifle'
 	BigIconCoords=(Y2=240)
 	
 	bWT_Bullet=True
@@ -571,7 +579,7 @@ defaultproperties
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.SRXPickup'
 	AttachmentClass=Class'BWBP_SKC_Pro.SRXAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.SRX.SmallIcon_SRXRifle'
+	IconMaterial=Texture'BWBP_SKC_Tex.SRX.SmallIcon_SRXRifle'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="SRK-650 Battle Rifle"
 	LightType=LT_Pulse
@@ -580,22 +588,22 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_SRX'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SRX'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark'
-    Skins(2)=Texture'BWBP_OP_Tex.SRX.SRX-StockBlack'
-    Skins(3)=Texture'BWBP_OP_Tex.SRX.SRX-Irons'
-    Skins(4)=Texture'BWBP_OP_Tex.SRX.SRX-Holo'
-    Skins(5)=Texture'BWBP_OP_Tex.SRX.SRX-Cable'
-    Skins(6)=Texture'BWBP_OP_Tex.SRX.SRX-Plating'
-    Skins(7)=Texture'BWBP_OP_Tex.SRX.SRX-Barrel'
-    Skins(8)=Texture'BWBP_OP_Tex.SRX.SRX-Misc'
-    Skins(9)=Texture'BWBP_OP_Tex.SRX.SRX-Muzzle'
+    Skins(1)=Texture'BWBP_SKC_Tex.SRX.SRX-RifleDark'
+    Skins(2)=Texture'BWBP_SKC_Tex.SRX.SRX-StockBlack'
+    Skins(3)=Texture'BWBP_SKC_Tex.SRX.SRX-Irons'
+    Skins(4)=Texture'BWBP_SKC_Tex.SRX.SRX-Holo'
+    Skins(5)=Texture'BWBP_SKC_Tex.SRX.SRX-Cable'
+    Skins(6)=Texture'BWBP_SKC_Tex.SRX.SRX-Plating'
+    Skins(7)=Texture'BWBP_SKC_Tex.SRX.SRX-Barrel'
+    Skins(8)=Texture'BWBP_SKC_Tex.SRX.SRX-Misc'
+    Skins(9)=Texture'BWBP_SKC_Tex.SRX.SRX-Muzzle'
     Skins(10)=Texture'UCGeneric.SolidColours.Black'
-    Skins(11)=Texture'BWBP_OP_Tex.SRX.SRX-ScreenMask'
-    Skins(12)=Shader'BWBP_OP_Tex.SRX.SRX-Reticle-S'
-    Skins(13)=Texture'BWBP_OP_Tex.SRX.SRX-Supp'
+    Skins(11)=Texture'BWBP_SKC_Tex.SRX.SRX-ScreenMask'
+    Skins(12)=Shader'BWBP_SKC_Tex.SRX.SRX-Reticle-S'
+    Skins(13)=Texture'BWBP_SKC_Tex.SRX.SRX-Supp'
     Skins(14)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalRed'
 	Skins(15)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 }

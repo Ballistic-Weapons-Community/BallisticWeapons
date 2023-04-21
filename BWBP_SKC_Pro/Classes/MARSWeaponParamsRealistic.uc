@@ -280,6 +280,8 @@ defaultproperties
 		SightingTime=0.3
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4,PIndex=-1,AIndex=-1)
 		//Function
 		InventorySize=7
 		WeaponPrice=2800

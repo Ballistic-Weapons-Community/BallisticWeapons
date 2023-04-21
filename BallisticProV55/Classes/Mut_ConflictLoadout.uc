@@ -552,6 +552,8 @@ function EquipBot(Pawn P)
 		if (Size + SpaceUsed > MaxInventorySize)
 			continue;
 		CLRI.Loadout[CLRI.Loadout.length] = ClassName;
+		CLRI.Layouts[CLRI.Loadout.length] = "255";
+		CLRI.Camos[CLRI.Loadout.length] = "255";
 		SpaceUsed += Size;
 	}
 }

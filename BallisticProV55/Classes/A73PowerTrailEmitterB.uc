@@ -26,7 +26,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.200000)
      End Object
-     Emitters(1)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter1'
+     Emitters(0)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter6
          FadeOut=True
@@ -48,7 +48,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(4)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter6'
+     Emitters(1)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter6'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter8
          UseColorScale=True
@@ -77,7 +77,7 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-25.000000),Y=(Min=-25.000000,Max=25.000000),Z=(Max=25.000000))
      End Object
-     Emitters(5)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter8'
+     Emitters(2)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter8'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter9
          FadeOut=True
@@ -105,7 +105,7 @@ defaultproperties
          StartVelocityRange=(X=(Min=-25.000000),Y=(Min=-25.000000,Max=25.000000),Z=(Min=15.000000,Max=50.000000))
          VelocityLossRange=(Z=(Max=0.500000))
      End Object
-     Emitters(6)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter9'
+     Emitters(3)=SpriteEmitter'BallisticProV55.A73PowerTrailEmitterB.SpriteEmitter9'
 
      Begin Object Class=TrailEmitter Name=TrailEmitter1
          TrailShadeType=PTTST_PointLife
@@ -129,7 +129,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object
-     Emitters(7)=TrailEmitter'BallisticProV55.A73PowerTrailEmitterB.TrailEmitter1'
+     Emitters(4)=TrailEmitter'BallisticProV55.A73PowerTrailEmitterB.TrailEmitter1'
 
      bNoDelete=False
 }

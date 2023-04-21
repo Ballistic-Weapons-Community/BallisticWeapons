@@ -203,7 +203,7 @@ defaultproperties
 {
 	 WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
-	 MaxPulseNum=2
+	 MaxPulseNum=3
      DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep6'
 	 PingDirectSound=Sound'GeneralAmbience.beep7'

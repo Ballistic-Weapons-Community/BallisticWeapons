@@ -146,6 +146,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SWC_Pro.A800SkrithMinigun'
 	 ModeIndex=1
 	 DetonateOn=DT_Impact
 	 bNoInitialSpin=True

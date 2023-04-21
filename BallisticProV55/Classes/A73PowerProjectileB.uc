@@ -211,7 +211,7 @@ simulated function DestroyEffects()
 defaultproperties
 {
      ModeIndex=1
-    WeaponClass=Class'BallisticProV55.A73SkrithRifle'
+     WeaponClass=Class'BallisticProV55.A73SkrithRifle'
      ImpactManager=Class'BallisticProV55.IM_A73PowerB'
      PenetrateManager=Class'BallisticProV55.IM_A73PowerB'
      bRandomStartRotation=False

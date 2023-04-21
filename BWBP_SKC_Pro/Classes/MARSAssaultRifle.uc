@@ -371,7 +371,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	
 	if (ZoomType != ZT_Irons )
 	{
-		if (!bThermal && !bMeatVision && bHasThermalSight) //Nothing on, turn on IRNV!
+		if (!bThermal && !bMeatVision && bHasNightvisionSight) //Nothing on, turn on IRNV if we can!
 		{
 			bThermal = !bThermal;
 			if (bThermal)
@@ -383,9 +383,9 @@ exec simulated function WeaponSpecial(optional byte i)
 				PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
 			return;
 		}
-		if ((bThermal || !bHasThermalSight) && !bMeatVision) //IRNV on! turn it off and turn on targeting!
+		if ((bThermal || !bHasNightvisionSight) && !bMeatVision) //IRNV on or missing! turn it off and turn on targeting!
 		{
-			if (bHasThermalSight)
+			if (bHasNightvisionSight)
 			{
 				bThermal = !bThermal;
 				if (bThermal)

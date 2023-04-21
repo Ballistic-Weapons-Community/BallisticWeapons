@@ -67,12 +67,6 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 
-	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
-	{
-		SightAnimScale = 0.75;
-		SightBobScale = 0.075 *class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
-	}
-
 	for(n=level.NavigationPointList;N!=None;N=N.nextNavigationPoint)
 	{
 		TotalZ += N.Location.Z;
@@ -80,6 +74,20 @@ simulated function PostNetBeginPlay()
 	}
 	if (ZCount > 0)
 		ZRefHeight = TotalZ / ZCount;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+
+	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
+	{
+		SightAnimScale = 0.75;
+		SightBobScale = 0.1 *class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+	}
+	
 }
 
 simulated function ClientPlayerDamaged(int Damage)

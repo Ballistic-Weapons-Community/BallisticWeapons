@@ -23,6 +23,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=45.000000
 		Chaos=-1.0
+		Heat=0
 		Inaccuracy=(X=8,Y=4)
 		WarnTargetPct=0.200000	
 	End Object
@@ -50,6 +51,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Pitch=1.1,Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=40.000000
 		Chaos=-1.0
+		Heat=0
 		Inaccuracy=(X=8,Y=4)
 		WarnTargetPct=0.200000	
 	End Object
@@ -226,8 +228,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
-		LayoutName="Infantry Blue"
+		LayoutName="Standard"
 		Weight=30
+		AllowedCamos(0)=0
 		//Attachments
 		//Function
 		InventorySize=7
@@ -246,14 +249,10 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_CQC //Firehose from 2.5
 		//Layout core
-		LayoutName="Fabulous Pink"
+		LayoutName="CQC"
 		Weight=10
+		AllowedCamos(0)=1
 		//Attachments
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73AmmoSkin',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.A73PurpleLayout.A73Skin_SD',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73SkinB',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73.A73BladeShader',Index=4)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -271,14 +270,10 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Elite //slow, powerful
 		//Layout core
-		LayoutName="Elite Orange"
+		LayoutName="Elite"
 		Weight=10
+		AllowedCamos(0)=2
 		//Attachments
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.A73RedLayout.A73BAmmoSkin',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BSkin_SD',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.A73RedLayout.A73BSkinB0',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BBladeShader',Index=4)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -297,5 +292,39 @@ defaultproperties
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_CQC'
 	Layouts(2)=WeaponParams'ClassicParams_Elite'
-
+	
+	//Camos =========================================
+	Begin Object Class=WeaponCamo Name=A73_Blue
+		Index=0
+		CamoName="Blue"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=A73_Pink
+		Index=1
+		CamoName="Pink"
+		Weight=30
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73AmmoSkin',Index=1,AIndex=3,PIndex=3)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.A73PurpleLayout.A73Skin_SD',Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.A73PurpleLayout.A73Skin_SD',Index=2,AIndex=-1,PIndex=4)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73SkinB',Index=3,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.A73.A73BladeShader',Index=4,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=A73_Orange
+		Index=2
+		CamoName="Orange"
+		Weight=30
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.A73RedLayout.A73BAmmoSkin',Index=1,AIndex=3,PIndex=3)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BSkin_SD',Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BSkin_SD',Index=2,AIndex=-1,PIndex=4)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.A73RedLayout.A73BSkinB0',Index=3,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.A73RedLayout.A73BBladeShader',Index=4,AIndex=1,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'A73_Blue'
+	Camos(1)=WeaponCamo'A73_Pink'
+	Camos(2)=WeaponCamo'A73_Orange'
 }

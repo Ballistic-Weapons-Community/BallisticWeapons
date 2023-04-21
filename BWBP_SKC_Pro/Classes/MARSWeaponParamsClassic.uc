@@ -289,6 +289,8 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		ZoomType=ZT_Logarithmic
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
 		
 		//Function
 		InventorySize=6
@@ -343,6 +345,8 @@ defaultproperties
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4,PIndex=-1,AIndex=-1)
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		
 		//Function
@@ -374,6 +378,8 @@ defaultproperties
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4,PIndex=-1,AIndex=-1)
 		
 		//Function
 		InventorySize=4
@@ -410,7 +416,7 @@ defaultproperties
 		CamoName="Tan"
 		Weight=15
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-Irons",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronsTan",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Green
@@ -434,7 +440,7 @@ defaultproperties
 		CamoName="Arctic"
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-IronArctic",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronArctic",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Proto

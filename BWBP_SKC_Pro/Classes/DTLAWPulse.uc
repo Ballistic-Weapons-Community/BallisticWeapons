@@ -30,6 +30,7 @@ defaultproperties
      MaleSuicide="%o basked in the blue glow of his LAW mine."
      bDelayedDamage=True
      bNeverSevers=True
+     bArmorStops=False
      VehicleDamageScaling=1.900000
      VehicleMomentumScaling=0.800000
 }

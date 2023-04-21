@@ -171,6 +171,7 @@ function ApplySlowdown(Pawn P, float Duration)
 
 defaultproperties
 {
+	WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate

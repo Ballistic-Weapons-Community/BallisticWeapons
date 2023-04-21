@@ -18,6 +18,6 @@ defaultproperties
 	 // The sensor radius is 768, and sounds play at full volume for your sound radius,
 	 // and then the sound decays until 100 times the sound radius, where it is inaudible
 	 // 64 is a reasonable full volume value
-     HitSoundRadius=64.000000 
+     HitSoundRadius=128.000000 
      EffectBackOff=96.000000
 }

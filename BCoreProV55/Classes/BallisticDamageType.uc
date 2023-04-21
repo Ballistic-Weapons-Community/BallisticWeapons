@@ -377,7 +377,7 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 		{
 			if (PlayerController(Victim.Controller) != None)
 			{
-				if (default.bLessDisruptiveFlash && default.AltFlashF != 0 && default.AltFlashV != vect(0,0,0))
+				if (default.bLessDisruptiveFlash && default.AltFlashF != 0 /*&& default.AltFlashV != vect(0,0,0)*/)
 					PlayerController(Victim.Controller).ClientFlash(default.AltFlashF, default.AltFlashV);
 				else
 					PlayerController(Victim.Controller).ClientFlash(default.FlashF, default.FlashV);
