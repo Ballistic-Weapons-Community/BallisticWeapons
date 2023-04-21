@@ -196,6 +196,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SKC_Pro.G51Carbine'
      ModeIndex=1
 	 MaxPulseNum=5
      DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'

@@ -85,6 +85,7 @@ simulated state Scope
 		bUseWeaponMag=False;
 		bFireOnRelease=True;
 		bModeExclusive=False;
+		bLoaded=False;
 
 		if (bFireOnRelease)
 			bWaitForRelease = true;

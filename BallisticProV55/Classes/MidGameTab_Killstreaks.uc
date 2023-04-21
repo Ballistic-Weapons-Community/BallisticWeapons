@@ -294,7 +294,7 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	if (CamoComboBox.ItemCount() == 0)
 		CamoComboBox.AddItem("None",, "255");
 	
-	if (CamoComboBox.ItemCount() > 1)
+	if (CamoComboBox.ItemCount() > 1 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
 	{
 		CamoComboBox.AddItem("Random",, "255");
 		if (class'KillstreakConfig'.default.Camos[GroupIndex] == 255) //these damn boxes changing sizes

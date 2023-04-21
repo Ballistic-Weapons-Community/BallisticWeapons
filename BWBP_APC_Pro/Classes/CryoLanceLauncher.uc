@@ -73,7 +73,7 @@ defaultproperties
     bShowChargingBar=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000Ice'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000'
 	BigIconCoords=(X1=32,Y1=40,X2=475)
 	bWT_Bullet=True
 	ManualLines(0)=""
@@ -114,7 +114,7 @@ defaultproperties
 	PlayerViewOffset=(X=-5.500000,Y=12.000000,Z=-18.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.MARSAttachment'
-	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000Ice'
+	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="[B] Cryo Lance"
 	LightType=LT_Pulse

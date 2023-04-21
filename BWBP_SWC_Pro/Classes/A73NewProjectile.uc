@@ -149,6 +149,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SWC_Pro.A800SkrithMinigun'
      ImpactManager=Class'BWBP_SWC_Pro.IM_A800Projectile'
      PenetrateManager=Class'BWBP_SWC_Pro.IM_A800Projectile'
      bPenetrate=True

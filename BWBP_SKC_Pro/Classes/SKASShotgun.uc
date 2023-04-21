@@ -338,11 +338,11 @@ defaultproperties
     bCockOnEmpty=True
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=192),Color2=(B=0,G=0,R=255,A=98),StartSize1=113,StartSize2=120)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
-	//WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
-    //WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
-    //WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-    //WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
-    //WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
+	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+    WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+    WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+    WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
+    WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
     CurrentWeaponMode=0
     GunLength=32.000000
     ParamsClasses(0)=Class'SKASWeaponParamsComp'

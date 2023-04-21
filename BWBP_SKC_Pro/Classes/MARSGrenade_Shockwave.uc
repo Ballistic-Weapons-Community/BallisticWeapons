@@ -99,13 +99,14 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
      DetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.000000
      ImpactDamage=30
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSMineDet'
+     ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSGrenadeDirect'
      ImpactManager=Class'BallisticProV55.IM_M46GrenadeImpact'
      TrailClass=Class'BallisticProV55.M50GrenadeTrail'
      TrailOffset=(X=-8.000000)

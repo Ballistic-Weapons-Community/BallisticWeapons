@@ -40,14 +40,14 @@ simulated function PostBeginPlay()
 	{
 		if (Level.Game.bTeamGame && Instigator != None && Instigator.GetTeamNum() == 0)
 		{
-			TeamLightColor = 0;
+			TeamLightColor = 1;
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
 		}
 		
 		else 
 		{
-			TeamLightColor = 1;
+			TeamLightColor = 0;
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
 		}
@@ -60,7 +60,7 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
 	{
-		if (TeamLightColor == 0)
+		if (TeamLightColor == 1)
 			TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
 		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
 		TeamLight.SetBase(self);
@@ -80,11 +80,6 @@ simulated function InitProjectile()
 	{
 		PlaySound(DetonateSound,,2.0,,256,,);
 		SetTimer(1.25, false);
-	}
-	if (level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
-		TeamLight.SetBase(self);
 	}
 }
 
@@ -210,7 +205,7 @@ defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
 	ModeIndex=1
-	DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
+    DetonateSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
 	ShockRadius=1536
 	MyShotDamageType=Class'BWBP_SKC_Pro.DTLAWShot'
 	ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'
@@ -223,7 +218,7 @@ defaultproperties
 	MotionBlurRadius=384.000000
 	MotionBlurFactor=3.000000
 	MotionBlurTime=4.000000
-	Damage=100.000000
+	Damage=75.000000
 	WallDecayFactor=0.35
 	DamageRadius=0.000000
 	MyDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'

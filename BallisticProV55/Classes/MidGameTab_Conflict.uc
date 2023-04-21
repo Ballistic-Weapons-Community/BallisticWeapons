@@ -432,7 +432,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	if (cb_WeapCamoIndex.ItemCount() == 0)
 		cb_WeapCamoIndex.AddItem("None",, "255");
 	
-	if (cb_WeapCamoIndex.ItemCount() > 1)
+	if (cb_WeapCamoIndex.ItemCount() > 1 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
 	{
 		cb_WeapCamoIndex.AddItem("Random",, "255");
 		if (CamoIndexList[lb_Weapons.List.Index] == 255) //these damn boxes changing sizes

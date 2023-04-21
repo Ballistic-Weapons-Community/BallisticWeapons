@@ -445,6 +445,9 @@ defaultproperties
      GunLength=0.000000
 	 bAimDisabled=True
 	 ParamsClasses(0)=Class'DefibWeaponParamsComp'
+	 ParamsClasses(1)=Class'DefibWeaponParamsClassic'
+	 ParamsClasses(2)=Class'DefibWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'DefibWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_OP_Pro.DefibFistsPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.DefibFistsSecondaryFire'
      PutDownTime=0.660000

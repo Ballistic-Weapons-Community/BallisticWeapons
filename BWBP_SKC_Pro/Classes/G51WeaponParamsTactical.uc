@@ -173,10 +173,10 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
-		RecoilParams(0)=TacticalRecoilParams
-		AimParams(0)=TacticalAimParams
-		FireParams(0)=TacticalPrimaryFireParams
-		AltFireParams(0)=TacticalSecondaryFireParams_Chaff
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Chaff'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Sensor
@@ -200,10 +200,10 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
-		RecoilParams(0)=TacticalRecoilParams
-		AimParams(0)=TacticalAimParams
-		FireParams(0)=TacticalPrimaryFireParams
-		AltFireParams(0)=TacticalSecondaryFireParams_Sensor
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Sensor'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_HE
@@ -227,10 +227,10 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
-		RecoilParams(0)=TacticalRecoilParams
-		AimParams(0)=TacticalAimParams
-		FireParams(0)=TacticalPrimaryFireParams
-		AltFireParams(0)=TacticalSecondaryFireParams_HE
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_HE'
 	End Object
 	
 	Layouts(0)=WeaponParams'TacticalParams_Chaff'
@@ -293,14 +293,14 @@ defaultproperties
 		Weight=1
 	End Object
 	
-	Camos(0)=G51_Black
-	Camos(1)=G51_Green
-	Camos(2)=G51_GreenHex
-	Camos(3)=G51_BlueHex
-	Camos(4)=G51_Desert
-	Camos(5)=G51_UTC
-	Camos(6)=G51_Inferno
-	Camos(7)=G51_Gold
+	Camos(0)=WeaponCamo'G51_Black'
+	Camos(1)=WeaponCamo'G51_Green'
+	Camos(2)=WeaponCamo'G51_GreenHex'
+	Camos(3)=WeaponCamo'G51_BlueHex'
+	Camos(4)=WeaponCamo'G51_Desert'
+	Camos(5)=WeaponCamo'G51_UTC'
+	Camos(6)=WeaponCamo'G51_Inferno'
+	Camos(7)=WeaponCamo'G51_Gold'
 
 
 }

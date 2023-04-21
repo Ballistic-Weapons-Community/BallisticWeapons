@@ -189,5 +189,5 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_OP_Anim.R9A1_TPm'
      RelativeLocation=(X=3.000000,Z=1.000000)
      DrawScale=0.160000
-     Skins(0)=Shader'BWBP_OP_Tex.R9_body_SH1'
+     //Skins(0)=Shader'BWBP_OP_Tex.R9_body_SH1'
 }

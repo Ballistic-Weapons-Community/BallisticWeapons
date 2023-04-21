@@ -131,6 +131,18 @@ simulated state Projectile
 
 simulated state Shotgun
 {
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+	}
+
 	//======================================================================
 	// Shotgun-DoFireEffect
 	//
@@ -174,6 +186,17 @@ simulated state Shotgun
 
 simulated state ShotgunIncendiary
 {
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+	}
 
 	function TrenchGunFireControl GetFireControl()
 	{

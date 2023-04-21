@@ -22,8 +22,8 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 		return;
 		
 	if (Flags == 1)
-		HitEffects[0]=Class'IE_F2000Shockwave';
-	else HitEffects[0]=Class'IE_F2000ShockwaveRed';
+		HitEffects[0]=Class'IE_F2000ShockwaveRed';
+	else HitEffects[0]=Class'IE_F2000Shockwave';
 
 	if (PhysicsVolume.bWaterVolume)
 	{

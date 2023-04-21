@@ -41,14 +41,14 @@ simulated function PostBeginPlay()
 	{
 		if (Level.Game.bTeamGame && Instigator != None && Instigator.GetTeamNum() == 0)
 		{
-			TeamLightColor = 0;
+			TeamLightColor = 1;
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		}
 		
 		else 
 		{
-			TeamLightColor = 1;
+			TeamLightColor = 0; //we want default to be blue
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		}
@@ -61,7 +61,7 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
 	{
-		if (TeamLightColor == 0)
+		if (TeamLightColor == 1)
 			TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		else TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		TeamLight.SetBase(self);
@@ -179,8 +179,8 @@ function Shockwave(vector HitLocation)
 	{
 		if (A != Self && A.bCanBeDamaged)
 			if (FastTrace(A.Location, Location))
-				class'BallisticDamageType'.static.Hurt(A, 25, Instigator, A.Location, Normal(A.Location - Location)*500, MyPulseDamageType);
-			else class'BallisticDamageType'.static.Hurt(A, 15, Instigator, A.Location, Normal(A.Location - Location)*500, MyPulseDamageType);
+				class'BallisticDamageType'.static.Hurt(A, 25.0, Instigator, A.Location, Normal(A.Location - Location)*500, MyPulseDamageType);
+			else class'BallisticDamageType'.static.Hurt(A, 15.0, Instigator, A.Location, Normal(A.Location - Location)*500, MyPulseDamageType);
 	}
 	PulseNum++;
 	SetTimer(1.5, false);
@@ -194,6 +194,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
      DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
      ShockRadius=768
