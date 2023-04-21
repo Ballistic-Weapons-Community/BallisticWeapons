@@ -78,7 +78,7 @@ defaultproperties
 		ViewBindFactor=0.25
 		ADSViewBindFactor=0.7
 		EscapeMultiplier=1.1
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.3500000,OutVal=-0.02),(InVal=0.500000,OutVal=0.07),(InVal=0.6500000,OutVal=0.12),(InVal=0.800000,OutVal=-0.06),(InVal=1.000000,OutVal=0.07)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
@@ -111,7 +111,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.35
+		ADSMultiplier=0.25
 		AimAdjustTime=0.5
         AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)

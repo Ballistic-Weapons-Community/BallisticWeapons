@@ -166,37 +166,39 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
-	 SelfHeatPerShot=0.600000
-	 SelfHeatPerShotDouble=1.500000
-	 SelfHeatDeclineDelay=0.5
-	 bAnimatedOverheat=False
-     SpecialFireSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble'
-     HeatPerShot=10.000000
-	 HeatPerShotDouble=45
-     TraceRange=(Min=30000.000000,Max=30000.000000)
-     DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
-     PenetrateForce=500
-     bPenetrate=True
-     FireModes(0)=(mDamage=40,mDamageType=Class'BWBP_SKC_Pro.DTLS14Twin',mDamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=512.000000,mAmmoPerFire=2,bModeInstantHit=True)
-     ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
-     FlashScaleFactor=0.400000
-     FireRecoil=150.000000
-     FireChaos=0.300000
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-Fire',Volume=0.900000)
-     FireEndAnim=
-     FireRate=0.150000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
-     ShakeRotMag=(X=200.000000,Y=16.000000)
-     ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)
-     ShakeRotTime=1.000000
-     ShakeOffsetMag=(X=-2.500000)
-     ShakeOffsetRate=(X=-500.000000)
-     ShakeOffsetTime=1.000000
-     BotRefireRate=0.99
-     WarnTargetPct=0.30000
-     aimerror=800.000000
+	SelfHeatPerShot=0.600000
+	SelfHeatPerShotDouble=1.500000
+	SelfHeatDeclineDelay=0.5
+	bAnimatedOverheat=False
+	SpecialFireSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble'
+	HeatPerShot=10.000000
+	HeatPerShotDouble=45
+	TraceRange=(Min=30000.000000,Max=30000.000000)
+	DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
+	PenetrateForce=500
+	bPenetrate=True
+	FireModes(0)=(mDamage=40,mDamageType=Class'BWBP_SKC_Pro.DTLS14Twin',mDamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=512.000000,mAmmoPerFire=2,bModeInstantHit=True)
+	ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
+	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+	FlashScaleFactor=0.400000
+	FireRecoil=150.000000
+	FireChaos=0.300000
+	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-Fire',Volume=0.900000)
+	FireEndAnim=
+	FireRate=0.150000
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
+
+	BotRefireRate=0.99
+	WarnTargetPct=0.30000
+	aimerror=800.000000
 }

@@ -180,39 +180,41 @@ function TryPlague(Actor Other)
 
 defaultproperties
 {
-	 AmpDrainPerShot=-0.85
-	 AmpFlashBone="tip2"
-     AmpFlashScaleFactor1=1.000000
-	 AmpFlashScaleFactor2=2.500000
-	 FlashBone="tip"
-	 FlashScaleFactor=0.9
-	 TraceRange=(Min=4000.000000,Max=4000.000000)
-     DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
-     PenetrateForce=135
-     bPenetrate=True
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
-	 MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SX45CryoFlash'
-     MuzzleFlashClassAmp2=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassOffset=(X=-14.000000,Z=-5.000000)
-     FireRecoil=192.000000
-     FireChaos=0.250000
-     XInaccuracy=96.000000
-     YInaccuracy=96.000000
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=1.200000)
-     bPawnRapidFireAnim=True
-	 FireEndAnim=
-     FireAnimRate=1.25
-	 AimedFireAnim="SightFire"
-     FireRate=0.20000
-     AmmoClass=Class'BallisticProV55.Ammo_45HV'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     BotRefireRate=0.750000
+	AmpDrainPerShot=-0.85
+	AmpFlashBone="tip2"
+	AmpFlashScaleFactor1=1.000000
+	AmpFlashScaleFactor2=2.500000
+	FlashBone="tip"
+	FlashScaleFactor=0.9
+	TraceRange=(Min=4000.000000,Max=4000.000000)
+	DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
+	PenetrateForce=135
+	bPenetrate=True
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
+	MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SX45CryoFlash'
+	MuzzleFlashClassAmp2=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
+	BrassClass=Class'BallisticProV55.Brass_Pistol'
+	BrassOffset=(X=-14.000000,Z=-5.000000)
+	FireRecoil=192.000000
+	FireChaos=0.250000
+	XInaccuracy=96.000000
+	YInaccuracy=96.000000
+	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=1.200000)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireAnimRate=1.25
+	AimedFireAnim="SightFire"
+	FireRate=0.20000
+	AmmoClass=Class'BallisticProV55.Ammo_45HV'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
+
+	BotRefireRate=0.750000
 }

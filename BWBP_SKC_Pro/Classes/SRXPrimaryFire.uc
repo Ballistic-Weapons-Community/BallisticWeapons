@@ -200,48 +200,48 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-	 AmpDrainPerShot=-0.85
-	 AmpFlashBone="tip2"
-     Amp1FlashScaleFactor=0.300000
-	 Amp2FlashScaleFactor=0.300000
-	 MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.FG50FlashEmitter'
-     MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
-	 
-	 SMuzzleFlashClass=Class'BWBP_SKC_Pro.SRXSilencedFlash'
-     SFlashBone="tip2"
-     SFlashScaleFactor=0.750000
-	 
-     TraceRange=(Min=30000.000000,Max=30000.000000)
+	AmpDrainPerShot=-0.85
+	AmpFlashBone="tip2"
+	Amp1FlashScaleFactor=0.300000
+	Amp2FlashScaleFactor=0.300000
+	MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+	MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
+	
+	SMuzzleFlashClass=Class'BWBP_SKC_Pro.SRXSilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=0.750000
+	
+	TraceRange=(Min=30000.000000,Max=30000.000000)
 
-     DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
-     PenetrateForce=120
-     bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
-     bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
-     FlashScaleFactor=0.4000000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-     AimedFireAnim="SightFire"
-     FireRecoil=192.000000
-     FireChaos=0.300000
-     SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=0.500000,Radius=256.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
-     bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=0.185000
-     AmmoClass=Class'BallisticProV55.Ammo_RS762mm'
-
-     ShakeRotMag=(X=64.000000)
-     ShakeRotRate=(X=960.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-100.000000)
-     ShakeOffsetTime=2.000000
-	 
-     WarnTargetPct=0.200000
-     aimerror=800.000000
-	 BurstFireRateFactor=0.30
+	DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
+	PenetrateForce=120
+	bPenetrate=True
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
+	bCockAfterEmpty=True
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
+	FlashScaleFactor=0.4000000
+	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
+	AimedFireAnim="SightFire"
+	FireRecoil=192.000000
+	FireChaos=0.300000
+	SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=0.500000,Radius=256.000000,bAtten=True)
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireRate=0.185000
+	AmmoClass=Class'BallisticProV55.Ammo_RS762mm'
+	
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetTime=2.000000
+	
+	WarnTargetPct=0.200000
+	aimerror=800.000000
+	BurstFireRateFactor=0.30
 }

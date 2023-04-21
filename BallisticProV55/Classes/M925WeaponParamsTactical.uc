@@ -69,7 +69,7 @@ defaultproperties
 		SprintOffset=(Pitch=-3072,Yaw=-3072)
 		JumpOffset=(Pitch=-6000,Yaw=-4000)
 		ADSViewBindFactor=0
-        ADSMultiplier=0.25
+        ADSMultiplier=0.35
 		AimAdjustTime=0.8
 		ChaosDeclineTime=1.750000
         ChaosSpeedThreshold=300

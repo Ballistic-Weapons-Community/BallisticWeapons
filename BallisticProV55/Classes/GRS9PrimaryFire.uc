@@ -53,12 +53,13 @@ defaultproperties
     FireAnimRate=1.700000
     FireRate=0.050000
     AmmoClass=Class'BallisticProV55.Ammo_GRSNine'
-    ShakeRotMag=(X=64.000000,Y=32.000000)
-    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-    ShakeRotTime=2.000000
-    ShakeOffsetMag=(X=-5.000000)
-    ShakeOffsetRate=(X=-1000.000000)
-    ShakeOffsetTime=2.000000
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
 
     // AI
     bInstantHit=True

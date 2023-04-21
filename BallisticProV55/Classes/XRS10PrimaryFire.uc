@@ -101,26 +101,27 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 
 defaultproperties
 {
-     SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     SFlashBone="tip2"
-     SFlashScaleFactor=1.000000
-     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
-     
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
-     bDryUncock=True
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassOffset=(X=-26.000000,Z=-5.000000)
-     
-	 WaterRangeAtten=0.400000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
-     
-     bPawnRapidFireAnim=True
-     AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=1.000000
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
+	
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
+	bDryUncock=True
+	BrassClass=Class'BallisticProV55.Brass_Pistol'
+	BrassOffset=(X=-26.000000,Z=-5.000000)
+	
+	WaterRangeAtten=0.400000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
+	
+	bPawnRapidFireAnim=True
+	AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
 }

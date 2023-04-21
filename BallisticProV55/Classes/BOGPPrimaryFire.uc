@@ -36,9 +36,13 @@ defaultproperties
      bModeExclusive=False
      FireForce="AssaultRifleAltFire"
      AmmoClass=Class'BallisticProV55.Ammo_BOGPGrenades'
+
+     ShakeRotMag=(X=72.000000)
+     ShakeRotRate=(X=1080.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetMag=(X=-10.00)
+     ShakeOffsetRate=(X=-200.000000)
      ShakeOffsetTime=2.000000
+
      BotRefireRate=0.300000
 }

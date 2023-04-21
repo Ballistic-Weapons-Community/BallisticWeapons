@@ -118,45 +118,46 @@ function PlayFiring()
 
 defaultproperties
 {
-	 RangeAtten=0.5
-	 FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
-     LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
-     HeatPerShot=45
-     TraceRange=(Min=30000.000000,Max=30000.000000)
-     DamageType=Class'BallisticProV55.DTR9Rifle'
-     DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
-     DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
-     KickForce=6000
-     PenetrateForce=150
-     bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=24.000000,Pitch=1.250000,bAtten=True)
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
-     bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
-     FlashScaleFactor=1.400000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     BrassOffset=(X=-40.000000,Y=-2.000000,Z=6.000000)
-     AimedFireAnim="AimedFire"
-     FireRecoil=192.000000
-     FireChaos=0.450000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
-     FireEndAnim=
-     FireRate=0.225000
-     AmmoClass=Class'BallisticProV55.Ammo_348Rifle'
-     ShakeRotMag=(X=400.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-5.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-	 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.7
-     WarnTargetPct=0.4
-     aimerror=800.000000
+	RangeAtten=0.5
+	FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+	LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
+	HeatPerShot=45
+	TraceRange=(Min=30000.000000,Max=30000.000000)
+	DamageType=Class'BallisticProV55.DTR9Rifle'
+	DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
+	DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
+	KickForce=6000
+	PenetrateForce=150
+	bPenetrate=True
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=24.000000,Pitch=1.250000,bAtten=True)
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
+	bCockAfterEmpty=True
+	MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
+	FlashScaleFactor=1.400000
+	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	BrassOffset=(X=-40.000000,Y=-2.000000,Z=6.000000)
+	AimedFireAnim="AimedFire"
+	FireRecoil=192.000000
+	FireChaos=0.450000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
+	FireEndAnim=
+	FireRate=0.225000
+	AmmoClass=Class'BallisticProV55.Ammo_348Rifle'
+	
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetTime=2.000000
+	
+	// AI
+	bInstantHit=True
+	bLeadTarget=False
+	bTossed=False
+	bSplashDamage=False
+	bRecommendSplashDamage=False
+	BotRefireRate=0.7
+	WarnTargetPct=0.4
+	aimerror=800.000000
 }

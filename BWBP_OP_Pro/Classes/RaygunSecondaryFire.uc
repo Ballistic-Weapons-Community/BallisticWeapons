@@ -184,12 +184,14 @@ defaultproperties
     FireRate=1.200000
     AmmoClass=Class'BWBP_OP_Pro.Ammo_RaygunCells'
     AmmoPerFire=8
-    ShakeRotMag=(X=32.000000,Y=8.000000)
-    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-    ShakeRotTime=1.500000
-    ShakeOffsetMag=(X=-3.000000)
-    ShakeOffsetRate=(X=-1000.000000)
-    ShakeOffsetTime=1.500000
+
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetTime=2.000000
+
     //ProjectileClass=Class'BWBP_OP_Pro.RaygunChargedProjectile'
     BotRefireRate=0.250000
     WarnTargetPct=0.500000

@@ -104,10 +104,6 @@ defaultproperties
      FireForce="AssaultRifleAltFire"
      FireRate=2.000000
      AmmoClass=Class'BallisticProV55.Ammo_XMK5Darts'
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
      ProjectileClass=Class'BallisticProV55.XMK5Dart'
      BotRefireRate=0.300000
      WarnTargetPct=0.300000

@@ -144,37 +144,39 @@ function SetSilenced(bool bSilenced)
 
 defaultproperties
 {
-     SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     SFlashBone="tip2"
-     SFlashScaleFactor=0.750000
-     TraceRange=(Min=30000.000000,Max=30000.000000)
-     DamageType=Class'BallisticProV55.DTSRS900Rifle'
-     DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
-     DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
-     PenetrateForce=180
-     bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
-     bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     FlashScaleFactor=0.500000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-     FireRecoil=192.000000
-     FireChaos=0.070000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilenceFire',Volume=1.000000,Radius=768.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
-     bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=0.20000
-     AmmoClass=Class'BallisticProV55.Ammo_RS762mm'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     WarnTargetPct=0.200000
-     aimerror=800.000000
-	 BurstFireRateFactor=0.55
+	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=0.750000
+	TraceRange=(Min=30000.000000,Max=30000.000000)
+	DamageType=Class'BallisticProV55.DTSRS900Rifle'
+	DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
+	DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
+	PenetrateForce=180
+	bPenetrate=True
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
+	bCockAfterEmpty=True
+	MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	FlashScaleFactor=0.500000
+	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
+	FireRecoil=192.000000
+	FireChaos=0.070000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilenceFire',Volume=1.000000,Radius=768.000000,bAtten=True)
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireRate=0.20000
+	AmmoClass=Class'BallisticProV55.Ammo_RS762mm'
+
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetTime=2.000000
+	
+	WarnTargetPct=0.200000
+	aimerror=800.000000
+	BurstFireRateFactor=0.55
 }

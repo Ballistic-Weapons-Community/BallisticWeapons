@@ -195,7 +195,7 @@ defaultproperties
      ShakeRotMag=(X=64.000000)
      ShakeRotRate=(X=960.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
+     ShakeOffsetMag=(X=-7.00)
      ShakeOffsetRate=(X=-100.000000)
      ShakeOffsetTime=2.000000
 	 

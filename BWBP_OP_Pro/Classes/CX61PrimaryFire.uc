@@ -121,12 +121,14 @@ defaultproperties
      FireAnimRate=1.200000
      FireRate=0.115000
      AmmoClass=Class'BWBP_OP_Pro.Ammo_CX61Rounds'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+
+     ShakeRotMag=(X=64.000000)
+     ShakeRotRate=(X=960.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetMag=(X=-7.00)
+     ShakeOffsetRate=(X=-100.000000)
      ShakeOffsetTime=2.000000
+
      WarnTargetPct=0.200000
      aimerror=900.000000
 }

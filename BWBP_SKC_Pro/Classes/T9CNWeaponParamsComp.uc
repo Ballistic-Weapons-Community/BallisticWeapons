@@ -32,7 +32,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.3
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.010000),(InVal=0.3500000,OutVal=0.04),(InVal=0.600000,OutVal=-0.05),(InVal=0.800000,OutVal=-0.03),(InVal=1.000000,OutVal=0.000000)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.3500000,OutVal=-0.02),(InVal=0.500000,OutVal=0.07),(InVal=0.6500000,OutVal=0.12),(InVal=0.800000,OutVal=-0.06),(InVal=1.000000,OutVal=0.07)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.100000
 		YRandFactor=0.100000

@@ -141,11 +141,12 @@ defaultproperties
 	FireEndAnim=
 	FireRate=1.1
 	AmmoClass=Class'BallisticProV55.Ammo_42Rifle'
-	ShakeRotMag=(X=400.000000,Y=32.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-5.000000)
-	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
 	ShakeOffsetTime=2.000000
 	
 	// AI

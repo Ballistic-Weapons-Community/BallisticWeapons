@@ -187,12 +187,14 @@ defaultproperties
 	FireAnimRate=0.800000
 	AmmoClass=Class'BWBP_OP_Pro.Ammo_LightningRifle'
 	AmmoPerFire=1
-	ShakeRotMag=(X=400.000000,Y=32.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-5.000000)
-	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
 	ShakeOffsetTime=2.000000
+	
 	BotRefireRate=0.400000
 	WarnTargetPct=0.500000
 	aimerror=800.000000

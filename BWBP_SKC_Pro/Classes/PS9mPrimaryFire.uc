@@ -72,31 +72,33 @@ function PlayFiring()
 
 defaultproperties
 {
-     TraceRange=(Min=3000.000000)
-     DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'
-     PenetrateForce=150
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-     FlashScaleFactor=0.800000
-     BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
-     BrassOffset=(X=-20.000000,Y=1.000000)
-     FireRecoil=64.000000
-     FireChaos=0.050000
-     XInaccuracy=32.000000
-     YInaccuracy=32.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
-     bAISilent=True
-     FireEndAnim=
-     FireRate=0.075000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_TranqP'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	TraceRange=(Min=3000.000000)
+	DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'
+	PenetrateForce=150
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+	FlashScaleFactor=0.800000
+	BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
+	BrassOffset=(X=-20.000000,Y=1.000000)
+	FireRecoil=64.000000
+	FireChaos=0.050000
+	XInaccuracy=32.000000
+	YInaccuracy=32.000000
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
+	bAISilent=True
+	FireEndAnim=
+	FireRate=0.075000
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_TranqP'
+
+	ShakeRotMag=(X=32.000000)
+	ShakeRotRate=(X=480.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-2.00)
+	ShakeOffsetRate=(X=-50.000000)
+	ShakeOffsetTime=2.000000
+
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

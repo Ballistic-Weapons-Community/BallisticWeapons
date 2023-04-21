@@ -56,23 +56,27 @@ function PlayFiring()
 
 defaultproperties
 {
-     SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-     XInaccuracy=6.000000
-     YInaccuracy=6.000000
-	 BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
-     bModeExclusive=False
-     PreFireAnim=
-	 FireAnim="FireCycleRotate"
-	 EmptyFireAnim="FireCycle"
-	 NoMagFireAnim="FireCycle"
-     FireForce="AssaultRifleAltFire"
-     FireRate=1.500000
-	 AmmoClass=Class'BWBP_OP_Pro.Ammo_KF8XDarts'
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     ProjectileClass=Class'BWBP_OP_Pro.KF8XToxicBolt'
-     BotRefireRate=0.300000
-     WarnTargetPct=0.300000
+	SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+	XInaccuracy=6.000000
+	YInaccuracy=6.000000
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
+	bModeExclusive=False
+	PreFireAnim=
+	FireAnim="FireCycleRotate"
+	EmptyFireAnim="FireCycle"
+	NoMagFireAnim="FireCycle"
+	FireForce="AssaultRifleAltFire"
+	FireRate=1.500000
+	AmmoClass=Class'BWBP_OP_Pro.Ammo_KF8XDarts'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
+
+	ProjectileClass=Class'BWBP_OP_Pro.KF8XToxicBolt'
+	BotRefireRate=0.300000
+	WarnTargetPct=0.300000
 }

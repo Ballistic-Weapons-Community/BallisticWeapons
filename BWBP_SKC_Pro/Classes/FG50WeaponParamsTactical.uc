@@ -164,7 +164,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalStandardAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.2
+		ADSMultiplier=0.35
 		AimAdjustTime=0.6
 		AimSpread=(Min=512,Max=2560)
 		ChaosDeclineTime=1.750000
@@ -175,7 +175,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalControlledAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.15
+		ADSMultiplier=0.35
 		AimAdjustTime=0.6
 		AimSpread=(Min=384,Max=1280)
 		ChaosDeclineTime=1.25

@@ -36,17 +36,21 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
-     BallisticFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.PD97.PD97-RocketFire',Volume=1.0)
-     PreFireAnim=
-     FireAnimRate=1.100000
-     FireForce="AssaultRifleAltFire"
-     FireRate=0.200000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_BloodhoundDarts'
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     ProjectileClass=Class'BWBP_OP_Pro.PD97Rocket'
-     BotRefireRate=0.700000
-     WarnTargetPct=0.300000
+	BallisticFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.PD97.PD97-RocketFire',Volume=1.0)
+	PreFireAnim=
+	FireAnimRate=1.100000
+	FireForce="AssaultRifleAltFire"
+	FireRate=0.200000
+	AmmoClass=Class'BWBP_OP_Pro.Ammo_BloodhoundDarts'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
+
+	ProjectileClass=Class'BWBP_OP_Pro.PD97Rocket'
+	BotRefireRate=0.700000
+	WarnTargetPct=0.300000
 }

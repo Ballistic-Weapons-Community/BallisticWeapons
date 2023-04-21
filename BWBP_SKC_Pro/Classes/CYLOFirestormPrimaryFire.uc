@@ -167,41 +167,41 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-     HeatPerShot=0.900000
-     TraceRange=(Min=10000.000000,Max=12000.000000)
-	 bPenetrate=False
-     DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
-     PenetrateForce=180
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
-     bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter'
-     FlashBone="Muzzle"
-     FlashScaleFactor=0.250000
-     AimedFireAnim="SightFire"
-     FireRecoil=208.000000
-     FireChaos=0.065000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
-     JamSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.900000)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     PreFireAnim=
-     FireEndAnim=
-     FireRate=0.125000
-     UnjamMethod=UJM_Fire
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
+	HeatPerShot=0.900000
+	TraceRange=(Min=10000.000000,Max=12000.000000)
+	bPenetrate=False
+	DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
+	PenetrateForce=180
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
+	bCockAfterEmpty=True
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter'
+	FlashBone="Muzzle"
+	FlashScaleFactor=0.250000
+	AimedFireAnim="SightFire"
+	FireRecoil=208.000000
+	FireChaos=0.065000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	XInaccuracy=48.000000
+	YInaccuracy=48.000000
+	JamSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.900000)
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	PreFireAnim=
+	FireEndAnim=
+	FireRate=0.125000
+	UnjamMethod=UJM_Fire
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 
-     ShakeRotMag=(X=64.000000)
-     ShakeRotRate=(X=960.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-100.000000)
-     ShakeOffsetTime=2.000000
-	 
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetTime=2.000000
+	
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

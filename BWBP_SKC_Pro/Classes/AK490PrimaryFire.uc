@@ -31,12 +31,14 @@ defaultproperties
      FireEndAnim=
      FireRate=0.11000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_AK762mm'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+
+     ShakeRotMag=(X=72.000000)
+     ShakeRotRate=(X=1080.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetMag=(X=-10.00)
+     ShakeOffsetRate=(X=-200.00)
      ShakeOffsetTime=2.000000
+
      WarnTargetPct=0.200000
      aimerror=900.000000
 }

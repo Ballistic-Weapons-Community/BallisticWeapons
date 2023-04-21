@@ -89,7 +89,7 @@ defaultproperties
 		ChaosDeclineTime=0.450000
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimSpread=(Min=256,Max=768)
-        ADSMultiplier=0.75
+        ADSMultiplier=0.5
         ChaosSpeedThreshold=300
 	End Object
 

@@ -101,7 +101,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=TacticalAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.75
+		ADSMultiplier=0.5
 		AimAdjustTime=0.7
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
         JumpChaos=1.000000

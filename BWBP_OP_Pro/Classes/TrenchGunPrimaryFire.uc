@@ -826,12 +826,14 @@ defaultproperties
 	FireAnimRate=0.800000
 	FireRate=0.100000
 	AmmoClass=Class'BWBP_OP_Pro.Ammo_TrenchgunShells'
-	ShakeRotMag=(X=128.000000,Y=64.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-30.000000)
-	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
 	ShakeOffsetTime=2.000000
+
 	BotRefireRate=0.60000
 	WarnTargetPct=0.500000
 }

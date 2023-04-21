@@ -100,38 +100,40 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     ScopedFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot'
-     RegularFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-Shot'
-     TraceRange=(Min=12000.000000,Max=15000.000000)
-	 WallPenetrationForce=0
-     Damage=35
-     DamageType=Class'BWBP_SKC_Pro.DT_VSKTranq'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_VSKTranqHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_VSKTranq'
-     KickForce=20000
-     PenetrateForce=150
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
-     bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-     FlashScaleFactor=0.500000
-     BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
-     FlashBone="tip2"
-     BrassOffset=(X=-80.000000,Y=1.000000)
-     FireRecoil=88.000000
-     XInaccuracy=1.750000
-     YInaccuracy=1.750000
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
-     bAISilent=True
-     bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=0.600000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_Tranq'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	ScopedFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot'
+	RegularFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-Shot'
+	TraceRange=(Min=12000.000000,Max=15000.000000)
+	WallPenetrationForce=0
+	Damage=35
+	DamageType=Class'BWBP_SKC_Pro.DT_VSKTranq'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_VSKTranqHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DT_VSKTranq'
+	KickForce=20000
+	PenetrateForce=150
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+	bCockAfterEmpty=True
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+	FlashScaleFactor=0.500000
+	BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
+	FlashBone="tip2"
+	BrassOffset=(X=-80.000000,Y=1.000000)
+	FireRecoil=88.000000
+	XInaccuracy=1.750000
+	YInaccuracy=1.750000
+	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+	bAISilent=True
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireRate=0.600000
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_Tranq'
+
+	ShakeRotMag=(X=32.000000)
+	ShakeRotRate=(X=480.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-2.00)
+	ShakeOffsetRate=(X=-50.000000)
+	ShakeOffsetTime=2.000000
+
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

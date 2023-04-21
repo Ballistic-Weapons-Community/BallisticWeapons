@@ -474,7 +474,7 @@ defaultproperties
 	ScopeSightOffset=(X=2.4,Z=5.7)
 
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_R9'
+	BigIconMaterial=Texture'BWBP_OP_Tex.R9A1.BigIcon_R9A1'
 	
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic, long-range, moderate recoil rifle fire with three choices of ammunition, switched between using the fire mode function.||Standard rounds inflict good damage with high penetration.||Freeze rounds inflict lower damage, but progressively slow struck targets.||Heat Ray shots inflict low initial damage, but heat up the target, causing subsequent shots to inflict more damage. This effect wears off over time."
@@ -519,7 +519,7 @@ defaultproperties
 	PickupClass=Class'BWBP_OP_Pro.R9A1Pickup'
 	PlayerViewOffset=(X=7,Y=5.30000,Z=-7.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.R9A1Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_R9'
+	IconMaterial=Texture'BWBP_OP_Tex.R9A1.SmallIcon_R9A1'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="R9A1 Ranger Rifle"
 	LightType=LT_Pulse

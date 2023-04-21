@@ -164,42 +164,43 @@ function DoFireEffect()
 
 defaultproperties
 {
-	 AmpDrainPerShot=-0.3
-	 AmpFlashBone="tip2"
-     AmpFlashScaleFactor=0.300000
-     MuzzleFlashClassAmp=Class'BallisticProV55.XK2SilencedFlash'
-	 
-     SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     SFlashBone="tip2"
-     SFlashScaleFactor=1.000000
+	AmpDrainPerShot=-0.3
+	AmpFlashBone="tip2"
+	AmpFlashScaleFactor=0.300000
+	MuzzleFlashClassAmp=Class'BallisticProV55.XK2SilencedFlash'
+	
+	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=1.000000
 
-     TraceRange=(Min=4096.000000,Max=4096.000000)
-     DamageType=Class'BallisticProV55.DTXK2SMG'
-     DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
-     DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
-     PenetrateForce=150
-     bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=24.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
-     bDryUncock=True
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassOffset=(X=-5.000000,Z=-4.000000)
-     AimedFireAnim="SightFire"
-     FireRecoil=72.000000
-     FireChaos=0.025000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
-     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceFire',Volume=0.7,Radius=64.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.7,Radius=384.000000)
-     bPawnRapidFireAnim=True
-     FireRate=0.09000
-     AmmoClass=Class'BallisticProV55.Ammo_9mm'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+	TraceRange=(Min=4096.000000,Max=4096.000000)
+	DamageType=Class'BallisticProV55.DTXK2SMG'
+	DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
+	DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
+	PenetrateForce=150
+	bPenetrate=True
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=24.000000,bAtten=True)
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
+	bDryUncock=True
+	MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+	BrassClass=Class'BallisticProV55.Brass_Pistol'
+	BrassOffset=(X=-5.000000,Z=-4.000000)
+	AimedFireAnim="SightFire"
+	FireRecoil=72.000000
+	FireChaos=0.025000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
+	XInaccuracy=48.000000
+	YInaccuracy=48.000000
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceFire',Volume=0.7,Radius=64.000000,bAtten=True)
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.7,Radius=384.000000)
+	bPawnRapidFireAnim=True
+	FireRate=0.09000
+	AmmoClass=Class'BallisticProV55.Ammo_9mm'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
 }

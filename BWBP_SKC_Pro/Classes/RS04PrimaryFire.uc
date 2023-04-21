@@ -49,34 +49,36 @@ simulated function PlayFireAnimations()
 
 defaultproperties
 {
-     TraceRange=(Max=5500.000000)
-     DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
-     KickForce=15000
-     PenetrateForce=150
-     bPenetrate=True
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassOffset=(X=-25.000000)
-     FireRecoil=215.000000
-     //SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-FireSil',Volume=0.800000,Radius=24.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
-     bModeExclusive=False
-     FireEndAnim=
-     FireRate=0.180000
-	 FireAnimRate=1.75
-	 FireChaos=0.200000
-     XInaccuracy=16.000000
-     YInaccuracy=16.000000
-     AmmoClass=Class'BallisticProV55.Ammo_45HV'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-5.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     BotRefireRate=0.300000
-     WarnTargetPct=0.100000
-	 aimerror=900.000000
+	TraceRange=(Max=5500.000000)
+	DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+	KickForce=15000
+	PenetrateForce=150
+	bPenetrate=True
+	MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+	BrassClass=Class'BallisticProV55.Brass_Pistol'
+	BrassOffset=(X=-25.000000)
+	FireRecoil=215.000000
+	//SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-FireSil',Volume=0.800000,Radius=24.000000,bAtten=True)
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
+	bModeExclusive=False
+	FireEndAnim=
+	FireRate=0.180000
+	FireAnimRate=1.75
+	FireChaos=0.200000
+	XInaccuracy=16.000000
+	YInaccuracy=16.000000
+	AmmoClass=Class'BallisticProV55.Ammo_45HV'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetTime=2.000000
+
+	BotRefireRate=0.300000
+	WarnTargetPct=0.100000
+	aimerror=900.000000
 }

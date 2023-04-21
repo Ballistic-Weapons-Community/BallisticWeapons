@@ -512,26 +512,28 @@ state Immolate
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-AltFireLoop'
-     Damage=50
-     ImmolateSoundLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-Immolation'
-     SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)	 
-	 MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
-     FireRecoil=1024.000000
-     FireChaos=0.250000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire',Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=1.350000
-     AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
-     AmmoPerFire=5
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     ProjectileClass=Class'BallisticProV55.RSDarkProjectile'
-     WarnTargetPct=0.200000
+	FireSoundLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-AltFireLoop'
+	Damage=50
+	ImmolateSoundLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-Immolation'
+	SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)	 
+	MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
+	FireRecoil=1024.000000
+	FireChaos=0.250000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire',Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireRate=1.350000
+	AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
+	AmmoPerFire=5
+
+	ShakeRotMag=(X=72.000000)
+	ShakeRotRate=(X=1080.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-10.00)
+	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetTime=2.000000
+	
+	ProjectileClass=Class'BallisticProV55.RSDarkProjectile'
+	WarnTargetPct=0.200000
 }
