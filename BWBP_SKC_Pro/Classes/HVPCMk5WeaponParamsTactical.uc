@@ -14,9 +14,9 @@ defaultproperties
 		MaxSpeed=9000.000000
 		AccelSpeed=90000.000000
 		Damage=100
-		HeadMult=2.75f
-		LimbMult=0.65f
-		DamageRadius=512.000000
+		HeadMult=1.5f
+		LimbMult=0.85f
+		DamageRadius=256.000000
 		MomentumTransfer=65000.000000
 		MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Fire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)

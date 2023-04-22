@@ -6,13 +6,15 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 
-    Begin Object Class=ProjectileEffectParams Name=ArenaGrenadeEffectParams
+    Begin Object Class=GrenadeEffectParams Name=ArenaGrenadeEffectParams
         ProjectileClass=Class'BallisticProV55.BOGPGrenade'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-        Speed=4200.000000
-        Damage=120.000000
-        DamageRadius=512.000000
+		Speed=4200.000000 // 80 m/s
+		MaxSpeed=4200.000000
+		Damage=100
+        ImpactDamage=125
+		DamageRadius=1024.000000
 		Recoil=3072
         Chaos=0.700000
         Inaccuracy=(X=64,Y=64)

@@ -37,6 +37,32 @@ var config int PlayerSuperHealth;
 //Inserted 29 lines.
 //END_BW_GAME_DECL
 
+function PostBeginPlay()
+{
+	local NavigationPoint N;
+	local PlayerStart PS;
+	local int flags;
+
+	// use spawns indexed by team if game type has compat
+	for ( N = Level.NavigationPointList; N != None; N = N.NextNavigationPoint)
+	{
+		PS = PlayerStart(N);
+		
+		if (PS != None && PS.TeamNumber < 2)
+		{
+			flags = flags | (1 << PS.TeamNumber);
+
+			if (flags == 3)
+			{
+				bSpawnInTeamArea = true;
+				break;
+			}
+		}
+	}
+
+	Super.PostBeginPlay();
+}
+
 //BEGIN_BW_GAME_BASE
 function bool BecomeSpectator(PlayerController P)
 {

@@ -626,8 +626,8 @@ simulated function ClientPlayLinearSound(Sound sound, ESoundSlot slot, float vol
 		volume *= 0.65f;
 	else if (!FastTrace(Location, Level.GetLocalPlayerController().ViewTarget.Location))
 	{
-		volume *= 0.9f;
-		radius *= 0.75f;
+		volume *= 0.7f;
+		radius *= 0.5f;
 	}
 
 	// have to manually calculate a volume and radius in order to bypass NATIVE BULLSHIT
@@ -3211,9 +3211,9 @@ defaultproperties
      ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.15
-     FootstepRadius=1536.000000
-	 GruntVolume=0.3
-     GruntRadius=48.000000
+     FootstepRadius=1024.000000
+	 GruntVolume=0.25
+     GruntRadius=28.000000
 
 	 // used to play footsteps at consistent volume regardless of position
 	 // the fine sound controls, like occlusion factors and rolloff curves, are native

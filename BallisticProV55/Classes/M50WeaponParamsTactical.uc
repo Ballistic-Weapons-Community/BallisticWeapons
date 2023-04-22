@@ -53,7 +53,7 @@ defaultproperties
 		MaxSpeed=2700.000000
 
 		Damage=100
-        ImpactDamage=60
+        ImpactDamage=50
 		DamageRadius=768.000000
 
 		bOverrideArming=True

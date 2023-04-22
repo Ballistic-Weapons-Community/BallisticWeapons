@@ -43,8 +43,8 @@ defaultproperties
 		Speed=4200.000000 // 80 m/s
 		MaxSpeed=4200.000000
 		Damage=100
-        ImpactDamage=150
-		DamageRadius=1050.000000
+        ImpactDamage=125
+		DamageRadius=1024.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	

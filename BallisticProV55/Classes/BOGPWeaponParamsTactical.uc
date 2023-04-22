@@ -9,13 +9,21 @@ defaultproperties
     Begin Object Class=GrenadeEffectParams Name=TacticalGrenadeEffectParams
         ProjectileClass=Class'BallisticProV55.BOGPGrenade'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-        MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-        Speed=2700.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
-        MaxSpeed=2700.000000
-        AccelSpeed=0
-        Damage=150.000000
+
+		Speed=2700.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
+		MaxSpeed=2700.000000
+
+		Damage=100
         ImpactDamage=50
-        DamageRadius=1024.000000
+		DamageRadius=768.000000
+
+		bOverrideArming=True
+		ArmingDelay=0
+		ArmedDetonateOn=DT_Timer
+		ArmedPlayerImpactType=PIT_Bounce
+		DetonateDelay=3
+
+        MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=3072
         Chaos=0.700000
         Inaccuracy=(X=128,Y=128)
