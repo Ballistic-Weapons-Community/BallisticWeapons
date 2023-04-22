@@ -137,7 +137,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 defaultproperties
 {
     WeaponClass=Class'BallisticProV55.M46AssaultRifle'
-     DetonateOn=DT_Impact
+     ArmedDetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.000000

@@ -288,34 +288,34 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 
 defaultproperties
 {
-     ChargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Charge'
-     DamageType=Class'BallisticProV55.DT_HVCRedLightning'
-     DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
-     DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'
-     KickForce=80000
-     bNoPositionalDamage=True
-     MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
-     FireRecoil=96.000000
-     FirePushbackForce=1600.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)
-     bFireOnRelease=True
-     FireAnim="Fire2"
-     FireEndAnim=
-     FireRate=0.700000
-     AmmoClass=Class'BallisticProV55.Ammo_HVCCells'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-	 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.4
-     WarnTargetPct=0.8
+	ChargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Charge'
+	DamageType=Class'BallisticProV55.DT_HVCRedLightning'
+	DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
+	DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'
+	KickForce=80000
+	bNoPositionalDamage=True
+	MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
+	FireRecoil=96.000000
+	FirePushbackForce=1600.000000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)
+	bFireOnRelease=True
+	FireAnim="Fire2"
+	FireEndAnim=
+	FireRate=0.700000
+	AmmoClass=Class'BallisticProV55.Ammo_HVCCells'
+	ShakeRotMag=(X=128.000000,Y=64.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
+
+	// AI
+	bInstantHit=True
+	bLeadTarget=False
+	bTossed=False
+	bSplashDamage=False
+	bRecommendSplashDamage=False
+	BotRefireRate=0.4
+	WarnTargetPct=0.8
 }

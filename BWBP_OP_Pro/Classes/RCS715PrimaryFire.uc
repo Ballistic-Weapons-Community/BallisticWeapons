@@ -91,13 +91,13 @@ defaultproperties
 	FireRate=0.200000
 	AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
 
-	ShakeRotMag=(X=72.000000)
-	ShakeRotRate=(X=1080.000000)
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
 	ShakeOffsetMag=(X=-10.00)
-	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetRate=(X=-200.000000)
 	ShakeOffsetTime=2.000000
-	
+
 	BotRefireRate=0.900000
 	WarnTargetPct=0.500000
 }

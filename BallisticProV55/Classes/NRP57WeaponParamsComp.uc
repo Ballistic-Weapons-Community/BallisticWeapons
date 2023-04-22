@@ -14,8 +14,8 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
         ProjectileClass=Class'BallisticProV55.NRP57Thrown'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-        Speed=1400.000000
-        MaxSpeed=1500.000000
+        Speed=1000.000000
+        MaxSpeed=1000.000000
         Damage=200
         DamageRadius=1024.000000
         HeadMult=1.0

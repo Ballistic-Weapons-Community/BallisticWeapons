@@ -87,6 +87,21 @@ defaultproperties
 		MaxMoveMultiplier=2
 	End Object
 
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.35
+		ADSViewBindFactor=1
+		XCurve=(Points=(,(InVal=0.10000,OutVal=0.000000),(InVal=0.150000,OutVal=0.080000),(InVal=0.25000,OutVal=0.04000),(InVal=0.300000,OutVal=-0.0500000),(InVal=0.450000,OutVal=0.0000000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=-0.12),(InVal=1.000000,OutVal=0.0)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		ClimbTime=0.04
+		DeclineDelay=0.165000
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -94,6 +109,16 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSViewBindFactor=0
 		ADSMultiplier=0.25
+		AimAdjustTime=0.7
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		AimSpread=(Min=256,Max=1024)
+		ChaosDeclineTime=1.250000
+		ChaosSpeedThreshold=300
+	End Object
+
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.5
 		AimAdjustTime=0.7
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=256,Max=1024)
@@ -118,8 +143,8 @@ defaultproperties
 		SightPivot=(Pitch=600,Roll=-1024)
 		SightOffset=(X=-1,Y=0.050000,Z=3.9)
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
-        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 

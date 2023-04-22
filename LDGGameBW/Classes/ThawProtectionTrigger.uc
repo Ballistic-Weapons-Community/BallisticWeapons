@@ -5,20 +5,23 @@
 //===========================================================================
 class ThawProtectionTrigger extends Freon_Trigger;
 
-var MutUTCompBW_LDG_FR 	UTCompMutator;
-var float							SkillThawAdjustment;
+var MutUTCompBW_LDG_FR 		UTCompMutator;
+var float					SkillThawAdjustment;
 
 function int DisallowInteraction(Pawn Other) 
 {
  	local ThawInfo ti;
 
 	ti = GetThawInfo(Other.Controller);
+
 	if(ti != none)
 	{
 		if(ti.bIsProtected)
 			return 0;
 		else if (ti.bRecentlyThawn)
 			return 1;
+		else if (!FastTrace(Other.Location, PawnOwner.Location)) // must be able to see target to thaw
+			return 2;
 	}
 
 	return -1;

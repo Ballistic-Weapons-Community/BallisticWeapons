@@ -382,7 +382,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=20.00,Y=3.00,Z=-8.00)
 	SightOffset=(X=-24,Y=0.06,Z=4.43)
-	SightAnimScale=0.5
+	SightAnimScale=0.3
 	SightBobScale=0.5f 
 	
 	Priority=24

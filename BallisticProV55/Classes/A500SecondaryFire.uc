@@ -110,24 +110,24 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
-	 AcidLoad=1
-	 MaxAcidLoad=8
-	 AmmoPerFire=0
-     ChargingSound=Sound'GeneralAmbience.texture22'
-     bFireOnRelease=True
-     AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
+	AcidLoad=1
+	MaxAcidLoad=8
+	AmmoPerFire=0
+	ChargingSound=Sound'GeneralAmbience.texture22'
+	bFireOnRelease=True
+	AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
 
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-7.00)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+	ShakeRotMag=(X=32.000000,Y=8.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=1.500000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=1.500000
 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=True
-	 bTossed=True
+	// AI
+	bInstantHit=True
+	bLeadTarget=True
+	bTossed=True
 
-	 BotRefireRate=0.5
+	BotRefireRate=0.5
 }

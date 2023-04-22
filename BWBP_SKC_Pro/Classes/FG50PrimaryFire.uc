@@ -240,8 +240,8 @@ defaultproperties
      ShakeRotMag=(X=512.000000,Y=512.000000)
      ShakeRotRate=(X=20000.000000,Y=20000.000000,Z=20000.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-2000.000000)
+	ShakeOffsetMag=(X=-20.00)
+	ShakeOffsetRate=(X=-400.000000)
      ShakeOffsetTime=2.000000
      WarnTargetPct=0.400000
      aimerror=900.000000

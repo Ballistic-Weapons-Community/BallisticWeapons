@@ -243,22 +243,22 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 
 defaultproperties
 {
-     MaxWaterTraceRange=5000
-     DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
-     MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
-     FireRecoil=0.000000
-     FireChaos=0.000000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     bPawnRapidFireAnim=True
-     FireAnim="SecFireLoop"
-     FireEndAnim="SecFireEnd"
-     FireRate=0.070000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_XOXO'
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-7.00)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     WarnTargetPct=0.200000
+	MaxWaterTraceRange=5000
+	DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
+	MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
+	FireRecoil=0.000000
+	FireChaos=0.000000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	bPawnRapidFireAnim=True
+	FireAnim="SecFireLoop"
+	FireEndAnim="SecFireEnd"
+	FireRate=0.070000
+	AmmoClass=Class'BWBP_OP_Pro.Ammo_XOXO'
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+	WarnTargetPct=0.200000
 }

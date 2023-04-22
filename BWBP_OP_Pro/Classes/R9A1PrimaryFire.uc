@@ -146,11 +146,11 @@ defaultproperties
 	FireRate=0.225000
 	AmmoClass=Class'BWBP_OP_Pro.Ammo_R9A1'
 	
-	ShakeRotMag=(X=72.000000)
-	ShakeRotRate=(X=1080.000000)
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-10.00)
-	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
 	ShakeOffsetTime=2.000000
 	
 	// AI

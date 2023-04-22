@@ -88,7 +88,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		PlayerSpeedFactor=0.900000
 		InventorySize=6
-		SightMoveSpeedFactor=0.500000
+		SightMoveSpeedFactor=0.45
 		SightingTime=0.3
 		MagAmmo=100
 		bMagPlusOne=True

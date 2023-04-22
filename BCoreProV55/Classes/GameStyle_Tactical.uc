@@ -15,6 +15,7 @@ defaultproperties
 	RecoilShotScale=1
 
 	bRunInADS=False
+	bForceViewShake=True
 	SightBobScale=1f
 
 	MaxInventoryCapacity=12

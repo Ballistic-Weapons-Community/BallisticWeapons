@@ -116,32 +116,32 @@ function DoTurretFireEffect()
 
 defaultproperties
 {
-     SpawnOffset=(X=18.000000,Y=4.000000)
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-     FlashScaleFactor=2.500000
-     BrassClass=Class'BallisticProV55.Brass_HAMR'
-     BrassBone="EmptyShell"
-     bBrassOnCock=True
-     FireRecoil=2048.000000
-     FirePushbackForce=1000.000000
-     FireChaos=0.550000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire',Radius=768.000000)
-     FireEndAnim=
-     FireRate=1.350000
-     AmmoClass=Class'BallisticProV55.Ammo_MAC'
-     ShakeRotMag=(X=128.000000,Y=64.000000,Z=16.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.500000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.500000
-     ProjectileClass=Class'BallisticProV55.MACShell'
-	 // AI
-	 bInstantHit=False
-	 bLeadTarget=True
-	 bTossed=True
-	 bSplashDamage=True
-	 bRecommendSplashDamage=True
-	 BotRefireRate=0.7
-     WarnTargetPct=0.75
+	SpawnOffset=(X=18.000000,Y=4.000000)
+	MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+	FlashScaleFactor=2.500000
+	BrassClass=Class'BallisticProV55.Brass_HAMR'
+	BrassBone="EmptyShell"
+	bBrassOnCock=True
+	FireRecoil=2048.000000
+	FirePushbackForce=1000.000000
+	FireChaos=0.550000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire',Radius=768.000000)
+	FireEndAnim=
+	FireRate=1.350000
+	AmmoClass=Class'BallisticProV55.Ammo_MAC'
+	ShakeRotMag=(X=128.000000,Y=64.000000,Z=16.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.500000
+	ShakeOffsetMag=(X=-25.00)
+	ShakeOffsetRate=(X=-500.000000)
+	ShakeOffsetTime=2.500000
+	ProjectileClass=Class'BallisticProV55.MACShell'
+	// AI
+	bInstantHit=False
+	bLeadTarget=True
+	bTossed=True
+	bSplashDamage=True
+	bRecommendSplashDamage=True
+	BotRefireRate=0.7
+	WarnTargetPct=0.75
 }

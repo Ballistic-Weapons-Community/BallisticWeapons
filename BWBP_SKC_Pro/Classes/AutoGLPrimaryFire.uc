@@ -22,7 +22,7 @@ defaultproperties
      FireRate=0.550000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_MGL'
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
+     ShakeOffsetMag=(X=-8.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBP_SKC_Pro.AutoGLGrenade'

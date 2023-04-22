@@ -185,11 +185,11 @@ defaultproperties
     AmmoClass=Class'BWBP_OP_Pro.Ammo_RaygunCells'
     AmmoPerFire=8
 
-	ShakeRotMag=(X=72.000000)
-	ShakeRotRate=(X=1080.000000)
+	ShakeRotMag=(X=64.000000)
+	ShakeRotRate=(X=960.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-10.00)
-	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
 	ShakeOffsetTime=2.000000
 
     //ProjectileClass=Class'BWBP_OP_Pro.RaygunChargedProjectile'

@@ -101,7 +101,7 @@ defaultproperties
 {
      WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
-     DetonateOn=DT_Impact
+     ArmedDetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.000000

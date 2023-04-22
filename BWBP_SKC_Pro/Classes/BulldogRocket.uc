@@ -7,8 +7,6 @@
 //=============================================================================
 class BulldogRocket extends BallisticGrenade;
 
-var float                   ArmingDelay;
-
 var sound 					ImpactSounds[6];
 var int						ImpactKickForce;
 var vector					StartLoc;
@@ -34,17 +32,6 @@ simulated function PostNetBeginPlay()
 	if (VSize(StartLoc - Location) < (default.Speed * 0.15))
 		SetTimer(0.15 - (VSize(StartLoc-Location) / default.Speed), False);
 	else bBounce = False;
-}
-
-simulated function Timer()
-{
-	if(StartDelay > 0)
-	{
-		Super.Timer();
-		return;
-	}
-	
-	DetonateOn = DT_Impact;
 }
 
 simulated function Landed (vector HitNormal)
@@ -92,55 +79,58 @@ simulated function HitWall( vector HitNormal, Actor Wall )
 
 defaultproperties
 {
-     WeaponClass=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
-     DampenFactor=0.15000
-     DampenFactorParallel=0.300000
-     ArmingDelay=0.15
-     DetonateOn=DT_None
-	 PlayerImpactType=PIT_Detonate
-     ImpactSounds(0)=Sound'XEffects.Impact4Snd'
-     ImpactSounds(1)=Sound'XEffects.Impact6Snd'
-     ImpactSounds(2)=Sound'XEffects.Impact7Snd'
-     ImpactSounds(3)=Sound'XEffects.Impact3'
-     ImpactSounds(4)=Sound'XEffects.Impact1'
-     ImpactSounds(5)=Sound'XEffects.Impact2'
+	WeaponClass=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
+	DampenFactor=0.15000
+	DampenFactorParallel=0.300000
 
-     ImpactDamage=125
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_BulldogImpact'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFRAG'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BallisticProV55.MRLTrailEmitter'
-     TrailOffset=(X=-14.000000)
+	ArmingDelay=0.15
+	UnarmedDetonateOn=DT_None
+	UnarmedPlayerImpactType=PIT_Bounce
+	ArmedDetonateOn=DT_Impact
+	ArmedPlayerImpactType=PIT_Detonate
 
+	ImpactSounds(0)=Sound'XEffects.Impact4Snd'
+	ImpactSounds(1)=Sound'XEffects.Impact6Snd'
+	ImpactSounds(2)=Sound'XEffects.Impact7Snd'
+	ImpactSounds(3)=Sound'XEffects.Impact3'
+	ImpactSounds(4)=Sound'XEffects.Impact1'
+	ImpactSounds(5)=Sound'XEffects.Impact2'
 
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=7000.000000
-     MaxSpeed=7000.000000
-     Damage=110.000000
-	 DamageRadius=512.000000
-     WallPenetrationForce=64
-     MomentumTransfer=60000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAG'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAGRadius'
+	ImpactDamage=125
+	ImpactDamageType=Class'BWBP_SKC_Pro.DT_BulldogImpact'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFRAG'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BallisticProV55.MRLTrailEmitter'
+	TrailOffset=(X=-14.000000)
 
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=25
-     LightSaturation=100
-     LightBrightness=200.000000
-     LightRadius=15.000000
-     bDynamicLight=True
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Speed=7000.000000
+	MaxSpeed=7000.000000
+	Damage=110.000000
+	DamageRadius=512.000000
+	WallPenetrationForce=64
+	MomentumTransfer=60000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAG'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAGRadius'
 
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
-     RotationRate=(Roll=32768)
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=25
+	LightSaturation=100
+	LightBrightness=200.000000
+	LightRadius=15.000000
+	bDynamicLight=True
 
-     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
-     SoundVolume=192
-     SoundRadius=128.000000
+	StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+	RotationRate=(Roll=32768)
 
-     DrawScale=2.500000
+	AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
+	SoundVolume=192
+	SoundRadius=128.000000
 
-     bIgnoreTerminalVelocity=True
-	 ModeIndex=1
+	DrawScale=2.500000
+
+	bIgnoreTerminalVelocity=True
+	ModeIndex=1
 
 }

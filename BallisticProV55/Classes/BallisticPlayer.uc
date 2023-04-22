@@ -106,6 +106,17 @@ function ServerCamDist(float F)
 	BehindDistFactor = F;
 }
 
+function WeaponShakeView
+(
+	vector shRotMag, vector shRotRate,float shRotTime,
+    vector shOffsetMag, vector shOffsetRate, float shOffsetTime
+)
+{
+	if ( bWeaponViewShake || class'BallisticGameStyles'.static.GetReplicatedStyle().default.bForceViewShake )
+		ShakeView(shRotMag * (1.0 - ZoomLevel), shRotRate, shRotTime, shOffsetMag * (1.0 - ZoomLevel), shOffsetRate, shOffsetTime);
+}
+
+
 simulated function bool CheckInventoryChange()
 {
 	local Inventory inv;

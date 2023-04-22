@@ -13,32 +13,28 @@
 class BallisticGrenade extends BallisticProjectile
 	abstract;
 
+var() 	GrenadeEffectParams.EDetonateType		UnarmedDetonateOn;
+var() 	GrenadeEffectParams.EDetonateType 		ArmedDetonateOn;
 
-var() enum EDetonateType				// Different ways that grenade can detonate
-{
-	DT_Timer,					// Detonate when timer runs out
-	DT_Impact,					// Detonate on impact
-	DT_ImpactTimed,				// Detonate on timer that only starts on impact
-	DT_Still,					// Detonate after timer that starts when projectile is still
-	DT_None						// Don't use normal detonation
-} DetonateOn;
+var  	GrenadeEffectParams.EDetonateType		DetonateOn;
 
-var() enum EPlayerImpactType	// Different ways that grenade can impact with players
-{
-	PIT_Bounce,					// Bounce off players
-	PIT_Detonate,				// Detonate
-	PIT_Stick					// Stick to players
-} PlayerImpactType;
+var() 	GrenadeEffectParams.EPlayerImpactType	UnarmedPlayerImpactType;
+var() 	GrenadeEffectParams.EPlayerImpactType	ArmedPlayerImpactType;
+
+var 	GrenadeEffectParams.EPlayerImpactType 	PlayerImpactType;
 
 var() class<BCImpactManager>	ReflectImpactManager;
 var() float						DampenFactor;			// Bounce Damping
 var() float						DampenFactorParallel;	// Parallel Bounce Damping
+var() float						PawnDampAdjust;			// Multiplies dampen factors against pawns
 var() float						RandomSpin;				// Random spin amount
 var() bool						bNoInitialSpin;			// Do not apply random spin until impact
 var() bool						bAlignToVelocity;		// If true, grenaded always faces in the direction of its velocity
 var	  bool						bHasImpacted;			// Has it hit anything yet?
 //var	  bool					bCanHitOwner;			// Can impact with owner
 
+var() float						ArmingDelay;			// Time before switching to armed handling.
+var() bool						bArmed;					// Grenade is armed
 var() float 					DetonateDelay;			// Time before detonation. Starts on spawn for DT_Timer. Starts on impact for DT_ImpactTimed
 
 var() int						FlakCount;				// How many chunks of flak to fling on explode
@@ -49,6 +45,7 @@ var() bool						TrailWhenStill;			// If true, trail actor stays when not moving
 var() int						ImpactDamage;			// Damage when hitting or sticking to players and not detonating
 var() Class<DamageType>			ImpactDamageType;		// Type of Damage caused for striking or sticking to players
 var() float						MinStickVelocity;		// Minimum velocity required to stick to players
+var() float						StillSpeed;				// Speed below which grenade is considered still
 
 simulated event PostBeginPlay()
 {
@@ -56,14 +53,6 @@ simulated event PostBeginPlay()
 
     if (RandomSpin != 0 && !bNoInitialSpin)
         RandSpin(RandomSpin);
-}
-
-simulated function InitProjectile()
-{
-    Super.InitProjectile();
-
-    if (DetonateOn == DT_Timer)
-        SetTimer(DetonateDelay, false);
 }
 
 simulated function ApplyParams(ProjectileEffectParams params)
@@ -74,29 +63,55 @@ simulated function ApplyParams(ProjectileEffectParams params)
 
     gren_params = GrenadeEffectParams(params);
 
-    if (gren_params == None)
-        return;
+    if (gren_params != None)
+    {
+		ImpactDamage = gren_params.ImpactDamage;
+		default.ImpactDamage = gren_params.ImpactDamage;
+		
+		if (gren_params.bOverrideArming)
+		{
+			ArmingDelay = gren_params.ArmingDelay;
 
-    ImpactDamage = gren_params.ImpactDamage;
-    default.ImpactDamage = gren_params.ImpactDamage;
+			UnarmedDetonateOn = gren_params.UnarmedDetonateOn;
+
+			ArmedDetonateOn = gren_params.ArmedDetonateOn;
+
+			UnarmedPlayerImpactType = gren_params.UnarmedPlayerImpactType;
+
+			ArmedPlayerImpactType = gren_params.ArmedPlayerImpactType;
+
+			DetonateDelay = gren_params.DetonateDelay;
+			default.DetonateDelay = gren_params.DetonateDelay;
+		}
+	}
 	
-	// ArmingDelay = gren_params.ArmingDelay;
-	// default.ArmingDelay = gren_params.ArmingDelay;
-	// DetonateDelay = gren_params.DetonateDelay;
-	// default.DetonateDelay = gren_params.DetonateDelay;
+	if (ArmingDelay > 0)
+	{
+		DetonateOn = UnarmedDetonateOn;
+		PlayerImpactType = UnarmedPlayerImpactType;
+		SetTimer(ArmingDelay, false);
+	}
+	else
+	{
+		Arm();
 
-	/*
-	if (DetonateOn == DT_Timer)
-        SetTimer(DetonateDelay, false);
-	*/
+		if (DetonateOn == DT_Timer)
+        	SetTimer(DetonateDelay, false);
+	}
+}
+
+simulated function Arm()
+{
+	bArmed = true;
+	DetonateOn = ArmedDetonateOn;
+	PlayerImpactType = ArmedPlayerImpactType;
 }
 
 simulated event Timer()
 {
-	if (StartDelay > 0)
+	if (!bArmed)
 	{
-        ShowAfterStartDelay();
-		//InitEffects();
+		Arm();
 		return;
 	}
 
@@ -191,7 +206,10 @@ simulated function bool Impact(Actor Other, Vector HitLocation)
 	{
 		SetPhysics(PHYS_None);
 		if (DetonateOn == DT_ImpactTimed)
+		{
+			bArmed = True;
 			SetTimer(DetonateDelay, false);
+		}
 		if (Other != Instigator && Other.DrawType == DT_Mesh)
 			Other.AttachToBone( Self, Other.GetClosestBone( Location, Velocity, BoneDist) );
 		else
@@ -204,7 +222,8 @@ simulated function bool Impact(Actor Other, Vector HitLocation)
     return true;
 }
 
-simulated event HitWall(vector HitNormal, actor Wall)
+// don't override - use DampenFactor and DampenFactorParallel
+simulated function HitWall(vector HitNormal, actor Wall)
 {
     local Vector VNorm;
 
@@ -216,13 +235,14 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 	if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
     {
+		bArmed = True;
 		SetTimer(DetonateDelay, false);
     }
 
 	if (Pawn(Wall) != None)
 	{
-		DampenFactor *= 0.5;
-		DampenFactorParallel *= 0.5;
+		DampenFactor *= PawnDampAdjust;
+		DampenFactorParallel *= PawnDampAdjust;
 	}
 
 	bCanHitOwner=true;
@@ -235,13 +255,16 @@ simulated event HitWall(vector HitNormal, actor Wall)
 		RandSpin(100000);
 	Speed = VSize(Velocity);
 
-	if (Speed < 20)
+	if (Speed < StillSpeed)
 	{
 		bBounce = False;
 		SetPhysics(PHYS_None);
 
 		if (DetonateOn == DT_Still)
+		{
+			bArmed = True;
 			SetTimer(DetonateDelay, false);
+		}
 
 		if (Trail != None && !TrailWhenStill)
 		{
@@ -251,7 +274,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (Speed > 100) && !Level.bDropDetail && EffectIsRelevant(Location,false))
 	{
 		if (ImpactSound != None)
-			PlaySound(ImpactSound, SLOT_Misc );
+			PlaySound(ImpactSound, SLOT_Misc, 1.5 );
 		if (ReflectImpactManager != None)
 		{
 			if (Instigator == None)
@@ -320,6 +343,7 @@ defaultproperties
 {
     DampenFactor=0.05000
     DampenFactorParallel=0.350000
+	PawnDampAdjust=0.25
     RandomSpin=32768.000000
     DetonateDelay=3.000000
     FlakClass=Class'XWeapons.FlakChunk'
@@ -335,4 +359,5 @@ defaultproperties
     bBounce=True
     bFixedRotationDir=True
     RotationRate=(Roll=10000)
+	StillSpeed=10
 }

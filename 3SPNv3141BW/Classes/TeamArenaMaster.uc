@@ -373,6 +373,27 @@ function StartNewRound()
     Super.StartNewRound();
 }
 
+function AddKillAmmo(BallisticWeapon BW)
+{
+	local class<BallisticAmmo> BAmmo[2];
+
+	if (BW.bWT_Super)
+		return;
+
+	BAmmo[0] = class<BallisticAmmo>(BW.GetAmmoClass(0));
+	BAmmo[1] = class<BallisticAmmo>(BW.GetAmmoClass(1));
+
+	if (BAmmo[0] == None)
+		return;
+
+	BW.AddAmmo(BAmmo[0].static.GetKillResupplyAmmo(), 0);
+
+	if (BAmmo[1] == None || BAmmo[0] == BAmmo[1])
+		return;
+		
+	BW.AddAmmo(BAmmo[1].static.GetKillResupplyAmmo(), 1);
+}
+
 //as teamgame, but awards a mag of ammo on a kill
 function ScoreKill(Controller Killer, Controller Other)
 {
@@ -395,38 +416,12 @@ function ScoreKill(Controller Killer, Controller Other)
 			KPW = BallisticWeapon(Killer.Pawn.Weapon);
 			
 			if(KPW != None)
-			{				
-				if( !KPW.bWT_Super)
-				{
-					if (class<BallisticAmmo>(KPW.GetAmmoClass(0)) != None)
-					{
-						if (!KPW.bUseSights || KPW.bScopeView)
-							KPW.AddAmmo(class<BallisticAmmo>(KPW.GetAmmoClass(0)).static.GetKillResupplyAmmo(), 0);
-						else KPW.AddAmmo(class<BallisticAmmo>(KPW.GetAmmoClass(0)).static.GetKillResupplyAmmo()/2, 0);
-						
-					}
-					else
-					{
-						if (!KPW.bNoMag)
-						{
-							if (!KPW.bUseSights || KPW.bScopeView)
-								KPW.AddAmmo(KPW.default.MagAmmo, 0);
-							else KPW.AddAmmo(KPW.default.MagAmmo/2, 0);
-						}
-						else if (!KPW.bUseSights || KPW.bScopeView)
-							KPW.AddAmmo(KPW.GetAmmoClass(0).default.InitialAmount/3, 0);
-						else KPW.AddAmmo(KPW.GetAmmoClass(0).default.InitialAmount/6, 0);
-					}
-		
-					if (KPW.GetAmmoClass(1) != None && KPW.GetAmmoClass(1) != KPW.GetAmmoClass(0))
-						KPW.AddAmmo(Max(KPW.GetAmmoClass(1).default.InitialAmount / 2, 1), 1);
-				}
+				AddKillAmmo(KPW);
 
-				if ( Other.PlayerReplicationInfo.HasFlag != None )
-				{
-					Killer.AwardAdrenaline(ADR_MajorKill);
-					GameObject(Other.PlayerReplicationInfo.HasFlag).bLastSecondSave = NearGoal(Other);
-				}
+			if ( Other.PlayerReplicationInfo.HasFlag != None )
+			{
+				Killer.AwardAdrenaline(ADR_MajorKill);
+				GameObject(Other.PlayerReplicationInfo.HasFlag).bLastSecondSave = NearGoal(Other);
 			}
 			
 

@@ -9,91 +9,16 @@
 //=============================================================================
 class BOGPGrenade extends BallisticGrenade;
 
-var bool bArmed;
-var float ArmingDelay;
-
-simulated function PostNetBeginPlay()
-{
-	Super.PostNetBeginPlay();
-	SetTimer(ArmingDelay, False);
-}
-
-simulated function Timer()
-{
-	if(StartDelay > 0)
-	{
-		Super.Timer();
-		return;
-	}
-	
-	if (!bHasImpacted)
-	{
-		DetonateOn=DT_Impact;
-		PlayerImpactType=PIT_Detonate;
-	}
-		
-	else Explode(Location, vect(0,0,1));
-}
-
-simulated event HitWall(vector HitNormal, actor Wall)
-{
-    local Vector VNorm;
-	
-	if (DetonateOn == DT_Impact)
-	{
-		Explode(Location, HitNormal);
-		return;
-	}
-	else if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
-	{
-		SetTimer(DetonateDelay, false);
-	}
-	if (Pawn(Wall) != None)
-	{
-		DampenFactor *= 0.2;
-		DampenFactorParallel *= 0.2;
-	}
-
-	bCanHitOwner=true;
-	bHasImpacted=true;
-
-    VNorm = (Velocity dot HitNormal) * HitNormal;
-    Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-
-	if (RandomSpin != 0)
-		RandSpin(100000);
-	
-	Speed = VSize(Velocity/2);
-
-	if (Speed < 20)
-	{
-		bBounce = False;
-		SetPhysics(PHYS_None);
-		if (Trail != None && !TrailWhenStill)
-		{
-			DestroyEffects();
-		}
-	}
-	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (Speed > 100) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
-	{
-		if (ImpactSound != None)
-			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ReflectImpactManager != None)
-		{
-			if (Instigator == None)
-				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Level.GetLocalPlayerController()/*.Pawn*/);
-			else
-				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Instigator);			
-		}
-    	}
-}
-
 defaultproperties
 {
-	ArmingDelay=0.3
-    WeaponClass=Class'BallisticProV55.BOGPPistol'
-	DetonateOn=DT_ImpactTimed
-	PlayerImpactType=PIT_Bounce
+	WeaponClass=Class'BallisticProV55.BOGPPistol'
+
+    ArmingDelay=0.3
+	UnarmedDetonateOn=DT_ImpactTimed
+    UnarmedPlayerImpactType=PIT_Bounce
+    ArmedDetonateOn=DT_Impact
+    ArmedPlayerImpactType=PIT_Detonate
+
 	bNoInitialSpin=True
 	bAlignToVelocity=True
 	DetonateDelay=1.000000

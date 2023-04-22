@@ -8,54 +8,6 @@
 //=============================================================================
 class RCS715Projectile extends BallisticGrenade;
 
-simulated event HitWall(vector HitNormal, actor Wall)
-{
-    local Vector VNorm;
-	
-	if (DetonateOn == DT_Impact)
-	{
-		Explode(Location, HitNormal);
-		return;
-	}
-	else if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
-	{
-		SetTimer(DetonateDelay, false);
-	}
-	if (Pawn(Wall) != None)
-	{
-		DampenFactor *= 0.01;
-		DampenFactorParallel *= 0.01;
-	}
-
-	bCanHitOwner=true;
-	bHasImpacted=true;
-
-    VNorm = (Velocity dot HitNormal) * HitNormal;
-    Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-
-	if (RandomSpin != 0)
-		RandSpin(100000);
-	
-	Speed = VSize(Velocity/2);
-
-	if (Speed < 20)
-	{
-		bBounce = False;
-		SetPhysics(PHYS_None);
-		if (Trail != None && !TrailWhenStill)
-		{
-			DestroyEffects();
-		}
-	}
-	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (Speed > 100) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
-	{
-		if (ImpactSound != None)
-			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ImpactManager != None)
-			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
-    	}
-}
-
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
@@ -131,32 +83,32 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 defaultproperties
 {
     WeaponClass=Class'BWBP_OP_Pro.RCS715Shotgun'
-     ModeIndex=1
-     DetonateOn=DT_Impact
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=0.150000
-     ImpactDamage=15.000000
-     ImpactDamageType=Class'BWBP_OP_Pro.DT_RCS715Grenade'
-     ImpactManager=Class'BallisticProV55.IM_Grenade'
-     AccelSpeed=3000.000000
-     TrailClass=Class'BWBP_OP_Pro.RCS715FireTrail'
-     TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BWBP_OP_Pro.DT_RCS715Burned'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=128.000000
-     Speed=4000.000000
-     MaxSpeed=15000.000000
-     Damage=50.000000
-     DamageRadius=128.000000
-     MomentumTransfer=0.000000
-     MyDamageType=Class'BWBP_OP_Pro.DT_RCS715Grenade'
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=160.000000
-     LightRadius=8.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
-     LifeSpan=16.000000
-     DrawScale=2.000000
+	ModeIndex=1
+	ArmedDetonateOn=DT_Impact
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	DetonateDelay=0.150000
+	ImpactDamage=15.000000
+	ImpactDamageType=Class'BWBP_OP_Pro.DT_RCS715Grenade'
+	ImpactManager=Class'BallisticProV55.IM_Grenade'
+	AccelSpeed=3000.000000
+	TrailClass=Class'BWBP_OP_Pro.RCS715FireTrail'
+	TrailOffset=(X=-8.000000)
+	MyRadiusDamageType=Class'BWBP_OP_Pro.DT_RCS715Burned'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=128.000000
+	Speed=4000.000000
+	MaxSpeed=15000.000000
+	Damage=50.000000
+	DamageRadius=128.000000
+	MomentumTransfer=0.000000
+	MyDamageType=Class'BWBP_OP_Pro.DT_RCS715Grenade'
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=160.000000
+	LightRadius=8.000000
+	StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+	LifeSpan=16.000000
+	DrawScale=2.000000
 }

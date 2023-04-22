@@ -85,7 +85,7 @@ defaultproperties
 	DampenFactor=0.05
 	DampenFactorParallel=0.600000
 	DetonateDelay=1.250000
-	DetonateOn=DT_ImpactTimed
+	ArmedDetonateOn=DT_ImpactTimed
 	DrawScale=0.500000
 	ImpactDamage=25
 	ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotDirect'
@@ -105,7 +105,7 @@ defaultproperties
 	MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'
 	RotationRate=(Roll=32768)
 	ShakeRadius=512.000000
-	PlayerImpactType=PIT_Detonate
+	ArmedPlayerImpactType=PIT_Detonate
 	Speed=3800.000000
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.ClusterProj'

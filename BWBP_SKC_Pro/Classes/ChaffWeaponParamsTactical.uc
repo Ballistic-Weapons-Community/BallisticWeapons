@@ -9,7 +9,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
         ProjectileClass=Class'BWBP_SKC_Pro.ChaffGrenade'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-        Speed=1750.000000
+        Speed=1000.000000
         Damage=40
         DamageRadius=256.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)

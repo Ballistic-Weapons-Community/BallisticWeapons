@@ -42,7 +42,7 @@ defaultproperties
 		XCurve=(Points=(,(InVal=1.000000,OutVal=0.15)))
 		XRandFactor=0.25
 		YRandFactor=0.25
-        ClimbTime=0.125
+        ClimbTime=0.08
 		DeclineDelay=0.22
         DeclineTime=0.75
 		CrouchMultiplier=0.850000

@@ -449,34 +449,34 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-	 TraceCount=1
-     TraceRange=(Min=12000.000000,Max=12000.000000)
-     DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
-     DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
-     DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
-     KickForce=1000
-     PenetrateForce=150
-     MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
-     FlashScaleFactor=0.800000
-     BrassClass=Class'BWBP_OP_Pro.Brass_Z250Shell'
-     BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     FireRecoil=64.000000
-     FirePushbackForce=150.000000
-     FireChaos=0.120000
-     XInaccuracy=16.000000
-     YInaccuracy=16.000000
-     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.Z250.Z250-Fire',Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireRate=0.200000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_Z250Rounds'
+	TraceCount=1
+	TraceRange=(Min=12000.000000,Max=12000.000000)
+	DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
+	DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
+	DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
+	KickForce=1000
+	PenetrateForce=150
+	MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
+	FlashScaleFactor=0.800000
+	BrassClass=Class'BWBP_OP_Pro.Brass_Z250Shell'
+	BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
+	FireRecoil=64.000000
+	FirePushbackForce=150.000000
+	FireChaos=0.120000
+	XInaccuracy=16.000000
+	YInaccuracy=16.000000
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.Z250.Z250-Fire',Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireRate=0.200000
+	AmmoClass=Class'BWBP_OP_Pro.Ammo_Z250Rounds'
 
-     ShakeRotMag=(X=72.000000)
-     ShakeRotRate=(X=1080.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.00)
-     ShakeOffsetRate=(X=-200.00)
-     ShakeOffsetTime=2.000000
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-8.00)
+	ShakeOffsetRate=(X=-160.000000)
+	ShakeOffsetTime=2.000000
 
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

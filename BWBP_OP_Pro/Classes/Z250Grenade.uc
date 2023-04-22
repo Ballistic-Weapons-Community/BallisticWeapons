@@ -1,27 +1,6 @@
 class Z250Grenade extends BallisticGrenade;
 
-var bool bArmed;
 var Z250FireControl	FireControl;
-
-simulated function PostNetBeginPlay()
-{
-	Super.PostNetBeginPlay();
-	SetTimer(0.20, False);
-}
-
-simulated function Timer()
-{
-	if(StartDelay > 0)
-	{
-		Super.Timer();
-		return;
-	}
-	
-	if (!bHasImpacted)
-		DetonateOn=DT_Impact;
-		
-	else Explode(Location, vect(0,0,1));
-}
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {	
@@ -90,79 +69,34 @@ function OilBlowUp(vector HitLocation, vector HitNormal)
 	}
 }
 
-simulated event HitWall(vector HitNormal, actor Wall)
-{
-    local Vector VNorm;
-	
-	if (DetonateOn == DT_Impact)
-	{
-		Explode(Location, HitNormal);
-		return;
-	}
-	else if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
-	{
-		SetTimer(DetonateDelay, false);
-	}
-	if (Pawn(Wall) != None)
-	{
-		DampenFactor *= 0.2;
-		DampenFactorParallel *= 0.2;
-	}
-
-	bCanHitOwner=true;
-	bHasImpacted=true;
-
-    VNorm = (Velocity dot HitNormal) * HitNormal;
-    Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-
-	if (RandomSpin != 0)
-		RandSpin(100000);
-	
-	Speed = VSize(Velocity/2);
-
-	if (Speed < 20)
-	{
-		bBounce = False;
-		SetPhysics(PHYS_None);
-		if (Trail != None && !TrailWhenStill)
-		{
-			DestroyEffects();
-		}
-	}
-	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (Speed > 100) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
-	{
-		if (ImpactSound != None)
-			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ImpactManager != None)
-			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
-    	}
-}
-
 defaultproperties
 {
     WeaponClass=Class'BWBP_OP_Pro.Z250Minigun'
-     ModeIndex=1
-     DetonateOn=DT_Impact
-     PlayerImpactType=PIT_Detonate
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=1.000000
-     ImpactDamage=20
-     ImpactDamageType=Class'BWBP_OP_Pro.DTZ250Grenade'
-     ImpactManager=Class'BWBP_OP_Pro.IM_Z250Grenade'
-     TrailClass=Class'BallisticProV55.M50GrenadeTrail'
-     TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BWBP_OP_Pro.DTZ250GrenadeRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     Speed=4000.000000
-     Damage=30.000000
-     DamageRadius=64.000000
-     MyDamageType=Class'BWBP_OP_Pro.DTZ250GrenadeRadius'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
-     bIgnoreTerminalVelocity=True
+	ModeIndex=1
+	ArmingDelay=0.2
+	UnarmedDetonateOn=DT_ImpactTimed
+	UnarmedPlayerImpactType=PIT_Bounce
+	ArmedDetonateOn=DT_Impact
+	ArmedPlayerImpactType=PIT_Detonate
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	DetonateDelay=1.000000
+	ImpactDamage=20
+	ImpactDamageType=Class'BWBP_OP_Pro.DTZ250Grenade'
+	ImpactManager=Class'BWBP_OP_Pro.IM_Z250Grenade'
+	TrailClass=Class'BallisticProV55.M50GrenadeTrail'
+	TrailOffset=(X=-8.000000)
+	MyRadiusDamageType=Class'BWBP_OP_Pro.DTZ250GrenadeRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	Speed=4000.000000
+	Damage=30.000000
+	DamageRadius=64.000000
+	MyDamageType=Class'BWBP_OP_Pro.DTZ250GrenadeRadius'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
+	bIgnoreTerminalVelocity=True
 }

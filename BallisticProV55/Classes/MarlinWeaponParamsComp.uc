@@ -76,7 +76,7 @@ defaultproperties
 		XCurve=(Points=(,(InVal=1.000000,OutVal=0.12)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		MaxRecoil=6400.000000
-		ClimbTime=0.1
+		ClimbTime=0.08
 		DeclineDelay=0.25
 		DeclineTime=1
 		CrouchMultiplier=0.850000

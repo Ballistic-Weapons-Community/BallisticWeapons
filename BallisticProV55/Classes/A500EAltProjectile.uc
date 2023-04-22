@@ -86,8 +86,8 @@ function AdjustSpeed()
 
 defaultproperties
 {
-    DetonateOn=DT_Impact
-    PlayerImpactType=PIT_Detonate
+    ArmedDetonateOn=DT_Impact
+    ArmedPlayerImpactType=PIT_Detonate
     bNoInitialSpin=True
     bAlignToVelocity=True
     DetonateDelay=1.000000

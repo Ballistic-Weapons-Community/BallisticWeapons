@@ -91,7 +91,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 defaultproperties
 {
      WeaponClass=Class'BWBP_SKC_Pro.ChaffGrenadeWeapon'
-     DetonateOn=DT_Impact
+     ArmedDetonateOn=DT_Impact
      ImpactDamage=25
      ImpactDamageType=Class'BWBP_SKC_Pro.DTChaffGrenade'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ChaffGrenade'

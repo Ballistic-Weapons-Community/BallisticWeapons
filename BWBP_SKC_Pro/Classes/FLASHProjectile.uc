@@ -32,30 +32,30 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.FLASHLauncher'
-     DetonateOn=DT_Impact
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=1.000000
-     ImpactDamage=50
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_FLASH'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_FlareExplode'
-     TrailClass=Class'BWBP_SKC_Pro.FLASHRocketTrail'
-     TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_FLASHRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     Speed=4500.000000
-     Damage=80.000000
-     DamageRadius=300.000000
-     MomentumTransfer=10000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_FLASHRadius'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
-     AmbientSound=Sound'BWBP_SKC_Sounds.Flash.M202-Flyby'
-     DrawScale=1.000000
-     AmbientGlow=32
-     SoundVolume=255
-     RotationRate=(Roll=32768)
+	ArmedDetonateOn=DT_Impact
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	DetonateDelay=1.000000
+	ImpactDamage=50
+	ImpactDamageType=Class'BWBP_SKC_Pro.DT_FLASH'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_FlareExplode'
+	TrailClass=Class'BWBP_SKC_Pro.FLASHRocketTrail'
+	TrailOffset=(X=-8.000000)
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_FLASHRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	Speed=4500.000000
+	Damage=80.000000
+	DamageRadius=300.000000
+	MomentumTransfer=10000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_FLASHRadius'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
+	AmbientSound=Sound'BWBP_SKC_Sounds.Flash.M202-Flyby'
+	DrawScale=1.000000
+	AmbientGlow=32
+	SoundVolume=255
+	RotationRate=(Roll=32768)
 }

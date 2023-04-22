@@ -197,10 +197,10 @@ defaultproperties
 	FireRate=0.09000
 	AmmoClass=Class'BallisticProV55.Ammo_9mm'
 
-	ShakeRotMag=(X=48.000000)
-	ShakeRotRate=(X=640.000000)
+	ShakeRotMag=(X=24.000000)
+	ShakeRotRate=(X=360.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-3.00)
-	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
 	ShakeOffsetTime=2.000000
 }

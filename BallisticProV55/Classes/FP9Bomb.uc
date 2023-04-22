@@ -445,7 +445,7 @@ defaultproperties
      OldLaserRange=-1.000000
      LaserSkin=Shader'BW_Core_WeaponTex.FP9A5.FP9LCDActiveSD'
      BombDetonateDelay=1.500000
-     DetonateOn=DT_None
+     ArmedDetonateOn=DT_None
      DampenFactor=0.500000
      DampenFactorParallel=0.700000
      bNoInitialSpin=True

@@ -48,12 +48,12 @@ defaultproperties
      FireRate=0.100000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_556mmSTANAG'
 	 
-     ShakeRotMag=(X=64.000000)
-     ShakeRotRate=(X=960.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-7.00)
-     ShakeOffsetRate=(X=-100.000000)
-     ShakeOffsetTime=2.000000
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
 
      WarnTargetPct=0.200000
 }

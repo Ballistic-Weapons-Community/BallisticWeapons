@@ -48,11 +48,20 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.M50Grenade'
 		SpawnOffset=(X=35.000000,Y=5.000000,Z=-15.000000)
+
 		Speed=2700.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
 		MaxSpeed=2700.000000
-		Damage=150
-        ImpactDamage=200
-		DamageRadius=1050.000000
+
+		Damage=100
+        ImpactDamage=60
+		DamageRadius=768.000000
+
+		bOverrideArming=True
+		ArmingDelay=0
+		ArmedDetonateOn=DT_Timer
+		ArmedPlayerImpactType=PIT_Bounce
+		DetonateDelay=3
+
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	
@@ -117,7 +126,7 @@ defaultproperties
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
         MagAmmo=30
-        InventorySize=6
+        InventorySize=7
 		SightPivot=(Pitch=200)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

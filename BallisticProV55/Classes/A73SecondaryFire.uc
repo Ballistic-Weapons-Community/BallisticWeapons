@@ -35,20 +35,20 @@ function DoFireEffect()
 
 defaultproperties
 {
-	 HeatPerShot=3.40000
-	 HeatDeclineDelay=0.8
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     bPawnRapidFireAnim=True
-     AmmoClass=Class'BallisticProV55.Ammo_Cells'
+	HeatPerShot=3.40000
+	HeatDeclineDelay=0.8
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	bPawnRapidFireAnim=True
+	AmmoClass=Class'BallisticProV55.Ammo_Cells'
 
-     ShakeRotMag=(X=72.000000)
-     ShakeRotRate=(X=1080.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.00)
-     ShakeOffsetRate=(X=-200.000000)
-     ShakeOffsetTime=2.000000
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=960.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
 
-	 // AI
-     BotRefireRate=0.50000
-	 bInstantHit=True
+	// AI
+	BotRefireRate=0.50000
+	bInstantHit=True
 }

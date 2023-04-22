@@ -39,7 +39,7 @@ defaultproperties
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-7.00)
+     ShakeOffsetMag=(X=-8.00)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BWBP_SKC_Pro.G28Thrown'

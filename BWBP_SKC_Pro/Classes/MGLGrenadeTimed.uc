@@ -64,7 +64,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'
-     PlayerImpactType=PIT_Detonate
+     ArmedPlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
 	 bAlignToVelocity=True
 	 DampenFactor=0.050000

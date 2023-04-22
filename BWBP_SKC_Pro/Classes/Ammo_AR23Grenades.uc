@@ -62,4 +62,25 @@ defaultproperties
      IconMaterial=Texture'BWBP_SKC_Tex.LK05.AmmoIcon_LK05'
      IconCoords=(X2=64,Y2=64)
      ItemName="AR23 Shotgun Grenades"
+
+	Begin Object Class=AmmoParams Name=ArenaParams
+		KillInitialAmmoMult=0.51f
+	End Object
+
+	Begin Object Class=AmmoParams Name=ClassicParams
+		KillInitialAmmoMult=0.51f
+	End Object
+
+	Begin Object Class=AmmoParams Name=RealismParams
+		KillInitialAmmoMult=0.0f
+	End Object
+
+	Begin Object Class=AmmoParams Name=TacticalParams
+		KillInitialAmmoMult=0.0f
+	End Object
+
+	Params[0]=ArenaParams
+	Params[1]=ClassicParams
+	Params[2]=RealismParams
+	Params[3]=TacticalParams
 }

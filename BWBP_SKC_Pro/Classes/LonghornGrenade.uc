@@ -30,7 +30,7 @@ var EDetonationType				DetonationType; //1:manual 2:artillery
 var float                		ZBonus;
 var float						DamageDropoffFactor;
 var int							ExplosiveImpactDamage;
-var protected const float		ArmingDelay;
+var protected const float		MyArmingDelay;
 
 replication
 {
@@ -170,7 +170,8 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	if (Role == ROLE_Authority && HitActor != Other)		
 	{
 		HitActor = Other;
-		if (!bHasImpacted && !bFireReleased && default.LifeSpan - LifeSpan > ArmingDelay)
+		
+		if (!bHasImpacted && !bFireReleased && default.LifeSpan - LifeSpan > MyArmingDelay)
 		{
 			class'BallisticDamageType'.static.GenericHurt (Other, ExplosiveImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 			
@@ -294,10 +295,10 @@ defaultproperties
 	ZBonus=40000.000000
 	DamageDropoffFactor=0.100000
 	ExplosiveImpactDamage=130
-	ArmingDelay=0.180000
+	MyArmingDelay=0.180000
 	DetonateDelay=0.65
-	DetonateOn=DT_ImpactTimed
-	PlayerImpactType=PIT_Detonate
+	ArmedDetonateOn=DT_ImpactTimed
+	ArmedPlayerImpactType=PIT_Detonate
 	DampenFactor=0.300000
 	DampenFactorParallel=0.400000
 	bNoInitialSpin=True

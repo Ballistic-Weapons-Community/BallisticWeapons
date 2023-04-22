@@ -44,7 +44,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
         ProjectileClass=Class'BWBP_SKC_Pro.SK410HEProjectile'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-        Speed=8000.000000
+        Speed=5000.000000
         MaxSpeed=15000.000000
         AccelSpeed=3000.000000
         Damage=80

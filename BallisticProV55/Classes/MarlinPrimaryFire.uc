@@ -103,43 +103,43 @@ simulated function SendFireEffect(Actor Other, Vector HitLocation, Vector HitNor
 
 defaultproperties
 {
-	 GaussSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
-	 RangeAtten=0.75
-     TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=24.000000
-     WaterRangeAtten=0.800000
-     DamageType=Class'BallisticProV55.DTMarlinRifle'
-     DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
-     DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
-     PenetrateForce=150
-     bPenetrate=True
-     bCockAfterFire=True
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     bBrassOnCock=True
-     BrassOffset=(X=-70.000000,Y=-12.000000,Z=10.000000)
-     AimedFireAnim="SightFireCock"
-     FireRecoil=768.000000
-     FireChaos=0.800000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Fire')
-     FireEndAnim=
-     FireAnimRate=1.150000
-     FireRate=0.80000
-     AmmoClass=Class'BallisticProV55.Ammo_Marlin'
+	GaussSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
+	RangeAtten=0.75
+	TraceRange=(Min=30000.000000,Max=30000.000000)
+	WallPenetrationForce=24.000000
+	WaterRangeAtten=0.800000
+	DamageType=Class'BallisticProV55.DTMarlinRifle'
+	DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
+	DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
+	PenetrateForce=150
+	bPenetrate=True
+	bCockAfterFire=True
+	MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	bBrassOnCock=True
+	BrassOffset=(X=-70.000000,Y=-12.000000,Z=10.000000)
+	AimedFireAnim="SightFireCock"
+	FireRecoil=768.000000
+	FireChaos=0.800000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Fire')
+	FireEndAnim=
+	FireAnimRate=1.150000
+	FireRate=0.80000
+	AmmoClass=Class'BallisticProV55.Ammo_Marlin'
 
-     ShakeRotMag=(X=72.000000)
-     ShakeRotRate=(X=1080.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.00)
-     ShakeOffsetRate=(X=-200.00)
-     ShakeOffsetTime=2.000000
-	 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.7
-     WarnTargetPct=0.5
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
+
+	// AI
+	bInstantHit=True
+	bLeadTarget=False
+	bTossed=False
+	bSplashDamage=False
+	bRecommendSplashDamage=False
+	BotRefireRate=0.7
+	WarnTargetPct=0.5
 }

@@ -10,8 +10,8 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.BOGPGrenade'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-        Speed=2100.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
-        MaxSpeed=2100.000000
+        Speed=2700.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
+        MaxSpeed=2700.000000
         AccelSpeed=0
         Damage=150.000000
         ImpactDamage=50

@@ -17,8 +17,8 @@ defaultproperties
 		BotRefireRate=0.5
      	WarnTargetPct=0.300000
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenade'
-     	Speed=4200.000000
-     	MaxSpeed=4200.000000
+     	Speed=2700.000000
+     	MaxSpeed=2700.000000
 		Damage=150
         ImpactDamage=150
      	DamageRadius=450.000000
@@ -48,8 +48,8 @@ defaultproperties
 		BotRefireRate=0.7
      	WarnTargetPct=0.3
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornMicroClusterAlt'
-     	Speed=5500.000000
-    	MaxSpeed=5500.000000
+     	Speed=4200.000000
+    	MaxSpeed=4200.000000
     	Damage=45.000000
         ImpactDamage=45
     	DamageRadius=256.000000

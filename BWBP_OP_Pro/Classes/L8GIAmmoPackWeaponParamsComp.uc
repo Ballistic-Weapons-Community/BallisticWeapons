@@ -10,8 +10,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.L8GIThrown'
 		SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-		Speed=600.000000
-		MaxSpeed=600.000000
+		Speed=400.000000
+		MaxSpeed=400.000000
 		Damage=0
 		DamageRadius=250.000000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)	

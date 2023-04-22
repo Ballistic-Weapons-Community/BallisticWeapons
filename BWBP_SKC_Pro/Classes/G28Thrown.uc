@@ -183,7 +183,7 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-	DetonateOn=DT_Still
+	ArmedDetonateOn=DT_Still
 	WeaponClass=Class'BWBP_SKC_Pro.G28Grenade'
 	DampenFactor=0.050000
 	DampenFactorParallel=0.350000

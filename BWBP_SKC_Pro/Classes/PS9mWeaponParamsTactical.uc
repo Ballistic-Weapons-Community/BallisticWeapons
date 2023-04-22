@@ -17,7 +17,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-		FlashScaleFactor=0.800000
+		FlashScaleFactor=0.300000
 		Recoil=96.000000
 		Chaos=0.050000
 		WarnTargetPct=0.200000

@@ -189,7 +189,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		InventorySize=4
-		SightMoveSpeedFactor=0.500000
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.185000
 		MagAmmo=28
 		WeaponName="FMP-2012 .40 Machine Pistol"

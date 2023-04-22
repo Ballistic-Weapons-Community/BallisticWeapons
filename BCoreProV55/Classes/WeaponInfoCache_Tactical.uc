@@ -4,5 +4,5 @@ class WeaponInfoCache_Tactical extends BC_WeaponInfoCache_GameStyle
 
 defaultproperties
 {
-	Revision=4
+	Revision=5
 }

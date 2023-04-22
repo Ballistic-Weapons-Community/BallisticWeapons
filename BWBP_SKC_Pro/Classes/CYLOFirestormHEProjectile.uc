@@ -8,52 +8,6 @@
 //=============================================================================
 class CYLOFirestormHEProjectile extends BallisticGrenade;
 
-simulated event HitWall(vector HitNormal, actor Wall)
-{
-    local Vector VNorm;
-	
-	if (DetonateOn == DT_Impact)
-	{
-		Explode(Location, HitNormal);
-		return;
-	}
-	else if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
-	{
-		SetTimer(DetonateDelay, false);
-	}
-	if (Pawn(Wall) != None)
-	{
-		DampenFactor *= 0.01;
-		DampenFactorParallel *= 0.01;
-	}
-
-	bCanHitOwner=true;
-	bHasImpacted=true;
-
-    VNorm = (Velocity dot HitNormal) * HitNormal;
-    Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-
-	if (RandomSpin != 0)
-		RandSpin(100000);
-	
-	Speed = VSize(Velocity/2);
-
-	if (Speed < 20)
-	{
-		bBounce = False;
-		SetPhysics(PHYS_None);
-		if (Trail != None && !TrailWhenStill)
-			DestroyEffects();
-	}
-	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (Speed > 100) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
-	{
-		if (ImpactSound != None)
-			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ImpactManager != None)
-			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
-    	}
-}
-
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
@@ -104,33 +58,34 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
+	PawnDampAdjust=0.01
     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
-     DetonateOn=DT_Impact
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=0.150000
-     ImpactDamage=80
-     ImpactDamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHESlug'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_SlugHE'
-     AccelSpeed=3000.000000
-     TrailClass=Class'BWBP_SKC_Pro.SK410FireTrail'
-     TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHESlug'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=128.000000
-     Speed=8000.000000
-     MaxSpeed=15000.000000
-     Damage=50.000000
-     DamageRadius=192.000000
-     MomentumTransfer=50000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHESlug'
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=160.000000
-     LightRadius=8.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
-     LifeSpan=16.000000
-     DrawScale=2.000000
-	 ModeIndex=1
+	ArmedDetonateOn=DT_Impact
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	DetonateDelay=0.150000
+	ImpactDamage=80
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHESlug'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_SlugHE'
+	AccelSpeed=3000.000000
+	TrailClass=Class'BWBP_SKC_Pro.SK410FireTrail'
+	TrailOffset=(X=-8.000000)
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHESlug'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=128.000000
+	Speed=8000.000000
+	MaxSpeed=15000.000000
+	Damage=50.000000
+	DamageRadius=192.000000
+	MomentumTransfer=50000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHESlug'
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=160.000000
+	LightRadius=8.000000
+	StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+	LifeSpan=16.000000
+	DrawScale=2.000000
+	ModeIndex=1
 }

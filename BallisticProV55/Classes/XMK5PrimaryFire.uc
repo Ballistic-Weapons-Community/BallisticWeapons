@@ -35,11 +35,11 @@ defaultproperties
 	FireRate=0.085000
 	AmmoClass=Class'BallisticProV55.Ammo_XMK5Clip'
 
-	ShakeRotMag=(X=48.000000)
-	ShakeRotRate=(X=640.000000)
+	ShakeRotMag=(X=24.000000)
+	ShakeRotRate=(X=360.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-3.00)
-	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
 	ShakeOffsetTime=2.000000
 
 	WarnTargetPct=0.200000

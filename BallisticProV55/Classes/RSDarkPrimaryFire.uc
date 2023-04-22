@@ -527,11 +527,11 @@ defaultproperties
 	AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
 	AmmoPerFire=5
 
-	ShakeRotMag=(X=72.000000)
-	ShakeRotRate=(X=1080.000000)
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-10.00)
-	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetMag=(X=-8.00)
+	ShakeOffsetRate=(X=-100.000000)
 	ShakeOffsetTime=2.000000
 	
 	ProjectileClass=Class'BallisticProV55.RSDarkProjectile'

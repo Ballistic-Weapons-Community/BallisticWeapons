@@ -17,4 +17,25 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIcon_12GaugeBox'
      IconCoords=(X2=63,Y2=63)
      ItemName="12 Gauge Gas Shells"
+
+	Begin Object Class=AmmoParams Name=ArenaParams
+		KillInitialAmmoMult=1.0f
+	End Object
+
+	Begin Object Class=AmmoParams Name=ClassicParams
+		KillInitialAmmoMult=1.0f
+	End Object
+
+	Begin Object Class=AmmoParams Name=RealismParams
+		KillInitialAmmoMult=0.0f
+	End Object
+
+	Begin Object Class=AmmoParams Name=TacticalParams
+		KillInitialAmmoMult=0.0f
+	End Object
+
+	Params[0]=ArenaParams
+	Params[1]=ClassicParams
+	Params[2]=RealismParams
+	Params[3]=TacticalParams
 }

@@ -72,7 +72,7 @@ simulated function Timer()
 
 defaultproperties
 {
-	DetonateOn=DT_Still
+	ArmedDetonateOn=DT_Still
     WeaponClass=Class'BallisticProV55.M58Grenade'
 	DampenFactor=0.050000
 	DampenFactorParallel=0.350000

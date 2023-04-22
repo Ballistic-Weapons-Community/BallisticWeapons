@@ -36,7 +36,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.Z250Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=4000.000000
+		Speed=2700.000000
 		Damage=50
 		DamageRadius=64.000000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.Z250GrenadeFlashEmitter'

@@ -143,28 +143,28 @@ function StartSuperBerserk()
 
 defaultproperties
 {
-     SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-     MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-     BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
-     BrassOffset=(X=-20.000000)
-     FireRecoil=128.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
-     bSplashDamage=True
-     bRecommendSplashDamage=True
-     bTossed=True
-     bModeExclusive=False
-     FireForce="AssaultRifleAltFire"
-     FireRate=0.9500000
-	 AimedFireAnim="SightFire"
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_20mmPuma'
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectile'
-     BotRefireRate=0.300000
-     WarnTargetPct=0.300000
-	 FireChaos=0.5
-	 XInaccuracy=32.000000
-     YInaccuracy=32.000000
+	SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+	MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+	BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
+	BrassOffset=(X=-20.000000)
+	FireRecoil=128.000000
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
+	bSplashDamage=True
+	bRecommendSplashDamage=True
+	bTossed=True
+	bModeExclusive=False
+	FireForce="AssaultRifleAltFire"
+	FireRate=0.9500000
+	AimedFireAnim="SightFire"
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_20mmPuma'
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
+	ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectile'
+	BotRefireRate=0.300000
+	WarnTargetPct=0.300000
+	FireChaos=0.5
+	XInaccuracy=32.000000
+	YInaccuracy=32.000000
 }

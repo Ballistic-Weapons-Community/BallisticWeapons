@@ -114,10 +114,10 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryBoltEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.MK781PulseProjectile'
 		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-		Speed=5500.000000
-		MaxSpeed=5500.000000
-		Damage=80
-		DamageRadius=378.000000
+		Speed=4200.000000
+		MaxSpeed=4200.000000
+		Damage=50
+		DamageRadius=768.000000
 		MomentumTransfer=70000.000000
 		HeadMult=1.0f
 		LimbMult=1.0f

@@ -9,7 +9,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
         ProjectileClass=Class'BWBP_SKC_Pro.G28Thrown'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-        Speed=800.000000
+        Speed=1000.000000
         MaxSpeed=1200.000000
 		Damage=15
         DamageRadius=300.000000
@@ -28,7 +28,7 @@ defaultproperties
 	
     Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.G28Rolled'
-		Speed=100.000000
+		Speed=1000.000000
         MaxSpeed=300.000000
     End Object
     

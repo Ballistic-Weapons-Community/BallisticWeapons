@@ -44,12 +44,12 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=4000.000000
-		MaxSpeed=4000.000000
-		Damage=80
-        ImpactDamage=125
+		Speed=2700.000000
+		MaxSpeed=2700.000000
+		Damage=75
+        ImpactDamage=90
 		PushbackForce=100.000000
-		DamageRadius=768.000000
+		DamageRadius=512.000000
 		MomentumTransfer=60000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=3072.000000

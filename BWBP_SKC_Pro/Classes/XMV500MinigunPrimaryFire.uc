@@ -360,10 +360,10 @@ defaultproperties
 	TweenTime=0.000000
 	FireRate=0.050000
 	AmmoClass=Class'BWBP_SKC_Pro.Ammo_MinigunInc'
-	ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-10.000000)
+	ShakeOffsetMag=(X=-8.000000)
 	ShakeOffsetRate=(X=-1000.000000)
 	ShakeOffsetTime=1.500000
 	WarnTargetPct=0.200000

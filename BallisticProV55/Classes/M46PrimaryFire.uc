@@ -35,11 +35,11 @@ defaultproperties
 	FireRate=0.135000
 	AmmoClass=Class'BallisticProV55.Ammo_M46Clip'
 
-	ShakeRotMag=(X=72.000000)
-	ShakeRotRate=(X=1080.000000)
+	ShakeRotMag=(X=32.000000)
+	ShakeRotRate=(X=480.000000)
 	ShakeRotTime=2.000000
 	ShakeOffsetMag=(X=-10.00)
-	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetRate=(X=-200.000000)
 	ShakeOffsetTime=2.000000
 
 

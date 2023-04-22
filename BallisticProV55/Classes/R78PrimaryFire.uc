@@ -142,11 +142,11 @@ defaultproperties
 	FireRate=1.1
 	AmmoClass=Class'BallisticProV55.Ammo_42Rifle'
 
-	ShakeRotMag=(X=72.000000)
-	ShakeRotRate=(X=1080.000000)
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-10.00)
-	ShakeOffsetRate=(X=-200.00)
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
 	ShakeOffsetTime=2.000000
 	
 	// AI

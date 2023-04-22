@@ -138,7 +138,7 @@ defaultproperties
      AmmoClass=Class'BWBP_OP_Pro.Ammo_MX32Rockets'
      AmmoPerFire=1
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
+     ShakeOffsetMag=(X=-8.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBP_OP_Pro.MX32Rocket'

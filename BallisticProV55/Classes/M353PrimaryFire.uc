@@ -57,10 +57,10 @@ defaultproperties
 	FireRate=0.08000
 	AmmoClass=Class'BallisticProV55.Ammo_556mmBelt'
 
-	ShakeRotMag=(X=64.000000)
-	ShakeRotRate=(X=960.000000)
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-7.00)
+	ShakeOffsetMag=(X=-5.00)
 	ShakeOffsetRate=(X=-100.000000)
 	ShakeOffsetTime=2.000000
 	

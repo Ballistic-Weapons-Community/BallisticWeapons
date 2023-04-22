@@ -9,7 +9,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
         ProjectileClass=Class'BallisticProV55.FP9Bomb'
         SpawnOffset=(X=15.000000,Y=-10.000000,Z=-5.000000)
-        Speed=350.000000
+        Speed=600.000000
         Damage=150
         DamageRadius=1024.000000
         MomentumTransfer=50000.000000

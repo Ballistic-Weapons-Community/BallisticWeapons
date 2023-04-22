@@ -99,25 +99,25 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-	 WeaponClass=Class'BWBP_SKC_Pro.G51Carbine'
-     ModeIndex=1
-     DetonateOn=DT_Impact
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=0.000000
-     ImpactDamage=30
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSMineDet'
-     ImpactManager=Class'BallisticProV55.IM_M46GrenadeImpact'
-     TrailClass=Class'BallisticProV55.M50GrenadeTrail'
-     TrailOffset=(X=-8.000000)
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     Speed=3500.000000
-     MyDamageType=None
-     StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3Grenade'
-     DrawScale=0.500000
-     bUnlit=False
+	WeaponClass=Class'BWBP_SKC_Pro.G51Carbine'
+	ModeIndex=1
+	ArmedDetonateOn=DT_Impact
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	DetonateDelay=0.000000
+	ImpactDamage=30
+	ImpactDamageType=Class'BWBP_SKC_Pro.DT_MARSMineDet'
+	ImpactManager=Class'BallisticProV55.IM_M46GrenadeImpact'
+	TrailClass=Class'BallisticProV55.M50GrenadeTrail'
+	TrailOffset=(X=-8.000000)
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	Speed=3500.000000
+	MyDamageType=None
+	StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3Grenade'
+	DrawScale=0.500000
+	bUnlit=False
 }

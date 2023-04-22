@@ -51,8 +51,8 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Chaff
 		ProjectileClass=Class'BWBP_SKC_Pro.G51Grenade_Chaff'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=4200.000000
-		MaxSpeed=4200.000000
+		Speed=3500.000000
+		MaxSpeed=3500.000000
 		Damage=65
 		DamageRadius=192.000000
         ImpactDamage=100
@@ -74,8 +74,8 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_Sensor
 		ProjectileClass=Class'BWBP_SKC_Pro.G51Grenade_Sensor'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=4200.000000
-		MaxSpeed=4200.000000
+		Speed=3500.000000
+		MaxSpeed=3500.000000
 		Damage=15
 		DamageRadius=10.000000
         ImpactDamage=100
@@ -97,11 +97,22 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams_HE
 		ProjectileClass=Class'BWBP_SKC_Pro.G51Grenade_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=4200.000000
-		MaxSpeed=4200.000000
+
+		Speed=3500.000000
+		MaxSpeed=3500.000000
+
 		Damage=100
-        ImpactDamage=150
-		DamageRadius=1024.000000
+        ImpactDamage=100
+		DamageRadius=768.000000
+
+		bOverrideArming=True
+		ArmingDelay=0.3
+		UnarmedDetonateOn=DT_ImpactTimed
+		UnarmedPlayerImpactType=PIT_Bounce
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
+		DetonateDelay=2
+
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51AltFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
 		SplashDamage=True

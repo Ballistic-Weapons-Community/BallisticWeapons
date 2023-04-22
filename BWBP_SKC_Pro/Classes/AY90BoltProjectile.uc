@@ -7,10 +7,10 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AY90BoltProjectile extends BallisticGrenade;
-var() Sound FlySound;
 
-var Actor StuckActor;
-var bool bPlaced;
+var() Sound 	FlySound;
+var Actor 		StuckActor;
+var bool 		bPlaced;
 
 simulated function PreBeginPlay()
 {
@@ -159,11 +159,10 @@ simulated event Timer()
 	SetPhysics(PHYS_Falling);
 }
 
-
 defaultproperties
 {
 	WeaponClass=Class'BWBP_SKC_Pro.AY90SkrithBoltcaster'
-     DetonateOn=DT_Impact
+    ArmedDetonateOn=DT_Impact
 	ImpactManager=Class'BallisticProV55.IM_A73Projectile'
 	bCheckHitSurface=True
 	bRandomStartRotation=False

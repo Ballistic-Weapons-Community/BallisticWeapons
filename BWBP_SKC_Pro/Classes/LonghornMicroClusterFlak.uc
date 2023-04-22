@@ -211,6 +211,8 @@ defaultproperties
     WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
 	bApplyParams=False
 	DetonateDelayRange=(Min=0.75,Max=1.250000)
+	ArmedDetonateOn=DT_ImpactTimed
+	ArmedPlayerImpactType=PIT_Detonate
 	DetonateOn=DT_ImpactTimed
 	PlayerImpactType=PIT_Detonate
 	DampenFactor=0.1

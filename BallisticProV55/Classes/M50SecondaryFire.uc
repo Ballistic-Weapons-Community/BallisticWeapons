@@ -92,7 +92,7 @@ defaultproperties
      FireRate=0.800000
      AmmoClass=Class'BallisticProV55.Ammo_M900Grenades'
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
+     ShakeOffsetMag=(X=-8.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BallisticProV55.M50Grenade'

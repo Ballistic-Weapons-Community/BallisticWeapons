@@ -156,6 +156,6 @@ defaultproperties
 {
      NewDetonateDelay=0.100000
      bNoFXOnExplode=True
-     DetonateOn=DT_Timer
+     ArmedDetonateOn=DT_Timer
      bNetTemporary=False
 }

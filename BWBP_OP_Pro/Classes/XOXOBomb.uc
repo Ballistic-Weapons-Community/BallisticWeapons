@@ -1,33 +1,11 @@
 class XOXOBomb extends BallisticGrenade;
 
-var float       ArmingDelay;
-
 simulated function PreBeginPlay()
 {
 	Super.PreBeginPlay();
 	
 	if (FRand() > 0.5)
 		SetStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.X');
-}
-
-simulated function PostNetBeginPlay()
-{
-	Super.PostNetBeginPlay();
-	SetTimer(ArmingDelay, False);
-}
-
-simulated function Timer()
-{
-	if(StartDelay > 0)
-	{
-		Super.Timer();
-		return;
-	}
-	
-	if (!bHasImpacted)
-		DetonateOn=DT_Impact;
-		
-	else Explode(Location, vect(0,0,1));
 }
 
 simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
@@ -80,54 +58,6 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Other), self);
 }
 
-simulated event HitWall(vector HitNormal, actor Wall)
-{
-    local Vector VNorm;
-	
-	if (DetonateOn == DT_Impact)
-	{
-		Explode(Location, HitNormal);
-		return;
-	}
-	else if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
-	{
-		SetTimer(DetonateDelay, false);
-	}
-	if (Pawn(Wall) != None)
-	{
-		DampenFactor *= 0.2;
-		DampenFactorParallel *= 0.2;
-	}
-
-	bCanHitOwner=true;
-	bHasImpacted=true;
-
-    VNorm = (Velocity dot HitNormal) * HitNormal;
-    Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-
-	if (RandomSpin != 0)
-		RandSpin(100000);
-	
-	Speed = VSize(Velocity/2);
-
-	if (Speed < 20)
-	{
-		bBounce = False;
-		SetPhysics(PHYS_None);
-		if (Trail != None && !TrailWhenStill)
-		{
-			DestroyEffects();
-		}
-	}
-	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (Speed > 100) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
-	{
-		if (ImpactSound != None)
-			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ImpactManager != None)
-			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
-    }
-}
-
 simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
@@ -177,49 +107,51 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-    WeaponClass=Class'BWBP_OP_Pro.XOXOStaff'
-     DampenFactor=0.150000
-     DampenFactorParallel=0.300000
-     ArmingDelay=0.75
-     DetonateOn=DT_ImpactTimed
-	 PlayerImpactType=PIT_Detonate
-     DetonateDelay=0.600000
-     ImpactDamage=100
-     ImpactDamageType=Class'BWBP_OP_Pro.DTXOXOBomb'
-     ImpactManager=Class'BWBP_OP_Pro.IM_XOXO'
-     PenetrateManager=Class'BWBP_OP_Pro.IM_XOXO'
-     bRandomStartRotation=False
-     TrailClass=Class'BWBP_OP_Pro.XOXOBombTrail'
+WeaponClass=Class'BWBP_OP_Pro.XOXOStaff'
+	DampenFactor=0.150000
+	DampenFactorParallel=0.300000
+	ArmingDelay=0.75
+	UnarmedDetonateOn=DT_ImpactTimed
+	UnarmedPlayerImpactType=PIT_Bounce
+	ArmedDetonateOn=DT_Impact
+	ArmedPlayerImpactType=PIT_Detonate
+	DetonateDelay=0.600000
+	ImpactDamage=100
+	ImpactDamageType=Class'BWBP_OP_Pro.DTXOXOBomb'
+	ImpactManager=Class'BWBP_OP_Pro.IM_XOXO'
+	PenetrateManager=Class'BWBP_OP_Pro.IM_XOXO'
+	bRandomStartRotation=False
+	TrailClass=Class'BWBP_OP_Pro.XOXOBombTrail'
 
-     
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=2500.000000
-     MaxSpeed=2500.000000
-     Damage=100.000000
-     DamageRadius=768.000000
-     MomentumTransfer=-30000.000000
-     MyDamageType=Class'BWBP_OP_Pro.DTXOXOBomb'
-     MyRadiusDamageType=Class'BWBP_OP_Pro.DTXOXOBomb'
+	
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Speed=2500.000000
+	MaxSpeed=2500.000000
+	Damage=100.000000
+	DamageRadius=768.000000
+	MomentumTransfer=-30000.000000
+	MyDamageType=Class'BWBP_OP_Pro.DTXOXOBomb'
+	MyRadiusDamageType=Class'BWBP_OP_Pro.DTXOXOBomb'
 
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=220
-     LightSaturation=120
-     LightBrightness=192.000000
-     LightRadius=6.000000
-     bDynamicLight=True
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=220
+	LightSaturation=120
+	LightBrightness=192.000000
+	LightRadius=6.000000
+	bDynamicLight=True
 
-     StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.O'
-     DrawScale=3.000000
-     Style=STY_Additive
-     RotationRate=(Roll=16384)
+	StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.O'
+	DrawScale=3.000000
+	Style=STY_Additive
+	RotationRate=(Roll=16384)
 
-     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
-     SoundVolume=255
-     SoundRadius=75.000000
-     LifeSpan=8.000000
+	AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
+	SoundVolume=255
+	SoundRadius=75.000000
+	LifeSpan=8.000000
 
-     CollisionRadius=2.000000
-     CollisionHeight=2.000000
+	CollisionRadius=2.000000
+	CollisionHeight=2.000000
 
 }

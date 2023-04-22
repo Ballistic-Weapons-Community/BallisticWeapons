@@ -118,10 +118,10 @@ defaultproperties
 	bPawnRapidFireAnim=True
 	AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
 
-	ShakeRotMag=(X=48.000000)
+	ShakeRotMag=(X=32.000000)
 	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
 	ShakeOffsetMag=(X=-3.00)
-	ShakeOffsetRate=(X=-70.000000)
+	ShakeOffsetRate=(X=-60.000000)
 	ShakeOffsetTime=2.000000
 }

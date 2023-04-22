@@ -183,7 +183,7 @@ defaultproperties
 		SightOffset=(X=3.000000,Z=1.30000)
 		MagAmmo=20
         InventorySize=6
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=0.6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
 		AimParams(0)=AimParams'TacticalAimParams_600'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_600'

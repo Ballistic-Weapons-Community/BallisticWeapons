@@ -47,12 +47,16 @@ simulated event HitWall(vector HitNormal, actor Wall)
 {
     local Vector VNorm;
 
+	/*
+
 	//Longhorn alt detonates if it's close to full speed and it hits objects close to dead on
 	if (VSize(Velocity) > default.Speed * 0.9 && -HitNormal Dot Normal(Velocity) > 0.9)
 	{
 		Explode(Location, HitNormal);
 		return;
 	}
+
+	*/
 
 	bCanHitOwner=true;
 	bHasImpacted=true;
@@ -132,8 +136,8 @@ defaultproperties
     WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
 	FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
 	ArmingDelay=0.100000
-	DetonateOn=DT_ImpactTimed
-	PlayerImpactType=PIT_Detonate
+	ArmedDetonateOn=DT_ImpactTimed
+	ArmedPlayerImpactType=PIT_Detonate
 	DampenFactor=0.1
 	DampenFactorParallel=0.250000
 	bAlignToVelocity=True

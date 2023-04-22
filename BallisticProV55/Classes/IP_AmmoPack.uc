@@ -84,7 +84,7 @@ auto state Pickup
 				A = Ammunition(Inv);
 				if (A!= None)
 				{
-					if (A.AmmoAmount < A.MaxAmmo && BallAmmo(A) == None && (BallisticAmmo(A) == None || !BallisticAmmo(A).bNoPackResupply))
+					if (A.AmmoAmount < A.MaxAmmo && BallAmmo(A) == None && (BallisticAmmo(A) == None || BallisticAmmo(A).ResuppliesFromPack()))
 					{
 						if (A.InitialAmount != 0)
 						{

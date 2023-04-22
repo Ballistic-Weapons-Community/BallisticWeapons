@@ -47,7 +47,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.RCS715Projectile'
 		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-		Speed=4000.000000
+		Speed=2700.000000
 		MaxSpeed=15000.000000
 		AccelSpeed=3000.000000
 		Damage=50

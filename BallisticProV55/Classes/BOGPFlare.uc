@@ -176,7 +176,7 @@ defaultproperties
     FallSpeed=460.000000
     FallOffDistance=4600.000000
     IgniteRadius=256.000000
-    DetonateOn=DT_Impact
+    ArmedDetonateOn=DT_Impact
     bNoInitialSpin=True
     bAlignToVelocity=True
     DetonateDelay=0.000000

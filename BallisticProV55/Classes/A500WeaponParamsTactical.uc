@@ -44,8 +44,8 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.A500AltProjectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 		SpawnOffset=(X=20,Y=6,Z=-8)
-        Speed=3000.000000
-        MaxSpeed=3000.000000
+        Speed=2000.000000
+        MaxSpeed=2000.000000
         Damage=75.000000
         DamageRadius=768.000000
         RadiusFallOffType=RFO_None
