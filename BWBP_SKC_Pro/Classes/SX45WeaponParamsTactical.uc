@@ -14,6 +14,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalStandardPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
+		DecayRange=(Min=525,Max=1225)
 		RangeAtten=0.3
 		Damage=26
 		HeadMult=3.0f
@@ -47,8 +48,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalCryoPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
+		DecayRange=(Min=525,Max=1225)
 		RangeAtten=0.3
-		Damage=26
+		Damage=34
 		HeadMult=3.0f
 		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
@@ -79,8 +81,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalRadPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
+		DecayRange=(Min=525,Max=1225)
 		RangeAtten=0.3
-		Damage=26
+		Damage=34
 		HeadMult=3.0f
 		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'

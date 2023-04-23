@@ -241,7 +241,6 @@ simulated event ModeDoFire()
 		return;
 	}
 	
-
 	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())

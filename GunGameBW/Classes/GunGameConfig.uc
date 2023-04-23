@@ -13,7 +13,7 @@ var config array< class<Weapon> > 	WeaponList;         //Default weapon set
 
 defaultproperties
 {
-	WeaponList(0)=Class'BallisticProV55.X3Knife'	//standard weapon
+	WeaponList(0)=Class'BallisticProV55.EKS43Katana'	//standard weapon
 
 	// ordnance
 	WeaponList(1)=Class'BallisticProV55.MACWeapon'
@@ -47,58 +47,54 @@ defaultproperties
 
 	// rifle
 	WeaponList(25)=Class'BWBP_SKC_Pro.MARSAssaultRifle'
-	WeaponList(26)=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
-	WeaponList(27)=Class'BallisticProV55.M50AssaultRifle'
-	WeaponList(28)=Class'BallisticProV55.M46AssaultRifle'
-	WeaponList(29)=Class'BWBP_SKC_Pro.LK05Carbine'
-	WeaponList(30)=Class'BWBP_SKC_Pro.AK490BattleRifle'
-	WeaponList(31)=Class'BWBP_OP_Pro.CX61AssaultRifle'
-	WeaponList(32)=Class'BWBP_SKC_Pro.CYLOUAW'
-	WeaponList(33)=Class'BallisticProV55.SARAssaultRifle'
+	WeaponList(26)=Class'BWBP_SKC_Pro.G51Carbine'
+	WeaponList(27)=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+	WeaponList(28)=Class'BallisticProV55.M50AssaultRifle'
+	WeaponList(29)=Class'BallisticProV55.M46AssaultRifle'
+	WeaponList(30)=Class'BWBP_SKC_Pro.LK05Carbine'
+	WeaponList(31)=Class'BWBP_SKC_Pro.AK490BattleRifle'
+	WeaponList(32)=Class'BWBP_OP_Pro.CX61AssaultRifle'
+	WeaponList(33)=Class'BWBP_SKC_Pro.CYLOUAW'
+	WeaponList(34)=Class'BallisticProV55.SARAssaultRifle'
 
 	// energy
-	WeaponList(34)=Class'BallisticProV55.HVCMk9LightningGun'
-	WeaponList(35)=Class'BallisticProV55.E23PlasmaRifle'
-	WeaponList(36)=Class'BallisticProV55.A73SkrithRifle'
-	WeaponList(37)=Class'BWBP_SKC_Pro.LS14Carbine'
-	WeaponList(38)=Class'BWBP_OP_Pro.XM20AutoLas'
-	WeaponList(39)=Class'BallisticProV55.RSDarkStar
-	WeaponList(40)=Class'BallisticProV55.RSNovaStaff'
-	WeaponList(41)=Class'BWBP_OP_Pro.XOXOStaff'
-	WeaponList(42)=Class'BWBP_OP_Pro.Raygun'
-	WeaponList(43)=Class'BWBP_SKC_Pro.A49SkrithBlaster'
+	WeaponList(35)=Class'BallisticProV55.HVCMk9LightningGun'
+	WeaponList(36)=Class'BallisticProV55.E23PlasmaRifle'
+	WeaponList(37)=Class'BallisticProV55.A73SkrithRifle'
+	WeaponList(38)=Class'BWBP_SKC_Pro.LS14Carbine'
+	WeaponList(39)=Class'BWBP_SKC_Pro.XM20Carbine'
+	WeaponList(40)=Class'BallisticProV55.RSDarkStar
+	WeaponList(41)=Class'BallisticProV55.RSNovaStaff'
+	WeaponList(42)=Class'BWBP_OP_Pro.XOXOStaff'
+	WeaponList(43)=Class'BWBP_OP_Pro.Raygun'
+	WeaponList(44)=Class'BWBP_SKC_Pro.A49SkrithBlaster'
 
 	// shotgun
-	WeaponList(44)=Class'BallisticProV55.M290Shotgun'
-	WeaponList(45)=Class'BWBP_SKC_Pro.SKASShotgun'
-	WeaponList(46)=Class'BWBP_OP_Pro.RCS715Shotgun'
-	WeaponList(47)=Class'BWBP_SKC_Pro.MK781Shotgun'
-	WeaponList(48)=Class'BallisticProV55.M763Shotgun'
-	WeaponList(49)=Class'BallisticProV55.MRS138Shotgun'
-	WeaponList(50)=Class'BWBP_OP_Pro.TrenchGun'
-	WeaponList(51)=Class'BWBP_SKC_Pro.CoachGun'
-	WeaponList(52)=Class'BWBP_SKC_Pro.SK410Shotgun'
-	WeaponList(53)=Class'BallisticProV55.A500Reptile'
+	WeaponList(45)=Class'BallisticProV55.M290Shotgun'
+	WeaponList(46)=Class'BWBP_SKC_Pro.SKASShotgun'
+	WeaponList(47)=Class'BWBP_OP_Pro.RCS715Shotgun'
+	WeaponList(48)=Class'BWBP_SKC_Pro.MK781Shotgun'
+	WeaponList(49)=Class'BallisticProV55.M763Shotgun'
+	WeaponList(50)=Class'BallisticProV55.MRS138Shotgun'
+	WeaponList(51)=Class'BWBP_OP_Pro.TrenchGun'
+	WeaponList(52)=Class'BWBP_SKC_Pro.CoachGun'
+	WeaponList(53)=Class'BWBP_SKC_Pro.SK410Shotgun'
+	WeaponList(54)=Class'BallisticProV55.A500Reptile'
 
 	// smg
-	WeaponList(54)=Class'BallisticProV55.XMK5SubMachinegun'
-	WeaponList(55)=Class'BallisticProV55.XK2SubMachinegun'
-	WeaponList(56)=Class'BallisticProV55.Fifty9MachinePistol'
-	WeaponList(57)=Class'BallisticProV55.XRS10SubMachinegun'
-	WeaponList(58)=Class'BallisticProV55.GRS9Pistol'
-	WeaponList(59)=Class'BWBP_SKC_Pro.MRDRMachinePistol'
+	WeaponList(55)=Class'BallisticProV55.XMK5SubMachinegun'
+	WeaponList(56)=Class'BallisticProV55.XK2SubMachinegun'
+	WeaponList(57)=Class'BallisticProV55.Fifty9MachinePistol'
+	WeaponList(58)=Class'BallisticProV55.XRS10SubMachinegun'
+	WeaponList(59)=Class'BallisticProV55.GRS9Pistol'
 
 	// handgun
 	WeaponList(60)=Class'BallisticProV55.BOGPPistol'
 	WeaponList(61)=Class'BallisticProV55.AM67Pistol'
 	WeaponList(62)=Class'BWBP_SKC_Pro.AH250Pistol'
 	WeaponList(63)=Class'BallisticProV55.D49Revolver'
-	WeaponList(64)=Class'BallisticProV55.leMatRevolver'
-	WeaponList(65)=Class'BallisticProV55.MRT6Shotgun'
-	WeaponList(66)=Class'BallisticProV55.RS8Pistol'
-	WeaponList(67)=Class'BallisticProV55.MD24Pistol'
-	WeaponList(68)=Class'BallisticProV55.A42SkrithPistol'
-	WeaponList(69)=Class'BWBP_SKC_Pro.PS9mPistol'
+	WeaponList(64)=Class'BallisticProV55.MRT6Shotgun'
+	WeaponList(65)=Class'BallisticProV55.MD24Pistol'
 
-	WeaponList(70)=Class'BWBP_OP_Pro.FlameSword' // the melee section just sucks
+	WeaponList(66)=Class'BWBP_OP_Pro.FlameSword' // the melee section just sucks
 }

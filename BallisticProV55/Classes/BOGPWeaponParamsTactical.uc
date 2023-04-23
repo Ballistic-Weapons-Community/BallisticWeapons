@@ -13,7 +13,7 @@ defaultproperties
 		Speed=2700.000000 // 4200 = 80 m/s, we slow it down in accordance with the ranges we're playing at
 		MaxSpeed=2700.000000
 
-		Damage=100
+		Damage=120
         ImpactDamage=50
 		DamageRadius=768.000000
 
