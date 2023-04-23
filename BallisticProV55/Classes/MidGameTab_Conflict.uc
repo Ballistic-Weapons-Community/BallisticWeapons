@@ -442,26 +442,6 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	return true;
 }
 
-function int GetItemSize(class<Weapon> Item)
-{
-	if (class<BallisticWeapon>(Item) != None)
-		return class<BallisticWeapon>(Item).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
-	return 5;
-}
-
-function int GetSectionIndex(class<BallisticWeapon> BW)
-{
-    switch (BW.default.InventoryGroup)
-    {
-        case 0:
-        case 1:
-        case 11:
-            return SUB_SECTION_INDEX;
-        default:
-            return MAIN_SECTION_INDEX;
-    }
-}
-
 function int CountExisting(string weapon_name)
 {
 	local int i, count;
@@ -534,8 +514,8 @@ function int GetInsertionPoint(class<BallisticWeapon> InsertWeapon)
 {
 	local int i, SectionIndex, ItemSize, InsertingGroup, CurrentItemGroup;
 
-    SectionIndex = GetSectionIndex(InsertWeapon);
-    ItemSize = GetItemSize(InsertWeapon);
+    SectionIndex = class'Mut_ConflictLoadout'.static.GetSectionIndex(InsertWeapon);
+    ItemSize = class'Mut_ConflictLoadout'.static.GetItemSize(InsertWeapon);
     InsertingGroup = InsertWeapon.default.InventoryGroup;
 
 	if (InsertingGroup == 0)
@@ -598,9 +578,9 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 		return false;
 	}
 
-    SectionIndex = GetSectionIndex(WeaponClass);
+    SectionIndex = class'Mut_ConflictLoadout'.static.GetSectionIndex(WeaponClass);
 
-	Size = GetItemSize(WeaponClass);
+	Size = class'Mut_ConflictLoadout'.static.GetItemSize(WeaponClass);
 
 	if (SpaceUsed[SectionIndex] + Size > SectionSizes[SectionIndex])
 	{

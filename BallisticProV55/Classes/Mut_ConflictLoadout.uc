@@ -12,12 +12,16 @@ class Mut_ConflictLoadout extends Mut_Ballistic
 	DependsOn(Mut_Loadout)
 	DependsOn(WeaponList_ConflictLoadout);
 
+const MAIN_SECTION_INDEX = 0;
+const SUB_SECTION_INDEX = 1;
+
 var() array<WeaponList_ConflictLoadout.Entry>	ConflictWeapons;	// Big list of all available weapons and the teams for which they are selectable
 var() byte										LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
 
 var() config bool								bSeparateAssaultList;
 // Assigned from game style
-var protected int 								MaxInventorySize;			
+var protected int 								MaxInventorySize;
+var protected int								MaxSlots[2];	
 	
 var	array<string> 								LoadoutOptionText;
 
@@ -37,8 +41,9 @@ function PreBeginPlay()
 
 	game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
 
-	// FIXME - exploitable
-	MaxInventorySize = game_style.default.ConflictWeaponSlots + game_style.default.ConflictEquipmentSlots;
+	MaxSlots[MAIN_SECTION_INDEX] = game_style.default.ConflictWeaponSlots;
+	MaxSlots[SUB_SECTION_INDEX] = game_style.default.ConflictEquipmentSlots;
+	MaxInventorySize = MaxSlots[MAIN_SECTION_INDEX] + MaxSlots[SUB_SECTION_INDEX];
 
 	loader_string = game_style.default.StyleName;
 
@@ -128,7 +133,11 @@ function PostBeginPlay()
 //==================================================
 // Mutate
 // Convenience editing function for servers
+// No longer works
+// Need compatibility with PerObjectConfig impl
 //==================================================
+
+/*
 function Mutate(string MutateString, PlayerController Sender)
 {
 	local int count;
@@ -224,6 +233,7 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 
 	Sender.ClientMessage("Mutate RemoveWeapon: Couldn't find "$split_string[1]$" in the conflict list."); 
 }
+*/
 
 //==================================================
 // SetDefaultRequirements
@@ -257,13 +267,40 @@ function bool SetDefaultRequirements(string ClassName, int Index)
 	return true;
 }
 
+
+static function int GetItemSize(class<Inventory> Item)
+{
+	if (class<BallisticWeapon>(Item) == None)
+		return 1;
+
+	return class<BallisticWeapon>(Item).static.GetParams().default.Layouts[0].InventorySize;
+}
+
+static function int GetSectionIndex(class<Inventory> Item)
+{
+	if (class<BallisticWeapon>(Item) == None)
+		return SUB_SECTION_INDEX;
+
+    switch (class<BallisticWeapon>(Item).default.InventoryGroup)
+    {
+        case 0:
+        case 1:
+        case 11:
+            return SUB_SECTION_INDEX;
+        default:
+            return MAIN_SECTION_INDEX;
+    }
+}
+
 //=================================================
 // ModifyPlayer
 // Outfits the player on spawn
 //=================================================
 function ModifyPlayer( pawn Other )
 {
-	local int i, Size, SpaceUsed;
+	local int i, Size;
+	local int SectionIndex;
+	local int SpaceUsed[2];
 	local int CamoIndex, LayoutIndex;
 	local float BonusAmmo;
 	local Inventory Inv;
@@ -301,7 +338,7 @@ function ModifyPlayer( pawn Other )
 
 	if ( xPawn(Other) != None )
 	{
-		for (i=0;i<Max(CLRI.Loadout.length,2);i++)
+		for (i = 0 ; i < Max(CLRI.Loadout.length,2); i++)
 		{
 			if (i >= CLRI.Loadout.length)
 				xPawn(Other).RequiredEquipment[i] = "";
@@ -311,49 +348,56 @@ function ModifyPlayer( pawn Other )
 
 				if(InventoryClass != None)
 				{
+					SectionIndex = GetSectionIndex(InventoryClass);
+
 					Size = GetItemSize(InventoryClass);
 
-					if (SpaceUsed + Size > MaxInventorySize)
+					if (SpaceUsed[SectionIndex] + Size > MaxSlots[SectionIndex])
 						continue;
 				
-					if (class<Weapon>(InventoryClass) != None)
+					if (class<BallisticWeapon>(InventoryClass) != None)
 					{
 						if ( i < CLRI.Layouts.length && CLRI.Layouts[i] != "")
 							LayoutIndex = int(CLRI.Layouts[i]);
 						if ( i < CLRI.Camos.length && CLRI.Camos[i] != "")
 							CamoIndex = int(CLRI.Camos[i]);						
-						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, LayoutIndex, CamoIndex);
+						SpawnConflictWeapon(class<BallisticWeapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, LayoutIndex, CamoIndex);
 						LayoutIndex=0;
 						CamoIndex=0;
 					}
 					else 
 						SpawnInventoryItem(InventoryClass, Other);
 
-					SpaceUsed += Size;
+					SpaceUsed[SectionIndex] += Size;
 				}
 				else
 				{
 					ItemClass = class<ConflictItem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
+
 					if (ItemClass != None)
 					{
+						SectionIndex = 1;
 						Size = ItemClass.default.Size/5;
-						if (SpaceUsed + Size > MaxInventorySize)
+
+						if (SpaceUsed[SectionIndex] + Size > MaxSlots[SectionIndex])
 							continue;
+
 						CLRI.AppliedItems[CLRI.AppliedItems.length] = ItemClass;
 						if (ItemClass.default.bBonusAmmo)
 						{
 							if (ItemClass.static.AddAmmoBonus(Other, BonusAmmo));
-								SpaceUsed += Size;
+								SpaceUsed[SectionIndex] += Size;
 						}
 						else if (ItemClass.static.ApplyItem(Other))
-							SpaceUsed += Size;
+							SpaceUsed[SectionIndex] += Size;
 					}
 				}
 			}
 		}
 	}
-		
-	if (SpaceUsed < MaxInventorySize)
+	
+	// check if need to give fallback weapon
+	if (SpaceUsed[MAIN_SECTION_INDEX] < MaxSlots[MAIN_SECTION_INDEX])
 	{
 		for (Inv=Other.Inventory; Inv != None; Inv = Inv.Inventory)
 			if (Weapon(Inv) != None)
@@ -569,13 +613,6 @@ function Class<Inventory> GetInventoryClass(string InventoryClassName)
 	return None;
 }
 
-function int GetItemSize(class<Inventory> Item)
-{
-	if (class<BallisticWeapon>(Item) != None)
-		return class<BallisticWeapon>(Item).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
-	return 7;
-}
-
 static function SpawnAmmo(class<Ammunition> newClass, Pawn P, optional float Multiplier)
 {
 	local Ammunition Ammo;
@@ -618,7 +655,7 @@ function string GetRandomWeapon (ConflictLoadoutLRI CLRI)
 
 function string GetFallbackWeapon (ConflictLoadoutLRI CLRI)
 {
-	return "BallisticProV55.M806Pistol";
+	return "BallisticProV55.SARAssaultRifle";
 }
 
 // Check for item replacement.
