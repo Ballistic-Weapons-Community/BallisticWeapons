@@ -17,7 +17,7 @@ defaultproperties
      DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=55
-     AimDisplacementDuration=1
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBP_SKC_Pro.AK490BattleRifle'
      DeathString="%k RAGED LIKE BEAR and beat %o's face in with an AK!"
      FemaleSuicide="%o beat herself to death with the AK490."

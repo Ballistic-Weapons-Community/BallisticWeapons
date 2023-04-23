@@ -18,7 +18,7 @@ defaultproperties
      InvasionDamageScaling=2.000000
      DamageIdent="Ordnance"
      AimDisplacementDamageThreshold=120
-     AimDisplacementDuration=0.700000
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      DeathString="%o messed with %k's Longhorn and got fragged."
      FemaleSuicide="%o got bucked by her own Longhorn."

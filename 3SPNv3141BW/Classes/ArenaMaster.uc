@@ -27,7 +27,7 @@ var bool				bAllowBotRemoval;
 /* general and misc */
 
 /* overtime related */
-var config int      MinsPerRound;           // the number of minutes before a round goes into OT
+var config int      SecondsPerRound;           // the number of minutes before a round goes into OT
 var int             RoundTime;              // number of seconds remaining before round-OT
 var bool            bRoundOT;               // true if we're in round-OT
 var int             RoundOTTime;            // how long we've been in round-OT
@@ -96,14 +96,14 @@ function InitGameReplicationInfo()
     if(TAM_GRI(GameReplicationInfo) == None)
         return;
 
-    TAM_GRI(GameReplicationInfo).RoundTime = MinsPerRound * 60;
+    TAM_GRI(GameReplicationInfo).RoundTime = SecondsPerRound;
 
     TAM_GRI(GameReplicationInfo).StartingHealth = StartingHealth;
     TAM_GRI(GameReplicationInfo).StartingArmor = StartingArmor;
     TAM_GRI(GameReplicationInfo).bChallengeMode = bChallengeMode;
     TAM_GRI(GameReplicationInfo).MaxHealth = MaxHealth;
 
-    TAM_GRI(GameReplicationInfo).MinsPerRound = MinsPerRound;
+    TAM_GRI(GameReplicationInfo).SecondsPerRound = SecondsPerRound;
     TAM_GRI(GameReplicationInfo).OTDamage = OTDamage;
     TAM_GRI(GameReplicationInfo).OTInterval = OTInterval;
 
@@ -144,7 +144,7 @@ static function FillPlayInfo(PlayInfo PI)
     PI.AddSetting("3SPN", "MaxHealth", "Max Health", 0, 102, "Text", "8;0.0:2.0");
     PI.AddSetting("3SPN", "bChallengeMode", "Challenge Mode", 0, 103, "Check");
 
-    PI.AddSetting("3SPN", "MinsPerRound", "Minutes per Round", 0, 120, "Text", "3;0:999");
+    PI.AddSetting("3SPN", "SecondsPerRound", "Seconds per Round", 0, 120, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTDamage", "Overtime Damage", 0, 121, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTInterval", "Overtime Damage Interval", 0, 122, "Text", "3;0:999");
 	
@@ -182,7 +182,7 @@ static event string GetDescriptionText(string PropName)
         case "StartingArmor":       return "Base armor at round start.";
         case "bChallengeMode":      return "Round winners take a health/armor penalty.";
 
-        case "MinsPerRound":        return "Round time-limit before overtime.";
+        case "SecondsPerRound":        return "Round time-limit before overtime.";
         case "OTDamage":            return "The amount of damage all players while in OT.";
         case "OTInterval":          return "The interval at which OT damage is given.";
 		
@@ -237,9 +237,9 @@ function ParseOptions(string Options)
     if(InOpt != "")
         MaxHealth = float(InOpt);
 
-    InOpt = ParseOption(Options, "MinsPerRound");
+    InOpt = ParseOption(Options, "SecondsPerRound");
     if(InOpt != "")
-        MinsPerRound = int(InOpt);
+        SecondsPerRound = int(InOpt);
 
     InOpt = ParseOption(Options, "OTDamage");
     if(InOpt != "")
@@ -592,7 +592,7 @@ function StartMatch()
 	else
 	{
     	CurrentRound = 1;
-    	RoundTime = 60 * MinsPerRound;
+    	RoundTime = SecondsPerRound;
     }
 
     Misc_BaseGRI(GameReplicationInfo).CurrentRound = 0; //was 1
@@ -613,7 +613,7 @@ function StartNewRound()
 
     bRoundOT = false;
     RoundOTTime = 0;
-    RoundTime = 60 * MinsPerRound;
+    RoundTime = SecondsPerRound;
 
     bWeaponsLocked = true;
     bPendingCheckLocks=False;
@@ -1162,7 +1162,7 @@ state MatchInProgress
                     {
                         Misc_Player(c).Spree = 0;
                         //Misc_Player(c).ClientEnhancedTrackAllPlayers(false, true, false);
-                        Misc_Player(c).ClientResetClock(MinsPerRound * 60);
+                        Misc_Player(c).ClientResetClock(SecondsPerRound);
                     }
 
                     if(c.PlayerReplicationInfo == None || c.PlayerReplicationInfo.bOnlySpectator)
@@ -1987,7 +1987,7 @@ defaultproperties
      bDisableInvis=True
      bChallengeMode=True
      bForceRUP=True
-     MinsPerRound=4
+     SecondsPerRound=120
      OTDamage=5
      OTInterval=3
      CampThreshold=400.000000

@@ -7,7 +7,7 @@ var int RoundMinute;
 var int CurrentRound;
 var bool bEndOfRound;
 
-var int MinsPerRound;
+var int SecondsPerRound;
 var int OTDamage;
 var int OTInterval;
 
@@ -33,7 +33,7 @@ var bool bPracticeRound;
 replication
 {
     reliable if(bNetInitial && Role == ROLE_Authority)
-        RoundTime, MinsPerRound, bDisableSpeed, bDisableBooster, bDisableInvis,
+        RoundTime, SecondsPerRound, bDisableSpeed, bDisableBooster, bDisableInvis,
         bDisableBerserk, StartingHealth, StartingArmor, MaxHealth, OTDamage,
         OTInterval, CampThreshold, bKickExcessiveCampers, bForceRUP,
         TimeOuts;

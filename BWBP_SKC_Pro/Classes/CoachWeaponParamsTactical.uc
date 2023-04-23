@@ -27,7 +27,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.60000
 		WarnTargetPct=0.5
-		Inaccuracy=(X=220,Y=220)
+		Inaccuracy=(X=300,Y=300)
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)	
 	End Object
 
@@ -41,12 +41,12 @@ defaultproperties
 
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimarySlugEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
-        DecayRange=(Min=1500,Max=5500)
+        DecayRange=(Min=1536,Max=4096)
 		RangeAtten=0.25
 		TraceCount=1
 	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
-		Damage=70
+		Damage=60
         HeadMult=2.25f
         LimbMult=0.75f
 		PushbackForce=250.000000
@@ -61,7 +61,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.60000
 		WarnTargetPct=0.5	
-		Inaccuracy=(X=16,Y=0)
+		Inaccuracy=(X=192,Y=192)
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire',Volume=7.100000)
 	End Object
 
@@ -106,7 +106,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		InventorySize=4
+		InventorySize=5
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
 		DisplaceDurationMult=1

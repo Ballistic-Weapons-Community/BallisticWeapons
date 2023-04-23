@@ -19,7 +19,7 @@ defaultproperties
      DamageIdent="Ordnance"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=120
-     AimDisplacementDuration=0.7
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      DeathString="%o grabbed %k's Longhorn by the horns."
      FemaleSuicide="%o tripped on her Longhorn charge."

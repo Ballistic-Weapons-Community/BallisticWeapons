@@ -502,7 +502,7 @@ defaultproperties
      bChallengeMode=True
      StartingArmor=100
      MaxHealth=1.50000
-     MinsPerRound=4
+     SecondsPerRound=105
      bForceRespawn=True
      SpawnProtectionTime=0.000000
      GoalScore=8

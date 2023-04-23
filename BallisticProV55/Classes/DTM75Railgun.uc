@@ -45,7 +45,7 @@ defaultproperties
      DamageIdent="Sniper"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=110
-     AimDisplacementDuration=0.450000
+     AimDisplacementDuration=0.65
      DamageDescription=",Bullet,Electro,"
      bOnlySeverLimbs=False
      WeaponClass=Class'BallisticProV55.M75Railgun'

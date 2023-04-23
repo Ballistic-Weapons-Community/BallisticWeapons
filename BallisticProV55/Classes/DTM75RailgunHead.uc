@@ -43,7 +43,7 @@ defaultproperties
      DamageIdent="Sniper"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=150
-     AimDisplacementDuration=0.75
+     AimDisplacementDuration=0.65
      WeaponClass=Class'BallisticProV55.M75Railgun'
      DeathString="%o's mad eyed head got caught in %k's corkscrew."
      FemaleSuicide="%o derailed herself."

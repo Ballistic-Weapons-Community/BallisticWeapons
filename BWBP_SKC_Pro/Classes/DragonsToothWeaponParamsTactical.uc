@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=TacticalPrimaryEffectParams
         TraceRange=(Min=175.000000,Max=175.000000)
-        Damage=140
+        Damage=90
 		Fatigue=0.100000
         DamageType=Class'BWBP_SKC_Pro.DT_DTSStabChest'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSStabHead'
@@ -31,7 +31,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams
         TraceRange=(Min=165.000000,Max=165.000000)
-        Damage=120
+        Damage=70
 		Fatigue=0.200000
         DamageType=Class'BWBP_SKC_Pro.DT_DTSChest'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSHead'

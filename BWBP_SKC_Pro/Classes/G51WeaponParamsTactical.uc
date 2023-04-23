@@ -36,8 +36,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.100000
-		BurstFireRateFactor=0.75
+		FireInterval=0.10
+		BurstFireRateFactor=0.85
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'

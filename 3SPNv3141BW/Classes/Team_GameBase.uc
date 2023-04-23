@@ -31,7 +31,7 @@ var bool			bAllowBotRemoval;
 /* general and misc */
 
 /* overtime related */
-var config int      MinsPerRound;           // the number of minutes before a round goes into OT
+var config int      SecondsPerRound;        // the number of seconds before a round goes into OT
 var int             RoundTime;              // number of seconds remaining before round-OT
 var bool            bRoundOT;               // true if we're in round-OT
 var int             RoundOTTime;            // how long we've been in round-OT
@@ -139,13 +139,13 @@ function InitGameReplicationInfo()
     if(Misc_BaseGRI(GameReplicationInfo) == None)
         return;
 
-    Misc_BaseGRI(GameReplicationInfo).RoundTime = MinsPerRound * 60;
+    Misc_BaseGRI(GameReplicationInfo).RoundTime = SecondsPerRound;
 
     Misc_BaseGRI(GameReplicationInfo).StartingHealth = StartingHealth;
     Misc_BaseGRI(GameReplicationInfo).StartingArmor = StartingArmor;
     Misc_BaseGRI(GameReplicationInfo).MaxHealth = MaxHealth;
 
-    Misc_BaseGRI(GameReplicationInfo).MinsPerRound = MinsPerRound;
+    Misc_BaseGRI(GameReplicationInfo).SecondsPerRound = SecondsPerRound;
     Misc_BaseGRI(GameReplicationInfo).OTDamage = OTDamage;
     Misc_BaseGRI(GameReplicationInfo).OTInterval = OTInterval;
 
@@ -197,7 +197,7 @@ static function FillPlayInfo(PlayInfo PI)
     PI.AddSetting("3SPN", "StartingArmor", "Starting Armor", 0, 101, "Text", "3;0:999");
     PI.AddSetting("3SPN", "MaxHealth", "Max Health", 0, 102, "Text", "8;1.0:2.0");
 
-    PI.AddSetting("3SPN", "MinsPerRound", "Minutes per Round", 0, 120, "Text", "3;0:999");
+    PI.AddSetting("3SPN", "SecondsPerRound", "Seconds per Round", 0, 120, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTDamage", "Overtime Damage", 0, 121, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTInterval", "Overtime Damage Interval", 0, 122, "Text", "3;0:999");
 	PI.AddSetting("3SPN", "MaxOTDamagePlayerDiff", "Max Overtime Damage Player Diff", 0, 122, "Text", "3;0:999");
@@ -237,7 +237,7 @@ static event string GetDescriptionText(string PropName)
         case "StartingHealth":      	return "Base health at round start.";
         case "StartingArmor":       	return "Base armor at round start.";
 
-        case "MinsPerRound":        	return "Round time-limit before overtime.";
+        case "SecondsPerRound":        	return "Round time-limit before overtime.";
         case "OTDamage":            	return "The amount of damage all players while in OT.";
         case "OTInterval":          	return "The interval at which OT damage is given.";
         case "MaxOTDamagePlayerDiff": 	return "Maximum player difference for scaling OT damage.";
@@ -291,9 +291,9 @@ function ParseOptions(string Options)
     if(InOpt != "")
         MaxHealth = float(InOpt);
 
-    InOpt = ParseOption(Options, "MinsPerRound");
+    InOpt = ParseOption(Options, "SecondsPerRound");
     if(InOpt != "")
-        MinsPerRound = int(InOpt);
+        SecondsPerRound = int(InOpt);
 
     InOpt = ParseOption(Options, "OTDamage");
     if(InOpt != "")
@@ -983,7 +983,7 @@ function StartMatch()
 	else
 	{
     	CurrentRound = 1;
-    	RoundTime = 60 * MinsPerRound;
+    	RoundTime = SecondsPerRound;
     }
     	
     Misc_BaseGRI(GameReplicationInfo).CurrentRound = 0;
@@ -1006,7 +1006,7 @@ function StartNewRound()
 
     bRoundOT = false;
     RoundOTTime = 0;
-    RoundTime = 60 * MinsPerRound;    
+    RoundTime = SecondsPerRound;    
     bFirstSpawn = true;
 
     Deaths[0] = 0;
@@ -1649,7 +1649,7 @@ function RespawnTimer()
             {
                 Misc_Player(c).Spree = 0;
                 //Misc_Player(c).ClientEnhancedTrackAllPlayers(false, true, false);
-                Misc_Player(c).ClientResetClock(MinsPerRound * 60);
+                Misc_Player(c).ClientResetClock(SecondsPerRound);
             }
 
             if(c.PlayerReplicationInfo == None || c.PlayerReplicationInfo.bOnlySpectator)
@@ -2673,7 +2673,7 @@ defaultproperties
      AdrenalinePerDamage=1.000000
      bForceRUP=True
      ForceSeconds=60
-     MinsPerRound=2
+     SecondsPerRound=105
      OTDamage=2
      OTInterval=3
 	 MaxOTDamagePlayerDiff=4

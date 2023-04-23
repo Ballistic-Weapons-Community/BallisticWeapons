@@ -18,7 +18,7 @@ defaultproperties
      FlashF=0.100000
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=40
-     AimDisplacementDuration=0.3
+     AimDisplacementDuration=0.5
      bCanBeBlocked=True
      ShieldDamage=15
      DamageIdent="Melee"

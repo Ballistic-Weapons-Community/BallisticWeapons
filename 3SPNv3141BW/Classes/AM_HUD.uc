@@ -138,7 +138,7 @@ function CheckCountdown(GameReplicationInfo GRI)
     local TAM_GRI G;
 
     G = TAM_GRI(GRI);
-    if(G == None || G.MinsPerRound == 0 || G.RoundTime == 0 || G.RoundTime == OldRoundTime || GRI.Winner != None)
+    if(G == None || G.SecondsPerRound == 0 || G.RoundTime == 0 || G.RoundTime == OldRoundTime || GRI.Winner != None)
     {
         Super.CheckCountdown(GRI);
         return;
@@ -146,7 +146,7 @@ function CheckCountdown(GameReplicationInfo GRI)
 
     OldRoundTime = G.RoundTime;
 
-    if(OldRoundTime > 30 && G.MinsPerRound < 2)
+    if(OldRoundTime > 30 && G.SecondsPerRound < 120)
         return;
 
     if(OldRoundTime == 60)
@@ -169,7 +169,7 @@ simulated function DrawTimer(Canvas C)
     if(GRI == None)
         return;
 
-	if(GRI.MinsPerRound > 0)
+	if(GRI.SecondsPerRound > 0)
     {
         Seconds = GRI.RoundTime;
         if(GRI.TimeLimit > 0 && GRI.RoundTime > GRI.RemainingTime)

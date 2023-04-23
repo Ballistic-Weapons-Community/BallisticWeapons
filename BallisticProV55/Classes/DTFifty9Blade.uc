@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%k's Fifty-9 blade sliced open %o like a ripe fruit."
      DamageIdent="Melee"
      AimDisplacementDamageThreshold=40
-     AimDisplacementDuration=0.5
+     AimDisplacementDuration=0.50
      WeaponClass=Class'BallisticProV55.Fifty9MachinePistol'
      DeathString="%k's Fifty-9 blade sliced open %o like a ripe fruit."
      FemaleSuicide="%o skinned herself with a Fifty-9."

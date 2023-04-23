@@ -19,7 +19,7 @@ defaultproperties
      DisplacementType=DSP_Linear
 	 InvasionDamageScaling=2
      AimDisplacementDamageThreshold=100
-     AimDisplacementDuration=0.40000
+     AimDisplacementDuration=0.3
      ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
      WeaponClass=Class'BWBP_SKC_Pro.M2020GaussDMR'
      DeathString="%k sent a superaccelerated M2020 gauss round through %o."

@@ -38,7 +38,7 @@ defaultproperties
     //=================================================================	
 
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
-		Damage=10
+		Damage=8
 		HeadMult=2f
 		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
@@ -63,11 +63,11 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParamsOvercharge
-		Damage=16
+		Damage=14
 		HeadMult=2f
 		LimbMult=0.75f
 		Chaos=0
-		Recoil=16
+		Recoil=8
 		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
@@ -76,6 +76,7 @@ defaultproperties
 	
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParamsOvercharge
 		FireInterval=0.07000
+		AmmoPerFire=2
 		PreFireAnim="LoopOpenStart"
 		FireLoopAnim="LoopOpenFire"
 		FireEndAnim="LoopOpenEnd"

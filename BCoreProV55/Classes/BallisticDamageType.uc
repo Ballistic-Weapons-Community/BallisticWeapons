@@ -467,7 +467,7 @@ defaultproperties
 	ArmorHitType=255
 	InvasionDamageScaling=1.000000
 	DamageIdent="Unknown"
-	AimDisplacementDuration=0.600000
+	AimDisplacementDuration=0.500000
 	bSimpleDeathMessages=True
 	MinMotionBlurDamage=10.000000
 	MotionBlurDamageRange=80.000000

@@ -21,7 +21,7 @@ defaultproperties
      ShieldDamage=50
      DisplacementType=DSP_Linear
      bMetallic=True
-     AimDisplacementDuration=1
+     AimDisplacementDuration=0.5
      DamageDescription=",Slash,"
      bInstantHit=True
      PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.Knife.KnifeFlesh'

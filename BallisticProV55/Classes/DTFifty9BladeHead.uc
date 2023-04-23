@@ -16,7 +16,7 @@ defaultproperties
      bHeaddie=True
      DamageIdent="Melee"
      AimDisplacementDamageThreshold=40
-     AimDisplacementDuration=0.5
+     AimDisplacementDuration=0.50
      WeaponClass=Class'BallisticProV55.Fifty9MachinePistol'
      DeathString="%k furiously hacked off %o's head with the Fifty-9."
      FemaleSuicide="%o stabbed herself in the head with her Fifty-9."

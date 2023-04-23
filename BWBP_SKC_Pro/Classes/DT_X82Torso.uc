@@ -19,7 +19,7 @@ defaultproperties
      InvasionDamageScaling=2.000000
      DamageIdent="Sniper"
      DisplacementType=DSP_Linear
-     AimDisplacementDuration=0.600000
+     AimDisplacementDuration=0.3
      WeaponClass=Class'BWBP_SKC_Pro.X82Rifle'
      DeathString="%k ripped up %o with a .50 BMG sniper round."
      FemaleSuicide="%o shot herself in the foot."

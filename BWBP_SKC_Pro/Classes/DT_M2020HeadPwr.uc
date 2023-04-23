@@ -38,7 +38,7 @@ defaultproperties
      DamageIdent="Sniper"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=150
-     AimDisplacementDuration=0.65
+     AimDisplacementDuration=0.75
 	 InvasionDamageScaling=2
      WeaponClass=Class'BWBP_SKC_Pro.M2020GaussDMR'
      DeathString="%o's head got in the way of %k's M2020 gauss round."

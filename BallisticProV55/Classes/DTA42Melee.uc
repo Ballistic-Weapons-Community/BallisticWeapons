@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(1)="%k used %kh A42 pistol to tenderise %o."
      DamageIdent="Melee"
      DisplacementType=DSP_Linear
-     AimDisplacementDuration=0.650000
+     AimDisplacementDuration=0.30
      WeaponClass=Class'BallisticProV55.A42SkrithPistol'
      DeathString="%o was beaten like an egg by %k's A42."
      FemaleSuicide="%o beat herself up with an A42."

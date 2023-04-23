@@ -5,7 +5,7 @@ defaultproperties
      DeathStrings(0)="%o got spiked by %k's XOXO."
      DamageIdent="Melee"
      AimDisplacementDamageThreshold=75
-     AimDisplacementDuration=1
+     AimDisplacementDuration=0.75
      DamageDescription=",Stab,"
      WeaponClass=Class'BWBP_OP_Pro.XOXOStaff'
      DeathString="%o got spiked by %k's XOXO."

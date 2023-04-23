@@ -13,8 +13,10 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		MaxHits=14 // inflict maximum of 156 damage to a single target
-		Damage=15
+		HeadMult=1.50f 
+		LimbMult=0.85f
+		MaxHits=13 // inflict maximum of 156 damage to a single target
+		Damage=12
 		PushbackForce=100.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
@@ -25,7 +27,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.60000
 		WarnTargetPct=0.500000
-		Inaccuracy=(X=220,Y=220)
+		Inaccuracy=(X=300,Y=300)
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)	
 	End Object
 
@@ -39,19 +41,18 @@ defaultproperties
 
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimarySlugEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
-        DecayRange=(Min=1500,Max=5500)
+        DecayRange=(Min=1536,Max=4096)
 		RangeAtten=0.25
 		TraceCount=1
 	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
-		MaxHits=14 // inflict maximum of 156 damage to a single target
-		Damage=100
+		HeadMult=1.50f
+		LimbMult=0.85f
+		Damage=60
 		PushbackForce=250.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCoachSlug'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachSlug'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachSlug'
-        HeadMult=1.50
-        LimbMult=0.80
         PenetrateForce=500
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
@@ -106,7 +107,7 @@ defaultproperties
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.500000
 		PlayerJumpFactor=1.000000
-		InventorySize=4
+		InventorySize=5
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		DisplaceDurationMult=1

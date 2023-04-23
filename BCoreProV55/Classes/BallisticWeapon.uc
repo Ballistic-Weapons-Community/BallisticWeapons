@@ -644,7 +644,15 @@ simulated function PostNetBeginPlay()
 	// Link up with sprint control
     LinkSprintControl();
 
-    assert(ParamsClasses[GameStyleIndex] != None);
+    // assert(ParamsClasses[GameStyleIndex] != None);
+
+	if (ParamsClasses[GameStyleIndex] == None)
+	{
+		if (PlayerController(Instigator.Controller) != None)
+			PlayerController(Instigator.Controller).ClientMessage("NO PARAMS FOR "$Name);
+	
+		return;
+	}
 	
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
 	if (Level.NetMode == NM_Client)

@@ -22,7 +22,7 @@ defaultproperties
      DamageIdent="Sniper"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=100
-     AimDisplacementDuration=0.300000
+     AimDisplacementDuration=0.30
      WeaponClass=Class'BallisticProV55.R78Rifle'
      DeathString="%o was silenced by %k's R78."
      FemaleSuicide="%o held her R78 the wrong way around."
