@@ -1493,7 +1493,6 @@ defaultproperties
      WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
      ZoomTimeMod=1.500000
      SavedBehindDistFactor=1.000000
-	 InputClass=class'BallisticProV55.BallisticPlayerInput'
      BehindDistFactor=1.000000
      WeapUIHelp(0)="Fire to confirm selection."
      WeapUIHelp(1)="Altfire to exit UI."
