@@ -23,6 +23,7 @@ defaultproperties
 		Inaccuracy=(X=32,Y=32)
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		WarnTargetPct=0.200000
+		Heat=0.4
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams

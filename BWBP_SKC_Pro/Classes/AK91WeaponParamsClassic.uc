@@ -23,6 +23,7 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=128
 		Chaos=-1
+		Heat=0.45
 		WarnTargetPct=0.200000
 	End Object
 

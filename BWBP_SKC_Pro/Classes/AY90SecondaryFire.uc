@@ -23,11 +23,20 @@ simulated function PlayPreFire()
 		BW.SafeLoopAnim('PreFire', 0.15, TweenTime, ,"IDLE");
 }
 
+function ModeHoldFire()
+{
+    if ( BW.HasMagAmmo(ThisModeNum))
+    {
+        Super.ModeHoldFire();
+		BW.bPreventReload = True;
+    }
+}
+
 simulated event ModeDoFire()
 {
 	if (HoldTime >= ChargeTime && AY90SkrithBoltcaster(BW).MagAmmo >= 40)
 	{
-		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),0);
+		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),2);
 		ProjectileCount=30;
 		AmmoPerFire=40;
 		Load=40;
@@ -35,7 +44,7 @@ simulated event ModeDoFire()
 	}
 	else if (HoldTime >= (ChargeTime/2) && AY90SkrithBoltcaster(BW).MagAmmo >= 20)
 	{
-		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),0);
+		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),1);
 		ProjectileCount=20;
 		AmmoPerFire=20;
 		Load=20;
@@ -172,6 +181,7 @@ simulated event ModeDoFire()
 		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
+		BW.bPreventReload = False;
 	}
 	
 	Weapon.AmbientSound = Weapon.default.AmbientSound;

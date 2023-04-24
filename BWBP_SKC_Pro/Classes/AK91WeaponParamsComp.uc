@@ -22,6 +22,7 @@ defaultproperties
 		Recoil=128.000000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		WarnTargetPct=0.200000
+		Heat=0.25
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

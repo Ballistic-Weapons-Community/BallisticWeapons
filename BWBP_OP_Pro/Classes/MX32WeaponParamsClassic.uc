@@ -192,5 +192,5 @@ defaultproperties
 	Camos(0)=WeaponCamo'MX32_White'
 	Camos(1)=WeaponCamo'MX32_Desert'
 	Camos(2)=WeaponCamo'MX32_Ruby'
-	Camos(3)=WeaponCamo'MX32_White'
+	Camos(3)=WeaponCamo'MX32_Gold'
 }

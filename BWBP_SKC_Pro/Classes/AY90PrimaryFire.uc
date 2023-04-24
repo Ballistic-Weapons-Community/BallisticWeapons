@@ -23,6 +23,15 @@ simulated function PlayPreFire()
 		BW.SafeLoopAnim('PreFire', 0.15, TweenTime, ,"IDLE");
 }
 
+function ModeHoldFire()
+{
+    if ( BW.HasMagAmmo(ThisModeNum))
+    {
+        Super.ModeHoldFire();
+		BW.bPreventReload = True;
+    }
+}
+
 simulated event ModeDoFire()
 {
 
@@ -131,7 +140,6 @@ simulated event ModeDoFire()
         else
             NextFireTime = Level.TimeSeconds + FireRate;
 	}
-	
     else if (bBurstMode)
     {
 		BurstCount++;
@@ -147,7 +155,6 @@ simulated event ModeDoFire()
   			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
   		}
 	}
-	
     else
     {
         NextFireTime += FireRate;
@@ -168,6 +175,7 @@ simulated event ModeDoFire()
 		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
+		BW.bPreventReload = False;
 	}
 	
 	AmmoPerFire=10;

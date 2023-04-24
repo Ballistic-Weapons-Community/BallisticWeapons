@@ -17,10 +17,9 @@ defaultproperties
 		PenetrateForce=150
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
-		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=250.000000
+		Recoil=252.000000
 		Chaos=0.200000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -49,7 +48,7 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=128.000000
+		Recoil=156.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2',Volume=7.100000,Pitch=1.000000,Slot=SLOT_Interact,bNoOverride=False)
@@ -69,13 +68,13 @@ defaultproperties
 	//=================================================================
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.100000
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.00000),(InVal=0.5,OutVal=0.200000),(InVal=1.000000)))
+		XCurve=(Points=(,(InVal=0.070000,OutVal=-0.050000),(InVal=0.100000,OutVal=0.00000),(InVal=0.180000,OutVal=0.060000),(InVal=0.300000,OutVal=0.100000),(InVal=0.5,OutVal=0.000000),(InVal=0.650000,OutVal=-0.100000),(InVal=0.700000,OutVal=-0.1500000),(InVal=0.850000,OutVal=0.000000),(InVal=1.000000,OutVal=0.15)))
 		YCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		PitchFactor=0.050000
 		XRandFactor=0.200000
-		YRandFactor=0.050000
-		MaxRecoil=2048.000000
+		YRandFactor=0.20000
+		MaxRecoil=7000.000000
+		ViewBindFactor=0.6
 		DeclineTime=1
 	End Object
 
