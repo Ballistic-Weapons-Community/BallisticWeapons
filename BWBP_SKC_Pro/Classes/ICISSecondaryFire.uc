@@ -100,9 +100,6 @@ defaultproperties
      FireRate=0.600000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_ICISStim'
      AmmoPerFire=0
-     ShakeRotMag=(X=64.000000,Y=128.000000)
-     ShakeRotRate=(X=2500.000000,Y=2500.000000,Z=2500.000000)
-     ShakeRotTime=2.500000
      BotRefireRate=0.800000
      WarnTargetPct=0.050000
 }
