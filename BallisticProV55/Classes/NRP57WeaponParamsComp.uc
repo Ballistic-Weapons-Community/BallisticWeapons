@@ -38,8 +38,8 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
         ProjectileClass=Class'BallisticProV55.NRP57Rolled'
 		SpawnOffset=(Z=-14.000000)
-        Speed=1000.000000
-        MaxSpeed=1500.000000
+        Speed=350.000000
+        MaxSpeed=350.000000
 		Damage=150.000000
 		DamageRadius=450.000000
 		HeadMult=1.0
@@ -85,6 +85,11 @@ defaultproperties
         InventorySize=1
 		//ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
 		ViewPivot=(Pitch=1024,Yaw=-1024)
+
+		WeaponModes(0)=(ModeName="Fixed Throw",ModeID="WM_None",Value=1.00)
+		WeaponModes(1)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.00)
+		WeaponModes(2)=(bUnavailable=True)
+
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

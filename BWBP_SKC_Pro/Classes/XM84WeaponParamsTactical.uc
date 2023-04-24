@@ -60,7 +60,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-    Begin Object Class=RecoilParams Name=UniversalRecoilParams
+    Begin Object Class=RecoilParams Name=TacticalRecoilParams
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
@@ -71,7 +71,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-    Begin Object Class=AimParams Name=UniversalAimParams
+    Begin Object Class=AimParams Name=TacticalAimParams
         ViewBindFactor=0.00
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
@@ -81,7 +81,7 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-    Begin Object Class=WeaponParams Name=UniversalParams
+    Begin Object Class=WeaponParams Name=TacticalParams
         ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
 		ViewPivot=(Pitch=1024,Yaw=-1024)
         MagAmmo=1
@@ -92,10 +92,10 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.00)
 		WeaponModes(2)=(bUnavailable=True)
 
-        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
-        AimParams(0)=AimParams'UniversalAimParams'
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'UniversalParams'
+    Layouts(0)=WeaponParams'TacticalParams'
 }

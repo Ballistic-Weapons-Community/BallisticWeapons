@@ -10,7 +10,7 @@ defaultproperties
         ProjectileClass=Class'BWBP_SKC_Pro.G28Thrown'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Speed=1000.000000
-        MaxSpeed=1200.000000
+        MaxSpeed=1000.000000
 		Damage=15
         DamageRadius=300.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
@@ -28,8 +28,8 @@ defaultproperties
 	
     Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.G28Rolled'
-		Speed=1000.000000
-        MaxSpeed=300.000000
+		Speed=350.000000
+        MaxSpeed=350.000000
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams
@@ -67,6 +67,11 @@ defaultproperties
         
         MagAmmo=1
         InventorySize=1
+
+		WeaponModes(0)=(ModeName="Fixed Throw",ModeID="WM_None",Value=1.00)
+		WeaponModes(1)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.00)
+		WeaponModes(2)=(bUnavailable=True)
+
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

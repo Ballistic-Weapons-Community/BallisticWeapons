@@ -31,7 +31,7 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
-		ProjectileClass=Class'BallisticProV55.T10Thrown'
+		ProjectileClass=Class'BallisticProV55.T10Rolled'
 		SpawnOffset=(Z=-14.000000)
 		Damage=20.000000
 		DamageRadius=200.000000
@@ -54,7 +54,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-    Begin Object Class=RecoilParams Name=UniversalRecoilParams
+    Begin Object Class=RecoilParams Name=TacticalRecoilParams
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
@@ -64,7 +64,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-    Begin Object Class=AimParams Name=UniversalAimParams
+    Begin Object Class=AimParams Name=TacticalAimParams
         ViewBindFactor=0.00
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
@@ -74,7 +74,7 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-    Begin Object Class=WeaponParams Name=UniversalParams
+    Begin Object Class=WeaponParams Name=TacticalParams
         MagAmmo=1
         InventorySize=1
 		MaxInventoryCount=1
@@ -85,10 +85,10 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=True)
 
 		ViewPivot=(Pitch=1024,Yaw=-1024)
-        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
-        AimParams(0)=AimParams'UniversalAimParams'
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'UniversalParams'
+    Layouts(0)=WeaponParams'TacticalParams'
 }

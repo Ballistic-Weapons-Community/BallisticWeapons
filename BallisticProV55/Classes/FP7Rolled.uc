@@ -21,8 +21,9 @@ simulated event PostBeginPlay ()
 
 defaultproperties
 {
-     FireModeNum=1
-     DampenFactor=0.200000
-     DampenFactorParallel=0.7
-     MyRadiusDamageType=Class'BallisticProV55.DTNRP57GrenadeRadius'
+	ModeIndex=1
+	FireModeNum=1
+	DampenFactor=0.200000
+	DampenFactorParallel=0.7
+	MyRadiusDamageType=Class'BallisticProV55.DTNRP57GrenadeRadius'
 }
