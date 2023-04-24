@@ -411,7 +411,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_SKC_Pro.AK490Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AK490.SmallIcon_AK490'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="AK-490 Battle Rifle"
+	ItemName="AK-490 Assault Rifle"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30

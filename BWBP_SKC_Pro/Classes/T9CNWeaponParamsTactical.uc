@@ -74,23 +74,8 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=TacticalRecoilParams
-		ViewBindFactor=0.25
-		ADSViewBindFactor=0.7
-		EscapeMultiplier=1.1
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.3500000,OutVal=-0.02),(InVal=0.500000,OutVal=0.07),(InVal=0.6500000,OutVal=0.12),(InVal=0.800000,OutVal=-0.06),(InVal=1.000000,OutVal=0.07)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
-		MaxRecoil=8192.000000
-		ClimbTime=0.04
-		DeclineDelay=0.120000
-		DeclineTime=0.750000
-		MaxMoveMultiplier=1.65
-	End Object
-	
-	//Burst
-	Begin Object Class=RecoilParams Name=TacticalBurstRecoilParams
+	// Burst
+	Begin Object Class=RecoilParams Name=TacticalControlledRecoilParams
 		ViewBindFactor=0.15
 		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.1
@@ -104,6 +89,24 @@ defaultproperties
 		DeclineTime=0.750000
 		MaxMoveMultiplier=1.65
 	End Object
+
+	// Auto
+	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
+		ViewBindFactor=0.25
+		ADSViewBindFactor=0.5
+		EscapeMultiplier=1.1
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.3500000,OutVal=-0.02),(InVal=0.500000,OutVal=0.07),(InVal=0.6500000,OutVal=0.12),(InVal=0.800000,OutVal=-0.06),(InVal=1.000000,OutVal=0.07)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.050000
+		YRandFactor=0.050000
+		MaxRecoil=8192.000000
+		ClimbTime=0.04
+		DeclineDelay=0.120000
+		DeclineTime=0.750000
+		MaxMoveMultiplier=1.65
+	End Object
+	
+
 
 	//=================================================================
 	// AIM
@@ -124,6 +127,35 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
+	Begin Object Class=WeaponParams Name=TacticalParams_Auto
+		//Layout core
+		LayoutName="Automatic Mod"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
+		//Functions
+		InventorySize=3
+		WeaponPrice=1200
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.2
+		MagAmmo=18
+		SightPivot=(Pitch=128)
+		bDualBlocked=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'TacticalControlledRecoilParams'
+		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
+		FireParams(2)=FireParams'TacticalPrimaryBurstFireParams'
+	End Object
+
 	Begin Object Class=WeaponParams Name=TacticalParams_Robocop
 		//Layout core
 		LayoutName="Gauss Mod"
@@ -144,48 +176,20 @@ defaultproperties
 		SightingTime=0.2
 		MagAmmo=18
 		SightPivot=(Pitch=128)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
-		InitialWeaponMode=1
-		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-		RecoilParams(1)=RecoilParams'TacticalBurstRecoilParams'
-		AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=TacticalParams_Auto
-		//Layout core
-		LayoutName="Automatic Mod"
-		Weight=10
-		//Attachments
-		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
-		//Functions
-		InventorySize=3
-		WeaponPrice=1200
-		SightMoveSpeedFactor=0.6
-		SightingTime=0.2
-		MagAmmo=18
-		SightPivot=(Pitch=128)
+		bDualBlocked=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		InitialWeaponMode=2
-		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-		RecoilParams(1)=RecoilParams'TacticalBurstRecoilParams'
-		RecoilParams(2)=RecoilParams'TacticalBurstRecoilParams'
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'TacticalControlledRecoilParams'
+		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
-		FireParams(2)=FireParams'TacticalPrimaryBurstFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'TacticalParams_Robocop'
-	Layouts(1)=WeaponParams'TacticalParams_Auto'
+	Layouts(0)=WeaponParams'TacticalParams_Auto' // better sights
+	Layouts(1)=WeaponParams'TacticalParams_Robocop'
 	
 	//Camos =====================================
 	

@@ -126,6 +126,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=9
         InventorySize=2
+		bDualBlocked=True
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalPrimaryFireParams'

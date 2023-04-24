@@ -87,4 +87,5 @@ defaultproperties
      bAltRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.SRS900_TPm'
      DrawScale=0.250000
+	 RelativeLocation=(X=2,Z=2.5)
 }

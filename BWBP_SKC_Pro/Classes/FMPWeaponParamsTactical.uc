@@ -128,7 +128,7 @@ defaultproperties
 		DeclineTime=0.75
 		DeclineDelay=0.150000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=1.000000
+		ADSViewBindFactor=0.7
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=1.65
@@ -192,6 +192,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.185000
 		MagAmmo=28
+		bDualBlocked=True
 		WeaponName="FMP-2012 .40 Machine Pistol"
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalIncRecoilParams'

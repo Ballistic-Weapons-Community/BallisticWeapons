@@ -143,4 +143,5 @@ defaultproperties
      bRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.MD24_TPm'
      DrawScale=0.320000
+	 RelativeLocation=(Z=4)
 }

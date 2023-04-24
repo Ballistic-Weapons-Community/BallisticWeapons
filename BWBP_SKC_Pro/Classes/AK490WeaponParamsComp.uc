@@ -9,7 +9,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
-        DecayRange=(Min=2363,Max=6000)
+        DecayRange=(Min=1536,Max=4000)
 		PenetrationEnergy=48
 		RangeAtten=0.75
 		Damage=35
@@ -22,7 +22,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK490FlashEmitter'
 		FlashScaleFactor=1.1
-		Recoil=340.000000
+		Recoil=250.000000
 		Chaos=0.04000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)

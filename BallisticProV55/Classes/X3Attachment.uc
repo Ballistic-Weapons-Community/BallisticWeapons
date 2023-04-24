@@ -22,5 +22,5 @@ defaultproperties
      MeleeStrikeAnim="Blade_Stab"
      bHeavy=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.X3_TPm'
-     DrawScale=0.110000
+     DrawScale=0.090000
 }

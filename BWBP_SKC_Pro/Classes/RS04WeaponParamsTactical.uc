@@ -112,6 +112,7 @@ defaultproperties
 		SightingTime=0.15000
         SightMoveSpeedFactor=0.6
 		MagAmmo=10
+		bDualBlocked=True
 		//SightOffset=(X=-20.000000,Y=-1.9500000,Z=17.000000)
 		SightPivot=(Roll=-256)
 		WeaponName="RS4 Compact Handgun"

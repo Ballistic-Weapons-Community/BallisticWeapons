@@ -63,7 +63,7 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.4
-		ADSViewBindFactor=0.9
+		ADSViewBindFactor=0.7
 		XCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=-0.050000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.070000),(InVal=0.700000),(InVal=1.000000,OutVal=0.100000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.400000),(InVal=0.540000,OutVal=0.650000),(InVal=0.700000,OutVal=0.720000),(InVal=1.000000,OutVal=0.300000)))
 		ClimbTime=0.04
@@ -98,6 +98,7 @@ defaultproperties
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5
 		MagAmmo=32
+		bDualBlocked=True
 		//ViewOffset=(Y=10.000000,Z=-25.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -402,4 +402,5 @@ defaultproperties
      ReloadAnimRate=1.400000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.SX45_TPm'
      DrawScale=1.000000
+	 RelativeLocation=(Z=10)
 }

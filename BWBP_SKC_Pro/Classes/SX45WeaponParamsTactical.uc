@@ -158,6 +158,7 @@ defaultproperties
 		SightingTime=0.200000
 		MagAmmo=15
         InventorySize=3
+		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalStandardPrimaryFireParams'
@@ -178,6 +179,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.200000
 		MagAmmo=15
+		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalStandardPrimaryFireParams'

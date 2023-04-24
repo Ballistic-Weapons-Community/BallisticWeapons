@@ -106,6 +106,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams
         MagAmmo=40
         InventorySize=2
+		bDualBlocked=True
         SightingTime=0.200000
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5

@@ -104,6 +104,7 @@ defaultproperties
         DisplaceDurationMult=0.75
         MagAmmo=6
         InventorySize=4
+		bDualBlocked=True
 		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
         SightingTime=0.2
         SightMoveSpeedFactor=0.6

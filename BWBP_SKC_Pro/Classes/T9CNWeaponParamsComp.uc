@@ -60,6 +60,34 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
+	Begin Object Class=WeaponParams Name=ArenaParams_Auto
+		//Layout core
+		LayoutName="Automatic Mod"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
+		//Functions
+		DisplaceDurationMult=0.75
+		PlayerSpeedFactor=1.050000
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+        InventorySize=4
+		MagAmmo=18
+		SightPivot=(Pitch=128)
+		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+
 	Begin Object Class=WeaponParams Name=ArenaParams_Burst
 		//Layout core
 		LayoutName="Gauss Mod"
@@ -91,37 +119,9 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-	
-	Begin Object Class=WeaponParams Name=ArenaParams_Auto
-		//Layout core
-		LayoutName="Automatic Mod"
-		Weight=10
-		//Attachments
-		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
-		//Functions
-		DisplaceDurationMult=0.75
-		PlayerSpeedFactor=1.050000
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.250000
-        InventorySize=4
-		MagAmmo=18
-		SightPivot=(Pitch=128)
-		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
-		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
-	End Object
-	
-	Layouts(0)=WeaponParams'ArenaParams_Burst'
-	Layouts(1)=WeaponParams'ArenaParams_Auto'
+
+	Layouts(0)=WeaponParams'ArenaParams_Auto'
+	Layouts(1)=WeaponParams'ArenaParams_Burst'
 	
 	//Camos =====================================
 	

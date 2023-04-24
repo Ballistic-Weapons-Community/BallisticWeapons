@@ -93,6 +93,7 @@ defaultproperties
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5
 		MagAmmo=5
+		bDualBlocked=True
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

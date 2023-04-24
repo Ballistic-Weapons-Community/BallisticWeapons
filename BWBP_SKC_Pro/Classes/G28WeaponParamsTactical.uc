@@ -28,8 +28,8 @@ defaultproperties
 	
     Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.G28Rolled'
-		Speed=100.000000
-        MaxSpeed=300.000000
+		Speed=350.000000
+		MaxSpeed=350.000000
     End Object
     
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams
@@ -68,8 +68,8 @@ defaultproperties
         InventorySize=1
 		MaxInventoryCount=1
 				
-		WeaponModes(0)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.000000)
-		WeaponModes(1)=(bUnavailable=True)
+		WeaponModes(0)=(ModeName="Fixed Throw",ModeID="WM_None",Value=1.00)
+		WeaponModes(1)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.00)
 		WeaponModes(2)=(bUnavailable=True)
 
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

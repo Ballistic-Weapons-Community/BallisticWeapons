@@ -24,5 +24,5 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_OP_Anim.AssaultShotgun_TPm'
      RelativeRotation=(Pitch=32768,Roll=-16384)
      DrawScale=0.500000
-     PrePivot=(X=1.000000,Z=-5.000000)
+     RelativeLocation=(X=1.000000,Z=5.000000)
 }

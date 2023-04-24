@@ -32,6 +32,7 @@ defaultproperties
 {
 	WeaponClass=class'VSKTranqRifle'
 	RelativeRotation=(Pitch=32768)
+	RelativeLocation=(X=5,Z=3)
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 	ImpactManager=Class'BWBP_SKC_Pro.IM_Tranq'
 	FlashScale=0.300000

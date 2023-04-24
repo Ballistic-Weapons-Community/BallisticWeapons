@@ -271,39 +271,39 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'FMPMachinePistol'
-	 AmpFlashScale=0.2
-	 CamoMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
-	 CamoMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
-	 CamoMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
-	 CamoMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
+	AmpFlashScale=0.2
+	CamoMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
+	CamoMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
+	CamoMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
+	CamoMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
 
-     AltFlashBone="tip2"
-	 AltTipRotation=(Pitch=16384)
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.FMPFlashEmitter'
-	 ImpactManager=class'IM_Bullet'
-     
-	 MuzzleFlashClassRed=Class'BWBP_SKC_Pro.SRXFlashEmitter'
-     MuzzleFlashClassGreen=class'A500FlashEmitter'
-	 
-	 TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_MARS'
-     TracerClassRed=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-     TracerClassGreen=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
-	 
-     ImpactManagerRed=Class'BWBP_SKC_Pro.IM_BulletHE'
-     ImpactManagerGreen=Class'BWBP_SKC_Pro.IM_BulletAmpAcid'
-	 
-     BrassClass=class'Brass_Rifle'
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-	 FlashScale=0.5
-     TracerMix=0
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.MP40_TPm'
-     RelativeLocation=(Z=3.000000)
-     RelativeRotation=(Yaw=32768,Roll=-16384)
-     DrawScale=0.50000
+	AltFlashBone="tip2"
+	AltTipRotation=(Pitch=16384)
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.FMPFlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	
+	MuzzleFlashClassRed=Class'BWBP_SKC_Pro.SRXFlashEmitter'
+	MuzzleFlashClassGreen=class'A500FlashEmitter'
+	
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_MARS'
+	TracerClassRed=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
+	TracerClassGreen=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
+	
+	ImpactManagerRed=Class'BWBP_SKC_Pro.IM_BulletHE'
+	ImpactManagerGreen=Class'BWBP_SKC_Pro.IM_BulletAmpAcid'
+	
+	BrassClass=class'Brass_Rifle'
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	FlashScale=0.5
+	TracerMix=0
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	bRapidFire=True
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MP40_TPm'
+	RelativeRotation=(Yaw=32768,Roll=-16384)
+	RelativeLocation=(Z=7)
+	DrawScale=0.35000
 }

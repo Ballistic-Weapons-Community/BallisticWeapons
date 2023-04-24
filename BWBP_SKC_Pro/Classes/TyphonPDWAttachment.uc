@@ -101,5 +101,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.Typhon_TPm'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.550000
-	PrePivot=(Z=-5.000000)
+	RelativeLocation=(Z=5.00)
 }

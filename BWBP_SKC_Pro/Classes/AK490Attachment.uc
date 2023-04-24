@@ -85,5 +85,6 @@ defaultproperties
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.AK490_TPm'
      RelativeRotation=(Pitch=32768)
-     DrawScale=0.350000
+     DrawScale=0.280000
+	 RelativeLocation=(X=3,Z=3)
 }

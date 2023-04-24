@@ -301,7 +301,7 @@ defaultproperties
      bRapidFire=True
      bAltRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.CX61_TPm'
-     RelativeLocation=(X=-2.000000,Y=-2.000000,Z=8.000000)
+     RelativeLocation=(X=2.000000,Y=-2.000000,Z=3.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000
 }

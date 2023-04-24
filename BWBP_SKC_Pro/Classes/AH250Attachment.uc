@@ -110,7 +110,7 @@ defaultproperties
      CockAnimRate=0.900000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.AHDeagle_TPm'
      RelativeLocation=(Z=6.000000)
-     DrawScale=0.220000
+     DrawScale=0.175
      Skins(0)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack'
 	 Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack'
      Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack'

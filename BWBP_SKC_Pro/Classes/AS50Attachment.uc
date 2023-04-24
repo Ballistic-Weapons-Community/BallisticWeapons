@@ -181,7 +181,7 @@ defaultproperties
      ReloadAnimRate=0.700000
      CockAnimRate=0.700000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_TPm'
-     RelativeLocation=(X=-17.000000,Z=2.000000)
+     RelativeLocation=(X=1.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
      PrePivot=(Z=-1.000000)
      Skins(0)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'

@@ -139,6 +139,7 @@ defaultproperties
 		//Layout core
 		LayoutName="Scoped Marksman"
 		Weight=10
+		bDualBlocked=True
 
 		//Function
 		InventorySize=4
@@ -170,6 +171,7 @@ defaultproperties
 		//Layout core
 		LayoutName="Red Dot Sight"
 		Weight=30
+		bDualBlocked=True
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=1f)
@@ -195,6 +197,7 @@ defaultproperties
 		LayoutName="Laser Sight"
 		LayoutTags="laser"
 		Weight=30
+		bDualBlocked=True
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)

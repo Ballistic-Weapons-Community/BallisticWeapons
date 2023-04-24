@@ -335,5 +335,6 @@ defaultproperties
      bHeavy=True
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.M575_TPm'
-     DrawScale=1.000000
+     DrawScale=0.75
+	 RelativeLocation=(X=1,Z=4)
 }

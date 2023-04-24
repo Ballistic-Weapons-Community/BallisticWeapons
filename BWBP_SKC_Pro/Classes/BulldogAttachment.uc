@@ -55,7 +55,7 @@ defaultproperties
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      Mesh=SkeletalMesh'BWBP_SKC_Anim.Bulldog_TPm'
-     RelativeLocation=(X=-2.000000,Z=-3.000000)
+     RelativeLocation=(X=-2.000000,Z=5.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000
 }

@@ -76,7 +76,7 @@ defaultproperties
 
     Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.25
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.2
         XCurve=(Points=(,(InVal=0.150000,OutVal=0.09),(InVal=0.300000,OutVal=-0.080000),(InVal=0.4,OutVal=0.04),(InVal=0.550000,OutVal=-0.090000),(InVal=0.700000,OutVal=0.050000),(InVal=1.000000,OutVal=0.00000)))
         YCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
@@ -111,13 +111,13 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-		bDualBlocked=True
         //SightOffset=(X=-5.000000,Z=5.900000)
         DisplaceDurationMult=0.5
         SightingTime=0.250000
         SightMoveSpeedFactor=0.6
         MagAmmo=18
         InventorySize=4
+		bDualBlocked=True
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

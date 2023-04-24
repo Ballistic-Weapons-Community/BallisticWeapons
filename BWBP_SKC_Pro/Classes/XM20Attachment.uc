@@ -194,8 +194,8 @@ defaultproperties
 	TracerMode=MU_Primary
 	TracerChance=1
 	TracerMix=0
-	RelativeLocation=(X=-6.000000,Z=12.000000)
+	RelativeLocation=(X=1.00,Z=5.00)
 	RelativeRotation=(Pitch=32768)
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_TPm'
-	DrawScale=0.200000
+	DrawScale=0.15
 }

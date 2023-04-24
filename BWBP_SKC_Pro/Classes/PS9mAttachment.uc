@@ -211,5 +211,6 @@ defaultproperties
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.PS9M_TPm'
      DrawScale=0.250000
+	 RelativeLocation=(Z=5.00)
      Skins(0)=Texture'BWBP_SKC_Tex.Stealth.Stealth-Main'
 }
