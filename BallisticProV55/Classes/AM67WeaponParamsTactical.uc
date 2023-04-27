@@ -102,7 +102,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
         DisplaceDurationMult=0.75
-        MagAmmo=6
+        MagAmmo=7
         InventorySize=4
 		bDualBlocked=True
 		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)

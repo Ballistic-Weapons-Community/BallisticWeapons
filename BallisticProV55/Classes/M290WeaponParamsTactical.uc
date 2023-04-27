@@ -118,7 +118,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
         SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=256)
-		MagAmmo=6
+		MagAmmo=8
 		SightingTime=0.3
         InventorySize=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

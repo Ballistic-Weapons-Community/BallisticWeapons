@@ -175,7 +175,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.450000		
 		DisplaceDurationMult=1
-		MagAmmo=8
+		MagAmmo=6
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		//SightOffset=(X=0.000000,Y=-0.035000,Z=19.500000)

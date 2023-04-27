@@ -116,7 +116,7 @@ defaultproperties
 		SightingTime=0.35
 		SightPivot=(Pitch=64)
 		DisplaceDurationMult=1
-		MagAmmo=20
+		MagAmmo=25
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

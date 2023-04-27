@@ -100,7 +100,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams
 		SightPivot=(Pitch=900,Roll=-800)
 		//SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
-		MagAmmo=24
+		MagAmmo=30
 		bDualBlocked=True
         InventorySize=3
         SightingTime=0.200000

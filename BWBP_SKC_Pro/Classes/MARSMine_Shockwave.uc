@@ -7,7 +7,7 @@
 //
 // by SK and Aza
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// CopyrightÂ© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MARSMine_Shockwave extends BallisticProjectile;
 

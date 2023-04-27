@@ -116,7 +116,7 @@ defaultproperties
 		//Attachments
 		//Function
 		PlayerSpeedFactor=1
-		MagAmmo=9
+		MagAmmo=10
         InventorySize=3
 		SightingTime=0.200000
 		ReloadAnimRate=1.25

@@ -95,7 +95,7 @@ defaultproperties
 		CockAnimRate=1.250000
 		
         DisplaceDurationMult=0.75
-        MagAmmo=8
+        MagAmmo=7
         InventorySize=4
 		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
 		SightingTime=0.250000

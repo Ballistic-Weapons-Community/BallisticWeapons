@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams
-		FireInterval=0.16000
+		FireInterval=0.18000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -60,7 +60,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaCryoPrimaryFireParams
-		FireInterval=0.22
+		FireInterval=0.25
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -92,7 +92,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaRadPrimaryFireParams
-		FireInterval=0.22
+		FireInterval=0.25
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -138,7 +138,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.200000
-		MagAmmo=9
+		MagAmmo=20
         InventorySize=3
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

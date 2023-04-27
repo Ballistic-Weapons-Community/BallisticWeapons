@@ -121,7 +121,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Holo",Slot=3,Scale=1f)
-		MagAmmo=18
+		MagAmmo=10
 		//SightOffset=(X=5,Y=0.000000,Z=16.700000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)

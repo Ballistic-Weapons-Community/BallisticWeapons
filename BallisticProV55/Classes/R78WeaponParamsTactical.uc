@@ -84,7 +84,7 @@ defaultproperties
 		ZoomStages=1
 		//Function
 		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
-		MagAmmo=7
+		MagAmmo=5
         InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
@@ -105,7 +105,7 @@ defaultproperties
 		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		SightingTime=0.4
 		SightMoveSpeedFactor=0.45
-		MagAmmo=7
+		MagAmmo=5
         InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

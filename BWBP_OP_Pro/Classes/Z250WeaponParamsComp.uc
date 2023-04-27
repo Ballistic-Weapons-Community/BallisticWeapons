@@ -94,7 +94,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.4500000
 		DisplaceDurationMult=1.25
-		MagAmmo=100
+		MagAmmo=50
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

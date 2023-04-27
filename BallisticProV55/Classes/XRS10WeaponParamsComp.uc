@@ -86,7 +86,7 @@ defaultproperties
 		DisplaceDurationMult=0.5
 		ReloadAnimRate=1.250000
 		CockAnimRate=1.250000
-		MagAmmo=30
+		MagAmmo=25
 		SightingTime=0.200000
         InventorySize=3
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

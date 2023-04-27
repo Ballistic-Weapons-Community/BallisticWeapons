@@ -78,7 +78,7 @@ defaultproperties
 		//Function
 		ReloadAnimRate=1.250000
 		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
-		MagAmmo=7
+		MagAmmo=5
         InventorySize=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
@@ -100,7 +100,7 @@ defaultproperties
 		//Function
 		ReloadAnimRate=1.250000
 		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
-		MagAmmo=7
+		MagAmmo=5
         InventorySize=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

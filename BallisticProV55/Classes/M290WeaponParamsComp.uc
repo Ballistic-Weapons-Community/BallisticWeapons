@@ -109,7 +109,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.50000
-		MagAmmo=6
+		MagAmmo=8
 		SightingTime=0.4
 		SightMoveSpeedFactor=0.8
 		SightPivot=(Pitch=256)

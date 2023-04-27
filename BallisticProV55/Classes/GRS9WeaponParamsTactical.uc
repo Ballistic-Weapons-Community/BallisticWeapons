@@ -115,7 +115,7 @@ defaultproperties
         DisplaceDurationMult=0.5
         SightingTime=0.250000
         SightMoveSpeedFactor=0.6
-        MagAmmo=18
+        MagAmmo=19
         InventorySize=4
 		bDualBlocked=True
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

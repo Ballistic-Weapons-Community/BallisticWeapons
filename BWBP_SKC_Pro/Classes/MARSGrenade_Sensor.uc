@@ -112,10 +112,10 @@ defaultproperties
 	TrailClass=Class'BallisticProV55.M50GrenadeTrail'
 	TrailOffset=(X=-8.000000)
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
-	ShakeRadius=512.000000
-	MotionBlurRadius=384.000000
-	MotionBlurFactor=3.000000
-	MotionBlurTime=4.000000
+	ShakeRadius=0.000000
+	MotionBlurRadius=0.000000
+	MotionBlurFactor=0.000000
+	MotionBlurTime=0.000000
 	Speed=3500.000000
 	MyDamageType=None
 	StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3Grenade'
