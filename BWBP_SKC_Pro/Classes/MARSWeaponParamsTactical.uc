@@ -16,8 +16,8 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
 		Damage=34
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
@@ -44,8 +44,8 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
 		Damage=34
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'

@@ -18,8 +18,8 @@ defaultproperties
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
 		Damage=40
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
 		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'
@@ -55,8 +55,8 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=6
-        HeadMult=1.5f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		DamageType=Class'BallisticProV55.DTleMatShotgun'
 		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'

@@ -11,8 +11,8 @@ defaultproperties
         DecayRange=(Min=2363,Max=7000)
 		RangeAtten=0.75
 		Damage=110
-        HeadMult=1.5f
-        LimbMult=0.85f
+        HeadMult=2
+        LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTBulldogHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'

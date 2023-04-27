@@ -15,8 +15,8 @@ defaultproperties
         ImpactManager=Class'BallisticProV55.IM_Shell'
         MaxHits=12
         Damage=13
-        HeadMult=1.75f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		PushbackForce=1000.000000
         DamageType=Class'BallisticProV55.DTM290Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
@@ -50,8 +50,8 @@ defaultproperties
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=13
-        HeadMult=1.75f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
         DamageType=Class'BallisticProV55.DTM290Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
         DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'

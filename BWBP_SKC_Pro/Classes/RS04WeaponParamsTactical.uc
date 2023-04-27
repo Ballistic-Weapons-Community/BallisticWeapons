@@ -13,8 +13,8 @@ defaultproperties
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.67
 		Damage=33
-        HeadMult=3
-        LimbMult=0.75f
+        HeadMult=3.5
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
@@ -41,8 +41,8 @@ defaultproperties
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.67
 		Damage=27
-        HeadMult=3
-        LimbMult=0.75f
+        HeadMult=3.5
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'

@@ -41,7 +41,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 	if ( Role == ROLE_Authority )
 	{
-		C = Spawn(class'T10CloudControl',self,,HitLocation-HitNormal*2);
+		C = Spawn(class'T10CloudControl',self,,HitLocation + HitNormal * 2);
 		
 		if (C!=None)
 		{

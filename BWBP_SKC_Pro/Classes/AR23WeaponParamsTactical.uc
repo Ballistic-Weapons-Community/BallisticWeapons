@@ -16,8 +16,8 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
 		Damage=70
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23HR'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AR23HRHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23HR'
@@ -56,8 +56,8 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=13
-		HeadMult=1.5f
-        LimbMult=0.85f
+		HeadMult=1.75
+        LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23Flak'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AR23Flak'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23Flak'

@@ -14,8 +14,8 @@ defaultproperties
 		MaxSpeed=9000.000000
 		AccelSpeed=90000.000000
 		Damage=100
-		HeadMult=1.5f
-		LimbMult=0.85f
+		HeadMult=1.75
+		LimbMult=0.85
 		DamageRadius=256.000000
 		MomentumTransfer=65000.000000
 		MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
@@ -45,8 +45,8 @@ defaultproperties
 		MaxSpeed=20000.000000
 		AccelSpeed=150000.000000
 		Damage=50
-		HeadMult=2.75f
-		LimbMult=0.65f
+		HeadMult=3.25
+		LimbMult=0.75
 		DamageRadius=122.000000
 		MomentumTransfer=12500.000000
 		FlashScaleFactor=0.400000

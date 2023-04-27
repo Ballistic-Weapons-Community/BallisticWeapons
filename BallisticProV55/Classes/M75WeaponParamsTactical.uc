@@ -14,8 +14,8 @@ defaultproperties
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
 		Damage=200
-        HeadMult=1.5f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		PushbackForce=350.000000
 	    DamageType=Class'BallisticProV55.DTM75Railgun'
         DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
@@ -40,8 +40,8 @@ defaultproperties
 		Recoil=4096.000000
 		Chaos=0.750000
 		Damage=200
-        HeadMult=1.5f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
 		PushbackForce=1300.000000

@@ -17,8 +17,8 @@ defaultproperties
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=24
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
 		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'

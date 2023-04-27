@@ -11,8 +11,8 @@ defaultproperties
         DecayRange=(Min=2300,Max=6000)
 		RangeAtten=0.5
 		Damage=45
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
@@ -46,8 +46,8 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
 		Damage=12
-		HeadMult=1.5f
-        LimbMult=0.85f
+		HeadMult=1.75
+        LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
@@ -80,7 +80,7 @@ defaultproperties
 		AccelSpeed=3000.000000
 		Damage=80
         HeadMult=2
-        LimbMult=0.75f
+        LimbMult=0.75
 		DamageRadius=192.000000
 		MomentumTransfer=50000.000000
 		PushbackForce=200.000000

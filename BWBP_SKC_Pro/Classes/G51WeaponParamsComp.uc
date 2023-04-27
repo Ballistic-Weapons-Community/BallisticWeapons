@@ -210,7 +210,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
+		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
 
 		// Need it auto in Pro
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)

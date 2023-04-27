@@ -14,8 +14,8 @@ defaultproperties
         MaxSpeed=14000.000000
         AccelSpeed=100000.000000
         Damage=52.000000
-        HeadMult=2.25f
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
         DamageRadius=16.000000
         MaxDamageGainFactor=0.6
         DamageGainStartTime=0.05
@@ -36,8 +36,8 @@ defaultproperties
         MaxSpeed=5500.000000
         AccelSpeed=60000.000000
         Damage=52.000000
-        HeadMult=1.75f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
         DamageRadius=64.000000
         MaxDamageGainFactor=0.25
         DamageGainEndTime=0.3
@@ -59,8 +59,8 @@ defaultproperties
         Damage=52.000000
 		MaxDamageGainFactor=0.5
 		DamageGainEndTime=0.35
-        HeadMult=1.5f
-        LimbMult=0.75f
+        HeadMult=1.75
+        LimbMult=0.75
         DamageRadius=64.000000
         FlashScaleFactor=0.750000
         Chaos=0.350000
@@ -103,8 +103,8 @@ defaultproperties
         TraceRange=(Min=10000.000000,Max=10000.000000)
         WaterTraceRange=5000
         Damage=18.000000
-        HeadMult=2.25f
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTVPRLaser'
         DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'
         DamageTypeArm=Class'BallisticProV55.DTVPRLaser'

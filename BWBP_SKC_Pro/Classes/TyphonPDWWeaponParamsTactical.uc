@@ -14,8 +14,8 @@ defaultproperties
 		DecayRange=(Min=1050,Max=2100)
 		TraceRange=(Max=6000.000000)
 		Damage=27.000000
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		RangeAtten=0.5f
 		PenetrationEnergy=32
 		Inaccuracy=(X=64,Y=64)
@@ -48,8 +48,8 @@ defaultproperties
 		TraceRange=(Max=6000.000000)
 		PenetrationEnergy=64
 		Damage=40.000000
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		RangeAtten=0.5
 		Inaccuracy=(X=128,Y=128)
 		PenetrateForce=150

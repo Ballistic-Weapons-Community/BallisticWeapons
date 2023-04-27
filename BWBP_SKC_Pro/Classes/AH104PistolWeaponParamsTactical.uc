@@ -15,8 +15,8 @@ defaultproperties
 			Inaccuracy=(X=32,Y=32)
 			PenetrationEnergy=96
 			Damage=75.000000
-            HeadMult=2.75f
-            LimbMult=0.75f
+            HeadMult=2.5
+            LimbMult=0.75
 			RangeAtten=0.5
 			DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
 			DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'

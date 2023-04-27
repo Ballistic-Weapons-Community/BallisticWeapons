@@ -14,11 +14,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalStandardPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=525,Max=1225)
-		RangeAtten=0.3
-		Damage=26
-		HeadMult=3.0f
-		LimbMult=0.75f
+		DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.67
+		Damage=27
+		HeadMult=3.5
+		LimbMult=0.75
 		PenetrationEnergy=16
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
@@ -29,13 +29,13 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=256.000000
+		Recoil=192.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardPrimaryFireParams
-		FireInterval=0.20000
+		FireInterval=0.16000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -48,11 +48,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalCryoPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=525,Max=1225)
-		RangeAtten=0.3
-		Damage=34
-		HeadMult=3.0f
-		LimbMult=0.75f
+		DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.67
+		Damage=40
+		HeadMult=3
+		LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead_Cryo'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_Cryo'
@@ -68,7 +68,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalCryoPrimaryFireParams
-		FireInterval=0.400000
+		FireInterval=0.22
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -81,11 +81,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalRadPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=525,Max=1225)
-		RangeAtten=0.3
+		DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.67
 		Damage=34
-		HeadMult=3.0f
-		LimbMult=0.75f
+		HeadMult=1
+		LimbMult=1
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead_RAD'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol_RAD'
@@ -101,7 +101,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalRadPrimaryFireParams
-		FireInterval=0.500000
+		FireInterval=0.22
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -178,7 +178,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.200000
-		MagAmmo=15
+		MagAmmo=20
 		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

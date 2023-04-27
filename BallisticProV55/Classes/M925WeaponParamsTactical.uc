@@ -17,8 +17,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=7000)
 		RangeAtten=0.75
 		Damage=75
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM925MG'
 		DamageTypeHead=Class'BallisticProV55.DTM925MGHead'
 		DamageTypeArm=Class'BallisticProV55.DTM925MG'

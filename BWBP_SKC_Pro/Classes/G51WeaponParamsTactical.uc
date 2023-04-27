@@ -18,8 +18,8 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.670000
 		Damage=34
-		HeadMult=2.75f
-        LimbMult=0.75f
+		HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
@@ -228,7 +228,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
+		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
 		
 		//Function
 		MagAmmo=30

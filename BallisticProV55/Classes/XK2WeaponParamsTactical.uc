@@ -17,8 +17,8 @@ defaultproperties
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=22
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
@@ -44,8 +44,8 @@ defaultproperties
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=18
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'

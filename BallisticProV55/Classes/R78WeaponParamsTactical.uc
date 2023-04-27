@@ -9,8 +9,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=120
-        HeadMult=2f
-        LimbMult=0.85f
+        HeadMult=2
+        LimbMult=0.85
 		DamageType=Class'BallisticProV55.DTR78Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR78Rifle'

@@ -16,8 +16,8 @@ defaultproperties
         AccelSpeed=100000.000000
         MaxSpeed=14000.000000
         Damage=50.000000
-        HeadMult=2.25
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
@@ -44,8 +44,8 @@ defaultproperties
         AccelSpeed=100000.000000
         MaxSpeed=14000.000000
         Damage=30.000000
-        HeadMult=2.25
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
@@ -72,8 +72,8 @@ defaultproperties
         AccelSpeed=150000.000000
         MaxSpeed=14000.000000
         Damage=70.000000
-        HeadMult=2.25
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
         MaxDamageGainFactor=0.75
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25

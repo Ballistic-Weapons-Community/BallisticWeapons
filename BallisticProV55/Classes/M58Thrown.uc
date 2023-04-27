@@ -40,7 +40,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		
 	if (Role == ROLE_Authority)
 	{
-		Spawn(class'M58Cloud',self,,HitLocation-HitNormal*2);
+		Spawn(class'M58Cloud',self,,HitLocation + HitNormal * 2);
 	}
 
 	if (Level.NetMode != NM_DedicatedServer && TrailClass != None && Trail == None)

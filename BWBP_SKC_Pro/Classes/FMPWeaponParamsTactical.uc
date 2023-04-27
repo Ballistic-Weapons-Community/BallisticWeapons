@@ -15,8 +15,8 @@ defaultproperties
      	PenetrationEnergy=16
 		PenetrateForce=135
 		Damage=44.0
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
@@ -46,8 +46,8 @@ defaultproperties
      	PenetrationEnergy=16
 		PenetrateForce=135
 		Damage=70
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Incendiary'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
@@ -75,8 +75,8 @@ defaultproperties
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.7
 		Damage=35
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Corrosive'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'

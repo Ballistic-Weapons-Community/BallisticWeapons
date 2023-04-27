@@ -15,9 +15,9 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=12
-        HeadMult=1.75f
-        LimbMult=0.85f
+		Damage=15
+        HeadMult=1.75
+        LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -48,8 +48,8 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=8
-        HeadMult=1.75f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -84,8 +84,8 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
 		Damage=5
-        HeadMult=1.0f
-        LimbMult=1.0f
+        HeadMult=1
+        LimbMult=1
 		DamageType=Class'BWBP_SKC_Pro.DT_Mk781Electro'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_Mk781Electro'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_Mk781Electro'
@@ -119,8 +119,8 @@ defaultproperties
 		Damage=50
 		DamageRadius=768.000000
 		MomentumTransfer=70000.000000
-		HeadMult=1.0f
-		LimbMult=1.0f
+		HeadMult=1
+		LimbMult=1
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire')

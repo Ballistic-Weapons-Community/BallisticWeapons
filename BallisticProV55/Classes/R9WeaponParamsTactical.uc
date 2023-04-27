@@ -10,8 +10,8 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
 		Damage=52
-        HeadMult=2.5
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -38,8 +38,8 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
 		Damage=40
-        HeadMult=2.5
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -65,8 +65,8 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
 		Damage=35
-        HeadMult=2.5
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'

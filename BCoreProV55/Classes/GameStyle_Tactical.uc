@@ -16,7 +16,7 @@ defaultproperties
 
 	bRunInADS=False
 	bForceViewShake=True
-	SightBobScale=1f
+	SightBobScale=0.5f
 
 	MaxInventoryCapacity=12
 
@@ -37,8 +37,8 @@ defaultproperties
 	PlayerSuperHealthMax=100
 
 	bShieldRegeneration=False
-	StartingShield=25
-	PlayerShieldMax=25
+	StartingShield=50
+	PlayerShieldMax=50
 
 	bPlayerDeceleration=True
 	bAllowDodging=True
@@ -65,5 +65,5 @@ defaultproperties
 	HealthKillReward=0
 	KillRewardHealthMax=0
 	ShieldKillReward=25
-	KillRewardShieldMax=25
+	KillRewardShieldMax=50
 }

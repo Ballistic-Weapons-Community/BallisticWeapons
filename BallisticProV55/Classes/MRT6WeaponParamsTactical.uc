@@ -14,8 +14,8 @@ defaultproperties
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=8
-        HeadMult=1.75f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
         DamageType=Class'BallisticProV55.DTMRT6Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
         DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
@@ -49,8 +49,8 @@ defaultproperties
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=8
-		HeadMult=1.75f
-        LimbMult=0.85f
+		HeadMult=1.75
+        LimbMult=0.85
 		PushbackForce=600.000000
         DamageType=Class'BallisticProV55.DTMRT6Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'

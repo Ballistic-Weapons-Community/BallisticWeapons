@@ -8,8 +8,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		Damage=15
-		HeadMult=2.25f
-		LimbMult=0.75f
+		HeadMult=2.5
+		LimbMult=0.75
 		DamageType=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeArm=Class'BallisticProV55.DT_HVCLightning'
@@ -31,8 +31,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
 		Damage=200
-		HeadMult=1f
-		LimbMult=1f
+		HeadMult=1
+		LimbMult=1
 		DamageType=Class'BallisticProV55.DT_HVCRedLightning'
 		DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
 		DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'

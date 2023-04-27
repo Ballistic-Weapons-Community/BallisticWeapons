@@ -17,8 +17,8 @@ defaultproperties
 		Inaccuracy=(X=128,Y=128)
         RangeAtten=0.5
         Damage=24
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
@@ -50,8 +50,8 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
         RangeAtten=0.5
         Damage=8
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTGRS9Laser'
         DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'

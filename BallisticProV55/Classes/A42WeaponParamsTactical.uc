@@ -16,8 +16,8 @@ defaultproperties
         MaxSpeed=10000.000000
         AccelSpeed=60000.000000
         Damage=45.000000
-        HeadMult=2.25f
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
         DamageRadius=48.000000
         MaxDamageGainFactor=0.35
         DamageGainStartTime=0.05
@@ -44,9 +44,9 @@ defaultproperties
     	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
     	TraceRange=(Min=8000.000000,Max=8000.000000)
         PenetrateForce=150
-        Damage=85.000000
-        HeadMult=2.75
-        LimbMult=0.75f
+        Damage=65.000000
+        HeadMult=2
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTA42SkrithBeam'
         DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
         DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'

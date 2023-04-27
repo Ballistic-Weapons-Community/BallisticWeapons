@@ -16,8 +16,8 @@ defaultproperties
         DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
 		Damage=42
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
@@ -52,8 +52,8 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=10
-        HeadMult=1.5f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		PushbackForce=150.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'

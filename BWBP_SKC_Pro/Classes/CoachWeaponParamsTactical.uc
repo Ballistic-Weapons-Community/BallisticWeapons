@@ -15,8 +15,8 @@ defaultproperties
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		MaxHits=15 // inflict maximum of 150 damage to a single target, before modifiers
 		Damage=10
-        HeadMult=1.75f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		PushbackForce=100.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
@@ -47,8 +47,8 @@ defaultproperties
 	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
 		Damage=60
-        HeadMult=2.25f
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
 		PushbackForce=250.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCoachSlug'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachSlug'

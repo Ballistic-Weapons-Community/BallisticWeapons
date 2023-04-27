@@ -16,8 +16,8 @@ defaultproperties
         DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
 		Damage=34
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSARRifle'
 		DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSARRifle'
@@ -46,8 +46,8 @@ defaultproperties
 		PenetrationEnergy=16
 		RangeAtten=0.67
 		Damage=34
-        HeadMult=2.75
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSARRifle'
 		DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSARRifle'

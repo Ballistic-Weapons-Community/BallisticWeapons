@@ -13,8 +13,8 @@ defaultproperties
         AccelSpeed=100000
         MaxSpeed=14000
         Damage=135
-        HeadMult=2.25
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
 		DamageRadius=128
 		MomentumTransfer=10000
     	Recoil=512.000000
@@ -39,8 +39,8 @@ defaultproperties
         AccelSpeed=100000
         MaxSpeed=14000
         Damage=60
-        HeadMult=2.25
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
 		DamageRadius=0
 		MomentumTransfer=100
     	Recoil=96.000000
@@ -145,8 +145,8 @@ defaultproperties
 		TraceRange=(Min=180.000000,Max=180.000000)
 		WaterTraceRange=5000.0
 		Damage=50.0
-		HeadMult=1f
-		LimbMult=1f
+		HeadMult=1
+		LimbMult=1
 		DamageType=Class'BallisticProV55.DT_RSDarkStab'
 		DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
 		DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'

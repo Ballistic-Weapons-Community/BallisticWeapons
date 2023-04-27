@@ -11,8 +11,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=52
-        HeadMult=2.5f
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		PenetrationEnergy=48
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
@@ -29,7 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardFireParams
-		FireInterval=0.185000
+		FireInterval=0.20000
 		BurstFireRateFactor=0.30
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
@@ -41,8 +41,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=75
-        HeadMult=2.5f
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
@@ -70,8 +70,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=40
-        HeadMult=2.5f
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';

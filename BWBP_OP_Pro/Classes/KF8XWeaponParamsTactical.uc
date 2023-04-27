@@ -12,8 +12,8 @@ defaultproperties
 		Speed=7000.000000
 		MaxSpeed=7000.000000
 		Damage=30.000000
-		HeadMult=2.75f
-		LimbMult=0.75f
+		HeadMult=3.25
+		LimbMult=0.75
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=32.000000)
 		Recoil=0.0
 		Chaos=0.15

@@ -626,8 +626,8 @@ simulated function ClientPlayLinearSound(Sound sound, ESoundSlot slot, float vol
 		volume *= 0.65f;
 	else if (!FastTrace(Location, Level.GetLocalPlayerController().ViewTarget.Location))
 	{
-		volume *= 0.7f;
-		radius *= 0.5f;
+		volume *= 0.75f;
+		radius *= 0.75f;
 	}
 
 	// have to manually calculate a volume and radius in order to bypass NATIVE BULLSHIT
@@ -3210,7 +3210,7 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.15
+     FootstepVolume=0.25
      FootstepRadius=1024.000000
 	 GruntVolume=0.25
      GruntRadius=28.000000

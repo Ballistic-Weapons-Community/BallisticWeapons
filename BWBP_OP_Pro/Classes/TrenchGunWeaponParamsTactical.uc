@@ -15,8 +15,8 @@ defaultproperties
 		ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 		MaxHits=13 // inflict maximum of 156 damage to a single target
 		Damage=13
-        HeadMult=1.75f
-        LimbMult=0.85f
+        HeadMult=1.75
+        LimbMult=0.85
 		Inaccuracy=(X=220,Y=220)
 		DamageType=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'

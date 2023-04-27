@@ -11,8 +11,8 @@ defaultproperties
         DecayRange=(Min=3000,Max=6500)
 		RangeAtten=0.75
 		Damage=80
-        HeadMult=2f
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTMarlinRifle'
 		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
@@ -40,8 +40,8 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
 		Damage=100
-        HeadMult=2f
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTMarlinRifle'
 		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'

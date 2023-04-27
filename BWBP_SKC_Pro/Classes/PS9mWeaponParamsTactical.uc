@@ -10,8 +10,8 @@ defaultproperties
 		TraceRange=(Min=3000.000000,Max=3000.000000)
 		Inaccuracy=(X=128,Y=128)
 		Damage=10
-		HeadMult=1f
-		LimbMult=1f
+		HeadMult=1.75
+		LimbMult=1
 		DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'

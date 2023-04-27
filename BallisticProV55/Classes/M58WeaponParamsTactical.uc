@@ -14,8 +14,8 @@ defaultproperties
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		Speed=1000.000000
         MaxSpeed=1000.000000
-		HeadMult=1.0
-		LimbMult=1.0
+		HeadMult=1
+		LimbMult=1
 		Recoil=0.0
 		Chaos=-1.0
 		WarnTargetPct=0.5
@@ -39,8 +39,8 @@ defaultproperties
 		MaxSpeed=350.000000
 		Damage=0
         DamageRadius=200.000000
-		HeadMult=1.0
-		LimbMult=1.0
+		HeadMult=1
+		LimbMult=1
 		WarnTargetPct=0.5	
 	End Object
     

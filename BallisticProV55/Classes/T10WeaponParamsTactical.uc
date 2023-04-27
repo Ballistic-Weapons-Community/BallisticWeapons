@@ -15,8 +15,8 @@ defaultproperties
         WarnTargetPct=0.75
 		Speed=1000.000000
 		MaxSpeed=1500.000000
-		HeadMult=1.0
-		LimbMult=1.0
+		HeadMult=1
+		LimbMult=1
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
     End Object
 
@@ -37,8 +37,8 @@ defaultproperties
 		DamageRadius=200.000000
 		Speed=350.000000
 		MaxSpeed=350.000000
-		HeadMult=1.0
-		LimbMult=1.0
+		HeadMult=1
+		LimbMult=1
 		SpreadMode=FSM_Rectangle
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		WarnTargetPct=0.5

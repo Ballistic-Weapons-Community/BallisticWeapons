@@ -10,8 +10,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaStandardPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
 		DecayRange=(Min=788,Max=1838)
-		RangeAtten=0.5
-		Damage=29
+		RangeAtten=0.67
+		Damage=25
 		HeadMult=2.00
 		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
@@ -22,13 +22,13 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=1.700000)
-		Recoil=256.000000
+		Recoil=192.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams
-		FireInterval=0.175000
+		FireInterval=0.16000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -42,7 +42,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaCryoPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
 		DecayRange=(Min=788,Max=1838)
-		RangeAtten=0.5
+		RangeAtten=0.67
 		Damage=35
 		HeadMult=2.00
 		LimbMult=0.75f
@@ -60,7 +60,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaCryoPrimaryFireParams
-		FireInterval=0.225000
+		FireInterval=0.22
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -74,7 +74,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaRadPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
 		DecayRange=(Min=788,Max=1838)
-		RangeAtten=0.5
+		RangeAtten=0.67
 		Damage=26
 		HeadMult=2.00
 		LimbMult=0.75f
@@ -92,7 +92,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaRadPrimaryFireParams
-		FireInterval=0.225000
+		FireInterval=0.22
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -158,7 +158,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
-		MagAmmo=9
+		MagAmmo=20
         InventorySize=3
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

@@ -16,9 +16,9 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
-        Damage=45.000000
-        HeadMult=2.75f
-        LimbMult=0.75f
+        Damage=55.000000
+        HeadMult=3
+        LimbMult=0.75
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
         DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
@@ -38,7 +38,7 @@ defaultproperties
     Begin Object Class=FireParams Name=TacticalFireParams
         FireAnim="FireSingle"
         FireEndAnim=
-        FireInterval=0.5
+        FireInterval=0.65
         //AimedFireAnim="SightFire"
         FireEffectParams(0)=InstantEffectParams'TacticalFireEffectParams'
     End Object 
@@ -51,9 +51,9 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
-        Damage=90.000000
-        HeadMult=2.75f
-        LimbMult=0.75f
+        Damage=110.000000
+        HeadMult=3
+        LimbMult=0.75
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'

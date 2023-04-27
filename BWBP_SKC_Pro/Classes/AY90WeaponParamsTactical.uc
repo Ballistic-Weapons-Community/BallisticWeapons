@@ -17,8 +17,8 @@ defaultproperties
 		DamageRadius=230.000000
 		Damage=150
 		MomentumTransfer=30000.000000
-		HeadMult=2.000000
-		LimbMult=0.500000
+		HeadMult=2
+		LimbMult=0.75
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SkrithBow.SkrithBow-BoltShot',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
@@ -45,8 +45,8 @@ defaultproperties
 		AccelSpeed=90000.000000
 		Damage=250
 		DamageRadius=250.000000
-		HeadMult=2.000000
-		LimbMult=0.500000
+		HeadMult=2
+		LimbMult=0.75
 		MomentumTransfer=30000.000000
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
@@ -74,8 +74,8 @@ defaultproperties
 		AccelSpeed=90000.000000
 		Damage=400
 		DamageRadius=832.000000
-		HeadMult=2.000000
-		LimbMult=0.500000
+		HeadMult=2
+		LimbMult=0.75
 		MomentumTransfer=30000.000000
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
@@ -109,7 +109,7 @@ defaultproperties
 		DamageRadius=96.000000
 		MomentumTransfer=150.000000
 		HeadMult=2.5
-		LimbMult=0.5
+		LimbMult=0.75
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
@@ -137,7 +137,7 @@ defaultproperties
 		DamageRadius=96.000000
 		MomentumTransfer=150.000000
 		HeadMult=2.5
-		LimbMult=0.5
+		LimbMult=0.75
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)

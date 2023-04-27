@@ -10,8 +10,8 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
 		Damage=70
-        HeadMult=2.5f
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -39,8 +39,8 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
 		Damage=40
-        HeadMult=2.5f
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -67,8 +67,8 @@ defaultproperties
 		WaterTraceRange=5000
 		RangeAtten=0.75
 		Damage=40
-        HeadMult=2.5f
-        LimbMult=0.75f
+        HeadMult=3
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'

@@ -19,8 +19,8 @@ defaultproperties
         DecayRange=(Min=525,Max=1225)
 		Inaccuracy=(X=128,Y=128)
 		Damage=22
-        HeadMult=3f
-        LimbMult=0.75f
+        HeadMult=3.5
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'

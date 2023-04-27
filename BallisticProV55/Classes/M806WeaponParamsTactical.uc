@@ -17,8 +17,8 @@ defaultproperties
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.67 // listed as "HV" isn't it?
 		Damage=34
-        HeadMult=3
-        LimbMult=0.75f
+        HeadMult=3.5
+        LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'

@@ -17,8 +17,8 @@ defaultproperties
         DecayRange=(Min=1536,Max=4000)
 		RangeAtten=0.75
 		Damage=45
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
@@ -51,8 +51,8 @@ defaultproperties
 		Speed=8500.000000
 		MaxSpeed=8500.000000
 		Damage=75
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.50000,Radius=32) // stealth

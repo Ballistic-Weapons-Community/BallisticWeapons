@@ -13,7 +13,7 @@ defaultproperties
         MaxSpeed=10000.000000
         AccelSpeed=60000.000000
         Damage=45.000000
-        HeadMult=2.25f
+        HeadMult=2.5
         LimbMult=0.67
         DamageRadius=48.000000
      	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'

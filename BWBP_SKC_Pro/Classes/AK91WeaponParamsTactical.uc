@@ -11,8 +11,8 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.75
 		Damage=40
-        HeadMult=2.75f
-        LimbMult=0.75f
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'

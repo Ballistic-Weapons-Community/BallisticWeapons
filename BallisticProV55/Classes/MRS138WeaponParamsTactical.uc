@@ -13,9 +13,9 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=13
-        HeadMult=1.75f
-        LimbMult=0.85f
+		Damage=15
+        HeadMult=1.75
+        LimbMult=0.85
 		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'

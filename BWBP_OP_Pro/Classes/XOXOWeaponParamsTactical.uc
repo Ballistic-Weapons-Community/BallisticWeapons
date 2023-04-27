@@ -14,8 +14,8 @@ defaultproperties
 		MaxSpeed=14000.000000
 		AccelSpeed=100000.000000
 		Damage=62
-        HeadMult=2.25
-        LimbMult=0.75f
+        HeadMult=2.5
+        LimbMult=0.75
 		DamageRadius=48.000000
 		MomentumTransfer=-1000.000000
 		MaxDamageGainFactor=0.6
@@ -75,8 +75,8 @@ defaultproperties
 		Damage=120
 		//DamageRadius=1024.000000
 		MomentumTransfer=4000.000000
-		HeadMult=1.5f
-		LimbMult=0.8f
+		HeadMult=1
+		LimbMult=1
 		DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
@@ -130,8 +130,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
 		Damage=15
-        HeadMult=2.25
-        LimbMult=0.67
+        HeadMult=2.5
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		Recoil=0.000000

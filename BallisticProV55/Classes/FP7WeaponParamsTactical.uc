@@ -19,8 +19,8 @@ defaultproperties
 		MaxSpeed=1500.000000
 		Damage=20.000000
 		DamageRadius=200.000000
-		HeadMult=1.0
-		LimbMult=1.0
+		HeadMult=1
+		LimbMult=1
 		SpreadMode=FSM_Rectangle
 		Recoil=0.0
 		Chaos=-1.0
@@ -44,8 +44,8 @@ defaultproperties
 		MaxSpeed=350.000000
 		Damage=20.000000
 		DamageRadius=200.000000
-		HeadMult=1.0
-		LimbMult=1.0
+		HeadMult=1
+		LimbMult=1
 		SpreadMode=FSM_Rectangle
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		Recoil=0.0
