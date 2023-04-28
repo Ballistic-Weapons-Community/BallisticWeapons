@@ -13,7 +13,7 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=TacticalFireEffectParams
-        DecayRange=(Min=1313,Max=3938) // 25-75m
+        DecayRange=(Min=1050,Max=3150) // 20-60m
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
         Damage=45.000000 // .44 Magnum
@@ -48,7 +48,7 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=TacticalAltFireEffectParams
-        DecayRange=(Min=1313,Max=3938) // 25-75m
+        DecayRange=(Min=1050,Max=3150) // 20-60m
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
         Damage=90.000000

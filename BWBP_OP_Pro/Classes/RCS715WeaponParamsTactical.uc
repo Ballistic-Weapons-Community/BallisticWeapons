@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=6000.000000)
-        DecayRange=(Min=1050,Max=3150) // 20-60m
+        DecayRange=(Min=788,Max=2363) // 15-45m
 		RangeAtten=0.3
 		TraceCount=10
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'

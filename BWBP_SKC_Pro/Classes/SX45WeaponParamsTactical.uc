@@ -14,7 +14,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalStandardPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=1050,Max=3150) // 20-60m
+		DecayRange=(Min=788,Max=2363) // 15-45m
 		RangeAtten=0.5
 		Damage=28 // .45
 		HeadMult=3.5
@@ -48,7 +48,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalCryoPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=1050,Max=3150) // 20-60m
+		DecayRange=(Min=788,Max=2363) // 15-45m
 		RangeAtten=0.5
 		Damage=40
 		HeadMult=3
@@ -81,7 +81,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalRadPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=1050,Max=3150) // 20-60m
+		DecayRange=(Min=788,Max=2363) // 15-45m
 		RangeAtten=0.5
 		Damage=34
 		HeadMult=1

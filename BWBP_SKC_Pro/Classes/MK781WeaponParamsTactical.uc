@@ -9,7 +9,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=2560.000000,Max=2560.000000)
-        DecayRange=(Min=1050,Max=3150) // 20-60m
+        DecayRange=(Min=788,Max=2363) // 15-45m
 		WaterTraceRange=5000.0
 		RangeAtten=0.45
 		TraceCount=10
@@ -41,7 +41,7 @@ defaultproperties
 	//Suppressed
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimarySilEffectParams
 		TraceRange=(Min=3000.000000,Max=5000.000000)
-		DecayRange=(Min=1050,Max=3150) // 20-60m
+		DecayRange=(Min=788,Max=2363) // 15-45m
 		WaterTraceRange=5000.0
 		RangeAtten=0.45
 		TraceCount=10

@@ -12,7 +12,7 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=TacticalPriEffectParams
-        DecayRange=(Min=1313,Max=3938) // 25-75m
+        DecayRange=(Min=1050,Max=3150) // 20-60m
         PenetrationEnergy=16
         Damage=60.000000 // .50
         HeadMult=3

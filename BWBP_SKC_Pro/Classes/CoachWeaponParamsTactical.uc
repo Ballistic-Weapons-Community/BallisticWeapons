@@ -41,7 +41,7 @@ defaultproperties
 
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimarySlugEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
-        DecayRange=(Min=1313,Max=3938) // 25-75m
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		RangeAtten=0.25
 		TraceCount=1
 	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'

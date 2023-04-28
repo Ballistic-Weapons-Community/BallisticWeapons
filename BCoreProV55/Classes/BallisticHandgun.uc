@@ -114,7 +114,7 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	
-	bDualBlocked				= WeaponParams.bDualBlocked;
+	bDualBlocked = WeaponParams.bDualBlocked;
 }
 
 // Scope key pressed. Try go into tracking mode
@@ -1214,12 +1214,20 @@ simulated function BallisticWeapon FindQuickDraw(BallisticWeapon CurrentChoice, 
 		(LastSlave != None && BallisticHandgun(CurrentChoice).LastSlave == None) ||
 		BallisticHandgun(CurrentChoice).LastMasterTime < LastMasterTime)
 	{
-		CurrentChoice = self;
-		ChoiceRank = 1;
+		if (!bDualBlocked)
+		{
+			CurrentChoice = self;
+			ChoiceRank = 1;
+		}
 	}
-	for ( Inv=Inventory; Inv!=None; Inv=Inv.Inventory )
+	for ( Inv = Inventory; Inv != None; Inv = Inv.Inventory )
+	{
 		if (BallisticWeapon(Inv) != None)
-		{	Best = BallisticWeapon(Inv).FindQuickDraw(CurrentChoice, ChoiceRank);	break;	}
+		{	
+			Best = BallisticWeapon(Inv).FindQuickDraw(CurrentChoice, ChoiceRank);
+			break;	
+		}
+	}
 
 	if (Best == None)
 		return CurrentChoice;

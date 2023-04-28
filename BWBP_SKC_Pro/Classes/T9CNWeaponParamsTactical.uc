@@ -7,9 +7,9 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
+	Begin Object Class=InstantEffectParams Name=TacticalControlledEffectParams
         TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=1050,Max=3150) // 20-60m
+        DecayRange=(Min=788,Max=2363) // 15-45m
 		Inaccuracy=(X=128,Y=128)
         RangeAtten=0.5
         Damage=23 // 9mm
@@ -30,18 +30,18 @@ defaultproperties
 		WarnTargetPct=0.100000
 	End Object
 
-	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+	Begin Object Class=FireParams Name=TacticalControlledFireParams
 		FireInterval=0.130000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1
-	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'TacticalControlledEffectParams'
 	End Object
 
 	//Burst
-	Begin Object Class=InstantEffectParams Name=TacticalPrimaryBurstEffectParams
+	Begin Object Class=InstantEffectParams Name=TacticalAutoEffectParams
         TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=1050,Max=3150) // 20-60m
+        DecayRange=(Min=788,Max=2363) // 15-45m
 		Inaccuracy=(X=128,Y=128)
         RangeAtten=0.5
         Damage=23
@@ -56,18 +56,18 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
-		Recoil=210.000000
+		Recoil=280.000000
 		Chaos=0.070000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
 
-	Begin Object Class=FireParams Name=TacticalPrimaryBurstFireParams
+	Begin Object Class=FireParams Name=TacticalAutoFireParams
 		FireInterval=0.060000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1
-	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryBurstEffectParams'
+	FireEffectParams(0)=InstantEffectParams'TacticalAutoEffectParams'
 	End Object
 	
 	//=================================================================
@@ -92,10 +92,10 @@ defaultproperties
 
 	// Auto
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
-		ViewBindFactor=0.25
-		ADSViewBindFactor=0.5
+		ViewBindFactor=0.15
+		ADSViewBindFactor=0.25
 		EscapeMultiplier=1.1
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.3500000,OutVal=-0.02),(InVal=0.500000,OutVal=0.07),(InVal=0.6500000,OutVal=0.12),(InVal=0.800000,OutVal=-0.06),(InVal=1.000000,OutVal=0.07)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.090000),(InVal=0.3500000,OutVal=-0.09),(InVal=0.500000,OutVal=0.021),(InVal=0.6500000,OutVal=0.36),(InVal=0.800000,OutVal=-0.18),(InVal=1.000000,OutVal=0.21)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
@@ -106,8 +106,6 @@ defaultproperties
 		MaxMoveMultiplier=1.65
 	End Object
 	
-
-
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -151,9 +149,9 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'TacticalControlledRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
-		FireParams(2)=FireParams'TacticalPrimaryBurstFireParams'
+		FireParams(0)=FireParams'TacticalControlledFireParams'
+		FireParams(1)=FireParams'TacticalAutoFireParams'
+		FireParams(2)=FireParams'TacticalAutoFireParams'
 	End Object
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Robocop
@@ -184,8 +182,8 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'TacticalControlledRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
+		FireParams(0)=FireParams'TacticalControlledFireParams'
+		FireParams(1)=FireParams'TacticalAutoFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'TacticalParams_Auto' // better sights
