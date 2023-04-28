@@ -9,9 +9,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
-		DecayRange=(Min=2363,Max=5000)
-		RangeAtten=0.67
-		Damage=45
+		DecayRange=(Min=4200,Max=10500) // 80-200m
+		RangeAtten=0.75
+		Damage=65 // 7.62 NATO
 		DamageType=Class'BWBP_OP_Pro.DTM575MG'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
@@ -20,7 +20,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
 		FlashScaleFactor=0.700000
-		Recoil=150.000000
+		Recoil=250.000000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.M575.M575-FireHeavy',Volume=2.300000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
@@ -37,9 +37,9 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
-		DecayRange=(Min=2363,Max=5000)
-		RangeAtten=0.200000
-		Damage=36
+		DecayRange=(Min=4200,Max=10500) // 80-200m
+		RangeAtten=0.75
+		Damage=65
 		DamageType=Class'BWBP_OP_Pro.DTM575Freeze'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTM575Freeze'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTM575Freeze'
@@ -47,7 +47,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=0.250000
-		Recoil=70.000000
+		Recoil=250.000000
 		Chaos=0.050000
 	FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-FireFrost',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
@@ -99,9 +99,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//SightOffset=(X=5.000000,Y=-0.35000,Z=12.850000)
 		PlayerSpeedFactor=0.95
-		InventorySize=6
+		InventorySize=7
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.5
+		SightingTime=0.6
 		DisplaceDurationMult=1
 		MagAmmo=50
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

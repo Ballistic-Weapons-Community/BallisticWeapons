@@ -41,10 +41,10 @@ defaultproperties
 		TraceRange=(Min=2500.000000,Max=2500.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		TraceCount=8
+		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=12
+		Damage=7
 		DamageType=Class'BallisticProV55.DTleMatShotgun'
 		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'

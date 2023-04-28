@@ -15,7 +15,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
-		Damage=70
+		Damage=80 // .50
         HeadMult=3
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23HR'
@@ -51,7 +51,6 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=2560.000000,Max=2560.000000)
 		WaterTraceRange=5000.0
-		DecayRange=(Min=1050,Max=2100)
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'

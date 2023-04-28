@@ -12,11 +12,11 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=BurstFireEffect
-        DecayRange=(Min=525,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
         PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
-        Damage=26.000000
-        HeadMult=3.25
+        Damage=23.000000 // 9mm
+        HeadMult=3.5
         LimbMult=0.75
         RangeAtten=0.5
 		Inaccuracy=(X=128,Y=128)
@@ -36,11 +36,11 @@ defaultproperties
     End Object
 
     Begin Object Class=InstantEffectParams Name=AutoFireEffect
-        DecayRange=(Min=525,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
         PenetrationEnergy=16
         TraceRange=(Min=3072,Max=3072)
-        Damage=26.000000
-        HeadMult=3.25
+        Damage=23.000000
+        HeadMult=3.5
         LimbMult=0.75
         RangeAtten=0.5
 		Inaccuracy=(X=128,Y=128)

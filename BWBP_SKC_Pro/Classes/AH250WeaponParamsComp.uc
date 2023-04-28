@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=1575,Max=3675)
 		PenetrationEnergy=48
 		RangeAtten=0.67
-		Damage=62
+		Damage=50
         HeadMult=2.00
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
@@ -41,7 +41,7 @@ defaultproperties
         DecayRange=(Min=1050,Max=2100)
 		PenetrationEnergy=48
 		RangeAtten=0.67
-		Damage=62
+		Damage=50
         HeadMult=2.00
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'

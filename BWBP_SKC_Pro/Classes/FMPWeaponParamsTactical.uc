@@ -9,12 +9,12 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
      	TraceRange=(Min=3072,Max=3072)
-        DecayRange=(Min=725,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
      	PenetrationEnergy=16
 		PenetrateForce=135
-		Damage=44.0
+		Damage=30 // .40 SMG
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
@@ -40,12 +40,12 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalIncPrimaryEffectParams
      	TraceRange=(Min=3072,Max=3072)
-        DecayRange=(Min=725,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=28,Y=28)
-		RangeAtten=0.7
+		RangeAtten=0.5
      	PenetrationEnergy=16
 		PenetrateForce=135
-		Damage=70
+		Damage=60
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
@@ -71,9 +71,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalCorrosivePrimaryEffectParams
      	TraceRange=(Min=3072,Max=3072)
-        DecayRange=(Min=725,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=72,Y=72)
-		RangeAtten=0.7
+		RangeAtten=0.5
 		Damage=35
         HeadMult=3.25
         LimbMult=0.75

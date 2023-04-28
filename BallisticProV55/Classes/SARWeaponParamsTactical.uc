@@ -13,9 +13,9 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalAutoEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
-        DecayRange=(Min=1250,Max=3750)
-		RangeAtten=0.67
-		Damage=34
+        DecayRange=(Min=1838,Max=5250) // 35-100m
+		RangeAtten=0.5
+		Damage=34 // 5.56mm
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSARRifle'
@@ -42,9 +42,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalBurstEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
-        DecayRange=(Min=1250,Max=3750)
+        DecayRange=(Min=1838,Max=5250) // 35-100m
 		PenetrationEnergy=16
-		RangeAtten=0.67
+		RangeAtten=0.5
 		Damage=34
         HeadMult=3.25
         LimbMult=0.75

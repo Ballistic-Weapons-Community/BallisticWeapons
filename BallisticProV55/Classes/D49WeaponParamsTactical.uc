@@ -13,11 +13,11 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=TacticalFireEffectParams
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1313,Max=3938) // 25-75m
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
-        Damage=55.000000
-        HeadMult=3
+        Damage=45.000000 // .44 Magnum
+        HeadMult=3.5
         LimbMult=0.75
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
@@ -27,7 +27,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
         FlashScaleFactor=1.200000
-        Recoil=1536.000000
+        Recoil=1280.000000
         Chaos=0.400000
         Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-FireSingle',Volume=1.200000)
@@ -48,11 +48,11 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=TacticalAltFireEffectParams
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1313,Max=3938) // 25-75m
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
-        Damage=110.000000
-        HeadMult=3
+        Damage=90.000000
+        HeadMult=3.5
         LimbMult=0.75
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -62,9 +62,9 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
         FlashScaleFactor=1.200000
-        Recoil=3072.000000
+        Recoil=2560.000000
         Chaos=0.800000
-        Inaccuracy=(X=192,Y=192)
+        Inaccuracy=(X=128,Y=128)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Fire',Volume=1.300000)
         WarnTargetPct=0.5
 		BotRefireRate=0.7

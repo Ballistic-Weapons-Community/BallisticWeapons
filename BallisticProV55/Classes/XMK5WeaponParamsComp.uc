@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=788,Max=1838)
 		PenetrationEnergy=16
 		RangeAtten=0.5
-		Damage=22
+		Damage=23
         HeadMult=2.00f
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'

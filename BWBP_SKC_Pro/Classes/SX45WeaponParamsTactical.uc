@@ -14,9 +14,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalStandardPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=788,Max=1838)
-		RangeAtten=0.67
-		Damage=27
+		DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.5
+		Damage=28 // .45
 		HeadMult=3.5
 		LimbMult=0.75
 		PenetrationEnergy=16
@@ -29,13 +29,13 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=192.000000
+		Recoil=256.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardPrimaryFireParams
-		FireInterval=0.18000
+		FireInterval=0.2000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -48,8 +48,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalCryoPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=788,Max=1838)
-		RangeAtten=0.67
+		DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.5
 		Damage=40
 		HeadMult=3
 		LimbMult=0.75
@@ -68,7 +68,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalCryoPrimaryFireParams
-		FireInterval=0.25
+		FireInterval=0.275
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -81,8 +81,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalRadPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-		DecayRange=(Min=788,Max=1838)
-		RangeAtten=0.67
+		DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.5
 		Damage=34
 		HeadMult=1
 		LimbMult=1
@@ -101,7 +101,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalRadPrimaryFireParams
-		FireInterval=0.25
+		FireInterval=0.275
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -156,7 +156,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.200000
-		MagAmmo=20 // FN 5-7
+		MagAmmo=15
         InventorySize=3
 		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -178,7 +178,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.200000
-		MagAmmo=20
+		MagAmmo=15
 		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

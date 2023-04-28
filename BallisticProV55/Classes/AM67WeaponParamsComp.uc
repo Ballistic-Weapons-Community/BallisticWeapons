@@ -9,7 +9,7 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=ArenaPriEffectParams
         DecayRange=(Min=1050,Max=2100)
         PenetrationEnergy=16
-        Damage=62.000000
+        Damage=60.000000
         HeadMult=2.00
         LimbMult=0.75
         RangeAtten=0.5
@@ -95,7 +95,7 @@ defaultproperties
 		CockAnimRate=1.250000
 		
         DisplaceDurationMult=0.75
-        MagAmmo=7
+        MagAmmo=9
         InventorySize=4
 		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
 		SightingTime=0.250000

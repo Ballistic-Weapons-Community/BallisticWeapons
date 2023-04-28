@@ -8,9 +8,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=3000,Max=6500)
+        DecayRange=(Min=4200,Max=10500) // 80-200m
 		RangeAtten=0.75
-		Damage=80
+		Damage=80 // ?
         HeadMult=2.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTMarlinRifle'

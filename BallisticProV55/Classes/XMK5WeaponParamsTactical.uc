@@ -13,10 +13,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
-		Damage=24
+		Damage=30 // 10mm
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
@@ -27,14 +27,14 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XMk5FlashEmitter'
 		FlashScaleFactor=0.800000
-		Recoil=190.000000
+		Recoil=150.000000
 		Chaos=0.035000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.08000
+		FireInterval=0.09000
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'

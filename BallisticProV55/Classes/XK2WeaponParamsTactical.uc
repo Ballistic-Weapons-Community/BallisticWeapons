@@ -13,10 +13,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
-		Damage=22
+		Damage=23 // 9mm
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2SMG'
@@ -26,7 +26,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		Recoil=150.000000
+		Recoil=72.000000
 		Chaos=0.025000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.6,Radius=256.000000)
 	End Object
@@ -40,10 +40,10 @@ defaultproperties
 	//Ice
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryIceEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
-		Damage=18
+		Damage=30
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
@@ -53,7 +53,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.250000
-		Recoil=210.000000
+		Recoil=128.000000
 		Chaos=0.050000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
 	End Object

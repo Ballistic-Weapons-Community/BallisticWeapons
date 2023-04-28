@@ -8,9 +8,9 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalStandardEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=3000,Max=6000)
+        DecayRange=(Min=4200,Max=10500) // 80-200m
 		RangeAtten=0.75
-		Damage=52
+		Damage=65 // 7.62 NATO
         HeadMult=3
         LimbMult=0.75
 		PenetrationEnergy=48
@@ -22,15 +22,15 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=0.2000000
-		Recoil=512.000000
+		Recoil=600.000000
 		Chaos=0.100000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardFireParams
-		FireInterval=0.20000
-		BurstFireRateFactor=0.30
+		FireInterval=0.28000
+		BurstFireRateFactor=0.75
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalStandardEffectParams'
@@ -38,7 +38,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalExplosiveEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=3000,Max=6000)
+        DecayRange=(Min=4200,Max=10500) // 80-200m
 		RangeAtten=0.75
 		Damage=75
         HeadMult=3
@@ -58,8 +58,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalExplosiveFireParams
-		FireInterval=0.280000
-		BurstFireRateFactor=0.30
+		FireInterval=0.350000
+		BurstFireRateFactor=0.75
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalExplosiveEffectParams'
@@ -67,7 +67,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalAcidEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=3000,Max=6000)
+        DecayRange=(Min=4200,Max=10500) // 80-200m
 		RangeAtten=0.75
 		Damage=40
         HeadMult=3
@@ -87,8 +87,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalAcidFireParams
-		FireInterval=0.160000
-		BurstFireRateFactor=0.30
+		FireInterval=0.180000
+		BurstFireRateFactor=0.75
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalAcidEffectParams'

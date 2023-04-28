@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2363,Max=7000)
 		RangeAtten=0.75
-		Damage=110
+		Damage=140 // .75
         HeadMult=2
         LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'

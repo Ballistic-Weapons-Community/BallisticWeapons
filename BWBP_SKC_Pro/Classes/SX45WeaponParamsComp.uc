@@ -22,13 +22,13 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=1.700000)
-		Recoil=192.000000
+		Recoil=256.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams
-		FireInterval=0.18000
+		FireInterval=0.2000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -60,7 +60,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaCryoPrimaryFireParams
-		FireInterval=0.25
+		FireInterval=0.275
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -92,7 +92,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaRadPrimaryFireParams
-		FireInterval=0.25
+		FireInterval=0.275
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -138,7 +138,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.200000
-		MagAmmo=20
+		MagAmmo=15
         InventorySize=3
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
@@ -158,7 +158,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
-		MagAmmo=20
+		MagAmmo=15
         InventorySize=3
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

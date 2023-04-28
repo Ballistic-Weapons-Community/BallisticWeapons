@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=ShotgunEffectParams Name=TacticalAutoEffectParams
         TraceRange=(Min=2560.000000,Max=2560.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
         RangeAtten=0.25
         TraceCount=10
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
@@ -41,7 +41,7 @@ defaultproperties
 
     Begin Object Class=ShotgunEffectParams Name=TacticalManualEffectParams
         TraceRange=(Min=2048.000000,Max=4096.000000)
-        DecayRange=(Min=1000,Max=2500)
+        DecayRange=(Min=2100,Max=6200)
         RangeAtten=0.25
         TraceCount=10
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
@@ -79,8 +79,8 @@ defaultproperties
 	
     Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
         TraceRange=(Min=2560.000000,Max=2560.000000)
-        DecayRange=(Min=788,Max=1838)
-        RangeAtten=0.6
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+        RangeAtten=0.2
         TraceCount=30
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'

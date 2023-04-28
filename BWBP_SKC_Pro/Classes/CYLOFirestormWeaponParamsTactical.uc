@@ -8,16 +8,16 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=10000.000000,Max=12000.000000)
-        DecayRange=(Min=2300,Max=6000)
+        DecayRange=(Min=1838,Max=5250) // 35-100m
 		RangeAtten=0.5
-		Damage=45
+		Damage=45 // 5.56mm explosive
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		PenetrateForce=180
-		Inaccuracy=(X=32,Y=32)
+		Inaccuracy=(X=64,Y=64)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter'
 		FlashScaleFactor=0.250000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
@@ -145,7 +145,7 @@ defaultproperties
 		SightingTime=0.35
 		DisplaceDurationMult=1
 		SightPivot=(Pitch=256)
-		MagAmmo=26
+		MagAmmo=40
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

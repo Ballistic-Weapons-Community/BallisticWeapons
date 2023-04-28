@@ -16,9 +16,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		RangeAtten=0.5
-        DecayRange=(Min=525,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=128,Y=128)
-		Damage=22
+		Damage=23 // 9mm
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'

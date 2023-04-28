@@ -13,7 +13,7 @@ defaultproperties
 		DecayRange=(Min=2363,Max=5000)
 		PenetrationEnergy=32
 		RangeAtten=0.67
-		Damage=23
+		Damage=45
 		DamageType=Class'BWBP_OP_Pro.DTM575MG'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
@@ -21,13 +21,13 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
 		FlashScaleFactor=0.700000
-		Recoil=110.000000
+		Recoil=250.000000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.082000
+		FireInterval=0.1200
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -40,7 +40,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		DecayRange=(Min=2363,Max=5000)
 		RangeAtten=0.200000
-		Damage=25
+		Damage=45
 		DamageType=Class'BWBP_OP_Pro.DTM575Freeze'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTM575Freeze'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTM575Freeze'
@@ -48,13 +48,13 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=0.250000
-		Recoil=70.000000
+		Recoil=250.000000
 		Chaos=0.050000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-FireFrost',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-		FireInterval=0.090000
+		FireInterval=0.120000
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
 	End Object

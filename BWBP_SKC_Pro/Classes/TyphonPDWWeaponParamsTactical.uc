@@ -11,12 +11,12 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
-		DecayRange=(Min=1050,Max=2100)
+		DecayRange=(Min=1313,Max=3938) // 25-75m
 		TraceRange=(Max=6000.000000)
 		Damage=27.000000
         HeadMult=3.25
         LimbMult=0.75
-		RangeAtten=0.5f
+		RangeAtten=0.5
 		PenetrationEnergy=32
 		Inaccuracy=(X=64,Y=64)
 		PenetrateForce=150
@@ -44,7 +44,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
-		DecayRange=(Min=1575,Max=3675)
+		DecayRange=(Min=1313,Max=3938) // 25-75m
 		TraceRange=(Max=6000.000000)
 		PenetrationEnergy=64
 		Damage=40.000000

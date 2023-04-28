@@ -13,10 +13,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=525,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
-		Damage=26
+		Damage=30 // 10mm Auto
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTRS8Pistol'
@@ -26,7 +26,7 @@ defaultproperties
 		PenetrateForce=135
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		Recoil=225.000000
+		Recoil=360.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
@@ -36,7 +36,7 @@ defaultproperties
 		FireInterval=0.20000
 		FireEndAnim=
 		//AimedFireAnim='SightFire'
-		FireAnimRate=2	
+		FireAnimRate=1	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		
@@ -95,12 +95,13 @@ defaultproperties
 		//SightOffset=(X=-10.000000,Y=-2.000000,Z=18.8750000)
 		SightPivot=(Pitch=-200,Roll=-1050)
 		bAdjustHands=true
+		bDualBlocked=True
 		RootAdjust=(Yaw=-290,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
 		DisplaceDurationMult=0.33
 		SightingTime=0.200000
         SightMoveSpeedFactor=0.6
-		MagAmmo=15
+		MagAmmo=9
         InventorySize=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

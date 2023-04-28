@@ -13,9 +13,9 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=2300,Max=6000)
+        DecayRange=(Min=4200,Max=10500) // 80-200m
 		RangeAtten=0.75
-		Damage=65
+		Damage=65 // 7.62 NATO
         HeadMult=3
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
@@ -41,7 +41,7 @@ defaultproperties
 		
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_600
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-        DecayRange=(Min=2300,Max=6000)
+        DecayRange=(Min=4200,Max=10500) // 80-200m
 		RangeAtten=0.75
 		Damage=65
         HeadMult=3

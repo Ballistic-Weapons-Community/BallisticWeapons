@@ -13,13 +13,13 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalPriEffectParams
      	TraceRange=(Min=3072,Max=3072)
-        DecayRange=(Min=525,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
      	PenetrationEnergy=16
 		PenetrateForce=135
 		bPenetrate=True
-     	Damage=26
+     	Damage=28 // .45
         HeadMult=3.25
         LimbMult=0.75
      	DamageType=Class'BallisticProV55.DTXRS10SMG'

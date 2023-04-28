@@ -14,11 +14,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=8000.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1313,Max=3938) // 25-75m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
-		Damage=40
-        HeadMult=3.25
+		Damage=38  // .42
+        HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
 		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
@@ -28,7 +28,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.600000
-		Recoil=800.000000
+		Recoil=650.000000
 		Chaos=0.0400000
 		BotRefireRate=0.9
 		WarnTargetPct=0.35
@@ -49,12 +49,12 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=2500.000000,Max=2500.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1313,Max=3938) // 25-75m
 		RangeAtten=0.5
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=6
+		Damage=7
         HeadMult=1.75
         LimbMult=0.85
 		DamageType=Class'BallisticProV55.DTleMatShotgun'

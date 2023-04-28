@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=125
+		Damage=125 // .50 + lol sniper bonus
         HeadMult=2
         LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'

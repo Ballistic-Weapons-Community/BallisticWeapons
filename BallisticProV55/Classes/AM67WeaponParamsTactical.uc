@@ -12,10 +12,10 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=TacticalPriEffectParams
-        DecayRange=(Min=1050,Max=2100)
+        DecayRange=(Min=1313,Max=3938) // 25-75m
         PenetrationEnergy=16
-        Damage=70.000000
-        HeadMult=2.5
+        Damage=60.000000 // .50
+        HeadMult=3
         LimbMult=0.75
         RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTAM67Pistol'
@@ -102,7 +102,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=TacticalParams
         DisplaceDurationMult=0.75
-        MagAmmo=7
+        MagAmmo=9
         InventorySize=4
 		bDualBlocked=True
 		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)

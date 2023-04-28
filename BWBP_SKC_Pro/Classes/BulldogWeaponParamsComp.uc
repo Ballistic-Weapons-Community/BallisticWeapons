@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=2363,Max=7000)
 		PenetrationEnergy=128
 		RangeAtten=0.5
-		Damage=100
+		Damage=140 // .75
         HeadMult=1.50
         LimbMult=0.90
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'

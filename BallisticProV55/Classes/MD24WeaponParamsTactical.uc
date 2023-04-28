@@ -13,10 +13,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=525,Max=1225)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
-		Damage=24
+		Damage=23 // 9mm
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTMD24Pistol'
@@ -84,6 +84,7 @@ defaultproperties
 		//Attachments
 		//Function
 		//SightOffset=(X=-8.000000,Y=-0.030000,Z=7.400000)
+		bDualBlocked=True
 		SightingTime=0.200000
         DisplaceDurationMult=0.33
         SightMoveSpeedFactor=0.6

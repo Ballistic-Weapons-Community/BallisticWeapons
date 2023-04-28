@@ -13,10 +13,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000,Max=4000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=1313,Max=3938) // 25-75m
 		Inaccuracy=(X=128,Y=128)
-		RangeAtten=0.67 // listed as "HV" isn't it?
-		Damage=34
+		RangeAtten=0.5
+		Damage=36  // .42
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM806Pistol'

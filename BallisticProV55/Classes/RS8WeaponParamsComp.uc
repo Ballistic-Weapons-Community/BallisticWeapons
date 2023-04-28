@@ -11,7 +11,7 @@ defaultproperties
         DecayRange=(Min=525,Max=1225)
 		PenetrationEnergy=16
 		RangeAtten=0.5
-		Damage=29
+		Damage=25
         HeadMult=2.00
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTRS8Pistol'
@@ -20,7 +20,7 @@ defaultproperties
 		PenetrateForce=135
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		Recoil=225.000000
+		Recoil=360.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
@@ -87,7 +87,7 @@ defaultproperties
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.200000
-		MagAmmo=15
+		MagAmmo=9
         InventorySize=2
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
