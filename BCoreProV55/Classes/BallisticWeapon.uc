@@ -5407,6 +5407,16 @@ exec function PrimaryRecoil(float f)
 	} 
 }
 
+// tunes aim escape
+exec function ADSSway(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		AimComponent.Params.ADSMultiplier = f; 
+	} 
+}
+
+// tunes recoil escape
 exec function ADSBind(float f) 
 { 
 	if (Level.NetMode == NM_Standalone) 

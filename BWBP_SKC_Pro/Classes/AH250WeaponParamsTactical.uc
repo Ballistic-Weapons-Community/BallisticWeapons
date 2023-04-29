@@ -89,7 +89,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_208
@@ -105,7 +105,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
     End Object
 
 	//=================================================================
@@ -113,7 +113,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		ADSMultiplier=0.5
+		ADSMultiplier=0.7
 		AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimAdjustTime=0.7

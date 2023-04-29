@@ -77,7 +77,7 @@ defaultproperties
 		DeclineTime=0.750000
 		CrouchMultiplier=1
 		HipMultiplier=1
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -90,7 +90,7 @@ defaultproperties
 		ChaosDeclineTime=0.450000
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
 		AimSpread=(Min=256,Max=768)
-        ADSMultiplier=0.5
+        ADSMultiplier=0.7
         ChaosSpeedThreshold=300
 	End Object
 

@@ -291,6 +291,16 @@ static function AddSlowTo(Pawn P, float myFactor, float myDuration)
 		Control.AddSlow(myFactor, myDuration);
 }
 
+static function SetSlowTo(Pawn P, float myFactor, float myDuration)
+{
+	local BCSprintControl Control;
+
+	Control = BCSprintControl(P.FindInventoryType(class'BCSprintControl'));
+
+	if (Control != None)
+		Control.SetSlow(myFactor, myDuration);
+}
+
 function AddSlow(float myFactor, float myDuration)
 {
 	local int i;
@@ -335,6 +345,52 @@ function AddSlow(float myFactor, float myDuration)
 	//Otherwise just add duration to the existing slow.
 	else 
 		ActiveSlows[i].Duration += myDuration;
+}
+
+function SetSlow(float myFactor, float myDuration)
+{
+	local int i;
+	local float LowestDuration, LowestFactor;
+	
+	//Seek existing slows of the same factor.
+	for (i = 0; i < ActiveSlows.Length && ActiveSlows[i].Factor != myFactor; i++);
+	
+	//If none, add a new slow and adjust the timer and durations here.
+	if (i == ActiveSlows.Length)
+	{
+		LowestDuration = myDuration;
+		LowestFactor = myFactor;
+		
+		for (i = 0; i < ActiveSlows.Length; i++)
+		{
+			ActiveSlows[i].Duration -= TimerCounter;
+			if (ActiveSlows[i].Duration < 0.1)
+				ActiveSlows.Remove(i, 1);
+			else
+			{	
+				if (ActiveSlows[i].Duration < LowestDuration)
+					LowestDuration = ActiveSlows[i].Duration;
+				if (ActiveSlows[i].Factor < LowestFactor)
+					LowestFactor = ActiveSlows[i].Factor;
+			}
+		}
+
+		AddNewSlow();
+
+		ActiveSlows[ActiveSlows.Length-1].Factor = myFactor;
+		ActiveSlows[ActiveSlows.Length-1].Duration = myDuration;
+		
+		SetTimer(LowestDuration, false);
+		//log("Timer: TimerRate:"@TimerRate@"LowestDuration:"@LowestDuration);
+		NextTimerPop = TimerRate;
+		SlowFactor = LowestFactor;
+		
+		UpdateSpeed();
+	}
+	
+	//Otherwise just set duration of the existing slow.
+	else 
+		ActiveSlows[i].Duration = myDuration;
 }
 
 function Timer()

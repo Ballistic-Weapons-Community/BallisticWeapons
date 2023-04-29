@@ -117,7 +117,7 @@ defaultproperties
 		DeclineTime=1.1
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams // for stock
@@ -134,7 +134,7 @@ defaultproperties
 		DeclineTime=1.1
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
 	End Object
 
 	//=================================================================
@@ -143,7 +143,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalBurstAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.25
+		ADSMultiplier=0.35
 		AimAdjustTime=0.5
         AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
@@ -152,7 +152,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAutoAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.25
+		ADSMultiplier=0.35
 		AimAdjustTime=0.6
         AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)

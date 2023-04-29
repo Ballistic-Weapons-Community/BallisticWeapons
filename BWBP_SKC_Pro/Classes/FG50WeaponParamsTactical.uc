@@ -155,7 +155,7 @@ defaultproperties
 		DeclineTime=2
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2.5.5
 	End Object
 
 	//=================================================================

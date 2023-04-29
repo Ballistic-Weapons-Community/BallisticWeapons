@@ -99,7 +99,7 @@ defaultproperties
 		DeclineTime=1.500000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2.5.5
 	End Object
 
 	//=================================================================
@@ -111,7 +111,7 @@ defaultproperties
 		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-4000)
-		ADSMultiplier=0.25
+		ADSMultiplier=0.35
 		AimAdjustTime=0.70
 		ChaosDeclineTime=1.750000
         ChaosSpeedThreshold=300.000000

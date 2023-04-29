@@ -76,7 +76,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
     End Object
 	
 	//=================================================================
@@ -85,7 +85,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.25
+		ADSMultiplier=0.35
 		AimAdjustTime=0.6
 		ChaosSpeedThreshold=300
 		ChaosDeclineTime=0.750000

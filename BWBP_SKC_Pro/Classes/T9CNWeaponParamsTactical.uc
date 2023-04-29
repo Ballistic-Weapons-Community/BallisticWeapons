@@ -87,7 +87,7 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
 	End Object
 
 	// Auto
@@ -103,7 +103,7 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
-		MaxMoveMultiplier=1.65
+		MaxMoveMultiplier=2
 	End Object
 	
 	//=================================================================
@@ -112,7 +112,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.25
+		ADSMultiplier=0.35
 		AimAdjustTime=0.5
         AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)

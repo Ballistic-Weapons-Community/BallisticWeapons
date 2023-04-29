@@ -626,7 +626,7 @@ simulated function ClientPlayLinearSound(Sound sound, ESoundSlot slot, float vol
 		volume *= 0.65f;
 	else if (!FastTrace(Location, Level.GetLocalPlayerController().ViewTarget.Location))
 	{
-		volume *= 0.75f;
+		volume *= 0.8f;
 		radius *= 0.75f;
 	}
 
@@ -663,15 +663,15 @@ simulated function FootStepping(int Side)
 	// walk/ADS - quieter
 	if (bIsWalking)
 	{
-		SoundVolumeScale = 0.5f;
-		SoundRadiusScale = 0.5f;
+		SoundVolumeScale = 0.65f;
+		SoundRadiusScale = 0.65f;
 	}
 
 	// sprint - much louder
 	else if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
 	{
-		SoundVolumeScale = 1.35f;
-		SoundRadiusScale = 1.35f;
+		SoundVolumeScale = 1.2f;
+		SoundRadiusScale = 1.4f;
 	}
 
 	// run - default
@@ -3211,7 +3211,7 @@ defaultproperties
      ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.25
-     FootstepRadius=1024.000000
+     FootstepRadius=1536.000000
 	 GruntVolume=0.25
      GruntRadius=28.000000
 

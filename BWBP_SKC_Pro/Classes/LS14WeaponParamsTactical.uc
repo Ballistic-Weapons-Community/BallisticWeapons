@@ -11,7 +11,7 @@ defaultproperties
 		Damage=20
         HeadMult=2.5
         LimbMult=0.75
-		HeatPerShot=10
+		Heat=10
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
@@ -37,7 +37,7 @@ defaultproperties
 		Damage=40
         HeadMult=2.5
         LimbMult=0.75
-		HeatPerShot=20
+		Heat=20
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Twin'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Twin'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Twin'
@@ -49,10 +49,11 @@ defaultproperties
 		Chaos=0.300000
 		BotRefireRate=0.99
 		WarnTargetPct=0.30000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-FireDouble',Volume=0.900000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble',Volume=0.900000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryDoubleFireParams
+
 		FireInterval=0.75
 		FireEndAnim=	
 		AmmoPerFire=2
@@ -103,7 +104,7 @@ defaultproperties
 		DeclineTime=1.000000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -113,7 +114,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=256,Max=1024)
 		AimAdjustTime=0.700000
-        ADSMultiplier=0.5
+        ADSMultiplier=0.7
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.0
 		ChaosDeclineDelay=0.5

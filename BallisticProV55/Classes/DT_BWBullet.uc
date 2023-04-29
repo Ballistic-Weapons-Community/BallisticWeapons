@@ -8,6 +8,15 @@
 //=============================================================================
 class DT_BWBullet extends BallisticDamageType;
 
+// Call this to do damage to something. This lets the damagetype modify the things if it needs to
+static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
+{
+	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
+
+	if (class'BallisticReplicationInfo'.static.IsTactical() && Pawn(Victim) != None)
+		class'BCSprintControl'.static.SetSlowTo(Pawn(Victim), 0.7, 0.1);
+}
+
 static function PlayHitSound (Pawn Victim)
 {
 	local class<BallisticBloodSet> BS;

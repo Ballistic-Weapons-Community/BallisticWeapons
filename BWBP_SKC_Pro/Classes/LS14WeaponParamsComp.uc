@@ -9,6 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=20
+		Heat=10
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
@@ -24,6 +25,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+
 		FireInterval=0.250000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -32,9 +34,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryDoubleEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=40
-        HeadMult=2.5
-        LimbMult=0.75
-		HeatPerShot=20
+		Heat=20
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Twin'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Twin'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Twin'
@@ -46,7 +46,7 @@ defaultproperties
 		Chaos=0.300000
 		BotRefireRate=0.99
 		WarnTargetPct=0.30000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-FireDouble',Volume=0.900000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble',Volume=0.900000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryDoubleFireParams

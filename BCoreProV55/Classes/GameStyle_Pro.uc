@@ -44,9 +44,9 @@ defaultproperties
 	PlayerCrouchSpeedFactor=0.45
     PlayerStrafeScale=1
     PlayerBackpedalScale=1
-    PlayerGroundSpeed=260.000000
+    PlayerGroundSpeed=270.000000
 	PlayerAnimationGroundSpeed=340
-    PlayerAirSpeed=260.000000
+    PlayerAirSpeed=270.000000
     PlayerAccelRate=2048.000000
     PlayerJumpZ=294
 	PlayerDodgeSpeedFactor=1.5
