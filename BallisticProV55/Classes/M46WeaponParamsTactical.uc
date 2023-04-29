@@ -134,7 +134,7 @@ defaultproperties
         MagAmmo=24
         InventorySize=6
 		// ADS handling
-		SightingTime=0.4
+		SightingTime=0.40
         SightMoveSpeedFactor=0.35
 		// Zoom
         ZoomType=ZT_Fixed
@@ -150,7 +150,7 @@ defaultproperties
     End Object 
 
     Begin Object Class=WeaponParams Name=TacticalParams_RDS
-		SightingTime=0.35000
+		SightingTime=0.35
         SightMoveSpeedFactor=0.6
         MagAmmo=24
         InventorySize=6

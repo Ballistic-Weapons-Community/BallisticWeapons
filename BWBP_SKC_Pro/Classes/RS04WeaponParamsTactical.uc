@@ -109,7 +109,7 @@ defaultproperties
 		InventorySize=2
 		WeaponPrice=700
 		DisplaceDurationMult=0.5
-		SightingTime=0.15000
+		SightingTime=0.20
         SightMoveSpeedFactor=0.6
 		MagAmmo=10
 		bDualBlocked=True

@@ -116,10 +116,10 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
-        SightMoveSpeedFactor=0.6
+        SightMoveSpeedFactor=0.5
 		SightPivot=(Pitch=256)
 		MagAmmo=8
-		SightingTime=0.3
+		SightingTime=0.35
         InventorySize=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

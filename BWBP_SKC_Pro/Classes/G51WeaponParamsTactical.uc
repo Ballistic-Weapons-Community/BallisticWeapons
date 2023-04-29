@@ -179,7 +179,7 @@ defaultproperties
 		//Function
 		MagAmmo=30
         InventorySize=6
-		SightingTime=0.350000
+		SightingTime=0.35
 		SightMoveSpeedFactor=0.6
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -206,7 +206,7 @@ defaultproperties
 		//Function
 		MagAmmo=30
         InventorySize=6
-		SightingTime=0.350000
+		SightingTime=0.35
 		SightMoveSpeedFactor=0.6
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -233,7 +233,7 @@ defaultproperties
 		//Function
 		MagAmmo=30
         InventorySize=6
-		SightingTime=0.350000
+		SightingTime=0.35
 		SightMoveSpeedFactor=0.6
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)

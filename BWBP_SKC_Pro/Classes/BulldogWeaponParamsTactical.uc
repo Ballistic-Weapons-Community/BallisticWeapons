@@ -82,7 +82,7 @@ defaultproperties
 		DeclineTime=1
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=3
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -112,7 +112,7 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.65
+		SightingTime=0.55
 		DisplaceDurationMult=1.25
 		MagAmmo=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

@@ -28,6 +28,33 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
+
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryDoubleEffectParams
+		TraceRange=(Min=30000.000000,Max=30000.000000)
+		Damage=40
+        HeadMult=2.5
+        LimbMult=0.75
+		HeatPerShot=20
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Twin'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Twin'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Twin'
+		PenetrateForce=500
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		Recoil=512.000000
+		Chaos=0.300000
+		BotRefireRate=0.99
+		WarnTargetPct=0.30000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-FireDouble',Volume=0.900000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryDoubleFireParams
+		FireInterval=0.75
+		FireEndAnim=	
+		AmmoPerFire=2
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryDoubleEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -114,6 +141,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryDoubleFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'

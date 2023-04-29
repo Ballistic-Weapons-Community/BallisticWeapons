@@ -85,7 +85,7 @@ defaultproperties
 		//Function
 		//SightOffset=(X=-8.000000,Y=-0.030000,Z=7.400000)
 		bDualBlocked=True
-		SightingTime=0.200000
+		SightingTime=0.20
         DisplaceDurationMult=0.33
         SightMoveSpeedFactor=0.6
 		MagAmmo=15

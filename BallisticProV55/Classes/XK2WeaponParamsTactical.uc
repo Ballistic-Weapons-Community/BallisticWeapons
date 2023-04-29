@@ -17,7 +17,7 @@ defaultproperties
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=23 // 9mm
-        HeadMult=3.25
+        HeadMult=3
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
@@ -44,7 +44,7 @@ defaultproperties
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=30
-        HeadMult=3.25
+        HeadMult=2.75
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'

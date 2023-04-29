@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		DecayRange=(Min=2625,Max=6300) // 50-120m
 		RangeAtten=0.75
-		Damage=65 // 7.62 NATO
+		Damage=55 // 7.62 NATO
 		DamageType=Class'BWBP_OP_Pro.DTM575MG'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
@@ -75,7 +75,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -101,7 +101,7 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		InventorySize=7
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.6
+		SightingTime=0.55
 		DisplaceDurationMult=1
 		MagAmmo=50
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

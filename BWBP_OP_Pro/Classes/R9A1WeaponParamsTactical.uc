@@ -106,14 +106,23 @@ defaultproperties
 		DeclineTime=1.00000
 		CrouchMultiplier=0.850000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		AimSpread=(Min=384,Max=1280)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		AimAdjustTime=0.70
+		ChaosSpeedThreshold=300
+		ADSMultiplier=0.5
+	End Object
+
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
 		AimSpread=(Min=384,Max=1280)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.70
@@ -143,12 +152,12 @@ defaultproperties
 		//SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.4	
+		SightingTime=0.40
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=12
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		FireParams(1)=FireParams'TacticalFreezeFireParams'
 		FireParams(2)=FireParams'TacticalHeatFireParams'
@@ -166,7 +175,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.4	
+		SightingTime=0.40	
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=12
@@ -189,7 +198,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.4	
+		SightingTime=0.40	
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=12

@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2625,Max=6300) // 50-120m
 		RangeAtten=0.75
-		Damage=65 // 7.62 NATO
+		Damage=55 // 7.62 NATO
         HeadMult=3
         LimbMult=0.75
 		PenetrationEnergy=48
@@ -29,9 +29,10 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardFireParams
-		FireInterval=0.28000
-		BurstFireRateFactor=0.75
+		FireInterval=0.32000
+		BurstFireRateFactor=1
 		FireEndAnim=
+		FireAnimRate=0.8
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalStandardEffectParams'
 	End Object
@@ -51,16 +52,17 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 		FlashScaleFactor=1.1000000
-		Recoil=650.000000
+		Recoil=800.000000
 		Chaos=0.450000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-LoudFire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalExplosiveFireParams
-		FireInterval=0.350000
-		BurstFireRateFactor=0.75
+		FireInterval=0.450000
+		BurstFireRateFactor=1
 		FireEndAnim=
+		FireAnimRate=0.8
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalExplosiveEffectParams'
 	End Object
@@ -87,9 +89,10 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalAcidFireParams
-		FireInterval=0.180000
-		BurstFireRateFactor=0.75
+		FireInterval=0.20000
+		BurstFireRateFactor=1
 		FireEndAnim=
+		FireAnimRate=1
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalAcidEffectParams'
 	End Object
@@ -115,33 +118,33 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
 		XRandFactor=0.2
 		YRandFactor=0.2
 		ClimbTime=0.06
-		DeclineDelay=0.250000
+		DeclineDelay=0.4
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalExplosiveRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
 		YRandFactor=0.2
 		ClimbTime=0.06
-		DeclineDelay=0.32
+		DeclineDelay=0.4
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAcidRecoilParams
@@ -156,7 +159,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -164,7 +167,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		ADSMultiplier=0.25
+		ADSMultiplier=0.5
+		ADSViewBindFactor=0
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimSpread=(Min=384,Max=1280)
 		AimAdjustTime=0.600000
@@ -187,10 +191,10 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
 		SightOffset=(X=0,Y=0,Z=2.60)
 		//Function
-        SightingTime=0.35
+        SightingTime=0.40
 		MagAmmo=20
         InventorySize=6
-        SightMoveSpeedFactor=0.6
+        SightMoveSpeedFactor=0.45
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalExplosiveRecoilParams'
 		RecoilParams(2)=RecoilParams'TacticalAcidRecoilParams'
@@ -212,10 +216,10 @@ defaultproperties
 		//SightPivot=(Pitch=-128,Yaw=16)
 		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
 		//Function
-        SightingTime=0.35
+        SightingTime=0.40
 		MagAmmo=20
         InventorySize=6
-        SightMoveSpeedFactor=0.6
+        SightMoveSpeedFactor=0.45
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalExplosiveRecoilParams'
 		RecoilParams(2)=RecoilParams'TacticalAcidRecoilParams'

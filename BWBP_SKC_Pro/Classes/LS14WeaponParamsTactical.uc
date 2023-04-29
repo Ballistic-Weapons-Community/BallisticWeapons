@@ -11,6 +11,7 @@ defaultproperties
 		Damage=20
         HeadMult=2.5
         LimbMult=0.75
+		HeatPerShot=10
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
@@ -30,8 +31,35 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
+
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryDoubleEffectParams
+		TraceRange=(Min=30000.000000,Max=30000.000000)
+		Damage=40
+        HeadMult=2.5
+        LimbMult=0.75
+		HeatPerShot=20
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Twin'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Twin'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Twin'
+		PenetrateForce=500
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		Recoil=512.000000
+		Chaos=0.300000
+		BotRefireRate=0.99
+		WarnTargetPct=0.30000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-FireDouble',Volume=0.900000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryDoubleFireParams
+		FireInterval=0.75
+		FireEndAnim=	
+		AmmoPerFire=2
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryDoubleEffectParams'
+	End Object
 		
-    //=================================================================
+	//=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
@@ -105,7 +133,7 @@ defaultproperties
 		//SightOffset=(X=26.000000,Y=-8.500000,Z=22.500000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.5
+		SightingTime=0.45
 		DisplaceDurationMult=1
 		MagAmmo=20
 		// fixed 3x - acog/carbine
@@ -114,6 +142,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryDoubleFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'

@@ -111,7 +111,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
-		SightingTime=0.250000
+		SightingTime=0.25
 		InventorySize=4
 		SightMoveSpeedFactor=0.6
 		DisplaceDurationMult=1

@@ -98,7 +98,7 @@ defaultproperties
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
 		DisplaceDurationMult=0.5
-		SightingTime=0.20000
+		SightingTime=0.20
         SightMoveSpeedFactor=0.6
 		MagAmmo=12
         InventorySize=2

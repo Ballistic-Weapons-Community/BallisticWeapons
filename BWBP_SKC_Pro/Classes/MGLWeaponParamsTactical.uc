@@ -76,6 +76,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
 		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.000000
@@ -92,7 +93,7 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		InventorySize=8
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.5
+		SightingTime=0.50
 		DisplaceDurationMult=1
 		MagAmmo=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

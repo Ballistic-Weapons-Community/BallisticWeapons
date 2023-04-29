@@ -99,7 +99,7 @@ defaultproperties
 		DeclineTime=1.500000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=3
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -107,6 +107,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
 		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-4000)
@@ -125,7 +126,7 @@ defaultproperties
         PlayerJumpFactor=0.9
 		InventorySize=7
         SightMoveSpeedFactor=0.45
-		SightingTime=0.65000
+		SightingTime=0.55
 		DisplaceDurationMult=1.2
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=2,Scale=0f)

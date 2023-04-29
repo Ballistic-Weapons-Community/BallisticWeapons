@@ -107,7 +107,7 @@ defaultproperties
         MagAmmo=40
         InventorySize=2
 		bDualBlocked=True
-        SightingTime=0.200000
+        SightingTime=0.20
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5
 		SightPivot=(Pitch=1024,Roll=-768)

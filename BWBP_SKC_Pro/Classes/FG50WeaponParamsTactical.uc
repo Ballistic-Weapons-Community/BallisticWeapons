@@ -155,7 +155,7 @@ defaultproperties
 		DeclineTime=2
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=3
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -200,7 +200,7 @@ defaultproperties
 		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=0f)
 		SightOffset=(X=3.00,Y=0.00,Z=3.25)
 		SightMoveSpeedFactor=0.3
-		SightingTime=0.75
+		SightingTime=0.65
 		//Function
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
@@ -228,7 +228,7 @@ defaultproperties
 		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=1f)
 		SightOffset=(X=0.00,Y=0.05,Z=2.00)
 		SightMoveSpeedFactor=0.3
-		SightingTime=0.75
+		SightingTime=0.65
 		//Function
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9

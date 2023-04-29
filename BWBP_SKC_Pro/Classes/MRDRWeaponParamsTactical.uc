@@ -85,6 +85,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
 		AimAdjustTime=0.50000
 		ChaosDeclineTime=0.450000
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
@@ -103,7 +104,7 @@ defaultproperties
 		MagAmmo=30
 		bDualBlocked=True
         InventorySize=3
-        SightingTime=0.200000
+        SightingTime=0.20
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

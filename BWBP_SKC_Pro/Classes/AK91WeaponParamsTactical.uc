@@ -124,7 +124,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		ZoomType=ZT_Irons
 		//Function
-		SightingTime=0.350000
+		SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		MagAmmo=25
 		InventorySize=6
@@ -146,7 +146,7 @@ defaultproperties
 		MaxZoom=3
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
-		SightingTime=0.350000
+		SightingTime=0.35
         SightMoveSpeedFactor=0.6
 		MagAmmo=25
 		InventorySize=6

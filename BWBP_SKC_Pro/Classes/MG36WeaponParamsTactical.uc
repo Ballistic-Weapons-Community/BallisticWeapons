@@ -65,6 +65,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
 		ADSMultiplier=0.5
 		AimSpread=(Min=256,Max=2872)
 		AimAdjustTime=0.8
@@ -87,7 +88,7 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=15
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.3
+		SightingTime=0.35
 		MagAmmo=100
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)

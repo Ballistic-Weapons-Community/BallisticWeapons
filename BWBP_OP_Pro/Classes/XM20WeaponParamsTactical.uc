@@ -88,7 +88,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
 		InventorySize=6
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.5
+		SightingTime=0.50
 		DisplaceDurationMult=1
 		MagAmmo=20
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

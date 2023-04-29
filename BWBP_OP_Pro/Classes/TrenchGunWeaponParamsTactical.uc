@@ -122,6 +122,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
         ChaosSpeedThreshold=300
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 	End Object
@@ -133,7 +134,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		InventorySize=5
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.3
+		SightingTime=0.30
 		DisplaceDurationMult=1
 		MagAmmo=2
 		WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)

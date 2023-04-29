@@ -11,10 +11,10 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
-			DecayRange=(Min=1838,Max=5250) // 35-100m
-			Inaccuracy=(X=32,Y=32)
+			DecayRange=(Min=1050,Max=3150) // 20-60m
+			Inaccuracy=(X=128,Y=128)
 			PenetrationEnergy=96
-			Damage=75.000000
+			Damage=80.000000
             HeadMult=2.5
             LimbMult=0.75
 			RangeAtten=0.5
@@ -26,7 +26,7 @@ defaultproperties
 			MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 			FlashScaleFactor=0.900000
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
-			Recoil=2048.000000
+			Recoil=1536.000000
 			Chaos=0.2
 			WarnTargetPct=0.400000
 			BotRefireRate=0.7
@@ -35,7 +35,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 			AimedFireAnim="SightFire"
 			FireEndAnim=
-			FireInterval=0.75
+			FireInterval=0.85
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 		End Object
 		
@@ -78,7 +78,7 @@ defaultproperties
 		DeclineDelay=0.400000
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -111,8 +111,9 @@ defaultproperties
 		SightOffset=(X=-11.50000,Y=0,Z=2.030000)
 		//Function
 		InventorySize=5
+		SightingTime=0.40
 		PlayerSpeedFactor=0.95
-		SightMoveSpeedFactor=0.6
+		SightMoveSpeedFactor=0.45
 		MagAmmo=9
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
@@ -132,8 +133,9 @@ defaultproperties
 		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
 		//Function
 		InventorySize=5
+		SightingTime=0.40
 		PlayerSpeedFactor=0.95
-		SightMoveSpeedFactor=0.6
+		SightMoveSpeedFactor=0.45
 		MagAmmo=9
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

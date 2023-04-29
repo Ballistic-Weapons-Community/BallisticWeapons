@@ -154,7 +154,7 @@ defaultproperties
 
 		// ADS handling
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.5
+		SightingTime=0.45
 
 		// Zoom
         ZoomType=ZT_Fixed
@@ -184,7 +184,7 @@ defaultproperties
 		//Function
 		InventorySize=3
         SightMoveSpeedFactor=0.6
-		SightingTime=0.2
+		SightingTime=0.25
 		DisplaceDurationMult=0.5
 		MagAmmo=7
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'
@@ -210,7 +210,7 @@ defaultproperties
 		//Function
 		InventorySize=3
         SightMoveSpeedFactor=0.6
-		SightingTime=0.2
+		SightingTime=0.25
 		DisplaceDurationMult=0.5
 		MagAmmo=7
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'

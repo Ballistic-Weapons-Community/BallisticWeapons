@@ -155,7 +155,7 @@ defaultproperties
 		//Functions
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.200000
+		SightingTime=0.20
 		MagAmmo=15
         InventorySize=3
 		bDualBlocked=True
@@ -177,7 +177,7 @@ defaultproperties
 		InventorySize=3
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.200000
+		SightingTime=0.20
 		MagAmmo=15
 		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

@@ -87,7 +87,7 @@ defaultproperties
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.8	
+		SightingTime=0.80	
 		ScopeScale=0.7
 		MagAmmo=5
         InventorySize=8

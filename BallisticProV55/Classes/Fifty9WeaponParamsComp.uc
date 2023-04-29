@@ -87,8 +87,8 @@ defaultproperties
 
     Begin Object Class=FireParams Name=MeleeFireParams
         FireAnim="Melee1"
-        FireAnimRate=1.5
-        FireInterval=0.300000
+        FireAnimRate=1
+        FireInterval=0.500000
         AmmoPerFire=0
         FireEffectParams(0)=MeleeEffectParams'MeleeSwipeEffect'
     End Object

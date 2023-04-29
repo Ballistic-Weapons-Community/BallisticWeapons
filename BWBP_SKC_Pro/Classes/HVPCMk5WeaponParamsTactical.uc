@@ -58,7 +58,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.175000
+		FireInterval=0.15000
 		FireAnim="Fire"
 		AimedFireAnim="SightFire"
 		FireEndAnim=	
@@ -107,7 +107,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
-		SightingTime=0.50000		
+		SightingTime=0.55
 		SightPivot=(Pitch=256)
 		DisplaceDurationMult=1
 		MagAmmo=200

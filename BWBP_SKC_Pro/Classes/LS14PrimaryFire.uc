@@ -8,20 +8,12 @@
 //=============================================================================
 class LS14PrimaryFire extends BallisticProInstantFire;
 
-
 var() Actor			MuzzleFlash2;		// The muzzleflash actor
 var   bool			bSecondBarrel;
 var   bool			bIsDouble;
 var		bool		bAnimatedOverheat; //overheat plays special anims
 
-var() sound			SpecialFireSound;
-
-var()	float		HeatPerShot;
-var()	float		HeatPerShotDouble;
-
-var 	float 			SelfHeatPerShot, SelfHeatPerShotDouble, SelfHeatDeclineDelay;
-
-
+var 	float 		SelfHeatPerShot, SelfHeatPerShotDouble, SelfHeatDeclineDelay;
 
 simulated function bool AllowFire()
 {
@@ -58,7 +50,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 	if (NewMode == 0)
 	{
 		bIsDouble=false;
-		HeatPerShot=default.HeatPerShot;
 		SelfHeatPerShot=default.SelfHeatPerShot;
 		SelfHeatDeclineDelay=default.SelfHeatDeclineDelay;
 	}
@@ -66,7 +57,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 	else
 	{
 		bIsDouble=true;
-		HeatPerShot=default.HeatPerShotDouble;
 		SelfHeatPerShot=default.SelfHeatPerShotDouble;
 		SelfHeatDeclineDelay=default.SelfHeatDeclineDelay*2;
 	}
@@ -83,11 +73,6 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 simulated event ModeDoFire()
 {
-	if (bIsDouble) 
-		BallisticFireSound.Sound=SpecialFireSound;
-	else
-		BallisticFireSound.Sound=default.BallisticFireSound.sound;
-
 	if (AllowFire() && !LS14Carbine(Weapon).bIsReloadingGrenade)
 	{
 		//[2.5] Classic Heat Anims
@@ -170,16 +155,12 @@ defaultproperties
 	SelfHeatPerShotDouble=1.500000
 	SelfHeatDeclineDelay=0.5
 	bAnimatedOverheat=False
-	SpecialFireSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble'
-	HeatPerShot=10.000000
-	HeatPerShotDouble=45
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 	DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
 	PenetrateForce=500
 	bPenetrate=True
-	FireModes(0)=(mDamage=40,mDamageType=Class'BWBP_SKC_Pro.DTLS14Twin',mDamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=512.000000,mAmmoPerFire=2,bModeInstantHit=True)
 	ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
 	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'

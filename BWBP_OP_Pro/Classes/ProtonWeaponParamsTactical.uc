@@ -23,7 +23,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		InventorySize=4
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.20000
+		SightingTime=0.20
 		DisplaceDurationMult=1
 		MagAmmo=100
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

@@ -211,6 +211,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalFastAimParams
+		ADSViewBindFactor=0
     	AimSpread=(Min=256,Max=1024)
         ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
@@ -219,6 +220,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalBombAimParams
+		ADSViewBindFactor=0
 		AimSpread=(Min=512,Max=2048)
         ADSMultiplier=0.2
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
@@ -227,6 +229,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalLustAimParams
+		ADSViewBindFactor=0
 		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000
@@ -234,6 +237,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalNukeAimParams
+		ADSViewBindFactor=0
 		AimSpread=(Min=512,Max=2048)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		ChaosDeclineTime=1.250000

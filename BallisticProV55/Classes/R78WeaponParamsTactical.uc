@@ -47,14 +47,24 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=0.850000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSMultiplier=0.5
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		AimAdjustTime=0.700000
+		AimSpread=(Min=384,Max=1280)
+		ChaosSpeedThreshold=300
+	End Object
+
+	
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
 		ADSMultiplier=0.5
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
 		AimAdjustTime=0.700000
@@ -75,9 +85,9 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
 		SightPivot=(Roll=-1024)
      	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
-		SightingTime=0.4500
+		SightingTime=0.45
 		ScopeScale=0.6
-		SightMoveSpeedFactor=0.45
+		SightMoveSpeedFactor=0.35
         ZoomType=ZT_Logarithmic// sniper 4-8x
 		MinZoom=4
 		MaxZoom=8
@@ -87,7 +97,7 @@ defaultproperties
 		MagAmmo=5
         InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
     End Object 
 	
@@ -103,7 +113,7 @@ defaultproperties
 		SightOffset=(X=5.00,Y=0.00,Z=1.9)
 		//Function
 		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
-		SightingTime=0.4
+		SightingTime=0.40
 		SightMoveSpeedFactor=0.45
 		MagAmmo=5
         InventorySize=5

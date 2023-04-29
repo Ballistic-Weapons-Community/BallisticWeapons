@@ -136,6 +136,7 @@ defaultproperties
 	//=================================================================
 
     Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
         SprintOffset=(Pitch=-2048,Yaw=-2048)
         ChaosSpeedThreshold=300
     End Object

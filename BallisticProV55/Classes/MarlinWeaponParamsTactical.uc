@@ -81,7 +81,7 @@ defaultproperties
 		DeclineTime=1
 		CrouchMultiplier=0.850000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -116,8 +116,8 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
 		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
-		SightingTime=0.35
-        SightMoveSpeedFactor=0.60
+		SightingTime=0.40
+        SightMoveSpeedFactor=0.45
 		MagAmmo=8
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -141,8 +141,8 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
 		//ViewOffset=(X=0.000000,Y=14.000000,Z=-13.000000)
-		SightingTime=0.35
-        SightMoveSpeedFactor=0.60
+		SightingTime=0.40
+        SightMoveSpeedFactor=0.45
 		MagAmmo=8
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

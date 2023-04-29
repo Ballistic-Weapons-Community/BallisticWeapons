@@ -76,6 +76,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSViewBindFactor=0
 		SprintOffSet=(Pitch=-6000,Yaw=-8000)
 		JumpOffSet=(Pitch=-6000,Yaw=2000)
 		AimAdjustTime=0.8
@@ -100,7 +101,7 @@ defaultproperties
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		MagAmmo=300
-		SightingTime=0.8
+		SightingTime=0.80
 		SightMoveSpeedFactor=0.45
         InventorySize=7
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

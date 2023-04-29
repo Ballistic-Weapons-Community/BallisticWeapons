@@ -15,7 +15,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2625,Max=6300) // 50-120m
 		RangeAtten=0.75
-		Damage=65 // 7.62 NATO
+		Damage=55 // 7.62 NATO
         HeadMult=3
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
@@ -84,7 +84,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_600
@@ -100,7 +100,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=2.5
 	End Object
 	
 	//=================================================================
@@ -140,7 +140,7 @@ defaultproperties
 		//Function
 		SightOffset=(X=9.000000,Z=3.150000)
 		MagAmmo=20
-		SightingTime=0.5
+		SightingTime=0.50
 		SightMoveSpeedFactor=0.35
         InventorySize=6
 		// sniper 4-8x
@@ -162,8 +162,8 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//Function
 		SightOffset=(X=2.000000,Z=2.03)
-        SightingTime=0.35
-		SightMoveSpeedFactor=0.6
+        SightingTime=0.40
+		SightMoveSpeedFactor=0.45
 		MagAmmo=20
         InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
@@ -183,7 +183,8 @@ defaultproperties
 		SightOffset=(X=3.000000,Z=1.30000)
 		MagAmmo=20
         InventorySize=6
-		SightMoveSpeedFactor=0.6
+		SightingTime=0.40
+		SightMoveSpeedFactor=0.45
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
 		AimParams(0)=AimParams'TacticalAimParams_600'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_600'

@@ -138,7 +138,7 @@ defaultproperties
 		InventorySize=3
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.2
+		SightingTime=0.20
 		MagAmmo=18
 		SightPivot=(Pitch=128)
 		bDualBlocked=True
@@ -171,7 +171,7 @@ defaultproperties
 		InventorySize=3
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.2
+		SightingTime=0.20
 		MagAmmo=18
 		SightPivot=(Pitch=128)
 		bDualBlocked=True

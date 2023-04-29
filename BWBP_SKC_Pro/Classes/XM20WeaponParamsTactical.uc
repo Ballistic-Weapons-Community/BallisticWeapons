@@ -124,7 +124,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.5
+		SightingTime=0.45
 		DisplaceDurationMult=1
 		MagAmmo=34
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -158,7 +158,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.5
+		SightingTime=0.45
 		DisplaceDurationMult=1
 		MagAmmo=34
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
