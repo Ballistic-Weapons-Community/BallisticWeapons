@@ -115,6 +115,7 @@ simulated function OnWeaponParamsChanged()
 	assert(WeaponParams != None);
 	
 	bDualBlocked				= WeaponParams.bDualBlocked;
+	bDualMixing					= WeaponParams.bDualMixing;
 }
 
 // Scope key pressed. Try go into tracking mode
@@ -713,9 +714,9 @@ simulated function bool StartFire(int Mode)
 		alt = 0;
 
     FireMode[Mode].bIsFiring = true;
-	if (IsSlave() && Othergun.HasAmmoLoaded(Mode) && !CanAlternate(Mode))
+	/*if (IsSlave() && Othergun.HasAmmoLoaded(Mode) && !CanAlternate(Mode))
     	FireMode[Mode].NextFireTime = Level.TimeSeconds + FireMode[Mode].PreFireTime + OtherGun.GetFireMode(Mode).FireRate * 0.5;
-	else
+	else*/
     	FireMode[Mode].NextFireTime = Level.TimeSeconds + FireMode[Mode].PreFireTime;
 
     if (FireMode[alt] != None && FireMode[alt].bModeExclusive)
@@ -836,9 +837,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	bSlavePutDown=false;
 	bIsPendingHandGun = false;
 	
+	/*
+	//in arena, we immediately pair matching pistols if the player has two
 	if (Level.TimeSeconds > CreationTime + 1)
 	{
-		if (OtherGun == None && PendingHandgun == None && !bDualBlocked)
+		if (OtherGun == None && PendingHandgun == None && !bDualBlocked && class'BCReplicationInfo'.static.IsArena())
 		{
 			if (LastSlave != None)
 				PendingHandgun = LastSlave;
@@ -846,7 +849,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			{
 				for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
 				{
-					if ( Inv != self && Inv.class == class )
+				
+					if ( Inv != self && Inv.class == class && !BallisticHandgun(Inv).bDualBlocked )
 					{
 						if (Level.TimeSeconds > BallisticHandgun(Inv).CreationTime + 1)
 						{
@@ -858,6 +862,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			}
 		}
 	}
+	*/
+	
 	if (PendingHandgun != None)
 	{
 		bIsMaster = true;
@@ -1047,10 +1053,12 @@ simulated final function SetDualMode (bool bDualMode)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated function OnDualModeChanged(bool bDualMode)
 {
+/*
 	if (bDualMode)
 		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.5;
 	else 
 		BFireMode[0].FireRate = BFireMode[0].default.FireRate;
+*/
 }
 
 /*
@@ -1133,11 +1141,14 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 	if (ClientState != WS_ReadyToFire || ReloadState != RS_None || IsFiring() || bScopeView || bScopeHeld || bScopeDesired || (OtherGun!=None && (PreventSwap() || OtherGun.PreventSwap())))
 		return;
 
+	//if we already have a dual weapon, swap the weapons over
 	if (Othergun != None)
 	{
 //		if (!Instigator.IsLocallyControlled())
+
 		if (Role < ROLE_Authority)
 			ServerSwap(Othergun);
+			
 	    Instigator.PendingWeapon = Othergun;
 		PendingHandgun = None;
 		bIsPendingHandGun = true;
@@ -1149,16 +1160,20 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 		PutDown();
 		return;
 	}
+	
+	//iterate through the inventory chain and find a weapon to dual
+	//either find an identical pistol, or another best fit pistol
     for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
-    {
-    	if ( Inv != self && Inv.Class == Class) //ClassIsChildOf(Inv.class, class'BallisticHandgun') )
+    {	
+		if ( Inv != self && !BallisticHandgun(Inv).bDualBlocked)
+    	//if ( Inv != self && Inv.Class == Class) //ClassIsChildOf(Inv.class, class'BallisticHandgun') )
     	{
     		if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
     		{
    				Best = BallisticHandgun(Inv);
     			break;
     		}
-    		else if ( Best == None || !Best.HasAmmoLoaded(255) || (Best.HandgunGroup != HandgunGroup && BallisticHandgun(Inv).HandgunGroup == HandgunGroup) )
+    		if ( bDualMixing && BallisticHandgun(Inv).bDualMixing && (Best == None || !Best.HasAmmoLoaded(255) || (Best.HandgunGroup != HandgunGroup && BallisticHandgun(Inv).HandgunGroup == HandgunGroup)) )
    				Best = BallisticHandgun(Inv);
     	}
     }
@@ -1176,8 +1191,8 @@ simulated function DoQuickDraw()
 	else
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
-    	{
-    		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') )
+    	{		
+    		if ( Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun') )
 	    	{
     			if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
     			{
@@ -1240,11 +1255,17 @@ simulated function bool AllowWeapNextUI()
 	return Super.AllowWeapNextUI();
 }
 
+//cycle the slave weapon
 simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 {
-    /*
 	local BallisticHandgun Best;
     local Inventory Inv;
+	
+	if (class'BCReplicationInfo'.static.IsArenaOrTactical())
+		return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
+	
+	if (IsMaster() && (!OtherGun.bDualMixing || !bDualMixing))
+		return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
 
 	if (CurrentWeapon == self && IsMaster())
 	{
@@ -1252,7 +1273,7 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 			return None;
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
 		{
-    		if (Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
+    		if (Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
     		{
     			if (Inv == OtherGun)
 				{
@@ -1276,16 +1297,21 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 				PendingHandgun = None;
 	    }
 	}
-    */
 	return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
 }
 
+//cycle the slave weapon
 simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 {
-    /*
     local BallisticHandgun Best;
 	local bool bFoundOtherOne;
     local Inventory Inv;
+
+	if (class'BCReplicationInfo'.static.IsArenaOrTactical())
+		return Super.NextWeapon(CurrentChoice, CurrentWeapon);
+	
+	if (IsMaster() && (!OtherGun.bDualMixing || !bDualMixing))
+		return Super.NextWeapon(CurrentChoice, CurrentWeapon);
 
 	if (CurrentWeapon == self && IsMaster())
 	{
@@ -1293,7 +1319,7 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 			return None;
 	    for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
     	{
-    		if (Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
+    		if (Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
 	    	{
 	    		if (bFoundOtherOne)
 	    		{
@@ -1319,7 +1345,6 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 				PendingHandgun = None;
 	    }
 	}
-    */
 
 	return Super.NextWeapon(CurrentChoice, CurrentWeapon);
 }
@@ -1866,6 +1891,7 @@ simulated function MeleeReleaseImpl()
 defaultproperties
 {
 	 bUseDualReload=False
+	 bDualMixing=True
 	 DualReloadAnim="DualReload"
 	 DualReloadEmptyAnim="DualReloadOpen"
 	 DualReloadAnimRate=1.000000
