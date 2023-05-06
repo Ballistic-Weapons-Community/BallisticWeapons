@@ -44,10 +44,13 @@ defaultproperties
      DeathStrings(4)="Who wants a %o smoothie from %k?  Made of flesh and corrosive bullets."
      WeaponClass=Class'BWBP_SKC_Pro.FMPMachinePistol'
      DeathString="%k embraced Schadenfreude as %kh FMP destroyed %o."
-     FemaleSuicide="%o did her fuhrer impression."
-     MaleSuicide="%o did his fuhrer impression."
+     FemaleSuicide="%o did her Führer impression."
+     MaleSuicide="%o did his Führer impression."
      bFastInstantHit=True
      GibPerterbation=0.100000
      KDamageImpulse=3000.000000
      VehicleDamageScaling=0.650000
+
+	TagMultiplier=0.7
+	TagDuration=0.1
 }

@@ -29,27 +29,30 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o's mad-eyed head got caught in %k's corkscrew."
-     DeathStrings(1)="%k's rail slug stumped %o's already stumpy head."
-     DeathStrings(2)="%o lost %vh head in a fight with %k's M75."
-     HipString="Complete Luck"
-     AimedString="Scoped"
-     FlashThreshold=140
-     FlashV=(Z=250.000000)
-     FlashF=0.100000
-     bSnipingDamage=True
-     bHeaddie=True
-     InvasionDamageScaling=1.500000
-     DamageIdent="Sniper"
-     DisplacementType=DSP_Linear
-     AimDisplacementDamageThreshold=150
-     AimDisplacementDuration=0.65
-     WeaponClass=Class'BallisticProV55.M75Railgun'
-     DeathString="%o's mad eyed head got caught in %k's corkscrew."
-     FemaleSuicide="%o derailed herself."
-     MaleSuicide="%o derailed himself."
-     bAlwaysSevers=True
-     bSpecial=True
-     bExtraMomentumZ=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+	DeathStrings(0)="%o's mad-eyed head got caught in %k's corkscrew."
+	DeathStrings(1)="%k's rail slug stumped %o's already stumpy head."
+	DeathStrings(2)="%o lost %vh head in a fight with %k's M75."
+	HipString="Complete Luck"
+	AimedString="Scoped"
+	FlashThreshold=140
+	FlashV=(Z=250.000000)
+	FlashF=0.100000
+	bSnipingDamage=True
+	bHeaddie=True
+	InvasionDamageScaling=1.500000
+	DamageIdent="Sniper"
+	DisplacementType=DSP_Linear
+	AimDisplacementDamageThreshold=150
+	AimDisplacementDuration=0.65
+	WeaponClass=Class'BallisticProV55.M75Railgun'
+	DeathString="%o's mad eyed head got caught in %k's corkscrew."
+	FemaleSuicide="%o derailed herself."
+	MaleSuicide="%o derailed himself."
+	bAlwaysSevers=True
+	bSpecial=True
+	bExtraMomentumZ=True
+	PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+
+	TagMultiplier=0.4
+	TagDuration=0.4
 }

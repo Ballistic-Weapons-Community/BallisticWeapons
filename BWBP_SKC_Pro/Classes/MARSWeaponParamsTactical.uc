@@ -1,5 +1,10 @@
 class MARSWeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function OnInitialize(BallisticWeapon BW)
+{
+	MARSAssaultRifle(BW).MaxTrackTime = 3;
+}
+
 static simulated function SetAttachmentParams(BallisticAttachment BWA)
 {
 	BWA.ModeInfos[0].TracerChance = 0;
@@ -240,7 +245,7 @@ defaultproperties
 		// Zoom
         ZoomType=ZT_Fixed
 		MaxZoom=3
-		ScopeScale=0.6
+		ScopeScale=0.7
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -250,8 +255,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Sensor
 		//Layout core
 		Weight=30
-		LayoutName="TScope + Sensor"
-		LayoutTags="tracker"
+		LayoutName="Sensor"
+		LayoutTags="always_track_sensor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)

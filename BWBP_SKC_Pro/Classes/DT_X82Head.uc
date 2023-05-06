@@ -51,4 +51,7 @@ defaultproperties
      GibPerterbation=0.200000
      KDamageImpulse=10000.000000
      VehicleDamageScaling=0.650000
+
+	TagMultiplier=0.5
+	TagDuration=0.25
 }

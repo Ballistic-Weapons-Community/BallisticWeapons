@@ -31,25 +31,28 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%k's precision sniping sent %o's head spiralling into the distance."
-     DeathStrings(1)="%k's R78 bullet turned %o's face into hamburger."
-     DeathStrings(2)="%o's head was preyed upon by %k's Raven."
-     DeathStrings(3)="%k's expert marksmanship brought an end to %o's paltry attempts at stealth."
-     HipString="Luck"
-     AimedString="Scoped"
-     bSnipingDamage=True
-     bHeaddie=True
-     InvasionDamageScaling=2.000000
-     DamageIdent="Sniper"
-     DisplacementType=DSP_Linear
-     AimDisplacementDamageThreshold=150
-     WeaponClass=Class'BallisticProV55.R78Rifle'
-     DeathString="%o's head was removed from the scene by %k's R78."
-     FemaleSuicide="%o sniped off her own head."
-     MaleSuicide="%o sniped off his own head."
-     bAlwaysSevers=True
-     bSpecial=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
-     KDamageImpulse=2000.000000
-     VehicleDamageScaling=0.150000
+	DeathStrings(0)="%k's precision sniping sent %o's head spiralling into the distance."
+	DeathStrings(1)="%k's R78 bullet turned %o's face into hamburger."
+	DeathStrings(2)="%o's head was preyed upon by %k's Raven."
+	DeathStrings(3)="%k's expert marksmanship brought an end to %o's paltry attempts at stealth."
+	HipString="Luck"
+	AimedString="Scoped"
+	bSnipingDamage=True
+	bHeaddie=True
+	InvasionDamageScaling=2.000000
+	DamageIdent="Sniper"
+	DisplacementType=DSP_Linear
+	AimDisplacementDamageThreshold=150
+	WeaponClass=Class'BallisticProV55.R78Rifle'
+	DeathString="%o's head was removed from the scene by %k's R78."
+	FemaleSuicide="%o sniped off her own head."
+	MaleSuicide="%o sniped off his own head."
+	bAlwaysSevers=True
+	bSpecial=True
+	PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+	KDamageImpulse=2000.000000
+	VehicleDamageScaling=0.150000
+
+	TagMultiplier=0.6
+	TagDuration=0.2
 }

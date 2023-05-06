@@ -19,4 +19,7 @@ defaultproperties
      FemaleSuicide="%o somehow shot herself."
      MaleSuicide="%o managed to shoot himself."
      VehicleDamageScaling=0.500000
+
+	TagMultiplier=0.4
+	TagDuration=0.4
 }

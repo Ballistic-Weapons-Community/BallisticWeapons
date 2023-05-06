@@ -19,4 +19,7 @@ defaultproperties
      MaleSuicide="%o silenced himself."
      bFastInstantHit=True
      VehicleDamageScaling=0.750000
+
+	TagMultiplier=0.7
+	TagDuration=0.1
 }

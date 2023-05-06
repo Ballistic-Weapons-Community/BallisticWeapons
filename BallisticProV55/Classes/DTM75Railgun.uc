@@ -30,28 +30,31 @@ static function ModifyHit (Pawn Victim, out float Damage, vector Momentum, out v
 
 defaultproperties
 {
-     DeathStrings(0)="%o was railed by %k."
-     DeathStrings(1)="%k's rail slug put a corkscrew through %o."
-     DeathStrings(2)="%k derailed %o's skin."
-     DeathStrings(3)="%o got %vs nebulised by %k's railgun."
-     DeathStrings(4)="%o saw the light at the end of %k's M75 muzzle."
-     AimedString="Scoped"
-     BloodManagerName="BallisticProV55.BloodMan_Railgun"
-     FlashThreshold=0
-     FlashV=(Z=250.000000)
-     FlashF=0.250000
-     bSnipingDamage=True
-     InvasionDamageScaling=2
-     DamageIdent="Sniper"
-     DisplacementType=DSP_Linear
-     AimDisplacementDamageThreshold=110
-     AimDisplacementDuration=0.65
-     DamageDescription=",Bullet,Electro,"
-     bOnlySeverLimbs=False
-     WeaponClass=Class'BallisticProV55.M75Railgun'
-     DeathString="%o was railed by %k."
-     FemaleSuicide="%o derailed herself."
-     MaleSuicide="%o derailed himself."
-     bExtraMomentumZ=True
-     VehicleDamageScaling=1.000000
+	DeathStrings(0)="%o was railed by %k."
+	DeathStrings(1)="%k's rail slug put a corkscrew through %o."
+	DeathStrings(2)="%k derailed %o's skin."
+	DeathStrings(3)="%o got %vs nebulised by %k's railgun."
+	DeathStrings(4)="%o saw the light at the end of %k's M75 muzzle."
+	AimedString="Scoped"
+	BloodManagerName="BallisticProV55.BloodMan_Railgun"
+	FlashThreshold=0
+	FlashV=(Z=250.000000)
+	FlashF=0.250000
+	bSnipingDamage=True
+	InvasionDamageScaling=2
+	DamageIdent="Sniper"
+	DisplacementType=DSP_Linear
+	AimDisplacementDamageThreshold=110
+	AimDisplacementDuration=0.65
+	DamageDescription=",Bullet,Electro,"
+	bOnlySeverLimbs=False
+	WeaponClass=Class'BallisticProV55.M75Railgun'
+	DeathString="%o was railed by %k."
+	FemaleSuicide="%o derailed herself."
+	MaleSuicide="%o derailed himself."
+	bExtraMomentumZ=True
+	VehicleDamageScaling=1.000000
+
+ 	TagMultiplier=0.4
+	TagDuration=0.4
 }

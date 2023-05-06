@@ -8,15 +8,6 @@
 //=============================================================================
 class DT_BWBullet extends BallisticDamageType;
 
-// Call this to do damage to something. This lets the damagetype modify the things if it needs to
-static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
-{
-	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
-
-	if (class'BallisticReplicationInfo'.static.IsTactical() && Pawn(Victim) != None)
-		class'BCSprintControl'.static.SetSlowTo(Pawn(Victim), 0.7, 0.1);
-}
-
 static function PlayHitSound (Pawn Victim)
 {
 	local class<BallisticBloodSet> BS;
@@ -45,18 +36,21 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 
 defaultproperties
 {
-     EffectChance=1.000000
-     BloodManagerName="BallisticProV55.BloodMan_Bullet"
-     bMetallic=True
-     DamageDescription=",Bullet,"
-     bOnlySeverLimbs=True
-     bSeverPreventsBlood=True
-     bUseMotionBlur=True
-     bInstantHit=True
-     bRagdollBullet=True
-     bBulletHit=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
-     VehicleDamageScaling=0.350000
-     VehicleMomentumScaling=0.150000
-	 TransientSoundVolume=2
+	EffectChance=1.000000
+	BloodManagerName="BallisticProV55.BloodMan_Bullet"
+	bMetallic=True
+	DamageDescription=",Bullet,"
+	bOnlySeverLimbs=True
+	bSeverPreventsBlood=True
+	bUseMotionBlur=True
+	bInstantHit=True
+	bRagdollBullet=True
+	bBulletHit=True
+	PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
+	VehicleDamageScaling=0.350000
+	VehicleMomentumScaling=0.150000
+	TransientSoundVolume=2
+
+	TagDuration=0.135
+	TagMultiplier=0.6
 }

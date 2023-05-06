@@ -49,8 +49,8 @@ class BallisticInstantFire extends BallisticFire
 const MAX_WALLS = 5;
 
 //const TORSO_RADIUS = 11;
-const HEAD_HEIGHT_HALF = 10;
-const HEAD_RADIUS = 9; // cylinder
+const HEAD_HEIGHT_HALF = 8;
+const HEAD_RADIUS = 7; // cylinder
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace

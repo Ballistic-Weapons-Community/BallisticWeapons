@@ -21,4 +21,7 @@ defaultproperties
      FemaleSuicide="%o prosecuted herself with the GRS-9."
      MaleSuicide="%o prosecuted himself with the GRS-9."
      VehicleDamageScaling=0.000000
+
+	TagMultiplier=0.7
+	TagDuration=0.1
 }

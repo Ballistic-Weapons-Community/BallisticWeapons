@@ -47,4 +47,7 @@ defaultproperties
      PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
      KDamageImpulse=2000.000000
      VehicleDamageScaling=0.150000
+
+	TagMultiplier=0.6
+	TagDuration=0.2
 }

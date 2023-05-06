@@ -85,6 +85,11 @@ var() EDisplacementType			    DisplacementType;		// This damagetype forcibly dis
 var() int							AimDisplacementDamageThreshold;
 var() float							AimDisplacementDuration;
 //===================================================================================
+// TAGGING
+//===================================================================================
+var() float							TagMultiplier;
+var() float							TagDuration;
+//===================================================================================
 // DAMAGE INTERACTIONS
 //===================================================================================
 var() EDamageBasis                  DamageBasis;            // Basis on which this type inflicts damage (fire, physical damage, etc)
@@ -325,6 +330,9 @@ static function bool IsDamage(string TypeString)
 static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
 	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
+
+	if (default.TagDuration > 0 && class'BallisticReplicationInfo'.static.IsTactical() && Pawn(Victim) != None)
+		class'BCSprintControl'.static.SetSlowTo(Pawn(Victim), default.TagMultiplier, default.TagDuration);
 }
 
 // Compatibility for Hurt(), Call this with the DamageType if it might not be a BallisticDamageType
@@ -482,4 +490,7 @@ defaultproperties
 	BlockFatiguePenalty=0.1
 	TransientSoundVolume=1.000000
 	TransientSoundRadius=64.000000
+
+	TagMultiplier=1
+	TagDuration=0
 }

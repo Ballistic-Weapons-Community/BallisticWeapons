@@ -8,11 +8,12 @@ var()   bool		bHasSuppressor;				// Can be silenced
 var()   bool		bHasNightvisionSight;		// Can use NV
 var()   bool		bHasThermalSight;			// Can follow heat signatures, requires NV
 var()   bool		bHasTrackingSight;			// Can target lock
+var()   bool		bAlwaysTrackSensor;			// Highlights sensor targets in any scope
 
 //Grenade
-var() Sound		GrenOpenSound;		//Sounds for grenade reloading
-var() Sound		GrenLoadSound;		//
-var() Sound		GrenCloseSound;		//
+var() Sound			GrenOpenSound;		//Sounds for grenade reloading
+var() Sound			GrenLoadSound;		//
+var() Sound			GrenCloseSound;		//
 var() name			GrenadeLoadAnim;	//Anim for grenade reload
 
 //Suppressor
@@ -84,6 +85,10 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "tracker") != -1)
 	{
 		bHasTrackingSight=True;
+	}
+	if (InStr(WeaponParams.LayoutTags, "always_track_sensor") != -1)
+	{
+		bAlwaysTrackSensor=True;
 	}
 }
 
@@ -502,7 +507,7 @@ simulated event WeaponTick(float DT)
 		SetNVLight(false);
 
 	//Targeting
-	if (!bScopeView || Role < ROLE_Authority || Level.TimeSeconds < NextTargetFindTime)
+	if (Role < ROLE_Authority)
 		return;
 
 	if (TrackedTargets.Length != 0 && Level.TimeSeconds - LastPingTime > MaxTrackTime)
@@ -510,6 +515,9 @@ simulated event WeaponTick(float DT)
 		TrackedTargets.Length = 0; //remove grenade locks after a period of time
 		ClientClearTargets();
 	}
+
+	if (!bScopeView || Level.TimeSeconds < NextTargetFindTime)
+		return;
 
     NextTargetFindTime = Level.TimeSeconds + TargetFindInterval;
 
@@ -556,8 +564,18 @@ simulated event DrawScopeOverlays(Canvas C)
 	if (bThermal)
 		DrawThermalMode(C);
 
-	if (bMeatVision)
+	else if (bMeatVision)
 		DrawMeatVisionMode(C);
+
+	else if (bAlwaysTrackSensor)
+	{
+		// Draw Target Boxes - Sensor Targets
+		if (TrackedTargets.Length > 0)
+		{
+			C.Style = ERenderStyle.STY_Alpha;
+			DrawSensorTargets(C);
+		}
+	}
 
 	Super.DrawScopeOverlays(C);
 }
@@ -572,7 +590,6 @@ simulated event Timer()
 
 simulated function UpdatePawnList()
 {
-
 	local Pawn P;
 	local int i;
 	local float Dist;
@@ -622,13 +639,59 @@ simulated function OnScopeViewChanged()
 	}	
 }
 
-// draws red blob that moves, scanline, and target boxes.
-simulated event DrawMeatVisionMode (Canvas C)
+simulated function DrawSensorTargets(Canvas C)
 {
-	local Vector V, V2, V3, X, Y, Z;
+	local Vector V, V2; 
+	local Vector X, Y, Z;
 	local float ScaleFactor;
 	local int i;
 
+	ScaleFactor = C.ClipX / 1600;
+
+	GetViewAxes(X, Y, Z);
+
+	for (i = 0; i < TrackedTargets.Length; i++)
+	{
+		if (TrackedTargets[i] == None || TrackedTargets[i].Health < 1 || !TrackedTargets[i].bProjTarget)
+			continue;
+
+		if (Normal(TrackedTargets[i].Location - Location) Dot Vector(Instigator.GetViewRotation()) < 0.8)
+			continue;
+
+		V  = C.WorldToScreen(TrackedTargets[i].Location - Y * TrackedTargets[i].CollisionRadius + Z * TrackedTargets[i].CollisionHeight);
+		V.X -= 32*ScaleFactor;
+		V.Y -= 32*ScaleFactor;
+		C.SetPos(V.X, V.Y);
+		V2 = C.WorldToScreen(TrackedTargets[i].Location + Y*TrackedTargets[i].CollisionRadius - Z*TrackedTargets[i].CollisionHeight);
+		C.SetDrawColor(255,255,255,255);
+		C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+	}
+}
+
+simulated function DrawManualTarget(Canvas C)
+{
+	local Vector V, V2, V3;
+	local Vector X, Y, Z;
+	local float ScaleFactor;
+
+	ScaleFactor = C.ClipX / 1600;
+
+	GetViewAxes(X, Y, Z);
+
+	V  = C.WorldToScreen(Target.Location - Y*Target.CollisionRadius + Z*Target.CollisionHeight);
+	V.X -= 32*ScaleFactor;
+	V.Y -= 32*ScaleFactor;
+	C.SetPos(V.X, V.Y);
+	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
+	C.SetDrawColor(160,185,200,255);
+      C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+
+    V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);	
+}
+
+// draws red blob that moves, scanline, and target boxes.
+simulated event DrawMeatVisionMode (Canvas C)
+{
 	// Draw RED stuff
 	C.Style = ERenderStyle.STY_Modulated;
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
@@ -640,42 +703,14 @@ simulated event DrawMeatVisionMode (Canvas C)
 	//C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
 
     C.Style = ERenderStyle.STY_Alpha;
-	
-
-	ScaleFactor = C.ClipX / 1600;
-	GetViewAxes(X, Y, Z);
-	
+		
 	// Draw Target Boxes - Sensor Targets
 	if (TrackedTargets.Length > 0)
-	{
-		for (i = 0; i < TrackedTargets.Length; i++)
-		{
-			if (TrackedTargets[i] == None || TrackedTargets[i].Health < 1 || !TrackedTargets[i].bProjTarget)
-				continue;
-			if (Normal(TrackedTargets[i].Location - Location) Dot Vector(Instigator.GetViewRotation()) < 0.8)
-				continue;
-			V  = C.WorldToScreen(TrackedTargets[i].Location - Y*TrackedTargets[i].CollisionRadius + Z*TrackedTargets[i].CollisionHeight);
-			V.X -= 32*ScaleFactor;
-			V.Y -= 32*ScaleFactor;
-			C.SetPos(V.X, V.Y);
-			V2 = C.WorldToScreen(TrackedTargets[i].Location + Y*TrackedTargets[i].CollisionRadius - Z*TrackedTargets[i].CollisionHeight);
-			C.SetDrawColor(255,255,255,255);
-			C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
-		}
-	}
+		DrawSensorTargets(C);
+
 	// Draw Target Boxes - Manual Target
-	if (Target == None)
-		return;
-
-	V  = C.WorldToScreen(Target.Location - Y*Target.CollisionRadius + Z*Target.CollisionHeight);
-	V.X -= 32*ScaleFactor;
-	V.Y -= 32*ScaleFactor;
-	C.SetPos(V.X, V.Y);
-	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
-	C.SetDrawColor(160,185,200,255);
-      C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
-
-    V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);	
+	if (Target != None)
+		DrawManualTarget(C);
 }
 
 // Draws players with an orange glow and all the other Thermal Mode stuff
@@ -794,7 +829,6 @@ simulated event DrawThermalMode (Canvas C)
 				continue;
 		}
 	}
-	
 }
 
 simulated function AdjustThermalView(bool bNewValue)
@@ -813,7 +847,6 @@ simulated function AdjustThermalView(bool bNewValue)
 
 function ServerAdjustThermal(bool bNewValue)
 {
-
 	local int i;
 	
 	if (bNewValue)

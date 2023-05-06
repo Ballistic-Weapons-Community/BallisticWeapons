@@ -53,17 +53,20 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     ArmorDrain=0.200000
-     bHeaddie=True
-     DeathStrings(0)="%k blew %o's head off with %kh AH104."
-     DeathStrings(1)="%k cracked %o's skull with AH104 rounds."
-     DeathStrings(2)="%o lost %vh head in a fight with %k's AH104 Pounder."
-     WeaponClass=Class'BWBP_SKC_Pro.AH104Pistol'
-     DeathString="%k blew %o's head off with %kh AH104."
-     FemaleSuicide="%o headshotted herself with the AH104."
-     MaleSuicide="%o headshotted himself with the AH104."
+	ArmorDrain=0.200000
+	bHeaddie=True
+	DeathStrings(0)="%k blew %o's head off with %kh AH104."
+	DeathStrings(1)="%k cracked %o's skull with AH104 rounds."
+	DeathStrings(2)="%o lost %vh head in a fight with %k's AH104 Pounder."
+	WeaponClass=Class'BWBP_SKC_Pro.AH104Pistol'
+	DeathString="%k blew %o's head off with %kh AH104."
+	FemaleSuicide="%o headshotted herself with the AH104."
+	MaleSuicide="%o headshotted himself with the AH104."
 //     bArmorStops=False
-     bAlwaysSevers=True
-     bSpecial=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+	bAlwaysSevers=True
+	bSpecial=True
+	PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+
+	TagMultiplier=0.6
+	TagDuration=0.2
 }
