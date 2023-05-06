@@ -63,7 +63,7 @@ defaultproperties
 	WeaponList(37)=Class'BallisticProV55.A73SkrithRifle'
 	WeaponList(38)=Class'BWBP_SKC_Pro.LS14Carbine'
 	WeaponList(39)=Class'BWBP_SKC_Pro.XM20Carbine'
-	WeaponList(40)=Class'BallisticProV55.RSDarkStar
+	WeaponList(40)=Class'BallisticProV55.RSDarkStar'
 	WeaponList(41)=Class'BallisticProV55.RSNovaStaff'
 	WeaponList(42)=Class'BWBP_OP_Pro.XOXOStaff'
 	WeaponList(43)=Class'BWBP_OP_Pro.Raygun'
