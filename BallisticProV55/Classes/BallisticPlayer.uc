@@ -54,8 +54,6 @@ var float                               DesiredFlashScale;
 var Vector                              DesiredFlashFog;
 var bool								bOverrideDmgFlash;
 
-var bool bUseNewEyeHeightAlgorithm;
-
 // Fractional Parts of Pitch/Yaw Input
 var transient float PitchFraction, YawFraction;
 
@@ -64,7 +62,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		LastLoadoutClasses;
 	reliable if (Role < ROLE_Authority)
-		ServerCamDist, ServerReloaded, ServerSetEyeHeightAlgorithm;
+		ServerCamDist, ServerReloaded;
     unreliable if( Role==ROLE_Authority )
         ClientDmgFlash;
 }
@@ -1073,11 +1071,6 @@ state PlayerDriving
 state PlayerSwimming
 {
 	ignores SeePlayer, HearNoise, Bump, ServerSpectate;
-	
-    function bool WantsSmoothedView()
-    {
-        return ( !Pawn.bJustLanded );
-    }
 }
 
 state PlayerSpaceFlying
@@ -1490,26 +1483,8 @@ exec function ShowVoteMenu()
 	Player.GUIController.OpenMenu(s);
 }
 
-function ServerSetEyeHeightAlgorithm(bool B) {
-    bUseNewEyeHeightAlgorithm = B;
-}
-
-function SetEyeHeightAlgorithm(bool B) {
-    bUseNewEyeHeightAlgorithm = B;
-    ServerSetEyeHeightAlgorithm(B);
-}
-
-function bool WantsSmoothedView()
-{
-    if (Pawn == none) return false;
-
-    return
-        (((Pawn.Physics == PHYS_Walking) || (Pawn.Physics == PHYS_Spider)) && Pawn.bJustLanded == false) ||
-        (Pawn.Physics == PHYS_Falling && BallisticPawn(Pawn).OldPhysics2 == PHYS_Walking);
-}
-
 defaultproperties
-	 bUseNewEyeHeightAlgorithm=True
+{
      WeapUIEnter=Sound'MenuSounds.selectDshort'
      WeapUIExit=Sound'MenuSounds.selectK'
      WeapUIFail=Sound'MenuSounds.denied1'
