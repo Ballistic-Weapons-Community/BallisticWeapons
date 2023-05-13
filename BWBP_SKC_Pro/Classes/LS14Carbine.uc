@@ -90,10 +90,11 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	LS14PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+
 	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		LS14PrimaryFire(FireMode[0]).default.HeatPerShot = 0;
-		LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
+		//LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
 		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShot = 1;
 		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShotDouble = 3.5;
 		LS14PrimaryFire(FireMode[0]).default.SelfHeatDeclineDelay = 0;
