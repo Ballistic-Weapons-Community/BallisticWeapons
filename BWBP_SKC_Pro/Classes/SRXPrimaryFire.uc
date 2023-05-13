@@ -206,13 +206,10 @@ defaultproperties
 	Amp2FlashScaleFactor=0.300000
 	MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 	MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
-	
 	SMuzzleFlashClass=Class'BWBP_SKC_Pro.SRXSilencedFlash'
 	SFlashBone="tip2"
 	SFlashScaleFactor=0.750000
-	
 	TraceRange=(Min=30000.000000,Max=30000.000000)
-
 	DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
 	DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
@@ -227,7 +224,7 @@ defaultproperties
 	AimedFireAnim="SightFire"
 	FireRecoil=192.000000
 	FireChaos=0.300000
-	SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=0.500000,Radius=256.000000,bAtten=True)
+	SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=1.500000,Radius=256.000000,bAtten=True)
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 	bPawnRapidFireAnim=True
 	FireEndAnim=
@@ -240,7 +237,6 @@ defaultproperties
 	ShakeOffsetMag=(X=-15.00)
 	ShakeOffsetRate=(X=-300.000000)
 	ShakeOffsetTime=2.000000
-	
 	WarnTargetPct=0.200000
 	aimerror=800.000000
 	BurstFireRateFactor=0.30

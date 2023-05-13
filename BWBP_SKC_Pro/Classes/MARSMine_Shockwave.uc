@@ -7,11 +7,11 @@
 //
 // by SK and Aza
 // uses code by Nolan "Dark Carnivour" Richert.
-// CopyrightÂ© 2011 RuneStorm. All Rights Reserved.
+// Copyright© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MARSMine_Shockwave extends BallisticProjectile;
 
-var() Sound			DetonateSound;
+var() Sound			ArmingSound;
 var	int					ShockRadius;
 
 var() class<DamageType>			MyShotDamageType;	// Damagetype to use when you get pulsed
@@ -79,9 +79,9 @@ simulated function InitProjectile()
 
 	if (Role == ROLE_Authority)
 	{
-		PlaySound(DetonateSound,,2.0,,256,,);
 		SetTimer(ActivationDelay, false);
 	}
+	PlaySound(ArmingSound,,2.0,,256,,);
 }
 
 simulated function Destroyed()
@@ -196,7 +196,7 @@ defaultproperties
 {
      WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
-     DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
+     ArmingSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
      ShockRadius=768
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'

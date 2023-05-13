@@ -132,7 +132,7 @@ simulated function UpdateScreen()
 
 	if (Instigator.IsLocallyControlled())
 	{
-			WeaponScreen.Revision++;
+		WeaponScreen.Revision++;
 	}
 }
 	

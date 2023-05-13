@@ -28,6 +28,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
 		Recoil=110.000000
 		Chaos=0.020000
+		Heat=0.75
 		Inaccuracy=(X=128,Y=128)
 		WarnTargetPct=0.200000
 	End Object

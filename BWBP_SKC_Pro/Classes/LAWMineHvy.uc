@@ -17,7 +17,7 @@ class LAWMineHvy extends BallisticProjectile;
 
 var   bool				bDetonated;		// Been detonated, waiting for net syncronization or something
 var   bool				bDetonating;		// Been detonated, waiting for net syncronization or something
-var() Sound				DetonateSound;
+var() Sound				ArmingSound;
 var     int				ShockRadius;
 var		int				ShockDamage;
 
@@ -90,9 +90,9 @@ simulated function InitProjectile()
 	if (Role==ROLE_Authority)
 	{
 		bDetonating = true;
-		PlaySound(DetonateSound,,2.0,,256,,);
 		SetTimer(1.25, false);
 	}
+	PlaySound(ArmingSound,,2.0,,256,,);
 }
 
 simulated function Destroyed()
@@ -258,7 +258,7 @@ function bool IsStationary()
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
-     DetonateSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
+     ArmingSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
      Health=70
      ImpactManager=Class'BallisticProV55.IM_RPG'
      ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'

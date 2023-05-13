@@ -675,7 +675,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XMB500'
+     //Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XMB500'
      DrawScale=0.600000
      SoundRadius=128.000000
 }

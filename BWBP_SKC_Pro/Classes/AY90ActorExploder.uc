@@ -118,7 +118,7 @@ function BlowUp(vector HitLocation)
 
 	if(DamageRadius > 0)
 	{
-		TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, 10000, HitLocation, Victim);
+		//TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, 10000, HitLocation, Victim);
 	}
 
 	MakeNoise(1.0);

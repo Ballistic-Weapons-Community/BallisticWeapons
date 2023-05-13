@@ -11,6 +11,8 @@
 class AY90Mine extends BallisticProjectile;
 
 var   bool				bDetonated;		// Been detonated, waiting for net syncronization or something
+var	bool				bLightSpawned;
+
 var() Sound				ArmingSound;
 var   AY90MineLight			MineEffect;			//scary run away!
 var int StuckDamage;
@@ -20,7 +22,7 @@ var() class<DamageType>	MyStuckRadiusDamageType;
 replication
 {
 	reliable if(Role == ROLE_Authority)
-		bDetonated;
+		bDetonated, bLightSpawned;
 }
 
 simulated function PostBeginPlay()
@@ -29,8 +31,9 @@ simulated function PostBeginPlay()
 	
 	if (Role == ROLE_Authority)
 	{
-		MineEffect = Spawn(class'AY90MineLight',self,,Location,Rotation);
+		MineEffect = SpawnMineLight();
 		MineEffect.SetBase(self);
+		bLightSpawned=true;
 	}
 }
 
@@ -55,8 +58,22 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 	if (bDetonated)
 		Explode(Location, vector(Rotation));
+	if (MineEffect == None && bLightSpawned != default.bLightSpawned)
+	{
+		MineEffect = SpawnMineLight();
+		MineEffect.SetBase(self);
+	}	
 }
 
+simulated function AY90MineLight SpawnMineLight()
+{
+	local Vector X, Y, Z;
+	local AY90MineLight ML;
+	
+	GetAxes(Rotation, X, Y, Z);
+	ML = Spawn(class'AY90MineLight',self,,Location - (X * 16), Rotation);
+	return ML;
+}
 
 simulated function InitProjectile()
 {
@@ -64,12 +81,10 @@ simulated function InitProjectile()
 
 	if (Role==ROLE_Authority)
 	{
-		PlaySound(ArmingSound,,2.0,,128,,);
 		SetTimer(1.00, false);
 	}
-
+	PlaySound(ArmingSound,,2.0,,128,,);
 }
-
 
 simulated function Timer()
 {
@@ -78,13 +93,8 @@ simulated function Timer()
 		super.Timer();
 		return;
 	}
-
-	if (Role < ROLE_Authority)
-		return;
-	else
+	else if (Role == ROLE_Authority)
 	{
-		//removed tearoff - use bTearOnExplode if you need it to tear off, but you shouldn't have to do that
-		bDetonated = true;
 		Explode(Location, vector(Rotation));
 	}
 }
@@ -98,9 +108,9 @@ function BlowUp(vector HitLocation)
 {
 	if (Role < ROLE_Authority)
 		return;
-	if(DamageRadius > 0)
+	if (DamageRadius > 0)
 	{
-		if(Pawn(Base) != None)
+		if (Pawn(Base) != None)
 		{
 			class'BallisticDamageType'.static.GenericHurt
 			(
@@ -121,32 +131,12 @@ function BlowUp(vector HitLocation)
 	MakeNoise(1.0);
 }
 
-// Spawn impact effects, run BlowUp() and then die.
-simulated function Explode(vector HitLocation, vector HitNormal)
+simulated function Destroyed()
 {
-	local int Surf;
-	if (bExploded)
-		return;
-	if (ShakeRadius > 0 || MotionBlurRadius > 0)
-		ShakeView(HitLocation);
-    	if (ImpactManager != None && level.NetMode != NM_DedicatedServer)
-	{
-		if (bCheckHitSurface)
-			CheckSurface(HitLocation, HitNormal, Surf);
-		if (Instigator == None)
-			ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
-		else
-			ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
-	}
-	BlowUp(HitLocation);
-	bExploded=true;
 
-	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
-	{
-		GoToState('NetTrapped');
-	}
-	else
-		Destroy();
+	if (MineEffect != None)
+		MineEffect.Destroy();
+	super.Destroyed();
 }
 
 function bool IsStationary()
@@ -187,9 +177,9 @@ defaultproperties
 
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
-     LightHue=192
-     LightSaturation=200
-     LightBrightness=200.000000
-     LightRadius=15.000000
+     LightHue=200
+     LightSaturation=5
+     LightBrightness=500.000000
+     LightRadius=2.000000
      bDynamicLight=True
 }

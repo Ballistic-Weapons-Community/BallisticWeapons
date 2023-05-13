@@ -12,7 +12,7 @@
 //=============================================================================
 class LAWMine extends BallisticProjectile;
 
-var() 	Sound					DetonateSound;
+var() 	Sound					ArmingSound;
 var     int						ShockRadius;
 var		float					WallDecayFactor;
 
@@ -78,9 +78,9 @@ simulated function InitProjectile()
 
 	if (Role == ROLE_Authority)
 	{
-		PlaySound(DetonateSound,,2.0,,256,,);
 		SetTimer(1.25, false);
 	}
+	PlaySound(ArmingSound,,2.0,,256,,);
 }
 
 simulated function Destroyed()
@@ -205,7 +205,7 @@ defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
 	ModeIndex=1
-    DetonateSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
+    ArmingSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
 	ShockRadius=1536
 	MyShotDamageType=Class'BWBP_SKC_Pro.DTLAWShot'
 	ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'

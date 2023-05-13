@@ -123,6 +123,7 @@ defaultproperties
      bLimitMomentumZ=False
      bRandomStartRotation=False
 	 
+	 WeaponClass=Class'BWBP_SKC_Pro.SMATLauncher'
      ImpactManager=Class'BWBP_SKC_Pro.IM_SMAT'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      TrailClass=Class'BWBP_SKC_Pro.SMATRocketTrail'

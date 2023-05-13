@@ -100,6 +100,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=4
+		ViewOffset=(X=4.00,Y=6.00,Z=-4.00)
 		//SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 		SightPivot=(Roll=-1024)
 		ZoomType=ZT_Logarithmic

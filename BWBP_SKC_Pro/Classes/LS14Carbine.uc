@@ -47,6 +47,7 @@ var() float		ShovelAnimRate;
 var() int       Rockets;					//Rockets currently in the gun.
 var() int       ConfigX;					//Rockets currently in the gun.
 var() int      	ConfigY;					//Rockets currently in the gun.
+var() byte		SelfHeatDecayRate;
 var	bool		bHeatOnce;					//Used for playing a sound once.
 var	bool		bBarrelsOnline;				//Used for alternating laser effect in attachment class.
 var	bool		bIsReloadingGrenade;		//Are we loading grenades?
@@ -89,13 +90,14 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	LS14PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-
-	if (class'BallisticReplicationInfo'.static.IsClassic()) // FIXME - create params for double mode
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
-		//LS14PrimaryFire(FireMode[0]).default.HeatPerShot = 0;
-		//LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
+		LS14PrimaryFire(FireMode[0]).default.HeatPerShot = 0;
+		LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
 		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShot = 1;
 		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShotDouble = 3.5;
+		LS14PrimaryFire(FireMode[0]).default.SelfHeatDeclineDelay = 0;
+		SelfHeatDecayRate=2.5;
 		LS14PrimaryFire(FireMode[0]).bAnimatedOverheat = true;
 	}
 }
@@ -111,7 +113,7 @@ simulated function ScreenStart()
 {
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Client = self;
-	Skins[5] = WeaponScreenShader; //Set up scripted texture.
+	Skins[4] = WeaponScreenShader; //Set up scripted texture.
 	UpdateScreen();//Give it some numbers n shit
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Revision++;
@@ -270,7 +272,7 @@ simulated function ClientSetHeat(float NewHeat)
 simulated event Tick (float DT)
 {
 	if (SelfHeatLevel > 0 && Level.TimeSeconds > SelfHeatDeclineTime)
-		SelfHeatLevel = FMax(SelfHeatLevel - 10 * DT, 0);
+		SelfHeatLevel = FMax(SelfHeatLevel - SelfHeatDecayRate * DT, 0);
 	
 	super.Tick(DT);
 }
@@ -1001,6 +1003,7 @@ defaultproperties
 	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
 	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
 
+	SelfHeatDecayRate=10
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
@@ -1033,7 +1036,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Heat')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
@@ -1097,8 +1100,7 @@ defaultproperties
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
 	Skins(2)=Texture'BWBP_SKC_Tex.LS14.LS14-RDS'
-	Skins(3)=Texture'BWBP_SKC_Tex.LS440.LS440-Green'
-	Skins(4)=Shader'BWBP_OP_Tex.CX61.CX61SightShad'
-    Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+	Skins(3)=Shader'BWBP_OP_Tex.CX61.CX61SightShad'
+    Skins(4)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
 	 
 }

@@ -10,7 +10,7 @@
 //=============================================================================
 class G51Mine_Sensor extends BallisticProjectile;
 
-var() Sound						DetonateSound;
+var() Sound						ArmingSound;
 var() Sound						PingSound;
 var() Sound						PingDirectSound;
 var() float						PingSoundRadius;
@@ -83,9 +83,9 @@ simulated function InitProjectile()
 
 	if (Role == ROLE_Authority)
 	{
-		PlaySound(DetonateSound,,0.3,,256,,);
 		SetTimer(ActivationDelay, false);
 	}
+	PlaySound(ArmingSound,,0.3,,256,,);
 }
 
 simulated function Destroyed()
@@ -172,7 +172,7 @@ function Ping(vector HitLocation)
 
 	foreach CollidingActors( class'xPawn', P, SensorRadius, Location )
 	{
-		if (P.Controller != None && P.bCanBeDamaged && P != Instigator && (!Level.Game.bTeamGame || !Instigator.Controller.SameTeamAs(P.Controller)))
+		if (P.Controller != None && P.bCanBeDamaged && P.bProjTarget  && P != Instigator && (!Level.Game.bTeamGame || !Instigator.Controller.SameTeamAs(P.Controller)))
 		{
 			if (FastTrace(P.Location, Location))
 			{
@@ -199,7 +199,7 @@ defaultproperties
 	 WeaponClass=Class'BWBP_SKC_Pro.G51Carbine'
      ModeIndex=1
 	 MaxPulseNum=5
-     DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
+     ArmingSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep7'
 	 PingDirectSound=Sound'GeneralAmbience.beep6'
 	 PingSoundRadius=72 // PlaySound mechanics - see UDN

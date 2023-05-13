@@ -103,8 +103,8 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		SightOffset=(X=1.5,Y=0,Z=2.16)
-		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		SightOffset=(X=9,Y=0,Z=-0.09)
+		//SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8,AIndex=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9,AIndex=2)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
@@ -118,7 +118,8 @@ defaultproperties
 		MagAmmo=25
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
-		ViewOffset=(X=1.000000,Y=5.000000,Z=0.000000)
+		//ViewOffset=(X=1.000000,Y=5.000000,Z=0.000000)
+		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -131,7 +132,8 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		//SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
-		SightOffset=(X=-0.50,Y=0.00,Z=1.75)
+		//SightOffset=(X=7.00,Y=0.00,Z=-0.50)
+		SightOffset=(X=9,Y=0,Z=-0.09)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
@@ -141,9 +143,9 @@ defaultproperties
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=25
+		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
-		ViewOffset=(X=1.000000,Y=5.000000,Z=0.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
