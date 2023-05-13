@@ -121,7 +121,7 @@ defaultproperties
      ScopedTracerOffset=(Y=-14.000000,Z=-2.000000)
      MuzzleFlashClass=class'M925FlashEmitter'
      AltMuzzleFlashClass=class'M50M900FlashEmitter'
-     ImpactManager=class'IM_BigBullet'
+     ImpactManager=class'IM_BigBulletHMG'
      AltFlashBone="tip2"
      BrassClass=class'Brass_M46AR'
      FlashMode=MU_Both

@@ -15,14 +15,14 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5PickupLo'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.SMAT.SMATPickup'
      PickupDrawScale=0.500000
      InventoryType=Class'BWBP_SKC_Pro.SMATLauncher'
      RespawnTime=20.000000
      PickupMessage="You picked up the SM-AT/AA Recoilless Rifle"
      PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5PickupHi'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.SMAT.SMATPickup'
      Physics=PHYS_None
-     DrawScale=0.400000
+     DrawScale=0.500000
      CollisionHeight=6.000000
 }

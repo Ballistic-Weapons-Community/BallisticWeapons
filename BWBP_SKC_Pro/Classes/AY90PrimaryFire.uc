@@ -9,12 +9,24 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AY90PrimaryFire extends BallisticProjectileFire;
+
+var() byte OverrideMode;
 var() float ChargeTime;
 var() Sound	ChargeSound;
 var() float AutoFireTime;
 
 var() sound		ChargeFireSound;
 var() sound		MaxChargeFireSound;
+
+
+// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
+simulated function bool AllowFire()
+{
+	if(Super.AllowFire() && AY90SkrithBoltcaster(BW).MagAmmo >= 10)
+		return true;
+	else
+		return false;
+}
 
 simulated function PlayPreFire()
 {
@@ -38,18 +50,21 @@ simulated event ModeDoFire()
 	if (HoldTime >= ChargeTime && AY90SkrithBoltcaster(BW).MagAmmo >= 40)
 	{
 		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),2);
+		OverrideMode=2;
 		AmmoPerFire=40;
 		Load=40;
 	}
 	else if (HoldTime >= (ChargeTime/2) && AY90SkrithBoltcaster(BW).MagAmmo >= 20)
 	{
 		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),1);
+		OverrideMode=1;
 		AmmoPerFire=20;
 		Load=20;
 	}
 	else
 	{
 		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),0);
+		OverrideMode=0;
 		AmmoPerFire=10;
 		Load=10;
 	}
@@ -181,6 +196,14 @@ simulated event ModeDoFire()
 	AmmoPerFire=10;
 	Load=10;
 	
+}
+
+function SpawnProjectile (Vector Start, Rotator Dir)
+{
+	Proj = Spawn (ProjectileClass,,, Start, Dir);
+	BallisticProjectile(Proj).Override(OverrideMode);
+	if (Proj != None)
+		Proj.Instigator = Instigator;
 }
 
 simulated function ModeTick(float DT)

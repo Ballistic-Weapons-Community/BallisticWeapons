@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//HEDP
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.SMATRocket'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
@@ -38,6 +39,40 @@ defaultproperties
 		bCockAfterFire=False
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
+	
+	//CRYO
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams_Ice
+		ProjectileClass=Class'BWBP_SKC_Pro.SMATRocketIce'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
+		Speed=200.000000
+		MaxSpeed=1000000.000000
+		AccelSpeed=100000.000000
+		Damage=100.000000
+		DamageRadius=1024.000000
+		MomentumTransfer=90000.000000
+		bLimitMomentumZ=False
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-FireIce',Volume=9.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=1024.000000
+		Chaos=-1.0
+		Inaccuracy=(X=5,Y=5)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.500000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Ice
+		FireInterval=0.800000
+		BurstFireRateFactor=1.00
+		bCockAfterFire=False
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams_Ice'
 	End Object
 		
     //=================================================================
@@ -118,8 +153,8 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Big Boom"
+	Begin Object Class=WeaponParams Name=ClassicParams_AT
+		LayoutName="HEDP Warhead"
 		Weight=30
 		
 		PlayerSpeedFactor=0.800000
@@ -136,7 +171,23 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams'
+	Begin Object Class=WeaponParams Name=ClassicParams_ICE
+		LayoutName="CRYO Warhead"
+		Weight=10
+		
+		PlayerSpeedFactor=0.800000
+		InventorySize=8
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		ZoomType=ZT_Logarithmic
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Ice'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'ClassicParams_AT'
+	Layouts(1)=WeaponParams'ClassicParams_ICE'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=SMAT_Green

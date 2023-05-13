@@ -84,11 +84,11 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'M925Machinegun'
-	MuzzleFlashClass=class'M925FlashEmitter'
-	ImpactManager=class'IM_BigBullet'
-	BrassClass=class'Brass_BigMG'
-	TracerClass=class'TraceEmitter_Default'
-	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+	ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+	BrassClass=Class'BallisticProV55.Brass_BigMG'
+	TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+	WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	ReloadAnim="Reload_MG"

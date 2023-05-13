@@ -172,6 +172,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=20
 		//SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+		ViewOffset=(X=0.000000,Y=6.000000,Z=-5.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_SemiAuto",Value=1.000000)

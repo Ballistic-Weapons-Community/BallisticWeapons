@@ -47,7 +47,7 @@ simulated function Notify_EjectRocket ()
 	class'BUtil'.static.PlayFullSound(self, EjectSound);
 	SMATPrimaryFire(FireMode[0]).FlashHatchSmoke();
 	Start = Instigator.Location + Instigator.EyePosition() + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), vect(5,10,-5));
-	Spawn(class'Brass_HAMR', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+	Spawn(class'Brass_SMAT', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -150,7 +150,7 @@ defaultproperties
      PlayerSpeedFactor=0.700000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
-     //BigIconMaterial=Texture'BWBP_SKC_Tex.SMAA.BigIcon_SMAA'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.SMAT.BigIcon_SMAT'
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Projectile=True
@@ -212,7 +212,7 @@ defaultproperties
 	SightOffset=(X=20.00,Y=0.00,Z=0.50)
 
      AttachmentClass=Class'BWBP_SKC_Pro.SMATAttachment'
-     //IconMaterial=Texture'BWBP_SKC_Tex.SMAA.SmallIcon_SMAA'
+     IconMaterial=Texture'BWBP_SKC_Tex.SMAT.SmallIcon_SMAT'
      IconCoords=(X2=127,Y2=31)
      ItemName="S.M.A.T. Infantry Cannon"
      LightType=LT_Pulse

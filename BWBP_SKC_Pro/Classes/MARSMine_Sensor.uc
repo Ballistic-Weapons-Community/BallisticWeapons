@@ -10,7 +10,7 @@
 //=============================================================================
 class MARSMine_Sensor extends BallisticProjectile;
 
-var() Sound			DetonateSound;
+var() Sound			ArmingSound;
 var() Sound			PingSound;
 var() Sound			PingDirectSound;
 var	int					SensorRadius;
@@ -80,9 +80,9 @@ simulated function InitProjectile()
 
 	if (Role == ROLE_Authority)
 	{
-		PlaySound(DetonateSound,,0.3,,256,,);
 		SetTimer(ActivationDelay, false);
 	}
+	PlaySound(ArmingSound,,0.3,,256,,);
 }
 
 simulated function Destroyed()
@@ -173,7 +173,7 @@ function Ping(vector HitLocation)
 	
 	foreach CollidingActors( class 'Actor', A, SensorRadius, Location )
 	{
-		if (A.bCanBeDamaged && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
+		if (A.bCanBeDamaged && A.bProjTarget && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
 		{
 			if (FastTrace(A.Location, Location))
 			{
@@ -204,7 +204,7 @@ defaultproperties
 	 WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
 	 MaxPulseNum=3
-     DetonateSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
+     ArmingSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep6'
 	 PingDirectSound=Sound'GeneralAmbience.beep7'
      SensorRadius=768

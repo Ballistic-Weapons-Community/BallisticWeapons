@@ -15,7 +15,7 @@ defaultproperties
 	DeathStrings(2)="%k finished off a wounded %o, giving %km more meat for the Wyvern."
 	DeathStrings(3)="%k's Wyvern stuck %o where the sun doesn't shine."
     BloodManagerName="BallisticProV55.BloodMan_A73Burn"
-	SimpleKillString="AY90 Sticky"
+	SimpleKillString="AY90 Sticky Impact"
 	bIgniteFires=True
 	bOnlySeverLimbs=True
 	DamageDescription=",Flame,Plasma,"

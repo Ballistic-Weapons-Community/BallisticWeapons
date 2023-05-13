@@ -163,6 +163,10 @@ simulated event AnimEnd (int Channel)
 	}
 	Super.AnimEnd(Channel);
 }
+exec simulated function MeleeHold()
+{
+	return;
+}
 
 function AttachToPawn(Pawn P)
 {

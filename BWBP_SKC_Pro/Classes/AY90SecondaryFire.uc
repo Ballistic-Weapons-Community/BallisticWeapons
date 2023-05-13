@@ -7,6 +7,7 @@
 //=============================================================================
 class AY90SecondaryFire extends BallisticProjectileFire;
 
+var() byte OverrideMode;
 var() float ChargeTime;
 var() Sound	ChargeSound;
 var() float AutoFireTime;
@@ -15,6 +16,15 @@ var() sound		ChargeFireSound;
 var() sound		MaxChargeFireSound;
 
 var byte ProjectileCount;
+
+// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
+simulated function bool AllowFire()
+{
+	if(Super.AllowFire() && AY90SkrithBoltcaster(BW).MagAmmo >= 10)
+		return true;
+	else
+		return false;
+}
 
 simulated function PlayPreFire()
 {
@@ -37,6 +47,7 @@ simulated event ModeDoFire()
 	if (HoldTime >= ChargeTime && AY90SkrithBoltcaster(BW).MagAmmo >= 40)
 	{
 		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),2);
+		OverrideMode=2;
 		ProjectileCount=30;
 		AmmoPerFire=40;
 		Load=40;
@@ -45,6 +56,7 @@ simulated event ModeDoFire()
 	else if (HoldTime >= (ChargeTime/2) && AY90SkrithBoltcaster(BW).MagAmmo >= 20)
 	{
 		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),1);
+		OverrideMode=1;
 		ProjectileCount=20;
 		AmmoPerFire=20;
 		Load=20;
@@ -53,6 +65,7 @@ simulated event ModeDoFire()
 	else
 	{
 		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),0);
+		OverrideMode=0;
 		ProjectileCount=10;
 		AmmoPerFire=10;
 		Load=10;
@@ -209,6 +222,7 @@ simulated function ModeTick(float DT)
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
+	BallisticProjectile(Proj).Override(OverrideMode);
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;

@@ -65,6 +65,7 @@ var() bool					    bRandomStartRotation;	// Set random roll on startup
 var() int                       ModeIndex;              // For parameter indexing - is primary or alt fire shot
 var() byte                      LayoutIndex;            // For parameter indexing - layout of firing weapon
 var() byte                      CurrentWeaponMode;      // For parameter indexing - fire mode index of firing weapon
+var() bool						bOverrideMode;			// Params are coming from a source other than CurrentWeaponMode
 var() bool					    bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
 var() bool					    bPenetrate;				// Will go through enemies
 
@@ -189,7 +190,8 @@ simulated function PostBeginPlay()
     // bind replicated parameters for indexing on client
     if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
     {
-        CurrentWeaponMode = BallisticWeapon(Instigator.Weapon).CurrentWeaponMode;
+		if (!bOverrideMode)
+			CurrentWeaponMode = BallisticWeapon(Instigator.Weapon).CurrentWeaponMode;
         LayoutIndex = BallisticWeapon(Instigator.Weapon).LayoutIndex;
     }
 
@@ -325,6 +327,21 @@ simulated function ApplyParams(ProjectileEffectParams params)
     default.DamageGainStartTime = params.DamageGainStartTime;    
     default.DamageGainEndTime = params.DamageGainEndTime;    
     default.RadiusFallOffType = params.RadiusFallOffType;    
+}
+
+//===================================================================
+// Override
+//
+// Maually set current weapon mode.
+//
+// Used by weapons that need to spawn multiple projectile types but
+// which are not tied to the weapon's mode
+//===================================================================
+simulated function Override(byte NewWeaponMode)
+{
+    bOverrideMode = true;
+	CurrentWeaponMode = NewWeaponMode;
+	InitParams();
 }
 
 //===================================================================

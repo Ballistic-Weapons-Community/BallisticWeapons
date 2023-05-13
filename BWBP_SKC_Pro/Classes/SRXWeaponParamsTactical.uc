@@ -25,7 +25,7 @@ defaultproperties
 		Recoil=600.000000
 		Chaos=0.100000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire3',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardFireParams

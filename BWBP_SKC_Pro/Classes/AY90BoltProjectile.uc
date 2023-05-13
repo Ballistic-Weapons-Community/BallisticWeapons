@@ -7,10 +7,10 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AY90BoltProjectile extends BallisticGrenade;
+var() Sound FlySound;
 
-var() Sound 	FlySound;
-var Actor 		StuckActor;
-var bool 		bPlaced;
+var Actor StuckActor;
+var bool bPlaced;
 
 simulated function PreBeginPlay()
 {
@@ -118,11 +118,10 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		Proj.Instigator = Instigator;
 		Proj.SetPhysics(PHYS_None);
 		Proj.bHardAttach = true;
-		if (StuckActor != Instigator && StuckActor.DrawType == DT_Mesh)
-			StuckActor.AttachToBone(Proj, StuckActor.GetClosestBone(LastHitLoc, Velocity, BoneDist));
-		else
+		//if (StuckActor != Instigator && StuckActor.DrawType == DT_Mesh)
+		//	StuckActor.AttachToBone(Proj, StuckActor.GetClosestBone(LastHitLoc, Velocity, BoneDist));
+		//else
 			Proj.SetBase(StuckActor);
-			
 	}
 
 	Destroy();
@@ -158,6 +157,7 @@ simulated event Timer()
 {
 	SetPhysics(PHYS_Falling);
 }
+
 
 defaultproperties
 {

@@ -1,24 +1,15 @@
 //=============================================================================
-// IM_ExpBullet.
+// IM_BigBulletHMG.
 //
-// ImpactManager subclass for explosive rounds
-// Used on the X83 and AH104
+// ImpactManager subclass for larger bullets, 50 cal and up
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IM_ExpBullet extends IM_Bullet;
+class IM_BigBulletHMG extends IM_Bullet;
 
 defaultproperties
 {
-     HitEffects(0)=Class'BWBP_SKC_Pro.IE_BulletExpConcrete'
-     HitEffects(1)=Class'BWBP_SKC_Pro.IE_BulletExpConcrete'
-     HitEffects(2)=Class'BWBP_SKC_Pro.IE_BulletExpDirt'
-     HitEffects(3)=Class'BWBP_SKC_Pro.IE_BulletExpMetal'
-     HitEffects(4)=Class'BWBP_SKC_Pro.IE_BulletExpWood'
-     HitEffects(5)=Class'BWBP_SKC_Pro.IE_BulletExpGrass'
-     HitEffects(7)=Class'BWBP_SKC_Pro.IE_BulletExpIce'
-     HitEffects(8)=Class'BWBP_SKC_Pro.IE_BulletExpSnow'
      HitDecals(0)=Class'BallisticProV55.AD_BigBulletConcrete'
      HitDecals(1)=Class'BallisticProV55.AD_BigBulletConcrete'
      HitDecals(3)=Class'BallisticProV55.AD_BigBulletMetal'
@@ -38,7 +29,7 @@ defaultproperties
      HitSounds(8)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletDirtBig'
      HitSounds(9)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletWater'
      HitSounds(10)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletGlassBig'
-     HitSoundVolume=1.500000
+     HitSoundVolume=1.200000
      HitSoundRadius=124.000000
-     HitDelay=0.050000
+     HitDelay=0.060000
 }

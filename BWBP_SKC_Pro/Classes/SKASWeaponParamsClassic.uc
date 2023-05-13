@@ -26,7 +26,8 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
-		Recoil=300.000000
+		Recoil=450.000000
+		PushBackForce=180.000000
 		Chaos=-1.0
 		Inaccuracy=(X=900,Y=900)
 		HipSpreadFactor=1.000000
@@ -173,6 +174,7 @@ defaultproperties
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=5,Y=6,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

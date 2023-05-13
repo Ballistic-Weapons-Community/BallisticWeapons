@@ -18,6 +18,7 @@ simulated event PreBeginPlay()
 	{
 		bShotgunMode=true;
 		InstantMode=MU_Both;
+		ImpactManager=Class'IM_IncendiaryHMGBullet';
 	}
 }
 
