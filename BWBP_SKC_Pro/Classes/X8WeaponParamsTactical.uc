@@ -36,9 +36,12 @@ defaultproperties
 		Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 			ProjectileClass=Class'BWBP_SKC_Pro.X8ProjectileHeld'
 			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-			Speed=7500.000000
-			MaxSpeed=7500.000000
-			Damage=100.000000
+			Speed=8500.000000
+			MaxSpeed=8500.000000
+			Damage=75.000000
+			HeadMult=3.25
+        	LimbMult=0.75
+			Inaccuracy=(X=384,Y=384)
 			MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.5,Radius=24.000000,bAtten=True)
 			WarnTargetPct=0.5	
