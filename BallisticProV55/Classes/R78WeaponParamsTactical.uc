@@ -95,7 +95,7 @@ defaultproperties
 		//Function
 		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		MagAmmo=5
-        InventorySize=5
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -116,12 +116,14 @@ defaultproperties
 		SightingTime=0.40
 		SightMoveSpeedFactor=0.45
 		MagAmmo=5
-        InventorySize=5
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
     End Object 
+
     Layouts(0)=WeaponParams'TacticalParams'
+	Layouts(1)=WeaponParams'TacticalParams_NoScope'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=R78_Gray

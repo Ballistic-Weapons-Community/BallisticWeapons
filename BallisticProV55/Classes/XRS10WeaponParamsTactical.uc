@@ -19,7 +19,7 @@ defaultproperties
      	PenetrationEnergy=16
 		PenetrateForce=135
 		bPenetrate=True
-     	Damage=28 // .45
+     	Damage=25 // .40 - per description
         HeadMult=3.25
         LimbMult=0.75
      	DamageType=Class'BallisticProV55.DTXRS10SMG'
@@ -32,7 +32,8 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPriFireParams
 		AimedFireAnim="SightFire"
-		FireInterval=0.066
+		FireInterval=0.09
+		BurstFireRateFactor=0.85
 		FireEffectParams(0)=InstantEffectParams'TacticalPriEffectParams'
 	End Object
 

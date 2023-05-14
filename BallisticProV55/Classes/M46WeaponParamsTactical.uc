@@ -133,6 +133,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams_Scope
         MagAmmo=24
         InventorySize=6
+		LayoutName="Scoped"
 		// ADS handling
 		SightingTime=0.40
         SightMoveSpeedFactor=0.35
@@ -152,6 +153,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams_RDS
 		SightingTime=0.35
         SightMoveSpeedFactor=0.6
+		LayoutName="RDS"
         MagAmmo=24
         InventorySize=6
 		SightOffset=(X=-2.5,Y=0.04,Z=3.85)

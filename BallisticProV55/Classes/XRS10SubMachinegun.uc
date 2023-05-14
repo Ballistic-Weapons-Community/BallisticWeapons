@@ -423,7 +423,7 @@ defaultproperties
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"
-	Description="The XRS10 is a small, silencable Sub-Machinegun, constructed by newcomer arms company, Drake & Co. Based on a design from many years ago, the XRS10 is a short, medium-range weapon, using .40 calibre ammunition. The weapon has a medium rate-of-fire, fair damage, and a decent magazine capacity, yet can generate much recoil and chaos. The new model, features silencer and blue-light laser sight, to give it some more edge in stealthier situations."
+	Description="The XRS10 is a small, suppressable machine pistol, constructed by newcomer arms company Drake & Co. Based on a design from many years ago, the XRS10 is a short, medium-range weapon, using .40 caliber ammunition. The weapon has a medium rate-of-fire, fair damage, and a decent magazine capacity, yet can generate much recoil and chaos. The new model, features silencer and blue-light laser sight, to give it some more edge in stealthier situations."
 	Priority=27
 	HudColor=(B=255,G=200,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

@@ -29,7 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardFireParams
-		FireInterval=0.32000
+		FireInterval=0.27000
 		BurstFireRateFactor=1
 		FireEndAnim=
 		FireAnimRate=0.8
@@ -59,7 +59,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalExplosiveFireParams
-		FireInterval=0.450000
+		FireInterval=0.35000
 		BurstFireRateFactor=1
 		FireEndAnim=
 		FireAnimRate=0.8
@@ -125,7 +125,7 @@ defaultproperties
 		XRandFactor=0.2
 		YRandFactor=0.2
 		ClimbTime=0.06
-		DeclineDelay=0.4
+		DeclineDelay=0.29
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
@@ -140,7 +140,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
 		YRandFactor=0.2
 		ClimbTime=0.06
-		DeclineDelay=0.4
+		DeclineDelay=0.29
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5

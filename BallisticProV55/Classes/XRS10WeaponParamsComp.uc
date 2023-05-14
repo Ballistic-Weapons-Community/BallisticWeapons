@@ -14,7 +14,7 @@ defaultproperties
 		PenetrateForce=135
 		bPenetrate=True
      	Damage=20.000000
-        HeadMult=2.00f
+        HeadMult=2.00
         LimbMult=0.75
      	DamageType=Class'BallisticProV55.DTXRS10SMG'
      	DamageTypeHead=Class'BallisticProV55.DTXRS10SMGHead'
@@ -27,7 +27,8 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaPriFireParams
 		AimedFireAnim="SightFire"
-		FireInterval=0.066
+		FireInterval=0.09
+		BurstFireRateFactor=0.85
 		FireEffectParams(0)=InstantEffectParams'ArenaPriEffectParams'
 	End Object
 
