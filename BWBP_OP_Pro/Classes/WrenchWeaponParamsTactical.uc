@@ -97,7 +97,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 	
-	Begin Object Class=RecoilParams Name=UniversalRecoilParams
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
@@ -108,7 +108,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-    Begin Object Class=AimParams Name=UniversalAimParams
+    Begin Object Class=AimParams Name=TacticalAimParams
         ViewBindFactor=0.00
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
         AimSpread=(Min=0,Max=0)
@@ -119,7 +119,7 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-    Begin Object Class=WeaponParams Name=UniversalParams
+    Begin Object Class=WeaponParams Name=TacticalParams
         ViewOffset=(X=10.000000,Z=-7.000000)
         MagAmmo=1
         InventorySize=2
@@ -129,8 +129,8 @@ defaultproperties
 		WeaponModes(3)=(ModeName="Shield Generator",ModeID="WM_FullAuto")
 		WeaponModes(4)=(ModeName="Ammo Crate",ModeID="WM_FullAuto")
 		WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
-        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
-        AimParams(0)=AimParams'UniversalAimParams'
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalBoostPadFireParams'
 		FireParams(1)=FireParams'TacticalTeleporterFireParams'
 		FireParams(2)=FireParams'TacticalSandbagFireParams'
@@ -139,5 +139,5 @@ defaultproperties
 		FireParams(5)=FireParams'TacticalMinigunFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'UniversalParams'
+    Layouts(0)=WeaponParams'TacticalParams'
 }

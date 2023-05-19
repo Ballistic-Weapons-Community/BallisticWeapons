@@ -15,7 +15,7 @@ defaultproperties
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=15
         HeadMult=1.75
-        LimbMult=0.85f
+        LimbMult=0.85
 		DamageType=Class'BallisticProV55.DTM763Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'

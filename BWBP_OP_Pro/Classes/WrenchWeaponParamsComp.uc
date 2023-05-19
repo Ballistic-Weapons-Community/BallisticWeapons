@@ -97,7 +97,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 	
-	Begin Object Class=RecoilParams Name=UniversalRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
@@ -108,7 +108,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-    Begin Object Class=AimParams Name=UniversalAimParams
+    Begin Object Class=AimParams Name=ArenaAimParams
         ViewBindFactor=0.00
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
         AimSpread=(Min=0,Max=0)
@@ -119,7 +119,7 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-    Begin Object Class=WeaponParams Name=UniversalParams
+    Begin Object Class=WeaponParams Name=ArenaParams
         ViewOffset=(X=10.000000,Z=-7.000000)
         MagAmmo=1
         InventorySize=2
@@ -129,8 +129,8 @@ defaultproperties
 		WeaponModes(3)=(ModeName="Shield Generator",ModeID="WM_FullAuto")
 		WeaponModes(4)=(ModeName="Ammo Crate",ModeID="WM_FullAuto")
 		WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
-        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
-        AimParams(0)=AimParams'UniversalAimParams'
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaBoostPadFireParams'
 		FireParams(1)=FireParams'ArenaTeleporterFireParams'
 		FireParams(2)=FireParams'ArenaSandbagFireParams'
@@ -139,5 +139,5 @@ defaultproperties
 		FireParams(5)=FireParams'ArenaMinigunFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'UniversalParams'
+    Layouts(0)=WeaponParams'ArenaParams'
 }

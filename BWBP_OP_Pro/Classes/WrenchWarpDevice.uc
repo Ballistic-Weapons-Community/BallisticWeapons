@@ -702,6 +702,9 @@ defaultproperties
      GunLength=0.000000
      bAimDisabled=True
 	 ParamsClasses(0)=Class'WrenchWeaponParamsComp'
+	 ParamsClasses(1)=Class'WrenchWeaponParamsComp'
+	 ParamsClasses(2)=Class'WrenchWeaponParamsTactical'
+	 ParamsClasses(3)=Class'WrenchWeaponParamsTactical'
      FireModeClass(0)=Class'WrenchPrimaryFire'
      FireModeClass(1)=Class'WrenchSecondaryFire'
 	 PutDownTime=1.750000

@@ -40,8 +40,8 @@ struct ModeInfo
     var float                     TracerChance;
     var int                       TracerMix;
     var int                       TracerCounter;
-    var name                      FlashBone;
-    var name                      TipBone;
+    var Name                      FlashBone;
+    var Name                      TipBone;
     var bool                      bTrackAnim;
     var bool                      bInstant;
     var bool                      bTracer;
@@ -53,7 +53,7 @@ struct ModeInfo
 
 var   ModeInfo                      ModeInfos[2];
 
-var() class<BallisticWeapon>		WeaponClass;						// currently optional. used to access params
+var() class<BallisticWeapon>		WeaponClass;						// required - used to access params
 var() class<actor>					MuzzleFlashClass;					//Effect to spawn fot mode 0 muzzle flash
 var   actor							MuzzleFlash;						//The flash actor itself
 var() class<actor>					AltMuzzleFlashClass;				//Effect to spawn fot mode 1 muzzle flash
@@ -64,13 +64,13 @@ var() bool							bDoWaterSplash;						//Allow water splash effects and checks
 var() bool							bRandomFlashRoll;					//Randomly set roll of muzzle flash actor for each shot
 var   actor							LightWeapon;						//Actor currently being use for weapon light
 var() float							WeaponLightTime;					//Time for weapon light to remain on
-var() name							FlashBone;							//Bone to which primary flash will be attached
-var() name							AltFlashBone;						//Bone to which secondary flash will be attached
+var() Name							FlashBone;							//Bone to which primary flash will be attached
+var() Name							AltFlashBone;						//Bone to which secondary flash will be attached
 var   int							mHitSurf;							//Surface type that was hit
 var() float							FlashScale;							//Flash will be scaled by weapon drawscale and this
 var() class<actor>					BrassClass;							//Type of brass to eject
 var() EModeUsed						BrassMode;							//Firing mode/s that eject brass
-var() name							BrassBone;							//Name of bone from which to spawn brass
+var() Name							BrassBone;							//Name of bone from which to spawn brass
 var() EModeUsed						TracerMode;							//Firing mode/s that spawn tracer effects. Still needs Instant mode to be on
 var() EModeUsed						InstantMode;						//Firing mode/s that spawn instant fire effects
 var() EModeUsed						FlashMode;							//Firing mode/s that spawn muzzle flash
@@ -93,19 +93,19 @@ var() BUtil.FullSound				FlyBySound;							//Sound to play for bullet flyby effe
 var() EModeUsed						FlyByMode;							//Firing mode/s that use flyby effect.
 var() float							FlybyRange;							//Max distance from bullet trace line, at which flyby by sounds will be heard
 var() float							FlyByBulletSpeed;					//Used to calculate flyby sound delay (simulate bullet speed)
-var int CamoIndex;
+var 	int 						CamoIndex;
 
 //===========================================================================
 // Animation support
 //===========================================================================
 var() Name							ReloadAnim, CockingAnim, WeaponSpecialAnim, StaggerAnim;			// Third person reload animation.
 var() float							ReloadAnimRate, CockAnimRate, WeaponSpecialRate, StaggerRate;  // Used by SetAnimAction for third person "reload" anim rate
-var()  name							IdleHeavyAnim, IdleRifleAnim;
-var()	 name						MeleeStrikeAnim;						// Third person melee attack.
+var()  Name							IdleHeavyAnim, IdleRifleAnim;
+var()	 Name						MeleeStrikeAnim;						// Third person melee attack.
 var()	 float						MeleeAnimRate;
-var()	 name						MeleeBlockAnim, MeleeWindupAnim;
+var()	 Name						MeleeBlockAnim, MeleeWindupAnim;
 var 	 bool						bIsAimed; 								// Used to have pawns raise and lower the gun
-var()	 name						SingleFireAnim, SingleAimedFireAnim,  RapidFireAnim, RapidAimedFireAnim;
+var()	 Name						SingleFireAnim, SingleAimedFireAnim, RapidFireAnim, RapidAimedFireAnim;
 
 // Direct impacts allow the server to send the loc, norm and surf of an impact to be used on the client
 // This way the server can force a specific impact, but this uses more bandwidth
@@ -135,7 +135,7 @@ struct BonePos
 // A track is a list of offset points associated with a bone
 struct BoneTrack
 {
-	var() name Bone;
+	var() Name Bone;
 	var() array<BonePos> Points;
 };
 var() array<BoneTrack> 	SlashTracks;			// The tracks used for a pawn slashing anim

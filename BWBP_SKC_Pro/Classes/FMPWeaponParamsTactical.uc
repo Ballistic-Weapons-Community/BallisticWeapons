@@ -8,23 +8,25 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
-     	TraceRange=(Min=3072,Max=3072)
+		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
-     	PenetrationEnergy=16
-		PenetrateForce=135
 		Damage=30 // .40 SMG
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		PenetrationEnergy=16
+		PenetrateForce=135
+		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.900000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Fire',Volume=1.000000)
-		Recoil=80.000000
+		Recoil=140.000000
 		Chaos=0.06
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Fire',Volume=1.000000)
+
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -117,18 +119,16 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
+		ViewBindFactor=0.35
+		ADSViewBindFactor=0.7
+		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.500000,OutVal=0.100000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.160000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.350000),(InVal=1.000000,OutVal=0.350000)))
-		YawFactor=0.200000
-		PitchFactor=0.600000
-		XRandFactor=0.1
-		YRandFactor=0.1
-		MaxRecoil=4096.000000
+		XRandFactor=0.05000
+		YRandFactor=0.05000
 		ClimbTime=0.04
 		DeclineTime=0.75
-		DeclineDelay=0.150000
-		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.7
+		DeclineDelay=0.14
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -139,14 +139,16 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalIncRecoilParams
+		ViewBindFactor=0.35
+		ADSViewBindFactor=0.7
+		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.16)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
+		XRandFactor=0.05000
+		YRandFactor=0.05000
 		ClimbTime=0.04
-		DeclineTime=0.7500000
-		DeclineDelay=0.45000
-		ViewBindFactor=0.45
+		DeclineTime=0.75
+		DeclineDelay=0.14
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -157,14 +159,16 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=TacticalCorrosiveRecoilParams
+		ViewBindFactor=0.35
+		ADSViewBindFactor=0.7
+		EscapeMultiplier=1.5
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.16)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
+		XRandFactor=0.05000
+		YRandFactor=0.05000
 		ClimbTime=0.04
-		DeclineTime=0.7500000
-		DeclineDelay=0.45000
-		ViewBindFactor=0.45
+		DeclineTime=0.75
+		DeclineDelay=0.14
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2
@@ -178,9 +182,10 @@ defaultproperties
 		ADSViewBindFactor=0
 		ADSMultiplier=0.35
 		AimAdjustTime=0.6
-    	AimSpread=(Min=256,Max=1024)
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
-        ChaosSpeedThreshold=300
+		AimSpread=(Min=256,Max=1024)
+		ChaosDeclineTime=0.800000
+		ChaosSpeedThreshold=300
 	End Object
     
 	//=================================================================
@@ -188,10 +193,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
-		InventorySize=4
-		SightMoveSpeedFactor=0.6
-		SightingTime=0.25
+		DisplaceDurationMult=0.75
+        SightMoveSpeedFactor=0.6
 		MagAmmo=28
+		SightingTime=0.25
+		InventorySize=4
 		bDualBlocked=True
 		WeaponName="FMP-2012 .40 Machine Pistol"
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

@@ -319,6 +319,8 @@ defaultproperties
 	SightingTime=0.350000
 	ParamsClasses(0)=Class'RGPXWeaponParamsArena'
 	ParamsClasses(1)=Class'RGPXWeaponParamsClassic'
+	ParamsClasses(2)=Class'RGPXWeaponParamsTactical'
+	ParamsClasses(3)=Class'RGPXWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_JCF_Pro.RGPXPrimaryFire'
 	FireModeClass(1)=Class'BWBP_JCF_Pro.RGPXSecondaryFire'
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)

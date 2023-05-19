@@ -542,6 +542,7 @@ defaultproperties
 	ParamsClasses(0)=Class'HKMKSpecWeaponParams'
 	ParamsClasses(1)=Class'HKMKSpecWeaponParamsClassic'
 	ParamsClasses(2)=Class'HKMKSpecWeaponParamsRealistic'
+	ParamsClasses(3)=Class'HKMKSpecWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_JCF_Pro.HKMKSpecPrimaryFire'
 	FireModeClass(1)=Class'BWBP_JCF_Pro.HKMKSpecSecondaryFire'
 	bShouldDualInLoadout=True
