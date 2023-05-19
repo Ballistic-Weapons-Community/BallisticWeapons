@@ -1,7 +1,7 @@
 //=============================================================================
-// Longhorn secondary fire
+// AY90SecondaryFire
 //
-// Sprays clusters of death in a similar manner to a shotgun
+// A destructive wave of plasma, charge it for more pain
 //
 // by Casey "The Xavious" Johnson
 //=============================================================================

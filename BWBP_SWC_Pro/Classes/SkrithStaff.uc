@@ -7,7 +7,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class SkrithStaff extends BallisticWeapon;
+class SkrithStaff extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 var Actor GlowFX;
 var float		lastModeChangeTime;

@@ -38,6 +38,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.2000000	
+		AimedFireAnim="AimedFire"	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 	
@@ -72,6 +73,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.2000000	
+		AimedFireAnim="AimedFire"	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryBurstEffectParams'
 	End Object
 		
@@ -166,6 +168,7 @@ defaultproperties
 		bMagPlusOne=True
 		//ViewOffset=(X=-8.000000,Y=7.000000,Z=-11.000000)
 		//SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
+		SightOffset=(X=10.000000,Y=-0.010000,Z=-1.000000)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		//ReloadAnimRate=0.925000

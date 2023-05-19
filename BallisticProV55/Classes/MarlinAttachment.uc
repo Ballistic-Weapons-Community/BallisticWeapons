@@ -152,8 +152,8 @@ simulated function SpawnTracer(byte Mode, Vector V)
 defaultproperties
 {
 	WeaponClass=class'MarlinRifle'
-	GaussTracerClass=class'TraceEmitter_MarlinZap'
-	GaussImpactManager=class'IM_HVCBlueLightning'
+	GaussTracerClass=class'TraceEmitter_Gauss'
+	GaussImpactManager=class'IM_BulletGauss'
 	MuzzleFlashClass=class'R78FlashEmitter'
 	ImpactManager=class'IM_Bullet'
 	MeleeImpactManager=class'IM_GunHit'

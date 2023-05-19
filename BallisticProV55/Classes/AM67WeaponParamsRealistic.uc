@@ -134,9 +134,9 @@ defaultproperties
 		//ViewOffset=(X=9.000000,Y=7.000000,Z=-7.000000)
 		//SightOffset=(X=-12.000000,Y=-1.1750000,Z=14.150000)
 		//SightPivot=(Pitch=-160,Roll=-465)
-		bAdjustHands=true
-		RootAdjust=(Yaw=-280,Pitch=2500)
-		WristAdjust=(Yaw=-2500,Pitch=-000)
+		//bAdjustHands=true
+		//RootAdjust=(Yaw=-280,Pitch=2500)
+		//WristAdjust=(Yaw=-2500,Pitch=-000)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		InitialWeaponMode=0
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -160,9 +160,9 @@ defaultproperties
 		//ViewOffset=(X=9.000000,Y=7.000000,Z=-7.000000)
 		//SightOffset=(X=-12.000000,Y=-1.1750000,Z=14.150000)
 		//SightPivot=(Pitch=-160,Roll=-465)
-		bAdjustHands=true
-		RootAdjust=(Yaw=-280,Pitch=2500)
-		WristAdjust=(Yaw=-2500,Pitch=-000)
+		//bAdjustHands=true
+		//RootAdjust=(Yaw=-280,Pitch=2500)
+		//WristAdjust=(Yaw=-2500,Pitch=-000)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		InitialWeaponMode=0
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)

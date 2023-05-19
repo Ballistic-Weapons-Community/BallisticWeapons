@@ -239,8 +239,8 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-B'
-	Layouts(2)=WeaponParams'ClassicParams-E'
-	Layouts(3)=WeaponParams'ClassicParams-SSS'
+	//Layouts(1)=WeaponParams'ClassicParams-B'
+	//Layouts(2)=WeaponParams'ClassicParams-E'
+	//Layouts(3)=WeaponParams'ClassicParams-SSS'
 
 }

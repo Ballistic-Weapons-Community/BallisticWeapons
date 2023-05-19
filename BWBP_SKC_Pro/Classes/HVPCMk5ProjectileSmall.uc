@@ -143,6 +143,8 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+	 WeaponClass=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
+	 ModeIndex=1
      ImpactManager=Class'BWBP_SKC_Pro.IM_HVPCProjectileSmall'
      PenetrateManager=Class'BWBP_SKC_Pro.IM_HVPCProjectileSmall'
      bPenetrate=True
@@ -176,5 +178,4 @@ defaultproperties
      SoundRadius=75.000000
      bFixedRotationDir=True
      RotationRate=(Roll=12384)
-	 ModeIndex=1
 }

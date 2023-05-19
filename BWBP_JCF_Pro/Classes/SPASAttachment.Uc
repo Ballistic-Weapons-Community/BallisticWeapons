@@ -12,7 +12,7 @@ var bool bSlugger;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsArena())
+	if (!class'BallisticReplicationInfo'.static.IsArena())
 	{
 		TracerChance=1;
 		TracerMix=0;

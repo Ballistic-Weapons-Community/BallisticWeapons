@@ -8,7 +8,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class A2WSkrithLance extends BallisticWeapon;
+class A2WSkrithLance extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 var Actor GlowFX;
 

@@ -374,7 +374,7 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BWBP_APC_Pro.FM13Pickup'
-	PlayerViewOffset=(X=-14.000000,Y=5.000000,Z=-25.000000)
+	PlayerViewOffset=(X=-20.000000,Y=5.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.FM13Attachment'
 	IconMaterial=Texture'BWBP_CC_Tex.FM13.SmallIcon_Pitbull'
 	IconCoords=(X2=127,Y2=31)

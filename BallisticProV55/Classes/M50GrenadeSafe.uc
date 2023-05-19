@@ -13,7 +13,7 @@ defaultproperties
 {
     WeaponClass=Class'BallisticProV55.M50AssaultRifle'
 	
-    ArmingDelay=0.3
+    ArmingDelay=0.25
 	UnarmedDetonateOn=DT_None
 	UnarmedPlayerImpactType=PIT_Bounce
     ArmedDetonateOn=DT_Impact

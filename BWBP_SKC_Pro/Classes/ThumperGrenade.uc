@@ -78,7 +78,7 @@ class ThumperGrenade extends BallisticGrenade;
 			
 defaultproperties
 {
-	WeaponClass=Class'ThumperGrenadeLauncher'
+	WeaponClass=Class'BWBP_SKC_Pro.ThumperGrenadeLauncher'
 	ArmingDelay=0.18
 	UnarmedDetonateOn=DT_ImpactTimed
 	UnarmedPlayerImpactType=PIT_Bounce

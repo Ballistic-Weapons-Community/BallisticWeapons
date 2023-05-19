@@ -679,7 +679,7 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=10
 	PickupClass=Class'BWBP_APC_Pro.ProtoPickup'
-	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-18.000000)
+	PlayerViewOffset=(X=-1.000000,Y=6.000000,Z=-18.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_APC_Pro.ProtoAttachment'
 	IconMaterial=Texture'BWBP_CC_Tex.ProtoLMG.SmallIcon_ProtoLMG'

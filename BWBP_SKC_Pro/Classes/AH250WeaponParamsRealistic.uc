@@ -135,7 +135,7 @@ defaultproperties
 		WeaponPrice=2000
 		MagAmmo=8
 		SightMoveSpeedFactor=0.500000
-		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
+		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
 		WeaponName="AH250 .44 Scoped Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Compensated'
 		AimParams(0)=AimParams'RealisticAimParams_Compensated'
@@ -160,7 +160,7 @@ defaultproperties
 		InventorySize=4
 		WeaponPrice=2000
 		MagAmmo=8
-		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
+		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
 		SightMoveSpeedFactor=0.500000
 		WeaponName="AH250 .44 Scoped Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Compensated'
@@ -188,7 +188,7 @@ defaultproperties
 		WeaponPrice=2000
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=8
-		ViewOffset=(X=-6.000000,Y=19.500000,Z=-30.000000)
+		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
 		WeaponName="AH250 .44 Scoped Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Compensated'
 		AimParams(0)=AimParams'RealisticAimParams_Compensated'

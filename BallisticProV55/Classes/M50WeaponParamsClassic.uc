@@ -362,11 +362,11 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams' //M50 (Silver, GL)
-	Layouts(1)=WeaponParams'ClassicParams_Stealth' //M50 (Black, Suppressed, Smoke GL, Burst)
-	Layouts(2)=WeaponParams'ClassicParams_AdvStealth'//M50A3 Stealth (Black, Suppressed, EO Tech)
-	Layouts(3)=WeaponParams'ClassicParams_AdvHolo' //M50A3 Desert (Tan, Irons)
-	Layouts(4)=WeaponParams'ClassicParams_4XScope' //M50A1 Jungle (Jungle, Scope, GL, Burst)
-	Layouts(5)=WeaponParams'ClassicParams_ScreenScope' //M50A1 Gauss Prototype (M30A2, Screen Scope, Gauss, Burst)
+	//Layouts(1)=WeaponParams'ClassicParams_Stealth' //M50 (Black, Suppressed, Smoke GL, Burst)
+	//Layouts(2)=WeaponParams'ClassicParams_AdvStealth'//M50A3 Stealth (Black, Suppressed, EO Tech)
+	//Layouts(3)=WeaponParams'ClassicParams_AdvHolo' //M50A3 Desert (Tan, Irons)
+	//Layouts(4)=WeaponParams'ClassicParams_4XScope' //M50A1 Jungle (Jungle, Scope, GL, Burst)
+	//Layouts(5)=WeaponParams'ClassicParams_ScreenScope' //M50A1 Gauss Prototype (M30A2, Screen Scope, Gauss, Burst)
 	
 	//Camos
 	Begin Object Class=WeaponCamo Name=M50_Silver

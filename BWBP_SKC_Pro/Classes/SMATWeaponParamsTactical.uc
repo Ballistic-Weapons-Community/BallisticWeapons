@@ -1,4 +1,4 @@
-class SMATWeaponParamsRealistic extends BallisticWeaponParams;
+class SMATWeaponParamsTactical extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -8,7 +8,7 @@ defaultproperties
     //=================================================================	
 	
 	//HEDP
-	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.SMATRocket'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
 		Speed=20000.000000
@@ -32,16 +32,16 @@ defaultproperties
 		WarnTargetPct=0.300000	
 	End Object
 
-	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.800000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=False
 		FireEndAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams'
 	End Object
 	
 	//CRYO
-	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams_Ice
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_Ice
 		ProjectileClass=Class'BWBP_SKC_Pro.SMATRocketIce'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
 		Speed=20000.000000
@@ -66,19 +66,19 @@ defaultproperties
 		WarnTargetPct=0.300000	
 	End Object
 
-	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Ice
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Ice
 		FireInterval=0.800000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=False
 		FireEndAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams_Ice'
+	FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Ice'
 	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.SMATGrenade'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
 		Speed=100.000000
@@ -102,75 +102,59 @@ defaultproperties
 		WarnTargetPct=0.300000	
 	End Object
 	
-	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
 		FireInterval=0.800000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=RealisticRecoilParams
-		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		YawFactor=0.000000
-		XRandFactor=0.500000
-		YRandFactor=0.500000
-		MaxRecoil=768.000000
-		DeclineTime=0.650000
-		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
-		HipMultiplier=1.000000
-		CrouchMultiplier=0.700000
-		bViewDecline=True
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams
+     	YawFactor=0.000000
 	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=900,Max=2560)
-		AimAdjustTime=0.550000
-		OffsetAdjustTime=0.450000
-		CrouchMultiplier=0.700000
-		ADSMultiplier=0.700000
-		ViewBindFactor=0.100000
-		SprintChaos=0.500000
-		SprintOffSet=(Pitch=-6000,Yaw=-8000)
-		JumpChaos=0.500000
-		JumpOffSet=(Pitch=-7000)
-		FallingChaos=0.500000
-		ChaosDeclineTime=1.300000
-		ChaosSpeedThreshold=475.000000
+	Begin Object Class=AimParams Name=TacticalAimParams
+		ADSMultiplier=0.7
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpOffset=(Pitch=-6000,Yaw=-1500)
+		AimAdjustTime=0.8
+		AimSpread=(Min=512,Max=2048)
+		ChaosSpeedThreshold=300
 	End Object
     
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=RealisticParams
-		PlayerSpeedFactor=0.805000
-		PlayerJumpFactor=0.850000
+	Begin Object Class=WeaponParams Name=TacticalParams
+		SightingTime=0.5	
+		ScopeScale=0.7
+        DisplaceDurationMult=1.25
+        MagAmmo=1      
 		InventorySize=8
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.400000
-		ZoomType=ZT_Logarithmic
-		MagAmmo=1
-		//ViewOffset=(X=9.000000,Y=9.500000,Z=-3.000000)
-		//SightOffset=(X=20.000000,Y=15.000000,Z=-10.000000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
+		PlayerSpeedFactor=0.9
+        PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.35
+        ZoomType=ZT_Logarithmic
+		MinZoom=2
+		MaxZoom=8
+		ZoomStages=2
 		WeaponName="S.M.A.T. 105mm Recoilless Rifle"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(0)=WeaponParams'TacticalParams'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=SMAT_Green

@@ -25,7 +25,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-HFire',Volume=1.200000)
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-HFire',Volume=1.800000)
 		Recoil=1500.000000
 		Chaos=-1.0
 		Inaccuracy=(X=32,Y=32)
@@ -99,7 +99,7 @@ defaultproperties
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=4
-		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
+		SightOffset=(X=2.000000,Y=-0.050000,Z=10.200000)
 		ReloadAnimRate=1.250000
 		CockAnimRate=1.400000
 		WeaponName="SP-12 12ga Slug Shotgun"

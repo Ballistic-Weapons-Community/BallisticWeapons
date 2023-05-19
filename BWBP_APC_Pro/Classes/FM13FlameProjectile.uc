@@ -90,19 +90,20 @@ simulated function Explode (vector a, vector b)
 
 defaultproperties
 {
-	 bApplyParams=False
-     bPenetrate=True
-     StartDelay=0.030000
-     Speed=3000.000000
-     Damage=18.000000
-     MyDamageType=Class'BWBP_APC_Pro.DTFM13Burned'
-     bHidden=True
-     RemoteRole=ROLE_None
-     LifeSpan=0.350000
-     CollisionRadius=30.000000
-     CollisionHeight=30.000000
-     bCollideActors=False
-     bCollideWorld=False
-     bBlockZeroExtentTraces=False
-     bBlockNonZeroExtentTraces=False
+	WeaponClass=Class'BWBP_APC_Pro.FM13Shotgun'
+	bApplyParams=False
+	bPenetrate=True
+	StartDelay=0.030000
+	Speed=3000.000000
+	Damage=18.000000
+	MyDamageType=Class'BWBP_APC_Pro.DTFM13Burned'
+	bHidden=True
+	RemoteRole=ROLE_None
+	LifeSpan=0.350000
+	CollisionRadius=30.000000
+	CollisionHeight=30.000000
+	bCollideActors=False
+	bCollideWorld=False
+	bBlockZeroExtentTraces=False
+	bBlockNonZeroExtentTraces=False
 }

@@ -28,7 +28,7 @@ defaultproperties
 		Chaos=0.700000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.700000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire',Volume=10.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire8',Volume=12.100000,Radius=450.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -90,6 +90,7 @@ defaultproperties
 		SightPivot=(Roll=-1024)
 		//SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 		//ViewOffset=(X=4.000000,Y=6.000000,Z=-7.500000)
+		ViewOffset=(X=1,Y=3,Z=-5)
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
         DisplaceDurationMult=1.4

@@ -160,7 +160,7 @@ defaultproperties
 	 AltTracerClass=Class'BWBP_APC_Pro.TraceEmitter_ZX98Gauss'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
-     ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_BulletGauss'
+     ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
      MeleeImpactManager=Class'BallisticProV55.IM_Knife'
      BrassClass=Class'BallisticProV55.Brass_SAR'
      BrassMode=MU_Both

@@ -122,25 +122,26 @@ function ApplySlowdown(Pawn Target, float Duration)
 
 defaultproperties
 {
-     ModeIndex=1
-	 TrailClass=Class'BallisticProV55.MRLTrailEmitter'
-     TrailOffset=(X=-4.000000)
-     MyRadiusDamageType=Class'BWBP_SWC_Pro.DTBRINKGrenade'
-     ImpactManager=Class'BWBP_SWC_Pro.IM_BRINKGrenade'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=600.000000
-     MaxSpeed=14000.000000
-     Damage=100.000000
-     DamageRadius=500.000000
-     MomentumTransfer=20000.000000
-	 MotionBlurRadius=768.000000
-     MotionBlurFactor=2.000000
-     MotionBlurTime=10.000000
-     MyDamageType=Class'BWBP_SWC_Pro.DTBRINKGrenade'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
-     AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
-     SoundVolume=64
-     bCollideActors=False
-     bFixedRotationDir=True
-     RotationRate=(Roll=32768)
+	WeaponClass=Class'BWBP_SWC_Pro.BRINKAssaultRifle'
+	ModeIndex=1
+	TrailClass=Class'BallisticProV55.MRLTrailEmitter'
+	TrailOffset=(X=-4.000000)
+	MyRadiusDamageType=Class'BWBP_SWC_Pro.DTBRINKGrenade'
+	ImpactManager=Class'BWBP_SWC_Pro.IM_BRINKGrenade'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Speed=600.000000
+	MaxSpeed=14000.000000
+	Damage=100.000000
+	DamageRadius=500.000000
+	MomentumTransfer=20000.000000
+	MotionBlurRadius=768.000000
+	MotionBlurFactor=2.000000
+	MotionBlurTime=10.000000
+	MyDamageType=Class'BWBP_SWC_Pro.DTBRINKGrenade'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
+	AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
+	SoundVolume=64
+	bCollideActors=False
+	bFixedRotationDir=True
+	RotationRate=(Roll=32768)
 }

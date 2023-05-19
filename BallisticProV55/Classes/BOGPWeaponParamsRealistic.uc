@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticGrenadeEffectParams
-		ProjectileClass=class'BallisticProV55.BOGPGrenade'
+		ProjectileClass=class'BallisticProV55.BOGPGrenadeSafe'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2400.000000
 		Damage=180.000000

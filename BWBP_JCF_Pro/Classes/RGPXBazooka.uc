@@ -1,9 +1,8 @@
 //=============================================================================
-// G5Bazooka.
+// RGPXBazooka.
 //
-// Big rocket launcher. Fires a dangerous, not too slow moving rocket, with
-// high damage and a fair radius. Low clip capacity, long reloading times and
-// hazardous close combat temper the beast though.
+// Cluster rocket launcher. Can fire singular cluster rockets or the whole set.
+// Todo: Add midair def capability, switch cluster to primary.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -332,7 +331,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.800000
 	CurrentRating=0.800000
-	Description="Every country on Earth has their own way to deal with the looming Skrith threat, ZTV Exports has several eastern offerings to combat the foriegn invaders from beyond the stars.  While most of them have armor penetrating capabilities, not a lot of them can tackle heavy threats like the Cryons, suffering several defeats at the hands of the mechanical behemoths. Looking back at their history, ZTV managed to unearth some old RGP-7's and modified them into the new RGX-350 HV Flak Bazooka.  While it doesn't have much explosive prowess, the blast has been known to disorient Cyron troops, stunning them long enough for them to be exposed to getting flaked by it's secondary function. It's a devastating weapon, even some brave ZTV Rocket Soldats have been insane enough to get in close and unleash a storm of flak, reducing the enemy to scraps."
+	Description="Every country on Earth has their own way to deal with the looming Skrith threat, ZTV Exports has several eastern offerings to combat the foriegn invaders from beyond the stars.  While most of them have armor penetrating capabilities, not a lot of them can tackle heavy threats like the Cryons, suffering several defeats at the hands of the mechanical behemoths. Looking back at their history, ZTV managed to unearth some old RPGs and modified them into the new RPG-350 Cluster Rocket Launcher.  While it doesn't have much explosive prowess, the blast has been known to disorient Cyron troops, stunning them long enough for them to be exposed to getting flaked by it's secondary function. It's a devastating weapon, even some brave ZTV Rocket Soldats have been insane enough to get in close and unleash a storm of flak, reducing the enemy to scraps."
 	Priority=44
 	HudColor=(B=0,G=150,R=255)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -341,7 +340,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_JCF_Pro.RGPXAttachment'
 	IconMaterial=Texture'BWBP_JCF_Tex.RGP-X350.SmallIcon_RGPX'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="RGK-350 H-V Flak Bazooka"
+	ItemName="RPG-350 Cluster Rocket Launcher"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=25

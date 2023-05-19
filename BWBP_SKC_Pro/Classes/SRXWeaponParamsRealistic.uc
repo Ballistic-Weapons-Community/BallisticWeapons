@@ -225,7 +225,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
 		//SightPivot=(Pitch=-128,Yaw=16)
-		SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
+		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
+		//SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
 		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		//Function
 		InventorySize=15

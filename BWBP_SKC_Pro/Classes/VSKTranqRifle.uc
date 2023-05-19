@@ -14,10 +14,10 @@ var float		lastModeChangeTime;
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsArena())
-	{
-		VSKPrimaryFire(FireMode[0]).bDOT = true;
-	}
+	//if (class'BallisticReplicationInfo'.static.IsArena())
+	//{
+	//	VSKPrimaryFire(FireMode[0]).bDOT = true;
+	//}
 	VSKPrimaryFire(FireMode[0]).SwitchScopedMode(CurrentWeaponMode);
 }
 /*replication

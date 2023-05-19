@@ -6,7 +6,43 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//Slug
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
+		TraceRange=(Min=5500.000000,Max=7000.000000)
+		WaterTraceRange=1000.0
+        DecayRange=(Min=788,Max=2363) // 15-45m
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=140.0
+		HeadMult=2.15
+		LimbMult=0.6
+		DamageType=Class'BWBP_JCF_Pro.DTSPASShotgun'
+		DamageTypeHead=Class'BWBP_JCF_Pro.DTSPASShotgunHead'
+		DamageTypeArm=Class'BWBP_JCF_Pro.DTSPASShotgun'
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-HFire',Volume=1.800000)
+		Recoil=1500.000000
+		Chaos=0.4
+		Inaccuracy=(X=32,Y=32)
+		//HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+		FireInterval=0.800000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=0.8500000	
+		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	//Shot
+	/*Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
 		RangeAtten=0.15
@@ -36,7 +72,7 @@ defaultproperties
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
-	End Object
+	End Object*/
 		
 	//=================================================================
 	// SECONDARY FIRE

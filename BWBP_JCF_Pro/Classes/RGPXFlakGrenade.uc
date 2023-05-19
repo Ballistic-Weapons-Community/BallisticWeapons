@@ -1,7 +1,7 @@
 //=============================================================================
-// M50Grenade.
+// RGPXFlakGrenade.
 //
-// Grenade fired by M900 Attached grenade launcher.
+// Large rocket filled with smaller cluster rockets
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -125,6 +125,7 @@ simulated function BlowUp(vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_JCF_Pro.RGPXBazooka'
 	ArmingDelay=0.025
     DetonateOn=DT_ImpactTimed
     PlayerImpactType=PIT_Detonate

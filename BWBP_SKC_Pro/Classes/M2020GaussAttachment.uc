@@ -36,7 +36,7 @@ simulated event PostNetBeginPlay()
 	super.PostNetBeginPlay();
 	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
-		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussQuick';
+		TracerClass=Class'BallisticProV55.TraceEmitter_Gauss';
 	}
 }
 
@@ -212,7 +212,7 @@ defaultproperties
      MuzzleFlashClass=class'M806FlashEmitter'
      AltMuzzleFlashClass=class'M806FlashEmitter'
      ImpactManager=class'IM_Bullet'
-     ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_BulletGauss'
+     ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
      BrassClass=class'Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both

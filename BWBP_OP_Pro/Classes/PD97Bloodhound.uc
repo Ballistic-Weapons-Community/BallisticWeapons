@@ -57,7 +57,7 @@ simulated event PreBeginPlay()
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
 	}
-	else if (class'BallisticReplicationInfo'.static.IsRealism())
+	else if (class'BallisticReplicationInfo'.static.IsRealism() || class'BallisticReplicationInfo'.static.IsTactical() )
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryFire';

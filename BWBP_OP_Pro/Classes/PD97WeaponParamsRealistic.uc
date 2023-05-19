@@ -12,7 +12,7 @@ defaultproperties
 		TraceCount=6
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=6
+		Damage=10
 		DamageType=Class'BWBP_OP_Pro.DTPD97Shotgun'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTPD97ShotgunHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTPD97Shotgun'

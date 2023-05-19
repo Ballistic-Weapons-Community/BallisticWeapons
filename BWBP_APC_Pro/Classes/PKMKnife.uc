@@ -65,21 +65,22 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
-     ModeIndex=1
-	 ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
-     bRandomStartRotation=False
-     bUsePositionalDamage=True
-	 bIgnoreTerminalVelocity=True
-	 TrailClass=Class'BallisticProV55.MRLTrailEmitter'
-     DamageTypeHead=Class'BWBP_APC_Pro.DTX8KnifeMGLaunchedHead'
-     bWarnEnemy=False
-     Speed=8500.000000
-     MaxSpeed=8500.000000
-     Damage=70.000000
-     MyDamageType=Class'BWBP_APC_Pro.DTX8KnifeMGLaunched'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8Proj'
-     Physics=PHYS_Falling
-     LifeSpan=0.000000
-     DrawScale=0.150000
-     bUnlit=False
+	WeaponClass=Class'BWBP_APC_Pro.PKMMachinegun'
+	ModeIndex=1
+	ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
+	bRandomStartRotation=False
+	bUsePositionalDamage=True
+	bIgnoreTerminalVelocity=True
+	TrailClass=Class'BallisticProV55.MRLTrailEmitter'
+	DamageTypeHead=Class'BWBP_APC_Pro.DTX8KnifeMGLaunchedHead'
+	bWarnEnemy=False
+	Speed=8500.000000
+	MaxSpeed=8500.000000
+	Damage=70.000000
+	MyDamageType=Class'BWBP_APC_Pro.DTX8KnifeMGLaunched'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8Proj'
+	Physics=PHYS_Falling
+	LifeSpan=0.000000
+	DrawScale=0.150000
+	bUnlit=False
 }

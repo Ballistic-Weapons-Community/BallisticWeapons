@@ -3,7 +3,7 @@
 //
 // by Sk and Kab
 //=============================================================================
-class IE_A49Lob extends DGVEmitter
+class IE_A49Lob extends DGVEmitterOversize
 	placeable;
 
 simulated event PreBeginPlay()

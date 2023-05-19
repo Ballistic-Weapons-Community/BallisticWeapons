@@ -1,10 +1,10 @@
 //=============================================================================
-// TraceEmitter_GaussQuick.
+// TraceEmitter_Gauss.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TraceEmitter_GaussQuick extends BCTraceEmitter;
+class TraceEmitter_Gauss extends BCTraceEmitter;
 
 
 simulated function Initialize(float Distance, optional float Power)
@@ -62,7 +62,7 @@ defaultproperties
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
-     Emitters(0)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.BeamEmitter0'
+     Emitters(0)=BeamEmitter'BallisticProV55.TraceEmitter_Gauss.BeamEmitter0'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter1
          BeamDistanceRange=(Min=100.000000,Max=500.000000)
@@ -92,7 +92,7 @@ defaultproperties
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=0.500000,Max=1.010000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))
      End Object
-     Emitters(1)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.BeamEmitter1'
+     Emitters(1)=BeamEmitter'BallisticProV55.TraceEmitter_Gauss.BeamEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          UseDirectionAs=PTDU_Up
@@ -121,7 +121,7 @@ defaultproperties
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=150.000000,Max=3000.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
      End Object
-     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.SpriteEmitter0'
+     Emitters(2)=SpriteEmitter'BallisticProV55.TraceEmitter_Gauss.SpriteEmitter0'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter3
          BeamDistanceRange=(Min=1000.000000,Max=1000.000000)
@@ -147,7 +147,7 @@ defaultproperties
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
-     Emitters(3)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.BeamEmitter3'
+     Emitters(3)=BeamEmitter'BallisticProV55.TraceEmitter_Gauss.BeamEmitter3'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter41
          BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
@@ -173,7 +173,7 @@ defaultproperties
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
-     Emitters(4)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.BeamEmitter41'
+     Emitters(4)=BeamEmitter'BallisticProV55.TraceEmitter_Gauss.BeamEmitter41'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter40
          FadeOut=True
@@ -202,7 +202,7 @@ defaultproperties
          LifetimeRange=(Min=0.300000,Max=0.300000)
          StartVelocityRange=(X=(Max=5.000000))
      End Object
-     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.SpriteEmitter40'
+     Emitters(5)=SpriteEmitter'BallisticProV55.TraceEmitter_Gauss.SpriteEmitter40'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter53
          BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
@@ -227,7 +227,7 @@ defaultproperties
          LifetimeRange=(Min=0.300000,Max=0.300000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
-     Emitters(6)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.BeamEmitter53'
+     Emitters(6)=BeamEmitter'BallisticProV55.TraceEmitter_Gauss.BeamEmitter53'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter71
          FadeOut=True
@@ -254,7 +254,7 @@ defaultproperties
          SpawnOnTriggerPPS=99999.000000
          StartVelocityRange=(X=(Max=100.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
      End Object
-     Emitters(7)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.SpriteEmitter71'
+     Emitters(7)=SpriteEmitter'BallisticProV55.TraceEmitter_Gauss.SpriteEmitter71'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter84
          BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
@@ -283,6 +283,6 @@ defaultproperties
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
-     Emitters(8)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_GaussQuick.BeamEmitter84'
+     Emitters(8)=BeamEmitter'BallisticProV55.TraceEmitter_Gauss.BeamEmitter84'
 
 }

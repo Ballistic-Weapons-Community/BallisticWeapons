@@ -588,7 +588,10 @@ defaultproperties
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
 	PlayerViewOffset=(X=10.00,Y=6.00,Z=-17.00)
-	SightOffset=(X=-20,Z=3.4)
+	SightOffset=(X=-20,Y=-1.85,Z=26.7)
+	bAdjustHands=true
+	RootAdjust=(Yaw=-300,Pitch=3000)
+	WristAdjust=(Yaw=-3000)
 	SightAnimScale=0.25
 	SightBobScale=1f
 	AttachmentClass=Class'BallisticProV55.GRS9Attachment'

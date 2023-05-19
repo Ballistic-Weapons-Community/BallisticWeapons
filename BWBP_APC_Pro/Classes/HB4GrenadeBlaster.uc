@@ -7,7 +7,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class HB4GrenadeBlaster extends BallisticHandgun;
+class HB4GrenadeBlaster extends BallisticHandgun
+	transient
+	HideDropDown
+	CacheExempt;
 
 //simulated function bool SlaveCanUseMode(int Mode) {return (Mode == 0) || Othergun.class==class || ;}
 simulated function bool MasterCanSendMode(int Mode) {return (Mode == 0) || Othergun.class==class || level.TimeSeconds <= FireMode[1].NextFireTime;}

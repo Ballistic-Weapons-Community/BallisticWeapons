@@ -21,10 +21,10 @@ replication
 simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsArena())
-	{
-		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
-	}
+	//if (class'BallisticReplicationInfo'.static.IsArena())
+	//{
+	//	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
+	//}
 }
 
 simulated function InstantFireEffects(byte Mode)
@@ -72,10 +72,10 @@ simulated Event PostNetBeginPlay()
 	super.PostNetBeginPlay();
 	if (BallisticTurret(Instigator) != None)
 		bHidden=true;
-	if (class'BallisticReplicationInfo'.static.IsArena())
-	{
-		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
-	}
+	//if (class'BallisticReplicationInfo'.static.IsArena())
+	//{
+	//	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
+	//}
 }
 
 // Return the location of the muzzle.
@@ -155,7 +155,7 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_APC_Pro.PKMFlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_MG'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)

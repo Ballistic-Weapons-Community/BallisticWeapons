@@ -128,24 +128,24 @@ function ApplySlowdown(Pawn P, float Duration)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.XM84Flashbang'
-     DetonateDelay=2.000000
-     ImpactDamage=15
-     ImpactDamageType=Class'BWBP_SKC_Pro.DTXM84Hit'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_XM84Grenade'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BWBP_SKC_Pro.XM84Trail'
-     TrailOffset=(X=1.600000,Z=6.400000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTXM84GrenadeRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=0.000000
-     MotionBlurRadius=1000.000000
-     ShakeRotMag=(X=0.000000,Y=0.000000)
-     ShakeRotRate=(X=0.000000,Z=0.000000)
-     ShakeOffsetMag=(X=0.000000,Y=0.000000,Z=0.000000)
-     Damage=45.000000
-     DamageRadius=768.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTXM84GrenadeRadius'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84Projectile'
-     DrawScale=1.000000
+	DetonateDelay=2.000000
+	ImpactDamage=15
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTXM84Hit'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_XM84Grenade'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BWBP_SKC_Pro.XM84Trail'
+	TrailOffset=(X=1.600000,Z=6.400000)
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTXM84GrenadeRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=0.000000
+	MotionBlurRadius=1000.000000
+	ShakeRotMag=(X=0.000000,Y=0.000000)
+	ShakeRotRate=(X=0.000000,Z=0.000000)
+	ShakeOffsetMag=(X=0.000000,Y=0.000000,Z=0.000000)
+	Damage=45.000000
+	DamageRadius=768.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTXM84GrenadeRadius'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84Projectile'
+	DrawScale=1.000000
 }

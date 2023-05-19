@@ -115,7 +115,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
 		Recoil=0.0
 		Chaos=-1.0
-		Inaccuracy=(X=100,Y=10)
+		Inaccuracy=(X=200,Y=10)
 		WarnTargetPct=0.500000	
 	End Object
 
@@ -143,7 +143,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
 		Recoil=0.0
 		Chaos=-1.0
-		Inaccuracy=(X=100,Y=10)
+		Inaccuracy=(X=150,Y=10)
 		WarnTargetPct=0.500000	
 	End Object
 

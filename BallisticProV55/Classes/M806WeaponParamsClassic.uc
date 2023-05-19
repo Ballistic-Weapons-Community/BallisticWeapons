@@ -163,7 +163,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Scope'
+	//Layouts(1)=WeaponParams'ClassicParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M806_Gray

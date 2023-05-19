@@ -100,6 +100,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
+	bDOT=true
 	ScopedFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot'
 	RegularFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-Shot'
 	TraceRange=(Min=12000.000000,Max=15000.000000)

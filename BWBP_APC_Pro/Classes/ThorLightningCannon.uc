@@ -7,7 +7,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ThorLightningCannon extends BallisticWeapon;
+class ThorLightningCannon extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 var	ThorLCStreamEffectNew			StreamEffect;
 var	ThorLCStreamEffectChild			StreamEffectChild;

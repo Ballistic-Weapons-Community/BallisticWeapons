@@ -28,7 +28,7 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=2500.000000
 		Chaos=1.000000
-		PushbackForce=100.000000
+		PushBackForce=100.000000
 		Inaccuracy=(X=12,Y=12)
 		Heat=0.25
 	End Object
@@ -58,7 +58,7 @@ defaultproperties
 		FlashScaleFactor=1.000000
 		Recoil=768.000000
 		Chaos=0.070000
-		PushbackForce=64.000000
+		PushBackForce=64.000000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
 		Heat=0.25

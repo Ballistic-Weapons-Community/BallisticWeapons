@@ -1,7 +1,10 @@
 //=============================================================================
 // MARS-3 (i.e. F2000.)
 //=============================================================================
-class CryoLanceLauncher extends BallisticWeapon;
+class CryoLanceLauncher extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 var   float ChargeRate;
 var()     float Heat, CoolRate;

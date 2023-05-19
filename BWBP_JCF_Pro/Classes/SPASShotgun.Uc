@@ -13,7 +13,7 @@ class SPASShotgun extends BallisticProShotgun;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+	if (!class'BallisticReplicationInfo'.static.IsArena() )
 	{
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
 	}

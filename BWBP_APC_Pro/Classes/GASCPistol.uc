@@ -341,7 +341,7 @@ defaultproperties
      InventoryGroup=3
      GroupOffset=6
      PickupClass=Class'BWBP_APC_Pro.GASCPickup'
-     PlayerViewOffset=(X=1.500000,Y=7.000000,Z=-9.000000)
+     PlayerViewOffset=(X=-5.500000,Y=7.000000,Z=-9.000000)
      AttachmentClass=Class'BWBP_APC_Pro.GASCAttachment'
      IconMaterial=Texture'BWBP_CC_Tex.GASC.SmallIcon_GASC'
      IconCoords=(X2=127,Y2=31)

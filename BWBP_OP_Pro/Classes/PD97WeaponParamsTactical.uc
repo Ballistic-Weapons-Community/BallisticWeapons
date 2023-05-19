@@ -6,24 +6,34 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
-		ProjectileClass=Class'BWBP_OP_Pro.PD97Dart'
-		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
-		Speed=15000.000000
-		Damage=30
-		Recoil=128.000000
-		Chaos=0.150000
+	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
+		TraceRange=(Min=5000.000000,Max=5000.000000)
+		RangeAtten=0.750000
+		TraceCount=7
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=10
+		DamageType=Class'BWBP_OP_Pro.DTPD97Shotgun'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTPD97ShotgunHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTPD97Shotgun'
+		PenetrationEnergy=4.000000
+		PenetrateForce=100
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		Recoil=768.000000
+		Chaos=0.500000
+		Inaccuracy=(X=400,Y=400)
 		BotRefireRate=0.700000
-		WarnTargetPct=0.300000	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
+		WarnTargetPct=0.500000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Fire',Volume=1.100000,Radius=256.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.400000
+		FireInterval=0.200000
 		PreFireAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.100000	
-		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams'
+		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		
     //=================================================================

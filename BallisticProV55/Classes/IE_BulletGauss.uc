@@ -1,5 +1,5 @@
 //=============================================================================
-// IE_BulletExpMetal.
+// IE_BulletGauss.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -58,7 +58,7 @@ defaultproperties
         StartVelocityRange=(X=(Min=60.000000,Max=100.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-5.000000,Max=20.000000))
         VelocityLossRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))
     End Object
-    Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter11'
+    Emitters(0)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter11'
 
     Begin Object Class=SpriteEmitter Name=SpriteEmitter12
         UseDirectionAs=PTDU_Up
@@ -89,7 +89,7 @@ defaultproperties
         LifetimeRange=(Min=0.300000,Max=0.300000)
         StartVelocityRange=(X=(Min=50.000000,Max=300.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
     End Object
-    Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter12'
+    Emitters(1)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter12'
 
     Begin Object Class=SpriteEmitter Name=SpriteEmitter13
         FadeOut=True
@@ -115,7 +115,7 @@ defaultproperties
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=2.000000,Max=2.000000)
     End Object
-    Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter13'
+    Emitters(2)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter13'
 
 	//Zapples
     Begin Object Class=SpriteEmitter Name=SpriteEmitter14
@@ -143,7 +143,7 @@ defaultproperties
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=0.500000,Max=0.500000)
     End Object
-    Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter14'
+    Emitters(3)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter14'
 
     Begin Object Class=SpriteEmitter Name=SpriteEmitter15
         FadeOut=True
@@ -170,7 +170,7 @@ defaultproperties
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=0.800000,Max=0.800000)
     End Object
-    Emitters(4)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter15'
+    Emitters(4)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter15'
 
 	//Explody sparks
     Begin Object Class=SpriteEmitter Name=SpriteEmitter16
@@ -201,7 +201,7 @@ defaultproperties
         LifetimeRange=(Min=0.150000,Max=0.150000)
         StartVelocityRange=(X=(Max=900.000000),Y=(Min=-750.000000,Max=750.000000),Z=(Min=-700.000000,Max=700.000000))
     End Object
-    Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter16'
+    Emitters(5)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter16'
 
 	//Blue smaller burst
     Begin Object Class=SpriteEmitter Name=SpriteEmitter17
@@ -231,7 +231,7 @@ defaultproperties
         LifetimeRange=(Min=0.100000,Max=0.400000)
         StartVelocityRadialRange=(Min=-20.000000,Max=1.000000)
     End Object
-    Emitters(6)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter17'
+    Emitters(6)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter17'
 
 	//Yellow burst
     Begin Object Class=SpriteEmitter Name=SpriteEmitter19
@@ -261,7 +261,7 @@ defaultproperties
         LifetimeRange=(Min=0.100000,Max=0.500000)
         StartVelocityRadialRange=(Min=-20.000000,Max=1.000000)
     End Object
-    Emitters(7)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter19'
+    Emitters(7)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter19'
 
     Begin Object Class=SpriteEmitter Name=SpriteEmitter18
         UseDirectionAs=PTDU_Forward
@@ -292,6 +292,6 @@ defaultproperties
         LifetimeRange=(Min=0.150000,Max=0.150000)
         StartVelocityRange=(X=(Min=700.000000,Max=900.000000),Y=(Min=-750.000000,Max=750.000000),Z=(Max=700.000000))
     End Object
-    Emitters(8)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletGauss.SpriteEmitter18'
+    Emitters(8)=SpriteEmitter'BallisticProV55.IE_BulletGauss.SpriteEmitter18'
      AutoDestroy=True
 }

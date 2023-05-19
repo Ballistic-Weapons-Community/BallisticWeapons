@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class FM14Shotgun extends BallisticProShotgun;
+class FM14Shotgun extends BallisticProShotgun
+	transient
+	HideDropDown
+	CacheExempt;
 
 var bool bAltLoaded;
 var Name SingleLoadAnim;
@@ -346,7 +349,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_APC_Pro.FM14Attachment'
 	IconMaterial=Texture'BWBP_CC_Tex.FM14.SmallIcon_FM14'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="FM14 Pitbull Blunderbuss"
+	ItemName="[B] FM14 Pitbull Blunderbuss"
 	bNoCrosshairInScope=True
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence

@@ -127,7 +127,7 @@ defaultproperties
 		MagAmmo=9
 		bMagPlusOne=True
 		//SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
-		SightPivot=(Pitch=-800)
+		//SightPivot=(Pitch=-800)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="2 Shot Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")

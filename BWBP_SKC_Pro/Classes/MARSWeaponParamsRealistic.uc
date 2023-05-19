@@ -235,7 +235,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'RealisticAimParams_HeavyBarrel'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Sensor
@@ -244,7 +244,7 @@ defaultproperties
 		LayoutName="Sensor Suite"
 		LayoutTags="tracker"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		ZoomType=ZT_Logarithmic
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3

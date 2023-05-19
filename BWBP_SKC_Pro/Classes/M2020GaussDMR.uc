@@ -243,8 +243,10 @@ simulated function AdjustMagnetProperties ()
 		
 		WeaponModes[0].bUnavailable=false;
 		WeaponModes[1].bUnavailable=false;
-		WeaponModes[2].bUnavailable=false;
-		
+		if (!class'BallisticReplicationInfo'.static.IsRealism())
+		{
+			WeaponModes[2].bUnavailable=false;
+		}
 		CurrentWeaponMode = PreviousWeaponMode;
 		
 		SwitchWeaponMode(CurrentWeaponMode+1);

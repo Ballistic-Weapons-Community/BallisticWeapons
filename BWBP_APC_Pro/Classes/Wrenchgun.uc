@@ -8,7 +8,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Wrenchgun extends BallisticProShotgun;
+class Wrenchgun extends BallisticProShotgun
+	transient
+	HideDropDown
+	CacheExempt;
 
 var actor ReloadSteam;
 var actor ReloadSteam2;

@@ -118,10 +118,10 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=100
-		ViewOffset=(X=5.000000,Y=3.000000,Z=-7.500000)
+		//ViewOffset=(X=5.000000,Y=3.000000,Z=-7.500000)
 		SightOffset=(X=-2.000000,Y=-1.130000,Z=14.100000)
 		SightPivot=(Pitch=-64)
-		WeaponName="PK-86 7.62mm GP Machinegun"
+		WeaponName="PKB-86 7.62mm GP Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

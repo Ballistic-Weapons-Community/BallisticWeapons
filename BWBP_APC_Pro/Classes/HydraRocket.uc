@@ -118,7 +118,7 @@ defaultproperties
      ImpactMomentumTransfer=60000.000000
      ImpactDamageType=Class'BWBP_APC_Pro.DTHydraUnarmed'
      ArmingDelay=0.200000
-     ImpactManager=Class'BallisticProV55.IM_RPG'
+     ImpactManager=Class'BWBP_SKC_Pro.IM_AGLGrenade'
      bRandomStartRotation=False
      AccelSpeed=5000.000000
      TrailClass=Class'BWBP_APC_Pro.HydraRocketTrail'

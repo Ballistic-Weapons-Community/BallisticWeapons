@@ -405,7 +405,7 @@ defaultproperties
 	GroupOffset=1
 	PickupClass=Class'BWBP_SWC_Pro.MDKPickup'
 	SightOffset=(X=10.000000,Y=-0.050000,Z=41.000000)
-	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-40.000000)
+	PlayerViewOffset=(X=9.000000,Y=11.000000,Z=-40.000000)
 	AttachmentClass=Class'BWBP_SWC_Pro.MDKAttachment'
 	IconMaterial=Texture'BWBP_SWC_Tex.Icons.SmallIcon_MDK'
 	IconCoords=(X2=127,Y2=31)
