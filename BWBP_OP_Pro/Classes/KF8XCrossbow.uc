@@ -454,6 +454,9 @@ simulated function float ChargeBar()
 	return KF8XAttachment(ThirdPersonActor).CurAlpha / 128.0f;
 }
 
+// choose between regular or alt-fire
+function byte BestMode()	{	return 0;	}
+
 function float GetAIRating()
 {
 	local Bot B;
