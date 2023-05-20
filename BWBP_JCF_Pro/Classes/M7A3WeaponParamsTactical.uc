@@ -1,5 +1,10 @@
 class M7A3WeaponParamsTactical extends BallisticWeaponParams;
 
+static simulated function SetAttachmentParams(BallisticAttachment BWA)
+{
+	BWA.ModeInfos[0].TracerChance = 0;
+}
+
 defaultproperties
 {
 	//=================================================================
@@ -24,7 +29,7 @@ defaultproperties
 		FlashScaleFactor=0.100000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3-HFire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=96.000000
-		Chaos=0.10000
+		Chaos=0
 		WarnTargetPct=0.200000
 	End Object
 
@@ -99,10 +104,10 @@ defaultproperties
 		LayoutName="Standard"
 		MagAmmo=21
         InventorySize=5
-		ViewOffset=(X=6.000000,Y=3.000000,Z=-8.000000)
+		ViewOffset=(X=6.00,Y=3.00,Z=-8.00)
 		SightingTime=0.350000
 		SightMoveSpeedFactor=0.6
-		SightOffset=(X=-3.000000,Y=-0.30000,Z=11.280000)
+		SightOffset=(X=-3.00,Y=-0.44,Z=10.70)
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=15,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RDS",Slot=17,Scale=1f)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

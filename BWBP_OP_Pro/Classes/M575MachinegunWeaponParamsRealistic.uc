@@ -79,7 +79,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=RealisticRecoilParams
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_RDS
 		XCurve=(Points=(,(InVal=0.300000,OutVal=-0.100000),(InVal=0.600000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.500000,OutVal=0.200000),(InVal=0.800000,OutVal=0.500000),(InVal=1.000000,OutVal=0.450000)))
 		PitchFactor=0.400000
@@ -91,6 +91,23 @@ defaultproperties
 		DeclineDelay=0.135000;
 		ViewBindFactor=0.350000
 		ADSViewBindFactor=0.350000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
+		Begin Object Class=RecoilParams Name=RealisticRecoilParams_Scope
+		XCurve=(Points=(,(InVal=0.300000,OutVal=-0.100000),(InVal=0.600000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
+		YCurve=(Points=(,(InVal=0.500000,OutVal=0.200000),(InVal=0.800000,OutVal=0.500000),(InVal=1.000000,OutVal=0.450000)))
+		PitchFactor=0.400000
+		YawFactor=0.400000
+		XRandFactor=0.250000
+		YRandFactor=0.250000
+		MaxRecoil=3260.000000
+		DeclineTime=1.000000
+		DeclineDelay=0.135000;
+		ViewBindFactor=0.350000
+		ADSViewBindFactor=1
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -124,7 +141,8 @@ defaultproperties
 		//SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
 		SightPivot=(Pitch=128)
 		WeaponName="M575 7.62mm Medium Machinegun"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_RDS'
+		RecoilParams(1)=RecoilParams'RealisticRecoilParams_Scope'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryFireParams'

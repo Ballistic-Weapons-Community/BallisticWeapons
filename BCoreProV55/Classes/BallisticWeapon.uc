@@ -4738,7 +4738,7 @@ simulated function ApplyAimToView()
 		Instigator.SetViewRotation(Instigator.Controller.Rotation + AimPivotDelta);
 }
 
-simulated final function byte GetAimParamsIndex()
+simulated function byte GetAimParamsIndex()
 {
 	return WeaponModes[CurrentWeaponMode].AimParamsIndex;
 }
@@ -4936,7 +4936,7 @@ simulated function AddFireChaos(float chaos)
 	AimComponent.AddFireChaos(chaos);
 }
 
-simulated final function byte GetRecoilParamsIndex()
+simulated function byte GetRecoilParamsIndex()
 {
 	return WeaponModes[CurrentWeaponMode].RecoilParamsIndex;
 }

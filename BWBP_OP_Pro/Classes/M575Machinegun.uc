@@ -19,7 +19,7 @@ var 	Rotator		ScopeOffRot, ScopeOnRot;
 
 var() array<Material> AmpMaterials; //We're using this for the amp
 
-var(M575)   bool		bAmped;				// Amp installed, gun has new effects
+var(M575)   bool	bAmped;				// Amp installed, gun has new effects
 var(MARS) name		AmplifierBone;			// Bone to use for hiding amp
 var(MARS) name		AmplifierOnAnim;			//
 var(MARS) name		AmplifierOffAnim;		//
@@ -30,7 +30,7 @@ var(MARS) sound		AmplifierPowerOffSound;		//
 var(MARS) sound		AmplifierOnTurnSound;	// Silencer screw on sound
 var(MARS) sound		AmplifierOffTurnSound;	//
 var(MARS) float		AmpCharge;					// Existing ampjuice
-var(MARS) float 		DrainRate;					// Rate that ampjuice leaks out
+var(MARS) float 	DrainRate;					// Rate that ampjuice leaks out
 var(MARS) bool		bShowCharge;				// Hides charge until the amp is on
 
 var int				IceCharge;
@@ -273,6 +273,11 @@ function ServerSwitchScopeType(bool bNewScope)
 	SwitchScopeType(bNewScope);
 }
 
+simulated function byte GetRecoilParamsIndex()
+{
+	return byte(bScopeOn);
+}
+
 simulated function SwitchScopeType(bool bNewScope)
 {
 	if (bNewScope == bScopeOn)
@@ -293,6 +298,8 @@ simulated function SwitchScopeType(bool bNewScope)
 		PlayAnim(ScopeOnAnim);
 	else
 		PlayAnim(ScopeOffAnim);
+
+	GetParams().static.SetRecoilParams(self);
 }
 
 simulated function Notify_ScopeShow(){	UpdateBones();}

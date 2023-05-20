@@ -106,6 +106,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=50
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		RecoilParams(1)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		FireParams(1)=FireParams'ArenaPrimaryFireParams'

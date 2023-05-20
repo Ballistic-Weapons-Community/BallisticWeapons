@@ -23,7 +23,6 @@ simulated function PlayCocking(optional byte Type)
 }
 
 // Secondary fire doesn't count for this weapon
-// Secondary fire doesn't count for this weapon
 simulated function bool HasAmmo()
 {
 	//First Check the magazine

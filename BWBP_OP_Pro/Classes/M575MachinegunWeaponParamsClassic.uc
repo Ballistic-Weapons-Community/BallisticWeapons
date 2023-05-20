@@ -129,6 +129,7 @@ defaultproperties
 		//SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
 		SightPivot=(Pitch=128)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParams'
