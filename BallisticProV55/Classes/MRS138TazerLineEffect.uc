@@ -72,10 +72,14 @@ simulated function UpdateTargets()
 		log("UpdateTargets: Target Loc:"@Target.Location@"MyLoc:"@Location@"Rotation:"@Rotation);
 	*/
 
-	if (Flash == None && !Target.IsLocallyControlled())
+	if (Target.IsLocallyControlled())
+		return;
+
+	if (Flash == None)
 		Flash = spawn(class'MRS138TazerPlayerEffect',Target);
 
 	Dir = Normal(Location - Target.Location);
+
 	Flash.SetLocation(Target.Location + Dir * Target.CollisionRadius);
 	Flash.SetRotation(rotator(Dir));
 }

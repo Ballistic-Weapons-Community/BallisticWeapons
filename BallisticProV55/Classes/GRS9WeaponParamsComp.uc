@@ -99,7 +99,9 @@ defaultproperties
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		bDualBlocked=True
-        //SightOffset=(X=-5.000000,Z=5.900000)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-300,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
         DisplaceDurationMult=0.5
         SightingTime=0.200000
 		SightMoveSpeedFactor=0.9

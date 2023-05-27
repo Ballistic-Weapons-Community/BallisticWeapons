@@ -111,7 +111,9 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-        //SightOffset=(X=-5.000000,Z=5.900000)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-300,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
         DisplaceDurationMult=0.5
         SightingTime=0.20
         SightMoveSpeedFactor=0.6
