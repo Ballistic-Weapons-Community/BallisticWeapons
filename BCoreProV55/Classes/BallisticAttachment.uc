@@ -250,7 +250,6 @@ simulated function ApplyCamo()
 {
 	local int i;
 	local WeaponCamo WC;
-	local Material M;
 
 	// must read the params class
 	if (WeaponClass == None)
@@ -380,14 +379,21 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 simulated function EjectBrass(byte Mode)
 {
 	local Rotator R;
+
 	if (!class'BallisticMod'.default.bEjectBrass)
 		return;
+
 	if (BrassClass == None)
 		return;
+
+	Mode = Min(Mode, 1);
+
 	if (!ModeInfos[Mode].bBrass)
 		return;
+
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return;
+
 	Spawn(BrassClass, self,, GetEjectorLocation(R), R);
 }
 
@@ -397,6 +403,8 @@ simulated function InstantFireEffects(byte Mode)
 {
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
+
+	Mode = Min(Mode, 1);
 
 	if (!ModeInfos[Mode].bInstant)
 		return;
@@ -514,7 +522,6 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 	class'BCFlyByActor'.static.SoundOff(self, FlyBySound, PointX, XDist/FlyByBulletSpeed);
 }
 
-
 // Find the wall entry and exit 'wounds' and do the effects...
 simulated function DoWallPenetrate(byte Mode, vector Start, vector End)
 {
@@ -611,6 +618,8 @@ simulated function FlashMuzzleFlash(byte Mode)
 {
 	local rotator R;
 
+	Mode = Min(Mode, 1);
+
 	if (!ModeInfos[Mode].bFlash)
 		return;
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
@@ -652,29 +661,38 @@ simulated function PlayPawnFiring(byte Mode)
 {
 	if ( xPawn(Instigator) == None )
 		return;
+
 	//Do this with a mask maybe? - Azarael
 	if (Mode == 255)
-		PlayMeleeFiring();
-	else if (ModeInfos[Mode].bTrackAnim)
-		PlayPawnTrackAnim(Mode);
-	else
 	{
-		if (FiringMode == 0)
-		{
-			if (bIsAimed)
-				xPawn(Instigator).StartFiring(False, bRapidFire);
-			else
-				xPawn(Instigator).StartFiring(True, bRapidFire);
-		}
-		else 
-		{
-			if (bIsAimed)
-				xPawn(Instigator).StartFiring(False, bAltRapidFire);
-			else
-				xPawn(Instigator).StartFiring(True, bAltRapidFire);
-		}
-			SetTimer(WeaponLightTime, false);
+		PlayMeleeFiring();
+		return;
 	}
+
+	Mode = Min(Mode, 1);
+
+	if (ModeInfos[Mode].bTrackAnim)
+	{
+		PlayPawnTrackAnim(Mode);
+		return;
+	}
+
+	if (FiringMode == 0)
+	{
+		if (bIsAimed)
+			xPawn(Instigator).StartFiring(False, bRapidFire);
+		else
+			xPawn(Instigator).StartFiring(True, bRapidFire);
+	}
+	else 
+	{
+		if (bIsAimed)
+			xPawn(Instigator).StartFiring(False, bAltRapidFire);
+		else
+			xPawn(Instigator).StartFiring(True, bAltRapidFire);
+	}
+
+	SetTimer(WeaponLightTime, false);
 }
 
 simulated function PlayMeleeFiring()
@@ -787,19 +805,21 @@ simulated function BoneTrack GetTrack(byte Mode, int Index)
 // Either the weapon will flash or this attachment will
 simulated function FlashWeaponLight(byte Mode)
 {
+	Mode = Min(Mode, 1);
+
 	if (!ModeInfos[Mode].bLight)
 		return;
+
 	if (Instigator == None || Level.bDropDetail || ((Level.TimeSeconds - LastRenderTime > 0.2) && (PlayerController(Instigator.Controller) == None)))
-	{
-//		Timer();
 		return;
-	}
+
 	if (Instigator.Weapon != None)
 		LightWeapon = Instigator.Weapon;
 	else
 		LightWeapon = self;
 
 	LightWeapon.bDynamicLight = true;
+
 	SetTimer(WeaponLightTime, false);
 }
 

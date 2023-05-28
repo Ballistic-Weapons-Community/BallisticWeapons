@@ -444,7 +444,7 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 function String SpawnStreakWeapon(string WeaponString, byte LI, byte CI, Pawn Other, byte GroupSlot)
 {
 	local class<Weapon> KR;
-	local int j, k, m;
+	local int j;
 
 	//Check validity.
 	for (j=0; j <= GetGroup(GroupSlot).length; j++)

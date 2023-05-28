@@ -140,7 +140,6 @@ simulated function FlashMuzzleFlash(byte Mode)
 			class'BUtil'.static.InitMuzzleFlash (FastMuzzleFlash, class'RSNovaFastMuzzleFlash', DrawScale*FlashScale, self, FlashBone);
 		FastMuzzleFlash.Trigger(self, Instigator);
 	}
-
 }
 
 function NovaUpdateHit(byte WeaponMode)

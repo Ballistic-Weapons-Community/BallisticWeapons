@@ -95,7 +95,7 @@ function ShowPanel(bool bShow)
 
 function Initialize()
 {
-	local class<BC_GameStyle> style;
+	local class<BC_GameStyle> game_style;
     local eFontScale FS;
 	//local Material M;
 
@@ -103,10 +103,10 @@ function Initialize()
 		return;
 
 
-	style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+	game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
 
-	SectionSizes[0] = style.default.ConflictWeaponSlots;
-	SectionSizes[1] = style.default.ConflictEquipmentSlots;
+	SectionSizes[0] = game_style.default.ConflictWeaponSlots;
+	SectionSizes[1] = game_style.default.ConflictEquipmentSlots;
 
 	MaxInventorySize = SectionSizes[0] + SectionSizes[1];
 	
@@ -929,7 +929,7 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
     local eMenuState m;
     local eFontScale F;
     local float xl,yl;
-    local GUIStyles style;
+    local GUIStyles draw_style;
     local float mX, mY, BarW;
     local string s;
     local int inv_offset;
@@ -952,13 +952,13 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
     if (li_Weapons.Elements[i].bSection)
     {
         // C++ code to draw section
-        style = li_Weapons.SectionStyle;
-        style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+        draw_style = li_Weapons.SectionStyle;
+        draw_style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
 
 		mX = X + (W/2);
 		mY = Y + (H/2);
 
-        style.DrawText( Canvas, m, mX-(XL/2), mY-(YL/2), XL, YL, TXTA_Center, li_Weapons.GetItemAtIndex(i), F);
+        draw_style.DrawText( Canvas, m, mX-(XL/2), mY-(YL/2), XL, YL, TXTA_Center, li_Weapons.GetItemAtIndex(i), F);
         
         BarW = ((W - XL) /2) * 0.8;
 
@@ -973,7 +973,7 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
         return;
     }
 
-    style = ConflictListStyle;
+    draw_style = ConflictListStyle;
 
     if (bSelected)
     {
@@ -989,8 +989,8 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
 	// validation step
 	if (CLRI.CanUseWeaponAtIndex(inv_offset))
 	{
-		style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
-		style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
+		draw_style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+		draw_style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
 
 		if (inv_size > 1)
 			s = inv_size $ " slots"; 
@@ -999,8 +999,8 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
 		else 
 			s = "Free";
 
-		style.TextSize(Canvas, m, s, XL, YL, F);
-		style.DrawText( Canvas, m, X + W - XL, Y, XL, YL, TXTA_Right, s, F);
+		draw_style.TextSize(Canvas, m, s, XL, YL, F);
+		draw_style.DrawText( Canvas, m, X + W - XL, Y, XL, YL, TXTA_Right, s, F);
 	}
 
 	else 
@@ -1008,7 +1008,7 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
 		Canvas.SetDrawColor(64,64,64,255);		// FIXME: Add a var
 
 		// can we force the style to be set?
-		style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+		draw_style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
 		Canvas.SetPos(X, Y);
 		Canvas.DrawText(li_Weapons.GetItemAtIndex(i));
 

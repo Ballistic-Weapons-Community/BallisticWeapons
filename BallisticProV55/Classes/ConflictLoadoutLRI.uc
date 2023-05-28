@@ -98,8 +98,6 @@ var localized string MenuName, MenuHelp; // Stuff for the menu
 
 var private editconst bool bMenuModified, bMenuAdd;
 
-var ASGameReplicationInfo AS_GRI;
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -626,7 +624,6 @@ simulated final function int GetTeamFlags()
 {
 	local int team_index;
 	local ASGameReplicationInfo AS_GRI;
-
 
 	if (myController == None)
 	{

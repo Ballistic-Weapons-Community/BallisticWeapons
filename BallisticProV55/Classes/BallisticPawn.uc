@@ -653,8 +653,6 @@ simulated function FootStepping(int Side)
 	local material FloorMat;
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
 	local float SoundVolumeScale, SoundRadiusScale;
-	local float FSoundVol, FSoundRad;
-	local float Dist;
 
 	// crouch - no sound
 	if (bIsCrouched)

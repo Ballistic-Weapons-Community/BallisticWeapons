@@ -243,7 +243,7 @@ simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
 	local int i, j;
-	local float Dist, DotP, ImageScaleRatio;//, OtherRatio;
+	local float Dist, DotP;//, OtherRatio;
 	local Array<Material>	OldSkins;
 	local int OldSkinCount;
 	local bool bLOS, bFocused;

@@ -36,7 +36,6 @@ simulated function FlashMuzzleFlash(byte Mode)
 			Spawn(class'MRT6Smoke',,, MuzzleFlash.Location, R);
 		MuzzleFlash.Trigger(self, Instigator);
 	}
-
 }
 
 // Fling out shell casing
@@ -46,13 +45,13 @@ simulated function EjectBrass(byte Mode)
 	{
 		BrassBone = 'EjectorR';
 		BrassClass = Class'Brass_MRT6Right';
-		super.EjectBrass(Mode);
+		super.EjectBrass(0);
 	}
 	if (Mode == 0 || Mode == 1)
 	{
 		BrassBone = 'EjectorR';
 		BrassClass = Class'Brass_MRT6Left';
-		super.EjectBrass(Mode);
+		super.EjectBrass(0);
 	}
 }
 
