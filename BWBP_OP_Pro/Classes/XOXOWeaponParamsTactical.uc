@@ -71,13 +71,13 @@ defaultproperties
 	// PRIMARY FIRE - Shockwave
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=TacticalLustPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=TacticalLustPrimaryEffectParams
 		Damage=120
 		//DamageRadius=1024.000000
 		MomentumTransfer=4000.000000
 		HeadMult=1
 		LimbMult=1
-		DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
+		//DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=0.000000
@@ -90,7 +90,7 @@ defaultproperties
 		AmmoPerFire=10
 		FireAnim="LustWave"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'TacticalLustPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'TacticalLustPrimaryEffectParams'
 	End Object
 	
 	//=================================================================
@@ -133,6 +133,8 @@ defaultproperties
         HeadMult=2.5
         LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTXOXOStream'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTXOXOStream'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		Recoil=0.000000
 		Chaos=0.000000

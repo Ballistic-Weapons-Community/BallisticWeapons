@@ -86,9 +86,9 @@ struct SkillInfo
 };
 var SkillInfo MySkillInfo;
 
-var byte LoadoutOption;		// 0: standard, 1: Evolution, 2:Buy system
+var byte LoadoutOption;		// 0: standard, 1: Evolution, 2: Buy system
 
-var bool	bHasList;			// Client var to verify if Weapon list is good and up-to-date
+var bool	bHasList;			// Client var to verify if weapon list is good and up-to-date
 var bool	bHasSkillInfo;		// Client var to verify if skill info has been sent
 var Controller myController; //Required as this is a LinkedReplicationInfo
 

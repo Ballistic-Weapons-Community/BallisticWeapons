@@ -63,13 +63,13 @@ defaultproperties
 	End Object
 	
 	// SHOCKWAVE FIRE
-	Begin Object Class=InstantEffectParams Name=ClassicLustPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=ClassicLustPrimaryEffectParams
 		Damage=120
 		//DamageRadius=1024.000000
 		MomentumTransfer=4000.000000
 		HeadMult=1.5f
 		LimbMult=0.8f
-		DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
+		//DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=0.000000
@@ -82,7 +82,7 @@ defaultproperties
 		AmmoPerFire=10
 		FireAnim="LustWave"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicLustPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicLustPrimaryEffectParams'
 	End Object
 	
 	// NUKE FIRE
@@ -120,6 +120,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
 		Damage=7
 		DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTXOXOStream'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTXOXOStream'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		Recoil=0.000000
 		Chaos=0.000000

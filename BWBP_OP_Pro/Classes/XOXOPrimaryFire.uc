@@ -29,6 +29,7 @@ state Shockwave
 			return false;
 		return Super.AllowFire();
 	}
+	
 	function DoFireEffect()
 	{
 		XOXOStaff(BW).Shockwave();

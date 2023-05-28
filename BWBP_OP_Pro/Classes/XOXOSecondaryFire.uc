@@ -41,9 +41,9 @@ simulated function bool StreamAllowFire()
 function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir)
 {
 	local float Dmg;
-	local class<DamageType>	HitDT;
 	local actor Victim;
 	local bool bWasAlive;
+	local class<DamageType> HitDT;
 	local Vector ClosestLocation, BoneTestLocation;
 	
 	if ( (Pawn(Other) != None && Pawn(Other).Controller != None && Pawn(Other).Controller.SameTeamAs(Instigator.Controller) ) 
@@ -245,6 +245,8 @@ defaultproperties
 {
 	MaxWaterTraceRange=5000
 	DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
+	DamageTypeHead=Class'BWBP_OP_Pro.DTXOXOStream'
+	DamageTypeArm=Class'BWBP_OP_Pro.DTXOXOStream'
 	MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 	FireRecoil=0.000000
 	FireChaos=0.000000
