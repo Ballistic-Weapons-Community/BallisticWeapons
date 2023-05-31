@@ -61,7 +61,7 @@ simulated function InstantFireEffects(byte Mode)
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		// Check for water and spawn splash
-		if (ImpactManagers[CurrentTracerMode] != None && bDoWaterSplash)
+		if (ImpactManagers[0] != None && bDoWaterSplash)
 			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
@@ -78,12 +78,12 @@ simulated function InstantFireEffects(byte Mode)
  	else
 		HitLocation = mHitLocation;
 
-	if (level.NetMode != NM_Client && ImpactManagers[CurrentTracerMode]!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
-		ImpactManagers[CurrentTracerMode].static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
+	if (level.NetMode != NM_Client && ImpactManagers[0]!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
+		ImpactManagers[0].static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-	if (ImpactManagers[CurrentTracerMode] != None)
-		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	if (ImpactManagers[0] != None)
+		ImpactManagers[0].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
 // Spawn some wall penetration effects...

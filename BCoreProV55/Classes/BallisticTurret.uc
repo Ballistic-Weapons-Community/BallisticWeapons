@@ -257,15 +257,18 @@ function InitDeployedTurretFor(Weapon Weap)
 			WC = BallisticWeapon(Weap).WeaponCamo;
 			for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
 			{
-				if (WC.WeaponMaterialSwaps[i].Material != None)
-				{
-					Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
-				}
-				if (WC.WeaponMaterialSwaps[i].MaterialName != "")
-				{
-					M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
-					if (M != None)
-						Skins[WC.WeaponMaterialSwaps[i].AIndex] = M;
+				if (WC.WeaponMaterialSwaps[i].AIndex != -1)
+				{				
+					if (WC.WeaponMaterialSwaps[i].Material != None)
+					{
+						Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
+					}
+					if (WC.WeaponMaterialSwaps[i].MaterialName != "")
+					{
+						M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+						if (M != None)
+							Skins[WC.WeaponMaterialSwaps[i].AIndex] = M;
+					}
 				}
 			}
 		}

@@ -300,7 +300,7 @@ simulated function CommonStartReload (optional byte i)
 
 simulated function PlayShovelLoop()
 {
-	if (bScopeView)
+	if (Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) < 50)
 		SafePlayAnim(ReloadAimedAnim, ReloadAnimRate * 1.5, 0.0, , "RELOAD");
 	else
 		super.PlayShovelLoop();

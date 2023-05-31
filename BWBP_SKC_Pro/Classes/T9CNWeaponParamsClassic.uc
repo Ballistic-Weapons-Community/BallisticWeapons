@@ -42,6 +42,57 @@ defaultproperties
 	End Object
 		
 	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+		
+	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Max=5000.000000)
+		WaterTraceRange=3000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=66
+		HeadMult=2.3
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+		PenetrationEnergy=48.000000
+		PenetrateForce=300
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-QFire',Volume=1.800000)
+		Recoil=1800.000000
+		Chaos=-1.0
+		Inaccuracy=(X=48,Y=48)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.480000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+		TargetState=Gauss
+	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		FireInterval=0.200000
+		AmmoPerFire=0
+		TargetState=Scope
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object
+		
+	//=================================================================
 	// RECOIL
 	//=================================================================
 
@@ -100,6 +151,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Robocop
 		//Layout core
 		LayoutName="Gauss Mod"
+		LayoutTags="gauss"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=1f)
@@ -125,6 +177,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
@@ -151,6 +204,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams_Robocop' //Robocop

@@ -47,8 +47,8 @@ function DoFireEffect()
     Other = Trace (HitLocation, HitNormal, StartTrace, Start, true);
    if (Other != None)
    {
-       StartProj = HitLocation;
-	 Weapon.PlaySound(FailSound, SLOT_Misc, 1.3);
+		StartProj = HitLocation;
+		Weapon.PlaySound(FailSound, SLOT_Misc, 1.3);
    }
 
 	Aim = GetFireAim(StartTrace);

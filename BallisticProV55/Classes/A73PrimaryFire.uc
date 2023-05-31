@@ -18,17 +18,6 @@ simulated function bool AllowFire()
 	return true;
 }
 
-simulated function SwitchWeaponMode (byte NewMode)
-{
-	Super.SwitchWeaponMode(NewMode);
-	
-	if (NewMode == 0)
-		HeatPerShot = default.HeatPerShot;
-	
-	else
-		HeatPerShot = default.HeatPerShot * 1.25;
-}
-
 function PlayFiring()
 {
 	Super.PlayFiring();

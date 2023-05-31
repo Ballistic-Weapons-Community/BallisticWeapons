@@ -25,6 +25,43 @@ defaultproperties
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
+	
+	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
+		RangeAtten=0.500000
+		Damage=59
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+		PenetrateForce=580
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-QFire',Volume=1.800000)
+		Recoil=625.000000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.480000
+		AimedFireAnim="SightFire"	
+		TargetState=Gauss
+	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		FireInterval=0.200000
+		AmmoPerFire=0
+		TargetState=Scope
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -85,12 +122,13 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
 	End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Burst
 		//Layout core
 		LayoutName="Gauss Mod"
+		LayoutTags="gauss"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=1f)

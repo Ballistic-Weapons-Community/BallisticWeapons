@@ -34,6 +34,7 @@ simulated function PostNetBeginPlay()
 {
 	SetBoneScale (0, 0.0, 'AMP');
 	SetBoneRotation ('tip2',AltTipRotation);
+	Super.PostNetBeginPlay();
 }
 
 simulated event PostNetReceive()
@@ -301,6 +302,8 @@ defaultproperties
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_AR"
+	CockingAnim="Cock_RearPull"
 	bRapidFire=True
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.MP40_TPm'
 	RelativeRotation=(Yaw=32768,Roll=-16384)

@@ -71,6 +71,7 @@ simulated function ModeTick(float DT)
             RailPower = FMin(RailPower + ChargeRate*DT, PowerLevel);
             Instigator.AmbientSound = ChargeSound;
 			Instigator.SoundVolume = 255;
+			Instigator.SoundPitch = 64;
         }
         else
 		{

@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%o tried to crawl out of %k's kiddy pool of Z250 fire, no such luck."
      DeathStrings(3)="%k slow cooked %o over on an open fire."
      InvasionDamageScaling=1.500000
+     SimpleKillString="Z250 Burn"
      DamageIdent="Machinegun"
      WeaponClass=Class'BWBP_OP_Pro.Z250Minigun'
      DeathString="%o was immolated %k."

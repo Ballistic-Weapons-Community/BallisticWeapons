@@ -62,6 +62,7 @@ var() float				        WallPenetrationForce;	        // Maximum thickness of the
 
 //Damage Vars -----------------------------------------------------------------
 var() float						Damage;							// Damage for nomal shots
+var() float						DamageSpecial;					// Alternate damage for unique effects (DoT, AoE, etc)
 var() float                     HeadMult;                       // Multiplier for mode's effect on head (damage, etc)
 var() float                     LimbMult;                       // Multiplier for mode's effect on limb (damage, etc)
 var() float						RangeAtten;						// Attenuates damage depending on range. At max range, damage is multiplied by this.
@@ -133,6 +134,7 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     default.RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
 
     Damage = effect_params.Damage;
+    DamageSpecial = effect_params.DamageSpecial;
     HeadMult = effect_params.HeadMult;
     LimbMult = effect_params.LimbMult;   
 

@@ -133,7 +133,7 @@ defaultproperties
      FireAnim="DartFireSingle"
      FireForce="AssaultRifleAltFire"
      FireRate=0.900000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_BloodhoundDarts'
+     AmmoClass=Class'BallisticProV55.Ammo_RS762mm'
      AmmoPerFire=0
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-20.000000)

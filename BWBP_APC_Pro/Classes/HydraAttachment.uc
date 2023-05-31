@@ -16,11 +16,11 @@ var   Emitter				LaserDot;
 var   Rotator				LaserRot;
 var   BallisticWeapon 		myWeap;
 
-var name BackBones[2];
+var name BackBones[6];
 var name FrontBones[6];
 var byte Index;
 
-var array<Actor> BackFlashes[2];
+var array<Actor> BackFlashes[6];
 var array<Actor> FrontFlashes[6];
 
 // This assumes flash actors are triggered to make them work
@@ -161,6 +161,10 @@ defaultproperties
 {
      BackBones(0)="backblast"
 	 BackBones(1)="backblast"
+	 BackBones(2)="backblast"
+	 BackBones(3)="backblast"
+	 BackBones(4)="backblast"
+	 BackBones(5)="backblast"
      FrontBones(0)="Muzzle1"
      FrontBones(1)="Muzzle2"
      FrontBones(2)="Muzzle3"

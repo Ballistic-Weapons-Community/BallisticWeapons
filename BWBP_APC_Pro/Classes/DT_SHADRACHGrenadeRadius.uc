@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTSHADRACHGrenadeRadius extends DT_BWExplode;
+class DT_SHADRACHGrenadeRadius extends DT_BWExplode;
 
 defaultproperties
 {

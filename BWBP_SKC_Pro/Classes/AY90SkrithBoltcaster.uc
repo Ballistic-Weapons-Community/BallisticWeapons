@@ -553,7 +553,7 @@ defaultproperties
      GroupOffset=19
      PickupClass=Class'BWBP_SKC_Pro.AY90Pickup'
 
-     PlayerViewOffset=(X=11.000000,Y=8.00000,Z=-6.500000)
+     PlayerViewOffset=(X=7.000000,Y=8.00000,Z=-6.500000)
      SightOffset=(X=-4.5,Y=0,Z=5.7)
 	 SightPivot=(Pitch=768)
 

@@ -350,7 +350,7 @@ defaultproperties
 	 SightBobScale=0.2
 
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=2.200000)
-     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagIn',Volume=2.200000)
+     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=2.200000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagOut',Volume=2.200000)
      ClipInFrame=0.650000
      LongGunOffset=(X=10.000000)

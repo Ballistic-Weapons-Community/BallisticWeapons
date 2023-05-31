@@ -58,7 +58,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryRangeEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileRanged'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=8500.000000
+		Speed=6000.000000
 		Damage=85
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000

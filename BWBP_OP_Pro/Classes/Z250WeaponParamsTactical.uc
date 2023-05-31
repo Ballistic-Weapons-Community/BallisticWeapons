@@ -14,6 +14,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
+		DamageSpecial=20
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
 		FlashScaleFactor=0.800000
@@ -21,7 +22,7 @@ defaultproperties
 		Recoil=180.000000
 		Chaos=0.120000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,Pitch=0.750000,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.Z250.Z250-DFire',Slot=SLOT_Interact,bNoOverride=False,Volume=5.750000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams

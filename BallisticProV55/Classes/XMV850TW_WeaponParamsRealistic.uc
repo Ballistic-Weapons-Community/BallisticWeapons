@@ -116,4 +116,33 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'RealisticParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=XMV_Teal
+		Index=0
+		CamoName="Teal"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMV_Green
+		Index=1
+		CamoName="Green"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Main",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Barrels_SD",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMV_Black
+		Index=2
+		CamoName="Black"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Main",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'XMV_Teal'
+    Camos(1)=WeaponCamo'XMV_Green'
+    Camos(2)=WeaponCamo'XMV_Black'
 }

@@ -37,6 +37,9 @@ defaultproperties
 		Damage=12
 		HeadMult=2.00
 		LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		Chaos=0
 		Recoil=16
 		FlashScaleFactor=0.100000
@@ -58,6 +61,9 @@ defaultproperties
 		Damage=18
 		HeadMult=2.00
 		LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		Chaos=0
 		Recoil=64
 		FlashScaleFactor=0.200000

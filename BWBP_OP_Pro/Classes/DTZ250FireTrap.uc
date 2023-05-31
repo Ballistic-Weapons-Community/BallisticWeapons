@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%o tripped into %k's patch of fire, what a clumsy fool."
      DeathStrings(3)="%k's Z250 managed to transform %o into a roasted turkey after burning %vm."
      BloodManagerName="BallisticProV55.BloodMan_FireExploded"
+     SimpleKillString="Z250 Gas Explode"
      bIgnoredOnLifts=True
      InvasionDamageScaling=1.500000
      DamageIdent="Machinegun"

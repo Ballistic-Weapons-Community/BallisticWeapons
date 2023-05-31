@@ -214,27 +214,27 @@ simulated function SpawnTracer(byte Mode, Vector V)
 defaultproperties
 {
 	WeaponClass=class'XK2Submachinegun'
-     IceTracerClass=class'TraceEmitter_Freeze'
-     IceImpactManager=class'IM_FreezeHit'
-     MuzzleFlashClass=class'XK2FlashEmitter'
-     AltMuzzleFlashClass=class'XK2SilencedFlash'
-     ImpactManager=class'IM_Bullet'
-     AltFlashBone="tip2"
-     BrassClass=class'Brass_Pistol'
-     BrassMode=MU_Primary
-     InstantMode=MU_Primary
-     FlashMode=MU_Primary
-     TracerClass=class'TraceEmitter_Default'
-     TracerMix=-3
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Primary
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_AR"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.250000
-     CockAnimRate=0.900000
-     bRapidFire=True
-     bAltRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Xk2_TPm'
-     DrawScale=0.110000
+	IceTracerClass=class'TraceEmitter_Freeze'
+	IceImpactManager=class'IM_FreezeHit'
+	MuzzleFlashClass=class'XK2FlashEmitter'
+	AltMuzzleFlashClass=class'XK2SilencedFlash'
+	ImpactManager=class'IM_Bullet'
+	AltFlashBone="tip2"
+	BrassClass=class'Brass_Pistol'
+	BrassMode=MU_Primary
+	InstantMode=MU_Primary
+	FlashMode=MU_Primary
+	TracerClass=class'TraceEmitter_Default'
+	TracerMix=-3
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Primary
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_AR"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.250000
+	CockAnimRate=0.900000
+	bRapidFire=True
+	bAltRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Xk2_TPm'
+	DrawScale=0.110000
 }

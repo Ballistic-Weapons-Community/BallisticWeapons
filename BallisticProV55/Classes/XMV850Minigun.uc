@@ -460,8 +460,8 @@ defaultproperties
 	bShowChargingBar=True
 
 	ParamsClasses(0)=Class'XMV850WeaponParamsComp'
-	ParamsClasses(1)=Class'XMV850WeaponParamsClassic' //Todo: state code to support fire while spinning
-	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic' //Todo: state code to support fire while spinning
+	ParamsClasses(1)=Class'XMV850WeaponParamsClassic'
+	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic'
     ParamsClasses(3)=Class'XMV850WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XMV850MinigunPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMV850MinigunSecondaryFire'

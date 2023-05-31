@@ -71,7 +71,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryRangeEffectParams
 		ProjectileClass=Class'PumaProjectileRanged'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=12500.000000
+		Speed=6000.000000
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000

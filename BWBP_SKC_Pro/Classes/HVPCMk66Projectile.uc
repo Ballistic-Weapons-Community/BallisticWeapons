@@ -25,8 +25,8 @@ simulated function InitEffects ()
 	{
 		GetAxes(Rotation,X,Y,Z);
 		Trail = Spawn(TrailClass, self,, Location + X*TrailOffset.X + Y*TrailOffset.Y + Z*TrailOffset.Z, Rotation);
-		if (Emitter(Trail) != None)
-			class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
+		//if (Emitter(Trail) != None)
+		//	class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
 		if (Trail != None)
 			Trail.SetBase (self);
 	}

@@ -72,6 +72,57 @@ defaultproperties
 		FireAnimRate=1.550000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryBurstEffectParams'
 	End Object
+
+	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
+		TraceRange=(Min=800.000000,Max=7000.000000)
+		WaterTraceRange=800.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=99.0
+		HeadMult=2.181818
+		LimbMult=0.606060
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+		PenetrationEnergy=40.000000
+		PenetrateForce=50
+		bPenetrate=True
+		PDamageFactor=0.8
+		WallPDamageFactor=0.6
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-QFire',Volume=1.800000)
+		Recoil=900.000000
+		Chaos=0.270000
+		Inaccuracy=(X=13,Y=13)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.630000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1.550000	
+		TargetState=Gauss
+	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		FireInterval=0.200000
+		AmmoPerFire=0
+		TargetState=Scope
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object
 	
 	//=================================================================
 	// RECOIL
@@ -137,6 +188,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_Robocop
 		//Layout core
 		LayoutName="Gauss Mod"
+		LayoutTags="gauss"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=1f)
@@ -168,6 +220,8 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(1)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Auto
@@ -202,6 +256,8 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
 		FireParams(2)=FireParams'RealisticPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+		AltFireParams(1)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams_Robocop'

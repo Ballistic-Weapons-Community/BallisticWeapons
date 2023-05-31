@@ -1,27 +1,64 @@
 //=============================================================================
-// MRDRMachinePistol.
+// T9CNPistol.
 //
-// Dual wieldable weapon with a nice spiked handguard for punching
-// Small clip but very low recoil and chaos. Fairly accurate actually.
+// Silver Beretta
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
 class T9CNMachinePistol extends BallisticHandgun;
 
-simulated event PostNetBeginPlay()
+//Layouts
+var()   bool		bHasGauss;				// Fancy version
+var()	bool		bGaussCharged;
+var	 	float 		GaussLevel, MaxGaussLevel;
+var() 	Sound		GaussOnSound;
+
+simulated function OnWeaponParamsChanged()
 {
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasGauss=False;
+	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
 	{
-		bUseSights=True;
+		bHasGauss=True;
+		bShowChargingBar=True;
+	}
+	
+}
+
+// Gauss Stuff ==================================
+simulated function Tick (float DT)
+{
+	super.Tick(DT);
+
+	if (bHasGauss)
+	{
+		AddGauss(DT);
 	}
 }
 
-static function class<Pickup> RecommendAmmoPickup(int Mode)
+simulated function AddGauss(optional float Amount)
 {
-	return class'AP_MRDRClip';
+	if (bBerserk)
+		Amount *= 1.2;
+		
+	GaussLevel = FMin(GaussLevel + Amount, MaxGaussLevel);
+	
+	if (!bGaussCharged && GaussLevel == MaxGaussLevel)
+	{			
+		PlaySound(GaussOnSound,,1.7,,32);
+		bGaussCharged=True;
+	}
 }
+
+simulated function float ChargeBar()
+{
+	return FMax(0, GaussLevel/MaxGaussLevel);
+}
+
 
 simulated function bool CanAlternate(int Mode)
 {
@@ -37,6 +74,59 @@ simulated event WeaponTick (Float DT)
 	if (LastFireTime < Level.TimeSeconds - RcComponent.DeclineDelay && MeleeFatigue > 0)
 		MeleeFatigue = FMax(0, MeleeFatigue - DT/RcComponent.DeclineTime);
 }
+
+// Bone hiding + anims ======================
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	super.BringUp(prevWeapon);
+	if (MagAmmo < 2)
+		SetBoneScale (1, 0.0, 'Bullet');
+}
+
+simulated event AnimEnd (int Channel)
+{
+    local name Anim;
+    local float Frame, Rate;
+
+    GetAnimParams(0, Anim, Frame, Rate);
+
+	if (Anim == 'FireOpen' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
+	{
+		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
+		{
+			IdleAnim = 'IdleOpen';
+			ReloadAnim = 'ReloadOpen';
+			SetBoneScale (1, 0.0, 'Bullet');
+		}
+		else
+		{
+			IdleAnim = 'Idle';
+			ReloadAnim = 'Reload';
+		}
+	}
+	Super.AnimEnd(Channel);
+}
+
+simulated function Notify_ClipOutOfSight()
+{
+	SetBoneScale (1, 1.0, 'Bullet');
+}
+
+simulated function Notify_HideBullet()
+{
+	if (MagAmmo < 2)
+		SetBoneScale (1, 0.0, 'Bullet');
+}
+
+simulated function PlayReload()
+{
+	super.PlayReload();
+
+	if (MagAmmo < 2)
+		SetBoneScale (1, 0.0, 'Bullet');
+}
+
+// =============================================
 
 simulated function bool HasAmmoLoaded(byte Mode)
 {
@@ -94,59 +184,10 @@ function float SuggestAttackStyle()	{	return 0.8;	}
 function float SuggestDefenseStyle()	{	return -0.8;	}
 // End AI Stuff =================================
 
-
-simulated function BringUp(optional Weapon PrevWeapon)
-{
-	Super.BringUp(PrevWeapon);
-
-	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
-	{
-		IdleAnim = 'IdleOpen';
-		ReloadAnim = 'ReloadOpen';
-	}
-	else
-	{
-		IdleAnim = 'Idle';
-		ReloadAnim = 'Reload';
-	}
-
-}
-
-simulated event AnimEnd (int Channel)
-{
-    local name Anim;
-    local float Frame, Rate;
-
-    GetAnimParams(0, Anim, Frame, Rate);
-
-	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
-	{
-		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
-		{
-			IdleAnim = 'IdleOpen';
-			ReloadAnim = 'ReloadOpen';
-		}
-		else
-		{
-			IdleAnim = 'Idle';
-			ReloadAnim = 'Reload';
-		}
-	}
-	Super.AnimEnd(Channel);
-}
-
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
-// =============================================
-
 defaultproperties
 {
+	GaussOnSound=Sound'BW_Core_WeaponSound.Gauss.Gauss-Charge'
+	MaxGaussLevel=3
 	bShouldDualInLoadout=True
 	HandgunGroup=6
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -177,7 +218,7 @@ defaultproperties
 	ParamsClasses(2)=Class'T9CNWeaponParamsRealistic'
 	ParamsClasses(3)=Class'T9CNWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.T9CNPrimaryFire'
-    FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+    FireModeClass(1)=Class'BWBP_SKC_Pro.T9CNSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross3',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=185,G=190,R=197,A=117),Color2=(B=255,G=255,R=255,A=149),StartSize1=90,StartSize2=38)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=2.000000)
 	PutDownTime=0.400000

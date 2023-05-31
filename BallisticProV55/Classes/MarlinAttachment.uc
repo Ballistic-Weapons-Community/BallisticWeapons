@@ -35,8 +35,6 @@ simulated function InstantFireEffects(byte Mode)
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
 
-	log("When firing: bGauss = "$ bGauss);
-
 	if (mHitLocation == vect(0,0,0))
 		return;
 	if (Instigator == none)

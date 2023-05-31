@@ -21,7 +21,7 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 		return; //Yeah no melting teammate armor. that's mean
 
 	// Do additional damage to armor..
-	if(Pawn(Victim) != None)
+	if(Pawn(Victim) != None && Pawn(Victim).Inventory != None)
 	{
 		BestArmor = Pawn(Victim).Inventory.PrioritizeArmor(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 		if(BestArmor != None)

@@ -6,36 +6,36 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=5000.000000,Max=7500.000000)
-			WaterTraceRange=6750.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.900000
-			Damage=20
-			HeadMult=1.75
-			LimbMult=0.75
-			DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
-			PenetrateForce=600
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
-			FlashScaleFactor=0.300000
-			FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=32.000000
-			Chaos=-1.0
-			Inaccuracy=(X=16,Y=16)
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=5000.000000,Max=7500.000000)
+		WaterTraceRange=6750.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=20
+		HeadMult=1.75
+		LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		PenetrateForce=600
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
+		FlashScaleFactor=0.300000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=32.000000
+		Chaos=-1.0
+		Inaccuracy=(X=16,Y=16)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.150000
-			BurstFireRateFactor=1.00
-			FireEndAnim=None	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.150000
+		BurstFireRateFactor=1.00
+		FireEndAnim=None	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE

@@ -318,7 +318,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 		Surf = int(HitMat.SurfaceType);
 		
 	if (Other == None || Other.bWorldGeometry)
-		BW.TargetedHurtRadius(5, 150, class'DTZ250Bullet', 50, HitLocation);
+		BW.TargetedHurtRadius(DamageSpecial, 150, class'DTZ250Bullet', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on
 	SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
@@ -449,6 +449,7 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
+	DamageSpecial=20
 	TraceCount=1
 	TraceRange=(Min=12000.000000,Max=12000.000000)
 	DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'

@@ -174,11 +174,11 @@ defaultproperties
 	bAlignToVelocity=True
 	DetonateDelay=1.000000
 	ImpactDamage=90
-	ImpactDamageType=Class'BWBP_SKC_Pro.DTChaffGrenade'
+	ImpactDamageType=Class'BWBP_APC_Pro.DT_RadGrenadeDirect'
 	ImpactManager=Class'BWBP_APC_Pro.IM_SHADRACHChaffGrenade'
 	TrailClass=Class'BWBP_APC_Pro.SRKSmgTrail'
 	TrailOffset=(X=-8.000000)
-	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTChaffGrenadeRadius'
+	MyRadiusDamageType=Class'BWBP_APC_Pro.DT_SHADRACHGrenadeRadius'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	ShakeRadius=512.000000
 	MotionBlurRadius=768.000000
@@ -188,7 +188,7 @@ defaultproperties
 	MaxSpeed=4500.000000
 	Damage=65.000000
 	DamageRadius=320.000000
-	MyDamageType=Class'BWBP_SKC_Pro.DTChaffGrenadeRadius'
+	MyDamageType=Class'BWBP_APC_Pro.DT_SHADRACHGrenadeRadius'
 	StaticMesh=StaticMesh'BWBP_CC_Static.SPXSmg.SHADRACH_Proj'
 	DrawScale=0.200000
 	bUnlit=False

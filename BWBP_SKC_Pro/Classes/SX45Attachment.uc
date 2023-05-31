@@ -39,7 +39,7 @@ replication
 //Do your camo changes here
 simulated function PostNetBeginPlay()
 {
-	SetBoneScale (0, 0.0, 'AMP');
+	Super.PostNetBeginPlay();
 }
 
 // ============ Amplifier ========================
@@ -374,33 +374,33 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'SX45Pistol'
-	 AmpMaterials[0]=Shader'BW_Core_WeaponTex.AMP.Amp-FinalYellow'
-	 AmpMaterials[1]=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'
-	 AmpMaterials[2]=Shader'BW_Core_WeaponTex.Amp.Amp-GlowCyanShader'
-     AmpMaterials[3]=Shader'BW_Core_WeaponTex.Amp.Amp-GlowYellowShader'
-     MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SX45CryoFlash'
-     MuzzleFlashClassAmp2=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
-	 MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
-     AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     AltFlashBone="tip2"
-     BrassClass=class'Brass_Pistol'
-     BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     TracerClass=class'TraceEmitter_Default'
-	 TracerClassAmp1=Class'BWBP_SKC_Pro.TraceEmitter_FreezeBig'
-     TracerClassAmp2=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-	 ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletAmpFrostHE'
-     ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAmpRad'
-     TracerMix=-3
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_Pistol"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.SX45_TPm'
-     DrawScale=1.000000
-	 RelativeLocation=(Z=10)
+	AmpMaterials[0]=Shader'BW_Core_WeaponTex.AMP.Amp-FinalYellow'
+	AmpMaterials[1]=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'
+	AmpMaterials[2]=Shader'BW_Core_WeaponTex.Amp.Amp-GlowCyanShader'
+	AmpMaterials[3]=Shader'BW_Core_WeaponTex.Amp.Amp-GlowYellowShader'
+	MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SX45CryoFlash'
+	MuzzleFlashClassAmp2=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
+	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	AltFlashBone="tip2"
+	BrassClass=class'Brass_Pistol'
+	BrassMode=MU_Both
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	TracerClass=class'TraceEmitter_Default'
+	TracerClassAmp1=Class'BWBP_SKC_Pro.TraceEmitter_FreezeBig'
+	TracerClassAmp2=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
+	ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletAmpFrostHE'
+	ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAmpRad'
+	TracerMix=-3
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_Pistol"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.400000
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.SX45_TPm'
+	DrawScale=1.000000
+	RelativeLocation=(Z=10)
 }

@@ -14,6 +14,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
+		DamageSpecial=5
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
 		FlashScaleFactor=0.800000

@@ -53,7 +53,7 @@ simulated function AddGauss(optional float Amount)
 	{			
 		GaussGlow1.bHidden=false;
 		GaussGlow2.bHidden=false;
-		PlaySound(GaussOnSound,,0.7,,32);
+		PlaySound(GaussOnSound,,1.7,,32);
 		ServerSwitchWeaponMode(1);
 		ClientSwitchWeaponMode(1);
 	}
@@ -341,7 +341,7 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-	GaussOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+	GaussOnSound=Sound'BW_Core_WeaponSound.Gauss.Gauss-Charge'
 	MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Marlin.BigIcon_Marlin'

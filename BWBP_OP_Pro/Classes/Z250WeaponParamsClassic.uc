@@ -17,6 +17,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
+		DamageSpecial=20
 		PenetrateForce=150
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4

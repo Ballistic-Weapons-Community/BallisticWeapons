@@ -98,16 +98,6 @@ simulated function PostBeginPlay()
 	}
 }
 
-
-// Cycle through the various weapon modes
-function ServerSwitchWeaponMode (byte NewMode)
-{
-	if (ReloadState != RS_None || !HasAmmo() || FireMode[1].bIsFiring)
-		return;
-	Super.ServerSwitchWeaponMode(NewMode);
-	ServerStartReload(2);
-}
-
 //First this is run on the server
 function ServerStartReload (optional byte i)
 {
@@ -288,6 +278,194 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		PlayIdle();
 	}
 }
+//===========================================================================
+// Roll switch
+//===========================================================================
+
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	local int m;
+	
+	if (bPreventReload)
+		return;
+	if (ReloadState != RS_None || !HasAmmo() || FireMode[1].bIsFiring)
+		return;
+	if (NewMode == 255)
+		NewMode = CurrentWeaponMode + 1;
+	if (NewMode == CurrentWeaponMode)
+		return;
+	
+	while (NewMode != CurrentWeaponMode && (NewMode >= WeaponModes.length || WeaponModes[NewMode].bUnavailable) )
+	{
+		if (NewMode >= WeaponModes.length)
+			NewMode = 0;
+		else
+			NewMode++;
+	}
+
+	if (!WeaponModes[NewMode].bUnavailable)
+	{
+		CommonSwitchWeaponMode(NewMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
+		NetUpdateTime = Level.TimeSeconds - 1;
+	}
+	
+	R9A1Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
+		
+	for (m=0; m < NUM_FIRE_MODES; m++)
+		if (FireMode[m] != None && FireMode[m].bIsFiring)
+			StopFire(m);
+
+	bServerReloading = true;
+
+	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+		Instigator.SetAnimAction('ReloadGun');
+
+	ServerStartReload(2);
+	//CommonStartReload(0);	//Server animation
+	//ClientStartReload(0);	//Client animation
+}
+
+exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+{
+	if (ClientState == WS_PutDown || ClientState == WS_Hidden || ReloadState != RS_None)
+		return;
+	bRedirectSwitchToFiremode=True;
+	PendingMode = CurrentWeaponMode;
+}
+
+exec simulated function WeaponModeRelease()
+{
+	bRedirectSwitchToFiremode=False;
+	ServerSwitchWeaponMode(PendingMode);
+	CurrentWeaponMode = PendingMode;
+}
+
+simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
+{
+	if (bRedirectSwitchToFiremode)
+	{
+		PendingMode--;
+		if (PendingMode >= WeaponModes.Length)
+			PendingMode = WeaponModes.Length-1;
+		return None;
+	}
+
+	return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
+}
+
+simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
+{
+	if (bRedirectSwitchToFiremode)
+	{
+		PendingMode++;
+		if (PendingMode >= WeaponModes.Length)
+			PendingMode = 0;
+		return None;
+	}
+
+	return Super.NextWeapon(CurrentChoice, CurrentWeapon);
+}
+
+simulated function bool PutDown()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+		bRedirectSwitchToFiremode = False;
+		PendingMode = CurrentWeaponMode;
+	}
+	
+	return Super.PutDown();
+}
+
+simulated function NewDrawWeaponInfo(Canvas C, float YPos)
+{
+	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local string	Temp;
+	local int i;
+	local byte StartMode;
+
+	Super(Weapon).NewDrawWeaponInfo (C, YPos);
+	
+	DrawCrosshairs(C);
+	
+	if (bSkipDrawWeaponInfo)
+		return;
+
+	ScaleFactor = C.ClipX / 1600;  // C.ClipY / 900 is correct...
+	
+	C.Font = GetFontSizeIndex(C, -2 + int(2 * class'HUD'.default.HudScale));
+	C.DrawColor = class'hud'.default.WhiteColor;
+	Temp = string(Ammo[0].AmmoAmount);
+
+	C.TextSize(Temp, XL, YL);
+
+	if (CurrentWeaponMode < WeaponModes.length && !WeaponModes[CurrentWeaponMode].bUnavailable && WeaponModes[CurrentWeaponMode].ModeName != "")
+	{
+		if (!bRedirectSwitchToFiremode)
+		{
+			// Draw the spare ammo amount
+			if (Temp == "0")
+				C.DrawColor = class'hud'.default.RedColor;
+			C.CurX = C.ClipX - 20 * ScaleFactor * class'HUD'.default.HudScale - XL;
+			C.CurY = C.ClipY - 120 * ScaleFactor * class'HUD'.default.HudScale - YL;
+			C.DrawText(Temp, false);
+			C.DrawColor = class'hud'.default.WhiteColor;
+	
+			C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+			C.TextSize(WeaponModes[CurrentWeaponMode].ModeName , XL, YL2);
+			C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+			C.CurY = C.ClipY - (130 * ScaleFactor * class'HUD'.default.HudScale) - YL2 - YL;
+			C.DrawText(WeaponModes[CurrentWeaponMode].ModeName, false);
+		}
+		
+		else
+		{
+			StartMode = PendingMode - 2;
+			if (StartMode >= WeaponModes.Length)
+				StartMode = (WeaponModes.Length-1) - (255 - StartMode);
+				
+				//case -2: desire 3
+				//case -1: desire 2
+				//case 0: desire 1
+				//case 1: desire 0
+				//case 2: desire -1
+				
+				
+			for (i=-2; i<3; i++)
+			{
+				if (i != 0)
+					C.SetDrawColor(255,128,128,255 - (75 * Abs(i)));
+				else C.SetDrawColor(255,255,255,255);
+				C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+				C.TextSize(WeaponModes[StartMode].ModeName, XL, YL2);
+				C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+				C.CurY = C.ClipY - (130 * ScaleFactor * class'HUD'.default.HudScale) - (YL2 * (-i +1)) - YL;
+				C.DrawText(WeaponModes[StartMode].ModeName, false);
+				
+				StartMode++;
+				if (StartMode >= WeaponModes.Length)
+					StartMode = 0;
+			}
+		}
+	}
+	
+	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
+	// Would be nice if someone could have a HUD function called along the inventory chain
+	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
+	{
+		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
+		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
+		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
+		if (SprintFactor < 0.2)
+			C.SetDrawColor(255, 0, 0);
+		else if (SprintFactor < 0.5)
+			C.SetDrawColor(64, 128, 255);
+		else
+			C.SetDrawColor(0, 0, 255);
+		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
+	}
+}
 
 simulated function CommonSwitchWeaponMode (byte NewMode)
 {
@@ -312,6 +490,7 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		Skins[3]=MatGreenShell;
 	}
 }
+//==================================
 
 simulated function Notify_CoachShellDown()
 {
@@ -691,6 +870,7 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_OP_Pro.TrenchGunSecondaryFire'
 	SelectAnimRate=2.000000
 	PutDownAnimRate=2.000000
+	 SingleReloadAnimRate=1.0
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=0,R=0,A=147),Color2=(B=255,G=255,R=255,A=255),StartSize1=96,StartSize2=72)
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	AIRating=0.800000

@@ -69,6 +69,55 @@ defaultproperties
 		FireAnimRate=1
 	FireEffectParams(0)=InstantEffectParams'TacticalAutoEffectParams'
 	End Object
+
+	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
+	
+	//Gauss
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryFireEffectParams
+        TraceRange=(Min=6000.000000,Max=6000.000000)
+        DecayRange=(Min=1288,Max=2363) // 15-45m
+		Inaccuracy=(X=128,Y=128)
+        RangeAtten=0.5
+        Damage=69 // 9mm
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+        PenetrationEnergy=48
+        PenetrateForce=300
+        bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-QFire',Volume=1.800000)
+		Recoil=610.000000
+		Chaos=0.450000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		FireInterval=0.530000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=0.7
+		TargetState=Gauss
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryFireEffectParams'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		FireInterval=0.200000
+		AmmoPerFire=0
+		TargetState=Scope
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object
 	
 	//=================================================================
 	// RECOIL
@@ -152,11 +201,15 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalControlledFireParams'
 		FireParams(1)=FireParams'TacticalAutoFireParams'
 		FireParams(2)=FireParams'TacticalAutoFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(2)=FireParams'TacticalSecondaryFireParams'
 	End Object
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Robocop
 		//Layout core
 		LayoutName="Gauss Mod"
+		LayoutTags="gauss"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=1f)
@@ -184,6 +237,8 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalControlledFireParams'
 		FireParams(1)=FireParams'TacticalAutoFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'TacticalParams_Auto' // better sights

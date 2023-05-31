@@ -16,6 +16,7 @@ defaultproperties
      DeathStrings(3)="%o got cooked alive by %k's Z250, perfectly well-done."
      DeathStrings(4)="%k purged %o in holy fire, for the emperor."
      InvasionDamageScaling=1.500000
+     SimpleKillString="Z250 Burn"
      DamageIdent="Machinegun"
      WeaponClass=Class'BWBP_OP_Pro.Z250Minigun'
      DeathString="%k sprayed %o with fire."

@@ -9,21 +9,25 @@
 //=============================================================================
 class PS9mMedDart extends BallisticProjectile;
 
-function DoDamage (Actor Other, vector HitLocation)
+function DoDamage (Actor Victim, vector HitLocation)
 {
 	local PS9mDartHeal HP;
 	
-	super.DoDamage (Other, HitLocation);
-	if (xPawn(other) != None && Pawn(Other).Health > 0 && Pawn(Other).Controller != None && Pawn(Owner).Controller.SameTeamAs(Instigator.Controller))
+	super.DoDamage (Victim, HitLocation);
+
+	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
+		Return;
+	
+	if (Pawn(Victim).Controller != None && Pawn(Victim).Controller.SameTeamAs(Instigator.Controller))
 	{
-		HP = Spawn(class'PS9mDartHeal', Pawn(Other).Owner);
+		HP = Spawn(class'PS9mDartHeal', Pawn(Victim).Owner);
 
 		HP.Instigator = Instigator;
 
-		if(Other.Role == ROLE_Authority && Instigator != None && Instigator.Controller != None)
+		if(Victim.Role == ROLE_Authority && Instigator != None && Instigator.Controller != None)
 			HP.InstigatorController = Instigator.Controller;
 
-		HP.Initialize(Other);
+		HP.Initialize(Victim);
 	}
 }
 

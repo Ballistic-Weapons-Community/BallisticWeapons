@@ -23,6 +23,7 @@ defaultproperties
         DamageGainEndTime=0.25
     	Recoil=200.000000
 	    Chaos=0.020000
+		Heat=0.6
         FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	    ProjectileClass=Class'BallisticProV55.A73Projectile'
         WarnTargetPct=0.200000
@@ -51,6 +52,7 @@ defaultproperties
         DamageGainEndTime=0.25
     	Recoil=130.000000
 	    Chaos=0.020000
+		Heat=0.4
         FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Pitch=1.1,Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	    ProjectileClass=Class'BallisticProV55.A73ProjectileBal'
         WarnTargetPct=0.200000
@@ -79,6 +81,7 @@ defaultproperties
         DamageGainEndTime=0.25
     	Recoil=270.000000
 	    Chaos=0.020000
+		Heat=0.8
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         WarnTargetPct=0.200000
@@ -111,6 +114,7 @@ defaultproperties
         DamageGainEndTime=0.7
         Recoil=1536.000000
         Chaos=0.5
+		Heat=3.4
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         ProjectileClass=Class'BallisticProV55.A73PowerProjectile'
         WarnTargetPct=0.5
@@ -140,6 +144,7 @@ defaultproperties
         DamageGainEndTime=0.7
         Recoil=1536.000000
         Chaos=0.5
+		Heat=3.0
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         ProjectileClass=Class'BallisticProV55.A73PowerProjectileBal'
         WarnTargetPct=0.5
@@ -171,6 +176,7 @@ defaultproperties
         DamageGainEndTime=0.7
         Recoil=1460.000000
         Chaos=0.020000
+		Heat=3.4
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		ProjectileClass=Class'BallisticProV55.A73PowerProjectileB'
         WarnTargetPct=0.500000

@@ -502,6 +502,7 @@ defaultproperties
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000
      PutDownAnimRate=2.000000
+	 SingleReloadAnimRate=1.0
      AIRating=0.800000
      CurrentRating=0.800000
      Description="This primitive artifact has managed to survive the passage of time. Behind it trails a brutal story of bloodshed and sacrifice. For every scar, a life taken; every gouge, a life saved."

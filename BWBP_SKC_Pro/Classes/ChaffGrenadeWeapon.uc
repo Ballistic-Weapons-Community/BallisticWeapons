@@ -187,7 +187,7 @@ simulated function bool PutDown()
 	return false;
 }
 
-simulated function Notify_TurnSound()
+simulated function Notify_SilencerHide() //This was Notify_TurnSound...
 {
 	class'BUtil'.static.PlayFullSound(self, ClipReleaseSound);
 }

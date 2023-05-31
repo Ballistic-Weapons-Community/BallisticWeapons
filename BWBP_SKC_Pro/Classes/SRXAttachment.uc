@@ -27,6 +27,7 @@ simulated function PostNetBeginPlay()
 {
 	SetBoneScale (0, 0.0, 'Silencer');
 	SetBoneScale (1, 0.0, 'AMP');
+	Super.PostNetBeginPlay();
 }
 
 simulated event PostNetReceive()
