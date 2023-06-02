@@ -19,7 +19,7 @@ defaultproperties
      BrassClass=class'Brass_MRS138Shotgun'
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      TracerChance=0.500000
-     ReloadAnim="Reload_RCS715"
+     ReloadAnim="Reload_AR"
      ReloadAnimRate=0.900000
      Mesh=SkeletalMesh'BWBP_OP_Anim.AssaultShotgun_TPm'
      RelativeRotation=(Pitch=32768,Roll=-16384)

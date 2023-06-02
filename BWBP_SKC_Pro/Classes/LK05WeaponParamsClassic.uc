@@ -133,7 +133,7 @@ defaultproperties
 		//Attachments
 		//SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
 		//SightOffset=(X=7.00,Y=0.00,Z=-0.50)
-		SightOffset=(X=9,Y=0,Z=-0.09)
+		SightOffset=(X=3,Y=0,Z=1.59)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)

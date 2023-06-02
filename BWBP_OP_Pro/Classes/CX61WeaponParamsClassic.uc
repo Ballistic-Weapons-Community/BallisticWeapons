@@ -106,7 +106,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		//ViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
 		//SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
-		SightPivot=(Pitch=600)
+		//SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Flamethrower",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(1)=(ModeName="Healing Gas",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(2)=(bUnavailable=True)

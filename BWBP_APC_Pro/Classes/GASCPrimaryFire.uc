@@ -58,7 +58,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	else
 		Surf = int(HitMat.SurfaceType);
 		
-	if (Other == None || Other.bWorldGeometry && class'BallisticReplicationInfo'.static.IsArena())
+	if (Other == None || Other.bWorldGeometry)
 		BW.TargetedHurtRadius(2, 64, class'DTGASCPistol', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on

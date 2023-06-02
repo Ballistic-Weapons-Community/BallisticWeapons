@@ -34,7 +34,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	Super.Explode(HitLocation, HitNormal);
 }
 
-/*simulated event PostBeginPlay()
+simulated event PostBeginPlay()
 {
 	local Rotator R;
 
@@ -80,9 +80,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	SetTimer(1.0 + FRand()*2.0, false);
 
 	super.PostBeginPlay();
-}*/
+}
 
-/*simulated event PostNetBeginPlay()
+simulated event PostNetBeginPlay()
 {
 	local vector X,Y,Z;
 	super.PostNetBeginPlay();
@@ -94,9 +94,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	StrafeEndTime = level.TimeSeconds + FRand()*0.5;
 	if (bCrazy)
 		Velocity += vect(0,0,300);
-}*/
+}
 
-/*simulated event Tick(float DT)
+simulated event Tick(float DT)
 {
 	local vector X,Y,Z, ScrewCenter;
 	local Rotator R;
@@ -127,7 +127,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 //    	Speed += 1000;
   //  	Velocity += Vector(Rotation) * Speed;
 	}
-}*/
+}
 
 simulated event Timer()
 {
@@ -165,111 +165,6 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 		HitActor = Other;
 		Explode(HitLocation, vect(0,0,1));
 	}
-}
-
-simulated function DoDamage(Actor Other, vector HitLocation)
-{
-	local class<DamageType> DT;
-	local float Dmg;
-    local Vector ClosestLocation, BoneTestLocation, temp, NewMomentum, ZKickScale, OldVelocity;
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-
-		ZKickScale.Z = ((Other.Location.Z - HitLocation.Z) / Other.CollisionHeight);
-		NewMomentum = MomentumTransfer * Normal(Velocity);
-		NewMomentum.Z = MomentumTransfer * ZKickScale.Z;
-
-		OldVelocity.Z = Pawn(Other).Velocity.Z * -0.5;	
-		Pawn(Other).AddVelocity(OldVelocity);
-		
-		if (NewMomentum.Z > default.MomentumTransfer)
-		NewMomentum.Z = default.MomentumTransfer;
-
-	if (xPawn(Other) != None)
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the hit along the projectile's Velocity to a point where it is closest to the victim's Z axis.
-		temp = Normal(Velocity);
-		temp *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation = temp;
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(temp);
-		BoneTestLocation += HitLocation;
-		
-		class'BallisticDamageType'.static.GenericHurt (GetDamageVictim(Other, BoneTestLocation, Normal(Velocity), Dmg, DT), Dmg, Instigator, HitLocation, NewMomentum, DT);
-	}
-	else class'BallisticDamageType'.static.GenericHurt (GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT), Dmg, Instigator, HitLocation, NewMomentum, DT);
-}
-
-simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Excluded )
-{
-	local actor Victims;
-	local float damageScale, dist;
-	local vector dir, NewMomentum, ZKickScale, OldVelocity, NullVector;
-	local bool bWasAlive, bHitOthers, bHitSelf;
-
-	if( bHurtEntry )
-		return;
-
-	bHurtEntry = true;
-	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
-	{
-		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
-		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && (Excluded == None || Victims != Excluded) && Victims != HurtWall)
-		{
-			if (xPawn(Victims) != None && Pawn(Victims).Health > 0)
-				bWasAlive = true;
-			else if (Vehicle(Victims) != None && Vehicle(Victims).Driver!=None && Vehicle(Victims).Driver.Health > 0)
-				bWasAlive = true;
-			else
-				bWasAlive = false;
-			dir = Victims.Location - HitLocation;
-			dist = FMax(1,VSize(dir));
-			dir = dir/dist;
-			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
-			if ( Instigator == None || Instigator.Controller == None )
-				Victims.SetDelayedDamageInstigatorController( InstigatorController );
-				
-			NewMomentum = (damageScale * Momentum * dir);
-			ZKickScale.Z = ((Victims.Location.Z - HitLocation.Z) / Victims.CollisionHeight);
-			NewMomentum.Z = MomentumTransfer * ZKickScale.Z * damageScale;	
-			
-			OldVelocity.Z = Pawn(Victims).Velocity.Z * -0.5;	
-			Pawn(Victims).AddVelocity(OldVelocity);
-			
-			if (Victims == Instigator && xPawn(Victims) != None)
-			{
-				DamageAmount *= 0.5;
-				NewMomentum.X *= 1.25;
-				NewMomentum.Y *= 1.25;
-				bHitSelf=True;
-			}
-			
-			if (Victims != Instigator && xPawn(Victims) != None)
-				bHitOthers = true;
-			
-			if (NewMomentum.Z > default.MomentumTransfer)
-				NewMomentum.Z = default.MomentumTransfer;
-			
-			class'BallisticDamageType'.static.GenericHurt
-			(
-				Victims,
-				damageScale * DamageAmount,
-				Instigator,
-				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-				NewMomentum,
-				DamageType
-			);
-		}
-		if (bHitOthers && bHitSelf)
-			class'BallisticDamageType'.static.GenericHurt(Instigator, 0.5 * DamageAmount, Instigator, Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir, NullVector, DamageType);
-		bHitOthers = False;
-		bHitOthers = True;
-	}
-	bHurtEntry = false;
 }
 
 defaultproperties

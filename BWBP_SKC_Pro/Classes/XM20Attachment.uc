@@ -9,6 +9,7 @@
 class XM20Attachment extends BallisticAttachment;
 
 
+var   bool					bIsPrototype;	//Proto version has a larger beam
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
@@ -33,7 +34,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (!class'BallisticReplicationInfo'.static.IsClassic())
+	if (bIsPrototype)
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20P';
 	}

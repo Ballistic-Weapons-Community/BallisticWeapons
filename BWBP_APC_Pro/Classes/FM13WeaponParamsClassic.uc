@@ -115,7 +115,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Pitbull
 		Weight=30
 		LayoutMesh=SkeletalMesh'BWBP_CC_Anim.FPm_Pitbull'
-		ViewOffset=(X=6.000000,Y=13.000000,Z=-23.000000)
+		ViewOffset=(X=0.000000,Y=13.000000,Z=-23.000000)
 		SightOffset=(X=-5.000000,Y=-0.100000,Z=29.000000)
 		SightPivot=(Pitch=128)
 		bNeedCock=True

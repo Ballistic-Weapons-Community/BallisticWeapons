@@ -87,7 +87,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=3
-		ViewOffset=(X=10.00000,Y=10.000000,Z=-8.00000)
+		ViewOffset=(X=4.00000,Y=10.000000,Z=-8.00000)
 		SightOffset=(X=-5.000000,Y=-6.350000,Z=9.700000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

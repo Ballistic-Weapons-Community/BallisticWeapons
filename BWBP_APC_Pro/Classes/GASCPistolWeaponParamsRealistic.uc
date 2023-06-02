@@ -122,7 +122,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Semi-Auto",ModeID="WM_BigBurst",Value=5.000000,bUnavailable=True)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
-		ViewOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
+		ViewOffset=(X=4.000000,Y=10.000000,Z=-7.000000)
 		SightOffset=(X=-5.000000,Y=-6.350000,Z=9.700000)
 		WeaponName="GP-X22 10mm Incendiary Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

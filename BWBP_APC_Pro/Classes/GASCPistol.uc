@@ -325,7 +325,7 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
      SightOffset=(X=-5.000000,Y=-6.350000,Z=9.700000)
-	 SightZoomFactor=0.85
+	 SightZoomFactor=1.2
 	 BobDamping=2.35
      FireModeClass(0)=Class'BWBP_APC_Pro.GASCPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

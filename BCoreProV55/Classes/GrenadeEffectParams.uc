@@ -6,6 +6,7 @@ enum EDetonateType				// Different ways that grenade can detonate
 	DT_Impact,					// Detonate on impact
 	DT_ImpactTimed,				// Detonate on timer that only starts on impact
 	DT_Still,					// Detonate after timer that starts when projectile is still
+	DT_Disarm,					// Halt arming process, don't explode
 	DT_None						// Don't use normal detonation
 };
 

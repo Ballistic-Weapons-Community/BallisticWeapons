@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		RangeAtten=0.150000
 		TraceCount=1
-		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-		ImpactManager=Class'BallisticProV55.IM_BigBullet'
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
 		Damage=100.0
 		HeadMult=1.35
 		LimbMult=0.3

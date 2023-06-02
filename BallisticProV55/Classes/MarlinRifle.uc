@@ -53,7 +53,7 @@ simulated function AddGauss(optional float Amount)
 	{			
 		GaussGlow1.bHidden=false;
 		GaussGlow2.bHidden=false;
-		PlaySound(GaussOnSound,,1.7,,32);
+		PlaySound(GaussOnSound,,1.2,,32);
 		ServerSwitchWeaponMode(1);
 		ClientSwitchWeaponMode(1);
 	}

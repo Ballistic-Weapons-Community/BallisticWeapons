@@ -33,6 +33,7 @@ defaultproperties
 		FireInterval=0.240000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="Fire1"
 	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		

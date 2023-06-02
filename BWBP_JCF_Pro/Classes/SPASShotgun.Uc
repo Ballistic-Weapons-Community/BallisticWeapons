@@ -122,7 +122,7 @@ defaultproperties
      StartShovelAnim="PrepReload"
      EndShovelAnim="EndReload"
 	 ReloadAnimRate=1.5
-     WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+     WeaponModes(0)=(ModeName="Semi-Automatic",Value=1,ModeID="WM_SemiAuto")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0

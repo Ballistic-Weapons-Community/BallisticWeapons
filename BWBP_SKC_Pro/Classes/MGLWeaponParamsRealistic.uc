@@ -9,7 +9,7 @@ defaultproperties
 	
 	//Impact
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeImpact'
+		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeImpactSafe'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=10000.000000
 		Damage=200.000000

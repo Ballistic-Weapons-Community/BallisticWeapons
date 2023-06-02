@@ -9,12 +9,13 @@
 //=============================================================================
 class BOGPGrenadeSafe extends BallisticGrenade;
 
+
 defaultproperties
 {
 	WeaponClass=Class'BallisticProV55.BOGPPistol'
 
     ArmingDelay=0.25
-	UnarmedDetonateOn=DT_None
+	UnarmedDetonateOn=DT_Disarm
 	UnarmedPlayerImpactType=PIT_Bounce
     ArmedDetonateOn=DT_Impact
     ArmedPlayerImpactType=PIT_Detonate

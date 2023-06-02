@@ -11,7 +11,7 @@ defaultproperties
 		RangeAtten=0.15000
 		TraceCount=10
 		TracerClass=Class'BWBP_APC_Pro.TraceEmitter_ShotgunFlame'
-		ImpactManager=Class'BWBP_APC_Pro.IM_FireShot'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
 		Damage=10
 		HeadMult=2.0f
         LimbMult=0.75f

@@ -77,6 +77,8 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "prototype") != -1)
 	{
 		bIsPrototype=true;
+		if ( ThirdPersonActor != None )
+			XM20Attachment(ThirdPersonActor).bIsPrototype=true;
 	}
 }
 

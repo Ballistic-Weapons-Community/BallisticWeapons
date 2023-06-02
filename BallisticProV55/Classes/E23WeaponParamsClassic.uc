@@ -172,6 +172,7 @@ defaultproperties
 		MagAmmo=45
 		//SightOffset=(X=-8.000000,Z=9.300000)
 		SightPivot=(Pitch=256)
+        ZoomType=ZT_Logarithmic
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
 		ViewOffset=(X=4,Y=8.00,Z=-6)

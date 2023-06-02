@@ -22,18 +22,6 @@ replication
 		LaserRot;
 }
 
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsArena())
-	{
-		TracerChance=1;
-		TracerMix=0;
-		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary';
-		ImpactManager=Class'BallisticProV55.IM_IncendiaryHMGBullet';
-	}
-}
-
 simulated function Tick(float DT)
 {
 	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc;
@@ -138,22 +126,23 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BWBP_APC_Pro.GASCFlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
-     FlashScale=0.125000
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     InstantMode=MU_Both
-     TrackAnimMode=MU_Secondary
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
-     TracerChance=0.600000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_Pistol"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.400000
-     CockAnimRate=0.800000
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_CC_Anim.GASC_TPm'
-     DrawScale=1.000000
+	MuzzleFlashClass=Class'BWBP_APC_Pro.GASCFlashEmitter'
+	ImpactManager=Class'BallisticProV55.IM_IncendiaryHMGBullet'
+	MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+	FlashScale=0.125000
+	BrassClass=Class'BallisticProV55.Brass_Pistol'
+	InstantMode=MU_Both
+	TrackAnimMode=MU_Secondary
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
+	TracerChance=1
+	TracerMix=0
+	WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_Pistol"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.400000
+	CockAnimRate=0.800000
+	bRapidFire=True
+	Mesh=SkeletalMesh'BWBP_CC_Anim.GASC_TPm'
+	DrawScale=1.000000
 }

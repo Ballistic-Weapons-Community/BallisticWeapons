@@ -119,7 +119,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=45
 		//SightOffset=(X=1.000000,Z=17.750000)
-		SightPivot=(Pitch=200)
+		//SightPivot=(Pitch=200)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -142,7 +142,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45
-		//SightOffset=(X=1.000000,Z=14.900000)
+		SightOffset=(X=1.0,Y=0.01,Z=-0.3)
 		SightPivot=(Pitch=200)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)

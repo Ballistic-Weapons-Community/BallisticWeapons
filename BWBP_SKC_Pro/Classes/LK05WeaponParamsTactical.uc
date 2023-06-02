@@ -96,7 +96,9 @@ defaultproperties
 		Weight=10
 		LayoutName="Iron Sights"
 		//Attachments
-		SightOffset=(X=-0.50,Y=0.00,Z=1.75)
+		//SightOffset=(X=-0.50,Y=0.00,Z=1.75)
+		//SightPivot=(Pitch=64,Roll=0,Yaw=-16)
+		SightOffset=(X=3,Y=0,Z=1.59)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)

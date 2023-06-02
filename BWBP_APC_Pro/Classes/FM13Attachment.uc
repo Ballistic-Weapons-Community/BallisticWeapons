@@ -107,7 +107,6 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 
 	if (class'BallisticMod'.default.EffectsDetailMode == 0 && Mode == 0)
-
 		return;
 
 	TipLoc = GetModeTipLocation();

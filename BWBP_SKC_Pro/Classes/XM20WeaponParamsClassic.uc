@@ -169,7 +169,7 @@ defaultproperties
 		WeaponMaterialSwaps(6)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader',Index=6,AIndex=-1,PIndex=-1)
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
 		//ReloadAnimRate=1.000000
-		SightOffset=(X=12.90000,Y=10.0700000,Z=17.14)
+		SightOffset=(X=0.00000,Y=0.0000000,Z=3.0)
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		//Function

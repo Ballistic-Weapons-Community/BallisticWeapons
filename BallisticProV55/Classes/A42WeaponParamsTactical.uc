@@ -33,6 +33,7 @@ defaultproperties
     Begin Object Class=FireParams Name=TacticalProjFireParams
         FireInterval=0.155
         FireEndAnim=
+		AimedFireAnim="Fire1"
         FireEffectParams(0)=ProjectileEffectParams'TacticalProjEffectParams'
     End Object
 

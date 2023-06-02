@@ -197,7 +197,8 @@ defaultproperties
 		Weight=10
 		LayoutName="Red Dot Sight"
 		//Attachments
-		SightOffset=(X=4.20,Y=0.01,Z=6.97)
+		SightOffset=(X=4.20,Y=0.02,Z=6.97)
+		SightPivot=(Pitch=-64,Roll=0,Yaw=0)
 		//Function
 		ReloadAnimRate=1.5
 		CockAnimRate=1.25
@@ -227,15 +228,15 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=M781_Gray
 		Index=0
 		CamoName="Gray"
-		Weight=30
+		Weight=40
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Digital
 		Index=1
-		CamoName="Digital"
+		CamoName="Urban"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1,AIndex=1,PIndex=2)
-		Weight=15
+		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_Desert
@@ -246,25 +247,52 @@ defaultproperties
 		Weight=10
 	End Object
 	
-	Begin Object Class=WeaponCamo Name=M781_Patriot
+	Begin Object Class=WeaponCamo Name=M781_Jungle
 		Index=3
-		CamoName="Patriot"
+		CamoName="Jungle Hex"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1,AIndex=1,PIndex=2)
-		Weight=3
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoJungle",Index=1,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M781_Winter
+		Index=4
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoWinter",Index=1,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M781_Wood
+		Index=5
+		CamoName="Ol' Trusty"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoWood",Index=1,AIndex=1,PIndex=2)
+		Weight=7
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M781_RedTiger
-		Index=4
+		Index=6
 		CamoName="Red Tiger"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1,AIndex=1,PIndex=2)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M781_Gold
+		Index=7
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoGold",Index=1,AIndex=1,PIndex=2)
 		Weight=1
 	End Object
 	
 	Camos(0)=WeaponCamo'M781_Gray'
 	Camos(1)=WeaponCamo'M781_Digital'
 	Camos(2)=WeaponCamo'M781_Desert'
-	Camos(3)=WeaponCamo'M781_Patriot'
-	Camos(4)=WeaponCamo'M781_RedTiger'
+	Camos(3)=WeaponCamo'M781_Jungle'
+	Camos(4)=WeaponCamo'M781_Winter'
+	Camos(5)=WeaponCamo'M781_Wood'
+	Camos(6)=WeaponCamo'M781_RedTiger'
+	Camos(7)=WeaponCamo'M781_Gold'
 }

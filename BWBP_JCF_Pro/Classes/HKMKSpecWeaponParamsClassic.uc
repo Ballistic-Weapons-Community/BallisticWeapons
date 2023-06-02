@@ -96,7 +96,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=128,Max=1024)
+		AimSpread=(Min=16,Max=1024)
 		AimAdjustTime=0.350000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.400000
@@ -118,7 +118,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=12
 		SightPivot=(Pitch=-70)
-		ViewOffset=(X=3.000000,Y=9.000000,Z=-10.000000)
+		ViewOffset=(X=-2.000000,Y=9.000000,Z=-10.000000)
 		SightOffset=(X=-5.000000,Y=-4.300000,Z=11.600000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

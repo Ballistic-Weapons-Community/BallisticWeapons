@@ -102,6 +102,12 @@ simulated function ApplyParams(ProjectileEffectParams params)
 
 simulated function Arm()
 {
+	
+	if (UnarmedDetonateOn == DT_Disarm && bHasImpacted) //Don't arm if we hit a wall in disarm window
+	{
+		DestroyEffects();
+		return
+	}
 	bArmed = true;
 	DetonateOn = ArmedDetonateOn;
 	PlayerImpactType = ArmedPlayerImpactType;

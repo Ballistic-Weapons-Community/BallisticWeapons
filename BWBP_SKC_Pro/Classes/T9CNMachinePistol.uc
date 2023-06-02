@@ -49,7 +49,7 @@ simulated function AddGauss(optional float Amount)
 	
 	if (!bGaussCharged && GaussLevel == MaxGaussLevel)
 	{			
-		PlaySound(GaussOnSound,,1.7,,32);
+		PlaySound(GaussOnSound,,1.2,,32);
 		bGaussCharged=True;
 	}
 }
@@ -80,7 +80,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(prevWeapon);
 	if (MagAmmo < 2)
-		SetBoneScale (1, 0.0, 'Bullet');
+		SetBoneScale (0, 0.0, 'Bullet');
 }
 
 simulated event AnimEnd (int Channel)
@@ -96,7 +96,7 @@ simulated event AnimEnd (int Channel)
 		{
 			IdleAnim = 'IdleOpen';
 			ReloadAnim = 'ReloadOpen';
-			SetBoneScale (1, 0.0, 'Bullet');
+			SetBoneScale (0, 0.0, 'Bullet');
 		}
 		else
 		{
@@ -109,13 +109,13 @@ simulated event AnimEnd (int Channel)
 
 simulated function Notify_ClipOutOfSight()
 {
-	SetBoneScale (1, 1.0, 'Bullet');
+	SetBoneScale (0, 1.0, 'Bullet');
 }
 
 simulated function Notify_HideBullet()
 {
 	if (MagAmmo < 2)
-		SetBoneScale (1, 0.0, 'Bullet');
+		SetBoneScale (0, 0.0, 'Bullet');
 }
 
 simulated function PlayReload()
@@ -123,7 +123,7 @@ simulated function PlayReload()
 	super.PlayReload();
 
 	if (MagAmmo < 2)
-		SetBoneScale (1, 0.0, 'Bullet');
+		SetBoneScale (0, 0.0, 'Bullet');
 }
 
 // =============================================
