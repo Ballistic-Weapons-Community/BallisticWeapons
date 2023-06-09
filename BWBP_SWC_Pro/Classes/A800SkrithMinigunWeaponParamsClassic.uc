@@ -16,7 +16,7 @@ defaultproperties
 		Damage=27
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=40.000000
 		Chaos=0.500000
 		WarnTargetPct=0.200000	
@@ -35,26 +35,26 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SWC_Pro.A73NewPowerProjectile'
+		ProjectileClass=Class'BWBP_SWC_Pro.A800StickyBombProjectile'
 		SpawnOffset=(X=400.000000,Y=7.000000,Z=-9.000000)
 		Speed=1000.000000
 		MaxSpeed=2000.000000
 		AccelSpeed=8000.000000
-		Damage=75
-		DamageRadius=384.000000
+		Damage=150
+		DamageRadius=230.000000
 		MomentumTransfer=50000.000000
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
-		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=650.000000
+		FlashScaleFactor=2.000000
+		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-AltFire2',Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=200.000000
 		Chaos=0.500000
 		WarnTargetPct=0.200000	
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.850000
-		AmmoPerFire=20
+		FireInterval=0.550000
+		AmmoPerFire=10
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 	End Object
@@ -109,7 +109,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		SightOffset=(X=-30.000000,Y=-25.000000,Z=6.500000)
 		SightPivot=(Roll=-1900)
-		ViewOffset=(X=40.000000,Y=14.000000,Z=-15.000000)
+		ViewOffset=(X=20.000000,Y=20.000000,Z=-15.000000)
 		ViewPivot=(Roll=-256)
 		ReloadAnimRate=1.300000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

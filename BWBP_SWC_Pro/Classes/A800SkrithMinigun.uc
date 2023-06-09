@@ -35,12 +35,16 @@ var   int	BarrelTurn;
 var() Sound BarrelSpinSound;
 var() Sound BarrelStopSound;
 var() Sound BarrelStartSound;
+var() Sound ChargeLoadSound;
 var float NextTickTime;
+var   Pawn				Target;
 
 replication
 {
 	reliable if (Role < ROLE_Authority)
 		SetServerTurnVelocity;
+	reliable if(Role==ROLE_Authority)
+		Target;
 }
 
 function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
@@ -75,12 +79,29 @@ simulated event PostBeginPlay()
 simulated event WeaponTick (float DT)
 {
 	local rotator BT;
+	local float BestAim, BestDist;
+	local Vector Start;
+	local Pawn NewTarget;
 
 	BT.Roll = BarrelTurn;
 
 	SetBoneRotation('BarrelArray', BT);
 
 	super.WeaponTick(DT);
+
+	if (Role < ROLE_Authority)
+		return;
+
+	Start = Instigator.Location + Instigator.EyePosition();
+	BestAim = 0.995;
+	NewTarget = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
+	if (NewTarget != None)
+	{
+		if (NewTarget != Target)
+		{
+			Target = NewTarget;
+		}
+	}
 }
 
 simulated function bool PutDown()
@@ -175,7 +196,10 @@ simulated function bool HasAmmo()
 
 simulated function float ChargeBar()
 {
-     return BarrelSpeed / DesiredSpeed;
+	if (FireMode[1].bIsFiring == true)
+		return FMin(FireMode[1].HoldTime/4, 1);
+	else
+		return BarrelSpeed / DesiredSpeed;
 }
 
 // AI Interface =====
@@ -228,6 +252,7 @@ defaultproperties
      BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
      BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
      BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
+	 ChargeLoadSound=Sound'BWBP_SWC_Sounds.A800.A800-Load2'
      PlayerSpeedFactor=0.780000
      PlayerJumpFactor=0.750000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -236,8 +261,8 @@ defaultproperties
      bWT_Machinegun=True
      bWT_Super=True
      SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
+     BringUpSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Pullout',Volume=1.500000)
+     PutDownSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Putaway',Volume=1.500000)
      MagAmmo=90
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
