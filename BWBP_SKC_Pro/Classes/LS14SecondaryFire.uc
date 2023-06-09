@@ -56,7 +56,7 @@ defaultproperties
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True
-     bModeExclusive=False
+     bModeExclusive=True
      PreFireAnim="GrenadePrepFire"
      FireAnim="RLFire"
      FireForce="AssaultRifleAltFire"

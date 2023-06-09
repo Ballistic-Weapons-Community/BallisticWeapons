@@ -149,9 +149,9 @@ defaultproperties
 	MyDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithAlt'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DTAY90SkrithAltHead'
 	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
-	ImpactManager=Class'BWBP_SKC_Pro`.IM_SkrithbowWaveProjectile'
-	PenetrateManager=Class'BWBP_SKC_Pro.IM_A73BProjectile'
-	bPenetrate=True
+	ImpactManager=Class'BWBP_SKC_Pro.IM_SkrithbowWaveProjectile'
+	PenetrateManager=Class'BWBP_SKC_Pro.IM_SkrithbowWaveProjectile'
+	bPenetrate=False
 	bRandomStartRotation=False
 	bTearOnExplode=False
 	AccelSpeed=70000.000000

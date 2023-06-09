@@ -137,7 +137,7 @@ defaultproperties
      FireAnim="FireBig"
      FireEndAnim=
      FireRate=1.700000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_SKASShells'
+     AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
      AmmoPerFire=3
      ShakeRotMag=(X=256.000000,Y=128.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

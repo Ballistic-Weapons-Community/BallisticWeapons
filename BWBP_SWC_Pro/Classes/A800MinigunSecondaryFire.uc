@@ -38,7 +38,7 @@ var() sound		MaxChargeFireSound;
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	if(Super.AllowFire() && A800SkrithMinigun(BW).MagAmmo >= 10)
+	if(Super.AllowFire() && BW.MagAmmo >= 10)
 		return true;
 	else
 		return false;
@@ -64,19 +64,19 @@ simulated event ModeDoFire()
 {
 	if (BurstSize == 0)
 	{
-		if (HoldTime >= ChargeTime && A800SkrithMinigun(BW).MagAmmo >= 40)
+		if (HoldTime >= ChargeTime && BW.MagAmmo >= 40)
 		{
 			BurstSize=4;
 		}
-		else if (HoldTime >= (ChargeTime*0.75) && A800SkrithMinigun(BW).MagAmmo >= 30)
+		else if (HoldTime >= (ChargeTime*0.75) && BW.MagAmmo >= 30)
 		{
 			BurstSize=3;
 		}
-		else if (HoldTime >= (ChargeTime/2) && A800SkrithMinigun(BW).MagAmmo >= 20)
+		else if (HoldTime >= (ChargeTime/2) && BW.MagAmmo >= 20)
 		{
 			BurstSize=2;
 		}
-		else if (HoldTime >= (ChargeTime/4) && A800SkrithMinigun(BW).MagAmmo >= 10)
+		else if (HoldTime >= (ChargeTime/4) && BW.MagAmmo >= 10)
 		{
 			BurstSize=1;
 		}
@@ -230,28 +230,32 @@ simulated function ModeTick(float DT)
 			Weapon.StopFire(ThisModeNum);
 			Weapon.AmbientSound = None;
 		}
-		if (HoldTime >= ChargeTime && A800SkrithMinigun(BW).MagAmmo >= 40 && !b100Charge)
+		if (HoldTime >= ChargeTime && BW.MagAmmo >= 40 && !b100Charge)
 		{
 			b100Charge=True;
 			BW.PlaySound(Minigun.ChargeLoadSound, SLOT_None, 1.3, , 32, 1.0, true);
+			A800SkrithMinigun(BW).SetGlowSize(1.00);
 			BurstSize=4;
 		}
-		else if (HoldTime >= (ChargeTime*0.75) && A800SkrithMinigun(BW).MagAmmo >= 30 && !b75Charge)
+		else if (HoldTime >= (ChargeTime*0.75) && BW.MagAmmo >= 30 && !b75Charge)
 		{
 			b75Charge=True;
 			BW.PlaySound(Minigun.ChargeLoadSound, SLOT_None, 1.3, , 32, 1.0, true);
+			A800SkrithMinigun(BW).SetGlowSize(0.75);
 			BurstSize=3;
 		}
-		else if (HoldTime >= (ChargeTime/2) && A800SkrithMinigun(BW).MagAmmo >= 20 && !b50Charge)
+		else if (HoldTime >= (ChargeTime/2) && BW.MagAmmo >= 20 && !b50Charge)
 		{
 			b50Charge=True;
 			BW.PlaySound(Minigun.ChargeLoadSound, SLOT_None, 1.3, , 32, 1.0, true);
+			A800SkrithMinigun(BW).SetGlowSize(0.50);
 			BurstSize=2;
 		}
-		else if (HoldTime >= (ChargeTime/4) && A800SkrithMinigun(BW).MagAmmo >= 10 && !b25Charge)
+		else if (HoldTime >= (ChargeTime/4) && BW.MagAmmo >= 10 && !b25Charge)
 		{
 			b25Charge=True;
 			BW.PlaySound(Minigun.ChargeLoadSound, SLOT_None, 1.3, , 32, 1.0, true);
+			A800SkrithMinigun(BW).SetGlowSize(0.25);
 			BurstSize=1;
 		}
 	}

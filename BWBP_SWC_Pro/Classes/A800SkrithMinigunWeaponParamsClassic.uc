@@ -16,7 +16,7 @@ defaultproperties
 		Damage=27
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SWC_Sounds.A800.A800-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=40.000000
 		Chaos=0.500000
 		WarnTargetPct=0.200000	

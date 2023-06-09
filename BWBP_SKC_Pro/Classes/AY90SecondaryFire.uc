@@ -12,6 +12,11 @@ var() float ChargeTime;
 var() Sound	ChargeSound;
 var() float AutoFireTime;
 
+var bool	b100Charge;
+var bool	b75Charge;
+var bool	b50Charge;
+var bool	b25Charge;
+
 var() sound		ChargeFireSound;
 var() sound		MaxChargeFireSound;
 
@@ -71,6 +76,10 @@ simulated event ModeDoFire()
 		Load=10;
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 	}
+	b100Charge=false;
+	b75Charge=false;
+	b50Charge=false;
+	b25Charge=false;
 	
 	if (!AllowFire())
         return;
@@ -208,16 +217,16 @@ simulated function ModeTick(float DT)
 	Super.ModeTick(DT);
 	
 	if (bIsFiring && BW.MagAmmo >= 10)
+	{
 		AY90SkrithBoltcaster(BW).UpdateScreen();
-
+		AY90SkrithBoltcaster(BW).SetGlowSize(0.1,0.1,HoldTime/ChargeTime);
+	}
     if (bIsFiring && HoldTime >= AutoFireTime)
     {
         Weapon.StopFire(ThisModeNum);
 		Weapon.AmbientSound = None;
     }
 }
-
-
 
 function SpawnProjectile (Vector Start, Rotator Dir)
 {

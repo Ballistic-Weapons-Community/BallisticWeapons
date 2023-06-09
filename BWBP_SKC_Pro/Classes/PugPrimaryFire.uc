@@ -45,7 +45,7 @@ defaultproperties
 	FireEndAnim=
 	FireAnimRate=1.500000
 	FireRate=0.300000
-	AmmoClass=Class'BWBP_SKC_Pro.Ammo_SKASShells'
+	AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
 	ShakeRotMag=(X=128.000000,Y=64.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
 	ShakeRotTime=2.000000

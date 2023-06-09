@@ -11,6 +11,7 @@ class AY90SkrithBoltcaster extends BallisticWeapon;
 
 var Actor GlowFX; //Ambient blue glow + side flames
 var Actor GlowFX2; //Side Flames
+var Actor ChargeGlowFX; //Barrel glow when charging
 var Actor StringSpark1;
 var Actor StringSpark2;
 var Actor StringEnd1;
@@ -65,7 +66,6 @@ simulated function ScreenStart()
 
 simulated event RenderTexture( ScriptedTexture Tex )
 {
-
 	Tex.DrawTile(0,0,256,256,0,0,256,256,ScreenBase, MyFontColor); //Basic screen
 	if (MagAmmo >= 10)
 	{
@@ -274,6 +274,15 @@ simulated event WeaponTick(float DT)
 			//BeamEmitter(Emitter(StringSpark2).Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(End, End);
 		}
 	}
+
+	if (Firemode[0].bIsFiring || Firemode[1].bIsFiring)
+	{
+		class'bUtil'.static.InitMuzzleFlash(ChargeGlowFX, class'AY90ChargeGlow', DrawScale, self, 'tip');
+	}
+	else
+	{
+		if (ChargeGlowFX != None)	ChargeGlowFX.Destroy();
+	}
 	
 }
 
@@ -282,6 +291,7 @@ simulated event Timer()
 	if (Clientstate == WS_PutDown)
 	{
 		class'BUtil'.static.KillEmitterEffect (GlowFX);
+		class'BUtil'.static.KillEmitterEffect (ChargeGlowFX);
 		class'BUtil'.static.KillEmitterEffect (StringSpark1);
 		class'BUtil'.static.KillEmitterEffect (StringSpark2);
 	}
@@ -294,6 +304,8 @@ simulated event Destroyed()
 		WeaponScreen.client=None;
 	if (GlowFX != None)
 		GlowFX.Destroy();
+	if (ChargeGlowFX != None)
+		ChargeGlowFX.Destroy();
 	if (StringSpark1 != None)
 		StringSpark1.Destroy();
 	if (StringSpark2 != None)
@@ -303,6 +315,12 @@ simulated event Destroyed()
 	if (StringEnd2 != None)
 		StringEnd2.Destroy();
 	super.Destroyed();
+}
+
+simulated function SetGlowSize(float SizeX,float SizeY,float SizeZ)
+{
+	if (ChargeGlowFX != None)
+		AY90ChargeGlow(ChargeGlowFX).SetSize(SizeX,SizeY,SizeZ);
 }
 
 

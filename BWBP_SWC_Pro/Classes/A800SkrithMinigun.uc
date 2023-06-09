@@ -38,6 +38,7 @@ var() Sound BarrelStartSound;
 var() Sound ChargeLoadSound;
 var float NextTickTime;
 var   Pawn				Target;
+var Actor	Glow;				// Blue charge effect
 
 replication
 {
@@ -89,6 +90,15 @@ simulated event WeaponTick (float DT)
 
 	super.WeaponTick(DT);
 
+	if (Firemode[1].bIsFiring)
+	{
+		class'bUtil'.static.InitMuzzleFlash(Glow, class'A800MinigunChargeGlow', DrawScale, self, 'tip');
+	}
+	else
+	{
+		if (Glow != None)	Glow.Destroy();
+	}
+
 	if (Role < ROLE_Authority)
 		return;
 
@@ -108,11 +118,19 @@ simulated function bool PutDown()
 {
 	if (super.PutDown())
 	{
+		if (Glow != None)	Glow.Destroy();
 		AmbientSound = None;
 		BarrelSpeed = 0;
 		return true;
 	}
 	return false;
+}
+
+simulated function Destroyed ()
+{
+	if (Glow != None)	Glow.Destroy();
+	AmbientSound = None;
+	Super.Destroyed();
 }
 
 simulated event Tick (float DT)
@@ -148,6 +166,12 @@ simulated event Tick (float DT)
 	if (ThirdPersonActor != None)
 		A800MinigunAttachment(ThirdPersonActor).BarrelSpeed = BarrelSpeed;
 
+}
+
+simulated function SetGlowSize(float Size)
+{
+	if (Glow != None)
+		A800MinigunChargeGlow(Glow).SetSize(Size);
 }
 
 simulated function bool CheckWeaponMode (int Mode)

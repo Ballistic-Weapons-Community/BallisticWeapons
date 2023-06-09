@@ -19,6 +19,7 @@ defaultproperties
 
 	Begin Object Class=AmmoParams Name=ArenaParams
 		KillInitialAmmoMult=0.0f
+		bResuppliesFromPack=False
 	End Object
 
 	Begin Object Class=AmmoParams Name=ClassicParams
@@ -31,6 +32,7 @@ defaultproperties
 
 	Begin Object Class=AmmoParams Name=TacticalParams
 		KillInitialAmmoMult=0.0f
+		bResuppliesFromPack=False
 	End Object
 
 	Params[0]=ArenaParams

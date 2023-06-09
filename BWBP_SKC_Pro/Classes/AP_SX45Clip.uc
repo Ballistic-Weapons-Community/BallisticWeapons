@@ -10,8 +10,8 @@ class AP_SX45Clip extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=36
-     InventoryType=Class'BWBP_SKC_Pro.Ammo_SX45Bullets'
+     AmmoAmount=30
+     InventoryType=Class'BallisticProV55.Ammo_45HV'
      PickupMessage="You picked up four SX45 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.RS8.RS8Clips'

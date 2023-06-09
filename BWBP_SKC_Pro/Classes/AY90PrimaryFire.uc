@@ -15,6 +15,11 @@ var() float ChargeTime;
 var() Sound	ChargeSound;
 var() float AutoFireTime;
 
+var bool	b100Charge;
+var bool	b75Charge;
+var bool	b50Charge;
+var bool	b25Charge;
+
 var() sound		ChargeFireSound;
 var() sound		MaxChargeFireSound;
 
@@ -70,6 +75,10 @@ simulated event ModeDoFire()
 	}
 
 	Weapon.AmbientSound = Weapon.default.AmbientSound;
+	b100Charge=false;
+	b75Charge=false;
+	b50Charge=false;
+	b25Charge=false;
 	
 	if (!AllowFire())
         return;
@@ -211,7 +220,30 @@ simulated function ModeTick(float DT)
 	Super.ModeTick(DT);
 	
 	if (bIsFiring && BW.MagAmmo >= 10)
+	{
 		AY90SkrithBoltcaster(BW).UpdateScreen();
+
+		if (HoldTime >= AutoFireTime)
+		{
+			Weapon.StopFire(ThisModeNum);
+			Weapon.AmbientSound = None;
+		}
+		if (HoldTime >= ChargeTime && BW.MagAmmo >= 40 && !b100Charge)
+		{
+			b100Charge=True;
+			AY90SkrithBoltcaster(BW).SetGlowSize(2.00,2.00,2.00);
+		}
+		else if (HoldTime >= (ChargeTime/2) && BW.MagAmmo >= 20 && !b50Charge)
+		{
+			b50Charge=True;
+			AY90SkrithBoltcaster(BW).SetGlowSize(0.35,0.35,0.35);
+		}
+		else if (HoldTime > 0 && BW.MagAmmo >= 10 && !b25Charge)
+		{
+			b25Charge=True;
+			AY90SkrithBoltcaster(BW).SetGlowSize(0.1,0.1,0.1);
+		}
+	}
 
     if (bIsFiring && HoldTime >= AutoFireTime)
     {
