@@ -206,6 +206,33 @@ simulated state IncAmmo //Radius damage on world, adds heat
 		super.InitEffects();
 	}
 }
+simulated state APAmmo //No special func currently
+{
+	function PlayFiring()
+	{
+		Super.PlayFiring();
+		FG50Machinegun(BW).AddHeat(HeatPerShot);
+	}
+
+	// Get aim then run trace...
+	function DoFireEffect()
+	{
+		Super.DoFireEffect();
+		if (Level.NetMode == NM_DedicatedServer)
+			FG50Machinegun(BW).AddHeat(HeatPerShot);
+	}
+
+	simulated function InitEffects()
+	{
+		if (AIController(Instigator.Controller) != None)
+			return;
+		if (Heater == None || Heater.bDeleteMe )
+			class'BUtil'.static.InitMuzzleFlash (Heater, class'FG50Heater', Weapon.DrawScale*FlashScaleFactor, weapon, 'tip3');
+		FG50Heater(Heater).SetHeat(0.0);
+		FG50MachineGun(Weapon).Heater = FG50Heater(Heater);
+		super.InitEffects();
+	}
+}
 
 defaultproperties
 {

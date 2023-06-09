@@ -12,6 +12,9 @@
 //=============================================================================
 class FG50MachineGun extends BallisticWeapon;
 
+//layouts
+var(FG50)	bool				bIsArmorPiercing;
+
 //aiming
 var(FG50)	Emitter		        LaserDot;
 var(FG50)	LaserActor	        Laser;
@@ -51,6 +54,26 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientScreenStart, bLaserOn;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsArmorPiercing=false;
+
+	if (InStr(WeaponParams.LayoutTags, "AP") != -1)
+	{
+		bIsArmorPiercing=true;
+		if ( ThirdPersonActor != None )
+		{
+			FG50Attachment(ThirdPersonActor).bIsArmorPiercing=true;
+			FG50Attachment(ThirdPersonActor).TracerClass=Class'BallisticProV55.TraceEmitter_AP';
+			FG50Attachment(ThirdPersonActor).ImpactManager=Class'IM_BigBulletHMG';
+		}
+	}
 }
 
 simulated function PostNetBeginPlay()

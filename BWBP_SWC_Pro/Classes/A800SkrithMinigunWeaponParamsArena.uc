@@ -35,7 +35,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SWC_Pro.A73NewPowerProjectile'
+		ProjectileClass=Class'BWBP_SWC_Pro.A800StickyBombProjectile'
 		SpawnOffset=(X=400.000000,Y=7.000000,Z=-9.000000)
 		Speed=1000.000000
 		MaxSpeed=2000.000000
@@ -45,7 +45,7 @@ defaultproperties
 		MomentumTransfer=50000.000000
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-AltFire2',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=650.000000
 		Chaos=0.500000
 		WarnTargetPct=0.200000	

@@ -118,6 +118,8 @@ simulated function bool PutDown()
 {
 	if (super.PutDown())
 	{
+		if (A800MinigunSecondaryFire(FireMode[1]).BurstSize > 0)
+			return false;
 		if (Glow != None)	Glow.Destroy();
 		AmbientSound = None;
 		BarrelSpeed = 0;

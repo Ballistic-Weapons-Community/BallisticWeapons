@@ -8,12 +8,16 @@
 //=============================================================================
 class FG50Attachment extends BallisticAttachment;
 
+var   bool					bIsArmorPiercing;	//Switch tracers and impacts
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
 var   Rotator				LaserRot;
 var	  BallisticWeapon		myWeap;
 var Vector		SpawnOffset;
+
+var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for AP effects
+var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for AP effects
 
 
 replication
@@ -23,6 +27,7 @@ replication
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
 }
+
 
 simulated Event PostNetBeginPlay()
 {
@@ -37,6 +42,10 @@ function InitFor(Inventory I)
 
 	if (BallisticWeapon(I) != None)
 		myWeap = BallisticWeapon(I);
+	if (FG50MachineGun(I) != None && FG50MachineGun(I).bIsArmorPiercing)
+	{
+		bIsArmorPiercing=True;
+	}
 }
 
 simulated function Tick(float DT)
@@ -146,13 +155,74 @@ simulated function InstantFireEffects(byte Mode)
 		ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None)
 		return;
-	if (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && mHitActor.bProjTarget)
+	if (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && mHitActor.bProjTarget && !bIsArmorPiercing)
 	{
 		Spawn (class'IE_IncBulletMetal', ,, HitLocation,);
 		return;
 	}
-	if (ImpactManager != None)
+	if (ImpactManager != None && !bIsArmorPiercing)
 		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	else if (ImpactManagerAlt != None && bIsArmorPiercing)
+		ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+}
+// Spawn a tracer and water tracer
+simulated function SpawnTracer(byte Mode, Vector V)
+{
+	local BCTraceEmitter Tracer;
+	local Vector TipLoc, WLoc, WNorm;
+	local float Dist;
+	local bool bThisShot;
+
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
+		return;
+
+	TipLoc = GetTipLocation();
+	Dist = VSize(V - TipLoc);
+
+	// Count shots to determine if it's time to spawn a tracer
+	if (TracerMix == 0)
+		bThisShot=true;
+	else
+	{
+		TracerCounter++;
+		if (TracerMix < 0)
+		{
+			if (TracerCounter >= -TracerMix)	{
+				TracerCounter = 0;
+				bThisShot=false;			}
+			else
+				bThisShot=true;
+		}
+		else if (TracerCounter >= TracerMix)	{
+			TracerCounter = 0;
+			bThisShot=true;					}
+	}
+	// Spawn a tracer
+	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
+		bThisShot && (TracerChance >= 1 || FRand() < TracerChance) && !bIsArmorPiercing)
+	{
+		if (Dist > 200)
+			Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(Dist);
+	}
+	// Spawn an alt tracer
+	if (AltTracerClass != None && TracerMode != MU_None && bIsArmorPiercing)
+	{
+		if (Dist > 200)
+			Tracer = Spawn(AltTracerClass, self, , TipLoc, Rotator(V - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(Dist);
+	}
+	// Spawn under water bullet effect
+	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
+		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
+	{
+		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
+			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(VSize(WLoc - TipLoc));
+	}
 }
 
 simulated function Destroyed()
@@ -168,12 +238,14 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
      ImpactManager=Class'IM_IncendiaryHMGBullet'
+     ImpactManagerAlt=Class'BallisticProV55.IM_BigBulletHMG'
      FlashScale=1.750000
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
+     AltTracerClass=Class'BallisticProV55.TraceEmitter_AP'
      TracerChance=2.000000
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both

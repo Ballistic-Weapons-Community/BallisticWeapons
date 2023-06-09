@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Exp rounds
 	Begin Object Class=InstantEffectParams Name=TacticalPriStandardEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		Damage=90 // .50 explosive
@@ -62,6 +63,66 @@ defaultproperties
 		AimedFireAnim="SGCFireAimed"
 		FireAnimRate=2.400000	
 		FireEffectParams(0)=InstantEffectParams'TacticalPriControlledEffectParams'
+	End Object
+	
+	//AP rounds
+	Begin Object Class=InstantEffectParams Name=TacticalPriStandardEffectParams_AP
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		Damage=100 // .50 AP
+        HeadMult=3
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
+		PenetrationEnergy=128 //
+		PenetrateForce=450 //
+		PDamageFactor=0.800000
+		WallPDamageFactor=0.800000
+		PushbackForce=150.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=1024.000000
+		Chaos=0.200000
+		WarnTargetPct=0.400000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPriStandardFireParams_AP
+		TargetState="APAmmo"
+		FireInterval=0.200000
+		FireEndAnim=
+		AimedFireAnim="SGCFireAimed"
+		FireAnimRate=2.400000	
+		FireEffectParams(0)=InstantEffectParams'TacticalPriStandardEffectParams_AP'
+	End Object
+	
+	Begin Object Class=InstantEffectParams Name=TacticalPriControlledEffectParams_AP
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		Damage=100 // .50 AP
+        HeadMult=3
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
+		PenetrationEnergy=128 //
+		PenetrateForce=450 //
+		PDamageFactor=0.800000
+		WallPDamageFactor=0.800000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=512.000000
+		Chaos=0.070000
+		WarnTargetPct=0.400000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPriControlledFireParams_AP
+		TargetState="APAmmo"
+		FireInterval=0.600000
+		FireEndAnim=
+		AimedFireAnim="SGCFireAimed"
+		FireAnimRate=2.400000	
+		FireEffectParams(0)=InstantEffectParams'TacticalPriControlledEffectParams_AP'
 	End Object
 		
     //=================================================================
@@ -135,6 +196,18 @@ defaultproperties
 		FireInterval=0.200000
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Mount'
+	End Object	
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
 	End Object	
 		
 	//=================================================================
@@ -242,9 +315,39 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalPriStandardFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Mount'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_AP
+		//Layout core
+		Weight=10
+		LayoutName="AP Rounds"
+		LayoutTags="AP"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Holosight",Slot=51,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=0f)
+		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=0f)
+		SightOffset=(X=3.00,Y=0.00,Z=3.25)
+		SightMoveSpeedFactor=0.3
+		SightingTime=0.65
+		//Function
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+		InventorySize=6
+		DisplaceDurationMult=1.4
+		MagAmmo=40
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalStandardAimParams'
+		AimParams(1)=AimParams'TacticalControlledAimParams'
+		FireParams(0)=FireParams'TacticalPriControlledFireParams_AP'
+		FireParams(2)=FireParams'TacticalPriStandardFireParams_AP'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+		AltFireParams(2)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_Mount'
+    Layouts(2)=WeaponParams'TacticalParams_AP'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=FG50_Black
