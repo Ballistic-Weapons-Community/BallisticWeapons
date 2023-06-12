@@ -28,7 +28,7 @@ defaultproperties
 	bNoReloading=False
 	bAlternativePickups=False
 
-    bBrightPlayers=False
+    bBrightPlayers=True
 	bUniversalMineLights=False
 
 	bHealthRegeneration=False

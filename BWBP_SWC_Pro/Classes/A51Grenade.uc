@@ -85,6 +85,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'A51GrenadeWeaponParamsArena'
 	 ParamsClasses(1)=Class'A51GrenadeWeaponParamsClassic'
 	 ParamsClasses(2)=Class'A51GrenadeWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'A51GrenadeWeaponParamsTactical'
      ItemName="AD-51 Reptile Corossive Grenade"
      Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithGrenade'
      DrawScale=0.400000

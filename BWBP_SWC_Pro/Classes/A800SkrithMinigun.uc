@@ -341,6 +341,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'A800SkrithMinigunWeaponParamsArena'
 	 ParamsClasses(1)=Class'A800SkrithMinigunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'A800SkrithMinigunWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'A800SkrithMinigunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithHyperBlaster'
      DrawScale=0.400000
      SoundRadius=128.000000

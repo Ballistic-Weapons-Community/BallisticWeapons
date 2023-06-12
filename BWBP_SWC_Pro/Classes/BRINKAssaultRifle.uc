@@ -766,6 +766,7 @@ defaultproperties
 	ParamsClasses(0)=Class'BRINKAssaultRifleWeaponParamsArena'
 	ParamsClasses(1)=Class'BRINKAssaultRifleWeaponParamsClassic'
 	ParamsClasses(2)=Class'BRINKAssaultRifleWeaponParamsRealistic'
+	ParamsClasses(3)=Class'BRINKAssaultRifleWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SWC_Pro.BRINKPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SWC_Pro.BRINKSecondaryFire'
 	PutDownTime=0.700000
