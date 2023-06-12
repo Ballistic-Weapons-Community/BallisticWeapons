@@ -388,6 +388,7 @@ simulated function Destroyed()
 {
 	if (Instigator != None && AIController(Instigator.Controller) == None)
 		WeaponScreen.client=None;
+	super.Destroyed();
 }
 
 simulated event RenderTexture( ScriptedTexture Tex )
