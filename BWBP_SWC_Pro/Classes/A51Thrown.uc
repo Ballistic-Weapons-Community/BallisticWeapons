@@ -76,6 +76,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 defaultproperties
 {
 	WeaponClass=class'A51Grenade'
+	DampenFactor=0.050000
+	DampenFactorParallel=0.350000
 	ImpactDamage=15
 	ImpactDamageType=Class'BWBP_SWC_Pro.DTA51Grenade'
 	ImpactManager=Class'BWBP_SWC_Pro.IM_AcidGrenade'

@@ -29,7 +29,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.BRINKFlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SWC_Sounds.BR1NK.BR1NK-Fire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=125.000000
+		Recoil=128.000000
 		Chaos=0.02000
 		WarnTargetPct=0.200000
 	End Object
@@ -52,8 +52,8 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=600.000000
 		MaxSpeed=14000.000000
-		Damage=80
-		DamageRadius=384.000000
+		Damage=50
+		DamageRadius=512.000000
 		MomentumTransfer=20000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
@@ -83,8 +83,8 @@ defaultproperties
 		EscapeMultiplier=1.4
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
+		XRandFactor=0.1
+		YRandFactor=0.1
 		ClimbTime=0.04
 		DeclineTime=0.75
 		DeclineDelay=0.140000
