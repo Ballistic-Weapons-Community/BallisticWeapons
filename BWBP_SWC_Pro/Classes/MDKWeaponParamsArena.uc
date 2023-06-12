@@ -1,4 +1,4 @@
-class MDKWeaponParams extends BallisticWeaponParams;
+class MDKWeaponParamsArena extends BallisticWeaponParams;
 
 defaultproperties
 {    

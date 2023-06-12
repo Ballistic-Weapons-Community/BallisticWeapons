@@ -53,17 +53,20 @@ function InitBomb(bool bThrown, bool bLaserOn, float HoldTime)
 	local Teleporter TB;
 	
 	bDeployed = !bThrown;
+
 	if (bDeployed)
 	{
 		bCollideWorld = false;
 		KSetBlockKarma(False);
 		SetPhysics(PHYS_None);
 	}
+
 	bLaserMode = bLaserOn;
+
 	if (Role == ROLE_Authority)
 	{
 		MyUseTrigger = Spawn(class'FP9Trigger',self ,, Location);
-		MyUsetrigger.SetBase(self);
+		MyUseTrigger.SetBase(self);
 		OriginalPlacer = Instigator;
 	}
 	
@@ -73,15 +76,17 @@ function InitBomb(bool bThrown, bool bLaserOn, float HoldTime)
 	foreach TouchingActors(class'Actor', TA)
 	{
 		if (xPickUpBase(TA) != None || Pickup(TA) != None)
+		{
 			bAntiLameMode = True;
 			return;
+		}
 	}
 	
 	//No teleporter camping, die die die
 	foreach RadiusActors(class'Teleporter', TB, DamageRadius)
 	{
-			bAntiLameMode=True;
-			return;
+		bAntiLameMode=True;
+		return;
 	}
 }
 
@@ -135,6 +140,7 @@ simulated function InitProjectile ()
 	InitEffects();
 
 	Speed *= FClamp(ThrowTime-0.3, 0, 1) / 1;
+	
 	if (bDeployed && bLaserMode)
 		SetTimer(2.0, false);
 	else if (!bDeployed)
@@ -457,12 +463,14 @@ defaultproperties
 	StartDelay=0.300000
 	MyRadiusDamageType=Class'BallisticProV55.DTFP9BombRadius'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
-	ShakeRadius=1200.000000
-	MotionBlurRadius=1024.000000
+    ShakeRadius=512.000000
+    MotionBlurRadius=512.000000
 	WallPenetrationForce=64
-	ShakeRotMag=(X=512.000000,Y=400.000000)
-	ShakeRotRate=(X=3000.000000,Z=3000.000000)
-	ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
+	// these values cause the rolling view problem and last forever
+	// use the defaults
+	//ShakeRotMag=(X=512.000000,Y=400.000000)
+	//ShakeRotRate=(X=3000.000000,Z=3000.000000)
+	//ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
 	Speed=350.000000
 	Damage=150.000000
 	DamageRadius=1024.000000
