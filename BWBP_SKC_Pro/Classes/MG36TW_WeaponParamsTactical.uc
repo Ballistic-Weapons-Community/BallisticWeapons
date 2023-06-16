@@ -28,7 +28,6 @@ defaultproperties
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=128.000000
-		Chaos=0.09
 		Inaccuracy=(X=3,Y=3)
 		WarnTargetPct=0.200000
 	End Object
@@ -38,6 +37,71 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	
+	//AR
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_AR
+		TraceRange=(Min=8000.000000,Max=12000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=1536,Max=4000)
+		RangeAtten=0.67
+		Damage=34 // 5.56
+		HeadMult=3.25
+		LimbMult=0.75
+		PenetrationEnergy=18.000000
+		PenetrateForce=55
+		bPenetrate=True
+		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireAR',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=188.000000 //
+		Inaccuracy=(X=3,Y=3)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_AR
+		FireInterval=0.080000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_AR'
+	End Object
+	
+	//Gauss
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Gauss
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+        DecayRange=(Min=5250,Max=10250) // 100-200m
+		RangeAtten=0.97
+		Damage=102  // 5.56mm Accel
+        HeadMult=3.25
+        LimbMult=0.75
+        PenetrationEnergy=96 //x3
+		PenetrateForce=450 //x3
+		bPenetrate=True
+		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		PDamageFactor=0.8
+		WallPDamageFactor=0.6
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=486.000000 //x3
+		Inaccuracy=(X=1,Y=1) //
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Gauss
+		FireInterval=0.25000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Gauss'
 	End Object
 		
 	//=================================================================
@@ -84,15 +148,19 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout
+		Weight=30
+		LayoutName="LMG"
+		LayoutTags="lmg"
+		//Visual
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="mag",Slot=31,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		PlayerSpeedFactor=0.900000
 		InventorySize=6
 		SightMoveSpeedFactor=0.45
 		SightingTime=0.3
 		MagAmmo=100
-		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic
@@ -101,7 +169,57 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_AR
+		//Layout
+		Weight=10
+		LayoutName="Assault Rifle"
+		LayoutTags="ar"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="mag",Slot=31,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		PlayerSpeedFactor=0.900000
+		InventorySize=6
+		SightMoveSpeedFactor=0.45
+		SightingTime=0.3
+		MagAmmo=30
+		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
+		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		ZoomType=ZT_Logarithmic
+		WeaponName="Mk 88 5.56mm Assault Rifle"
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_AR'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_Gauss
+		//Layout
+		Weight=10
+		LayoutName="Gauss Rifle"
+		LayoutTags="gauss"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="mag",Slot=31,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=1f)
+		//Stats
+		PlayerSpeedFactor=0.900000
+		InventorySize=6
+		SightMoveSpeedFactor=0.45
+		SightingTime=0.3
+		MagAmmo=20
+		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
+		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		ZoomType=ZT_Logarithmic
+		WeaponName="Mk 88 5.56mm Assault Rifle"
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Gauss'
+	End Object
+	
 	Layouts(0)=WeaponParams'TacticalParams'
+	Layouts(1)=WeaponParams'TacticalParams_AR'
+	Layouts(2)=WeaponParams'TacticalParams_Gauss'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=MG36_Gray

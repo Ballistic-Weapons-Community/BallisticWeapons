@@ -7,7 +7,8 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+	//LMG
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_LMG
 		TraceRange=(Min=12000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
@@ -32,18 +33,85 @@ defaultproperties
 		WarnTargetPct=0.200000
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_LMG
 		FireInterval=0.085000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_LMG'
+	End Object
+	
+	//AR
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_AR
+		TraceRange=(Min=12000.000000,Max=15000.000000)
+		WaterTraceRange=12000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=24
+		HeadMult=3.0
+		LimbMult=0.625
+		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireAR',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=182.000000
+		Chaos=-1.0
+		Inaccuracy=(X=3,Y=3)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_AR
+		FireInterval=0.087000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_AR'
+	End Object
+	
+	//Gauss
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Gauss
+		TraceRange=(Min=12000.000000,Max=15000.000000)
+		WaterTraceRange=12000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=60 //x3
+		HeadMult=3.0
+		LimbMult=0.625
+		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		PenetrationEnergy=64.000000
+		PenetrateForce=600
+		bPenetrate=True
+		PDamageFactor=0.750000
+		WallPDamageFactor=0.750000
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=600.000000 //x5
+		PushbackForce=150 //
+		Chaos=-1.0
+		Inaccuracy=(X=1,Y=1) //
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Gauss
+		FireInterval=0.250000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Gauss'
 	End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams_LMG
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.300000
@@ -59,11 +127,43 @@ defaultproperties
 		bViewDecline=True
 	End Object
 
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams_AR
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		YawFactor=0.300000
+		XRandFactor=0.300000
+		YRandFactor=0.300000 //
+		MaxRecoil=2400 //
+		DeclineTime=2.1 //
+		DeclineDelay=0.3
+		ViewBindFactor=0.300000 //
+		ADSViewBindFactor=1.000000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.500000
+		bViewDecline=True
+	End Object
+
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams_Gauss
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		YawFactor=0.300000
+		XRandFactor=0.200000
+		YRandFactor=0.200000
+		MaxRecoil=3200
+		DeclineTime=2.5
+		DeclineDelay=0.3
+		ViewBindFactor=0.500000
+		ADSViewBindFactor=1.000000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.500000
+		bViewDecline=True
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams //Heavy Rifle
+	Begin Object Class=AimParams Name=ClassicAimParams_LMG //Heavy Rifle
 		AimSpread=(Min=32,Max=2560)
 		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
@@ -75,15 +175,34 @@ defaultproperties
 		FallingChaos=0.450000
 		ChaosDeclineTime=1.500000
 	End Object
+
+	Begin Object Class=AimParams Name=ClassicAimParams_AR //Rifle
+		AimSpread=(Min=16,Max=2560) //
+		CrouchMultiplier=0.500000
+		ADSMultiplier=0.700000
+		ViewBindFactor=0.300000
+		SprintChaos=0.400000 //
+		SprintOffset=(Pitch=-3000,Yaw=-5000)
+		JumpChaos=0.400000 //
+		JumpOffset=(Pitch=-4000,Yaw=-3000)
+		FallingChaos=0.400000 //
+		ChaosDeclineTime=1.500000
+	End Object
     
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=ClassicParams_LMG
+		//Layout
+		Weight=30
+		LayoutName="LMG"
+		LayoutTags="lmg"
+		//Visual
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		//Stats
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
@@ -92,11 +211,60 @@ defaultproperties
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ViewOffset=(X=8,Y=8,Z=-4)
 		ZoomType=ZT_Logarithmic
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_LMG'
+		AimParams(0)=AimParams'ClassicAimParams_LMG'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_LMG'
 	End Object
-	Layouts(0)=WeaponParams'ClassicParams'
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_AR
+		//Layout
+		Weight=10
+		LayoutName="Assault Rifle"
+		LayoutTags="ar"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		//Stats
+		PlayerSpeedFactor=1.000000
+		InventorySize=9
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=30
+		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		ViewOffset=(X=8,Y=8,Z=-4)
+		ZoomType=ZT_Logarithmic
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_AR'
+		AimParams(0)=AimParams'ClassicAimParams_AR'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_AR'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Gauss
+		//Layout
+		Weight=10
+		LayoutName="Gauss Rifle"
+		LayoutTags="gauss"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=1f)
+		//Stats
+		PlayerSpeedFactor=1.000000
+		InventorySize=9
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=20
+		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		ViewOffset=(X=8,Y=8,Z=-4)
+		ZoomType=ZT_Logarithmic
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_Gauss'
+		AimParams(0)=AimParams'ClassicAimParams_LMG'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Gauss'
+	End Object
+	
+	Layouts(0)=WeaponParams'ClassicParams_LMG'
+	Layouts(1)=WeaponParams'ClassicParams_AR'
+	Layouts(2)=WeaponParams'ClassicParams_Gauss'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=MG36_Gray

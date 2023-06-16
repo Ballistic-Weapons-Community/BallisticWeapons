@@ -211,7 +211,4 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83Turret'
 	DrawScale=0.650000
 	CollisionHeight=24.000000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'
-	Skins(2)=Texture'BW_Core_WeaponTex.Ammo.ClassicSniperAmmoT'
 }

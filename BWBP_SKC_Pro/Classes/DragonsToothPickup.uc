@@ -19,7 +19,7 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonTooth-Red');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonToothCore-Red');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTS-Glow');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSAplhaMask');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTS-AplhaMask');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSMask');
 	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
 	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
@@ -31,7 +31,7 @@ simulated function UpdatePrecacheMaterials()
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonTooth-Red');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonToothCore-Red');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTS-Glow');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSAplhaMask');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTS-AplhaMask');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSMask');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');

@@ -37,6 +37,7 @@ var Texture ScopeViewTexThermal; //IRNV
 var Texture ScopeViewTexTracker; //Target Detector
 var	bool	bLowZoom; //We're using the RDS
 
+var   bool		bIsGauss;				// Has the gauss barrel, can't be silenced
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer
 var() sound		SilencerOnSound;		// Silencer stuck on sound
@@ -50,6 +51,24 @@ replication
 		Target, bMeatVision, bLowZoom;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsGauss=false;
+
+	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
+	{
+		bIsGauss=true;
+		if ( ThirdPersonActor != None )
+		{
+			MG36Attachment(ThirdPersonActor).bIsGauss=true;
+		}
+	}
 }
 
 //==============================================
@@ -352,7 +371,7 @@ function ServerAdjustThermal(bool bNewValue)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (!bScopeView) //Not in scope, lets play with the suppressor
+	if (!bScopeView && !bIsGauss) //Not in scope, lets play with the suppressor if possible
 	{
 		SwitchSilencer();
 		return;
@@ -581,7 +600,7 @@ function Notify_Deploy()
 		Destroy();
     }
     else
-		log("Notify_Deploy: Could not spawn turret for X82 Rifle");
+		log("Notify_Deploy: Could not spawn turret for MG36");
 }
 
 simulated function bool HasAmmo()

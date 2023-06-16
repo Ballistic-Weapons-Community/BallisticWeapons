@@ -13,6 +13,35 @@ class DragonsToothSword extends BallisticMeleeWeapon;
 
 var Actor	BladeGlow;				// Nano replicators
 var Sound	LoopAmbientSound;
+var() bool	bIsRed;
+var() bool	bIsBlack;
+var() bool	bIsGold;
+
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsRed=false;
+	bIsBlack=false;
+	bIsGold=false;
+
+	if (InStr(WeaponParams.LayoutTags, "red") != -1)
+	{
+		bIsRed=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "black") != -1)
+	{
+		bIsBlack=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "gold") != -1)
+	{
+		bIsGold=true;
+	}
+}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -20,9 +49,9 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	if ((Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) )
 	{
-		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame )
+		if ( bIsRed /*Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame */)
 		{
-			Skins[1] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red';
+			//Skins[1] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red';
 			if (ThirdPersonActor != None)
 				DragonsToothAttachment(ThirdPersonActor).bRedTeam=true;	
 		}
@@ -73,16 +102,20 @@ simulated function Destroyed()
 
 simulated function BladeEffectStart()
 {
-	if ((Instigator.PlayerReplicationInfo != None) )
+	if (bIsRed)
+		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffectR', DrawScale, self, 'BladeBase');
+	else if (!bIsBlack && !bIsGold)
+		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
+	/*if ((Instigator.PlayerReplicationInfo != None) )
 	{
-		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
+		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame )
 			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffectR', DrawScale, self, 'BladeBase');
 		else
 			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
 	}
 	else
 		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
-
+*/
 }
 
 // AI Interface =====
@@ -165,6 +198,7 @@ defaultproperties
 	HudColor=(B=255,G=125,R=75)
 	CenteredOffsetY=7.000000
 	CenteredRoll=0
+	PlayerViewOffset=(X=0.00,Y=0.00,Z=-30.00)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.DragonsToothPickup'
