@@ -74,8 +74,14 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-    Begin Object Class=WeaponParams Name=UniversalParams
-        
+    Begin Object Class=WeaponParams Name=UniversalParams_Blue
+		//Layout
+		Weight=10
+		LayoutName="Blue"
+		LayoutTags="blue"
+		//Visual
+		AllowedCamos(0)=0
+		//Stats
         DisplaceDurationMult=0.25
         MagAmmo=1
         InventorySize=2
@@ -84,5 +90,99 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'UniversalParams'
+	
+	Begin Object Class=WeaponParams Name=UniversalParams_Red
+		//Layout
+		Weight=10
+		LayoutName="Red"
+		LayoutTags="red"
+		//Visual
+		AllowedCamos(0)=1
+		//Stats
+        DisplaceDurationMult=0.25
+        MagAmmo=1
+        InventorySize=2
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=UniversalParams_Black
+		//Layout
+		Weight=10
+		LayoutName="Nanoblack"
+		LayoutTags="black"
+		//Visual
+		AllowedCamos(0)=2
+		//Stats
+        DisplaceDurationMult=0.25
+        MagAmmo=1
+        InventorySize=2
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=UniversalParams_Gold
+		//Layout
+		Weight=1
+		LayoutName="Royal Dragon"
+		LayoutTags="gold"
+		//Visual
+		AllowedCamos(0)=3
+		//Stats
+        DisplaceDurationMult=0.25
+        MagAmmo=1
+        InventorySize=2
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'UniversalParams_Blue'
+	Layouts(1)=WeaponParams'UniversalParams_Red'
+	Layouts(2)=WeaponParams'UniversalParams_Black'
+	Layouts(3)=WeaponParams'UniversalParams_Gold'
+
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=DTS_Blue
+		Index=0
+		CamoName="Blue"
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=DTS_Red
+		Index=1
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-MainRedFinal',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.DragonToothSword.DTS-BladeMaskRed',Index=2,AIndex=-1,PIndex=-1)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=DTS_Black
+		Index=2
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-MainBlackFinal',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-BladeGlowBlack',Index=2,AIndex=-1,PIndex=-1)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=DTS_Gold
+		Index=3
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-MainGoldFinal',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-BladeGlowGold',Index=2,AIndex=-1,PIndex=-1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'DTS_Blue'
+	Camos(1)=WeaponCamo'DTS_Red'
+	Camos(2)=WeaponCamo'DTS_Black'
+	Camos(3)=WeaponCamo'DTS_Gold'
 }

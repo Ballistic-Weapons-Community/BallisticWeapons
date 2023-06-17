@@ -241,7 +241,7 @@ defaultproperties
 	ParamsClasses(1)=Class'MG36TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'MG36TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'MG36TW_WeaponParamsTactical'
-	SelectAnim="Deploy2"
+	SelectAnim="Deploy"
 	//IdleAnim="PoseLib"
     BringUpTime=1.600000
 	bCanThrow=False
@@ -250,7 +250,7 @@ defaultproperties
     ClientState=WS_BringUp
 	Priority=1
 	PlayerViewOffset=(X=-60.000000)
-	ItemName="FG50 Turret"
+	ItemName="Mk.88 Turret"
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36_Turret'
 	DrawScale=0.50000
 	CollisionHeight=24.000000

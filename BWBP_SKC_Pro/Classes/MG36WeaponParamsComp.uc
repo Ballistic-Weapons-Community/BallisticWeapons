@@ -18,15 +18,62 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.100000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=128.000000
-		Chaos=0.180000
+		Recoil=100.000000
+		Chaos=0.030000
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.100000
+		FireInterval=0.085000
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+	
+	//AR
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_AR
+		TraceRange=(Min=9000.000000,Max=11000.000000)
+		RangeAtten=0.400000
+		Damage=28
+		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		PenetrateForce=150
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		FlashScaleFactor=0.100000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireAR',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=128.000000
+		Chaos=-1.000000
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_AR
+		FireInterval=0.085000
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_AR'
+	End Object
+	
+	//Gauss
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_Gauss
+		TraceRange=(Min=9000.000000,Max=11000.000000)
+		RangeAtten=0.400000
+		Damage=68
+		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
+		PenetrateForce=150
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		FlashScaleFactor=0.300000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		PushbackForce=150 //
+		Recoil=428.000000
+		Chaos=-1.000000
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Gauss
+		FireInterval=0.285000
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Gauss'
 	End Object
 		
 	//=================================================================
@@ -86,11 +133,45 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ArenaParams
-		ReloadAnimRate=0.800000
+	Begin Object Class=WeaponParams Name=ArenaParams_LMG
+		//Layout
+		Weight=30
+		LayoutName="LMG"
+		LayoutTags="lmg"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		//Stats
+		ReloadAnimRate=0.700000
+		PlayerSpeedFactor=0.95
+		PlayerJumpFactor=0.95
+		InventorySize=6
+		SightMoveSpeedFactor=0.6
+		DisplaceDurationMult=1.5
+		MagAmmo=100
+		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		//ViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
+		ZoomType=ZT_Logarithmic
+		MinZoom=4.000000
+		MaxZoom=8.000000
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_AR
+		//Layout
+		Weight=10
+		LayoutName="Assault Rifle"
+		LayoutTags="ar"
+		//Visual
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		//Stats
+		ReloadAnimRate=0.800000
 		PlayerSpeedFactor=0.95
 		PlayerJumpFactor=0.95
 		InventorySize=6
@@ -104,10 +185,41 @@ defaultproperties
 		MaxZoom=8.000000
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_AR'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ArenaParams'
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_Gauss
+		//Layout
+		Weight=10
+		LayoutName="Gauss Rifle"
+		LayoutTags="gauss"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=1f)
+		//Stats
+		ReloadAnimRate=0.800000
+		PlayerSpeedFactor=0.95
+		PlayerJumpFactor=0.95
+		InventorySize=6
+		SightMoveSpeedFactor=0.6
+		DisplaceDurationMult=1.5
+		MagAmmo=20
+		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		//ViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
+		ZoomType=ZT_Logarithmic
+		MinZoom=4.000000
+		MaxZoom=8.000000
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Gauss'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'ArenaParams_LMG'
+	Layouts(1)=WeaponParams'ArenaParams_AR'
+	Layouts(2)=WeaponParams'ArenaParams_Gauss'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=MG36_Gray

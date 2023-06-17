@@ -15,6 +15,7 @@ class MG36PrimaryFire extends BallisticProInstantFire;
 var() sound	FireSoundLoop;
 var() sound	FireSoundLoopBegin;
 var() sound	FireSoundLoopEnd;
+var() sound GaussVentSound;
 
 var bool bFiring;
 
@@ -108,6 +109,11 @@ function PlayFiring()
 	CheckClipFinished();
 }
 
+function PlayFireEnd()
+{
+    super.PlayFireEnd();
+}
+
 simulated function SwitchSilencerMode (bool bNewMode)
 {
 	if (bNewMode)
@@ -154,6 +160,8 @@ function StopFiring()
 	bFiring=false;
     Instigator.AmbientSound = BW.UsedAmbientSound;
 	Super.StopFiring();
+	//if (MG36Machinegun(Weapon) != None && MG36Machinegun(Weapon).bIsGauss)
+	//	Weapon.PlaySound(GaussVentSound,,0.5);
 }
 
 simulated function ModeTick(float DT)
@@ -175,43 +183,44 @@ function DoFireEffect()
 
 defaultproperties
 {
-     SMuzzleFlashClass=Class'BWBP_SKC_Pro.MG36SilencedFlash'
-     SFlashBone="tip2"
-     SFlashScaleFactor=0.750000
-	 DecayRange=(Min=7680.000000,Max=15872.000000)
-     TraceRange=(Min=9000.000000,Max=11000.000000)
-     WallPenetrationForce=16.000000
-     Damage=28.000000 
-     RangeAtten=0.400000
-     WaterRangeAtten=0.700000
-     DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
-     PenetrateForce=150
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     FlashScaleFactor=0.100000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     BrassBone="tip"
-     BrassOffset=(X=-80.000000,Y=1.000000)
-     FireRecoil=128.000000
-     FireChaos=0.180000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     XInaccuracy=4
-	 YInaccuracy=4
-     SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-SuppressedFire',Volume=1.000000,Radius=192.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.000000)
-     bPawnRapidFireAnim=True
-     FireAnim="Fire"
-	 FireEndAnim=
-     FireRate=0.100000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_68mm'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-8.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	GaussVentSound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-GaussVent'
+	SMuzzleFlashClass=Class'BWBP_SKC_Pro.MG36SilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=0.750000
+	DecayRange=(Min=7680.000000,Max=15872.000000)
+	TraceRange=(Min=9000.000000,Max=11000.000000)
+	WallPenetrationForce=16.000000
+	Damage=28.000000 
+	RangeAtten=0.400000
+	WaterRangeAtten=0.700000
+	DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
+	PenetrateForce=150
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+	MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	FlashScaleFactor=0.100000
+	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	BrassBone="tip"
+	BrassOffset=(X=-80.000000,Y=1.000000)
+	FireRecoil=128.000000
+	FireChaos=0.180000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	XInaccuracy=4
+	YInaccuracy=4
+	SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-SuppressedFire',Volume=1.000000,Radius=192.000000,bAtten=True)
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.000000)
+	bPawnRapidFireAnim=True
+	FireAnim="Fire"
+	FireEndAnim=
+	FireRate=0.100000
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_68mm'
+	ShakeRotMag=(X=128.000000,Y=64.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-8.000000)
+	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetTime=2.000000
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

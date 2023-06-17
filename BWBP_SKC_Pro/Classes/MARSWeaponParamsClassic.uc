@@ -23,7 +23,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter_C'
 		FlashScaleFactor=0.900000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M514H.M514H-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=200.000000
 		Chaos=-1.0
 		Inaccuracy=(X=16,Y=16)

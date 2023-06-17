@@ -3364,7 +3364,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			if (SprintControl != None && SprintControl.bSprinting)
 				NewSpeed *= SprintControl.SpeedFactor;
 
-			if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+			if (xPawn(Instigator) != None && ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
 				NewSpeed *= 1.4;
 
 			if (Instigator.GroundSpeed != NewSpeed)
