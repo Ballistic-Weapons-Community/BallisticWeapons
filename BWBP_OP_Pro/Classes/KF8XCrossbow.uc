@@ -519,7 +519,7 @@ defaultproperties
 	IdleTweenTime=0.000000
 	
 	bWT_Bullet=True
-	ManualLines(0)="Launches an instant-hit crossbow bolt. This attack has a long fire interval and moderate damage, but is almost invisible and makes no sound. As such, it is very difficult to detect."
+	ManualLines(0)="Launches a toxic crossbow bolt. This attack has a long fire interval and moderate damage, but is almost invisible and makes no sound. As such, it is very difficult to detect."
 	ManualLines(1)="Raises the scope."
 	ManualLines(2)="Effective at long range. Excels at stealth."
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
@@ -530,9 +530,9 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="Lever-Action")
-	WeaponModes(1)=(bUnavailable=True)
-	WeaponModes(2)=(bUnavailable=True)
+	WeaponModes(0)=(ModeName="Lever-Action",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+	WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
 	ScopeViewTex=Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1'
 	FullZoomFOV=50.000000

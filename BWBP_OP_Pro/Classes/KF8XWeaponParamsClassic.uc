@@ -22,7 +22,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=1.500000
+		FireInterval=2.000000
 		PreFireAnim=
 		FireAnim="FireCycleRotate"
 		FireAnimRate=1.00000	
@@ -81,7 +81,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.400000
 		DisplaceDurationMult=1
-		bNeedCock=True
+		//bNeedCock=True
 		MagAmmo=8
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
