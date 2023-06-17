@@ -403,7 +403,9 @@ simulated event ModeDoFire()
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
 	}
-	BW.GunLength = BW.default.GunLength;
+
+	BW.SetDefaultGunLength();
+
 	if (BW.SprintControl != None && BW.SprintControl.bSprinting)
 		BW.PlayerSprint(true);
 }
@@ -443,7 +445,8 @@ function PlayFiring()
 
 simulated event ModeHoldFire()
 {
-	BW.GunLength=1;
+	BW.SetMeleeGunLength();
+	
 	if (BW.SprintControl != None && BW.SprintControl.bSprinting)
 		BW.PlayerSprint(false);
 }

@@ -2768,6 +2768,16 @@ simulated function CommonCockGun(optional byte Type)
 //===========================================================================
 // MELEE ATTACKS
 //---------------------------------------------------------------------------
+final simulated function SetMeleeGunLength()
+{
+	AimComponent.GunLength = 1;
+}
+
+final simulated function SetDefaultGunLength()
+{
+	AimComponent.GunLength = default.GunLength;
+}
+
 exec simulated function MeleeHold()
 {
 	MeleeHoldImpl();
@@ -2788,7 +2798,9 @@ simulated function MeleeHoldImpl()
 		MeleeState = MS_Held;
 		ReloadState = RS_None;
 		MeleeFireMode.PlayPreFire();
-		GunLength = 1;
+
+		SetMeleeGunLength();
+		
 		if (SprintControl != None && SprintControl.bSprinting)
 			PlayerSprint(false);
 		ServerMeleeHold();
@@ -2849,7 +2861,7 @@ function ServerMeleeHold()
 	bServerReloading=True; //lock the gun to prevent desynchronisation
 	MeleeFireMode.HoldStartTime = Level.TimeSeconds;
 	MeleeFireMode.PlayPreFire();
-	GunLength = 1;
+	SetMeleeGunLength();
 	bPreventReload = True;
 }
 
@@ -2879,7 +2891,7 @@ simulated function MeleeReleaseImpl()
 					PlayerSprint(true);
 			}
 			ServerMeleeRelease();
-			GunLength = default.GunLength;
+			SetDefaultGunLength();
 			break;
 	}
 }
@@ -2892,7 +2904,7 @@ final function ServerMeleeRelease()
 		MeleeFireMode.PlayFiring();
 	else MeleeFireMode.ServerPlayFiring();
 	MeleeFireMode.DoFireEffect();
-	GunLength = default.GunLength;
+	SetDefaultGunLength();
 	//Trace, damage code
 	//Fire delay
 }
