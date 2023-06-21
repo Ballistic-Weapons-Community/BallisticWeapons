@@ -336,6 +336,7 @@ defaultproperties
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
 	CockSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Cock')
+	CockSelectSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Cock')
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=1.100000
 	BringUpTime=1.400000

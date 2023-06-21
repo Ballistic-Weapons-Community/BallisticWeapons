@@ -17,11 +17,11 @@ defaultproperties
 		DamageType=Class'BWBP_JCF_Pro.DTM99Rifle'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTM99RifleHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTM99Rifle'
-		PenetrationEnergy=880.000000
-		PenetrateForce=50050
+		PenetrationEnergy=300.000000
+		PenetrateForce=1000
 		bPenetrate=True
-		PDamageFactor=0.6
-		WallPDamageFactor=0.4
+		PDamageFactor=0.900000
+		WallPDamageFactor=0.900000
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-FireOld',Volume=5.500000)
@@ -77,7 +77,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		Weight=30
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.900000
@@ -85,26 +84,7 @@ defaultproperties
 		MagAmmo=1
 		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
 		SightPivot=(Roll=-1024)
-		ViewOffset=(X=25.000000,Y=-3.000000,Z=-24.500000)
-		ZoomType=ZT_Logarithmic
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-B
-		Weight=20
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99BShine",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99AShine",Index=2)
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.900000
-		bNeedCock=True
-		MagAmmo=1
-		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
-		SightPivot=(Roll=-1024)
+		//ViewOffset=(X=25.000000,Y=-3.000000,Z=-24.500000)
 		ViewOffset=(X=5.000000,Y=-4.000000,Z=-25.000000)
 		ZoomType=ZT_Smooth
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -114,6 +94,23 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-B'
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=M99_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M99_Digital
+		Index=1
+		CamoName="Digital"
+		Weight=15
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99BShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99AShine",Index=2,AIndex=0,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'M99_Gray'
+	Camos(1)=WeaponCamo'M99_Digital'
 }

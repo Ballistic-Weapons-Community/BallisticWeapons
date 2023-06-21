@@ -12,6 +12,11 @@ class M99_TW extends M99Rifle
 
 var() sound		MountFireSound;
 
+
+simulated event PostNetBeginPlay()
+{
+	super(BallisticWeapon).PostNetBeginPlay();
+}
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;

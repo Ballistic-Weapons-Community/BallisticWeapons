@@ -29,6 +29,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=1.1
 		bCockAfterFire=True
+		AimedFireAnim="SightFireCock"
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -104,6 +105,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_NoScope
 		//Layout core
 		LayoutName="Iron Sights"
+		LayoutTags="quickpull"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)

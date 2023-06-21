@@ -11,6 +11,7 @@
 //=============================================================================
 class R78Rifle extends BallisticWeapon;
 
+var   bool		bHasSilencer;
 var   bool		bSilenced;
 var() name		SilencerBone;
 var() name		SilencerOnAnim;			
@@ -24,17 +25,28 @@ replication
 		ServerSwitchSilencer;
 }
 
-simulated event PostNetBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PostNetBeginPlay();
-
-	if (!class'BallisticReplicationInfo'.static.IsArena())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasSilencer=false;
+	if (InStr(WeaponParams.LayoutTags, "silencer") != -1)
 	{
-		CockAnim = 'Cock';
-		CockAnimPostReload = 'Cock'; 
-		ReloadEmptyAnim='ReloadEmptySlow';
-		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock';
+		bHasSilencer=true;
+		SetBoneScale (0, 1.0, SilencerBone);	
+		bSilenced=true; 
+		R78PrimaryFire(BFireMode[0]).SetSilenced(true);
+		OnSuppressorSwitched();
 	}
+	
+	if (InStr(WeaponParams.LayoutTags, "quickpull") != -1)
+	{
+		CockAnim = 'CockQuick';
+		CockAnimPostReload = 'CockQuick'; 
+		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock';
+	}
+	
 }
 
 function ServerSwitchSilencer(bool bDetachSuppressor)
@@ -44,7 +56,7 @@ function ServerSwitchSilencer(bool bDetachSuppressor)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-    if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+    if (!bHasSilencer)
         return;
 
 	if (ReloadState != RS_None || SightingState != SS_None)
@@ -202,9 +214,9 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	 PutDownTime=0.5
-     CockAnim="CockQuick"
+     CockAnim="Cock"
      //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
-	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock')
+	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock2')
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipOut')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipIn')

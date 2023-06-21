@@ -26,6 +26,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=1.1
 		bCockAfterFire=True
+		AimedFireAnim="SightFireCock"
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -65,6 +66,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		LayoutName="Scope"
+		LayoutTags="quickpull"
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
@@ -88,6 +90,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_NoScope
 		//Layout core
 		LayoutName="Iron Sights"
+		LayoutTags="quickpull"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)

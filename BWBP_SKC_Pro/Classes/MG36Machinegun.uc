@@ -75,6 +75,13 @@ simulated function OnWeaponParamsChanged()
 //=========== Scope Code - Targetting + IRNV ===
 //==============================================
 
+
+simulated function StartScopeZoom()
+{
+	super.StartScopeZoom();
+	bLowZoom=true;
+}
+
 //This is a special double fixed scope, uses code as if was logarithmic
 simulated function ChangeZoom (float Value)
 {

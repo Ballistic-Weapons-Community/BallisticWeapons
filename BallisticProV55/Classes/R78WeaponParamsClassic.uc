@@ -35,6 +35,7 @@ defaultproperties
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
+		AimedFireAnim="SightFireCock"
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
@@ -115,9 +116,34 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Suppressor
+		//Layout core
+		LayoutName="Suppressed"
+		LayoutTags="silencer"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
+        ZoomType=ZT_Fixed
+     	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
+		SightPivot=(Roll=-1024)
+		//Function
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=7
+		//ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Begin Object Class=WeaponParams Name=ClassicParams_NoScope
 		//Layout core
 		LayoutName="Iron Sights"
+		LayoutTags="quickpull"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)
@@ -138,7 +164,8 @@ defaultproperties
 	End Object
 	
     Layouts(0)=WeaponParams'ClassicParams'
-    Layouts(1)=WeaponParams'ClassicParams_NoScope'
+    Layouts(1)=WeaponParams'ClassicParams_Suppressor'
+    Layouts(2)=WeaponParams'ClassicParams_NoScope'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=R78_Gray

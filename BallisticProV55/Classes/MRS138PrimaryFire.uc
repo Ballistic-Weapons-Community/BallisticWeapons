@@ -17,30 +17,46 @@ simulated function DestroyEffects()
 
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1 || class'BallisticReplicationInfo'.static.IsClassic())
+	if (BW.MagAmmo - ConsumedLoad < 1 )
 	{
 		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 	else
 	{
-		AimedFireAnim='SightFireCombined';
-		FireAnim = 'FireCombined';
+		if (class'BallisticReplicationInfo'.static.IsClassic()) //Slow cock anims
+		{
+			AimedFireAnim='AimedFire';
+			FireAnim = 'Fire';
+		}
+		else
+		{
+			AimedFireAnim='SightFireCombined';
+			FireAnim = 'FireCombined';
+		}
 	}
 	super.PlayFiring();
 }
 
 function ServerPlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1 || class'BallisticReplicationInfo'.static.IsClassic())
+	if (BW.MagAmmo - ConsumedLoad < 1 )
 	{
 		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 	else
 	{
-		AimedFireAnim='SightFireCombined';
-		FireAnim = 'FireCombined';
+		if (class'BallisticReplicationInfo'.static.IsClassic())
+		{
+			AimedFireAnim='AimedFire';
+			FireAnim = 'Fire';
+		}
+		else
+		{
+			AimedFireAnim='SightFireCombined';
+			FireAnim = 'FireCombined';
+		}
 	}
 	super.ServerPlayFiring();
 }

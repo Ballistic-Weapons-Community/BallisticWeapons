@@ -10,6 +10,34 @@ class Supercharger_Detonator extends BallisticGrenade;
 
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
+var   Rotator					VelocityDir;
+
+simulated event PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	VelocityDir = Rotation;
+	if (StartDelay > 0 && Role == ROLE_Authority || bAlwaysRelevant)
+	{
+		SetPhysics(PHYS_None);
+		SetCollision (false, false, false);
+		bHidden=true;
+		SetTimer(StartDelay, false);
+		return;
+	}
+	InitProjectile();
+
+}
+
+simulated function InitProjectile ()
+{
+    Velocity = Speed * Vector(VelocityDir);
+    if (RandomSpin != 0 && !bNoInitialSpin)
+        RandSpin(RandomSpin);
+    if (DetonateOn == DT_Timer)
+        SetTimer(DetonateDelay, false);
+    Super.InitProjectile();
+}
 
 simulated event PreBeginPlay()
 {

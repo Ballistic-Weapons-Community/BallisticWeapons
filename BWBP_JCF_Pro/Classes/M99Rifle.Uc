@@ -23,6 +23,19 @@ replication
 		bLaserOn;
 }
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (class'BallisticReplicationInfo'.static.IsClassic())
+	{
+		BringUpTime=3.200000;
+		PutDownTime=2.200000;
+		CockSelectAnim='PulloutFancy';
+		SelectAnim='PulloutFancy';
+		PutDownAnim='PutawayFancy';
+	}
+}
+
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None || ClientState != WS_ReadyToFire)
@@ -384,11 +397,13 @@ defaultproperties
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	FireModeClass(0)=Class'BWBP_JCF_Pro.M99PrimaryFire'
 	FireModeClass(1)=Class'BWBP_JCF_Pro.M99DeployFire'
-	BringUpTime=3.200000
+	BringUpTime=1.000000
 	CockingBringUpTime=3.200000
-	PutDownTime=2.200000
-	SelectAnim="PulloutFancy"
-	PutDownAnim="PutawayFancy"
+	//PutDownTime=2.200000
+	PutDownTime=0.800000
+	CockSelectAnim="PulloutFancy"
+	SelectAnim="Pullout"
+	PutDownAnim="Putaway"
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.600000
 	CurrentRating=0.600000

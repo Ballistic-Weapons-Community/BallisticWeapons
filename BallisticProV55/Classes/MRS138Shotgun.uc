@@ -425,7 +425,7 @@ defaultproperties
 	bCanSkipReload=True
 	WeaponModes(2)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
-	WeaponModes(0)=(ModeName="Semi-Automatic")
+	WeaponModes(0)=(ModeName="Pump-Action")
 	TorchOnSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
 	TorchOffset=(X=-330.000000,Y=-35.000000,Z=50.000000)
 	TorchOffSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'

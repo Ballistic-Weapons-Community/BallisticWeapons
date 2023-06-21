@@ -35,8 +35,6 @@ function AltFire( optional float F )
 		Weapon.AltFire(F);
 }
 
-function SetAbandoned();
-
 function InitTurretWeapon(Weapon Weap)
 {
 	local Ammunition A;

@@ -39,6 +39,7 @@ defaultproperties
 		bCockAfterFire=True
 		FireEndAnim=
 		FireAnimRate=0.7500000	
+		AimedFireAnim="SightFireCock"
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 
@@ -125,6 +126,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_NoScope
 		//Layout core
 		LayoutName="Iron Sights"
+		LayoutTags="quickpull"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)

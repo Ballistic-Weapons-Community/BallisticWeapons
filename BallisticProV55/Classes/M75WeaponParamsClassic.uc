@@ -157,6 +157,6 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams-Irons' //Prototype
-	Layouts(2)=WeaponParams'ClassicParams-Arctic'
+	//Layouts(2)=WeaponParams'ClassicParams-Arctic'
 	//Orange DDPAT
 }

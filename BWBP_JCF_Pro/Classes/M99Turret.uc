@@ -84,11 +84,11 @@ defaultproperties
      CamTrackYawSpeed=32768.000000
      CamTrackPitchSpeed=32768.000000
      AbandonedPitch=2600
-     CameraOffset=(X=-130.000000,Y=-10.000000,Z=30.000000)
+     CameraOffset=(X=-75.000000,Y=-10.000000,Z=30.000000)
 	 CameraElevation=5.000000
      GunBone="Weapon"
      PivotBone="StandPivot"
-     DriverBackOff=120.000000
+     DriverBackOff=45.000000
      bDrawDriverInTP=True
      VehicleNameString="M99 Mounted ECS Anti-MaterialRifle"
      Mesh=SkeletalMesh'BWBP_JCF_Anims.M99_Turret_TPm'

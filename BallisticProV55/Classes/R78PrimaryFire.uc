@@ -54,21 +54,49 @@ simulated function DestroyEffects()
 
 function ServerPlayFiring()
 {
+	
 	if (R78Rifle(Weapon) != None && R78Rifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,SilencedFireSound.bNoOverride,SilencedFireSound.Radius,SilencedFireSound.Pitch,SilencedFireSound.bAtten);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
-	PlayFireAnimations();
-
 	CheckClipFinished();
+		
+	if (AimedFireAnim != '')
+	{
+		if (!BW.bScopeView)
+			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		else
+			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "AIMEDFIRE");
+	}
+	else
+	{
+		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	}
 }
 
 //Do the spread on the client side
 function PlayFiring()
 {
-	FireAnim = 'Fire';
-
+	if (ScopeDownOn == SDO_Fire)
+		BW.TemporaryScopeDown(0.5, 0.9);
+		
+	if (AimedFireAnim != '')
+	{
+		if (!BW.bScopeView)
+			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		else
+			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "AIMEDFIRE");
+	}
+	else
+	{
+		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	}
+	
 	if (R78Rifle(Weapon).bSilenced)
 	{
 		Weapon.SetBoneScale (0, 1.0, R78Rifle(Weapon).SilencerBone);
@@ -77,8 +105,6 @@ function PlayFiring()
 	{
 		Weapon.SetBoneScale (0, 0.0, R78Rifle(Weapon).SilencerBone);
 	}
-
-	PlayFireAnimations();
 
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
@@ -132,7 +158,7 @@ defaultproperties
 	bCockAfterFire=True
 	MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
-	//bBrassOnCock=True
+	bBrassOnCock=True
 	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
 	FireRecoil=378.000000
 	FireChaos=0.500000
