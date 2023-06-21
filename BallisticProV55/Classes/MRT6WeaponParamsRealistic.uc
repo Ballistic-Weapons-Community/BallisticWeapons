@@ -131,8 +131,9 @@ defaultproperties
 		MagAmmo=6
 		bMagPlusOne=True //Todo: Mag plus two
 		//ViewOffset=(X=9.000000,Y=5.000000,Z=-8.500000)
-		SightOffset=(X=-20.000000,Z=7.200000)
-		SightPivot=(Pitch=64)
+		//SightOffset=(X=-20.000000,Z=7.200000)
+        SightPivot=(Pitch=768)
+		//SightPivot=(Pitch=64)
 		//ReloadAnimRate=0.900000
 		//CockAnimRate=1.000000
 		WeaponName="MRT6 12ga Shotgun Sidearm"

@@ -171,7 +171,7 @@ defaultproperties
         InventorySize=3
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
-		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		SightOffset=(X=-15.000000,Y=-0.850000,Z=10.850000)
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
@@ -199,7 +199,7 @@ defaultproperties
         InventorySize=12
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
-		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		SightOffset=(X=-15.000000,Y=-0.850000,Z=10.850000)
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
@@ -227,7 +227,7 @@ defaultproperties
         InventorySize=12
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
-		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		SightOffset=(X=-15.000000,Y=-0.850000,Z=10.850000)
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
@@ -255,7 +255,7 @@ defaultproperties
         InventorySize=12
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
-		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		SightOffset=(X=-15.000000,Y=-0.850000,Z=10.850000)
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
@@ -283,7 +283,7 @@ defaultproperties
         InventorySize=12
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
-		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		SightOffset=(X=-15.000000,Y=-0.850000,Z=10.850000)
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)

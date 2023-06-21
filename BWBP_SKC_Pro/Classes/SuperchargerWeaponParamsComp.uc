@@ -19,7 +19,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
 		Recoil=100
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		WarnTargetPct=0.200000
 	End Object
 
@@ -42,7 +42,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=20
 		Chaos=0.01
 		Inaccuracy=(X=64,Y=64)
@@ -68,7 +68,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=100
 		Chaos=0.01
 		Inaccuracy=(X=512,Y=512)
@@ -88,7 +88,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
         TraceRange=(Min=160.000000,Max=160.000000)
-        Damage=20
+        Damage=75
 		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
@@ -97,14 +97,14 @@ defaultproperties
         HookPullForce=150.000000
         WarnTargetPct=0.05
 		FlashScaleFactor=0.500000
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-ChompStart',Volume=0.750000,Radius=256.000000)
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-        FireInterval=0.100000
+        FireInterval=0.500000
         AmmoPerFire=0
         PreFireAnim=
-        FireAnim="EndReload"
+        FireAnim="MeleeLoopStart"
         FireEndAnim="MeleeLoopEnd"
         FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams'
     End Object

@@ -179,6 +179,9 @@ defaultproperties
 		MagAmmo=18
 		//SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		//SightPivot=(Pitch=768,Roll=-1024)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-300,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)

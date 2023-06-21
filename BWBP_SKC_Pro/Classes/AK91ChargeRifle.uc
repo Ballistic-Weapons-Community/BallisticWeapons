@@ -414,7 +414,7 @@ defaultproperties
      bShowChargingBar=True
 	 MaxHeatLevel=10
      OverHeatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
-	 HighHeatSound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle'
+	 HighHeatSound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle'
      UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000

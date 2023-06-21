@@ -60,7 +60,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
-	if (ClientState == WS_PutDown || ClientState == WS_Hidden)
+	if (ClientState == WS_PutDown || ClientState == WS_Hidden || ReloadState != RS_None)
 		return;
 	bRedirectSwitchToFiremode=True;
 	PendingMode = CurrentWeaponMode;
@@ -285,9 +285,9 @@ defaultproperties
      ClipInSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-ClipIn')
      ClipInFrame=0.650000
      bCockOnEmpty=True
-     WeaponModes(0)=(ModeName="Semi-Automatic")
-     WeaponModes(1)=(ModeName="Incendiary")
-	 WeaponModes(2)=(ModeName="Radiation")
+     WeaponModes(0)=(ModeName="Ammo: FMJ")
+     WeaponModes(1)=(ModeName="Ammo: Incendiary")
+	 WeaponModes(2)=(ModeName="Ammo: Radiation")
      CurrentWeaponMode=0
 	 BobDamping=2.4
      ScopeViewTex=Texture'BWBP_CC_Tex.ElementalSniper.ES_ScopeTex'

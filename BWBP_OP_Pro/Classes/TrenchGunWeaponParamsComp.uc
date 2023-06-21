@@ -37,7 +37,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000
-		TargetState="Shotgun"
+		TargetState="ShotgunHE"
 	FireEffectParams(0)=ShotgunEffectParams'ArenaExploPrimaryEffectParams'
 	End Object
 	
@@ -75,7 +75,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000	
-		TargetState="Shotgun"
+		TargetState="ShotgunZap"
 	FireEffectParams(0)=ShotgunEffectParams'ArenaElectroPrimaryEffectParams'
 	End Object
 	
@@ -132,7 +132,6 @@ defaultproperties
 		MagAmmo=2
 		WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)
 		WeaponModes(1)=(ModeName="Electro Shot",Value=1.000000)
-		WeaponModes(2)=(ModeName="Ice Shot",Value=1.000000,bUnavailable=True)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaExploPrimaryFireParams'

@@ -22,7 +22,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=1.500000
+		FireInterval=2.500000
 		PreFireAnim=
 		FireAnim="FireCycleRotate"
 		FireAnimRate=1.00000	

@@ -42,17 +42,16 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'Supercharger_AssaultWeapon'
-	MuzzleFlashClass=class'XK2FlashEmitter'
+	MuzzleFlashClass=class'PlasmaFlashEmitter'
 	ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
-	AltFlashBone="tip3"
-	BrassClass=class'Brass_Pistol'
+	AltFlashBone="tip"
 	BrassMode=MU_Neither
 	InstantMode=MU_Both
-	TracerMode=MU_Both
+	TracerMode=MU_Primary
 	FlashMode=MU_Both
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
-	WaterTracerMode=MU_Both
+	WaterTracerMode=MU_Primary
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
 	bRapidFire=True
 	bAltRapidFire=True

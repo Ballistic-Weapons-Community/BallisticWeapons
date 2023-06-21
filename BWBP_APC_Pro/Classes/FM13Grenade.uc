@@ -140,6 +140,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+	WeaponClass=class'FM13Shotgun'
      ModeIndex=1
 	 DetonateOn=DT_Impact
      PlayerImpactType=PIT_Detonate

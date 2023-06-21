@@ -33,7 +33,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000		
-        TargetState="Shotgun"
+        TargetState="ShotgunHE"
 	FireEffectParams(0)=ShotgunEffectParams'ClassicExploPrimaryEffectParams'
 	End Object
 	
@@ -68,7 +68,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000	
-        TargetState="Shotgun"
+        TargetState="ShotgunZap"
 	FireEffectParams(0)=ShotgunEffectParams'ClassicElectroPrimaryEffectParams'
 	End Object
 
@@ -221,19 +221,15 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=2
 		bNeedCock=True
-		WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000,bUnavailable=True)
-		WeaponModes(1)=(ModeName="Ammo: Electro",Value=1.000000)
-		WeaponModes(2)=(ModeName="Ammo: Cryogenic",Value=1.000000,bUnavailable=True)
-		WeaponModes(3)=(ModeName="Ammo: Dragon",Value=1.000000)
-		WeaponModes(4)=(ModeName="Ammo: FRAG-12",Value=1.000000)
-		InitialWeaponMode=4
+		WeaponModes(0)=(ModeName="Ammo: Electro",Value=1.000000)
+		WeaponModes(1)=(ModeName="Ammo: Dragon",Value=1.000000)
+		WeaponModes(2)=(ModeName="Ammo: FRAG-12",Value=1.000000)
+		InitialWeaponMode=2
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicExploPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicElectroPrimaryFireParams'
-		FireParams(2)=FireParams'ClassicElectroPrimaryFireParams'
-		FireParams(3)=FireParams'ClassicDragonPrimaryFireParams'
-		FireParams(4)=FireParams'ClassicFRAGPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicElectroPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicDragonPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicFRAGPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ClassicParams'

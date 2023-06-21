@@ -8,7 +8,11 @@
 //=============================================================================
 class FG50Attachment extends BallisticAttachment;
 
-var   bool					bIsArmorPiercing;	//Switch tracers and impacts
+var byte CurrentTracerMode;
+var array< class<BCTraceEmitter> >	TracerClasses[2];
+var array< class<BCImpactManager> >	ImpactManagers[2];
+
+
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
@@ -16,18 +20,13 @@ var   Rotator				LaserRot;
 var	  BallisticWeapon		myWeap;
 var Vector		SpawnOffset;
 
-var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for AP effects
-var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for AP effects
-
-
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn;
+		bLaserOn, CurrentTracerMode;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
 }
-
 
 simulated Event PostNetBeginPlay()
 {
@@ -44,7 +43,7 @@ function InitFor(Inventory I)
 		myWeap = BallisticWeapon(I);
 	if (FG50MachineGun(I) != None && FG50MachineGun(I).bIsArmorPiercing)
 	{
-		bIsArmorPiercing=True;
+		CurrentTracerMode=1;
 	}
 }
 
@@ -155,16 +154,33 @@ simulated function InstantFireEffects(byte Mode)
 		ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None)
 		return;
-	if (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && mHitActor.bProjTarget && !bIsArmorPiercing)
+	if (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && mHitActor.bProjTarget && CurrentTracerMode != 1)
 	{
 		Spawn (class'IE_IncBulletMetal', ,, HitLocation,);
 		return;
 	}
-	if (ImpactManager != None && !bIsArmorPiercing)
-		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
-	else if (ImpactManagerAlt != None && bIsArmorPiercing)
-		ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+
+	if (level.NetMode != NM_Client && ImpactManagers[CurrentTracerMode] != None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
+	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
+		return;
+	if (ImpactManagers[CurrentTracerMode] != None)
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
+
+// Spawn some wall penetration effects...
+simulated function WallPenetrateEffect(byte Mode, vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
+{
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0 || level.NetMode == NM_DedicatedServer || ImpactManagers[CurrentTracerMode] == None)
+		return;
+	if (bExit && (Level.DetailMode == DM_High || class'BallisticMod'.default.EffectsDetailMode == 1) )
+		return;
+	if (bExit)
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator, 2/*HF_NoSound*/);
+	else
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator);
+}
+
 // Spawn a tracer and water tracer
 simulated function SpawnTracer(byte Mode, Vector V)
 {
@@ -198,19 +214,11 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			bThisShot=true;					}
 	}
 	// Spawn a tracer
-	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
-		bThisShot && (TracerChance >= 1 || FRand() < TracerChance) && !bIsArmorPiercing)
+	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
+		bThisShot && (TracerChance >= 1 || FRand() < TracerChance))
 	{
 		if (Dist > 200)
-			Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
-		if (Tracer != None)
-			Tracer.Initialize(Dist);
-	}
-	// Spawn an alt tracer
-	if (AltTracerClass != None && TracerMode != MU_None && bIsArmorPiercing)
-	{
-		if (Dist > 200)
-			Tracer = Spawn(AltTracerClass, self, , TipLoc, Rotator(V - TipLoc));
+		Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
 	}
@@ -235,29 +243,30 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'FG50Machinegun'
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
-     AltMuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
-     ImpactManager=Class'IM_IncendiaryHMGBullet'
-     ImpactManagerAlt=Class'BallisticProV55.IM_BigBulletHMG'
-     FlashScale=1.750000
-     BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-     AltTracerClass=Class'BallisticProV55.TraceEmitter_AP'
-     TracerChance=2.000000
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_MG"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.500000
-     CockAnimRate=0.700000
-     bRapidFire=True
-     bAltRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_TPm'
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.320000
-     PrePivot=(Y=-1.000000,Z=-3.000000)
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+	ImpactManager=Class'IM_IncendiaryHMGBullet'
+	TracerClasses(0)=class'TraceEmitter_HMG'
+	TracerClasses(1)=class'TraceEmitter_AP'
+	ImpactManagers(0)=class'IM_IncendiaryHMGBullet'
+	ImpactManagers(1)=class'IM_BigBulletHMG'
+	FlashScale=1.750000
+	BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerChance=2.000000
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_MG"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.500000
+	CockAnimRate=0.700000
+	bRapidFire=True
+	bAltRapidFire=True
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_TPm'
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.320000
+	PrePivot=(Y=-1.000000,Z=-3.000000)
 }

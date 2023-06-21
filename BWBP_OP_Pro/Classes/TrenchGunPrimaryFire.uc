@@ -129,7 +129,7 @@ simulated state Projectile
 	}
 }
 
-simulated state Shotgun
+simulated state ShotgunZap
 {
 
 	simulated function ApplyFireEffectParams(FireEffectParams params)
@@ -141,6 +141,9 @@ simulated state Shotgun
 		effect_params = ShotgunEffectParams(params);
 
 		HipSpreadFactor = effect_params.HipSpreadFactor;
+		KickForce=4500;
+		MaxWaterTraceRange=9000;
+		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
 	}
 
 	//======================================================================
@@ -181,6 +184,77 @@ simulated state Shotgun
 		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 
 		Super(BallisticFire).DoFireEffect();
+	}
+}
+
+simulated state ShotgunHE
+{
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
+	}
+
+	//======================================================================
+	// Shotgun-DoFireEffect
+	//
+	// Send twice if double shot
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector StartTrace;
+		local Rotator R, Aim;
+		local int i;
+
+		Aim = GetFireAim(StartTrace);
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		for (i=0; i < GetTraceCount(Load); i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+		ApplyHits();
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
+		
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+
+		Super(BallisticFire).DoFireEffect();
+	}
+
+
+	//======================================================================
+	// ApplyDamage
+	//
+	// Explosive rounds
+	//======================================================================
+
+	function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+	{
+		super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+		
+		if (Target.bProjTarget)
+			BW.TargetedHurtRadius(Damage, 512, class'DT_TrenchGunExplosive', 200, HitLocation, Pawn(Target));
 	}
 }
 
@@ -301,20 +375,6 @@ simulated state ShotgunIncendiary
 }
 
 //======================================================================
-// ApplyDamage
-//
-// Explosive rounds
-//======================================================================
-
-function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
-{
-	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
-	
-	if (BW.CurrentWeaponMode == 0 && Target.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 512, class'DT_TrenchGunExplosive', 200, HitLocation, Pawn(Target));
-}
-
-//======================================================================
 // AnimateFiring
 //
 // Select different animation depending on ammo and charge
@@ -432,15 +492,11 @@ simulated function SwitchWeaponMode (byte newMode)
 {
 	if (newMode == 1) // Electro Mode
 	{
-		KickForce=4500;
-		MaxWaterTraceRange=9000;
-		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
 	}
 	else // Explosive Mode
 	{
 		KickForce=default.KickForce;
 		MaxWaterTraceRange=default.MaxWaterTraceRange;
-		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
 	}
 }
 

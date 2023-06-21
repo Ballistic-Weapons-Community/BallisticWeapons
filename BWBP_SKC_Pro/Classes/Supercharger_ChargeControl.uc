@@ -90,9 +90,9 @@ function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType, optional int numZ
 					SingeVictims[i].Burns++;
 				else
 					SingeVictims[i].Burns += numZaps;
-				if (SingeVictims[i].Burns == 15)
+				if (SingeVictims[i].Burns == 15 || (numZaps > 1 && SingeVictims[i].Burns >= 15))
 					MakeNewExploder(P, InstigatedBy, triggerType);
-				if (SingeVictims[i].Burns == 10)
+				if (SingeVictims[i].Burns == 10 || (numZaps > 1 && SingeVictims[i].Burns >= 10))
 					MakeNewBurner(P, InstigatedBy, triggerType);
 				return;
 			}

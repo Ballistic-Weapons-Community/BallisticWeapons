@@ -164,7 +164,8 @@ simulated function AddHeat(float Amount)
 	if (HeatLevel >= 10 && HeatLevel < 12)
 	{
 		Heatlevel = 12;
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 20+Rand(40), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DT_HVCOverheat');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 20+Rand(40), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DT_SuperchargeOverheat');
+		ChargeControl.FireSinge(Instigator, Instigator, 1, 5);
 	}
 }
 
@@ -607,7 +608,7 @@ defaultproperties
 	 ScreenHeat=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-ScreenHeat'
 	 
 	VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
-	OverheatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
+	OverheatSound=Sound'BWBP_SKC_Sounds.Supercharger.SC-Overheat'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
     AIReloadTime=0.200000
@@ -619,7 +620,7 @@ defaultproperties
     bWT_RapidProj=True
     bWT_Projectile=True
     SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-Pullout',Volume=1.050000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
     MagAmmo=100
     CockAnimPostReload="Idle"

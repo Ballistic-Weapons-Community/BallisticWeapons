@@ -69,9 +69,7 @@ simulated function OnWeaponParamsChanged()
 		bIsArmorPiercing=true;
 		if ( ThirdPersonActor != None )
 		{
-			FG50Attachment(ThirdPersonActor).bIsArmorPiercing=true;
-			FG50Attachment(ThirdPersonActor).TracerClass=Class'BallisticProV55.TraceEmitter_AP';
-			FG50Attachment(ThirdPersonActor).ImpactManager=Class'IM_BigBulletHMG';
+			FG50Attachment(ThirdPersonActor).CurrentTracerMode=1;
 		}
 	}
 }

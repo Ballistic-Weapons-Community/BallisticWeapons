@@ -69,8 +69,8 @@ defaultproperties
 		YRandFactor=0.250000
 		DeclineTime=1.700000
 		DeclineDelay=0.40000
-		ViewBindFactor=0.750000
-		MaxRecoil=4096
+		ViewBindFactor=0.150000
+		MaxRecoil=2096
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.900000
 		bViewDecline=True
@@ -109,7 +109,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		SightOffset=(X=-30.000000,Y=-25.000000,Z=6.500000)
 		SightPivot=(Roll=-1900)
-		ViewOffset=(X=40.000000,Y=14.000000,Z=-15.000000)
+		ViewOffset=(X=20.000000,Y=20.000000,Z=-15.000000)
 		ViewPivot=(Roll=-256)
 		ReloadAnimRate=1.300000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

@@ -853,9 +853,6 @@ defaultproperties
     bNoCrosshairInScope=True
 	WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000)
 	WeaponModes(1)=(ModeName="Ammo: Electro",Value=1.000000)
-	WeaponModes(2)=(ModeName="Ammo: Cryogenic",Value=1.000000,bUnavailable=True)
-	WeaponModes(3)=(ModeName="Ammo: FRAG-12",Value=1.000000,bUnavailable=True)
-	WeaponModes(4)=(ModeName="Ammo: Dragon",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
 	SightOffset=(X=0,Y=0,Z=1.22)
 	SightBobScale=0.2

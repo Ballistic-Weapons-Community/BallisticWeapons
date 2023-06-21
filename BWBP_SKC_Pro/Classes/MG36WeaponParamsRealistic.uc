@@ -93,7 +93,8 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=1540.000000 //
+		Recoil=1940.000000 //
+		PushbackForce=150 //
 		Chaos=0.09
 		Inaccuracy=(X=3,Y=3)
 		WarnTargetPct=0.200000
@@ -238,7 +239,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		WeaponName="Mk 88 5.56mm Gauss Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
+		AimParams(0)=AimParams'RealisticAimParams_LMG'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams_Gauss'
 	End Object
 	

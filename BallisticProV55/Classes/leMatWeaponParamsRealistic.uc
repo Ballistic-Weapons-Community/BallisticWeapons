@@ -136,7 +136,7 @@ defaultproperties
 		ViewPivot=(Pitch=512)
 		//SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
 		//SightPivot=(Pitch=95,Roll=-50)
-		SightPivot=(Pitch=512,Roll=-50)
+		//SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)

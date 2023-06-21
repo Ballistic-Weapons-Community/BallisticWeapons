@@ -16,8 +16,8 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
     if (BW.CurrentWeaponMode == 1)
 	{
 		BW.TargetedHurtRadius(5, 96, DamageType, 1, HitLocation,Pawn(Other));
-		return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 	}
+		return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 }
 
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)

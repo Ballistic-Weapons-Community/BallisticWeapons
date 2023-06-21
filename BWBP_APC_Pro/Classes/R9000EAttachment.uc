@@ -79,11 +79,11 @@ simulated function InstantFireEffects(byte Mode)
 		HitLocation = mHitLocation;
 
 	if (level.NetMode != NM_Client && ImpactManagers[0]!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
-		ImpactManagers[0].static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-	if (ImpactManagers[0] != None)
-		ImpactManagers[0].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	if (ImpactManagers[CurrentTracerMode] != None)
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
 // Spawn some wall penetration effects...

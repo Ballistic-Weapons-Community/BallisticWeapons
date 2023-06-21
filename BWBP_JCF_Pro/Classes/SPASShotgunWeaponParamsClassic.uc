@@ -130,75 +130,7 @@ defaultproperties
 		MagAmmo=5
 		ReloadAnimRate=1.0
 		CockAnimRate=1.0
-		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Bricks
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S2",Index=1)
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.450000
-		MagAmmo=5
-		ReloadAnimRate=1.0
-		CockAnimRate=1.0
-		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-AU
-		Weight=1
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S3",Index=1)
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.450000
-		MagAmmo=5
-		ReloadAnimRate=1.2
-		CockAnimRate=1.2
-		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Blue
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S4",Index=1)
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.450000
-		MagAmmo=5
-		ReloadAnimRate=1.0
-		CockAnimRate=1.0
-		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Hazard
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S5",Index=1)
-		InventorySize=4
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.450000
-		MagAmmo=5
-		ReloadAnimRate=1.0
-		CockAnimRate=1.0
-		SightOffset=(X=-4.000000,Y=-0.050000,Z=10.200000)
+		SightOffset=(X=5.000000,Y=-0.050000,Z=10.200000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -206,8 +138,49 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Bricks'
-	Layouts(2)=WeaponParams'ClassicParams-AU'
-	Layouts(3)=WeaponParams'ClassicParams-Blue'
-	Layouts(4)=WeaponParams'ClassicParams-Hazard'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=SP_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SP_Cobalt
+		Index=1
+		CamoName="Cobalt"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S4",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SP_Bricks
+		Index=2
+		CamoName="Bricks"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S2",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SP_Hazard
+		Index=3
+		CamoName="Hazard"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S5",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SP_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S3",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'SP_Gray'
+	Camos(1)=WeaponCamo'SP_Cobalt'
+	Camos(2)=WeaponCamo'SP_Bricks'
+	Camos(3)=WeaponCamo'SP_Hazard'
+	Camos(4)=WeaponCamo'SP_Gold'
 }

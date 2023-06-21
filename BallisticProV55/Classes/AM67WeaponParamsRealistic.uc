@@ -137,6 +137,7 @@ defaultproperties
 		//bAdjustHands=true
 		//RootAdjust=(Yaw=-280,Pitch=2500)
 		//WristAdjust=(Yaw=-2500,Pitch=-000)
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		InitialWeaponMode=0
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)

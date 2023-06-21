@@ -54,16 +54,16 @@ function PlayFiring()
 		BW.TemporaryScopeDown(0.5, 0.0);
 
 	if (Supercharger_AssaultWeapon(Weapon).bLatchedOn)
-		Weapon.AmbientSound = SawHackLoop;
+		Instigator.AmbientSound = SawHackLoop;
 	else
-		Weapon.AmbientSound = SawFreeLoop;
+		Instigator.AmbientSound = SawFreeLoop;
 
     if (FireCount == 0)
     {
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-		BW.SafePlayAnim('EndReload', FireAnimRate, TweenTime, ,"FIRE"); //todo
+		BW.SafePlayAnim('MeleeLoopStart', FireAnimRate, TweenTime, ,"FIRE"); //todo
 	}
-    else if (FireCount > 4)
+    else if (FireCount > 0)
     {
 		if (Supercharger_AssaultWeapon(Weapon).bLatchedOn)
     		BW.SafeLoopAnim('MeleeLoop', FireAnimRate, TweenTime, ,"FIRE");
@@ -79,9 +79,9 @@ function ServerPlayFiring()
     if (FireCount == 0)
     {
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-		BW.SafePlayAnim('EndReload', FireAnimRate, TweenTime, ,"FIRE");
+		BW.SafePlayAnim('MeleeLoopStart', FireAnimRate, TweenTime, ,"FIRE");
 	}
-    else if (FireCount > 4)
+    else if (FireCount > 0)
     {
 		if (Supercharger_AssaultWeapon(Weapon).bLatchedOn)
     		BW.SafeLoopAnim('MeleeLoop', FireAnimRate, TweenTime, ,"FIRE");
@@ -185,6 +185,7 @@ simulated event ModeDoFire()
 
 simulated function StopFiring()
 {
+	Instigator.AmbientSound = None;
 	Weapon.PlayOwnedSound(SawStop,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius, 1,BallisticFireSound.bAtten);
 	BW.GunLength = BW.default.GunLength;
 	Weapon.PlayAnim(FireEndAnim, FireEndAnimRate, 0.0, 0);
@@ -232,20 +233,23 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     SawFreeLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-Saw'
-     SawHackLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawPitched'
-     SawStop=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawClose'
-     SwipePoints(0)=(offset=(Yaw=0))
-     WallHitPoint=0
-     NumSwipePoints=1
-	 FatiguePerStrike=0
-     KickForce=500
-     ScopeDownOn=SDO_Fire
-     bAISilent=True
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
-     AmmoPerFire=1
-     ShakeRotMag=(X=64.000000,Y=16.000000)
-     ShakeRotRate=(X=1024.000000,Y=1024.000000,Z=512.000000)
-     ShakeRotTime=1.000000
+	SawFreeLoop=Sound'BWBP_SKC_Sounds.Supercharger.SC-ChompLoopEmpty'
+	SawHackLoop=Sound'BWBP_SKC_Sounds.Supercharger.SC-ChompLoop'
+	SawStop=Sound'BWBP_SKC_Sounds.Supercharger.SC-ChompStop'
+	SwipePoints(0)=(offset=(Yaw=0))
+	WallHitPoint=0
+	NumSwipePoints=1
+	FatiguePerStrike=0
+	KickForce=500
+	ScopeDownOn=SDO_Fire
+	FireAnim="MeleeLoopStart"
+	FireEndAnim="MeleeLoopEnd"
+	bAISilent=True
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-ChompStart',Volume=1.350000,Radius=256.000000)
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+	AmmoClass=Class'BallisticProV55.Ammo_HVCCells'
+	AmmoPerFire=1
+	ShakeRotMag=(X=64.000000,Y=16.000000)
+	ShakeRotRate=(X=1024.000000,Y=1024.000000,Z=512.000000)
+	ShakeRotTime=1.000000
 }

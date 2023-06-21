@@ -60,14 +60,14 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
 		FlashScaleFactor=0.800000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M50.M50Fire3',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=52.000000
+		Recoil=52.000000 //
 		Chaos=-1.0
-		Inaccuracy=(X=1,Y=1)
+		Inaccuracy=(X=1,Y=1) //
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Long
-		FireInterval=0.105000
+		FireInterval=0.105000 //
 		BurstFireRateFactor=1.00
 		AimedFireAnim="SightFire"
 		FireEndAnim=	
@@ -93,7 +93,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.F2000-SilFire',Volume=1.100000,Radius=192.000000,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.F2000-SilFire',Volume=1.100000,Radius=192.000000,bAtten=True) //
 		Recoil=72.000000
 		Chaos=-1.0
 		Inaccuracy=(X=2,Y=2)

@@ -291,6 +291,9 @@ simulated function InitParams()
 //===================================================================
 simulated function ApplyParams(ProjectileEffectParams params)
 {
+	if (!bApplyParams)
+		return;
+	
     Speed = params.Speed;
 	default.Speed = params.Speed;
 	

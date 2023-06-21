@@ -122,7 +122,7 @@ defaultproperties
 		SightPivot=(Roll=-1024)
 		SightOffset=(Y=-1.600000,Z=22.000000)
 		SightMoveSpeedFactor=0.8
-		ViewOffset=(X=12.000000,Y=7.000000,Z=-14.000000)
+		//ViewOffset=(X=12.000000,Y=7.000000,Z=-14.000000)
 		bNeedCock=True
 		MagAmmo=6
         InventorySize=5

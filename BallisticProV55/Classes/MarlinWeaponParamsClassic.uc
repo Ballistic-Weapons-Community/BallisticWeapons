@@ -40,6 +40,7 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	
+	//Gauss
 	Begin Object Class=InstantEffectParams Name=ClassicGaussPrimaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
@@ -50,15 +51,17 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTMarlinRifle'
 		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
-		PenetrationEnergy=48.000000
-		PenetrateForce=150
+		PenetrationEnergy=128.000000
+		PenetrateForce=450
 		bPenetrate=True
-		PDamageFactor=0.6
-		WallPDamageFactor=0.4
+		PDamageFactor=0.8
+		WallPDamageFactor=0.6
 		SpreadMode=FSM_Rectangle
 		FlashScaleFactor=0.6
-		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M50A2.M50A2-SilenceFire')
+		//MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
+		//FireSound=(Sound=Sound'BWBP_SKC_Sounds.M50A2.M50A2-SilenceFire')
+		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Fire')
 		Recoil=1524.000000
 		Chaos=-1.0
 		BotRefireRate=0.300000

@@ -122,8 +122,8 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)
 		ZoomType=ZT_Irons
-		SightPivot=(Pitch=-32,Roll=-1024)
-		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		SightPivot=(Pitch=-64)
+		SightOffset=(X=5.00,Y=0.00,Z=1.9)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -141,6 +141,85 @@ defaultproperties
     Layouts(1)=WeaponParams'ClassicParams_NoScope'
 	
 	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=R78_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Wood
+		Index=1
+		CamoName="Black n' Wood"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainWood",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Desert
+		Index=2
+		CamoName="Desert"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainDesert",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Jungle
+		Index=3
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainTiger",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Urban
+		Index=4
+		CamoName="Urban"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainUrban",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Patriot
+		Index=5
+		CamoName="Patriot"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainPatriot",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Tiger
+		Index=6
+		CamoName="Red Tiger"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainRedTiger",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Gold
+		Index=7
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainGold",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'R78_Gray'
+	Camos(1)=WeaponCamo'R78_Wood'
+	Camos(2)=WeaponCamo'R78_Desert'
+	Camos(3)=WeaponCamo'R78_Jungle'
+	Camos(4)=WeaponCamo'R78_Urban'
+	Camos(5)=WeaponCamo'R78_Patriot'
+	Camos(6)=WeaponCamo'R78_Tiger'
+	Camos(7)=WeaponCamo'R78_Gold'
+	
+	/* //The old ones
 	Begin Object Class=WeaponCamo Name=R78_Gray
 		Index=0
 		CamoName="Gray"
@@ -203,4 +282,5 @@ defaultproperties
 	Camos(4)=WeaponCamo'R78_Tiger'
 	Camos(5)=WeaponCamo'R78_Winter'
 	Camos(6)=WeaponCamo'R78_Gold'
+	*/
 }
