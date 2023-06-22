@@ -91,18 +91,18 @@ simulated function Explode (vector a, vector b)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
-	 bApplyParams=False
-     bPenetrate=True
-     StartDelay=0.030000
-     Speed=3000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
-     bHidden=True
-     RemoteRole=ROLE_None
-     LifeSpan=0.350000
-     CollisionRadius=30.000000
-     CollisionHeight=30.000000
-     bCollideActors=False
-     bCollideWorld=False
-     bBlockZeroExtentTraces=False
-     bBlockNonZeroExtentTraces=False
+	bApplyParams=False
+	bPenetrate=True
+	StartDelay=0.030000
+	Speed=3000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
+	bHidden=True
+	RemoteRole=ROLE_None
+	LifeSpan=0.350000
+	CollisionRadius=30.000000
+	CollisionHeight=30.000000
+	bCollideActors=False
+	bCollideWorld=False
+	bBlockZeroExtentTraces=False
+	bBlockNonZeroExtentTraces=False
 }

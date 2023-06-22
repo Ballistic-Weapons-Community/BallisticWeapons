@@ -50,6 +50,7 @@ defaultproperties
 	TracerMode=MU_Primary
 	FlashMode=MU_Both
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
+	FlashScale=0.400000
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Primary
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)

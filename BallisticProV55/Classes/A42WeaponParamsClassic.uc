@@ -13,7 +13,7 @@ defaultproperties
 		Speed=50.000000
 		MaxSpeed=8000.000000
 		AccelSpeed=60000.000000
-		Damage=15.0
+		Damage=22.0
 		DamageRadius=48.000000
 		MomentumTransfer=100.000000
 		HeadMult=2.0
@@ -29,17 +29,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.250000
-		AmmoPerFire=5
-		BurstFireRateFactor=1.00
-		FireEndAnim=	
-		AimedFireAnim="Fire1"
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-	End Object
-
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParamsBurst
-		FireInterval=0.080000
-		AmmoPerFire=5
-		BurstFireRateFactor=1.00
+		BurstFireRateFactor=0.3
 		FireEndAnim=	
 		AimedFireAnim="Fire1"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
@@ -60,7 +50,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitterBal'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Fire',Volume=0.700000)
-		Recoil=24.000000
+		Recoil=64.000000
 		Chaos=-1.0
 		Inaccuracy=(X=8,Y=4)
 		WarnTargetPct=0.300000	
@@ -68,17 +58,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Red
 		TargetState="SpreadShot"
-		FireInterval=0.250000
-		AmmoPerFire=5
-		BurstFireRateFactor=1.00
-		FireEndAnim=	
-		AimedFireAnim="Fire1"
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Red'
-	End Object
-
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParamsBurst-Red
-		FireInterval=0.080000
-		AmmoPerFire=5
+		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 		AimedFireAnim="Fire1"
@@ -115,15 +95,6 @@ defaultproperties
 		AimedFireAnim="Fire1"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Acid'
 	End Object
-
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParamsBurst-Acid
-		FireInterval=0.080000
-		AmmoPerFire=1
-		BurstFireRateFactor=1.00
-		FireEndAnim=	
-		AimedFireAnim="Fire1"
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Acid'
-	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -154,7 +125,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 		FireInterval=0.100000
-		AmmoPerFire=25
+		AmmoPerFire=8
 		BurstFireRateFactor=1.00
 		FireAnim="SecFire"	
 	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
@@ -200,13 +171,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Infantry Blue"
-		Weight=8
-		
+		//Layout
+		LayoutName="Standard"
+		Weight=30
+		//Visual
+		AllowedCamos(0)=0
+		//Stats
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=300
+		MagAmmo=60
 		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightOffset=(X=-40,Y=-6.7,Z=17.5)
 		SightPivot=(Pitch=1024,Roll=-768)
@@ -219,21 +193,21 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_R //The Red One
-		LayoutName="Elite Red"
-		Weight=2
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A48Skin_SD",Index=1)
-		
+		//Layout core
+		LayoutName="Elite"
+		LayoutTags="elite"
+		Weight=10
+		//Visual
+		AllowedCamos(0)=1
+		//Stats
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=300
+		MagAmmo=72
 		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightOffset=(X=-40,Y=-6.7,Z=17.5)
 		SightPivot=(Pitch=1024,Roll=-768)
@@ -246,20 +220,16 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams-Red'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst-Red'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams-Red'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_G //The Green One
 		LayoutName="Prototype Green"
 		Weight=2
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A512_ExpShine",Index=1)
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=300
+		MagAmmo=60
 		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightOffset=(X=-40,Y=-6.7,Z=17.5)
 		SightPivot=(Pitch=1024,Roll=-768)
@@ -272,13 +242,37 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams-Acid'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst-Acid'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams-Acid'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_R'
 	//Layouts(2)=WeaponParams'ClassicParams_G'
-
+	
+	//Camos =========================================
+	Begin Object Class=WeaponCamo Name=A42_Blue
+		Index=0
+		CamoName="Blue"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=A42_Red
+		Index=1
+		CamoName="Red"
+		Weight=30
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=A42_Green
+		Index=2
+		CamoName="Green"
+		Weight=30
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A512_ExpShine',Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'A42_Blue'
+	Camos(1)=WeaponCamo'A42_Red'
+	Camos(2)=WeaponCamo'A42_Green'
 }

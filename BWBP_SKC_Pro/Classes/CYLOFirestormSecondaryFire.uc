@@ -128,9 +128,9 @@ simulated state FireShot
 			DoTrace(Start, R);
 			
 			if (Other != None && (Other.bWorldGeometry || Mover(Other) != none))
-				GetFireControl().FireShot(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, Other);
+				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, Other, R);
 			else
-				GetFireControl().FireShot(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None);
+				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None, R);
 		}
 
 		if (Level.NetMode == NM_DedicatedServer)

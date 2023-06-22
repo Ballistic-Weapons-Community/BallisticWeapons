@@ -49,13 +49,35 @@ simulated state SpreadShot
 				Cycle = 1;
 		}
 	}
+	simulated function bool AllowFire()
+	{
+		if (!super.AllowFire() || A42SkrithPistol(BW).HeatLevel >= 10)
+		{
+			return false;
+		}
+		return true;
+	}
+	function DoFireEffect()
+	{
+		Super.DoFireEffect();
+		A42SkrithPistol(Weapon).AddHeat(HeatPerShot * Shots, 0);
+	}
+	
+	function PlayFiring()
+	{
+		if (level.NetMode == NM_Client)
+		{
+			A42SkrithPistol(Weapon).AddHeat(HeatPerShot * Shots, 0);
+		}
+		super.PlayFiring();
+	}
 }
 
 defaultproperties
 {
 	Cycle=1
 	Shots=3
-	HeatPerShot=0.081000
+	HeatPerShot=0.81000
 	FireSpread=120
 	bPawnRapidFireAnim=True
 	AmmoClass=Class'BallisticProV55.Ammo_A42Charge'

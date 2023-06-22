@@ -13,15 +13,14 @@ class A42SkrithPistol extends BallisticHandgun;
 var float NextAmmoTickTime;
 var Actor			GlowFX;
 
-simulated event PreBeginPlay()
+var float			HeatLevel;					// Current Heat level, duh...
+var float 			HeatDeclineTime;			// Time until heat can decline
+var() Sound			OverheatSound;				// Sound to play when it overheats
+
+replication
 {
-	super.PreBeginPlay();
-    
-	if (class'BallisticReplicationInfo'.static.IsRealism())
-	{
-		FireModeClass[0]=Class'BallisticProV55.A42PrimaryFireSpread';
-		FireModeClass[1]=Class'BallisticProV55.A42PrimaryFire';
-	}
+	reliable if (ROLE==ROLE_Authority)
+		ClientSetHeat;
 }
 
 simulated function bool CanAlternate(int Mode)
@@ -94,7 +93,11 @@ simulated event Tick (float DT)
 	{
 		if (MagAmmo < default.MagAmmo)
 			MagAmmo=Min(default.MagAmmo, MagAmmo+1);
-		NextAmmoTickTime = Level.TimeSeconds + 0.5;
+		NextAmmoTickTime = Level.TimeSeconds + 0.35;
+	}
+	if (HeatLevel > 0 && Level.TimeSeconds > HeatDeclineTime)
+	{
+		HeatLevel = FMax(HeatLevel - 10 * DT, 0);
 	}
 }
 
@@ -108,6 +111,26 @@ simulated event WeaponTick(float DT)
 		f = 56 + 32 * (FMin(FireMode[1].HoldTime, 2) / 2);
 		SoundPitch = f;
 	}
+}
+
+simulated function AddHeat(float Amount, float DeclineTime)
+{
+	if (bBerserk)
+		Amount *= 0.75;
+		
+	HeatLevel += Amount;
+	HeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, HeatDeclineTime);
+	
+	if (HeatLevel >= 9.75)
+	{
+		HeatLevel = 10;
+		return;
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	HeatLevel = NewHeat;
 }
 
 // AI Interface =====
@@ -253,7 +276,11 @@ function bool CanHeal(Actor Other)
 
 simulated function float ChargeBar()
 {
-	return FMin(FireMode[1].HoldTime, 1);
+	
+	if (FireMode[1].IsFiring())
+		return FMin(FireMode[1].HoldTime, 1);
+	else
+		return HeatLevel / 10;
 }
 
 defaultproperties
