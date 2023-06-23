@@ -235,7 +235,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		Proj.Tag = 'Second';
+		//Proj.Tag = 'Second';
 	}
 }
 

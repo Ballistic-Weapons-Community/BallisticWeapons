@@ -476,7 +476,7 @@ defaultproperties
 	InvasionDamageScaling=1.000000
 	DamageIdent="Unknown"
 	AimDisplacementDuration=0.500000
-	bSimpleDeathMessages=True
+	bSimpleDeathMessages=False
 	MinMotionBlurDamage=10.000000
 	MotionBlurDamageRange=80.000000
 	MotionBlurFactor=4.000000

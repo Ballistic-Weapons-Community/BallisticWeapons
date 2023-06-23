@@ -10,6 +10,9 @@ class PD97PrimaryShotgunFire extends BallisticProShotgunFire;
 
 simulated function PlayFiring()
 {
+	if (PD97Bloodhound(BW).bNeedRotate)
+		PD97Bloodhound(BW).CycleDrum();
+	
 	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';

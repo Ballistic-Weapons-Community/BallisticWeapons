@@ -22,6 +22,7 @@ var array<PD97DartControl> StruckTargets;
 
 var rotator DrumRot;
 var byte DrumPos;
+var bool bNeedRotate; //Used to ensure a rotation is called before the next shot
 
 var array<Name> ShellBones[5];
 var array<Name> SpareShellBones[5];
@@ -52,7 +53,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+	/*if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
@@ -61,12 +62,22 @@ simulated event PreBeginPlay()
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryFire';
-	}
+	}*/
+}
+
+simulated function Notify_DrumRotate ()
+{
+}
+
+simulated function Notify_HideShell ()
+{
+	SetBoneScale(10, 0.0, 'EjectingShell');
 }
 
 simulated function ShellFired()
 {
 	SetBoneScale(DrumPos, 0.0, ShellBones[DrumPos]);
+	bNeedRotate=true;
 }
 simulated function CycleDrum()
 {
@@ -75,6 +86,7 @@ simulated function CycleDrum()
 	else DrumPos++;
 	DrumRot.Roll -= 65535 / 5;
 	SetBoneRotation('drum',DrumRot);	
+	bNeedRotate=false;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -229,6 +241,7 @@ simulated function Notify_ClipIn()
 	
 	for (i=0; i < default.MagAmmo; i++)
 		SetBoneScale(i+default.MagAmmo, 1, SpareShellBones[i]);
+	SetBoneScale(10, 1, 'EjectingShell');
 }
 
 //===========================================================================

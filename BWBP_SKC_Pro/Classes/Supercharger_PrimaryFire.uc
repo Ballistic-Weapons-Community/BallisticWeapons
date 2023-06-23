@@ -85,13 +85,13 @@ function DoFireEffect()
 	Dist = VSize(HitLocation-Start);
 
 
-	if (Supercharger_AssaultWeapon(Weapon).CurrentWeaponMode == 2)
-	{
+	//if (Supercharger_AssaultWeapon(Weapon).CurrentWeaponMode == 2)
+	//{
 		if (Other != None && (Other.bWorldGeometry || Mover(Other) != none))
 			GetChargeControl().FireShot(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, Other, 1);
 		else
 			GetChargeControl().FireShot(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None, 1);
-	}
+	//}
 	SendFireEffect(Other, HitLocation, HitNormal, 0);
 
 	Super(BallisticFire).DoFireEffect();

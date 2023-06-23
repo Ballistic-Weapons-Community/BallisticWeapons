@@ -156,7 +156,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Sniper'
+	//Layouts(1)=WeaponParams'ClassicParams_Sniper'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=Super_Industrial

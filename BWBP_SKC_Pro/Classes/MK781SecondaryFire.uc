@@ -4,20 +4,9 @@
 class Mk781SecondaryFire extends BallisticProShotgunFire;
 
 var   bool		bLoaded; 		//Do we even have grenades?
-var   bool		bIsCharging; 	//Are we charging?
-var   float RailPower;
-var   float ChargeRate;
-var   float PowerLevel;
-var   float MaxCharge;
 
 var() Vector			SpawnOffset;		// Projectile spawned at this offset
 var	  Projectile		Proj;				// The projectile actor
-
-var() sound		PulseFireSound;
-var() sound		ShotFireSound;
-
-
-var       float		HUDRefreshTime;		// Used to keep the damn thing pretty
 
 
 // Check if there is ammo in mag if we use it or is there some in inventory if we don't
@@ -249,8 +238,8 @@ simulated state ElektroShot
 defaultproperties
 {
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     PulseFireSound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire'
-     ShotFireSound=Sound'BWBP_SKC_Sounds.HyperBeamCannon.343Primary-Hit'
+     //PulseFireSound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire'
+     //ShotFireSound=Sound'BWBP_SKC_Sounds.HyperBeamCannon.343Primary-Hit'
      TraceCount=7
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
      ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'

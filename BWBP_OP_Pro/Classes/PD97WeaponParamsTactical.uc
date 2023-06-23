@@ -35,6 +35,53 @@ defaultproperties
 		FireAnimRate=1.100000	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
 	End Object
+	
+	//Dart
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_Dart
+		ProjectileClass=Class'BWBP_OP_Pro.PD97Dart'
+		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
+		Speed=15000.000000
+		Damage=30
+		Recoil=128.000000
+		Chaos=0.150000
+		BotRefireRate=0.700000
+		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Dart
+        TargetState="Projectile"
+		FireInterval=0.400000
+		PreFireAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.100000	
+		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Dart'
+	End Object
+	
+	//Rocket
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_Rocket
+		ProjectileClass=Class'BWBP_OP_Pro.PD97Rocket'
+		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
+		AccelSpeed=2000.000000
+		Speed=4500.000000
+		MaxSpeed=10000.000000
+		Damage=40.000000
+		DamageRadius=192.000000
+		Recoil=256.000000
+		Chaos=0.150000
+		BotRefireRate=0.700000
+		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Rocket
+        TargetState="Projectile"
+		FireInterval=0.200000
+		PreFireAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.100000	
+		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Rocket'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -97,6 +144,12 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		LayoutName="Shotgun"
+		Weight=30
+		//Visual
+		WeaponName="PD97 Shotgun Revolver"
+		//Stats
 		//SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)
 		InventorySize=2
 		SightMoveSpeedFactor=0.6
@@ -109,7 +162,50 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Rocket
+		//Layout core
+		LayoutName="Missile"
+		Weight=15
+		//Visual
+		WeaponName="PD97 Missile Revolver"
+		//Stats
+		//SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)
+		InventorySize=2
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.20
+		DisplaceDurationMult=0.5
+		MagAmmo=5
+		bDualBlocked=True
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Rocket'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Dart
+		//Layout core
+		LayoutName="Plague Dart"
+		Weight=10
+		//Visual
+		WeaponName="PD97 Dart Revolver"
+		//Stats
+		//SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)
+		InventorySize=2
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.20
+		DisplaceDurationMult=0.5
+		MagAmmo=5
+		bDualBlocked=True
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Dart'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Rocket'
+    Layouts(2)=WeaponParams'TacticalParams_Dart'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=PUG_Gray

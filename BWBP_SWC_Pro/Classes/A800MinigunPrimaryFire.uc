@@ -83,7 +83,7 @@ defaultproperties
      bPawnRapidFireAnim=True
      TweenTime=0.000000
      FireRate=0.175000
-     AmmoClass=Class'BWBP_SWC_Pro.Ammo_A800Cells'
+     AmmoClass=Class'BallisticProV55.Ammo_Cells'
      ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000

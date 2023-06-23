@@ -2,6 +2,9 @@ class PD97PrimaryMissileFire extends BallisticProProjectileFire;
 
 simulated function PlayFiring()
 {
+	if (PD97Bloodhound(BW).bNeedRotate)
+		PD97Bloodhound(BW).CycleDrum();
+	
 	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';

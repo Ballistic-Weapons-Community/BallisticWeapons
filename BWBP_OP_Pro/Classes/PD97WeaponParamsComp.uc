@@ -6,7 +6,8 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
+	//Dart
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams_Dart
 		ProjectileClass=Class'BWBP_OP_Pro.PD97Dart'
 		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
 		Speed=15000.000000
@@ -18,12 +19,69 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Dart
+        TargetState="Projectile"
 		FireInterval=0.400000
 		PreFireAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.100000	
-		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams_Dart'
+	End Object
+	
+	//Rocket
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams_Rocket
+		ProjectileClass=Class'BWBP_OP_Pro.PD97Rocket'
+		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
+		AccelSpeed=2000.000000
+		Speed=4500.000000
+		MaxSpeed=10000.000000
+		Damage=40.000000
+		DamageRadius=192.000000
+		Recoil=256.000000
+		Chaos=0.150000
+		BotRefireRate=0.700000
+		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Rocket
+        TargetState="Projectile"
+		FireInterval=0.200000
+		PreFireAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.100000	
+		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams_Rocket'
+	End Object
+	
+	//Shotgun
+	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=5000.000000,Max=5000.000000)
+		RangeAtten=0.750000
+		TraceCount=6
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=10
+		DamageType=Class'BWBP_OP_Pro.DTPD97Shotgun'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTPD97ShotgunHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTPD97Shotgun'
+		PenetrationEnergy=4.000000
+		PenetrateForce=100
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		Recoil=768.000000
+		Chaos=0.500000
+		Inaccuracy=(X=400,Y=400)
+		BotRefireRate=0.700000
+		WarnTargetPct=0.500000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Fire',Volume=1.100000,Radius=256.000000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.200000
+		PreFireAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.100000	
+		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		
     //=================================================================
@@ -79,6 +137,12 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		LayoutName="Shotgun"
+		Weight=30
+		//Visual
+		WeaponName="PD97 Shotgun Revolver"
+		//Stats
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		//SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)		
@@ -93,7 +157,54 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Rocket
+		//Layout core
+		LayoutName="Missile"
+		Weight=15
+		//Visual
+		WeaponName="PD97 Missile Revolver"
+		//Stats
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		//SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)		
+		PlayerJumpFactor=1.05
+		InventorySize=2
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.20000
+		DisplaceDurationMult=0.5
+		MagAmmo=5
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Rocket'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Dart
+		//Layout core
+		LayoutName="Plague Dart"
+		Weight=10
+		//Visual
+		WeaponName="PD97 Dart Revolver"
+		//Stats
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		//SightOffset=(X=0.000000,Y=-4.400000,Z=12.130000)		
+		PlayerJumpFactor=1.05
+		InventorySize=2
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.20000
+		DisplaceDurationMult=0.5
+		MagAmmo=5
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Dart'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Rocket'
+    Layouts(2)=WeaponParams'ArenaParams_Dart'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=PUG_Gray

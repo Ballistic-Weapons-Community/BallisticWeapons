@@ -214,7 +214,6 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
-		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Triple'
@@ -230,7 +229,6 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
-		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParamsSingle'
@@ -252,7 +250,6 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
-		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParamsSingle'
