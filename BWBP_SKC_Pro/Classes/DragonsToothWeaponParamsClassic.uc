@@ -7,35 +7,34 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=128.000000,Max=128.000000)
+		WaterTraceRange=5000.0
+		Damage=125
+		HeadMult=2.0
+		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DT_DTSChest'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSLimb'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.200000
+		HookPullForce=80.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=128.000000,Max=128.000000)
-			WaterTraceRange=5000.0
-			Damage=125
-			HeadMult=2.0
-			LimbMult=0.6
-			DamageType=Class'BWBP_SKC_Pro.DT_DTSChest'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSLimb'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.200000
-			HookPullForce=80.000000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.100000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=1.100000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireAnim="Swing1"
-			FireAnimRate=0.850000
-			FireEffectParams(0)=MeleeEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=1.100000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Swing1"
+		FireAnimRate=0.850000
+		FireEffectParams(0)=MeleeEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE

@@ -107,7 +107,7 @@ defaultproperties
 		LayoutName="Standard"
 		//Attachments
 		//Function
-		InventorySize=11
+		InventorySize=6
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.210000

@@ -131,6 +131,7 @@ defaultproperties
 		SightingTime=0.300000
 		
 		//Function
+		bDualBlocked=True
 		InventorySize=4
 		WeaponPrice=2000
 		MagAmmo=8
@@ -157,6 +158,7 @@ defaultproperties
 		SightingTime=0.250000
 		
 		//Function
+		bDualBlocked=True
 		InventorySize=4
 		WeaponPrice=2000
 		MagAmmo=8

@@ -188,7 +188,7 @@ defaultproperties
 		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
 		
 		//Function
-		InventorySize=11
+		InventorySize=6
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.500000
 		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
@@ -218,7 +218,7 @@ defaultproperties
 		SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
 		
 		//Function
-		InventorySize=11
+		InventorySize=6
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.500000
 		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
@@ -248,7 +248,7 @@ defaultproperties
 		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
 		
 		//Function
-		InventorySize=11
+		InventorySize=6
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.500000
 		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)

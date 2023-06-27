@@ -174,6 +174,7 @@ defaultproperties
 		SightingTime=0.150000
 		bNeedCock=True
 		MagAmmo=18
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -201,6 +202,7 @@ defaultproperties
 		SightingTime=0.150000
 		bNeedCock=True
 		MagAmmo=18
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

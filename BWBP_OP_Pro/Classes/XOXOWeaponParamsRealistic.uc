@@ -175,7 +175,7 @@ defaultproperties
 		SightPivot=(Pitch=768)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=8
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.30000
 		DisplaceDurationMult=1

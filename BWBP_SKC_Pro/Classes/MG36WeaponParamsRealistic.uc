@@ -175,7 +175,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		//Stats
 		PlayerSpeedFactor=0.900000
-		InventorySize=6
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=100
@@ -200,7 +200,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		//Stats
 		PlayerSpeedFactor=0.900000
-		InventorySize=6
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=30
@@ -229,7 +229,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Fart-Auto",ModeID="WM_FullAuto",Value=1.000000,bUnavailable=True)
 		InitialWeaponMode=0
 		PlayerSpeedFactor=0.900000
-		InventorySize=6
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=30

@@ -152,12 +152,13 @@ defaultproperties
 		//Attachments
 		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
 		//Functions
-		InventorySize=4
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=15
 		ViewOffset=(X=4,Y=6.00,Z=-4.5)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -180,6 +181,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=15
 		ViewOffset=(X=4,Y=6.00,Z=-4.5)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

@@ -437,6 +437,7 @@ defaultproperties
 	ParamsClasses(0)=Class'E5WeaponParams'
 	ParamsClasses(1)=Class'E5WeaponParamsClassic'
 	ParamsClasses(2)=Class'E5WeaponParamsRealistic'
+	ParamsClasses(3)=Class'E5WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_APC_Pro.E5PrimaryFire'
 	FireModeClass(1)=Class'BWBP_APC_Pro.E5SecondaryFire'
 	SelectAnimRate=1.250000

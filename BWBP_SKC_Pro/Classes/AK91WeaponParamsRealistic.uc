@@ -137,7 +137,7 @@ defaultproperties
 		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		ZoomType=ZT_Irons
 		//Function
-		InventorySize=12
+		InventorySize=7
 		WeaponPrice=2900
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.210000
@@ -162,7 +162,7 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
-		InventorySize=12
+		InventorySize=7
 		WeaponPrice=2900
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.310000

@@ -57,5 +57,5 @@ defaultproperties
 	
 	//Conflict
 	ConflictWeaponSlots=20
-	ConflictEquipmentSlots=2
+	ConflictEquipmentSlots=0
 }

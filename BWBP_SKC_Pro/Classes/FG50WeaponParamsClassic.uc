@@ -234,7 +234,7 @@ defaultproperties
 		//Function
 		PlayerSpeedFactor=0.890000
 		PlayerJumpFactor=0.750000
-		InventorySize=8
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=40
@@ -265,7 +265,7 @@ defaultproperties
 		//Function
 		PlayerSpeedFactor=0.890000
 		PlayerJumpFactor=0.750000
-		InventorySize=8
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=40

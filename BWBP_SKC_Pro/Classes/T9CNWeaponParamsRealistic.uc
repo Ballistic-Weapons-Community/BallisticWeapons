@@ -201,13 +201,14 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		//Functions
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.130000
 		MagAmmo=18
 		bMagPlusOne=True
 		SightPivot=(Pitch=128)
+		ViewOffset=(X=4.00,Y=7.00,Z=-6.00)
 		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		//ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -235,13 +236,14 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
 		//Functions
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=1200
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.130000
 		MagAmmo=18
 		bMagPlusOne=True
 		SightPivot=(Pitch=128)
+		ViewOffset=(X=4.00,Y=7.00,Z=-6.00)
 		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		//ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

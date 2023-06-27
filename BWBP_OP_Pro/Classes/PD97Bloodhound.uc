@@ -225,7 +225,7 @@ simulated function Notify_DrumDown()
 	{
 		if (i < Ammo[0].AmmoAmount)
 			SetBoneScale(j, 1, ShellBones[j]);
-		else SetBoneScale(j+default.MagAmmo, 0, SpareShellBones[j]);
+		else SetBoneScale(j+default.MagAmmo*2, 0, SpareShellBones[j]);
 		
 		if (j == 4)
 			j = 0;
@@ -240,7 +240,7 @@ simulated function Notify_ClipIn()
 	Super.Notify_ClipIn();
 	
 	for (i=0; i < default.MagAmmo; i++)
-		SetBoneScale(i+default.MagAmmo, 1, SpareShellBones[i]);
+		SetBoneScale(i+default.MagAmmo*2, 1, SpareShellBones[i]);
 	SetBoneScale(10, 1, 'EjectingShell');
 }
 

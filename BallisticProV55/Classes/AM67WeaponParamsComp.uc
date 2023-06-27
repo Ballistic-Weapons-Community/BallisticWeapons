@@ -98,6 +98,7 @@ defaultproperties
         MagAmmo=9
         InventorySize=4
 		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
+		bDualBlocked=True
 		SightingTime=0.250000
 		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

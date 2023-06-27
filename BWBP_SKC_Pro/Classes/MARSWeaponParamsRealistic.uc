@@ -220,7 +220,7 @@ defaultproperties
 		SightingTime=0.3
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
-		InventorySize=7
+		InventorySize=6
 		WeaponPrice=2800
 		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		MagAmmo=30
@@ -250,7 +250,7 @@ defaultproperties
 		SightingTime=0.3
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
-		InventorySize=7
+		InventorySize=6
 		WeaponPrice=2800
 		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		MagAmmo=30
@@ -283,7 +283,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4,PIndex=-1,AIndex=-1)
 		//Function
-		InventorySize=7
+		InventorySize=6
 		WeaponPrice=2800
 		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)

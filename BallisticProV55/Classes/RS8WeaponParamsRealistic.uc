@@ -111,6 +111,7 @@ defaultproperties
 		SightingTime=0.12
 		MagAmmo=14
 		bMagPlusOne=True
+		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
 		//ViewOffset=(X=-3.000000,Y=8.000000,Z=-9.000000)
 		//SightOffset=(X=-18.000000,Y=-2.000000,Z=18.8750000)
 		SightPivot=(Pitch=-200,Roll=-1050)

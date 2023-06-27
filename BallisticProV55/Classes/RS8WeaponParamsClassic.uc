@@ -171,6 +171,7 @@ defaultproperties
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
 		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -212,7 +213,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(3)=WeaponParams'ClassicParams_X3Combo'
+	//Layouts(3)=WeaponParams'ClassicParams_X3Combo'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS8_Silver

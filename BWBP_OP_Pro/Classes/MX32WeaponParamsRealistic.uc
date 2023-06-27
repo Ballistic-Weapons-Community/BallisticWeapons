@@ -147,7 +147,7 @@ defaultproperties
 		bMagPlusOne=True
 		SightingTime=0.55
 		DisplaceDurationMult=1.4
-        InventorySize=12
+        InventorySize=6
 		WeaponName="MX32 Guided Missile System"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'

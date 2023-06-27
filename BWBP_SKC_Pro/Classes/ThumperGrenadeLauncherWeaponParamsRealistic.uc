@@ -92,6 +92,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		MagAmmo=5
+		InventorySize=5
 		//ViewOffset=(X=30.000000,Y=15.000000,Z=-20.000000)
 		ViewPivot=(Pitch=600)
 		//SightOffset=(X=-30.000000,Y=-0.030000,Z=34.000000)

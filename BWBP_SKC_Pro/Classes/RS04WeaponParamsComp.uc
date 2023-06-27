@@ -115,6 +115,7 @@ defaultproperties
 		LayoutName="Default"
 		//Attachments
 		//Function
+		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
 		PlayerSpeedFactor=1
 		MagAmmo=10
         InventorySize=3

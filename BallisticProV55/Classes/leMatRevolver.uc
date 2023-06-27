@@ -573,6 +573,7 @@ defaultproperties
 	Shells(8)=(ShellName="Bullet9",BulletName="Slug9")
 	Shells(9)=(ShellName="shell",BulletName="shell")
 	LoadedChambers=9
+	DualReloadEmptyAnim="DualReload"
 	HandgunGroup=1
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000

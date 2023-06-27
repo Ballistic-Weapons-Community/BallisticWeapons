@@ -121,7 +121,7 @@ defaultproperties
 		SightOffset=(X=-4.00,Y=0.01,Z=1.10)
 		SightPivot=(Pitch=150)
 		//Function
-		InventorySize=4
+		InventorySize=5
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -148,7 +148,7 @@ defaultproperties
 		SightPivot=(Pitch=150)
 		SightOffset=(X=0.00,Y=0.01,Z=2.40)
 		//Function
-		InventorySize=4
+		InventorySize=5
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000

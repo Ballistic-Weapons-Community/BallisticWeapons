@@ -82,6 +82,7 @@ defaultproperties
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
+		ViewOffset=(X=0,Y=30,Z=-20)
 		DisplaceDurationMult=0.5
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.20000

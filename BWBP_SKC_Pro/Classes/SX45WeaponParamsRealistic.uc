@@ -153,7 +153,8 @@ defaultproperties
 		//Attachments
 		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
 		//Functions
-		InventorySize=6
+		ViewOffset=(X=8,Y=8,Z=-6)
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.130000
 		MagAmmo=15
@@ -175,7 +176,8 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
 		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
 		//Functions
-		InventorySize=6
+		ViewOffset=(X=8,Y=8,Z=-6)
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.130000
 		MagAmmo=15

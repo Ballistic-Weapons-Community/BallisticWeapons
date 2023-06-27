@@ -113,6 +113,8 @@ defaultproperties
         MagAmmo=6
         InventorySize=3
 		//SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
+		ViewOffset=(X=10,Y=22,Z=-16)
+		bDualBlocked=True
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)

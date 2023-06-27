@@ -163,6 +163,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=5
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-1.800000)
+		bDualMixing=true
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -189,6 +190,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=5
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-1.800000)
+		bDualMixing=true
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Rocket'
@@ -215,6 +217,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=5
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-1.800000)
+		bDualMixing=true
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Dart'

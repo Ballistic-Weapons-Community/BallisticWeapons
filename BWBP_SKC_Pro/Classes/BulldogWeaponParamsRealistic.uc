@@ -120,7 +120,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=0f)
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.750000
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=8
 		bMagPlusOne=True

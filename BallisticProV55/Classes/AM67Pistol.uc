@@ -400,6 +400,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	bNoCrosshairInScope=True
 	bShouldDualInLoadout=False
+	bUseDualReload=False
 	bShowChargingBar=True
 	bWT_Bullet=True
 }

@@ -117,6 +117,7 @@ defaultproperties
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
 		ViewOffset=(X=3.000000,Y=6.000000,Z=-4.000000)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

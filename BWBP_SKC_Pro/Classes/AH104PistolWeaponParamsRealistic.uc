@@ -122,7 +122,7 @@ defaultproperties
 		//SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
 		SightOffset=(X=-11.50000,Y=0,Z=2.030000)
 		//Function
-        InventorySize=8
+        InventorySize=5
 		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
@@ -147,7 +147,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=4,AIndex=-1,PIndex=-1)
 		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
 		//Function
-        InventorySize=8
+        InventorySize=5
 		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21

@@ -121,7 +121,7 @@ defaultproperties
 	 CurrentWeaponMode=0
 	 ParamsClasses(0)=Class'G28WeaponParamsComp'
 	 ParamsClasses(1)=Class'G28WeaponParamsClassic'
-	 ParamsClasses(2)=Class'G28WeaponParamsClassic'
+	 ParamsClasses(2)=Class'G28WeaponParamsRealistic'
      ParamsClasses(3)=Class'G28WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.G28PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.G28SecondaryFire'

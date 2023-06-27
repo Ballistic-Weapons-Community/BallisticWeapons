@@ -116,7 +116,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		//Function
-		InventorySize=11
+		InventorySize=6
 		MagAmmo=25
 		bMagPlusOne=True
 		SightMoveSpeedFactor=0.500000
@@ -146,7 +146,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
 		//Function
-		InventorySize=11
+		InventorySize=6
 		MagAmmo=25
 		bMagPlusOne=True
 		SightMoveSpeedFactor=0.500000

@@ -123,6 +123,7 @@ var() bool					bNeedCock;				//A true value means this gun is drawn with no roun
 // Pistol Dual Wielding
 //-----------------------------------------------------------------------------
 var() bool			        bDualBlocked;			//Prevent this weapon from being dual wielded.
+var() bool			        bDualMixing;			//Allow this gun to mix and match, used in classic handguns
 
 //-----------------------------------------------------------------------------
 // Firemodes

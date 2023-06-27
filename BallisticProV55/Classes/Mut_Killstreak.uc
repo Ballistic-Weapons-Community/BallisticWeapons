@@ -499,7 +499,7 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P, byte LayoutIn
 				}
 				newWeapon.GiveTo(P);
 			}
-			if (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).default.bShouldDualInLoadout)
+			if (BallisticHandgun(newWeapon) != None)/* && BallisticHandgun(newWeapon).default.bShouldDualInLoadout)*/
 			{
 				newWeapon = P.Spawn(newClass,,,P.Location);
 				if( newWeapon != None )

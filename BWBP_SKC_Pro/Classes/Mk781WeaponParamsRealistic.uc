@@ -202,7 +202,7 @@ defaultproperties
 		SightOffset=(X=-5.00,Y=0.08,Z=2.65)
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=9
@@ -233,7 +233,7 @@ defaultproperties
 		//Attachments
 		SightOffset=(X=4.20,Y=0.01,Z=6.97)
 		//Function
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=9

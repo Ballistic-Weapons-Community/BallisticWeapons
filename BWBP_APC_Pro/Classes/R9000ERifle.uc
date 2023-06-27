@@ -303,7 +303,8 @@ defaultproperties
      GunLength=80.000000
      ParamsClasses(0)=Class'R9000EWeaponParamsArena'
      ParamsClasses(1)=Class'R9000EWeaponParamsClassic'
-     ParamsClasses(2)=Class'R9000EWeaponParamsClassic'
+     ParamsClasses(2)=Class'R9000EWeaponParamsRealistic'
+     ParamsClasses(3)=Class'R9000EWeaponParamsRealistic'
      FireModeClass(0)=Class'BWBP_APC_Pro.R9000EPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      BringUpTime=0.500000

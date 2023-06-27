@@ -127,6 +127,7 @@ defaultproperties
 		MagAmmo=7
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
+		ViewOffset=(X=5.00,Y=10.00,Z=-6.00)
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
@@ -171,6 +172,7 @@ defaultproperties
 		MagAmmo=7
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
+		ViewOffset=(X=5.00,Y=10.00,Z=-6.00)
 		
         RecoilParams(0)=RecoilParams'ArenaRecoilParams_208'
         AimParams(0)=AimParams'ArenaAimParams_208'

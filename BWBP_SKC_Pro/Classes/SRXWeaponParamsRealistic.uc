@@ -196,7 +196,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
 		SightOffset=(X=0,Y=0,Z=2.60)
 		//Function
-		InventorySize=15
+		InventorySize=7
 		WeaponPrice=1400
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
@@ -229,7 +229,7 @@ defaultproperties
 		//SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
 		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		//Function
-		InventorySize=15
+		InventorySize=7
 		WeaponPrice=1400
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000

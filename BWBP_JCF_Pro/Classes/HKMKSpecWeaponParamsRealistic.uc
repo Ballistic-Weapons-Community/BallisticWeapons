@@ -115,7 +115,7 @@ defaultproperties
 		bDualBlocked=True
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=2
+		InventorySize=4
 		WeaponPrice=1000
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10

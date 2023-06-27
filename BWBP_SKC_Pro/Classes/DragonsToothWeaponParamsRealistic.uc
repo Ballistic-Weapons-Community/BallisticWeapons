@@ -110,7 +110,7 @@ defaultproperties
 		AllowedCamos(0)=0
 		//Stats
 		PlayerSpeedFactor=1.100000
-		InventorySize=10
+		InventorySize=2
 		WeaponPrice=20000
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
@@ -129,7 +129,7 @@ defaultproperties
 		AllowedCamos(0)=1
 		//Stats
 		PlayerSpeedFactor=1.100000
-		InventorySize=10
+		InventorySize=2
 		WeaponPrice=20000
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
@@ -148,7 +148,7 @@ defaultproperties
 		AllowedCamos(0)=2
 		//Stats
 		PlayerSpeedFactor=1.100000
-		InventorySize=10
+		InventorySize=2
 		WeaponPrice=20000
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
@@ -167,7 +167,7 @@ defaultproperties
 		AllowedCamos(0)=3
 		//Stats
 		PlayerSpeedFactor=1.100000
-		InventorySize=10
+		InventorySize=2
 		WeaponPrice=20000
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1

@@ -124,12 +124,13 @@ defaultproperties
 		LayoutName="Default"
 		//Attachments
 		//Function
-		InventorySize=5
+		InventorySize=2
 		WeaponPrice=700
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.110000
 		MagAmmo=10
 		bMagPlusOne=True
+		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
 		//SightOffset=(X=-20.000000,Y=-1.9500000,Z=17.000000)
 		SightPivot=(Roll=-256)
 		WeaponName="RS4 .45 Compact Handgun"

@@ -281,6 +281,9 @@ static function int GetSectionIndex(class<Inventory> Item)
 	if (class<BallisticWeapon>(Item) == None)
 		return SUB_SECTION_INDEX;
 
+	if (class'BallisticGameStyles'.static.GetReplicatedStyle() == class'GameStyle_Classic')
+		return MAIN_SECTION_INDEX;
+
     switch (class<BallisticWeapon>(Item).default.InventoryGroup)
     {
         case 0:
@@ -459,10 +462,12 @@ function SpawnInventoryItem(class<Inventory> InvClass, Pawn Other)
 function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon, int LayoutIndex, int CamoIndex)
 {
 	local Weapon newWeapon;
+	local byte GameStyleIndex;
 
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	newWeapon = Weapon(Other.FindInventoryType(WepClass));
 
-	if (newWeapon == None || (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).bShouldDualInLoadout))
+	if (newWeapon == None || (BallisticHandgun(newWeapon) != None && !BallisticHandgun(newWeapon).default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].bDualBlocked))/* && BallisticHandgun(newWeapon).bShouldDualInLoadout))*/
 	{
 		newWeapon = Other.Spawn(WepClass,,,Other.Location);
 	

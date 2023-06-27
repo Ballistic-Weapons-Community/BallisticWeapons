@@ -80,7 +80,7 @@ defaultproperties
  	    PlayerSpeedFactor=1.10
         DisplaceDurationMult=0.33
         MagAmmo=1
-        InventorySize=4
+        InventorySize=2
 		WeaponPrice=1500
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'

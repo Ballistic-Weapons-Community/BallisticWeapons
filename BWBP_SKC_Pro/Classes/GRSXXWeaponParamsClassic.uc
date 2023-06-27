@@ -210,6 +210,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=45
 		ViewOffset=(X=5.000000,Y=12.000000,Z=-11.000000)
+		bDualMixing=true
 		//SightOffset=(X=-15.000000,Y=0.000000,Z=6.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParamsSemi'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsAuto'

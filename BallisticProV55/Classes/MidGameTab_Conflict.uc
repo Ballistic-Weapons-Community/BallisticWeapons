@@ -455,12 +455,16 @@ function int CountExisting(string weapon_name)
 	return count;
 }
 
-function int GetMaxCount(class<BallisticWeapon> weapon)
+function int GetMaxCount(class<BallisticWeapon> weapon, int LayoutIndex)
 {
 	local int base_ammo, max_ammo;
+	local byte GameStyleIndex;
+	
+	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 
 	// may have 2 of any dual wieldable handgun
-	if (class<BallisticHandgun>(weapon) != None && class<BallisticHandgun>(weapon).default.bShouldDualInLoadout)
+	//if (class<BallisticHandgun>(weapon) != None && class<BallisticHandgun>(weapon).default.bShouldDualInLoadout)
+	if (class<BallisticHandgun>(weapon) != None && !weapon.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].bDualBlocked)
 		return 2;
 
 	// allow game styles to limit the maximum count of some weapons (used for grenades)
@@ -477,9 +481,9 @@ function int GetMaxCount(class<BallisticWeapon> weapon)
 	return Max(1, Ceil(float(max_ammo) / float(base_ammo)));
 }
 
-function bool MaxReached(class<BallisticWeapon> weapon, string class_name)
+function bool MaxReached(class<BallisticWeapon> weapon, string class_name, int LayoutIndex)
 {
-	return CountExisting(class_name) >= GetMaxCount(weapon);
+	return CountExisting(class_name) >= GetMaxCount(weapon, LayoutIndex);
 }
 
 function bool GroupPriorityOver(int inserting_group, int target_group)
@@ -572,7 +576,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 		return false;
 	}
 
-	if (MaxReached(WeaponClass, ClassName))
+	if (MaxReached(WeaponClass, ClassName, PassedLayoutIndex))
 	{
 		Log("MidGameTab_Conflict::AddInventory: Maximum count reached for "$ClassName);
 		return false;

@@ -151,7 +151,7 @@ defaultproperties
 		SightPivot=(Roll=11800)
 		SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
 		//Function
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.28
 		MagAmmo=12
@@ -179,7 +179,7 @@ defaultproperties
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=1f)
 		//Function
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.23
 		MagAmmo=12
@@ -207,7 +207,7 @@ defaultproperties
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=0f)
 		//Function
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.23
 		MagAmmo=12

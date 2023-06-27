@@ -121,7 +121,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.27
 		MagAmmo=9

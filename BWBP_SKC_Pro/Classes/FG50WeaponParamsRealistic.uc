@@ -173,7 +173,7 @@ defaultproperties
 		SightingTime=0.35
 		//Function
 		PlayerSpeedFactor=0.825000
-		InventorySize=8
+		InventorySize=9
 		MagAmmo=40
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		//ReloadAnimRate=0.900000
@@ -203,7 +203,7 @@ defaultproperties
 		SightingTime=0.35
 		//Function
 		PlayerSpeedFactor=0.825000
-		InventorySize=8
+		InventorySize=9
 		MagAmmo=40
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		//ReloadAnimRate=0.900000

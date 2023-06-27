@@ -113,4 +113,23 @@ defaultproperties
         AltFireParams(0)=FireParams'ArenaSecondaryFireParams';
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=LeMat_Engraved
+		Index=0
+		CamoName="Engraved"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LeMat_Rusted
+		Index=1
+		CamoName="Rusted"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Main1-Shine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Main2-Shine",Index=2,PIndex=1,AIndex=1)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'LeMat_Engraved'
+	Camos(1)=WeaponCamo'LeMat_Rusted'
 }

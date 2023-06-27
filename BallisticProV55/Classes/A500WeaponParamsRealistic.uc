@@ -104,7 +104,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=7
+		InventorySize=6
 		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)

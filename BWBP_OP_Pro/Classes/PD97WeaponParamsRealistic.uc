@@ -161,7 +161,7 @@ defaultproperties
 		//ViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=600
 		SightMoveSpeedFactor=1
 		SightingTime=0.20000
@@ -188,7 +188,7 @@ defaultproperties
 		//ViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=600
 		SightMoveSpeedFactor=1
 		SightingTime=0.20000
@@ -215,7 +215,7 @@ defaultproperties
 		//ViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=600
 		SightMoveSpeedFactor=1
 		SightingTime=0.20000

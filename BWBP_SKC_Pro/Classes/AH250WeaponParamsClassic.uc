@@ -154,11 +154,12 @@ defaultproperties
 		ZoomType=ZT_Irons
 		
 		//Function
-        InventorySize=5
+        InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
 		ViewOffset=(X=1.000000,Y=5.000000,Z=-2.000000)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -178,11 +179,12 @@ defaultproperties
 		SightOffset=(X=-11,Y=0,Z=2.78)
 		
 		//Function
-        InventorySize=5
+        InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
 		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -203,11 +205,12 @@ defaultproperties
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		
 		//Function
-		InventorySize=8
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=8
 		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_Compensated'
 		AimParams(0)=AimParams'ClassicAimParams_Compensated'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Compensated'

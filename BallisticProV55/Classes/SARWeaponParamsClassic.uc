@@ -166,7 +166,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		LayoutName="Standard Flash"
 		Weight=30
-		InventorySize=7
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=40

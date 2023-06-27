@@ -837,11 +837,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	bSlavePutDown=false;
 	bIsPendingHandGun = false;
 	
-	/*
+	
 	//in arena, we immediately pair matching pistols if the player has two
 	if (Level.TimeSeconds > CreationTime + 1)
 	{
-		if (OtherGun == None && PendingHandgun == None && !bDualBlocked && class'BCReplicationInfo'.static.IsArena())
+		if (OtherGun == None && PendingHandgun == None && !bDualBlocked && class'BallisticReplicationInfo'.static.IsArena())
 		{
 			if (LastSlave != None)
 				PendingHandgun = LastSlave;
@@ -862,7 +862,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			}
 		}
 	}
-	*/
+	
 	
 	if (PendingHandgun != None)
 	{
@@ -1269,7 +1269,7 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 	local BallisticHandgun Best;
     local Inventory Inv;
 	
-	if (class'BCReplicationInfo'.static.IsArenaOrTactical())
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 		return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
 	
 	if (IsMaster() && (!OtherGun.bDualMixing || !bDualMixing))
@@ -1315,7 +1315,7 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 	local bool bFoundOtherOne;
     local Inventory Inv;
 
-	if (class'BCReplicationInfo'.static.IsArenaOrTactical())
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 		return Super.NextWeapon(CurrentChoice, CurrentWeapon);
 	
 	if (IsMaster() && (!OtherGun.bDualMixing || !bDualMixing))

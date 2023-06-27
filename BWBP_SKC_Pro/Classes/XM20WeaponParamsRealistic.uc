@@ -137,7 +137,7 @@ defaultproperties
 		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=12
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=40
@@ -177,7 +177,7 @@ defaultproperties
 		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=12
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=40

@@ -158,7 +158,7 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=0.800000
-		InventorySize=8
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		ZoomType=ZT_Logarithmic
@@ -176,7 +176,7 @@ defaultproperties
 		Weight=10
 		
 		PlayerSpeedFactor=0.800000
-		InventorySize=8
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		ZoomType=ZT_Logarithmic

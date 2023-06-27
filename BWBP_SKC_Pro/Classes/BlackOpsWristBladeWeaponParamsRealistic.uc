@@ -79,7 +79,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.150000
 		MagAmmo=1
-		InventorySize=8
+        InventorySize=2
 		WeaponPrice=1000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

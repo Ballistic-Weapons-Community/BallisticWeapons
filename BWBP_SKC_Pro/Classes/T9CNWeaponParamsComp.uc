@@ -118,6 +118,7 @@ defaultproperties
         InventorySize=4
 		MagAmmo=18
 		SightPivot=(Pitch=128)
+		ViewOffset=(X=4.00,Y=7.00,Z=-6.00)
 		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
@@ -151,6 +152,7 @@ defaultproperties
         InventorySize=4
 		MagAmmo=18
 		SightPivot=(Pitch=128)
+		ViewOffset=(X=4.00,Y=7.00,Z=-6.00)
 		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

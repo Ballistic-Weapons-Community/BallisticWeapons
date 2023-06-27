@@ -189,7 +189,7 @@ defaultproperties
 		//SightOffset=(X=0.000000,Y=-6.450000,Z=24.000000)
 		
 		//Function
-		InventorySize=7
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
@@ -218,7 +218,7 @@ defaultproperties
 		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
 		
 		//Function
-		InventorySize=7
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		bNeedCock=True
@@ -247,7 +247,7 @@ defaultproperties
 		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
 		
 		//Function
-		InventorySize=7
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.180000
 		bNeedCock=True

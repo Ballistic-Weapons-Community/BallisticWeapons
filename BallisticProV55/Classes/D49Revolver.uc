@@ -457,7 +457,6 @@ defaultproperties
 	Shells(3)=(BulletName="Bullet5",ShellName="Shell5",NextShell=5)
 	Shells(4)=(BulletName="Bullet3",ShellName="Shell3",NextShell=1)
 	Shells(5)=(BulletName="Bullet6",ShellName="Shell6")
-	bShouldDualInLoadout=False
 	HandgunGroup=1
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
@@ -530,4 +529,6 @@ defaultproperties
 	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.D49.D49Shells-Shiney'
 	SightAnimScale=0.5
+	bShouldDualInLoadout=False
+	bUseDualReload=False
 }
