@@ -296,7 +296,7 @@ defaultproperties
 		CamoName="Tan"
 		Weight=15
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-Irons",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronsTan",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Green
