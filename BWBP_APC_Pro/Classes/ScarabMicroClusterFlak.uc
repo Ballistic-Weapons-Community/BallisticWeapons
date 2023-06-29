@@ -257,7 +257,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
+    WeaponClass=Class'BWBP_APC_Pro.ScarabGrenade'
 	bApplyParams=False
 	DetonateDelayRange=(Min=0.75,Max=1.250000)
 	DetonateOn=DT_ImpactTimed

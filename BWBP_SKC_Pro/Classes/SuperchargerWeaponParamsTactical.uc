@@ -89,9 +89,9 @@ defaultproperties
     Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams
         TraceRange=(Min=160.000000,Max=160.000000)
         Damage=35
-		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeChomped'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeChomped'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeChomped'
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
         HookStopFactor=1.500000
         HookPullForce=150.000000

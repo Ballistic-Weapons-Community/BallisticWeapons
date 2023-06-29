@@ -153,6 +153,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		LayoutName="HEDP Warhead"
+		Weight=10
+		
 		PlayerSpeedFactor=0.805000
 		PlayerJumpFactor=0.850000
 		InventorySize=10
@@ -170,7 +173,31 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Ice
+		LayoutName="CRYO Warhead"
+		Weight=10
+		
+		PlayerSpeedFactor=0.805000
+		PlayerJumpFactor=0.850000
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.400000
+		ZoomType=ZT_Logarithmic
+		MagAmmo=1
+		//ViewOffset=(X=9.000000,Y=9.500000,Z=-3.000000)
+		//SightOffset=(X=20.000000,Y=15.000000,Z=-10.000000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		WeaponName="S.M.A.T. 105mm Recoilless Rifle (CRYO)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Ice'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Ice'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=SMAT_Green

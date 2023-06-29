@@ -34,21 +34,21 @@ simulated event ModeDoFire()
 
     if (RailPower + 0.05 >= PowerLevel)
     {
-        	BallisticFireSound.Volume=0.7+RailPower*0.8;
-        	BallisticFireSound.Radius=(280.0+RailPower*350.0);
-        	super.ModeDoFire();
+		BallisticFireSound.Volume=0.7+RailPower*0.8;
+		BallisticFireSound.Radius=(280.0+RailPower*350.0);
+		super.ModeDoFire();
 
-        	SMATLauncher(BW).CoolRate = SMATLauncher(BW).default.CoolRate;
-        	Instigator.AmbientSound = BW.UsedAmbientSound;
+		SMATLauncher(BW).CoolRate = SMATLauncher(BW).default.CoolRate;
+		Instigator.AmbientSound = BW.UsedAmbientSound;
 
 	  	Super.DoFireEffect();
-	 	SMATLauncher(BW).Destroy();
 	 	if (level.Netmode == NM_DedicatedServer)
 		{
 	 		class'BallisticDamageType'.static.GenericHurt (Instigator, 200, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTSMATSuicide');
-	 		SMATLauncher(BW).Destroy();
        		super.ModeDoFire();
+			SMATLauncher(BW).Destroy();
 		}
+	 	SMATLauncher(BW).Destroy();
     }
     else
     {

@@ -71,7 +71,7 @@ defaultproperties
 		Chaos=0.150000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.300000	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.PD97.PD97-RocketFire',Volume=1.0)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Rocket
@@ -146,6 +146,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
 		LayoutName="Shotgun"
+		LayoutTags="shotgun"
 		Weight=30
 		//Visual
 		WeaponName="PD97 Shotgun Revolver"
@@ -177,6 +178,7 @@ defaultproperties
 		DisplaceDurationMult=0.5
 		MagAmmo=5
 		bDualBlocked=True
+		InitialWeaponMode=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Rocket'

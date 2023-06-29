@@ -4,22 +4,25 @@ var Pawn TazerHit, OldTazerHit;
 var PD97TazerEffect TazerEffect;
 var() class<BallisticShotgunFire>	FireClass;
 var bool	bShotgunMode;
+var bool	bOldShotgunMode;
+
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		TazerHit;
+		TazerHit, bShotgunMode;
 }
 
-simulated event PreBeginPlay()
+function InitFor(Inventory I)
 {
-	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+	Super.InitFor(I);
+	
+	if (PD97Bloodhound(I) != None && PD97Bloodhound(I).bShotgunMode)
 	{
-		bShotgunMode=true;
-		InstantMode=MU_Primary;
+		bShotgunMode=True;
 	}
 }
+
 //===========================================================================
 // PostNetReceive
 //
@@ -41,6 +44,11 @@ simulated function PostNetReceive()
 		}
 	}
 	
+	if (bShotgunMode != bOldShotgunMode)
+	{
+		bOldShotgunMode = bShotgunMode;
+		InstantMode=MU_Primary;
+	}
 	Super.PostNetReceive();
 }
 

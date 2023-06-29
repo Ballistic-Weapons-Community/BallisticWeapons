@@ -24,7 +24,7 @@ defaultproperties
         BotRefireRate=0.800000
         WarnTargetPct=0.400000	
 		Inaccuracy=(X=175,Y=175)
-        FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Pug.Pug-Fire',Volume=2.500000)
+        FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Pug.Pug-Fire',Volume=1.500000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

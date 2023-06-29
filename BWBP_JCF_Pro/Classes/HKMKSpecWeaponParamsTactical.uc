@@ -117,7 +117,7 @@ defaultproperties
 		bDualBlocked=True
 		SightPivot=(Pitch=-70)
 		SightOffset=(X=0.000000,Y=-4.300000,Z=11.600000)
-		ViewOffset=(X=-2.000000,Y=7.000000,Z=-11.000000)
+		//ViewOffset=(X=-2.000000,Y=7.000000,Z=-11.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

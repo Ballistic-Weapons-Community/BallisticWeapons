@@ -9,56 +9,6 @@
 //=============================================================================
 class VSKTranqRifle extends BallisticWeapon;
 
-var float		lastModeChangeTime;
-
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	//if (class'BallisticReplicationInfo'.static.IsArena())
-	//{
-	//	VSKPrimaryFire(FireMode[0]).bDOT = true;
-	//}
-	VSKPrimaryFire(FireMode[0]).SwitchScopedMode(CurrentWeaponMode);
-}
-/*replication
-{
-	reliable if (Role == ROLE_Authority)
-		ClientSwitchWeaponMode;
-}*/
-
-
-
-function ServerSwitchWeaponMode (byte newMode)
-{
-	if (CurrentWeaponMode > 0 && FireMode[0].IsFiring())
-		return;
-	super.ServerSwitchWeaponMode (newMode);
-	if (!Instigator.IsLocallyControlled())
-		VSKPrimaryFire(FireMode[0]).SwitchScopedMode(CurrentWeaponMode);
-	ClientSwitchWeaponMode (CurrentWeaponMode);
-}
-
-simulated function ClientSwitchWeaponMode (byte newMode)
-{
-	VSKPrimaryFire(FireMode[0]).SwitchScopedMode(newMode);
-}
-
-simulated event WeaponTick(float DT)
-{
-	super.WeaponTick(DT);
-		if (CurrentWeaponMode == 0)
-		{
-			FireMode[0].FireRate 	= 0.4;
-		}
-		else if (CurrentWeaponMode == 1)
-		{
-			FireMode[0].FireRate 	= 0.15;
-		}
-		else
-		{
-			FireMode[0].FireRate 	= BFireMode[0].default.FireRate;
-		}
-}
 
 // Secondary fire doesn't count for this weapon
 simulated function bool HasAmmo()

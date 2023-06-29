@@ -120,7 +120,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightPivot=(Pitch=-70)
-		ViewOffset=(X=-2.000000,Y=9.000000,Z=-10.000000)
+		//ViewOffset=(X=-2.000000,Y=9.000000,Z=-10.000000)
 		SightOffset=(X=-5.000000,Y=-4.300000,Z=11.600000)
 		WeaponName="LPS-8 Directed Energy Pistol"
 		ReloadAnimRate=1.000000

@@ -42,7 +42,7 @@ static simulated final function Initialize(BallisticWeapon BW)
 static simulated final function SetWeaponParams(BallisticWeapon BW)
 {
     BW.WeaponParams = default.Layouts[BW.LayoutIndex];
-	log("BW.CamoIndex is " $BW.CamoIndex);
+	//log("BW.CamoIndex is " $BW.CamoIndex);
 	if (BW.CamoIndex != 255)
 		BW.WeaponCamo = default.Camos[BW.CamoIndex];
     BW.OnWeaponParamsChanged();

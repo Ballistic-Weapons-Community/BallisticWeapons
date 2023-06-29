@@ -170,6 +170,7 @@ defaultproperties
 	WeaponClass=Class'BWBP_APC_Pro.SRKSubMachinegun'
 	ModeIndex=1
 	DetonateOn=DT_Impact
+	ArmedDetonateOn=DT_Impact
 	bNoInitialSpin=True
 	bAlignToVelocity=True
 	DetonateDelay=1.000000

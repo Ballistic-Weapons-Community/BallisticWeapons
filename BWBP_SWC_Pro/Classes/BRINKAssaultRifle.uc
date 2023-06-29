@@ -364,6 +364,11 @@ simulated event RenderOverlays (Canvas C)
 	NumpadYOffset1=(5+(MagAmmo/10)*49);
 	NumpadYOffset2=(5+(MagAmmo%10)*49);
 	
+	if (Instigator.IsLocallyControlled())
+	{
+		WeaponScreen.Revision++;
+	}
+	
 	Super.RenderOverlays(C);
 }
 

@@ -21,7 +21,7 @@ defaultproperties
 		Recoil=200.000000
 		Chaos=0.280000
 		BotRefireRate=0.750000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.MkFire_1',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.MkFire_1',Volume=1.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -107,7 +107,7 @@ defaultproperties
         InventorySize=2
 		SightPivot=(Pitch=-70)
 		SightOffset=(X=0.000000,Y=-4.300000,Z=11.600000)
-		ViewOffset=(X=-2.000000,Y=7.000000,Z=-11.000000)
+		//ViewOffset=(X=-2.000000,Y=7.000000,Z=-11.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

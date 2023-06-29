@@ -17,6 +17,7 @@ var(SX45) sound		AmplifierOnSound;			//
 var(SX45) sound		AmplifierOffSound;			//
 var(SX45) sound		AmplifierPowerOnSound;		// Electrical noises?
 var(SX45) sound		AmplifierPowerOffSound;		//
+var(SX45) sound		SlideReleaseSound;			//
 var(SX45) float		AmpCharge;					// Existing ampjuice
 var(SX45) float 	DrainRate;					// Rate that ampjuice leaks out
 var(SX45) bool		bShowCharge;				// Hides charge until the amp is on
@@ -212,6 +213,10 @@ simulated function Notify_AmplifierHide()
 simulated function Notify_ClipOutOfSight()
 {
 	SetBoneScale (1, 1.0, 'Bullet');
+}
+simulated function Notify_SlideRelease()
+{
+	PlaySound(SlideReleaseSound,,1.2);
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -520,7 +525,8 @@ defaultproperties
 	BringUpTime=0.700000
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-MagOut')
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-MagIn')
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit',Volume=0.6)
+	SlideReleaseSound=Sound'BWBP_SKC_Sounds.SX45.SX45-SlideRelease'
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Semi-Auto")
     WeaponModes(1)=(ModeName="Amplified: Cryogenic",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)

@@ -71,7 +71,7 @@ defaultproperties
 		Chaos=0.150000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.300000	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.PD97.PD97-RocketFire',Volume=1.0)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Rocket
@@ -153,6 +153,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		//Layout core
 		LayoutName="Shotgun"
+		LayoutTags="shotgun"
 		Weight=30
 		//Visual
 		WeaponName="PD97 .410 Shotgun Revolver"
@@ -196,7 +197,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		InitialWeaponMode=0
+		InitialWeaponMode=2
 		MagAmmo=5
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'

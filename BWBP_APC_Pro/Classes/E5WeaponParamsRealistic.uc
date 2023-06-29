@@ -168,7 +168,7 @@ defaultproperties
         InventorySize=5
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
-		SightOffset=(X=-10.000000,Y=-0.850000,Z=10.850000)
+		//SightOffset=(X=-10.000000,Y=-0.850000,Z=10.850000)
 		ViewOffset=(X=3.000000,Y=6.000000,Z=-8.500000)
 		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
@@ -202,8 +202,20 @@ defaultproperties
 		Weight=15
 	End Object
 	
-	Begin Object Class=WeaponCamo Name=E5_Rust
+	Begin Object Class=WeaponCamo Name=E5_SpecOps
 		Index=2
+		CamoName="Spec Ops"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5-MainBlack",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5-MiscBlack",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYPadding_Shine",Index=4,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=E5_Rust
+		Index=3
 		CamoName="Rust"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSWeapon_Shine",Index=1,AIndex=0,PIndex=0)
@@ -211,23 +223,23 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSPadding_Shine",Index=4,AIndex=2,PIndex=2)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
-		Weight=15
+		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=E5_UTC
-		Index=3
+		Index=4
 		CamoName="UTC"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.E5UTC-Main-Shine",Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.E5UTC-Main2-Shine",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5UTC-Main-Shine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5UTC-Main2-Shine",Index=2,AIndex=1,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.E5UTC-Padding-Shine",Index=4,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5UTC-Padding-Shine",Index=4,AIndex=2,PIndex=2)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=E5_Gold
-		Index=4
+		Index=5
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_AUWeapon_Shine",Index=1,AIndex=0,PIndex=0)
@@ -240,7 +252,8 @@ defaultproperties
 	
 	Camos(0)=WeaponCamo'E5_Gray'
 	Camos(1)=WeaponCamo'E5_Black'
-	Camos(2)=WeaponCamo'E5_Rust'
-	Camos(3)=WeaponCamo'E5_UTC'
-	Camos(4)=WeaponCamo'E5_Gold'
+	Camos(2)=WeaponCamo'E5_SpecOps'
+	Camos(3)=WeaponCamo'E5_Rust'
+	Camos(4)=WeaponCamo'E5_UTC'
+	Camos(5)=WeaponCamo'E5_Gold'
 }

@@ -15,13 +15,14 @@ var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for g
 var() class<BCTraceEmitter>	TracerClassAlt;		//Type of tracer to use for alt fire effects
 
 var() bool		bIsGauss;	//Switch tracers and impacts
+var() bool		bIsOldGauss;	//Switch tracers and impacts
 var() bool		bSilenced;
 var() bool		bOldSilenced;
 
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bSilenced;
+		bSilenced, bIsGauss;
 	//reliable if ( Role==ROLE_Authority )
 		//LaserRot;
 }
@@ -42,6 +43,14 @@ simulated event PostNetReceive()
 			SetBoneScale (0, 1.0, 'Silencer');
 		else
 			SetBoneScale (0, 0.0, 'Silencer');
+	}
+	if (bIsGauss != bIsOldGauss)
+	{
+		bIsOldGauss = bIsGauss;
+		if (bIsGauss)
+			SetBoneScale (1, 1.0, 'Reciever');
+		else
+			SetBoneScale (1, 0.0, 'Reciever');
 	}
 	Super.PostNetReceive();
 }
@@ -71,6 +80,8 @@ function InitFor(Inventory I)
 	{
 		bIsGauss=True;
 	}
+	else
+		SetBoneScale (1, 0.0, 'Reciever');
 }
 
 // Does all the effects for an instant-hit kind of fire.

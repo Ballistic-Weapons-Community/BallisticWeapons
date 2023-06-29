@@ -691,7 +691,7 @@ defaultproperties
 	InventoryGroup=0
 	GroupOffset=18
 	PickupClass=Class'BallisticProV55.FP9Pickup'
-	PlayerViewOffset=(X=15.000000,Y=-1.500000,Z=-9.000000)
+	PlayerViewOffset=(X=10.000000,Y=-1.500000,Z=-9.000000)
 	AttachmentClass=Class'BallisticProV55.FP9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_FP9Explosive'
 	IconCoords=(X2=127,Y2=31)

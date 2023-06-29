@@ -78,7 +78,7 @@ function ServerSwitchAmplifier(bool bNewValue)
 	}
 	
 	if (Role == ROLE_Authority)
-		SX45Attachment(ThirdPersonActor).SetAmped(bNewValue);
+		FMPAttachment(ThirdPersonActor).SetAmped(bNewValue);
 	
 	if (CurrentWeaponMode == 1 && AmpCharge > 0)	//explosive
 	{

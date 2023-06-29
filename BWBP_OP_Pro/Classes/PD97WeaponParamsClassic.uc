@@ -146,6 +146,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
 		LayoutName="Shotgun"
+		LayoutTags="shotgun"
 		Weight=30
 		//Visual
 		WeaponName="PD97 Shotgun Revolver"
@@ -159,7 +160,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-		InitialWeaponMode=2
+		InitialWeaponMode=0
 		bNeedCock=True
 		MagAmmo=5
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-1.800000)

@@ -90,11 +90,15 @@ simulated event ModeDoFire()
         if(BallisticTurret(Weapon.Owner) == None && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
-	if (!BW.bScopeView)
-		BW.AddFireChaos(FireChaos * InterpCurveEval(FireChaosCurve, BW.GetFireChaos()));
-    	
-	BW.LastFireTime = Level.TimeSeconds;
-
+	
+	
+	if (BW != None)
+	{
+		if (!BW.bScopeView)
+			BW.AddFireChaos(FireChaos * InterpCurveEval(FireChaosCurve, BW.GetFireChaos()));
+			
+		BW.LastFireTime = Level.TimeSeconds;
+	}
 
     // client
     if (Instigator.IsLocallyControlled())

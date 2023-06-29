@@ -1,7 +1,7 @@
 //=============================================================================
 // SMATGrenade.
 //
-// Grenade fired by SMAT Launcher.
+// Suicidal grenade that explodes immediately!!
 //
 // by SK
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -9,6 +9,7 @@
 class SMATGrenade extends BallisticGrenade;
 
 var   Rotator					VelocityDir;
+var bool bDestroyMe; //used to delay destruction until the clients replicate the proj
 
 simulated event PostBeginPlay()
 {
@@ -35,6 +36,51 @@ simulated function InitProjectile ()
     if (DetonateOn == DT_Timer)
         SetTimer(DetonateDelay, false);
     Super.InitProjectile();
+}
+simulated function Explode(vector HitLocation, vector HitNormal)
+{
+	local Actor A;
+	local Vector HitLoc, HitNorm, End;
+	
+	if (ShakeRadius > 0)
+		ShakeView(HitLocation);
+	BlowUp(HitLocation);
+	
+	End.Z = -DamageRadius;
+	
+	A = Trace(HitLoc, HitNorm, End, , False);
+
+    if (ImpactManager != None)
+	{
+		if (Instigator == None)
+			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Level.GetLocalPlayerController()/*.Pawn*/);
+		else
+			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Instigator);
+	}
+
+	if (bTearOnExplode && !bNetTemporary && Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
+	{
+		Velocity = vect(0,0,0);
+		SetCollision(false,false,false);
+		TearOffHitNormal = HitNormal;
+		bTearOff = true;
+		GotoState('NetTrapped');
+	}
+	else 
+	{
+		bDestroyMe=true;
+		SetTimer(1, false);
+	}
+}
+
+simulated event Timer()
+{
+	if (bDestroyMe)
+	{
+		Destroy();
+		return;
+	}
+	Explode(Location, vect(0,0,1));
 }
 
 defaultproperties

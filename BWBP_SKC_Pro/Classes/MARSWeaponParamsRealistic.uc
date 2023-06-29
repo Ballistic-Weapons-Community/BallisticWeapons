@@ -327,7 +327,7 @@ defaultproperties
 		CamoName="Olive Drab"
 		Weight=15
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainGreen",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-MainGreen",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Urban
@@ -335,7 +335,7 @@ defaultproperties
 		CamoName="Urban"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-MainSplitter",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-MainSplitter",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Arctic
@@ -343,7 +343,7 @@ defaultproperties
 		CamoName="Arctic"
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.MARS.F2000-IronArctic",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronArctic",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_Proto
@@ -351,7 +351,7 @@ defaultproperties
 		CamoName="Prototype"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronBlack",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronBlack",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MARS_LE
@@ -359,7 +359,7 @@ defaultproperties
 		CamoName="Limited Edition"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARS.F2000-IronWhite",Index=1,PIndex=1,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronWhite",Index=1,PIndex=1,AIndex=0)
 	End Object
 	
 	Camos(0)=WeaponCamo'MARS_Black' //Black

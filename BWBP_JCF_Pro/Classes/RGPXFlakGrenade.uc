@@ -108,6 +108,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			
 			Dir = Rotator(NewNormal);
 		
+			Dir.Yaw 	+= 65536 / (FlakCount - 1);
+			Dir.Pitch 	= -12386 - 2000;
+		
 			FlakProj[i] = RGPXFlakRocket(Spawn(FlakClass,,, Start, Dir));
 			FlakProj[i].Instigator = Instigator;
 			FlakProj[i].InitFlak(500);
@@ -134,7 +137,7 @@ defaultproperties
     DetonateDelay=1.000000
     ImpactDamage=40
     ImpactDamageType=Class'BWBP_JCF_Pro.DTRGPXBazooka'
-    ImpactManager=Class'BallisticProV55.IM_M50Grenade'
+    ImpactManager=Class'BWBP_JCF_Pro.IM_RPG'
     ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
     TrailClass=Class'BallisticProV55.M50GrenadeTrail'
     TrailOffset=(X=-8.000000)

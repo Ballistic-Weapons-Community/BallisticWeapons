@@ -13,38 +13,6 @@ var() sound		ScopedFireSound;
 var() sound		RegularFireSound;
 var() bool		bDOT;
 
-simulated function SwitchScopedMode (byte NewMode)
-{
-	if (NewMode == 0)
-	{
-		BallisticFireSound.Sound=ScopedFireSound;
-		FireRecoil=128;
-		Damage = 50;
-		FireChaos = 0.1;
-	}
-	
-	else if (NewMode == 1)
-	{
-		BallisticFireSound.Sound=RegularFireSound;
-		FireRecoil=88;
-		Damage = default.Damage;
-		FireChaos = 0.05;
-	}
-	else
-	{
-		BallisticFireSound.Sound=RegularFireSound;
-		FireRecoil=88;
-		Damage = default.Damage;
-		FireChaos = 0.05;
-	}
-	if (Weapon.bBerserk)
-		FireRate *= 0.75;
-	if ( Level.GRI.WeaponBerserk > 1.0 )
-	    FireRate /= Level.GRI.WeaponBerserk;
-
-	Load=AmmoPerFire;
-}
-
 simulated function IgniteActor(Actor A)
 {
 	local VSKActorPoison PF;

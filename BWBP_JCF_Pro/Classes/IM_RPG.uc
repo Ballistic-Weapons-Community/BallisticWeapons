@@ -1,12 +1,12 @@
 //=============================================================================
 // IM_RPG.
 //
-// ImpactManager subclass for small rpg rocketlets
+// ImpactManager subclass for RPG-7 Rockets
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IM_RGPX extends BCImpactManager;
+class IM_RPG extends BCImpactManager;
 
 var() float		SurfaceRange;
 var() float		MinFluidDepth;
@@ -27,8 +27,8 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 		if (ImpactDepth > MinFluidDepth)
 		{
 			if (bHitWater && ImpactDepth < SurfaceRange)
-				Spawn (Class'IE_WaterSurfaceBlast', Owner,, WLoc);
-			HitEffects[0]=Class'IE_UnderWaterExplosion';
+				Spawn (Class'BallisticProV55.IE_WaterSurfaceBlast', Owner,, WLoc);
+			HitEffects[0]=Class'BallisticProV55.IE_UnderWaterExplosion';
 			HitSounds[0]=SoundGroup'BW_Core_WeaponSound.Explosions.Explode-UW';
 		}
 	}
@@ -37,12 +37,12 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 
 defaultproperties
 {
-     SurfaceRange=256.000000
+     SurfaceRange=384.000000
      MinFluidDepth=128.000000
-     HitEffects(0)=Class'BWBP_JCF_Pro.IE_RGPXExplosion'
-     HitDecals(0)=Class'BWBP_JCF_Pro.AD_RGPXExplosion'
-     HitSounds(0)=SoundGroup'BW_Core_WeaponSound.MRL.MRL-Explode'
-     HitSoundVolume=0.900000
-     HitSoundRadius=386.000000
-     EffectBackOff=96.000000
+     HitEffects(0)=Class'BallisticProV55.IE_RocketExplosion'
+     HitDecals(0)=Class'BallisticProV55.AD_Explosion'
+     HitSounds(0)=Sound'BWBP_JCF_Sounds.RPG.RPGExplode'
+     HitSoundVolume=1.000000
+     HitSoundRadius=2048.000000
+     EffectBackOff=256.000000
 }

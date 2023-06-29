@@ -11,6 +11,7 @@ class Supercharger_Detonator extends BallisticGrenade;
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
 var   Rotator					VelocityDir;
+var bool bDestroyMe; //used to delay destruction until the clients replicate the proj
 
 simulated event PostBeginPlay()
 {
@@ -82,6 +83,55 @@ simulated function Penetrate(Actor Other, Vector HitLocation)
 {
 	AlreadyHit[AlreadyHit.length] = Other;
 }
+
+
+
+simulated function Explode(vector HitLocation, vector HitNormal)
+{
+	local Actor A;
+	local Vector HitLoc, HitNorm, End;
+	
+	if (ShakeRadius > 0)
+		ShakeView(HitLocation);
+	BlowUp(HitLocation);
+	
+	End.Z = -DamageRadius;
+	
+	A = Trace(HitLoc, HitNorm, End, , False);
+
+    if (ImpactManager != None)
+	{
+		if (Instigator == None)
+			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Level.GetLocalPlayerController()/*.Pawn*/);
+		else
+			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Instigator);
+	}
+
+	if (bTearOnExplode && !bNetTemporary && Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
+	{
+		Velocity = vect(0,0,0);
+		SetCollision(false,false,false);
+		TearOffHitNormal = HitNormal;
+		bTearOff = true;
+		GotoState('NetTrapped');
+	}
+	else 
+	{
+		bDestroyMe=true;
+		SetTimer(1, false);
+	}
+}
+
+simulated event Timer()
+{
+	if (bDestroyMe)
+	{
+		Destroy();
+		return;
+	}
+	Explode(Location, vect(0,0,1));
+}
+
 
 defaultproperties
 {

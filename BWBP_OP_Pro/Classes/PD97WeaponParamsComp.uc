@@ -41,7 +41,7 @@ defaultproperties
 		Chaos=0.150000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.300000	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.5,Radius=24)
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.PD97.PD97-RocketFire',Volume=1.0)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Rocket
@@ -139,6 +139,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		LayoutName="Shotgun"
+		LayoutTags="shotgun"
 		Weight=30
 		//Visual
 		WeaponName="PD97 Shotgun Revolver"
@@ -174,6 +175,7 @@ defaultproperties
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5
 		MagAmmo=5
+		InitialWeaponMode=2
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Rocket'

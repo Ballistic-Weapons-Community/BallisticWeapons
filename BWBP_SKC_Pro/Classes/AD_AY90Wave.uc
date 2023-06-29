@@ -7,5 +7,5 @@ class AD_AY90Wave extends AD_ImpactDecal
 defaultproperties
 {
      ProjTexture=Texture'BWBP_SKC_Tex.SkrithBow.AY90Scorch'
-     DrawScale=1.500000
+     //DrawScale=1.500000
 }

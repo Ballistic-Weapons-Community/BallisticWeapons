@@ -264,7 +264,7 @@ simulated function ApplyCamo()
 		return;
 	}
 
-	log(Name$"::ApplyCamo: Camo index "$CamoIndex);
+	//log(Name$"::ApplyCamo: Camo index "$CamoIndex);
 
 	WC = WeaponClass.static.GetParams().default.Camos[CamoIndex];
 	

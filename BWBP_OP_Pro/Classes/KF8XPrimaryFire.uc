@@ -32,6 +32,9 @@ function ServerPlayFiring()
 //Do the spread on the client side. Changes to animation selection to accommodate different ammo counts
 function PlayFiring()
 {
+	if (KF8XCrossbow(BW).bNeedRotate)
+		KF8XCrossbow(BW).RotateClip();
+	
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
 		
@@ -52,6 +55,8 @@ function PlayFiring()
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
 	CheckClipFinished();
+	
+	KF8XCrossbow(BW).bNeedRotate = true;
 }
 
 defaultproperties

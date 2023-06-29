@@ -19,6 +19,7 @@ class PD97Bloodhound extends BallisticHandgun;
 
 var PD97TazerEffect TazerEffect;
 var array<PD97DartControl> StruckTargets;
+var bool bShotgunMode; //Am I a shotgun? Are you??
 
 var rotator DrumRot;
 var byte DrumPos;
@@ -49,20 +50,21 @@ replication
 	    ClientAddProjectile, ClientRemoveProjectile;
 }
 
-
-simulated event PreBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PreBeginPlay();
-	/*if (class'BallisticReplicationInfo'.static.IsClassic())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bShotgunMode=false;
+	if (InStr(WeaponParams.LayoutTags, "shotgun") != -1)
 	{
-		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
-		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
+		bShotgunMode=true;
+		if ( ThirdPersonActor != None )
+		{
+			PD97Attachment(ThirdPersonActor).bShotgunMode=true;
+			PD97Attachment(ThirdPersonActor).InstantMode=MU_Primary;
+		}
 	}
-	else if (class'BallisticReplicationInfo'.static.IsRealism() || class'BallisticReplicationInfo'.static.IsTactical() )
-	{
-		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire';
-		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryFire';
-	}*/
 }
 
 simulated function Notify_DrumRotate ()
@@ -417,7 +419,10 @@ function ServerSetRocketTarget(vector Loc)
 
 simulated function vector GetRocketTarget()
 {
-	return LockedTarget.Location;
+	if (LockedTarget != None)
+		return LockedTarget.Location;
+	else
+		return vect(0,0,0);
 }
 
 // AI Stuff

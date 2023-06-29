@@ -118,7 +118,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=12
 		SightPivot=(Pitch=-70)
-		ViewOffset=(X=-2.000000,Y=9.000000,Z=-10.000000)
+		//ViewOffset=(X=-2.000000,Y=9.000000,Z=-10.000000)
 		SightOffset=(X=-5.000000,Y=-4.300000,Z=11.600000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

@@ -36,6 +36,7 @@ var() Name				ReloadAnim2;
 
 var() Name				MagBone;
 var() Rotator			MagBoneRotation;
+var bool bNeedRotate; //Used to ensure a rotation is called before the next shot
 
 struct RevInfo
 {
@@ -60,13 +61,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		
 	if (Anim == 'FireCycleRotate')
 	{
-		//65536 = 360 degrees
-		//each cock sets the mag bone rotation by 4 degrees depending on the MagAmmo
-		
-		MagBoneRotation.Roll = -4 * (8-MagAmmo) * (65536/360);
-		SetBoneRotation(MagBone, MagBoneRotation, 0, 1.0);
-		
-		RemoveArrow();
+		RotateClip();
 	}
 	if (ReloadState == RS_PreClipOut)
 	{
@@ -93,13 +88,17 @@ simulated function PlayReload()
 		SafePlayAnim(ReleaseStateAnim[MagAmmo-2], ReloadAnimRate, , 0, "RELOAD");
 }
 
-//hide the arrow that has been shot
-
-simulated function RemoveArrow()
+//rotate drum, notify that we've done so
+simulated function RotateClip()
 {
+	//65536 = 360 degrees
+	//each cock sets the mag bone rotation by 4 degrees depending on the MagAmmo
+	MagBoneRotation.Roll = -4 * (8-MagAmmo) * (65536/360);
+	SetBoneRotation(MagBone, MagBoneRotation, 0, 1.0);
+	//hide the arrow that has been shot
 	SetBoneScale(MagAmmo-1, 0.0, ArrowBones[MagAmmo-1].BoneName);
+	bNeedRotate=false;
 }
-
 simulated function RemoveGunArrow()
 {
 	SetBoneScale(9, 0.0, GunArrowBone);
