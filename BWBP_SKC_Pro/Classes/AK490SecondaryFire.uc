@@ -83,7 +83,7 @@ defaultproperties
      FireAnim="KnifeFire"
      FireForce="AssaultRifleAltFire"
      FireRate=0.650000
-     AmmoClass=Class'BallisticProV55.Ammo_XMK5Darts'
+     AmmoClass=Class'BWBP_SKC_Pro.Ammo_X8Knife'
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-8.000000)
      ShakeOffsetRate=(X=-1000.000000)

@@ -9,7 +9,6 @@
 class HVPCMk5PrimaryFire extends BallisticProProjectileFire;
 
 var float	StopFireTime;
-var	float	HeatPerShot;
 var byte	ProjectileCount;
 var float HipSpreadFactor;
 

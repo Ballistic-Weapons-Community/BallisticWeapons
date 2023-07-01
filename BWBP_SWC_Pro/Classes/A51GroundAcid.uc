@@ -1,5 +1,5 @@
 //=============================================================================
-// A500GroundAcid.
+// A51GroundAcid.
 //
 // A small patch of acid. This is an emitter, but it also does the server side
 // damage stuff. These will fall to the ground and stay wherever they land.
@@ -129,7 +129,7 @@ defaultproperties
 {
      BurnTime=6.000000
      Damage=15.000000
-     DamageType=Class'BallisticProV55.DTA500Pool'
+     DamageType=Class'BWBP_SWC_Pro.DTA51Pool'
      Begin Object Class=SpriteEmitter Name=SpriteEmitter12
          UseDirectionAs=PTDU_Up
          UseColorScale=True

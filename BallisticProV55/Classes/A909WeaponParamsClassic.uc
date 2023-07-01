@@ -106,23 +106,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Slice"
-		Weight=30
-		PlayerSpeedFactor=1.200000
-		InventorySize=2
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=1
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-B
-		LayoutName="Dice"
-		Weight=20
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=1)
 		PlayerSpeedFactor=1.200000
 		InventorySize=2
 		SightMoveSpeedFactor=0.500000
@@ -134,6 +117,22 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-B'
 
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=A909_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=A909_Blue
+		Index=1
+		CamoName="Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'A909_Green'
+	Camos(1)=WeaponCamo'A909_Blue'
 }

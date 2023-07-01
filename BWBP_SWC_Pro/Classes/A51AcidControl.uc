@@ -1,7 +1,7 @@
 //=============================================================================
-// A500AcidControl.
+// A51AcidControl.
 //
-// This is spawned when an A500 acid blob explodes. It damages players, and plays
+// This is spawned when an A51 nade explodes. It damages players, and plays
 // sounds and effects...
 //
 // by Logan "BlackEagle" Richert.

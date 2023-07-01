@@ -31,6 +31,8 @@ struct GunAugment
 	var() class<BallisticGunAugment>	GunAugmentClass;		//The RDS, Suppressor, Bayonet actor.
 	var()	Name	BoneName;
 	var()	float	Scale;
+	var()	vector 	AugmentOffset;
+	var()	rotator	AugmentRot;
 };
 
 struct WeaponModeType							// All the settings for a weapon firing mode

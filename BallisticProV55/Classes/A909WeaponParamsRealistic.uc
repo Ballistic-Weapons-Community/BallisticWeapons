@@ -117,5 +117,21 @@ defaultproperties
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 
-
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=A909_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=A909_Blue
+		Index=1
+		CamoName="Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'A909_Green'
+	Camos(1)=WeaponCamo'A909_Blue'
 }

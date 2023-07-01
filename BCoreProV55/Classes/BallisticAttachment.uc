@@ -258,6 +258,11 @@ simulated function ApplyCamo()
 		return;
 	}
 
+	if (CamoIndex == 255) //no camo, abort load
+	{
+		return;
+	}
+
 	if (CamoIndex >= WeaponClass.static.GetParams().default.Camos.Length)
 	{
 		log(Name$"::ApplyCamo: Camo index out of range: got "$CamoIndex$", length "$WeaponClass.static.GetParams().default.Camos.Length);

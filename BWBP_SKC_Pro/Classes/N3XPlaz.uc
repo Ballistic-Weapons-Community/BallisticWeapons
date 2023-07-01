@@ -7,7 +7,10 @@
 //
 // by Casey "Xavious" Johnson
 //==============================================================================
-class N3XPlaz extends BallisticMeleeWeapon;
+class N3XPlaz extends BallisticMeleeWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 var bool					bOverheat;
 var() Sound					OverHeatSound;		//For vents

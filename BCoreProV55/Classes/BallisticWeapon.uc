@@ -938,6 +938,10 @@ simulated function OnWeaponParamsChanged()
 		GunAugments[i] = Spawn(WeaponParams.GunAugments[i].GunAugmentClass);
 		GunAugments[i].SetDrawScale(WeaponParams.GunAugments[i].Scale);
 		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
+		if (WeaponParams.GunAugments[i].AugmentOffset != vect(0,0,0))
+			GunAugments[i].SetRelativeLocation(WeaponParams.GunAugments[i].AugmentOffset);
+		if (WeaponParams.GunAugments[i].AugmentRot != rot(0,0,0))
+			GunAugments[i].SetRelativeRotation(WeaponParams.GunAugments[i].AugmentRot);
 	}
 	
 	//log("Camo Index is "$CamoIndex);

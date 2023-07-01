@@ -27,6 +27,7 @@ defaultproperties
 		Chaos=0.150000
 		Inaccuracy=(X=256,Y=256)
 		WarnTargetPct=0.200000	
+		Heat=4.5
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Triple
@@ -60,6 +61,7 @@ defaultproperties
 		Chaos=0.150000
 		Inaccuracy=(X=256,Y=256)
 		WarnTargetPct=0.200000	
+		Heat=1.5
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParamsSingle

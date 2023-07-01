@@ -1034,11 +1034,11 @@ defaultproperties
     bAllowedAsLast=True
     OnKeyEvent=BallisticOutfittingMenu.InternalOnKeyEvent
 
-    SavedLoadouts(0)=(PresetName="TERRAN",Weapons[0]="BallisticProV55.X3Knife",Weapons[1]="BallisticProV55.M806Pistol",Weapons[2]="BallisticProV55.M50AssaultRifle",Weapons[3]="BallisticProV55.M763Shotgun",Weapons[4]="BallisticProV55.NRP57Grenade")
-    SavedLoadouts(1)=(PresetName="SKRITH",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-    SavedLoadouts(2)=(PresetName="DEFAULT3",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-    SavedLoadouts(3)=(PresetName="DEFAULT4",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
-    SavedLoadouts(4)=(PresetName="DEFAULT5",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBPRecolors3Pro.A49SkrithBlaster",Weapons[4]="BWBPRecolors3Pro.G28Grenade")
+    SavedLoadouts(0)=(PresetName="Terran",Weapons[0]="BallisticProV55.X3Knife",Weapons[1]="BallisticProV55.M806Pistol",Weapons[2]="BallisticProV55.M50AssaultRifle",Weapons[3]="BallisticProV55.M763Shotgun",Weapons[4]="BallisticProV55.NRP57Grenade")
+    SavedLoadouts(1)=(PresetName="Skrith",Weapons[0]="BallisticProV55.A909SkrithBlades",Weapons[1]="BallisticProV55.A42SkrithPistol",Weapons[2]="BallisticProV55.A73SkrithRifle",Weapons[3]="BWBP_SKC_Pro.AY90SkrithBoltcaster",Weapons[4]="BWBP_SWC_Pro.A51Grenade")
+    SavedLoadouts(2)=(PresetName="Insurgent",Weapons[0]="BWBP_SKC_Pro.X8Knife",Weapons[1]="BallisticProV55.MRT6Shotgun",Weapons[2]="BallisticProV55.G5Bazooka",Weapons[3]="BWBP_SKC_Pro.AK490BattleRifle",Weapons[4]="BallisticProV55.BX5Mine")
+    SavedLoadouts(3)=(PresetName="Support",Weapons[0]="BWBP_OP_Pro.BallisticShieldWeapon",Weapons[1]="BallisticProV55.D49Revolver",Weapons[2]="BallisticProV55.M353Machinegun",Weapons[3]="BallisticProV55.BOGPPistol",Weapons[4]="BWBP_OP_Pro.L8GIAmmoPack")
+    SavedLoadouts(4)=(PresetName="Assassin",Weapons[0]="BWBP_SKC_Pro.DragonsToothSword",Weapons[1]="BallisticProV55.RS8Pistol",Weapons[2]="BWBP_SKC_Pro.X82Rifle",Weapons[3]="BallisticProV55.XK2SubMachinegun",Weapons[4]="BWBP_SKC_Pro.XM84Flashbang")
     QuickListText="QuickList"
     ReceivingText(0)="Receiving..."
     ReceivingText(1)="Loading..."

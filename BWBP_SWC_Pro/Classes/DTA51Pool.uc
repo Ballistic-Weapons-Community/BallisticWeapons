@@ -1,7 +1,7 @@
 //=============================================================================
-// DTA500Pool.
+// DTA51Pool.
 //
-// Damage type for the A500 Acid Pool.
+// Damage type for the A51 Acid Pool.
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
