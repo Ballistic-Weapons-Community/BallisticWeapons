@@ -92,7 +92,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	local float Dist;
 	local bool bThisShot;
 	
-	log("When firing: bGauss = "$ bGauss);
+	//log("When firing: bGauss = "$ bGauss);
 
 	if (class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;

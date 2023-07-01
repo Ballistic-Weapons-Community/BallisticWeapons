@@ -390,7 +390,7 @@ defaultproperties
 	SightPivot=(Pitch=256)
 	AIRating=0.8
 	CurrentRating=0.8
-	SightZoomFactor=0.85
+	SightZoomFactor=1.200000
 	ParamsClasses(0)=Class'MDKWeaponParamsArena'
 	ParamsClasses(1)=Class'MDKWeaponParamsClassic'
 	ParamsClasses(2)=Class'MDKWeaponParamsRealistic'

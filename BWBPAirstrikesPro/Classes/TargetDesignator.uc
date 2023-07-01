@@ -418,7 +418,7 @@ defaultproperties
     EffectOffset=(X=100.000000,Y=25.000000,Z=-3.000000)
     Priority=15
     HudColor=(G=200)
-    SmallViewOffset=(X=100.000000,Y=22.000000,Z=-32.500000)
+    SmallViewOffset=(X=22.000000,Y=20.150000,Z=-13.500000)
     CenteredOffsetY=-7.000000
     CenteredRoll=0
     CenteredYaw=-500
