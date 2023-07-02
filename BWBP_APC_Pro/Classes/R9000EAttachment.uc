@@ -135,6 +135,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
+	 WeaponClass=class'R9000ERifle'
 	 TracerClasses(0)=Class'BallisticProV55.TraceEmitter_Default'
      TracerClasses(1)=Class'BWBP_APC_Pro.TraceEmitter_R9000Incendiary'
      TracerClasses(2)=Class'BWBP_APC_Pro.TraceEmitter_RAD'

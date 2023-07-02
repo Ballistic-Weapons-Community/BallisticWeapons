@@ -152,6 +152,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	 WeaponClass=class'PKMMachinegun'
      MuzzleFlashClass=Class'BWBP_APC_Pro.PKMFlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_MG'

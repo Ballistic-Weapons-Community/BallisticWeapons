@@ -157,6 +157,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
+	 WeaponClass=class'ZX98AssaultRifle'
 	 AltTracerClass=Class'BWBP_APC_Pro.TraceEmitter_ZX98Gauss'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

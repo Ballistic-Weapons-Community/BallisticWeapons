@@ -68,6 +68,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	 WeaponClass=class'MDKSubMachinegun'
      MuzzleFlashClass=Class'BWBP_SWC_Pro.MDKFlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SWC_Pro.MDKSilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

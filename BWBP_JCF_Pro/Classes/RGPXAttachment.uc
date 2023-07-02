@@ -96,6 +96,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	 WeaponClass=class'RGPXBazooka'
      RelativeRotation=(Pitch=32768)
 	 MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

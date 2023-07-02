@@ -212,6 +212,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	 WeaponClass=class'M7A3AssaultRifle'
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      FlashScale=2.000000

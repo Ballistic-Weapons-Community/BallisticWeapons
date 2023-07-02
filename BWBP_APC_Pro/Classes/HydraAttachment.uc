@@ -159,6 +159,7 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
+	 WeaponClass=class'HydraBazooka'
      BackBones(0)="backblast"
 	 BackBones(1)="backblast"
 	 BackBones(2)="backblast"

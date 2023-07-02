@@ -126,6 +126,7 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
+	WeaponClass=class'GASCPistol'
 	MuzzleFlashClass=Class'BWBP_APC_Pro.GASCFlashEmitter'
 	ImpactManager=Class'BallisticProV55.IM_IncendiaryHMGBullet'
 	MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

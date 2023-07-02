@@ -118,10 +118,11 @@ defaultproperties
 		//Function
 		PlayerJumpFactor=1
 		InventorySize=6
-		DisplaceDurationMult=1
+		DisplaceDurationMult=1         
 		MagAmmo=34
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 		AltFireParams(1)=FireParams'ArenaSecondaryFireParams'
 		AltFireParams(2)=FireParams'ArenaSecondaryFireParamsOvercharge'

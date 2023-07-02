@@ -106,6 +106,7 @@ simulated event ThirdPersonEffects()
 
 defaultproperties
 {
+	 WeaponClass=class'HKMKSpecPistol'
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Bullet'

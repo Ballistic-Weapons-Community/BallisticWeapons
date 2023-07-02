@@ -219,6 +219,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	 WeaponClass=class'ProtoSMG'
 	 PhotonTracerClass=Class'BWBP_APC_Pro.TraceEmitter_ProtoPhoton'
      PhotonImpactManager=Class'BWBP_APC_Pro.IM_ProtoPhoton'
 	 PhotonMuzzleFlashClass=Class'BWBP_APC_Pro.ProtoPhotonFlashEmitter'

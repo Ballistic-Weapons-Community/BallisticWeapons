@@ -280,6 +280,7 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 
 defaultproperties
 {
+	 WeaponClass=class'A800SkrithMinigun'
      FireClass=Class'BWBP_SWC_Pro.A800MinigunPrimaryFire'
      MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'

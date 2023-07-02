@@ -133,6 +133,7 @@ function SPASUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
+	 WeaponClass=class'SPASShotgun'
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'
