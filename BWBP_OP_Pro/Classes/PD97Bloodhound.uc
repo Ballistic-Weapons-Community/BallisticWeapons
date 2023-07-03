@@ -112,7 +112,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 }
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
-{	
+{
+	
 	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
@@ -138,20 +139,43 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		}
 	}
 	
-	//Phase out Channel 1 if a sight fire animation has just ended.
+	if (Anim == ZoomInAnim)
+	{
+		SightingState = SS_Active;
+		ScopeUpAnimEnd();
+		return;
+	}
+	else if (Anim == ZoomOutAnim)
+	{
+		SightingState = SS_None;
+		ScopeDownAnimEnd();
+		return;
+	}
+
+	if (anim == FireMode[0].FireAnim || (FireMode[1] != None && anim == FireMode[1].FireAnim) )
+		bPreventReload=false;
+		
+	if (MeleeFireMode != None && anim == MeleeFireMode.FireAnim)
+	{
+		if (MeleeState == MS_StrikePending)
+			MeleeState = MS_Pending;
+		else MeleeState = MS_None;
+		ReloadState = RS_None;
+		if (Role == ROLE_Authority)
+			bServerReloading=False;
+		bPreventReload=false;
+	}
+		
+	//Phase out channels 1 and 2 if a sight fire animation has just ended.
 	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
 	{
 		AnimBlendParams(1, 0);
+		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
-			
-		if (anim == BFireMode[0].AimedFireAnim || !BFireMode[1].IsFiring())
-		{
-			bPreventReload=False;
-			if (anim == BFireMode[0].AimedFireAnim)
-				CycleDrum();
-		}
+		CycleDrum();
+		bPreventReload=False;
 	}
 
 	// Modified stuff from Engine.Weapon
@@ -161,12 +185,16 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);
         else if (FireMode[1]!=None && anim== FireMode[1].FireAnim && HasAnim(FireMode[1].FireEndAnim))
             SafePlayAnim(FireMode[1].FireEndAnim, FireMode[1].FireEndAnimRate, 0.0);
-        else if (!FireMode[1].IsFiring() && MeleeState < MS_Held)
+        else if (MeleeState < MS_Held)
 			bPreventReload=false;
-		if (Channel == 0 && (bNeedReload || !FireMode[0].bIsFiring) && MeleeState < MS_Held)
+		if (Channel == 0 && (bNeedReload || ((FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring))) && MeleeState < MS_Held)
 			PlayIdle();
     }
 	// End stuff from Engine.Weapon
+
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
+		return;
 
 	// Start Shovel ended, move on to Shovel loop
 	if (ReloadState == RS_StartShovel)
@@ -178,7 +206,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -214,8 +242,15 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	
 	if (ReloadState == RS_GearSwitch)
+	{
+		if (Role == ROLE_Authority)
+			bServerReloading=false;
 		ReloadState = RS_None;
+		PlayIdle();
+	}
 }
+
+
 
 simulated function Notify_DrumDown()
 {
