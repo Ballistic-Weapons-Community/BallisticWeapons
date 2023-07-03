@@ -208,6 +208,7 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
+     WeaponClass=Class'BallisticProV55.RSDarkStar'
      Health=50
      ImpactManager=Class'BallisticProV55.IM_RSDarkProjectile'
      bRandomStartRotation=False
