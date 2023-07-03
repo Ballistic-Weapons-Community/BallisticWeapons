@@ -135,18 +135,38 @@ defaultproperties
 		Weight=20
 	End Object
 	
-	Begin Object Class=WeaponCamo Name=LK05_BlueTiger //Credit TVoid
+	Begin Object Class=WeaponCamo Name=LK05_Jungle
 		Index=3
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecJungle",Index=3,AIndex=4,PIndex=7)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LK05_Winter
+		Index=4
+		CamoName="Winter"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecWinter",Index=3,AIndex=4,PIndex=7)
+		Weight=20
+	End Object
+	
+	/*Begin Object Class=WeaponCamo Name=LK05_BlueTiger //Credit TVoid
+		Index=5
 		CamoName="Blue Tiger"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecBlueCamo",Index=3,AIndex=4,PIndex=7)
 		Weight=3
-	End Object
+	End Object*/
 	
 	Begin Object Class=WeaponCamo Name=LK05_RedTiger
-		Index=4
+		Index=5
 		CamoName="Red Tiger"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecRedCamo",Index=3,AIndex=4,PIndex=7)
@@ -154,15 +174,17 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=LK05_Meat
-		Index=5
-		CamoName="MEAT (WIP)"
+		Index=6
+		CamoName="Meat"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1,AIndex=4,PIndex=7)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecMeat",Index=3,AIndex=4,PIndex=7)
 		Weight=3
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=LK05_Gold
-		Index=6
+		Index=7
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
@@ -174,8 +196,9 @@ defaultproperties
 	Camos(0)=WeaponCamo'LK05_Tan'
 	Camos(1)=WeaponCamo'LK05_Gray'
 	Camos(2)=WeaponCamo'LK05_Black'
-	Camos(3)=WeaponCamo'LK05_BlueTiger'
-	Camos(4)=WeaponCamo'LK05_RedTiger'
-	Camos(5)=WeaponCamo'LK05_Meat'
-	Camos(6)=WeaponCamo'LK05_Gold'
+	Camos(3)=WeaponCamo'LK05_Jungle'
+	Camos(4)=WeaponCamo'LK05_Winter'
+	Camos(5)=WeaponCamo'LK05_RedTiger'
+	Camos(6)=WeaponCamo'LK05_Meat'
+	Camos(7)=WeaponCamo'LK05_Gold'
 }

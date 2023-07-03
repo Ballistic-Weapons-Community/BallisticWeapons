@@ -33,6 +33,7 @@ replication
 simulated function PostNetBeginPlay()
 {
 	SetBoneScale (0, 0.0, 'AMP');
+	SetBoneRotation ('tip',AltTipRotation);
 	SetBoneRotation ('tip2',AltTipRotation);
 	Super.PostNetBeginPlay();
 }
