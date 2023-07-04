@@ -474,13 +474,16 @@ state NovaLightning
 			NovaStaff.SetTargetZap(Target, false);
 			
 			//Consumes soulpower or HP
-			if (RSNovaStaff(Weapon).SoulPower >= ModePowerDrain)
-				RSNovaStaff(Weapon).AddSoul(-ModePowerDrain);
-			else
+			if (!class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 			{
-				Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);
-				RSNovaStaff(Weapon).AddSoul(-5);
-				class'BallisticDamageType'.static.GenericHurt (Instigator, 100 * (ModePowerDrain - RSNovaStaff(Weapon).SoulPower), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
+				if (RSNovaStaff(Weapon).SoulPower >= ModePowerDrain)
+					RSNovaStaff(Weapon).AddSoul(-ModePowerDrain);
+				else
+				{
+					Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);
+					RSNovaStaff(Weapon).AddSoul(-5);
+					class'BallisticDamageType'.static.GenericHurt (Instigator, 100 * (ModePowerDrain - RSNovaStaff(Weapon).SoulPower), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
+				}
 			}
 		}
 	}

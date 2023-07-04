@@ -151,9 +151,9 @@ defaultproperties
 	ArmingSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-Fuse'
 	ImpactManager=Class'BWBP_SKC_Pro.IM_SkrithbowSticky'
 	StartDelay=0.300000
-	MyStuckDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith_BoltStuckExplode'
-	MyStuckRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90Skrith_BoltStuckExplodeRadius'
-	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
+	MyStuckDamageType=Class'BWBP_SWC_Pro.DTA800Skrith_BoltStuckExplode'
+	MyStuckRadiusDamageType=Class'BWBP_SWC_Pro.DTA800Skrith_BoltStuckExplodeRadius'
+	MyRadiusDamageType=Class'BWBP_SWC_Pro.DTA800SkrithRadius'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	ShakeRadius=1000.000000
 	MotionBlurRadius=384.000000
@@ -163,7 +163,7 @@ defaultproperties
 	Damage=150
 	DamageRadius=256.000000
 	DrawScale=0.500000
-	MyDamageType=Class'BWBP_SKC_Pro.DTAY90SkrithRadius'
+	MyDamageType=Class'BWBP_SWC_Pro.DTA800SkrithRadius'
 	StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
 	CullDistance=2500.000000
 	bNetTemporary=False

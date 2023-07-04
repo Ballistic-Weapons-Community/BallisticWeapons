@@ -14,7 +14,7 @@ var   actor					MuzzleFlashRed;			//The flash actor itself
 var() class<actor>			MuzzleFlashClassGreen;	//Effect to spawn fot mode 1 muzzle flash
 var   actor					MuzzleFlashGreen;		//The flash actor itself
 var   float					AmpFlashScale;			
-var   Rotator				AltTipRotation;
+var() name					AmpBone;			// Amp bone, crustybutthole
 
 var() array<Material> CamoMaterials; //We're using this for the amp
 
@@ -32,9 +32,7 @@ replication
 //Do your camo changes here
 simulated function PostNetBeginPlay()
 {
-	SetBoneScale (0, 0.0, 'AMP');
-	SetBoneRotation ('tip',AltTipRotation);
-	SetBoneRotation ('tip2',AltTipRotation);
+	SetBoneScale (0, 0.0, AmpBone);
 	Super.PostNetBeginPlay();
 }
 
@@ -44,9 +42,9 @@ simulated event PostNetReceive()
 	{
 		bOldAmped = bAmped;
 		if (bAmped)
-			SetBoneScale (0, 1.0, 'AMP');
+			SetBoneScale (0, 1.0, AmpBone);
 		else
-			SetBoneScale (0, 0.0, 'AMP');
+			SetBoneScale (0, 0.0, AmpBone);
 	}
 	if (bRedAmp != bOldRedAmp)	//explosive
 	{
@@ -74,9 +72,9 @@ simulated function SetAmped(bool bIsAmped)
 	bAmped = bIsAmped;
 	
 	if (bAmped)
-		SetBoneScale (0, 1.0, 'AMP');
+		SetBoneScale (0, 1.0, AmpBone);
 	else
-		SetBoneScale (0, 0.0, 'AMP');
+		SetBoneScale (0, 0.0, AmpBone);
 }
 
 simulated event ThirdPersonEffects()
@@ -84,9 +82,9 @@ simulated event ThirdPersonEffects()
     if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
 	{
 		if (bAmped)
-			SetBoneScale (0, 1.0, 'AMP');
+			SetBoneScale (0, 1.0, AmpBone);
 		else
-			SetBoneScale (0, 0.0, 'AMP');
+			SetBoneScale (0, 0.0, AmpBone);
     }
 	super.ThirdPersonEffects();
 }
@@ -278,10 +276,9 @@ defaultproperties
 	CamoMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
 	CamoMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 	CamoMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
-
+	AmpBone="SatansCrustyButthole"
 	AltFlashBone="tip2"
-	AltTipRotation=(Pitch=16384)
-	MuzzleFlashClass=Class'BWBP_SKC_Pro.FMPFlashEmitter'
+	MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 	ImpactManager=class'IM_Bullet'
 	
 	MuzzleFlashClassRed=Class'BWBP_SKC_Pro.SRXFlashEmitter'
@@ -307,7 +304,7 @@ defaultproperties
 	CockingAnim="Cock_RearPull"
 	bRapidFire=True
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.MP40_TPm'
-	RelativeRotation=(Yaw=32768,Roll=-16384)
 	RelativeLocation=(Z=7)
+	RelativeRotation=(Pitch=32768)
 	DrawScale=0.35000
 }
