@@ -14,6 +14,7 @@ defaultproperties
 	DeathStrings(1)="%o got stuck by %k's Wyvern and didn't even make it to the blast."
 	DeathStrings(2)="%k finished off a wounded %o, giving %km more meat for the Wyvern."
 	DeathStrings(3)="%k's Wyvern stuck %o where the sun doesn't shine."
+	DeathStrings(4)="%o's adventure was cut short by %k's explosive bolt to the knee."
     BloodManagerName="BallisticProV55.BloodMan_A73Burn"
 	SimpleKillString="AY90 Sticky Impact"
 	bIgniteFires=True
