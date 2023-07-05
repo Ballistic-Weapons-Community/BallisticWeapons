@@ -85,7 +85,7 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 defaultproperties
 {
 	WeaponClass=class'M75Railgun'
-	SpawnOffset=(X=-170.000000,Y=-15.000000,Z=13.000000)
+	SpawnOffset=(X=-120.000000,Y=-5.000000,Z=13.000000)
 	MuzzleFlashClass=class'M75FlashEmitter'
 	AltMuzzleFlashClass=class'M75FlashEmitter'
 	ImpactManager=class'IM_RailBullet'

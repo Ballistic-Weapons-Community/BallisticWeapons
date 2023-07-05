@@ -165,17 +165,20 @@ defaultproperties
 		//SightOffset=(X=5.000000,Y=0,Z=11.500000)
 		//SightPivot=(Pitch=-128)
 		SightPivot=(Pitch=128)
-		InitialWeaponMode=1
-		WeaponModes(0)=(bUnavailable=true,ModeName="Long-Range",bUnavailable=true,Value=0.500000)
-		WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(2)=(bUnavailable=true)
+		InitialWeaponMode=0
+		WeaponModes(0)=(ModeName="Single Fire",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(bUnavailable=true)
 		//ReloadAnimRate=1.300000
 		//CockAnimRate=1.100000
 		WeaponName="M763-CS 12ga Combat Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Slug'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Spray'
+		AltFireParams(1)=FireParams'RealisticSecondaryFireParams_Spray'
+		AltFireParams(2)=FireParams'RealisticSecondaryFireParams_Spray'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'

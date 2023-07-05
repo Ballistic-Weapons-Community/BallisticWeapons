@@ -109,11 +109,14 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
 		Weight=30
 		LayoutName="Red Dot Sight"
-		
+		//Visual
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
+		SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
+		//Stats
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -133,17 +136,18 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_NoDart
+		//Layout core
 		Weight=15
 		LayoutName="No Dart"
-		
+		//Visual
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
+		SightOffset=(X=1.0,Y=0.01,Z=-0.3)
+		//Stats
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=45
-		SightOffset=(X=1.0,Y=0.01,Z=-0.3)
-		SightPivot=(Pitch=200)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")

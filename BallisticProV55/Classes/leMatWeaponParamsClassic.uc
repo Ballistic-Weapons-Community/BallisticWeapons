@@ -144,34 +144,6 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams-Rust
-		LayoutName="Neglected"
-		Weight=10
-		
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Main1-Shine",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Main2-Shine",Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Ammo-Shine",Index=3)
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=9
-		//SightOffset=(X=-30.000000,Y=-0.550000,Z=12.300000)
-		//SightPivot=(Pitch=768,Roll=-1024)
-		SightPivot=(Pitch=512,Roll=-50)
-		bAdjustHands=true
-		RootAdjust=(Yaw=-350,Pitch=2500)
-		WristAdjust=(Yaw=-3000,Pitch=-0000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
-		ViewOffset=(X=-2,Y=10.00,Z=-8.5)
-		bDualMixing=true
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
 	Layouts(0)=WeaponParams'ClassicParams'
 	
 	//Camos =====================================
@@ -185,8 +157,8 @@ defaultproperties
 		Index=1
 		CamoName="Rusted"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Main1-Shine",Index=1,PIndex=0,AIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMattBR-Main2-Shine",Index=2,PIndex=1,AIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMattBR-Main1-Shine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMattBR-Main2-Shine",Index=2,PIndex=1,AIndex=1)
 		Weight=10
 	End Object
 	
@@ -194,25 +166,25 @@ defaultproperties
 		Index=2
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMat-MainBlack",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMat-MainBlack",Index=1,PIndex=0,AIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1,AIndex=1)
 		Weight=10
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=LeMat_Chrome
 		Index=3
-		CamoName="Black"
+		CamoName="Chrome"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMat-MainChromeShine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMat-MainChromeShine",Index=1,PIndex=0,AIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1,AIndex=1)
 		Weight=5
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=LeMat_Gold
 		Index=4
-		CamoName="Black"
+		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMatCamos.LeMat-MainGoldShine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMat-MainGoldShine",Index=1,PIndex=0,AIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1,AIndex=1)
 		Weight=1
 	End Object

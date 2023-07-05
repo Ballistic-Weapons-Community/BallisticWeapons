@@ -144,12 +144,13 @@ defaultproperties
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
 		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
+		SightPivot=(Pitch=0,Roll=0)
 		//Function
         SightingTime=0.350000
 		bNeedCock=True
         MagAmmo=25
         InventorySize=7
-        SightPivot=(Pitch=-300,Roll=0)
+        //SightPivot=(Pitch=-300,Roll=0)
         //SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)

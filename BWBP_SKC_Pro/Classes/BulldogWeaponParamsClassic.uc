@@ -45,7 +45,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=ClassicSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2000.000000
@@ -65,6 +65,13 @@ defaultproperties
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.03
+		DetonateDelay=0.03
+		UnarmedDetonateOn=DT_Impact
+		UnarmedPlayerImpactType=PIT_Detonate
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -181,7 +188,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-RS'
-	Layouts(2)=WeaponParams'ClassicParams-Wood'
+	//Layouts(1)=WeaponParams'ClassicParams-RS'
+	//Layouts(2)=WeaponParams'ClassicParams-Wood'
 
 }

@@ -15,7 +15,7 @@ defaultproperties
 	DeathStrings(2)="%o's limbs were exploded by %k's hyperblaster barrage."
 	DeathStrings(3)="%k's seeking hyperblaster bolts hunted down %o."
 	DeathStrings(4)="%k tagged a terrified %o with a sticky bomb barrage."
-	DeathStrings(5)="%o happily caught several of $k's hyperblaster bombs."
+	DeathStrings(5)="%o happily caught several of %k's hyperblaster bombs."
 	BloodManagerName="BallisticProV55.BloodMan_A73Burn"
 	SimpleKillString="A800 Sticky"
 	bIgniteFires=True

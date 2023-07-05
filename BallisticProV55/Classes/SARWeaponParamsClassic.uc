@@ -183,7 +183,7 @@ defaultproperties
 		AimParams(1)=AimParams'ClassicBurstAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

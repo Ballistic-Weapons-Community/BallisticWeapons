@@ -96,7 +96,19 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		//SightOffset=(X=20.000000,Z=24.700000)
+		//Layout core
+		LayoutName="M75 Scoped"
+		Weight=70
+		//Visual
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		// sniper 5-10x
+        ZoomType=ZT_Logarithmic
+		MinZoom=5
+		MaxZoom=10
+		ZoomStages=1
+		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
+		//Stats
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
@@ -105,16 +117,66 @@ defaultproperties
 		ScopeScale=0.6
         MagAmmo=5
         InventorySize=7
-		// sniper 5-10x
-        ZoomType=ZT_Logarithmic
-		MinZoom=5
-		MaxZoom=10
-		ZoomStages=1
-		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Prototype
+		//Layout core
+		LayoutName="X75 Prototype"
+		Weight=5
+		//Visual
+		AllowedCamos(0)=2
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
+		SightOffset=(X=15.000000,Z=0)
+		ZoomType=ZT_Irons
+		//Stats
+		DisplaceDurationMult=1.25
+		PlayerSpeedFactor=0.9
+        PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.50 //	
+        MagAmmo=5
+        InventorySize=7
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Prototype'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M75_Standard
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M75_Winter
+		Index=1
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Main-S1",Index=3,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Main-S2",Index=4,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Clip-D1",Index=2,AIndex=2,PIndex=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Scope-S2",Index=1,AIndex=3,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M75_Prototype
+		Index=2
+		CamoName="Prototype"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75_SKPart1_Shine",Index=3,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75_SKPart2_Shine",Index=4,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'M75_Standard'
+	Camos(1)=WeaponCamo'M75_Winter'
+	Camos(2)=WeaponCamo'M75_Prototype'
 }

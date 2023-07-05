@@ -60,7 +60,8 @@ defaultproperties
 		Recoil=2000.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
+		//FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Pitch=1.000000,Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPriControlledFireParams

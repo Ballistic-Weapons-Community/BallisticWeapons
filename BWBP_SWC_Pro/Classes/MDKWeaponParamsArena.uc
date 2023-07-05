@@ -64,12 +64,12 @@ defaultproperties
 		CockAnimRate=1.25
 		SightPivot=(Pitch=16)
 		SightOffset=(X=10.000000,Y=-0.050000,Z=41.000000)
-		ViewOffset=(X=25.000000,Y=11.000000,Z=-33.000000)
+		ViewOffset=(X=15.000000,Y=11.000000,Z=-33.000000)
 		DisplaceDurationMult=0.75
 		PlayerSpeedFactor=1.000000
 		MagAmmo=35
 		SightingTime=0.250000
-        InventorySize=12
+        InventorySize=4
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

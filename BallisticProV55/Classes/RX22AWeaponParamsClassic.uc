@@ -119,8 +119,6 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-BR
 		LayoutName="Fireballer"
 		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RX22ACamos.RX22ESkin",Index=1)
 		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
@@ -136,6 +134,23 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-BR'
+	//Layouts(1)=WeaponParams'ClassicParams-BR'
 	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=RX22A_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RX22A_Tan
+		Index=1
+		CamoName="Tan"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RX22ACamos.RX22ESkin",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'RX22A_Green'
+	Camos(1)=WeaponCamo'RX22A_Tan'
 }

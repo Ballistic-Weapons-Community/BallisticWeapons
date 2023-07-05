@@ -120,17 +120,15 @@ defaultproperties
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
 		SightOffset=(X=-1,Y=0.050000,Z=3.9)
+		SightPivot=(Pitch=0,Roll=0)
+        ZoomType=ZT_Logarithmic
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
         SightingTime=0.300000
 		MagAmmo=24
 		bMagPlusOne=True
-		//ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
 		ViewPivot=(Pitch=384)
-		//SightOffset=(X=0.000000,Z=11.3500000)
-		SightPivot=(Pitch=0,Roll=0)
-        ZoomType=ZT_Logarithmic
 		InitialWeaponMode=1
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
@@ -149,13 +147,14 @@ defaultproperties
 		//Attachments
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
 		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
+		SightPivot=(Pitch=0,Roll=0)
+        ZoomType=ZT_Irons
 		//Function
         SightingTime=0.210000
         MagAmmo=24
 		bMagPlusOne=True
 		InventorySize=7
 		WeaponPrice=2300
-        SightPivot=(Pitch=-300,Roll=0)
         //SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		//ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
 		InitialWeaponMode=1
@@ -168,8 +167,11 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
+	
+	Layouts(0)=WeaponParams'RealisticParams'
+    Layouts(1)=WeaponParams'RealisticRDSParams'
 		
-	//Camos
+	//Camos ====================================================
 	Begin Object Class=WeaponCamo Name=M46_Tan
 		Index=0
 		CamoName="Desert"
@@ -215,12 +217,8 @@ defaultproperties
 		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
 	End Object
 	
-	Layouts(0)=WeaponParams'RealisticParams'
-    Layouts(1)=WeaponParams'RealisticRDSParams'
 	Camos(0)=WeaponCamo'M46_Tan'
     Camos(1)=WeaponCamo'M46_Jungle'
     Camos(2)=WeaponCamo'M46_Blue'
     Camos(3)=WeaponCamo'M46_Black'
-
-
 }

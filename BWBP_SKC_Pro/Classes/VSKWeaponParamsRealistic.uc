@@ -90,11 +90,11 @@ defaultproperties
 		//ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
-		WeaponModes(0)=(ModeName="Bolt-Action",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Bolt-Action",bUnavailable=True)
-		WeaponModes(2)=(ModeName="Bolt-Action",bUnavailable=True)
-		WeaponModes(3)=(ModeName="Bolt-Action",bUnavailable=True)
-		WeaponModes(4)=(ModeName="Bolt-Action",bUnavailable=True)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Semi-Auto",bUnavailable=True)
+		WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True)
+		WeaponModes(3)=(ModeName="Semi-Auto",bUnavailable=True)
+		WeaponModes(4)=(ModeName="Semi-Auto",bUnavailable=True)
 		WeaponName="VSK-421 7mm Tranq Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

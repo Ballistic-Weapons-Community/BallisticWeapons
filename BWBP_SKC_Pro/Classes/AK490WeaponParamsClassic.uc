@@ -158,10 +158,39 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
 		FireParams(2)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_RedDot //Standard
+		//Layout core
+		Weight=10
+		LayoutName="Optic"
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.2,AugmentOffset=(x=-19,y=0,z=0),AugmentRot=(Pitch=0,Yaw=-16384,Roll=0))
+		//Function
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		bNeedCock=True
+		MagAmmo=20
+		//SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ViewOffset=(X=6.000000,Y=5.000000,Z=-4.000000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
     Layouts(0)=WeaponParams'ClassicParams'
+    //Layouts(1)=WeaponParams'ClassicParams_RedDot'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AK_Black

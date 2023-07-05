@@ -106,6 +106,7 @@ simulated function Arm()
 	if (UnarmedDetonateOn == DT_Disarm && bHasImpacted) //Don't arm if we hit a wall in disarm window
 	{
 		DestroyEffects();
+		Destroy();
 		return;
 	}
 	bArmed = true;

@@ -201,9 +201,10 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="GLIrons",Slot=52,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0.1f)
+		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="MuzzleAttachment",Slot=54,Scale=0f)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
-		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-25,y=0,z=-1.1),AugmentRot=(Pitch=0,Yaw=32768,Roll=32768))
 		//SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		//SightPivot=(Pitch=-800)
 		//Function
