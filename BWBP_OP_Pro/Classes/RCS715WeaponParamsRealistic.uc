@@ -16,6 +16,9 @@ defaultproperties
 		//Damage=20.0
 		TraceCount=8
 		Damage=16.5
+		DamageType=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_RCS715ShotgunHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
 		HeadMult=2.05
 		LimbMult=0.6
 		PenetrationEnergy=5.000000

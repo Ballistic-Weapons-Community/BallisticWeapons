@@ -93,14 +93,28 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Semi-Auto",bUnavailable=True)
 		WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True)
-		WeaponModes(3)=(ModeName="Semi-Auto",bUnavailable=True)
-		WeaponModes(4)=(ModeName="Semi-Auto",bUnavailable=True)
 		WeaponName="VSK-421 7mm Tranq Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=VSK_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VSK_UTC
+		Index=1
+		CamoName="UTC"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.VSKCamos.UTCVskShine",Index=1,PIndex=0,AIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'VSK_Gray'
+    Camos(1)=WeaponCamo'VSK_UTC'
 }

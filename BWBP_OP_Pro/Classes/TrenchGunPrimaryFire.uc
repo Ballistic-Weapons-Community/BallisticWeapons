@@ -36,12 +36,11 @@ var() Point2					ElectroInaccuracy, ElectroDoubleInaccuracy, ExplosiveInaccuracy
 // =============================================================================================================================
 simulated state Projectile
 {
-
 	simulated function ApplyFireEffectParams(FireEffectParams params)
 	{
 		local ProjectileEffectParams effect_params;
 
-		super.ApplyFireEffectParams(params);
+		super(BallisticFire).ApplyFireEffectParams(params);
 
 		effect_params = ProjectileEffectParams(params);
 
@@ -118,7 +117,7 @@ simulated state Projectile
 		SpawnProjectile(StartTrace, Aim);
 
 		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
-		Super.DoFireEffect();
+		Super(BallisticFire).DoFireEffect();
 	}
 
 	function SpawnProjectile (Vector Start, Rotator Dir)

@@ -109,6 +109,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'VSKWeaponParamsArena'
 	 ParamsClasses(1)=Class'VSKWeaponParamsClassic'
 	 ParamsClasses(2)=Class'VSKWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'VSKWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_VSKS'
      DrawScale=0.700000
 }

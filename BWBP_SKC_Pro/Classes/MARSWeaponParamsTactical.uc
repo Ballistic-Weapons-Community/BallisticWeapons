@@ -233,13 +233,12 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
-		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 		//Function
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
-		SightOffset=(X=6.50,Y=0.01,Z=0.8)
+		SightOffset=(X=6.50,Y=0.01,Z=3.8)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom
@@ -259,13 +258,12 @@ defaultproperties
 		LayoutTags="always_track_sensor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
-		//ViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 		//Function
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
-		SightOffset=(X=6.50,Y=0.01,Z=0.8)
+		SightOffset=(X=6.50,Y=0.01,Z=3.8)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom

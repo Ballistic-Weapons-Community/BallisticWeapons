@@ -190,5 +190,24 @@ defaultproperties
 	Layouts(0)=WeaponParams'ClassicParams'
 	//Layouts(1)=WeaponParams'ClassicParams-RS'
 	//Layouts(2)=WeaponParams'ClassicParams-Wood'
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=Bull_Red
+		Index=0
+		CamoName="Red"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Bull_Wood
+		Index=1
+		CamoName="Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BulldogCamos.PugDog-Shine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Bulldog.Bulldog-Scope',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.M575.M575_RDS_SH1',Index=3,AIndex=-1,PIndex=-1)
+		Weight=20
+	End Object
+	
+	Camos(0)=WeaponCamo'Bull_Red'
+	Camos(1)=WeaponCamo'Bull_Wood'
 }

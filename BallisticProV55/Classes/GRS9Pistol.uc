@@ -52,7 +52,7 @@ simulated function bool CanAlternate(int Mode)
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
-	if (GlowFX != None)
+	if (GlowFX != None && !class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		GRS9AmbientFX(GlowFX).SetReadyIndicator (FireMode[1]!=None && !FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo > 0);
 		if (FireMode[1]!=None && FireMode[1].IsFiring())

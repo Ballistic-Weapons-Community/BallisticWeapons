@@ -53,7 +53,7 @@ defaultproperties
      SurfaceRange=384.000000
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BallisticProV55.IE_RocketExplosion'
-     HitEffects(1)=Class'BallisticProV55.IE_HAMRExplosionDirt'
+     HitEffects(1)=Class'BallisticProV55.IE_RocketExplosion'
      HitEffects(2)=Class'BallisticProV55.IE_HAMRExplosionDirt'
      HitEffects(3)=Class'BallisticProV55.IE_RocketExplosion'
      HitEffects(4)=Class'BallisticProV55.IE_HAMRExplosionDirt'

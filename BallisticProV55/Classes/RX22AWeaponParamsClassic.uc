@@ -7,56 +7,54 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			//TraceRange=(Min=1800.000000,Max=1800.000000)
-			//WaterTraceRange=5000.0
-			//DecayRange=(Min=0.0,Max=0.0)
-			Speed=3000
-			MaxSpeed=3000
-			Damage=17.0
-			HeadMult=3.3
-			LimbMult=0.6
-			//PenetrateForce=50
-			//PDamageFactor=0.6
-			//WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=64.000000
-			Chaos=0.050000
-			Inaccuracy=(X=32,Y=32)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		//TraceRange=(Min=1800.000000,Max=1800.000000)
+		//WaterTraceRange=5000.0
+		//DecayRange=(Min=0.0,Max=0.0)
+		Speed=3000
+		MaxSpeed=3000
+		Damage=4.0
+		HeadMult=3.3
+		LimbMult=0.6
+		//PenetrateForce=50
+		//PDamageFactor=0.6
+		//WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=64.000000
+		Chaos=0.050000
+		Inaccuracy=(X=32,Y=32)
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.080000
-			BurstFireRateFactor=1.00
-			FireAnim="FireLoop"
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.080000
+		BurstFireRateFactor=1.00
+		FireAnim="FireLoop"
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=32.000000
+		Chaos=-1.0
+		Inaccuracy=(X=128,Y=128)
+		WarnTargetPct=0.200000
+		EffectString="Spray gas"
+	End Object
 	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=32.000000
-			Chaos=-1.0
-			Inaccuracy=(X=128,Y=128)
-			WarnTargetPct=0.200000
-            EffectString="Spray gas"
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.100000
-			BurstFireRateFactor=1.00
-			FireEndAnim=
-			FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.100000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

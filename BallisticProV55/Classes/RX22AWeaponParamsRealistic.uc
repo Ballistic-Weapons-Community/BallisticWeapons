@@ -7,6 +7,34 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
+		//TraceRange=(Min=1800.000000,Max=1800.000000)
+		//WaterTraceRange=5000.0
+		//DecayRange=(Min=0.0,Max=0.0)
+		Speed=3000
+		MaxSpeed=3000
+		Damage=20.0
+		HeadMult=3.3
+		LimbMult=0.6
+		//PenetrateForce=50
+		//PDamageFactor=0.6
+		//WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=64.000000
+		Chaos=0.050000
+		Inaccuracy=(X=96,Y=96)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		FireInterval=0.070000
+		BurstFireRateFactor=1.00
+		FireAnim="FireLoop"
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
 	// Azarael note:
 	// though the RX22A primary is defined as an instant fire,
 	// conceptually, it is not - it uses some convoluted handling in which
@@ -18,7 +46,7 @@ defaultproperties
 	// 
 	// I've fixed the issue further up in the core, where the mode would attempt to assign
 	// instant params and complain if none existed
-	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+	/*Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=500.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
@@ -40,7 +68,7 @@ defaultproperties
 		FireAnim="FireLoop"
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
-	End Object
+	End Object*/
 		
 	//=================================================================
 	// SECONDARY FIRE

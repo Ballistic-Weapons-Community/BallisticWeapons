@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Marksman Barrel
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_HeavyBarrel
 		TraceRange=(Min=11000.000000,Max=14000.000000)
 		WaterTraceRange=11200.0
@@ -19,10 +20,11 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		PenetrationEnergy=32.000000
+		PenetrateForce=150
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter_C'
-		FlashScaleFactor=0.900000
+		FlashScaleFactor=0.800000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=200.000000
 		Chaos=-1.0
@@ -36,7 +38,8 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_HeavyBarrel'
 	End Object
-		
+	
+	// Regular Barrel
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=10500.000000,Max=12500.000000)
 		WaterTraceRange=10000.0
@@ -54,8 +57,8 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter_C'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=96.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=220.000000
 		Chaos=-1.0
 		Inaccuracy=(X=32,Y=32)
 		WarnTargetPct=0.200000
@@ -193,10 +196,11 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams_HeavyBarrel
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.650000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=1.000000 
 		YawFactor=0.400000
 		XRandFactor=0.300000
 		YRandFactor=0.400000
-		MaxRecoil=3400
+		MaxRecoil=3200
 		ViewBindFactor=0.600000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.500000
@@ -204,17 +208,20 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.150000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		PitchFactor=4.000000
+		//XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
+		//YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.150000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.000000),(InVal=1.000000,OutVal=-0.300000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.150000),(InVal=0.600000,OutVal=0.200000),(InVal=0.800000,OutVal=0.300000),(InVal=1.000000,OutVal=0.400000)))
+		PitchFactor=1.500000 //
 		YawFactor=0.100000
-		XRandFactor=0.600000
-		YRandFactor=0.500000
-		MaxRecoil=7000
+		XRandFactor=0.350000 //
+		YRandFactor=0.500000 //
+		MinRandFactor=0.05
+		MaxRecoil=4800 //
 		DeclineTime=1.5
-		ViewBindFactor=0.500000
+		ViewBindFactor=0.500000 //
 		HipMultiplier=1.000000
-		CrouchMultiplier=0.800000
+		CrouchMultiplier=0.800000 //
 		bViewDecline=True
 	End Object
 
@@ -236,9 +243,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=16,Max=2560)
+		AimSpread=(Min=16,Max=2560) //
 		ADSMultiplier=0.700000
-		ViewBindFactor=0.300000
+		ViewBindFactor=0.300000 //
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		JumpChaos=0.350000
@@ -260,20 +267,17 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
 		ZoomType=ZT_Logarithmic
-		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		SightOffset=(X=6.50,Y=0.01,Z=3.8)
 		
 		//Function
 		InventorySize=6
 		bNeedCock=True
-		//BringUpTime=0.6
 		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
-		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-4.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
@@ -291,6 +295,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		
 		//Function
 		InventorySize=6
@@ -304,7 +309,7 @@ defaultproperties
 		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Smoke'
 	End Object
 	
@@ -317,6 +322,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 		ZoomType=ZT_Logarithmic
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		
 		//Function
 		InventorySize=6
@@ -330,7 +336,7 @@ defaultproperties
 		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Sensor'
 	End Object
 	
@@ -347,7 +353,6 @@ defaultproperties
 		ScopeViewTex=None
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4,PIndex=-1,AIndex=-1)
-		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		
 		//Function
 		InventorySize=6
@@ -360,7 +365,7 @@ defaultproperties
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
-		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-3.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -390,7 +395,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		WeaponName="MARS-3 CQB Assault Rifle"
-		ViewOffset=(X=3.000000,Y=7.000000,Z=-2.500000)
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-3.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

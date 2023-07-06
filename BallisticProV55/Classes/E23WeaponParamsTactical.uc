@@ -181,4 +181,22 @@ defaultproperties
         AltFireParams(0)=FireParams'TacticalLaserFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=VPR_Gray
+		Index=0
+		CamoName="Purple"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VPR_UTC
+		Index=1
+		CamoName="UTC"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.ViperCamos.UTCViperShine",Index=1,PIndex=0,AIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'VPR_Gray'
+    Camos(1)=WeaponCamo'VPR_UTC'
 }

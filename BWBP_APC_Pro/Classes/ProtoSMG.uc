@@ -617,6 +617,7 @@ defaultproperties
 	ParamsClasses(0)=Class'ProtoWeaponParams' 
 	ParamsClasses(1)=Class'ProtoWeaponParamsClassic' 
 	ParamsClasses(2)=Class'ProtoWeaponParamsRealistic' 
+	ParamsClasses(3)=Class'ProtoWeaponParamsTactical' 
 	//AmmoClass[0]=Class'BWBP_APC_Pro.Ammo_Proto'
 	//AmmoClass[1]=Class'BWBP_APC_Pro.Ammo_ProtoAlt'
 	FireModeClass(0)=Class'BWBP_APC_Pro.ProtoPrimaryFire'

@@ -324,6 +324,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'ZX98WeaponParamsArena'
 	 ParamsClasses(1)=Class'ZX98WeaponParamsClassic'
 	 ParamsClasses(2)=Class'ZX98WeaponParamsRealistic'
+	 ParamsClasses(3)=Class'ZX98WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_ZX98'
      DrawScale=0.200000
 }

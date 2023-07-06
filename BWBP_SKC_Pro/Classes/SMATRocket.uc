@@ -32,7 +32,7 @@ simulated event Tick(float DT)
 	local Rotator R;
 
 	R.Roll = Rotation.Roll;
-	SetRotation(Rotator(velocity)+R);
+	//SetRotation(Rotator(velocity)+R);
 }
 
 simulated function bool CanTouch(Actor Other)
@@ -147,13 +147,13 @@ defaultproperties
      Damage=600.000000
      DamageRadius=160.000000
      MomentumTransfer=400000.000000
-     WallPenetrationForce=256 // 600 was 12 metres of cover required to neutralize the effect, this is 5
+     WallPenetrationForce=600 // 600 was 12 metres of cover required to neutralize the effect, this is 5
 	 
      FlySound=Sound'BW_Core_WeaponSound.Artillery.Art-FlyBy'
      SoundVolume=192
      SoundRadius=256.000000
 	 
-     Physics=PHYS_Falling
+     Physics=PHYS_Projectile
      bFixedRotationDir=True
      bIgnoreTerminalVelocity=True
      RotationRate=(Roll=32768)

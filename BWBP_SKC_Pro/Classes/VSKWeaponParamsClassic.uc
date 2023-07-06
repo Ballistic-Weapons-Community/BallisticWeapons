@@ -117,26 +117,23 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireHeavyParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireStandardParams'
 	End Object
+	Layouts(0)=WeaponParams'ClassicParams'
 	
-	Begin Object Class=WeaponParams Name=ClassicParams-UTC
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.VSKCamos.UTCVskShine",Index=1)
-		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		//SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
-		//ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
-		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Smooth
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireHeavyParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireStandardParams'
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=VSK_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-UTC'
-
+	Begin Object Class=WeaponCamo Name=VSK_UTC
+		Index=1
+		CamoName="UTC"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.VSKCamos.UTCVskShine",Index=1,PIndex=0,AIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'VSK_Gray'
+    Camos(1)=WeaponCamo'VSK_UTC'
 }

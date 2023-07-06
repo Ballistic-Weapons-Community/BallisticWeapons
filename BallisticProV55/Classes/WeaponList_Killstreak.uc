@@ -20,4 +20,5 @@ defaultproperties
 	Streak2s(2)="BWBP_SKC_Pro.SMATLauncher"
 	Streak2s(3)="BWBP_SKC_Pro.LAWLauncher"
 	Streak2s(4)="BWBP_SKC_Pro.FLASHLauncher"
+	Streak2s(5)="BWBP_APC_Pro.HydraBazooka"
 }

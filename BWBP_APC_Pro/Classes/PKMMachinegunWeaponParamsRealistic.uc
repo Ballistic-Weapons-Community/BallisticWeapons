@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=2000.000000,Max=10000.000000) /7.62x54R long barrel RU
+		TraceRange=(Min=2000.000000,Max=10000.000000) //7.62x54R long barrel RU
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=60.0
@@ -26,7 +26,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_APC_Pro.PKMFlashEmitter'
 		FlashScaleFactor=1.400000
 		FireSound=(Sound=Sound'BWBP_CC_Sounds.RPK940.RPK-Fire',Volume=1.300000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=580.000000
+		Recoil=620.000000
 		Chaos=0.080000
 		Inaccuracy=(X=24,Y=24)
 		WarnTargetPct=0.200000
@@ -87,7 +87,7 @@ defaultproperties
 		YRandFactor=0.300000
 		MaxRecoil=2960.000000
 		DeclineTime=1.100000
-		DeclineDelay=0.140000;
+		DeclineDelay=0.140000
 		ViewBindFactor=0.350000
 		ADSViewBindFactor=0.350000
 		HipMultiplier=1.000000

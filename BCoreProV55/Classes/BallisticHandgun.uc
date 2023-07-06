@@ -1165,7 +1165,7 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 	//either find an identical pistol, or another best fit pistol
     for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
     {	
-		if ( Inv != self && !BallisticHandgun(Inv).bDualBlocked)
+		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked)
     	//if ( Inv != self && Inv.Class == Class) //ClassIsChildOf(Inv.class, class'BallisticHandgun') )
     	{
     		if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))

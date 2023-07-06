@@ -342,5 +342,6 @@ defaultproperties
 	 ParamsClasses(0)=Class'SRKSmgWeaponParamsArena'
      ParamsClasses(1)=Class'SRKSmgWeaponParamsClassic'
      ParamsClasses(2)=Class'SRKSmgWeaponParamsRealistic'
+     ParamsClasses(3)=Class'SRKSmgWeaponParamsTactical'
      DrawScale=0.300000
 }

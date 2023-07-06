@@ -193,22 +193,26 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
-     Health=20
-     DetonateDelay=2.000000
-     ImpactDamage=3
-     ImpactDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_G28Explode'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BWBP_SKC_Pro.G28Spray'
-     TrailOffset=(Z=8.000000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTG28Gas'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Damage=120.000000
-     DamageRadius=300.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
-     SoundVolume=192
-     SoundRadius=128.000000
+	ArmedDetonateOn=DT_Still
+	WeaponClass=Class'BWBP_SKC_Pro.G28Grenade'
+	DampenFactor=0.050000
+	DampenFactorParallel=0.350000
+	ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
+	Health=20
+	DetonateDelay=2.000000
+	ImpactDamage=3
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_G28Explode'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BWBP_SKC_Pro.G28Spray'
+	TrailOffset=(Z=8.000000)
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTG28Gas'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Damage=120.000000
+	DamageRadius=300.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
+	SoundVolume=192
+	SoundRadius=128.000000
 }

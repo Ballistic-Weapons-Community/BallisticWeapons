@@ -104,6 +104,22 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=VSK_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VSK_UTC
+		Index=1
+		CamoName="UTC"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.VSKCamos.UTCVskShine",Index=1,PIndex=0,AIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'VSK_Gray'
+    Camos(1)=WeaponCamo'VSK_UTC'
 }

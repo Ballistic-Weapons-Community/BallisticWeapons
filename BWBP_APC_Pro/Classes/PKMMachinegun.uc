@@ -385,6 +385,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'PKMMachinegunWeaponParamsArena'
 	 ParamsClasses(1)=Class'PKMMachinegunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'PKMMachinegunWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'PKMMachinegunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_PKMA'
      DrawScale=0.250000
 }

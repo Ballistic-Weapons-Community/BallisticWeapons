@@ -86,15 +86,14 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
 		SightPivot=(Roll=-1024)
      	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
-		SightingTime=0.45
 		ScopeScale=0.6
-		SightMoveSpeedFactor=0.35
         ZoomType=ZT_Logarithmic// sniper 4-8x
 		MinZoom=4
 		MaxZoom=8
 		ZoomStages=1
 		//Function
-		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
+		SightingTime=0.45
+		SightMoveSpeedFactor=0.35
 		MagAmmo=5
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -114,7 +113,6 @@ defaultproperties
 		SightPivot=(Pitch=-64)
 		SightOffset=(X=5.00,Y=0.00,Z=1.9)
 		//Function
-		//ViewOffset=(X=-1.000000,Y=8.000000,Z=-13.00000)
 		SightingTime=0.40
 		SightMoveSpeedFactor=0.45
 		MagAmmo=5

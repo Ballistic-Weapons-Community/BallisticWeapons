@@ -205,8 +205,31 @@ defaultproperties
 	End Object
 	*/
 	Layouts(0)=WeaponParams'ClassicParams'
-	//Layouts(1)=WeaponParams'ClassicParams-W'
-	//Layouts(2)=WeaponParams'ClassicParams-F'
-	//Layouts(3)=WeaponParams'ClassicParams-M'
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=BORT_Red
+		Index=0
+		CamoName="Red"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BORT_White
+		Index=1
+		CamoName="White"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BORT_Flame
+		Index=2
+		CamoName="Radical"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'BORT_Red'
+	Camos(1)=WeaponCamo'BORT_White'
+	Camos(2)=WeaponCamo'BORT_Flame'
 }

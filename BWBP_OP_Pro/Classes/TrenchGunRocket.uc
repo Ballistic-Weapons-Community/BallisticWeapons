@@ -34,6 +34,11 @@ simulated function PostNetBeginPlay()
 	else bBounce = False;
 }
 
+simulated function InitParams()
+{
+    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 2);
+}
+
 simulated function Timer()
 {
 	if(StartDelay > 0)

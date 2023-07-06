@@ -362,6 +362,7 @@ defaultproperties
 	ParamsClasses(0)=Class'FM13WeaponParamsArena'
 	ParamsClasses(1)=Class'FM13WeaponParamsClassic'
 	ParamsClasses(2)=Class'FM13WeaponParamsRealistic'
+	ParamsClasses(3)=Class'FM13WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_APC_Pro.FM13PrimaryFire'
 	FireModeClass(1)=Class'BWBP_APC_Pro.FM13SecondaryFire'
 	AIRating=0.750000

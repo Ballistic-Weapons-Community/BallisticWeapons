@@ -35,7 +35,7 @@ function SetTargetLocation()
 	if (bHasImpacted)
 		return;
 
-	if (Role == ROLE_Authority && Weapon.bLaserOn)
+	if (Role == ROLE_Authority && Weapon != None && Weapon.bLaserOn)
 		LastLoc = Weapon.GetRocketDir();
 
 	bSeeking=True;

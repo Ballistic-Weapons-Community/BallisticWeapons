@@ -122,6 +122,7 @@ defaultproperties
 		LayoutName="Iron Sights"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
+		SightOffset=(X=10.5,Y=0,Z=1.7)
 		ZoomType=ZT_Irons
 		//Function
 		SightingTime=0.35
@@ -140,13 +141,12 @@ defaultproperties
 		LayoutName="ACOG"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=1f)
-		//SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
-		SightPivot=(Pitch=64)
+		SightOffset=(X=0.000000,Y=0.00000,Z=3.700000)
 		ZoomType=ZT_Fixed
 		MaxZoom=3
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		//Function
-		SightingTime=0.35
+		SightingTime=0.4
         SightMoveSpeedFactor=0.6
 		MagAmmo=25
 		InventorySize=6

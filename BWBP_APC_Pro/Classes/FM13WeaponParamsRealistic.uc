@@ -12,7 +12,7 @@ defaultproperties
 		TraceCount=7
 		TracerClass=Class'BWBP_APC_Pro.TraceEmitter_ShotgunFlame'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
-		Damage=5
+		Damage=10
 		DamageType=Class'BWBP_APC_Pro.DTFM13Shotgun'
 		DamageTypeHead=Class'BWBP_APC_Pro.DTFM13ShotgunHead'
 		DamageTypeArm=Class'BWBP_APC_Pro.DTFM13Shotgun'

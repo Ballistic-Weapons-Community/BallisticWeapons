@@ -111,7 +111,7 @@ defaultproperties
 	// PRIMARY FIRE - FRAG-12
 	//=================================================================	
 		
-	Begin Object Class=ProjectileEffectParams Name=ClassicFragPrimaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=ClassicFragPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.TrenchGunRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2000.000000

@@ -80,6 +80,7 @@ defaultproperties
      ParamsClasses(0)=Class'ScarabWeaponParams'
      ParamsClasses(1)=Class'ScarabWeaponParamsClassic'
      ParamsClasses(2)=Class'ScarabWeaponParamsRealistic'
+     ParamsClasses(3)=Class'ScarabWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_APC_Pro.ScarabPrimaryFire'
      FireModeClass(1)=Class'BWBP_APC_Pro.ScarabSecondaryFire'
 	 

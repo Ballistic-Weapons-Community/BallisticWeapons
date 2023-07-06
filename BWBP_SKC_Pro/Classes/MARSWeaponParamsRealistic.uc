@@ -218,19 +218,15 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
-		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		//Function
 		InventorySize=6
 		WeaponPrice=2800
-		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		MagAmmo=30
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MARS-2 5.56mm Bullpup Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'RealisticAimParams_HeavyBarrel'
@@ -248,19 +244,16 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
-		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		SightOffset=(X=6.50,Y=0.01,Z=3.8)
 		//Function
 		InventorySize=6
 		WeaponPrice=2800
-		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		MagAmmo=30
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MARS-2 5.56mm Bullpup Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -285,16 +278,12 @@ defaultproperties
 		//Function
 		InventorySize=6
 		WeaponPrice=2800
-		//SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
-		//ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		MagAmmo=30
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MARS-3 5.56mm Bullpup Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

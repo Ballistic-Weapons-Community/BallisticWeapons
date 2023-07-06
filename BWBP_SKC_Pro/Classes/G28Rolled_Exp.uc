@@ -24,5 +24,5 @@ defaultproperties
      ModeIndex=1
 	 FireModeNum=1
      DampenFactor=0.400000
-     DampenFactorParallel=1.000000
+     DampenFactorParallel=0.350000
 }

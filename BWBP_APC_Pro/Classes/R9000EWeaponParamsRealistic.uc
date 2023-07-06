@@ -125,6 +125,7 @@ defaultproperties
 		//ViewOffset=(X=12.000000,Y=7.000000,Z=-14.000000)
 		bNeedCock=True
 		MagAmmo=6
+		bMagPlusOne=True
         InventorySize=7
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'

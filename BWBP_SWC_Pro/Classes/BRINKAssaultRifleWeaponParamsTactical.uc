@@ -128,6 +128,33 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'TacticalParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=BRINK_Blue
+		Index=0
+		CamoName="Blue"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BRINK_Jungle
+		Index=1
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BRINKCamos.BrinkMat1Shine",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.BRINKCamos.BrinkMat2Shine",Index=2,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BRINK_Winter
+		Index=2
+		CamoName="Winter"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BRINKCamos.SnowBrinkMat1Shine",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.BRINKCamos.SnowBrinkMat2Shine",Index=2,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'BRINK_Blue'
+	Camos(1)=WeaponCamo'BRINK_Jungle'
+	Camos(2)=WeaponCamo'BRINK_Winter'
 }

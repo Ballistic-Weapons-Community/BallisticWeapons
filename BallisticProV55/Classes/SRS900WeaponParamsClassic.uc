@@ -26,7 +26,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=130.000000
+		Recoil=180.000000
 		Chaos=0.015000
 		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
@@ -60,14 +60,14 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.650000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.650000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.400000
 		XRandFactor=0.200000
 		YRandFactor=0.200000
 		MaxRecoil=2048.000000
 		ViewBindFactor=0.500000
 		HipMultiplier=1.000000
-		CrouchMultiplier=0.300000
+		CrouchMultiplier=0.500000
 		bViewDecline=True
 	End Object
 
@@ -78,7 +78,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ClassicAimParams
 		AimSpread=(Min=16,Max=3072)
 		AimAdjustTime=0.650000
-		CrouchMultiplier=0.300000
+		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=0.400000
@@ -159,7 +159,7 @@ defaultproperties
 		SightOffset=(X=1.000000,Z=1.30000)
 		//Function
 		ZoomType=ZT_Irons
-		InventorySize=7
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20

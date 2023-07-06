@@ -159,7 +159,7 @@ defaultproperties
 		CamoName="Black"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlackShine",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlackShine",Index=1,PIndex=0,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MD24_Desert
@@ -167,7 +167,7 @@ defaultproperties
 		CamoName="Desert"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24DesertShine",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24DesertShine",Index=1,PIndex=0,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MD24_Blue
@@ -175,7 +175,7 @@ defaultproperties
 		CamoName="Blue"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlueShine",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlueShine",Index=1,PIndex=0,AIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=MD24_Red
@@ -183,7 +183,16 @@ defaultproperties
 		CamoName="Red"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24RedShine",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24RedShine",Index=1,PIndex=0,AIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MD24_Gold
+		Index=5
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24Gold-Main-Shine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24Gold-Clip-Shine",Index=2,PIndex=0,AIndex=0)
 	End Object
 	
 	Camos(0)=WeaponCamo'MD24_Green'
@@ -191,4 +200,5 @@ defaultproperties
     Camos(2)=WeaponCamo'MD24_Desert'
     Camos(3)=WeaponCamo'MD24_Blue'
     Camos(4)=WeaponCamo'MD24_Red'
+    Camos(5)=WeaponCamo'MD24_Gold'
 }

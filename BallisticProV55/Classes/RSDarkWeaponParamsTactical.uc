@@ -242,4 +242,31 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=DS_Crimson
+		Index=0
+		CamoName="Crimson"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=DS_Corrupt
+		Index=1
+		CamoName="Corrupt"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.DSCamos.DS_Weapon_S2",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=DS_BloodRed
+		Index=2
+		CamoName="Archdemon"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.DSCamos.DS_Weapon_S1",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'DS_Crimson'
+	Camos(1)=WeaponCamo'DS_Corrupt'
+	Camos(2)=WeaponCamo'DS_BloodRed'
 }
