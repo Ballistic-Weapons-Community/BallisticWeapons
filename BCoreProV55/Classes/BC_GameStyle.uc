@@ -28,6 +28,7 @@ var string				StyleName;
 var() config float		SwayScale;			    	// Scales weapon sway
 var() config float		RecoilScale;			    // Scales weapon recoil pattern (results in tighter pattern and lower apparent recoil)
 var() config float 		RecoilShotScale;			// Scales weapon recoil per shot (results in slower progress along the pattern)
+var() config float 		ReloadScale;				// Scales reload speed
 var() config float		DamageScale;				// Scales anti-player damage
 var() config float		VehicleDamageScale;			// Scales anti-vehicle damage
 
@@ -60,6 +61,7 @@ static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 	rep.VehicleDamageScale		= default.VehicleDamageScale;
 	rep.RecoilScale				= default.RecoilScale;
 	rep.RecoilShotScale			= default.RecoilShotScale;
+	rep.ReloadScale				= default.ReloadScale;
 	rep.MaxInventoryCapacity	= default.MaxInventoryCapacity;
 	rep.bKillstreaks			= default.bKillstreaks;
 	rep.PlayerWalkSpeedFactor	= default.PlayerWalkSpeedFactor;
@@ -79,6 +81,7 @@ defaultproperties
 	SwayScale=1.0f
 	RecoilScale=1.0f
 	RecoilShotScale=1.0f
+	ReloadScale=1.0f
 	DamageScale=1.0f
 	VehicleDamageScale=1.0f
 

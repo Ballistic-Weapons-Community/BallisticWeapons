@@ -382,7 +382,7 @@ defaultproperties
 	
 	bWT_RapidProj=True
 	bWT_Energy=True
-	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+	SpecialInfo(0)=(Info="60.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
 	CockAnim="Overheat"

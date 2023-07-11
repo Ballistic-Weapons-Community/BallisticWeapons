@@ -209,6 +209,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000 //+.1
 		bNeedCock=True
 		MagAmmo=10
 		//SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)

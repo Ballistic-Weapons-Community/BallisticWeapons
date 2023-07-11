@@ -345,7 +345,7 @@ defaultproperties
 	
 	bWT_Bullet=True
 	bWT_Heal=True
-	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
+	SpecialInfo(0)=(Info="320.0;15.0;1.0;110.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Pickup')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock',Radius=32.000000)

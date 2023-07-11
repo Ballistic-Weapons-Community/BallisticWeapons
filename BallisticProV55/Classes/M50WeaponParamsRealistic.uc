@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=45.0
-		HeadMult=2.266666
-		LimbMult=0.666666
+		HeadMult=2.25
+		LimbMult=0.65
 		DamageType=Class'BallisticProV55.DTM50Assault'
 		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
 		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
@@ -44,8 +44,8 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'BallisticProV55.M50GrenadeSafe'
+	Begin Object Class=GrenadeEffectParams Name=RealisticSecondaryEffectParams
+		ProjectileClass=Class'BallisticProV55.M50Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3600.000000
 		Damage=200.000000
@@ -64,6 +64,12 @@ defaultproperties
 		RecommendSplashDamage=True
 		BotRefireRate=1.250000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.25
+		UnarmedDetonateOn=DT_Disarm
+		UnarmedPlayerImpactType=PIT_Bounce
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -72,7 +78,7 @@ defaultproperties
 		PreFireAnim="GrenadePrepFire"
 		FireAnim="GrenadeFire"
 		PreFireAnimRate=1.500000	
-	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
+	FireEffectParams(0)=GrenadeEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================

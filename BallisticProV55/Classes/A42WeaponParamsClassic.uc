@@ -180,6 +180,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
 		MagAmmo=60
 		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightOffset=(X=-40,Y=-6.7,Z=17.5)
@@ -208,6 +209,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
 		MagAmmo=72
 		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightOffset=(X=-40,Y=-6.7,Z=17.5)

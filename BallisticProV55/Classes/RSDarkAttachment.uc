@@ -331,16 +331,16 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'RSDarkStar'
-     MuzzleFlashClass=class'RSDarkMuzzleFlame'
-     AltMuzzleFlashClass=class'RSDarkSlowMuzzleFlash'
-     ImpactManager=class'IM_DarkStarSaw'
-     WeaponLightTime=0.200000
-     BrassMode=MU_None
-     InstantMode=MU_Secondary
-     LightMode=MU_Both
-     ReloadAnim="Reload_MG"
-	 MeleeStrikeAnim="RifleHip_Burst"
-     ReloadAnimRate=1.700000
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.DarkStar_TPm'
+	MuzzleFlashClass=class'RSDarkMuzzleFlame'
+	AltMuzzleFlashClass=class'RSDarkSlowMuzzleFlash'
+	ImpactManager=class'IM_DarkStarSaw'
+	WeaponLightTime=0.200000
+	BrassMode=MU_None
+	InstantMode=MU_Secondary
+	LightMode=MU_Both
+	ReloadAnim="Reload_MG"
+	MeleeStrikeAnim="RifleHip_Burst"
+	ReloadAnimRate=1.700000
+	bRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.DarkStar_TPm'
 }

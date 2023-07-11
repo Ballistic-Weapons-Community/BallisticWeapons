@@ -80,7 +80,7 @@ defaultproperties
  	    
         DisplaceDurationMult=0.33
         MagAmmo=1
-        InventorySize=1
+        InventorySize=2
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

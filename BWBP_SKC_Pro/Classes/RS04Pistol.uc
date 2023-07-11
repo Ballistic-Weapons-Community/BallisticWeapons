@@ -278,7 +278,7 @@ defaultproperties
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_SKC_Tex.RS04.BigIcon_RS04'
      bWT_Bullet=True
-     SpecialInfo(0)=(Info="60.0;6.0;1.0;110.0;0.2;0.0;0.0")
+     SpecialInfo(0)=(Info="60.0;6.0;1.0;90.0;0.2;0.0;0.0")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-Draw')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	 bShouldDualInLoadout=True

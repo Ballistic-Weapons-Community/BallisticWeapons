@@ -13,8 +13,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=45.0
-		HeadMult=2.266666
-		LimbMult=0.666666
+		HeadMult=2.27
+		LimbMult=0.67
 		PenetrationEnergy=18.000000
 		PenetrateForce=55
 		bPenetrate=True

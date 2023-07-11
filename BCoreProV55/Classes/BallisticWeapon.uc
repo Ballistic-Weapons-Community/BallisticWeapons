@@ -833,6 +833,8 @@ simulated function OnWeaponParamsChanged()
 	
 	ReloadAnimRate 					= WeaponParams.ReloadAnimRate;
 	default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
+	ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
+	default.ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 	
 	CockAnimRate 					= WeaponParams.CockAnimRate;
 	default.CockAnimRate				= WeaponParams.CockAnimRate;

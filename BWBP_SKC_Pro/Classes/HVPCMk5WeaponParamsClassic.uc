@@ -193,6 +193,7 @@ defaultproperties
 		PlayerJumpFactor=0.700000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.65000
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		SightPivot=(Pitch=1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -215,6 +216,7 @@ defaultproperties
 		PlayerJumpFactor=0.700000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.65000
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -230,6 +232,7 @@ defaultproperties
 		PlayerJumpFactor=0.700000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.65000
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -251,6 +254,7 @@ defaultproperties
 		PlayerJumpFactor=0.700000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.65000
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

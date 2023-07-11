@@ -516,11 +516,11 @@ defaultproperties
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic .45 ACP Fire. Moderate damage and fire rate."
 	ManualLines(1)="Attach/Detach AMP. With a Choice of Radiation Bullets and Cryogenic Bullets"
-	ManualLines(2)="Torch Available on the Weapon Function"
-	SpecialInfo(0)=(Info="0.0;-5.0;-999.0;-1.0;0.0;-999.0;-999.0")
+	ManualLines(2)="Torch Available on the Weapon Function"	
+	SpecialInfo(0)=(Info="120.0;12.0;-999.0;35.0;0.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-Cock')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-Cock',Volume=1.6)
 	SelectAnimRate=1.500000
 	BringUpTime=0.700000
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-MagOut')

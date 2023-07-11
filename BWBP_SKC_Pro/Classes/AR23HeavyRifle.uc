@@ -300,7 +300,7 @@ defaultproperties
      bWT_Splash=True
      bWT_Machinegun=True
      bWT_Projectile=True
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
+     SpecialInfo(0)=(Info="240.0;30.0;0.9;80.0;1.3;1.3;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      MagAmmo=18

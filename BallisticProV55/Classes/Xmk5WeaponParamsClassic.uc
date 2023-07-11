@@ -119,6 +119,7 @@ defaultproperties
 		//Stats
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=45
 		//SightOffset=(X=1.000000,Z=17.750000)
@@ -146,6 +147,7 @@ defaultproperties
 		//Stats
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.230000
 		bNeedCock=True
 		MagAmmo=45
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)

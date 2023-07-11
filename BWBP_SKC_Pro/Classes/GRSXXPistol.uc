@@ -749,10 +749,10 @@ defaultproperties
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Glock_Gold.BigIcon_GoldGlock'
 	BigIconCoords=(Y1=30,Y2=230)
 	SightFXBone="SightBone"
-	ManualLines(0)="Automatic fire. Short ranged, but has higher DPS than most pistols. Recoil is moderate."
-	ManualLines(1)="Projects a laser beam. Has extremely low DPS, but consistent damage over range and recharges over time."
-	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing good damage. The GRS-9 is effective at close range."
-	SpecialInfo(0)=(Info="120.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
+	ManualLines(0)="Automatic amplified fire. Short ranged, but has extremely high DPS. Recoil is moderate."
+	ManualLines(1)="Projects a lethal laser beam. Does major damage and recharges over time."
+	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing high damage. The GRS-XX is effective at close/mid range."
+    SpecialInfo(0)=(Info="1200.0;65.0;4.0;150.0;2.0;2.0;1.0")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Glod.GRSXX-Select')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Cock',Volume=0.600000)

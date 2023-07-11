@@ -158,8 +158,9 @@ defaultproperties
 		Weight=30
 		
 		PlayerSpeedFactor=0.800000
-		InventorySize=11
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.65000
 		MagAmmo=1
 		ZoomType=ZT_Logarithmic
 		//ReloadAnimRate=1.000000
@@ -176,8 +177,9 @@ defaultproperties
 		Weight=10
 		
 		PlayerSpeedFactor=0.800000
-		InventorySize=11
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.65000
 		MagAmmo=1
 		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

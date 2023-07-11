@@ -82,6 +82,7 @@ defaultproperties
 		PlayerSpeedFactor=0.850000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.550000
 		bNeedCock=True
 		MagAmmo=50
 		//SightOffset=(X=-20.000000,Z=9.150000)
@@ -150,7 +151,7 @@ defaultproperties
 		Index=5
 		CamoName="Biohazard"
 		Weight=3
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainBiohazardShine",Index=0,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainBiohazardShine",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscDark",Index=2,AIndex=1,PIndex=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,AIndex=2,Pindex=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)

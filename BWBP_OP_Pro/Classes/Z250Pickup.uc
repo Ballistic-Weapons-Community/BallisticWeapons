@@ -32,7 +32,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250_static_test_01'
-     PickupDrawScale=0.600000
+     PickupDrawScale=0.800000
      InventoryType=Class'BWBP_OP_Pro.Z250Minigun'
      RespawnTime=20.000000
      PickupMessage="You picked up the Z250 minigun."
@@ -40,7 +40,7 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250_static_test_01'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.600000
+     DrawScale=0.800000
      PrePivot=(Z=15.000000)
      CollisionHeight=8.000000
 }

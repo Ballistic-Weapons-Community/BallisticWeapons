@@ -110,6 +110,7 @@ defaultproperties
 		PlayerJumpFactor=0.700000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.65000
 		MagAmmo=900
 		//SightOffset=(X=8.000000,Z=28.000000)
 		SightPivot=(Pitch=700,Roll=2048)

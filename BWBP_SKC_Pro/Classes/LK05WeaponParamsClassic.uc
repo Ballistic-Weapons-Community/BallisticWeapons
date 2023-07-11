@@ -113,7 +113,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
+		SightingTime=0.300000
 		bNeedCock=True
 		MagAmmo=25
 		//ReloadAnimRate=1.000000
@@ -140,7 +140,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
+		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=25
 		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)

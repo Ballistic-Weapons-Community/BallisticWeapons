@@ -7,7 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicGrenadeEffectParams
+	Begin Object Class=GrenadeEffectParams Name=ClassicGrenadeEffectParams
 		ProjectileClass=Class'BallisticProV55.BOGPGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=1750.000000
@@ -26,6 +26,12 @@ defaultproperties
 		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.25
+		UnarmedDetonateOn=DT_Impact
+		UnarmedPlayerImpactType=PIT_Detonate
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicGrenadeFireParams
@@ -33,7 +39,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		PreFireAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicGrenadeEffectParams'
+	FireEffectParams(0)=GrenadeEffectParams'ClassicGrenadeEffectParams'
 	End Object
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicFlareEffectParams

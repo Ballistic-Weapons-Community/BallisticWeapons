@@ -194,6 +194,18 @@ function LoadList()
 function LoadBoxesFromMutator ()
 {
 	local int i, j, k;
+	local class<BC_GameStyle> game_style;
+	local WeaponList_Killstreak KillstreakList;
+
+	game_style = BaseMenu.GetGameStyle();
+
+	if (game_style == None)
+	{
+		Log("ConfigTab_Outfitting: Couldn't load - No compatible style found");
+		return;
+	}
+
+	KillstreakList = new(None, game_style.default.StyleName) class'WeaponList_Killstreak';
 	
 	//DM
 	Boxes[0].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup0;
@@ -201,24 +213,24 @@ function LoadBoxesFromMutator ()
 	Boxes[2].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup2;
 	Boxes[3].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup3;
 	Boxes[4].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup4;
-	Boxes[5].WeaponNames = class'Mut_Killstreak'.default.Streak1s;
-	Boxes[6].WeaponNames = class'Mut_Killstreak'.default.Streak2s;
+	Boxes[5].WeaponNames = KillstreakList.Streak1s;
+	Boxes[6].WeaponNames = KillstreakList.Streak2s;
 	//Red
 	Boxes[7].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup0;
 	Boxes[8].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup1;
 	Boxes[9].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup2;
 	Boxes[10].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup3;
 	Boxes[11].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup4;
-	Boxes[12].WeaponNames = class'Mut_Killstreak'.default.Streak1s;
-	Boxes[13].WeaponNames = class'Mut_Killstreak'.default.Streak2s;
+	Boxes[12].WeaponNames = KillstreakList.Streak1s;
+	Boxes[13].WeaponNames = KillstreakList.Streak2s;
 	//Blue
 	Boxes[14].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup0;
 	Boxes[15].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup1;
 	Boxes[16].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup2;
 	Boxes[17].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup3;
 	Boxes[18].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup4;
-	Boxes[19].WeaponNames = class'Mut_Killstreak'.default.Streak1s;
-	Boxes[20].WeaponNames = class'Mut_Killstreak'.default.Streak2s;
+	Boxes[19].WeaponNames = KillstreakList.Streak1s;
+	Boxes[20].WeaponNames = KillstreakList.Streak2s;
 	
 	// Get rid of things that are no longer around
 	for(i=0;i<NUM_BOXES_TOTAL;i++)
@@ -242,6 +254,19 @@ function LoadBoxesFromMutator ()
 function SaveBoxesToMutator ()
 {
 	local int i;
+	local class<BC_GameStyle> game_style;
+	local WeaponList_Killstreak KillstreakList;
+	
+	game_style = BaseMenu.GetGameStyle();
+
+	if (game_style == None)
+	{
+		Log("ConfigTab_Outfitting: Couldn't load - No compatible style found");
+		return;
+	}
+
+	KillstreakList = new(None, game_style.default.StyleName) class'WeaponList_Killstreak';
+	
 	// An empty box must have at least one line otherwise the mutator defaults take over
 	for(i=0;i<NUM_BOXES_TOTAL;i++)
 		if (Boxes[i].WeaponNames.length < 1)
@@ -251,8 +276,8 @@ function SaveBoxesToMutator ()
 	class'Mut_Outfitting'.default.LoadoutGroup2 = Boxes[2].WeaponNames;
 	class'Mut_Outfitting'.default.LoadoutGroup3 = Boxes[3].WeaponNames;
 	class'Mut_Outfitting'.default.LoadoutGroup4 = Boxes[4].WeaponNames;
-	class'Mut_Killstreak'.default.Streak1s = Boxes[5].WeaponNames;
-	class'Mut_Killstreak'.default.Streak2s = Boxes[6].WeaponNames;
+	KillstreakList.Streak1s = Boxes[5].WeaponNames;
+	KillstreakList.Streak2s = Boxes[6].WeaponNames;
 	
 	class'Mut_TeamOutfitting'.default.RedLoadoutGroup0 = Boxes[7].WeaponNames;
 	class'Mut_TeamOutfitting'.default.RedLoadoutGroup1 = Boxes[8].WeaponNames;
@@ -273,6 +298,7 @@ function SaveBoxesToMutator ()
 	class'Mut_Outfitting'.static.StaticSaveConfig();
 	class'Mut_TeamOutfitting'.static.StaticSaveConfig();
 	class'Mut_Killstreak'.static.StaticSaveConfig();
+	KillstreakList.SaveConfig();
 }
 
 //===========================================================================

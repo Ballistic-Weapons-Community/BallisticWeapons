@@ -535,7 +535,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_SKC_Tex.SkrithBow.BigIcon_SBow'
      bWT_RapidProj=True
      bWT_Energy=True
-     SpecialInfo(0)=(Info="300.0;25.0;0.5;85.0;0.2;0.2;0.2")
+     SpecialInfo(0)=(Info="300.0;25.0;1.5;85.0;0.6;0.6;0.6")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')

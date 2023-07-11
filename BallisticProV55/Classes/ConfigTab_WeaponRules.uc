@@ -13,6 +13,7 @@ class ConfigTab_WeaponRules extends ConfigTabBase;
 
 var automated moSlider		sl_Sway;					//Sway Scale
 var automated moSlider		sl_Recoil;					//Recoil Scale
+var automated moSlider		sl_Reload;					//Reload Scale
 var automated moFloatEdit	fl_Damage;					//Damage Scale against Players & Pawns
 var automated moFloatEdit	fl_VDamage;					//Damage Scale against Vehicles
 
@@ -39,6 +40,7 @@ function LoadSettings()
 	{
 		sl_Sway.SetValue(game_style.default.SwayScale);
 		sl_Recoil.SetValue(game_style.default.RecoilScale);
+		sl_Reload.SetValue(game_style.default.ReloadScale);
 		fl_Damage.SetValue(game_style.default.DamageScale);
 		fl_VDamage.SetValue(game_style.default.VehicleDamageScale);
 		ch_WeaponJumpOffsetting.Checked(game_style.default.bWeaponJumpOffsetting);
@@ -65,6 +67,7 @@ function SaveSettings()
 	{
 		game_style.default.SwayScale						= sl_Sway.GetValue();
 		game_style.default.RecoilScale					= sl_Recoil.GetValue();
+		game_style.default.ReloadScale					= sl_Reload.GetValue();
 		game_style.default.DamageScale					= fl_Damage.GetValue();
 		game_style.default.VehicleDamageScale			= fl_VDamage.GetValue();
 		game_style.default.bWeaponJumpOffsetting			= ch_WeaponJumpOffsetting.IsChecked();
@@ -121,6 +124,18 @@ defaultproperties
      End Object
      sl_Recoil=moSlider'sl_RecoilSlider'
 
+     Begin Object Class=moSlider Name=sl_ReloadSlider
+         MaxValue=2.000000
+         MinValue=0.500000
+         Caption="Reload Scale"
+         OnCreateComponent=sl_RecoilSlider.InternalOnCreateComponent
+         Hint="Scales the reload speed of weapons."
+         WinTop=0.200000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     sl_Reload=moSlider'sl_ReloadSlider'
+
 	 Begin Object Class=moFloatEdit Name=fl_DamageFloat
          MinValue=0.000000
          MaxValue=100.000000
@@ -130,7 +145,7 @@ defaultproperties
          OnCreateComponent=fl_DamageFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the amount of damage done to non vehicles."
-         WinTop=0.20000
+         WinTop=0.25000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -145,7 +160,7 @@ defaultproperties
          OnCreateComponent=fl_VDamageFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the amount of damage done to vehicles."
-         WinTop=0.250000
+         WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -158,7 +173,7 @@ defaultproperties
          OnCreateComponent=ch_SprintAimCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Causes weapons to offset when jumping or sprinting."
-         WinTop=0.30000
+         WinTop=0.35000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -171,7 +186,7 @@ defaultproperties
          OnCreateComponent=ch_LongWeaponOffsettingCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Causes weapons to offset when too close to a wall or other surface."
-         WinTop=0.35000
+         WinTop=0.40000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -184,7 +199,7 @@ defaultproperties
          OnCreateComponent=ch_NoReloadingCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Disables reloading."
-         WinTop=0.40000
+         WinTop=0.45000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -197,7 +212,7 @@ defaultproperties
          OnCreateComponent=ch_NoRandomCamoCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Generated guns will come with the basic variant."
-         WinTop=0.45000
+         WinTop=0.50000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -212,7 +227,7 @@ defaultproperties
          OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Sets the player's maximum inventory capacity. 0 is infinite."
-         WinTop=0.500000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -225,7 +240,7 @@ defaultproperties
          OnCreateComponent=UseItemizerCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Use the Itemizer to spawn aditional pickups in maps."
-         WinTop=0.550000
+         WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -236,12 +251,9 @@ defaultproperties
          Caption="Itemizer Group"
          OnCreateComponent=eb_ItemGroupEdit.InternalOnCreateComponent
          Hint="The name of the Itemizer layout you want to use. Defaults to 'Ballistic'."
-         WinTop=0.600000
+         WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.060000
      End Object
      eb_ItemGroup=moEditBox'eb_ItemGroupEdit'
-
-
-
 }

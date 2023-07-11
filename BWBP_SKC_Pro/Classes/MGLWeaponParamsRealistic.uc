@@ -8,8 +8,8 @@ defaultproperties
     //=================================================================	
 	
 	//Impact
-	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeImpactSafe'
+	Begin Object Class=GrenadeEffectParams Name=RealisticPrimaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeImpact'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=10000.000000
 		Damage=200.000000
@@ -26,12 +26,18 @@ defaultproperties
 		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.1
+		UnarmedDetonateOn=DT_Disarm
+		UnarmedPlayerImpactType=PIT_Bounce
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.800000
 		BurstFireRateFactor=1.00	
-	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
+	FireEffectParams(0)=GrenadeEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 		

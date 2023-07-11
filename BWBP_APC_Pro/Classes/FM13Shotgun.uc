@@ -329,7 +329,7 @@ defaultproperties
 	ManualLines(0)="Long-ranged pump-action shotgun fire. Tight spread and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
 	ManualLines(1)="Loads a gas shell. Once loaded, the gas shell can be fired, generating a linear cloud of toxic gas in front of the weapon. Anyone standing in this cloud will receive damage over time."
 	ManualLines(2)="Has a melee attack. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind.||As a shotgun, has poor penetration.||Most effective at medium range."
-	SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.0")
+	SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.8")
 	MeleeFireClass=Class'BWBP_APC_Pro.FM13MeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')

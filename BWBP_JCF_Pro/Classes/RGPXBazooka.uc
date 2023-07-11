@@ -301,7 +301,7 @@ defaultproperties
 	ManualLines(0)="Fires a rocket. These rockets have an arming delay and will ricochet off surfaces when unarmed."
 	ManualLines(1)="Flak Shot"
 	ManualLines(2)="Regular Laser (Non Guidance)"
-	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
+	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.8;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')

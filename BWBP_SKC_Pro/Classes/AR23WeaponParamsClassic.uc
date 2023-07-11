@@ -166,6 +166,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.400000
 		bNeedCock=True
 		MagAmmo=9
 		ViewOffset=(X=5,Y=5,Z=-3)
@@ -192,6 +193,7 @@ defaultproperties
 		//Function
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000 //+.05
 		bNeedCock=True
 		MagAmmo=9
 		ViewOffset=(X=5,Y=5,Z=-3)
@@ -220,6 +222,7 @@ defaultproperties
 		//Function
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.500000 //+.1
 		bNeedCock=True
 		MagAmmo=9
 		ViewOffset=(X=5,Y=5,Z=-3)
@@ -248,6 +251,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.400000
 		bNeedCock=True
 		MagAmmo=9
 		ViewOffset=(X=5,Y=5,Z=-3)
@@ -270,6 +274,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.350000 //-.5
 		bNeedCock=True
 		MagAmmo=9
 		ViewOffset=(X=5,Y=6,Z=-3)

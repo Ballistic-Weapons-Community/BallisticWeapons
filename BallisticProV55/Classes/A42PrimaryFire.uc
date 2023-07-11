@@ -17,7 +17,7 @@ simulated event ModeDoFire()
 	if (Weapon.GetFireMode(1).IsFiring())
 		return;
 	if (FRand() > 0.5)
-		FireAnim = 'Fire1';
+		FireAnim = 'Fire';
 	else
 		FireAnim = 'Fire2';
 	A42SkrithPistol(Weapon).NextAmmoTickTime = Level.TimeSeconds + 2;

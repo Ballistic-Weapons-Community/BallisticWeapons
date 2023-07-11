@@ -7,16 +7,21 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-		TraceRange=(Min=4096.000000,Max=4096.000000)
-		RangeAtten=0.2
-		Damage=20
-		HeadMult=1.4f
-		LimbMult=0.6f
+		WaterTraceRange=2500.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.500000
+		Damage=15.0
+		HeadMult=4.0
+		LimbMult=0.5
 		DamageType=Class'BWBP_SWC_Pro.DTMDKSMG'
 		DamageTypeHead=Class'BWBP_SWC_Pro.DTMDKSMGHead'
 		DamageTypeArm=Class'BWBP_SWC_Pro.DTMDKSMG'
+		PenetrationEnergy=24.000000
 		PenetrateForce=150
 		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.MDKFlashEmitter'
 		Recoil=72.000000
 		Chaos=0.025000
@@ -41,6 +46,9 @@ defaultproperties
 		YRandFactor=0.05000
 		DeclineTime=0.5
 		DeclineDelay=0.15
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.800000
+		bViewDecline=True
 	End Object
 
 	//=================================================================

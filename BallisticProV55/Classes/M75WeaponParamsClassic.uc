@@ -103,8 +103,9 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
-		InventorySize=9
+		InventorySize=14
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.75000
 		bNeedCock=True
 		MagAmmo=7
 		//ReloadAnimRate=1.000000
@@ -129,8 +130,9 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
-		InventorySize=9
+		InventorySize=14
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.35000
 		bNeedCock=True
 		MagAmmo=7
 		//ReloadAnimRate=1.000000

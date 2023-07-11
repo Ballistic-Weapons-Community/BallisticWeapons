@@ -236,6 +236,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.55000
 		bNeedCock=True
 		MagAmmo=40
 		//ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
@@ -267,6 +268,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.55000
 		bNeedCock=True
 		MagAmmo=40
 		//ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)

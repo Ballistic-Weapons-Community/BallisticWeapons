@@ -29,13 +29,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.PD97.PD97PickupLo'
-     PickupDrawScale=1.000000
+     PickupDrawScale=1.650000
      InventoryType=Class'BWBP_OP_Pro.PD97Bloodhound'
      RespawnTime=10.000000
      PickupMessage="You picked up the PD-97 'Bloodhound' pistol."
      PickupSound=Sound'BW_Core_WeaponSound.M806.M806Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.PD97.PD97PickupHi'
      Physics=PHYS_None
-     DrawScale=0.700000
+     DrawScale=1.650000
      CollisionHeight=4.000000
 }

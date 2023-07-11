@@ -6,7 +6,8 @@
 class Mut_Killstreak extends Mutator
 	transient
 	HideDropDown
-	CacheExempt;
+	CacheExempt
+	DependsOn(WeaponList_Killstreak);
 	
 const NUM_GROUPS = 2;
 

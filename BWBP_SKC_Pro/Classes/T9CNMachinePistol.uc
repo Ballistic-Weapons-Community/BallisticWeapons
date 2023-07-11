@@ -197,7 +197,7 @@ defaultproperties
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic pistol fire. Good strength and low recoil."
-	SpecialInfo(0)=(Info="420.0;20.0;1.50;80.0;0.4;0.2;-999.0")
+	SpecialInfo(0)=(Info="240.0;12.0;1.50;80.0;0.4;0.2;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Cock',Volume=300.500000)

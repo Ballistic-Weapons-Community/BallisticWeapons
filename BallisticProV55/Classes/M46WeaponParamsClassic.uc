@@ -66,7 +66,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=2.500000
+		FireInterval=0.500000
 		BurstFireRateFactor=1.00
 		PreFireAnim="GrenadePrepFire"
 		FireAnim="GrenadeFire"	
@@ -119,6 +119,7 @@ defaultproperties
 		SightOffset=(X=-1,Y=0.050000,Z=3.9)
 		//Function
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.40000
 		bNeedCock=True
 		MagAmmo=25
 		InventorySize=7

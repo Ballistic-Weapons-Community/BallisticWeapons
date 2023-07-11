@@ -16,7 +16,7 @@ function AnnouncePickup( Pawn Receiver )
 
 defaultproperties
 {
-     HealingAmount=200
+     HealingAmount=100
      bSuperHeal=True
      bAmbientGlow=False
      RespawnTime=60.000000

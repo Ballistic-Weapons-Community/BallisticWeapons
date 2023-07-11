@@ -423,7 +423,7 @@ defaultproperties
      BulletBone="Bullet1"
      BulletBone2="Bullet2"
      bWT_Bullet=True
-     SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.0")
+     SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.6")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      MagAmmo=30

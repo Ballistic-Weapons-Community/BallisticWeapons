@@ -273,6 +273,7 @@ defaultproperties
 		InventorySize=6
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.40000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -301,6 +302,7 @@ defaultproperties
 		InventorySize=6
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.40000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -328,6 +330,7 @@ defaultproperties
 		InventorySize=6
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.40000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -358,6 +361,7 @@ defaultproperties
 		InventorySize=6
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -390,6 +394,7 @@ defaultproperties
 		InventorySize=4
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")

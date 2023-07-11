@@ -205,6 +205,7 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
+		SightingTime=0.450000
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=100
@@ -226,8 +227,9 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		//Stats
-		PlayerSpeedFactor=1.000000
+		PlayerSpeedFactor=0.950000
 		InventorySize=9
+		SightingTime=0.400000
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=30
@@ -249,8 +251,9 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=1f)
 		//Stats
-		PlayerSpeedFactor=1.000000
+		PlayerSpeedFactor=0.950000
 		InventorySize=9
+		SightingTime=0.450000
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20

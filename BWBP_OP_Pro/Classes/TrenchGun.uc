@@ -843,7 +843,7 @@ defaultproperties
 	ManualLines(0)="Fire either a single barrel or both barrels of the loaded ammo type. Charge fire before releasing to fire both barrel simultaneously, tap to fire a single barrel. Electro Shot is capable of displacing targets' aim, with the effectiveness of this being increased by firing both barrels at once. Cryo Shot will temporarily slow targets hit by it, firing both rounds at once also increases the duration of this effect."
 	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
 	ManualLines(2)="Effective at close ranges, firing both barrels at once increases the duration of the slow down for ice rounds and displacement from electric rounds."
-	SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
+	SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.6")
 	MeleeFireClass=Class'BWBP_OP_Pro.TrenchGunMeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')

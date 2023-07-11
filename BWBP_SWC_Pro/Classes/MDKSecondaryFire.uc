@@ -19,7 +19,7 @@ defaultproperties
      bWaitForRelease=True
      bModeExclusive=False
      FireRate=1.200000
-     AmmoClass=Class'BWBP_SWC_Pro.Ammo_MDK9mm'
+     AmmoClass=Class'BallisticProV55.Ammo_9mm'
      AmmoPerFire=0
      BotRefireRate=0.300000
 }

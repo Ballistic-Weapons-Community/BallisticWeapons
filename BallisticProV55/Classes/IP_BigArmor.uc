@@ -10,7 +10,7 @@ defaultproperties
 {
      MaxDesireability=1.500000
      InventoryType=Class'BallisticProV55.BallisticArmor'
-	 ShieldAmount=150
+	 ShieldAmount=100
      RespawnTime=60.000000
 	 bPredictRespawns=True
      PickupMessage="You picked up heavy combat armor +"

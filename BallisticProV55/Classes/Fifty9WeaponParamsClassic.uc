@@ -114,6 +114,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
 		bNeedCock=True
 		MagAmmo=45
 		//SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
@@ -140,6 +141,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
 		bNeedCock=True
 		MagAmmo=45
 		//SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
@@ -166,6 +168,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
 		bNeedCock=True
 		MagAmmo=45
 		//SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)

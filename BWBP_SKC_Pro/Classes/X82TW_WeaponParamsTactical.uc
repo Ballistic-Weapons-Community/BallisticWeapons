@@ -16,10 +16,10 @@ defaultproperties
 		Damage=125
         HeadMult=1.75
         LimbMult=0.75
-		PenetrationEnergy=128
 		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'
+		PenetrationEnergy=128
 		PenetrateForce=450
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
@@ -28,11 +28,11 @@ defaultproperties
      	Chaos=0.5
 		BotRefireRate=0.300000
 		WarnTargetPct=0.700000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire4',Radius=750.000000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire8',Volume=12.100000,Radius=450.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.530000
+		FireInterval=0.730000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object

@@ -619,7 +619,7 @@ defaultproperties
     bWT_Splash=True
     bWT_RapidProj=True
     bWT_Projectile=True
-    SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
+    SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.75;2.0")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-Pullout',Volume=1.050000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
     MagAmmo=100

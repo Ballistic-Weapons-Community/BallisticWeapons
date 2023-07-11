@@ -696,7 +696,7 @@ defaultproperties
 	ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
 	ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
 	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
-	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")
+	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.2;0.7;0.4")
 	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOFirestormMeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')

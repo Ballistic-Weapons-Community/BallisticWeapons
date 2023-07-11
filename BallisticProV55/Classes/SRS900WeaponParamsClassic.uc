@@ -104,8 +104,9 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
 		SightOffset=(X=9.000000,Z=3.150000)
 		//Function
-		InventorySize=7
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
 		bNeedCock=True
 		MagAmmo=20
 		//SightOffset=(X=20.000000,Z=11.750000)
@@ -132,7 +133,7 @@ defaultproperties
 		SightOffset=(X=6.000000,Z=2.03)
 		//Function
 		ZoomType=ZT_Irons
-		InventorySize=7
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20

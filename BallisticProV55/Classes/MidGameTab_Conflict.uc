@@ -91,6 +91,10 @@ function ShowPanel(bool bShow)
 		cb_WeapLayoutIndex.SetVisibility(false); //begone boxes!
 		cb_WeapCamoIndex.SetVisibility(false); //begone from me!
 	}
+	
+	//Update menu if we're in evolution loadout
+	if (CLRI != None && CLRI.LoadoutOption == 1 && CLRI.bHasSkillInfo)
+		OnLRIAcquired();
 }
 
 function Initialize()

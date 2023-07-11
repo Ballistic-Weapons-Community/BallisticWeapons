@@ -138,6 +138,7 @@ defaultproperties
 		PlayerJumpFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.35000
 		bNeedCock=True
 		MagAmmo=40
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
@@ -177,6 +178,7 @@ defaultproperties
 		PlayerJumpFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30000
 		bNeedCock=True
 		MagAmmo=40
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)

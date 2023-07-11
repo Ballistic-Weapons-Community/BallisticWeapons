@@ -8,18 +8,27 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-		TraceRange=(Min=15000.000000,Max=15000.000000)
-		RangeAtten=0.350000
-		Damage=18
+		TraceRange=(Min=12000.000000,Max=12000.000000)
+		WaterTraceRange=12000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=24.0
+		HeadMult=3.5
+		LimbMult=0.45
 		DamageType=Class'BWBP_SWC_Pro.DTBRINKAssault'
 		DamageTypeHead=Class'BWBP_SWC_Pro.DTBRINKAssaultHead'
 		DamageTypeArm=Class'BWBP_SWC_Pro.DTBRINKAssault'
+		PenetrationEnergy=32.000000
 		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.BRINKFlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SWC_Sounds.BR1NK.BR1NK-Fire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=140.000000
 		Chaos=0.02000
+		Inaccuracy=(X=32,Y=4)
 		WarnTargetPct=0.200000
 	End Object
 
@@ -74,18 +83,25 @@ defaultproperties
 		DeclineTime=0.500000
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
-		CrouchMultiplier=0.800000
+		CrouchMultiplier=0.500000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=16,Max=128)
+	Begin Object Class=AimParams Name=ClassicAimParams //Heavy Rifle
+		AimSpread=(Min=32,Max=3048)
+		CrouchMultiplier=0.500000
+		ADSMultiplier=0.700000
+		ViewBindFactor=0.300000
+		SprintChaos=0.450000
 		SprintOffset=(Pitch=-3000,Yaw=-4096)
-		ChaosDeclineTime=0.5
+		JumpChaos=0.450000
 		JumpOffset=(Pitch=-1000,Yaw=-3096)
+		FallingChaos=0.450000
+		ChaosDeclineTime=1.500000
 	End Object
     
 	//=================================================================
@@ -93,13 +109,10 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		CockAnimRate=0.95000
-		ReloadAnimRate=0.950000
-		PlayerSpeedFactor=0.9
-		PlayerJumpFactor=0.9
-		InventorySize=5
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000		
+		PlayerSpeedFactor=0.950000
+		InventorySize=6
+		SightingTime=0.400000
+		SightMoveSpeedFactor=0.5
 		DisplaceDurationMult=1
 		MagAmmo=60
 		ViewOffset=(X=10.000000,Y=4.500000,Z=-11.500000)

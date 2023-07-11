@@ -211,7 +211,7 @@ defaultproperties
 	ManualLines(0)="Launches a grenade. Fire rate, damage and explosive radius are good. These grenades have an arming delay and if striking a surface when unarmed will ricochet. Direct impacts will always result in explosion."
 	ManualLines(1)="Employs a manually controlled grenade. Pressing altfire again detonates the grenade."
 	ManualLines(2)="Effective with height advantage and at medium range."
-	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
+	SpecialInfo(0)=(Info="300.0;35.0;0.5;60.0;0.0;1.0;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=24.000000)

@@ -191,7 +191,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
+		SightingTime=0.300000
 		bNeedCock=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -220,7 +220,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
+		SightingTime=0.300000
 		bNeedCock=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -249,7 +249,7 @@ defaultproperties
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.180000
+		SightingTime=0.250000
 		bNeedCock=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)

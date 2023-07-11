@@ -12,8 +12,8 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.10000
 		Damage=30.0
-		HeadMult=2.566666
-		LimbMult=0.666666
+		HeadMult=2.6
+		LimbMult=0.65
 		DamageType=Class'BWBP_SWC_Pro.DTMDKSMG'
 		DamageTypeHead=Class'BWBP_SWC_Pro.DTMDKSMGHead'
 		DamageTypeArm=Class'BWBP_SWC_Pro.DTMDKSMG'

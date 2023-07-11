@@ -516,7 +516,7 @@ defaultproperties
 	ManualLines(0)="Fires projectile darts. Upon striking an enemy, these darts release a cloud of pink gas which allows the path of the enemy to be tracked. The darts will also deal damage over time. Upon striking an ally, the darts heal over time instead of dealing damage."
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing paltry DPS but slowing the enemy movement."
 	ManualLines(2)="Primarily a support weapon, the Bloodhound is most effective when used as part of a team. Nevertheless, sufficient dart hits can cause high damage. The Bloodhound has very low recoil."
-	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
+	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;0.5")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')

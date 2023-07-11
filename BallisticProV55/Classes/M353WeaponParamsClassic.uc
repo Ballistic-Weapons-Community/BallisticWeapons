@@ -86,6 +86,7 @@ defaultproperties
 		//Function
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
+		SightingTime=0.500000
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=150

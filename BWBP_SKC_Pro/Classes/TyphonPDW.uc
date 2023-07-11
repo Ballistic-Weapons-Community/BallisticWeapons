@@ -724,7 +724,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_SKC_Tex.Typhon.BigIcon_Typhon'
      
 	 bWT_Bullet=True
-     SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
+     SpecialInfo(0)=(Info="240.0;15.0;0.4;25.0;0.8;0.0;-999.0")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)

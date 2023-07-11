@@ -166,6 +166,7 @@ defaultproperties
 		Weight=30
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30000
 		MagAmmo=10
 		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
@@ -186,6 +187,7 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30000
 		MagAmmo=10
 		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
@@ -206,6 +208,7 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30000
 		MagAmmo=10
 		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)

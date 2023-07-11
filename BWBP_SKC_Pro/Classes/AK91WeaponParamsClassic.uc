@@ -115,7 +115,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		//Function
 		InventorySize=7
-		SightingTime=0.300000
+		SightingTime=0.350000
 		bNeedCock=True
 		ViewOffset=(X=9,Y=7.00,Z=-4)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

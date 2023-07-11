@@ -689,7 +689,7 @@ defaultproperties
 	ManualLines(0)="Automatic low-calibre fire. Has extremely long effective range, but as a low-calibre weapon, must be fired in bursts at range, subjecting the user to the effects of recoil."
 	ManualLines(1)="Fires a dart. Good fire rate and fast flight speed. Enemies hit by the darts show up on the scope when within a given range of the user. The tracking range increases with successive hits."
 	ManualLines(2)="Weapon Function for this weapon causes all the darts attached to the last player to be hit for the first time to explode. This feature works independently of range.||The CX85 is effective at long range."
-	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
+	SpecialInfo(0)=(Info="240.0;30.0;0.9;75.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-Cock')

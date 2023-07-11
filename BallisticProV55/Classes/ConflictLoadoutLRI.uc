@@ -330,6 +330,9 @@ simulated function ClientReceiveEnd()
 {
 	bHasList = true;
 	
+	
+	if (LoadoutOption == 1)
+		return;
 	SortList();
 }
 

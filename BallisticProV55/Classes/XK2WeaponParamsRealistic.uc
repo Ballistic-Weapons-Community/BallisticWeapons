@@ -13,8 +13,8 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.10000
 		Damage=30.0
-		HeadMult=2.566666
-		LimbMult=0.666666
+		HeadMult=2.6
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
@@ -32,7 +32,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.066666
+		FireInterval=0.067
 		AimedFireAnim="SightFire"	
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'

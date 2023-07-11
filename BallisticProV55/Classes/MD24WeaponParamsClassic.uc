@@ -125,6 +125,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
 		bNeedCock=True
 		MagAmmo=14
 		//SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)

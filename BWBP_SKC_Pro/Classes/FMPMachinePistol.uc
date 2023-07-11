@@ -340,7 +340,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MP40.BigIcon_MP40'
 	bWT_Bullet=True
-	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
+	SpecialInfo(0)=(Info="240.0;15.0;0.9;80.0;0.7;0.7;0.4")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Pullout',Volume=1.400000)
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Putaway',Volume=1.400000)
 	CockAnimPostReload="ReloadEndCock"

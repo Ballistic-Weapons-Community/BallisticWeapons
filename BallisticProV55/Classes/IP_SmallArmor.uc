@@ -20,7 +20,7 @@ simulated function PostBeginplay()
 defaultproperties
 {
      AlternateMesh=StaticMesh'BW_Core_WeaponStatic.Armor.SmallArmor2'
-     ShieldAmount=75
+     ShieldAmount=50
      MaxDesireability=1.000000
      InventoryType=Class'BallisticProV55.BallisticArmor'
      RespawnTime=30.000000

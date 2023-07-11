@@ -522,10 +522,10 @@ defaultproperties
 	BigIconMaterial=Texture'BWBP_JCF_Tex.HKMK.BigIcon_HKMK'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
 	bWT_Bullet=True
-	ManualLines(0)="Semi-automatic 10mm fire. Moderate damage and fire rate. Has the option of burst fire."
-	ManualLines(1)="Attaches a suppressor, reducing the effective range but removing the flash and reducing the noise output."
-	ManualLines(2)="Weapon Function toggles a laser sight, reducing the hipfire spread."
-	SpecialInfo(0)=(Info="0.0;-5.0;-999.0;-1.0;0.0;-999.0;-999.0")
+	ManualLines(0)="Semi-automatic .45 fire. Moderate damage and fire rate."
+	ManualLines(1)="Alt fire is a potent close range shotgun attachment."
+	ManualLines(2)="Weapon Function attaches a suppressor, reducing the flash and reducing the noise output."
+    SpecialInfo(0)=(Info="120.0;12.0;0.6;50.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	PutDownTime=0.500000

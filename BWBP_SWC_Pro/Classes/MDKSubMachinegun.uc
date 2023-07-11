@@ -373,7 +373,7 @@ defaultproperties
 	ManualLines(0)="Low-velocity submachinegun fire. Low recoil, lower damage output than other submachineguns but controllable and excellent hipfire."
 	ManualLines(1)="Activates the internal compressor when firing. Rounds will inflict less damage, but will slow the target."
 	ManualLines(2)="The Weapon Function key attaches or removes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range.||Effective from the hip and at close range."
-	SpecialInfo(0)=(Info="120.0;10.0;0.6;60.0;0.3;0.1;-999.0")
+	SpecialInfo(0)=(Info="240.0;15.0;0.6;60.0;0.7;0.1;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Cock')

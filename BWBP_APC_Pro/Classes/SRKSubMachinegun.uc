@@ -331,7 +331,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_APC_Pro.SRKSmgAttachment'
      IconMaterial=Texture'BWBP_CC_Tex.SRKSmg.SmallIcon_SPXSmg'
      IconCoords=(X2=127,Y2=31)
-     ItemName="SRK-205 Sub-Machinegun"
+     ItemName="SRK-205 Submachinegun"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

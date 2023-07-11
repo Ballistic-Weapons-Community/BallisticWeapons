@@ -282,7 +282,7 @@ defaultproperties
      AttachmentClass=Class'MAG78Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.Longsword.Icon_MAGSaw'
      IconCoords=(X2=127,Y2=31)
-	 bUseBigIcon=True
+	 //bUseBigIcon=True
      ItemName="MAG-SAW Longsword"
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_MAGSAW'
      DrawScale=1.250000

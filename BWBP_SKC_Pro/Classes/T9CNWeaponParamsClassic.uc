@@ -171,7 +171,7 @@ defaultproperties
 		InitialWeaponMode=1
 		InventorySize=2
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.150000
+		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=18
 		bDualMixing=true
@@ -199,7 +199,7 @@ defaultproperties
 		//Functions
 		InventorySize=2
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.150000
+		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=18
 		bDualMixing=true
