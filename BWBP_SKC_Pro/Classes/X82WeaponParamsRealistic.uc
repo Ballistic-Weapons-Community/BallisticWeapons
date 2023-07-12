@@ -100,7 +100,7 @@ defaultproperties
 		PlayerSpeedFactor=0.850000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.33
+		SightingTime=0.4
 		MagAmmo=5
 		bMagPlusOne=True
 		ViewOffset=(X=1,Y=3,Z=-5)

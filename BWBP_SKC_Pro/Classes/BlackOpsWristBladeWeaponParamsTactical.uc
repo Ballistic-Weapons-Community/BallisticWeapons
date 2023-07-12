@@ -76,7 +76,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		PlayerSpeedFactor=1.150000
 		MagAmmo=1
-		InventorySize=3
+		InventorySize=1
 		//ViewOffset=(X=50.000000,Y=00.000000,Z=-40.000000)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

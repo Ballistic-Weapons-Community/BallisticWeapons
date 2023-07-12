@@ -13,6 +13,143 @@ class MRT6Shotgun extends BallisticProShotgun;
 var bool bLeftLoaded;
 var bool bRightLoaded;
 
+var byte LeftChamber;                       //0=Empty, 1=Brass, 2=Loaded
+var byte RightChamber;
+
+//==============================================================================
+// "Tactical Reload" Stuff >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//==============================================================================
+/*
+//Allows reload at full mag
+function ServerStartReload (optional byte i)
+{
+	local int m;
+
+	if (bPreventReload)
+		return;
+	if (ReloadState != RS_None)
+		return;
+	if (MagAmmo >= default.MagAmmo + (int(bMagPlusOne) * (int(LeftChamber == 2) + int(RightChamber == 2))))
+		return;
+	if (Ammo[0].AmmoAmount < 1)
+		return;
+
+	for (m=0; m < NUM_FIRE_MODES; m++)
+		if (FireMode[m] != None && FireMode[m].bIsFiring)
+			StopFire(m);
+
+	bServerReloading = true;
+	CommonStartReload(i);	//Server animation
+	ClientStartReload(i);	//Client animation
+}
+// Animation notify for when the clip is stuck in
+simulated function Notify_ClipIn()
+{
+	local int AmmoNeeded;
+
+	if (ReloadState == RS_None)
+		return;
+	ReloadState = RS_PostClipIn;
+	class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
+	if (level.NetMode != NM_Client)
+	{
+		AmmoNeeded = default.MagAmmo - MagAmmo + (int(bMagPlusOne) * (int(LeftChamber == 2) + int(RightChamber == 2)));
+		if (AmmoNeeded > Ammo[0].AmmoAmount)
+			MagAmmo+=Ammo[0].AmmoAmount;
+		else
+			MagAmmo+=AmmoNeeded;
+		Ammo[0].UseAmmo (AmmoNeeded, True);
+	}
+}
+//Startup weapons are fully loaded.  Full mag + 2, in this shotgun's case (todo refactor)
+function GiveTo(Pawn Other, optional Pickup Pickup)
+{
+    local int m;
+    local weapon w;
+    local bool bPossiblySwitch, bJustSpawned;
+
+    Instigator = Other;
+    W = Weapon(Other.FindInventoryType(class));
+    if ( W == None || class != W.Class)
+    {
+		bJustSpawned = true;
+        Super(Inventory).GiveTo(Other);
+        bPossiblySwitch = true;
+        W = self;
+		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			//log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			//log("randomizing"); 
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(bMagPlusOne) * (int(LeftChamber == 2) + int(RightChamber == 2)));
+		}
+    }
+ 	
+   	else if ( !W.HasAmmo() )
+	    bPossiblySwitch = true;
+    if ( Pickup == None )
+        bPossiblySwitch = true;
+
+    for (m = 0; m < NUM_FIRE_MODES; m++)
+    {
+        if ( FireMode[m] != None )
+        {
+            FireMode[m].Instigator = Instigator;
+			W.GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
+        }
+    }
+	
+	if (MeleeFireMode != None)
+		MeleeFireMode.Instigator = Instigator;
+
+	if ( (Instigator.Weapon != None) && Instigator.Weapon.IsFiring() )
+		bPossiblySwitch = false;
+
+	if ( Instigator.Weapon != W )
+		W.ClientWeaponSet(bPossiblySwitch);
+		
+	//Disable aim for weapons picked up by AI-controlled pawns
+	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
+
+    if ( !bJustSpawned )
+	{
+        for (m = 0; m < NUM_FIRE_MODES; m++)
+			Ammo[m] = None;
+		Destroy();
+	}
+}
+simulated function AnimEnded (int Channel, name anim, float frame, float rate)
+{
+	//Cock anim ended, goto idle
+	if (ReloadState == RS_Cocking)
+	{
+		if (MagAmmo > 1)
+		   LeftChamber = 2;
+	    if (MagAmmo > 0)
+	       RightChamber = 2;
+		ReloadState = RS_None;
+		ReloadFinished();
+		PlayIdle();
+		AimComponent.ReAim(0.05);
+	    return;
+    }
+    super.AnimEnded(Channel, anim, frame, rate);
+}*/
+//==============================================================================
+// End "Tactical Reload" Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//==============================================================================
+
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_12GaugeClips';

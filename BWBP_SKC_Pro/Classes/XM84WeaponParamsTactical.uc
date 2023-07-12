@@ -15,7 +15,7 @@ defaultproperties
         ProjectileClass=Class'BWBP_SKC_Pro.XM84Thrown'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Damage=45
-        DamageRadius=768.000000
+        DamageRadius=1024.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
 		Speed=1000.000000
         MaxSpeed=1000.000000

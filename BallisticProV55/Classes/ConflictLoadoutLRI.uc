@@ -329,10 +329,6 @@ simulated function ClientReceiveWeaponReq(string ClassString, byte teams, Mut_Lo
 simulated function ClientReceiveEnd()
 {
 	bHasList = true;
-	
-	
-	if (LoadoutOption == 1)
-		return;
 	SortList();
 }
 
@@ -379,6 +375,8 @@ simulated function SortList()
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	local InventoryEntry Current;
 	local array<InventoryEntry> Sorted;
+	local array<Mut_Loadout.LORequirements> SortedReq;
+	local Mut_Loadout.LORequirements CurrentReq;
 	//local array<string> ConflictItems;
 	
 	local int CurrentGroup, SortedGroup;
@@ -399,6 +397,7 @@ simulated function SortList()
             Log("ConflictLoadoutLRI: Couldn't load "$FullInventoryList[i].ClassName$" from cache.");
 
             FullInventoryList.Remove(i, 1);
+            RequirementsList.Remove(i, 1);
             --i;
 
             continue;
@@ -407,10 +406,12 @@ simulated function SortList()
         // convert weapon class to inventory entry
         Current = GenerateFromWeaponInfo(WI);
 		Current.Teams = FullInventoryList[i].Teams;
+		CurrentReq = RequirementsList[i];
 
         if (Sorted.Length == 0)
         {
             Sorted[Sorted.Length] = Current;
+            SortedReq[SortedReq.Length] = CurrentReq;
             continue;
         }
 
@@ -450,11 +451,14 @@ simulated function SortList()
 
         Sorted.Insert(j, 1);
         Sorted[j] = Current;
+        SortedReq.Insert(j, 1);
+        SortedReq[j] = CurrentReq;
 	}
 	
 	for (i = 0; i < Sorted.Length; ++i)
     {
 		FullInventoryList[i] = Sorted[i];
+		RequirementsList[i] = SortedReq[i];
     }
 
 	// save anything we had to load

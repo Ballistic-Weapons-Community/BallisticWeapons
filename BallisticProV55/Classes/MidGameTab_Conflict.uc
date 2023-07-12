@@ -26,8 +26,9 @@ var Automated GUIImage				Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
 var automated GUILabel   			l_WeapTitle;
 var automated GUIComboBox	 		cb_WeapLayoutIndex, cb_WeapCamoIndex;
 var automated GUIScrollTextBox		tb_Desc;
-var Automated GUIButton BStats, 	BClear;
+var Automated GUIButton 			BStats, BClear, BSave, BLoad;
 var automated GUILabel				l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_Loading;
+var automated moComboBox			cb_Presets;
 
 var() localized string 				StatTimeCaption;
 var() localized string 				StatFragsCaption;
@@ -61,6 +62,7 @@ struct Item
 };
 
 var() array<Item> 					Inventory;
+var() byte							LoadoutIndex;//Which saved inventory are we on [5]
 
 var() array<int> 					LayoutIndexList;
 var() array<int> 					CamoIndexList;
@@ -101,6 +103,8 @@ function Initialize()
 {
 	local class<BC_GameStyle> game_style;
     local eFontScale FS;
+	local WeaponList_ConflictInventory ConfigList;
+	local int i;
 	//local Material M;
 
 	if (bInitialized)
@@ -130,6 +134,13 @@ function Initialize()
 		SetTimer(0.05, true);
 	else
 		OnLRIAcquired();
+	
+	
+	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictInventory';
+
+	//Load presets
+	for(i=0;i<5;i++) //fixme
+	    cb_Presets.AddItem(ConfigList.PresetName[i] ,,string(i));
 
 	/*M = Material(DynamicLoadObject("BWBP_Camos_Tex.SARCamos.AAS-Circle", class'Material')); //Todo, replace with a canary
 	if (M != None)
@@ -261,6 +272,8 @@ simulated function InitWeaponLists ()
 	l_Loading.Hide();
 
 	li_Weapons.Clear();
+	LayoutIndexList.length = 0;
+	CamoIndexList.length = 0;
 	cb_WeapLayoutIndex.Clear();
 	cb_WeapCamoIndex.Clear();
 
@@ -342,6 +355,47 @@ simulated function InitWeaponLists ()
 			}
 		}
 	}
+}
+
+function SaveSettings()
+{
+	local int i;
+	local string iw, ic, il;
+	local class<BC_GameStyle> game_style;
+	local WeaponList_ConflictInventory ConfigList;
+
+	game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+
+	if (game_style == None)
+	{
+		Log("MidGameTab_ConflictLoadout: Couldn't save - No compatible style found");
+		return;
+	}
+
+	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictInventory';
+    ConfigList.PresetName[cb_Presets.GetIndex()] = cb_Presets.GetText();
+
+	//Convert our inv into a string to store
+	for (i = 0; i < Inventory.length; i++)
+	{
+		if (iw == "")
+			iw = Inventory[i].ClassName;
+		else
+			iw = iw $ "|" $ Inventory[i].ClassName;
+		if (il == "")
+			il = string(Inventory[i].LayoutIndex);
+		else
+			il = il $ "|" $ string(Inventory[i].LayoutIndex);
+		if (ic == "")
+			ic = string(Inventory[i].CamoIndex);
+		else
+			ic = ic $ "|" $ string(Inventory[i].CamoIndex);
+	}
+	ConfigList.SavedInventory[cb_Presets.GetIndex()] = iw;
+	ConfigList.SavedLayout[cb_Presets.GetIndex()] = il;
+	ConfigList.SavedCamo[cb_Presets.GetIndex()] = ic;
+	
+	ConfigList.SaveConfig();
 }
 
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
@@ -445,6 +499,10 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	
 	return true;
 }
+
+// =================================================================
+// Inventory Management
+// =================================================================
 
 function int CountExisting(string weapon_name)
 {
@@ -676,6 +734,10 @@ function bool HandleConflictItem(class<actor> InvClass, string FriendlyName)
 	return true;
 }
 
+// =================================================================
+// Click Events
+// =================================================================
+
 //Add inventory to the bottom bar
 function bool InternalOnDblClick(GUIComponent Sender)
 {
@@ -763,6 +825,12 @@ function bool InternalOnClick(GUIComponent Sender)
 
         return true;
 	}
+	
+	if (Sender == BSave)
+	{
+		SaveSettings();
+        return true;
+	}
 
 	return true;
 }
@@ -806,12 +874,28 @@ function bool InternalOnRightClick(GUIComponent Sender)
 function InternalOnChange(GUIComponent Sender)
 {
 	local class<BallisticWeapon> BW;
+	local class<ConflictItem> CI;
     local int inv_offset;
+	
+	local int i, j;
+	local class<actor> a;
+	local class<Weapon> Weap;
+	
+	local WeaponList_ConflictInventory ConfigList;
+	local class<BC_GameStyle> game_style;
+	local array<string> 		Loadout;								// Current loadout
+	local array<string>		Layouts;								// Current layout of each item
+	local array<string>		Camos;									// Current camo of each item
 	
 	if (Sender==li_Weapons)
 	{
 		l_WeapTitle.Caption = li_Weapons.SelectedText();
 		
+		//Bad index, something changed the list.
+		if (li_Weapons.Index == -1)
+		{
+			return;
+		}
 		//Section header.
 		if (li_Weapons.IsSection())
 		{
@@ -909,6 +993,59 @@ function InternalOnChange(GUIComponent Sender)
 
 			UpdateExistingInventory(li_Weapons.Index);
 		}
+	}
+	//Grab the preset data, parse it, try and shove it in our inventory
+	else if (Sender == cb_Presets && cb_Presets.GetExtra() != "") 
+	{
+		game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+
+		if (game_style == None)
+		{
+			Log("ConfigTab_ConflictLoadout: Couldn't load: No compatible style found");
+			return;
+		}
+
+		ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictInventory';
+		Inventory.length = 0;
+
+		SpaceUsed[MAIN_SECTION_INDEX] = 0;
+		SpaceUsed[SUB_SECTION_INDEX] = 0;
+		LoadoutIndex=cb_Presets.GetIndex();
+
+		Split(ConfigList.SavedInventory[LoadoutIndex], "|", Loadout);
+		Split(ConfigList.SavedLayout[LoadoutIndex], "|", Layouts);
+		Split(ConfigList.SavedCamo[LoadoutIndex], "|", Camos);
+
+		for (i = 0; i < Loadout.length; i++)
+		{
+			a = class<Actor>(DynamicLoadObject(Loadout[i], class'Class'));
+			
+			if (class<BallisticWeapon>(a) != None)
+			{
+				Weap = class<BallisticWeapon>(a);
+				AddInventory(string(Weap), Weap, Weap.default.ItemName, int(Layouts[i]), int(Camos[i]));
+			}
+			
+			else if (class<ConflictItem>(a) != None)
+			{
+				CI = class<ConflictItem>(a);
+				AddInventory(string(CI), CI, CI.default.ItemName, 0, 0);
+			}
+		}
+		for (j=0; j < Inventory.length; j++)
+		{
+			Inventory[j].ListIndex=li_Weapons.FindIndex(Inventory[j].Title);
+		}
+		//Tie our inventory to the list if possible
+		/*for (i=0; i < li_Weapons.length; i++)
+		{
+			for (j=0; j < Inventory.length; j++)
+			{
+				if (lb_Weapons.List.Index.ClassName == Inventory[j].ClassName)
+					Inventory[j].ListIndex=i; 
+			}
+		}*/
+		
 	}
 }
 
@@ -1286,12 +1423,37 @@ defaultproperties
          OnKeyEvent=cb_WeapCamoIndexComBox.InternalOnKeyEvent
      End Object
      cb_WeapCamoIndex=GUIComboBox'BallisticProV55.MidGameTab_Conflict.cb_WeapCamoIndexComBox'
+
+     Begin Object Class=moComboBox Name=co_PresetsCB
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.400000
+         Caption="Presets"
+         OnCreateComponent=co_PresetsCB.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Choose a preset replacements configuration, or type a new preset name here and click 'Save' to make the current configuration a new preset."
+         WinTop=0.92000
+         WinLeft=0.000000
+         WinWidth=0.280000
+         OnChange=MidGameTab_Conflict.InternalOnChange
+     End Object
+     cb_Presets=moComboBox'BallisticProV55.MidGameTab_Conflict.co_PresetsCB'
+	 
+     Begin Object Class=GUIButton Name=BSaveButton
+         Caption="Save Loadout"
+         WinTop=0.92000
+         WinLeft=0.30000
+         WinWidth=0.180000
+         TabOrder=1
+         OnClick=MidGameTab_Conflict.InternalOnClick
+         OnKeyEvent=CancelButton.InternalOnKeyEvent
+     End Object
+     bSave=GUIButton'BallisticProV55.MidGameTab_Conflict.BSaveButton'
 	 
      Begin Object Class=GUIButton Name=BClearButton
          Caption="Clear Loadout"
          WinTop=0.92000
-         WinLeft=0.20000
-         WinWidth=0.200000
+         WinLeft=0.50000
+         WinWidth=0.180000
          TabOrder=1
          OnClick=MidGameTab_Conflict.InternalOnClick
          OnKeyEvent=CancelButton.InternalOnKeyEvent
@@ -1301,8 +1463,8 @@ defaultproperties
 	 Begin Object Class=GUIButton Name=BStatButton
          Caption="Stats"
          WinTop=0.920000
-         WinLeft=0.600000
-         WinWidth=0.200000
+         WinLeft=0.800000
+         WinWidth=0.180000
          TabOrder=1
          OnClick=MidGameTab_Conflict.InternalOnClick
          OnKeyEvent=CancelButton.InternalOnKeyEvent
