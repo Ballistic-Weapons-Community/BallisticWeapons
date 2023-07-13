@@ -1,4 +1,4 @@
-class BallisticShieldWeaponParamsComp extends BallisticWeaponParams;
+class BallisticShieldWeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {    
@@ -6,7 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
+	Begin Object Class=MeleeEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=140.000000,Max=140.000000)
 		Damage=65
 		Fatigue=0.150000
@@ -19,21 +19,21 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=12.000000,bAtten=True)
 	End Object
 	
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.750000
 		AmmoPerFire=0
 		FireAnim="Bash1"
-		FireEffectParams(0)=MeleeEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=MeleeEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=140.000000,Max=140.000000)
 		Damage=80
-		Fatigue=0.500000
+		Fatigue=0.5
 		DamageType=Class'BWBP_OP_Pro.DTBallisticShield'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTBallisticShield'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTBallisticShield'
@@ -44,19 +44,19 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=12.000000,bAtten=True)
 	End Object
 	
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=1.200000
 		AmmoPerFire=0
 		PreFireAnim="PrepSmashAlt"
 		FireAnim="SmashAlt"
-		FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams'
+		FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams'
 	End Object
 
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-    Begin Object Class=RecoilParams Name=ArenaRecoilParams
+    Begin Object Class=RecoilParams Name=UniversalRecoilParams
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
@@ -67,7 +67,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-    Begin Object Class=AimParams Name=ArenaAimParams
+    Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
         SprintOffset=(Pitch=-2048,Yaw=-2048)
         AimSpread=(Min=0,Max=0)
@@ -78,56 +78,58 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-    Begin Object Class=WeaponParams Name=ArenaParams
+    Begin Object Class=WeaponParams Name=UniversalParams
 		//Layout core
 		LayoutName="Riot Shield"
 		Weight=30
 		//Stats
+        ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.95
         MagAmmo=1
         InventorySize=2
         DisplaceDurationMult=0
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
-    
-	Begin Object Class=WeaponParams Name=ArenaParams-Civ
+
+    Begin Object Class=WeaponParams Name=UniversalParams_Police
 		//Layout core
 		LayoutName="Police Shield"
 		Weight=10
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_CivShield'
 		//Stats
+        ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.95
         MagAmmo=1
         InventorySize=2
         DisplaceDurationMult=0
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
-	
-	Begin Object Class=WeaponParams Name=ArenaParams-Junk
+
+    Begin Object Class=WeaponParams Name=UniversalParams_Junk
 		//Layout core
 		LayoutName="Junk Shield"
 		Weight=10
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_JunkShield'
 		//Stats
+        ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.95
         MagAmmo=1
         InventorySize=2
         DisplaceDurationMult=0
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
-	
-	Layouts(0)=WeaponParams'ArenaParams'
-	Layouts(1)=WeaponParams'ArenaParams-Civ'
-	Layouts(2)=WeaponParams'ArenaParams-Junk'
+    Layouts(0)=WeaponParams'UniversalParams'
+    Layouts(1)=WeaponParams'UniversalParams_Police'
+    Layouts(2)=WeaponParams'UniversalParams_Junk'
 }

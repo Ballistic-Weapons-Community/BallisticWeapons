@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Carbine
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
         DecayRange=(Min=1536,Max=4000)
@@ -34,6 +35,64 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
+	
+	//Heavy Barrel
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_HB
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+        DecayRange=(Min=1536,Max=4000)
+		PenetrationEnergy=48
+		RangeAtten=0.7
+		Damage=35
+        HeadMult=2.00
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter' //
+		FlashScaleFactor=0.800000 //
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False) //
+		Recoil=230.000000 //
+		Chaos=0.06000 //
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_HB
+		AimedFireAnim="SightFire"
+		FireInterval=0.12000
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_HB'
+	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_S
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+        DecayRange=(Min=1536,Max=4000)
+		PenetrationEnergy=48
+		RangeAtten=0.7 //
+		Damage=35
+        HeadMult=2.00
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.800000 //
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Volume=1.500000,Radius=768.000000,bAtten=True) //
+		Recoil=210.000000 //
+		Chaos=0.08000 //
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_S
+		AimedFireAnim="SightFire"
+		FireInterval=0.12000
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_S'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -57,6 +116,18 @@ defaultproperties
 		FireAnim="KnifeFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -94,8 +165,33 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams //Standard
 		//Layout core
 		Weight=30
-		LayoutName="Standard"
-		//Attachments
+		LayoutName="Carbine"
+		//Function
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		PlayerJumpFactor=1.000000
+		InventorySize=6
+		SightOffset=(X=-6.500000,Y=0.02,Z=2.55)
+		SightPivot=(Pitch=64)
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.350000
+		DisplaceDurationMult=1
+		MagAmmo=25
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Supp
+		//Layout core
+		Weight=10
+		LayoutName="Suppressed"
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
 		//Function
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
@@ -108,11 +204,40 @@ defaultproperties
 		MagAmmo=25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_S'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Scope
+		//Layout core
+		Weight=10
+		LayoutName="3X Scope"
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.07,AugmentOffset=(x=-26,y=-3.6,z=-0.1),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=3.000000,Y=-0.100000,Z=5.000000)
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.VSK.VSKScopeView'
+		MaxZoom=3
+		//Function
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		PlayerJumpFactor=1.000000
+		InventorySize=6
+		SightPivot=(Pitch=64)
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.400000
+		DisplaceDurationMult=1
+		MagAmmo=25
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_HB'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Supp'
+    Layouts(2)=WeaponParams'ArenaParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AK_Black

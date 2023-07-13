@@ -90,5 +90,6 @@ defaultproperties
 	 ParamsClasses(0)=Class'ApodCapsuleWeaponParamsArena'
 	 ParamsClasses(1)=Class'ApodCapsuleWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ApodCapsuleWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'ApodCapsuleWeaponParamsRealistic'
      DrawScale=0.400000
 }

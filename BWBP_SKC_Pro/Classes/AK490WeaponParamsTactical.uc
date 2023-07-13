@@ -40,6 +40,66 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
+	
+	//Long Barrel
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_HB
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+        DecayRange=(Min=1838,Max=5250) // 35-100m
+		RangeAtten=0.67
+		Damage=45 // 7.62 short
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+        PenetrationEnergy=48
+		PenetrateForce=180
+		bPenetrate=True
+		Inaccuracy=(X=24,Y=24) //-
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter' //
+		FlashScaleFactor=0.800000 //-
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False) //
+		Recoil=230.000000
+		Chaos=0.06000 //+
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_HB
+		AimedFireAnim="SightFire"
+		FireInterval=0.13000 //-
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_HB'
+	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_S
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+        DecayRange=(Min=1838,Max=5250) // 35-100m
+		RangeAtten=0.67
+		Damage=45 // 7.62 short
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+        PenetrationEnergy=48
+		PenetrateForce=180
+		bPenetrate=True
+		Inaccuracy=(X=20,Y=20) //--
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.800000 //-
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Volume=1.500000,Radius=768.000000,bAtten=True) //
+		Recoil=210.000000 //--
+		Chaos=0.08000 //++
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_S
+		AimedFireAnim="SightFire"
+		FireInterval=0.13000 //-
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_S'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -65,6 +125,18 @@ defaultproperties
 		FireAnim="KnifeFire"	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -108,8 +180,31 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
 		Weight=30
-		LayoutName="Standard"
-		//Attachments
+		LayoutName="Carbine"
+		//Function
+		InventorySize=7
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.32
+		SightOffset=(X=-6.500000,Y=0.02,Z=2.55)
+		SightPivot=(Pitch=64)
+		DisplaceDurationMult=1
+		MagAmmo=25
+		WeaponName="AK-490U Battle Rifle"
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Supp
+		//Layout core
+		Weight=10
+		LayoutName="Suppressed"
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
 		//Function
 		InventorySize=7
         SightMoveSpeedFactor=0.6
@@ -117,13 +212,41 @@ defaultproperties
 		SightPivot=(Pitch=64)
 		DisplaceDurationMult=1
 		MagAmmo=25
+		WeaponName="AKM-490 Battle Rifle (Supp)"
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_S'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Scope
+		//Layout core
+		Weight=10
+		LayoutName="3X Scope"
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.07,AugmentOffset=(x=-26,y=-3.6,z=-0.1),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=3.000000,Y=-0.100000,Z=5.000000)
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.VSK.VSKScopeView'
+		MaxZoom=3
+		//Function
+		InventorySize=7
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.4 //+.05
+		SightPivot=(Pitch=64)
+		DisplaceDurationMult=1
+		MagAmmo=25
+		WeaponName="AKM-490 Battle Rifle (4X)"
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Supp'
+    Layouts(2)=WeaponParams'TacticalParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AK_Black

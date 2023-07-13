@@ -294,5 +294,5 @@ defaultproperties
 	 FlashBone="Tip2"
 	 FlashScale=0.200000
      Mesh=SkeletalMesh'BWBP_SWC_Anims.SkrithHyperBlaster_TPm'
-     DrawScale=0.850000
+     DrawScale=0.650000
 }

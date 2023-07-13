@@ -95,6 +95,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'NTOVBandageWeaponParamsArena'
 	 ParamsClasses(1)=Class'NTOVBandageWeaponParamsClassic'
 	 ParamsClasses(2)=Class'NTOVBandageWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'NTOVBandageWeaponParamsRealistic'
      Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_NTOV'
      DrawScale=0.400000
 }

@@ -26,21 +26,21 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
 		FlashScaleFactor=0.800000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=256.000000
+		Recoil=286.000000
 		Chaos=-1.0
 		Inaccuracy=(X=12,Y=12)
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.140000
-		BurstFireRateFactor=1.00
+		FireInterval=0.110000
+		BurstFireRateFactor=0.23
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	
-	//Burst
-	Begin Object Class=InstantEffectParams Name=ClassicPrimaryBurstEffectParams
+	//Long Barrel
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_HeavyBarrel
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		WaterTraceRange=10400.0
 		DecayRange=(Min=0.0,Max=0.0)
@@ -56,24 +56,57 @@ defaultproperties
 		bPenetrate=True
 		PDamageFactor=0.600000
 		WallPDamageFactor=0.600000
-		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C' //
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=256.000000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False) //
+		Recoil=256.000000 //
 		Chaos=0.05
-		Inaccuracy=(X=12,Y=12)
+		Inaccuracy=(X=6,Y=6)
 		WarnTargetPct=0.200000
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireBurstParams
-		FireInterval=0.033000
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_HeavyBarrel
+		FireInterval=0.140000 //
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryBurstEffectParams'
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_HeavyBarrel'
+	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Suppressed
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+		WaterTraceRange=10400.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.800000
+		Damage=35
+		HeadMult=2.85
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490BulletHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Bullet'
+		PenetrationEnergy=70.000000
+		PenetrateForce=180
+		bPenetrate=True
+		PDamageFactor=0.600000
+		WallPDamageFactor=0.600000
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Volume=1.500000,Radius=768.000000,bAtten=True) //
+		Recoil=226.000000 //
+		Chaos=0.05
+		Inaccuracy=(X=4,Y=4)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Suppressed
+		FireInterval=0.140000 //
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Suppressed'
 	End Object
 		
     //=================================================================
-    // SECONDARY FIRE - TODO
+    // SECONDARY FIRE
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
@@ -94,6 +127,18 @@ defaultproperties
 		FireAnim="KnifeFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 				
 	//=================================================================
 	// RECOIL
@@ -137,15 +182,14 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams //Standard
 		//Layout core
 		Weight=30
-		LayoutName="Standard"
-		//Attachments
+		LayoutName="Carbine"
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.300000
+		SightingTime=0.300000 // -.5
 		bNeedCock=True
 		MagAmmo=20
-		//SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+		SightOffset=(X=-6.500000,Y=0.02,Z=2.55)
 		SightPivot=(Pitch=64)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
@@ -156,41 +200,70 @@ defaultproperties
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_RedDot //Standard
+	Begin Object Class=WeaponParams Name=ClassicParams_Suppressed
 		//Layout core
 		Weight=10
-		LayoutName="Optic"
-		//Attachments
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.2,AugmentOffset=(x=-19,y=0,z=0),AugmentRot=(Pitch=0,Yaw=-16384,Roll=0))
+		LayoutName="Suppressed"
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.300000
+		SightingTime=0.350000
 		bNeedCock=True
 		MagAmmo=20
-		//SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
 		SightPivot=(Pitch=64)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		ViewOffset=(X=6.000000,Y=5.000000,Z=-4.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Suppressed'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Scope
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.07,AugmentOffset=(x=-26,y=-3.6,z=-0.1),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=3.000000,Y=-0.100000,Z=5.000000)
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.VSK.VSKScopeView'
+		MaxZoom=4
+		//Function
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.40000 //+.1
+		bNeedCock=True
+		MagAmmo=20
+		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ViewOffset=(X=6.000000,Y=5.000000,Z=-4.000000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
     Layouts(0)=WeaponParams'ClassicParams'
-    //Layouts(1)=WeaponParams'ClassicParams_RedDot'
+    Layouts(1)=WeaponParams'ClassicParams_Suppressed'
+    Layouts(2)=WeaponParams'ClassicParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AK_Black
