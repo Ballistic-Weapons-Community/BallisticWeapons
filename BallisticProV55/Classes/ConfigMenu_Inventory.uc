@@ -38,9 +38,9 @@ defaultproperties
 	
 	ArenaTabLabel="Arena"
 	ArenaTabHint"Change which weapons are used by the 'Ballistic Arena' Mutator."
-	ConflictTabLabel="Conflict Loadout"
+	ConflictTabLabel="Inventory"
 	ConflictTabHint="Change which weapons are used by the 'Ballistic Conflict' Mutator."
-	SwapTabLabel="Swapping"
+	SwapTabLabel="Pickup Swap"
 	SwapTabHint="Adjust how and which weapons are spawned by the 'Ballistic Weapons' mutator."
 	LoadoutTabLabel="Loadout"
 	LoadoutTabHint="Change how and which weapons are used by the 'Ballistic Loadout' mutator."

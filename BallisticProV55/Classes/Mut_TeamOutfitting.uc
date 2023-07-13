@@ -9,9 +9,9 @@ class Mut_TeamOutfitting extends Mut_Ballistic
 	CacheExempt
 	config(BallisticProV55);
 
-var() config string 			LoadOut[5];			// Loadout info saved seperately on each client
-var() config int 				Layout[5];			// Layout number saved seperately on each client
-var() config int 				Camo[5];			// Camo number saved seperately on each client
+var() globalconfig string 			LoadOut[5];			// Loadout info saved seperately on each client
+var() globalconfig int 				Layout[5];			// Layout number saved seperately on each client
+var() globalconfig int 				Camo[5];			// Camo number saved seperately on each client
 
 var   Array<ClientTeamOutfittingInterface>	COIPond;			// Jump right in, they won't bite - probably...
 var   PlayerController						PCPendingCOI;	// The PlayerController that is about to get its COI
@@ -261,7 +261,7 @@ function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5]
 }
 
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
-function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5], optional int Layouts[NUM_GROUPS], optional int Camos[NUM_GROUPS])
+function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5], optional int Layouts[5], optional int Camos[5])
 {
 	local byte i, j, k, m;
 	local bool bMatch;

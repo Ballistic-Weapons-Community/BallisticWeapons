@@ -21,8 +21,8 @@ function LoadSettings()
 {
 	local class<BC_GameStyle> game_style;
 
-	co_InventoryMode.AddItem("Conflict Loadout" ,,string(0));
-	co_InventoryMode.AddItem("Outfitting Loadout" ,,string(1));
+	co_InventoryMode.AddItem("Inventory" ,,string(0));
+	co_InventoryMode.AddItem("Loadout" ,,string(1));
 	co_InventoryMode.AddItem("Evolution Loadout",,string(2));
 	co_InventoryMode.AddItem("Pickups" ,,string(3));
 	co_InventoryMode.AddItem("Arena" ,,string(4));

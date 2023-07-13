@@ -193,8 +193,8 @@ defaultproperties
 	Camos(1)=WeaponCamo'M50_Black'
 	Camos(2)=WeaponCamo'M50_Jungle'
 	Camos(3)=WeaponCamo'M50_Gold'
-	Camos(4)=WeaponCamo'M50A3_Black'
-	Camos(5)=WeaponCamo'M50A3_Desert'
+	//Camos(4)=WeaponCamo'M50A3_Black'
+	//Camos(5)=WeaponCamo'M50A3_Desert'
 
 
 }

@@ -60,9 +60,11 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
     if (!bInitialized)
 	{
 		for(i = 0 ; i < 5; i++)
-		SavedLoadouts[0].Weapons[i] = class'Mut_Outfitting'.default.LoadOut[i];
-		SavedLoadouts[0].Layouts[i] = class'Mut_Outfitting'.default.Layout[i];
-		SavedLoadouts[0].Camos[i] = class'Mut_Outfitting'.default.Camo[i];
+		{
+			SavedLoadouts[0].Weapons[i] = class'Mut_Outfitting'.default.LoadOut[i];
+			SavedLoadouts[0].Layouts[i] = class'Mut_Outfitting'.default.Layout[i];
+			SavedLoadouts[0].Camos[i] = class'Mut_Outfitting'.default.Camo[i];
+		}
 		bInitialized=True;
 		SaveConfig();
 	}

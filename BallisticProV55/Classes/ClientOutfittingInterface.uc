@@ -65,8 +65,6 @@ simulated function array<string> GetGroup(byte GroupNum)
 //Returns the weapon at the specific index.
 simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 {
-	if (Role == ROLE_Authority)
-		return Mut.GetGroupItem(GroupNum, ItemNum);
 	switch (GroupNum)
 	{
 		case	0:	return Group0[ItemNum];
@@ -98,27 +96,13 @@ simulated function SetGroupItem(string str, byte GroupNum, int ItemNum)
 //Returns the number of weapons in the group.
 simulated function int GroupLength(byte GroupNum)
 {
-	if (Role == ROLE_Authority)
+	switch (GroupNum)
 	{
-		switch (GroupNum)
-		{
-			case 0: return class'Mut_Outfitting'.default.LoadoutGroup0.length;
-			case 1: return class'Mut_Outfitting'.default.LoadoutGroup1.length;
-			case 2: return class'Mut_Outfitting'.default.LoadoutGroup2.length;
-			case 3: return class'Mut_Outfitting'.default.LoadoutGroup3.length;
-			case 4: return class'Mut_Outfitting'.default.LoadoutGroup4.length;
-		}
-	}
-	else
-	{
-		switch (GroupNum)
-		{
-			case 0: return Group0.length;
-			case 1: return Group1.length;
-			case 2: return Group2.length;
-			case 3: return Group3.length;
-			case 4: return Group4.length;
-		}
+		case 0: return Group0.length;
+		case 1: return Group1.length;
+		case 2: return Group2.length;
+		case 3: return Group3.length;
+		case 4: return Group4.length;
 	}
 
 	return -1;
@@ -297,6 +281,8 @@ simulated function SortList(byte group_index)
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
 	local int wiGroup, existingGroup;
+
+	log("we sortin");
 
 	for (i=0; i < GetGroup(group_index).Length; i++)
 	{

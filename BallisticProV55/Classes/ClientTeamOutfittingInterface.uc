@@ -595,7 +595,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
-		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
+		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0,0,0,0,0,0);
 		LastLoadoutTime = level.TimeSeconds;
 	}
 
@@ -604,7 +604,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
-					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
+					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0,0,0,0,0,0);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
@@ -619,24 +619,48 @@ simulated function ClientStartLoadout()
 	class'Mut_TeamOutfitting'.default.LoadOut[1],
 	class'Mut_TeamOutfitting'.default.LoadOut[2],
 	class'Mut_TeamOutfitting'.default.LoadOut[3],
-	class'Mut_TeamOutfitting'.default.LoadOut[4]
+	class'Mut_TeamOutfitting'.default.LoadOut[4],
+	class'Mut_TeamOutfitting'.default.Layout[0],
+	class'Mut_TeamOutfitting'.default.Layout[1],
+	class'Mut_TeamOutfitting'.default.Layout[2],
+	class'Mut_TeamOutfitting'.default.Layout[3],
+	class'Mut_TeamOutfitting'.default.Layout[4],
+	class'Mut_TeamOutfitting'.default.Camo[0],
+	class'Mut_TeamOutfitting'.default.Camo[1],
+	class'Mut_TeamOutfitting'.default.Camo[2],
+	class'Mut_TeamOutfitting'.default.Camo[3],
+	class'Mut_TeamOutfitting'.default.Camo[4]
 	);
 }
 
 // Loadout info sent back from client after it was requested by server.
 // Outfit the client with the standard weapons.
-function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
+function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4, int L0, int L1, int L2, int L3, int L4, int C0, int C1, int C2, int C3, int C4) //good lord whyyy
 {
 	local string Stuff[5];
+	local int Layout[5];
+	local int Camo[5];
 	
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
 	Stuff[2] = Stuff2;
 	Stuff[3] = Stuff3;
 	Stuff[4] = Stuff4;
+	
+	Layout[0] = L0;
+	Layout[1] = L1;
+	Layout[2] = L2;
+	Layout[3] = L3;
+	Layout[4] = L4;
+	
+	Camo[0] = C0;
+	Camo[1] = C1;
+	Camo[2] = C2;
+	Camo[3] = C3;
+	Camo[4] = C4;
 
 	if (PC.Pawn != None)
-		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout);
+		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout, Layout, Camo);
 		
 	LastLoadout[0] = Stuff[0];
 	LastLoadout[1] = Stuff[1];

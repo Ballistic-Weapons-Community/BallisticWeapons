@@ -1,5 +1,5 @@
 //=============================================================================
-// Mut_Loadout.
+// Mut_Loadout. (Evolution)
 //
 // Like normal loadout, but each weapon has skill requirements before it's
 // available. Players will have to acheive a certain level of skill or set of

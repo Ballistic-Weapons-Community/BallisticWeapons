@@ -33,7 +33,10 @@ simulated function PreBeginPlay()
 	{
 		Log("Mut_BallisticStyle: Spawning mutator "$InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName);
 
-		Level.Game.AddMutator(InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName, false);
+		if (Level.Game.bTeamGame && InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName == "BallisticProV55.Mut_Outfitting")
+			Level.Game.AddMutator("BallisticProV55.Mut_TeamOutfitting");
+		else
+			Level.Game.AddMutator(InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName, false);
 	}
 
 	else 
@@ -45,8 +48,8 @@ simulated function PreBeginPlay()
 defaultproperties
 {
 	GroupName="Ballistic"
-	InventoryModes(0)=(Name="Conflict",MutatorClassName="BallisticProV55.Mut_ConflictLoadout")
-	InventoryModes(1)=(Name="Outfitting",MutatorClassName="BallisticProV55.Mut_Outfitting")
+	InventoryModes(0)=(Name="Inventory",MutatorClassName="BallisticProV55.Mut_ConflictLoadout")
+	InventoryModes(1)=(Name="Loadout",MutatorClassName="BallisticProV55.Mut_Outfitting")
 	InventoryModes(2)=(Name="Evolution",MutatorClassName="BallisticProV55.Mut_Loadout")
 	InventoryModes(3)=(Name="Pickups",MutatorClassName="BallisticProV55.Mut_BallisticSwap")
 	InventoryModes(4)=(Name="Arena",MutatorClassName="BallisticProV55.Mut_BallisticArena")
