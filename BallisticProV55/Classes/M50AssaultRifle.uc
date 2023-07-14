@@ -23,6 +23,8 @@ var() BUtil.FullSound 		CamOutSound;
 var() name					CamUpAnim;			//Anim when going to cam view
 var() name					CamDownAnim;		//Anim when leaving cam view
 var() float					CamUpdateRate;		//Time interval between scripted tex screen updates
+var() bool					bHasGrenadeLauncher;
+var() bool					bHasCamera;
 
 var() Sound					GrenOpenSound;		//Sounds for grenade reloading
 var() Sound					GrenLoadSound;		//
@@ -40,13 +42,30 @@ replication
 		Camera;
 }
 
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasGrenadeLauncher=true;
+	bHasCamera=true;
+	
+	if (InStr(WeaponParams.LayoutTags, "no_grenade") != -1)
+	{
+		bHasGrenadeLauncher=false;
+		bHasCamera=false;
+		bCockOnEmpty=false;
+	}
+}
+
 simulated function UpdateGLIndicator()
 {
 	if (!Instigator.IsLocallyControlled())
 		return;
 	if (M50SecondaryFire(FireMode[1]).bLoaded)
 	{
-		if (GLIndicator == None)
+		if (GLIndicator == None && bHasGrenadeLauncher)
 			class'BUtil'.static.InitMuzzleFlash(GLIndicator, class'M50GLIndicator', DrawScale, self, 'tip');
 	}
 	else if (GLIndicator != None)
@@ -185,6 +204,8 @@ simulated function bool CheckWeaponMode (int Mode)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
+	if (!bHasCamera)
+		return;
 	if (Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera)
 		SwitchView();
 	else
@@ -544,7 +565,7 @@ function byte BestMode()
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
 
-	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded())
+	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded() || !bHasGrenadeLauncher)
 		return 0;
 	else if (MagAmmo < 1)
 		return 1;
