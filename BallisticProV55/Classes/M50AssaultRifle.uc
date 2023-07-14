@@ -285,7 +285,7 @@ simulated event Timer()
 	}
 
 	Level.TimeSeconds < FMin(LastRenderTime + CamUpdateRate, 0.05);
-	if (Instigator.IsLocallyControlled() && Camera != None && CamUpdateRate > 0.0 && !Camera.bBusted && PlayerController(Instigator.Controller).ViewTarget == Instigator)
+	if (Instigator.IsLocallyControlled() && bHasCamera && Camera != None && CamUpdateRate > 0.0 && !Camera.bBusted && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
 		CamTex.Client = self;
 		if (Camera != None)
@@ -432,7 +432,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (Camera != None)
 			CamTex.Revision++;
 	}
-	if (Camera == None && Role == ROLE_Authority)
+	if (bHasCamera && Camera == None && Role == ROLE_Authority)
 	{
 		foreach DynamicActors (class'M50Camera', C)
 		{
