@@ -13,7 +13,19 @@ simulated function Explode(vector HitLocation, vector HitNormal)
   	local RX22AActorFire BurnA;
   	local FP7ActorBurner BurnB;
   	local BOGPFlareActorBurner BurnC;
-
+	local ChaffCloudControl C;
+	
+	if ( Role == ROLE_Authority )
+	{
+		C = Spawn(class'ChaffCloudControl',self,,HitLocation + HitNormal * 2);
+		
+		if (C!=None)
+		{
+			C.Instigator = Instigator;
+			C.InstigatorController = InstigatorController;
+		}
+	}
+	
 	if (ShakeRadius > 0)
 		ShakeView(HitLocation);
 		

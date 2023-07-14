@@ -15,6 +15,18 @@ var array<Actor> PokedControls;
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
+	local ChaffCloudControl C;
+	if ( Role == ROLE_Authority )
+	{
+		C = Spawn(class'ChaffCloudControl',self,,HitLocation + HitNormal * 2);
+		
+		if (C!=None)
+		{
+			C.Instigator = Instigator;
+			C.InstigatorController = InstigatorController;
+		}
+	}
+
 	if (ShakeRadius > 0)
 		ShakeView(HitLocation);
 	BlowUp(HitLocation);
