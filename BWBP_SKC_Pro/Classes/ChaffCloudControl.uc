@@ -51,7 +51,7 @@ function ServeCustomers()
    	}
 	foreach RadiusActors( class 'M50Camera', ThingB, ChaffRadius, Location )
    	{
-    	ThingB.TakeDamage(50, Instigator, Location, vect(0,0,0), DamageType);
+    	ThingB.TakeDamage(Damage, Instigator, Location, vect(0,0,0), DamageType);
    	}
 	foreach RadiusActors( class 'FP9Bomb', ThingC, ChaffRadius, Location )
    	{
@@ -188,8 +188,8 @@ simulated event PostNetReceive()
 
 defaultproperties
 {
-	 ChaffRadius=300
-     Damage=0
+	 ChaffRadius=500
+     Damage=25
      DamageType=Class'BWBP_SKC_Pro.DTChaffGrenadeRadius'
      bHidden=True
      bAlwaysRelevant=True
