@@ -126,6 +126,18 @@ defaultproperties
 		FireAnim="FireGrenade"	
 	FireEffectParams(0)=GrenadeEffectParams'TacticalSecondaryEffectParams_HE'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -135,6 +147,22 @@ defaultproperties
 		ViewBindFactor=0.15
 		ADSViewBindFactor=0.7
 		EscapeMultiplier=1.5
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.250000,OutVal=0.060000),(InVal=0.400000,OutVal=-0.020000),(InVal=0.800000,OutVal=0.100),(InVal=1.000000,OutVal=0.00000)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		ClimbTime=0.04
+		DeclineDelay=0.140000
+		DeclineTime=1.00000
+		CrouchMultiplier=0.850000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2.5
+	End Object
+
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.15
+		ADSViewBindFactor=1
+		EscapeMultiplier=1.0
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.250000,OutVal=0.060000),(InVal=0.400000,OutVal=-0.020000),(InVal=0.800000,OutVal=0.100),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1
@@ -172,7 +200,7 @@ defaultproperties
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
-		WeaponBoneScales(1)=(BoneName="HoloSightLower",Slot=55,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="HoloSightUpper",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
 		
@@ -245,9 +273,40 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_HE'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=TacticalParams_3X
+		//Layout core
+		Weight=5
+		LayoutName="3X + Chaff"
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ACOG',BoneName="tip",Scale=0.1,AugmentOffset=(x=-25,y=-4.6,z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+		MaxZoom=3
+		
+		//Function
+		MagAmmo=30
+        InventorySize=6
+		SightingTime=0.40 //+0.5
+		SightMoveSpeedFactor=0.6
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'TacticalParams_Chaff'
 	Layouts(1)=WeaponParams'TacticalParams_Sensor'
 	Layouts(2)=WeaponParams'TacticalParams_HE'
+	Layouts(3)=WeaponParams'TacticalParams_3X'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black
