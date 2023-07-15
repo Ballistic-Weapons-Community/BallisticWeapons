@@ -91,7 +91,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=1.25
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50FireSil',Volume=1.100000,Radius=192.000000,bAtten=True) //
-		Recoil=130.000000 //
+		Recoil=140.000000 //
 		Chaos=0.02 //
 		WarnTargetPct=0.200000
 	End Object

@@ -158,6 +158,23 @@ defaultproperties
 		HipMultiplier=1.25
 		MaxMoveMultiplier=2.5
 	End Object
+
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.25
+		ADSViewBindFactor=1.0 //
+		EscapeMultiplier=1.00 //
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.05000),(InVal=0.200000,OutVal=0.060000),(InVal=0.300000,OutVal=0.10000),(InVal=0.400000,OutVal=0.150000),(InVal=0.5,OutVal=0.170000),(InVal=0.65000000,OutVal=0.100000),(InVal=0.75000000,OutVal=0.05000),(InVal=1.000000,OutVal=0.080000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.300000,OutVal=0.35000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		MaxRecoil=6144
+		ClimbTime=0.04
+		DeclineDelay=0.15
+		DeclineTime=1.25
+		CrouchMultiplier=0.85
+		HipMultiplier=1.30 //
+		MaxMoveMultiplier=2.5
+	End Object
 	
 	//=================================================================
 	// AIM
@@ -198,19 +215,20 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Supp
 		//Layout core
-		Weight=10
+		Weight=5
 		LayoutName="Suppressed"
 		LayoutTags="no_knife"
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
+		WeaponBoneScales(0)=(BoneName="Mount",Slot=50,Scale=0f)
+		//GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=0.000000,Y=0.00000,Z=2.20000)
+		SightPivot=(Pitch=0)
 		//Function
 		InventorySize=7
         SightMoveSpeedFactor=0.6
 		SightingTime=0.35
-		SightPivot=(Pitch=64)
 		DisplaceDurationMult=1
 		MagAmmo=25
 		WeaponName="AKM-490 Battle Rifle (Supp)"
@@ -220,9 +238,32 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
 
+	Begin Object Class=WeaponParams Name=TacticalParams_Holo
+		//Layout core
+		Weight=5
+		LayoutName="Holosight"
+		LayoutTags="no_knife"
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
+		//Function
+		InventorySize=7
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.35
+		SightPivot=(Pitch=64)
+		DisplaceDurationMult=1
+		MagAmmo=25
+		WeaponName="AKM-490 Battle Rifle (Holo)"
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
+
 	Begin Object Class=WeaponParams Name=TacticalParams_Scope
 		//Layout core
-		Weight=10
+		Weight=5
 		LayoutName="3X Scope"
 		LayoutTags="no_knife"
 		//Visual
@@ -239,8 +280,8 @@ defaultproperties
 		SightPivot=(Pitch=64)
 		DisplaceDurationMult=1
 		MagAmmo=25
-		WeaponName="AKM-490 Battle Rifle (4X)"
-        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		WeaponName="AKM-490 Battle Rifle (3X)"
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
@@ -248,7 +289,8 @@ defaultproperties
 	
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_Supp'
-    Layouts(2)=WeaponParams'TacticalParams_Scope'
+    Layouts(2)=WeaponParams'TacticalParams_Holo'
+    Layouts(3)=WeaponParams'TacticalParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AK_Black

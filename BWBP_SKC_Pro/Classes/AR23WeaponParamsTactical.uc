@@ -273,7 +273,7 @@ defaultproperties
 		Weight=10
 		LayoutName="Suppressor"
 		//Attachments
-		WeaponBoneScales(0)=(BoneName="IronsFront",Slot=50,Scale=1f)
+		WeaponBoneScales(0)=(BoneName="IronsFront",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="GLIrons",Slot=52,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Holo",Slot=53,Scale=0f)
