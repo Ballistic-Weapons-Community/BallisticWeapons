@@ -76,9 +76,9 @@ defaultproperties
      UndeployedWeaponName="BWBP_JCF_Pro.M99Rifle"
      WeaponClassName="BWBP_JCF_Pro.M99_TW"
      GunYawBounds=(Min=-12000.000000,Max=12000.000000)
-     GunPitchBounds=(Min=-10000.000000,Max=8192.000000)
+     GunPitchBounds=(Min=-2000.000000,Max=2000.000000)
      CamYawBounds=(Min=-12000.000000,Max=12000.000000)
-     CamPitchBounds=(Max=12000.000000)
+     CamPitchBounds=(Min=-2000.000000,Max=2000.000000)
      GunYawSpeed=24000.000000
      GunPitchSpeed=32768.000000
      CamTrackYawSpeed=32768.000000
@@ -88,7 +88,7 @@ defaultproperties
 	 CameraElevation=5.000000
      GunBone="Weapon"
      PivotBone="StandPivot"
-     DriverBackOff=45.000000
+     DriverBackOff=65.000000
      bDrawDriverInTP=True
      VehicleNameString="M99 Mounted ECS Anti-MaterialRifle"
      Mesh=SkeletalMesh'BWBP_JCF_Anims.M99_Turret_TPm'

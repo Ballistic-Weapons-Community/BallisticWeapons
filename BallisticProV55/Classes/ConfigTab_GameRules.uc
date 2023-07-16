@@ -100,7 +100,7 @@ defaultproperties
 	 Begin Object Class=moComboBox Name=co_InventoryModeCombo
          ComponentJustification=TXTA_Left
          CaptionWidth=0.550000
-         Caption="Inventory Mode"
+         Caption="Weapon Spawning"
          OnCreateComponent=co_InventoryModeCombo.InternalOnCreateComponent
          IniOption="@Internal"
          IniDefault="High"

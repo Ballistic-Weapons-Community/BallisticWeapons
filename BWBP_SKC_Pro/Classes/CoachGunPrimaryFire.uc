@@ -240,7 +240,7 @@ simulated event ModeDoFire()
 		}
 		return;
 	}
-	
+	/*
 	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())
@@ -335,6 +335,7 @@ simulated event ModeDoFire()
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
 	}
+	*/
 }
 
 //======================================================================
@@ -505,7 +506,7 @@ defaultproperties
 	RangeAtten=0.250000
     PenetrateForce=0
 	bPenetrate=False
-	bFireOnRelease=True
+	bFireOnRelease=False
 	DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
 	DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'

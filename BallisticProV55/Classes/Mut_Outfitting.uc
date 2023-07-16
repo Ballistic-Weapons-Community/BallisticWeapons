@@ -31,6 +31,8 @@ var() globalconfig array<string>	LoadoutGroup1;	// Weapons available in Sidearm 
 var() globalconfig array<string>	LoadoutGroup2;	// Weapons available in Primary Box
 var() globalconfig array<string>	LoadoutGroup3;	// Weapons available in Secondayr Box
 var() globalconfig array<string>	LoadoutGroup4;	// Weapons available in Grenade Box
+var() globalconfig array<string>	LoadoutGroup5;	// Killstreak One
+var() globalconfig array<string>	LoadoutGroup6;	// Killstreak Two
 
 struct dummypos
 {
@@ -44,6 +46,8 @@ var   class<weapon>				NetLoadout1;
 var   class<weapon>				NetLoadout2;
 var   class<weapon>				NetLoadout3;
 var   class<weapon>				NetLoadout4;
+var   class<weapon>				NetLoadout5;
+var   class<weapon>				NetLoadout6;
 
 var   class<Weapon>				NetLoadoutWeapons[255];
 var   byte						NetLoadoutGroups;
@@ -53,6 +57,8 @@ var   byte						NetLoadoutGroups;
 simulated function PreBeginPlay()
 {
 	local byte i, j;
+	local class<BC_GameStyle> game_style;
+	local WeaponList_Killstreak streaks;
 	
 	Super.PreBeginPlay();
 	
@@ -61,6 +67,28 @@ simulated function PreBeginPlay()
 			for (j=0; j < GetGroup(i).Length; j++)
 				if (Right(GetGroup(i)[j], 5) ~= "Dummy")
 					DummyGroups[i].Positions[DummyGroups[i].Positions.Length] = j;
+				
+				
+	//Load in KS lists so that we'll allow their spawns
+	game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+
+	log("Loading killstreak weapon list from "$game_style.default.StyleName);
+
+	streaks = new(None, game_style.default.StyleName) class'WeaponList_Killstreak';
+
+	LoadoutGroup5.Length = streaks.Streak1s.Length;
+	LoadoutGroup6.Length = streaks.Streak2s.Length;
+
+	for (i = 0; i < streaks.Streak1s.Length; ++i)
+	{
+		LoadoutGroup5[i] = streaks.Streak1s[i];
+	}
+
+	for (i = 0; i < streaks.Streak2s.Length; ++i)
+	{
+		LoadoutGroup6[i] = streaks.Streak2s[i];	
+	}
+				
 }
 	
 simulated function string GetGroupItem(byte GroupNum, int ItemNum)
@@ -72,6 +100,8 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 		case	2:	return LoadoutGroup2[ItemNum];
 		case	3:	return LoadoutGroup3[ItemNum];
 		case	4:	return LoadoutGroup4[ItemNum];
+		case	5:	return LoadoutGroup5[ItemNum];
+		case	6:	return LoadoutGroup6[ItemNum];
 	}
 }
 
@@ -84,6 +114,8 @@ simulated function array<string> GetGroup(byte GroupNum)
 		case	2:	return LoadoutGroup2;
 		case	3:	return LoadoutGroup3;
 		case	4:	return LoadoutGroup4;
+		case	5:	return LoadoutGroup5;
+		case	6:	return LoadoutGroup6;
 	}
 }
 
@@ -96,6 +128,8 @@ static function array<string> SGetGroup (byte GroupNum)
 		case	2:	return default.LoadoutGroup2;
 		case	3:	return default.LoadoutGroup3;
 		case	4:	return default.LoadoutGroup4;
+		case	5:	return default.LoadoutGroup3;
+		case	6:	return default.LoadoutGroup4;
 	}
 }
 

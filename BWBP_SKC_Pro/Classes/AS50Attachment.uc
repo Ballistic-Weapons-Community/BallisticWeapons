@@ -175,7 +175,7 @@ defaultproperties
      TracerChance=2.000000
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.500000)
+     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=0.700000

@@ -198,12 +198,14 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Carbine"
-		//Function
-		InventorySize=7
-        SightMoveSpeedFactor=0.6
-		SightingTime=0.32
+		//Visual
 		SightOffset=(X=-6.500000,Y=0.02,Z=2.55)
 		SightPivot=(Pitch=64)
+		// ADS handling
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.32
+		//Function
+		InventorySize=7
 		DisplaceDurationMult=1
 		MagAmmo=25
 		WeaponName="AK-490U Battle Rifle"
@@ -221,14 +223,14 @@ defaultproperties
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
 		WeaponBoneScales(0)=(BoneName="Mount",Slot=50,Scale=0f)
-		//GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=0.000000,Y=0.00000,Z=2.20000)
 		SightPivot=(Pitch=0)
-		//Function
-		InventorySize=7
+		// ADS handling
         SightMoveSpeedFactor=0.6
 		SightingTime=0.35
+		//Function
+		InventorySize=7
 		DisplaceDurationMult=1
 		MagAmmo=25
 		WeaponName="AKM-490 Battle Rifle (Supp)"
@@ -247,11 +249,12 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
-		//Function
-		InventorySize=7
+		SightPivot=(Pitch=64)
+		// ADS handling
         SightMoveSpeedFactor=0.6
 		SightingTime=0.35
-		SightPivot=(Pitch=64)
+		//Function
+		InventorySize=7
 		DisplaceDurationMult=1
 		MagAmmo=25
 		WeaponName="AKM-490 Battle Rifle (Holo)"
@@ -270,14 +273,16 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.07,AugmentOffset=(x=-26,y=-3.6,z=-0.1),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=3.000000,Y=-0.100000,Z=5.000000)
-		ZoomType=ZT_Fixed
+		SightPivot=(Pitch=64)
 		ScopeViewTex=Texture'BWBP_SKC_Tex.VSK.VSKScopeView'
+		// Zoom
+		ZoomType=ZT_Fixed
 		MaxZoom=3
+		// ADS handling
+        SightMoveSpeedFactor=0.35
+		SightingTime=0.4 //+.05
 		//Function
 		InventorySize=7
-        SightMoveSpeedFactor=0.6
-		SightingTime=0.4 //+.05
-		SightPivot=(Pitch=64)
 		DisplaceDurationMult=1
 		MagAmmo=25
 		WeaponName="AKM-490 Battle Rifle (3X)"

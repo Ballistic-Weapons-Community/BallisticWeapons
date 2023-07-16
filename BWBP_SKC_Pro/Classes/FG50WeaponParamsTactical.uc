@@ -81,7 +81,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=1024.000000
+		Recoil=1280.000000
 		Chaos=0.200000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -110,18 +110,18 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=512.000000
+		Recoil=768.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPriControlledFireParams_AP
 		TargetState="APAmmo"
-		FireInterval=0.600000
+		FireInterval=1.000000
 		FireEndAnim=
 		AimedFireAnim="SGCFireAimed"
-		FireAnimRate=2.400000	
+		FireAnimRate=1.800000	
 		FireEffectParams(0)=InstantEffectParams'TacticalPriControlledEffectParams_AP'
 	End Object
 		

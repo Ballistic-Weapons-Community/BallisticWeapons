@@ -128,7 +128,7 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=class'TraceEmitter_Default'
      WaterTracerClass=class'TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.AR23_TPm'
 	 FlashScale=0.4

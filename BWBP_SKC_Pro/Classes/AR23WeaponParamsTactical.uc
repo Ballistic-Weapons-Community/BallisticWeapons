@@ -199,10 +199,10 @@ defaultproperties
 	End Object
 	
 	//ACOG
-	Begin Object Class=WeaponParams Name=TacticalParams_4X
+	Begin Object Class=WeaponParams Name=TacticalParams_3X
 		//Layout core
 		Weight=10
-		LayoutName="4X Scope"
+		LayoutName="3X Scope"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsFront",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsRear",Slot=51,Scale=0f)
@@ -212,7 +212,7 @@ defaultproperties
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ACOG',BoneName="tip",Scale=0.12,AugmentOffset=(x=-25,y=0,z=-1),AugmentRot=(Pitch=32768,Yaw=0,Roll=0))
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
-		MaxZoom=4
+		MaxZoom=3
 		//Function
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
@@ -278,7 +278,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="GLIrons",Slot=52,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Holo",Slot=53,Scale=0f)
 		WeaponBoneScales(4)=(BoneName="MuzzleAttachment",Slot=54,Scale=0f)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentRot=(Pitch=0,Yaw=32768,Roll=32768))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentOffset=(x=-3,y=0,z=0),AugmentRot=(Pitch=0,Yaw=32768,Roll=32768))
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-25,y=0,z=-1.1),AugmentRot=(Pitch=0,Yaw=32768,Roll=32768))
 		//Function
 		PlayerSpeedFactor=0.9
@@ -327,7 +327,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'TacticalParams'
-	Layouts(1)=WeaponParams'TacticalParams_4X'
+	Layouts(1)=WeaponParams'TacticalParams_3X'
 	Layouts(2)=WeaponParams'TacticalParams_8X'
 	Layouts(3)=WeaponParams'TacticalParams_Supp'
 	Layouts(4)=WeaponParams'TacticalParams_Irons'

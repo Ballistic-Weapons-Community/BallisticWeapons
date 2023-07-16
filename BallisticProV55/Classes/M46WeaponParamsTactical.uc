@@ -131,18 +131,22 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams_Scope
-        MagAmmo=24
-        InventorySize=6
-		LayoutName="Scoped"
-		// ADS handling
-		SightingTime=0.40
-        SightMoveSpeedFactor=0.35
+		//Layout core
+		LayoutName="3X Scope"
+		Weight=30
+		//Attachments
+		SightPivot=(Pitch=600,Roll=-1024)
+		SightOffset=(X=-1,Y=0.050000,Z=3.9)
 		// Zoom
         ZoomType=ZT_Fixed
 		MaxZoom=3
+		// ADS handling
+		SightingTime=0.40
+        SightMoveSpeedFactor=0.35
 		ScopeScale=0.65
-		SightPivot=(Pitch=600,Roll=-1024)
-		SightOffset=(X=-1,Y=0.050000,Z=3.9)
+		//Function
+        MagAmmo=24
+        InventorySize=6
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
         AimParams(0)=AimParams'TacticalAimParams_Scope'
@@ -151,12 +155,17 @@ defaultproperties
     End Object 
 
     Begin Object Class=WeaponParams Name=TacticalParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		Weight=30
+		//Attachments
+		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
+		// ADS handling
 		SightingTime=0.35
         SightMoveSpeedFactor=0.6
-		LayoutName="RDS"
+		//Function
         MagAmmo=24
         InventorySize=6
-		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
