@@ -226,8 +226,8 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
-	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
-	{
+	//if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
+	//{
 		if (BW.MagAmmo == 1)
 		{
 			Load=1;
@@ -239,7 +239,7 @@ simulated event ModeDoFire()
 			super.ModeDoFire();
 		}
 		return;
-	}
+	//}
 	/*
 	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	

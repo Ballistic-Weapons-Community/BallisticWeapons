@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Shot
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryShotEffectParams
 		TraceRange=(Min=2560.000000,Max=3072.000000)
         DecayRange=(Min=1050,Max=2100)
@@ -27,8 +28,8 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.60000
 		WarnTargetPct=0.5
-		Inaccuracy=(X=300,Y=300)
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)	
+		Inaccuracy=(X=400,Y=300)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Coach-DoubleShot',Volume=1.200000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireShotParams
@@ -39,6 +40,7 @@ defaultproperties
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryShotEffectParams'
 	End Object
 
+	//Slug
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimarySlugEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
@@ -67,13 +69,51 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireSlugParams
 		FireInterval=0.300000
-		AmmoPerFire=2
+		AmmoPerFire=1
 		MaxHoldTime=0.0
 		AimedFireAnim="Fire"
 		FireAnimRate=1.35	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimarySlugEffectParams'
 	End Object
-		
+
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	//Shot single
+	Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryShotEffectParams
+		TraceRange=(Min=2560.000000,Max=3072.000000)
+        DecayRange=(Min=1050,Max=2100)
+		RangeAtten=0.25
+		TraceCount=10
+		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		MaxHits=15 // inflict maximum of 150 damage to a single target, before modifiers
+		Damage=10
+        HeadMult=1.75
+        LimbMult=0.85
+		PushbackForce=100.000000
+		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.500000
+		Recoil=1280.000000
+		Chaos=1.000000
+		BotRefireRate=0.60000
+		WarnTargetPct=0.5
+		Inaccuracy=(X=300,Y=300)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Coach-SingleShot',Volume=1.200000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireShotParams
+		FireInterval=0.300000
+		MaxHoldTime=0.0
+		AimedFireAnim="Fire"
+		FireAnimRate=1.35	
+		FireEffectParams(0)=ShotgunEffectParams'TacticalSecondaryShotEffectParams'
+	End Object	
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -116,6 +156,8 @@ defaultproperties
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireShotParams'
 		FireParams(1)=FireParams'TacticalPrimaryFireSlugParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireShotParams'
+		AltFireParams(1)=FireParams'TacticalPrimaryFireSlugParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
 	

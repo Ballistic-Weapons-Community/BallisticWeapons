@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Shot
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryShotEffectParams
 		TraceRange=(Min=2560.000000,Max=3072.000000)
         DecayRange=(Min=1000,Max=3000)
@@ -27,8 +28,8 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.60000
 		WarnTargetPct=0.500000
-		Inaccuracy=(X=300,Y=300)
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)	
+		Inaccuracy=(X=400,Y=300)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-FireDouble',Volume=1.200000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireShotParams
@@ -39,6 +40,7 @@ defaultproperties
 		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryShotEffectParams'
 	End Object
 
+	//Slug
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimarySlugEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1536,Max=4096)
@@ -72,6 +74,80 @@ defaultproperties
 		AimedFireAnim="Fire"
 		FireAnimRate=1.35	
 		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimarySlugEffectParams'
+	End Object
+
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	//Shot single
+	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryShotEffectParams
+		TraceRange=(Min=2560.000000,Max=3072.000000)
+        DecayRange=(Min=1000,Max=3000)
+		RangeAtten=0.25
+		TraceCount=10
+		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		HeadMult=1.50f 
+		LimbMult=0.85f
+		MaxHits=13 // inflict maximum of 156 damage to a single target
+		Damage=12
+		PushbackForce=100.000000
+		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.500000
+		Recoil=1280.000000
+		Chaos=1.000000
+		BotRefireRate=0.60000
+		WarnTargetPct=0.500000
+		Inaccuracy=(X=300,Y=300)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)	
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireShotParams
+		FireInterval=0.300000
+		MaxHoldTime=0.0
+		AimedFireAnim="Fire"
+		FireAnimRate=1.35	
+		FireEffectParams(0)=ShotgunEffectParams'ArenaSecondaryShotEffectParams'
+	End Object
+
+	//Slug single
+	Begin Object Class=ShotgunEffectParams Name=ArenaSecondarySlugEffectParams
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+        DecayRange=(Min=1536,Max=4096)
+		RangeAtten=0.25
+		TraceCount=1
+	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
+		HeadMult=1.50f
+		LimbMult=0.85f
+		Damage=60
+		PushbackForce=250.000000
+		DamageType=Class'BWBP_SKC_Pro.DTCoachSlug'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachSlug'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachSlug'
+        PenetrateForce=500
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=3.000000
+		Recoil=1280.000000
+		Chaos=1.000000
+		BotRefireRate=0.60000
+		WarnTargetPct=0.500000	
+		Inaccuracy=(X=16,Y=0)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire',Volume=7.100000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireSlugParams
+		FireInterval=0.300000
+		AmmoPerFire=2
+		MaxHoldTime=0.0
+		AimedFireAnim="Fire"
+		FireAnimRate=1.35	
+		FireEffectParams(0)=ShotgunEffectParams'ArenaSecondarySlugEffectParams'
 	End Object
 		
 	//=================================================================
@@ -116,6 +192,8 @@ defaultproperties
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireShotParams'
 		FireParams(1)=FireParams'ArenaPrimaryFireSlugParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireShotParams'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireSlugParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 	
