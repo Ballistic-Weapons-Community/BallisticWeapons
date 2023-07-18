@@ -68,7 +68,7 @@ defaultproperties
 	//AP rounds
 	Begin Object Class=InstantEffectParams Name=TacticalPriStandardEffectParams_AP
 		TraceRange=(Min=15000.000000,Max=15000.000000)
-		Damage=100 // .50 AP
+		Damage=95 // .50 AP
         HeadMult=3
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
@@ -98,7 +98,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPriControlledEffectParams_AP
 		TraceRange=(Min=15000.000000,Max=15000.000000)
-		Damage=100 // .50 AP
+		Damage=95 // .50 AP
         HeadMult=3
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'

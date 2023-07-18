@@ -226,7 +226,6 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		//GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.05)
         WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.40000)
 		SightPivot=(Pitch=80,Roll=0,Yaw=0)
@@ -237,9 +236,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		bNeedCock=True
+		ViewOffset=(X=9,Y=7.00,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'
@@ -267,6 +265,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		bNeedCock=True
+		ViewOffset=(X=9,Y=7.00,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Long'

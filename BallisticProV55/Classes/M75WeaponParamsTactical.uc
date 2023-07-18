@@ -116,7 +116,7 @@ defaultproperties
 		SightingTime=0.55	
 		ScopeScale=0.6
         MagAmmo=5
-        InventorySize=7
+        InventorySize=10
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -139,7 +139,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.50 //	
         MagAmmo=5
-        InventorySize=7
+        InventorySize=10
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

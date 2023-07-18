@@ -15,6 +15,7 @@ var   Pawn			Target;
 var   float			TargetTime;
 var   float			LastSendTargetTime;
 var   vector		TargetLocation;
+var()	bool		bIsIrons;
 
 var() BUtil.FullSound	NVOnSound;	// Sound when activating NV/Meat mode
 var() BUtil.FullSound	NVOffSound; // Sound when deactivating NV/Meat mode
@@ -24,6 +25,24 @@ replication
 	reliable if (Role == ROLE_Authority && bNetOwner)
 		Target, bMeatVision;
 }
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsIrons=false;
+
+	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
+	{
+		bIsIrons=true;
+		SetBoneRotation('RearSightP', rot(15000,0,0));
+		SetBoneRotation('FrontSight', rot(0,0,16000));
+	}
+}
+
+
 
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
@@ -203,6 +222,7 @@ simulated event WeaponTick(float DT)
 	local Pawn Targ;
 
 	super.WeaponTick(DT);
+	
 	
 	if (bScopeView)
 	{

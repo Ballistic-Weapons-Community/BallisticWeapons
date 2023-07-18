@@ -29,6 +29,7 @@ var() bool					bHasCamera;
 var() Sound					GrenOpenSound;		//Sounds for grenade reloading
 var() Sound					GrenLoadSound;		//
 var() Sound					GrenCloseSound;		//
+var() Sound					BoltReleaseSound;		//
 
 var   actor GLIndicator;
 
@@ -56,6 +57,7 @@ simulated function OnWeaponParamsChanged()
 		bHasGrenadeLauncher=false;
 		bHasCamera=false;
 		bCockOnEmpty=false;
+		MeleeFireClass=None; //todo
 	}
 }
 
@@ -79,6 +81,12 @@ simulated function UpdateGLIndicator()
 simulated function Notify_M50GrenadeSlideUp()	{	PlaySound(GrenOpenSound, SLOT_Misc, 0.5, ,64);	}
 simulated function Notify_M50GrenadeIn()		{	PlaySound(GrenLoadSound, SLOT_Misc, 0.5, ,64);		}
 simulated function Notify_M50GrenadeSlideDown()	{	PlaySound(GrenCloseSound, SLOT_Misc, 0.5, ,64); M50SecondaryFire(FireMode[1]).bLoaded = true; FireMode[1].PreFireTime = FireMode[1].default.PreFireTime; UpdateGLIndicator();	}
+simulated function Notify_BoltRelease()
+{
+	if (ReloadState == RS_None && !bNeedCock)	return;
+	ReloadState = RS_Cocking;
+	PlaySound(BoltReleaseSound, SLOT_Misc, 1, ,16);
+}
 
 // A grenade has just been picked up. Loads one in if we're empty
 function GrenadePickedUp ()
@@ -676,6 +684,7 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
+	BoltReleaseSound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M50'

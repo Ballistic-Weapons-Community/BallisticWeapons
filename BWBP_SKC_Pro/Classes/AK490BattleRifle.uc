@@ -35,6 +35,7 @@ simulated function OnWeaponParamsChanged()
 	{
 		bLoaded=false;
 		bHasKnife=false;
+		AK490MeleeFire(MeleeFireMode).SwitchBladeMode(false);
 	}
 }
 
