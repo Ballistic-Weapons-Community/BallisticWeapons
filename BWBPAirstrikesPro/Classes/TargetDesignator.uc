@@ -158,7 +158,7 @@ simulated function WeaponTick(float DT)
 
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
-	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local float		ScaleFactor, XL, YL, YL2;
 	local string	Temp;
 	local int i;
 	local byte StartMode;
@@ -243,22 +243,6 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 					StartMode = 0;
 			}
 		}
-	}
-	
-	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
-	// Would be nice if someone could have a HUD function called along the inventory chain
-	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
-	{
-		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
-		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
-		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
-		if (SprintFactor < 0.2)
-			C.SetDrawColor(255, 0, 0);
-		else if (SprintFactor < 0.5)
-			C.SetDrawColor(64, 128, 255);
-		else
-			C.SetDrawColor(0, 0, 255);
-		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
 	}
 }
 
