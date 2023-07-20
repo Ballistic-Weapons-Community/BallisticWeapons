@@ -5,11 +5,10 @@
 // client to the outfitting mutator.
 //
 // Modified for killstreak support by Azarael
-
+// Modified for camo/layout support by SK
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
-
 //=============================================================================
 class ClientOutfittingInterface extends Actor
 	config(BallisticProV55);
@@ -66,8 +65,6 @@ simulated function array<string> GetGroup(byte GroupNum)
 //Returns the weapon at the specific index.
 simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 {
-	if (Role == ROLE_Authority)
-		return Mut.GetGroupItem(GroupNum, ItemNum);
 	switch (GroupNum)
 	{
 		case	0:	return Group0[ItemNum];
@@ -78,30 +75,34 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 	}
 }
 
+//Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
+simulated function SetGroupItem(string str, byte GroupNum, int ItemNum)
+{
+	switch (GroupNum)
+	{
+		case 0:	Group0[ItemNum] = str; 
+			break;
+		case 1:	Group1[ItemNum] = str; 
+			break;
+		case 2:	Group2[ItemNum] = str; 
+			break;
+		case 3:	Group3[ItemNum] = str; 
+			break;
+		case 4:	Group4[ItemNum] = str; 
+			break;
+	}
+}
+
 //Returns the number of weapons in the group.
 simulated function int GroupLength(byte GroupNum)
 {
-	if (Role == ROLE_Authority)
+	switch (GroupNum)
 	{
-		switch (GroupNum)
-		{
-			case 0: return class'Mut_Outfitting'.default.LoadoutGroup0.length;
-			case 1: return class'Mut_Outfitting'.default.LoadoutGroup1.length;
-			case 2: return class'Mut_Outfitting'.default.LoadoutGroup2.length;
-			case 3: return class'Mut_Outfitting'.default.LoadoutGroup3.length;
-			case 4: return class'Mut_Outfitting'.default.LoadoutGroup4.length;
-		}
-	}
-	else
-	{
-		switch (GroupNum)
-		{
-			case 0: return Group0.length;
-			case 1: return Group1.length;
-			case 2: return Group2.length;
-			case 3: return Group3.length;
-			case 4: return Group4.length;
-		}
+		case 0: return Group0.length;
+		case 1: return Group1.length;
+		case 2: return Group2.length;
+		case 3: return Group3.length;
+		case 4: return Group4.length;
 	}
 
 	return -1;
@@ -114,6 +115,37 @@ function bool IsInList (out array<string> List, string Test, optional out int In
 		if (List[Index] == Test)
 			return true;
 	return false;
+}
+
+//Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
+simulated function PushWeaponFromMutator(string str, byte GroupNum)
+{
+	switch (GroupNum)
+	{
+	case 0:	Group0.Length = Group0.Length + 1; Group0[Group0.Length - 1] = str;
+		break;
+	case 1:	Group1.Length = Group1.Length + 1; Group1[Group1.Length - 1] = str;
+		break;
+	case 2:	Group2.Length = Group2.Length + 1; Group2[Group2.Length - 1] = str;
+		break;
+	case 3:	Group3.Length = Group3.Length + 1; Group3[Group3.Length - 1] = str;
+		break;
+	case 4:	Group4.Length = Group4.Length + 1; Group4[Group4.Length - 1] = str;
+		break;
+	}
+}
+
+function FillWeapons()
+{
+    local int group_index, wep_index;
+
+	for (group_index = 0; group_index < 5; ++group_index)
+	{
+		for (wep_index = 0; wep_index < Mut.GetGroup(group_index).Length; ++wep_index)
+		{
+			PushWeaponFromMutator(Mut.GetGroupItem(group_index, wep_index), group_index);
+		}
+	}
 }
 
 //Goes through the available loadout weapons, adding them to the array and continuing if the loaded weapon is invalid.
@@ -212,7 +244,101 @@ simulated function ReceiveWeapon (string WeaponName, byte Boxes, optional bool b
 		Group4[Group4.length] = WeaponName;
 		
 	if (bTerminate)
+    {
+        SortLists();
 		bWeaponsReady = true;
+    }
+}
+
+// Get Name, BigIconMaterial and classname of weapon at index? in group?
+function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo WepInfo)
+{
+	local int i;
+
+	WepInfo = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ClassStr, i);
+	if (i==-1)
+	{
+		log("Error loading item for Conflict: "$ClassStr, 'Warning');
+		return false;
+	}
+	return true;
+}
+
+simulated function SortLists()
+{
+    local int group_index;
+
+	for (group_index = 0; group_index < 5; ++group_index)
+	{
+		SortList(group_index);
+	}
+}
+
+// fuck me, sorting lists in unrealscript is HORRIBLE
+simulated function SortList(byte group_index)
+{
+	local int i, j;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
+	local int wiGroup, existingGroup;
+
+	log("we sortin");
+
+	for (i=0; i < GetGroup(group_index).Length; i++)
+	{
+        if (LoadWIFromCache(GetGroupItem(group_index, i), WI))
+        {
+            if (SortedWIs.Length == 0)
+                SortedWIs[SortedWIs.Length] = WI;
+            else 
+            {	
+                wiGroup = WI.InventoryGroup;
+                
+                if (wiGroup == 0)
+                    wiGroup = 10;
+                    
+                for (j = 0; j < SortedWIs.Length; ++j)
+                {
+                    existingGroup = SortedWIs[j].InventoryGroup;
+                    
+                    if (existingGroup == 0)
+                        existingGroup = 10;
+                    
+                    if (wiGroup < existingGroup)
+                    {
+                        SortedWIs.Insert(j, 1);
+                        SortedWIs[j] = WI;
+                        break;
+                    }
+                    
+                    if (wiGroup == existingGroup)
+                    {
+                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
+                        {	
+                            SortedWIs.Insert(j, 1);
+                            SortedWIs[j] = WI;
+                            break;
+                        }
+                    }
+                    
+                    if (j == SortedWIs.Length - 1)
+                    {
+                        SortedWIs[SortedWIs.Length] = WI;
+                        break;
+                    }
+                }
+            }
+
+		}
+
+        else 
+            Log("ClientOutfittingInterface: Failed to load "$ GetGroupItem(group_index, i) $" from cache");
+	}
+	
+	for (i = 0; i < SortedWIs.Length; ++i)
+    {
+		SetGroupItem(SortedWIs[i].ClassName, group_index, i);
+    }
 }
 
 function Initialize(Mut_Outfitting MO, PlayerController P)
@@ -221,8 +347,16 @@ function Initialize(Mut_Outfitting MO, PlayerController P)
 	PC = P;
 
 	bWeaponsReady=true;
-	if (level.NetMode != NM_StandAlone && Viewport(P.Player) == None)
-		SendWeapons();
+	if (level.NetMode != NM_StandAlone)
+	{
+        if (Viewport(P.Player) == None)
+		    SendWeapons();
+	}
+    else 
+    {
+        FillWeapons();
+        SortLists();
+    }
 
 	ClientOpenLoadoutMenu();
 
@@ -289,7 +423,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
-		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
+		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0,0,0,0,0,0);
 		LastLoadoutTime = level.TimeSeconds;
 	}
 
@@ -298,7 +432,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
-					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
+					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0,0,0,0,0,0);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
@@ -313,7 +447,17 @@ simulated function ClientStartLoadout()
 	class'Mut_Outfitting'.default.LoadOut[1],
 	class'Mut_Outfitting'.default.LoadOut[2],
 	class'Mut_Outfitting'.default.LoadOut[3],
-	class'Mut_Outfitting'.default.LoadOut[4]
+	class'Mut_Outfitting'.default.LoadOut[4],
+	class'Mut_Outfitting'.default.Layout[0],
+	class'Mut_Outfitting'.default.Layout[1],
+	class'Mut_Outfitting'.default.Layout[2],
+	class'Mut_Outfitting'.default.Layout[3],
+	class'Mut_Outfitting'.default.Layout[4],
+	class'Mut_Outfitting'.default.Camo[0],
+	class'Mut_Outfitting'.default.Camo[1],
+	class'Mut_Outfitting'.default.Camo[2],
+	class'Mut_Outfitting'.default.Camo[3],
+	class'Mut_Outfitting'.default.Camo[4]
 	);
 }
 
@@ -323,6 +467,49 @@ simulated function ClientSaveLoadoutClasses()
 	SetTimer(0.5, false);
 }
 
+// Loadout info sent back from client after it was requested by server.
+// Outfit the client with the standard weapons.
+function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4, int L0, int L1, int L2, int L3, int L4, int C0, int C1, int C2, int C3, int C4) //good lord whyyy
+{
+	local int i;
+	local string Stuff[5];
+	local int Layout[5];
+	local int Camo[5];
+	
+	Stuff[0] = Stuff0;
+	Stuff[1] = Stuff1;
+	Stuff[2] = Stuff2;
+	Stuff[3] = Stuff3;
+	Stuff[4] = Stuff4;
+	
+	Layout[0] = L0;
+	Layout[1] = L1;
+	Layout[2] = L2;
+	Layout[3] = L3;
+	Layout[4] = L4;
+	
+	Camo[0] = C0;
+	Camo[1] = C1;
+	Camo[2] = C2;
+	Camo[3] = C3;
+	Camo[4] = C4;
+
+	if (PC.Pawn != None)
+		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout, Layout, Camo);
+		
+	for (i=0; i< NUM_GROUPS; i++)
+	{
+		LastLoadout[i] = Stuff[i];
+		LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		
+		if (BallisticPlayer(PC) != None)
+			BallisticPlayer(PC).LastLoadoutClasses[i] = LastLoadoutClasses[i];
+	}
+	
+	ClientSaveLoadoutClasses();
+}
+
+/*
 // Loadout info sent back from client after it was requested by server.
 // Outfit the client with the standard weapons.
 function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
@@ -335,7 +522,6 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	Stuff[2] = Stuff2;
 	Stuff[3] = Stuff3;
 	Stuff[4] = Stuff4;
-	
 
 	if (PC.Pawn != None)
 		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout);
@@ -352,6 +538,7 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	
 	ClientSaveLoadoutClasses();
 }
+*/
 
 defaultproperties
 {

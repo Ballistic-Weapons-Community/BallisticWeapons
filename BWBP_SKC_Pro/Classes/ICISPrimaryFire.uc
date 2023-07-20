@@ -67,7 +67,6 @@ function DoFireEffect()
 defaultproperties
 {
     bAISilent=True
-    EffectString="Heals over time."
     PreFireTime=0.65
     PreFireAnim="PrepHealLoop"
     FireLoopAnim="HealLoopA"
@@ -75,10 +74,4 @@ defaultproperties
     FireRate=0.5
     AmmoClass=Class'BWBP_SKC_Pro.Ammo_ICISStim'
     AmmoPerFire=10
-    ShakeRotMag=(X=32.000000,Y=8.000000)
-    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-    ShakeRotTime=1.500000
-    ShakeOffsetMag=(X=-3.000000)
-    ShakeOffsetRate=(X=-1000.000000)
-    ShakeOffsetTime=1.500000
 }

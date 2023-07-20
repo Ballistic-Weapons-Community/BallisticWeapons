@@ -11,7 +11,7 @@ class M46Grenade extends BallisticGrenade;
 
 var Actor StuckActor;
 var bool bPlaced;
-var M46AssaultRifle M46;
+var M46AssaultRifle Rifle;
 
 simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
@@ -57,7 +57,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	local M46Mine   Proj;
 	local float     BoneDist;
 
-	if(bPlaced)
+	if(bPlaced || Rifle == None)
 		return;
 
 	bPlaced = true;
@@ -72,7 +72,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	if(Role < ROLE_Authority)
 	{
 		Destroy();
-		Return;
+		return;
 	}
 
 	// Check for wall
@@ -102,7 +102,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	//Didn't hit a pawn
 	if(StuckActor == None)
 	{
-		Proj = Spawn (class'M46ProximityMine',,, LastHitLoc, R);
+		Proj = Spawn (class'M46ProximityMine',Rifle,, LastHitLoc, R);
 		if (Proj != None)
 		{
 			Proj.Instigator = Instigator;
@@ -110,6 +110,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			M46ProximityMine(Proj).OriginalPlacer = Instigator;
 			Proj.bHardAttach = true;
 			Proj.SetBase(LastTrace);
+
+            if(Rifle.CurrentWeaponMode == 1)
+		        Proj.SetManualMode(true);
 		}
 
 	}
@@ -124,9 +127,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		else
 			Proj.SetBase(StuckActor);
 	}
-	
-	if(M46 != None && M46.AddMine(Proj))
-		Proj.SetManualMode(true);
+
 	Proj.SetRotation(R);
 	Proj.Velocity = vect(0,0,0);
 
@@ -135,7 +136,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-     DetonateOn=DT_Impact
+    WeaponClass=Class'BallisticProV55.M46AssaultRifle'
+     ArmedDetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.000000

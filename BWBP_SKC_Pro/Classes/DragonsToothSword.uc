@@ -13,6 +13,35 @@ class DragonsToothSword extends BallisticMeleeWeapon;
 
 var Actor	BladeGlow;				// Nano replicators
 var Sound	LoopAmbientSound;
+var() bool	bIsRed;
+var() bool	bIsBlack;
+var() bool	bIsGold;
+
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsRed=false;
+	bIsBlack=false;
+	bIsGold=false;
+
+	if (InStr(WeaponParams.LayoutTags, "red") != -1)
+	{
+		bIsRed=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "black") != -1)
+	{
+		bIsBlack=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "gold") != -1)
+	{
+		bIsGold=true;
+	}
+}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -20,9 +49,9 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	if ((Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) )
 	{
-		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame )
+		if ( bIsRed /*Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame */)
 		{
-			Skins[1] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red';
+			//Skins[1] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red';
 			if (ThirdPersonActor != None)
 				DragonsToothAttachment(ThirdPersonActor).bRedTeam=true;	
 		}
@@ -73,16 +102,20 @@ simulated function Destroyed()
 
 simulated function BladeEffectStart()
 {
-	if ((Instigator.PlayerReplicationInfo != None) )
+	if (bIsRed)
+		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffectR', DrawScale, self, 'BladeBase');
+	else if (!bIsBlack && !bIsGold)
+		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
+	/*if ((Instigator.PlayerReplicationInfo != None) )
 	{
-		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
+		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame )
 			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffectR', DrawScale, self, 'BladeBase');
 		else
 			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
 	}
 	else
 		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
-
+*/
 }
 
 // AI Interface =====
@@ -134,7 +167,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.DragonToothSword.BigIcon_DTS'
 	BigIconCoords=(Y1=40,Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Strikes once for fatal damage. Has a good range but a very slow swing rate."
 	ManualLines(1)="Strikes twice consecutively for good damage. Good for baiting block."
 	ManualLines(2)="The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Devastating at close range."
@@ -143,9 +176,10 @@ defaultproperties
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClasses(0)=Class'DragonsToothWeaponParams'
+	ParamsClasses(0)=Class'DragonsToothWeaponParamsComp'
 	ParamsClasses(1)=Class'DragonsToothWeaponParamsClassic'
 	ParamsClasses(2)=Class'DragonsToothWeaponParamsRealistic'
+    ParamsClasses(3)=Class'DragonsToothWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.DragonsToothPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.DragonsToothSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc11',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=207),Color2=(B=255,G=27,R=71,A=93),StartSize1=98,StartSize2=101)
@@ -160,11 +194,11 @@ defaultproperties
 	CurrentRating=0.800000
 	bMeleeWeapon=True
 	Description="The Dragon Nanoblade is a technological marvel. A weapon consisting of a nanotechnologically created blade which is dynamically 'forged' on command into a non-eutactic solid. Nanoscale whetting devices ensure that the blade is both unbreakable and lethally sharp. The true weapon of a modern warrior."
-	DisplayFOV=65.000000
 	Priority=12
 	HudColor=(B=255,G=125,R=75)
 	CenteredOffsetY=7.000000
 	CenteredRoll=0
+	PlayerViewOffset=(X=0.00,Y=0.00,Z=-30.00)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.DragonsToothPickup'

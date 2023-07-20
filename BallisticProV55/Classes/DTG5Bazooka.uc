@@ -18,7 +18,7 @@ defaultproperties
      DamageIdent="Ordnance"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=100
-     AimDisplacementDuration=0.700000
+     AimDisplacementDuration=0.50
      WeaponClass=Class'BallisticProV55.G5Bazooka'
      DeathString="%o was blown to pieces by %k's G5."
      FemaleSuicide="%o splattered the walls with her gibs using a G5."

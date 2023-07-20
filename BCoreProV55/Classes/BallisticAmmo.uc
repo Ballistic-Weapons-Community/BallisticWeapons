@@ -6,14 +6,24 @@
 //=============================================================================
 class BallisticAmmo extends Ammunition;
 
-var bool bNoPackResupply;
+var AmmoParams	Params[4];
 
-static function int GetKillResupplyAmmo()
+static final function bool ResuppliesFromPack()
+{
+	return default.Params[class'BallisticReplicationInfo'.default.GameStyle].bResuppliesFromPack;
+}
+
+static final function float GetKillInitialAmmoMult()
+{
+	return default.Params[class'BallisticReplicationInfo'.default.GameStyle].KillInitialAmmoMult;
+}
+
+static final function int GetKillResupplyAmmo()
 {
     if (default.InitialAmount > 0)
-	    return default.InitialAmount/3;
+	    return default.InitialAmount * GetKillInitialAmmoMult(); // usually one mag
         
-    return default.MaxAmmo / 6;
+    return default.MaxAmmo * GetKillInitialAmmoMult() * 0.5f;
 }
 
 function bool AddAmmo(int AmmoToAdd)
@@ -27,8 +37,33 @@ function bool AddAmmo(int AmmoToAdd)
 
 defaultproperties
 {
-     MaxAmmo=180
-     InitialAmount=30
-     PickupClass=Class'BCoreProV55.BallisticAmmoPickup'
-     ItemName="Ballistic Ammo"
+	MaxAmmo=180
+	InitialAmount=30
+	PickupClass=Class'BCoreProV55.BallisticAmmoPickup'
+	ItemName="Ballistic Ammo"
+
+	Begin Object Class=AmmoParams Name=Def_ArenaParams
+		KillInitialAmmoMult=0.34f
+		bResuppliesFromPack=True
+	End Object
+
+	Begin Object Class=AmmoParams Name=Def_ClassicParams
+		KillInitialAmmoMult=0.34f
+		bResuppliesFromPack=True
+	End Object
+
+	Begin Object Class=AmmoParams Name=Def_RealismParams
+		KillInitialAmmoMult=0.34f
+		bResuppliesFromPack=True
+	End Object
+
+	Begin Object Class=AmmoParams Name=Def_TacticalParams
+		KillInitialAmmoMult=0.34f
+		bResuppliesFromPack=True
+	End Object
+
+	Params[0]=Def_ArenaParams
+	Params[1]=Def_ClassicParams
+	Params[2]=Def_RealismParams
+	Params[3]=Def_TacticalParams
 }

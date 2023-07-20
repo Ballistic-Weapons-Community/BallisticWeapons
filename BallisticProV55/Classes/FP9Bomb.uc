@@ -53,17 +53,20 @@ function InitBomb(bool bThrown, bool bLaserOn, float HoldTime)
 	local Teleporter TB;
 	
 	bDeployed = !bThrown;
+
 	if (bDeployed)
 	{
 		bCollideWorld = false;
 		KSetBlockKarma(False);
 		SetPhysics(PHYS_None);
 	}
+
 	bLaserMode = bLaserOn;
+
 	if (Role == ROLE_Authority)
 	{
 		MyUseTrigger = Spawn(class'FP9Trigger',self ,, Location);
-		MyUsetrigger.SetBase(self);
+		MyUseTrigger.SetBase(self);
 		OriginalPlacer = Instigator;
 	}
 	
@@ -73,15 +76,17 @@ function InitBomb(bool bThrown, bool bLaserOn, float HoldTime)
 	foreach TouchingActors(class'Actor', TA)
 	{
 		if (xPickUpBase(TA) != None || Pickup(TA) != None)
+		{
 			bAntiLameMode = True;
 			return;
+		}
 	}
 	
 	//No teleporter camping, die die die
 	foreach RadiusActors(class'Teleporter', TB, DamageRadius)
 	{
-			bAntiLameMode=True;
-			return;
+		bAntiLameMode=True;
+		return;
 	}
 }
 
@@ -135,6 +140,7 @@ simulated function InitProjectile ()
 	InitEffects();
 
 	Speed *= FClamp(ThrowTime-0.3, 0, 1) / 1;
+	
 	if (bDeployed && bLaserMode)
 		SetTimer(2.0, false);
 	else if (!bDeployed)
@@ -435,52 +441,55 @@ function TryUse(Pawn User)
 
 defaultproperties
 {
-     RedLaserClass=Class'BallisticProV55.LaserActor_TripMineRed'
-     BlueLaserClass=Class'BallisticProV55.LaserActor_TripMine'
-     LaserDamageType=Class'BallisticProV55.DTFP9BombLaser'
-     ShotDamageType=Class'BallisticProV55.DTFP9BombShot'
-     Health=15
-     LaserOnSound=Sound'BW_Core_WeaponSound.FP9A5.FP9-LaserOn'
-     LaserOffSound=Sound'BW_Core_WeaponSound.FP9A5.FP9-LaserOff'
-     OldLaserRange=-1.000000
-     LaserSkin=Shader'BW_Core_WeaponTex.FP9A5.FP9LCDActiveSD'
-     BombDetonateDelay=1.500000
-     DetonateOn=DT_None
-     DampenFactor=0.500000
-     DampenFactorParallel=0.700000
-     bNoInitialSpin=True
-     ImpactDamage=15
-     ImpactDamageType=Class'BallisticProV55.DTFP9Bomb'
-     ImpactManager=Class'BallisticProV55.IM_RPG'
-     bRandomStartRotation=False
-     StartDelay=0.300000
-     MyRadiusDamageType=Class'BallisticProV55.DTFP9BombRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=1200.000000
-     MotionBlurRadius=1024.000000
-     WallPenetrationForce=512
-     ShakeRotMag=(X=512.000000,Y=400.000000)
-     ShakeRotRate=(X=3000.000000,Z=3000.000000)
-     ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
-     Speed=350.000000
-     Damage=150.000000
-     DamageRadius=1024.000000
-     MomentumTransfer=50000.000000
-     MyDamageType=Class'BallisticProV55.DTNRP57Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.FP9A5.FP9-Bounce'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.FP9.FP9Proj'
-     bNetTemporary=False
-     bAlwaysRelevant=True
-     LifeSpan=0.000000
-     DrawScale=0.250000
-     Skins(0)=Texture'BW_Core_WeaponTex.FP9A5.FP9Bomb'
-     Skins(1)=Texture'BW_Core_WeaponTex.FP9A5.FP9Chain'
-     Skins(2)=Shader'BW_Core_WeaponTex.FP9A5.FP9LCDArmedSD'
-     bUnlit=False
-     CollisionRadius=6.000000
-     CollisionHeight=8.000000
-     bCollideWorld=False
-     bProjTarget=True
-     bNetNotify=True
-     RotationRate=(Yaw=8192)
+	WeaponClass=class'FP9Explosive'
+	RedLaserClass=Class'BallisticProV55.LaserActor_TripMineRed'
+	BlueLaserClass=Class'BallisticProV55.LaserActor_TripMine'
+	LaserDamageType=Class'BallisticProV55.DTFP9BombLaser'
+	ShotDamageType=Class'BallisticProV55.DTFP9BombShot'
+	Health=15
+	LaserOnSound=Sound'BW_Core_WeaponSound.FP9A5.FP9-LaserOn'
+	LaserOffSound=Sound'BW_Core_WeaponSound.FP9A5.FP9-LaserOff'
+	OldLaserRange=-1.000000
+	LaserSkin=Shader'BW_Core_WeaponTex.FP9A5.FP9LCDActiveSD'
+	BombDetonateDelay=1.500000
+	ArmedDetonateOn=DT_None
+	DampenFactor=0.500000
+	DampenFactorParallel=0.700000
+	bNoInitialSpin=True
+	ImpactDamage=15
+	ImpactDamageType=Class'BallisticProV55.DTFP9Bomb'
+	ImpactManager=Class'BallisticProV55.IM_RPG'
+	bRandomStartRotation=False
+	StartDelay=0.300000
+	MyRadiusDamageType=Class'BallisticProV55.DTFP9BombRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+    ShakeRadius=512.000000
+    MotionBlurRadius=512.000000
+	WallPenetrationForce=64
+	// these values cause the rolling view problem and last forever
+	// use the defaults
+	//ShakeRotMag=(X=512.000000,Y=400.000000)
+	//ShakeRotRate=(X=3000.000000,Z=3000.000000)
+	//ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
+	Speed=350.000000
+	Damage=150.000000
+	DamageRadius=1024.000000
+	MomentumTransfer=50000.000000
+	MyDamageType=Class'BallisticProV55.DTNRP57Grenade'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.FP9A5.FP9-Bounce'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.FP9.FP9Proj'
+	bNetTemporary=False
+	bAlwaysRelevant=True
+	LifeSpan=0.000000
+	DrawScale=0.250000
+	Skins(0)=Texture'BW_Core_WeaponTex.FP9A5.FP9Bomb'
+	Skins(1)=Texture'BW_Core_WeaponTex.FP9A5.FP9Chain'
+	Skins(2)=Shader'BW_Core_WeaponTex.FP9A5.FP9LCDArmedSD'
+	bUnlit=False
+	CollisionRadius=6.000000
+	CollisionHeight=8.000000
+	bCollideWorld=False
+	bProjTarget=True
+	bNetNotify=True
+	RotationRate=(Yaw=8192)
 }

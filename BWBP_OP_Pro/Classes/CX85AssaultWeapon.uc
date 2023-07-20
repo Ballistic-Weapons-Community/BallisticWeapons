@@ -15,10 +15,18 @@ var	float			LastDetonationTime;
 
 var bool			bPendingReceive; //Used when a dart has struck but not yet been replicated. Prevents detonation because of the desynchronised nature of the array.
 
+
+var   vector		TargetLocation;
+var   bool			bLaserOn, bLaserOld, bLaserTarget;
+var   LaserActor	Laser;
+var() Sound			LaserOnSound;
+var() Sound			LaserOffSound;
+var   Emitter		LaserDot;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
-	    AltAmmo, bPendingReceive, ClientAddProjectile, ClientRemoveProjectile;
+	    AltAmmo, bPendingReceive, ClientAddProjectile, ClientRemoveProjectile, bLaserOn;
 }
 
 simulated function vector GetModeEffectStart(byte mode)
@@ -269,6 +277,10 @@ function AddProjectile(CX85DartDirect Proj)
 	StuckDarts[StuckDarts.Length] = Proj;
 	ClientAddProjectile(Proj);
 	bPendingReceive=False;
+	
+	if (Role == ROLE_Authority && !bLaserOn && !class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+		ServerSwitchlaser(true);
+	
 }
 
 //===========================================================================
@@ -301,6 +313,10 @@ function LostChild(Actor Proj)
 			ClientRemoveProjectile(Proj);
 		}
 	}
+	
+	if (Role == ROLE_Authority && StuckDarts.Length == 0 && bLaserOn)
+		ServerSwitchlaser(false);
+	
 }
 
 //===========================================================================
@@ -355,6 +371,8 @@ simulated function RenderOverlays (Canvas C)
 {
 	Super.RenderOverlays(C);
 	
+	if (!IsInState('Lowered'))
+		DrawLaserSight(C);
 	if (bScopeView)
 		DrawTargeting(C);
 }
@@ -371,7 +389,10 @@ simulated function vector GetFlechetteTarget()
 	local int i;
 	
 	if (StuckDarts.Length == 0)
+	{
+		bLaserTarget=false;
 		return vect(0,0,0);
+	}
 		
 	ShortestDistance = BaseTrackDist;
 	
@@ -387,9 +408,16 @@ simulated function vector GetFlechetteTarget()
 			ClosestVictim = StuckDarts[i].Tracked;
 	}
 	if (ClosestVictim != None)
+	{
+		bLaserTarget=true;
+		TargetLocation = ClosestVictim.Location;
 		return ClosestVictim.Location;
+	}
 	else
+	{
+		bLaserTarget=false;
 		return vect(0,0,0);
+	}
 }
 //===========================================================================
 // DrawTargeting
@@ -426,6 +454,181 @@ simulated event DrawTargeting (Canvas C)
 		C.SetDrawColor(255,255,255,255 * Distancing);
 		C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 	}
+}
+
+//============================================================
+// Laser management
+//============================================================
+
+
+simulated function WeaponTick(float DT)
+{
+	Super.WeaponTick(DT);
+
+	if (Instigator != None && Instigator.IsLocallyControlled() && bLaserOn)
+		GetFlechetteTarget(); //Continually check for targets
+
+}
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	bLaserOn = bNewLaserOn;
+
+	CX85Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+	OnLaserSwitched();
+}
+
+simulated function ClientSwitchLaser()
+{
+	//TickLaser (0.05);
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+	}
+	PlayIdle();
+	OnLaserSwitched();
+}
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimSpread.Max *= 0.8f;
+	AimComponent.AimAdjustTime *= 1.5f;
+}
+
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	Super.BringUp(PrevWeapon);
+	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
+		Laser = Spawn(class'LaserActor_G5Painter');
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
+
+	if ( ThirdPersonActor != None )
+		CX85Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+}
+
+simulated function bool PutDown()
+{
+	if (Super.PutDown())
+	{
+		KillLaserDot();
+
+		if (ThirdPersonActor != None)
+			CX85Attachment(ThirdPersonActor).bLaserOn = false;
+
+		return true;
+	}
+	return false;
+}
+
+simulated function Destroyed ()
+{
+	default.bLaserOn = false;
+	if (Laser != None)
+		Laser.Destroy();
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	Super.Destroyed();
+}
+
+// Draw a laser beam and dot to show exact path of bullets before they're fired, point it at the tracked dude
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc, AimDir;
+	local Actor Other;
+
+	if ((ClientState == WS_Hidden) || !bLaserOn || bScopeView || Instigator == None || Instigator.Controller == None || Laser==None)
+		return;
+
+	Loc = GetBoneCoords('tip').Origin;
+
+	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs), or closest target
+	Laser.SetLocation(Loc);
+	if (!bLaserTarget) //Calc from barrel to wall
+	{
+		AimDir = BallisticFire(FireMode[0]).GetFireDir(Start);
+		End = Start + Normal(AimDir)*10000;
+		Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+		if (Other == None)
+			HitLocation = End;
+		if ( ThirdPersonActor != None )
+			CX85Attachment(ThirdPersonActor).LaserEndLoc = HitLocation;
+	}
+	else //Calc to target
+	{
+		HitLocation = ConvertFOVs(TargetLocation, Instigator.Controller.FovAngle, DisplayFOV, 400);
+		if ( ThirdPersonActor != None )
+			CX85Attachment(ThirdPersonActor).LaserEndLoc = TargetLocation;
+	}
+	
+	// Draw dot at end of beam
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
+	
+	if (LaserDot != None && !bLaserTarget)
+		LaserDot.SetLocation(HitLocation);
+	else
+		LaserDot.SetLocation(TargetLocation);
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+	
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire /* && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2*/)
+		Laser.SetRotation(Rotator(HitLocation - Loc));
+	else
+		Laser.SetRotation(GetBoneRotation('tip'));
+
+	Scale3D.X = VSize(HitLocation-Loc)/128;
+	Scale3D.Y = 1.5;
+	Scale3D.Z = 1.5;
+	Laser.SetDrawScale3D(Scale3D);
+	Canvas.DrawActor(Laser, false, false, DisplayFOV);
+}
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'G5LaserDot',,,Loc);
+}
+
+simulated function PlayIdle()
+{
+	Super.PlayIdle();
+	if (!bLaserOn || bPendingSightUp || SightingState != SS_None || !CanPlayAnim(IdleAnim, ,"IDLE"))
+		return;
+	FreezeAnimAt(0.0);
 }
 
 // Secondary fire doesn't count for this weapon
@@ -480,16 +683,15 @@ defaultproperties
 	BaseTrackDist=3368
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.CX85.BigIcon_CX85'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic low-calibre fire. Has extremely long effective range, but as a low-calibre weapon, must be fired in bursts at range, subjecting the user to the effects of recoil."
 	ManualLines(1)="Fires a dart. Good fire rate and fast flight speed. Enemies hit by the darts show up on the scope when within a given range of the user. The tracking range increases with successive hits."
 	ManualLines(2)="Weapon Function for this weapon causes all the darts attached to the last player to be hit for the first time to explode. This feature works independently of range.||The CX85 is effective at long range."
-	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
+	SpecialInfo(0)=(Info="240.0;30.0;0.9;75.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-Cock')
 	ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-MagOut')
@@ -501,15 +703,16 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=-20.000000,Z=35.000000)
+	SightOffset=(X=-5,Y=0,Z=0)
 	SightingTime=0.650000
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	ParamsClasses(0)=Class'CX85WeaponParams'
+	ParamsClasses(0)=Class'CX85WeaponParamsComp'
 	ParamsClasses(1)=Class'CX85WeaponParamsClassic'
 	ParamsClasses(2)=Class'CX85WeaponParamsRealistic'
+    ParamsClasses(3)=Class'CX85WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.CX85PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.CX85SecondaryFire'
 	PutDownTime=0.700000
@@ -520,14 +723,13 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information on enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
-	DisplayFOV=55.000000
 	Priority=40
 	HudColor=(G=125,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=9
+	InventoryGroup=6
 	GroupOffset=6
 	PickupClass=Class'BWBP_OP_Pro.CX85Pickup'
-	PlayerViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
+	PlayerViewOffset=(X=10,Y=7,Z=-4)
 	AttachmentClass=Class'BWBP_OP_Pro.CX85Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.CX85.SmallIcon_CX85'
 	IconCoords=(X2=127,Y2=31)
@@ -539,5 +741,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_CX85'
-	DrawScale=0.500000
+	DrawScale=0.300000
 }

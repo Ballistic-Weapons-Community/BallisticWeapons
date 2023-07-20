@@ -25,7 +25,6 @@ defaultproperties
      FatiguePerStrike=0.100000
      bCanBackstab=True
      TraceRange=(Min=175.000000,Max=175.000000)
-     Damage=140.000000
      DamageType=Class'BWBP_SKC_Pro.DT_DTSStabChest'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSStabHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSStabChest'

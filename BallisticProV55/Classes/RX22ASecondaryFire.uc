@@ -128,7 +128,6 @@ defaultproperties
      XInaccuracy=128.000000
      YInaccuracy=128.000000
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-     EffectString="Spray gas"
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.100000
@@ -136,7 +135,7 @@ defaultproperties
      ShakeRotMag=(X=64.000000,Y=64.000000,Z=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.000000)
+     ShakeOffsetMag=(X=-8.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      WarnTargetPct=0.500000

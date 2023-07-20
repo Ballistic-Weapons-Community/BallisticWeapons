@@ -16,7 +16,7 @@ defaultproperties
      DamageIdent="Melee"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BallisticProV55.MarlinRifle'
 	 BlockFatiguePenalty=0.25
      DeathString="%k smashed %o's chest with the back of %kh Deermaster."

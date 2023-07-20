@@ -9,7 +9,7 @@
 //=============================================================================
 class Ammo_545mmSTANAG extends BallisticAmmo;
 
-var Ammo_F2000Grenades Grenades;
+var Ammo_MARSGrenades Grenades;
 
 function bool HandlePickupQuery( pickup Item )
 {
@@ -17,10 +17,10 @@ function bool HandlePickupQuery( pickup Item )
 	{
 		if (Grenades==None)
 		{
-			Grenades = Ammo_F2000Grenades(Pawn(Owner).FindInventoryType(class'Ammo_F2000Grenades'));
+			Grenades = Ammo_MARSGrenades(Pawn(Owner).FindInventoryType(class'Ammo_MARSGrenades'));
 			if (Grenades == None)
 			{
-				Grenades = spawn(class'Ammo_F2000Grenades',Owner,,,rot(0,0,0));
+				Grenades = spawn(class'Ammo_MARSGrenades',Owner,,,rot(0,0,0));
 				Grenades.GiveTo( Pawn(Owner), Item );
 			}
 		}

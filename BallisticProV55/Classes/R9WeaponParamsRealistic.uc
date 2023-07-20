@@ -100,16 +100,16 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=13,Scale=0f)
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.23
 		MagAmmo=12
 		bMagPlusOne=True
-		ViewOffset=(X=-4.000000,Y=9.00000,Z=-13.000000)
-		SightOffset=(X=25.000000,Y=0.025000,Z=6.290000)
+		//ViewOffset=(X=-4.000000,Y=9.00000,Z=-13.000000)
+		//SightOffset=(X=25.000000,Y=0.025000,Z=6.290000)
 		SightPivot=(Pitch=64,Yaw=0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
 		WeaponName="R9E2 .308 Ranger Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -117,6 +117,58 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=R9_Orange
+		Index=0
+		CamoName="Orange"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_OrangeShine
+		Index=1
+		CamoName="Fresh Orange"
+		Weight=15
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH2",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_Gray
+		Index=2
+		CamoName="Gray"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH4",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_Jungle
+		Index=3
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH3",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_Winter
+		Index=4
+		CamoName="Winter"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH5",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R9_IceFire
+		Index=5
+		CamoName="Fire & Ice"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH1",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'R9_Orange'
+	Camos(1)=WeaponCamo'R9_OrangeShine'
+	Camos(2)=WeaponCamo'R9_Gray'
+	Camos(3)=WeaponCamo'R9_Jungle'
+	Camos(4)=WeaponCamo'R9_Winter'
+	Camos(5)=WeaponCamo'R9_IceFire'
 }

@@ -121,6 +121,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.A49SkrithBlaster'
      ImpactManager=Class'BallisticProV55.IM_A42Projectile'
      PenetrateManager=Class'BallisticProV55.IM_A42Projectile'
      bPenetrate=True

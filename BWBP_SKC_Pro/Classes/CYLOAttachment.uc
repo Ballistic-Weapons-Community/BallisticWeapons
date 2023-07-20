@@ -124,18 +124,19 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'CYLOUAW'
      FireClass=Class'BWBP_SKC_Pro.CYLOSecondaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     MeleeImpactManager=Class'BallisticProV55.IM_Knife'
+     MuzzleFlashClass=class'M50FlashEmitter'
+     AltMuzzleFlashClass=class'M50M900FlashEmitter'
+     ImpactManager=class'IM_Bullet'
+     MeleeImpactManager=class'IM_Knife'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Shotgun'
+     BrassClass=class'Brass_Shotgun'
      BrassMode=MU_Secondary
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bHeavy=True
      bRapidFire=True

@@ -45,7 +45,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=ClassicSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2000.000000
@@ -65,6 +65,13 @@ defaultproperties
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.03
+		DetonateDelay=0.03
+		UnarmedDetonateOn=DT_Impact
+		UnarmedPlayerImpactType=PIT_Detonate
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -97,7 +104,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=720,Max=3824)
+		AimSpread=(Min=64,Max=3824)
 		AimAdjustTime=0.600000
 		OffsetAdjustTime=0.350000
 		CrouchMultiplier=0.700000
@@ -117,25 +124,67 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=0f)
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.750000
-		InventorySize=15
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.45000
 		bNeedCock=True
 		MagAmmo=8
-		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
-		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
+		//ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		//SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
 		SightPivot=(Pitch=200)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-RS
+		Weight=20
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=1f)
+		PlayerSpeedFactor=0.900000
+		PlayerJumpFactor=0.750000
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.50000
+		bNeedCock=True
+		MagAmmo=8
+		//ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		//SightOffset=(X=-40.000000,Y=13.550000,Z=22.950000)
+		SightPivot=(Pitch=200)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	//Layouts(1)=WeaponParams'ClassicParams-RS'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=Bull_Red
+		Index=0
+		CamoName="Red"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Bull_Wood
+		Index=1
+		CamoName="Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BulldogCamos.PugDog-Shine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Bulldog.Bulldog-Scope',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.M575.M575_RDS_SH1',Index=3,AIndex=-1,PIndex=-1)
+		Weight=20
+	End Object
+	
+	Camos(0)=WeaponCamo'Bull_Red'
+	Camos(1)=WeaponCamo'Bull_Wood'
 }

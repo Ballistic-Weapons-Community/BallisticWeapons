@@ -122,7 +122,7 @@ function ServerWeaponSpecial(optional byte i)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		MD24Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -149,8 +149,6 @@ simulated function ClientSwitchLaser()
 
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -327,11 +325,6 @@ simulated function bool HasAmmo()
 			return true;
 	return false;	//This weapon is empty
 }
-// Change some properties when using sights...
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
 
 simulated function OnScopeViewChanged()
 {
@@ -391,7 +384,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.MD24.BigIcon_MD24'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Low-recoil pistol fire. Has the option of burst fire. Very controllable."
 	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
@@ -401,7 +394,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Cock',Volume=0.675000)
-	ReloadAnimRate=1.350000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipHit',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipOut',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipIn',Volume=0.800000)
@@ -414,11 +406,10 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
     
 	bNoCrosshairInScope=True
-	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
-	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'MD24WeaponParams'
+	ParamsClasses(0)=Class'MD24WeaponParamsComp'
 	ParamsClasses(1)=Class'MD24WeaponParamsClassic'
 	ParamsClasses(2)=Class'MD24WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MD24WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectForce="SwitchToAssaultRifle"
@@ -431,7 +422,8 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=6
 	PickupClass=Class'BallisticProV55.MD24Pickup'
-	PlayerViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
+	PlayerViewOffset=(X=5.00,Y=2.50,Z=-5.00000)
+	SightOffset=(X=-7.00000,Y=0,Z=1.7)
 	AttachmentClass=Class'BallisticProV55.MD24Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.MD24.SmallIcon_MD24'
 	IconCoords=(X2=127,Y2=31)
@@ -443,5 +435,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24'
-	DrawScale=0.350000
+	DrawScale=0.3
 }

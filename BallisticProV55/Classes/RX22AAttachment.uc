@@ -232,7 +232,8 @@ simulated event Destroyed()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.RX22AMuzzleFlame'
+	WeaponClass=class'RX22AFlamer'
+     MuzzleFlashClass=class'RX22AMuzzleFlame'
      WeaponLightTime=0.300000
      FlashScale=2.000000
      FlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)

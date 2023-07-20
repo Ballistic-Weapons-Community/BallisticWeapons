@@ -241,15 +241,15 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     FireClass=Class'BallisticProV55.MRS138PrimaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
-     MeleeImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'
-     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-     TracerChance=0.500000
-     SingleFireAnim="RifleHip_FireCock"
-     SingleAimedFireAnim="RifleAimed_FireCock"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRS_TPm'
-     DrawScale=0.090000
+    WeaponClass=class'MRS138Shotgun'
+	MuzzleFlashClass=class'MRS138FlashEmitter'
+	ImpactManager=class'IM_Shell'
+	MeleeImpactManager=class'IM_MRS138TazerHit'
+	BrassClass=class'Brass_MRS138Shotgun'
+	TracerClass=class'TraceEmitter_Shotgun'
+	TracerChance=0.500000
+	SingleFireAnim="RifleHip_FireCock"
+	SingleAimedFireAnim="RifleAimed_FireCock"
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRS_TPm'
+	DrawScale=0.090000
 }

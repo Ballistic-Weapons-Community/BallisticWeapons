@@ -118,15 +118,16 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
-     MeleeAltStrikeAnim="Punchies_UppercutRight"
-     ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'
-     BrassMode=MU_None
-     InstantMode=MU_Both
-     FlashMode=MU_None
-     LightMode=MU_None
-     IdleHeavyAnim="Punchies_Idle"
-     IdleRifleAnim="Punchies_Idle"
-     MeleeStrikeAnim="Punchies_JabLeft"
-     DrawScale=0.600000
+	WeaponClass=class'DefibFists'
+	DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
+	MeleeAltStrikeAnim="Punchies_UppercutRight"
+	ImpactManager=class'IM_MRS138TazerHit'
+	BrassMode=MU_None
+	InstantMode=MU_Both
+	FlashMode=MU_None
+	LightMode=MU_None
+	IdleHeavyAnim="Punchies_Idle"
+	IdleRifleAnim="Punchies_Idle"
+	MeleeStrikeAnim="Punchies_JabLeft"
+	DrawScale=0.600000
 }

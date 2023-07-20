@@ -5,7 +5,7 @@
 //
 // by Marc "Sgt Kelly" Moylan.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AR23SecondaryFire extends BallisticProShotgunFire;
 
@@ -100,8 +100,8 @@ defaultproperties
      ShakeRotMag=(X=256.000000,Y=128.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.500000
-     ShakeOffsetMag=(X=-50.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetMag=(X=-30.000000)
+     ShakeOffsetRate=(X=-600.000000)
      ShakeOffsetTime=2.500000
      BotRefireRate=0.300000
      WarnTargetPct=0.300000

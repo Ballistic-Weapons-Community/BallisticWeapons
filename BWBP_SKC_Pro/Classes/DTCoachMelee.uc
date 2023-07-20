@@ -17,7 +17,7 @@ defaultproperties
      DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBP_SKC_Pro.CoachGun'
      DeathString="%k pummeled %o with %kh coach gun stock."
      FemaleSuicide="%o bashed herself with the coach gun."

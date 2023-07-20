@@ -164,14 +164,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=11
+		InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=60
-		SightOffset=(X=-8.000000,Z=9.300000)
+		//SightOffset=(X=-8.000000,Z=9.300000)
+        ZoomType=ZT_Logarithmic
 		SightPivot=(Pitch=256)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		WeaponName="E-23 'Viper' Particle Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -181,6 +180,22 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticLaserFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=VPR_Gray
+		Index=0
+		CamoName="Purple"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VPR_UTC
+		Index=1
+		CamoName="UTC"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.ViperCamos.UTCViperShine",Index=1,PIndex=0,AIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'VPR_Gray'
+    Camos(1)=WeaponCamo'VPR_UTC'
 }

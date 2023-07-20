@@ -8,15 +8,6 @@
 //=============================================================================
 class E23Projectile_Snpr extends BallisticProjectile;
 
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	Dmg *= 1 + 4 * FMin(default.LifeSpan - LifeSpan, 0.35)/0.35;
-		
-	return Other;
-}
-
 simulated singular function HitWall(vector HitNormal, actor Wall)
 {
 	local PlayerController PC;
@@ -54,6 +45,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.E23PlasmaRifle'
     ImpactManager=Class'BallisticProV55.IM_E23Projectile'
     bRandomStartRotation=False
     MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'

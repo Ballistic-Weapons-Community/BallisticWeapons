@@ -62,6 +62,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
     bLimitMomentumZ=False
      FlySound=Sound'BWBP_SKC_Sounds.Flash.M202-Flyby'
      RollRange=100000
@@ -91,7 +92,7 @@ defaultproperties
      MaxSpeed=30000.000000
      Damage=225.000000
      DamageRadius=1536.000000
-     WallPenetrationForce=1024
+     WallPenetrationForce=512
      MomentumTransfer=300000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DTLAW'
      LightType=LT_Steady

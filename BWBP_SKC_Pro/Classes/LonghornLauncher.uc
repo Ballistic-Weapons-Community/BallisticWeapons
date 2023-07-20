@@ -391,7 +391,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Longhorn.BigIcon_LHorn'
 	BigIconCoords=(Y1=30)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Grenade=True
@@ -400,7 +400,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PullOut')
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PutAway')
 	CockAnim="Cock1"
-	CockAnimRate=1.50000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-CockAlt',Volume=0.950000)
 	ReloadAnim="ReloadSingle"
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-CockShut',Volume=1.000000)
@@ -417,11 +416,16 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
+
+	PlayerViewOffset=(X=5.00,Y=4.00,Z=-5.00)
 	SightPivot=(Pitch=150)
-	SightOffset=(Y=19.600000,Z=26.400000)
-	ParamsClasses(0)=Class'LonghornWeaponParams'
+	SightOffset=(X=-3.00,Y=0.00,Z=2.30)
+	SightZoomFactor=1.2
+	
+	ParamsClasses(0)=Class'LonghornWeaponParamsComp'
 	ParamsClasses(1)=Class'LonghornWeaponParamsClassic'
 	ParamsClasses(2)=Class'LonghornWeaponParamsRealistic'
+    ParamsClasses(3)=Class'LonghornWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LonghornPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LonghornSecondaryFire'
 	SelectAnimRate=1.100000
@@ -437,8 +441,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LonghornPickup'
-	PlayerViewOffset=(X=-30.000000,Y=5.000000,Z=-20.000000)
-	BobDamping=1.800000
+	SightBobScale=0.15f
 	AttachmentClass=Class'BWBP_SKC_Pro.LonghornAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Longhorn.SmallIcon_LHorn'
 	IconCoords=(X2=127,Y2=31)
@@ -450,5 +453,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Longhorn'
-	DrawScale=0.900000
+	DrawScale=0.300000
 }

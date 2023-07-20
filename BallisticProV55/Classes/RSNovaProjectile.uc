@@ -286,6 +286,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.RSNovaStaff'
 	AccelSpeed=100000.000000
 	AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire1FlyBy'
 	CollisionHeight=1.000000

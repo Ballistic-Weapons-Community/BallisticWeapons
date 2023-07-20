@@ -33,13 +33,14 @@ function DoExplosion()
 
 defaultproperties
 {
+	 bCookable=True
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
      ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
      PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_FP7'
      BigIconCoords=(Y1=12,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -53,10 +54,11 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),Color2=(A=212),StartSize1=98,StartSize2=101)
      NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
 	 
-     CurrentWeaponMode=1
-     ParamsClasses(0)=Class'FP7WeaponParams'
+     CurrentWeaponMode=0
+     ParamsClasses(0)=Class'FP7WeaponParamsComp'
      ParamsClasses(1)=Class'FP7WeaponParamsClassic'
      ParamsClasses(2)=Class'FP7WeaponParamsRealistic'
+     ParamsClasses(3)=Class'FP7WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.FP7PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.FP7SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
@@ -69,12 +71,12 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=3
      PickupClass=Class'BallisticProV55.FP7Pickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.FP7Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_FP7'
      IconCoords=(X2=127,Y2=31)
      ItemName="FP7 Grenade"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_FP7'
-     DrawScale=0.400000
+     DrawScale=0.300000
 }

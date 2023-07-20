@@ -13,9 +13,8 @@
 //
 // by Azarael 2020
 //=============================================================================
-class FireEffectParams extends Object
-    editinlinenew
-    DependsOn(BUtil);
+class FireEffectParams extends Object 
+	DependsOn(BUtil);
 
 enum FireSpreadMode
 {
@@ -41,6 +40,10 @@ var() float				        Recoil;				    // Amount of recoil added each shot
 var() float				        PushbackForce;		    // How much to jolt player back when they fire
 var() float				        Chaos;				    // Chaos added to aim when fired. Will be auto calculated if < 0
 //-----------------------------------------------------------------------------
+// Heat
+//-----------------------------------------------------------------------------
+var() float				        Heat;				    // Amount of heat to add per shot
+//-----------------------------------------------------------------------------
 // Dispersal
 //-----------------------------------------------------------------------------
 var() BUtil.IntVector2	        Inaccuracy;			    // X and Y inaccuracy in rotational units
@@ -54,7 +57,43 @@ var() bool 				        RecommendSplashDamage;  // primarily deals damage through
 var() float                     BotRefireRate;          // probability that bot will decide to repeatedly fire weapon rather than taking another action
 var() float                     WarnTargetPct;          // probability that a bot attacked with this mode will be warned of the incoming shot and may evade
 
+var() String                    ShotTypeString, EffectString;
+
+//===========================================================================
+// Weapon menu
+//===========================================================================
+struct FireModeStats
+{
+	var	String		EffectString;
+    var String      ShotTypeString;
+    var String      Damage;
+	var	int			DamageInt;
+    var float       HeadMult;
+    var float       LimbMult;
+	var	int			DPS;
+	var	float		TTK;
+	var	String		RPM;
+	var	int			RPShot;
+	var	int			RPS;
+	var	float		FCPShot;
+	var	float		FCPS;
+	var	String		RangeOpt, RangeDecayed, RangeMax;
+};
+
 static simulated function Initialize(BallisticWeapon BW);
+
+//Accessor stub for stats
+function FireModeStats GetStats() 
+{
+	local FireModeStats FS;
+	
+	FS.EffectString = EffectString;
+    FS.ShotTypeString = ShotTypeString;
+	FS.RPShot = Recoil;
+	FS.FCPShot = Chaos;
+	
+	return FS;
+}
 
 defaultproperties
 {
@@ -66,4 +105,7 @@ defaultproperties
     BotRefireRate=0.95
 
     FireSound=(Volume=1.000000,Radius=512.000000,Pitch=1.000000,bNoOverride=True)
+
+    ShotTypeString="times"
+    EffectString="Unknown"
 }

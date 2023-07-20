@@ -25,8 +25,8 @@ simulated function InitEffects ()
 	{
 		GetAxes(Rotation,X,Y,Z);
 		Trail = Spawn(TrailClass, self,, Location + X*TrailOffset.X + Y*TrailOffset.Y + Z*TrailOffset.Z, Rotation);
-		if (Emitter(Trail) != None)
-			class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
+		//if (Emitter(Trail) != None)
+		//	class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
 		if (Trail != None)
 			Trail.SetBase (self);
 	}
@@ -34,6 +34,7 @@ simulated function InitEffects ()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.HVPCMk66PlasmaCannon'
      ImpactManager=Class'BWBP_SKC_Pro.IM_HVPCMk66Projectile'
      TrailClass=Class'BWBP_SKC_Pro.HVPCMk66BFGTrail'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_BFGCharge'

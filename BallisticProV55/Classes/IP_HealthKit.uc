@@ -16,7 +16,7 @@ function AnnouncePickup( Pawn Receiver )
 
 defaultproperties
 {
-     HealingAmount=50
+     HealingAmount=35
      bAmbientGlow=False
      PickupMessage="You picked up a Health Kit +"
      PickupSound=Sound'BW_Core_WeaponSound.Health.HealthKitPickup'

@@ -90,6 +90,7 @@ simulated function Explode (vector a, vector b)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.TrenchGun'
 	 bApplyParams=False
      bPenetrate=True
      StartDelay=0.030000

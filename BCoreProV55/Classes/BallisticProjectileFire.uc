@@ -232,41 +232,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 	}
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-    local class<BallisticProjectile> BProjClass;
-
-    BProjClass = class<BallisticProjectile>(default.ProjectileClass);
-
-	FS.DamageInt = BProjClass.default.Damage;
-	FS.Damage = String(FS.DamageInt);
-
-    if (BProjClass.default.DamageGainEndTime > 0)
-        FS.Damage @= "-" @ String(Int(FS.DamageInt * (1f + BProjClass.default.MaxDamageGainFactor)));
-
-    FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
-    FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
-
-	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Maximum:"@(10000 / 52.5)@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
-    ShotTypeString="shots"
     bLeadTarget=True
     bInstantHit=False
     WarnTargetPct=0.500000

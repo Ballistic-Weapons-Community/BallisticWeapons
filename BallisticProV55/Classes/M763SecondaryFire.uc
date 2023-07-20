@@ -243,47 +243,47 @@ simulated state GasSlug
 
 defaultproperties
 {
-     TraceRange=(Min=768.000000,Max=768.000000)
-     Damage=35.000000
-     
-	 //Proj
-     ProjectileClass=Class'BallisticProV55.M763GasSlug'
-     SpawnOffset=(Y=20.000000,Z=-20.000000)
-	 
-     RangeAtten=0.250000
-     DamageType=Class'BallisticProV55.DTM763Shotgun'
-     DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
-     DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
-	 PenetrateForce=100
-	 
-	 WallPenetrationForce=0
-     bPenetrate=True
-     bUseWeaponMag=False
-     FlashScaleFactor=2.000000
-     BrassClass=Class'BallisticProV55.Brass_Shotgun'
-     BrassOffset=(X=-1.000000,Z=-1.000000)
-     AimedFireAnim="FireCombinedSight"
-     FireRecoil=1280.000000
-     FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
-     FireAnim="FireCombined"
-     FireEndAnim=
-     FireAnimRate=1.100000
-     FireRate=0.750000
-     AmmoClass=Class'BallisticProV55.Ammo_12GaugeGas'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-	 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=True
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.3
-     WarnTargetPct=0.75
+	TraceRange=(Min=768.000000,Max=768.000000)
+	Damage=35.000000
+
+	//Proj
+	ProjectileClass=Class'BallisticProV55.M763GasSlug'
+	SpawnOffset=(Y=20.000000,Z=-20.000000)
+
+	RangeAtten=0.250000
+	DamageType=Class'BallisticProV55.DTM763Shotgun'
+	DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+	DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+	PenetrateForce=100
+
+	WallPenetrationForce=0
+	bPenetrate=True
+	bUseWeaponMag=False
+	FlashScaleFactor=2.000000
+	BrassClass=Class'BallisticProV55.Brass_Shotgun'
+	BrassOffset=(X=-1.000000,Z=-1.000000)
+	AimedFireAnim="FireCombinedSight"
+	FireRecoil=1280.000000
+	FireChaos=0.500000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
+	FireAnim="FireCombined"
+	FireEndAnim=
+	FireAnimRate=1.100000
+	FireRate=0.750000
+	AmmoClass=Class'BallisticProV55.Ammo_12GaugeGas'
+	ShakeRotMag=(X=128.000000,Y=64.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
+
+	// AI
+	bInstantHit=True
+	bLeadTarget=False
+	bTossed=False
+	bSplashDamage=True
+	bRecommendSplashDamage=False
+	BotRefireRate=0.3
+	WarnTargetPct=0.75
 }

@@ -107,7 +107,8 @@ simulated function CommonStartReload (optional byte i)
 
 	if (bCockAfterReload)
 		bNeedCock=true;
-	if (bCockOnEmpty && MagAmmo < 1 && GameStyleIndex == 0)
+
+	if (bCockOnEmpty && MagAmmo < 1 && (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()))
 		bNeedCock=true;
 	bNeedReload=false;
 }
@@ -118,7 +119,7 @@ simulated function PlayReload()
 		SafePlayAnim(StartShovelAnim, StartShovelAnimRate, , 0, "RELOAD");
 	else
 	{
-	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && GameStyleIndex != 0)
+	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && (class'BallisticReplicationInfo'.static.IsClassicOrRealism()))
 			SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
 		else	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 	}
@@ -721,15 +722,17 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BWBP_SKC_Tex.Typhon.BigIcon_Typhon'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
 	 bWT_Bullet=True
-     SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
+     SpecialInfo(0)=(Info="240.0;15.0;0.4;25.0;0.8;0.0;-999.0")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
      ReloadAnim="Reload"
 	 ReloadEmptyAnim="ReloadEmpty"
 	 bCockOnEmpty=True
+	 CockSelectAnim="PulloutFancyOld"
+	 CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-BoltSlap',Volume=1.100000)
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
 	 WeaponModes(0)=(ModeName="Mode: Rapid Fire",ModeID="WM_FullAuto")
@@ -738,10 +741,7 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons
-     //SightPivot=(Pitch=-1024)
-     SightOffset=(X=-4.000000,Y=0.250000,Z=11.750000)
-	 SightingTime=0.250000
-	 BobDamping=2.300000
+
      FireModeClass(0)=Class'BWBP_SKC_Pro.TyphonPDWPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.TyphonPDWSecondaryFire'
      SelectForce="SwitchToAssaultRifle"
@@ -759,7 +759,12 @@ defaultproperties
 	 InventoryGroup=3
      GroupOffset=18
      PickupClass=Class'BWBP_SKC_Pro.TyphonPDWPickup'
-     PlayerViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
+
+     PlayerViewOffset=(X=5.00,Y=3.50,Z=-4.00)
+	 SightOffset=(X=0.00,Y=0.00,Z=2.19)
+	 SightingTime=0.250000
+	 SightAnimScale=0.4
+
      PutDownTime=0.800000
      BringUpTime=1.000000
 	 CockingBringUpTime=2.000000
@@ -773,11 +778,12 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsArena'
+	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsComp'
 	 ParamsClasses(1)=Class'TyphonPDWWeaponParamsClassic'
 	 ParamsClasses(2)=Class'TyphonPDWWeaponParamsRealistic'
+     ParamsClasses(3)=Class'TyphonPDWWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Typhon'
-     DrawScale=0.350000
+     DrawScale=0.30000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.Typhon.Typhon-Shine'
      Skins(2)=Shader'BWBP_SKC_Tex.Typhon.Typhon-ShineMag'

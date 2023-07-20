@@ -10,10 +10,12 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
-		TraceCount=20
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=20.0
+		//TraceCount=20
+		//Damage=10
+		TraceCount=16
+		Damage=18.0
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTM290Shotgun'
@@ -51,10 +53,12 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
-		TraceCount=10
+		//Damage=20
+		//TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=20.0
+		TraceCount=8
+		Damage=18.0
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTM290Shotgun'
@@ -129,16 +133,16 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=8
 		bMagPlusOne=True //Todo: Plus two
-		ViewOffset=(X=20.000000,Y=8.000000,Z=-13.000000)
-		SightOffset=(X=-50.000000,Z=17.000000)     //Original
-		SightPivot=(Pitch=512)                     //Original
-		CockAnimRate=1.400000
-		ReloadAnimRate=1.350000
+		ViewOffset=(X=14.000000,Y=8.000000,Z=-13.000000)
+		//SightOffset=(X=-50.000000,Z=17.000000)     //Original
+		SightPivot=(Pitch=256)                     //Original
+		//CockAnimRate=1.400000
+		//ReloadAnimRate=1.350000
 		WeaponName="M290 12ga Double-Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -146,6 +150,31 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M290_Yellow
+		Index=0
+		CamoName="Yellow"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M290_Dark
+		Index=1
+		CamoName="Dark Orange"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M290Camos.MiniThorSkin",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M290_Retro
+		Index=2
+		CamoName="Retro Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M290Camos.M290_SH1",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'M290_Yellow'
+	Camos(1)=WeaponCamo'M290_Dark'
+	Camos(2)=WeaponCamo'M290_Retro'
 }

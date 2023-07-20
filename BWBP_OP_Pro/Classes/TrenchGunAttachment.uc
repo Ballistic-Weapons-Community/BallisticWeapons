@@ -113,7 +113,7 @@ simulated function ExplosiveFireEffects(byte IsDoubleFire)
 	local Rotator R;
 	local Material HitMat;
 	local int i, j, ShotCount;
-	local float XS, YS, RMin, RMax, Range, fX;
+	local float RMin, RMax, Range, fX;
 	
 	ShotCount = IsDoubleFire + 1;
 	
@@ -123,30 +123,13 @@ simulated function ExplosiveFireEffects(byte IsDoubleFire)
 	if (Instigator == None)
 		return;
 		
-	if (Level.NetMode == NM_Client && FireClass != None)
+	if (Level.NetMode == NM_Client)
 	{
-		if (IsDoubleFire == 0)
-		{
-			XS = class'TrenchGunPrimaryFire'.default.ExplosiveInaccuracy.X; 
-			YS = class'TrenchGunPrimaryFire'.default.ExplosiveInaccuracy.Y;
-		}
-		else 
-		{
-			XS = class'TrenchGunPrimaryFire'.default.ExplosiveDoubleInaccuracy.X; 
-			YS = class'TrenchGunPrimaryFire'.default.ExplosiveDoubleInaccuracy.Y;
-		}
-		
-		if(!bScoped)
-		{
-			XS *= FireClass.static.GetAttachmentDispersionFactor();
-			YS *= FireClass.static.GetAttachmentDispersionFactor();
-		}
-		
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+		RMin = GetTraceRange();
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
-		for (i=0; i < FireClass.default.TraceCount * ShotCount; i++)
+		for (i=0; i < GetTraceCount() * ShotCount; i++)
 		{
 			mHitActor = None;
 			
@@ -154,21 +137,21 @@ simulated function ExplosiveFireEffects(byte IsDoubleFire)
 			
 			R = Rotator(mHitLocation);
 			
-			switch (FireClass.default.FireSpreadMode)
+			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:
 					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
 					break;
 				case FSM_Circle:
 					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 					break;
 				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
+					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
 					break;
 			}
 			
@@ -227,7 +210,7 @@ simulated function ElectroFireEffects(byte IsDoubleFire)
 	local Rotator R;
 	local Material HitMat;
 	local int i, j, ShotCount;
-	local float XS, YS, RMin, RMax, Range, fX;
+	local float RMin, RMax, Range, fX;
 	
 	ShotCount = IsDoubleFire + 1;
 	
@@ -236,30 +219,14 @@ simulated function ElectroFireEffects(byte IsDoubleFire)
 	if (Instigator == none)
 		return;
 	
-	if (Level.NetMode == NM_Client && FireClass != None)
-	{
-		if (IsDoubleFire == 0)
-		{
-			XS = class'TrenchGunPrimaryFire'.default.ElectroInaccuracy.X; 
-			YS = class'TrenchGunPrimaryFire'.default.ElectroInaccuracy.Y;
-		}
-		else 
-		{
-			XS = class'TrenchGunPrimaryFire'.default.ElectroDoubleInaccuracy.X; 
-			YS = class'TrenchGunPrimaryFire'.default.ElectroDoubleInaccuracy.Y;
-		}
-		
-		if (!bScoped)
-		{
-			XS *= FireClass.static.GetAttachmentDispersionFactor();
-			YS *= FireClass.static.GetAttachmentDispersionFactor();
-		}
-		
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+	if (Level.NetMode == NM_Client)
+	{		
+		RMin = GetTraceRange();
+		RMax = GetTraceRange();
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
-		for (i=0; i < FireClass.default.TraceCount * ShotCount; i++)
+		for (i=0; i < GetTraceCount() * ShotCount; i++)
 		{
 			mHitActor = None;
 			
@@ -267,21 +234,21 @@ simulated function ElectroFireEffects(byte IsDoubleFire)
 			
 			R = Rotator(mHitLocation);
 			
-			switch (FireClass.default.FireSpreadMode)
+			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:
 					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
 					break;
 				case FSM_Circle:
 					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 					break;
 				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
+					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
 					break;
 			}
 			
@@ -429,23 +396,23 @@ simulated function EjectBrass(byte IsDoubleFire);
 
 defaultproperties
 {
-	 TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-     ImpactManager=Class'BallisticProV55.IM_IncendiaryHMGBullet'
+	 TracerClass=class'TraceEmitter_Shotgun'
+     ImpactManager=class'IM_IncendiaryHMGBullet'
 	 
      TracerClassAlt=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 	 ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_Supercharge'
 	 
-	 MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+	 MeleeImpactManager=class'IM_GunHit'
 	 
-     FireClass=Class'BWBP_OP_Pro.TrenchGunPrimaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+     WeaponClass=Class'BWBP_OP_Pro.TrenchGun'
+     MuzzleFlashClass=class'MRT6FlashEmitter'
      FlashBone="Tip1"
      AltFlashBone="tip2"
      FlashScale=1.500000
 	 	 
 	 InstantMode = MU_Both
 	 
-     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+     BrassClass=class'Brass_MRS138Shotgun'
 	 
      TrackAnimMode=MU_None
      Mesh=SkeletalMesh'BWBP_OP_Anim.TrenchGun_TPm'

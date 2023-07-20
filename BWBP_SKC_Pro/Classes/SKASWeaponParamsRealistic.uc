@@ -169,22 +169,21 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=11
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=36
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(3)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(4)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
-		WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
+		WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
+		WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
 		InitialWeaponMode=0
 		WeaponName="SKAS-21 Automatic Shotgun"
-		SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
+		//SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -193,6 +192,67 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=SKAS_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SKAS_Urban
+		Index=1
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SKAS-CamoU",Index=1,AIndex=0,PIndex=0)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SKAS_Digital
+		Index=2
+		CamoName="Digital"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SKAS-CamoT",Index=1,AIndex=0,PIndex=0)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SKAS_Desert
+		Index=3
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SKAS-CamoD",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SKAS_Jungle
+		Index=4
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SKAS-CamoG",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SKAS_Glitch
+		Index=5
+		CamoName="XR4"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SKAS-Charged",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SKAS_Glitch2
+		Index=6
+		CamoName="11011"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SKAS-BlueGlow",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'SKAS_Gray'
+	Camos(1)=WeaponCamo'SKAS_Urban'
+	Camos(2)=WeaponCamo'SKAS_Digital'
+	Camos(3)=WeaponCamo'SKAS_Desert'
+	Camos(4)=WeaponCamo'SKAS_Jungle'
+	Camos(5)=WeaponCamo'SKAS_Glitch'
+	Camos(6)=WeaponCamo'SKAS_Glitch2'
 }

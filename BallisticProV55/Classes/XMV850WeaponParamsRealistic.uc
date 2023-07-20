@@ -48,6 +48,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Deploy weapon"
 	End Object
 		
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -104,21 +105,26 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		LayoutName="Default"
+		Weight=30
+		//Attachments
+		//Function
 		PlayerSpeedFactor=0.700000
 		PlayerJumpFactor=0.750000
-		InventorySize=25
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.4
 		MagAmmo=900
-		ViewOffset=(X=7.000000,Y=6.000000,Z=-18.000000)
-		SightOffset=(X=8.000000,Z=28.000000)
+		//ViewOffset=(X=7.000000,Y=6.000000,Z=-18.000000)
+		//SightOffset=(X=8.000000,Z=28.000000)
 		SightPivot=(Pitch=700,Roll=2048)
 		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=0.800000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.800000
+		//CockAnimRate=1.000000
 		WeaponName="XMV-858 5.56mm Minigun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -126,6 +132,33 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=XMV_Teal
+		Index=0
+		CamoName="Teal"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMV_Green
+		Index=1
+		CamoName="Green"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Main",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Barrels_SD",Index=2,AIndex=2,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMV_Black
+		Index=2
+		CamoName="Black"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Main",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD",Index=2,AIndex=2,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'XMV_Teal'
+    Camos(1)=WeaponCamo'XMV_Green'
+    Camos(2)=WeaponCamo'XMV_Black'
 }

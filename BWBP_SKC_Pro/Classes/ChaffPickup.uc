@@ -56,6 +56,6 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_SKC_Static.MOAC.MOACPickup'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=2.000000
+     DrawScale=0.180000
      CollisionHeight=5.600000
 }

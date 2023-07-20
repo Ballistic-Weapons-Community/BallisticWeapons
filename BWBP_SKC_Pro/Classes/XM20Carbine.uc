@@ -12,13 +12,12 @@
 //=============================================================================
 class XM20Carbine extends BallisticWeapon;
 
-
+var() bool		bIsPrototype;
 var() Sound		DoubleVentSound;	//Sound for double fire's vent
 var() Sound		OverHeatSound;		// Sound to play when it overheats
 
 var float		lastModeChangeTime;
-
-var() Sound			ModeCycleSound;
+var() Sound		ModeCycleSound;
 
 //Screen vars
 var	int	NumpadYOffset1; //Ammo tens
@@ -67,6 +66,22 @@ replication
 		ClientScreenStart, bLaserOn, bOvercharged, ChargeRate, ChargeRateOvercharge;
 }
 
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsPrototype=false;
+
+	if (InStr(WeaponParams.LayoutTags, "prototype") != -1)
+	{
+		bIsPrototype=true;
+		if ( ThirdPersonActor != None )
+			XM20Attachment(ThirdPersonActor).bIsPrototype=true;
+	}
+}
+
 //========================== AMMO COUNTER NON-STATIC TEXTURE ============
 
 simulated function ClientScreenStart()
@@ -106,7 +121,7 @@ simulated event RenderTexture( ScriptedTexture Tex )
 simulated function UpdateScreen()
 {
 
-	if (Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
+	if (bIsPrototype || (Instigator != None && AIController(Instigator.Controller) != None)) //Bots cannot update your screen
 		return;
 
 	if (Instigator.IsLocallyControlled())
@@ -168,7 +183,7 @@ function int ManageHeatInteraction(Pawn P, int HeatPerShot)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
-	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	if (!bIsPrototype && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
 	{
 		ScreenStart();
 		if (!Instigator.IsLocallyControlled())
@@ -254,7 +269,7 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn == bNewLaserOn)
 		return;
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		XM20Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
@@ -266,7 +281,6 @@ simulated function ClientSwitchLaser()
 	if (!bLaserOn)
 		KillLaserDot();
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -410,9 +424,9 @@ simulated event RenderOverlays( Canvas C )
 		NumpadXPosOnes=230; //Ones X coord
 	}
 
-    if (!bScopeView)
+    if (!bScopeView || bIsPrototype)
 	{
-		if (Instigator.IsLocallyControlled())
+		if (Instigator.IsLocallyControlled() && !bIsPrototype)
 		{
 			WeaponScreen.Revision++;
 		}
@@ -440,7 +454,7 @@ simulated event RenderOverlays( Canvas C )
         C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
         C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 	}
-			DrawLaserSight(C);
+	DrawLaserSight(C);
 }
 
 simulated function float RateSelf()
@@ -582,16 +596,16 @@ defaultproperties
      WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
 	 CurrentWeaponMode=1
-	 BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	 
      ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
      ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=40.000000
-     SightPivot=(Pitch=600)
-     SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
-	 ParamsClasses(0)=Class'XM20WeaponParams'
+
+	 ParamsClasses(0)=Class'XM20WeaponParamsComp'
 	 ParamsClasses(1)=Class'XM20WeaponParamsClassic'
 	 ParamsClasses(2)=Class'XM20WeaponParamsRealistic'
+     ParamsClasses(3)=Class'XM20WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.XM20PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.XM20SecondaryFire'
      BringUpTime=0.800000
@@ -605,8 +619,10 @@ defaultproperties
      Priority=194
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      PickupClass=Class'BWBP_SKC_Pro.XM20Pickup'
-     PlayerViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
-     BobDamping=1.800000
+
+     PlayerViewOffset=(X=10.00,Y=5.00,Z=-7.50)
+	 SightOffset=(X=-2.00,Y=0.00,Z=2.89)
+
      AttachmentClass=Class'BWBP_SKC_Pro.XM20Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)
@@ -619,7 +635,7 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=5.000000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM20'
-     DrawScale=0.350000
+     DrawScale=0.300000
      UsedAmbientSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Idle'
      bFullVolume=True
      SoundVolume=255

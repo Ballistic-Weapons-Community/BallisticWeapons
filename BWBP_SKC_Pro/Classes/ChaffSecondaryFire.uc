@@ -8,10 +8,27 @@
 //=============================================================================
 class ChaffSecondaryFire extends BallisticMeleeFire;
 
+function PlayPreFire()
+{
+	Weapon.SetBoneScale (0, 1.0, ChaffGrenadeWeapon(Weapon).GrenadeBone);
+	Weapon.SetBoneScale (1, 1.0, ChaffGrenadeWeapon(Weapon).GrenadeBone2);
+	if (ChaffGrenadeWeapon(Weapon).bPrimed)
+	{
+     	PreFireAnim='PrepSmackPrimed';
+     	FireAnim='SmackPrimed';
+	}
+	else
+	{
+     	PreFireAnim='PrepSmack';
+     	FireAnim='Smack';
+	}
+	Weapon.PlayAnim(PreFireAnim, PreFireAnimRate, TweenTime);
+}
+
 // Do the trace to find out where bullet really goes
 function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int Weight)
 {
-	local int						i;
+	local int							i;
 	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLocation;
 	local Material					HitMaterial;
 	local float						Dist;
@@ -72,23 +89,52 @@ function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int W
 					SwipeHits[SwipeHits.length-1].HitDir = X;
 					LastOther = Other;
 
-
 					if (bWallHitter && Vehicle(Other) != None)
 					{
-//						bHitWall=true;
 						bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 					}
 				}
+				
+				if (ChaffGrenadeWeapon(BW).bPrimed)
+				{
+					ChaffGrenadeWeapon(BW).ExplodeInHand();
+					break;
+				}
+				
 				if (Mover(Other) == None)
 					Break;
 			}
 			// Do impact effect
 			if (Other.bWorldGeometry || Mover(Other) != None)
 			{
-//				bHitWall=true;
+				if (Other.bCanBeDamaged)
+				{
+					for(i=0;i<SwipeHits.length;i++)
+						if (SwipeHits[i].Victim == Other)
+						{
+							if(SwipeHits[i].Weight < Weight)
+							{
+								SwipeHits.Remove(i, 1);
+								i--;
+							}
+							else
+								break;
+						}
+					if (i>=SwipeHits.length)
+					{
+						SwipeHits.Length = SwipeHits.length + 1;
+						SwipeHits[SwipeHits.length-1].Victim = Other;
+						SwipeHits[SwipeHits.length-1].Weight = Weight;
+						SwipeHits[SwipeHits.length-1].HitLoc = HitLocation;
+						SwipeHits[SwipeHits.length-1].HitDir = X;
+						LastOther = Other;
+					}
+				}
 				if (bWallHitter)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+					if (ChaffGrenadeWeapon(BW).bPrimed)
+						ChaffGrenadeWeapon(BW).ExplodeInHand();
 				}
 				break;
 			}

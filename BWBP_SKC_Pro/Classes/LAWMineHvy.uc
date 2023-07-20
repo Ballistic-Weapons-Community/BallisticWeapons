@@ -11,22 +11,23 @@
 // by Sarge
 // Coding help by Azarael
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class LAWMineHvy extends BallisticProjectile;
 
 var   bool				bDetonated;		// Been detonated, waiting for net syncronization or something
 var   bool				bDetonating;		// Been detonated, waiting for net syncronization or something
-var() Sound				DetonateSound;
+var() Sound				ArmingSound;
 var     int				ShockRadius;
 var		int				ShockDamage;
 
 var() class<damageType>			MyShotDamageType;	// Damagetype to use when detonated by damage
-var() class<BCImpactManager>		ImpactManager2;		// Impact manager to spawn on final hit
+var() class<BCImpactManager>		ImpactManager2;		// Impact manager to use for shockwaves
+var	byte					TeamLightColor;
 
 
 var   int				Health;			// Distance from his glorious holiness, the source. Wait, thats not what this is...
-var   LAWSparkEmitter			TeamLight;		// A flare emitter to show the glowing core
+var   Emitter			TeamLight;		// A flare emitter to show the glowing core
 var   float				TriggerStartTime;	// Time when trigger will be active
 var   int				PulseNum;		// HOW MANY PULSES. WHAT DO THE NUMBERS MEAN?
 var bool				bShot;			// you shot it
@@ -36,12 +37,42 @@ var bool				bOldPulse;
 replication
 {
 	reliable if(Role == ROLE_Authority)
-		bShot, bDetonated, bDetonating, bPulse;
+		bShot, bDetonated, bDetonating, bPulse, TeamLightColor;
+}
+
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	
+	if (Role == ROLE_Authority)
+	{
+		if (Level.Game.bTeamGame && Instigator != None && Instigator.GetTeamNum() == 0)
+		{
+			TeamLightColor = 1;
+			if (Level.NetMode != NM_DedicatedServer)
+				TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+		}
+		
+		else 
+		{
+			TeamLightColor = 0;
+			if (Level.NetMode != NM_DedicatedServer)
+				TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+		}
+		TeamLight.SetBase(self);	
+	}
 }
 
 simulated event PostNetReceive()
 {
 	Super.PostNetReceive();
+	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
+	{
+		if (TeamLightColor == 0)
+			TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+		TeamLight.SetBase(self);
+	}	
 	if (bShot || bDetonated)
 		Explode(Location, vector(Rotation));
 	if (bPulse != bOldPulse)
@@ -59,14 +90,9 @@ simulated function InitProjectile()
 	if (Role==ROLE_Authority)
 	{
 		bDetonating = true;
-		PlaySound(DetonateSound,,2.0,,256,,);
 		SetTimer(1.25, false);
 	}
-	if (level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
-		TeamLight.SetBase(self);
-	}
+	PlaySound(ArmingSound,,2.0,,256,,);
 }
 
 simulated function Destroyed()
@@ -199,7 +225,7 @@ simulated function ShockwaveExplode(vector HitLocation, vector HitNormal)
 		if (Instigator == None)
 			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
 		else
-			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
+			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator, TeamLightColor);
 	}
 	Shockwave(HitLocation);
 
@@ -208,7 +234,6 @@ simulated function ShockwaveExplode(vector HitLocation, vector HitNormal)
 // Do shockwave damage
 function Shockwave(vector HitLocation)
 {
-
 	local Actor A;
 	
 	if (Role < ROLE_Authority)
@@ -232,8 +257,8 @@ function bool IsStationary()
 
 defaultproperties
 {
-//     DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
-     DetonateSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
+     ArmingSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
      Health=70
      ImpactManager=Class'BallisticProV55.IM_RPG'
      ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'

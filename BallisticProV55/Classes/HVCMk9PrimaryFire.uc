@@ -8,18 +8,19 @@
 //=============================================================================
 class HVCMk9PrimaryFire extends BallisticProInstantFire;
 
-var() 	bool		bDoOverCharge;
-var 	Sound 	FireSoundLoop;
-var   	bool	 	bPendingOwnerZap;
-var	bool 		bZapping, bSoundActive;
-var	float	NextMessageTime;
+var()	bool		bDoOverCharge;
+var		Sound		FireSoundLoop;
+var		bool		bPendingOwnerZap;
+var		bool		bZapping, bSoundActive;
+var		float		NextMessageTime;
 
-var int SuccessiveHits;
+var int 			SuccessiveHits;
 
 //[2.5] default vars
-var() sound		FireSound2;
-var   bool		bIsZapping;
-var   float	PendingZapDamage;
+var() sound			FireSound2;
+var   bool			bIsZapping;
+var   float			PendingZapDamage;
+
 struct ZappedTarget
 {
 	var() Pawn	Vic;
@@ -825,10 +826,6 @@ simulated state BranchingFire
 defaultproperties
 {
      FireSoundLoop=Sound'BW_Core_WeaponSound.LightningGun.LG-FireLoop'
-     Damage=10.000000
-     HeadMult=1f
-     LimbMult=1f
-     
      DamageType=Class'BallisticProV55.DT_HVCLightning'
      DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'
      DamageTypeArm=Class'BallisticProV55.DT_HVCLightning'

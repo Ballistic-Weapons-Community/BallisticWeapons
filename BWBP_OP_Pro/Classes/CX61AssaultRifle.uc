@@ -164,7 +164,7 @@ simulated event Tick (float DT)
 	super.Tick(DT);
 	if (StoredGas < default.StoredGas && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
 	{
-		if (BCRepClass.default.GameStyle == 1)
+		if (class'BallisticReplicationInfo'.static.IsClassic())
 			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 10) * (1 + StoredGas/default.StoredGas) );
 		else
 			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 20));
@@ -241,7 +241,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.2;	}
@@ -260,7 +260,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_OP_Tex.CX61.BigIcon_CX61'
 	BigIconCoords=(Y1=12,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	bWT_Heal=True
@@ -272,7 +272,6 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Cock')
-	ReloadAnimRate=1.100000
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagOut')
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
 	ClipInFrame=0.650000
@@ -284,14 +283,13 @@ defaultproperties
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
-	SightPivot=(Pitch=600)
-	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
-	SightDisplayFOV=25.000000
+	PlayerViewOffset=(X=8,Y=4.00,Z=-3.5)
+	SightOffset=(X=0.0,Y=0.02,Z=1.51)
 	GunLength=16.000000
-	ParamsClasses(0)=Class'CX61WeaponParams'
+	ParamsClasses(0)=Class'CX61WeaponParamsComp'
 	ParamsClasses(1)=Class'CX61WeaponParamsClassic'
 	ParamsClasses(2)=Class'CX61WeaponParamsRealistic'
-	ParamsClasses(3)=Class'CX61WeaponParams'
+	ParamsClasses(3)=Class'CX61WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.CX61PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.CX61SecondaryFire'
 	SelectAnimRate=1.400000
@@ -302,14 +300,12 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="Cimerion Labs' CX61 Tactical Rifle was engineered as a reliable primary weapon for use by medical personnel. Incorporating a nano-forge capable of producing G28 aerosol for projection by the weapon, it is able to choose between projecting healing spray or igniting the G28 gas in order to emit a blast of flame to disorient foes."
-	DisplayFOV=55.000000
 	Priority=32
 	HudColor=(B=168,G=111,R=83)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=9
 	PickupClass=Class'BWBP_OP_Pro.CX61Pickup'
-	PlayerViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
 	AttachmentClass=Class'BWBP_OP_Pro.CX61Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.CX61.Icon_CX61'
 	IconCoords=(X2=127,Y2=31)

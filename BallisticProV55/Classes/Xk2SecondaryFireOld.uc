@@ -3,7 +3,7 @@
 //
 // Ice rounds. Inflict slow upon targets hit, but deal lesser damage than standard XK2 rounds.
 //=============================================================================
-class XK2SecondaryFireOld extends BallisticRangeAttenFire;
+class XK2SecondaryFireOld extends BallisticProInstantFire;
 
 simulated function bool AllowFire()
 {
@@ -36,21 +36,11 @@ function FlashMuzzleFlash()
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {	
-    local Inv_Slowdown Slow;
-
     super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
     if (Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
     {
-        Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
-
-        if (Slow == None)
-        {
-            Pawn(Victim).CreateInventory("BallisticProV55.Inv_Slowdown");
-            Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
-        }
-
-        Slow.AddSlow(0.7, 0.2);
+        class'BCSprintControl'.static.AddSlowTo(Pawn(Victim), 0.7, 0.2);
     }
 }
 
@@ -92,15 +82,6 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-    CutOffDistance=2304.000000
-    CutOffStartRange=1536.000000
-    WallPenetrationForce=24.000000
-    
-    Damage=14.000000
-    
-    
-    RangeAtten=0.200000
-    WaterRangeAtten=0.600000
     DamageType=Class'BallisticProV55.DTXK2Freeze'
     DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
     DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'

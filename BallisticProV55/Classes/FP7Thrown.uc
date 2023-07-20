@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class FP7Thrown extends BallisticPineapple;
+class FP7Thrown extends BallisticHandGrenadeProjectile;
 
 var   Emitter PATrail;
 
@@ -31,21 +31,6 @@ simulated function DestroyEffects()
 		PATrail.Kill();
 }
 
-simulated event KVelDropBelow()
-{
-	super.KVelDropBelow();
-
-	if (PATrail != None)
-		PATrail.Kill();
-}
-
-simulated event KImpact(actor other, vector pos, vector impactVel, vector impactNorm)
-{
-	super.KImpact(other, pos, impactVel, impactNorm);
-	if (PATrail!= None && VSize(impactVel) > 200)
-		PATrail.Kill();
-}
-
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	local FP7FireControl F;
@@ -60,21 +45,26 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 				Level.Game.Broadcast(self, "FP7 Grenade thrown by"@Instigator.PlayerReplicationInfo.PlayerName@"too close to a teleporter!");
 			return;
 		}
-		F = Spawn(class'FP7FireControl',self,,HitLocation-HitNormal*2, rot(0,0,0));
+
+		F = Spawn(class'FP7FireControl', self, , Location + vect(0,0,16), rot(0,0,0));
+
 		if (F!=None)
 		{
 			F.Instigator = Instigator;
 			F.Initialize();
 		}
 	}
+
 	Destroy();
 }
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.FP7Grenade'
      DampenFactor=0.050000
      DampenFactorParallel=0.350000
      ImpactDamage=15
+     DetonateDelay=2
      ImpactDamageType=Class'BallisticProV55.DTFP7Grenade'
      ImpactManager=Class'BallisticProV55.IM_Grenade'
 	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'

@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MRDRPrimaryFire extends BallisticRangeAttenFire;
+class MRDRPrimaryFire extends BallisticProInstantFire;
 
 //Do the spread on the client side
 function PlayFiring()
@@ -26,22 +26,12 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
-     WallPenetrationForce=8.000000
-     
-     Damage=20.000000
-     HeadMult=1.5f
-     LimbMult=0.5f
-     
-     RangeAtten=0.200000
-     WaterRangeAtten=0.200000
      DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
      PenetrateForce=0
      bPenetrate=False
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=24.000000,bAtten=True)
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
      FlashScaleFactor=0.600000
@@ -55,10 +45,11 @@ defaultproperties
      bPawnRapidFireAnim=True
      FireRate=0.120000
      AmmoClass=Class'BallisticProV55.Ammo_9mm'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+
+	ShakeRotMag=(X=32.000000)
+	ShakeRotRate=(X=480.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-60.000000)
+	ShakeOffsetTime=2.000000
 }

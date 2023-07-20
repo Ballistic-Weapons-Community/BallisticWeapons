@@ -15,6 +15,7 @@ var   Pawn			Target;
 var   float			TargetTime;
 var   float			LastSendTargetTime;
 var   vector		TargetLocation;
+var()	bool		bIsIrons;
 
 var() BUtil.FullSound	NVOnSound;	// Sound when activating NV/Meat mode
 var() BUtil.FullSound	NVOffSound; // Sound when deactivating NV/Meat mode
@@ -24,6 +25,24 @@ replication
 	reliable if (Role == ROLE_Authority && bNetOwner)
 		Target, bMeatVision;
 }
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsIrons=false;
+
+	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
+	{
+		bIsIrons=true;
+		SetBoneRotation('RearSightP', rot(15000,0,0));
+		SetBoneRotation('FrontSight', rot(0,0,16000));
+	}
+}
+
+
 
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
@@ -65,7 +84,7 @@ function Notify_Deploy()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth - 4 && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
 			return;
@@ -77,7 +96,7 @@ function Notify_Deploy()
 	if(Sandbag(T) != None)
 	{
 		HitLoc = T.Location;
-		HitLoc.Z += class'X82Turret'.default.CollisionHeight + 15;
+		HitLoc.Z += class'X82Turret'.default.CollisionHeight + T.CollisionHeight * 0.75;
 	}
 	
 	else
@@ -114,7 +133,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -126,7 +144,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
     }
  	
    	else if ( !W.HasAmmo() )
@@ -151,17 +183,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(Instigator.IsHumanControlled() && Instigator.FindInventoryType(class'SandbagLayer') == None && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
-			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
@@ -202,6 +223,7 @@ simulated event WeaponTick(float DT)
 
 	super.WeaponTick(DT);
 	
+	
 	if (bScopeView)
 	{
 		BFireMode[0].BrassOffset = vect(0,-40,0);
@@ -235,38 +257,12 @@ simulated event WeaponTick(float DT)
 	}
 }
 
-simulated event RenderOverlays (Canvas C)
+simulated event DrawScopeOverlays (Canvas C)
 {
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
-
 	if (bMeatVision)
 		DrawMeatVisionMode(C);
 
-	if (ScopeViewTex != None)
-	{
-		C.ColorModulate.W = 1;
-   		C.SetDrawColor(255,255,255,255);
-		C.SetPos(C.OrgX, C.OrgY);
-		
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-
-		C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function OnScopeViewChanged()
@@ -355,17 +351,15 @@ defaultproperties
 	ManualLines(2)="Weapon Function activates infrared vision. Viable infantry targets will be bordered by a box in the weapon's scope.||Effective at long range. Very effective at long range when deployed."
 	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
 	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	BigIconMaterial=Texture'BWBP_SKC_Tex.X82.BigIcon_X82'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;80.0;10.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.700000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
-	ReloadAnimRate=0.70000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Out',Volume=1.500000)
 	ClipInFrame=0.850000
@@ -380,15 +374,14 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)
 	
 	bNoCrosshairInScope=True
-	SightPivot=(Roll=-1024)
-	SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 	MinZoom=4.000000
 	MaxZoom=32.000000
 	ZoomStages=3
 	GunLength=80.000000
-	ParamsClasses(0)=Class'X82WeaponParams'
+	ParamsClasses(0)=Class'X82WeaponParamsComp'
 	ParamsClasses(1)=Class'X82WeaponParamsClassic'
 	ParamsClasses(2)=Class'X82WeaponParamsRealistic'
+    ParamsClasses(3)=Class'X82WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.X82SecondaryFire'
 	SelectAnim="Takeout"
@@ -402,16 +395,18 @@ defaultproperties
 	AIRating=0.80000
 	CurrentRating=0.800000
 	bSniping=True
-	Description="X83 Anti-Material Rifle||Manufacturer: Evravion Combat Solutions |Primary: Single Powerful Shot|Secondary: Activate Zooming Scope|Special: (Scoped) Activate Night Vision/Detector|Special: (Unscoped) Mount X-83 A1||Enravion's high powered X-83 A1 Anti-Material Rifle is a fearsome sight on the modern day battlefield. With an effective range of about 1.1 miles, the X-83 can target and eliminate infantry and light vehicles with ease and at range using its specialized .50 cal N6-BMG HEAP rounds. This special operations weapon, designed to disable key targets like parked aircraft and APCs, was used extensively prior to the Skrith wars."
-	DisplayFOV=55.000000
+	Description="X83 Anti-Material Rifle||Manufacturer: Enravion Combat Solutions |Primary: Single Powerful Shot|Secondary: Activate Zooming Scope|Special: (Scoped) Activate Night Vision/Detector|Special: (Unscoped) Mount X-83 A1||Enravion's high powered X-83 A1 Anti-Material Rifle is a fearsome sight on the modern day battlefield. With an effective range of about 1.1 miles, the X-83 can target and eliminate infantry and light vehicles with ease and at range using its specialized .50 cal N6-BMG HEAP rounds. This special operations weapon, designed to disable key targets like parked aircraft and APCs, was used extensively prior to the Skrith wars."
 	Priority=207
 	HudColor=(B=175,G=175,R=175)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
-	PlayerViewOffset=(X=4.000000,Y=6.000000,Z=-7.500000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=5.00,Y=4.50,Z=-5.00)
+	SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+	SightPivot=(Roll=-1024)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.X82Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.X82.SmallIcon_X82'
 	IconCoords=(X2=127,Y2=31)
@@ -423,8 +418,8 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83'
-	DrawScale=0.450000
-	Skins(0)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'
-	Skins(1)=Texture'UT2004Weapons.Pickups.ClassicSniperAmmoT'
-	Skins(2)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	DrawScale=0.30000
+	//Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	//Skins(1)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'
+	//Skins(2)=Texture'BW_Core_WeaponTex.Ammo.ClassicSniperAmmoT'
 }

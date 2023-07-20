@@ -70,7 +70,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=64.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepAttack"

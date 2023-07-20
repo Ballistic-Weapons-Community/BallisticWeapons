@@ -33,7 +33,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		bVariableHeatProps=True;
 		A49PrimaryFire(FireMode[0]).bVariableHeatProps = True;
@@ -321,8 +321,8 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 			);
 			
 				
-			if (BallisticPineapple(Victims) != None)
-				BallisticPineapple(Victims).KickPineapple(Normal(Victims.Location - Location) * 20000);
+			if (BallisticKHandGrenadeProjectile(Victims) != None)
+				BallisticKHandGrenadeProjectile(Victims).KickPineapple(Normal(Victims.Location - Location) * 20000);
 						
 			if (Instigator != None && Vehicle(Victims) != None && Vehicle(Victims).Health > 0)
 				Vehicle(Victims).DriverRadiusDamage(DamageAmount, DamageRadius, Instigator.Controller, BlastDamageType, 0.0f, Location);
@@ -379,24 +379,22 @@ defaultproperties
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
 	BigIconMaterial=Texture'BWBP_SKC_Tex.A6.BigIcon_A49'
 	BigIconCoords=(Y1=24)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_RapidProj=True
 	bWT_Energy=True
-	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+	SpecialInfo(0)=(Info="60.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
 	CockAnim="Overheat"
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
 	WeaponModes(0)=(bUnavailable=True)
-	SightPivot=(Pitch=2000,Roll=-768)
-	SightOffset=(X=-12.000000,Y=33.000000,Z=65.000000)
-	SightDisplayFOV=40.000000
-	SightZoomFactor=0.85
+
 	GunLength=0.100000
-	ParamsClasses(0)=Class'A49WeaponParams'
+	ParamsClasses(0)=Class'A49WeaponParamsComp'
 	ParamsClasses(1)=Class'A49WeaponParamsClassic'
 	ParamsClasses(2)=Class'A49WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A49WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.A49SecondaryFire'
 	PutDownAnimRate=2.300000
@@ -411,8 +409,13 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BWBP_SKC_Pro.A49Pickup'
-	PlayerViewOffset=(Y=10.000000,Z=-25.000000)
-	BobDamping=1.600000
+
+	PlayerViewOffset=(X=10.00,Y=3.00,Z=-6.00)
+	SightOffset=(X=-10.00,Y=0.5,Z=8.00)
+	SightPivot=(Pitch=2000,Roll=-768)
+	SightZoomFactor=1.2
+
+	DrawScale=0.3
 	AttachmentClass=Class'BWBP_SKC_Pro.A49Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.A6.SmallIcon_A49'
 	IconCoords=(X2=127,Y2=31)

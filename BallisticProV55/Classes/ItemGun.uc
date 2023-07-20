@@ -48,10 +48,6 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 
 }
-simulated event RenderOverlays( Canvas C )
-{
-	Super.RenderOverlays(C);
-}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -81,7 +77,6 @@ defaultproperties
      bShowChargingBar=True
      bCanThrow=False
      Description="item gun."
-     DisplayFOV=60.000000
      Priority=231
      HudColor=(B=255,G=0,R=0)
      SmallViewOffset=(X=38.000000,Y=16.000000,Z=-16.000000)

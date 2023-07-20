@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(1)="%k used %kh M806 pistol to tenderise %o."
      DamageIdent="Melee"
      DisplacementType=DSP_Linear
-     AimDisplacementDuration=0.650000
+     AimDisplacementDuration=0.3
      WeaponClass=Class'BallisticProV55.M806Pistol'
      DeathString="%o was beaten like an egg by %k's M806."
      FemaleSuicide="%o beat herself up with an M806."

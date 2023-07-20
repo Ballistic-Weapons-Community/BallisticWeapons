@@ -109,8 +109,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
-		XCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.500000),(InVal=0.600000,OutVal=0.300000)))
-		YCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.200000,OutVal=0.080000),(InVal=0.600000,OutVal=0.400000),(InVal=1.000000,OutVal=0.300000)))
+		//XCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.500000),(InVal=0.600000,OutVal=0.300000)))
+		//YCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.200000,OutVal=0.080000),(InVal=0.600000,OutVal=0.400000),(InVal=1.000000,OutVal=0.300000)))
 		XRandFactor=0.250000
 		YRandFactor=0.250000
 		MinRandFactor=0.300000
@@ -147,15 +147,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=10
+		InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.23
 		MagAmmo=50
-		ViewOffset=(X=0,Y=-5,Z=-14)
-		SightOffset=(X=-3.000000,Y=13.565000,Z=24.785000)
-		SightPivot=(Pitch=900)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ViewOffset=(X=0,Y=-5,Z=-14)
+		//SightOffset=(X=-3.000000,Y=13.565000,Z=24.785000)
+		SightPivot=(Pitch=256)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="CYLO-V 5.56mm Incendiary Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -163,6 +163,58 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Flame'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=CYLOFS_Orange
+		Index=0
+		CamoName="Orange"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Red
+		Index=1
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainRed",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Blue
+		Index=2
+		CamoName="Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainBlue",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Yellow
+		Index=3
+		CamoName="Yellow"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainYellow",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_OrangeFancy
+		Index=4
+		CamoName="Limited"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainStripes",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOFS_Gold
+		Index=5
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOFSCamos.CYLOFS-MainGold",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'CYLOFS_Orange'
+	Camos(1)=WeaponCamo'CYLOFS_Red'
+	Camos(2)=WeaponCamo'CYLOFS_Blue'
+	Camos(3)=WeaponCamo'CYLOFS_Yellow'
+	Camos(4)=WeaponCamo'CYLOFS_OrangeFancy'
+	Camos(5)=WeaponCamo'CYLOFS_Gold'
 }

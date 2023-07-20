@@ -1,15 +1,8 @@
-class MX32PrimaryFire extends BallisticRangeAttenFire;
+class MX32PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
-     CutOffDistance=8192.000000
-     CutOffStartRange=4096.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
-     WallPenetrationForce=1.000000
-     
-     Damage=20.000000
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_OP_Pro.DTMX32Primary'
      DamageTypeHead=Class'BWBP_OP_Pro.DTMX32PrimaryHead'
      DamageTypeArm=Class'BWBP_OP_Pro.DTMX32PrimaryLimb'
@@ -33,12 +26,14 @@ defaultproperties
      FireEndAnim=
      FireRate=0.115000
      AmmoClass=Class'BallisticProV55.Ammo_556mm'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
+	 
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+
      WarnTargetPct=0.200000
      aimerror=600.000000
 }

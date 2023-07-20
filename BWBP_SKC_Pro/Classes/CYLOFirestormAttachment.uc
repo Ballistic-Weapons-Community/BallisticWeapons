@@ -14,10 +14,11 @@ var bool	bShotgunMode;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (CYLOFirestormAssaultWeapon(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		bShotgunMode=true;
 		InstantMode=MU_Both;
+		ImpactManager=Class'IM_IncendiaryHMGBullet';
 	}
 }
 
@@ -166,18 +167,19 @@ simulated function ShotgunFireEffects(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'CYLOFirestormAssaultWeapon'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+     AltMuzzleFlashClass=class'M50M900FlashEmitter'
 	 ShotgunFireClass=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryShotgunFire'
      ImpactManager=Class'IM_IncendiaryBullet'
-     MeleeImpactManager=Class'BallisticProV55.IM_Knife'
+     MeleeImpactManager=class'IM_Knife'
      AltFlashBone="tip2"
      FlashScale=0.300000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     BrassClass=class'Brass_Rifle'
      FlashMode=MU_Both
      LightMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnimRate=0.800000
      bHeavy=True

@@ -164,7 +164,8 @@ exec simulated function WeaponSpecial(optional byte i)
 {
  	if (AmmoAmount(0) > 0)
 		SetBoneScale (0, 1.0, BombBone);
-	if (BCRepClass.default.GameStyle != 0)
+
+	if (!class'BallisticReplicationInfo'.static.IsArena())
 	{
 		if (ChosenBomb == None && AmmoAmount(0) > 0)
 		{
@@ -650,7 +651,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_FP9A5'
 	BigIconCoords=(Y1=24,Y2=235)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Grenade=True
@@ -669,9 +670,10 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClasses(0)=Class'FP9WeaponParams'
+	ParamsClasses(0)=Class'FP9WeaponParamsComp'
 	ParamsClasses(1)=Class'FP9WeaponParamsClassic' //todo: params and state code for laser tripmine
 	ParamsClasses(2)=Class'FP9WeaponParamsRealistic' //todo: params and state code for laser tripmine
+    ParamsClasses(3)=Class'FP9WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
 	
@@ -689,13 +691,13 @@ defaultproperties
 	InventoryGroup=0
 	GroupOffset=18
 	PickupClass=Class'BallisticProV55.FP9Pickup'
-	PlayerViewOffset=(X=10.000000,Y=-1.000000,Z=-6.000000)
+	PlayerViewOffset=(X=10.000000,Y=-1.500000,Z=-9.000000)
 	AttachmentClass=Class'BallisticProV55.FP9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_FP9Explosive'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="FP9A5 Explosive Device"
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_FP9'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.FP9A5.FP9Bomb'
 }

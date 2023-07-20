@@ -91,6 +91,13 @@ enum EScopeHandling
     SH_Toggle,      // Press to ADS. Press again to drop gun.
 };
 
+enum ECrosshairMode
+{
+	CHM_Simple,
+	CHM_Graphical,
+	CHM_Unreal
+};
+
 //=============================================================================
 // STRUCTS
 //=============================================================================
@@ -139,10 +146,8 @@ struct NonDefCrosshairInfo
 var() globalconfig 	ModeSaveType 	ModeHandling;
 var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to Zoom In/Out
 var() globalconfig 	EScopeHandling  ScopeHandling;			// Should iron sights continue when the key is released, once activated?
-var() globalconfig 	bool			bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
 var() globalconfig 	float			AimKnockScale;			// Scale the weapon displacement caused by taking damage
-var() globalconfig 	bool			bDrawCrosshairDot; 		// Draw dot in the centre of crosshairs
-var() globalconfig 	bool			bDrawSimpleCrosshair; 	//Draw descriptive crosshairs?
+var() globalconfig 	ECrosshairMode	CrosshairMode; 			// Draw descriptive crosshairs?
 var() globalconfig	bool			bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon
 var() globalconfig	byte			MaxInventoryCapacity;   // total InventorySize player can carry
 //=============================================================================
@@ -167,18 +172,18 @@ var() config array<SpecialInfoEntry> SpecialInfo; 			// A list of special info s
 //=============================================================================
 var Object.Color  					MagEmptyColor;			//used by Simple XHairs if mag is empty
 var Object.Color					CockingColor;			//used by Simple XHairs when weapon needs cocking
-
+var Object.Color  					CrosshairColor;			//used by Simple XHairs
 //=============================================================================
 // END STATIC DEFINITIONS
 //=============================================================================
-
 var     RewindCollisionManager      RwColMgr;                       // Used for rewind-based instant fire tracing
 var     bool                        RewindActive;                   // True if currently in rewind mode (for cleanup)
 
 //=============================================================================
 // WEAPON STATE VARIABLES
 //=============================================================================
-var		WeaponParams				WeaponParams;
+var()	editinline WeaponParams		WeaponParams;
+var		WeaponCamo					WeaponCamo;
 var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
@@ -209,17 +214,24 @@ var   	float						NextCheckScopeTime;				// Used to prevent CheckScope() from ex
 var  	float						LogZoomLevel;					// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
 var   	ESightingState				SightingState;					// State of non anim, sight related gun movement
 var		bool						bStandardCrosshairOff;			// True if ScopeView has hidden the UT2004 crosshair.
+
+// HACK. Used to deal with sight fire animations with incorrect amplitude by blending them with the Idle.
+// Please don't rely on this - if you see it defined in the default properties, the weapon needs looking at.
+var		float						SightAnimScale;		
 //-----------------------------------------------------------------------------
 // Movement speed
 //-----------------------------------------------------------------------------
 var	  bool							PlayerSpeedUp;					// Player speed has been altered by this weapon
+// Azarael - fixed the sprint draw problem.
+// this class should now be made sprint-agnostic where possible
+// broadcasting owner event on weapon change should do it
 var   BCSprintControl				SprintControl;					// A low, poor sort of hack to draw Sprint info on the HUD
 //-----------------------------------------------------------------------------
 // Melee
 //-----------------------------------------------------------------------------
 var EMeleeState						MeleeState;
 var float							MeleeInterval, MeleeHoldTime;
-var  protected BallisticMeleeFire 	MeleeFireMode;
+var protected BallisticMeleeFire 	MeleeFireMode;
 var	float							MeleeFatigue;
 //-----------------------------------------------------------------------------
 // Ammo/Reload
@@ -233,11 +245,11 @@ var   bool     						bMagPlusOne;              		// A true value means weapon ca
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
-var	RecoilComponent					RcComponent;					// Object which handles recoil
+var() editinline RecoilComponent	RcComponent;					// Object which handles recoil
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
-var AimComponent					AimComponent;
+var() editinline AimComponent		AimComponent;					// Object which handles aim/sway
 //=============================================================================
 // END WEAPON STATE VARIABLES
 //=============================================================================
@@ -250,10 +262,6 @@ var AimComponent					AimComponent;
 // Contains things like display offsets, icon coords etc
 //=============================================================================
 var() array< class<BallisticWeaponParams> >	ParamsClasses;
-//-----------------------------------------------------------------------------
-// Replication
-//-----------------------------------------------------------------------------
-var() class<BCReplicationInfo>		BCRepClass;				// BCReplication info class to use for server side variables that are sent to clients
 //-----------------------------------------------------------------------------
 // Display
 //-----------------------------------------------------------------------------
@@ -270,6 +278,14 @@ var() IntBox				BigIconCoords;				// Coords for drawing the BigIcon in the weapo
 var	bool					bSkipDrawWeaponInfo;		// Skips the Ballistic versions of NewDrawWeaponInfo
 var	bool					bAllowWeaponInfoOverride;	// If true, prevents upgraded HUDs from overriding the weapon info display
 var() float					IdleTweenTime;				// Just a general tween time used by anims like idle
+var() array<BallisticGunAugment>	GunAugments;				// Actor to spawn if the layout has an additional optic/suppressor/bayonet
+
+// Cached canvas variables for FOV calc (to correct for vert-)
+var private int				CachedCanvasX;
+var private int				CachedCanvasY;
+
+// The default is changed when using vert- correction
+var() int					BaseDisplayFOV;
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -290,12 +306,14 @@ var() class<Actor>			SightFXClass;			// Effect to attach as an iron sight effect
 var() name					SightFXBone;			// Bone to attach SightFX to
 var() bool					bUseSights;				// This weapon has sights or a scope that can be used
 var() bool					bNoTweenToScope;		// Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
-var() config float 			ScopeXScale;			// Manual scaling for scopes
+var() float 				ScopeXScale;			// Corrects for legacy scopes made for full-screen 4:3 view
+var() float					ScopeScale;				// General scaler for scope texture draw
 var() name					ZoomInAnim;				// Anim to play for raising weapon to view through Scope or sights
 var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
 var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
-var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view
+var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view. Default property setting is now ignored.
+
 var float 					MinFixedZoomLevel; 		// Minimum zoom level for ZT_Minimum.
 var float					MinZoom, MaxZoom;		// Min and max magnification levels for ZT_Logarithmic.
 var int						ZoomStages;				// Number of zoom stages
@@ -305,6 +323,7 @@ var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the 
 var() bool					bNoCrosshairInScope;	// Crosshair will be hidden when in scope or sights
 var() name					SightBone;				// Bone at which camera should be to view through sights. Uses origin if none
 var Vector					SMuzzleFlashOffset;		// Offset for muzzle flash in scope
+var() float					SightBobScale;			// Scale for bobbing when in ADS
 //-----------------------------------------------------------------------------
 // Ammo/Reload
 //-----------------------------------------------------------------------------
@@ -389,6 +408,9 @@ var	Object.Color	HeaderColor, TextColor;
 //-----------------------------------------------------------------------------
 var() byte                      GameStyleIndex;         // Game style parameters to use for this weapon
 var() byte                      LayoutIndex;            // Index of layout parameters to use for this weapon instance
+var() bool						bLayoutSet;				// Do we have our layout chosen already
+var() byte                      CamoIndex;            	// Index of camo sets to use for this weapon
+var() bool						bCamoSet;				// Do we have our camo chosen already
 //-----------------------------------------------------------------------------
 // Move speed
 //-----------------------------------------------------------------------------
@@ -423,7 +445,6 @@ var() float					    EndShovelAnimRate;		//Rate for end anim
 // Aim
 //-----------------------------------------------------------------------------
 var(Aim) bool				    bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
-var(Aim) bool				    bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
 var(Aim) bool				    bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
 var() float					    GunLength;			// How far weapon extends from player. Used by long-gun check
 var() bool						bHasPenetrated;		// Has this weapon recently penetrated? Used in announcing wallbang death messages
@@ -431,11 +452,13 @@ var() bool						bHasPenetrated;		// Has this weapon recently penetrated? Used in
 // END GAMEPLAY VARIABLES
 //=============================================================================
 
+var private bool				bSetNearClip;
+
 replication
 {
 	// Things the server should send to the owning client
 	reliable if (bNetOwner && Role == ROLE_Authority)
-		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, bServerDeferInitialSwitch;
+		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, CamoIndex, bServerDeferInitialSwitch;
 
 	// functions on server, called by client
    	reliable if (Role < ROLE_Authority)
@@ -484,6 +507,26 @@ simulated function bool CanPlayAnim (name Sequence, optional int Channel, option
 // Quick shortcut...
 simulated final function vector ViewAlignedOffset (vector Offset) { return class'BUtil'.static.ViewAlignedOffset(self, Offset); }
 
+simulated final function LinkSprintControl()
+{
+    local Inventory Inv;
+
+	if (Instigator == None)
+		return;
+
+    if (SprintControl == None)	
+    {
+		for (Inv = Instigator.Inventory; Inv != None; Inv = Inv.Inventory)
+        {	
+            if (BCSprintControl(Inv) != None)	
+            {
+				SprintControl = BCSprintControl(Inv);		
+                break;	
+            }
+        }
+	}
+}
+
 // Set a few things...
 simulated function PostBeginPlay()
 {
@@ -491,9 +534,17 @@ simulated function PostBeginPlay()
 
     if (Role == ROLE_Authority)
     {
-        if (ParamsClasses[int(BCRepClass.default.GameStyle)] != None)
-        GameStyleIndex = int(BCRepClass.default.GameStyle);
+        if (ParamsClasses[int(class'BallisticReplicationInfo'.default.GameStyle)] != None)
+            GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
     }
+
+	// this is used to deal with weapons clipping into the view
+	// because of the overly aggressive default near clipping plane
+	if (!default.bSetNearClip && Level.GetLocalPlayerController() != None)
+	{
+		Level.GetLocalPlayerController().ConsoleCommand("nearclip 1");
+		default.bSetNearClip=True;
+	}
 
 	Super.PostBeginPlay();
 
@@ -504,8 +555,7 @@ simulated function PostBeginPlay()
 	CreateRecoilComponent();
 	CreateAimComponent();
 
-	//Set up channel 1 for sight fire blending.
-	AnimBlendParams(1,0);
+	OnMeshChanged();
 
 	if (bUseBigIcon)
 	{
@@ -534,6 +584,54 @@ simulated function PostBeginPlay()
 	}
 }
 
+simulated function OnMeshChanged()
+{
+	//Set up channels 1 and 2 for sight fire blending.
+	AnimBlendParams(1,0);
+	AnimBlendParams(2,0);
+
+	// Channel 2 is used to dampen sight fire animations that haven't been dealt with correctly.
+	// We freeze the first idle frame, which is the basic ADS view, and blend it in with the standard animation.
+	SafePlayAnim(IdleAnim, 1.0, 0, 2);
+	FreezeAnimAt(0, 2);
+}
+
+simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
+{
+	local float ResScaleX, ResScaleY;
+	local float AspectRatio;
+
+	CachedCanvasX = CanvasSizeX;
+	CachedCanvasY = CanvasSizeY;
+
+	ResScaleX = CachedCanvasX / 4f;
+	ResScaleY = CachedCanvasY / 3f;
+
+	AspectRatio = FClamp(ResScaleX/ResScaleY, 1f, 3f);
+
+	// basic FOV is set for 4:3. Adjust FOVs for 16:9 if we have it
+	BaseDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.DisplayFOV, 1/AspectRatio);
+	DisplayFOV = BaseDisplayFOV;
+
+	// adjust sight display FOV automatically
+	//if (class'BallisticReplicationInfo'.static.IsTactical())
+		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(BaseDisplayFOV, SightZoomFactor);
+	//else 
+	//	SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.SightDisplayFOV, 1/AspectRatio);
+}
+
+simulated function SetLayoutIndex(byte NewLayoutIndex)
+{
+	LayoutIndex = NewLayoutIndex;
+	bLayoutSet = True;
+}
+
+simulated function SetCamoIndex(byte NewCamoIndex)
+{
+	CamoIndex = NewCamoIndex;
+	bCamoSet = True;
+}
+
 //===========================================================================
 // PostNetBeginPlay
 //
@@ -543,42 +641,179 @@ simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
 
-    assert(ParamsClasses[GameStyleIndex] != None);
-    
-    // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
-	ParamsClasses[GameStyleIndex].static.Initialize(self);
+	// Link up with sprint control
+    LinkSprintControl();
 
-	if (BCRepClass.default.bNoReloading)
+    // assert(ParamsClasses[GameStyleIndex] != None);
+
+	if (ParamsClasses[GameStyleIndex] == None)
+	{
+		if (PlayerController(Instigator.Controller) != None)
+			PlayerController(Instigator.Controller).ClientMessage("NO PARAMS FOR "$Name);
+	
+		return;
+	}
+	
+    // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
+	if (Level.NetMode == NM_Client)
+		ParamsClasses[GameStyleIndex].static.Initialize(self);
+
+	if (class'BallisticReplicationInfo'.default.bNoReloading)
 		bNoMag = true;
 
     if (NetInventoryGroup != 255)
         InventoryGroup = NetInventoryGroup;
 
-	if (BCRepClass.default.ReloadSpeedScale != 1)
-    {
-        CockAnimRate *= BCRepClass.default.ReloadSpeedScale;
-        ReloadAnimRate *= BCRepClass.default.ReloadSpeedScale;
-        StartShovelAnimRate *= BCRepClass.default.ReloadSpeedScale;
-        EndShovelAnimRate *= BCRepClass.default.ReloadSpeedScale;
-    }
-
     bDeferInitialSwitch = bServerDeferInitialSwitch;
 
+	SightBobScale *= class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+}
+
+simulated function CheckSetBurstMode()
+{
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_BigBurst")
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
+	}
+}
 
-		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
+//Take a layout from a pickup or mutator via GiveTo. If default (255), generate a random layout if applicable
+simulated function GenerateLayout(byte Index)
+{
+	local byte i;
+	local float f;
+	local int WeightSum, CurrentWeight;
+	local array<WeaponParams> Layouts;
+	
+	Layouts = ParamsClasses[GameStyleIndex].default.Layouts;
+	
+	//We have a layout set, use it
+	if (Index < Layouts.length && Index >= 0)
+	{
+		SetLayoutIndex(Index);
+		return;
+	}
+	
+	if (!bLayoutSet)
+	{
+		//Build a weighted list of random layouts and return a random layout index
+		if (Layouts.length > 0 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
+		{
+					
+			//Build the weighted list
+			for (i=0; i<Layouts.length; i++)
+			{
+				WeightSum += Layouts[i].Weight;
+			}
+			f = FRand()*WeightSum;
+			
+			for (i=0; i<Layouts.length; i++)
+			{
+				if ( f >= CurrentWeight && f < CurrentWeight+Layouts[i].Weight)
+				{
+					SetLayoutIndex(i);
+					break;
+				}
+				CurrentWeight += Layouts[i].Weight;
+			}
+		}
+		else
+		{
+			SetLayoutIndex(0);
+		}
+	}
+}
+
+//Take a camo from a pickup or mutator via GiveTo. 
+//If default (255), generate a random camo if applicable. If a default fails to generate, pass 255 to abort load
+//Builds a sublist of acceptable camos based on our layout
+simulated function GenerateCamo(byte Index)
+{
+	local byte i;
+	local float f;
+	
+	local int WeightSum, CurrentWeight;
+	local array<WeaponCamo> Camos;
+	local array<WeaponCamo> CamoSublist;
+	local array<int> AllowedCamos;
+	
+	Camos = ParamsClasses[GameStyleIndex].default.Camos;
+	AllowedCamos = ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	
+	//No camos, disable load
+	if (Camos.length == 0)
+	{
+		//log("set index to -1, camos length is 0");
+		SetCamoIndex(255); //A passed 255 aborts load
+		return;
+	}
+	
+	//We have a layout set, use it
+	if (Index < Camos.length && Index >= 0)
+	{
+		//log("set index to " $Index$ ", camos length is " $Camos.length);
+		SetCamoIndex(Index);
+		return;
+	}
+	
+	//Build an allowed list of camos based on layout, then randomize
+	if (!bCamoSet)
+	{
+		//Create a sublist of allowed camos
+		if (AllowedCamos.length == 0) //default, all are allowed
+		{
+			CamoSublist = Camos;
+		}
+		else
+		{
+			for (i=0;i<AllowedCamos.length;i++)
+			{
+				CamoSublist.Insert(0,1); //add a blank
+				CamoSublist[0] = Camos[AllowedCamos[i]]; //set it
+			}
+		}
+		//Build a weighted list of random camos and return a random layout index
+		if (CamoSublist.length > 0 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
+		{
+			//Build the weighted list
+			for (i=0; i<CamoSublist.length; i++)
+			{
+				WeightSum += CamoSublist[i].Weight;
+			}
+			f = FRand()*WeightSum;
+			
+			for (i=0; i<CamoSublist.length; i++)
+			{
+				if ( f >= CurrentWeight && f < CurrentWeight+CamoSublist[i].Weight)
+				{
+					//log("set index to " $CamoSublist[i].Index$ ", camos sublist length is " $CamoSublist.length);
+					SetCamoIndex(CamoSublist[i].Index);
+					break;
+				}
+				CurrentWeight += CamoSublist[i].Weight;
+			}
+		}
+		else if (CamoSublist.length == 0) //No camos allowed, abort load
+		{
+			//log("set index to -1, our sublist length is 0");
+			SetCamoIndex(255);
+		}
+		else
+		{
+			//log("set index to 0, the randomizer is off");
+			SetCamoIndex(0); //Randomizer disabled, load spot 0
+		}
 	}
 }
 
 simulated function OnWeaponParamsChanged()
 {
     local int i;
-
+	local Material M;
+	
     assert(WeaponParams != None);
 
 	SightingTime 				= WeaponParams.SightingTime;
@@ -598,6 +833,8 @@ simulated function OnWeaponParamsChanged()
 	
 	ReloadAnimRate 					= WeaponParams.ReloadAnimRate;
 	default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
+	ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
+	default.ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 	
 	CockAnimRate 					= WeaponParams.CockAnimRate;
 	default.CockAnimRate				= WeaponParams.CockAnimRate;
@@ -606,16 +843,22 @@ simulated function OnWeaponParamsChanged()
 
     ZoomType                    = WeaponParams.ZoomType;
 
+	ScopeScale					= FMin(1f, WeaponParams.ScopeScale);
+
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
-		
-	if (WeaponParams.MinZoom != 0)
-		MinZoom = WeaponParams.MinZoom;
-		
-	if (WeaponParams.MaxZoom != 0)
+			
+	if (WeaponParams.MaxZoom > 0)
 		MaxZoom = WeaponParams.MaxZoom;
-	
+
+	if (WeaponParams.MinZoom > 0 && WeaponParams.ZoomStages > 0)
+	{
+		MinZoom = WeaponParams.MinZoom;
+		ZoomStages = WeaponParams.ZoomStages;
+	}
+
 	bAdjustHands				= WeaponParams.bAdjustHands;
+	
 	if (WeaponParams.WristAdjust != rot(0,0,0))
     {
 		WristAdjust = WeaponParams.WristAdjust;
@@ -636,12 +879,9 @@ simulated function OnWeaponParamsChanged()
         SightOffset = WeaponParams.SightOffset;
         default.SightOffset = WeaponParams.SightOffset;
     }
-
-    if (WeaponParams.SightPivot != rot(0,0,0))
-    {
-        SightPivot = WeaponParams.SightPivot;
-        default.SightPivot = WeaponParams.SightPivot;
-    }
+	
+	SightPivot = WeaponParams.SightPivot;
+	default.SightPivot = WeaponParams.SightPivot;
 
 	if (WeaponParams.ViewOffset != vect(0,0,0))
     {
@@ -655,12 +895,61 @@ simulated function OnWeaponParamsChanged()
         default.PlayerViewPivot = WeaponParams.ViewPivot;
     }
 	
+	//Visuals
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
-        Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
+	{
+		if (WeaponParams.WeaponMaterialSwaps[i].Material != None)
+			Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
+		if (WeaponParams.WeaponMaterialSwaps[i].MaterialName != "")
+		{
+			M = Material(DynamicLoadObject(WeaponParams.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+			if (M != None)
+				Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = M;
+		}
+	}
+	
+	//Camos
+	if (WeaponCamo != None)
+	{
+		for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
+		{
+			if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+				Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+			if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+			{
+				M = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+				if (M != None)
+					Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = M;
+			}
+		}
+	}
+	
+	//Change mesh if layout dictates it
+	if (WeaponParams.LayoutMesh != None)
+	{
+		LinkMesh(WeaponParams.LayoutMesh);
+		OnMeshChanged();
+	}
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
 	
+	//Spawn a weapon attachment if required by the layout
+    for (i = 0; i < WeaponParams.GunAugments.Length; ++i)
+	{
+		GunAugments[i] = Spawn(WeaponParams.GunAugments[i].GunAugmentClass);
+		GunAugments[i].SetDrawScale(WeaponParams.GunAugments[i].Scale);
+		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
+		if (WeaponParams.GunAugments[i].AugmentOffset != vect(0,0,0))
+			GunAugments[i].SetRelativeLocation(WeaponParams.GunAugments[i].AugmentOffset);
+		if (WeaponParams.GunAugments[i].AugmentRot != rot(0,0,0))
+			GunAugments[i].SetRelativeRotation(WeaponParams.GunAugments[i].AugmentRot);
+	}
+	
+	//log("Camo Index is "$CamoIndex);
+	//log("Weapon Camo is "$WeaponCamo);
+	
+	//Weapon Modes
 	if (WeaponParams.WeaponModes.Length != 0)
 	{
 		for (i = 0; i < WeaponModes.Length; ++i)
@@ -678,6 +967,8 @@ simulated function OnWeaponParamsChanged()
 		}
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
+
+	CheckSetBurstMode();
 }
 
 simulated final function CreateRecoilComponent()
@@ -748,6 +1039,10 @@ static final operator(34) XYRange /= (out XYRange A, float B)
 	return A;
 }
 
+static simulated final function class<BallisticWeaponParams> GetParams()
+{
+	return default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle];
+}
 //===========================================================================
 // BlendFire
 //
@@ -758,18 +1053,23 @@ simulated final function bool BlendFire()
 {
 	switch(SightingState)
 	{
-		case SS_None: return false;
-		case SS_Raising: AnimBlendToAlpha(1, 1, (1-SightingPhase) * SightingTime); return true;
-		case SS_Lowering: AnimBlendToAlpha(1, 0, SightingPhase * SightingTime); return true;
-		case SS_Active: AnimBlendParams(1,1); return true;
+		case SS_None: 
+			return false;
+		case SS_Raising: 
+			AnimBlendToAlpha(1, 1, (1-SightingPhase) * SightingTime); 
+			AnimBlendToAlpha(2, 1 - SightAnimScale, (1-SightingPhase) * SightingTime); 
+			return true;
+		case SS_Lowering: 
+			AnimBlendToAlpha(1, 0, SightingPhase * SightingTime); 
+			AnimBlendToAlpha(2, 0, SightingPhase * SightingTime); 
+			return true;
+		case SS_Active: 
+			AnimBlendParams(1,1); 
+			AnimBlendParams(2, 1 - SightAnimScale);
+			return true;
+		default:
+			return false;
 	}
-	
-	if (bScopeView)
-	{
-		AnimBlendParams(1,1);
-		return true;
-	}
-	return false;
 }
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
@@ -801,10 +1101,11 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		bPreventReload=false;
 	}
 		
-	//Phase out Channel 1 if a sight fire animation has just ended.
+	//Phase out channels 1 and 2 if a sight fire animation has just ended.
 	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
 	{
 		AnimBlendParams(1, 0);
+		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
@@ -824,6 +1125,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			PlayIdle();
     }
 	// End stuff from Engine.Weapon
+
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
+		return;
 
 	// Start Shovel ended, move on to Shovel loop
 	if (ReloadState == RS_StartShovel)
@@ -901,8 +1206,8 @@ simulated function StartBerserk()
 	bBerserk = true;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = (default.ReloadAnimRate * BCRepClass.default.ReloadSpeedScale) / 0.75;
-    CockAnimRate = (default.CockAnimRate * BCRepClass.default.ReloadSpeedScale) / 0.75;
+	ReloadAnimRate = default.ReloadAnimRate / 0.75;
+    CockAnimRate = default.CockAnimRate / 0.75;
     
     if (FireMode[0] != None)
         FireMode[0].StartBerserk();
@@ -915,8 +1220,8 @@ simulated function StopBerserk()
 	bBerserk = false;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = default.ReloadAnimRate * BCRepClass.default.ReloadSpeedScale;
-    CockAnimRate = default.CockAnimRate * BCRepClass.default.ReloadSpeedScale;
+	ReloadAnimRate = default.ReloadAnimRate;
+    CockAnimRate = default.CockAnimRate;
     
     if ( (Level.GRI != None) && Level.GRI.WeaponBerserk > 1.0 )
 		return;
@@ -950,14 +1255,14 @@ simulated function PlayerEnteredVehicle(Vehicle V)
 	ReloadState = RS_None;
 	PlayIdle();
 
-	if (bOldCrosshairs)
+	if (CrosshairMode == CHM_Unreal)
 		return;
 	if (PlayerController(InstigatorController)!=None && PlayerController(InstigatorController).MyHud != None)
 		PlayerController(InstigatorController).MyHud.bCrosshairShow = PlayerController(InstigatorController).MyHud.default.bCrosshairShow;
 }
 simulated function PlayerLeftVehicle(Vehicle V)
 {
-	if (bOldCrosshairs)
+	if (CrosshairMode == CHM_Unreal)
 		return;
 	if (PlayerController(InstigatorController)!=None && PlayerController(InstigatorController).MyHud != None/* && (CrosshairPic1 != None || CrosshairPic2 != None)*/)
 		PlayerController(InstigatorController).MyHud.bCrosshairShow = false;
@@ -1027,7 +1332,7 @@ simulated final function bool CheckFireAnim()
 
 simulated function TickFireCounter (float DT)
 {
-	if (!IsFiring() && FireCount > 0)
+	if (((!FireMode[1].bModeExclusive && !FireMode[0].bIsFiring) || !IsFiring()) && FireCount > 0) //afaik no alts use burst, this fixes hold to zoom scopes + semi weapons
 		FireCount = 0;
 }
 
@@ -1098,7 +1403,7 @@ simulated function Notify_ShellIn()
 				MagAmmo+=AmmoNeeded;
 				Ammo[0].UseAmmo (AmmoNeeded, True);
 		}
-		PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
+		class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 		// A bot will stop reloading if they feel unsafe. Dumb ones will do this less
 		if (AIController(InstigatorController) != None && MagAmmo > 0 && AIController(InstigatorController).Enemy != None)
 		{
@@ -1117,7 +1422,7 @@ simulated function Notify_ClipIn()
 	if (ReloadState == RS_None)
 		return;
 	ReloadState = RS_PostClipIn;
-	PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 	if (level.NetMode != NM_Client)
 	{
 		AmmoNeeded = default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
@@ -1135,7 +1440,7 @@ simulated function Notify_ClipOut()
 	if (ReloadState == RS_None)
 		return;
 	ReloadState = RS_PreClipIn;
-	PlayOwnedSound(ClipOutSound.Sound,ClipOutSound.Slot,ClipOutSound.Volume,ClipOutSound.bNoOverride,ClipOutSound.Radius,ClipOutSound.Pitch,ClipOutSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, ClipOutSound, true);
 }
 
 // Animation notify for when cocking action starts. Used to time sounds
@@ -1143,7 +1448,7 @@ simulated function Notify_CockStart()
 {
 	if (ReloadState == RS_None && !bNeedCock)	return;
 	ReloadState = RS_Cocking;
-	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, CockSound, true);
 }
 
 // Animation notify for when cocking action starts for pullout fancy animations that use a different sound to Notify_CockStart. Used to time sounds
@@ -1151,7 +1456,7 @@ simulated function Notify_CockPullout()
 {
 	if (ReloadState == RS_None && !bNeedCock)	return;
 	ReloadState = RS_Cocking;
-	PlayOwnedSound(CockSelectSound.Sound,CockSelectSound.Slot,CockSelectSound.Volume,CockSelectSound.bNoOverride,CockSelectSound.Radius,CockSelectSound.Pitch,CockSelectSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, CockSelectSound, true);
 }
 
 // Animation notify for ejecting a cartridge
@@ -1178,7 +1483,7 @@ simulated function Notify_CockAfterReload()
 // Animation notify for when the magazine is hit
 simulated function Notify_ClipHit()
 {
-	PlayOwnedSound(ClipHitSound.Sound,ClipHitSound.Slot,ClipHitSound.Volume,ClipHitSound.bNoOverride,ClipHitSound.Radius,ClipHitSound.Pitch,ClipHitSound.bAtten);
+	class'BUtil'.static.PlayFullSound(self, ClipHitSound, true);
 }
 
 //================================================================================
@@ -1397,7 +1702,6 @@ simulated function bool CanUseSights()
 exec simulated function ScopeView()
 {
 	bScopeHeld      = true;
-
 	bPendingSightUp = false;
 
     // abort any scope view in progress
@@ -1408,9 +1712,11 @@ exec simulated function ScopeView()
 		return;
 	}
 	
+	// weapon does not have iron sights
 	if (!bUseSights)
 		return;
 
+	// can't use ADS right now
 	if (!CanUseSights())
 		return;
 
@@ -1425,23 +1731,25 @@ exec simulated function ScopeView()
             break;
     }
 
-    if (!bScopeDesired)
-    {
-        ServerReaim(0.1);
-
-        if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
-            PlayerController(InstigatorController).StopZoom();
-    }
-
-    else 
-    {	
+    if (bScopeDesired)
+	{	
         ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
 	
+		// need to go to the first frame of idle for things to look natural
+		// as we'll freeze that frame once the weapon goes to the top
         if (!IsFiring() && !bNoTweenToScope)
             SafeTweenAnim(IdleAnim, SightingTime);
 
         if (AimComponent.AllowADS())
             PlayScopeUp();
+    }
+
+	else
+    {
+        ServerReaim(0.1);
+
+        if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
+            PlayerController(InstigatorController).StopZoom();
     }
 }
 
@@ -1477,6 +1785,26 @@ exec simulated function ScopeViewRelease()
 		PlayerController(InstigatorController).StopZoom();
 }
 
+simulated final function bool CanContinueScope()
+{
+	if (AimComponent.IsDisplaced())
+		return false;
+
+	if (ReloadState != RS_None && ReloadState != RS_Cocking)
+		return false;
+
+	if (Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking)
+		return false;
+	
+	if (SprintControl != None && SprintControl.bSprinting)
+		return false;
+
+	if (class'BallisticReplicationInfo'.static.IsRealism() && Instigator.Physics == PHYS_Falling)
+		return false;
+
+	return true;
+}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // CheckScope
 //
@@ -1489,12 +1817,7 @@ simulated function bool CheckScope()
 
 	NextCheckScopeTime = level.TimeSeconds + 0.25;
 		
-	if 
-	(	AimComponent.IsDisplaced() ||
-		(ReloadState != RS_None && ReloadState != RS_Cocking) || 
-		(Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || 
-		(SprintControl != None && SprintControl.bSprinting)
-	)
+	if (!CanContinueScope())
 	{
 		StopScopeView();
 		return false;
@@ -1514,7 +1837,9 @@ simulated function bool CheckScope()
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated final function StartScopeView()
 {
-	StartScopeZoom();
+	if (ZoomType != ZT_Irons)
+		StartScopeZoom();
+	
 	SetScopeView(true);
 	ScopeModifyCrosshair();
 		
@@ -1540,7 +1865,8 @@ final function ServerSetScopeView(bool bNewValue)
 // SetScopeView
 //
 // Called on client and server when transitioning to or from full ADS mode.
-// The client replicates the call to the server.
+// On the client, this is called from StartScopeView and StopScopeView.
+// On the server, this is called from the client's SetScopeView.
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated final function SetScopeView(bool bNewValue)
 {
@@ -1557,8 +1883,6 @@ simulated final function SetScopeView(bool bNewValue)
 
 	if (Role == ROLE_Authority)
 	{
-		CheckSetNetAim();
-
 		if (!Instigator.IsLocallyControlled())
 			BindScopeViewFactors();
 	}
@@ -1587,7 +1911,9 @@ simulated final function StopScopeView(optional bool bNoAnim)
 	
 	bScopeDesired = False;
 
-	EndScopeZoom();
+	if (ZoomType != ZT_Irons)
+		EndScopeZoom();
+		
 	ScopeRestoreCrosshair();
 }
 
@@ -1722,31 +2048,16 @@ simulated function OnAimParamsChanged()
 		ApplyADSAimModifiers();
 	}
 
-	if (BCRepClass.default.AccuracyScale != 1)
+	if (class'BallisticReplicationInfo'.default.AccuracyScale != 1)
 	{
-		AimComponent.AimSpread.Min *= BCRepClass.default.AccuracyScale;
-		AimComponent.AimSpread.Max *= BCRepClass.default.AccuracyScale;
+		AimComponent.AimSpread.Min *= class'BallisticReplicationInfo'.default.AccuracyScale;
+		AimComponent.AimSpread.Max *= class'BallisticReplicationInfo'.default.AccuracyScale;
 	}
 }
 
 //------------------------------------------------------------------------
 // Aim parameter modification
 //------------------------------------------------------------------------
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// CheckSetNetAim
-//
-// Called whenever a function modifies a variable which could cause this 
-// weapon to need to replicate its aim.
-//
-// By default, Pro weapons always use net aim. However, any weapon which 
-// would formerly have used SetScopeBehavior() to change net aim, or set it 
-// directly, should use this function instead.
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-simulated function CheckSetNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // BindScopeViewFactors
@@ -1815,15 +2126,14 @@ simulated final function PlayerZoom(PlayerController PC)
 			break;
 		case ZT_Fixed:
 			PC.bZooming=True;
-			PC.SetFOV(FullZoomFOV);
-			PC.ZoomLevel = (90 - FullZoomFOV) / 88;
-			PC.DesiredZoomLevel = (90 - FullZoomFOV) / 88;
+			PC.SetFOV(class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, MaxZoom)); 
+			PC.ZoomLevel = (90 - PC.FOVAngle) / 88;
+			PC.DesiredZoomLevel = PC.ZoomLevel;
 			break;
 		case ZT_Logarithmic:
 			PC.bZooming=True;
 			LogZoomLevel = loge(MinZoom)/loge(MaxZoom);
-			PC.SetFOV(PC.DefaultFOV / 2**(    (loge(MaxZoom)/loge(2)) * LogZoomLevel    )); 
-			
+			PC.SetFOV(class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV,  2 ** ((loge(MaxZoom)/loge(2)) * LogZoomLevel))); 
 			PC.ZoomLevel = (90 - PC.FOVAngle) / 88;
 			PC.DesiredZoomLevel = PC.ZoomLevel;
 			//2 to the power of what two must be raised to to get maxzoom.
@@ -1845,11 +2155,8 @@ simulated final function EndScopeZoom()
 	
 	OldZoomFOV = PC.FovAngle;
 
-	if (ZoomType != ZT_Irons)
-	{
-		PC.SetFOV(PC.DefaultFOV);
-		PC.bZooming = False;
-	}
+	PC.SetFOV(PC.DefaultFOV);
+	PC.bZooming = False;
 }
 
 simulated function ChangeZoom (float Value)
@@ -1879,7 +2186,7 @@ simulated function ChangeZoom (float Value)
 		case ZT_Logarithmic:
 			Value *= 1f - (loge(MinZoom)/loge(MaxZoom));
 			LogZoomLevel = FClamp(LogZoomLevel + Value, loge(MinZoom)/loge(MaxZoom), 1);
-			SoughtFOV = PC.DefaultFOV / 2**(    (loge(MaxZoom)/loge(2)) * LogZoomLevel    ); 
+			SoughtFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, 2 **((loge(MaxZoom)/loge(2)) * LogZoomLevel)); 
 			NewZoomLevel = (90 - SoughtFOV) / 88;
 	}
 	if (NewZoomLevel > OldZoomLevel)
@@ -1917,7 +2224,7 @@ simulated final function ScopeModifyCrosshair()
 	//Take down normal crosshairs if the weapon has none in scope view
 	if (bNoCrosshairInScope)
 	{
-		if (bOldCrosshairs && PC.myHud.bCrosshairShow)
+		if (CrosshairMode == CHM_Unreal && PC.myHud.bCrosshairShow)
 		{
 			bStandardCrosshairOff = True;
 			PC.myHud.bCrosshairShow = False;
@@ -1933,14 +2240,14 @@ simulated final function ScopeRestoreCrosshair()
 {
 	if (bStandardCrosshairOff)
 	{
-		if (bOldCrosshairs)
+		if (CrosshairMode == CHM_Unreal)
 		{
 			bStandardCrosshairOff = False;
 			PlayerController(InstigatorController).myHud.bCrosshairShow = True;	
 		}
 	}
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
-	else if (!bOldCrosshairs)
+	else if (CrosshairMode != CHM_Unreal)
 	{
 		PlayerController(InstigatorController).myHud.bCrosshairShow = False;
 	}
@@ -1990,7 +2297,7 @@ simulated function RenderSightFX(Canvas Canvas)
 	}
 }
 
-simulated event WeaponRenderOverlays( Canvas Canvas )
+simulated function DrawFPWeapon( Canvas Canvas )
 {
     local int m;
 	local vector NewScale3D;
@@ -2003,6 +2310,10 @@ simulated event WeaponRenderOverlays( Canvas Canvas )
 
 	if ( InstigatorController != None )
 		Hand = Clamp(InstigatorController.Handedness, -1, 1);
+
+	// update display FOVs if changed resolution
+	if (Canvas.SizeX != CachedCanvasX || Canvas.SizeY != CachedCanvasY)
+		CalcDisplayFOVs(Canvas.SizeX, Canvas.SizeY);
 
     // draw muzzleflashes/smoke for all fire modes so idle state won't
     // cause emitters to just disappear
@@ -2100,61 +2411,106 @@ simulated event WeaponRenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 	if ( Hand == 0 )
 		PlayerViewOffset.Y = 0;
+
+	if (SightFX != None)
+		RenderSightFX(Canvas);
 }
 
 // Draw the scope view
 simulated event RenderOverlays (Canvas C)
 {
-	local Vector X, Y, Z;
-	
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
+	if ( (Instigator == None) || (Instigator.Controller == None))
 		return;
-	}
 
-	if (ZoomType == ZT_Irons)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
+	if (SprintControl != None)
+		SprintControl.RenderOverlays(C);
+
+	if (!bScopeView || ZoomType == ZT_Irons)
+		DrawFPWeapon(C);
 	else
 	{
-		GetViewAxes(X, Y, Z);
-		if (BFireMode[0].MuzzleFlash != None)
-		{
-			BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
-		}
-		if (BFireMode[1].MuzzleFlash != None)
-		{
-			BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
-		}
 		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
 		SetRotation(Instigator.GetViewRotation());
+
+		DrawScopeMuzzleFlash(C);
+		DrawScopeOverlays(C);
+	}
+}
+
+simulated function DrawScopeMuzzleFlash(Canvas C)
+{
+	local Vector X, Y, Z;
+
+	GetViewAxes(X, Y, Z);
+
+	if (BFireMode[0].MuzzleFlash != None)
+	{
+		BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
+		BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
+		C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
 	}
 
-	// Draw Scope View
-    if (ScopeViewTex != None && ZoomType != ZT_Irons)
-    {
-		C.ColorModulate.W = 1;
-   		C.SetDrawColor(255,255,255,255);
+	if (BFireMode[1].MuzzleFlash != None)
+	{
+		BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
+		BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
+		C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
+	}
+}
+
+// override to draw before the scope is drawn
+simulated function PreDrawScope(Canvas C, int OffsetX, int OffsetY, int SizeX, int SizeY)
+{
+
+}
+
+simulated function DrawScopeOverlays(Canvas C)
+{
+	local int ScopeSizeX, ScopeSizeY;
+
+	local int ScopeOffsetX, ScopeOffsetY;
+
+	if (ScopeViewTex == None)
+		return;
+
+	C.SetDrawColor(255,255,255,255);
+	C.Style = ERenderStyle.STY_Alpha;
+	C.ColorModulate.W = 1;
+
+	ScopeSizeY = C.SizeY * ScopeScale;
+	ScopeSizeX = ScopeSizeY * ScopeXScale;
+	
+	ScopeOffsetX = (C.SizeX - ScopeSizeX) / 2;
+	ScopeOffsetY = (C.SizeY - ScopeSizeY) / 2;
+
+	C.SetPos(ScopeOffsetX, ScopeOffsetY);
+	PreDrawScope(C, ScopeOffsetX, ScopeOffsetY, ScopeSizeX, ScopeSizeY);
+
+	// draw bars where the scope image does not reach
+	if (ScopeOffsetY > 0)
+	{
+		// top bar
 		C.SetPos(C.OrgX, C.OrgY);
-		
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
+		C.DrawTile(ScopeViewTex, C.SizeX, ScopeOffsetY, 8, 8, 1, 1);
 
-		C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
+		// bottom bar
+		C.SetPos(C.OrgX, C.SizeY - ScopeOffsetY);
+		C.DrawTile(ScopeViewTex, C.SizeX, ScopeOffsetY, 8, 8, 1, 1);
 	}
+
+	// left bar
+	C.SetPos(C.OrgX, ScopeOffsetY);
+	C.DrawTile(ScopeViewTex, ScopeOffsetX, ScopeSizeY, 8, 8, 1, 1);
+
+	// right bar
+	// exaggerate because of an issue when drawing scopes that have an X scaler applied
+	// (aspect-correct scopes are fine)
+	C.SetPos(C.SizeX - ScopeOffsetX - 4, ScopeOffsetY);
+	C.DrawTile(ScopeViewTex, ScopeOffsetX + 4, ScopeSizeY, 8, 8, 1, 1);
+
+	// actual scope
+	C.SetPos(ScopeOffsetX, ScopeOffsetY);
+	C.DrawTile(ScopeViewTex, ScopeSizeX, ScopeSizeY, 0, 0, 1024, 1024);
 }
 
 // Cut in before the gun is rendered and move it around if we're trying to use sight view...
@@ -2181,8 +2537,11 @@ simulated function PositionSights()
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
 
 	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
-	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
-	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
+	Offset = SightOffset; 
+	
+	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 8192;
+	
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1 - (SightingPhase * (1 - SightBobScale))))) - (SightPos + ViewAlignedOffset(Offset));
 
 	if (SightingPhase >= 1.0)
 	{	// Weapon locked in sight view
@@ -2197,14 +2556,14 @@ simulated function PositionSights()
 		}
 
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
+			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, SightZoomFactor); // FIXME: don't want to do tan/arctan on every tick
 	}
 	
 	else if (SightingPhase <= 0.0)
 	{	// Weapon completely lowered
 		SetLocation(OldLoc);
 		SetRotation(Instigator.GetViewRotation());
-		DisplayFOV = default.DisplayFOV;
+		DisplayFOV = BaseDisplayFOV;
 		PlayerController(InstigatorController).bZooming = False;
 
 		if (SightingState == SS_Lowering)
@@ -2224,13 +2583,13 @@ simulated function PositionSights()
 	{	// Gun is on the move...
 		SetLocation(class'BUtil'.static.VSmerp(SightingPhase, OldLoc, NewLoc));
 		SetRotation(Instigator.GetViewRotation() + SightPivot * SightingPhase);
-		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
+		DisplayFOV = Smerp(SightingPhase, BaseDisplayFOV, SightDisplayFOV);
 
 		AimComponent.UpdateADSTransition(SightingPhase);
 		RcComponent.UpdateADSTransition(SightingPhase);
 
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
+	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 }
 
@@ -2285,7 +2644,7 @@ simulated function TickSighting (float DT)
 			SightingState = SS_None;
 
 			ScopeDownAnimEnd();
-			DisplayFOV = default.DisplayFOV;
+			DisplayFOV = BaseDisplayFOV;
 		}
 		break;
 	}
@@ -2415,6 +2774,16 @@ simulated function CommonCockGun(optional byte Type)
 //===========================================================================
 // MELEE ATTACKS
 //---------------------------------------------------------------------------
+final simulated function SetMeleeGunLength()
+{
+	AimComponent.GunLength = 1;
+}
+
+final simulated function SetDefaultGunLength()
+{
+	AimComponent.GunLength = default.GunLength;
+}
+
 exec simulated function MeleeHold()
 {
 	MeleeHoldImpl();
@@ -2435,7 +2804,9 @@ simulated function MeleeHoldImpl()
 		MeleeState = MS_Held;
 		ReloadState = RS_None;
 		MeleeFireMode.PlayPreFire();
-		GunLength = 1;
+
+		SetMeleeGunLength();
+		
 		if (SprintControl != None && SprintControl.bSprinting)
 			PlayerSprint(false);
 		ServerMeleeHold();
@@ -2466,19 +2837,20 @@ function UpdateSpeed()
 {
 	local float NewSpeed;
 
-	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
-    //log("BW UpdateSpeed: "$Instigator.default.GroundSpeed$" * "$PlayerSpeedFactor);
+	// delegate where possible
+	if (SprintControl != None)
+	{
+		SprintControl.UpdateSpeed();
+		return;
+	}
+
+	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
+    //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
 	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
     {
         //log("BW UpdateSpeed: "$NewSpeed$" * 1.4");
 		NewSpeed *= 1.4;
-    }
-
-    if (SprintControl != None && SprintControl.bSprinting)
-    {
-        //log("BW UpdateSpeed: "$NewSpeed$" * "$SprintControl.SpeedFactor);
-        NewSpeed *= SprintControl.SpeedFactor;
     }
 
 	if (Instigator.GroundSpeed != NewSpeed)
@@ -2495,8 +2867,7 @@ function ServerMeleeHold()
 	bServerReloading=True; //lock the gun to prevent desynchronisation
 	MeleeFireMode.HoldStartTime = Level.TimeSeconds;
 	MeleeFireMode.PlayPreFire();
-	GunLength = 1;
-	AddSpeedModification(1.05);
+	SetMeleeGunLength();
 	bPreventReload = True;
 }
 
@@ -2526,7 +2897,7 @@ simulated function MeleeReleaseImpl()
 					PlayerSprint(true);
 			}
 			ServerMeleeRelease();
-			GunLength = default.GunLength;
+			SetDefaultGunLength();
 			break;
 	}
 }
@@ -2539,8 +2910,7 @@ final function ServerMeleeRelease()
 		MeleeFireMode.PlayFiring();
 	else MeleeFireMode.ServerPlayFiring();
 	MeleeFireMode.DoFireEffect();
-	RemoveSpeedModification(1.15);
-	GunLength = default.GunLength;
+	SetDefaultGunLength();
 	//Trace, damage code
 	//Fire delay
 }
@@ -2584,7 +2954,7 @@ simulated final function bool IsHoldingMelee()
 
 simulated final function bool SprintActive()
 {
-	return (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting);
+	return class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && SprintControl != None && SprintControl.bSprinting;
 }
 
 //===========================================================================
@@ -2760,24 +3130,6 @@ simulated function CheckBurstMode()
 	else if(BFireMode[0].bBurstMode)
 	{	
 		BFireMode[0].bBurstMode = False;
-	}
-	
-	RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
-
-}
-
-simulated function float CalculateBurstRecoilDelay(bool burst)
-{
-	if (burst && BFireMode[0].BurstFireRateFactor < 1)
-	{
-		return
-			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
-			+ (RcComponent.DeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
-	}
-	
-	else
-	{
-		return RcComponent.DeclineDelay;
 	}
 }
 
@@ -2976,7 +3328,6 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	local int mode, i;
-	local Inventory Inv;
 	local float NewSpeed;
 	
 	// Set ambient sound when gun is held
@@ -3003,12 +3354,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (PlayerSpeedFactor != default.PlayerSpeedFactor)
 		PlayerSpeedFactor = default.PlayerSpeedFactor;
 
-	// Link up with sprint control
-	if (SprintControl == None)	{
-		for (Inv=Instigator.Inventory;Inv!=None;Inv=Inv.Inventory)
-			if (BCSprintControl(Inv) != None)	{
-				SprintControl = BCSprintControl(Inv);		break;	}
-	}
+	LinkSprintControl();
 
 	AimComponent.OnWeaponSelected();
 
@@ -3019,12 +3365,12 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		// If factor differs from previous wep, or no previous wep, set groundspeed anew
 		if (BallisticWeapon(PrevWeapon) == None || BallisticWeapon(PrevWeapon).PlayerSpeedFactor != PlayerSpeedFactor)
 		{
-			NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
+			NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
 
 			if (SprintControl != None && SprintControl.bSprinting)
 				NewSpeed *= SprintControl.SpeedFactor;
 
-			if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+			if (xPawn(Instigator) != None && ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
 				NewSpeed *= 1.4;
 
 			if (Instigator.GroundSpeed != NewSpeed)
@@ -3060,7 +3406,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	if (PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 	{
-		if (bOldCrosshairs)
+		if (CrosshairMode == CHM_Unreal)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
 		else
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
@@ -3148,7 +3494,7 @@ simulated function bool PutDown()
 			MeleeState = MS_None;
 		bPendingSightUp=false;
 //		if (PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
-		if (!bOldCrosshairs && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
 		if (PutDownSound.Sound != None)
 			class'BUtil'.static.PlayFullSound(self, PutDownSound);
@@ -3449,10 +3795,23 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
-
+		{
+			//log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
 		else
+		{
+			//log("randomizing"); 
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
     }
  	
    	else if ( !W.HasAmmo() )
@@ -3713,7 +4072,7 @@ simulated function Destroyed()
 	{
 		if (PlayerSpeedUp)
 		{
-			Instigator.GroundSpeed = Instigator.default.GroundSpeed;
+			Instigator.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 			if (SprintControl != None && SprintControl.bSprinting)
 				Instigator.GroundSpeed *= SprintControl.SpeedFactor;
 			PlayerSpeedUp=false;
@@ -3769,6 +4128,7 @@ simulated function Destroyed()
     }
 
 	WeaponParams = None;
+	WeaponCamo = None;
 
     if (RcComponent != None)
     {
@@ -3821,8 +4181,9 @@ simulated event StopFire(int Mode)
 
 function DropFrom(vector StartLocation)
 {
-    local int m;
+    local int m, i;
 	local Pickup Pickup;
+	local Material N;
 
     if (!bCanThrow)// || !HasAmmo())
         return;
@@ -3848,6 +4209,28 @@ function DropFrom(vector StartLocation)
             WeaponPickup(Pickup).bThrown = true;
     	Pickup.InitDroppedPickupFor(self);
 	    Pickup.Velocity = Velocity;
+		if (Role == ROLE_Authority && BallisticWeaponPickup(Pickup) != None)
+		{
+			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
+			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
+			if (WeaponCamo != None)
+			{
+				for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
+				{
+					if (WeaponCamo.WeaponMaterialSwaps[i].PIndex != -1)
+					{
+						if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+							BallisticWeaponPickup(Pickup).Skins[WeaponCamo.WeaponMaterialSwaps[i].PIndex] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+						if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+						{
+							N = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+							if (N != None)
+								BallisticWeaponPickup(Pickup).Skins[WeaponCamo.WeaponMaterialSwaps[i].PIndex] = N;
+						}
+					}
+				}
+			}
+		}
     }
     Destroy();
 }
@@ -3901,7 +4284,7 @@ simulated event Timer()
 				FireMode[Mode].InitEffects();
         PlayIdle();
         ClientState = WS_ReadyToFire;
-		if (!bOldCrosshairs && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
 		if (bNeedCock)
 		{
@@ -4240,26 +4623,26 @@ simulated function ZeroFlashCount(int Mode) {}
 // Receive aim info from server
 simulated final function ReceiveNetAim(float Yaw, float Pitch, float Time, float oChaos, float nChaos)
 {
-	if (!bUseNetAim || Role == ROLE_Authority)
+	if (Role == ROLE_Authority)
 		return;
 
 	AimComponent.ReceiveNetAim(Yaw, Pitch, Time, oChaos, nChaos);
 }
 
-// Send the random values used for recoil to the client so he'll have the same recoil effect
-final function SendNetRecoil()
+// Compress and send recoil data from server
+final function SendNetRecoil(int pitch, int yaw, float shift_time)
 {
-	ReceiveNetRecoil(RcComponent.GetRecoilXRand() * 255, RcComponent.GetRecoilYRand() * 255, RcComponent.GetRecoil() );
+	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer && !Instigator.IsLocallyControlled())
+		ReceiveNetRecoil(pitch, yaw, int(shift_time * 100) );
 }
 
-// Receive random values for recoil from the server
-// DC 110313
-simulated final function ReceiveNetRecoil(byte XRand, byte YRand, float RecAmp)
+// Apply recoil from server.
+simulated final function ReceiveNetRecoil(int pitch, int yaw, int shift_time)
 {
-	if (!bUseNetAim || Role == ROLE_Authority)
+	if (Role == ROLE_Authority)
 		return;
 
-	RcComponent.ReceiveNetRecoil(XRand, YRand, RecAmp);
+	RcComponent.ReceiveNetRecoil(pitch, yaw, shift_time * 0.01f);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -4299,9 +4682,6 @@ simulated final function ZeroAim (float TimeMod)
 {
 	if (bAimDisabled)
 		return;
-		
-	if (!bUseNetAim)
-		AimComponent.ZeroAim(TimeMod);
 
 	ServerZeroAim(TimeMod);
 }
@@ -4321,14 +4701,23 @@ simulated final function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreView
 	return AimComponent.CalcFutureAim(ExtraTime, bIgnoreViewAim);
 }
 
+// visual rotation of weapon from component of recoil that is not bound
+// due to fovs and simplified calculations, this varies with the FOV...
 simulated final function Rotator GetRecoilPivot()
 {
-	return RcComponent.GetWeaponPivot();
+	local float mult_factor;
+
+	mult_factor = DisplayFOV / Instigator.Controller.FOVAngle;
+
+	// if (Instigator.Weapon == self)
+	//		log("GetRecoilPivot: MultFactor "$mult_factor$" Display FOV "$DisplayFOV$" FOV angle: "$Instigator.Controller.FOVAngle);
+
+	return RcComponent.GetViewEscapePivot() * mult_factor;
 }
 
 simulated final function Rotator GetFireRot()
 {
-	return GetAimPivot() + RcComponent.GetWeaponPivot();
+	return GetAimPivot() + RcComponent.GetEscapePivot();
 }
 
 simulated final function Vector GetFireDir()
@@ -4345,7 +4734,7 @@ simulated final function Rotator GetBasePlayerView()
 simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
-	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle); // ? is that correct?
 }
 
 // Rotates the player's view according to Aim
@@ -4367,7 +4756,7 @@ simulated function ApplyAimToView()
 		Instigator.SetViewRotation(Instigator.Controller.Rotation + AimPivotDelta);
 }
 
-simulated final function byte GetAimParamsIndex()
+simulated function byte GetAimParamsIndex()
 {
 	return WeaponModes[CurrentWeaponMode].AimParamsIndex;
 }
@@ -4475,9 +4864,11 @@ function OwnerEvent(name EventName)
 		{
 			ClientDodged();
 			AimComponent.OnPlayerJumped();
-			NextCheckScopeTime = Level.TimeSeconds + 0.5;
+
+			if (!class'BallisticReplicationInfo'.static.IsRealism())
+				NextCheckScopeTime = Level.TimeSeconds + 0.5;
 		}
-		else if ((EventName == 'Jumped' || EventName == 'Dodged') && !BCRepClass.default.bNoJumpOffset && !AimComponent.PendingForcedReaim())
+		else if ((EventName == 'Jumped' || EventName == 'Dodged') && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && !AimComponent.PendingForcedReaim())
 		{
 			AimComponent.OnPlayerJumped();
 		}
@@ -4497,9 +4888,9 @@ function OwnerEvent(name EventName)
 		Inv.OwnerEvent(EventName);
 }
 
-simulated function PlayerSprint (bool bSprinting)
+simulated function PlayerSprint(bool bSprinting)
 {
-	if (BCRepClass.default.bNoJumpOffset)
+	if (!class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting)
 		return;
 
 	if (bScopeView && Instigator.IsLocallyControlled())
@@ -4508,7 +4899,7 @@ simulated function PlayerSprint (bool bSprinting)
 	if (bAimDisabled)
 		return;
 
-	AimComponent.OnPlayerSprint();
+	AimComponent.OnPlayerSprint(bSprinting);
 }
 
 //Hold scope when dodging
@@ -4517,7 +4908,7 @@ simulated function ClientDodged()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView)
+	if(bScopeView && !class'BallisticReplicationInfo'.static.IsRealism())
 		NextCheckScopeTime = Level.TimeSeconds + 0.75;
 
 	AimComponent.OnPlayerJumped();
@@ -4528,7 +4919,7 @@ simulated function ClientJumped()
 	if (Level.NetMode != NM_Client)
 		return;
 
-	if(bScopeView)
+	if(bScopeView && !class'BallisticReplicationInfo'.static.IsRealism())
 		NextCheckScopeTime = Level.TimeSeconds + 1;
 
 	AimComponent.OnPlayerJumped();
@@ -4544,14 +4935,12 @@ simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 	RcComponent.AddRecoil(Recoil, Mode);
 	AimComponent.AddFireChaos(FireChaos);
 
-	if (ROLE == ROLE_Authority && bUseNetAim)
-		SendNetRecoil();
 	/*
 	// Set crosshair size
 	if (bReaiming)
-		NDCrosshairInfo.CurrentScale = FMin(1, Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos)*NDCrosshairChaosFactor*BCRepClass.default.AccuracyScale + (Recoil/RecoilMax)*BCRepClass.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
+		NDCrosshairInfo.CurrentScale = FMin(1, Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos)*NDCrosshairChaosFactor*class'BallisticReplicationInfo'.default.AccuracyScale + (Recoil/RecoilMax)*class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
 	else
-		NDCrosshairInfo.CurrentScale = FMin(1, NewChaos*NDCrosshairChaosFactor*BCRepClass.default.AccuracyScale + (Recoil/RecoilMax)*BCRepClass.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
+		NDCrosshairInfo.CurrentScale = FMin(1, NewChaos*NDCrosshairChaosFactor*class'BallisticReplicationInfo'.default.AccuracyScale + (Recoil/RecoilMax)*class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
 	*/
 }
 
@@ -4565,9 +4954,15 @@ simulated function AddFireChaos(float chaos)
 	AimComponent.AddFireChaos(chaos);
 }
 
-simulated final function byte GetRecoilParamsIndex()
+simulated function byte GetRecoilParamsIndex()
 {
 	return WeaponModes[CurrentWeaponMode].RecoilParamsIndex;
+}
+
+// Used to query whether the weapon is being held left-handed, so we can reverse the recoil curve.
+simulated function int Handedness()
+{
+	return Hand;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4658,7 +5053,7 @@ simulated function string GetHUDAmmoText(int Mode)
 //Draw special weapon info on the hud
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
-	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local float		ScaleFactor, XL, YL, YL2;
 	local string	Temp;
 
 	Super.NewDrawWeaponInfo (C, YPos);
@@ -4703,153 +5098,147 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		C.CurY = C.ClipY - 130 * ScaleFactor * class'HUD'.default.HudScale - YL2 - YL;
 		C.DrawText(WeaponModes[CurrentWeaponMode].ModeName, false);
 	}
-	
-	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
-	// Would be nice if someone could have a HUD function called along the inventory chain
-	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
+}
+
+simulated final function DrawSimpleCrosshairBars(Canvas C, int XOffset, int YOffset)
+{
+	local int 	ShortBound, LongBound;
+	local Color SavedDrawColor;
+
+	SavedDrawColor = C.DrawColor;
+
+	ShortBound = 2;
+	LongBound = 10;
+
+	// outer black
+
+	/*
+	C.SetDrawColor(0,0,0,C.DrawColor.A);
+
+	// hor
+	C.SetPos((C.ClipX / 2) - (LongBound + XOffset+1), (C.ClipY/2) - (ShortBound/2+1));
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+
+	C.SetPos((C.ClipX / 2) + XOffset -1, (C.ClipY/2) - (ShortBound/2+1));
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+
+	//ver
+	C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + YOffset+1));
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+
+	C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) + YOffset-1);
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+
+	if (bDrawCrosshairDot)
 	{
-		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
-		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
-		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
-		if (SprintFactor < 0.2)
-			C.SetDrawColor(255, 0, 0);
-		else if (SprintFactor < 0.5)
-			C.SetDrawColor(64, 128, 255);
-		else
-			C.SetDrawColor(0, 0, 255);
-		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
+		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+	}
+	*/
+
+	// inner
+	if (!bNoMag && MagAmmo == 0)
+		C.DrawColor = MagEmptyColor;
+	else if (bNeedCock)
+		C.DrawColor = CockingColor;
+	else 
+		C.DrawColor = CrosshairColor;
+
+	//hor
+	C.SetPos((C.ClipX / 2) - (LongBound + XOffset), (C.ClipY/2) - (ShortBound/2));
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+
+	C.SetPos((C.ClipX / 2) + XOffset, (C.ClipY/2) - (ShortBound/2));
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+
+	//ver
+	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + YOffset));
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+
+	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) + YOffset);
+	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+
+	/*
+	if (bDrawCrosshairDot)
+	{
+		C.DrawColor.A = SavedDrawColor.A;
+		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+	}
+	*/
+
+	C.DrawColor = SavedDrawColor;
+}
+
+simulated function DrawSimpleCrosshairs(Canvas C)
+{
+	local float 		OffsetAdjustment;
+
+	if (!bScopeView)
+	{
+		OffsetAdjustment = AimComponent.CalcCrosshairOffset(C);
+		DrawSimpleCrosshairBars(C, OffsetAdjustment, OffsetAdjustment);
+	}
+}
+
+simulated function DrawGraphicalCrosshairs(Canvas C)
+{
+	local IntBox				Size;
+	local NonDefCrosshairCfg 	CHCfg;
+	local float					ScaleFactor;
+
+	ScaleFactor = C.ClipX / 1600;
+
+	if (bGlobalCrosshair)
+		CHCfg = class'BallisticWeapon'.default.NDCrosshairCfg;
+	else
+		CHCfg = NDCrosshairCfg;
+	
+	//Work out the exact size of the crosshair
+	Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+	Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+	Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+	Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+
+	// Draw primary
+	if (CHCfg.Pic1 != None)
+	{
+
+		C.DrawColor = CHCfg.Color1;
+		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.3;
+		C.SetPos((C.ClipX / 2) - (Size.X1/2), (C.ClipY / 2) - (Size.Y1/2));
+
+		C.DrawTile (CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
+	}
+	
+	// Draw secondary
+	if (CHCfg.Pic2 != None)
+	{
+		C.DrawColor = CHCfg.Color2;
+		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.5;
+		C.SetPos((C.ClipX / 2) - (Size.X2/2), (C.ClipY / 2) - (Size.Y2/2));
+
+		C.DrawTile (CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
 	}
 }
 
 //Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
-simulated function DrawCrosshairs(canvas C)
+simulated function DrawCrosshairs(Canvas C)
 {
-	local IntBox	Size;
-	local NonDefCrosshairCfg CHCfg;
-	local float			ScaleFactor;
-	local float 		ShortBound, LongBound;
-	local float 		OffsetAdjustment;
-	local Color 		SavedDrawColor;
-		
-	ScaleFactor = C.ClipX / 1600;
-
 	// Draw weapon specific Crosshairs
-	if (bOldCrosshairs || PlayerController(Instigator.Controller) == None || (Instigator.IsFirstPerson() && bScopeView))
+	if (PlayerController(Instigator.Controller) == None || (Instigator.IsFirstPerson() && bScopeView))
 		return;
-	
-	if (bDrawSimpleCrosshair)
+
+	switch (CrosshairMode)
 	{
-		if (!bNoMag && MagAmmo == 0)
-		{
-			SavedDrawColor = MagEmptyColor;
-			SavedDrawColor.A = class'HUD'.default.CrosshairColor.A;
-		}
-
-		else if (bNeedCock)
-		{
-			SavedDrawColor = CockingColor;
-			SavedDrawColor.A = class'HUD'.default.CrosshairColor.A;
-		}
-
-		else SavedDrawColor = class'HUD'.default.CrosshairColor;
-
-		C.DrawColor = SavedDrawColor;
-
-		ShortBound = 2;
-		LongBound= 10;
-
-		if (!bScopeView)
-			OffsetAdjustment = AimComponent.CalcCrosshairOffset(C);
-
-		//black
-		//hor
-		C.SetDrawColor(0,0,0,SavedDrawColor.A);
-
-		if (!bScopeView)
-		{
-			C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-		
-			C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-		
-			//ver
-			C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-		
-			C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-		
-			//centre square
-			if (bDrawCrosshairDot)
-			{
-				C.DrawColor.A = SavedDrawColor.A;
-				C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
-				C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
-			}
-		}
-
-		//green
-		C.DrawColor = SavedDrawColor;
-
-		if (!bScopeView)
-		{
-			//hor
-			C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-		
-			C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-		
-			//ver
-			C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-		
-			C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-		
-			if (bDrawCrosshairDot)
-			{
-				C.DrawColor.A = SavedDrawColor.A;
-				C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-				C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
-			}
-		}
-		C.SetDrawColor(255, 255, 255, 255);
-	}
-	else
-	{
-		if (bGlobalCrosshair)
-			CHCfg = class'BallisticWeapon'.default.NDCrosshairCfg;
-		else
-			CHCfg = NDCrosshairCfg;
-		
-		//Work out the exact size of the crosshair
-		Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-
-		// Draw primary
-		if (CHCfg.Pic1 != None)
-		{
-
-			C.DrawColor = CHCfg.Color1;
-			if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.3;
-			C.SetPos((C.ClipX / 2) - (Size.X1/2), (C.ClipY / 2) - (Size.Y1/2));
-
-			C.DrawTile (CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
-		}
-		
-		// Draw    secondary
-		if (CHCfg.Pic2 != None)
-		{
-			C.DrawColor = CHCfg.Color2;
-			if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.5;
-			C.SetPos((C.ClipX / 2) - (Size.X2/2), (C.ClipY / 2) - (Size.Y2/2));
-
-			C.DrawTile (CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
-		}
+		case CHM_Simple:
+			DrawSimpleCrosshairs(C);
+			break;
+		case CHM_Graphical:
+			DrawGraphicalCrosshairs(C);
+			break;
+		case CHM_Unreal:
+			break;
 	}
 }
 
@@ -4901,12 +5290,6 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 		}
 	}
 	bHurtEntry = false;
-}
-
-exec simulated final function ScaleScope(float X)
-{
-	ScopeXScale = X;
-	SaveConfig();
 }
 
 exec simulated final function SetDefaultMode()
@@ -5008,6 +5391,65 @@ exec function BWSightOffsetY (float f) {	SightOffset.Y = f;	default.SightOffset.
 exec function BWSightOffsetZ (float f) {	SightOffset.Z = f;	default.SightOffset.Z = f;	SVMessage();	}
 
 function SVMessage (){	Instigator.ClientMessage("SightOffset: X: "$SightOffset.X$", Y: "$SightOffset.Y$", Z: "$SightOffset.Z$", Scale: "$DrawScale$", Sight Display FOV: "$SightDisplayFov);	}
+
+// temporary tuning functions for smooth recoil - standalone only
+exec function ClimbTime(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.Params.ClimbTime = f; 
+	} 
+}
+
+exec function DeclineDelay(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.DeclineDelay = f; 
+	} 
+}
+
+exec function DeclineTime(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.DeclineTime = f; 
+	} 
+}
+
+exec function PrimaryRecoil(float f)
+{
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		BFireMode[0].FireRecoil = f; 
+	} 
+}
+
+// tunes aim escape
+exec function ADSSway(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		AimComponent.Params.ADSMultiplier = f; 
+	} 
+}
+
+// tunes recoil escape
+exec function ADSBind(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.Params.ADSViewBindFactor = f; 
+	} 
+}
+
+exec function EscapeMult(float f) 
+{ 
+	if (Level.NetMode == NM_Standalone) 
+	{ 
+		RcComponent.Params.EscapeMultiplier = f; 
+	} 
+}
 
 delegate DumpHead(array<CacheManager.WeaponRecord> Recs);
 delegate DumpLine(class<BallisticWeapon> Weap, int Line);
@@ -5121,7 +5563,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     YPos += YL;
 	Canvas.SetPos(4,YPos);
 
-	RcComponent.DrawDebug(Canvas);
+	YPos = RcComponent.DrawDebug(Canvas, YPos, YL);
     YPos += YL;
 	Canvas.SetPos(4,YPos);
 	
@@ -5153,10 +5595,13 @@ static simulated final function int GetPickupMagAmmo()
 {
     local int i;
 
-    i = int(default.BCRepClass.default.GameStyle);
+    i = int(class'BallisticReplicationInfo'.default.GameStyle);
 
     if (default.ParamsClasses[i] == None)
+    {
+        Log(default.ItemName $ "::GetPickupMagAmmo: No params found for game style " $ class'BallisticReplicationInfo'.default.GameStyle $": Falling back");
         i = 0;
+    }
 
     return default.ParamsClasses[i].default.Layouts[0].MagAmmo;
 }
@@ -5165,10 +5610,13 @@ static simulated final function int GetInventorySize()
 {
     local int i;
 
-    i = int(default.BCRepClass.default.GameStyle);
+    i = int(class'BallisticReplicationInfo'.default.GameStyle);
 
     if (default.ParamsClasses[i] == None)
+    {
+        Log(default.ItemName $ "::GetInventorySize: No params found for game style " $ class'BallisticReplicationInfo'.default.GameStyle $": Falling back");
         i = 0;
+    }
 
     return default.ParamsClasses[i].default.Layouts[0].InventorySize;
 }
@@ -5197,11 +5645,21 @@ static function String GetManual()
 static function String GetShortManual()
 {
 	local String S;
-	
+
+	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Basic Stats"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
+
+	// iterate and calculate damage and basic fire rate
+	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].BuildShortManualString();
+
+	S $= "||";
+
 	if (default.ManualLines.Length < 3)
-		return "No information available.";
+	{
+		S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"No further information available."$class'GUIComponent'.static.MakeColorCode(default.TextColor);
+		return S;
+	}
 	
-	S = class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Primary Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
+	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Primary Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
 	S $= default.ManualLines[0]$"||";
 	
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Alt Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
@@ -5219,13 +5677,12 @@ defaultproperties
      bAllowWeaponInfoOverride=True
      IdleTweenTime=0.200000
      SightFXBone="tip"
-     BCRepClass=Class'BCoreProV55.BCReplicationInfo'
      HeaderColor=(B=50,G=50,R=255)
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
 	 
-     BringUpSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     PutDownSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	 
 	 MagAmmo=30
 	 
@@ -5233,8 +5690,8 @@ defaultproperties
 	 CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
 	 CockSelectAnimRate=1.000000
-     CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
-	 CockSelectSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
+     CockSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	 CockSelectSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
@@ -5243,9 +5700,9 @@ defaultproperties
 	 StartShovelAnimRate=1.000000
 	 EndShovelAnimRate=1.000000
 	 
-     ClipHitSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
-     ClipOutSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     ClipInSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipHitSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipOutSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipInSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      ClipInFrame=0.900000
      ShovelIncrement=1
      bPlayThirdPersonReload=True
@@ -5264,28 +5721,30 @@ defaultproperties
      NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000)
      NDCrosshairChaosFactor=0.400000
 	 NDCrosshairScaleFactor=1.000000
-	 bDrawCrosshairDot=True
-	 bDrawSimpleCrosshair=True
+	 CrosshairMode=CHM_Simple
 	 
      bUseSights=True
+	 ScopeScale=1
      ScopeXScale=1.000000
      FullZoomFOV=80.000000
-     SightZoomFactor=0.78
+     SightZoomFactor=1.35
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
 	 SightingTime=0.350000
+	 SightAnimScale=1
      MinFixedZoomLevel=0.050000
      MinZoom=1.000000
      MaxZoom=2.000000
      ZoomStages=2
+	 SightBobScale=0.15f
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
-     MagEmptyColor=(B=50,G=50,R=255,A=255)
-     CockingColor=(B=50,G=175,R=255,A=255)
+     MagEmptyColor=(B=50,G=50,R=255,A=150)
+     CockingColor=(B=50,G=175,R=255,A=150)
+	 CrosshairColor=(B=200,G=225,R=255,A=150)
      GunLength=64.000000
      LongGunPivot=(Pitch=-4000,Yaw=-12000)
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
-     bUseNetAim=True
 	 
 	 ScopeHandling=SH_Default
      SelectAnim="Pullout"
@@ -5295,7 +5754,7 @@ defaultproperties
      PutDownTime=0.300000
      BringUpTime=0.300000
      bNoAmmoInstances=False
-     DisplayFOV=60.000000
+     DisplayFOV=75.000000 // works now with clipping changes - more accurate to weapon size
      Priority=2
      CenteredOffsetY=0.000000
      CenteredRoll=500
@@ -5305,4 +5764,5 @@ defaultproperties
      LightPeriod=3
      AmbientGlow=12
      TransientSoundVolume=0.500000
+	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

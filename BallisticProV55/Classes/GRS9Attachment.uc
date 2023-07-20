@@ -147,13 +147,14 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     BrassClass=Class'BallisticProV55.Brass_GRSNine'
+	WeaponClass=class'GRS9Pistol'
+     MuzzleFlashClass=class'XK2FlashEmitter'
+     ImpactManager=class'IM_Bullet'
+     BrassClass=class'Brass_GRSNine'
      InstantMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
+     TracerClass=class'TraceEmitter_Pistol'
      TracerChance=0.600000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      FlyByMode=MU_Primary

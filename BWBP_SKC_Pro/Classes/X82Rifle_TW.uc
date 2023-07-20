@@ -94,7 +94,7 @@ simulated event Timer()
 				FireMode[Mode].InitEffects();
         PlayIdle();
         ClientState = WS_ReadyToFire;
-		if (!bOldCrosshairs && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
 
 		if (bNeedCock)
@@ -188,16 +188,15 @@ simulated function PlayCocking(optional byte Type)
 defaultproperties
 {
 	MountFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire4'
-	ReloadAnimRate=1.300000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipHit',Volume=0.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipOut')
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn',Volume=1.500000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'X82TW_WeaponParams'
+	ParamsClasses(0)=Class'X82TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'X82TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'X82TW_WeaponParamsRealistic'
-	ParamsClasses(3)=Class'X82TW_WeaponParams'
+	ParamsClasses(3)=Class'X82TW_WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82TW_PrimaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)
 	SelectAnim="Deploy"

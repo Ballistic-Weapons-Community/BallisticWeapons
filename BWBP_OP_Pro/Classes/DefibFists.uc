@@ -434,7 +434,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.Defist.BigIcon_DefibFists'
      BigIconCoords=(X1=96,Y1=10,X2=418,Y2=245)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Heal=True
      ManualLines(0)="Strike with the gauntlets. Deals minor damage when charged and blinds the opponent for a short duration. When discharged, deals poor damage. Allies struck by this attack will be healed. A successful strike depletes charge."
      ManualLines(1)="Uppercut with the gauntlets. Deals good damage with some charge remaining. Allies struck will be healed. With over 55% charge, gains power, discharging a shockwave which increases the effectiveness of the attack and causes some radius damage. A successful or empowered strike depletes charge."
@@ -444,7 +444,10 @@ defaultproperties
      WeaponModes(1)=(ModeName="KILL!",ModeID="WM_FullAuto")
      GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClasses(0)=Class'DefibWeaponParams'
+	 ParamsClasses(0)=Class'DefibWeaponParamsComp'
+	 ParamsClasses(1)=Class'DefibWeaponParamsClassic'
+	 ParamsClasses(2)=Class'DefibWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'DefibWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_OP_Pro.DefibFistsPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.DefibFistsSecondaryFire'
      PutDownTime=0.660000
@@ -457,7 +460,6 @@ defaultproperties
      bMeleeWeapon=True
      bCanThrow=False
      Description="The FMD H14 Combat Defibrillator is the go-to weapon of combat medics everywhere. Discharging electrical pulses from a pair of gauntlets, it can be used in both offensive and defensive roles. However, charge is limited, and when it is depleted the weapon becomes nearly useless."
-     DisplayFOV=65.000000
      Priority=1
      HudColor=(G=0)
      CenteredOffsetY=7.000000
@@ -465,13 +467,13 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=1
      PickupClass=Class'BWBP_OP_Pro.DefibFistsPickup'
-     PlayerViewOffset=(X=40.000000,Z=-10.000000)
+     PlayerViewOffset=(X=20.000000,Z=-5.000000)
      AttachmentClass=Class'BWBP_OP_Pro.DefibFistsAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.Defist.Icon_DefibFists'
      IconCoords=(X2=127,Y2=31)
      ItemName="FMD H14 Combat Defibrillator"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FMD'
-     DrawScale=0.600000
+     DrawScale=0.300000
      bFullVolume=True
      SoundVolume=64
      SoundRadius=128.000000

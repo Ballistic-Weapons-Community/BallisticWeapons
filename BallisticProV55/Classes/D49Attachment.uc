@@ -140,19 +140,20 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_BigBullet'
-     BrassClass=Class'BallisticProV55.Brass_Magnum'
+	WeaponClass=class'D49Revolver'
+     MuzzleFlashClass=class'D49FlashEmitter'
+     AltMuzzleFlashClass=class'D49FlashEmitter'
+     ImpactManager=class'IM_BigBullet'
+     BrassClass=class'Brass_Magnum'
      BrassBone="MagnumWhole"
      TracerMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
+     TracerClass=class'TraceEmitter_Pistol'
      TracerChance=0.600000
 	 ReloadAnimRate=0.450000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.D49_TPm'

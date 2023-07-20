@@ -31,7 +31,8 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     ImpactManager=Class'BallisticProV55.IM_GunHit'
+	WeaponClass=class'JWRiotShieldWeapon'
+     ImpactManager=class'IM_GunHit'
      BrassMode=MU_None
      InstantMode=MU_Both
      FlashMode=MU_None

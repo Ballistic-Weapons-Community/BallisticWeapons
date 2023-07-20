@@ -20,14 +20,6 @@ simulated event ModeDoFire()
 	Super.ModeDoFire();
 }
 
-function SpawnProjectile(Vector Start, Rotator Dir)
-{
-	Proj = Spawn (ProjectileClass,,, Start, Dir);
-
-	if (Proj != None)
-		Proj.Instigator = Instigator;
-}
-
 function PlayFiring()
 {
 	BOGPPistol(Weapon).bHideHead = true;
@@ -44,9 +36,13 @@ defaultproperties
      bModeExclusive=False
      FireForce="AssaultRifleAltFire"
      AmmoClass=Class'BallisticProV55.Ammo_BOGPGrenades'
+
+     ShakeRotMag=(X=64.000000)
+     ShakeRotRate=(X=960.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetMag=(X=-5.00)
+     ShakeOffsetRate=(X=-100.000000)
      ShakeOffsetTime=2.000000
+
      BotRefireRate=0.300000
 }

@@ -95,7 +95,7 @@ function EndStream()
 {
 	bStreamOn = False;
 	AmbientSound = None;
-	Instigator.bAlwaysRelevant=False;
+	Instigator.bAlwaysRelevant= Instigator.default.bAlwaysRelevant;
 	bAlwaysRelevant=False;
 	LockedTarget = None;
 	
@@ -158,9 +158,10 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
+	WeaponClass=class'XOXOStaff'
      StreamAmbientSound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Stream'
      MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
-     MeleeImpactManager=Class'BallisticProV55.IM_A73Knife'
+     MeleeImpactManager=class'IM_A73Knife'
      WeaponLightTime=0.200000
      BrassMode=MU_None
      InstantMode=MU_Secondary

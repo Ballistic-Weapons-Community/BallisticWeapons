@@ -31,11 +31,15 @@ var   BallisticPickupTrigger    puTrigger;
 var float	                LastBlockNotificationTime;
 
 var	int						DetectedInventorySize;		// Hack. Tracking inventory size calculcated during BallisticWeapon.HandlePickupQuery
+var byte 		LayoutIndex, OldLayoutIndex;
+var byte 		CamoIndex, OldCamoIndex;
 
 replication
 {
-	unreliable if (Role == ROLE_Authority && bNetDirty)
+	reliable if (Role == ROLE_Authority)
 		LandedRot;
+	reliable if (Role == ROLE_Authority)
+		LayoutIndex, CamoIndex;
 }
 
 simulated function PreBeginPlay()
@@ -43,7 +47,7 @@ simulated function PreBeginPlay()
 	if (PickupDrawScale != 0)
 		SetDrawScale(PickupDrawScale);
 	
-	bAlternativePickups = class<BallisticWeapon>(InventoryType).default.BCRepClass.default.bAlternativePickups;
+	bAlternativePickups = class'BallisticReplicationInfo'.default.bAlternativePickups;
 
     if(bAlternativePickups)
     {
@@ -304,6 +308,8 @@ function InitDroppedPickupFor(Inventory Inv)
 		else if (BallisticWeapon(W) != None && !BallisticWeapon(W).bNoMag)
 		{
 			MagAmmo = BallisticWeapon(W).MagAmmo;
+			LayoutIndex = BallisticWeapon(W).LayoutIndex;
+			CamoIndex = BallisticWeapon(W).CamoIndex;
 	        if ((!bThrown || BallisticFire(W.GetFireMode(0)) == None || BallisticFire(W.GetFireMode(0)).bUseWeaponMag==false))
 				GetAmmoAmount(0, W);
 			if (W!=None && W.GetAmmoClass(1) != W.GetAmmoClass(0) && (!bThrown || BallisticFire(W.GetFireMode(1)) == None || BallisticFire(W.GetFireMode(1)).bUseWeaponMag==false))
@@ -347,10 +353,47 @@ event Landed(Vector HitNormal)
 
 simulated function PostNetReceive()
 {
+	if (LayoutIndex != OldLayoutIndex)
+	{
+		OldLayoutIndex = LayoutIndex;
+		//Skins[0] = class<BallisticCamoWeapon>(InventoryType).default.CamoMaterials[CamoIndex];
+	}
+	if (CamoIndex != OldCamoIndex)
+	{
+		OldCamoIndex = CamoIndex;
+		UpdateSkins(CamoIndex);
+		//Skins[0] = class<BallisticCamoWeapon>(InventoryType).default.CamoMaterials[CamoIndex];
+	}
 	if (level.NetMode != NM_Client)
 		return;
 	if (LandedRot != rot(0,0,0))	{
 		SetRotation(LandedRot);
+	}
+}
+
+simulated function UpdateSkins(byte PassedIndex)
+{
+	local WeaponCamo WC;
+	local Material M;
+	local int i;
+	
+	WC = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Camos[PassedIndex];
+	if (WC != None)
+	{
+		for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
+		{
+			if (WC.WeaponMaterialSwaps[i].PIndex != -1)
+			{
+				if (WC.WeaponMaterialSwaps[i].Material != None)
+					Skins[WC.WeaponMaterialSwaps[i].PIndex] = WC.WeaponMaterialSwaps[i].Material;
+				if (WC.WeaponMaterialSwaps[i].MaterialName != "")
+				{
+					M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+					if (M != None)
+						Skins[WC.WeaponMaterialSwaps[i].PIndex] = M;
+				}
+			}
+		}
 	}
 }
 
@@ -507,6 +550,10 @@ Respawn:
 
 defaultproperties
 {
+	 LayoutIndex=255
+	 OldLayoutIndex=255
+	 CamoIndex=255
+	 OldCamoIndex=255
      bOnSide=True
      LowPolyDist=500.000000
      ReplacementsIndex=-1
@@ -520,4 +567,5 @@ defaultproperties
      TransientSoundRadius=64.000000
      CollisionRadius=26.000000
      MessageClass=Class'BCoreProV55.BallisticPickupMessage'
+	bNetNotify=True
 }

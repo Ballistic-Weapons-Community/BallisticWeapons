@@ -18,17 +18,18 @@ var(SRX) sound		AmplifierOffSound;		//
 var(SRX) sound		AmplifierPowerOnSound;		// Silencer stuck on sound
 var(SRX) sound		AmplifierPowerOffSound;		//
 var(SRX) float		AmpCharge;					// Existing ampjuice
-var(SRX) float 	DrainRate;					// Rate that ampjuice leaks out
+var(SRX) float		DrainRate;					// Rate that ampjuice leaks out
 var(SRX) bool		bShowCharge;				// Hides charge until the amp is on
 
-var	  Rotator	RearSightBoneRot;
+var	  Rotator		RearSightBoneRot;
+var(SRX) bool		bHasOptic;
 
 //Scripted Ammo Screen Texture
-var() ScriptedTexture WeaponScreen; //Scripted texture to write on
-var() Material	WeaponScreenShader; //Scripted Texture with self illum applied
-var() Material	ScreenBase;
-var() Material	ScreenAmmoBlue; //Norm
-var() Material	ScreenAmmoRed; //Low Ammo
+var() ScriptedTexture 	WeaponScreen; //Scripted texture to write on
+var() Material			WeaponScreenShader; //Scripted Texture with self illum applied
+var() Material			ScreenBase;
+var() Material			ScreenAmmoBlue; //Norm
+var() Material			ScreenAmmoRed; //Low Ammo
 var protected const color MyFontColor; //Why do I even need this?
 
 var	float	AmmoBarPos;
@@ -41,11 +42,28 @@ replication
 		ServerSwitchSilencer, ServerSwitchAmplifier;	
 }
 
-simulated function PostNetBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	SetBoneScale(3, 0.0, 'IronsFront');
-	SetBoneRotation('Sight',RearSightBoneRot);
-	super.PostNetBeginPlay();
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasOptic=false;
+
+	if (InStr(WeaponParams.LayoutTags, "optic") != -1)
+	{
+		bHasOptic=true;
+		SetBoneScale(3, 0.0, 'IronsFront');
+		SetBoneRotation('Sight',RearSightBoneRot);
+	}
+	else
+	{
+		Skins[4]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[5]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[6]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[11]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+		Skins[12]=Texture'ONSstructureTextures.CoreGroup.Invisible';
+	}
 }
 
 //==============================================
@@ -87,7 +105,7 @@ simulated event RenderTexture( ScriptedTexture Tex )
 
 simulated event RenderOverlays( Canvas C )
 {
-	if (Instigator.IsLocallyControlled())
+	if (Instigator.IsLocallyControlled() && bHasOptic)
 		WeaponScreen.Revision++;
 
 	super.RenderOverlays(C);
@@ -95,7 +113,7 @@ simulated event RenderOverlays( Canvas C )
 	
 simulated function UpdateScreen()
 {
-	if (Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
+	if (!bHasOptic || (Instigator != None && AIController(Instigator.Controller) != None)) //Bots cannot update your screen
 		return;
 
 	if (Instigator.IsLocallyControlled())
@@ -358,7 +376,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
 
-	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	if (bHasOptic && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
 	{
 		ScreenStart();
 		if (!Instigator.IsLocallyControlled())
@@ -366,6 +384,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	
 	SetBoneScale (2, 0.0, AmplifierBone);
+	if (bHasOptic)
+	{
+		SetBoneScale(3, 0.0, 'IronsFront');
+		SetBoneRotation('Sight',RearSightBoneRot);
+	}
 
 	if (AIController(Instigator.Controller) != None)
 		bSilenced = (FRand() > 0.5);
@@ -489,11 +512,11 @@ defaultproperties
     AmpMaterials[5]=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	
 	MyFontColor=(R=255,G=255,B=255,A=255)
-    WeaponScreen=ScriptedTexture'BWBP_OP_Tex.SRX.SRX-ScriptLCD'
-    WeaponScreenShader=Shader'BWBP_OP_Tex.SRX.SRX-ScriptLCD-SD'
-	ScreenBase=Texture'BWBP_OP_Tex.SRX.SRX-Screen'
-	ScreenAmmoBlue=Texture'BWBP_OP_Tex.SRX.SRX-Screen'
-	ScreenAmmoRed=FinalBlend'BWBP_OP_Tex.SRX.SRX-ScreenRed-FB'
+    WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.SRX.SRX-ScriptLCD'
+    WeaponScreenShader=Shader'BWBP_SKC_Tex.SRX.SRX-ScriptLCD-SD'
+	ScreenBase=Texture'BWBP_SKC_Tex.SRX.SRX-Screen'
+	ScreenAmmoBlue=Texture'BWBP_SKC_Tex.SRX.SRX-Screen'
+	ScreenAmmoRed=FinalBlend'BWBP_SKC_Tex.SRX.SRX-ScreenRed-FB'
 	
 	AmplifierBone="Amp"
     AmplifierOnAnim="AddAMP"
@@ -510,9 +533,9 @@ defaultproperties
 	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
 	
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.SRX.BigIcon_SRXRifle'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.SRX.BigIcon_SRXRifle'
 	BigIconCoords=(Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="7.62mm Fire"
 	ManualLines(1)="Attach/Detach AMP. Corrosive does extra damage to shield while Explosive damage does radius damage."
@@ -520,7 +543,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Cock',Volume=0.650000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipIn')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
@@ -531,13 +553,16 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=-128,Yaw=16)
-	SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)
-	SightDisplayFOV=25.000000
+
+	PlayerViewOffset=(X=5.000000,Y=4.50000,Z=-6.000000)
+	SightOffset=(X=0.000000,Y=0.06,Z=2.7)
+	SightAnimScale=0.6
+
 	GunLength=72.000000
-	ParamsClasses(0)=Class'SRXWeaponParams'
+	ParamsClasses(0)=Class'SRXWeaponParamsComp'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'
 	ParamsClasses(2)=Class'SRXWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SRXWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.SRXPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.SRXSecondaryFire'
 	SelectAnimRate=1.350000
@@ -553,9 +578,8 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.SRXPickup'
-	PlayerViewOffset=(X=-2.000000,Y=10.000000,Z=-20.000000)
 	AttachmentClass=Class'BWBP_SKC_Pro.SRXAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.SRX.SmallIcon_SRXRifle'
+	IconMaterial=Texture'BWBP_SKC_Tex.SRX.SmallIcon_SRXRifle'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="SRK-650 Battle Rifle"
 	LightType=LT_Pulse
@@ -564,22 +588,22 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_SRX'
-	DrawScale=0.500000
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SRX'
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark'
-    Skins(2)=Texture'BWBP_OP_Tex.SRX.SRX-StockBlack'
-    Skins(3)=Texture'BWBP_OP_Tex.SRX.SRX-Irons'
-    Skins(4)=Texture'BWBP_OP_Tex.SRX.SRX-Holo'
-    Skins(5)=Texture'BWBP_OP_Tex.SRX.SRX-Cable'
-    Skins(6)=Texture'BWBP_OP_Tex.SRX.SRX-Plating'
-    Skins(7)=Texture'BWBP_OP_Tex.SRX.SRX-Barrel'
-    Skins(8)=Texture'BWBP_OP_Tex.SRX.SRX-Misc'
-    Skins(9)=Texture'BWBP_OP_Tex.SRX.SRX-Muzzle'
+    Skins(1)=Texture'BWBP_SKC_Tex.SRX.SRX-RifleDark'
+    Skins(2)=Texture'BWBP_SKC_Tex.SRX.SRX-StockBlack'
+    Skins(3)=Texture'BWBP_SKC_Tex.SRX.SRX-Irons'
+    Skins(4)=Texture'BWBP_SKC_Tex.SRX.SRX-Holo'
+    Skins(5)=Texture'BWBP_SKC_Tex.SRX.SRX-Cable'
+    Skins(6)=Texture'BWBP_SKC_Tex.SRX.SRX-Plating'
+    Skins(7)=Texture'BWBP_SKC_Tex.SRX.SRX-Barrel'
+    Skins(8)=Texture'BWBP_SKC_Tex.SRX.SRX-Misc'
+    Skins(9)=Texture'BWBP_SKC_Tex.SRX.SRX-Muzzle'
     Skins(10)=Texture'UCGeneric.SolidColours.Black'
-    Skins(11)=Texture'BWBP_OP_Tex.SRX.SRX-ScreenMask'
-    Skins(12)=Shader'BWBP_OP_Tex.SRX.SRX-Reticle-S'
-    Skins(13)=Texture'BWBP_OP_Tex.SRX.SRX-Supp'
+    Skins(11)=Texture'BWBP_SKC_Tex.SRX.SRX-ScreenMask'
+    Skins(12)=Shader'BWBP_SKC_Tex.SRX.SRX-Reticle-S'
+    Skins(13)=Texture'BWBP_SKC_Tex.SRX.SRX-Supp'
     Skins(14)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalRed'
 	Skins(15)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 }

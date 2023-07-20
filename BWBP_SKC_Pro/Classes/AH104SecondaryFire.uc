@@ -167,31 +167,6 @@ simulated function DestroyEffects()
 		MuzzleFlame.Destroy();
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-	FS.DamageInt = class'AH104FlameProjectile'.default.Damage;
-	FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = 1;
-    FS.LimbMult = 1;
-
-	FS.DPS = FS.DamageInt / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"checks/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max:"@(3000 / 52.5)@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
 	FlameEndSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopEnd',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
@@ -201,14 +176,14 @@ defaultproperties
 	FireChaos=0.050000
 	bPawnRapidFireAnim=True
 	FireRate=0.050000
-	AmmoClass=Class'BallisticProV55.BallisticProV55.Ammo_FlamerGas'
+	AmmoClass=Class'BallisticProV55.Ammo_FlamerGas'
 	AmmoPerFire=0
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.350000)
 	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameDryFire',Volume=1.350000)
 	ShakeRotMag=(X=64.000000,Y=64.000000,Z=64.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-10.000000)
+	ShakeOffsetMag=(X=-8.000000)
 	ShakeOffsetRate=(X=-1000.000000)
 	ShakeOffsetTime=1.500000
 	WarnTargetPct=0.200000

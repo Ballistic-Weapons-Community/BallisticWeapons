@@ -36,7 +36,6 @@ simulated function FlashMuzzleFlash(byte Mode)
 			Spawn(class'MRT6Smoke',,, MuzzleFlash.Location, R);
 		MuzzleFlash.Trigger(self, Instigator);
 	}
-
 }
 
 // Fling out shell casing
@@ -46,13 +45,13 @@ simulated function EjectBrass(byte Mode)
 	{
 		BrassBone = 'EjectorR';
 		BrassClass = Class'Brass_M290Right';
-		super.EjectBrass(Mode);
+		super.EjectBrass(0);
 	}
 	if (Mode == 0 || Mode == 1)
 	{
 		BrassBone = 'EjectorR';
 		BrassClass = Class'Brass_M290Left';
-		super.EjectBrass(Mode);
+		super.EjectBrass(0);
 	}
 }
 
@@ -71,18 +70,18 @@ function M290UpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     FireClass=Class'BallisticProV55.M290PrimaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
+     WeaponClass=class'M290Shotgun'
+     MuzzleFlashClass=class'MRT6FlashEmitter'
+     AltMuzzleFlashClass=class'MRT6FlashEmitter'
+     ImpactManager=class'IM_Shell'
      AltFlashBone="tip2"
      FlashScale=3.500000
-     BrassClass=Class'BallisticProV55.Brass_M290Left'
+     BrassClass=class'Brass_M290Left'
      BrassMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+     TracerClass=class'TraceEmitter_Shotgun'
      TracerChance=0.500000
      CockingAnim="Cock_Pump"
      CockAnimRate=1.700000

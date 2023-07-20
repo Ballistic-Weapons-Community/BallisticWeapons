@@ -18,9 +18,10 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=2
 		Chaos=0.01
+		Heat=0.15
 		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
 	End Object
@@ -44,9 +45,10 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=10
 		Chaos=0.01
+		Heat=0.25
 		Inaccuracy=(X=512,Y=512)
 		WarnTargetPct=0.200000
 	End Object
@@ -65,15 +67,15 @@ defaultproperties
     Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams
         TraceRange=(Min=160.000000,Max=160.000000)
         Damage=20
-		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeChomped'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeChomped'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeChomped'
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
         HookStopFactor=1.500000
         HookPullForce=150.000000
         WarnTargetPct=0.05
 		FlashScaleFactor=0.500000
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-ChompStart',Volume=0.750000,Radius=256.000000)
     End Object
     
     Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -128,12 +130,12 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=15
+		InventorySize=10
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
-		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
+		//SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
 		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)
@@ -148,6 +150,49 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=Super_Industrial
+		Index=0
+		CamoName="Industrial"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Green
+		Index=1
+		CamoName="OD Green"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainGreen",Index=3,AIndex=4,PIndex=4)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Black
+		Index=2
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainBlack",Index=3,AIndex=4,PIndex=4)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Quantum
+		Index=3
+		CamoName="Quantum"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainGreen",Index=3,AIndex=4,PIndex=4)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Super_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SuperchargerCamos.Supercharger-MainGreen",Index=3,AIndex=4,PIndex=4)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'Super_Industrial'
+	Camos(1)=WeaponCamo'Super_Green'
+	Camos(2)=WeaponCamo'Super_Black'
+	//Camos(3)=WeaponCamo'Super_Quantum'
+	//Camos(4)=WeaponCamo'Super_Gold'
 }

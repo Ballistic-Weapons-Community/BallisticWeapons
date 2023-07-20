@@ -34,7 +34,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 		E23PrimaryFire(FireMode[0]).SGFireCount = 9;
 	E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	if (Laser == None)
@@ -62,7 +62,6 @@ simulated function ClientSwitchLaser(bool bNewLaserOn)
 		return;
 
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 
 	if (!bLaserOn)
 		KillLaserDot();
@@ -74,7 +73,7 @@ simulated function SwitchLaser(bool bNewLaserOn)
 		return;
 
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = bLaserOn || default.bUseNetAim;
+
 	ClientSwitchLaser(bLaserOn);
 
 	if (Role == ROLE_Authority && ThirdPersonActor != None)
@@ -258,37 +257,18 @@ simulated event WeaponTick(float DT)
 		SetNVLight(false);
 }
 
-simulated event RenderOverlays (Canvas C)
+simulated event DrawFPWeapon(Canvas C)
 {
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		DrawLaserSight(C);
-		return;
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
+	Super.DrawFPWeapon(C);
+
+	DrawLaserSight(C);
+}
+
+simulated function DrawScopeOverlays(Canvas C)
+{
 	DrawLaserSight(C);
 	
-	C.ColorModulate.W = 1;
-
-    if (ScopeViewTex != None)
-    {
-		C.SetPos(C.OrgX, C.OrgY);
-   		C.SetDrawColor(255,255,255,255);
-    	C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY * 1.33)/2, C.SizeY, 0, 0, 1, 1024);
-
-        C.SetPos((C.SizeX - C.SizeY*1.33)/2, C.OrgY);
-        C.DrawTile(ScopeViewTex, C.SizeY * 1.33, C.SizeY, 0, 0, 1024, 1024);
-
-        C.SetPos(C.SizeX - (C.SizeX - C.SizeY*1.33)/2, C.OrgY);
-        C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY * 1.33)/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function SetNVLight(bool bOn)
@@ -454,7 +434,7 @@ defaultproperties
 	BigIconCoords=(Y1=36,Y2=225)
 	SightFXClass=Class'BallisticProV55.E23ClipEffect'
 	SightFXBone="Clip"
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_RapidProj=True
 	bWT_Energy=True
 	ManualLines(0)="Series mode fires a continuous stream of high damage projectiles, which gain damage over range.|Multi mode fires five projectiles simultaneously in a spread pattern, mimicking a shotgun.|Sniper mode fires a very fast projectile which is weak up close but quickly gains damage over range."
@@ -463,7 +443,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;25.0;0.9;80.0;0.2;0.4;0.1")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
-	ReloadAnimRate=1.250000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipIn')
 	ClipInFrame=0.700000
@@ -484,12 +464,11 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
     NDCrosshairChaosFactor=1.000000
 	NDCrosshairScaleFactor=1.000000
-	SightPivot=(Pitch=256)
-	SightOffset=(X=-8.000000,Z=9.300000)
-	SightDisplayFOV=25.000000
-	ParamsClasses(0)=Class'E23WeaponParams'
+
+	ParamsClasses(0)=Class'E23WeaponParamsComp'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	ParamsClasses(2)=Class'E23WeaponParamsRealistic'
+    ParamsClasses(3)=Class'E23WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
 	SelectAnimRate=1.250000
@@ -504,11 +483,15 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=12
 	PickupClass=Class'BallisticProV55.E23Pickup'
-	PlayerViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
+
+	PlayerViewOffset=(X=3,Y=6.00,Z=-8.00)
+	SightOffset=(X=15,Z=4)
+
 	AttachmentClass=Class'BallisticProV55.E23Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.VPR.SmallIcon_VPR'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="E-23 'ViPeR' Plasma Rifle"
+	ScopeXScale=1.33
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=64
@@ -516,7 +499,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_VPR'
-	DrawScale=0.200000
+	DrawScale=0.3
 	bFullVolume=True
 	SoundRadius=32.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

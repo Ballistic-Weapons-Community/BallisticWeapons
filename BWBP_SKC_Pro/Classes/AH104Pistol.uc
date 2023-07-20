@@ -252,7 +252,7 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		AH104Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	OnLaserSwitched();
@@ -274,7 +274,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -391,12 +390,6 @@ simulated event RenderOverlays(Canvas C)
 		DrawLaserSight(C);
 }
 
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 simulated event AnimEnd (int Channel)
 {
     local name Anim;
@@ -429,20 +422,6 @@ simulated function bool HasAmmo()
 			return true;
 	return false;	//This weapon is empty
 }
-
-// Change some properties when using sights...
-/*simulated function SetScopeBehavior()
-{
-	AdjustControlProperties();
-	super.SetScopeBehavior();
-
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	if (bScopeView)
-	{
-		ViewRecoilFactor = 0.3;
-		ChaosDeclineTime *= 1.5;
-	}
-}*/
 
 // AI Interface =====
 // choose between regular or alt-fire
@@ -493,7 +472,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.AH104.BigIcon_AH104'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bNoCrosshairInScope=True
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Draw')
@@ -509,29 +488,31 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Laser-Auto",bUnavailable=True,Value=7.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=-30.000000,Y=-0.800000,Z=23.000000)
-	SightDisplayFOV=40.000000
 	GunLength=4.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),StartSize1=61,StartSize2=62)
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
-	ParamsClasses(0)=Class'AH104PistolWeaponParamsArena'
+	ParamsClasses(0)=Class'AH104PistolWeaponParamsComp'
 	ParamsClasses(1)=Class'AH104PistolWeaponParamsClassic'
 	ParamsClasses(2)=Class'AH104PistolWeaponParamsRealistic'
+    ParamsClasses(3)=Class'AH104PistolWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AH104PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AH104SecondaryFire'
 	PutDownTime=1.000000
 	BringUpTime=1.300000
 	CockingBringUpTime=2.600000
 	SelectForce="SwitchToAssaultRifle"
-	Description="AH-104 'Hellfire' Handcannon||Manufacturer: Enravion Combat Solutions|Primary: HEAP Rounds|Secondary: Laser Sight||'The handcannon of the future.' Those were the words of Enravion as they publically released this modified version of the AM67. Nicknamed the 'Pounder' for its potent .600 explosive armor piercing rounds; the AH104 can legally carry the name handcannon. Its immense stopping power and anti-armor capability make this weapon a favorite of military leaders and personnel across the worlds. The full-steel AH104 is known to be absurdly heavy (12 lbs unloaded) in order to compensate for the power of its large rounds and cannot be dual wielded. It also comes equipped with a laser targeting system in place of the usual AM67 flash bulb."
+	Description="AH-104 'Hellfire' Handcannon||Manufacturer: Enravion Combat Solutions|Primary: HEAP Rounds|Secondary: Underbarrel Flamethrower||'The handcannon of the future.' Those were the words of Enravion as they publically released this modified version of the AM67. Nicknamed the 'Pounder' for its potent .600 explosive armor piercing rounds; the AH104 can legally carry the name handcannon. Its immense stopping power and anti-armor capability make this weapon a favorite of military leaders and personnel across the worlds. The full-steel AH104 is known to be absurdly heavy (12 lbs unloaded) in order to compensate for the power of its large rounds and cannot be dual wielded. The new Hellfire variant has a new under barrel flamethrower in lieu of the standard flash bulb from the original AM67 after hearing stories of the Ice Hogs using makeshift flamethrowers taped to the original AH04 to overheat the Cryons on Kalendra."
 	Priority=162
 	bShowChargingBar=True
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=3
+	InventoryGroup=2
 	GroupOffset=12
 	PickupClass=Class'BWBP_SKC_Pro.AH104Pickup'
-	PlayerViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
-	BobDamping=2.300000
+
+	PlayerViewOffset=(X=7.00000,Y=4.50000,Z=-6.000000)
+	SightOffset=(X=-11.50000,Y=0,Z=2.030000)
+	SightBobScale=0.4f
+
 	AttachmentClass=Class'BWBP_SKC_Pro.AH104Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.AH104.SmallIcon_AH104'
 	IconCoords=(X2=127,Y2=31)
@@ -543,5 +524,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AH104'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

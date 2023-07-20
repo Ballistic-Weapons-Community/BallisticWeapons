@@ -10,11 +10,12 @@ class DTZ250FireTrap extends DT_BWFire;
 
 defaultproperties
 {
-     DeathStrings(0)="%o swam in %k's fire."
-     DeathStrings(1)="%k's lurking fire found a victim in %o."
-     DeathStrings(2)="%o foolishly stumbled into %k's raging inferno."
-     DeathStrings(3)="%k left a fiery surprise for %o to find."
+     DeathStrings(0)="%o dipped %vh toes into %k's puddle of hellfire before being cremated."
+     DeathStrings(1)="%k laid %kh trap for %o to fall into perfectly, shame %ve got overcooked."
+     DeathStrings(2)="%o tripped into %k's patch of fire, what a clumsy fool."
+     DeathStrings(3)="%k's Z250 managed to transform %o into a roasted turkey after burning %vm."
      BloodManagerName="BallisticProV55.BloodMan_FireExploded"
+     SimpleKillString="Z250 Gas Explode"
      bIgnoredOnLifts=True
      InvasionDamageScaling=1.500000
      DamageIdent="Machinegun"

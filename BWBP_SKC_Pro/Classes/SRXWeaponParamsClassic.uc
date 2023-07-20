@@ -25,7 +25,8 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 		FlashScaleFactor=1.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Pitch=0.900000,Volume=1.500000)
+		//FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire3',Pitch=0.900000,Volume=1.500000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 		Recoil=140.000000
 		Chaos=0.025000
 		Inaccuracy=(X=1,Y=1)
@@ -108,6 +109,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Attach AMP"
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -177,16 +179,25 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=15
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sight"
+		//Attachments
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.SRX.SRX-Rifle',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.SRX.SRX-Stock',Index=2) //This also sets the tech bits invisible AFTER camo setting in gun class
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
+		SightOffset=(X=0,Y=0,Z=2.60)
+		//Function
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=20
-		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
-		SightPivot=(Pitch=-128,Yaw=16)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		ViewOffset=(X=9,Y=7.00,Z=-4)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsInc'
 		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAcid'
@@ -196,8 +207,142 @@ defaultproperties
 		FireParams(2)=FireParams'ClassicPrimaryFireParamsAcid'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
-	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_RDS
+		//Layout core
+		Weight=30
+		LayoutName="Red Dot Sight"
+		LayoutTags="optic"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
+		//SightPivot=(Pitch=-128,Yaw=16)
+		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
+		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
+		//Function
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		bNeedCock=True
+		MagAmmo=20
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		ViewOffset=(X=9,Y=7.00,Z=-4)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsInc'
+		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAcid'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsInc'
+		FireParams(2)=FireParams'ClassicPrimaryFireParamsAcid'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'ClassicParams_Irons'
+	Layouts(1)=WeaponParams'ClassicParams_RDS'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=SRX_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Wood
+		Index=1
+		CamoName="Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-RifleV2",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockV2",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-IronsV2",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-HoloV2",Index=4)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-CableV2",Index=5)
+		WeaponMaterialSwaps(6)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-PlatingV2",Index=6)
+		WeaponMaterialSwaps(7)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-BarrelV2",Index=7)
+		WeaponMaterialSwaps(8)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-MiscV2",Index=8)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Desert
+		Index=2
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-RifleTan",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.SRX.SRX-StockBlack',Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-IronsV2",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-HoloV2",Index=4)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-CableV2",Index=5)
+		WeaponMaterialSwaps(6)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-PlatingTan",Index=6)
+		WeaponMaterialSwaps(7)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-BarrelV2",Index=7)
+		WeaponMaterialSwaps(8)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-MiscV2",Index=8)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Urban
+		Index=3
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-RifleUrban",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockUrban",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-IronsV2",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-HoloV2",Index=4)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-CableV2",Index=5)
+		WeaponMaterialSwaps(6)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-PlatingV2",Index=6)
+		WeaponMaterialSwaps(7)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-BarrelV2",Index=7)
+		WeaponMaterialSwaps(8)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-MiscV2",Index=8)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_Jungle
+		Index=4
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-RifleJungle",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockJungle",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-IronsV2",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-HoloV2",Index=4)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-CableV2",Index=5)
+		WeaponMaterialSwaps(6)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-PlatingV2",Index=6)
+		WeaponMaterialSwaps(7)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-BarrelV2",Index=7)
+		WeaponMaterialSwaps(8)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-MiscV2",Index=8)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_RedWinter
+		Index=5
+		CamoName="Red Winter"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-RiflePatriot",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockRedCamo",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-IronsV2",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-HoloV2",Index=4)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-CableV2",Index=5)
+		WeaponMaterialSwaps(6)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-PlatingV2",Index=6)
+		WeaponMaterialSwaps(7)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-BarrelV2",Index=7)
+		WeaponMaterialSwaps(8)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-MiscV2",Index=8)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRX_RedTiger
+		Index=6
+		CamoName="Red Tiger"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-RifleTiger",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-StockRedBlack",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-IronsV2",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-HoloV2",Index=4)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-CableV2",Index=5)
+		WeaponMaterialSwaps(6)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-PlatingV2",Index=6)
+		WeaponMaterialSwaps(7)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-BarrelV2",Index=7)
+		WeaponMaterialSwaps(8)=(MaterialName="BWBP_Camos_Tex.SRXCamos.SRX-MiscV2",Index=8)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'SRX_Gray'
+	Camos(1)=WeaponCamo'SRX_Wood'
+	Camos(2)=WeaponCamo'SRX_Desert'
+	Camos(3)=WeaponCamo'SRX_Urban'
+	Camos(4)=WeaponCamo'SRX_Jungle'
+	Camos(5)=WeaponCamo'SRX_RedWinter'
+	Camos(6)=WeaponCamo'SRX_RedTiger'
 }

@@ -87,8 +87,6 @@ simulated function SwitchWeaponMode (byte NewMode)
      	//FlashScaleFactor=1.5;
      	XInaccuracy=35.000000;
      	YInaccuracy=35.000000;
-		//CutOffDistance=4096;
-		//CutOffStartRange=2048;
 	}
 	
 	else
@@ -103,8 +101,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		bCockAfterFire=False;
      	XInaccuracy=default.XInaccuracy;
      	YInaccuracy=default.YInaccuracy;
-		//CutOffDistance=	Default.CutOffDistance;
-		//CutOffStartRange=Default.CutOffStartRange;
 	}
 }
 
@@ -121,15 +117,10 @@ defaultproperties
      ClassicFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Classic'
      UltraFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Ultra2'
      XR4FireSound=Sound'BWBP_SKC_Sounds.XR4.XR4-Fire'
-     CutOffDistance=1536.000000
-     CutOffStartRange=1024.000000
      TraceCount=7
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=2560.000000,Max=2560.000000)
-     Damage=13.000000
-
-     RangeAtten=0.250000
      DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
@@ -150,11 +141,11 @@ defaultproperties
      FireEndAnim=
      FireAnimRate=1.500000
      FireRate=0.300000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_SKASShells'
+     AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
+     ShakeOffsetMag=(X=-12.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      BotRefireRate=0.800000

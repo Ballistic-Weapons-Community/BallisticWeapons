@@ -81,13 +81,14 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 function AdjustSpeed()
 {
-	Velocity = Vector(Rotation) * ((default.Speed * 0.25) + (default.Speed * 0.75 * AcidLoad));
+	Velocity = Vector(Rotation) * (default.Speed - (default.Speed * 0.5 * AcidLoad));
 }
 
 defaultproperties
 {
-    DetonateOn=DT_Impact
-    PlayerImpactType=PIT_Detonate
+    WeaponClass=Class'BallisticProV55.A500Reptile'
+    ArmedDetonateOn=DT_Impact
+    ArmedPlayerImpactType=PIT_Detonate
     bNoInitialSpin=True
     bAlignToVelocity=True
     DetonateDelay=1.000000

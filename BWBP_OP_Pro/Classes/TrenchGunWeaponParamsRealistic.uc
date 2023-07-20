@@ -68,7 +68,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000	
-        TargetState="Shotgun"
+        TargetState="ShotgunZap"
 	FireEffectParams(0)=ShotgunEffectParams'RealisticElectroPrimaryEffectParams'
 	End Object
 
@@ -86,7 +86,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DT_TrenchFire'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchFireHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchFire'
-		MuzzleFlashClass=Class'BWBP_OP_Pro.ARFlashEmitter'
+		MuzzleFlashClass=Class'BWBP_OP_Pro.RCS715FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)
 		Recoil=1462.000000
@@ -111,7 +111,7 @@ defaultproperties
 	// PRIMARY FIRE - FRAG-12
 	//=================================================================	
 		
-	Begin Object Class=ProjectileEffectParams Name=RealisticFragPrimaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=RealisticFragPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.TrenchGunRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2000.000000
@@ -142,7 +142,7 @@ defaultproperties
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000	
         TargetState="Projectile"
-	FireEffectParams(0)=ProjectileEffectParams'RealisticFragPrimaryEffectParams'
+	FireEffectParams(0)=GrenadeEffectParams'RealisticFragPrimaryEffectParams'
 	End Object
 	
 	//=================================================================
@@ -202,30 +202,25 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=RealisticParams
-		ViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
-		SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
-		SightPivot=(Pitch=256)
+		//ViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
+		//SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=6
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=2
-		WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000,bUnavailable=True)
-		WeaponModes(1)=(ModeName="Ammo: Electro",Value=1.000000)
-		WeaponModes(2)=(ModeName="Ammo: Cryogenic",Value=1.000000,bUnavailable=True)
-		WeaponModes(3)=(ModeName="Ammo: Dragon",Value=1.000000)
-		WeaponModes(4)=(ModeName="Ammo: FRAG-12",Value=1.000000)
-		InitialWeaponMode=4
+		WeaponModes(0)=(ModeName="Ammo: Electro",Value=1.000000)
+		WeaponModes(1)=(ModeName="Ammo: Dragon",Value=1.000000)
+		WeaponModes(2)=(ModeName="Ammo: FRAG-12",Value=1.000000)
+		InitialWeaponMode=2
 		WeaponName="BR-112 12g Customized Trenchgun"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticExploPrimaryFireParams'
-		FireParams(1)=FireParams'RealisticElectroPrimaryFireParams'
-		FireParams(2)=FireParams'RealisticElectroPrimaryFireParams'
-		FireParams(3)=FireParams'RealisticDragonPrimaryFireParams'
-		FireParams(4)=FireParams'RealisticFRAGPrimaryFireParams'
+		FireParams(0)=FireParams'RealisticElectroPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticDragonPrimaryFireParams'
+		FireParams(2)=FireParams'RealisticFRAGPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'RealisticParams'

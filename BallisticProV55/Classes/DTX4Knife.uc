@@ -18,7 +18,7 @@ defaultproperties
      DamageIdent="Melee"
 	 BlockFatiguePenalty=0.1
      AimDisplacementDamageThreshold=40
-     AimDisplacementDuration=0.5
+     AimDisplacementDuration=0.50
      DamageDescription=",Slash,Stab,"
      WeaponClass=Class'BallisticProV55.X4Knife'
      DeathString="%k cut up %o like a paper-shredder with %kh X4 knife."

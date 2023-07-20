@@ -167,6 +167,61 @@ simulated function ShowTeamScorePassA(Canvas C)
 		DrawNumericWidgetAsTiles (C, TeleportSprNum, DigitsBig);
 }
 
+simulated function String GetInfoString()
+{
+	local string InfoString;
+	local int	 PTeam;
+
+	if ( ASGRI == None )
+		return NoGameReplicationInfoString;
+
+	if ( ASGRI.RoundWinner != ERW_None )
+	{
+		return ASGRI.GetRoundWinnerString();
+		/*
+		if ( ASGRI.IsPracticeRound() )
+			return 	class'ScoreBoard_Assault'.default.PracticeRoundOver;
+
+
+		if ( PTeam == ASGRI.RoundWinner )
+			InfoString = class'ScoreBoard_Assault'.default.YouWonRound;
+		else
+			InfoString = class'ScoreBoard_Assault'.default.YouLostRound;
+
+		return InfoString;
+		*/
+	}
+
+    if ( GUIController(PlayerOwner.Player.GUIController).ActivePage!=None)
+   		return AtMenus;
+
+	if ( ASPRI != None && ASPRI.bAutoRespawn )
+	{
+		InfoString = class'ScoreBoard_Assault'.default.AutoRespawn;
+		InfoString = InfoString @ ASGRI.ReinforcementCountDown;
+		return InfoString;
+	}
+
+	if ( PawnOwner == None )
+		PTeam = PlayerOwner.GetTeamNum();
+	else
+		PTeam = PawnOwner.GetTeamNum();
+
+	if (ASGRI.IsDefender(PTeam) && ASGRI.ReinforcementCountDown > 0 && !PlayerOwner.IsInState('PlayerWaiting') )
+	{
+		if ( PlayerOwner.IsDead() )
+			InfoString = class'ScoreBoard_Assault'.default.WaitForReinforcements;
+		else
+			InfoString = class'ScoreBoard_Assault'.default.WaitingToSpawnReinforcements;
+
+		InfoString = InfoString @ ASGRI.ReinforcementCountDown;
+	}
+	else
+		InfoString = super(HudCTeamDeathMatch).GetInfoString();
+
+	return InfoString;
+}
+
 function DisplayEnemyName(Canvas C, PlayerReplicationInfo PRI)
 {
   PlayerOwner.ReceiveLocalizedMessage(Class'UTComp_PlayerNameMessage',0,PRI);

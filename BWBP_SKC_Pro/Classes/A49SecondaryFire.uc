@@ -45,7 +45,7 @@ function DoFireEffect()
 /*
 simulated function ApplyRecoil()
 {
-	if (A49SkrithBlaster(BW).BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		if (BW != None)
 			BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
@@ -63,6 +63,8 @@ simulated function ApplyRecoil()
 	}
 }*/
 
+/*
+FIXME: Special fire. Needs its own fire effect params class to do that.
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -81,6 +83,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {
@@ -92,7 +95,7 @@ defaultproperties
     ShakeRotMag=(X=128.000000,Y=64.000000)
     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
     ShakeRotTime=2.000000
-    ShakeOffsetMag=(X=-30.000000)
+    ShakeOffsetMag=(X=-12.000000)
     ShakeOffsetRate=(X=-1000.000000)
     ShakeOffsetTime=2.000000
     BotRefireRate=0.900000

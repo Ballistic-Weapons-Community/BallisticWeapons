@@ -10,6 +10,7 @@ class BX5Attachment extends BallisticAttachment;
 
 defaultproperties
 {
+	WeaponClass=class'BX5Mine'
      BrassMode=MU_None
      InstantMode=MU_None
      FlashMode=MU_None

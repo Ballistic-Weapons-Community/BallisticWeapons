@@ -158,7 +158,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
      End Object
-     Emitters(0)=BeamEmitter'BallisticProV55.HVCMk9_TrackingZap.BeamEmitter1'
+     Emitters(0)=BeamEmitter'BallisticProV55.HVCMk9_TrackingZapClassic.BeamEmitter1'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter0
          BeamDistanceRange=(Min=400.000000,Max=1000.000000)
@@ -181,7 +181,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
      End Object
-     Emitters(1)=BeamEmitter'BallisticProV55.HVCMk9_TrackingZap.BeamEmitter0'
+     Emitters(1)=BeamEmitter'BallisticProV55.HVCMk9_TrackingZapClassic.BeamEmitter0'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter2
          BeamEndPoints(0)=(offset=(Y=(Min=-1000.000000,Max=-1000.000000)),Weight=1.000000)
@@ -199,7 +199,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
      End Object
-     Emitters(2)=BeamEmitter'BallisticProV55.HVCMk9_TrackingZap.BeamEmitter2'
+     Emitters(2)=BeamEmitter'BallisticProV55.HVCMk9_TrackingZapClassic.BeamEmitter2'
 
      bNoDelete=False
 }

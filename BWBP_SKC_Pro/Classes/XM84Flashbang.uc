@@ -60,6 +60,93 @@ simulated function CheckNoGrenades()
 		PlayAnim(SelectAnim, 1, 0.0);
 }
 
+// Hurt radius that uses delayed damage and makes sure if instigator is hit, he'll go last
+// Spawns an actor corrupter here
+simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation )
+{
+	local actor Victims;
+	local float damageScale, dist;
+	local vector dir;
+	local bool bHitInstigator;
+	local XM84ActorCorrupt PF;
+
+	if( bHurtEntry )
+		return;
+
+	bHurtEntry = true;
+	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
+	{
+		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
+		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) )
+		{
+			if (Victims == Instigator && Instigator != None)
+			{
+				bHitInstigator=true;
+				continue;
+			}
+			dir = Victims.Location - HitLocation;
+			dist = FMax(1,VSize(dir));
+			dir = dir/dist;
+			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			if ( Instigator == None || Instigator.Controller == None )
+				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+			class'BallisticDamageType'.static.GenericHurt
+			(
+				Victims,
+				damageScale * DamageAmount,
+				Instigator,
+				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				(damageScale * Momentum * dir),
+				DamageType
+			);
+
+			PF = Spawn(class'XM84ActorCorrupt',self, ,Victims.Location);
+			PF.Instigator = Instigator;
+
+			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
+				PF.InstigatorController = Instigator.Controller;
+			PF.Initialize(Victims);
+			
+			if (Victims != None)
+				ApplySlowdown(Pawn(Victims), DamageAmount/4);
+		}
+	}
+	if (bHitInstigator)
+	{
+		Victims = Instigator;
+		dir = Victims.Location - HitLocation;
+		dist = FMax(1,VSize(dir));
+		dir = dir/dist;
+		if ( Instigator == None || Instigator.Controller == None )
+			Victims.SetDelayedDamageInstigatorController( InstigatorController );
+		class'BallisticDamageType'.static.GenericHurt
+		(
+			Victims,
+			DamageAmount*5, //More lethal to holder
+			Instigator,
+			Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+			(1 * Momentum * dir),
+			DamageType
+		);
+
+			PF = Spawn(class'XM84ActorCorrupt',self, ,Victims.Location);
+			PF.Instigator = Instigator;
+
+			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
+				PF.InstigatorController = Instigator.Controller;
+			PF.Initialize(Victims);
+			
+			if (Victims != None)
+				ApplySlowdown(Pawn(Victims), DamageAmount/4);
+	}
+	bHurtEntry = false;
+}
+
+function ApplySlowdown(Pawn P, float Duration)
+{
+	class'BCSprintControl'.static.AddSlowTo(P, 0.6, Duration);
+}
+
 // AI Interface =====
 function byte BestMode()
 {
@@ -122,12 +209,13 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
+	 bCookable=True
      MatGlow1=Shader'BWBP_SKC_Tex.XM84.XM84-Glow2'
      MatGlow2=Shader'BWBP_SKC_Tex.XM84.XM84-Glow4'
      MatGlow3=Shader'BWBP_SKC_Tex.XM84.XM84-Glow3'
      MatSparks=Shader'BWBP_SKC_Tex.XM84.XM84-Glow'
      FuseDelay=2.000000
-     HeldDamage=110
+     HeldDamage=45
      HeldRadius=350
      HeldMomentum=75000
      HeldDamageType=Class'BWBP_SKC_Pro.DTXM84Held'
@@ -137,7 +225,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.XM84.BigIcon_XM84'
      BigIconCoords=(Y1=12,Y2=255)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -147,10 +235,11 @@ defaultproperties
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-	 CurrentWeaponMode=1
-	 ParamsClasses(0)=Class'XM84WeaponParams'
+	 CurrentWeaponMode=0
+	 ParamsClasses(0)=Class'XM84WeaponParamsComp'
 	 ParamsClasses(1)=Class'XM84WeaponParamsClassic'
 	 ParamsClasses(2)=Class'XM84WeaponParamsRealistic'
+     ParamsClasses(3)=Class'XM84WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.XM84PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.XM84SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=7,G=255,R=255,A=166),Color2=(B=255,G=26,R=12,A=229),StartSize1=112,StartSize2=210)
@@ -168,14 +257,13 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=0
      PickupClass=Class'BWBP_SKC_Pro.XM84Pickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.XM84Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.XM84.SmallIcon_XM84'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM84 Heavy Tech Grenade"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM84'
-     DrawScale=0.400000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

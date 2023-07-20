@@ -8,6 +8,6 @@ simulated function ClientSideInitialization(PlayerController PC)
 
 defaultproperties
 {
-     FriendlyName="Ballistic Bind Menu V3"
+     FriendlyName="Ballistic Weapons: Bind Menu"
      Description="Adds bind support to Ballistic."
 }

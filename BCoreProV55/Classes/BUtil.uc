@@ -25,6 +25,9 @@
 class BUtil extends Object
 	exportstructs;
 
+const DEG_TO_RAD = 0.017453f;
+const RAD_TO_DEG = 57.29578f;
+
 // These are a quick way for log entries to show the NetMode and Role
 // Just use: class'BUtil'.default.NM[int(level.NetMode)]
 // Or use: class'BUtil'.MyNetMode(level);
@@ -207,6 +210,16 @@ static final function Rotator RSmerp (float Time, Rotator Min, Rotator Max)
 	return R;
 }
 
+static final function float GetClosestDistanceTo(Vector target_point, Vector start_loc, Vector dir)
+{
+    return VSize(target_point - GetClosestPointTo(target_point, start_loc, dir));
+}
+
+static final function Vector GetClosestPointTo(Vector target_point, Vector start_loc, Vector dir)
+{
+    return start_loc + (dir * ((target_point - start_loc) dot dir));
+}
+
 // Increment an int and have it loop within a specified range
 static final function int Loop(int It, int By, optional int Max, optional int Min)
 {
@@ -373,6 +386,12 @@ static final function vector WeaponConvertFOVs (Weapon Weap, vector InVec, float
     OutVec = OutVec >> ViewRot;
 
 	return OutVec + ViewLoc;
+}
+
+// Returns the adjusted FOV necessary to provide a given zoom magnification from some base FOV
+static final function float CalcZoomFOV(float BaseFOV, float ZoomMagnification)
+{
+	return 2.0f * atan(tan((BaseFOV * DEG_TO_RAD)/2) / ZoomMagnification, 1) * RAD_TO_DEG;
 }
 
 static final function float CalculateDistanceAtten(float Distance, float AttenStartDist, float AttenDist)

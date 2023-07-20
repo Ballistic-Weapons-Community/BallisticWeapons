@@ -36,9 +36,6 @@ defaultproperties
      SwipePoints(6)=(Weight=-1)
      FatiguePerStrike=0.035000
      TraceRange=(Min=130.000000,Max=130.000000)
-     Damage=45.000000
-     
-     
      DamageType=Class'BWBP_SKC_Pro.DTX8Knife'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTX8Knife'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTX8Knife'

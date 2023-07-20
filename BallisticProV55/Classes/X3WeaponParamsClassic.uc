@@ -126,8 +126,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Silver"
+		Weight=30
+		
 		PlayerSpeedFactor=1.150000
-        InventorySize=2
+        InventorySize=1
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -137,7 +140,25 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 		AltFireParams(1)=FireParams'ClassicPrimaryFireProjParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=X3_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=X3_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.X3Camos.KnifeA1Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Camos(0)=WeaponCamo'X3_Silver'
+	Camos(1)=WeaponCamo'X3_Black'
 
 }

@@ -342,10 +342,10 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Stealth.BigIcon_PS9M'
 	BigIconCoords=(X1=96,Y1=16,X2=418,Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Heal=True
-	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
+	SpecialInfo(0)=(Info="320.0;15.0;1.0;110.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Pickup')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock',Radius=32.000000)
@@ -357,11 +357,10 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(ModeName="Repeating")
 	bNoCrosshairInScope=True
-	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
-	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'PS9mWeaponParams'
+	ParamsClasses(0)=Class'PS9mWeaponParamsComp'
 	ParamsClasses(1)=Class'PS9mWeaponParamsClassic'
 	ParamsClasses(2)=Class'PS9mWeaponParamsRealistic'
+    ParamsClasses(3)=Class'PS9mWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.PS9mSecondaryFire'
 	PutDownTime=0.700000
@@ -372,10 +371,13 @@ defaultproperties
 	Priority=65
 	HudColor=(B=130,G=100,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=2
+	InventoryGroup=3
 	PickupClass=Class'BWBP_SKC_Pro.PS9mPickup'
-	PlayerViewOffset=(X=3.000000,Y=-5.000000,Z=-8.500000)
-	BobDamping=2.000000
+
+	PlayerViewOffset=(X=5.00,Y=2.50,Z=-5.00)
+	SightOffset=(X=-10.00,Y=0.00,Z=1.15)
+	SightAnimScale=0.35
+
 	AttachmentClass=Class'BWBP_SKC_Pro.PS9mAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Stealth.SmallIcon_PS9M'
 	IconCoords=(X2=127,Y2=31)

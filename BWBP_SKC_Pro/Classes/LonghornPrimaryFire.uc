@@ -8,9 +8,9 @@
 //=============================================================================
 class LonghornPrimaryFire extends BallisticProProjectileFire;
 
-var() 	Actor								MuzzleFlash2;		// The muzzleflash actor
-var	LonghornClusterGrenade	LastGrenade;		// Last grenade fired.
-var	float								ArtilleryDelay;		// Empower grenades launched after this time.
+var() 	Actor			MuzzleFlash2;		// The muzzleflash actor
+var	LonghornGrenade		LastGrenade;		// Last grenade fired.
+var	float				ArtilleryDelay;		// Empower grenades launched after this time.
 
 function ServerPlayFiring()
 {
@@ -29,7 +29,30 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
-	LastGrenade = LonghornClusterGrenade(Proj);
+	LastGrenade = LonghornGrenade(Proj);
+}
+
+simulated state ComboCharge //Explodes manually or after impact
+{
+	function SpawnProjectile (Vector Start, Rotator Dir)
+	{
+		Proj = Spawn (ProjectileClass,,, Start, Dir);
+		Proj.Instigator = Instigator;
+		LonghornGrenade(Proj).DetonationType = DET_ImpactTimed;
+		LastGrenade = LonghornGrenade(Proj);
+	}
+}
+
+simulated state TimedCharge //Explodes regardless of being held
+{
+	function SpawnProjectile (Vector Start, Rotator Dir)
+	{
+		Proj = Spawn (ProjectileClass,,, Start, Dir);
+		Proj.Instigator = Instigator;
+		LonghornGrenade(Proj).DetonationType = DET_ImpactTimed;
+		LonghornGrenade(Proj).bFireReleased=True;
+		LastGrenade = LonghornGrenade(Proj);
+	}
 }
 
 function StopFiring()
@@ -123,8 +146,6 @@ simulated event ModeHoldFire()
             AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         Instigator.DeactivateSpawnProtection();
     }
-    else if (!BW.bUseNetAim && !BW.bScopeView)
-    	ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -188,29 +209,29 @@ static function int GetDPSec() {return default.ProjectileClass.default.Damage / 
 
 defaultproperties
 {
-     ArtilleryDelay=1.250000
-     //bCockAfterFire=True
-     //MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     //FlashScaleFactor=1.500000
-     BrassClass=Class'BWBP_SKC_Pro.Brass_Longhorn'
-     bBrassOnCock=True
-     BrassOffset=(Z=5.000000)
-     //AimedFireAnim="SightFire"
-     //FireRecoil=1024.000000
-     //FirePushbackForce=300.000000
-     //FireChaos=1.000000
-     //BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
-     bFireOnRelease=True
-     //FireRate=0.400000
-	 //FireAnimRate=1.5
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_Longhorn'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     //ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
-     //BotRefireRate=0.500000
-     //WarnTargetPct=0.300000
+	ArtilleryDelay=1.250000
+	//bCockAfterFire=True
+	//MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+	//FlashScaleFactor=1.500000
+	BrassClass=Class'BWBP_SKC_Pro.Brass_Longhorn'
+	bBrassOnCock=True
+	BrassOffset=(Z=5.000000)
+	//AimedFireAnim="SightFire"
+	//FireRecoil=1024.000000
+	//FirePushbackForce=300.000000
+	//FireChaos=1.000000
+	//BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
+	bFireOnRelease=True
+	//FireRate=0.400000
+	//FireAnimRate=1.5
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_Longhorn'
+	ShakeRotMag=(X=128.000000,Y=64.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
+	//ProjectileClass=Class'BWBP_SKC_Pro.LonghornGrenade'
+	//BotRefireRate=0.500000
+	//WarnTargetPct=0.300000
 }

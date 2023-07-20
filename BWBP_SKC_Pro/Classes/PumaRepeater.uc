@@ -224,7 +224,7 @@ simulated function ClientSwitchCannonMode (byte newMode)
 }
 
 
-//Adjusts fire rate properties for close range airburst and blue rapid-firing variant
+//Adjusts fire rate properties for close range airburst
 function ServerAdjustProps(byte newMode)
 {
 	if (!Instigator.IsLocallyControlled())
@@ -380,10 +380,11 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 
 	if (bShieldUp && !bDepleted && !bBroken)
 	{
-    		Instigator.AmbientSound = ChargingSound;
-    		Instigator.SoundVolume = ShieldSoundVolume;
-    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-        		Attachment.ShieldEffect3rd.bHidden = false;
+		//ParamsClasses[GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),3);
+		Instigator.AmbientSound = ChargingSound;
+		Instigator.SoundVolume = ShieldSoundVolume;
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+			Attachment.ShieldEffect3rd.bHidden = false;
 
 		UpdateScreen();
 
@@ -393,16 +394,16 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 	}
 	else
 	{
-
-    		Attachment = ShieldAttachment(ThirdPersonActor);
+		//ParamsClasses[GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),CurrentWeaponMode);
+		Attachment = ShieldAttachment(ThirdPersonActor);
 		Instigator.AmbientSound = None;
-    		Instigator.SoundVolume = Instigator.Default.SoundVolume;
-    
-    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-    		{
-        		Attachment.ShieldEffect3rd.bHidden = true;
-        		StopForceFeedback( "ShieldNoise" );  // jdf
-    		}
+		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+		{
+			Attachment.ShieldEffect3rd.bHidden = true;
+			StopForceFeedback( "ShieldNoise" );  // jdf
+		}
 
 		if (Arc != None)
 			Emitter(Arc).kill();
@@ -708,19 +709,18 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	//if (CamoIndex == 3)
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
-
-	//else if (class<DT_PumaSelf>(DamageType) != none && bShieldUp &&  ShieldPower > 0)
-	//{
-		//Damage = 70;
-		//if (ShieldPower >= 40)
-		//{
-			//Damage = 30;
-        		//Momentum *= -2.00;
-		//}
-		//ShieldPower -= 80;
-    		//ClientTakeHit(80);
-		//return;
-	//}
+	else if (class<DT_PumaSelf>(DamageType) != none && bShieldUp &&  ShieldPower > 0) //Shield Jump
+	{
+		Damage = 70;
+		if (ShieldPower >= 40)
+		{
+			Damage = 30;
+        		Momentum *= -2.00;
+		}
+		ShieldPower -= 80;
+    		ClientTakeHit(80);
+		return;
+	}
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
 	{
 //		ShieldPower = -200;
@@ -830,7 +830,7 @@ defaultproperties
      ShieldSoundVolume=200
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	 BigIconMaterial=Texture'BWBP_SKC_Tex.PUMA.BigIcon_PUMA'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Shotgun=True
      bWT_Machinegun=True
 	 LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
@@ -850,8 +850,6 @@ defaultproperties
      WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation")
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     //SightPivot=(Pitch=150)
-     //SightOffset=(Y=0.250000,Z=16.299999)
      GunLength=48.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.PumaPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.PumaSecondaryFire'
@@ -860,12 +858,17 @@ defaultproperties
      AIRating=0.600000
      CurrentRating=0.600000
      bShowChargingBar=True
+	 SightBobScale=0.3f
      Description="PUMA-77 Repeating Pulse Rifle||Manufacturer: Majestic Firearms 12|Primary: Programmable Smart Round|Secondary: Shield Projector||The Type-77 RPR, better known as the 'PUMA', is one of the more recognizable light grenade launchers on the market. It was used extensively by the UTC before their widespread adoption of the SRAC-21/G during the first Skrith war. This powerful weapon differs from other conventional grenade launchers in that it utilizes specialized fission batteries as ammunition, which both power and act as the carrier of the projectile. The projectiles themselves can be programmed by the side-mounted rangefinding module and allow soldiers to selectively airburst the rounds to hit targets behind cover. The PUMA-77s seen here are equipped with Frontier Tech's lightweight X57 shield projector, which is a reverse-engineered prototype of the Skrith personal energy shields."
      Priority=245
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
-     PlayerViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
+
+     PlayerViewOffset=(X=5.00,Y=4.00,Z=-3.50)
+     SightOffset=(X=-3.00,Y=0.00,Z=2.00)
+	 SightPivot=(Pitch=150)
+
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)
@@ -876,11 +879,12 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-	 ParamsClasses(0)=Class'PUMAWeaponParamsArena'
+	 ParamsClasses(0)=Class'PUMAWeaponParamsComp'
 	 ParamsClasses(1)=Class'PUMAWeaponParamsClassic'
 	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
+     ParamsClasses(3)=Class'PUMAWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
-     DrawScale=0.360000
+     DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.PUMA.PUMA-MainShine'
      Skins(2)=Shader'BWBP_SKC_Tex.PUMA.PUMA-BackShine'

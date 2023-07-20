@@ -22,7 +22,7 @@ defaultproperties
      FlashF=0.100000
      DamageIdent="Streak"
      DamageDescription=",Electro,Hazard"
-     WeaponClass=Class'BWBP_SKC_Pro.HVPCMk66PlasmaCannon'
+     WeaponClass=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
      DeathString="%o was overheated by %k."
      FemaleSuicide="%o melted her hands with the H-VPC."
      MaleSuicide="%o melted his hands with the H-VPC."

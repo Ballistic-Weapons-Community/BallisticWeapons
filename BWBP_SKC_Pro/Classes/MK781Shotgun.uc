@@ -49,7 +49,7 @@ replication
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		StartingGrenades = 6;
 	}
@@ -404,7 +404,6 @@ simulated function SwitchSilencer(bool bNewValue)
 	if (bNewValue)
 	{
 		PlayAnim(SilencerOnAnim);
-		SightZoomFactor = 0.78;
 		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
 	}
 	else
@@ -577,7 +576,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -640,13 +639,13 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.M1014.BigIcon_M1014'
 	BigIconCoords=(Y1=25,Y2=210)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic shotgun fire. Lower overall damage per shot than other shotguns, but good fire rate and tight spread. Spread tightens further with the suppressor employed."
 	ManualLines(1)="Loads an electroshock shell.|Without the suppressor employed, will subsequently generate an electric shot with high power and excellent range.|With the suppressor employed, will generate an arcing bolt with fast travel time and strong impact damage. Deals lesser damage in a radius around the point of impact."
 	ManualLines(2)="The Weapon Function key attaches the suppressor, which removes the flash, reduces recoil, quietens the fire sound of the primary and changes the functionality of the weapon. Due to the suppressor's length, the weapon will offset while jumping if it is attached.||Effective at medium range."
-	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
+	SpecialInfo(0)=(Info="300.0;25.0;0.5;60.0;0.6;1.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
@@ -658,21 +657,17 @@ defaultproperties
 	bCanSkipReload=True
 	bShovelLoad=True
 	StartShovelAnim="ReloadStart"
-	StartShovelAnimRate=1.500000
-	ReloadAnimRate=1.5
 	EndShovelAnim="ReloadEnd"
-	EndShovelAnimRate=1.500000
 	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
 	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
-	SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
-	SightDisplayFOV=20.000000
 	GunLength=48.000000
-	ParamsClasses(0)=Class'MK781WeaponParams'
+	ParamsClasses(0)=Class'MK781WeaponParamsComp'
 	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
 	ParamsClasses(2)=Class'MK781WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MK781WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MK781SecondaryFire'
 	PutDownTime=0.500000
@@ -685,8 +680,12 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BWBP_SKC_Pro.MK781Pickup'
-	PlayerViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=15.00,Y=9.00,Z=-11.50)
+	SightOffset=(X=4.20,Y=0.01,Z=6.97)
+	SightAnimScale=0.75
+	SightBobScale=0.35
+
 	AttachmentClass=Class'BWBP_SKC_Pro.MK781Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.M1014.SmallIcon_M1014'
 	IconCoords=(X2=127,Y2=35)
@@ -698,7 +697,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MK781'
-	DrawScale=0.130000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.M1014.M1014-Shine'
 	Skins(2)=Shader'BWBP_SKC_Tex.M1014.M1014-MiscShine'

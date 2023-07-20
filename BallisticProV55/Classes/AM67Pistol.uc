@@ -29,7 +29,8 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+    
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		bLaserVariant=true;
 		FireModeClass[1]=Class'BallisticProV55.AM67SecondaryLaserFire';
@@ -39,7 +40,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		if (AM67Attachment(ThirdPersonActor) != none)
 			AM67Attachment(ThirdPersonActor).bLaserVariant=True;
@@ -141,7 +142,7 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn == bNewLaserOn)
 		return;
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		AM67Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	if (bLaserOn)
@@ -162,7 +163,6 @@ simulated function ClientSwitchLaser()
 	if (!bLaserOn)
 		KillLaserDot();
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -284,15 +284,11 @@ simulated function DrawLaserSight ( Canvas Canvas )
 simulated event RenderOverlays( Canvas Canvas )
 {
 	super.RenderOverlays(Canvas);
+
 	if (IsInState('Lowered'))
 		return;
+
 	DrawLaserSight(Canvas);
-
-}
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 // AI Interface =====
@@ -342,7 +338,7 @@ defaultproperties
 	AIReloadTime=1.500000
 
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_AM67'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	BringUpTime=0.900000
@@ -351,19 +347,19 @@ defaultproperties
 	ClipInFrame=0.650000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
-	CockAnimRate=1.250000
+
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
 	CurrentWeaponMode=0
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	Description="Another of Enravion's fine creations, the AM67 Assault Pistol was designed for close quarters combat against Cryon and Skrith warriors.|Initially constructed before the second war, Enravion produced the AM67, primarily for anti-Cryon operations, but it later proved to perform well in close-quarters combat when terran forces were ambushed by the stealthy Skrith warriors."
-	DrawScale=0.200000
+	DrawScale=0.3
 	FireModeClass(0)=Class'BallisticProV55.AM67PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.AM67SecondaryFire'
 	GroupOffset=6
 	HudColor=(B=25,G=150,R=50)
 	IconCoords=(X2=127,Y2=31)
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_AM67'
-	InventoryGroup=3
+	InventoryGroup=2
 	ItemName="AM67 Assault Pistol"
 
 	LightBrightness=150.000000
@@ -379,11 +375,16 @@ defaultproperties
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_AM67'
-	ParamsClasses(0)=Class'AM67WeaponParams'
+	ParamsClasses(0)=Class'AM67WeaponParamsComp'
 	ParamsClasses(1)=Class'AM67WeaponParamsClassic'
 	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'
+    ParamsClasses(3)=Class'AM67WeaponParamsTactical'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
-	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
+	PlayerViewOffset=(X=20.00,Y=3.00,Z=-8.00)
+	SightOffset=(X=-24,Y=0.06,Z=4.43)
+	SightAnimScale=0.3
+	SightBobScale=0.5f 
+	
 	Priority=24
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	PutDownTime=0.600000
@@ -391,16 +392,15 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(R=0,A=194),Color2=(R=0),StartSize1=80,StartSize2=26)
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
 
-	ReloadAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"
-	SightDisplayFOV=60.000000
 	SightFXClass=Class'BallisticProV55.AM67SightLEDs'
-	SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
+
 	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	bNoCrosshairInScope=True
 	bShouldDualInLoadout=False
+	bUseDualReload=False
 	bShowChargingBar=True
 	bWT_Bullet=True
 }

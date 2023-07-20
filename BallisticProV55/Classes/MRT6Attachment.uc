@@ -6,63 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MRT6Attachment extends HandgunAttachment;
-
-var() class<BallisticShotgunFire>	FireClass;
-
-// Do trace to find impact info and then spawn the effect
-// This should be called from sub-classes
-simulated function InstantFireEffects(byte Mode)
-{
-	local Vector HitLocation, Start, End;
-	local Rotator R;
-	local Material HitMat;
-	local int i;
-	local float XS, YS, RMin, RMax, Range, fX;
-
-	if (Level.NetMode == NM_Client && FireClass != None)
-	{
-		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
-		Start = Instigator.Location + Instigator.EyePosition();
-		for (i=0;i<FireClass.default.TraceCount;i++)
-		{
-			mHitActor = None;
-			Range = Lerp(FRand(), RMin, RMax);
-			R = Rotator(mHitLocation);
-
-			fX = frand();
-			R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-			R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
-
-//			R.Yaw += ((FRand()*XS*2)-XS);
-//			R.Pitch += ((FRand()*YS*2)-YS);
-			End = Start + Vector(R) * Range;
-			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
-			if (mHitActor == None)
-			{
-				DoWaterTrace(Mode, Start, End);
-				SpawnTracer(Mode, End);
-			}
-			else
-			{
-				DoWaterTrace(Mode, Start, HitLocation);
-				SpawnTracer(Mode, HitLocation);
-			}
-
-			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
-				continue;
-
-			if (HitMat == None)
-				mHitSurf = int(mHitActor.SurfaceType);
-			else
-				mHitSurf = int(HitMat.SurfaceType);
-
-			if (ImpactManager != None)
-				ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
-		}
-	}
-}
+class MRT6Attachment extends BallisticShotgunAttachment;
 
 simulated function FlashMuzzleFlash(byte Mode)
 {
@@ -92,7 +36,6 @@ simulated function FlashMuzzleFlash(byte Mode)
 			Spawn(class'MRT6Smoke',,, MuzzleFlash.Location, R);
 		MuzzleFlash.Trigger(self, Instigator);
 	}
-
 }
 
 // Fling out shell casing
@@ -102,13 +45,13 @@ simulated function EjectBrass(byte Mode)
 	{
 		BrassBone = 'EjectorR';
 		BrassClass = Class'Brass_MRT6Right';
-		super.EjectBrass(Mode);
+		super.EjectBrass(0);
 	}
 	if (Mode == 0 || Mode == 1)
 	{
 		BrassBone = 'EjectorR';
 		BrassClass = Class'Brass_MRT6Left';
-		super.EjectBrass(Mode);
+		super.EjectBrass(0);
 	}
 }
 
@@ -127,18 +70,18 @@ function MRT6UpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     FireClass=Class'BallisticProV55.MRT6PrimaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
+     WeaponClass=class'MRT6Shotgun'
+     MuzzleFlashClass=class'MRT6FlashEmitter'
+     AltMuzzleFlashClass=class'MRT6FlashEmitter'
+     ImpactManager=class'IM_Shell'
      AltFlashBone="tip2"
      FlashScale=1.800000
-     BrassClass=Class'BallisticProV55.Brass_MRT6Left'
+     BrassClass=class'Brass_MRT6Left'
      BrassMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+     TracerClass=class'TraceEmitter_MRTsix'
      TracerChance=0.500000
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"

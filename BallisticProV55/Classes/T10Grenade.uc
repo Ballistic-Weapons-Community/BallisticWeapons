@@ -55,13 +55,14 @@ simulated function ExplodeInHand()
 
 defaultproperties
 {
+	 bCookable=True
      FuseDelay=2.000000
      ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
      PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_T10'
      BigIconCoords=(Y1=12,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -71,10 +72,11 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-     CurrentWeaponMode=1
-     ParamsClasses(0)=Class'T10WeaponParams'
+     CurrentWeaponMode=0
+     ParamsClasses(0)=Class'T10WeaponParamsComp'
      ParamsClasses(1)=Class'T10WeaponParamsClassic'
      ParamsClasses(2)=Class'T10WeaponParamsRealistic'
+     ParamsClasses(3)=Class'T10WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.T10PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.T10SecondaryFire'
 	 
@@ -91,12 +93,12 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=6
      PickupClass=Class'BallisticProV55.T10Pickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+     PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.T10Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_T10'
      IconCoords=(X2=127,Y2=31)
      ItemName="T10 Toxic Grenade"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
-     DrawScale=0.400000
+     DrawScale=0.300000
 }

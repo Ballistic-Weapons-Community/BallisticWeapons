@@ -24,7 +24,7 @@ class SK410Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-C-CamoSnow');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-Main');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-Misc');
 	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
 	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
@@ -37,7 +37,7 @@ static function StaticPrecache(LevelInfo L)
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-C-CamoSnow');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-Main');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-Misc');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');

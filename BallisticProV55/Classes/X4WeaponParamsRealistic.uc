@@ -105,11 +105,11 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.150000
-        InventorySize=2
+        InventorySize=1
 		WeaponPrice=150		
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
-		ViewOffset=(X=4.000000,Y=8.000000,Z=-10.000000)
+		//ViewOffset=(X=4.000000,Y=8.000000,Z=-10.000000)
 		WeaponName="X4 Venom Blade"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

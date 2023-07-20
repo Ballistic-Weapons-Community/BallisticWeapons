@@ -6,15 +6,16 @@ defaultproperties
     // PRIMARY/SECONDARY FIRE
     //=================================================================	
 	
-    Begin Object Class=FireEffectParams Name=ArenaEffectParams
+    Begin Object Class=FireEffectParams Name=UniversalEffectParams
         BotRefireRate=2.000000
+        EffectString="Deploy bags"
     End Object
     
-    Begin Object Class=FireParams Name=ArenaFireParams
+    Begin Object Class=FireParams Name=UniversalFireParams
         FireInterval=0.750000
         FireAnim="Place2"
         FireAnimRate=1.300000
-        FireEffectParams(0)=FireEffectParams'ArenaEffectParams'
+        FireEffectParams(0)=FireEffectParams'UniversalEffectParams'
     End Object
 		
 	//=================================================================
@@ -43,14 +44,14 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        PlayerSpeedFactor=1.000000
+		PlayerSpeedFactor=1
         MagAmmo=1
-        InventorySize=2
-		ViewOffset=(X=40.000000,Z=-10.000000)
+        InventorySize=1
+		//ViewOffset=(X=40.000000,Z=-10.000000)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
-        FireParams(0)=FireParams'ArenaFireParams'
-        AltFireParams(0)=FireParams'ArenaFireParams'
+        FireParams(0)=FireParams'UniversalFireParams'
+        AltFireParams(0)=FireParams'UniversalFireParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
 }

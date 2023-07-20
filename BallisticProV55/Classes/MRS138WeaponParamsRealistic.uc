@@ -14,7 +14,8 @@ defaultproperties
 		TraceCount=13
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=20.0
+		//Damage=20.0
+		Damage=15.0
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
@@ -111,23 +112,48 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=11
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=5
 		bMagPlusOne=True
-		ViewOffset=(X=-1.000000,Y=8.500000,Z=-16.000000)
-		SightOffset=(X=-3.000000,Z=17.150000)
+		//ViewOffset=(X=-1.000000,Y=8.500000,Z=-16.000000)
+		//SightOffset=(X=-3.000000,Z=17.150000)
 		SightPivot=(Pitch=0,Yaw=0,Roll=0)
-		ReloadAnimRate=1.250000
-		CockAnimRate=1.400000
-		WeaponName="MRS138 8ga Riot Shotgun"
+		//ReloadAnimRate=1.250000
+		//CockAnimRate=1.400000
+		WeaponName="MRS138 10ga Riot Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=MRS_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MRS_Arctic
+		Index=1
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRS138Camos.MRSArctic-Main-Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MRS_Gold
+		Index=2
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRS138Camos.MRSGold-Main-Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'MRS_Silver'
+	Camos(1)=WeaponCamo'MRS_Arctic'
+	Camos(2)=WeaponCamo'MRS_Gold'
 }

@@ -5,7 +5,7 @@
 //  Originally written by Sergeant_Kelly based on code by DarkCarnivour.
 //  Modified by Azarael.
 //  =============================================================================
-class BulldogPrimaryFire extends BallisticRangeAttenFire;
+class BulldogPrimaryFire extends BallisticProInstantFire;
 
 var() class<actor>			AltBrassClass1;			//Alternate Fire's brass
 var() class<actor>			AltBrassClass2;			//Alternate Fire's brass (whole FRAG-12)
@@ -110,19 +110,9 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-	 CutOffStartRange=2048
-	 CutOffDistance=5120
-	 RangeAtten=0.5
      AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=96.000000
-     
-     Damage=80.000000
-     HeadMult=1.5f
-     LimbMult=0.8f
-     
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DTBulldog'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTBulldogHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'
@@ -147,8 +137,8 @@ defaultproperties
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-5.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetMag=(X=-25.00)
+	ShakeOffsetRate=(X=-500.000000)
      ShakeOffsetTime=2.000000
 	 
 	 // AI

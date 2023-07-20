@@ -10,6 +10,9 @@ class PD97PrimaryShotgunFire extends BallisticProShotgunFire;
 
 simulated function PlayFiring()
 {
+	if (PD97Bloodhound(BW).bNeedRotate)
+		PD97Bloodhound(BW).CycleDrum();
+	
 	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
@@ -33,8 +36,6 @@ simulated function PlayFiring()
 defaultproperties
 {
      //FlashBone="tip3"
-	 CutOffDistance=1536.000000
-     CutOffStartRange=1024.000000
      TraceCount=9
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -69,7 +70,7 @@ defaultproperties
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
+     ShakeOffsetMag=(X=-12.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      BotRefireRate=0.700000

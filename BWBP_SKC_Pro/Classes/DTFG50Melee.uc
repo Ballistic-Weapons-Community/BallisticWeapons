@@ -17,7 +17,7 @@ defaultproperties
      DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBP_SKC_Pro.FG50Machinegun'
      DeathString="%k pummeled %o with %kh FG50 stock."
      FemaleSuicide="%o bashed herself with the FG50."

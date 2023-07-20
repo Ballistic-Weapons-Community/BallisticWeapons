@@ -95,7 +95,7 @@ simulated function PostNetReceive()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		RocketActiveReloadRate = 0.0833;
 		MRLSecondaryFire(FireMode[1]).RocketMultiplier = 60;
@@ -497,7 +497,7 @@ defaultproperties
 	BigMagAmmo=72
 	BigIconMaterial=Texture'BW_Core_WeaponTex.MRL.BigIcon_MRL'
 	BigIconCoords=(Y1=30,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_RapidProj=True
@@ -509,7 +509,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
 	ReloadAnim="Reload1"
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
 	ClipInFrame=0.700000
@@ -518,12 +517,11 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
-	SightDisplayFOV=50.000000
 	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
-	ParamsClasses(0)=Class'MRLWeaponParams'
+	ParamsClasses(0)=Class'MRLWeaponParamsComp'
 	ParamsClasses(1)=Class'MRLWeaponParamsClassic'
 	ParamsClasses(2)=Class'MRLWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MRLWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
 	
@@ -541,8 +539,11 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.MRLPickup'
-	PlayerViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
+
+	PlayerViewOffset=(X=10.000000,Y=8.00,Z=-12.000000)
 	PlayerViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
+	SightOffset=(X=-15.000000,Y=-10.000000,Z=15.00000)
+
 	AttachmentClass=Class'BallisticProV55.MRLAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.MRL.SmallIcon_MRL'
 	IconCoords=(X2=127,Y2=31)

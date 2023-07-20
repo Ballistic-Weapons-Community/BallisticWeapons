@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XRS10PrimaryFire extends BallisticRangeAttenFire;
+class XRS10PrimaryFire extends BallisticProInstantFire;
 
 var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
 var() class<Actor>				SMuzzleFlashClass;
@@ -62,42 +62,14 @@ function ServerPlayFiring()
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
 	CheckClipFinished();
-
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 }
 
 
 //Do the spread on the client side
 function PlayFiring()
 {
-	if (ScopeDownOn == SDO_Fire)
-		BW.TemporaryScopeDown(0.5, 0.9);
-		
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 	
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
@@ -129,26 +101,27 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 
 defaultproperties
 {
-     SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     SFlashBone="tip2"
-     SFlashScaleFactor=1.000000
-     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
-     
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
-     bDryUncock=True
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassOffset=(X=-26.000000,Z=-5.000000)
-     
-	 WaterRangeAtten=0.400000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
-     
-     bPawnRapidFireAnim=True
-     AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=1.000000
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
+	
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
+	bDryUncock=True
+	BrassClass=Class'BallisticProV55.Brass_Pistol'
+	BrassOffset=(X=-26.000000,Z=-5.000000)
+	
+	WaterRangeAtten=0.400000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
+	
+	bPawnRapidFireAnim=True
+	AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
+
+	ShakeRotMag=(X=32.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-60.000000)
+	ShakeOffsetTime=2.000000
 }

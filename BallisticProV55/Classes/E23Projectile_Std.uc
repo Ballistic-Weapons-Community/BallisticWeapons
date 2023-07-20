@@ -84,6 +84,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.E23PlasmaRifle'
      ImpactManager=Class'BallisticProV55.IM_E23Projectile'
      bRandomStartRotation=False
 

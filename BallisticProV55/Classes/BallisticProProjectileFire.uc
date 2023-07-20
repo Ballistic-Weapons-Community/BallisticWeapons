@@ -10,9 +10,9 @@ var bool bNoRandomFire; //don't use random spread by FireChaos because this is a
 simulated function vector GetFireSpread()
 {
 	local float fX;
-    	local Rotator R;
+    local Rotator R;
 
-	if (bNoRandomFire || BW.GameStyleIndex != 0 || BW.bScopeView)
+	if (bNoRandomFire || BW.bScopeView || !class'BallisticReplicationInfo'.static.IsArena())
 		return super.GetFireSpread();
 
 	fX = frand();
@@ -90,11 +90,15 @@ simulated event ModeDoFire()
         if(BallisticTurret(Weapon.Owner) == None && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
-	if (!BW.bScopeView)
-		BW.AddFireChaos(FireChaos * InterpCurveEval(FireChaosCurve, BW.GetFireChaos()));
-    	
-	BW.LastFireTime = Level.TimeSeconds;
-
+	
+	
+	if (BW != None)
+	{
+		if (!BW.bScopeView)
+			BW.AddFireChaos(FireChaos * InterpCurveEval(FireChaosCurve, BW.GetFireChaos()));
+			
+		BW.LastFireTime = Level.TimeSeconds;
+	}
 
     // client
     if (Instigator.IsLocallyControlled())

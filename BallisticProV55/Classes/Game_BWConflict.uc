@@ -46,9 +46,10 @@
 //=============================================================================
 class Game_BWConflict extends xTeamGame
 	config(BallisticProV55)
-	transient
-	HideDropDown
-	CacheExempt;
+	DependsOn(Mut_ConflictLoadout);
+//	transient
+//	HideDropDown
+//	CacheExempt;
 
 var int					RoundCounter, RoundWinner, RoundTime;
 var NavigationPoint		StartA, StartB;
@@ -92,7 +93,7 @@ function BeginRound ()
 		if ( P.bIsPlayer && !P.PlayerReplicationInfo.bOnlySpectator && P.Pawn != None)
 		{
  			P.Pawn.bNoWeaponFiring = false;
-			P.Pawn.GroundSpeed=P.Pawn.default.GroundSpeed;
+			P.Pawn.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 			P.Pawn.WaterSpeed=P.Pawn.default.WaterSpeed;
 			P.Pawn.AirSpeed=P.Pawn.default.AirSpeed;
 			P.Pawn.LadderSpeed=P.Pawn.default.LadderSpeed;
@@ -615,7 +616,7 @@ event InitGame( string Options, out string Error )
 {
 	Super.InitGame(Options, Error);
 	
-	AddMutator("BallisticProV55.Mut_SpatialLoadout", True);
+	AddMutator("BallisticProV55.Mut_ConflictLoadout", True);
 
 	bForceRespawn = true;
 }
@@ -860,8 +861,8 @@ static function FillPlayInfo(PlayInfo PI)
 	PI.AddSetting(default.RulesGroup, "bKeepHealth",		GetDisplayText("bKeepHealth"),     		50, 1, "Check",         ,,     	,);
 	PI.AddSetting(default.RulesGroup, "bKeepWeapons",		GetDisplayText("bKeepWeapons"),			50, 1, "Check",         ,,		,);
 	PI.AddSetting(default.RulesGroup, "bPurgeActors",		GetDisplayText("bPurgeActors"),         50, 1, "Check",         ,,		,True);
-	PI.AddSetting(default.RulesGroup, "WeapListsVar",		GetDisplayText("WeapListsVar"), 		60, 2, "Custom", ";;BallisticProV55.BallisticConflictWeaponMenuPro");
-	PI.AddSetting(default.GameGroup, "ConfigMenuVar",		GetDisplayText("ConfigMenuVar"), 		60, 2, "Custom", ";;BallisticProV55.BallisticConfigMenuPro");
+	PI.AddSetting(default.RulesGroup, "WeapListsVar",		GetDisplayText("WeapListsVar"), 		60, 2, "Custom", ";;BallisticProV55.BallisticConflictWeaponMenu");
+	PI.AddSetting(default.GameGroup, "ConfigMenuVar",		GetDisplayText("ConfigMenuVar"), 		60, 2, "Custom", ";;BallisticProV55.ConfigMenu_Rules");
 }
 
 static event string GetDisplayText( string PropName )
@@ -994,7 +995,7 @@ defaultproperties
      bAlwaysShowLoginMenu=True
      DefaultPlayerClassName="BallisticProV55.BallisticPawn"
      PlayerControllerClassName="BallisticProV55.BallisticPlayer"
-     GameName="BallisticPro: Conflict"
+     GameName="Ballistic Conflict"
      Description="Rival teams prepare for battle and must eliminate the entire enemy team to score!||A round based Ballistic Weapons game where teams start on opposite sides of the map and players have a chance to choose their starting loadout. Dead players don't respawn until the next round. When one team has been completely eliminated the round ends and teams are reset to a starting location.||www.runestorm.com"
      ScreenShotName="BW_Core_WeaponTex.ui.Conflict-Sequence"
      DecoTextName="BallisticProV55.Game_BWConflict"

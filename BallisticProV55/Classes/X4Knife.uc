@@ -52,10 +52,10 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.X4.BigIcon_X4'
      BigIconCoords=(Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Slashes with the knife. Solid damage output and short range."
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
-     ManualLines(2)="The user's movement speed improves with this weapon active."
+     ManualLines(2)=""
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
@@ -64,9 +64,10 @@ defaultproperties
      bNoMag=True
      GunLength=0.000000
      bAimDisabled=True
-     ParamsClasses(0)=Class'X4WeaponParams'
+     ParamsClasses(0)=Class'X4WeaponParamsComp'
      ParamsClasses(1)=Class'X4WeaponParamsClassic'
      ParamsClasses(2)=Class'X4WeaponParamsRealistic'
+     ParamsClasses(3)=Class'X4WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.X4PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X4SecondaryFire'
 	 

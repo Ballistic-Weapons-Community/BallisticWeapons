@@ -1,11 +1,11 @@
 class LightningRifle extends BallisticWeapon;
 
-var float		ChargePower, ChargeIndex, MaxCharge;	//Charge power of secondary fire - affects damage, ammo usage and conductivity
+var float		            ChargePower;	//Charge power of secondary fire - affects damage, ammo usage and conductivity. Max is 1
 
-var LightningProjectile ComboTarget;    // used by AI
-var bool            bRegisterTarget;
-var bool            bWaitForCombo;
-var vector          ComboStart;
+var LightningProjectile     ComboTarget;    // used by AI
+var bool                    bRegisterTarget;
+var bool                    bWaitForCombo;
+var vector                  ComboStart;
 
 struct RevInfo
 {
@@ -20,14 +20,14 @@ simulated function PostNetBeginPlay()
 
 simulated function float ChargeBar()
 {
-	return ChargePower / MaxCharge;
+	return ChargePower;
 }
 
 simulated function SetChargePower(float NewChargePower)
 {
 	ChargePower = NewChargePower;
-	ChargeIndex = int(NewChargePower);
 }
+
 // AI Interface =====
 
 function SetComboTarget(LightningProjectile L)
@@ -181,20 +181,19 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
-    MaxCharge=2
     ZoomInAnim="ZoomIn"
     ScopeViewTex=Texture'BWBP_OP_Tex.Arc.ARCRifleScope'
     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
     FullZoomFOV=20.000000
     bNoCrosshairInScope=True
-    SightOffset=(Z=51.000000)
+    SightOffset=(X=13,Y=0.0,Z=0.000000)
     MinZoom=2.000000
     MaxZoom=8.000000
     ZoomStages=4
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BWBP_OP_Tex.Arc.BigIcon_LightningRifle'
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Bullet=True
     ManualLines(0)="Uncharged lightning bolt shot. Deals reasonable damage for a small ammo cost."
     ManualLines(1)="Charged lightning bolt. The rifle will fire when the fire key is released, or immediately upon becoming fully charged. Damage improves with charge, and more ammo is consumed."
@@ -202,7 +201,6 @@ defaultproperties
     SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup')
     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
-    ReloadAnimRate=0.9
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.Law-TubeLock')
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
     ClipInFrame=0.650000
@@ -214,8 +212,10 @@ defaultproperties
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
     CurrentWeaponMode=0
     GunLength=60.000000
-    BobDamping=0.800000
-    ParamsClasses(0)=Class'LightningWeaponParams'
+    ParamsClasses(0)=Class'LightningWeaponParamsComp'
+    ParamsClasses(1)=Class'LightningWeaponParamsClassic'
+    ParamsClasses(2)=Class'LightningWeaponParamsRealistic'
+    ParamsClasses(3)=Class'LightningWeaponParamsTactical'
     FireModeClass(0)=Class'BWBP_OP_Pro.LightningPrimaryFire'
     FireModeClass(1)=Class'BWBP_OP_Pro.LightningSecondaryFire'
     PutDownTime=0.700000
@@ -225,15 +225,14 @@ defaultproperties
     CurrentRating=0.800000
     bSniping=True
     bShowChargingBar=True
-    Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players"
-    DisplayFOV=55.000000
+    Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players||The pinnacle of electric based weaponry, an evolution of the lightning gun; the ARC-79 Lightning Rifle is the result of a collaboration between the UTC R&D and Nexron Defense.  Designed to fry the circuits of Cryon at a safer distance, the ARC-79 is a devastating rifle even against the Skrith, even the hordes of Krao since it's able to chain the electrical current between targets.  Though it's a recent development, the ARC-79 has been proven useful when a Nexron laboratory was invaded by the Krao on the planet Anschar, only 3 rifles were used to quell the mindless drones, the scientists having fried Krao that night as a reward."
     Priority=33
     HudColor=(B=50,G=50,R=200)
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=9
     GroupOffset=2
     PickupClass=Class'BWBP_OP_Pro.LightningPickup'
-    PlayerViewOffset=(X=20.000000,Y=16.000000,Z=-30.000000)
+    PlayerViewOffset=(X=0.00,Y=4.50,Z=-2.00)
     AttachmentClass=Class'BWBP_OP_Pro.LightningAttachment'
     IconMaterial=Texture'BWBP_OP_Tex.Arc.SmallIcon_LightningRifle'
     IconCoords=(X2=127,Y2=31)
@@ -245,5 +244,5 @@ defaultproperties
     LightBrightness=150.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_LightningRifle'
-    DrawScale=0.800000
+    DrawScale=0.300000
 }

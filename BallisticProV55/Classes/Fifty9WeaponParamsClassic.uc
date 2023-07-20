@@ -55,7 +55,7 @@ defaultproperties
 		HookStopFactor=1.700000
 		HookPullForce=100.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Radius=24.000000,bAtten=True)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000
@@ -108,24 +108,86 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Blue Bling"
+		Weight=80
+		
 		PlayerSpeedFactor=1.100000
-		InventorySize=7
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
 		bNeedCock=True
 		MagAmmo=45
-		SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
-		SightPivot=(Pitch=900,Roll=-800)
+		//SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
+		//SightPivot=(Pitch=900,Roll=-800)
+		SightPivot=(Pitch=128)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ViewOffset=(X=10.000000,Y=7.000000,Z=-5.000000)
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Red
+		LayoutName="Red Bling"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Fifty9Camos.Fifty7Skin",Index=1)
+		Weight=10
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
+		bNeedCock=True
+		MagAmmo=45
+		//SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
+		//SightPivot=(Pitch=900,Roll=-800)
+		SightPivot=(Pitch=128)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ViewOffset=(X=10.000000,Y=7.000000,Z=-5.000000)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Orange
+		LayoutName="Orange Bling"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Fifty9Camos.TigerUziSkin",Index=1)
+		Weight=10
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
+		bNeedCock=True
+		MagAmmo=45
+		//SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
+		//SightPivot=(Pitch=900,Roll=-800)
+		SightPivot=(Pitch=128)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ViewOffset=(X=10.000000,Y=7.000000,Z=-5.000000)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-Red'
+	Layouts(2)=WeaponParams'ClassicParams-Orange'
 
 }

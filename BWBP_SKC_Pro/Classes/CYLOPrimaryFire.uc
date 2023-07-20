@@ -7,11 +7,11 @@
 // by Casey 'Xavious' Johnson and Marc 'Sergeant Kelly'
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOPrimaryFire extends BallisticRangeAttenFire;
+class CYLOPrimaryFire extends BallisticProInstantFire;
 
 var() sound		RifleFireSound;
 var() sound		MeleeFireSound;
-var	bool	bVariableFirerate;
+var	bool	    bVariableFirerate;
 
 simulated event ModeDoFire()
 {
@@ -33,15 +33,7 @@ defaultproperties
 {
      RifleFireSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire'
      MeleeFireSound=Sound'BW_Core_WeaponSound.A73.A73Stab'
-     CutOffDistance=3072.000000
-     CutOffStartRange=1536.000000
      TraceRange=(Min=8000.000000,Max=12000.000000)
-     WallPenetrationForce=24.000000
-     
-     Damage=28.000000
-    
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
@@ -67,12 +59,14 @@ defaultproperties
      FireRate=0.1050000
      UnjamMethod=UJM_Fire
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_CYLO'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+	 
      WarnTargetPct=0.200000
      aimerror=900.000000
 }

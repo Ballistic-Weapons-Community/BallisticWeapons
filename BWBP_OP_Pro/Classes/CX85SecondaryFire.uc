@@ -93,13 +93,7 @@ defaultproperties
 
 	TraceRange=(Min=30000.000000,Max=30000.000000)
     MaxWaterTraceRange=5000
-    WallPenetrationForce=0.000000
 
-	Damage=5.000000
-	HeadMult=1f
-    LimbMult=1f
-
-    WaterRangeAtten=0.600000
     DamageType=Class'DTCX85Dart'
     DamageTypeHead=Class'DTCX85Dart'
     DamageTypeArm=Class'DTCX85Dart'
@@ -114,7 +108,7 @@ defaultproperties
     AmmoClass=Class'BWBP_OP_Pro.Ammo_CX85Darts'
     AmmoPerFire=0
     ShakeRotTime=2.000000
-    ShakeOffsetMag=(X=-20.000000)
+    ShakeOffsetMag=(X=-8.000000)
     ShakeOffsetRate=(X=-1000.000000)
     ShakeOffsetTime=2.000000
     BotRefireRate=0.300000

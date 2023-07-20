@@ -13,9 +13,9 @@ var() class<actor>			AltBrassClass2;			//Alternate Fire's brass (whole FRAG-12)
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BulldogAssaultCannon(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
-		ImpactManager=Class'BallisticProV55.IM_MRLRocket';
+		ImpactManager=class'IM_MRLRocket';
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG';
 	}
 }
@@ -40,6 +40,7 @@ simulated function EjectBrass(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'BulldogAssaultCannon'
      AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
@@ -50,11 +51,11 @@ defaultproperties
      BrassMode=MU_Both
      FlashMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Bulldog'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      Mesh=SkeletalMesh'BWBP_SKC_Anim.Bulldog_TPm'
-     RelativeLocation=(X=-2.000000,Z=-3.000000)
+     RelativeLocation=(X=-2.000000,Z=5.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000
 }

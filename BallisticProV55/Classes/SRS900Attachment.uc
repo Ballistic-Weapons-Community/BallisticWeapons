@@ -68,17 +68,18 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+	 WeaponClass=class'SRS900Rifle'
+     MuzzleFlashClass=class'M50FlashEmitter'
+     AltMuzzleFlashClass=class'XK2SilencedFlash'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
      FlashScale=0.800000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     BrassClass=class'Brass_Rifle'
      BrassMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
@@ -86,4 +87,5 @@ defaultproperties
      bAltRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.SRS900_TPm'
      DrawScale=0.250000
+	 RelativeLocation=(X=2,Z=2.5)
 }

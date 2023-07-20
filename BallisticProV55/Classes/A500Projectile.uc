@@ -16,20 +16,11 @@ var vector FallStart;
 var float FallOff;
 var float FallingSpeed;
 
-var   Rotator			VelocityDir;
-
-simulated event PostBeginPlay()
-{
-	Super.PostBeginPlay();
-
-	VelocityDir = Rotation;
-}
-
 simulated function InitProjectile()
 {
 	Super.InitProjectile();
 
-	FallStart=Location;
+	FallStart = Location;
 }
 
 simulated event Tick(float DT)
@@ -140,29 +131,30 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-     ImpactManager=Class'BallisticProV55.IM_A500Projectile'
-     bRandomStartRotation=False
-     TrailClass=Class'BallisticProV55.A500ProjectileTrail'
-     MyRadiusDamageType=Class'BallisticProV55.DTA500Blast'
-     bUsePositionalDamage=False
+    WeaponClass=Class'BallisticProV55.A500Reptile'
+    ImpactManager=Class'BallisticProV55.IM_A500Projectile'
+    bRandomStartRotation=False
+    TrailClass=Class'BallisticProV55.A500ProjectileTrail'
+    MyRadiusDamageType=Class'BallisticProV55.DTA500Blast'
+    bUsePositionalDamage=False
 
-     
-     DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
 
-     MyDamageType=Class'BallisticProV55.DTA500Blast'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=54
-     LightSaturation=100
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     bDynamicLight=True
-     Physics=PHYS_Falling
-     LifeSpan=8.000000
-     CollisionRadius=1.000000
-     CollisionHeight=1.000000
-     bFixedRotationDir=True
-     bIgnoreTerminalVelocity=True
-     RotationRate=(Roll=16384)
+    DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
+    SplashManager=Class'BallisticProV55.IM_ProjWater'
+
+    MyDamageType=Class'BallisticProV55.DTA500Blast'
+    LightType=LT_Steady
+    LightEffect=LE_QuadraticNonIncidence
+    LightHue=54
+    LightSaturation=100
+    LightBrightness=150.000000
+    LightRadius=4.000000
+    bDynamicLight=True
+    Physics=PHYS_Falling
+    LifeSpan=8.000000
+    CollisionRadius=1.000000
+    CollisionHeight=1.000000
+    bFixedRotationDir=True
+    bIgnoreTerminalVelocity=True
+    RotationRate=(Roll=16384)
 }

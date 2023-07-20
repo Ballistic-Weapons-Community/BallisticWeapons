@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XMV850MinigunPrimaryFire extends BallisticRangeAttenFire;
+class XMV850MinigunPrimaryFire extends BallisticProInstantFire;
 
 var rotator OldLookDir, TurnVelocity;
 var float	LastFireTime, MuzzleBTime, MuzzleCTime, OldFireRate;
@@ -321,41 +321,32 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-	 CutOffStartRange=3072
-	 CutOffDistance=8192
-	 RangeAtten=0.35
-     TraceCount=1
-     TraceRange=(Min=12000.000000,Max=12000.000000)
-     WallPenetrationForce=16.000000
-     
-     Damage=22.000000
-     
-     
-     WaterRangeAtten=0.200000
-     DamageType=Class'BallisticProV55.DTXMV850MG'
-     DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
-     DamageTypeArm=Class'BallisticProV55.DTXMV850MG'
-     PenetrateForce=150
-     bPenetrate=True
-     MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
-     FlashScaleFactor=0.800000
-     BrassClass=Class'BallisticProV55.Brass_Minigun'
-     BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     FireRecoil=72.000000
-     FirePushbackForce=150.000000
-     FireChaos=0.120000
-     XInaccuracy=16.000000
-     YInaccuracy=16.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireRate=0.050000
-     AmmoClass=Class'BallisticProV55.Ammo_MinigunRounds'
-     ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	TraceCount=1
+	TraceRange=(Min=12000.000000,Max=12000.000000)
+	DamageType=Class'BallisticProV55.DTXMV850MG'
+	DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
+	DamageTypeArm=Class'BallisticProV55.DTXMV850MG'
+	PenetrateForce=150
+	bPenetrate=True
+	MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
+	FlashScaleFactor=0.800000
+	BrassClass=Class'BallisticProV55.Brass_Minigun'
+	BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
+	FireRecoil=72.000000
+	FirePushbackForce=150.000000
+	FireChaos=0.120000
+	XInaccuracy=16.000000
+	YInaccuracy=16.000000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireRate=0.050000
+	AmmoClass=Class'BallisticProV55.Ammo_MinigunRounds'
+	ShakeRotMag=(X=32.000000)
+	ShakeRotRate=(X=480.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-60.000000)
+	ShakeOffsetTime=2.000000
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

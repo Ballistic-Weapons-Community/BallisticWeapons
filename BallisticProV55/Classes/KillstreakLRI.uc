@@ -17,18 +17,20 @@ var array<string>		Streak1s;
 var array<string>		Streak2s;
 
 var array<string> 		Killstreaks[2];
+var array<byte> 		Layouts[2];
+var array<byte> 		Camos[2];
 
 var bool				bWeaponsReady, bPendingLoadoutSave, bClientAttemptedGetStreakList;
 
 var class<Weapon> 		LastStreaks[2];
 
-var localized string MenuName, MenuHelp; // Stuff for the menu
+var localized string 	MenuName, MenuHelp; // Stuff for the menu
 
 var private editconst bool	bMenuModified, bMenuAdd;
 
-var byte 		RewardLevel; 		// streaks in reserve
-var byte 		ActiveStreak; 		// active streaks - not replicated
-var int 		InvKillScore;		// Used for Invasion streaks
+var byte 				RewardLevel; 		// streaks in reserve
+var byte 				ActiveStreak; 		// active streaks - not replicated
+var int 				InvKillScore;		// Used for Invasion streaks
 
 replication
 {
@@ -162,7 +164,7 @@ final private simulated function ModifyMenu()
 
 protected simulated function class GetMenuClass()
 {
-	return class'BallisticTab_Killstreaks';
+	return class'MidGameTab_Killstreaks';
 }
 
 function ServerGetStreakList()
@@ -170,7 +172,7 @@ function ServerGetStreakList()
 	SendStreaks();
 }
 
-//Returns the weapon group.
+// Returns the weapon group.
 simulated function array<string> GetGroup(byte GroupNum)
 {
 	if (Role == ROLE_Authority)
@@ -202,8 +204,8 @@ simulated function int GroupLength(byte GroupNum)
 	{
 		switch (GroupNum)
 		{
-			case 0: return class'Mut_Killstreak'.default.Streak1s.length;
-			case 1: return class'Mut_Killstreak'.default.Streak2s.length;
+			case 0: return Mut.Streak1s.length;
+			case 1: return Mut.Streak2s.length;
 		}
 	}
 	else
@@ -221,7 +223,7 @@ simulated function int GroupLength(byte GroupNum)
 
 function bool IsInList (out array<string> List, string Test, optional out int Index)
 {
-	for(Index=0; Index<List.length; Index++)
+	for(Index = 0 ; Index < List.length; Index++)
 		if (List[Index] == Test)
 			return true;
 
@@ -243,15 +245,16 @@ function SendStreaks()
 	bClientAttemptedGetStreakList = true;
 
 	//Go through the available loadout weapons, adding them to the Weaps array. Continue if there is no weapon in the slot
-	for (i=0;i<Mut.Streak1s.length;i++)
+	for (i = 0; i < Mut.Streak1s.length; i++)
 	{
 		if (Mut.Streak1s[i] == "")
 			continue;
+			
 		Weaps[Weaps.length] = Mut.Streak1s[i];
 		Boxes[Boxes.length] = 1;
 	}
 
-	for (i=0;i<Mut.Streak2s.length;i++)
+	for (i = 0; i < Mut.Streak2s.length; i++)
 	{
 		if (Mut.Streak2s[i] == "")
 			continue;
@@ -269,7 +272,7 @@ function SendStreaks()
 		}
 	}
 
-	for (i=0;i<Weaps.length;i++)
+	for (i = 0; i < Weaps.length; i++)
 		ClientProcessWeapon(Weaps[i], Boxes[i]);
 		
 	//Last weapon, terminate
@@ -298,7 +301,12 @@ simulated function UpdateStreakChoices()
 {
 	ServerUpdateStreakChoices(
 		class'KillstreakConfig'.default.Killstreaks[0], 
-		class'KillstreakConfig'.default.Killstreaks[1]
+		class'KillstreakConfig'.default.Killstreaks[1],
+		class'KillstreakConfig'.default.Layouts[0],
+		class'KillstreakConfig'.default.Layouts[1],
+		class'KillstreakConfig'.default.Camos[0],
+		class'KillstreakConfig'.default.Camos[1]
+		
 	);
 }
 
@@ -309,12 +317,16 @@ simulated function ClientGetStreakChoices()
 	UpdateStreakChoices();
 }
 
-function ServerUpdateStreakChoices(string Streak1, string Streak2)
+function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1, byte Layout2, byte Camo1, byte Camo2)
 {
 	local int i;
 	
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
+	Layouts[0] = Layout1;
+	Layouts[1] = Layout2;
+	Camos[0] = Camo1;
+	Camos[1] = Camo2;
 		
 	for (i=0; i < MAX_GROUPS; i++)
 	{

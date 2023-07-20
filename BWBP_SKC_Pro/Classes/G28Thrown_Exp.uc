@@ -7,16 +7,16 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G28Thrown_Exp extends BallisticPineapple;
+class G28Thrown_Exp extends BallisticHandGrenadeProjectile;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
-var() class<damageType>	ShotDamageType;	// Damagetype to use when detonated by damage
-var   Emitter PATrail;
-var() bool				bDamaged;		// Has been damaged and is about to blow
-var   bool				bDetonate;		// Flaged for detonation next tick. Sent to net clients when detonated on server
-var   bool				bDetonated;		// Blown up, no more blowing up.
-var() int				Health;			// Distance from death
+var() class<DamageType>		ShotDamageType;	// Damagetype to use when detonated by damage
+var   Emitter 				PATrail;
+var() bool					bDamaged;		// Has been damaged and is about to blow
+var   bool					bDetonate;		// Flaged for detonation next tick. Sent to net clients when detonated on server
+var   bool					bDetonated;		// Blown up, no more blowing up.
+var() int					Health;			// Distance from death
 
 simulated function InitEffects ()
 {
@@ -37,16 +37,17 @@ simulated function DestroyEffects()
 		PATrail.Kill();
 }
 
-
 event TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> Damagetype)
 {
 	if (VSize(Momentum) < 2000)
 		return;
 
+/*
 	NetKickForce = Momentum/75;
 	if (Base != None)
 		NetKickForce.Z += 250;
 	KickPineApple(NetKickForce);
+*/
 
 	if (bDamaged || class<BallisticDamageType>(DamageType)!=None && !class<BallisticDamageType>(DamageType).default.bIgniteFires)
 		return;
@@ -64,6 +65,7 @@ event TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momen
 	ExplodeFire(Location, vector(Rotation));
 }
 
+/*
 simulated event KVelDropBelow()
 {
 	super.KVelDropBelow();
@@ -72,12 +74,14 @@ simulated event KVelDropBelow()
 		PATrail.Kill();
 }
 
+
 simulated event KImpact(actor other, vector pos, vector impactVel, vector impactNorm)
 {
 	super.KImpact(other, pos, impactVel, impactNorm);
 	if (PATrail!= None && VSize(impactVel) > 200)
 		PATrail.Kill();
 }
+*/
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
@@ -131,7 +135,6 @@ simulated function ExplodeFire(vector HitLocation, vector HitNormal)
 	Destroy();
 }
 
-
 simulated function BlowUp(vector HitLocation)
 {
 	local vector Start;
@@ -172,7 +175,6 @@ simulated function Timer()
 	}
 }
 
-
 // Call this to make it go BOOM...
 simulated function Detonate()
 {
@@ -189,38 +191,28 @@ simulated function Tick(float DT)
 		Explode(Location, vect(0,0,1));
 }
 
-
-function InitPineapple(float PSpeed, float PDelay)
-{
-	Speed = PSpeed;
-	DetonateDelay = PDelay;
-	NewSpeed = Speed;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= 0)
-		DetonateDelay = 0.05;
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
 defaultproperties
 {
-     ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
-     Health=20
-     DetonateDelay=2.000000
-     ImpactDamage=3
-     ImpactDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_G28Explode'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BWBP_SKC_Pro.G28Spray'
-     TrailOffset=(Z=8.000000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTG28Gas'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Damage=120.000000
-     DamageRadius=300.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
-     SoundVolume=192
-     SoundRadius=128.000000
+	ArmedDetonateOn=DT_Still
+	WeaponClass=Class'BWBP_SKC_Pro.G28Grenade'
+	DampenFactor=0.050000
+	DampenFactorParallel=0.350000
+	ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
+	Health=20
+	DetonateDelay=2.000000
+	ImpactDamage=3
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_G28Explode'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BWBP_SKC_Pro.G28Spray'
+	TrailOffset=(Z=8.000000)
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTG28Gas'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Damage=120.000000
+	DamageRadius=300.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'
+	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
+	SoundVolume=192
+	SoundRadius=128.000000
 }

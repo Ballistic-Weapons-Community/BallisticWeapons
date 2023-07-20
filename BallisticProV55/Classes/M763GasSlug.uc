@@ -131,25 +131,26 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
-	 ModeIndex=1
-     DetonateOn=DT_Impact
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=0.150000
-     ImpactDamage=80
-     ImpactDamageType=Class'BallisticProV55.DTM763GasImpact'
-     TrailOffset=(X=-8.000000)
-	 
-     ImpactManager=Class'BallisticProV55.IM_TearGasProj'
-     AccelSpeed=50000.000000
-     TrailClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-     MyRadiusDamageType=Class'BallisticProV55.DTM763Gas'
-     MotionBlurRadius=130.000000
-     Speed=200.000000
-     MaxSpeed=100000.000000
-     Damage=90.000000
-     DamageRadius=96.000000
-     MomentumTransfer=00000.000000
-     MyDamageType=Class'BallisticProV55.DTM763Gas'
+    WeaponClass=Class'BallisticProV55.M763Shotgun'
+	ModeIndex=1
+	ArmedDetonateOn=DT_Impact
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	DetonateDelay=0.150000
+	ImpactDamage=80
+	ImpactDamageType=Class'BallisticProV55.DTM763GasImpact'
+	TrailOffset=(X=-8.000000)
+
+	ImpactManager=Class'BallisticProV55.IM_TearGasProj'
+	AccelSpeed=50000.000000
+	TrailClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+	MyRadiusDamageType=Class'BallisticProV55.DTM763Gas'
+	MotionBlurRadius=130.000000
+	Speed=200.000000
+	MaxSpeed=100000.000000
+	Damage=90.000000
+	DamageRadius=96.000000
+	MomentumTransfer=00000.000000
+	MyDamageType=Class'BallisticProV55.DTM763Gas'
 	StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
 }

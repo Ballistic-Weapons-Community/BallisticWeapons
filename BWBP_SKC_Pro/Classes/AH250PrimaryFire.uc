@@ -2,7 +2,7 @@
 // AH250 primary fire.
 // For the scoped Eagle.
 //=============================================================================
-class AH250PrimaryFire extends BallisticRangeAttenFire;
+class AH250PrimaryFire extends BallisticProInstantFire;
 
 //Do the spread on the client side
 function PlayFiring()
@@ -26,17 +26,7 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=4096.000000
-     CutOffStartRange=2048.000000
      TraceRange=(Min=8000.000000,Max=9000.000000)
-     WallPenetrationForce=16.000000
-     
-     Damage=40.000000
-     HeadMult=1.5f
-     LimbMult=0.85f
-     
-     RangeAtten=0.50000
-     WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
@@ -57,12 +47,14 @@ defaultproperties
      FireEndAnim=
      FireRate=0.40000
      AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-5.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
+
+	ShakeRotMag=(X=64.000000)
+	ShakeRotRate=(X=960.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-8.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+
      BotRefireRate=0.900000
      WarnTargetPct=0.100000
 }

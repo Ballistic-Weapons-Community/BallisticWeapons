@@ -1,7 +1,7 @@
 //=============================================================================
 // LonghornMicroClusterFlak.
 //
-// Small cluster bomb spawned from LonghornClusterGrenade. Fuse starts after first
+// Small cluster bomb spawned from LonghornGrenade. Fuse starts after first
 // bounce. Causes little damage but lots of knockback.
 //
 // Split this off from the main grenade, this and its subclasses require
@@ -12,52 +12,14 @@
 //=============================================================================
 class LonghornMicroClusterFlak extends BallisticGrenade;
 
-var float                ZBonus;
+var float               ZBonus;
 var bool 				bDetonating;
 var Range				DetonateDelayRange;
 
 const EXP_LIFE_TIME = 0.35f;
 
-simulated function PostNetBeginPlay()
-{
-	local PlayerController PC;
-	 
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	
-	if (Level.NetMode == NM_DedicatedServer)
-		return;
-		
-	InitEffects();
-	
-	if ( Level.bDropDetail || Level.DetailMode == DM_Low )
-	{
-		bDynamicLight = false;
-		LightType = LT_None;
-	}
-	else
-	{
-		PC = Level.GetLocalPlayerController();
-		if ( (PC == None) || (Instigator == None) || (PC != Instigator.Controller) )
-		{
-			bDynamicLight = false;
-			LightType = LT_None;
-		}
-	}
-}
-
 simulated event Timer()
 {
-	if (StartDelay > 0)
-	{
-		StartDelay = 0;
-		bHidden=false;
-		SetPhysics(default.Physics);
-		//SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
-		InitProjectile();
-		//InitEffects();
-		SetTimer(0.15, false);
-		return;
-	}
 	if (HitActor != None)
 	{
 		if ( Instigator == None || Instigator.Controller == None )
@@ -73,34 +35,21 @@ simulated event Timer()
 }
 
 simulated function InitProjectile ()
-{   
-	Velocity = Speed * Vector(VelocityDir);
-	
-	if (RandomSpin != 0 && !bNoInitialSpin)
-		RandSpin(RandomSpin);
-
+{   	
 	if (DetonateOn == DT_ImpactTimed || DetonateOn == DT_Timer)
 		DetonateDelay = Lerp(FRand(), DetonateDelayRange.Min, DetonateDelayRange.Max);
+
+	Super.InitProjectile();
 }
 
 simulated function InitEffects ()
 {
-	local Vector X,Y,Z;
+	Super.InitEffects();
 
-	bDynamicLight=default.bDynamicLight; // Set up some effects, team colored
-	if (Level.NetMode != NM_DedicatedServer && TrailClass != None && Trail == None)
+	if(LonghornGrenadeTrail(Trail) != None)
 	{
-		GetAxes(Rotation,X,Y,Z);
-		Trail = Spawn(TrailClass, self,, Location + X*TrailOffset.X + Y*TrailOffset.Y + Z*TrailOffset.Z, Rotation);
-		if(LonghornGrenadeTrail(Trail) != None)
-		{
-			if(Instigator != None)
-				LonghornGrenadeTrail(Trail).SetupColor(Instigator.GetTeamNum());
-		}
-		if (Emitter(Trail) != None)
-			class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
-		if (Trail != None)
-			Trail.SetBase (self);
+		if(Instigator != None)
+			LonghornGrenadeTrail(Trail).SetupColor(Instigator.GetTeamNum());
 	}
 }
 
@@ -259,11 +208,14 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
 	bApplyParams=False
 	DetonateDelayRange=(Min=0.75,Max=1.250000)
+	ArmedDetonateOn=DT_ImpactTimed
+	ArmedPlayerImpactType=PIT_Detonate
 	DetonateOn=DT_ImpactTimed
 	PlayerImpactType=PIT_Detonate
-	DampenFactor=0.100000
+	DampenFactor=0.1
 	DampenFactorParallel=0.350000
 	bAlignToVelocity=True
 	ImpactDamage=45

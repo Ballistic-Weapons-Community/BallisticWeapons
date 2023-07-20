@@ -274,7 +274,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -319,7 +319,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M763'
 	BigIconCoords=(Y1=35,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	ManualLines(0)="Long-ranged pump-action shotgun fire. Tight spread and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
 	ManualLines(1)="Loads a gas shell. Once loaded, the gas shell can be fired, generating a linear cloud of toxic gas in front of the weapon. Anyone standing in this cloud will receive damage over time."
@@ -330,10 +330,8 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
-	CockAnimRate=1.100000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Cock1')
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=1.100000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763LoadShell1')
 	ClipInFrame=0.375000
 	bCockOnEmpty=True
@@ -349,13 +347,12 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	SightOffset=(X=5.000000,Z=12.900000)
-	SightDisplayFOV=60.000000
-	SightPivot=(Pitch=128)
+
 	GunLength=48.000000
-	ParamsClasses(0)=Class'M763WeaponParams'
-	ParamsClasses(1)=Class'M763WeaponParamsClassic' //todo: primary anim, alt + melee
-	ParamsClasses(2)=Class'M763WeaponParamsRealistic' //todo: semi-auto
+	ParamsClasses(0)=Class'M763WeaponParamsComp'
+	ParamsClasses(1)=Class'M763WeaponParamsClassic'
+	ParamsClasses(2)=Class'M763WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M763WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
 	
@@ -371,12 +368,15 @@ defaultproperties
 	InventoryGroup=7
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
-	PlayerViewOffset=(Y=12.000000,Z=-12.000000)
+	PlayerViewOffset=(X=3.00,Y=4.00,Z=-5.00)
+	SightOffset=(X=0,Y=0,Z=2.2)
+	SightPivot=(Pitch=128)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M763'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M763 Shotgun"
 	bNoCrosshairInScope=True
+	SightBobScale=0.2
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=25
@@ -384,5 +384,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M763'
-	DrawScale=0.500000
+	DrawScale=0.3
 }

@@ -264,7 +264,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.BigIcon_X8'
 	BigIconCoords=(Y1=25,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Slashes rapidly with the knife."
 	ManualLines(1)="When held, readies the ballistic knife. When released, the knife is fired in a straight trajectory, dealing good damage to targets hit."
 	ManualLines(2)="Effective at close range and while moving."
@@ -282,9 +282,10 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClasses(0)=Class'X8WeaponParams'
+	ParamsClasses(0)=Class'X8WeaponParamsComp'
 	ParamsClasses(1)=Class'X8WeaponParamsClassic'
 	ParamsClasses(2)=Class'X8WeaponParamsRealistic'
+    ParamsClasses(3)=Class'X8WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X8PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.X8SecondaryFire'
 	SelectAnimRate=2.500000

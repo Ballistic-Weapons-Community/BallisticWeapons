@@ -17,6 +17,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
+		DamageSpecial=20
 		PenetrateForce=150
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
@@ -91,7 +92,7 @@ defaultproperties
 //=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=1024,Max=2500)
+		AimSpread=(Min=64,Max=2500)
 		AimAdjustTime=0.800000
 		CrouchMultiplier=0.8
 		ADSMultiplier=0.700000
@@ -110,25 +111,45 @@ defaultproperties
 //=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.850000
-		InventorySize=35
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.550000
 		MagAmmo=50
-		SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
+		//SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 		WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
-		WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(3)=(ModeName="900 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(4)=(ModeName="1200 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=0
+		ViewOffset=(X=7,Y=7,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=Z250_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Z250_Gold
+		Index=1
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_body_SH2",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_Sight_SH2",Index=2,AIndex=1,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'Z250_Green'
+	Camos(1)=WeaponCamo'Z250_Gold'
 }

@@ -108,11 +108,11 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		SightingTime=0.190000
-		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		//SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		SightPivot=(Pitch=0)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=5
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
 		MagAmmo=25
@@ -124,6 +124,49 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=TY_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Urban
+		Index=1
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineUrban",Index=1,AIndex=5,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineGreen",Index=1,AIndex=5,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_UTC
+		Index=3
+		CamoName="UTC"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.UMPMainShine",Index=1,AIndex=5,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=TY_Blue
+		Index=4
+		CamoName="Nebula"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.UMPCamos.PUMA-ShineBlue",Index=1,AIndex=5,PIndex=0)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'TY_Black'
+	Camos(1)=WeaponCamo'TY_Urban'
+	Camos(2)=WeaponCamo'TY_Jungle'
+	Camos(3)=WeaponCamo'TY_UTC'
+	Camos(4)=WeaponCamo'TY_Blue'
 }

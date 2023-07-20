@@ -49,6 +49,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Laser sight"
 	End Object
 		
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -104,20 +105,20 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=5
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.13
 		MagAmmo=12
 		WeaponPrice=800
 		bMagPlusOne=True
-		ViewOffset=(X=4.000000,Y=6.000000,Z=-6.000000)
-		SightOffset=(X=-5.000000,Y=-1.315,Z=12.600000)
+		ViewOffset=(X=0.00,Y=20.00,Z=-20.00)
+		//ViewOffset=(X=4.000000,Y=6.000000,Z=-6.000000)
+		//SightOffset=(X=-5.000000,Y=-1.315,Z=12.600000)
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.400000
+		//CockAnimRate=1.400000
 		WeaponName="M806 .45 Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -125,6 +126,58 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M806_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M806_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainBlackShine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M806_Desert
+		Index=2
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainDesert",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M806_Tiger
+		Index=3
+		CamoName="Tiger"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainTigerShine",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M806_Dragon
+		Index=4
+		CamoName="Dragon"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.Dragon_Main-SD",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M806_Gold
+		Index=5
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainGoldShine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'M806_Gray'
+	Camos(1)=WeaponCamo'M806_Black'
+	Camos(2)=WeaponCamo'M806_Desert'
+	Camos(3)=WeaponCamo'M806_Tiger'
+	Camos(4)=WeaponCamo'M806_Dragon'
+	Camos(5)=WeaponCamo'M806_Gold'
 }

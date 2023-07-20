@@ -24,8 +24,18 @@ var float			LastUIDrawTime;
 
 var float           DesiredFlashScale;
 var Vector          DesiredFlashFog;
+var bool			bOverrideDmgFlash;
 
 var string BallisticMenu, WeaponStatsMenu;
+
+// Fractional Parts of Pitch/Yaw Input
+var transient float PitchFraction, YawFraction;
+
+replication
+{
+    unreliable if( Role==ROLE_Authority )
+        ClientDmgFlash;
+}
 
 simulated function bool CheckInventoryChange()
 {
@@ -558,10 +568,26 @@ exec simulated function Ballistic()
 	ClientOpenMenu(BallisticMenu);
 }
 
-// Command to access the ballistic config menu
-exec simulated function BWStats()
+// Weapon stats
+exec simulated function Manual()
 {
 	ClientOpenMenu(WeaponStatsMenu);
+}
+
+exec simulated function BWManual()
+{
+	Manual();
+}
+
+exec simulated function BWStats()
+{
+	Manual();
+}
+
+// Weapon stats
+exec simulated function Stats()
+{
+	Manual();
 }
 
 // Cheat to get all BW weapons...
@@ -647,56 +673,215 @@ simulated function MatchHudColor()
 	}
 }
 
-function ClientFlash( float scale, vector fog )
+//Prevent rolling view bug caused by taking massive damage.
+function DamageShake(int damage)
+{
+}
+
+function ClientDmgFlash( float scale, vector fog )
 {
 	DesiredFlashScale = scale;
 	DesiredFlashFog = 0.001 * fog;
 }
 
+// disallow scaling flash
+function ClientFlash( float scale, vector fog )
+{
+    FlashScale = scale * vect(1,1,1);
+    flashfog = 0.001 * fog;
+	bOverrideDmgFlash = true;
+}
+
 function ViewFlash(float DeltaTime)
 {
 	local vector goalFog;
-	local float goalScale, delta;
+	local float goalScale, delta, Step;
     local PhysicsVolume ViewVolume;
 
     if ( Pawn != None )
     {
-		if ( bBehindView )
-			ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
-		else
-			ViewVolume = Pawn.HeadVolume;
+        if ( bBehindView )
+            ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
+        else
+            ViewVolume = Pawn.HeadVolume;
     }
 
-	delta = FMin(0.1, DeltaTime);
-	goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
-	goalFog = DesiredFlashFog + ConstantGlowFog;
+	if (bOverrideDmgFlash) //UT2k4 Style
+	{
+		delta = FMin(0.1, DeltaTime);
+		goalScale = 1; // + ConstantGlowScale;
+		goalFog = vect(0,0,0); // ConstantGlowFog;
 
-    if (ViewVolume != None ) 
+		if ( ViewVolume != None )
+		{
+    		goalScale += ViewVolume.ViewFlash.X;
+			goalFog += ViewVolume.ViewFog;
+		}
+			
+		Step = 0.6 * delta;
+		FlashScale.X = UpdateFlashComponent(FlashScale.X,step,goalScale);
+		FlashScale = FlashScale.X * vect(1,1,1);
+
+		FlashFog.X = UpdateFlashComponent(FlashFog.X,step,goalFog.X);
+		FlashFog.Y = UpdateFlashComponent(FlashFog.Y,step,goalFog.Y);
+		FlashFog.Z = UpdateFlashComponent(FlashFog.Z,step,goalFog.Z);
+		if ( FlashFog.Z < 0.003 )
+		{
+			FlashFog.Z = 0;
+			bOverrideDmgFlash=false;
+		}
+	}
+	else //UT99 Style
+	{
+		delta = FMin(0.1, DeltaTime);
+		goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
+		goalFog = DesiredFlashFog + ConstantGlowFog;
+
+		if (ViewVolume != None ) 
+		{
+			goalScale += ViewVolume.ViewFlash.X;
+			goalFog += ViewVolume.ViewFog;
+		}
+
+		DesiredFlashScale -= DesiredFlashScale * 2 * delta;
+		DesiredFlashFog -= DesiredFlashFog * 2 * delta;
+		FlashScale.X += (goalScale - FlashScale.X) * 10 * delta;
+		FlashFog += (goalFog - FlashFog) * 10 * delta;
+
+		if ( FlashScale.X > 0.981 )
+			FlashScale.X = 1;
+		FlashScale = FlashScale.X * vect(1,1,1);
+
+		if ( FlashFog.X < 0.003 )
+			FlashFog.X = 0;
+		if ( FlashFog.Y < 0.003 )
+			FlashFog.Y = 0;
+		if ( FlashFog.Z < 0.003 )
+			FlashFog.Z = 0;
+	}
+}
+
+// Corrected Mouse Movement
+
+function int FractionCorrection(float in, out float fraction) {
+    local int result;
+    local float tmp;
+
+    tmp = in + fraction;
+    result = int(tmp);
+    fraction = tmp - result;
+
+    return result;
+}
+
+function UpdateRotation(float DeltaTime, float maxPitch)
+{
+    local rotator newRotation, ViewRotation;
+
+    if ( bInterpolating || ((Pawn != None) && Pawn.bInterpolating) )
     {
-        goalScale += ViewVolume.ViewFlash.X;
-        goalFog += ViewVolume.ViewFog;
+        ViewShake(deltaTime);
+        return;
     }
 
-	DesiredFlashScale -= DesiredFlashScale * 2 * delta;
-	DesiredFlashFog -= DesiredFlashFog * 2 * delta;
-	FlashScale.X += (goalScale - FlashScale.X) * 10 * delta;
-	FlashFog += (goalFog - FlashFog) * 10 * delta;
+    // Added FreeCam control for better view control
+    if (bFreeCam == True)
+    {
+        if (bFreeCamZoom == True)
+        {
+            CameraDeltaRad += FractionCorrection(DeltaTime * 0.25 * aLookUp, PitchFraction);
+        }
+        else if (bFreeCamSwivel == True)
+        {
+            CameraSwivel.Yaw += FractionCorrection(16.0 * DeltaTime * aTurn, YawFraction);
+            CameraSwivel.Pitch += FractionCorrection(16.0 * DeltaTime * aLookUp, PitchFraction);
+        }
+        else
+        {
+            CameraDeltaRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, YawFraction);
+            CameraDeltaRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, PitchFraction);
+        }
+    }
+    else
+    {
+        ViewRotation = Rotation;
 
-	if ( FlashScale.X > 0.981 )
-		FlashScale.X = 1;
-	FlashScale = FlashScale.X * vect(1,1,1);
+        if(Pawn != None && Pawn.Physics != PHYS_Flying) // mmmmm
+        {
+            // Ensure we are not setting the pawn to a rotation beyond its desired
+            if( Pawn.DesiredRotation.Roll < 65535 &&
+                (ViewRotation.Roll < Pawn.DesiredRotation.Roll || ViewRotation.Roll > 0))
+                ViewRotation.Roll = 0;
+            else if( Pawn.DesiredRotation.Roll > 0 &&
+                (ViewRotation.Roll > Pawn.DesiredRotation.Roll || ViewRotation.Roll < 65535))
+                ViewRotation.Roll = 0;
+        }
 
-	if ( FlashFog.X < 0.003 )
-		FlashFog.X = 0;
-	if ( FlashFog.Y < 0.003 )
-		FlashFog.Y = 0;
-	if ( FlashFog.Z < 0.003 )
-		FlashFog.Z = 0;
+        DesiredRotation = ViewRotation; //save old rotation
+
+        if ( bTurnToNearest != 0 )
+            TurnTowardNearestEnemy();
+        else if ( bTurn180 != 0 )
+            TurnAround();
+        else
+        {
+            TurnTarget = None;
+            bRotateToDesired = false;
+            bSetTurnRot = false;
+            ViewRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, YawFraction);
+            ViewRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, PitchFraction);
+        }
+        if (Pawn != None)
+            ViewRotation.Pitch = Pawn.LimitPitch(ViewRotation.Pitch);
+
+        SetRotation(ViewRotation);
+
+        ViewShake(deltaTime);
+        ViewFlash(deltaTime);
+
+        NewRotation = ViewRotation;
+        //NewRotation.Roll = Rotation.Roll;
+
+        if ( !bRotateToDesired && (Pawn != None) && (!bFreeCamera || !bBehindView) )
+            Pawn.FaceRotation(NewRotation, deltatime);
+    }
+}
+
+// Azarael notes:
+//
+// compatibility 
+// the original function was written by someone who thought that the best place 
+// for the vote menu class string was a CONFIG variable of the fucking GUIController,
+// which is a class that can't be changed or changed easily
+//
+// this despite the fact that the desired voting menu is a concern / property of the VOTING SYSTEM, 
+// and its replication info is REQUIRED in order to open the menu in the first place??????
+//
+// some menus call SaveConfig on the GUIController, preventing temporary overrides
+// (client may crash or otherwise exit uncleanly, preventing us from resetting the value and saving, 
+// and potentially breaking the client's mapvote elsewhere)
+// 
+// can't intercept this with an Interaction either because PlayerController's exec function runs first in native code
+//
+// so we check the VoteReplicationInfo in use to see if it has an override, and fall back to the inbred behaviour otherwise
+exec function ShowVoteMenu()
+{
+	local string s;
+
+	if( Level.NetMode == NM_StandAlone ||  VoteReplicationInfo == None || !VoteReplicationInfo.MapVoteEnabled() )
+		return;
+
+	s = VoteReplicationInfo.GetPropertyText("MapVotingMenu");
+
+	if (s == "")
+		s = Player.GUIController.GetPropertyText("MapVotingMenu");
+
+	Player.GUIController.OpenMenu(s);
 }
 
 defaultproperties
 {
-     BallisticMenu="BallisticProV55.BallisticConfigMenuPro"
-     WeaponStatsMenu="BallisticProV55.BallisticWeaponStatsMenu"
+     BallisticMenu="BallisticProV55.ConfigMenu_Preferences"
+     WeaponStatsMenu="BallisticProV55.GameMenu_WeaponStats"
      ComboNameList(3)="BallisticProV55.Ballistic_ComboMiniMe"
 }

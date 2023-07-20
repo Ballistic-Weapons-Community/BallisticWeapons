@@ -170,8 +170,9 @@ simulated function Timer()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.E23LaserFlashEmitter'
+	WeaponClass=class'E23PlasmaRifle'
+     MuzzleFlashClass=class'E23FlashEmitter'
+     AltMuzzleFlashClass=class'E23LaserFlashEmitter'
      TracerMode=MU_None
      InstantMode=MU_Secondary
      FlashMode=MU_Both

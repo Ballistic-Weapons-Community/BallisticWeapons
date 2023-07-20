@@ -135,7 +135,7 @@ defaultproperties
 	 DamageRadius=1.000000
 	 ModeIndex=1
 	 DetonateSound=Sound'MenuSounds.select3'
-	 ImpactManager=Class'BallisticProV55.IM_Grenade'
+     ImpactManager=Class'BWBP_SKC_Pro.IM_LonghornShatter'
 	 MyRadiusDamageType=Class'BallisticProV55.DTM46GrenadeRadius'
 	 SplashManager=Class'BallisticProV55.IM_ProjWater'
      TrailClass=Class'BWBP_OP_Pro.PD97BeaconEffect'

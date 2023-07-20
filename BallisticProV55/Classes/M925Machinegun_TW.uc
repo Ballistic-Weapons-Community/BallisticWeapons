@@ -95,7 +95,7 @@ simulated event Timer()
 				FireMode[Mode].InitEffects();
         PlayIdle();
         ClientState = WS_ReadyToFire;
-		if (!bOldCrosshairs && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
 
 		if (bNeedCock)
@@ -231,7 +231,6 @@ simulated function bool HasAmmo()
 defaultproperties
 {
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
-	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=4)
 	BeltLength=8
 	BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOn')
 	BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOff')
@@ -242,16 +241,14 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M925'
 	SightFXClass=Class'BallisticProV55.M925SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
@@ -264,9 +261,10 @@ defaultproperties
 	GunLength=0.000000
 	bUseSpecialAim=True
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-	ParamsClasses(0)=Class'M925TW_WeaponParams'
+	ParamsClasses(0)=Class'M925TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'M925TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'M925TW_WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M925TW_WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	
@@ -283,7 +281,6 @@ defaultproperties
 	bCanThrow=False
 	bNoInstagibReplace=True
 	Description="M925 .50 cal Machinegun||Manufacturer: Black & Wood|Primary: Medium 50 Cal. Fire|Secondary: Mount Machinegun||The M925 was used during the late stages of the first Human-Skrith war when ballistic weapons first came back into large scale usage. The heavy calibre M925 was extremely effective against the Skrith and their allies and became known as the 'Monster' because it was the first weapon that the Skrith truly feared. Although it has a slower rate of fire than the M353, the 'Monster' has a much heavier bullet and can cause much more damage to an enemy soldier or vehicle in a single shot. It was also used extensively during the 'Wasteland Siege', to hose down thousands of Krao, and proved to be very effective at destroying the alien transport ships, as they were landing."
-	DisplayFOV=90.000000
 	ClientState=WS_BringUp
 	Priority=1
 	HudColor=(B=175,G=175,R=175)
@@ -304,11 +301,10 @@ defaultproperties
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925Turret'
 	DrawScale=0.230000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
-	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Main'
-	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
-	Skins(4)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(5)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
 	CollisionHeight=24.000000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Main'
+	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Small'
+	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
+	Skins(4)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
 }

@@ -40,7 +40,7 @@ function IceUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int 
 	mHitNormal = HitNormal;
 	mHitActor = HitActor;
 	mHitLocation = HitLocation;
-	FiringMode = 2;
+	FiringMode = 1;
 	IceFireCount++;
 	NetUpdateTime = Level.TimeSeconds - 1;
 	ThirdPersonEffects();
@@ -70,7 +70,7 @@ simulated event PostNetReceive()
 	}
 	if (IceFireCount != OldIceFireCount)
 	{
-		FiringMode = 2;
+		FiringMode = 1;
 		ThirdPersonEffects();
 		OldIceFireCount = IceFireCount;
 		/*if (bAmped)
@@ -88,6 +88,11 @@ simulated event ThirdPersonEffects()
 			SetBoneScale (0, 1.0, 'Silencer');
 		else
 			SetBoneScale (0, 0.0, 'Silencer');
+		
+		if (FiringMode == 1 && bAmped)
+			SetBoneScale (1, 1.0, 'AMP');
+		else
+			SetBoneScale (1, 0.0, 'AMP');
     }
 	super.ThirdPersonEffects();
 }
@@ -159,7 +164,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 		return;
 
 	// no tracers if suppressed
-	if (Mode == 1)
+	if (Mode == 1 && !bAmped)
 		return;
 
 	TipLoc = GetModeTipLocation();
@@ -208,27 +213,28 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-     IceTracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
-     IceImpactManager=Class'BallisticProV55.IM_FreezeHit'
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassMode=MU_Primary
-     InstantMode=MU_Primary
-     FlashMode=MU_Primary
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     TracerMix=-3
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Primary
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_AR"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.250000
-     CockAnimRate=0.900000
-     bRapidFire=True
-     bAltRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Xk2_TPm'
-     DrawScale=0.110000
+	WeaponClass=class'XK2Submachinegun'
+	IceTracerClass=class'TraceEmitter_Freeze'
+	IceImpactManager=class'IM_FreezeHit'
+	MuzzleFlashClass=class'XK2FlashEmitter'
+	AltMuzzleFlashClass=class'XK2SilencedFlash'
+	ImpactManager=class'IM_Bullet'
+	AltFlashBone="tip2"
+	BrassClass=class'Brass_Pistol'
+	BrassMode=MU_Primary
+	InstantMode=MU_Primary
+	FlashMode=MU_Primary
+	TracerClass=class'TraceEmitter_Default'
+	TracerMix=-3
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Primary
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_AR"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.250000
+	CockAnimRate=0.900000
+	bRapidFire=True
+	bAltRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Xk2_TPm'
+	DrawScale=0.110000
 }

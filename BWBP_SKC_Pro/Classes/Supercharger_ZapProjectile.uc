@@ -81,19 +81,20 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
-	 bApplyParams=False
-     bPenetrate=True
-     StartDelay=0.050000
-     Speed=3000.000000
-     Damage=5.000000
-     MyDamageType=Class'BallisticProV55.DTRX22ABurned'
-     bHidden=True
-     RemoteRole=ROLE_None
-     LifeSpan=0.600000
-     CollisionRadius=32.000000
-     CollisionHeight=32.000000
-     bCollideActors=False
-     bCollideWorld=False
-     bBlockZeroExtentTraces=False
-     bBlockNonZeroExtentTraces=False
+    WeaponClass=Class'BWBP_SKC_Pro.Supercharger_AssaultWeapon'
+	bApplyParams=False
+	bPenetrate=True
+	StartDelay=0.050000
+	Speed=3000.000000
+	Damage=5.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+	bHidden=True
+	RemoteRole=ROLE_None
+	LifeSpan=0.600000
+	CollisionRadius=32.000000
+	CollisionHeight=32.000000
+	bCollideActors=False
+	bCollideWorld=False
+	bBlockZeroExtentTraces=False
+	bBlockNonZeroExtentTraces=False
 }

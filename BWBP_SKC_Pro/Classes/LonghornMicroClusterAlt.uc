@@ -17,39 +17,6 @@ var	bool					bFlareKilled;
 
 var protected const float	ArmingDelay;
 
-simulated function PostNetBeginPlay()
-{
-	local PlayerController PC;
-	
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	
-	if (Level.NetMode == NM_DedicatedServer)
-		return;
-		
-	InitEffects();
-	
-	if ( Level.bDropDetail || Level.DetailMode == DM_Low )
-	{
-		bDynamicLight = false;
-		LightType = LT_None;
-	}
-	else
-	{
-		PC = Level.GetLocalPlayerController();
-		if ( (PC == None) || (Instigator == None) || (PC != Instigator.Controller) )
-		{
-			bDynamicLight = false;
-			LightType = LT_None;
-		}
-	}
-}
-
-simulated function InitProjectile ()
-{
-	if (RandomSpin != 0 && !bNoInitialSpin)
-		RandSpin(RandomSpin);
-}
-
 simulated function InitEffects ()
 {
 	local Vector X,Y,Z;
@@ -80,17 +47,16 @@ simulated event HitWall(vector HitNormal, actor Wall)
 {
     local Vector VNorm;
 
+	/*
+
 	//Longhorn alt detonates if it's close to full speed and it hits objects close to dead on
 	if (VSize(Velocity) > default.Speed * 0.9 && -HitNormal Dot Normal(Velocity) > 0.9)
 	{
 		Explode(Location, HitNormal);
 		return;
 	}
-	if (Pawn(Wall) != None)
-	{
-		DampenFactor *= 0.5;
-		DampenFactorParallel *= 0.5;
-	}
+
+	*/
 
 	bCanHitOwner=true;
 	bHasImpacted=true;
@@ -167,40 +133,41 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
-     ArmingDelay=0.100000
-     DetonateOn=DT_ImpactTimed
-     PlayerImpactType=PIT_Detonate
-     DampenFactor=0.120000
-     DampenFactorParallel=0.250000
-     bAlignToVelocity=True
-     DetonateDelay=1.250000
-     ImpactDamage=23
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotDirect'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_LonghornCluster'
-     TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrailAlt'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=1.000000
-     //Speed=7500.000000
-     //MaxSpeed=7500.000000
-     //Damage=25.000000
-     //DamageRadius=256.000000
-     //MomentumTransfer=25000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=25
-     LightSaturation=192
-     LightBrightness=32.000000
-     LightRadius=4.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.ClusterProj'
-     bDynamicLight=True
-     LifeSpan=20.000000
-     DrawScale=0.500000
-     RotationRate=(Roll=32768)
-	 ModeIndex=1
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
+	FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
+	ArmingDelay=0.100000
+	ArmedDetonateOn=DT_ImpactTimed
+	ArmedPlayerImpactType=PIT_Detonate
+	DampenFactor=0.1
+	DampenFactorParallel=0.250000
+	bAlignToVelocity=True
+	DetonateDelay=1.250000
+	ImpactDamage=23
+	ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotDirect'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_LonghornCluster'
+	TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrailAlt'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=1.000000
+	Speed=7500.000000
+	MaxSpeed=7500.000000
+	//Damage=25.000000
+	//DamageRadius=256.000000
+	//MomentumTransfer=25000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=25
+	LightSaturation=192
+	LightBrightness=32.000000
+	LightRadius=4.000000
+	StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.ClusterProj'
+	bDynamicLight=True
+	LifeSpan=20.000000
+	DrawScale=0.500000
+	RotationRate=(Roll=32768)
+	ModeIndex=1
 }

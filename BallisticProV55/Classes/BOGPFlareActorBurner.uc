@@ -112,7 +112,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 defaultproperties
 {
      DamageType=Class'BallisticProV55.DTBOGPFlareBurn'
-     Damage=20
+     Damage=25
      TicksRemaining=5.000000
      Begin Object Class=SpriteEmitter Name=SpriteEmitter11
          FadeOut=True

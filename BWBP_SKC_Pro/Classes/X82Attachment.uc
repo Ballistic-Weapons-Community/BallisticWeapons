@@ -12,7 +12,7 @@ class X82Attachment extends BallisticAttachment;
 simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (X82Rifle(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM';
 		TracerChance=1;
@@ -117,17 +117,18 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+	WeaponClass=class'X82Rifle'
+     MuzzleFlashClass=class'R78FlashEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMG'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.800000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.X83_TPm'
-     RelativeLocation=(X=-17.000000,Z=2.000000)
+     RelativeLocation=(X=-17.000000,Z=-4.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.250000
 }

@@ -34,9 +34,9 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (M2020GaussDMR(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
-		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussQuick';
+		TracerClass=Class'BallisticProV55.TraceEmitter_Gauss';
 	}
 }
 
@@ -208,17 +208,18 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_BulletGauss'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+	WeaponClass=class'M2020GaussDMR'
+     MuzzleFlashClass=class'BWBP_SKC_Pro.M2020FlashEmitter'
+     AltMuzzleFlashClass=class'M806FlashEmitter'
+     ImpactManager=class'IM_Bullet'
+     ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
+     BrassClass=class'Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussSuper'
      TracerChance=2.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'

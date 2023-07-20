@@ -1,15 +1,16 @@
 class Freon extends TeamArenaMaster;
 
-var         float           ThawerCampProtectionTime;
-var         float           AutoThawTime;
-var         float           ThawSpeed;
-var config  bool            bTeamHeal;
+var config float			AutoThawTime;
+var config int				ThawLockTime;
+var config float			ThawSpeed;
+var config bool				bTeamHeal;
 
-var bool bSuddenDeathMode;
+var config bool 			bOTDamageFreezes;
+var config float			ThawerCampProtectionTime;
 
-var config bool bOTDamageFreezes;
+var bool					bSuddenDeathMode;
 
-var array<Freon_Pawn> FrozenPawns;
+var array<Freon_Pawn> 		FrozenPawns;
 
 static function FillPlayInfo(PlayInfo PI)
 {
@@ -111,6 +112,7 @@ function InitGameReplicationInfo()
         return;
 
     Freon_GRI(GameReplicationInfo).AutoThawTime = AutoThawTime;
+	Freon_GRI(GameReplicationInfo).ThawLockTime = ThawLockTime;
     Freon_GRI(GameReplicationInfo).ThawSpeed = ThawSpeed;
     Freon_GRI(GameReplicationInfo).bTeamHeal = bTeamHeal;
 }
@@ -144,8 +146,6 @@ function ParseOptions(string Options)
 event InitGame(string options, out string error)
 {
     Super.InitGame(Options, Error);
-
-	AddMutator("3SPNv3141BW.Freon_Mut_ConflictLoadout", false);
     
     class'xPawn'.Default.ControllerClass = class'Freon_Bot';
 }
@@ -518,6 +518,7 @@ defaultproperties
 {
      ThawerCampProtectionTime=2.000000
      AutoThawTime=90.000000
+	 ThawLockTime=6
      ThawSpeed=5.000000
      bTeamHeal=False
      bDisableTeamCombos=False
@@ -527,6 +528,7 @@ defaultproperties
      DefaultPlayerClassName="3SPNv3141BW.Freon_Pawn"
      ScoreBoardType="3SPNv3141BW.Freon_Scoreboard"
      HUDType="3SPNv3141BW.Freon_HUD"
+	 MapListType="3SPNv3141BW.Freon_MapList"
      GoalScore=6
      PlayerControllerClassName="3SPNv3141BW.Freon_Player"
      GameReplicationInfoClass=Class'3SPNv3141BW.Freon_GRI'

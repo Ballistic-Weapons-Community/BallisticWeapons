@@ -7,7 +7,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=RealisticGrenadeEffectParams
+	Begin Object Class=GrenadeEffectParams Name=RealisticGrenadeEffectParams
 		ProjectileClass=class'BallisticProV55.BOGPGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2400.000000
@@ -27,6 +27,12 @@ defaultproperties
 		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.25
+		UnarmedDetonateOn=DT_Disarm
+		UnarmedPlayerImpactType=PIT_Bounce
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticGrenadeFireParams
@@ -34,7 +40,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		PreFireAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'RealisticGrenadeEffectParams'
+	FireEffectParams(0)=GrenadeEffectParams'RealisticGrenadeEffectParams'
 	End Object
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticFlareEffectParams
@@ -43,7 +49,7 @@ defaultproperties
 		Speed=5500.000000
 		MaxSpeed=7500.000000
 		AccelSpeed=100000.000000
-		Damage=40.000000
+		Damage=50.000000
 		DamageRadius=64.000000
 		MomentumTransfer=0.000000
 		RadiusFallOffType=RFO_Linear
@@ -70,6 +76,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Switch grenade"
 	End Object
 		
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -120,15 +127,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
-		ViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
-		SightOffset=(X=-10.000000,Y=-0.650000,Z=10.500000)
-		SightPivot=(Pitch=1024,Roll=-1024)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		ViewOffset=(X=3.000000,Y=5.000000,Z=-3.500000)
+		//ViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
+		//SightOffset=(X=-10.000000,Y=-0.650000,Z=10.500000)
+		//SightPivot=(Pitch=1024,Roll=-1024)
+		SightPivot=(Pitch=300)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticGrenadeFireParams'
@@ -136,6 +144,31 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=BORT_Red
+		Index=0
+		CamoName="Red"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BORT_White
+		Index=1
+		CamoName="White"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BORT_Flame
+		Index=2
+		CamoName="Radical"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'BORT_Red'
+	Camos(1)=WeaponCamo'BORT_White'
+	Camos(2)=WeaponCamo'BORT_Flame'
 }

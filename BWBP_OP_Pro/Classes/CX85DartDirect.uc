@@ -89,7 +89,7 @@ simulated function Destroyed()
 	
 		//TODO: Search for other Master darts!
 		if (Tracked != None)
-			Tracked.bAlwaysRelevant=False;
+			Tracked.bAlwaysRelevant=Tracked.default.bAlwaysRelevant;
 	}
 	
 	Super.Destroyed();
@@ -169,6 +169,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.CX85AssaultWeapon'
 	 bApplyParams=False
      ModeIndex=1
      bNoFXOnExplode=True

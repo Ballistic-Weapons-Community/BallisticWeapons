@@ -11,15 +11,24 @@ class M58Cloud extends BallisticEmitter
 	
 const LIFETIME = 15;
 
+var() float		ThermalBlockRadius; // defeats threat highlighting within this radius
+
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-		if (level.netMode == NM_DedicatedServer)
-		{
-			Emitters[0].Disabled = true;
-			Emitters[1].Disabled = true;
-		}
+	if (Level.NetMode == NM_DedicatedServer)
+	{
+		Emitters[0].Disabled = true;
+		Emitters[1].Disabled = true;
+	}
+
+	else 
+	{
+		PlaySound(sound'BW_Core_WeaponSound.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
+		AmbientSound = Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
+	}
+
 	SetTimer(LIFETIME, false);
 }
 
@@ -30,7 +39,7 @@ function Reset()
 
 simulated function Timer()
 {
-	if (level.netMode == NM_DedicatedServer)
+	if (Level.NetMode == NM_DedicatedServer)
 		GotoState('DSDying');
 	else
 		Kill();
@@ -67,12 +76,12 @@ defaultproperties
          FadeOutStartTime=4.000000
          FadeInEndTime=0.400000
          MaxParticles=24
-         StartLocationRange=(X=(Min=-256.000000,Max=256.000000),Y=(Min=-256.000000,Max=256.000000),Z=(Min=-16.000000,Max=48.000000))
+         StartLocationRange=(X=(Min=-128.000000,Max=128.000000),Y=(Min=-128.000000,Max=128.000000),Z=(Min=-16.000000,Max=32.000000))
          SpinsPerSecondRange=(X=(Max=0.010000))
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.750000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.500000)
-         StartSizeRange=(X=(Min=250.000000,Max=300.000000),Y=(Min=250.000000,Max=300.000000),Z=(Min=250.000000,Max=300.000000))
+         StartSizeRange=(X=(Min=200.000000,Max=250.000000),Y=(Min=200.000000,Max=250.000000),Z=(Min=200.000000,Max=250.000000))
          ParticlesPerSecond=4.000000
          InitialParticlesPerSecond=4.000000
          DrawStyle=PTDS_AlphaBlend
@@ -99,7 +108,7 @@ defaultproperties
          FadeOutStartTime=2.600000
          FadeInEndTime=0.400000
          MaxParticles=20
-         StartLocationRange=(X=(Min=-256.000000,Max=256.000000),Y=(Min=-256.000000,Max=256.000000))
+         StartLocationRange=(X=(Min=-128.000000,Max=128.000000),Y=(Min=-128.000000,Max=128.000000))
          SpinsPerSecondRange=(X=(Max=0.030000))
          StartSpinRange=(X=(Min=1.000000,Max=1.000000))
          SizeScale(0)=(RelativeSize=0.500000)
@@ -116,7 +125,11 @@ defaultproperties
      AutoDestroy=True
      CollisionRadius=192.000000
      CollisionHeight=192.000000
-     bCollideActors=True
+     bCollideActors=False
      bUseCylinderCollision=True
      bNotOnDedServer=False
+
+	 bNetTemporary=True
+	 bAlwaysRelevant=True
+	 RemoteRole=ROLE_SimulatedProxy
 }

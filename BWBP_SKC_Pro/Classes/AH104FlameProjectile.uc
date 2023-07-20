@@ -81,6 +81,7 @@ simulated function Penetrate(Actor Other, Vector HitLocation)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.AH104Pistol'
      ModeIndex=1
      bPenetrate=True
 	 MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_AH104Burned'
@@ -92,8 +93,8 @@ defaultproperties
      bHidden=True
      RemoteRole=ROLE_None
      LifeSpan=0.300000
-     CollisionRadius=28.000000
-     CollisionHeight=28.000000
+     CollisionRadius=15.000000
+     CollisionHeight=15.000000
      bCollideWorld=False
      bBlockZeroExtentTraces=False
      bBlockNonZeroExtentTraces=False

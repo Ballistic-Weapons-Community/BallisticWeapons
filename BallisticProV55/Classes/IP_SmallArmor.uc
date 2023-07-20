@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IP_SmallArmor extends BallisticArmorPickup;
+class IP_SmallArmor extends ShieldPickup;
 
 var() StaticMesh AlternateMesh;
 
@@ -13,18 +13,19 @@ simulated function PostBeginplay()
 {
 	if (FRand() > 0.5)
 		SetStaticMesh(AlternateMesh);
-	super.PostbeginPlay();
+
+	super.PostBeginPlay();
 }
 
 defaultproperties
 {
      AlternateMesh=StaticMesh'BW_Core_WeaponStatic.Armor.SmallArmor2'
-     ArmorCharge=75
+     ShieldAmount=50
      MaxDesireability=1.000000
      InventoryType=Class'BallisticProV55.BallisticArmor'
      RespawnTime=30.000000
 	 bPredictRespawns=True
-     PickupMessage="You picked up a vest and helmet."
+     PickupMessage="You picked up a vest and helmet +"
      PickupSound=Sound'BW_Core_WeaponSound.Armor.LightArmorPickup'
      PickupForce="ShieldPack"
      DrawType=DT_StaticMesh

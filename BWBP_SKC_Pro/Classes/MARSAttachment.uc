@@ -34,16 +34,17 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'MARSAssaultRifle'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     AltMuzzleFlashClass=class'M806FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      FlashScale=0.250000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     BrassClass=class'Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
@@ -52,5 +53,6 @@ defaultproperties
      bRapidFire=True
      bAltRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.F2000_TPm'
-     DrawScale=1.500000
+	 RelativeLocation=(X=15)
+     DrawScale=1
 }

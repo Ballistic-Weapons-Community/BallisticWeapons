@@ -243,8 +243,10 @@ simulated function AdjustMagnetProperties ()
 		
 		WeaponModes[0].bUnavailable=false;
 		WeaponModes[1].bUnavailable=false;
-		WeaponModes[2].bUnavailable=false;
-		
+		if (!class'BallisticReplicationInfo'.static.IsRealism())
+		{
+			WeaponModes[2].bUnavailable=false;
+		}
 		CurrentWeaponMode = PreviousWeaponMode;
 		
 		SwitchWeaponMode(CurrentWeaponMode+1);
@@ -297,49 +299,7 @@ simulated event RenderOverlays (Canvas C)
 		WeaponScreen.Revision++;
 	}
 
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	if (ZoomType == ZT_Irons)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else
-	{
-		GetViewAxes(X, Y, Z);
-		if (BFireMode[0].MuzzleFlash != None)
-		{
-			BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
-		}
-
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
-
-	// Draw Scope View
-    if (ScopeViewTex != None)
-    {
-		C.ColorModulate.W = 1;
- 	        C.SetDrawColor(255,255,255,255);
-
-        	C.SetPos(C.OrgX, C.OrgY);
-    		C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-
-        	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(ScopeViewTex, C.SizeY, C.SizeY, 0, 0, 1024, 1024);
-
-        	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-		
-	}
+	Super.RenderOverlays(C);
 }
 
 // Secondary fire doesn't count for this weapon
@@ -484,8 +444,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     {
 		AddHeat(Damage*2.5, false);
 
-		Damage /= 5;
-		Momentum /= 5;
+		Damage /= 2;
+		Momentum /= 2;
 
 		M2020GaussAttachment(ThirdPersonActor).BlockEffectCount += 1;
 		M2020GaussAttachment(ThirdPersonActor).DoBlockEffect();
@@ -569,10 +529,10 @@ defaultproperties
 	ScreenBase2=Texture'BWBP_SKC_Tex.M2020.M2020-ScreenOff'
 	Numbers=Texture'BWBP_SKC_Tex.M2020.M2020-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.M2020.BigIcon_M2020'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Power mode fires a single powerful shot with high recoil and damage. Fire rate is poor.|Recharge mode fires more quickly for greater sustained DPS but lower individual shot power.|Offline mode (or Deflecting mode when the shield is active) has the lowest power, but does not generate a bullet trail."
 	ManualLines(1)="Raises the scope."
@@ -598,15 +558,15 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightOffset=(Y=-3.000000,Z=18.000000)
 	MinFixedZoomLevel=0.350000
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=8
 	GunLength=80.000000
-	ParamsClasses(0)=Class'M2020WeaponParams'
+	ParamsClasses(0)=Class'M2020WeaponParamsComp'
 	ParamsClasses(1)=Class'M2020WeaponParamsClassic'
 	ParamsClasses(2)=Class'M2020WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M2020WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.M2020GaussPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=207,G=229,R=231,A=197),Color2=(B=226,G=0,R=0,A=255),StartSize1=77,StartSize2=68)
@@ -625,8 +585,10 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=11
 	PickupClass=Class'BWBP_SKC_Pro.M2020GaussPickup'
-	PlayerViewOffset=(Y=12.000000,Z=-12.000000)
-	BobDamping=2.000000
+
+	PlayerViewOffset=(X=2.00,Y=4.50,Z=-3.50)
+	SightOffset=(X=4.00,Y=0.00,Z=1.93)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.M2020GaussAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.M2020.SmallIcon_M2020'
 	IconCoords=(X2=127,Y2=31)
@@ -638,11 +600,11 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M2020'
-	DrawScale=0.350000
+	DrawScale=0.300000
 	bFullVolume=True
 	SoundVolume=64
 	SoundRadius=128.000000
-	Skins(0)=Shader'BWBP_SKC_Tex.M2020.M2020-ShineAlt'
-	Skins(1)=Shader'BWBP_SKC_Tex.M2020.M2020-Shine'
-	Skins(2)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBP_SKC_Tex.M2020.M2020-ShineAlt'
+	Skins(2)=Shader'BWBP_SKC_Tex.M2020.M2020-Shine'
 }

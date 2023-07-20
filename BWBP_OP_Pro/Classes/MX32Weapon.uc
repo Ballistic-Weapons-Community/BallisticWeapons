@@ -42,7 +42,7 @@ function ServerWeaponSpecial(optional byte i)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		MX32Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 		
@@ -87,7 +87,6 @@ simulated function ClientSwitchLaser()
 	MX32SecondaryFire(FireMode[1]).AdjustLaserParams(bLaserOn);
 	
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -559,7 +558,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -581,7 +580,7 @@ defaultproperties
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_OP_Tex.MX32.BigIcon_MX32'
      BigIconCoords=(Y1=40,Y2=235)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Bullet=True
      bWT_Splash=True
      bWT_Machinegun=True
@@ -589,20 +588,18 @@ defaultproperties
      ManualLines(0)="Automatic 5.56 bullet fire. Low damage per shot with medium range, low penetration and medium recoil."
      ManualLines(1)="Fires a gas-powered rocket barrage, with heavy inaccuracy and recoil with repeated shots."
      ManualLines(2)="Activates a guiding laser, which stabilises secondary fire and directs rockets. Suitable for further distances."
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
+     SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;2.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.250000
-	 ReloadAnimRate=0.800000
      CockSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-Cock',Volume=1.350000)
 	 ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagHit',Volume=1.350000)
 	 ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagOut',Volume=1.350000)
 	 ClipInSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagIn',Volume=1.350000)
      ClipInFrame=0.650000
      bNoCrosshairInScope=True
-     SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
-     SightDisplayFOV=20.000000 
+     SightOffset=(X=0,Y=0,Z=1.72)
+	 SightBobScale=0.3
      FireModeClass(0)=Class'BWBP_OP_Pro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.MX32SecondaryFire'
 	 WeaponModes(0)=(ModeName="Auto Rockets",ModeID="WM_FullAuto")
@@ -610,9 +607,10 @@ defaultproperties
 	 WeaponModes(2)=(bUnavailable=true)
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.G5OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=255,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=110,StartSize2=30)
 	 CurrentWeaponMode=0
-	 ParamsClasses(0)=Class'MX32WeaponParams'
+	 ParamsClasses(0)=Class'MX32WeaponParamsComp'
 	 ParamsClasses(1)=Class'MX32WeaponParamsClassic'
 	 ParamsClasses(2)=Class'MX32WeaponParamsRealistic'
+     ParamsClasses(3)=Class'MX32WeaponParamsTactical'
 	 MagAmmo=50
      PutDownAnimRate=1.500000
      SelectForce="SwitchToAssaultRifle"
@@ -625,7 +623,7 @@ defaultproperties
      InventoryGroup=6
      GroupOffset=7
      PickupClass=Class'BWBP_OP_Pro.MX32Pickup'
-     PlayerViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
+     PlayerViewOffset=(X=10.00,Y=4.50,Z=-3.50)
      AttachmentClass=Class'BWBP_OP_Pro.MX32Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.MX32.SmallIcon_MX32'
      IconCoords=(X2=127,Y2=28)
@@ -638,4 +636,5 @@ defaultproperties
      LightRadius=4.000000
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_MX32'
      DrawScale=0.300000
+	 SightAnimScale=0.5
 }

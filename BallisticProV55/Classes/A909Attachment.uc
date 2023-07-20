@@ -31,9 +31,10 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'A909SkrithBlades'
      MeleeOffhandStrikeAnim="Punchies_JabRight"
      MeleeAltStrikeAnim="Punchies_UppercutRight"
-     ImpactManager=Class'BallisticProV55.IM_A909Blade'
+     ImpactManager=class'IM_A909Blade'
      BrassMode=MU_None
      InstantMode=MU_Both
      FlashMode=MU_None

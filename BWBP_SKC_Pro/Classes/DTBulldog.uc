@@ -27,4 +27,7 @@ defaultproperties
      bExtraMomentumZ=True
      VehicleDamageScaling=1.000000
      VehicleMomentumScaling=0.500000
+
+	TagMultiplier=0.5
+	TagDuration=0.25
 }

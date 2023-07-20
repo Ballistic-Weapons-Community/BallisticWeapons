@@ -40,8 +40,8 @@ struct ModeInfo
     var float                     TracerChance;
     var int                       TracerMix;
     var int                       TracerCounter;
-    var name                      FlashBone;
-    var name                      TipBone;
+    var Name                      FlashBone;
+    var Name                      TipBone;
     var bool                      bTrackAnim;
     var bool                      bInstant;
     var bool                      bTracer;
@@ -53,6 +53,7 @@ struct ModeInfo
 
 var   ModeInfo                      ModeInfos[2];
 
+var() class<BallisticWeapon>		WeaponClass;						// required - used to access params
 var() class<actor>					MuzzleFlashClass;					//Effect to spawn fot mode 0 muzzle flash
 var   actor							MuzzleFlash;						//The flash actor itself
 var() class<actor>					AltMuzzleFlashClass;				//Effect to spawn fot mode 1 muzzle flash
@@ -63,13 +64,13 @@ var() bool							bDoWaterSplash;						//Allow water splash effects and checks
 var() bool							bRandomFlashRoll;					//Randomly set roll of muzzle flash actor for each shot
 var   actor							LightWeapon;						//Actor currently being use for weapon light
 var() float							WeaponLightTime;					//Time for weapon light to remain on
-var() name							FlashBone;							//Bone to which primary flash will be attached
-var() name							AltFlashBone;						//Bone to which secondary flash will be attached
+var() Name							FlashBone;							//Bone to which primary flash will be attached
+var() Name							AltFlashBone;						//Bone to which secondary flash will be attached
 var   int							mHitSurf;							//Surface type that was hit
 var() float							FlashScale;							//Flash will be scaled by weapon drawscale and this
 var() class<actor>					BrassClass;							//Type of brass to eject
 var() EModeUsed						BrassMode;							//Firing mode/s that eject brass
-var() name							BrassBone;							//Name of bone from which to spawn brass
+var() Name							BrassBone;							//Name of bone from which to spawn brass
 var() EModeUsed						TracerMode;							//Firing mode/s that spawn tracer effects. Still needs Instant mode to be on
 var() EModeUsed						InstantMode;						//Firing mode/s that spawn instant fire effects
 var() EModeUsed						FlashMode;							//Firing mode/s that spawn muzzle flash
@@ -92,18 +93,19 @@ var() BUtil.FullSound				FlyBySound;							//Sound to play for bullet flyby effe
 var() EModeUsed						FlyByMode;							//Firing mode/s that use flyby effect.
 var() float							FlybyRange;							//Max distance from bullet trace line, at which flyby by sounds will be heard
 var() float							FlyByBulletSpeed;					//Used to calculate flyby sound delay (simulate bullet speed)
+var 	int 						CamoIndex;
 
 //===========================================================================
 // Animation support
 //===========================================================================
 var() Name							ReloadAnim, CockingAnim, WeaponSpecialAnim, StaggerAnim;			// Third person reload animation.
 var() float							ReloadAnimRate, CockAnimRate, WeaponSpecialRate, StaggerRate;  // Used by SetAnimAction for third person "reload" anim rate
-var()  name							IdleHeavyAnim, IdleRifleAnim;
-var()	 name						MeleeStrikeAnim;						// Third person melee attack.
+var()  Name							IdleHeavyAnim, IdleRifleAnim;
+var()	 Name						MeleeStrikeAnim;						// Third person melee attack.
 var()	 float						MeleeAnimRate;
-var()	 name						MeleeBlockAnim, MeleeWindupAnim;
+var()	 Name						MeleeBlockAnim, MeleeWindupAnim;
 var 	 bool						bIsAimed; 								// Used to have pawns raise and lower the gun
-var()	 name						SingleFireAnim, SingleAimedFireAnim,  RapidFireAnim, RapidAimedFireAnim;
+var()	 Name						SingleFireAnim, SingleAimedFireAnim, RapidFireAnim, RapidAimedFireAnim;
 
 // Direct impacts allow the server to send the loc, norm and surf of an impact to be used on the client
 // This way the server can force a specific impact, but this uses more bandwidth
@@ -133,7 +135,7 @@ struct BonePos
 // A track is a list of offset points associated with a bone
 struct BoneTrack
 {
-	var() name Bone;
+	var() Name Bone;
 	var() array<BonePos> Points;
 };
 var() array<BoneTrack> 	SlashTracks;			// The tracks used for a pawn slashing anim
@@ -148,6 +150,8 @@ replication
 {
 	reliable if (bNetDirty && Role==Role_Authority)
 		FireCount, AltFireCount, MeleeFireCount, WallPenetrates, DirectImpact, DirectImpactCount, bIsAimed;
+	reliable if (bNetInitial && Role == ROLE_Authority)
+		CamoIndex;
 }
 
 simulated function PostBeginPlay()
@@ -155,6 +159,19 @@ simulated function PostBeginPlay()
 	super.PostBeginPlay();
 
     GenerateModeInfo();
+}
+
+//==========================================================
+// InitFor
+//
+// Applies camo on the server
+//==========================================================
+function InitFor(Inventory BW)
+{
+	Super.InitFor(BW);
+
+	CamoIndex = BallisticWeapon(BW).CamoIndex;
+	ApplyCamo();
 }
 
 //==========================================================
@@ -207,12 +224,78 @@ simulated function GenerateModeInfo()
         if (ModeInfos[i].TracerChance < 2 && (level.DetailMode <= DM_High || class'BallisticMod'.default.EffectsDetailMode <= 1))
 		    ModeInfos[i].TracerChance *= 0.5;
     }
+
+	// give params opportunity to modify attachment (for tactical tracers)
+	// fixme: do all init from fire effect params.
+	if (WeaponClass != None)
+		WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetAttachmentParams(self);
 }
 
+//==========================================================
+// PostNetBeginPlay
+//
+// Applies camo on the client
+//==========================================================
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
+
 	bHeavy = bIsAimed;
+	
+	if (Role < ROLE_Authority)
+		ApplyCamo();
+}
+
+simulated function ApplyCamo()
+{
+	local int i;
+	local WeaponCamo WC;
+
+	// must read the params class
+	if (WeaponClass == None)
+	{
+		log(Name$"::ApplyCamo: No weapon class set - cannot read params to set camo!");
+		return;
+	}
+
+	if (CamoIndex == 255) //no camo, abort load
+	{
+		return;
+	}
+
+	if (CamoIndex >= WeaponClass.static.GetParams().default.Camos.Length)
+	{
+		log(Name$"::ApplyCamo: Camo index out of range: got "$CamoIndex$", length "$WeaponClass.static.GetParams().default.Camos.Length);
+		return;
+	}
+
+	//log(Name$"::ApplyCamo: Camo index "$CamoIndex);
+
+	WC = WeaponClass.static.GetParams().default.Camos[CamoIndex];
+	
+	for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
+	{
+		if (WC.WeaponMaterialSwaps[i].AIndex != -1)
+		{				
+			if (WC.WeaponMaterialSwaps[i].Material == None)
+			{
+				// Azarael - cache the material to the camo params, to save a DLO every single time
+				WC.WeaponMaterialSwaps[i].Material = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+
+				if (WC.WeaponMaterialSwaps[i].Material == None)
+				{
+					// Azarael - disable loading this particular entry if it was not found
+					log(Name$"::ApplyCamo: Failed dynamically loading material " $WC.WeaponMaterialSwaps[i].MaterialName);
+
+					WC.WeaponMaterialSwaps[i].AIndex = -1;
+					continue;
+				}
+			}
+
+			//log(Name$"::ApplyCamo: Material is " $ WC.WeaponMaterialSwaps[i].Material);
+			Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
+		}
+	}
 }
 	
 // If firecount changes, start ThirdPersonEffects()
@@ -301,14 +384,21 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 simulated function EjectBrass(byte Mode)
 {
 	local Rotator R;
+
 	if (!class'BallisticMod'.default.bEjectBrass)
 		return;
+
 	if (BrassClass == None)
 		return;
+
+	Mode = Min(Mode, 1);
+
 	if (!ModeInfos[Mode].bBrass)
 		return;
+
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return;
+
 	Spawn(BrassClass, self,, GetEjectorLocation(R), R);
 }
 
@@ -318,6 +408,8 @@ simulated function InstantFireEffects(byte Mode)
 {
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
+
+	Mode = Min(Mode, 1);
 
 	if (!ModeInfos[Mode].bInstant)
 		return;
@@ -435,7 +527,6 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 	class'BCFlyByActor'.static.SoundOff(self, FlyBySound, PointX, XDist/FlyByBulletSpeed);
 }
 
-
 // Find the wall entry and exit 'wounds' and do the effects...
 simulated function DoWallPenetrate(byte Mode, vector Start, vector End)
 {
@@ -532,6 +623,8 @@ simulated function FlashMuzzleFlash(byte Mode)
 {
 	local rotator R;
 
+	Mode = Min(Mode, 1);
+
 	if (!ModeInfos[Mode].bFlash)
 		return;
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
@@ -573,29 +666,38 @@ simulated function PlayPawnFiring(byte Mode)
 {
 	if ( xPawn(Instigator) == None )
 		return;
+
 	//Do this with a mask maybe? - Azarael
 	if (Mode == 255)
-		PlayMeleeFiring();
-	else if (ModeInfos[Mode].bTrackAnim)
-		PlayPawnTrackAnim(Mode);
-	else
 	{
-		if (FiringMode == 0)
-		{
-			if (bIsAimed)
-				xPawn(Instigator).StartFiring(False, bRapidFire);
-			else
-				xPawn(Instigator).StartFiring(True, bRapidFire);
-		}
-		else 
-		{
-			if (bIsAimed)
-				xPawn(Instigator).StartFiring(False, bAltRapidFire);
-			else
-				xPawn(Instigator).StartFiring(True, bAltRapidFire);
-		}
-			SetTimer(WeaponLightTime, false);
+		PlayMeleeFiring();
+		return;
 	}
+
+	Mode = Min(Mode, 1);
+
+	if (ModeInfos[Mode].bTrackAnim)
+	{
+		PlayPawnTrackAnim(Mode);
+		return;
+	}
+
+	if (FiringMode == 0)
+	{
+		if (bIsAimed)
+			xPawn(Instigator).StartFiring(False, bRapidFire);
+		else
+			xPawn(Instigator).StartFiring(True, bRapidFire);
+	}
+	else 
+	{
+		if (bIsAimed)
+			xPawn(Instigator).StartFiring(False, bAltRapidFire);
+		else
+			xPawn(Instigator).StartFiring(True, bAltRapidFire);
+	}
+
+	SetTimer(WeaponLightTime, false);
 }
 
 simulated function PlayMeleeFiring()
@@ -708,19 +810,21 @@ simulated function BoneTrack GetTrack(byte Mode, int Index)
 // Either the weapon will flash or this attachment will
 simulated function FlashWeaponLight(byte Mode)
 {
+	Mode = Min(Mode, 1);
+
 	if (!ModeInfos[Mode].bLight)
 		return;
+
 	if (Instigator == None || Level.bDropDetail || ((Level.TimeSeconds - LastRenderTime > 0.2) && (PlayerController(Instigator.Controller) == None)))
-	{
-//		Timer();
 		return;
-	}
+
 	if (Instigator.Weapon != None)
 		LightWeapon = Instigator.Weapon;
 	else
 		LightWeapon = self;
 
 	LightWeapon.bDynamicLight = true;
+
 	SetTimer(WeaponLightTime, false);
 }
 

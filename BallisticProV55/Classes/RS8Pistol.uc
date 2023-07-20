@@ -94,7 +94,7 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		RS8Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	OnLaserSwitched();
@@ -118,7 +118,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction') && ReloadState != RS_GearSwitch)
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -244,11 +243,6 @@ simulated event RenderOverlays( Canvas Canvas )
 	super.RenderOverlays(Canvas);
 	if (!IsInState('Lowered'))
 		DrawLaserSight(Canvas);
-}
-
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function OnScopeViewChanged()
@@ -493,7 +487,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RS8'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic 10mm fire. Moderate damage and fire rate. Has the option of burst fire."
 	ManualLines(1)="Attaches a suppressor, reducing the effective range but removing the flash and reducing the noise output."
@@ -501,20 +495,22 @@ defaultproperties
 	SpecialInfo(0)=(Info="0.0;-5.0;-999.0;-1.0;0.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Cock')
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-15.000000,Z=8.700000)
+	//SightOffset=(X=-10.000000,Z=8.700000)
+	bAdjustHands=true
+	RootAdjust=(Yaw=-290,Pitch=3000)
+	WristAdjust=(Yaw=-3000,Pitch=-000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'RS8WeaponParams'
+	ParamsClasses(0)=Class'RS8WeaponParamsComp'
 	ParamsClasses(1)=Class'RS8WeaponParamsClassic'
 	ParamsClasses(2)=Class'RS8WeaponParamsRealistic'
+    ParamsClasses(3)=Class'RS8WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.RS8PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RS8SecondaryFire'
 	
@@ -531,7 +527,12 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=7
 	PickupClass=Class'BallisticProV55.RS8Pickup'
-	PlayerViewOffset=(X=3.000000,Y=9.000000,Z=-12.000000)
+
+	PlayerViewOffset=(X=20.00,Y=3.00,Z=-8.00)
+	SightOffset=(X=-43,Y=-1.4,Z=13.4)
+	SightPivot=(Pitch=-200,Roll=-1050)
+	SightBobScale=0.5f
+
 	AttachmentClass=Class'BallisticProV55.RS8Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.RS8.SmallIcon_RS8'
 	IconCoords=(X2=127,Y2=31)
@@ -546,4 +547,5 @@ defaultproperties
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney'
+	SightAnimScale=0.3
 }

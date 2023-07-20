@@ -219,7 +219,7 @@ simulated function Notify_Deploy ()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && T.bWorldGeometry && HitNorm.Z >= 0.7 && FastTrace(HitLoc, Start))
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth - 4 && T.bWorldGeometry && HitNorm.Z >= 0.7 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
 		{
@@ -425,11 +425,11 @@ defaultproperties
 	Shells(0)="Shell1"
 	Shells(1)="Shell2"
 	Shells(2)="Shell3"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Artillery.BigIcon_Artillery'
 	BigIconCoords=(Y1=24,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -441,7 +441,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=2.250000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-ShellIn')
 	bNonCocking=True
 	bCanSkipReload=True
@@ -463,12 +462,13 @@ defaultproperties
 	FullZoomFOV=10.000000
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
-	SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
+	SightOffset=(X=-5.000000,Y=-15.000000,Z=0.000000)
 	SightDisplayFOV=70.000000
 	GunLength=96.000000
-	ParamsClasses(0)=Class'MACWeaponParams'
+	ParamsClasses(0)=Class'MACWeaponParamsComp'
 	ParamsClasses(1)=Class'MACWeaponParamsClassic'
 	ParamsClasses(2)=Class'MACWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MACWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MACPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MACSecondaryFire'
 	SelectAnimRate=0.600000
@@ -479,7 +479,6 @@ defaultproperties
 	AIRating=0.90000
 	CurrentRating=0.90000
 	Description="This heavy construct was designed for infantry use, to combat vehicles and large Cryon troops. After several failed designs and attempts, resulting in weapons which were far too heavy and cumbersome for infantry use, the HAMR was built. This new weapon could be carried by infantry, and could be deployed with the sturdy legs mounted underneath the weapon. The weapon can still be fired when mounted on the soldier's shoulder, but it generates extreme recoil, and leaves the users aim in complete disarray. The optical system mounted on the weapon, allows the user to viem from a remote screen attached to the soldiers helmet. Besides a zooming scope, the optical system also features an angle indicator and range finder, allowing the user to pitch the weapon as necessary depending on an inputed distance."
-	DisplayFOV=70.000000
 	Priority=44
 	HudColor=(G=200,R=225)
 	CenteredOffsetY=10.000000
@@ -488,7 +487,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.MACPickup'
-	PlayerViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)
+	PlayerViewOffset=(X=-2.000000,Y=12.000000,Z=5.000000)
 	AttachmentClass=Class'BallisticProV55.MACAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Artillery.SmallIcon_Artillery'
 	IconCoords=(X2=127,Y2=31)
@@ -501,6 +500,7 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMR'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
-	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
+	Skins(2)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
 }

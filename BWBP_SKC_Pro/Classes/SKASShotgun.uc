@@ -32,7 +32,7 @@ function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		SKASPrimaryFire(FireMode[0]).bRequireSpool=true;
 	}
@@ -53,7 +53,7 @@ simulated function float GetRampUpSpeed()
 	
 	mult = 1 - (BarrelSpeed / MaxRotationSpeed);
 	
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 		return 0.075f + (3.0 * mult * (1 + 0.25*int(bBerserk)));
 	else
 		return 0.075f + (mult * (1 + 0.25*int(bBerserk)));
@@ -68,7 +68,7 @@ simulated event WeaponTick (float DT)
 
 	super.WeaponTick(DT);
 
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 		return;
 	
 	BT.Pitch = BarrelTurn;
@@ -93,7 +93,7 @@ simulated event Tick (float DT)
 
 	super.Tick(DT);
 
-	if (BCRepClass.default.GameStyle == 1 || CurrentWeaponMode != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassic() || CurrentWeaponMode != 0)
 		return;
 
 	if (FireMode[0].IsFiring() && !bServerReloading)
@@ -131,7 +131,7 @@ simulated function float ChargeBar()
 	if (Heat + SKASSecondaryFire(Firemode[1]).RailPower > 0)
 		return FMin((Heat + SKASSecondaryFire(Firemode[1]).RailPower), 1);
 	
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 		return 0;
 	
     return BarrelSpeed / DesiredSpeed;
@@ -165,7 +165,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
     }
     else if ( !W.HasAmmo() )
 	    bPossiblySwitch = true;
@@ -310,34 +324,31 @@ defaultproperties
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BWBP_SKC_Tex.SKAS.BigIcon_SKAS'
     BigIconCoords=(Y1=24)
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Shotgun=True
     bWT_Machinegun=True
-    SpecialInfo(0)=(Info="360.0;30.0;0.9;120.0;0.0;3.0;0.0")
+    SpecialInfo(0)=(Info="360.0;45.0;0.9;120.0;0.0;3.0;0.0")
     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Select')
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
     MagAmmo=24
-    CockAnimRate=1.250000
     CockSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-CockLong',Volume=1.000000)
-    ReloadAnimRate=1.550000
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-ClipOut1',Volume=2.000000)
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-ClipIn',Volume=2.000000)
     ClipInFrame=0.650000
     bCockOnEmpty=True
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=192),Color2=(B=0,G=0,R=255,A=98),StartSize1=113,StartSize2=120)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
-	//WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
-    //WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
-    //WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-    //WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
-    //WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
+	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+    WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+    WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+    WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
+    WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
     CurrentWeaponMode=0
-    SightPivot=(Pitch=1024)
-    SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
-    ParamsClasses(0)=Class'SKASWeaponParams'
+    ParamsClasses(0)=Class'SKASWeaponParamsComp'
     ParamsClasses(1)=Class'SKASWeaponParamsClassic'
     ParamsClasses(2)=Class'SKASWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SKASWeaponParamsTactical'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBP_SKC_Pro.SKASSecondaryFire'
     IdleAnimRate=0.100000
@@ -345,14 +356,19 @@ defaultproperties
     AIRating=0.850000
     CurrentRating=0.850000
     bShowChargingBar=True
-    Description="SKAS-21 Super Shotgun||Manufacturer: UTC Defense Tech|Primary: Variable Fire Buckshot|Secondary: Tri-Barrel Blast"
+    Description="SKAS-21 Super Shotgun||Manufacturer: UTC Defense Tech|Primary: Variable Fire Buckshot|Secondary: Tri-Barrel Blast||The SKAS-21 Super Assault Shotgun is a brand-new, state-of-the-art weapons system developed by UTC Defense Tech. It has been nicknamed 'The Decimator' for its ability to sweep entire streets clean of hostiles in seconds. Built to provide sustained suppressive fire, the fully automatic SKAS fires from an electrically assisted, rotating triple-barrel system. An electric motor housed in the stock operates various internal functions, making this gun one of the few gas-operated/Gatling hybrids. Non-ambidexterous models can disable this system for use with low-impulse ammunition, however use with standard ammunition is not recommended due to the resulting overpressurization. This heavy duty shotgun fires 10 gauge ammunition from a 18 round U drum by default, however 12 gauge (SKAS/M-21), grenade launching (SRAC/G-21), and box fed (SAS/CE-3) variants exist as well. Handle with care, as this is one expensive gun."
     Priority=245
     HudColor=(B=190,G=190,R=190)
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=7
     GroupOffset=4
     PickupClass=Class'BWBP_SKC_Pro.SKASPickup'
-    PlayerViewOffset=(X=-4.000000,Y=1.000000,Z=-10.000000)
+
+    PlayerViewOffset=(X=10.00,Y=5.00,Z=-4.50)
+    SightOffset=(X=-22.50,Y=0.00,Z=8.80)
+	SightPivot=(Pitch=1024)
+	SightBobScale=0.75
+	
     AttachmentClass=Class'BWBP_SKC_Pro.SKASAttachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SKAS.SmallIcon_SKAS'
     IconCoords=(X2=127,Y2=30)
@@ -364,6 +380,6 @@ defaultproperties
     LightBrightness=150.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SKAS'
-    DrawScale=0.260000
+    DrawScale=0.30000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

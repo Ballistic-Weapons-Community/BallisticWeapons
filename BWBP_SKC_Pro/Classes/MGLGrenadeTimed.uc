@@ -63,7 +63,8 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
-     PlayerImpactType=PIT_Detonate
+    WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'
+     ArmedPlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
 	 bAlignToVelocity=True
 	 DampenFactor=0.050000
@@ -80,7 +81,7 @@ defaultproperties
      MotionBlurRadius=400.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     WallPenetrationForce=256
+     WallPenetrationForce=64
      Speed=4500.000000
      Damage=140.000000
      DamageRadius=768.000000

@@ -229,7 +229,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_OP_Tex.BallisticShield.BigIcon_BallisticShield'
      BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
      ManualLines(1)="Prepared strike with the weapons."
      ManualLines(2)="Hold Weapon Function to block with the shield, which dramatically increases its defensive effectiveness at the cost of your ability to see. The shield is further bolstered in effectiveness if the user is crouching while blocking.||The ballistic shield reduces movement speed whilst active."
@@ -240,7 +240,10 @@ defaultproperties
      GunLength=0.000000
 	 NDCrosshairCfg=(Pic1=None,Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=255),Color2=(B=210,G=255,R=0,A=255),StartSize1=96,StartSize2=96)
 	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
-	 ParamsClasses(0)=Class'BallisticShieldWeaponParams'
+	 ParamsClasses(0)=Class'BallisticShieldWeaponParamsComp'
+	 ParamsClasses(1)=Class'BallisticShieldWeaponParamsClassic'
+	 ParamsClasses(2)=Class'BallisticShieldWeaponParamsRealistic'
+	 ParamsClasses(3)=Class'BallisticShieldWeaponParamsTactical'
 	 FireModeClass(0)=Class'BWBP_OP_Pro.BallisticShieldPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.BallisticShieldSecondaryFire'
      PutDownTime=0.500000
@@ -250,7 +253,6 @@ defaultproperties
      CurrentRating=0.5000000
      bMeleeWeapon=True
      Description="RSH-1034 Riot Shield||Manufacturer: Apollo Industries|Primary: Smash|Secondary: Prepared Bash||A defensive weapon capable of blocking many attack types. Reduces incoming frontal damage by 35 or reduces it to 25% of the original amount, whichever is greater. Blocks melee damage outright. Has no effect on non-locational damage such as gas and fire."
-     DisplayFOV=65.000000
      Priority=12
      HudColor=(B=255,G=200,R=200)
      CenteredOffsetY=7.000000

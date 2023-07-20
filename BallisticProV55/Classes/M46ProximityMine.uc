@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class M46ProximityMine extends M46Mine;
 
@@ -118,6 +118,11 @@ function SteppedOn (Actor Other)
 		SetTimer(1.0, false);
 		bDetonated=True;
 	}
+}
+
+function OwnerDied()
+{
+    Destroy();
 }
 
 simulated function InitProjectile()

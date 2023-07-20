@@ -254,7 +254,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -272,7 +272,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.BigIcon_OASMG'
 	BigIconCoords=(Y1=16,Y2=210)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	bWT_Projectile=True
@@ -285,9 +285,7 @@ defaultproperties
 	AIRating=0.8
 	CurrentRating=0.8
 	CockAnimPostReload="ReloadEndCock"
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_Cock',Volume=1.350000)
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_ClipOut',Volume=1.150000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_ClipIn',Volume=1.150000)
 	ClipInFrame=0.760000
@@ -296,14 +294,11 @@ defaultproperties
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=105,R=0,A=133),Color2=(G=0),StartSize1=87,StartSize2=55)
 	
-	SightPivot=(Pitch=200)
-	SightZoomFactor=0.85
-	SightOffset=(X=1.000000,Z=17.750000)
-	SightDisplayFOV=25.000000
 	GunLength=40.000000
-	ParamsClasses(0)=Class'XMK5WeaponParams'
+	ParamsClasses(0)=Class'XMK5WeaponParamsComp'
 	ParamsClasses(1)=Class'XMK5WeaponParamsClassic'
 	ParamsClasses(2)=Class'XMK5WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XMK5WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XMK5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMK5SecondaryFire'
 	PutDownTime=0.350000
@@ -315,7 +310,13 @@ defaultproperties
 	InventoryGroup=3
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.XMK5Pickup'
-	PlayerViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
+
+	PlayerViewOffset=(X=4.00,Y=3.50,Z=-1.50)
+	SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
+	SightBobScale=0.15f
+	SightAnimScale=0.5f
+	SightZoomFactor=1.2
+
 	AttachmentClass=Class'BallisticProV55.XMK5Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.SmallIcon_OASMG'
 	IconCoords=(X2=127,Y2=31)
@@ -327,5 +328,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMK5'
-	DrawScale=0.450000
+	DrawScale=0.30000
 }

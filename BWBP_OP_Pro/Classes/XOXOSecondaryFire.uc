@@ -41,9 +41,9 @@ simulated function bool StreamAllowFire()
 function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir)
 {
 	local float Dmg;
-	local class<DamageType>	HitDT;
 	local actor Victim;
 	local bool bWasAlive;
+	local class<DamageType> HitDT;
 	local Vector ClosestLocation, BoneTestLocation;
 	
 	if ( (Pawn(Other) != None && Pawn(Other).Controller != None && Pawn(Other).Controller.SameTeamAs(Instigator.Controller) ) 
@@ -80,10 +80,10 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 			BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
 			BoneTestLocation += HitLocation;
 	
-			Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
+			Dmg = GetDamage(Other, BoneTestLocation, TraceStart, Dir, Victim, HitDT);
 		}
 
-		else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+		else Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
 		
 		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 		{
@@ -99,20 +99,7 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 			class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Victim), Weapon);
 	}
 }
-	
-//===========================================================================
-// GetDamage
-//
-// Lacks locational damage
-//===========================================================================
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
-{
-	DT = DamageType;
-	Victim = Other;
-	
-	return Damage;
-}
-	
+
 //===========================================================================
 // MaintainConnection
 //
@@ -256,23 +243,24 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 
 defaultproperties
 {
-     Damage=7.000000
-     MaxWaterTraceRange=5000
-     DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
-     MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
-     FireRecoil=0.000000
-     FireChaos=0.000000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     bPawnRapidFireAnim=True
-     FireAnim="SecFireLoop"
-     FireEndAnim="SecFireEnd"
-     FireRate=0.070000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_XOXO'
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     WarnTargetPct=0.200000
+	MaxWaterTraceRange=5000
+	DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
+	DamageTypeHead=Class'BWBP_OP_Pro.DTXOXOStream'
+	DamageTypeArm=Class'BWBP_OP_Pro.DTXOXOStream'
+	MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
+	FireRecoil=0.000000
+	FireChaos=0.000000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	bPawnRapidFireAnim=True
+	FireAnim="SecFireLoop"
+	FireEndAnim="SecFireEnd"
+	FireRate=0.070000
+	AmmoClass=Class'BWBP_OP_Pro.Ammo_XOXO'
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+	WarnTargetPct=0.200000
 }

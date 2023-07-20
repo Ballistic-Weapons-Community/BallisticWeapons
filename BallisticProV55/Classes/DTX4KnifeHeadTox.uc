@@ -9,26 +9,6 @@
 //=============================================================================
 class DTX4KnifeHeadTox extends DTX4KnifeTox;
 
-// HeadShot stuff from old sniper damage ------------------
-static function IncrementKills(Controller Killer)
-{
-	local xPlayerReplicationInfo xPRI;
-
-    Killer.AwardAdrenaline(10);
-
-	if ( PlayerController(Killer) == None )
-		return;
-
-	PlayerController(Killer).ReceiveLocalizedMessage( Class'XGame.SpecialKillMessage', 0, Killer.PlayerReplicationInfo, None, None );
-	xPRI = xPlayerReplicationInfo(Killer.PlayerReplicationInfo);
-	if ( xPRI != None )
-	{
-		xPRI.headcount++;
-		if ( (xPRI.headcount == 15) && (UnrealPlayer(Killer) != None) )
-			UnrealPlayer(Killer).ClientDelayedAnnouncementNamed('HeadHunter',15);
-	}
-}
-
 defaultproperties
 {
      DeathStrings(0)="%k's carved %kh name on %o's face with %kh X4 blade."

@@ -35,12 +35,6 @@ const NumShells	= 9;
 var   Emitter		LaserDot;
 var   bool			bLaserOn;
 
-replication
-{
-	reliable if (Role < ROLE_Authority)
-		ServerUpdateLaser;
-}
-
 simulated state PendingSGReload extends PendingDualAction
 {
 	simulated function BeginState()	{	OtherGun.LowerHandGun();	}
@@ -419,11 +413,6 @@ simulated function CommonCockGun(optional byte Type)
 		SafePlayAnim(CockAnim, 1.0, 0.2);
 }
 
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 simulated function KillLaserDot()
 {
 	if (LaserDot != None)
@@ -471,16 +460,9 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
-function ServerUpdateLaser(bool bNewLaserOn)
-{
-	bUseNetAim = default.bUseNetAim || bNewLaserOn;
-}
-
 exec simulated function WeaponSpecial(optional byte i)
 {
 	bLaserOn = !bLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
-	ServerUpdateLaser(bLaserOn);
 }
 
 simulated event WeaponTick(float DT)
@@ -591,12 +573,13 @@ defaultproperties
 	Shells(8)=(ShellName="Bullet9",BulletName="Slug9")
 	Shells(9)=(ShellName="shell",BulletName="shell")
 	LoadedChambers=9
+	DualReloadEmptyAnim="DualReload"
 	HandgunGroup=1
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.leMat.BigIcon_Wilson41DB'
 	BigIconCoords=(X1=48,Y1=40,X2=459)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="High damage bullet fire. Good range for a handgun and high ammo capacity."
 	ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
@@ -604,9 +587,8 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-Cock')
-	ReloadAnimRate=1.300000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-BulletsOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-BulletsIn')
 	ClipInFrame=0.650000
@@ -619,12 +601,16 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
      
 	bNoCrosshairInScope=True	
-	SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
+	bAdjustHands=true
+	RootAdjust=(Yaw=-350,Pitch=2500)
+	WristAdjust=(Yaw=-3000,Pitch=-0000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	ParamsClasses(0)=Class'leMatWeaponParams'
+	SightBobScale=1f
+	ParamsClasses(0)=Class'leMatWeaponParamsComp'
 	ParamsClasses(1)=Class'leMatWeaponParamsClassic'
 	ParamsClasses(2)=Class'leMatWeaponParamsRealistic'
+    ParamsClasses(3)=Class'leMatWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
 	PutDownTime=0.700000
@@ -632,14 +618,16 @@ defaultproperties
 	AIRating=0.600000
 	CurrentRating=0.600000
 	Description="An expensive remake of an exceptionally old weapon, the Wilson 41-DB was designed for collectors and procurers of rare items from the early days of human firearms. Manufactured by the Edwinson & Sons arms co, this firearm is of high quality, sparse quantity and very high price. Never used in any military or law enforcement organisation, the Wilson 'DiamondBack', is still capable of causing damage. With a 9 cylinder revolver and single 16 gauge shotgun chamber for desperate moments, this weapon can still stop many opponents."
-	DisplayFOV=50.000000
 	Priority=22
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
 	GroupOffset=4
 	PickupClass=Class'BallisticProV55.leMatPickup'
-	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-7.000000)
-	PlayerViewPivot=(Pitch=512)
+
+	PlayerViewOffset=(X=12,Y=7,Z=-13)
+	SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+	SightPivot=(Pitch=512,Roll=-50)
+
 	AttachmentClass=Class'BallisticProV55.leMatAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.leMat.SmallIcon_Wilson41DB'
 	IconCoords=(X2=127,Y2=31)
@@ -652,4 +640,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Wilson'
 	DrawScale=0.300000
+	SightAnimScale=0.65
 }

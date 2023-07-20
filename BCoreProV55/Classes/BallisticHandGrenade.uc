@@ -186,7 +186,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 		dir = Victims.Location - HitLocation;
 		dist = FMax(1,VSize(dir));
 		dir = dir/dist;
-		damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+		damageScale = 2;
 		if ( Instigator == None || Instigator.Controller == None )
 			Victims.SetDelayedDamageInstigatorController( InstigatorController );
 		class'BallisticDamageType'.static.GenericHurt
@@ -195,7 +195,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 			damageScale * DamageAmount,
 			Instigator,
 			Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-			(damageScale * Momentum * dir),
+			(1 * Momentum * dir),
 			DamageType
 		);
 	}
@@ -276,12 +276,16 @@ function HolderDied()
 	if (AmbientSound != None)
 		AmbientSound = None;
 
-    if (Instigator != None && Instigator.Weapon == self && Role == ROLE_Authority && BallisticGrenadeFire(FireMode[0]) != None && !FireMode[0].IsFiring() && !FireMode[1].IsFiring() && FireMode[0].NextFireTime < level.TimeSeconds)
+	// avoid dropping grenades on death - it's not good for gameplay
+	// fix this check later - grenade should still be dropped if user was attempting to cook off
+    if (Instigator != None && Instigator.Weapon == self && Role == ROLE_Authority && BallisticHandGrenadeFire(FireMode[0]) != None && !FireMode[0].IsFiring() && !FireMode[1].IsFiring() && FireMode[0].NextFireTime < level.TimeSeconds)
 	{
+		/*
 		CurrentWeaponMode=0;
 		FireMode[0].HoldTime = 0;
 		FireMode[0].ModeDoFire();
 		CurrentWeaponMode=1;
+		*/
     }
     else
     {
@@ -292,8 +296,11 @@ function HolderDied()
 	        if (FireMode[m].bIsFiring)
     	    {
         	    StopFire(m);
+
+				/*
             	if (FireMode[m].bFireOnRelease && (BFireMode[m] == None || BFireMode[m].bReleaseFireOnDie))
                 	FireMode[m].ModeDoFire();
+				*/
 	        }
     	}
     }
@@ -424,9 +431,8 @@ simulated function Notify_GrenadeClipOff ()
 simulated function float ChargeBar()
 {
 	if (FireMode[1].bIsFiring)
-		return FClamp(FireMode[1].HoldTime - 0.5,  0, 2) / 2;
-	else
-		return FClamp(FireMode[0].HoldTime - 0.5,  0, 2) / 2;
+		return BallisticHandGrenadeFire(FireMode[1]).CalculateThrowPower();
+	return BallisticHandGrenadeFire(FireMode[0]).CalculateThrowPower();
 }
 
 function DropFrom(vector StartLocation)
@@ -512,7 +518,7 @@ defaultproperties
 	DropThreshold=75
 	MagAmmo=1
 	bNoMag=True
-	WeaponModes(0)=(ModeName="Auto Throw",ModeID="WM_None",Value=0.000000)
+	WeaponModes(0)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.000000)
 	WeaponModes(1)=(ModeName="Long Throw",ModeID="WM_None",Value=1.000000)
 	WeaponModes(2)=(ModeName="Short Throw",ModeID="WM_None",Value=2.000000)
 	CurrentWeaponMode=0

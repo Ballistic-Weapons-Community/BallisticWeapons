@@ -8,7 +8,6 @@
 //=============================================================================
 class ChaffAttachment extends BallisticGrenadeAttachment;
 
-
 simulated function InstantFireEffects(byte Mode)
 {
 	if (FiringMode != 0)
@@ -17,16 +16,37 @@ simulated function InstantFireEffects(byte Mode)
 		Super.InstantFireEffects(FiringMode);
 }
 
+simulated event ThirdPersonEffects()
+{
+	//Throw
+	if (FiringMode == 0)
+	{
+		if (Level.NetMode != NM_DedicatedServer)
+			PlayPawnFiring(FiringMode);
+		if (GrenadeSmoke != None)
+			class'BallisticEmitter'.static.StopParticles(GrenadeSmoke);
+	}
+	//Hit
+	else if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
+	{
+		//Spawn impacts, streaks, etc
+		MeleeFireEffects();
+		//Play pawn anims
+		PlayPawnFiring(FiringMode);
+    }
+}
 
-// Do trace to find impact info and then spawn the effect
+// Does all the effects for an instant-hit kind of fire.
+// On the client, this uses mHitLocation to find all the other info needed.
 simulated function MeleeFireEffects()
 {
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
 
-	if (mHitLocation == vect(0,0,0))
+	If ( Level.NetMode == NM_DedicatedServer || Instigator == None || mHitLocation == vect(0,0,0))
 		return;
 
+	// Client, trace for hitnormal, hitmaterial and hitactor
 	if (Level.NetMode == NM_Client)
 	{
 		mHitActor = None;
@@ -35,27 +55,30 @@ simulated function MeleeFireEffects()
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		if (mHitActor == None || (!mHitActor.bWorldGeometry))
 			return;
-
 		if (HitMat == None)
 			mHitSurf = int(mHitActor.SurfaceType);
 		else
 			mHitSurf = int(HitMat.SurfaceType);
 	}
-	else
+ 	else
 		HitLocation = mHitLocation;
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-	if (ImpactManager != None)
-		class'IM_GunHit'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	if (MeleeImpactManager != None)
+		MeleeImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, Instigator);
 }
 
 defaultproperties
 {
-     ExplodeManager=Class'BWBP_SKC_Pro.IM_ChaffGrenade'
-     GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
-     TrackAnimMode=MU_Primary
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_TPm'
-     RelativeLocation=(X=-2.000000,Y=-3.000000,Z=20.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.650000
+	WeaponClass=class'ChaffGrenadeWeapon'
+	MeleeImpactManager=class'IM_GunHit'
+	ExplodeManager=Class'BWBP_SKC_Pro.IM_ChaffGrenade'
+	GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
+	TrackAnimMode=MU_Primary
+	InstantMode=MU_Secondary
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_TPm'
+	RelativeLocation=(X=-2.000000,Y=-3.000000,Z=20.000000)
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.650000
+	ImpactManager=class'IM_Katana'
 }

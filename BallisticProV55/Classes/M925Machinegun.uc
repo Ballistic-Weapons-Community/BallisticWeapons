@@ -42,18 +42,26 @@ function Notify_Deploy()
 	// to the centre of the bags.
 	
 	Start = Instigator.Location + Instigator.EyePosition();
+
 	for (Forward=75;Forward>=45;Forward-=15)
 	{
 		End = Start + vector(Instigator.Rotation) * Forward;
+
 		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
+
 		if (T != None && VSize(HitLoc - Start) < 30)
 			return;
+
 		if (T == None)
 			HitLoc = End;
+
 		End = HitLoc - vect(0,0,100);
+
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
+
 		if (Forward <= 45)
 			return;
 	}
@@ -64,7 +72,7 @@ function Notify_Deploy()
 	if(Sandbag(T) != None)
 	{
 		HitLoc = T.Location;
-		HitLoc.Z += class'M925Turret'.default.CollisionHeight + 15;
+		HitLoc.Z += class'M925Turret'.default.CollisionHeight + T.CollisionHeight * 0.75;
 	}
 	
 	else
@@ -132,7 +140,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -144,7 +151,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
     }
  	
    	else if ( !W.HasAmmo() )
@@ -171,18 +192,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(BallisticTurret(Instigator) == None && Pickup == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
-			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
-		
+				
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
 
@@ -231,13 +241,12 @@ defaultproperties
 	FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-LeverDown')
 	HandleOnSound=Sound'BW_Core_WeaponSound.M925.M925-StandOn'
 	HandleOffSound=Sound'BW_Core_WeaponSound.M925.M925-StandOff'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
-	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M925'
 	BigIconCoords=(Y1=36,Y2=235)
 	SightFXClass=Class'BallisticProV55.M925SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)=".50 caliber fire. High damage per shot, but high recoil and fires in semi-automatic mode when not deployed. Has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
@@ -250,20 +259,18 @@ defaultproperties
     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
-	ReloadAnimRate=1.150000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=64)
-	SightOffset=(X=-18.000000,Z=7.200000)
-	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'M925WeaponParams'
+
+
+	ParamsClasses(0)=Class'M925WeaponParamsComp'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M925WeaponParamsRealistic' //todo: turret
+    ParamsClasses(3)=Class'M925WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	
@@ -281,8 +288,13 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	GroupOffset=1
+	
 	PickupClass=Class'BallisticProV55.M925Pickup'
-	PlayerViewOffset=(X=9.000000,Y=5.000000,Z=-7.000000)
+	PlayerViewOffset=(X=5.00,Y=6.00,Z=-8.00)
+	SightOffset=(X=-4.00,Y=0.00,Z=3.4)
+	SightAnimScale=0.75
+	SightBobScale=2
+
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'
 	IconCoords=(X2=127,Y2=31)
@@ -294,11 +306,10 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925'
-	DrawScale=0.140000
-	Skins(0)=Texture'BW_Core_WeaponTex.M925.M925Main'
-	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
-	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
-	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	DrawScale=0.3
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Main'
+	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Small'
+	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
 	Skins(4)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
-	Skins(5)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

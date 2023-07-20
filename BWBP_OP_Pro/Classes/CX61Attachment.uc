@@ -30,7 +30,7 @@ simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
 
-	if (CX61AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_CX61Spectre';
 		TracerChance=1;
@@ -285,13 +285,14 @@ simulated function FlameFireEffects()
 
 defaultproperties
 {
+	WeaponClass=class'CX61AssaultRifle'
      AltFlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     MuzzleFlashClass=class'XK2FlashEmitter'
+     ImpactManager=class'IM_Bullet'
+     BrassClass=class'Brass_Rifle'
      TrackAnimMode=MU_Secondary
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      FlyByMode=MU_Primary
@@ -300,7 +301,7 @@ defaultproperties
      bRapidFire=True
      bAltRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.CX61_TPm'
-     RelativeLocation=(X=-2.000000,Y=-2.000000,Z=8.000000)
+     RelativeLocation=(X=2.000000,Y=-2.000000,Z=3.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000
 }

@@ -196,7 +196,7 @@ defaultproperties
 {
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_R9'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic rifle fire. High damage, long range, high penetration and moderate recoil. Sustained damage output is modest."
 	ManualLines(1)="As primary, except fires subsonic rounds. Loses damage over range but has lower recoil, lesser flash and is quieter."
@@ -204,9 +204,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
@@ -219,13 +217,11 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=50)
-	SightOffset=(X=25.000000,Y=0.030000,Z=6.200000)
-	SightDisplayFOV=40.000000
 	GunLength=80.000000
-	ParamsClasses(0)=Class'R9WeaponParams'
+	ParamsClasses(0)=Class'R9WeaponParamsComp'
 	ParamsClasses(1)=Class'R9WeaponParamsClassic'
 	ParamsClasses(2)=Class'R9WeaponParamsRealistic'
+    ParamsClasses(3)=Class'R9WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.R9PrimaryFire'
     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	
@@ -243,7 +239,9 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.R9Pickup'
-	PlayerViewOffset=(Y=9.500000,Z=-11.000000)
+	PlayerViewOffset=(X=12,Y=5.700000,Z=-5.500000)
+	SightOffset=(X=-3.000000,Y=0.020000,Z=2.20000)
+	SightPivot=(Pitch=50)
 	AttachmentClass=Class'BallisticProV55.R9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_R9'
 	IconCoords=(X2=127,Y2=31)
@@ -255,7 +253,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
-	DrawScale=0.500000
+	DrawScale=0.3
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.R9.USSR-Shiny'
 	Skins(2)=FinalBlend'BW_Core_WeaponTex.SRS.SRS-HSight-FB'

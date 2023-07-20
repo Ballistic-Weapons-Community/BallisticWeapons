@@ -14,6 +14,7 @@ defaultproperties
      DeathStrings(1)="%o got caught up in %k's firestorm."
      DeathStrings(2)="%k's firebomb charred %o into ash."
      InvasionDamageScaling=1.500000
+     SimpleKillString="Z250 Gas Explode"
      DamageIdent="Machinegun"
      WeaponClass=Class'BWBP_OP_Pro.Z250Minigun'
      DeathString="%k bombed %o with fire."

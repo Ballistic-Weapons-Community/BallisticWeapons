@@ -15,6 +15,18 @@ var array<Actor> PokedControls;
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
+	local ChaffCloudControl C;
+	if ( Role == ROLE_Authority )
+	{
+		C = Spawn(class'ChaffCloudControl',self,,HitLocation + HitNormal * 2);
+		
+		if (C!=None)
+		{
+			C.Instigator = Instigator;
+			C.InstigatorController = InstigatorController;
+		}
+	}
+
 	if (ShakeRadius > 0)
 		ShakeView(HitLocation);
 	BlowUp(HitLocation);
@@ -90,7 +102,8 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
-     DetonateOn=DT_Impact
+     WeaponClass=Class'BWBP_SKC_Pro.ChaffGrenadeWeapon'
+     ArmedDetonateOn=DT_Impact
      ImpactDamage=25
      ImpactDamageType=Class'BWBP_SKC_Pro.DTChaffGrenade'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ChaffGrenade'

@@ -112,6 +112,10 @@ var() FireEffectParams.FireSpreadMode	FireSpreadMode;		// The type of spread pat
 var() BUtil.FullSound		            SilencedFireSound;	// Fire sound to play when silenced
 var() BUtil.FullSound		            BallisticFireSound;	// Fire sound to play
 var() bool					            bAISilent;			// Bots dont hear the fire
+//-----------------------------------------------------------------------------
+// Heat
+//-----------------------------------------------------------------------------
+var() float					            HeatPerShot;			// Amount of heat added each shot
 //=============================================================================
 // END GAMEPLAY VARIABLES
 //=============================================================================
@@ -138,27 +142,6 @@ var(Jamming) bool				            bJamWastesAmmo;			// Jamming wastes the ammo th
 // END JAMMING
 //=============================================================================
 
-//===========================================================================
-// Statistics variables
-//===========================================================================
-struct FireModeStats
-{
-	var	String		Damage;
-	var	int			DamageInt;
-    var float       HeadMult;
-    var float       LimbMult;
-	var	int			DPS;
-	var	float		TTK;
-	var	String		RPM;
-	var	int			RPShot;
-	var	int			RPS;
-	var	float		FCPShot;
-	var	float		FCPS;
-	var	String		RangeOpt, RangeDecayed, RangeMax;
-};
-
-var	String		ShotTypeString, EffectString;
-
 simulated final function ApplyFireParams()
 {
     FireRate                		= Params.FireInterval;
@@ -166,7 +149,8 @@ simulated final function ApplyFireParams()
 	
     AmmoPerFire             		= Params.AmmoPerFire;
 	default.AmmoPerFire    			= Params.AmmoPerFire;
-
+	Load							= Params.AmmoPerFire;
+	
     PreFireTime             		= Params.PreFireTime;
     MaxHoldTime             		= Params.MaxHoldTime;
 	default.PreFireTime     		= Params.PreFireTime;
@@ -194,6 +178,9 @@ simulated final function ApplyFireParams()
     default.FireEndAnimRate         = Params.FireEndAnimRate;
 
     AimedFireAnim           		= Params.AimedFireAnim;
+
+	if (AimedFireAnim == '')
+		AimedFireAnim = FireAnim;
 }
 
 simulated function ApplyFireEffectParams(FireEffectParams effect_params)
@@ -209,6 +196,7 @@ simulated function ApplyFireEffectParams(FireEffectParams effect_params)
     XInaccuracy      		       	= effect_params.Inaccuracy.X;
     YInaccuracy       	     		= effect_params.Inaccuracy.Y;
     FireSpreadMode    		      	= effect_params.SpreadMode;
+	HeatPerShot						= effect_params.Heat;
 	
 	default.MuzzleFlashClass        = effect_params.MuzzleFlashClass;
     default.FlashScaleFactor        = effect_params.FlashScaleFactor;
@@ -219,6 +207,7 @@ simulated function ApplyFireEffectParams(FireEffectParams effect_params)
     default.XInaccuracy             = effect_params.Inaccuracy.X;
     default.YInaccuracy             = effect_params.Inaccuracy.Y;
     default.FireSpreadMode          = effect_params.SpreadMode;
+	default.HeatPerShot						= effect_params.Heat;
 
     bSplashDamage           			= effect_params.SplashDamage;
     bRecommendSplashDamage  			= effect_params.RecommendSplashDamage;
@@ -541,6 +530,18 @@ function PlayPreFire()
 	super.PlayPreFire();
 }
 
+simulated function PlayFireAnimations()
+{
+	if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
+		BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+	else 
+	{
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		if (BW.BlendFire())	
+			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+	}
+}
+
 //// server propagation of firing ////
 function ServerPlayFiring()
 {
@@ -549,19 +550,7 @@ function ServerPlayFiring()
 
 	CheckClipFinished();
 
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 }
 
 //Do the spread on the client side
@@ -570,19 +559,7 @@ function PlayFiring()
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
 		
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 	
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
@@ -676,8 +653,6 @@ simulated event ModeDoFire()
             AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         Instigator.DeactivateSpawnProtection();
     }
-    else if (!BW.bUseNetAim && !BW.bScopeView)
-    	ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -817,27 +792,10 @@ simulated function bool AllowFire()
     return true;
 }
 
-//Accessor stub for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.Damage=default.EffectString;
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	
-	return FS;
-}
-
 defaultproperties
 {
-     ClipFinishSound=(Volume=0.500000,Radius=32.000000,Pitch=1.000000)
-     DryFireSound=(Volume=0.500000,Radius=32.000000,Pitch=1.000000)
+     ClipFinishSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000)
+     DryFireSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000)
      bUseWeaponMag=True
      FlashBone="tip"
      FlashScaleFactor=1.000000
@@ -847,12 +805,10 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0.000000,OutVal=1.000000),(InVal=1.000000,OutVal=1.000000)))
      FireSpreadMode=FSM_Circle
      UnjamMethod=UJM_Cock
-     JamSound=(Volume=0.800000,Radius=32.000000,Pitch=1.000000,bAtten=True)
+     JamSound=(Volume=0.800000,Radius=24.000000,Pitch=1.000000,bAtten=True)
      bJamWastesAmmo=True
-     SilencedFireSound=(Volume=0.500000,Pitch=1.000000,bNoOverride=True)
+     SilencedFireSound=(Volume=0.7,Radius=48.000000,Pitch=1.000000,bNoOverride=True)
      BallisticFireSound=(Volume=1.000000,Radius=512.000000,Pitch=1.000000,bNoOverride=True)
-     ShotTypeString="rounds"
-     EffectString="Unknown"
      TransientSoundVolume=1.000000
      TweenTime=0.000000
      AmmoPerFire=1

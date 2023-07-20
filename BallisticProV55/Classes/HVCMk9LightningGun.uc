@@ -32,7 +32,7 @@ var() Sound		OverHeatSound;		// Sound to play when it overheats
 
 var bool		bWaterBurn;			// busy getting damaged in water
 
-var HvCMk9_TrackingZap		StreamEffect;
+var HvCMk9_DirectStream		StreamEffect;
 
 var bool	bArcOOA;			// Arcs have been killed cause ammo is out
 var Actor	Arc1;				// The decorative side arc
@@ -52,16 +52,6 @@ replication
 {
 	reliable if (ROLE==ROLE_Authority)
 		ClientOverCharge, ClientSetHeat;
-}
-
-
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
-		HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
-	else
-		HVCMk9PrimaryFire(FireMode[0]).GotoState('DirectFire');
 }
 
 // -----------------------------------------------
@@ -145,7 +135,7 @@ simulated event Tick (float DT)
 {
 	local int i;
 	
-	if (BCRepClass.default.GameStyle == 0)
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 	{
 		if (HeatLevel > 0)
 		{
@@ -228,7 +218,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
 		if (HVCMk9Pickup(Pickup) != None)
 			HeatLevel = FMax( 0.0, HVCMk9Pickup(Pickup).HeatLevel - (level.TimeSeconds - HVCMk9Pickup(Pickup).HeatTime) * 0.25 );
 		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
@@ -319,7 +323,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if ((BCRepClass.default.GameStyle == 0 && GetTargetZap() != None) || FireMode[1].bIsFiring)	
+	if (GetTargetZap() != None || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{
@@ -390,7 +394,7 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 	
 	
-	if (BCRepClass.default.GameStyle == 0)
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 	{
 		if (StreamEffect != None)
 		{
@@ -816,14 +820,14 @@ defaultproperties
 	AIReloadTime=0.200000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_HVCMk9'
 	BigIconCoords=(Y1=32,Y2=223)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Energy=True
 	bWT_Super=True
 	ManualLines(0)="Projects a continuous stream of lightning. Good damage, no recoil, long range and perfect hip accuracy."
 	ManualLines(1)="Charges up the weapon to unleash a searing bolt of red lightning. Like the primary, has no recoil and perfect hip accuracy."
 	ManualLines(2)="Holding Reload will cool off the weapon, reducing the heat buildup and preventing the threat of overcharge.||Will not function correctly underwater. Causes the user and nearby targets to be electrocuted if so used.||The HVC-Mk9 does not possess any iron sights.||This weapon is effective at all ranges."
-	SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
+	SpecialInfo(0)=(Info="360.0;60.0;1.0;90.0;0.0;0.5;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
 	bNoMag=True
@@ -832,12 +836,12 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bUseSights=False
-	SightPivot=(Pitch=1024)
-	SightOffset=(X=-12.000000,Z=26.000000)
-	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'HVCMk9WeaponParams'
+
+	ParamsClasses(0)=Class'HVCMk9WeaponParamsComp'
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	ParamsClasses(2)=Class'HVCMk9WeaponParamsRealistic' \\todo: lots of state code
+    ParamsClasses(3)=Class'HVCMk9WeaponParamsTactical'
+	
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
 	
@@ -856,7 +860,11 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=5
 	PickupClass=Class'BallisticProV55.HVCMk9Pickup'
-	PlayerViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
+
+	PlayerViewOffset=(X=19.5,Y=9,Z=-12)
+	SightOffset=(X=-14.400000,Z=31.200000)
+	SightPivot=(Pitch=1024)
+	
 	AttachmentClass=Class'BallisticProV55.HVCMk9Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Lighter.SmallIcon_LG'
 	IconCoords=(X2=127,Y2=31)
@@ -868,7 +876,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
-	DrawScale=0.250000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	bFullVolume=True
 	SoundVolume=64

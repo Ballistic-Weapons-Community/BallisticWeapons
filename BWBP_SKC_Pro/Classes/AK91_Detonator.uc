@@ -10,6 +10,34 @@ class AK91_Detonator extends BallisticGrenade;
 
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
+var   Rotator					VelocityDir;
+
+simulated event PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	VelocityDir = Rotation;
+	if (StartDelay > 0 && Role == ROLE_Authority || bAlwaysRelevant)
+	{
+		SetPhysics(PHYS_None);
+		SetCollision (false, false, false);
+		bHidden=true;
+		SetTimer(StartDelay, false);
+		return;
+	}
+	InitProjectile();
+
+}
+
+simulated function InitProjectile ()
+{
+    Velocity = Speed * Vector(VelocityDir);
+    if (RandomSpin != 0 && !bNoInitialSpin)
+        RandSpin(RandomSpin);
+    if (DetonateOn == DT_Timer)
+        SetTimer(DetonateDelay, false);
+    Super.InitProjectile();
+}
 
 simulated event PreBeginPlay()
 {
@@ -57,42 +85,47 @@ simulated function Penetrate(Actor Other, Vector HitLocation)
 
 defaultproperties
 {
-     bApplyParams=False
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=0.1
-     ImpactDamage=120
-     ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
-     bRandomStartRotation=False
-     TrailClass=Class'BallisticProV55.M50GrenadeTrail'
-     TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=1024.000000
-     MotionBlurRadius=1024.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     ShakeRotMag=(X=512.000000,Y=400.000000)
-     ShakeRotRate=(X=3000.000000,Z=3000.000000)
-     ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
-     Speed=0.010000
-     MaxSpeed=10000.000000
-     Damage=400.000000
-     DamageRadius=300.000000
-     MomentumTransfer=180000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
-	 DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=25
-     LightSaturation=100
-     LightBrightness=200.000000
-     LightRadius=15.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5Rocket'
-     bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
-     DrawScale=0.500000
-     SoundVolume=192
-     SoundRadius=128.000000
-     RotationRate=(Roll=32768)
+	WeaponClass=Class'BWBP_SKC_Pro.AK91ChargeRifle'
+	bApplyParams=False
+	bNoInitialSpin=True
+	bAlignToVelocity=True
+	bArmed=True
+	ArmedDetonateOn=DT_Impact
+	UnarmedDetonateOn=DT_Impact
+	PlayerImpactType = PIT_Detonate
+	DetonateDelay=0.1
+	ImpactDamage=120
+	ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
+	bRandomStartRotation=False
+	TrailClass=Class'BallisticProV55.M50GrenadeTrail'
+	TrailOffset=(X=-8.000000)
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=1024.000000
+	MotionBlurRadius=1024.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	ShakeRotMag=(X=512.000000,Y=400.000000)
+	ShakeRotRate=(X=3000.000000,Z=3000.000000)
+	ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
+	Speed=0.010000
+	MaxSpeed=10000.000000
+	Damage=400.000000
+	DamageRadius=300.000000
+	MomentumTransfer=180000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=25
+	LightSaturation=100
+	LightBrightness=200.000000
+	LightRadius=15.000000
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
+	bDynamicLight=True
+	AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
+	DrawScale=0.500000
+	SoundVolume=192
+	SoundRadius=128.000000
+	RotationRate=(Roll=32768)
 }

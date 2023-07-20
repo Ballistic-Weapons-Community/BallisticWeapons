@@ -115,6 +115,7 @@ simulated function OnWeaponParamsChanged()
 	assert(WeaponParams != None);
 	
 	bDualBlocked				= WeaponParams.bDualBlocked;
+	bDualMixing					= WeaponParams.bDualMixing;
 }
 
 // Scope key pressed. Try go into tracking mode
@@ -162,7 +163,13 @@ simulated function bool CheckScope()
 
 	NextCheckScopeTime = level.TimeSeconds + 0.25;
 	
-	if (IsMaster() || ReloadState != RS_None || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
+	if 
+	(
+		IsMaster() || 
+		AimComponent.IsDisplaced() || 
+		(ReloadState != RS_None && ReloadState != RS_Cocking) || 
+		(Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || 
+		(SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
 	{
 		StopScopeView();
 		return false;
@@ -276,8 +283,11 @@ simulated function PositionSights()
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
 
 	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
-	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
-	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
+	Offset = SightOffset; 
+	
+	Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 8192;
+	
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1 - (SightingPhase * (1 - SightBobScale))))) - (SightPos + ViewAlignedOffset(Offset));
 
 	if (SightingPhase >= 1.0)
 	{	// Weapon locked in sight view
@@ -292,14 +302,14 @@ simulated function PositionSights()
 		}
 
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
+			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, SightZoomFactor);
 	}
 	
 	else if (SightingPhase <= 0.0)
 	{	// Weapon completely lowered
 		SetLocation(OldLoc);
 		SetRotation(Instigator.GetViewRotation());
-		DisplayFOV = default.DisplayFOV;
+		DisplayFOV = BaseDisplayFOV;
 		PlayerController(InstigatorController).bZooming = False;
 
 		if (SightingState == SS_Lowering)
@@ -319,13 +329,13 @@ simulated function PositionSights()
 	{	// Gun is on the move...
 		SetLocation(class'BUtil'.static.VSmerp(SightingPhase, OldLoc, NewLoc));
 		SetRotation(Instigator.GetViewRotation() + SightPivot * SightingPhase);
-		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
+		DisplayFOV = Smerp(SightingPhase, BaseDisplayFOV, SightDisplayFOV);
 
 		AimComponent.UpdateADSTransition(SightingPhase);
 		RcComponent.UpdateADSTransition(SightingPhase);
 
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
+	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 	if (bAdjustHands)
     {
@@ -565,16 +575,6 @@ simulated function EmptyFire (byte Mode)
 		ServerStartReload(Mode);
 }
 
-simulated function PlayScopeUp()
-{
-	if (HasAnim(ZoomInAnim))
-	    SafePlayAnim(ZoomInAnim, 1.0);
-	else
-		SightingState = SS_Raising;
-	if(ZoomType == ZT_Irons)
-	PlayerController(Instigator.Controller).bZooming = True;
-}
-
 // Fire pressed. Change weapon if out of ammo, reload if empty mag or skip reloading if possible
 simulated function FirePressed(float F)
 {
@@ -714,9 +714,9 @@ simulated function bool StartFire(int Mode)
 		alt = 0;
 
     FireMode[Mode].bIsFiring = true;
-	if (IsSlave() && Othergun.HasAmmoLoaded(Mode) && !CanAlternate(Mode))
+	/*if (IsSlave() && Othergun.HasAmmoLoaded(Mode) && !CanAlternate(Mode))
     	FireMode[Mode].NextFireTime = Level.TimeSeconds + FireMode[Mode].PreFireTime + OtherGun.GetFireMode(Mode).FireRate * 0.5;
-	else
+	else*/
     	FireMode[Mode].NextFireTime = Level.TimeSeconds + FireMode[Mode].PreFireTime;
 
     if (FireMode[alt] != None && FireMode[alt].bModeExclusive)
@@ -837,9 +837,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	bSlavePutDown=false;
 	bIsPendingHandGun = false;
 	
+	
+	//in arena, we immediately pair matching pistols if the player has two
 	if (Level.TimeSeconds > CreationTime + 1)
 	{
-		if (OtherGun == None && PendingHandgun == None && !bDualBlocked)
+		if (OtherGun == None && PendingHandgun == None && !bDualBlocked && class'BallisticReplicationInfo'.static.IsArena())
 		{
 			if (LastSlave != None)
 				PendingHandgun = LastSlave;
@@ -847,7 +849,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			{
 				for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
 				{
-					if ( Inv != self && Inv.class == class )
+				
+					if ( Inv != self && Inv.class == class && !BallisticHandgun(Inv).bDualBlocked )
 					{
 						if (Level.TimeSeconds > BallisticHandgun(Inv).CreationTime + 1)
 						{
@@ -859,6 +862,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			}
 		}
 	}
+	
+	
 	if (PendingHandgun != None)
 	{
 		bIsMaster = true;
@@ -935,7 +940,7 @@ simulated function bool PutDown()
 	}
 	else
 	{
-		if (!bOldCrosshairs && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
 	}
 	if (IsMaster())
@@ -1048,10 +1053,12 @@ simulated final function SetDualMode (bool bDualMode)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated function OnDualModeChanged(bool bDualMode)
 {
+/*
 	if (bDualMode)
 		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.5;
 	else 
 		BFireMode[0].FireRate = BFireMode[0].default.FireRate;
+*/
 }
 
 /*
@@ -1067,7 +1074,7 @@ simulated function StopScopeView(optional bool bNoAnim)
 	SetScopeView(false);
 	
 	//Restore normal crosshairs if the weapon has none in scope view
-	if (bOldCrosshairs && bNoCrosshairInScope && bStandardCrosshairOff)
+	if (CrosshairMode == CHM_Unreal && bNoCrosshairInScope && bStandardCrosshairOff)
 	{
 		bStandardCrosshairOff = False;
 		PlayerController(Instigator.Controller).myHud.bCrosshairShow = True;
@@ -1134,11 +1141,14 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 	if (ClientState != WS_ReadyToFire || ReloadState != RS_None || IsFiring() || bScopeView || bScopeHeld || bScopeDesired || (OtherGun!=None && (PreventSwap() || OtherGun.PreventSwap())))
 		return;
 
+	//if we already have a dual weapon, swap the weapons over
 	if (Othergun != None)
 	{
 //		if (!Instigator.IsLocallyControlled())
+
 		if (Role < ROLE_Authority)
 			ServerSwap(Othergun);
+			
 	    Instigator.PendingWeapon = Othergun;
 		PendingHandgun = None;
 		bIsPendingHandGun = true;
@@ -1150,16 +1160,20 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 		PutDown();
 		return;
 	}
+	
+	//iterate through the inventory chain and find a weapon to dual
+	//either find an identical pistol, or another best fit pistol
     for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
-    {
-    	if ( Inv != self && Inv.Class == Class) //ClassIsChildOf(Inv.class, class'BallisticHandgun') )
+    {	
+		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked)
+    	//if ( Inv != self && Inv.Class == Class) //ClassIsChildOf(Inv.class, class'BallisticHandgun') )
     	{
     		if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
     		{
    				Best = BallisticHandgun(Inv);
     			break;
     		}
-    		else if ( Best == None || !Best.HasAmmoLoaded(255) || (Best.HandgunGroup != HandgunGroup && BallisticHandgun(Inv).HandgunGroup == HandgunGroup) )
+    		if ( bDualMixing && BallisticHandgun(Inv).bDualMixing && (Best == None || !Best.HasAmmoLoaded(255) || (Best.HandgunGroup != HandgunGroup && BallisticHandgun(Inv).HandgunGroup == HandgunGroup)) )
    				Best = BallisticHandgun(Inv);
     	}
     }
@@ -1177,8 +1191,8 @@ simulated function DoQuickDraw()
 	else
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
-    	{
-    		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') )
+    	{		
+    		if ( Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun') )
 	    	{
     			if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
     			{
@@ -1215,12 +1229,20 @@ simulated function BallisticWeapon FindQuickDraw(BallisticWeapon CurrentChoice, 
 		(LastSlave != None && BallisticHandgun(CurrentChoice).LastSlave == None) ||
 		BallisticHandgun(CurrentChoice).LastMasterTime < LastMasterTime)
 	{
-		CurrentChoice = self;
-		ChoiceRank = 1;
+		if (!bDualBlocked)
+		{
+			CurrentChoice = self;
+			ChoiceRank = 1;
+		}
 	}
-	for ( Inv=Inventory; Inv!=None; Inv=Inv.Inventory )
+	for ( Inv = Inventory; Inv != None; Inv = Inv.Inventory )
+	{
 		if (BallisticWeapon(Inv) != None)
-		{	Best = BallisticWeapon(Inv).FindQuickDraw(CurrentChoice, ChoiceRank);	break;	}
+		{	
+			Best = BallisticWeapon(Inv).FindQuickDraw(CurrentChoice, ChoiceRank);
+			break;	
+		}
+	}
 
 	if (Best == None)
 		return CurrentChoice;
@@ -1241,11 +1263,17 @@ simulated function bool AllowWeapNextUI()
 	return Super.AllowWeapNextUI();
 }
 
+//cycle the slave weapon
 simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 {
-    /*
 	local BallisticHandgun Best;
     local Inventory Inv;
+	
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+		return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
+	
+	if (IsMaster() && (!OtherGun.bDualMixing || !bDualMixing))
+		return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
 
 	if (CurrentWeapon == self && IsMaster())
 	{
@@ -1253,7 +1281,7 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 			return None;
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
 		{
-    		if (Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
+    		if (Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
     		{
     			if (Inv == OtherGun)
 				{
@@ -1277,16 +1305,21 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 				PendingHandgun = None;
 	    }
 	}
-    */
 	return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
 }
 
+//cycle the slave weapon
 simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 {
-    /*
     local BallisticHandgun Best;
 	local bool bFoundOtherOne;
     local Inventory Inv;
+
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+		return Super.NextWeapon(CurrentChoice, CurrentWeapon);
+	
+	if (IsMaster() && (!OtherGun.bDualMixing || !bDualMixing))
+		return Super.NextWeapon(CurrentChoice, CurrentWeapon);
 
 	if (CurrentWeapon == self && IsMaster())
 	{
@@ -1294,7 +1327,7 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 			return None;
 	    for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
     	{
-    		if (Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
+    		if (Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
 	    	{
 	    		if (bFoundOtherOne)
 	    		{
@@ -1320,7 +1353,6 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 				PendingHandgun = None;
 	    }
 	}
-    */
 
 	return Super.NextWeapon(CurrentChoice, CurrentWeapon);
 }
@@ -1396,7 +1428,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+			ParamsClasses[GameStyleIndex].static.Initialize(self);
+		}
 	}
   	else if ( !W.HasAmmo() )
 		bPossiblySwitch = true;
@@ -1463,8 +1509,9 @@ simulated function ClientWeaponThrown()
 
 function DropFrom(vector StartLocation)
 {
-    local int m;
+    local int m, i;
 	local Pickup Pickup;
+	local Material N;
 
 	if (IsMaster()/* && OtherGun.bCanThrow*/)
 	{
@@ -1507,6 +1554,28 @@ function DropFrom(vector StartLocation)
             WeaponPickup(Pickup).bThrown = true;
     	Pickup.InitDroppedPickupFor(self);
 	    Pickup.Velocity = Velocity;
+		if (Role == ROLE_Authority && BallisticWeaponPickup(Pickup) != None)
+		{
+			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
+			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
+			if (WeaponCamo != None)
+			{
+				for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
+				{
+					if (WeaponCamo.WeaponMaterialSwaps[i].PIndex != -1)
+					{
+						if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+							BallisticWeaponPickup(Pickup).Skins[WeaponCamo.WeaponMaterialSwaps[i].PIndex] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+						if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+						{
+							N = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+							if (N != None)
+								BallisticWeaponPickup(Pickup).Skins[WeaponCamo.WeaponMaterialSwaps[i].PIndex] = N;
+						}
+					}
+				}
+			}
+		}
     }
     Destroy();
 }
@@ -1783,7 +1852,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
     YPos += YL;
 	Canvas.SetPos(4,YPos);
-	RcComponent.DrawDebug(Canvas);
+	YPos = RcComponent.DrawDebug(Canvas, YPos, YL);
 	
     YPos += YL;
 	Canvas.SetPos(4,YPos);
@@ -1830,6 +1899,7 @@ simulated function MeleeReleaseImpl()
 defaultproperties
 {
 	 bUseDualReload=False
+	 bDualMixing=True
 	 DualReloadAnim="DualReload"
 	 DualReloadEmptyAnim="DualReloadOpen"
 	 DualReloadAnimRate=1.000000
@@ -1838,8 +1908,9 @@ defaultproperties
      bShouldDualInLoadout=True
      TrackSpeed=18000.000000
      SingleHeldRate=0.300000
+	 SightBobScale=0.35f
      bWT_Sidearm=True
-     SightZoomFactor=0.85
+     SightZoomFactor=1.2
      GunLength=16.000000
      LongGunPivot=(Pitch=5000,Yaw=6000)
 }

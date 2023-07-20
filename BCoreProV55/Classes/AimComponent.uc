@@ -7,16 +7,16 @@
 // adapting code written by DarkCarnivour, whose comments are below:
 //
 // Aim Stuff -----------------------------------------------------------------------------------------------------------
-// This is the eccessivly complicated aiming system.
+// This is the excessively complicated aiming system.
 // Basically, a Rotator(Aim) and rotator generated from the recoil are used to offset the gun from the player's view.
 // Aim is the base aim of the gun. Aim is interpolated randomly, within the ranges set by AimSpread. AimAdjustTime is
-// used to set how long it takes to shift. Aim only changes when the player turns of moves.
+// used to set how long it takes to shift.
 //
-// Chaos is applied when the player moves, jumps, turns, etc and greatly ruins a players ability to aim accurately. The
-// faster and more wildly the player moves, the more chaos is aplied to the weapon. When no chaos is applied the Aim will be
+// Chaos is applied when the player moves, jumps, turns, etc and greatly ruins a player's ability to aim accurately. The
+// faster and more wildly the player moves, the more chaos is aplied to the weapon. When no chaos is applied, the Aim will be
 // randomly interpolated whithin the ranges set by AimSpread.Min. When full chaos is applied, the Aim uses the ranges set
 // by AimSpread.Max. AimSpread.Min ranges can be used as a minimum spread and AimSpread.Max as the maximum spread. Aim
-// spread is adjusted smoothly between AimSpread.Min and AimSpread.Max depedning on chaos level.
+// spread is adjusted smoothly between AimSpread.Min and AimSpread.Max depending on chaos level.
 //=============================================================================
 class AimComponent extends Object;
 
@@ -25,9 +25,9 @@ class AimComponent extends Object;
 //
 // MUST BE CLEANED UP FROM THE WEAPON CODE
 //=============================================================================
-var BallisticWeapon				BW;
-var LevelInfo					Level;
-var AimParams				    Params;
+var 				BallisticWeapon		BW;
+var 				LevelInfo			Level;
+var() editinline 	AimParams			Params;
 
 //=============================================================================
 // MUTABLES
@@ -60,7 +60,8 @@ var	float				        DisplaceDurationMult;   // Duration multiplier for aim disp
 //-----------------------------------------------------------------------------
 var private Rotator				Aim;				    // How far aim pointer is from crosshair
 var private Rotator				NewAim;				    // New destination for aim pointer
-var private Rotator				OldAim;				    // Where aim poitner was before it started moving
+var private Rotator				OldAim;				    // Where aim pointer was before it started moving
+var private float				AimMultiplier;
 
 var	private float				ReaimTime;			    // Time it should take to move aim pointer to new position
 var private float				ReaimPhase;			    // How far along pointer is in its movement from old to new
@@ -72,6 +73,7 @@ var private Rotator				AimOffset;			    // Extra Aim offset. Set NewAimOffset an
 var private Rotator				NewAimOffset;		    // This is what AimOffset should be and is adjusted for sprinting and so on
 var private Rotator				OldAimOffset;		    // AimOffset before it started shifting. Used for interpolationg AimOffset
 var	private float				AimOffsetTime;		    // Time when AimOffset should reach NewAimOffset. Used for interpolationg AimOffset
+// var private float            VelocityAimAdjustMult;       // Multiplier on AimAdjustTime, set by ADS
 
 var private Rotator				LastViewPivot;			// Aim saved between ApplyAimToView calls, used to find delta aim
 var private float               ViewBindFactor;         // Amount to bind aim offsetting to view
@@ -95,6 +97,7 @@ var	private float				NewLongGunFactor;	    // What LongGunFactor should be. Set 
 //-----------------------------------------------------------------------------
 // Displacement
 //-----------------------------------------------------------------------------
+var private bool				bSprintOffset;			// Sprint offset is active.
 var	private float				DisplaceFactor;         // Current factor for aim displacement.
 
 //=============================================================
@@ -120,17 +123,23 @@ final simulated function bool PendingForcedReaim()
     return bForceReaim;
 }
 
+final function Rotator GetBaseAim()
+{
+	return Aim * AimMultiplier;
+}
+
 // Returns the interpolated base aim with its offset, chaos, etc and view aim removed in the form of a single rotator
 final simulated function Rotator GetAimPivot(optional bool bIgnoreViewAim)
 {
 	if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None || PlayerController(BW.InstigatorController).bBehindView)
-		return AimOffset + Aim + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
-	return AimOffset + Aim * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
+		return AimOffset + GetBaseAim() + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
+
+	return AimOffset + GetBaseAim() * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
 }
 
 final simulated function Rotator GetViewPivot()
 {
-    return Aim * ViewBindFactor;
+    return GetBaseAim() * ViewBindFactor;
 }
 
 //Firemodes use this to convert the portion of ChaosAimSpread not used for movement-related shenanigans
@@ -153,7 +162,7 @@ private final simulated function Rotator GetAimOffsets()
 
 private final simulated function Rotator GetFutureAim(float ExtraTime)
 {
-	return class'BUtil'.static.RSmerp(FMin((ReaimPhase+ExtraTime)/ReaimTime, 1.0), OldAim, NewAim);
+	return class'BUtil'.static.RSmerp(FMin((ReaimPhase+ExtraTime)/ReaimTime, 1.0), OldAim, NewAim) * AimMultiplier;
 }
 
 private final simulated function Rotator GetFutureAimOffset(float ExtraTime)
@@ -212,6 +221,7 @@ final simulated function Cleanup()
     Aim = rot(0,0,0);
     NewAim = rot(0,0,0);
     OldAim = rot(0,0,0);
+	AimMultiplier = 1;
 
     ReaimTime = 0;
     ReaimPhase = 0;
@@ -242,6 +252,8 @@ final simulated function Cleanup()
     DisplaceFactor = 0;
     DisplaceEndTime = 0;
     DisplaceDurationMult = 0;
+
+	bSprintOffset=False;
 }
 
 //=============================================================
@@ -255,7 +267,7 @@ final simulated function Recalculate()
     AimAdjustTime       = Params.AimAdjustTime;
     ChaosDeclineTime    = Params.ChaosDeclineTime;
     ChaosSpeedThreshold = Params.ChaosSpeedThreshold;
-    ChaosTurnThreshold = Params.ChaosTurnThreshold;
+    ChaosTurnThreshold	= Params.ChaosTurnThreshold;
 	CrouchMultiplier    = Params.CrouchMultiplier;
 
 	if (ViewBindFactor == 0)
@@ -273,6 +285,9 @@ final simulated function OnPreDrawFPWeapon()
 final simulated function OnWeaponSelected()
 {
 	OldLookDir = BW.GetPlayerAim();
+
+	bSprintOffset = (BW.SprintControl != None && BW.SprintControl.bSprintActive);
+
 	AimOffset = CalcNewAimOffset();
 	NewAimOffset = AimOffset;
 	OldAimOffset = AimOffset;
@@ -283,7 +298,8 @@ final simulated function OnWeaponSelected()
 //=============================================================
 final simulated function UpdateADSTransition(float delta)
 {
-    ViewBindFactor = Smerp(delta, Params.ViewBindFactor, 1);
+    ViewBindFactor = Smerp(delta, Params.ViewBindFactor, Params.ADSViewBindFactor);
+	AimMultiplier = Lerp(delta, 1, Params.ADSMultiplier);
 }
 
 final simulated function bool AllowADS()
@@ -294,19 +310,22 @@ final simulated function bool AllowADS()
 final simulated function ApplyADSModifiers()
 {
 	AimSpread.Min = 0;
-    AimSpread.Max *= Params.ADSMultiplier;
+    //AimSpread.Max *= Params.ADSMultiplier;
 }
 
 final simulated function OnADSViewStart()
 {
-    ViewBindFactor = 1.0;
+    ViewBindFactor = Params.ADSViewBindFactor;
+	AimMultiplier = Params.ADSMultiplier;
 }
 
 final simulated function OnADSViewEnd()
 {
     ViewBindFactor = Params.ViewBindFactor;
+	AimMultiplier = 1;
 }
 
+// this function is never called
 final simulated function OnADSEnd()
 {
     Recalculate();
@@ -323,14 +342,17 @@ final simulated function OnADSEnd()
 //=============================================================
 final simulated function OnPlayerJumped()
 {
+	// problematic. we want a consistent basic offset for this, not a reaim.
     Reaim(0.05, AimAdjustTime, Params.JumpChaos, Params.JumpOffset.Yaw, Params.JumpOffset.Pitch);
     bJumpLock = True;
     FireChaos += Params.JumpChaos;
     bForceReaim=true;
 }
 
-final simulated function OnPlayerSprint()
+final simulated function OnPlayerSprint(bool bSprint)
 {
+	bSprintOffset = bSprint;
+
     SetNewAimOffset(CalcNewAimOffset(), Params.OffsetAdjustTime);
     Reaim(0.05, AimAdjustTime, Params.SprintChaos);
 }
@@ -355,29 +377,16 @@ final simulated function AddFireChaos(float chaos)
 // Azarael - fixed recoil bug here
 final simulated function UpdateAim(float DT)
 {
+	local float AdjustAlpha;
+	local float VeLMag;
+
 	if (BW.bAimDisabled)
 	{
 		Aim = rot(0,0,0);
 		return;
 	}
 	
-	// Interpolate aim
-	if (bReaiming)
-	{	
-		ReaimPhase += DT;
-		if (ReaimPhase >= ReaimTime)
-			StopAim();
-		else
-			Aim = class'BUtil'.static.RSmerp(ReaimPhase/ReaimTime, OldAim, NewAim);
-	}
-
-	// Fell, Reaim
-	else if (BW.Instigator.Physics == PHYS_Falling)
-		Reaim(DT, , Params.FallingChaos);
-	
-	// Moved, Reaim
-	else if (bForceReaim || BW.GetPlayerAim() != OldLookDir || (BW.Instigator.Physics != PHYS_None && VSize(BW.Instigator.Velocity) > 100))
-		Reaim(DT);
+    UpdateReaim(DT);
 
 	// Interpolate the AimOffset
 	if (AimOffset != NewAimOffset)
@@ -403,9 +412,39 @@ final simulated function UpdateAim(float DT)
 
     // Change aim adjust time for player velocity
 	if (BW.Instigator.Base != None)
-        AimAdjustTime = (Params.AimAdjustTime * 2) - (Params.AimAdjustTime * (FMin(VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity), 375) / 350));
-    else
-        AimAdjustTime = Params.AimAdjustTime;
+		VelMag = VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity);
+	else
+		VelMag = VSize(BW.Instigator.Velocity);
+		
+	AdjustAlpha = FMin(1f, VelMag / class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
+
+    AimAdjustTime = Params.AimAdjustTime * 2f * Lerp(AdjustAlpha, 1.0f, Params.VelocityAimAdjustMult);
+}
+
+final simulated function UpdateReaim(float DT)
+{
+    // Currently in aim transition - update.
+	if (bReaiming)
+	{	
+		ReaimPhase += DT;
+
+		if (ReaimPhase >= ReaimTime)
+			StopAim();
+		else
+			Aim = class'BUtil'.static.RSmerp(ReaimPhase/ReaimTime, OldAim, NewAim);
+	}
+
+	// Not in aim transition. Queue next move.
+	else if (BW.Instigator.Physics == PHYS_Falling)
+		Reaim(DT, , Params.FallingChaos);
+	
+    // Azarael 13/03/2023:
+    // We always want to be reaiming.
+    // 1) that's how we implement gun sway, and
+    // 2) if our last reaim pushed the aim to a rotation that is distant from centre, and our chaos drops in the meantime, we will get a huge 
+    // reaim as soon as the player moves their view. This is particularly obnoxious with snipers
+	else // if (bForceReaim || BW.GetPlayerAim() != OldLookDir || (BW.Instigator.Physics != PHYS_None && VSize(BW.Instigator.Velocity) > 100))
+		Reaim(DT);
 }
 
 // Checks up on things and returns what our AimOffset should be
@@ -418,7 +457,7 @@ final simulated function Rotator CalcNewAimOffset()
     if (BW.IsHoldingMelee())
         return R;
 
-    if (BW.SprintActive())
+    if (bSprintOffset)
 	{
 		R.Pitch += Params.SprintOffset.Pitch;
 		if (BW.Instigator.Controller.Handedness < 0)
@@ -451,7 +490,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 	if (bJumpLock)
 		bJumpLock = False;
 		
-	if (BW.bUseNetAim && BW.Role < ROLE_Authority)
+	if (BW.Role < ROLE_Authority)
 		return;
 
 	bForceReaim=false;
@@ -463,14 +502,14 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 		if (BW.Instigator.Base != None)
 
 			V -= BW.Instigator.Base.Velocity;
-		VResult = VSize(V) / Params.ChaosSpeedThreshold;
+		VResult = VSize(V) / ChaosSpeedThreshold;
 	}
 
 	OldChaos = NewChaos;
 
 	//Changed how this is worked out.
 	//Uses ChaosSpeedThreshold (VResult) to provide a basic movement penalty.
-	if (BW.GameStyleIndex == 0)
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 	{
 		Chaos = FClamp(VResult, 0, 1 );
 		NewChaos = Chaos;
@@ -522,8 +561,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
         
 	StartAim(T, X, Y);
 
-	if (BW.bUseNetAim)
-		SendNewAim();
+	SendNewAim();
 }
 
 // Start aim interpolation
@@ -552,13 +590,12 @@ final simulated function ZeroAim(float TimeMod)
 
     StartAim(TimeMod, 0, 0);
 
-	if (BW.bUseNetAim)
-        SendNewAim();
+    SendNewAim();
 }
 
 final simulated function UpdateDisplacements(float delta)
 {
-	if (!BW.BCRepClass.default.bNoLongGun && GunLength > 0)
+	if (class'BallisticReplicationInfo'.default.bLongWeaponOffsetting && GunLength > 0)
         TickLongGun(delta);
         
 	if (IsDisplaced())
@@ -648,7 +685,7 @@ private final function SendNewAim()
 
 final simulated function ReceiveNetAim(float Yaw, float Pitch, float Time, float oChaos, float nChaos)
 {
-	if (!BW.bUseNetAim || BW.Role == ROLE_Authority)
+	if (BW.Role == ROLE_Authority)
 		return;
 
 	bReaiming=true;
@@ -697,4 +734,9 @@ final simulated function float CalcCrosshairOffset(Canvas C)
 final simulated function DrawDebug(Canvas Canvas)
 {
     Canvas.DrawText("AimComponent: Chaos: "$Chaos$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch$" Aim Adjust Time: "$AimAdjustTime);
+}
+
+defaultproperties
+{
+	AimMultiplier = 1
 }

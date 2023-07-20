@@ -9,7 +9,7 @@ defaultproperties
 	
 	//Impact Det
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryImpactEffectParams
-		ProjectileClass=Class'PumaProjectileFast'
+		ProjectileClass=Class'PUMAProjectileImpact'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6500.000000
 		Damage=60.000000
@@ -71,7 +71,7 @@ defaultproperties
 
 	//Range Det
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryRangeEffectParams
-		ProjectileClass=Class'PumaProjectileRShort'
+		ProjectileClass=Class'PumaProjectileRanged'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6000.000000
 		Damage=55.000000
@@ -170,22 +170,89 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=6
-		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
-		SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
+		//ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
+		//SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryImpactFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryProxyFireParams'
 		FireParams(2)=FireParams'ClassicPrimaryRangeFireParams'
-		FireParams(3)=FireParams'ClassicPrimaryRangeFireParams'
+		FireParams(3)=FireParams'ClassicPrimaryShieldFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=PUMA_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUMA_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA2-MainDark",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA2-BackDark",Index=2,AIndex=1,PIndex=2)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUMA_HexGreen
+		Index=2
+		CamoName="Hex Green"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-MainHexGreen",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-BackHexGreen",Index=2,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUMA_HexBlue
+		Index=3
+		CamoName="Hex Blue"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-MainHexBlue",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-BackHexBlue",Index=2,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUMA_Wood
+		Index=4
+		CamoName="Classic"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-MainWood",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-BackWood",Index=2,AIndex=1,PIndex=2)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUMA_Pants
+		Index=5
+		CamoName="Fabulous"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-MainKitty",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-BackKitty",Index=2,AIndex=1,PIndex=2)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PUMA_Gold
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-MainGold",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.PUMACamos.PUMA-BackGold",Index=2,AIndex=1,PIndex=2)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'PUMA_Gray'
+	Camos(1)=WeaponCamo'PUMA_Black'
+	Camos(2)=WeaponCamo'PUMA_HexGreen'
+	Camos(3)=WeaponCamo'PUMA_HexBlue'
+	Camos(4)=WeaponCamo'PUMA_Wood'
+	Camos(5)=WeaponCamo'PUMA_Pants'
+	Camos(6)=WeaponCamo'PUMA_Gold'
 }

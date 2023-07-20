@@ -11,8 +11,9 @@ var config EInputKey DualSelectKey;
 var config EInputKey FireModeKey;
 var config EInputKey LoadoutKey;
 var config EInputKey StreakKey;
-var config EInputKey	MeleeKey;
-var config bool bADSKeyEnabled, bReloadKeyEnabled, bWpnSpcKeyEnabled, bSprintKeyEnabled, bFireModeKeyEnabled, bDualSelectKeyEnabled, bLoadoutKeyEnabled, bStreakKeyEnabled, bMeleeKeyEnabled;
+var config EInputKey MeleeKey;
+var config EInputKey PreferencesKey;
+var config bool bADSKeyEnabled, bReloadKeyEnabled, bWpnSpcKeyEnabled, bSprintKeyEnabled, bFireModeKeyEnabled, bDualSelectKeyEnabled, bLoadoutKeyEnabled, bStreakKeyEnabled, bMeleeKeyEnabled, bPreferencesKeyEnabled;
 
 var localized string MenuName;
 var localized string MenuHelp;
@@ -145,6 +146,11 @@ function bool KeyEvent(EInputKey Key, EInputAction Action, FLOAT Delta )
 		ConsoleCommand("Mutate Loadout");
 		return true;
 	}
+	else if ((Action == IST_Press) && bPreferencesKeyEnabled && (Key == class'BallisticProInteractions'.default.PreferencesKey))
+	{
+		ConsoleCommand("Ballistic");
+		return true;
+	}
       else if ((Action == IST_Press) && bDualSelectKeyEnabled && (Key == class'BallisticProInteractions'.default.DualSelectKey))
 	{
         	ConsoleCommand("dualselect");
@@ -252,6 +258,7 @@ defaultproperties
      LoadoutKey=IK_O
      StreakKey=IK_I
      MeleeKey=IK_N
+	 PreferencesKey=IK_M
      bADSKeyEnabled=True
      bReloadKeyEnabled=True
      bWpnSpcKeyEnabled=True
@@ -261,6 +268,7 @@ defaultproperties
      bLoadoutKeyEnabled=True
      bStreakKeyEnabled=True
      bMeleeKeyEnabled=True
+	 bPreferencesKeyEnabled=True
      MenuName="Ballistic Binds"
      MenuHelp="Ballistic Bind Menu"
      ConfigBWText="Please set Ballistic Weapons keys. Keys set affect this server only and do not overwrite."

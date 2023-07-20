@@ -21,7 +21,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (LS14Carbine(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		bBigLaser=True;
 	}
@@ -113,16 +113,17 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
+	WeaponClass=class'LS14Carbine'
      SpawnOffset=(X=-30.000000)
      MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXLaserFlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+     AltMuzzleFlashClass=class'M50M900FlashEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_LS14Impacted'
      AltFlashBone="tip3"
-     BrassClass=Class'BallisticProV55.Brass_Railgun'
+     BrassClass=class'Brass_Railgun'
      FlashMode=MU_Both
      LightMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_LS14C'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.700000)
      FlyByBulletSpeed=-1.000000

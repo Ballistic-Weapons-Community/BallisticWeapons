@@ -115,8 +115,6 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
      TraceRange=(Min=1500.000000,Max=1500.000000)
-     Damage=15.000000
-     RangeAtten=0.20000
      DamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgunHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
@@ -142,7 +140,7 @@ defaultproperties
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
+     ShakeOffsetMag=(X=-12.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
 	 

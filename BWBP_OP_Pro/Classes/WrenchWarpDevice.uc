@@ -161,7 +161,7 @@ simulated function bool PutDown()
 
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
-	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local float		ScaleFactor, XL, YL, YL2;
 	local string	Temp;
 	local int i;
 	local byte StartMode;
@@ -232,22 +232,6 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 					StartMode = 0;
 			}
 		}
-	}
-	
-	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
-	// Would be nice if someone could have a HUD function called along the inventory chain
-	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
-	{
-		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
-		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
-		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
-		if (SprintFactor < 0.2)
-			C.SetDrawColor(255, 0, 0);
-		else if (SprintFactor < 0.5)
-			C.SetDrawColor(64, 128, 255);
-		else
-			C.SetDrawColor(0, 0, 255);
-		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
 	}
 }
 
@@ -684,7 +668,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_OP_Tex.Wrench.BigIcon_Wrench'
      BigIconCoords=(Y2=240)
      bAllowWeaponInfoOverride=False
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Constructs various deployables. Will deploy to the aim point. A description of each deployable is given underneath the fire mode text. Holding Weapon Function allows the user to scroll through the modes."
      ManualLines(1)="Constructs an energy barrier, regardless of the currently active mode."
      ManualLines(2)="Grants a 10% speed increase."
@@ -701,7 +685,10 @@ defaultproperties
      WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
      GunLength=0.000000
      bAimDisabled=True
-	 ParamsClasses(0)=Class'WrenchWeaponParams'
+	 ParamsClasses(0)=Class'WrenchWeaponParamsComp'
+	 ParamsClasses(1)=Class'WrenchWeaponParamsComp'
+	 ParamsClasses(2)=Class'WrenchWeaponParamsTactical'
+	 ParamsClasses(3)=Class'WrenchWeaponParamsTactical'
      FireModeClass(0)=Class'WrenchPrimaryFire'
      FireModeClass(1)=Class'WrenchSecondaryFire'
 	 PutDownTime=1.750000

@@ -29,20 +29,23 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%k's Bulldog tore %o's head clean off."
-     DeathStrings(1)="%k blasted a huge chunk out of %o's head with a BOLT."
-     DeathStrings(2)="%o's head was eaten up by %k's Bulldog."
-     DeathStrings(3)="%k blew %o's head into a wall with one BOLT round."
-     bHeaddie=True
-     InvasionDamageScaling=2
-     DamageIdent="Ordnance"
-     WeaponClass=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
-     DeathString="%o's head got eaten by %k's Bulldog."
-     FemaleSuicide="%o is tactically inept with a Bulldog."
-     MaleSuicide="%o is tactically inept with a Bulldog."
-     bAlwaysSevers=True
-     bSpecial=True
-     bExtraMomentumZ=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
-     VehicleDamageScaling=1.000000
+	DeathStrings(0)="%k's Bulldog tore %o's head clean off."
+	DeathStrings(1)="%k blasted a huge chunk out of %o's head with a BOLT."
+	DeathStrings(2)="%o's head was eaten up by %k's Bulldog."
+	DeathStrings(3)="%k blew %o's head into a wall with one BOLT round."
+	bHeaddie=True
+	InvasionDamageScaling=2
+	DamageIdent="Ordnance"
+	WeaponClass=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
+	DeathString="%o's head got eaten by %k's Bulldog."
+	FemaleSuicide="%o is tactically inept with a Bulldog."
+	MaleSuicide="%o is tactically inept with a Bulldog."
+	bAlwaysSevers=True
+	bSpecial=True
+	bExtraMomentumZ=True
+	PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+	VehicleDamageScaling=1.000000
+
+	TagMultiplier=0.5
+	TagDuration=0.25
 }

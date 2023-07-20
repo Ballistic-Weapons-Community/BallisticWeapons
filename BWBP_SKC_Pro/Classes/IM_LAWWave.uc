@@ -16,9 +16,14 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 	local vector WLoc, WNorm;
 	local bool bHitWater;
 	local float ImpactDepth;
+	local Projector P;
 
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
+		
+	if (Flags == 1)
+		HitEffects[0]=Class'IE_ShockwaveRed';
+	else HitEffects[0]=Class'IE_Shockwave';
 
 	if (PhysicsVolume.bWaterVolume)
 	{
@@ -32,21 +37,39 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 			HitSounds[HitSurfaceType]=SoundGroup'BW_Core_WeaponSound.Explosions.Explode-UW';
 		}
 	}
-	super.SpawnEffects(HitSurfaceType, Norm, Flags);
+	
+	HitSoundPitch = 0.8 + (0.4 * FRand());
+
+	if (HitSounds.Length > 0)
+	{
+		if (HitSurfaceType >= HitSounds.Length)
+			PlaySound(HitSounds[0], SLOT_Interact, HitSoundVolume,,HitSoundRadius,HitSoundPitch,true);
+		else if (HitSounds[HitSurfaceType] != None)
+			PlaySound(HitSounds[HitSurfaceType], SLOT_Interact, HitSoundVolume,,HitSoundRadius,HitSoundPitch,true);
+	}
+	if (HitEffects.Length > 0)
+	{
+		if (HitSurfaceType >= HitEffects.Length)
+			Spawn (HitEffects[0], Owner,, Location+EffectBackOff*Norm, Rotation);
+		else if (HitEffects[HitSurfaceType] != None)
+			Spawn (HitEffects[HitSurfaceType], Owner,, Location, Rotation);
+	}
+	if (HitDecals.Length > 0)
+	{
+		if (HitSurfaceType >= HitDecals.Length)
+			P = Spawn (HitDecals[0], Owner,, Location, Rotator(-Norm));
+		else if (HitDecals[HitSurfaceType] != None)
+			P = Spawn (HitDecals[HitSurfaceType], Owner,, Location, Rotator(-Norm));
+		if (BallisticDecal(P) != None && BallisticDecal(P).bWaitForInit)
+		{
+			P.SetDrawScale(P.DrawScale*DecalScale);
+			BallisticDecal(P).InitDecal();
+		}
+	}
+
+	if (ShakeRadius > 0 && (HitSurfaceType != 9 || bShakeOnWaterHit))
+		DoViewShake();
 }
-/*
-	EST_Default,	0
-	EST_Rock,		1
-	EST_Dirt,		2
-	EST_Metal,		3
-	EST_Wood,		4
-	EST_Plant,		5
-	EST_Flesh,		6
-    EST_Ice,		7
-    EST_Snow,		8
-    EST_Water,		9
-    EST_Glass,		10
-*/
 
 defaultproperties
 {

@@ -11,6 +11,7 @@ class WrenchAttachment extends BallisticMeleeAttachment;
 
 defaultproperties
 {
+	WeaponClass=class'WrenchWarpDevice'
      MeleeAltStrikeAnim="Blade_Smack"
      ImpactManager=Class'BWBP_OP_Pro.IM_Wrench'
      MeleeImpactManager=Class'BWBP_OP_Pro.IM_Wrench'
@@ -19,7 +20,7 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
      TrackAnimMode=MU_Secondary
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      MeleeStrikeAnim="Blade_Stab"
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.Techwrench_TPm'

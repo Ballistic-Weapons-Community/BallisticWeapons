@@ -35,8 +35,6 @@ defaultproperties
      SliceAnims(2)="Bash1"
      SliceAnims(3)="Smash3"
      TraceRange=(Min=140.000000,Max=140.000000)
-     Damage=65.000000
-    
      DamageType=Class'BWBP_OP_Pro.DTBallisticShield'
      DamageTypeHead=Class'BWBP_OP_Pro.DTBallisticShield'
      DamageTypeArm=Class'BWBP_OP_Pro.DTBallisticShield'

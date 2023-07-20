@@ -127,44 +127,14 @@ simulated function bool PutDown()
 }
 
 // Draw the scope view
-simulated event RenderOverlays (Canvas C)
+simulated event DrawScopeOverlays(Canvas C)
 {
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	if (ZoomType == ZT_Irons)
-	{
-		WeaponRenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
+	if (LastRangeFound < StrikeInfo[CurrentWeaponMode].MinRange)
+		ScopeViewTex = Texture'DesignatorScreenNo';
+	else 
+		ScopeViewTex = default.ScopeViewTex;
 
-	// Draw Scope View
-    if (ScopeViewTex != None)
-    {
-   		C.SetDrawColor(255,255,255,255);
-		C.SetPos(C.OrgX, C.OrgY);
-		
-
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-
-		C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		if (LastRangeFound < StrikeInfo[CurrentWeaponMode].MinRange)
-			C.DrawTile(Texture'DesignatorScreenNo', (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-		else C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function WeaponTick(float DT)
@@ -188,7 +158,7 @@ simulated function WeaponTick(float DT)
 
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
-	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local float		ScaleFactor, XL, YL, YL2;
 	local string	Temp;
 	local int i;
 	local byte StartMode;
@@ -273,22 +243,6 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 					StartMode = 0;
 			}
 		}
-	}
-	
-	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
-	// Would be nice if someone could have a HUD function called along the inventory chain
-	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
-	{
-		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
-		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
-		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
-		if (SprintFactor < 0.2)
-			C.SetDrawColor(255, 0, 0);
-		else if (SprintFactor < 0.5)
-			C.SetDrawColor(64, 128, 255);
-		else
-			C.SetDrawColor(0, 0, 255);
-		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
 	}
 }
 
@@ -448,7 +402,7 @@ defaultproperties
     EffectOffset=(X=100.000000,Y=25.000000,Z=-3.000000)
     Priority=15
     HudColor=(G=200)
-    SmallViewOffset=(X=100.000000,Y=22.000000,Z=-32.500000)
+    SmallViewOffset=(X=22.000000,Y=20.150000,Z=-13.500000)
     CenteredOffsetY=-7.000000
     CenteredRoll=0
     CenteredYaw=-500
@@ -458,7 +412,7 @@ defaultproperties
     CustomCrossHairTextureName="Crosshairs.Hud.Crosshair_Circle2"
     InventoryGroup=0
     PickupClass=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
-    PlayerViewOffset=(X=50.000000,Y=20.100000,Z=-13.000000)
+    PlayerViewOffset=(X=27.000000,Y=20.150000,Z=-13.500000)
     BobDamping=1.575000
     AttachmentClass=Class'BWBPAirstrikesPro.TargetDesignatorAttachment'
     IconMaterial=Texture'BWBP_OP_Tex.Designator.SmallIcon_Designator'

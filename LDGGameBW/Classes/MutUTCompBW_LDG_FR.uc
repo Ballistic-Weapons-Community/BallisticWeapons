@@ -19,13 +19,13 @@ function PreBeginPlay ()
 
 	if (bEnableScoreBoard)
 	{
-		if (LDGBallisticFRTracked(Level.Game) != None && LDGBallisticFRTracked(Level.Game).bAllowViewingOfSkill)
+		if (Game_Freon_Tracked(Level.Game) != None && Game_Freon_Tracked(Level.Game).bAllowViewingOfSkill)
 		{
 			Level.Game.ScoreBoardType = string(class'UTComp_Scoreboard_NEW_SKILL_FREON');
 			UTCompSRI.ThawPointsConversionRatio = class'LDGBWFreonDataTracking'.default.ThawPointsKillConversion;
 			
-			if (LDGBallisticFRTracked(Level.Game) != None)
-				UTCompSRI.MatchStart = LDGBallisticFRTracked(Level.Game).MatchStart;
+			if (Game_Freon_Tracked(Level.Game) != None)
+				UTCompSRI.MatchStart = Game_Freon_Tracked(Level.Game).MatchStart;
 			
 		}
 		else
@@ -117,10 +117,10 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		else
 			PlayerReplicationInfo(Other).CustomReplicationInfo = uPRI;
 			
-		if (Level.Game.IsA('LDGBallisticFRTracked'))
+		if (Level.Game.IsA('Game_Freon_Tracked'))
 		{
 			if (PlayerController(Other.Owner) != None)
-				LDGBallisticFRTracked(Level.Game).CheckPendingPlayerController(PlayerController(Other.Owner));
+				Game_Freon_Tracked(Level.Game).CheckPendingPlayerController(PlayerController(Other.Owner));
 				
 			InitSkillProps(uPRI);
 		}

@@ -83,19 +83,20 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_BigBullet'
-     BrassClass=Class'BallisticProV55.Brass_BigMG'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_MG"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.550000
-     CockAnimRate=1.400000
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M925_TPm'
-     DrawScale=0.120000
+	WeaponClass=class'M925Machinegun'
+	MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+	ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+	BrassClass=Class'BallisticProV55.Brass_BigMG'
+	TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+	WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_MG"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.550000
+	CockAnimRate=1.400000
+	bHeavy=True
+	bRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M925_TPm'
+	DrawScale=0.120000
 }

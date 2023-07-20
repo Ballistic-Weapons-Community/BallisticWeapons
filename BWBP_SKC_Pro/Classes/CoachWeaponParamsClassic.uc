@@ -30,7 +30,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-FireDouble',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=-1.0
-		Inaccuracy=(X=800,Y=650)
+		Inaccuracy=(X=1000,Y=750)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.100000
 		WarnTargetPct=0.100000
@@ -38,7 +38,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.150000
-		AmmoPerFire=2
+		AmmoPerFire=1
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
 	End Object
@@ -70,7 +70,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireSlugParams
 		FireInterval=0.300000
-		AmmoPerFire=2
+		AmmoPerFire=1
 		MaxHoldTime=0.0
 		AimedFireAnim="Fire"
 		FireAnimRate=1.35	
@@ -86,7 +86,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.400000
-		Damage=30
+		Damage=24
 		TraceCount=10
 		HeadMult=1.5
 		LimbMult=0.5
@@ -208,12 +208,12 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=11
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
-		ViewOffset=(X=-20.000000,Y=20.000000,Z=-40.000000)
-		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
-		SightPivot=(Pitch=256)
+		//ViewOffset=(X=-20.000000,Y=20.000000,Z=-40.000000)
+		//SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
+		//SightPivot=(Pitch=256)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -222,6 +222,49 @@ defaultproperties
 		AltFireParams(1)=FireParams'ClassicSecondaryFireSlugParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=Coach_Black
+		Index=0
+		CamoName="Blued"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Hunter
+		Index=1
+		CamoName="Hunter"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainHunter",Index=1,AIndex=1,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Veteran
+		Index=2
+		CamoName="Bloodied"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainVet",Index=1,AIndex=1,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Silver
+		Index=3
+		CamoName="Nickel"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainChromeShine",Index=1,AIndex=1,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainGoldShine",Index=1,AIndex=1,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'Coach_Black'
+	Camos(1)=WeaponCamo'Coach_Hunter'
+	Camos(2)=WeaponCamo'Coach_Veteran'
+	Camos(3)=WeaponCamo'Coach_Silver'
+	Camos(4)=WeaponCamo'Coach_Gold'
 }

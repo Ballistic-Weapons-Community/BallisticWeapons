@@ -26,4 +26,5 @@ defaultproperties
 	 InvasionDamageScaling=3
      VehicleDamageScaling=0.000000
      VehicleMomentumScaling=0.100000
+	 TransientSoundVolume=1.5
 }

@@ -10,6 +10,7 @@ var automated KeyBindEdit e_DualSelectEdit;
 var automated KeyBindEdit e_LoadoutEdit;
 var automated KeyBindEdit e_StreakEdit;
 var automated KeyBindEdit e_MeleeEdit;
+var automated KeyBindEdit e_PreferencesEdit;
 
 var automated GUILabel l_ADSLabel;
 var automated GUILabel l_ReloadLabel;
@@ -20,6 +21,7 @@ var automated GUILabel l_DualSelectLabel;
 var automated GUILabel l_LoadoutLabel;
 var automated GUILabel l_StreakLabel;
 var automated GUILabel l_MeleeLabel;
+var automated GUILabel l_PreferencesLabel;
 
 var automated GUIEditBox b_Caption;
 
@@ -32,6 +34,7 @@ var localized string LoadoutText;
 var localized string FireModeText;
 var localized string StreakText;
 var localized string MeleeText;
+var localized string PreferencesText;
 var localized string CaptionText;
 
 function InitComponent( GUIController InController, GUIComponent InOwner )
@@ -46,6 +49,7 @@ function InitComponent( GUIController InController, GUIComponent InOwner )
    l_LoadoutLabel.Caption = LoadoutText;
    l_StreakLabel.Caption = StreakText;
    l_MeleeLabel.Caption = MeleeText;
+   l_PreferencesLabel.Caption = PreferencesText;
    Super.InitComponent(InController, InOwner);
 }
 
@@ -92,6 +96,11 @@ function StreakKeyInit(out byte keyCode)
 function MeleeKeyInit(out byte keyCode)
 {
 	keyCode = class'BallisticProInteractions'.default.MeleeKey;
+}
+
+function PreferencesKeyInit(out byte keyCode)
+{
+	keyCode = class'BallisticProInteractions'.default.PreferencesKey;
 }
 
 function ADSKeyChanged(byte keyCode)
@@ -145,6 +154,12 @@ function StreakKeyChanged(byte keyCode)
 function MeleeKeyChanged(byte keyCode)
 {
    class'BallisticProInteractions'.default.MeleeKey = EInputKey(keyCode);
+   class'BallisticProInteractions'.static.StaticSaveConfig();
+}
+
+function PreferencesKeyChanged(byte keyCode)
+{
+   class'BallisticProInteractions'.default.PreferencesKey = EInputKey(keyCode);
    class'BallisticProInteractions'.static.StaticSaveConfig();
 }
 
@@ -284,11 +299,26 @@ defaultproperties
          OnKeyEvent=MeleeEdit.InternalOnKeyEvent
      End Object
      e_MeleeEdit=KeyBindEdit'BWInteractions3.BallisticProMenuPanel.MeleeEdit'
+	 
+	 Begin Object Class=KeyBindEdit Name=PreferencesEdit
+         OnInitKey=BallisticProMenuPanel.PreferencesKeyInit
+         OnKeyChanged=BallisticProMenuPanel.PreferencesKeyChanged
+         WinTop=0.710000
+         WinLeft=0.550000
+         WinWidth=0.150000
+         WinHeight=0.040000
+         OnActivate=PreferencesEdit.InternalActivate
+         OnDeActivate=PreferencesEdit.InternalDeactivate
+         OnClick=PreferencesEdit.MouseClick
+         OnKeyType=PreferencesEdit.InternalOnKeyType
+         OnKeyEvent=PreferencesEdit.InternalOnKeyEvent
+     End Object
+     e_PreferencesEdit=KeyBindEdit'BWInteractions3.BallisticProMenuPanel.PreferencesEdit'
 
      Begin Object Class=GUILabel Name=ADSLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.090000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
@@ -297,7 +327,7 @@ defaultproperties
      Begin Object Class=GUILabel Name=ReloadLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.155000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
@@ -306,7 +336,7 @@ defaultproperties
      Begin Object Class=GUILabel Name=WpnSpcLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.220000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.180000
          WinHeight=0.040000
      End Object
@@ -315,7 +345,7 @@ defaultproperties
      Begin Object Class=GUILabel Name=SprintLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.290000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
@@ -324,7 +354,7 @@ defaultproperties
      Begin Object Class=GUILabel Name=FireModeLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.360000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
@@ -333,7 +363,7 @@ defaultproperties
      Begin Object Class=GUILabel Name=DualSelectLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.430000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
@@ -342,7 +372,7 @@ defaultproperties
      Begin Object Class=GUILabel Name=LoadoutLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.500000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
@@ -351,7 +381,7 @@ defaultproperties
      Begin Object Class=GUILabel Name=StreakLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.570000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
@@ -360,12 +390,21 @@ defaultproperties
      Begin Object Class=GUILabel Name=MeleeLabel
          TextColor=(B=255,G=255,R=255)
          WinTop=0.640000
-         WinLeft=0.345000
+         WinLeft=0.300000
          WinWidth=0.150000
          WinHeight=0.040000
      End Object
      l_MeleeLabel=GUILabel'BWInteractions3.BallisticProMenuPanel.MeleeLabel'
 
+	Begin Object Class=GUILabel Name=PreferencesLabel
+         TextColor=(B=255,G=255,R=255)
+         WinTop=0.710000
+         WinLeft=0.300000
+         WinWidth=0.150000
+         WinHeight=0.040000
+     End Object
+     l_PreferencesLabel=GUILabel'BWInteractions3.BallisticProMenuPanel.PreferencesLabel'
+	
      Begin Object Class=GUIEditBox Name=MyBorder
          bReadOnly=True
          WinTop=0.025000
@@ -390,5 +429,6 @@ defaultproperties
      FireModeText="Fire Mode"
      StreakText="Claim Killstreak"
      MeleeText="Melee Attack"
+	 PreferencesText="Preferences Menu"
      CaptionText="Key Assignments"
 }

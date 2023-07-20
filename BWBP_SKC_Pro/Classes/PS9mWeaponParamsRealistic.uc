@@ -109,20 +109,20 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-        InventorySize=4
+		InventorySize=2
 		WeaponPrice=2000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.110000
 		MagAmmo=10
 		bMagPlusOne=True
-		SightOffset=(X=0.000000,Y=11.40000,Z=8.00000)
+		//SightOffset=(X=0.000000,Y=11.40000,Z=8.00000)
 		SightPivot=(Pitch=150)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=0
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.200000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.200000
 		WeaponName="PS9 7mm Tranq Pistol"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -130,6 +130,40 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=PS_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PS_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.StealthCamos.Stealth-Black",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PS_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.StealthCamos.Stealth-TigerGreen",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=PS_RedTiger
+		Index=3
+		CamoName="Ember"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.StealthCamos.Stealth-Tiger",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'PS_Gray' //Black
+	Camos(1)=WeaponCamo'PS_Black'
+	Camos(2)=WeaponCamo'PS_Jungle'
+	Camos(3)=WeaponCamo'PS_RedTiger'
 }

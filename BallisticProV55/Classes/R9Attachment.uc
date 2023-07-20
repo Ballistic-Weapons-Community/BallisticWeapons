@@ -142,30 +142,30 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
-     TracerClasses(0)=Class'BallisticProV55.TraceEmitter_Default'
-     TracerClasses(1)=Class'BallisticProV55.TraceEmitter_Freeze'
-     TracerClasses(2)=Class'BallisticProV55.TraceEmitter_R9Laser'
-     TracerClasses(3)=Class'BallisticProV55.TraceEmitter_Default'
-     TracerClasses(4)=Class'BallisticProV55.TraceEmitter_Default'
-     ImpactManagers(0)=Class'BallisticProV55.IM_Bullet'
-     ImpactManagers(1)=Class'BallisticProV55.IM_FreezeHit'
-     ImpactManagers(2)=Class'BallisticProV55.IM_R9Laser'
-     ImpactManagers(3)=Class'BallisticProV55.IM_Bullet'
-     ImpactManagers(4)=Class'BallisticProV55.IM_Bullet'
-     MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+	WeaponClass=class'R9RangerRifle'
+     TracerClasses(0)=class'TraceEmitter_Default'
+     TracerClasses(1)=class'TraceEmitter_Freeze'
+     TracerClasses(2)=class'TraceEmitter_R9Laser'
+     TracerClasses(3)=class'TraceEmitter_Default'
+     TracerClasses(4)=class'TraceEmitter_Default'
+     ImpactManagers(0)=class'IM_Bullet'
+     ImpactManagers(1)=class'IM_FreezeHit'
+     ImpactManagers(2)=class'IM_R9Laser'
+     ImpactManagers(3)=class'IM_Bullet'
+     ImpactManagers(4)=class'IM_Bullet'
+     MuzzleFlashClass=class'R9FlashEmitter'
+     AltMuzzleFlashClass=class'XK2SilencedFlash'
+     ImpactManager=class'IM_Bullet'
      FlashScale=2.000000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     BrassClass=class'Brass_Rifle'
      TracerMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.R9_TPm'
      DrawScale=0.160000
-     //Skins(0)=Shader'R9A_tex.R9_body_SH1'
 }

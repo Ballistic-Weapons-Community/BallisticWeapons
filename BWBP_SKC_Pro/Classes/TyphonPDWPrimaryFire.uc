@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TyphonPDWPrimaryFire extends BallisticRangeAttenFire;
+class TyphonPDWPrimaryFire extends BallisticProInstantFire;
 
 var   float		StopFireTime;
 var   bool		bPreventFire;	//prevent fire/recharging when laser is cooling
@@ -184,17 +184,18 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-	 ChargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
-	 TraceCount=1
-     WaterRangeAtten=0.500000
-	 DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
-     BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
-     BrassOffset=(X=-30.000000,Y=1.000000)
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-5.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
+	ChargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
+	TraceCount=1
+	WaterRangeAtten=0.500000
+	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
+	BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
+	BrassOffset=(X=-30.000000,Y=1.000000)
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-60.000000)
+	ShakeOffsetTime=2.000000
 }

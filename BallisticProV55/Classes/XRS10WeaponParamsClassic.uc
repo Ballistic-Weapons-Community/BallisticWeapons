@@ -46,6 +46,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Laser sight"
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -95,26 +96,98 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
+		LayoutName="Default"
+		
 		PlayerSpeedFactor=1.100000
-		InventorySize=7
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=35
-		SightOffset=(X=-5.000000,Y=-0.700000,Z=12.700000)
-		SightPivot=(Pitch=600,Roll=-800)
+		//SightOffset=(X=-5.000000,Y=-0.700000,Z=12.700000)
+		//SightPivot=(Pitch=600,Roll=-800)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=XRS_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XRS_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS-MainBlack",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XRS_Desert
+		Index=2
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS-MainDesert",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS-SuppDesert",Index=3,AIndex=2,PIndex=5)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XRS_Purple
+		Index=3
+		CamoName="Purple"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS-MainPurple",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XRS_CandyCane
+		Index=4
+		CamoName="Candy Cane"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10RS-Main-Shine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10RS-Sil-Shine",Index=3,AIndex=2,PIndex=5)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XRS_GoldTiger
+		Index=5
+		CamoName="Tiger"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Main-Shine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-LAM-Shine",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Sil-Shine",Index=3,AIndex=2,PIndex=5)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XRS_Gold
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS-MainGold",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-LAM-Shine",Index=2,AIndex=1,PIndex=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Sil-Shine",Index=3,AIndex=2,PIndex=5)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'XRS_Silver'
+	Camos(1)=WeaponCamo'XRS_Black'
+	Camos(2)=WeaponCamo'XRS_Desert'
+	Camos(3)=WeaponCamo'XRS_Purple'
+	Camos(4)=WeaponCamo'XRS_CandyCane'
+	Camos(5)=WeaponCamo'XRS_GoldTiger'
+	Camos(6)=WeaponCamo'XRS_Gold'
 }

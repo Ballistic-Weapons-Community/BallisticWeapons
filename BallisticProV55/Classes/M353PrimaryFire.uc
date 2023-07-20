@@ -10,7 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M353PrimaryFire extends BallisticRangeAttenFire;
+class M353PrimaryFire extends BallisticProInstantFire;
 
 event ModeDoFire()
 {
@@ -30,44 +30,40 @@ simulated function vector GetFireDir(out Vector StartTrace)
 
 defaultproperties
 {
-	 CutOffDistance=4096
-	 CutOffStartRange=2560
-	 RangeAtten=0.35
-     TraceRange=(Min=15000.000000,Max=15000.000000)
-     WallPenetrationForce=24.000000
-     
-     Damage=20.000000
-     HeadMult=1.5f
-     LimbMult=0.8f
-     
-     WaterRangeAtten=0.800000
-     DamageType=Class'BallisticProV55.DTM353MG'
-     DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
-     DamageTypeArm=Class'BallisticProV55.DTM353MG'
-     PenetrateForce=150
-     bPenetrate=True
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
-     bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
-     FlashScaleFactor=0.700000
-     BrassClass=Class'BallisticProV55.Brass_MG'
-     BrassOffset=(X=6.000000,Y=10.000000)
-     AimedFireAnim="SightFire"
-     FireRecoil=96.000000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=16.000000
-     YInaccuracy=16.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=0.08000
-     AmmoClass=Class'BallisticProV55.Ammo_556mmBelt'
-     ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	RangeAtten=0.35
+	TraceRange=(Min=15000.000000,Max=15000.000000)
+	WallPenetrationForce=24.000000
+		
+	WaterRangeAtten=0.800000
+	DamageType=Class'BallisticProV55.DTM353MG'
+	DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
+	DamageTypeArm=Class'BallisticProV55.DTM353MG'
+	PenetrateForce=150
+	bPenetrate=True
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
+	bCockAfterEmpty=True
+	MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
+	FlashScaleFactor=0.700000
+	BrassClass=Class'BallisticProV55.Brass_MG'
+	BrassOffset=(X=6.000000,Y=10.000000)
+	AimedFireAnim="SightFire"
+	FireRecoil=96.000000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
+	XInaccuracy=16.000000
+	YInaccuracy=16.000000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireRate=0.08000
+	AmmoClass=Class'BallisticProV55.Ammo_556mmBelt'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+	
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

@@ -1,7 +1,7 @@
 //=============================================================================
 // CX61 primary fire. Automatic.
 //=============================================================================
-class CX61PrimaryFire extends BallisticRangeAttenFire;
+class CX61PrimaryFire extends BallisticProInstantFire;
 
 
 var() Vector			SpawnOffset;		// Projectile spawned at this offset
@@ -96,16 +96,7 @@ defaultproperties
 {
 	 ProjectileClass="BWBP_OP_Pro.CX61Flechette"
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     CutOffDistance=2560.000000
-     CutOffStartRange=1280.000000
      TraceRange=(Min=9000.000000,Max=9000.000000)
-     
-     WallPenetrationForce=16.000000
-     
-     Damage=22.000000
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
-	 
      DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
      DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
      DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'
@@ -113,7 +104,7 @@ defaultproperties
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     FlashScaleFactor=0.700000
+     FlashScaleFactor=1.6
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
@@ -130,12 +121,14 @@ defaultproperties
      FireAnimRate=1.200000
      FireRate=0.115000
      AmmoClass=Class'BWBP_OP_Pro.Ammo_CX61Rounds'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+
      WarnTargetPct=0.200000
      aimerror=900.000000
 }

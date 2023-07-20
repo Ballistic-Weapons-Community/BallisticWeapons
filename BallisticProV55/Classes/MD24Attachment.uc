@@ -124,16 +124,17 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+	WeaponClass=class'MD24Pistol'
+     MuzzleFlashClass=class'M806FlashEmitter'
+     ImpactManager=class'IM_Bullet'
+     MeleeImpactManager=class'IM_GunHit'
      FlashScale=0.125000
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      InstantMode=MU_Both
      TrackAnimMode=MU_Secondary
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
+     TracerClass=class'TraceEmitter_Pistol'
      TracerChance=0.600000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
@@ -142,4 +143,5 @@ defaultproperties
      bRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.MD24_TPm'
      DrawScale=0.320000
+	 RelativeLocation=(Z=4)
 }

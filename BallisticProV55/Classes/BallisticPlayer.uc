@@ -52,6 +52,7 @@ var class<Weapon>						LastStreaks[2];
 
 var float                               DesiredFlashScale;
 var Vector                              DesiredFlashFog;
+var bool								bOverrideDmgFlash;
 
 // Fractional Parts of Pitch/Yaw Input
 var transient float PitchFraction, YawFraction;
@@ -62,6 +63,8 @@ replication
 		LastLoadoutClasses;
 	reliable if (Role < ROLE_Authority)
 		ServerCamDist, ServerReloaded;
+    unreliable if( Role==ROLE_Authority )
+        ClientDmgFlash;
 }
 
 simulated event PostBeginPlay()
@@ -102,6 +105,17 @@ function ServerCamDist(float F)
 {
 	BehindDistFactor = F;
 }
+
+function WeaponShakeView
+(
+	vector shRotMag, vector shRotRate,float shRotTime,
+    vector shOffsetMag, vector shOffsetRate, float shOffsetTime
+)
+{
+	if ( bWeaponViewShake || class'BallisticGameStyles'.static.GetReplicatedStyle().default.bForceViewShake )
+		ShakeView(shRotMag * (1.0 - ZoomLevel), shRotRate, shRotTime, shOffsetMag * (1.0 - ZoomLevel), shOffsetRate, shOffsetTime);
+}
+
 
 simulated function bool CheckInventoryChange()
 {
@@ -684,31 +698,29 @@ exec function SwitchToBestWeapon()
 // Command to access the ballistic config menu
 exec simulated function Ballistic()
 {
-	ClientOpenMenu ("BallisticProV55.BallisticConfigMenuPro");
-}
-
-// Weapon stats
-exec simulated function BWStats()
-{
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
-}
-
-// Weapon stats
-exec simulated function Stats()
-{
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+	ClientOpenMenu("BallisticProV55.ConfigMenu_Preferences");
 }
 
 // Weapon stats
 exec simulated function Manual()
 {
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+	ClientOpenMenu ("BallisticProV55.GameMenu_WeaponStats");
+}
+
+exec simulated function BWManual()
+{
+	Manual();
+}
+
+exec simulated function BWStats()
+{
+	Manual();
 }
 
 // Weapon stats
-exec simulated function BWManual()
+exec simulated function Stats()
 {
-	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+	Manual();
 }
 
 // Cheat to get all BW weapons...
@@ -1260,51 +1272,87 @@ function ViewFlash(float DeltaTime)
 
 */
 
-function ClientFlash( float scale, vector fog )
+function ClientDmgFlash( float scale, vector fog )
 {
 	DesiredFlashScale = scale;
 	DesiredFlashFog = 0.001 * fog;
 }
 
+// disallow scaling flash
+function ClientFlash( float scale, vector fog )
+{
+    FlashScale = scale * vect(1,1,1);
+    flashfog = 0.001 * fog;
+	bOverrideDmgFlash = true;
+}
+
 function ViewFlash(float DeltaTime)
 {
 	local vector goalFog;
-	local float goalScale, delta;
+	local float goalScale, delta, Step;
     local PhysicsVolume ViewVolume;
 
     if ( Pawn != None )
     {
-		if ( bBehindView )
-			ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
-		else
-			ViewVolume = Pawn.HeadVolume;
+        if ( bBehindView )
+            ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
+        else
+            ViewVolume = Pawn.HeadVolume;
     }
 
-	delta = FMin(0.1, DeltaTime);
-	goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
-	goalFog = DesiredFlashFog + ConstantGlowFog;
+	if (bOverrideDmgFlash) //UT2k4 Style
+	{
+		delta = FMin(0.1, DeltaTime);
+		goalScale = 1; // + ConstantGlowScale;
+		goalFog = vect(0,0,0); // ConstantGlowFog;
 
-    if (ViewVolume != None ) 
-    {
-        goalScale += ViewVolume.ViewFlash.X;
-        goalFog += ViewVolume.ViewFog;
-    }
+		if ( ViewVolume != None )
+		{
+    		goalScale += ViewVolume.ViewFlash.X;
+			goalFog += ViewVolume.ViewFog;
+		}
+			
+		Step = 0.6 * delta;
+		FlashScale.X = UpdateFlashComponent(FlashScale.X,step,goalScale);
+		FlashScale = FlashScale.X * vect(1,1,1);
 
-	DesiredFlashScale -= DesiredFlashScale * 2 * delta;
-	DesiredFlashFog -= DesiredFlashFog * 2 * delta;
-	FlashScale.X += (goalScale - FlashScale.X) * 10 * delta;
-	FlashFog += (goalFog - FlashFog) * 10 * delta;
+		FlashFog.X = UpdateFlashComponent(FlashFog.X,step,goalFog.X);
+		FlashFog.Y = UpdateFlashComponent(FlashFog.Y,step,goalFog.Y);
+		FlashFog.Z = UpdateFlashComponent(FlashFog.Z,step,goalFog.Z);
+		if ( FlashFog.Z < 0.003 )
+		{
+			FlashFog.Z = 0;
+			bOverrideDmgFlash=false;
+		}
+	}
+	else //UT99 Style
+	{
+		delta = FMin(0.1, DeltaTime);
+		goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
+		goalFog = DesiredFlashFog + ConstantGlowFog;
 
-	if ( FlashScale.X > 0.981 )
-		FlashScale.X = 1;
-	FlashScale = FlashScale.X * vect(1,1,1);
+		if (ViewVolume != None ) 
+		{
+			goalScale += ViewVolume.ViewFlash.X;
+			goalFog += ViewVolume.ViewFog;
+		}
 
-	if ( FlashFog.X < 0.003 )
-		FlashFog.X = 0;
-	if ( FlashFog.Y < 0.003 )
-		FlashFog.Y = 0;
-	if ( FlashFog.Z < 0.003 )
-		FlashFog.Z = 0;
+		DesiredFlashScale -= DesiredFlashScale * 2 * delta;
+		DesiredFlashFog -= DesiredFlashFog * 2 * delta;
+		FlashScale.X += (goalScale - FlashScale.X) * 10 * delta;
+		FlashFog += (goalFog - FlashFog) * 10 * delta;
+
+		if ( FlashScale.X > 0.981 )
+			FlashScale.X = 1;
+		FlashScale = FlashScale.X * vect(1,1,1);
+
+		if ( FlashFog.X < 0.003 )
+			FlashFog.X = 0;
+		if ( FlashFog.Y < 0.003 )
+			FlashFog.Y = 0;
+		if ( FlashFog.Z < 0.003 )
+			FlashFog.Z = 0;
+	}
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -1403,6 +1451,38 @@ function UpdateRotation(float DeltaTime, float maxPitch)
     }
 }
 
+// Azarael notes:
+//
+// compatibility 
+// the original function was written by someone who thought that the best place 
+// for the vote menu class string was a CONFIG variable of the fucking GUIController,
+// which is a class that can't be changed or changed easily
+//
+// this despite the fact that the desired voting menu is a concern / property of the VOTING SYSTEM, 
+// and its replication info is REQUIRED in order to open the menu in the first place??????
+//
+// some menus call SaveConfig on the GUIController, preventing temporary overrides
+// (client may crash or otherwise exit uncleanly, preventing us from resetting the value and saving, 
+// and potentially breaking the client's mapvote elsewhere)
+// 
+// can't intercept this with an Interaction either because PlayerController's exec function runs first in native code
+//
+// so we check the VoteReplicationInfo in use to see if it has an override, and fall back to the inbred behaviour otherwise
+exec function ShowVoteMenu()
+{
+	local string s;
+
+	if( Level.NetMode == NM_StandAlone ||  VoteReplicationInfo == None || !VoteReplicationInfo.MapVoteEnabled() )
+		return;
+
+	s = VoteReplicationInfo.GetPropertyText("MapVotingMenu");
+
+	if (s == "")
+		s = Player.GUIController.GetPropertyText("MapVotingMenu");
+
+	Player.GUIController.OpenMenu(s);
+}
+
 defaultproperties
 {
      WeapUIEnter=Sound'MenuSounds.selectDshort'
@@ -1413,7 +1493,6 @@ defaultproperties
      WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
      ZoomTimeMod=1.500000
      SavedBehindDistFactor=1.000000
-	 InputClass=class'BallisticProV55.BallisticPlayerInput'
      BehindDistFactor=1.000000
      WeapUIHelp(0)="Fire to confirm selection."
      WeapUIHelp(1)="Altfire to exit UI."

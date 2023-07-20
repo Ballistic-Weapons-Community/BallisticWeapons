@@ -123,7 +123,7 @@ simulated event Timer()
 				FireMode[Mode].InitEffects();
         PlayIdle();
         ClientState = WS_ReadyToFire;
-		if (!bOldCrosshairs && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
 
 		if (bNeedCock)
@@ -250,16 +250,14 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M353'
 	SightFXClass=Class'BallisticProV55.M353SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ReloadAnim="ReloadStart"
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellIn')
 	ClipInFrame=0.650000
@@ -278,9 +276,10 @@ defaultproperties
 	SightOffset=(X=-4.000000,Z=5.200000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'M353TW_WeaponParams'
+	ParamsClasses(0)=Class'M353TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'M353TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'M353TW_WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M353TW_WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M353TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
 	SelectAnim="Deploy"

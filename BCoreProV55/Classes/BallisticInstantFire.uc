@@ -48,11 +48,13 @@ class BallisticInstantFire extends BallisticFire
 
 const MAX_WALLS = 5;
 
-const TORSO_RADIUS = 22;
-const HEAD_RADIUS = 6;
+//const TORSO_RADIUS = 11;
+const HEAD_HEIGHT_HALF = 8;
+const HEAD_RADIUS = 7; // cylinder
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
+var() Range                     DecayRange;                     // Decays from 1 to range atten over min to max
 var() float				        MaxWaterTraceRange;		        // Maximum distance this fire should trace after entering water
 var() float				        WallPenetrationForce;	        // Maximum thickness of the walls that this bullet gan go through
 
@@ -60,6 +62,7 @@ var() float				        WallPenetrationForce;	        // Maximum thickness of the
 
 //Damage Vars -----------------------------------------------------------------
 var() float						Damage;							// Damage for nomal shots
+var() float						DamageSpecial;					// Alternate damage for unique effects (DoT, AoE, etc)
 var() float                     HeadMult;                       // Multiplier for mode's effect on head (damage, etc)
 var() float                     LimbMult;                       // Multiplier for mode's effect on limb (damage, etc)
 var() float						RangeAtten;						// Attenuates damage depending on range. At max range, damage is multiplied by this.
@@ -76,7 +79,6 @@ var() float						PDamageFactor;					// Damage multiplied by this with each penet
 var() float						WallPDamageFactor;				// Damage multiplied by this for each wall penetration
 var() bool						bUseRunningDamage;				// Enable damage variations when running towards/away from enemies
 var() float						RunningSpeedThresh;				// Instigator speed divided by this to figure out Running damage bonus
-var() globalconfig float		DamageModHead, DamageModLimb; 	// Configurable damage modifiers for base damage
 var	bool						bNoPositionalDamage;
 //-----------------------------------------------------------------------------
 
@@ -113,17 +115,29 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     effect_params = InstantEffectParams(params);
 
+	if (effect_params == None) // RX22A
+		return;
+		
     TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+    DecayRange = effect_params.DecayRange;
+
+    // handle params
+    if (DecayRange.Max == 0 || DecayRange.Max <= DecayRange.Min)
+        DecayRange.Max = TraceRange.Max;
+
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
     // FIXME - CutOffStartRange
-    RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range    
+    RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
 	default.TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+    default.DecayRange = DecayRange;
     default.MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
-    default.RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
+    default.RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
 
     Damage = effect_params.Damage;
+    DamageSpecial = effect_params.DamageSpecial;
     HeadMult = effect_params.HeadMult;
-    LimbMult = effect_params.LimbMult;    
+    LimbMult = effect_params.LimbMult;   
+
 	default.Damage = effect_params.Damage;
     default.HeadMult = effect_params.HeadMult;
     default.LimbMult = effect_params.LimbMult;
@@ -166,17 +180,17 @@ function float SurfaceScale (int Surf)
 {
 	switch (Surf)
 	{
-		Case 0:/*EST_Default*/	return 1.5; // bricks and such
-		Case 1:/*EST_Rock*/		return 1.0;
-		Case 2:/*EST_Dirt*/		return 1.5;
-		Case 3:/*EST_Metal*/	return 0.25;
-		Case 4:/*EST_Wood*/		return 3.0;
-		Case 5:/*EST_Plant*/	return 3.0;
-		Case 6:/*EST_Flesh*/	return 1.0;
-		Case 7:/*EST_Ice*/		return 1.0;
-		Case 8:/*EST_Snow*/		return 5.0;
+		Case 0:/*EST_Default*/	return 1.0; 	// bricks, concrete, drywall and such
+		Case 1:/*EST_Rock*/		return 1.0;		// sometimes refers to bricks so let's be safe
+		Case 2:/*EST_Dirt*/		return 2.0;
+		Case 3:/*EST_Metal*/	return 0.33;
+		Case 4:/*EST_Wood*/		return 6.0;		// this modifier should realistically be higher, however, we don't want to shoot straight through boxes on maps
+		Case 5:/*EST_Plant*/	return 16.0;		
+		Case 6:/*EST_Flesh*/	return 1.0;	 	// this refers to flesh as a surface type, which is very rare in maps - we assume it traps
+		Case 7:/*EST_Ice*/		return 6.0;
+		Case 8:/*EST_Snow*/		return 16.0;
 		Case 9:/*EST_Water*/	return 0.25;
-		Case 10:/*EST_Glass*/	return 4.0;
+		Case 10:/*EST_Glass*/	return 16.0;
 		default:				return 1.0;
 	}
 }
@@ -230,11 +244,11 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 }
 
 // Figure out the damage, damagetype and potentially change victim, e.g. driver instead of vehicle
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+final function float GetDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, out Actor Victim, optional out class<DamageType> DT)
 {
-	local string	Bone;
-	local float		Dmg, BoneDist;
+	local float		Dmg;
 	local Pawn		DriverPawn;
+    local Vector    HeadLocation;
 
 	Dmg = Damage;
 
@@ -252,6 +266,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
         if (DriverPawn != None)
         {
             Victim = DriverPawn;
+
             Dmg *= HeadMult;
             DT = DamageTypeHead;
         }
@@ -259,54 +274,61 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
         return Dmg;
     }
     
-    // Pawn target - check for head shot using bone system
+    // Pawn target - check for locational damage
     if (Pawn(Other) != None)
     {
-        // Check for head shot
-        Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
-        if (InStr(Bone, "head") > -1)
+		// Head shots - check bone
+        HeadLocation = Other.GetBoneCoords('head').Origin;
+
+        if (class'BUtil'.static.GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
         {
             Dmg *= HeadMult;
             DT = DamageTypeHead;
-            return Dmg;
         }
 
-        // Torso shots
-
-        // Older version of this check based on spine bone coordinate 
-        // if (HitLocation.Z > Other.GetBoneCoords('spine').Origin.Z - 8) //accounting for groin region here
-
-        // Newer version simply based on middle of collision cylinder (i.e. pawn Location)
-        if (HitLocation.Z > Other.Location.Z - 5)
-        {
-            HitLocation.Z = Other.Location.Z;
-
-            // Torso radius
-            if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
-                return Dmg;
-        }
-        
-        Dmg *= LimbMult;
-        
-        DT = DamageTypeArm;
+        // Limb shots
+        else if (HitLocation.Z <= Other.Location.Z - 5) // && VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
+		{
+        	Dmg *= LimbMult;
+        	DT = DamageTypeArm;
+		}
     }
 
 	return Dmg;
 }
 
-final function float GetDamageForCollision(Actor Other, vector HitLocation, vector Dir, optional out class<DamageType> DT)
+/*
+hit algo for unlagged collisions
+
+- first extend to closest point to saved head location and check if in radius - if so, return head damage
+- then extend to vector between head and body, check within radius - if so, return body damage
+- else return limb damage
+*/
+
+final function float GetDamageForCollision(UnlaggedPawnCollision Other, vector HitLocation, vector TraceStart, vector Dir, optional out class<DamageType> DT)
 {
 	local float	Dmg;
+    local Vector HeadPositionApprox;
+    local Vector HeadTestPoint;
 
 	Dmg = Damage;
 	DT = DamageType;
 
-    if (HitLocation.Z > Other.Location.Z + Other.CollisionHeight - 4)
-    {
-        HitLocation.Z = Other.Location.Z;
+    // must be approximated. animation sync online is simply too poor
+    // use cylinder for head
+    HeadPositionApprox = Other.Location;
+    HeadPositionApprox.Z += Other.CollisionHeight;
+    HeadPositionApprox.Z -= HEAD_HEIGHT_HALF + 2;
 
-        // Head radius
-        if (VSize(HitLocation - Other.Location) <= HEAD_RADIUS)
+    // fixme: try doing a crouch check too
+
+    HeadTestPoint = class'BUtil'.static.GetClosestPointTo(HeadPositionApprox, TraceStart, Dir);
+
+    if (Abs(HeadTestPoint.Z - HeadPositionApprox.Z) <= HEAD_HEIGHT_HALF)
+    { 
+        HeadTestPoint.Z = HeadPositionApprox.Z;
+
+        if(VSize(HeadTestPoint - HeadPositionApprox) <= HEAD_RADIUS)
         {
             Dmg *= HeadMult;
             DT = DamageTypeHead;
@@ -314,17 +336,11 @@ final function float GetDamageForCollision(Actor Other, vector HitLocation, vect
         }
     }
 
-    if (HitLocation.Z > Other.Location.Z - 5)
-    {
-        HitLocation.Z = Other.Location.Z;
-
-        // Torso radius
-        if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
-            return Dmg;
-    }
-    
-    Dmg *= LimbMult;
-    DT = DamageTypeArm;
+	else if (HitLocation.Z <= Other.Location.Z - 5) // && VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
+	{
+		Dmg *= LimbMult;
+		DT = DamageTypeArm;
+	}
       
 	return Dmg;
 }
@@ -332,20 +348,43 @@ final function float GetDamageForCollision(Actor Other, vector HitLocation, vect
 // Actor can be Pawn-derived or UnlaggedPawnCollision
 function Vector GetDamageHitLocation(Actor Other, Vector HitLocation, vector TraceStart, vector Dir)
 {	
-	//Locational damage code from Mr Evil
-	local Vector BoneTestLocation, ClosestLocation;
+    local Vector ClosestLocation;
+    //local Vector BoneTestLocation;
 
-	//Find a point on the victim's Z axis at the same height as the HitLocation.
+	// Find a point on the victim's Z axis at the same height as the HitLocation.
+    // FIXME: This needs a serious rethink
 	ClosestLocation = Other.Location;
 	ClosestLocation.Z += (HitLocation - Other.Location).Z;
-	
+
+    return class'BUtil'.static.GetClosestPointTo(ClosestLocation, TraceStart, Dir);
+}
+
+    /*
 	//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
 	BoneTestLocation = Dir;
 	BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-	BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
+	BoneTestLocation *= normal(ClosestLocation - HitLocation) dot Dir; // normal(HitLocation - TraceStart); // tracestart to hitlocation is dir...
 	BoneTestLocation += HitLocation;
 	
 	return BoneTestLocation;
+    */
+
+final function float GetRangeAttenFactor(vector start, vector end)
+{
+	local float dist;
+    local float alpha;
+
+	dist = VSize(end - start);
+
+	if (dist <= DecayRange.Min)
+		return 1.0f;
+
+	if (dist >= DecayRange.Max)
+		return RangeAtten;
+
+    alpha = (dist - DecayRange.Min) / (DecayRange.Max - DecayRange.Min);
+
+	return Lerp(alpha, 1.0f, RangeAtten);
 }
 
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
@@ -356,7 +395,7 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	DamageFactor = 1;
 
 	if (RangeAtten != 1.0)
-		DamageFactor *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
+		DamageFactor *= GetRangeAttenFactor(TraceStart, HitLocation);
 
 	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
 		DamageFactor *= Lerp(VSize(HitLocation-WaterHitLocation) / MaxWaterTraceRange, 1, WaterRangeAtten);
@@ -391,7 +430,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
     if (UnlaggedPawnCollision(Other) != None)
     {
         DamageHitLocation = GetDamageHitLocation(Other, HitLocation, TraceStart, Dir);
-        Dmg = GetDamageForCollision(Other, DamageHitLocation, Dir, HitDT);
+        Dmg = GetDamageForCollision(UnlaggedPawnCollision(Other), DamageHitLocation, TraceStart, Dir, HitDT);
         Victim = UnlaggedPawnCollision(Other).UnlaggedPawn;
     }
 	else 
@@ -405,7 +444,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
             DamageHitLocation = HitLocation;
         }
 	
-	    Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+	    Dmg = GetDamage(Other, DamageHitLocation, TraceStart, Dir, Victim, HitDT);
     }
 
 	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
@@ -524,6 +563,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				break;
 			}
 
+			//log("BallisticInstantFire: Attempting wall penetration: force "$WallPenForce$" with surface scaler "$ SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)));
+
 			if (
                     WallCount < MAX_WALLS && WallPenForce > 0 && 
                     class'WallPenetrationUtil'.static.GoThroughWall
@@ -536,7 +577,19 @@ function DoTrace (Vector InitialStart, Rotator Dir)
                     )
                 )
 			{
-				WallPenForce -= VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
+
+				//log("BallisticInstantFire: Penetrated: distance "$VSize(Start - HitLocation)$" units, energy cost "$ (VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial))) $", initial force "$WallPenForce);
+			
+				WallPenForce -= (VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)));
+
+				// todo: reduce dist by energy loss
+
+				// deviate next shot slightly, to stop player firing through concealment / cover in front of them, accurately, at distant target
+				Dir.Yaw += 32 - (FRand() * 64);
+				Dir.Pitch += 32 - (FRand() * 64);
+				X = Normal(Vector(Dir));
+
+				//log("BallisticInstantFire: remaining force "$WallPenForce);
 
 				WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
 				WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
@@ -736,38 +789,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 	}
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.DamageInt 	= default.Damage;
-
-    if (default.RangeAtten < 1f)
-	    FS.Damage 		= String(FS.DamageInt) @ "-" @ default.Damage * default.RangeAtten;
-    else 
-        FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS 			= FS.DamageInt / default.FireRate;
-	FS.TTK 			= default.FireRate * (Ceil(175/FS.DamageInt) - 1);
-
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else 
-		FS.RPM 	= 1/default.FireRate@"times/second";
-		
-	FS.RPShot 		= default.FireRecoil;
-	FS.RPS 			= default.FireRecoil / default.FireRate;
-	FS.FCPShot 		= default.FireChaos;
-	FS.FCPS 		= default.FireChaos / default.FireRate;
-	FS.RangeOpt 	= "Max range:"@(int(default.TraceRange.Max / 52.5))@"m";
-	
-	return FS;
-}
-
 defaultproperties
 {
      TraceRange=(Min=5000.000000,Max=5000.000000)
@@ -776,6 +797,8 @@ defaultproperties
      WaterRangeAtten=0.000000
      PDamageFactor=0.700000
      WallPDamageFactor=0.95
-     HeadMult=1.5
-     LimbMult=0.7
+
+	// backup values in case of failure to assign
+	HeadMult=2.0f
+	LimbMult=0.75f
 }

@@ -20,7 +20,7 @@ defaultproperties
      ShieldDamage=15
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=40
-     AimDisplacementDuration=0.3
+     AimDisplacementDuration=0.75
      DamageIdent="Melee"
      DamageDescription=",Blunt,Electro"
      ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'

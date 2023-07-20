@@ -6,6 +6,8 @@ class Freon_Pawn extends Misc_Pawn
 var bool            bFrozen;
 var bool            bClientFrozen;
 
+var float			ThawLockEndTime;
+
 var Freon_Trigger   MyTrigger;
 
 var float           DecimalHealth;    // used server-side only, to allow decimals to be added to health
@@ -18,7 +20,7 @@ var bool            bThawFast;
 var bool			bPushed; 	// pushed by some problematic weapon used deliberately to cheese (HMC)
 var Pawn			Pusher;		// the pawn pushing
 
-var config bool	bGibOnEncroach;
+var config bool		bGibOnEncroach;
 
 var array<Freon.WeaponData> MyWD;
 
@@ -26,7 +28,7 @@ var Sound           ImpactSounds[6];
 
 replication
 {
-    reliable if(bNetDirty && Role == ROLE_Authority)
+    reliable if (bNetDirty && Role == ROLE_Authority)
         bFrozen;
 }
 
@@ -325,6 +327,8 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
         if ( InstigatedBy != None && InstigatedBy != self )
             LastHitBy = InstigatedBy.Controller;
 
+        DamageViewFlash(actualDamage);
+
 		if (class<BallisticDamageType>(DamageType) != None && class<BallisticDamageType>(DamageType).default.bPowerPush)
 		{
 			bPushed=True;
@@ -434,6 +438,8 @@ function bool Froze(Controller Killer, int Damage, class<DamageType> DamageType,
     // PAWN FROZE -->
 
     bFrozen = true;
+
+	ThawLockEndTime = Level.TimeSeconds + Freon_GRI(Level.GRI).ThawLockTime;
 
     if(Freon_PawnReplicationInfo(Freon_PRI(PlayerReplicationInfo).PawnReplicationInfo) != None)
 			Freon_PawnReplicationInfo(Freon_PRI(PlayerReplicationInfo).PawnReplicationInfo).PawnFroze();
@@ -589,6 +595,11 @@ function FillWeaponData()
     }
 }
 
+simulated function bool CanBeThawed()
+{
+	return Level.TimeSeconds >= ThawLockEndTime;
+}
+
 simulated function Tick(float DeltaTime)
 {
     Super.Tick(DeltaTime);
@@ -598,6 +609,7 @@ simulated function Tick(float DeltaTime)
 
     if(bFrozen && !bClientFrozen)
     {
+		ThawLockEndTime = Level.TimeSeconds + Freon_GRI(Level.GRI).ThawLockTime;
         bPhysicsAnimUpdate = false;
         bClientFrozen = true;
         StopAnimating(true);
@@ -850,13 +862,13 @@ State Frozen
 
 defaultproperties
 {
-     FrostMaterial=Texture'AlleriaTerrain.ground.icebrg01'
-     FrostMap=TexEnvMap'CubeMaps.Kretzig.Kretzig2TexENV'
-     ImpactSounds(0)=Sound'PlayerSounds.BFootsteps.BFootstepSnow1'
-     ImpactSounds(1)=Sound'PlayerSounds.BFootsteps.BFootstepSnow2'
-     ImpactSounds(2)=Sound'PlayerSounds.BFootsteps.BFootstepSnow3'
-     ImpactSounds(3)=Sound'PlayerSounds.BFootsteps.BFootstepSnow4'
-     ImpactSounds(4)=Sound'PlayerSounds.BFootsteps.BFootstepSnow5'
-     ImpactSounds(5)=Sound'PlayerSounds.BFootsteps.BFootstepSnow6'
-     bScriptPostRender=True
+	FrostMaterial=Texture'AlleriaTerrain.ground.icebrg01'
+	FrostMap=TexEnvMap'CubeMaps.Kretzig.Kretzig2TexENV'
+	ImpactSounds(0)=Sound'PlayerSounds.BFootsteps.BFootstepSnow1'
+	ImpactSounds(1)=Sound'PlayerSounds.BFootsteps.BFootstepSnow2'
+	ImpactSounds(2)=Sound'PlayerSounds.BFootsteps.BFootstepSnow3'
+	ImpactSounds(3)=Sound'PlayerSounds.BFootsteps.BFootstepSnow4'
+	ImpactSounds(4)=Sound'PlayerSounds.BFootsteps.BFootstepSnow5'
+	ImpactSounds(5)=Sound'PlayerSounds.BFootsteps.BFootstepSnow6'
+	bScriptPostRender=True
 }

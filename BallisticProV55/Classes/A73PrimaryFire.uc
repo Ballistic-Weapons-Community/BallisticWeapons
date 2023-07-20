@@ -9,24 +9,13 @@
 //=============================================================================
 class A73PrimaryFire extends BallisticProProjectileFire;
 
-var float HeatPerShot, HeatDeclineDelay;
+var float HeatDeclineDelay;
 
 simulated function bool AllowFire()
 {
 	if ((A73SkrithRifle(Weapon).HeatLevel >= 10) || !super.AllowFire())
 		return false;
 	return true;
-}
-
-simulated function SwitchWeaponMode (byte NewMode)
-{
-	Super.SwitchWeaponMode(NewMode);
-	
-	if (NewMode == 0)
-		HeatPerShot = default.HeatPerShot;
-	
-	else
-		HeatPerShot = default.HeatPerShot * 1.25;
 }
 
 function PlayFiring()
@@ -44,18 +33,6 @@ function DoFireEffect()
 		A73SkrithRifle(BW).AddHeat(HeatPerShot, HeatDeclineDelay);
 }
 
-
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-    FS = Super.GetStats();
-	FS.RangeOpt = "Max damage: 0.6s";
-	
-	return FS;
-}
-
 defaultproperties
 {
 	HeatPerShot=0.600000
@@ -65,12 +42,13 @@ defaultproperties
 	bPawnRapidFireAnim=True
 
 	AmmoClass=Class'BallisticProV55.Ammo_Cells'
-	ShakeRotMag=(X=32.000000,Y=8.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-	ShakeRotTime=1.500000
-	ShakeOffsetMag=(X=-3.000000)
-	ShakeOffsetRate=(X=-1000.000000)
-	ShakeOffsetTime=1.500000
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
 
 	//AI info - bot aid for close-range A73 - it's fast and they won't dodge it if it's too close
     bLeadTarget=True

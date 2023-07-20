@@ -7,7 +7,7 @@
 //
 // by Marc "Sgt. Kelly" Moylan
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AR23HeavyRifle extends BallisticWeapon;
 
@@ -151,7 +151,7 @@ function bool BotShouldReloadGrenade ()
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	SetBoneScale (0, 0.0, IronSightBone2);
+	//SetBoneScale (0, 0.0, IronSightBone2);
 	Super.BringUp(PrevWeapon);
 
 }
@@ -295,12 +295,12 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_SKC_Tex.AR23.BigIcon_AR23'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Bullet=True
      bWT_Splash=True
      bWT_Machinegun=True
      bWT_Projectile=True
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
+     SpecialInfo(0)=(Info="240.0;30.0;0.9;80.0;1.3;1.3;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      MagAmmo=18
@@ -310,16 +310,15 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipOut',Volume=1.000000)
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipIn',Volume=1.000000)
      ClipInFrame=0.700000
-     ParamsClasses(0)=Class'AR23WeaponParamsArena'
+     ParamsClasses(0)=Class'AR23WeaponParamsComp'
      ParamsClasses(1)=Class'AR23WeaponParamsClassic'
      ParamsClasses(2)=Class'AR23WeaponParamsRealistic'
+     ParamsClasses(3)=Class'AR23WeaponParamsTactical'
 	 WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
      WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
      FullZoomFOV=55.000000
      bNoCrosshairInScope=True
-	 SightPivot=(Pitch=-800,Yaw=0,Roll=0)
-     SightDisplayFOV=40.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.AR23PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AR23SecondaryFire'
      PutDownTime=0.700000
@@ -331,17 +330,15 @@ defaultproperties
      CurrentRating=0.600000
      bSniping=True
      Description="Originally designed for boar hunting, the .50 Beowulf Cartridge is a novel yet powerful round that big game hunters across the several galaxies used to take down the biggest of beasties.  Wot Ya Packing was inspired by this big bullet and managed to make an automatic rifle out of it; the AR23 ''Punisher'' Heavy Rifle.  Chambered in the titular .50 Beowulf Cartridge, the AR23 can fire several of these rounds at a rate of fire around 500RPM, not the fastest but more than makes up for it in accuracy.  The AR23 also comes with a customized underslung grenade launcher that specializes in launching 40mm Canister Grenades that can flush bad guys out of their hiding holes like the boars.  When it was released, the AR23 was compared to the Hawk; not a practical weapon for military use and only a niche weapon for paramilitary forces or gun enthusiasts wanting to add to their collection, yet actually became useful for shattering Cryons like a bull in a china shop."
-     ManualLines(0)=".50 caliber fire. High damage per shot with moderate recoil, at the expense of firing in burst and semi-automatic mode."
-	 ManualLines(1)="Engages the secondary shotgun. Has a moderate spread."
-	 ManualLines(2)="Shots have high penetration power through medium-sized walls and blockades."
-	 DisplayFOV=55.000000
      Priority=62
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
      PickupClass=Class'BWBP_SKC_Pro.AR23Pickup'
-     PlayerViewOffset=(X=7.000000,Y=7.00000,Z=-12.000000)
-     PlayerViewPivot=(Pitch=384)
-     BobDamping=2.000000
+
+     PlayerViewOffset=(X=8.000000,Y=5.00000,Z=-6.500000)
+	 SightOffset=(X=0.5,Y=0.000000,Z=3.95)
+     SightBobScale=0.35f
+
      AttachmentClass=Class'BWBP_SKC_Pro.AR23Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AR23.SmallIcon_AR23'
      IconCoords=(X2=127,Y2=31)

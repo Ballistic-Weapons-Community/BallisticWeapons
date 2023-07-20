@@ -20,6 +20,7 @@ simulated function PostNetBeginPlay()
 
 defaultproperties
 {
+	WeaponClass=class'FlameSword'
      ImpactManager=Class'BWBP_SKC_Pro.IM_DTS'
      BrassMode=MU_None
      InstantMode=MU_Both

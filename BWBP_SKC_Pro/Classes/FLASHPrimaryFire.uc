@@ -29,7 +29,7 @@ defaultproperties
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.500000
      ShakeOffsetMag=(X=-50.000000)
-     ShakeOffsetRate=(X=-2000.000000)
+     ShakeOffsetRate=(X=-1600.000000)
      ShakeOffsetTime=5.000000
      ProjectileClass=Class'BWBP_SKC_Pro.FLASHProjectile'
      BotRefireRate=0.700000

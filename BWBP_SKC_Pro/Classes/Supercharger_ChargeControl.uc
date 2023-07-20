@@ -78,7 +78,7 @@ simulated function FireShot(vector Start, Vector End, float Dist, bool bHit, vec
 // Purpose: Facilitate and limit conditions for igniting players, track gun type
 // Actions: Increment singe count for the specified enemy, possibly start an ActorBurner
 // Sources: Flame projectiles and radius damagers or fires that can ignite a player
-function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType, optional int numZaps)
+simulated function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType, optional int numZaps)
 {
 	local int i;
 
@@ -90,9 +90,9 @@ function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType, optional int numZ
 					SingeVictims[i].Burns++;
 				else
 					SingeVictims[i].Burns += numZaps;
-				if (SingeVictims[i].Burns == 15)
+				if (SingeVictims[i].Burns == 15 || (numZaps > 1 && SingeVictims[i].Burns >= 15))
 					MakeNewExploder(P, InstigatedBy, triggerType);
-				if (SingeVictims[i].Burns == 10)
+				if (SingeVictims[i].Burns == 10 || (numZaps > 1 && SingeVictims[i].Burns >= 10))
 					MakeNewBurner(P, InstigatedBy, triggerType);
 				return;
 			}
@@ -117,31 +117,31 @@ simulated function DoFlameHit(FlameHit Hit)
 	else if (LocalTriggerType == 2)
 		BurnRadius(2, 128, class'DT_AK91Zapped', 0, Hit.HitLoc, Hit.Instigator, LocalTriggerType);
 
-		for(i=0;i<SingeSpots.length;i++)
-			if (VSize(SingeSpots[i].Loc-Hit.HitLoc) < 128)
-			{
-				SingeSpots[i].Hits++;
-				if (SingeSpots[i].Hits > 20)
-				{
-					class'IM_XMBurst'.static.StartSpawn(Hit.HitLoc + Hit.HitNorm * 32, Hit.HitNorm, 0, self);
-					if (Hit.TriggerType == 1)
-						BurnRadius(50, 300, class'DT_Supercharge', 500, Hit.HitLoc, Hit.Instigator, LocalTriggerType);
-					if (Hit.TriggerType == 2)
-						BurnRadius(50, 300, class'DT_AK91Supercharge', 500, Hit.HitLoc, Hit.Instigator, LocalTriggerType);
-					SingeSpots.Remove(i, 1);
-					return;
-				}
-				break;
-			}
-
-		if (i>=SingeSpots.length)
+	for(i=0;i<SingeSpots.length;i++)
+		if (VSize(SingeSpots[i].Loc-Hit.HitLoc) < 128)
 		{
-			i = SingeSpots.length;
-			SingeSpots.length = i + 1;
-			SingeSpots[i].Loc = Hit.HitLoc;
-			SingeSpots[i].Hits = 1;
-			class'IM_LS14Impacted'.static.StartSpawn(Hit.HitLoc, Hit.HitNorm, 0, self);
+			SingeSpots[i].Hits++;
+			if (SingeSpots[i].Hits > 20)
+			{
+				class'IM_XMBurst'.static.StartSpawn(Hit.HitLoc + Hit.HitNorm * 32, Hit.HitNorm, 0, self);
+				if (Hit.TriggerType == 1)
+					BurnRadius(50, 300, class'DT_Supercharge', 500, Hit.HitLoc, Hit.Instigator, LocalTriggerType);
+				if (Hit.TriggerType == 2)
+					BurnRadius(50, 300, class'DT_AK91Supercharge', 500, Hit.HitLoc, Hit.Instigator, LocalTriggerType);
+				SingeSpots.Remove(i, 1);
+				return;
+			}
+			break;
 		}
+
+	if (i>=SingeSpots.length)
+	{
+		i = SingeSpots.length;
+		SingeSpots.length = i + 1;
+		SingeSpots[i].Loc = Hit.HitLoc;
+		SingeSpots[i].Hits = 1;
+		class'IM_LS14Impacted'.static.StartSpawn(Hit.HitLoc, Hit.HitNorm, 0, self);
+	}
 
 }
 
@@ -224,7 +224,7 @@ simulated function BurnRadius( float DamageAmount, float DamageRadius, class<Dam
 	SpawnBurner
 	GetNodeIndex
 */
-function MakeNewBurner (Actor Other, Pawn InstigatedBy, int triggerType)
+simulated function MakeNewBurner (Actor Other, Pawn InstigatedBy, int triggerType)
 {
 	local Supercharger_ActorFire PF1;
 	local AK91_ActorFire PF2;
@@ -244,7 +244,7 @@ function MakeNewBurner (Actor Other, Pawn InstigatedBy, int triggerType)
 
 }
 
-function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
+simulated function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
 {
 
 	local Supercharger_Detonator Proj1;
@@ -252,7 +252,7 @@ function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
 
 	if (triggerType == 1)
 	{
-		Proj1 = Spawn (class'Supercharger_Detonator',,,Other.Location, Other.Rotation);
+		Proj1 = Spawn (class'Supercharger_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
 		if (Proj1 != None)
 		{
 			Proj1.Instigator = InstigatedBy;
@@ -260,7 +260,7 @@ function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
 	}
 	else if (triggerType == 2)
 	{
-		Proj2 = Spawn (class'AK91_Detonator',,,Other.Location, Other.Rotation);
+		Proj2 = Spawn (class'AK91_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
 		if (Proj2 != None)
 		{
 			Proj2.Instigator = InstigatedBy;

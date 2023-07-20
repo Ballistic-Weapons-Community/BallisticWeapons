@@ -36,7 +36,7 @@ var   float				NextPawnListUpdateTime;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
 	}
@@ -45,7 +45,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		M75PrimaryFire(FireMode[0]).bFireOnRelease=True;
 	}
@@ -168,7 +168,7 @@ function ServerAdjustThermal(bool bNewValue)
 		for (i=0;i<ArrayCount(UpdatedPawns);i++)
 		{
 			if (UpdatedPawns[i] != None)
-				UpdatedPawns[i].bAlwaysRelevant = false;
+				UpdatedPawns[i].bAlwaysRelevant = UpdatedPawns[i].default.bAlwaysRelevant;
 		}
 	}
 }
@@ -182,18 +182,12 @@ simulated function WeaponTick (float DeltaTime)
 		UpdatePawnList();
 }
 
-simulated event RenderOverlays (Canvas C)
+simulated function DrawScopeMuzzleFlash(Canvas C)
 {
-	local float ImageScaleRatio;
 	local Vector X, Y, Z;
-
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(C);
-		return;
-	}
 	
 	GetViewAxes(X, Y, Z);
+
 	if (BFireMode[0].MuzzleFlash != None)
 	{
 		BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
@@ -206,25 +200,14 @@ simulated event RenderOverlays (Canvas C)
 		BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
 		C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
 	}
-	SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-	SetRotation(Instigator.GetViewRotation());
-    
-    if (bThermal)
+}
+
+simulated event DrawScopeOverlays(Canvas C)
+{  
+	if (bThermal)
 		DrawThermalMode(C);
 
-	// Draw the Scope View Tex
-	C.SetDrawColor(255,255,255,255);
-	C.SetPos(C.OrgX, C.OrgY);
-	C.Style = ERenderStyle.STY_Alpha;
-	ImageScaleRatio = 1.3333333;
-	C.ColorModulate.W = 1;
-	C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1);
-
-	C.SetPos((C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.OrgY);
-	C.DrawTile(ScopeViewTex, (C.SizeY*ImageScaleRatio), C.SizeY, 0, 0, 1024, 1024);
-
-	C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.OrgY);
-	C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1);
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function UpdatePawnList()
@@ -260,7 +243,7 @@ simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
 	local int i, j;
-	local float Dist, DotP, ImageScaleRatio;//, OtherRatio;
+	local float Dist, DotP;//, OtherRatio;
 	local Array<Material>	OldSkins;
 	local int OldSkinCount;
 	local bool bLOS, bFocused;
@@ -268,18 +251,16 @@ simulated event DrawThermalMode (Canvas C)
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
 
-	ImageScaleRatio = 1.3333333;
-
 	C.Style = ERenderStyle.STY_Modulated;
 	
 	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75SeekerFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75SeekerFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 	
 	// Draw Expanding Circle thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75RadarFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75RadarFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 	
 	// Draw some panning lines
 	C.SetPos(C.OrgX, C.OrgY);
@@ -456,18 +437,17 @@ defaultproperties
 
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M75'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Uncharged rail slug shot. High damage, moderate fire rate and recoil, and good penetration."
 	ManualLines(1)="Charged rail slug shot. The railgun will fire when the fire key is released, or immediately upon becoming fully charged. Damage and penetration improve with charge, to extreme levels when fully charged."
 	ManualLines(2)="Weapon Function toggles the thermal scope, allowing the user to see enemies through walls. The further away the opponent, the closer the player's aim needs to be to their position to view them.||As a heavy weapon, the M75 reduces the user's movement speed and jump ability.||The M75 is effective at long range and through cover."
-	SpecialInfo(0)=(Info="300.0;30.0;1.0;80.0;1.0;0.0;0.0")
+	SpecialInfo(0)=(Info="300.0;45.0;1.0;80.0;1.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Putaway')
 	CockAnimPostReload="Cock2"
-	CockAnimRate=1.350000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cock')
-	ReloadAnimRate=1.400000
+
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cliphit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Clipout')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Clipin')
@@ -478,7 +458,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoTweenToScope=True
-	SightOffset=(X=-24,Z=24.7)
+
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
@@ -488,9 +468,10 @@ defaultproperties
 	ZoomStages=2
 	SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
 	GunLength=80.000000
-	ParamsClasses(0)=Class'M75WeaponParams'
+	ParamsClasses(0)=Class'M75WeaponParamsComp'
 	ParamsClasses(1)=Class'M75WeaponParamsClassic' //todo: state code for charge, alt fire??
 	ParamsClasses(2)=Class'M75WeaponParamsRealistic' //todo: state code for charge, alt fire??
+    ParamsClasses(3)=Class'M75WeaponParamsTactical'
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
 	
@@ -502,16 +483,19 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.700000
 	CurrentRating=0.700000
+	ScopeXScale=1.3333333;
 	bSniping=True
 	bShowChargingBar=True
 	Description="There are very few things feared by the Skrith and the Railgun is one of them. Railguns use electromagnetism to fire metallic projectiles at incredible speeds, some moving at hundreds of thousands of feet per second. This one uses depleted uranium-dragonium slugs for ammo. Railguns were far too large and heavy for infantry use until Enravion developed the Tactical Infantry Cannon version. No comparable infantry weapon currently available is capable of as much damage in a single shot as the M75. When fully charged it can flip over a tank, or fire right through a concrete building. Designed for use against vehicles, no infantry armor could be considered protection against this weapon. The M75 does have some disadvantages though. Its slow firerate, great weight and highly visible trail make it a weapon that will benefit only the most skilled soldiers."
-	DisplayFOV=45.000000
 	Priority=34
 	HudColor=(B=255,G=25,R=0)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BallisticProV55.M75Pickup'
-	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
+
+	PlayerViewOffset=(X=-1.00,Y=7.00,Z=-6.00)
+	SightOffset=(X=15.000000,Z=2.9)
+
 	AttachmentClass=Class'BallisticProV55.M75Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M75'
 	IconCoords=(X2=127,Y2=31)
@@ -523,5 +507,5 @@ defaultproperties
 	LightBrightness=180.000000
 	LightRadius=8.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M75'
-	DrawScale=0.400000
+	DrawScale=0.3
 }

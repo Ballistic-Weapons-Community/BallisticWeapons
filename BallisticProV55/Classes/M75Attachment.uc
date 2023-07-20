@@ -84,23 +84,24 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 defaultproperties
 {
-     SpawnOffset=(X=-170.000000,Y=-15.000000,Z=13.000000)
-     MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_RailBullet'
-     BrassClass=Class'BallisticProV55.Brass_Railgun'
-     BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Railgun'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=Sound'BW_Core_WeaponSound.FlyBys.RailFlyBy',Volume=1.200000)
-     FlyByBulletSpeed=-1.000000
-     ReloadAnim="Reload_AR"
-     CockingAnim="Cock_RearPull"
-     AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M75_TPm'
-     DrawScale=0.130000
-     SoundVolume=48
-     SoundRadius=128.000000
+	WeaponClass=class'M75Railgun'
+	SpawnOffset=(X=-120.000000,Y=-5.000000,Z=13.000000)
+	MuzzleFlashClass=class'M75FlashEmitter'
+	AltMuzzleFlashClass=class'M75FlashEmitter'
+	ImpactManager=class'IM_RailBullet'
+	BrassClass=class'Brass_Railgun'
+	BrassMode=MU_Both
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	TracerClass=class'TraceEmitter_Railgun'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	FlyBySound=(Sound=Sound'BW_Core_WeaponSound.FlyBys.RailFlyBy',Volume=1.200000)
+	FlyByBulletSpeed=-1.000000
+	ReloadAnim="Reload_AR"
+	CockingAnim="Cock_RearPull"
+	AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M75_TPm'
+	DrawScale=0.130000
+	SoundVolume=48
+	SoundRadius=128.000000
 }

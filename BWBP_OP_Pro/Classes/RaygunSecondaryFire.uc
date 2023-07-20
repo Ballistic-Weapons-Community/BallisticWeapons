@@ -150,7 +150,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	else
 		Surf = int(HitMat.SurfaceType);
 		
-	if (Raygun(BW).BCRepClass.default.GameStyle != 0 && (Other == None || Other.bWorldGeometry))
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism() && (Other == None || Other.bWorldGeometry))
 		BW.TargetedHurtRadius(70, 386, class'DTRaygunChargedRadius', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on
@@ -168,8 +168,7 @@ defaultproperties
     MuzzleFlashClass=Class'BWBP_OP_Pro.RaygunMuzzleFlash'
     FlashScaleFactor=4.000000
     AimedFireAnim="Fire"
-    Damage=10
-    MaxWaterTraceRange = 5000;
+    MaxWaterTraceRange=5000
     FireRecoil=960.000000
     FireChaos=0.320000
     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
@@ -185,12 +184,14 @@ defaultproperties
     FireRate=1.200000
     AmmoClass=Class'BWBP_OP_Pro.Ammo_RaygunCells'
     AmmoPerFire=8
-    ShakeRotMag=(X=32.000000,Y=8.000000)
-    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-    ShakeRotTime=1.500000
-    ShakeOffsetMag=(X=-3.000000)
-    ShakeOffsetRate=(X=-1000.000000)
-    ShakeOffsetTime=1.500000
+
+	ShakeRotMag=(X=64.000000)
+	ShakeRotRate=(X=960.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
+
     //ProjectileClass=Class'BWBP_OP_Pro.RaygunChargedProjectile'
     BotRefireRate=0.250000
     WarnTargetPct=0.500000

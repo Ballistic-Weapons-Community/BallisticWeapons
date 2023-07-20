@@ -9,10 +9,38 @@
 //=============================================================================
 class MarlinRifle extends BallisticWeapon;
 
+//Layouts
+var()   bool		bHasGauss;				// Fancy version
 var	 	float 		GaussLevel, MaxGaussLevel;
 var() 	Sound		GaussOnSound;
 
 var		Actor		GaussGlow1, GaussGlow2;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasGauss=False;
+	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
+	{
+		bHasGauss=True;
+		bShowChargingBar=True;
+	}
+	
+}
+
+// Gauss Stuff ==================================
+simulated function Tick (float DT)
+{
+	super.Tick(DT);
+
+	if (bHasGauss)
+	{
+		AddGauss(DT);
+	}
+}
 
 simulated function AddGauss(optional float Amount)
 {
@@ -25,24 +53,16 @@ simulated function AddGauss(optional float Amount)
 	{			
 		GaussGlow1.bHidden=false;
 		GaussGlow2.bHidden=false;
-		PlaySound(GaussOnSound,,0.7,,32);
+		PlaySound(GaussOnSound,,1.2,,32);
 		ServerSwitchWeaponMode(1);
 		ClientSwitchWeaponMode(1);
 	}
 }
 
-simulated function Tick (float DT)
-{
-	super.Tick(DT);
-
-	if (GameStyleIndex == 0)
-		AddGauss(DT);
-}
-
 //override to prevent weapon switching for arena
 exec simulated function SwitchWeaponMode (optional byte ModeNum)
 {
-	if (GameStyleIndex == 0)
+	if (bHasGauss)
 		return;
 		
 	super.SwitchWeaponMode(ModeNum);
@@ -52,21 +72,24 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
 	
-	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow1 == None || GaussGlow1.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash(GaussGlow1, class'MarlinChargeEffect', DrawScale, self, 'Gauss2');
-		
-	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow2 == None || GaussGlow2.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash(GaussGlow2, class'MarlinChargeEffect', DrawScale, self, 'Gauss3');
-		
-	if (GaussGlow1 != None)
+	if (bHasGauss)
 	{
-		AttachToBone(GaussGlow1, 'Gauss2');
-		GaussGlow1.bHidden=true;
-	}
-	if (GaussGlow2 != None)
-	{
-		AttachToBone(GaussGlow2, 'Gauss3');
-		GaussGlow2.bHidden=true;
+		if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow1 == None || GaussGlow1.bDeleteMe))
+			class'BUtil'.static.InitMuzzleFlash(GaussGlow1, class'MarlinChargeEffect', DrawScale, self, 'Gauss2');
+			
+		if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow2 == None || GaussGlow2.bDeleteMe))
+			class'BUtil'.static.InitMuzzleFlash(GaussGlow2, class'MarlinChargeEffect', DrawScale, self, 'Gauss3');
+			
+		if (GaussGlow1 != None)
+		{
+			AttachToBone(GaussGlow1, 'Gauss2');
+			GaussGlow1.bHidden=true;
+		}
+		if (GaussGlow2 != None)
+		{
+			AttachToBone(GaussGlow2, 'Gauss3');
+			GaussGlow2.bHidden=true;
+		}
 	}
 }
 
@@ -77,7 +100,7 @@ simulated event Destroyed()
 		
 	if (GaussGlow2 != None)
 		GaussGlow2.Destroy();
-		
+
 	Super.Destroyed();
 }
 
@@ -91,6 +114,13 @@ simulated function bool PutDown()
 	}
 	return false;
 }
+
+simulated function float ChargeBar()
+{
+	return FMax(0, GaussLevel/MaxGaussLevel);
+}
+
+
 
 //================================================================
 
@@ -308,18 +338,14 @@ function float SuggestAttackStyle()	{	return -0.4;	}
 function float SuggestDefenseStyle()	{	return 0.4;	}
 // End AI Stuff =====
 
-simulated function float ChargeBar()
-{
-	return FMax(0, GaussLevel/MaxGaussLevel);
-}
 
 defaultproperties
 {
-	GaussOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+	GaussOnSound=Sound'BW_Core_WeaponSound.Gauss.Gauss-Charge'
 	MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Marlin.BigIcon_Marlin'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Lever-action rifle fire. High damage per shot with modest recoil and good penetration. Good shoulder fire properties. This mode fires more quickly when the weapon is aimed."
 	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
@@ -329,10 +355,8 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	PutDownTime=0.4
-	CockAnimRate=1.700000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Cock',Volume=0.750000)
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=2.000000
 	ClipInSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-ShellIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
@@ -341,19 +365,20 @@ defaultproperties
 	StartShovelAnim="StartReload"
 	EndShovelAnim="EndReload"
 	WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
-	WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	bShowChargingBar=True
+	bShowChargingBar=False
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(A=138),StartSize1=61,StartSize2=10)
 	
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
-	ParamsClasses(0)=Class'MarlinWeaponParams'	 
+
+	ParamsClasses(0)=Class'MarlinWeaponParamsComp'	 
 	ParamsClasses(1)=Class'MarlinWeaponParamsClassic'	
-	ParamsClasses(2)=Class'MarlinWeaponParamsRealistic'	 
+	ParamsClasses(2)=Class'MarlinWeaponParamsRealistic'	
+    ParamsClasses(3)=Class'MarlinWeaponParamsTactical' 
 	FireModeClass(0)=Class'BallisticProV55.MarlinPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectForce="SwitchToAssaultRifle"
@@ -367,7 +392,11 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.MarlinPickup'
-	PlayerViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
+
+	PlayerViewOffset=(X=15,Y=7.00000,Z=-10.000000)
+	SightOffset=(X=6.000000,Y=-0.040000,Z=2.850000)
+	SightBobScale=0.2
+
 	AttachmentClass=Class'BallisticProV55.MarlinAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Marlin.SmallIcon_Marlin'
 	IconCoords=(X2=127,Y2=31)
@@ -379,5 +408,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Marlin'
-	DrawScale=0.500000
+	DrawScale=0.3
 }

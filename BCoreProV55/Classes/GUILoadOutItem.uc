@@ -118,29 +118,31 @@ function InternalOnDraw(Canvas C)
 
 	if (Index >= Items.Length)
 		return;
-	C.Style=5;
+
+	C.Style = 5;
 	C.Font = Controller.GetMenuFont("UT2SmallFont").GetFont(C.ClipX);
 
-	C.SetDrawColor(255,255,0,255);
-	C.Strlen(Items[Index].Caption, XL, YL);
-	C.SetPos (ActualLeft(), ActualTop() + ActualHeight() - YL);
-	C.DrawText(Items[Index].Caption);
-
-	if (Caption != "")
+    if (Caption != "")
 	{
 		C.SetDrawColor(255,255,255,255);
 		C.Strlen(Caption, XL, YL);
-		C.SetPos (ActualLeft() + ActualWidth() / 2 - XL / 2, ActualTop() - YL);
+		C.SetPos (ActualLeft() + (ActualWidth() - XL) / 2, ActualTop() - YL - (YL / 2));
 		C.DrawText(Caption);
 	}
+
+	C.SetDrawColor(255,255,0,255);
+	C.Strlen(Items[Index].Caption, XL, YL);
+	C.SetPos (ActualLeft() + (ActualWidth() - XL) / 2, ActualTop() + ActualHeight() + (YL / 2));
+	C.DrawText(Items[Index].Caption);
 }
 
 defaultproperties
 {
-     ImageStyle=ISTY_Scaled
-     ImageRenderStyle=MSTY_Normal
-     bAcceptsInput=True
-     OnRendered=GUILoadOutItem.InternalOnDraw
-     OnClick=GUILoadOutItem.InternalOnClick
-     OnRightClick=GUILoadOutItem.InternalOnRightClick
+    ImageStyle=ISTY_Justified
+    ImageAlign=IMGA_Center
+    ImageRenderStyle=MSTY_Normal
+    bAcceptsInput=True
+    OnRendered=GUILoadOutItem.InternalOnDraw
+    OnClick=GUILoadOutItem.InternalOnClick
+    OnRightClick=GUILoadOutItem.InternalOnRightClick
 }

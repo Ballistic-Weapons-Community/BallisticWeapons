@@ -8,31 +8,63 @@
 //
 // by Sarge and Azarael
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class LAWMine extends BallisticProjectile;
 
-var() Sound						DetonateSound;
+var() 	Sound					ArmingSound;
 var     int						ShockRadius;
+var		float					WallDecayFactor;
 
 var() class<DamageType>			MyShotDamageType;	// Damagetype to use when detonated by damage
 var() class<BCImpactManager>	ImpactManager2;		// Impact manager to spawn on final hit
 
 var   int						Health;			// Distance from his glorious holiness, the source. Wait, thats not what this is...
-var   LAWSparkEmitter			TeamLight;		// A flare emitter to show the glowing core
+var   Emitter					TeamLight;		// A flare emitter to show the glowing core
 var   int						PulseNum;
 var bool						bPulse, bOldPulse;
 var bool						bShot;
+var	byte						TeamLightColor;
 
 replication
 {
 	reliable if(Role == ROLE_Authority)
-		bPulse;
+		bPulse, TeamLightColor;
+}
+
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	
+	if (Role == ROLE_Authority)
+	{
+		if (Level.Game.bTeamGame && Instigator != None && Instigator.GetTeamNum() == 0)
+		{
+			TeamLightColor = 1;
+			if (Level.NetMode != NM_DedicatedServer)
+				TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+		}
+		
+		else 
+		{
+			TeamLightColor = 0;
+			if (Level.NetMode != NM_DedicatedServer)
+				TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+		}
+		TeamLight.SetBase(self);	
+	}
 }
 
 simulated event PostNetReceive()
 {
 	Super.PostNetReceive();
+	if (TeamLight == None && TeamLightColor != default.TeamLightColor)
+	{
+		if (TeamLightColor == 1)
+			TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
+		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
+		TeamLight.SetBase(self);
+	}	
 	if (bPulse != bOldPulse)
 	{
 		bOldPulse = bPulse;
@@ -46,14 +78,9 @@ simulated function InitProjectile()
 
 	if (Role == ROLE_Authority)
 	{
-		PlaySound(DetonateSound,,2.0,,256,,);
 		SetTimer(1.25, false);
 	}
-	if (level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
-		TeamLight.SetBase(self);
-	}
+	PlaySound(ArmingSound,,2.0,,256,,);
 }
 
 simulated function Destroyed()
@@ -136,7 +163,7 @@ simulated function ShockwaveExplode(vector HitLocation, vector HitNormal)
 		if (Instigator == None)
 			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
 		else
-			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
+			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator, TeamLightColor);
 	}
 	Shockwave(HitLocation);
 
@@ -149,6 +176,7 @@ function Shockwave(vector HitLocation)
 	
 	if (Role < ROLE_Authority)
 		return;
+
 	foreach CollidingActors( class 'Actor', A, ShockRadius, Location )
 	{
 		if (A != Self && A.bCanBeDamaged)
@@ -157,9 +185,9 @@ function Shockwave(vector HitLocation)
 				A.SetDelayedDamageInstigatorController( InstigatorController );
 				
 			if (FastTrace(A.Location, Location))
-				class'BallisticDamageType'.static.Hurt(A, 75.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
-			else 
-				class'BallisticDamageType'.static.Hurt(A, 40.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
+				class'BallisticDamageType'.static.Hurt(A, Damage, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
+			else if (VSize(A.Location - Location) < ShockRadius / 2)
+				class'BallisticDamageType'.static.Hurt(A, Damage * WallDecayFactor, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
 		}
 
 	}
@@ -175,32 +203,34 @@ function bool IsStationary()
 
 defaultproperties
 {
-     ModeIndex=1
-     DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
-     ShockRadius=1024
-     MyShotDamageType=Class'BWBP_SKC_Pro.DTLAWShot'
-     ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'
-     Health=175
-     ImpactManager=Class'BallisticProV55.IM_RPG'
-     StartDelay=0.300000
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=2000.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     Damage=210.000000
-     DamageRadius=1536.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
-     bNetTemporary=False
-     Physics=PHYS_None
-     LifeSpan=0.000000
-     DrawScale=0.450000
-     bUnlit=False
-     CollisionRadius=16.000000
-     CollisionHeight=44.000000
-     bCollideWorld=False
-     bProjTarget=True
-     bNetNotify=True
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
+	ModeIndex=1
+    ArmingSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
+	ShockRadius=1536
+	MyShotDamageType=Class'BWBP_SKC_Pro.DTLAWShot'
+	ImpactManager2=Class'BWBP_SKC_Pro.IM_LAWWave'
+	Health=300
+	ImpactManager=Class'BallisticProV55.IM_RPG'
+	StartDelay=0.300000
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=2000.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=4.000000
+	Damage=75.000000
+	WallDecayFactor=0.35
+	DamageRadius=0.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTLAWMineDet'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
+	bNetTemporary=False
+	Physics=PHYS_None
+	LifeSpan=0.000000
+	DrawScale=0.450000
+	bUnlit=False
+	CollisionRadius=16.000000
+	CollisionHeight=44.000000
+	bCollideWorld=False
+	bProjTarget=True
+	bNetNotify=True
 }

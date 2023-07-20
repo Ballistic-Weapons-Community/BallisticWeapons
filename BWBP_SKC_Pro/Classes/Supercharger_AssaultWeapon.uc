@@ -11,6 +11,15 @@ class Supercharger_AssaultWeapon extends BallisticWeapon;
 
 var   Supercharger_ChargeControl	ChargeControl;
 
+
+//Scripted Ammo Screen Texture
+var() ScriptedTexture WeaponScreen; //Scripted texture to write on
+var() Material	WeaponScreenShader; //Scripted Texture with self illum applied
+var() Material	ScreenBase;
+var() Material	ScreenHeat;
+var protected const color MyFontColor; //Why do I even need this?
+var float HeatBar;
+
 var float		HeatLevel;			// Current Heat level, duh...
 var bool		bCriticalHeat;		// Heat is at critical levels
 var() Sound		OverHeatSound;		// Sound to play when it overheats
@@ -33,7 +42,7 @@ var bool		bLatchedOn;
 replication
 {
 	reliable if (Role==ROLE_Authority)
-		ChargeControl, ClientOverCharge, ClientSetHeat, bLatchedOn;
+		ChargeControl, ClientOverCharge, ClientSetHeat, bLatchedOn, ClientScreenStart;
 }
 
 
@@ -57,6 +66,68 @@ simulated function PostNetBeginPlay()
 function Supercharger_ChargeControl GetChargeControl()
 {
 	return ChargeControl;
+}
+
+//========================== AMMO COUNTER NON-STATIC TEXTURE ============
+
+simulated function ClientScreenStart()
+{
+	ScreenStart();
+}
+// Called on clients from camera when it gets to postnetbegin
+simulated function ScreenStart()
+{
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Client = self;
+	Skins[2] = WeaponScreenShader; //Set up scripted texture.
+	UpdateScreen();//Give it some numbers n shit
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+}
+
+simulated event RenderTexture( ScriptedTexture Tex )
+{
+	// 0 is full, 256 is empty
+	HeatBar = 256-(((FMin(HeatLevel, 10))/10.0f)*256);
+
+	Tex.DrawTile(0,0,256,256,0,0,256,256,ScreenBase, MyFontColor); //Basic screen
+
+	Tex.DrawTile(HeatBar,0,256,256,0,0,256,512,ScreenHeat, MyFontColor); //Ammo
+
+}
+	
+simulated function UpdateScreen()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+			WeaponScreen.Revision++;
+	}
+}
+
+simulated event RenderOverlays( Canvas Canvas )
+{
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+
+	super.RenderOverlays(Canvas);
+}
+	
+// Consume ammo from one of the possible sources depending on various factors
+simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
+{
+
+	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
+	else
+	{
+		if (MagAmmo < Load)
+			MagAmmo = 0;
+		else
+			MagAmmo -= Load;
+	}
+	
+	UpdateScreen();
+	return true;
 }
 
 // ============== Heat stuff =================
@@ -93,7 +164,8 @@ simulated function AddHeat(float Amount)
 	if (HeatLevel >= 10 && HeatLevel < 12)
 	{
 		Heatlevel = 12;
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 20+Rand(40), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DT_HVCOverheat');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 20+Rand(40), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DT_SuperchargeOverheat');
+		ChargeControl.FireSinge(Instigator, Instigator, 1, 5);
 	}
 }
 
@@ -117,7 +189,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
 		if (Supercharger_Pickup(Pickup) != None)
 			HeatLevel = FMax( 0.0, Supercharger_Pickup(Pickup).HeatLevel - (level.TimeSeconds - Supercharger_Pickup(Pickup).HeatTime) * 0.25 );
 		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
@@ -222,6 +308,13 @@ simulated event WeaponTick(float DT)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	bIsVenting = false;
+
+	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	{
+		ScreenStart();
+		if (!Instigator.IsLocallyControlled())
+			ClientScreenStart();
+	}
 
 	super.BringUp(PrevWeapon);
 
@@ -346,6 +439,8 @@ function ServerReloadRelease(optional byte i)
 
 simulated function Destroyed()
 {
+	if (Instigator != None && AIController(Instigator.Controller) == None)
+		WeaponScreen.client=None;
 	if (ClawSpark1 != None)
 		ClawSpark1.Destroy();
 	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound)
@@ -506,20 +601,26 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
+	 MyFontColor=(R=255,G=255,B=255,A=255)
+     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.SuperCharger.Supercharger-ScriptLCD'
+     WeaponScreenShader=Shader'BWBP_SKC_Tex.SuperCharger.Supercharger-ScriptLCD-SD'
+	 ScreenBase=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenBase'
+	 ScreenHeat=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-ScreenHeat'
+	 
 	VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
-	OverheatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
+	OverheatSound=Sound'BWBP_SKC_Sounds.Supercharger.SC-Overheat'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
     AIReloadTime=0.200000
     BigIconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.BigIcon_Super'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Energy=True
     bWT_Splash=True
     bWT_RapidProj=True
     bWT_Projectile=True
-    SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
+    SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.75;2.0")
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-Pullout',Volume=1.050000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
     MagAmmo=100
     CockAnimPostReload="Idle"
@@ -529,16 +630,15 @@ defaultproperties
     bCockOnEmpty=False
 	bNonCocking=True
 	bNoMag=True
-	ParamsClasses(0)=Class'SuperchargerWeaponParamsArena'
+	ParamsClasses(0)=Class'SuperchargerWeaponParamsComp'
 	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic'
 	ParamsClasses(2)=Class'SuperchargerWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SuperchargerWeaponParamsTactical'
     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
     WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
     WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
 	ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
-	SightOffset=(X=-25.000000,Z=19.500000)
-    SightDisplayFOV=40.000000
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)
     GunLength=16.500000
     LongGunPivot=(Pitch=2000,Yaw=-1024)
@@ -554,13 +654,14 @@ defaultproperties
     CurrentRating=0.600000
     bShowChargingBar=True
     Description="Van Holt 500KW Supercharger||Manufacturer: Dipheox Combat Arms|Primary: Directed Energy Fire|Secondary: Magnetically Contained Projectile||Not much is known about this enigmatic CYLO variation. It is extremely rare and a cloesly guarded secret."
-    DisplayFOV=55.000000
     Priority=41
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=5
     PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
-    PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-14.000000)
-    BobDamping=2.000000
+
+    PlayerViewOffset=(X=8.00,Y=6.50,Z=-3.50)
+	SightOffset=(X=27.50,Y=0.00,Z=4.30)
+
     AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
     IconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.SmallIcon_Super'
     IconCoords=(X2=127,Y2=31)
@@ -572,5 +673,9 @@ defaultproperties
     LightBrightness=150.000000
     LightRadius=4.000000
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
-    DrawScale=0.360000
+    DrawScale=0.300000
+    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+    Skins(1)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+    Skins(2)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+    Skins(3)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
 }

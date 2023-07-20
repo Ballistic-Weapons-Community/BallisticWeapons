@@ -25,7 +25,8 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+		//FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Pitch=1.000000,Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=2600.000000
 		Chaos=0.050000
 		PushbackForce=100.000000
@@ -51,7 +52,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AS50Limb'
 		PenetrationEnergy=48.000000
-		PenetrateForce=150
+		PenetrateForce=300
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
@@ -59,7 +60,8 @@ defaultproperties
 		Recoil=2000.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
+		//FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Pitch=1.000000,Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPriControlledFireParams
@@ -81,8 +83,8 @@ defaultproperties
 		XRandFactor=0.300000
 		YRandFactor=0.300000
 		MaxRecoil=4000.000000
-		DeclineTime=1.250000
-		DeclineDelay=0.400000
+		DeclineTime=1.750000
+		DeclineDelay=0.500000
 		ViewBindFactor=0.300000
 		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
@@ -95,7 +97,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=800,Max=2808)
+		AimSpread=(Min=800,Max=3408)
 		OffsetAdjustTime=0.400000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
@@ -111,7 +113,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=RealisticControlledAimParams
-		AimSpread=(Min=800,Max=2108)
+		AimSpread=(Min=800,Max=2808)
 		OffsetAdjustTime=0.400000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.400000
@@ -132,16 +134,16 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.825000
-		InventorySize=27
+		InventorySize=9
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.33
+		SightingTime=0.45
 		MagAmmo=10
 		bMagPlusOne=True
-		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
-		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
+		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		ZoomType=ZT_Logarithmic
-		ReloadAnimRate=0.900000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=0.900000
+		//CockAnimRate=1.000000
 		WeaponName="FSSG-50 12.7mm Anti-Materiel Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

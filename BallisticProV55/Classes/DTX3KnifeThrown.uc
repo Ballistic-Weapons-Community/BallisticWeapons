@@ -13,6 +13,7 @@ defaultproperties
      DeathStrings(0)="%k pegged %o with %kh X3."
      DeathStrings(1)="%k flung a knife at %o."
      DeathStrings(2)="%k flicked a knife into %o's flesh."
+	 SimpleKillString="X3 Thrown"
      bCanBeBlocked=False
      DamageIdent="Melee"
      DisplacementType=DSP_None

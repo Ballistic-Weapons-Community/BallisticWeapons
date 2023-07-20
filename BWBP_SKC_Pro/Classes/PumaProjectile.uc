@@ -156,15 +156,16 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
-     DetonateOn=DT_ImpactTimed
-     PlayerImpactType=PIT_Detonate
+    WeaponClass=Class'BWBP_SKC_Pro.PumaRepeater'
+     ArmedDetonateOn=DT_ImpactTimed
+     ArmedPlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.050000
      ImpactDamage=90
      ImpactDamageType=Class'BWBP_SKC_Pro.DT_PUMAGrenade'
      ImpactManager=Class'BWBP_SKC_Pro.IM_PumaDet'
-     TrailClass=Class'BWBP_SKC_Pro.PumaProjectileTrail'
+     TrailClass=Class'BWBP_SKC_Pro.PumaProjTrailCorona'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_PUMARadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=300.000000

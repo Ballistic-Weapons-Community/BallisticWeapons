@@ -17,7 +17,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
     moCheckBox(Controls[6]).Checked(TAM_GRI(PlayerOwner().Level.GRI).bChallengeMode);
     moEditBox(Controls[7]).SetText(string(TAM_GRI(PlayerOwner().Level.GRI).MaxHealth));
 
-    moEditBox(Controls[8]).SetText(string(TAM_GRI(PlayerOwner().Level.GRI).MinsPerRound));
+    moEditBox(Controls[8]).SetText(string(TAM_GRI(PlayerOwner().Level.GRI).SecondsPerRound));
     moEditBox(Controls[9]).SetText(string(TAM_GRI(PlayerOwner().Level.GRI).OTDamage));
     moEditBox(Controls[10]).SetText(string(TAM_GRI(PlayerOwner().Level.GRI).OTInterval));
     moEditBox(Controls[20]).SetText(string(TAM_GRI(PlayerOwner().Level.GRI).Timeouts));
@@ -86,7 +86,7 @@ function bool OnClick(GUIComponent C)
         s = s$"?ChallengeMode="$moCheckBox(Controls[6]).IsChecked();
         s = s$"?MaxHealth="$moEditBox(Controls[7]).GetText();
 
-        s = s$"?MinsPerRound="$moEditBox(Controls[8]).GetText();
+        s = s$"?SecondsPerRound="$moEditBox(Controls[8]).GetText();
         s = s$"?OTDamage="$moEditBox(Controls[9]).GetText();
         s = s$"?OTInterval="$moEditBox(Controls[10]).GetText();
         s = s$"?Timeouts="$moEditBox(Controls[20]).GetText();
@@ -239,17 +239,17 @@ defaultproperties
      End Object
      Controls(7)=moEditBox'3SPNv3141BW.Menu_TabTAMAdmin.MaxHealthBox'
 
-     Begin Object Class=moEditBox Name=MinsBox
+     Begin Object Class=moEditBox Name=SecondsBox
          CaptionWidth=0.600000
-         Caption="Minutes Per Round:"
-         OnCreateComponent=MinsBox.InternalOnCreateComponent
+         Caption="Seconds Per Round:"
+         OnCreateComponent=SecondsBox.InternalOnCreateComponent
          WinTop=0.200000
          WinLeft=0.050000
          WinWidth=0.400000
          WinHeight=0.060000
          OnChange=Menu_TabTAMAdmin.OnChange
      End Object
-     Controls(8)=moEditBox'3SPNv3141BW.Menu_TabTAMAdmin.MinsBox'
+     Controls(8)=moEditBox'3SPNv3141BW.Menu_TabTAMAdmin.SecondsBox'
 
      Begin Object Class=moEditBox Name=OTDamBox
          CaptionWidth=0.600000

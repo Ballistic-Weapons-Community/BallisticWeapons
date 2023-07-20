@@ -88,7 +88,7 @@ simulated event Timer()
 				FireMode[Mode].InitEffects();
         PlayIdle();
         ClientState = WS_ReadyToFire;
-		if (!bOldCrosshairs && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
 
 		if (bNeedCock)
@@ -230,7 +230,6 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-	ReloadAnimRate=0.800000
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipHit',Volume=0.000000,Radius=32.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipOut')
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn')
@@ -238,9 +237,10 @@ defaultproperties
 	GunLength=0.000000
     bUseSights=True
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'FG50TW_WeaponParams'
-	ParamsClasses(1)=Class'FG50TW_WeaponParams'
+	ParamsClasses(0)=Class'FG50TW_WeaponParamsComp'
+	ParamsClasses(1)=Class'FG50TW_WeaponParamsComp'
 	ParamsClasses(2)=Class'AS50TW_WeaponParamsRealistic'
+    ParamsClasses(3)=Class'FG50TW_WeaponParamsTactical'
 	SelectAnim="Deploy"
     BringUpTime=1.000000
 	bCanThrow=False

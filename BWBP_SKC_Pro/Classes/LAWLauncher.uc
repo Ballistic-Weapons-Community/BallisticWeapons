@@ -36,7 +36,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		PutDownTime=2.5;
 		default.PutDownTime=2.500000;
@@ -94,7 +94,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		LAWAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
@@ -115,7 +115,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -229,44 +228,10 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	Canvas.DrawActor(Laser, false, false, DisplayFOV);
 }
 
-simulated event RenderOverlays (Canvas C)
+simulated event DrawFPWeapon (Canvas C)
 {
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(C);
-		DrawLaserSight(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	if (ZoomType == ZT_Irons)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
-
-	// Draw Scope View
-    if (ScopeViewTex != None)
-    {
-   		C.SetDrawColor(255,255,255,255);
-		C.SetPos(C.OrgX, C.OrgY);
-		
-		C.ColorModulate.W = 1;
-		
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-
-		C.SetPos((C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeY*ScopeXScale), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
-	}
+	Super.DrawFPWeapon(C);
+	DrawLaserSight(C);
 }
 
 simulated function Destroyed ()
@@ -355,7 +320,7 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.LAW.BigIcon_LAW'
 	BigIconCoords=(Y1=36,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -381,14 +346,14 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=10.000000
 	bNoCrosshairInScope=True
-	SightOffset=(Y=6.000000,Z=15.000000)
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=6
 
-	ParamsClasses(0)=Class'LAWWeaponParams'
+	ParamsClasses(0)=Class'LAWWeaponParamsComp'
 	ParamsClasses(1)=Class'LAWWeaponParamsClassic'
 	ParamsClasses(2)=Class'LAWWeaponParamsRealistic'
+    ParamsClasses(3)=Class'LAWWeaponParamsTactical'
 	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LAWPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LAWSecondaryFire'
@@ -412,8 +377,10 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.LAWPickup'
-	PlayerViewOffset=(X=10.000000,Z=-7.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=1.00,Y=4.00,Z=5.00)
+	SightOffset=(X=12.00,Y=-1.25,Z=1.90)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.LAWAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LAW.SmallIcon_LAW'
 	IconCoords=(X2=127,Y2=31)
@@ -425,5 +392,5 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LAW'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

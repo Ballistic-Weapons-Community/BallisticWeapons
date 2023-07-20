@@ -26,11 +26,11 @@ replication
 		LaserRot;
 }
 
-
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (AM67Pistol(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		bLaserVariant=true;
 	}
@@ -119,7 +119,7 @@ simulated function SpawnLaserDot(vector Loc)
 {
 	if (LaserDot == None)
 	{
-		LaserDot = Spawn(class'BallisticProV55.IE_GRS9LaserHit',,,Loc);
+		LaserDot = Spawn(class'IE_GRS9LaserHit',,,Loc);
 		laserDot.bHidden=false;
 	}
 }
@@ -141,7 +141,7 @@ simulated function Tick(float DT)
 		return;
 
 	if (Laser == None)
-		Laser = Spawn(class'BallisticProV55.LaserActor_GRSNine',,,Location);
+		Laser = Spawn(class'LaserActor_GRSNine',,,Location);
 
 	if (bLaserOn != bOldLaserOn)
 		bOldLaserOn = bLaserOn;
@@ -208,14 +208,15 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_BigBullet'
+	WeaponClass=class'AM67Pistol'
+     MuzzleFlashClass=class'D49FlashEmitter'
+     AltMuzzleFlashClass=class'AM67FlashEmitter'
+     ImpactManager=class'IM_BigBullet'
      AltFlashBone="ejector"
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      FlashMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Pistol'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"

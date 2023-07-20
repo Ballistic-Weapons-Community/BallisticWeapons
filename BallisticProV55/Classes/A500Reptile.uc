@@ -23,14 +23,14 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	
-	bShowChargingBar=(BCRepClass.default.GameStyle == 0);
+	bShowChargingBar = (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical());
 	
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
 		A500PrimaryFire(FireMode[0]).ProjectileCount = 10;
 	}
-	else if (BCRepClass.default.GameStyle == 2)
+	else if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
 		A500PrimaryFire(FireMode[0]).ProjectileCount = 12;
@@ -38,116 +38,15 @@ simulated event PostNetBeginPlay()
 }
 
 //Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
-simulated function DrawCrosshairs(canvas C)
+simulated function DrawSimpleCrosshairs(Canvas C)
 {
-	local float 				ShortBound, LongBound;
-	local float 				OffsetAdjustment;
-	local Color 				SavedDrawColor;
-	local IntBox				Size;
-	local float					ScaleFactor;
-	local NonDefCrosshairCfg 	CHCfg;
+	local float Offset;
 	
-	ScaleFactor = C.ClipX / 1600;
+	Offset = C.ClipX / 2;
+	Offset *= tan (CrosshairSpreadAngle) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
 
-	// Draw weapon specific Crosshairs
-	if (bOldCrosshairs || bScopeView)
-		return;
-
-	if (bDrawSimpleCrosshair)
-	{
-		if ((!bNoMag && MagAmmo == 0)|| bNeedCock)
-			SavedDrawColor = MagEmptyColor;
-			
-		else SavedDrawColor = class'HUD'.default.CrosshairColor;
-			
-		C.DrawColor = SavedDrawColor;
-		
-		ShortBound = 2;
-		LongBound= 10;
-		
-		OffsetAdjustment = C.ClipX / 2;
-		OffsetAdjustment *= tan (CrosshairSpreadAngle) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
-		
-		//black
-		//hor
-		C.SetDrawColor(0,0,0,255);
-		
-		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-		
-		C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-		
-		//ver
-		C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-		
-		C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-		
-		//centre square
-		if (bDrawCrosshairDot)
-		{
-			C.DrawColor.A = 255;
-			C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
-		}
-		//green
-		C.DrawColor = SavedDrawColor;
-		//hor
-		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-		
-		C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-		
-		//ver
-		C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-		
-		C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-		
-		//centre square
-		if (bDrawCrosshairDot)
-		{
-			C.DrawColor.A = 255;
-			C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-			C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
-		}
-	}
-	else
-	{
-		if (bGlobalCrosshair)
-			CHCfg = class'A500Reptile'.default.NDCrosshairCfg;
-		else
-			CHCfg = NDCrosshairCfg;
-
-		//Work out the exact size of the crosshair
-		Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-		Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-
-		// Draw primary
-		if (CHCfg.Pic1 != None)
-		{
-			C.DrawColor = CHCfg.Color1;
-			if (bScopeView)	C.DrawColor.A = float(C.DrawColor.A) / 1.3;
-			C.SetPos((C.ClipX / 2) - (Size.X1/2), (C.ClipY / 2) - (Size.Y1/2));
-			C.DrawTile (CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
-		}
-		// Draw secondary
-		if (CHCfg.Pic2 != None)
-		{
-			C.DrawColor = CHCfg.Color2;
-			if (bScopeView)	C.DrawColor.A = float(C.DrawColor.A) / 1.5;
-			C.SetPos((C.ClipX / 2) - (Size.X2/2), (C.ClipY / 2) - (Size.Y2/2));
-			C.DrawTile (CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
-		}
-	}
+	DrawSimpleCrosshairBars(C, Offset, Offset);
 }
-
 
 exec simulated function CockGun(optional byte Type);
 function ServerCockGun(optional byte Type);
@@ -214,7 +113,7 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 simulated function float ChargeBar()
 {
-	if (GameStyleIndex == 0)
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 		return FMax(0, BFireMode[1].HoldTime / BFireMode[1].MaxHoldTime);
 		
 	return 0;
@@ -225,12 +124,12 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Reptile.BigIcon_Reptile'
 	BigIconCoords=(Y1=30,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	bWT_Hazardous=True
 	bWT_Projectile=True
 	ManualLines(0)="Blasts the enemy with multiple acid projectiles. These projectiles gain damage over range and inflict a short-duration blind on a headshot. Good shoulder fire properties."
-	ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power, number of pools and radius of coverage all increase with charge."
+	ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Power, number of pools and radius of coverage all increase with charge, while speed decreases."
 	ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
 	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
@@ -244,16 +143,20 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-    ReloadAnimRate=1.25
+
 	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=129),Color2=(B=148,R=0,A=141),StartSize1=99,StartSize2=84)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
-	SightPivot=(Pitch=512)
-	SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
-	SightDisplayFOV=40.000000
+
+	PlayerViewOffset=(X=10.00,Y=12.00,Z=-14.00)
+	SightOffset=(X=10.00,Y=0.16,Z=14.00)
+	SightAnimScale=0.35
+	SightBobScale=1.5
+	SightZoomFactor=1.2
 	GunLength=48.000000
-	ParamsClasses(0)=Class'A500WeaponParams'
+	ParamsClasses(0)=Class'A500WeaponParamsComp'
 	ParamsClasses(1)=Class'A500WeaponParamsClassic'
 	ParamsClasses(2)=Class'A500WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A500WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.A500PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'
 	BringUpTime=0.500000
@@ -262,14 +165,12 @@ defaultproperties
 	CurrentRating=0.800000
 	bShowChargingBar=True
 	Description="The A500 is a mostly experimental Skrith weapon, seen in only a handful of battles fought against Terran forces. The first encounter with Skrith troops using the 'Reptile' was during a notorious incident on one of the Outworld colonies, where UTC troops were stationed in defense of a large Terran lab still operating. The Skrith invaded the area with little warning, and although the heavily armoured Terrans far outnumbered the Skrith incursion party, the A500 was used by the aliens to great effect. The armoured Terrans affected by the acidic substances suffered a painful fate as the armour was eaten away rapidly and then the soldier themselves fell to the toxic substance. Many theorize that the A500 and other recent Skrith weapons are a response to the ineffectiveness of their previous energy weapons against much of the Terran armour."
-	DisplayFOV=55.000000
 	Priority=39
 	HudColor=(G=200,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BallisticProV55.A500Pickup'
-	PlayerViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
-	PlayerViewPivot=(Pitch=600)
+
 	AttachmentClass=Class'BallisticProV55.A500Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Reptile.SmallIcon_Reptile'
 	IconCoords=(X2=127,Y2=31)
@@ -281,7 +182,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A500AcidGun'
-	DrawScale=0.187500
+	DrawScale=0.3
 	SoundPitch=56
 	SoundRadius=32.000000
 }

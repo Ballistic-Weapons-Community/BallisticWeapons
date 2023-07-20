@@ -133,7 +133,7 @@ simulated function TickSighting (float DT)
 			SightingPhase = 0.0;
 			SightingState = SS_None;
 			ScopeDownAnimEnd();
-			DisplayFOV = default.DisplayFOV;
+			DisplayFOV = BaseDisplayFOV;
 		}
 	}
 }
@@ -502,7 +502,7 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_OP_Tex.Z250.BigIcon_Z250'
 	BigIconCoords=(X1=30,X2=470,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Primary fire spins up the barrels, delivering a hail of explosive rounds which inflict damage to the target and any nearby enemies."
@@ -532,12 +532,12 @@ defaultproperties
 	CurrentWeaponMode=1
 	bShowChargingBar=True
 	bNoCrosshairInScope=True
-	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
-	SightDisplayFOV=45.000000
+	SightOffset=(X=0,Y=0,Z=1.68)
 	SightingTime=0.550000
-	ParamsClasses(0)=Class'Z250WeaponParams'
+	ParamsClasses(0)=Class'Z250WeaponParamsComp'
 	ParamsClasses(1)=Class'Z250WeaponParamsClassic'
 	ParamsClasses(2)=Class'Z250WeaponParamsRealistic'
+    ParamsClasses(3)=Class'Z250WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.Z250PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.Z250SecondaryFire'
 	SelectAnimRate=0.750000
@@ -549,7 +549,6 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="Miniguns are devastating tools of destruction in the right hands, able to decimate swarms of Krao and keep the Skrith suppressed. However, not only is the recoil fearsome, but the weight also has become an issue to non-geneboosted soldiers. While a relatively minor complaint to some companies, it didn't stop Majestic Firearms 12 from producing a more lightweight and portable version of a minigun while still retaining a lot of stopping power against heavier units. Enter the Z250 Minigun, not as big as the XMV-850 but still just as deadly, chambered for a specialized .308 HEAP round, it might not fire as fast yet it can still rip apart anyone standing on the wrong end. It can also fire fuel grenades to coat the battlefield in a flammable substance, providing a great area of denial. The Z250 is currently being issued to ODST troops and specialized troops to combat the Krao swarms infecting the universe."
-	DisplayFOV=45.000000
 	Priority=47
 	HudColor=(B=50,G=200,R=25)
 	CustomCrossHairColor=(A=219)
@@ -557,8 +556,9 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	GroupOffset=2
+	SightBobScale=0.5
 	PickupClass=Class'BWBP_OP_Pro.Z250Pickup'
-	PlayerViewOffset=(Y=15.000000,Z=-25.000000)
+	PlayerViewOffset=(X=12,Y=6,Z=-4.25)
 	AttachmentClass=Class'BWBP_OP_Pro.Z250Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Z250.Icon_Z250'
 	IconCoords=(X2=127,Y2=31)
@@ -570,6 +570,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Z250'
-	DrawScale=0.600000
+	DrawScale=0.300000
 	SoundRadius=128.000000
 }

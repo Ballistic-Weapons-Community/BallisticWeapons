@@ -9,4 +9,4 @@ class WeaponLayout extends Object
     editinlinenew;
 
 // parameters are indexed by game style
-var array<WeaponParams>             WeaponParams;
+var() editinline array<WeaponParams>	WeaponParams;

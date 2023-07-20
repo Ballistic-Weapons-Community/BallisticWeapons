@@ -141,6 +141,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.PD97Bloodhound'
 	ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      //TrailClass=Class'BWBP_OP_Pro.PD97TrackerTrail'

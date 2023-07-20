@@ -67,7 +67,6 @@ simulated state ClassicRail
 
 		TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
 		MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
-		// FIXME - CutOffStartRange
 		RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
 
 		default.Damage = effect_params.Damage;
@@ -111,6 +110,7 @@ simulated state FullChargedRail
 			KickForce = default.KickForce * RailPower;
 			FireRecoil = default.FireRecoil * RailPower;
 			FirePushbackForce = default.FirePushbackForce * RailPower;
+			BW.RcComponent.DeclineTime = BW.RcComponent.default.DeclineTime * RailPower;
 			BW.RcComponent.DeclineDelay = BW.RcComponent.default.DeclineDelay * RailPower;
 			
 			BallisticFireSound.Volume=0.6 + RailPower * 0.8;
@@ -183,11 +183,7 @@ defaultproperties
      WallPenetrationForce=128.000000
      
 	 bCockAfterFire=True
-	 
-     Damage=80.000000
-     HeadMult=1.5f
-     LimbMult=0.9f
-     
+	      
      DamageType=Class'BallisticProV55.DTM75Railgun'
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM75Railgun'

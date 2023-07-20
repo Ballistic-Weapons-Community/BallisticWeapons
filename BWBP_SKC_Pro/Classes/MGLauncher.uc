@@ -203,7 +203,7 @@ defaultproperties
 	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MGL.BigIcon_MGL'
 	IdleTweenTime=0.000000
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -211,12 +211,12 @@ defaultproperties
 	ManualLines(0)="Launches a grenade. Fire rate, damage and explosive radius are good. These grenades have an arming delay and if striking a surface when unarmed will ricochet. Direct impacts will always result in explosion."
 	ManualLines(1)="Employs a manually controlled grenade. Pressing altfire again detonates the grenade."
 	ManualLines(2)="Effective with height advantage and at medium range."
-	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
+	SpecialInfo(0)=(Info="300.0;35.0;0.5;60.0;0.0;1.0;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.300000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.300000,Radius=32.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=24.000000)
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.300000,Radius=24.000000)
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.300000,Radius=24.000000)
 	ClipInFrame=0.325000
 	StartShovelAnim="ReloadStart"
 	EndShovelAnim="ReloadEnd"
@@ -227,12 +227,11 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
 	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=512)
-	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
-	ParamsClasses(0)=Class'MGLWeaponParams'
+	ParamsClasses(0)=Class'MGLWeaponParamsComp'
 	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
 	ParamsClasses(2)=Class'MGLWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MGLWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MGLPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MGLSecondaryFire'
 	SelectAnimRate=1.500000
@@ -246,7 +245,12 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.MGLPickup'
-	PlayerViewOffset=(X=5.000000,Y=-1.000000,Z=-7.000000)
+
+	PlayerViewOffset=(X=16.00,Y=10.00,Z=-12.00)
+	SightOffset=(X=-1.00,Y=0.00,Z=18.10)
+	SightPivot=(Pitch=512)
+	SightBobScale=1
+
 	AttachmentClass=Class'BWBP_SKC_Pro.MGLAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MGL.SmallIcon_MGL'
 	IconCoords=(X2=127,Y2=35)
@@ -258,7 +262,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MGL'
-	DrawScale=0.130000
+	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.MGL.MGL-Main'
 	Skins(2)=Texture'BWBP_SKC_Tex.MGL.MGL-ScreenBase'

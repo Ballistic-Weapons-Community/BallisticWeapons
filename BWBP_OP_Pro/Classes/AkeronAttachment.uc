@@ -73,15 +73,16 @@ simulated event Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'AkeronLauncher'
      BackBones(0)="backblast"
      BackBones(1)="backblast2"
      BackBones(2)="backblast3"
      FrontBones(0)="tip"
      FrontBones(1)="tip2"
      FrontBones(2)="tip3"
-     MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.G5BackFlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     MuzzleFlashClass=class'G5FlashEmitter'
+     AltMuzzleFlashClass=class'G5BackFlashEmitter'
+     ImpactManager=class'IM_Bullet'
      FlashScale=0.750000
      BrassMode=MU_None
      InstantMode=MU_None

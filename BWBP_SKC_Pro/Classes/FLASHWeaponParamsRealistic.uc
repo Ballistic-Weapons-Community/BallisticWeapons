@@ -111,14 +111,14 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.850000
-		InventorySize=29
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=4
-		SightOffset=(X=0.000000,Y=5.300000,Z=23.300000)
+		//SightOffset=(X=0.000000,Y=5.300000,Z=23.300000)
 		ZoomType=ZT_Fixed
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="AT40 STREAK 66mm Incendiary Rocket Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -126,6 +126,49 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=FLASH_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoBlack",Index=3,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Winter
+		Index=2
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoWhite",Index=3,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Pink
+		Index=3
+		CamoName="Pink"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-CamoFAB",Index=3,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=FLASH_Glitch
+		Index=4
+		CamoName="11011"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.FLASHCamos.FLASH-Charged",Index=3,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'FLASH_Green'
+	Camos(1)=WeaponCamo'FLASH_Black'
+	Camos(2)=WeaponCamo'FLASH_Winter'
+	Camos(3)=WeaponCamo'FLASH_Pink'
+	Camos(4)=WeaponCamo'FLASH_Glitch'
 }

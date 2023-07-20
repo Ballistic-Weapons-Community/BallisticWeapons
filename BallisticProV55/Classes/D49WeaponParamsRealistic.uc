@@ -129,20 +129,20 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=1800
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=6
-		ViewOffset=(X=4.000000,Y=10.500000,Z=-13.000000)
-		ViewPivot=(Pitch=512)
-		SightOffset=(X=-20.000000,Y=-3.500000,Z=23.9500000)
-		SightPivot=(Pitch=-175,Roll=-500)
+		ViewOffset=(X=10,Y=22,Z=-16)
+		//ViewOffset=(X=4.000000,Y=10.500000,Z=-13.000000)
+		//SightOffset=(X=-20.000000,Y=-3.500000,Z=23.9500000)
+		//SightPivot=(Pitch=-175,Roll=-500)
+		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)
 		WristAdjust=(Yaw=-2500,Pitch=-0000)
-		ReloadAnimRate=1.700000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.700000
 		WeaponName="D49 .44 Magnum Revolver"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -150,6 +150,22 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=D49_Silver
+		Index=0
+		CamoName="Silver"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=D49_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.D49Camos.D49Black-Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Camos(0)=WeaponCamo'D49_Silver'
+	Camos(1)=WeaponCamo'D49_Black'
 }

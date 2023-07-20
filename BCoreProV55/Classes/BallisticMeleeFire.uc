@@ -354,8 +354,6 @@ simulated event ModeDoFire()
 			AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
 		Instigator.DeactivateSpawnProtection();
 	}
-	else if (!BW.bUseNetAim && !BW.bScopeView)
-		ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -405,7 +403,9 @@ simulated event ModeDoFire()
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
 	}
-	BW.GunLength = BW.default.GunLength;
+
+	BW.SetDefaultGunLength();
+
 	if (BW.SprintControl != None && BW.SprintControl.bSprinting)
 		BW.PlayerSprint(true);
 }
@@ -445,60 +445,40 @@ function PlayFiring()
 
 simulated event ModeHoldFire()
 {
-	BW.GunLength=1;
+	BW.SetMeleeGunLength();
+	
 	if (BW.SprintControl != None && BW.SprintControl.bSprinting)
 		BW.PlayerSprint(false);
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.DamageInt = default.Damage;
-	if (default.bFireOnRelease)
-		FS.Damage = String(FS.DamageInt)@"-"@String(int(FS.DamageInt * 1.33));
-	else	FS.Damage = String(FS.DamageInt);
-
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS = default.Damage / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/default.Damage) - 1);
-	FS.RPM = 1/default.FireRate@"attacks/second";
-	FS.RangeOpt = "Max range: "@(default.TraceRange.Max / 52.5)@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
-     SwipePoints(0)=(Weight=3,offset=(Yaw=2560))
-     SwipePoints(1)=(Weight=5,offset=(Yaw=1280))
-     SwipePoints(2)=(Weight=6)
-     SwipePoints(3)=(Weight=4,offset=(Yaw=-1280))
-     SwipePoints(4)=(Weight=2,offset=(Yaw=-2560))
-     WallHitPoint=2
-	 NumSwipePoints=5
-	 WallPenetrationForce=0
+	SwipePoints(0)=(Weight=3,offset=(Yaw=2560))
+	SwipePoints(1)=(Weight=5,offset=(Yaw=1280))
+	SwipePoints(2)=(Weight=6)
+	SwipePoints(3)=(Weight=4,offset=(Yaw=-1280))
+	SwipePoints(4)=(Weight=2,offset=(Yaw=-2560))
+	WallHitPoint=2
+	NumSwipePoints=5
+	WallPenetrationForce=0
 
-     MaxBonusHoldTime=1.500000
-     bCanBackstab=True
-     TraceRange=(Min=145.000000,Max=145.000000)
+	MaxBonusHoldTime=1.500000
+	bCanBackstab=True
+	TraceRange=(Min=145.000000,Max=145.000000)
 
-     Damage=50.000000
-     HeadMult=1f 
-     LimbMult=1f
-     RangeAtten=1.0f
-     ChargeDamageBonusFactor=1f
-     FlankDamageMult=1.15f
-     BackDamageMult=1.3f
+	Damage=50.000000
 
-     PDamageFactor=0.500000
-     RunningSpeedThresh=1000.000000
-     bNoPositionalDamage=True
-     ShotTypeString="attacks"
-     TweenTime=0.100000
-     FireRate=0.800000
+	// backup values in case of failure to assign
+	HeadMult=1f 
+	LimbMult=1f
+	RangeAtten=1.0f
+	ChargeDamageBonusFactor=1f
+	FlankDamageMult=1.15f
+	BackDamageMult=1.3f
+
+	PDamageFactor=0.500000
+	RunningSpeedThresh=1000.000000
+	bNoPositionalDamage=True
+	TweenTime=0.100000
+	FireRate=0.800000
 }

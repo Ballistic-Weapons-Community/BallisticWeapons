@@ -31,18 +31,20 @@ var bool			bAllowBotRemoval;
 /* general and misc */
 
 /* overtime related */
-var config int      MinsPerRound;           // the number of minutes before a round goes into OT
+var config int      SecondsPerRound;        // the number of seconds before a round goes into OT
 var int             RoundTime;              // number of seconds remaining before round-OT
 var bool            bRoundOT;               // true if we're in round-OT
 var int             RoundOTTime;            // how long we've been in round-OT
 var config int      OTDamage;               // the amount of damage players take in round-OT every...
-var config int      OTInterval;             // <OTInterval> seconds
+var config int      OTInterval;             // <OTInterval> seconds...
+var int				RoundPlayerCounts[2];	// based on these values versus the count of players alive
+var config int		MaxOTDamagePlayerDiff;	// max diff for scaling OT damage
 /* overtime related */
 
 /* camping related */
 var config float    CampThreshold;          // area a player must stay in to be considered camping
 var int             CampInterval;           // time between flagging the same player
-var int 		MaxWaterCampChecks;  //number of times anticamp checks will tolerate player being in fog dense zone
+var int 			MaxWaterCampChecks;  //number of times anticamp checks will tolerate player being in fog dense zone
 var config bool     bKickExcessiveCampers;  // kick players that camp 4 consecutive times
 /* camping related */
 
@@ -137,13 +139,13 @@ function InitGameReplicationInfo()
     if(Misc_BaseGRI(GameReplicationInfo) == None)
         return;
 
-    Misc_BaseGRI(GameReplicationInfo).RoundTime = MinsPerRound * 60;
+    Misc_BaseGRI(GameReplicationInfo).RoundTime = SecondsPerRound;
 
     Misc_BaseGRI(GameReplicationInfo).StartingHealth = StartingHealth;
     Misc_BaseGRI(GameReplicationInfo).StartingArmor = StartingArmor;
     Misc_BaseGRI(GameReplicationInfo).MaxHealth = MaxHealth;
 
-    Misc_BaseGRI(GameReplicationInfo).MinsPerRound = MinsPerRound;
+    Misc_BaseGRI(GameReplicationInfo).SecondsPerRound = SecondsPerRound;
     Misc_BaseGRI(GameReplicationInfo).OTDamage = OTDamage;
     Misc_BaseGRI(GameReplicationInfo).OTInterval = OTInterval;
 
@@ -195,9 +197,10 @@ static function FillPlayInfo(PlayInfo PI)
     PI.AddSetting("3SPN", "StartingArmor", "Starting Armor", 0, 101, "Text", "3;0:999");
     PI.AddSetting("3SPN", "MaxHealth", "Max Health", 0, 102, "Text", "8;1.0:2.0");
 
-    PI.AddSetting("3SPN", "MinsPerRound", "Minutes per Round", 0, 120, "Text", "3;0:999");
+    PI.AddSetting("3SPN", "SecondsPerRound", "Seconds per Round", 0, 120, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTDamage", "Overtime Damage", 0, 121, "Text", "3;0:999");
     PI.AddSetting("3SPN", "OTInterval", "Overtime Damage Interval", 0, 122, "Text", "3;0:999");
+	PI.AddSetting("3SPN", "MaxOTDamagePlayerDiff", "Max Overtime Damage Player Diff", 0, 122, "Text", "3;0:999");
 
     PI.AddSetting("3SPN", "bPracticeRound", "Practice Round", 0, 309, "Check",,, True);
     PI.AddSetting("3SPN", "PracticeRoundLength", "Practice Round Duration", 0, 310, "Text", "3;0:999",, True);
@@ -231,20 +234,21 @@ static event string GetDescriptionText(string PropName)
 { 
     switch(PropName)
     {
-        case "StartingHealth":      return "Base health at round start.";
-        case "StartingArmor":       return "Base armor at round start.";
+        case "StartingHealth":      	return "Base health at round start.";
+        case "StartingArmor":       	return "Base armor at round start.";
 
-        case "MinsPerRound":        return "Round time-limit before overtime.";
-        case "OTDamage":            return "The amount of damage all players while in OT.";
-        case "OTInterval":          return "The interval at which OT damage is given.";
-        	
-        case "bPracticeRound":      return "Whether to have a practice round at the beginning.";
+        case "SecondsPerRound":        	return "Round time-limit before overtime.";
+        case "OTDamage":            	return "The amount of damage all players while in OT.";
+        case "OTInterval":          	return "The interval at which OT damage is given.";
+        case "MaxOTDamagePlayerDiff": 	return "Maximum player difference for scaling OT damage.";
+
+        case "bPracticeRound":      	return "Whether to have a practice round at the beginning.";
         case "PracticeRoundLength":    return "Practice run duration in seconds.";
             
-        case "MaxHealth":           return "The maximum amount of health and armor a player can have.";
+        case "MaxHealth":           	return "The maximum amount of health and armor a player can have.";
 
-        case "CampThreshold":       return "The area a player must stay in to be considered camping.";
-        case "bKickExcessiveCampers": return "Kick players that camp 4 consecutive times.";
+        case "CampThreshold":       	return "The area a player must stay in to be considered camping.";
+        case "bKickExcessiveCampers": 	return "Kick players that camp 4 consecutive times.";
             
         case "bDisableSpeed":       return "Disable the Speed adrenaline combo.";
         case "bDisableInvis":       return "Disable the Invisibility adrenaline combo.";
@@ -287,9 +291,9 @@ function ParseOptions(string Options)
     if(InOpt != "")
         MaxHealth = float(InOpt);
 
-    InOpt = ParseOption(Options, "MinsPerRound");
+    InOpt = ParseOption(Options, "SecondsPerRound");
     if(InOpt != "")
-        MinsPerRound = int(InOpt);
+        SecondsPerRound = int(InOpt);
 
     InOpt = ParseOption(Options, "OTDamage");
     if(InOpt != "")
@@ -298,6 +302,10 @@ function ParseOptions(string Options)
     InOpt = ParseOption(Options, "OTInterval");
     if(InOpt != "")
         OTInterval = int(InOpt);
+
+	InOpt = ParseOption(Options, "MaxOTDamagePlayerDiff");
+    if(InOpt != "")
+        MaxOTDamagePlayerDiff = int(InOpt);
 
     InOpt = ParseOption(Options, "CampThreshold");
     if(InOpt != "")
@@ -975,7 +983,7 @@ function StartMatch()
 	else
 	{
     	CurrentRound = 1;
-    	RoundTime = 60 * MinsPerRound;
+    	RoundTime = SecondsPerRound;
     }
     	
     Misc_BaseGRI(GameReplicationInfo).CurrentRound = 0;
@@ -998,7 +1006,7 @@ function StartNewRound()
 
     bRoundOT = false;
     RoundOTTime = 0;
-    RoundTime = 60 * MinsPerRound;    
+    RoundTime = SecondsPerRound;    
     bFirstSpawn = true;
 
     Deaths[0] = 0;
@@ -1409,12 +1417,63 @@ function int CheckOTDamage(Controller c)
 	return OTDamage;
 }
 
+function DoOvertimeDamage()
+{		
+	local int RealOTDamage;
+	local Controller C;
+
+	local int AliveCount[2];
+	local int DeadCount[2];
+	local int DamagedTeam;
+
+    for(C = Level.ControllerList; C != None; C = C.NextController)
+    {
+        if(C.Pawn != None && C.PlayerReplicationInfo != None && C.bIsPlayer && !C.PlayerReplicationInfo.bOutOfLives && !C.PlayerReplicationInfo.bOnlySpectator)
+			AliveCount[C.GetTeamNum()]++;
+    }
+
+	DeadCount[0] = RoundPlayerCounts[0] - AliveCount[0];
+	DeadCount[1] = RoundPlayerCounts[1] - AliveCount[1];
+
+	if (DeadCount[0] == DeadCount[1])
+		return;
+
+	if (DeadCount[1] > DeadCount[0])
+		DamagedTeam = 1;
+	else
+		DamagedTeam = 0;
+
+	for(c = Level.ControllerList; c != None; c = c.NextController)
+	{
+		if(c.Pawn == None || c.PlayerReplicationInfo == None || c.GetTeamNum() != DamagedTeam)
+			continue;
+			
+		RealOTDamage = CheckOTDamage(C) * Min(MaxOTDamagePlayerDiff, Abs(DeadCount[1] - DeadCount[0]));
+		
+		if (RealOTDamage == 0)
+			continue;
+
+		if(c.Pawn.Health <= RealOTDamage && c.Pawn.ShieldStrength <= 0)
+			c.Pawn.TakeDamage(1000, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
+		else
+		{                 
+			/*   what the fuck, seriously?       
+			if(int(c.Pawn.ShieldStrength) > 0)
+				c.Pawn.ShieldStrength = int(c.Pawn.ShieldStrength) - Min(c.Pawn.ShieldStrength, RealOTDamage);
+			else
+				c.Pawn.Health -= RealOTDamage;
+			*/
+
+			c.Pawn.TakeDamage(RealOTDamage, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
+		}
+	}
+}
+
 state MatchInProgress
 {
     function Timer()
     {
         local Controller c;
-        local int RealOTDamage;
 
         if(TimeOutCount > 0)
         {
@@ -1465,30 +1524,8 @@ state MatchInProgress
         {
             RoundOTTime++;
 
-            if(RoundOTTime % OTInterval == 0)
-            {
-                for(c = Level.ControllerList; c != None; c = c.NextController)
-                {
-                    if(c.Pawn == None)
-                        continue;
-                        
-                    RealOTDamage = CheckOTDamage(C);
-                    
-                    if (RealOTDamage == 0)
-                    	continue;
-
-                    if(c.Pawn.Health <= RealOTDamage && c.Pawn.ShieldStrength <= 0)
-                        c.Pawn.TakeDamage(1000, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
-                    else
-                    {                           
-                        if(int(c.Pawn.ShieldStrength) > 0)
-                            c.Pawn.ShieldStrength = int(c.Pawn.ShieldStrength) - Min(c.Pawn.ShieldStrength, RealOTDamage);
-                        else
-                            c.Pawn.Health -= RealOTDamage;
-                        c.Pawn.TakeDamage(0.01, c.Pawn, Vect(0,0,0), Vect(0,0,0), class'DamType_Overtime');
-                    }
-                }
-            }
+			if(RoundOTTime % OTInterval == 0)
+				DoOvertimeDamage();
         }
         else if(LockTime > 0)
         {
@@ -1612,7 +1649,7 @@ function RespawnTimer()
             {
                 Misc_Player(c).Spree = 0;
                 //Misc_Player(c).ClientEnhancedTrackAllPlayers(false, true, false);
-                Misc_Player(c).ClientResetClock(MinsPerRound * 60);
+                Misc_Player(c).ClientResetClock(SecondsPerRound);
             }
 
             if(c.PlayerReplicationInfo == None || c.PlayerReplicationInfo.bOnlySpectator)
@@ -1764,7 +1801,7 @@ function CheckForCampers()
 			HistoryBox.Max.Y = p.LocationHistory[0].Y;
 			HistoryBox.Max.Z = p.LocationHistory[0].Z;
 
-		for(i = 1; i < 10; i++)
+			for(i = 1; i < 10; i++)
 			{
 				HistoryBox.Min.X = FMin(HistoryBox.Min.X, p.LocationHistory[i].X);
 				HistoryBox.Min.Y = FMin(HistoryBox.Min.Y, p.LocationHistory[i].Y);
@@ -2095,6 +2132,7 @@ function bool CheckMaxLives(PlayerReplicationInfo Scorer)
 		Living = Scorer;
     
     bNoneLeft = true;
+	
     for(C = Level.ControllerList; C != None; C = C.NextController)
     {
         if((C.PlayerReplicationInfo != None) && C.bIsPlayer
@@ -2145,6 +2183,9 @@ function OnNewRoundStart()
     local Controller C;
     local ConflictLoadoutLRI CLRI;
 
+	RoundPlayerCounts[0] = 0;
+	RoundPlayerCounts[1] = 0;
+
     for ( C = Level.ControllerList; C != None; C = C.NextController )
 	{
         if ( C.PlayerReplicationInfo == None )
@@ -2154,6 +2195,11 @@ function OnNewRoundStart()
     
         if (CLRI != None)
             CLRI.SetDelayedMode();
+
+		if (C.PlayerReplicationInfo.bOnlySpectator)
+			continue;
+
+		RoundPlayerCounts[C.GetTeamNum()]++;
 	}
 }
 
@@ -2627,9 +2673,10 @@ defaultproperties
      AdrenalinePerDamage=1.000000
      bForceRUP=True
      ForceSeconds=60
-     MinsPerRound=2
-     OTDamage=5
+     SecondsPerRound=105
+     OTDamage=2
      OTInterval=3
+	 MaxOTDamagePlayerDiff=4
      CampThreshold=400.000000
      CampInterval=5
      MaxWaterCampChecks=2
@@ -2725,9 +2772,9 @@ defaultproperties
      PrecachePickups(45)=Class'BallisticProV55.XRS10Pickup'
 
      PrecachePickups(46)=Class'BWBP_SKC_Pro.A49Pickup'
-     PrecachePickups(47)=Class'BWBP_SKC_Pro.AH208Pickup'
-     PrecachePickups(48)=Class'BWBP_SKC_Pro.AH250Pickup'
-     PrecachePickups(49)=Class'BWBP_SKC_Pro.AK47Pickup'
+     PrecachePickups(47)=Class'BWBP_SKC_Pro.AH250Pickup'
+     PrecachePickups(48)=Class'BWBP_SKC_Pro.AK490Pickup'
+	 PrecachePickups(49)=Class'BWBP_SKC_Pro.AK91Pickup'
      PrecachePickups(50)=Class'BWBP_SKC_Pro.AS50Pickup'
      PrecachePickups(51)=Class'BWBP_SKC_Pro.BulldogPickup'
      PrecachePickups(52)=Class'BWBP_SKC_Pro.ChaffPickup'
@@ -2735,48 +2782,47 @@ defaultproperties
      PrecachePickups(54)=Class'BWBP_SKC_Pro.CYLOFirestormPickup'
      PrecachePickups(55)=Class'BWBP_SKC_Pro.CoachGunPickup'
      PrecachePickups(56)=Class'BWBP_SKC_Pro.DragonsToothPickup'
-     PrecachePickups(57)=Class'BWBP_SKC_Pro.F2000Pickup'
-     PrecachePickups(58)=Class'BWBP_SKC_Pro.FG50Pickup'
-     PrecachePickups(59)=Class'BWBP_SKC_Pro.FLASHPickup'
-     PrecachePickups(60)=Class'BWBP_SKC_Pro.G28Pickup'
-     PrecachePickups(61)=Class'BWBP_SKC_Pro.ICISPickup'
-     PrecachePickups(62)=Class'BWBP_SKC_Pro.LAWPickup'
-     PrecachePickups(63)=Class'BWBP_SKC_Pro.LK05Pickup'
-     PrecachePickups(64)=Class'BWBP_SKC_Pro.LonghornPickup'
-     PrecachePickups(65)=Class'BWBP_SKC_Pro.LS14Pickup'
-     PrecachePickups(66)=Class'BWBP_SKC_Pro.M2020GaussPickup'
-     PrecachePickups(67)=Class'BWBP_SKC_Pro.MRDRPickup'
-     PrecachePickups(68)=Class'BWBP_SKC_Pro.MARSPickup'
-     PrecachePickups(69)=Class'BWBP_SKC_Pro.MGLPickup'
-     PrecachePickups(70)=Class'BWBP_SKC_Pro.MK781Pickup'
-     PrecachePickups(71)=Class'BWBP_SKC_Pro.PS9mPickup'
-     PrecachePickups(72)=Class'BWBP_SKC_Pro.SK410Pickup'
-     PrecachePickups(73)=Class'BWBP_SKC_Pro.SKASPickup'
-     PrecachePickups(74)=Class'BWBP_SKC_Pro.X82Pickup'
-     PrecachePickups(75)=Class'BWBP_SKC_Pro.X8Pickup'
-     PrecachePickups(76)=Class'BWBP_SKC_Pro.XM84Pickup'
+     PrecachePickups(57)=Class'BWBP_SKC_Pro.FG50Pickup'
+     PrecachePickups(58)=Class'BWBP_SKC_Pro.FLASHPickup'
+     PrecachePickups(59)=Class'BWBP_SKC_Pro.G28Pickup'
+     PrecachePickups(60)=Class'BWBP_SKC_Pro.ICISPickup'
+     PrecachePickups(61)=Class'BWBP_SKC_Pro.LAWPickup'
+     PrecachePickups(62)=Class'BWBP_SKC_Pro.LK05Pickup'
+     PrecachePickups(63)=Class'BWBP_SKC_Pro.LonghornPickup'
+     PrecachePickups(64)=Class'BWBP_SKC_Pro.LS14Pickup'
+     PrecachePickups(65)=Class'BWBP_SKC_Pro.M2020GaussPickup'
+     PrecachePickups(66)=Class'BWBP_SKC_Pro.MRDRPickup'
+     PrecachePickups(67)=Class'BWBP_SKC_Pro.MARSPickup'
+     PrecachePickups(68)=Class'BWBP_SKC_Pro.MGLPickup'
+     PrecachePickups(69)=Class'BWBP_SKC_Pro.MK781Pickup'
+     PrecachePickups(70)=Class'BWBP_SKC_Pro.PS9mPickup'
+     PrecachePickups(71)=Class'BWBP_SKC_Pro.SK410Pickup'
+     PrecachePickups(72)=Class'BWBP_SKC_Pro.SKASPickup'
+     PrecachePickups(73)=Class'BWBP_SKC_Pro.X82Pickup'
+     PrecachePickups(74)=Class'BWBP_SKC_Pro.X8Pickup'
+     PrecachePickups(75)=Class'BWBP_SKC_Pro.XM84Pickup'
 
-     PrecachePickups(77)=Class'BWBP_OP_Pro.AkeronPickup'
-     PrecachePickups(78)=Class'BWBP_OP_Pro.BX85Pickup'
-     PrecachePickups(79)=Class'BWBP_OP_Pro.CX61Pickup'
-     PrecachePickups(80)=Class'BWBP_OP_Pro.CX85Pickup'
-     PrecachePickups(81)=Class'BWBP_OP_Pro.DefibFistsPickup'
-     PrecachePickups(82)=Class'BWBP_OP_Pro.PD97Pickup'
-     PrecachePickups(83)=Class'BWBP_OP_Pro.ProtonStreamPickup'
-     PrecachePickups(84)=Class'BWBP_OP_Pro.R9A1Pickup'
-     PrecachePickups(85)=Class'BWBP_OP_Pro.RaygunPickup'
-     PrecachePickups(86)=Class'BWBP_OP_Pro.WrenchPickup'
-     PrecachePickups(87)=Class'BWBP_OP_Pro.XOXOPickup'
-     PrecachePickups(88)=Class'BWBP_OP_Pro.Z250Pickup'
-     PrecachePickups(89)=Class'BWBP_OP_Pro.BallisticShieldPickup'
-     PrecachePickups(90)=Class'BWBP_OP_Pro.FlameSwordPickup'
-	 PrecachePickups(91)=Class'BWBP_OP_Pro.MAG78Pickup'
-	 PrecachePickups(92)=Class'BWBP_OP_Pro.TrenchGunPickup'
-     PrecachePickups(93)=Class'BWBP_OP_Pro.XM20Pickup'
-     PrecachePickups(94)=Class'BWBP_OP_Pro.ARPickup'
-     PrecachePickups(95)=Class'BWBP_OP_Pro.LightningPickup'
+     PrecachePickups(76)=Class'BWBP_OP_Pro.AkeronPickup'
+     PrecachePickups(77)=Class'BWBP_OP_Pro.KF8XPickup'
+     PrecachePickups(78)=Class'BWBP_OP_Pro.CX61Pickup'
+     PrecachePickups(79)=Class'BWBP_OP_Pro.CX85Pickup'
+     PrecachePickups(80)=Class'BWBP_OP_Pro.DefibFistsPickup'
+     PrecachePickups(81)=Class'BWBP_OP_Pro.PD97Pickup'
+     PrecachePickups(82)=Class'BWBP_OP_Pro.ProtonStreamPickup'
+     PrecachePickups(83)=Class'BWBP_OP_Pro.R9A1Pickup'
+     PrecachePickups(84)=Class'BWBP_OP_Pro.RaygunPickup'
+     PrecachePickups(85)=Class'BWBP_OP_Pro.WrenchPickup'
+     PrecachePickups(86)=Class'BWBP_OP_Pro.XOXOPickup'
+     PrecachePickups(87)=Class'BWBP_OP_Pro.Z250Pickup'
+     PrecachePickups(88)=Class'BWBP_OP_Pro.BallisticShieldPickup'
+     PrecachePickups(89)=Class'BWBP_OP_Pro.FlameSwordPickup'
+	 PrecachePickups(90)=Class'BWBP_OP_Pro.MAG78Pickup'
+	 PrecachePickups(91)=Class'BWBP_OP_Pro.TrenchGunPickup'
+     PrecachePickups(92)=Class'BWBP_OP_Pro.XM20Pickup'
+     PrecachePickups(93)=Class'BWBP_OP_Pro.RCS715Pickup'
+     PrecachePickups(94)=Class'BWBP_OP_Pro.LightningPickup'
 
-     PrecachePickups(96)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
+     PrecachePickups(95)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
 
     // for ctf support
      bNetTemporary=True

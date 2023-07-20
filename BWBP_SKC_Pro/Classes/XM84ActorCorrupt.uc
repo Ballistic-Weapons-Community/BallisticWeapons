@@ -16,7 +16,7 @@ var() int				Damage;						// Damage done every 0.25 seconds
 var() float				BurnTime;						// How to burn for
 var Controller	InstigatorController;
 
-const FlashInterval = 0.8;
+const FlashInterval = 2.0;
 const FlashDelay = 2;
 
 function Reset()
@@ -77,7 +77,7 @@ simulated event Tick(float DT)
 defaultproperties
 {
      DamageType=Class'BWBP_SKC_Pro.DTXM84AfterShock'
-     Damage=1
+     Damage=5
      BurnTime=10.000000
      AutoDestroy=True
      bFullVolume=True

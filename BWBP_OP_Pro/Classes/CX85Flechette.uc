@@ -102,6 +102,7 @@ simulated event Landed( vector HitNormal )
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.CX85AssaultWeapon'
      TurnRate=32768.000000
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BallisticProV55.PineappleTrail'

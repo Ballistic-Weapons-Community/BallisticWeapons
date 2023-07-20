@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XRS10SubMachinegun extends BallisticWeapon;
+class XRS10SubMachinegun extends BallisticHandgun;
 
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer
@@ -71,7 +71,6 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 
 	if (ThirdPersonActor != None)
 		XRS10Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
@@ -98,7 +97,6 @@ simulated function ClientSwitchLaser()
 	}
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction') && ReloadState != RS_GearSwitch)
 		PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -227,12 +225,6 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
-// Change some properties when using sights...
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 simulated function PlayCocking(optional byte Type)
 {
 	if (Type == 2)
@@ -254,7 +246,7 @@ function ServerSwitchSilencer(bool bNewValue)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (BCRepClass.default.GameStyle == 0)
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 		return;
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
@@ -374,7 +366,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -401,7 +393,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XRS10'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic machine pistol fire. Moderate damage per bullet and high fire rate. Deals extreme DPS at close range, but has controllability and recoil issues, especially from the hip."
@@ -415,31 +407,35 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Clipout')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
-	WeaponModes(1)=(bUnavailable=True)
-    WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+    WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
+	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	
+	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=145,R=0,A=190),Color2=(B=77),StartSize1=80)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
-	
-	SightOffset=(X=-15.000000,Z=9.500000)
-	SightDisplayFOV=60.000000
-	SightZoomFactor=0.85
-	ParamsClasses(0)=Class'XRS10WeaponParams'
+
+	ParamsClasses(0)=Class'XRS10WeaponParamsComp'
 	ParamsClasses(1)=Class'XRS10WeaponParamsClassic'
 	ParamsClasses(2)=Class'XRS10WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XRS10WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"
-	Description="The XRS10 is a small, silencable Sub-Machinegun, constructed by newcomer arms company, Drake & Co. Based on a design from many years ago, the XRS10 is a short, medium-range weapon, using .40 calibre ammunition. The weapon has a medium rate-of-fire, fair damage, and a decent magazine capacity, yet can generate much recoil and chaos. The new model, features silencer and blue-light laser sight, to give it some more edge in stealthier situations."
+	Description="The XRS10 is a small, suppressable machine pistol, constructed by newcomer arms company Drake & Co. Based on a design from many years ago, the XRS10 is a short, medium-range weapon, using .40 caliber ammunition. The weapon has a medium rate-of-fire, fair damage, and a decent magazine capacity, yet can generate much recoil and chaos. The new model, features silencer and blue-light laser sight, to give it some more edge in stealthier situations."
 	Priority=27
 	HudColor=(B=255,G=200,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.XRS10Pickup'
-	PlayerViewOffset=(X=5.000000,Y=11.000000,Z=-11.000000)
+
+	PlayerViewOffset=(X=32,Y=8.000000,Z=-12.500000)
+	SightOffset=(X=-40.000000,Z=3.7500000)
+	SightZoomFactor=1.2
+	SightBobScale=0.65f
+
 	AttachmentClass=Class'BallisticProV55.XRS10Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.XRS10.SmallIcon_XRS10'
 	IconCoords=(X2=127,Y2=31)
@@ -451,7 +447,7 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XRS10'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.XRS10.XRS10Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.XRS10.XRS10LaserShiney'

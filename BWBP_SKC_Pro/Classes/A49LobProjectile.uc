@@ -28,6 +28,7 @@ simulated function InitProjectile ()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.A49SkrithBlaster'
     FallSpeed=600.000000
     ImpactManager=Class'BWBP_SKC_Pro.IM_A49Lob'
     bPenetrate=False

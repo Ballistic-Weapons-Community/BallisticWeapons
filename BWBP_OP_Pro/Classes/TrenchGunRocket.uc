@@ -7,8 +7,6 @@
 //=============================================================================
 class TrenchGunRocket extends BallisticGrenade;
 
-var float                   ArmingDelay;
-
 var sound 					ImpactSounds[6];
 var int						ImpactKickForce;
 var vector					StartLoc;
@@ -36,6 +34,11 @@ simulated function PostNetBeginPlay()
 	else bBounce = False;
 }
 
+simulated function InitParams()
+{
+    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 2);
+}
+
 simulated function Timer()
 {
 	if(StartDelay > 0)
@@ -43,6 +46,7 @@ simulated function Timer()
 		Super.Timer();
 		return;
 	}
+
 	DetonateOn = DT_Impact;
 	SetPhysics(PHYS_Falling);
 }
@@ -92,43 +96,43 @@ simulated function HitWall( vector HitNormal, Actor Wall )
 
 defaultproperties
 {
-	 DampenFactor=0.15000
-     DampenFactorParallel=0.300000
-     ArmingDelay=0.10
-     DetonateOn=DT_None
-	 PlayerImpactType=PIT_Detonate
-     ImpactSounds(0)=Sound'XEffects.Impact4Snd'
-     ImpactSounds(1)=Sound'XEffects.Impact6Snd'
-     ImpactSounds(2)=Sound'XEffects.Impact7Snd'
-     ImpactSounds(3)=Sound'XEffects.Impact3'
-     ImpactSounds(4)=Sound'XEffects.Impact1'
-     ImpactSounds(5)=Sound'XEffects.Impact2'
+    WeaponClass=Class'BWBP_OP_Pro.TrenchGun'
+	DampenFactor=0.15000
+	DampenFactorParallel=0.300000
+	ArmedDetonateOn=DT_None
+	ArmedPlayerImpactType=PIT_Detonate
+	ImpactSounds(0)=Sound'XEffects.Impact4Snd'
+	ImpactSounds(1)=Sound'XEffects.Impact6Snd'
+	ImpactSounds(2)=Sound'XEffects.Impact7Snd'
+	ImpactSounds(3)=Sound'XEffects.Impact3'
+	ImpactSounds(4)=Sound'XEffects.Impact1'
+	ImpactSounds(5)=Sound'XEffects.Impact2'
 
-     ImpactDamage=125
-     ImpactDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAGImpact'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFRAG'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BallisticProV55.HAMRShellTrail'
+	ImpactDamage=125
+	ImpactDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAGImpact'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFRAG'
+	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+	TrailClass=Class'BallisticProV55.HAMRShellTrail'
 
 
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=7000.000000
-     MaxSpeed=7000.000000
-     Damage=110.000000
-	 DamageRadius=180.000000
-     WallPenetrationForce=192
-     MomentumTransfer=60000.000000
-     MyDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAG'
-     MyRadiusDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAGRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Speed=7000.000000
+	MaxSpeed=7000.000000
+	Damage=110.000000
+	DamageRadius=180.000000
+	WallPenetrationForce=64
+	MomentumTransfer=60000.000000
+	MyDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAG'
+	MyRadiusDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAGRadius'
 
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
 
-     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
-     SoundVolume=192
-     SoundRadius=128.000000
+	AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
+	SoundVolume=192
+	SoundRadius=128.000000
 
-     DrawScale=0.300000
+	DrawScale=0.300000
 
-     bIgnoreTerminalVelocity=True
+	bIgnoreTerminalVelocity=True
 
 }

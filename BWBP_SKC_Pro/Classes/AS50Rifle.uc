@@ -57,12 +57,12 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		FireModeClass[0]=Class'BWBP_SKC_Pro.AS50SecondaryFire';
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
 	}
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BWBP_SKC_Pro.AS50SecondaryFire';
 		FireModeClass[1]=Class'BWBP_SKC_Pro.AS50DeployFire';
@@ -203,7 +203,7 @@ function Notify_Deploy()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth - 4 && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
 			return;
@@ -215,7 +215,7 @@ function Notify_Deploy()
 	if(Sandbag(T) != None)
 	{
 		HitLoc = T.Location;
-		HitLoc.Z += class'AS50Turret'.default.CollisionHeight + 15;
+		HitLoc.Z += class'AS50Turret'.default.CollisionHeight + T.CollisionHeight  * 0.75;
 	}
 	
 	else
@@ -366,7 +366,7 @@ function ServerAdjustThermal(bool bNewValue)
 		for (i=0;i<ArrayCount(UpdatedPawns);i++)
 		{
 			if (UpdatedPawns[i] != None)
-				UpdatedPawns[i].bAlwaysRelevant = false;
+				UpdatedPawns[i].bAlwaysRelevant = UpdatedPawns[i].default.bAlwaysRelevant;
 		}
 	}
 }
@@ -431,73 +431,26 @@ simulated final function SetScreenMode()
 	}
 }
 
-simulated final function DrawScopeTex(Canvas C)
+simulated function RenderOverlays(Canvas C)
 {
-    local Material ScopeTex;
-
-    if (bThermal)
-        ScopeTex = ScopeViewTexThermal;
-    else 
-        ScopeTex = ScopeViewTex;
-
-    C.DrawTile(ScopeTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-
-    C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-    C.DrawTile(ScopeTex, C.SizeY, C.SizeY, 0, 0, 1024, 1024);
-
-    C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-    C.DrawTile(ScopeTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-}
-
-simulated function RenderOverlays (Canvas C)
-{
-	local Vector X, Y, Z;
-
     SetScreenMode();
 
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	
-	C.ColorModulate.W = 1;
+	Super.RenderOverlays(C);
+}
 
+simulated function DrawScopeOverlays(Canvas C)
+{
 	if (bThermal)
+	{
 		DrawThermalMode(C);
-
-	if (ZoomType == ZT_Irons)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
+        ScopeViewTex = ScopeViewTexThermal;
 	}
-	else
+    else 
 	{
-		GetViewAxes(X, Y, Z);
-		if (BFireMode[0].MuzzleFlash != None)
-		{
-			BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
-		}
-		if (BFireMode[1].MuzzleFlash != None)
-		{
-			BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
-			BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
-			C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
-		}
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
+        ScopeViewTex = default.ScopeViewTex;
 	}
 
-	C.SetDrawColor(255,255,255,255);
-	C.SetPos(C.OrgX, C.OrgY);
-	C.Style = ERenderStyle.STY_Alpha;
-
-    DrawScopeTex(C);
+	Super.DrawScopeOverlays(C);
 }
 
 simulated function UpdatePawnList()
@@ -526,13 +479,12 @@ simulated function UpdatePawnList()
 	}
 }
 
-
 // Draws players through walls and all the other Thermal Mode stuff
 simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn              P;
 	local int               i, j;
-	local float             Dist, DotP, ImageScaleRatio;//, OtherRatio;
+	local float             Dist, DotP;
 	local Array<Material>	OldSkins;
 	local int               OldSkinCount;
 	local bool              bFocused;
@@ -540,7 +492,7 @@ simulated event DrawThermalMode (Canvas C)
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
 
-	ImageScaleRatio = 1.3333333;
+	C.ColorModulate.W = 1;
 
 	C.Style = ERenderStyle.STY_Modulated;
 
@@ -753,7 +705,7 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_SKC_Pro.AS50MeleeFire'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.FSG50.BigIcon_FSG50'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic .50 cal fire. Extremely unpredictable recoil, but good damage per shot and excellent theoretical sustained damage output."
 	ManualLines(1)="Incendiary shot. Deals moderate damage and ignites struck targets, causing them to burn brightly, emit smoke, suffer view flash and take damage over time. Further hits extend the duration of this effect."
@@ -763,9 +715,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	MagAmmo=8
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.350000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagOut',Volume=1.500000,Radius=32.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagIn',Volume=1.500000,Radius=32.000000)
 	ClipInFrame=0.850000
@@ -778,14 +728,14 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=15.000000
 	bNoCrosshairInScope=True
-	SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 	MinZoom=4.000000
 	MaxZoom=16.000000
 	ZoomStages=2
 	GunLength=80.000000
-	ParamsClasses(0)=Class'AS50WeaponParams'	 
+	ParamsClasses(0)=Class'AS50WeaponParamsComp'	 
 	ParamsClasses(1)=Class'AS50WeaponParamsClassic'	 
 	ParamsClasses(2)=Class'AS50WeaponParamsRealistic'	 
+    ParamsClasses(3)=Class'AS50WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AS50PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AS50SecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=255,R=0,A=153),Color2=(B=0,G=0,R=0,A=255),StartSize1=22,StartSize2=61)
@@ -795,15 +745,16 @@ defaultproperties
 	AIRating=0.80000
 	CurrentRating=0.800000
 	bSniping=True
-	Description="[ Fallschirmj�gerscharfsch�tzengewehr] FSsG-50 is the name given to high-performance FG50 machineguns that are then equipped with match-grade barrels and high-quality custom marksman stocks. FG-50s with exceptional target groupings and perfect reliability ratings are the primary candidates for the FSsG upgrade, though some production plants with extremely tight tolerances and quality control specifically produce the FSsG variant. The result is a very accurate sniper rifle with a muzzle velocity far higher than its standard cousin. These elite rifles are very rarely mounted on vehicle platforms and are often utilized by sharpshooters equipped with enhanced scopes and match-grade N6-BMG rounds for hard target interdiction. This FSSG-50 is firing the mass produced N1-Incendiary round and has an Aeris Mark 2 Suresight scope attached."
-	DisplayFOV=55.000000
+	Description="[ Fallschirmjägerscharfschútzengewehr] FSsG-50 is the name given to high-performance FG50 machineguns that are then equipped with match-grade barrels and high-quality custom marksman stocks. FG-50s with exceptional target groupings and perfect reliability ratings are the primary candidates for the FSsG upgrade, though some production plants with extremely tight tolerances and quality control specifically produce the FSsG variant. The result is a very accurate sniper rifle with a muzzle velocity far higher than its standard cousin. These elite rifles are very rarely mounted on vehicle platforms and are often utilized by sharpshooters equipped with enhanced scopes and match-grade N6-BMG rounds for hard target interdiction. This FSSG-50 is firing the mass produced N1-Incendiary round and has an Aeris Mark 2 Suresight scope attached."
 	Priority=207
 	HudColor=(G=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=9
 	PickupClass=Class'BWBP_SKC_Pro.AS50Pickup'
-	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=4.00,Y=4.00,Z=-5.00)
+	SightOffset=(X=3.00,Y=0.00,Z=3.70)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.AS50Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.FSG50.SmallIcon_FSG50'
 	IconCoords=(X2=127,Y2=31)
@@ -815,7 +766,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FSSG-50'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'
 	Skins(2)=Texture'BWBP_SKC_Tex.FSG50.FSG-Misc'

@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class DTA500BlastHead extends DT_BWMiscDamage;
 
@@ -26,25 +26,6 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 			BestArmor.ArmorAbsorbDamage(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 	}
 }
-
-// HeadShot stuff from old sniper damage ------------------
-static function IncrementKills(Controller Killer)
-{
-	local xPlayerReplicationInfo xPRI;
-
-	if ( PlayerController(Killer) == None )
-		return;
-
-	PlayerController(Killer).ReceiveLocalizedMessage( Class'XGame.SpecialKillMessage', 0, Killer.PlayerReplicationInfo, None, None );
-	xPRI = xPlayerReplicationInfo(Killer.PlayerReplicationInfo);
-	if ( xPRI != None )
-	{
-		xPRI.headcount++;
-		if ( (xPRI.headcount == 15) && (UnrealPlayer(Killer) != None) )
-			UnrealPlayer(Killer).ClientDelayedAnnouncementNamed('HeadHunter',15);
-	}
-}
-// --------------------------------------------------------
 
 defaultproperties
 {

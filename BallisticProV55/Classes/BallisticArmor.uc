@@ -1,30 +1,19 @@
 //=============================================================================
 // BallisticArmor
 //
-// This armor uses its third person actor to spawn cool impact effects and play
-// terrible sounds. Overwrites xPawn shield count for HUD purposes, cause noone
-// made a nice way for inventory to draw on the HUD...
+// Used only to display hit effects.
 //
-// by Nolan "Dark Carnivour" Richert.
+// by Nolan "Dark Carnivour" Richert, modified by Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BallisticArmor extends Armor;
 
-var() int MaxCharge;
-var vector ShieldFlashV;
 var   byte HitType;
 
 event PostBeginPlay()
 {
 	AttachToPawn(Pawn(Owner));
 	super.PostBeginPlay();
-}
-
-simulated function PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (Owner != None)
-		xPawn(Owner).ShieldStrengthMax = FMax(xPawn(Owner).ShieldStrengthMax, MaxCharge);
 }
 
 function AttachToPawn(Pawn P)
@@ -49,9 +38,14 @@ function ArmorImpactEffect(vector HitLocation)
 
 function int ArmorAbsorbDamage(int Damage, class<DamageType> DamageType, vector HitLocation)
 {
-	local int ArmorDamage;
-    local int rnd;
+	// Pawn is authoritative over the shield value.
+	// Destroy if pawn ran out of shields.
+	if (xPawn(Owner).ShieldStrength == 0)
+	{
+		Destroy();
+	}
 
+	// Work out hit effect to use for this damage type.
 	if ( DamageType.default.bArmorStops )
 	{
 		if (class<BallisticDamageType>(DamageType) != None && class<BallisticDamageType>(DamageType).default.ArmorHitType != 255)
@@ -67,93 +61,19 @@ function int ArmorAbsorbDamage(int Damage, class<DamageType> DamageType, vector 
 		}
 		ArmorImpactEffect(HitLocation);
 	}
+
+	// Neutralize any damage that this armor can handle.
 	if( (DamageType != None) && (ProtectionType == DamageType) )
 		return 0;
 
-	if (!DamageType.default.bArmorStops)
-		return Damage;
-
-	ArmorDamage = (Damage * ArmorAbsorption) / 100;
-
-	if( ArmorDamage >= Charge )
-	{
-		ArmorDamage = Charge;
-		Destroy();
-	}
-	else
-		Charge -= ArmorDamage;
-
-    if (ArmorDamage > 0 && Owner != None && PlayerController(Pawn(Owner).Controller) != None)
-    {
-        rnd = FClamp(ArmorDamage, 25, 70);
-
-        PlayerController(Pawn(Owner).Controller).ClientFlash( -0.019 * rnd, ShieldFlashV);
-    }
-
-	SetShieldDisplay(0);
-	SetTimer(0.05, false);
-
-	return (Damage - ArmorDamage);
-}
-
-event Timer()
-{
-	SetShieldDisplay(Charge);
-}
-
-event Destroyed()
-{
-	SetShieldDisplay(0);
-	super.Destroyed();
-}
-
-function GiveTo(pawn Other, optional Pickup Pickup)
-{
-	Instigator = Other;
-	if (Other.AddInventory( Self ))
-	{
-		GotoState('');
-		if (Pickup != None && BallisticArmorPickup(Pickup) != None)
-			Charge = BallisticArmorPickup(Pickup).ArmorCharge;
-		SetShieldDisplay(Charge);
-	}
-	else
-		Destroy();
-}
-
-function bool HandlePickupQuery( Pickup Item )
-{
-	if (item.InventoryType == class)
-	{
-		if ((BallisticArmorPickup(Item) != None) && (Charge < MaxCharge))
-		{
-			Charge = Min(Charge + BallisticArmorPickup(Item).ArmorCharge, MaxCharge);
-			SetShieldDisplay(Charge);
-			Item.AnnouncePickup(Pawn(Owner));
-			Item.SetRespawn();
-		}
-		return true;
-	}
-	if ( Inventory == None )
-		return false;
-
-	return Inventory.HandlePickupQuery(Item);
-}
-
-simulated function SetShieldDisplay(int Amount)
-{
-	if (Owner == None || xPawn(Owner) == None)
-		return;
-	xPawn(Owner).ShieldStrengthMax = FMax(xPawn(Owner).ShieldStrengthMax, MaxCharge);
-	xPawn(Owner).ShieldStrength = Amount;
+	// Otherwise, return full damage and rely on standard code, so that hitsounds, damage popups and game rules that work based on damage can do their job.
+	return Damage;
 }
 
 defaultproperties
 {
-     ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
-     MaxCharge=200
      ArmorAbsorption=100
      AbsorptionPriority=1
-     Charge=50
+     Charge=100
      AttachmentClass=Class'BallisticProV55.ArmorAttachment'
 }

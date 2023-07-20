@@ -389,7 +389,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -425,7 +425,7 @@ defaultproperties
 	bCanSkipReload=True
 	WeaponModes(2)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
-	WeaponModes(0)=(ModeName="Semi-Automatic")
+	WeaponModes(0)=(ModeName="Pump-Action")
 	TorchOnSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
 	TorchOffset=(X=-330.000000,Y=-35.000000,Z=50.000000)
 	TorchOffSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
@@ -433,15 +433,13 @@ defaultproperties
 	StartShovelAnimRate=1.400000
 	StartShovelAnim="PrepReload"
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
-	SightOffset=(X=15,Z=21.500000)
-	SightDisplayFOV=40
-	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
 	PutDownTime=0.35
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	Priority=36
-	PlayerViewOffset=(Y=10.000000,Z=-14.000000)
+	PlayerViewOffset=(X=10.00,Y=6.00,Z=-7.00)
+	SightOffset=(X=-6,Z=2.1)
 	PickupClass=Class'BallisticProV55.MRS138Pickup'
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRS'
 	MeleeFireClass=Class'BallisticProV55.MRS138MeleeFire'
@@ -462,9 +460,12 @@ defaultproperties
 	HudColor=(B=255,G=150,R=100)
 	GunLength=32.000000
 	GroupOffset=3
-	ParamsClasses(0)=Class'MRS138WeaponParams'
+	bNoCrosshairInScope=True
+	SightBobScale=0.35
+	ParamsClasses(0)=Class'MRS138WeaponParamsComp'
 	ParamsClasses(1)=Class'MRS138WeaponParamsClassic'
 	ParamsClasses(2)=Class'MRS138WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MRS138WeaponParamsTactical'
 	FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'
 	FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
 	
@@ -472,20 +473,18 @@ defaultproperties
 
 	EndShovelAnimRate=1.600000
 	EndShovelAnim="EndReload"
-	DrawScale=0.400000
-	DisplayFOV=50.000000
+	DrawScale=0.300000
 	Description="Also from the first line of Drake & Co weaponry, the MRS138 Combat Shotgun is an excellent close-range weapon. It is outfitted with a tactical light and tazer attachment to increase its effectiveness as a crowd control and civilian weapon. The tazer is an effective tool for stunning enemies and inflicting slight damage, leaving them blinded and disoriented for a few seconds, while the flash light can be used for locating those which hide in the dark."
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	CurrentWeaponMode=0
 	CurrentRating=0.800000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Cock',Volume=0.800000)
-	CockAnimRate=1.200000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-ShellIn')
 	ClipInFrame=0.375000
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRS138'
 	BigIconCoords=(Y1=36,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	AttachmentClass=Class'BallisticProV55.MRS138Attachment'
 	AIRating=0.800000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

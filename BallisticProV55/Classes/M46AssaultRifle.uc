@@ -62,10 +62,27 @@ simulated function bool IsGrenadeLoaded()
 	return M46SecondaryFire(FireMode[1]).bLoaded;
 }
 
-function bool AddMine(M46Mine Proj)
+function GainedChild(Actor proj)
 {
-	Mines[Mines.Length] = Proj;
-	return (CurrentWeaponMode == 1);
+    if (M46Mine(proj) != None)
+	    Mines[Mines.Length] = M46Mine(proj);
+}
+
+function LostChild(Actor proj)
+{
+    local int i;
+
+    if (M46Mine(proj) == None)
+        return;
+
+    for (i = 0; i < Mines.Length; ++i)
+    {
+        if (Mines[i] == proj)
+        {
+            Mines.Remove(i, 1);
+            return;
+        }
+    }
 }
 
 // Tell our ammo that this is the M46 it must notify about grenade pickups
@@ -107,18 +124,6 @@ simulated function LoadGrenade()
 		ReloadState=RS_Cocking;
 		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
 	}
-}
-
-simulated function Destroyed()
-{
-	local int i;
-	for (i=0; i < Mines.Length; ++i)
-	{
-		if (Mines[i] != None)
-			Mines[i].Explode(Mines[i].Location, Vector(Mines[i].Rotation));
-	}
-	
-	Super.Destroyed();
 }
 
 simulated function bool HasNonMagAmmo(byte Mode)
@@ -341,7 +346,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -360,7 +365,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.OA-AR.BigIcon_OAAR'
 	BigIconCoords=(Y1=40,Y2=235)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Splash=True
 	bWT_Machinegun=True
@@ -372,9 +377,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_Cock',Volume=1.100000)
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipHit',Volume=1.000000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipOut',Volume=1.000000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipIn',Volume=1.000000)
@@ -394,15 +397,16 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=600,Roll=-1024)
-	SightOffset=(Y=-1.000000,Z=12.500000)
-	SightDisplayFOV=40.000000
+
+	PlayerViewOffset=(X=5.00,Y=3.50,Z=-5.00)
+	SightOffset=(X=-1,Y=0.040000,Z=3.9)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
-	ParamsClasses(0)=Class'M46WeaponParams'
+	ParamsClasses(0)=Class'M46WeaponParamsComp'
 	ParamsClasses(1)=Class'M46WeaponParamsClassic' 
 	ParamsClasses(2)=Class'M46WeaponParamsRealistic' 
+    ParamsClasses(3)=Class'M46WeaponParamsTactical'
     AmmoClass(0)=Class'BallisticProV55.Ammo_M46Clip'	
 	AmmoClass(1)=Class'BallisticProV55.Ammo_M46Clip'
 	FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'
@@ -411,15 +415,13 @@ defaultproperties
 	AIRating=0.700000
 	CurrentRating=0.700000
 	Description="The M46 was one of Black & Wood's first forays into high powered assault weaponry, specifically rifles. As with all of Black & Wood's weapons, the 'Jackal' is incredibly reliable and tough. Used by certain Terran units, the M46 is typically equipped with a short-range optical scope and often various Grenade Launcher attachments. While not quite yet a widely used weapon, its reputation has grown in recent times as heroic stories of Armoured Squadron 190's use of it has spread amongst the bulk of the UTC troops."
-	DisplayFOV=55.000000
 	Priority=41
 	HudColor=(G=175)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.M46Pickup'
-	PlayerViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
-	PlayerViewPivot=(Pitch=384)
+
 	AttachmentClass=Class'BallisticProV55.M46Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.OA-AR.SmallIcon_OAAR'
 	IconCoords=(X2=127,Y2=31)

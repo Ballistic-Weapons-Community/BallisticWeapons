@@ -310,53 +310,54 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	 ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-     AltDeployable=(dClass=Class'BWBP_OP_Pro.FlameSwordBarrier',WarpInTime=0.0010000,SpawnOffset=18,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_512'
-     BigIconCoords=(Y1=40,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Swings the sword. Inflicts heavy damage and has a long range and wide swing arc."
-     ManualLines(1)="Creates a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
-     ManualLines(2)="Passively grants immunity to fire damage."
-     SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
-     BringUpSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Equip',Volume=2.000000)
-	 PutDownSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
-	 LoopAmbientSound=Sound'BW_Core_WeaponSound.RX22A.RX22A.RX22A-FireLoop'
-     bNoMag=True
-	 GunLength=0.000000
-	 bAimDisabled=True
-	 ParamsClasses(0)=Class'FlameSwordWeaponParams'
-     FireModeClass(0)=Class'BWBP_OP_Pro.FlameSwordPrimaryFire'
-     FireModeClass(1)=Class'BWBP_OP_Pro.FlameSwordSecondaryFire'
-	 MeleeFireClass=Class'BWBP_OP_Pro.FlameSwordMeleeFire'
-     SelectAnim="PulloutFancy"
-     SelectAnimRate=1.250000
-	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.PentagramOutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.PentagramInA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=104,R=255,A=160),Color2=(B=0,G=169,R=255,A=67),StartSize1=91,StartSize2=96)
-	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
-     PutDownTime=0.500000
-     BringUpTime=0.700000
-     SelectForce="SwitchToAssaultRifle"
-	 BlockIdleAnim="bLock"	 
-     AIRating=0.800000
-     CurrentRating=0.800000
-     bMeleeWeapon=True
-     Description="During Operation: Chalkboard Firefly, UTC troopers had discovered a strange sword being developed in secret in an underground arctic facility by an unknown manufacturer. While having the appearance of a Medieval arming sword, the blade itself seems to be made out of a strange nano-material, and is covered in a bright fire when held. UTC scientists have yet to find out more about the weapon due to resources being tight due to fighting the Skrith. However what has been found is this weapon was intended to be some sort of psionic enhancing focii, capable of shielding the user from explosions and flames alike."
-     DisplayFOV=65.000000
-     Priority=12
-     HudColor=(G=50)
-     CenteredOffsetY=7.000000
-     CenteredRoll=0
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     GroupOffset=5
-     PickupClass=Class'BWBP_OP_Pro.FlameSwordPickup'
-     BobDamping=1.000000
-     AttachmentClass=Class'BWBP_OP_Pro.FlameSwordAttachment'
-     IconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_128'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="PSI-56 Fire Sword"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_FlameSword'
-     DrawScale=1.250000
-     SoundRadius=32.000000
-	 PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-20.000000)
+	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
+	AltDeployable=(dClass=Class'BWBP_OP_Pro.FlameSwordBarrier',WarpInTime=0.0010000,SpawnOffset=18,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_512'
+	BigIconCoords=(Y1=40,Y2=240)
+
+	ManualLines(0)="Swings the sword. Inflicts heavy damage and has a long range and wide swing arc."
+	ManualLines(1)="Creates a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
+	ManualLines(2)="Passively grants immunity to fire damage."
+	SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
+	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Equip',Volume=2.000000)
+	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
+	LoopAmbientSound=Sound'BW_Core_WeaponSound.RX22A.RX22A.RX22A-FireLoop'
+	bNoMag=True
+	GunLength=0.000000
+	bAimDisabled=True
+	ParamsClasses(0)=Class'FlameSwordWeaponParamsComp'
+	ParamsClasses(1)=Class'FlameSwordWeaponParamsClassic'
+	ParamsClasses(2)=Class'FlameSwordWeaponParamsRealistic'
+	ParamsClasses(3)=Class'FlameSwordWeaponParamsTactical'
+	FireModeClass(0)=Class'BWBP_OP_Pro.FlameSwordPrimaryFire'
+	FireModeClass(1)=Class'BWBP_OP_Pro.FlameSwordSecondaryFire'
+	MeleeFireClass=Class'BWBP_OP_Pro.FlameSwordMeleeFire'
+	SelectAnim="PulloutFancy"
+	SelectAnimRate=1.250000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.PentagramOutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.PentagramInA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=104,R=255,A=160),Color2=(B=0,G=169,R=255,A=67),StartSize1=91,StartSize2=96)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
+	PutDownTime=0.500000
+	BringUpTime=0.700000
+	SelectForce="SwitchToAssaultRifle"
+	BlockIdleAnim="bLock"	 
+	AIRating=0.800000
+	CurrentRating=0.800000
+	bMeleeWeapon=True
+	Description="During Operation: Chalkboard Firefly, UTC troopers had discovered a strange sword being developed in secret in an underground arctic facility by an unknown manufacturer. While having the appearance of a Medieval arming sword, the blade itself seems to be made out of a strange nano-material, and is covered in a bright fire when held. UTC scientists have yet to find out more about the weapon due to resources being tight due to fighting the Skrith. However what has been found is this weapon was intended to be some sort of psionic enhancing focii, capable of shielding the user from explosions and flames alike."
+	Priority=12
+	HudColor=(G=50)
+	CenteredOffsetY=7.000000
+	CenteredRoll=0
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	GroupOffset=5
+	PickupClass=Class'BWBP_OP_Pro.FlameSwordPickup'
+	AttachmentClass=Class'BWBP_OP_Pro.FlameSwordAttachment'
+	IconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_128'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="PSI-56 Fire Sword"
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_FlameSword'
+	DrawScale=0.3
+	SoundRadius=32.000000
+	PlayerViewOffset=(X=5.000000,Y=2.500000,Z=-5.000000)
 }

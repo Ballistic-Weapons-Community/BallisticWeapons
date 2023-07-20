@@ -104,13 +104,17 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=10
+		InventorySize=6
+		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=10
-		ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
+		//ViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
 		ViewPivot=(Pitch=600)
-		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
+		//SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
 		WeaponName="A500 'Reptile' Chemical Gun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

@@ -78,7 +78,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		M46Grenade(Proj).M46 = M46AssaultRifle(BW);
+		M46Grenade(Proj).Rifle = M46AssaultRifle(BW);
 	}
 }
 
@@ -98,8 +98,8 @@ defaultproperties
      FireRate=0.750000
      AmmoClass=Class'BallisticProV55.Ammo_M46Grenades'
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
+     ShakeOffsetMag=(X=-15.000000)
+     ShakeOffsetRate=(X=-300.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BallisticProV55.M46Grenade'
 	 

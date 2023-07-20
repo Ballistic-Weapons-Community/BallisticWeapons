@@ -28,10 +28,10 @@ var bool bLeftLoaded;
 var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 
 
-simulated event PreBeginPlay()
+/*simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		FireModeClass[1]=Class'BWBP_SKC_Pro.CoachGunSecondaryFire';
 	}
@@ -40,11 +40,11 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CoachGunPrimaryFire(FireMode[0]).bFireOnRelease = false;
 	}
-}
+}*/
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
@@ -473,7 +473,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Shotgun=True
      ManualLines(0)="Shot mode fires two shots with high power and moderate spread. Enemies hit by the shot bleed, dealing damage over time. Bleed duration is proportional to the number of pellets which struck the target.|Slug mode fires two slugs with long range and penetration. Recoil is moderate with both modes."
      ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
@@ -482,9 +482,6 @@ defaultproperties
      MeleeFireClass=Class'BWBP_SKC_Pro.CoachGunMeleeFire'
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-     CockAnimRate=0.700000
-     SingleReloadAnimRate=1.500000
-     ReloadAnimRate=1.500000
      ClipInFrame=0.800000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)
@@ -494,17 +491,18 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,A=101),Color2=(G=0,R=0),StartSize1=92,StartSize2=82)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
      NDCrosshairChaosFactor=0.600000
-     SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	 ParamsClasses(0)=Class'CoachWeaponParams'
+	 ParamsClasses(0)=Class'CoachWeaponParamsComp'
 	 ParamsClasses(1)=Class'CoachWeaponParamsClassic'
 	 ParamsClasses(2)=Class'CoachWeaponParamsRealistic' 
+     ParamsClasses(3)=Class'CoachWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.CoachGunPrimaryFire'
-     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+     FireModeClass(1)=Class'BWBP_SKC_Pro.CoachGunSecondaryFire'
      SelectAnimRate=2.000000
      PutDownAnimRate=2.000000
+	 SingleReloadAnimRate=1.0
      AIRating=0.800000
      CurrentRating=0.800000
      Description="This primitive artifact has managed to survive the passage of time. Behind it trails a brutal story of bloodshed and sacrifice. For every scar, a life taken; every gouge, a life saved."
@@ -513,7 +511,10 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=7
      PickupClass=Class'BWBP_SKC_Pro.CoachGunPickup'
-     PlayerViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
+
+     PlayerViewOffset=(X=4.00,Y=4.50,Z=-7.00)
+	 SightOffset=(X=-2.500000,Y=0,Z=1.2)
+
      AttachmentClass=Class'BWBP_SKC_Pro.CoachGunAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.CoachGun.SmallIcon_Coach'
      IconCoords=(X2=127,Y2=40)
@@ -525,11 +526,11 @@ defaultproperties
      LightBrightness=180.000000
      LightRadius=5.000000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CoachGun'
-     DrawScale=1.250000
+     DrawScale=0.3
 
      bShowChargingBar=True
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Main'
+     Skins(1)=Shader'BWBP_SKC_Tex.CoachGun.Coach-MainShine'
      Skins(2)=Texture'BWBP_SKC_Tex.CoachGun.DBL-SawnBits'
-     Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc'
+     Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.Coach-Misc'
 }

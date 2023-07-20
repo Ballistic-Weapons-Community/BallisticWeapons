@@ -17,6 +17,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
+		DamageSpecial=20
 		PenetrateForce=150
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
@@ -116,12 +117,12 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=35
+		InventorySize=9
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.550000
 		MagAmmo=50
-		SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
-		ViewOffset=(X=1,Y=9,Z=-30)
+		//SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
+		//ViewOffset=(X=1,Y=9,Z=-30)
 		WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto",bUnavailable=True)
@@ -135,6 +136,23 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=Z250_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Z250_Gold
+		Index=1
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_body_SH2",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_Sight_SH2",Index=2,AIndex=1,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'Z250_Green'
+	Camos(1)=WeaponCamo'Z250_Gold'
 }

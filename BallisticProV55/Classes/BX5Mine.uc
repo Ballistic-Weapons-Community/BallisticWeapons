@@ -279,13 +279,13 @@ defaultproperties
 {
 	SpringOnAnim="SecStart"
 	SpringOffAnim="SecFinish"
-	DeploySound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Deploy',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
-	OpenSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
-	CloseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
+	DeploySound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Deploy',Volume=1.000000,Radius=24.000000,Pitch=1.000000)
+	OpenSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.000000,Radius=24.000000,Pitch=1.000000)
+	CloseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.000000,Radius=24.000000,Pitch=1.000000)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_BX5'
 	BigIconCoords=(Y1=24,Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Trap=True
@@ -303,9 +303,10 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClasses(0)=Class'BX5WeaponParams'
+	ParamsClasses(0)=Class'BX5WeaponParamsComp'
 	ParamsClasses(1)=Class'BX5WeaponParamsClassic' //todo: state to properly set spring mine dmg
 	ParamsClasses(2)=Class'BX5WeaponParamsRealistic' //todo: state to properly set spring mine dmg
+    ParamsClasses(3)=Class'BX5WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
 	NDCrosshairCfg=(Pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize2=256,VSize2=256,Color1=(B=23,G=78,R=119),Color2=(G=98,R=158),StartSize1=135,StartSize2=87)
@@ -322,13 +323,13 @@ defaultproperties
 	InventoryGroup=0
 	GroupOffset=21
 	PickupClass=Class'BallisticProV55.BX5Pickup'
-	PlayerViewOffset=(X=5.000000,Z=-6.000000)
+	PlayerViewOffset=(X=15.000000,Z=-18.000000)
 	AttachmentClass=Class'BallisticProV55.BX5Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_BX5'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="BX5-SM Land Mine"
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_BX5'
-	DrawScale=0.100000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.BX5.BX5Skin'
 }

@@ -62,7 +62,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		XMV850MinigunPrimaryFire(FireMode[0]).bRequireSpool=true;
 	}
@@ -107,7 +107,7 @@ simulated function float GetRampUpSpeed()
 {
 	local float mult;
 	
-	if (GameStyleIndex == 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
 		
@@ -236,7 +236,7 @@ function Notify_Deploy()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
 			return;
@@ -248,7 +248,7 @@ function Notify_Deploy()
 	if(Sandbag(T) != None)
 	{
 		HitLoc = T.Location;
-		HitLoc.Z += class'XMV850Turret'.default.CollisionHeight + 15;
+		HitLoc.Z += class'XMV850Turret'.default.CollisionHeight + T.CollisionHeight * 0.75;
 	}
 	
 	else
@@ -286,7 +286,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -298,7 +297,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
     }
  	
    	else if ( !W.HasAmmo() )
@@ -325,17 +338,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
-			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
@@ -423,11 +425,11 @@ defaultproperties
 	UndeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-UnDeploy'
 
 
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XMV850'
 	BigIconCoords=(Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Spins up the barrel. Once spun up to speed, unleashes a hail of bullets. Incredible fire rate and moderate damage. Sustained damage output is extremely high. Large ammo reserves due to the attached backpack mean the weapon can fire continuously for long periods."
@@ -438,7 +440,6 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
 
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
-	ReloadAnimRate=1.300000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipIn')
@@ -457,12 +458,11 @@ defaultproperties
     
 	CurrentWeaponMode=0
 	bShowChargingBar=True
-	SightPivot=(Pitch=700,Roll=2048)
-	SightOffset=(X=8.000000,Z=28.000000)
-	SightDisplayFOV=45.000000
-	ParamsClasses(0)=Class'XMV850WeaponParams'
-	ParamsClasses(1)=Class'XMV850WeaponParamsClassic' //Todo: state code to support fire while spinning
-	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic' //Todo: state code to support fire while spinning
+
+	ParamsClasses(0)=Class'XMV850WeaponParamsComp'
+	ParamsClasses(1)=Class'XMV850WeaponParamsClassic'
+	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XMV850WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XMV850MinigunPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMV850MinigunSecondaryFire'
 	SelectAnimRate=0.750000
@@ -472,7 +472,6 @@ defaultproperties
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="Anti-Krao weapons are a common thing these days, with many being designed specifically to kill as many as possible in a short time. However, no infantry weapon does this better, than the XMV-850. A weapon to be feared, this monster is capable of firing as many as sixty 5.56mm rounds a second. While most miniguns are capable of firing ten or twelve thousand rounds-per-minute, the XMV-850 has been designed for infantry use, as a fire-rate that high, would generate far to much recoil. To make the weapon usable in a defensive position, it can be deployed to stabilise it, and allows the user to become that much more effective. To help with recoil, and allow the soldier to use the weapon more efectively when not deployed, the fire-rate can be limited to a lower RPM. Though not terribly accurate or damaging, the fact that it can pour out bullets at such a rate, means that it will be difficult to miss the target."
-	DisplayFOV=45.000000
 	Priority=47
 	HudColor=(B=200,G=200,R=0)
 	CustomCrossHairColor=(A=219)
@@ -481,7 +480,12 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.XMV850Pickup'
-	PlayerViewOffset=(X=11.000000,Y=8.000000,Z=-14.000000)
+
+	PlayerViewOffset=(X=4.5,Y=4,Z=-5)
+	SightOffset=(X=-6.5,Y=-1,Z=7.5)
+	SightPivot=(Pitch=700,Roll=2048)
+	SightBobScale=0.5f
+
 	AttachmentClass=Class'BallisticProV55.XMV850MinigunAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XMV850'
 	IconCoords=(X2=127,Y2=31)
@@ -493,7 +497,9 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMV850'
-	DrawScale=0.600000
-	Skins(0)=Texture'BW_Core_WeaponTex.XMV850.XMV850_Main'
+	DrawScale=0.300000
 	SoundRadius=128.000000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.XMV850.XMV850_Main'
+	Skins(2)=Shader'BW_Core_WeaponTex.XMV850.XMV850_Barrels_SD'
 }

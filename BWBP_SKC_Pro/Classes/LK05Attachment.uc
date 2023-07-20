@@ -211,16 +211,17 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	WeaponClass=class'LK05Carbine'
+     MuzzleFlashClass=class'M50FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.LK05SilencedFlash'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
+     BrassClass=class'Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_MARS'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"

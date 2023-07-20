@@ -21,7 +21,7 @@ var   Emitter		LaserDot;
 
 var()   name		StockOpenAnim;
 var()   name		StockCloseAnim;
-var()   bool		bStockOpen, bStockBoneOpen;
+var()   bool		bStockExtended, bStockBoneOpen;
 
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
@@ -40,9 +40,14 @@ replication
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-
+	
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+	{
+		bStockExtended=True;
+	}
 	SetStockRotation();
-	if (bStockOpen)
+
+	if (bStockExtended)
 		OnStockSwitched();
 }
 
@@ -68,7 +73,7 @@ simulated function OnAimParamsChanged()
 
 	if (bLaserOn)
 		ApplyLaserAim();
-	if (bStockOpen)
+	if (bStockExtended)
 		ApplyStockAim();
 }
 
@@ -91,12 +96,16 @@ exec simulated function SwitchWeaponMode (optional byte ModeNum)
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	Log("SAR ServerSwitchWeaponMode: Stock open: "$bStockOpen);
+	Log("SAR ServerSwitchWeaponMode: Stock open: "$bStockExtended);
 	
 	if (ReloadState != RS_None)
 		return;
 		
-	NewMode = byte(!bStockOpen);
+	
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical()) //We'll clean this later
+		NewMode = byte(bStockExtended);
+	else
+		NewMode = byte(!bStockExtended);
 		
 	// can feasibly happen
 	if (NewMode == CurrentWeaponMode)
@@ -110,12 +119,16 @@ function ServerSwitchWeaponMode (byte NewMode)
 simulated function CommonSwitchWeaponMode(byte NewMode)
 {
 	Super.CommonSwitchWeaponMode(NewMode);
-	SwitchStock(NewMode == BURST_MODE);
+	
+	if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+		SwitchStock(NewMode == AUTO_MODE); //Stock is out on auto for A/T
+	else
+		SwitchStock(NewMode == BURST_MODE);//Stock is out on burst for C/R
 }
 
 simulated function OnStockSwitched()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 		ApplyStockAim();
 	else
 		AimComponent.Recalculate();
@@ -125,30 +138,30 @@ simulated function OnStockSwitched()
 
 simulated function SwitchStock(bool bNewValue)
 {
-	if (bNewValue == bStockOpen)
+	if (bNewValue == bStockExtended)
 		return;
 
-	Log("SAR SwitchStock: Stock open: "$bStockOpen);
+	Log("SAR SwitchStock: Stock open: "$bStockExtended);
 	
 	if (Role == ROLE_Authority)
 		bServerReloading = True;
 	ReloadState = RS_GearSwitch;
 	
 	TemporaryScopeDown(0.4);
-
-	if (!bStockOpen)
+	
+	if (!bStockExtended)
 		SetStockRotation();
 
-	bStockOpen = !bStockOpen;
+	bStockExtended = !bStockExtended;
 
-	if (!bStockOpen)
+	if (!bStockExtended)
 		SetStockRotation();
 
-	//bStockOpen = bNewValue;
+	//bStockExtended = bNewValue;
 	
 	//SetBoneRotation('Stock', rot(0,0,0));
 	
-	if (bStockOpen)
+	if (bStockExtended)
 		PlayAnim(StockOpenAnim);
 	else
 		PlayAnim(StockCloseAnim);
@@ -158,20 +171,20 @@ simulated function SwitchStock(bool bNewValue)
 
 simulated function ApplyStockAim()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 		AimComponent.CrouchMultiplier *= 0.7f;
 }
 
 simulated function AdjustStockProperties()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 	{
 		// Long Gun related
 	    LongGunPivot 	= rot(4000, -12000, 0);
     	LongGunOffset	= vect(15, 20, -7);
 		GunLength 		= 64;
 		
-		SightingTime				= 0.35;
+		SightingTime = default.SightingTime * 1.25;
 	}
 	else
 	{
@@ -186,7 +199,7 @@ simulated function AdjustStockProperties()
 
 simulated function SetStockRotation()
 {
-	if (bStockOpen)
+	if (bStockExtended)
 	{
 		SetBoneLocation('Stock',vect(-38.472,0,0),1.0);
 		bStockBoneOpen = true;
@@ -200,7 +213,7 @@ simulated function SetStockRotation()
 
 simulated function PlayIdle()
 {
-	if (bStockOpen && !bStockBoneOpen)
+	if (bStockExtended && !bStockBoneOpen)
 	{
 		SetStockRotation();
 		IdleTweenTime=0.0;
@@ -208,7 +221,7 @@ simulated function PlayIdle()
 		IdleTweenTime=default.IdleTweenTime;
 	}
 	else
-	{	if (!bStockOpen && bStockBoneOpen)
+	{	if (!bStockExtended && bStockBoneOpen)
 			SetStockRotation();
 		super.PlayIdle();
 	}
@@ -260,8 +273,6 @@ function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
     
-	CheckSetNetAim();
-
 	if (ThirdPersonActor!=None)
 		SARAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -287,7 +298,6 @@ simulated function ClientSwitchLaser()
 	}
 
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -415,11 +425,6 @@ simulated event RenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 }
 
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 simulated function PlayReload()
 {
 	if (MagAmmo < 1)
@@ -473,7 +478,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -506,7 +511,7 @@ simulated function bool ReadyToFire(int Mode)
 
 defaultproperties
 {
-	bStockOpen=False
+	bStockExtended=False //Params set this to true for A/T
 	AIRating=0.72
 	CurrentRating=0.72
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
@@ -518,7 +523,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_SAR12'
 	BigIconCoords=(Y1=24,Y2=250)
 	SightFXClass=Class'BallisticProV55.SARSightDot'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic 5.56mm fire. Slightly shorter range than full-size assault rifles. Low damage and moderate recoil by default."
@@ -529,24 +534,27 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	MeleeFireClass=Class'BallisticProV55.SARMeleeFire'
 	CockAnimPostReload="ReloadEndCock"
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
-	ReloadAnimRate=1.100000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1)
+	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1,AimParamsIndex=1)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=350)
-	SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
-	SightDisplayFOV=25.000000
+
+	PlayerViewOffset=(X=8.000000,Y=9.000000,Z=-10.000000)
+	SightOffset=(X=11.000000,Y=-0.010000,Z=3.600000)
+	SightPivot=(Pitch=450)
+	SightBobScale=0.3
+
 	GunLength=16.000000
-	ParamsClasses(0)=Class'SARWeaponParams'
+	ParamsClasses(0)=Class'SARWeaponParamsComp'
 	ParamsClasses(1)=Class'SARWeaponParamsClassic'
 	ParamsClasses(2)=Class'SARWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SARWeaponParamsTactical'
+
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
 	
@@ -556,14 +564,13 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="With a growing number of operations and battles taking place in urban and industial enviroments, the UTC realized that their ground infantry units were in dire need of a more effective, balanced weapon system for indoor combat. UTC soldiers fighting in the close confines of urban structures and industrial installatons needed a highly compact, reliable and manouverable weapon, but it needed the power to blast through light walls and take down the agile alien forces they were faced with.||The result was the development of the Sub-Assault Rifle, the most well known of which is the S-AR 12. These weapons have the power of an assault rifle, usually using rifle ammunition such as 5.56mm rounds, and the manouverability of a compact sub-machinegun. Accuracy was not an issue due to the extremely short range of most of the encounters in urban combat."
-	DisplayFOV=55.000000
 	Priority=32
 	HudColor=(G=200,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=4
 	PickupClass=Class'BallisticProV55.SARPickup'
-	PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
+	SightAnimScale=0.65
 	AttachmentClass=Class'BallisticProV55.SARAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_SAR12'
 	IconCoords=(X2=127,Y2=31)

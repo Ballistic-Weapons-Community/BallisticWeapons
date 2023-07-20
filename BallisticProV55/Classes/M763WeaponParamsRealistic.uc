@@ -13,8 +13,8 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		TraceCount=13
-		Damage=12.0
+		TraceCount=8
+		Damage=18.0
 		HeadMult=2.25
 		LimbMult=0.666666
 		DamageType=Class'BallisticProV55.DTM763Shotgun'
@@ -31,7 +31,8 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 		Recoil=920.000000
 		Chaos=0.120000
-		Inaccuracy=(X=800,Y=800)
+		//Inaccuracy=(X=800,Y=800)
+		Inaccuracy=(X=300,Y=300)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -155,28 +156,69 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=8
 		bMagPlusOne=True
-		ViewOffset=(X=-2.000000,Y=6.000000,Z=-12.000000)
-		SightOffset=(X=5.000000,Y=0,Z=11.500000)
-		SightPivot=(Pitch=-128)
-		InitialWeaponMode=1
-		WeaponModes(0)=(bUnavailable=true,ModeName="Long-Range",bUnavailable=true,Value=0.500000)
-		WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(2)=(bUnavailable=true)
-		ReloadAnimRate=1.300000
-		CockAnimRate=1.100000
+		//ViewOffset=(X=-2.000000,Y=6.000000,Z=-12.000000)
+		//SightOffset=(X=5.000000,Y=0,Z=11.500000)
+		//SightPivot=(Pitch=-128)
+		SightPivot=(Pitch=128)
+		InitialWeaponMode=0
+		WeaponModes(0)=(ModeName="Single Fire",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(bUnavailable=true)
+		//ReloadAnimRate=1.300000
+		//CockAnimRate=1.100000
 		WeaponName="M763-CS 12ga Combat Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Slug'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Spray'
+		AltFireParams(1)=FireParams'RealisticSecondaryFireParams_Spray'
+		AltFireParams(2)=FireParams'RealisticSecondaryFireParams_Spray'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=M763_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M763_OD
+		Index=1
+		CamoName="Olive Drab"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KShotgunShiney",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M763-KSmallShiney",Index=2,AIndex=0,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M763_Wood
+		Index=2
+		CamoName="Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_LargeShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781_SmallShine",Index=2,AIndex=0,PIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M763_Trusty
+		Index=3
+		CamoName="Ol' Trusty"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781-OldTrusty",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M763Camos.M781Small",Index=2,AIndex=0,PIndex=1)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'M763_Gray'
+	Camos(1)=WeaponCamo'M763_OD'
+	Camos(2)=WeaponCamo'M763_Wood'
+	Camos(3)=WeaponCamo'M763_Trusty'
 }

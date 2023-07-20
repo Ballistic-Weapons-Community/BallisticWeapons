@@ -127,26 +127,73 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		WeaponPrice=9000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.14
 		MagAmmo=9
-		ViewOffset=(X=14.000000,Y=8.000000,Z=-8.000000)
+		//ViewOffset=(X=14.000000,Y=8.000000,Z=-8.000000)
 		ViewPivot=(Pitch=512)
-		SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
-		SightPivot=(Pitch=95,Roll=-50)
+		//SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
+		//SightPivot=(Pitch=95,Roll=-50)
+		//SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
-		ReloadAnimRate=1.100000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.100000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=LeMat_Engraved
+		Index=0
+		CamoName="Engraved"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LeMat_Rusted
+		Index=1
+		CamoName="Rusted"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMattBR-Main1-Shine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMattBR-Main2-Shine",Index=2,PIndex=1,AIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LeMat_Black
+		Index=2
+		CamoName="Blued"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMat-MainBlue",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1,AIndex=1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LeMat_Chrome
+		Index=3
+		CamoName="Chrome"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMat-MainChromeShine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1,AIndex=1)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LeMat_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LeMattCamos.LeMat-MainGoldShine",Index=1,PIndex=0,AIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1,AIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'LeMat_Engraved'
+	Camos(1)=WeaponCamo'LeMat_Rusted'
+	Camos(2)=WeaponCamo'LeMat_Black'
+	Camos(3)=WeaponCamo'LeMat_Chrome'
+	Camos(4)=WeaponCamo'LeMat_Gold'
 }

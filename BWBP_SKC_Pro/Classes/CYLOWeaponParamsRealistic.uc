@@ -115,16 +115,16 @@ defaultproperties
 	//=================================================================		
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=10
+		InventorySize=5
 		WeaponPrice=800
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.230000
 		MagAmmo=37
 		SightPivot=(Pitch=450)
-		SightOffset=(X=-3.000000,Y=13.575000,Z=22.1000)
-		ViewOffset=(X=4.000000,Y=-4,Z=-14.000000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//SightOffset=(X=-3.000000,Y=13.575000,Z=22.1000)
+		//ViewOffset=(X=4.000000,Y=-4,Z=-14.000000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="CYLO-III 7.62mm Assault Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -132,4 +132,67 @@ defaultproperties
 	End Object
 	
     Layouts(0)=WeaponParams'RealisticParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=CYLO_Standard
+		Index=0
+		CamoName="Best Value"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLO_CYLO
+		Index=1
+		CamoName="CYLO"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOUAWCamos.CYLO-MainRust",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLO_Ork
+		Index=2
+		CamoName="Most Dakka"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOUAWCamos.CYLO-MainBlast",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLO_RealFakeWood
+		Index=3
+		CamoName="Real Fake Wood"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOUAWCamos.CYLO-MainNewWood",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLO_NewRed
+		Index=4
+		CamoName="Ultracool"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOUAWCamos.CYLO-MainNewRed",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLO_NewPink
+		Index=5
+		CamoName="Girlpower"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOUAWCamos.CYLO-MainNewPink",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLO_Brass
+		Index=6
+		CamoName="Gold?"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CYLOUAWCamos.CYLO-MainNewBrass",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'CYLO_Standard'
+	Camos(1)=WeaponCamo'CYLO_CYLO'
+	Camos(2)=WeaponCamo'CYLO_Ork'
+	Camos(3)=WeaponCamo'CYLO_RealFakeWood'
+	Camos(4)=WeaponCamo'CYLO_NewRed'
+	Camos(5)=WeaponCamo'CYLO_NewPink'
+	Camos(6)=WeaponCamo'CYLO_Brass'
 }

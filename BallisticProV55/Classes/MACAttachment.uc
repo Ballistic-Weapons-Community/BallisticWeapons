@@ -18,8 +18,6 @@ simulated Event PostNetBeginPlay()
 // Return the location of the muzzle.
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {
-    local Coords C;
-
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return Instigator.Weapon.GetBoneCoords('tip').Origin;
 	else if (BallisticTurret(Instigator) != None)
@@ -107,10 +105,11 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-     FlashScale=2.500000
-     BrassClass=Class'BallisticProV55.Brass_HAMR'
-     InstantMode=MU_None
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMR_TPm'
-     DrawScale=0.200000
+	WeaponClass=class'MACWeapon'
+	MuzzleFlashClass=class'R78FlashEmitter'
+	FlashScale=2.500000
+	BrassClass=class'Brass_HAMR'
+	InstantMode=MU_None
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMR_TPm'
+	DrawScale=0.200000
 }

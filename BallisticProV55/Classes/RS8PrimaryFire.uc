@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class RS8PrimaryFire extends BallisticRangeAttenFire;
+class RS8PrimaryFire extends BallisticProInstantFire;
 
 var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
 var() class<Actor>				SMuzzleFlashClass;
@@ -46,12 +46,12 @@ simulated function DestroyEffects()
 	class'BUtil'.static.KillEmitterEffect (SMuzzleFlash);
 }
 // End effect functions ----------------------------------------------------
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	if (RS8Pistol(Weapon).bSilenced)
-		return Super.GetDamage (Other, HitLocation, Dir, Victim, DT) * 0.85;
+		return Super.ResolveDamageFactors(Other, TraceStart, HitLocation, Penetratecount, WallCount, WallPenForce, WaterHitLocation) * 0.85;
 	else
-		return Super.GetDamage (Other, HitLocation, Dir, Victim, DT);
+		return Super.ResolveDamageFactors(Other, TraceStart, HitLocation, Penetratecount, WallCount, WallPenForce, WaterHitLocation);
 }
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
@@ -68,19 +68,7 @@ function ServerPlayFiring()
 
 	CheckClipFinished();
 
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 }
 
 //Do the spread on the client side
@@ -90,14 +78,16 @@ function PlayFiring()
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
-		AimedFireAnim = 'SightFireOpen';
+		//AimedFireAnim = 'SightFireOpen';
+		AimedFireAnim='OpenFire';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
-		AimedFireAnim = 'SightFire';
+		//AimedFireAnim = 'SightFire';
+		AimedFireAnim='Fire';
 		FireAnim = 'Fire';
 	}
 
@@ -109,19 +99,7 @@ function PlayFiring()
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
 		
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 	
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
@@ -137,45 +115,37 @@ function PlayFiring()
 
 defaultproperties
 {
-     SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
-     SFlashBone="tip2"
-     SFlashScaleFactor=0.25
-	 TraceRange=(Min=4000.000000,Max=4000.000000)
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
-	 RangeAtten=0.3
-     WallPenetrationForce=8.000000
-     
-     Damage=28.000000
-     HeadMult=1.5f
-     LimbMult=0.5f
-     
-     WaterRangeAtten=0.400000
-     DamageType=Class'BallisticProV55.DTRS8Pistol'
-     DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
-     DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
-     PenetrateForce=135
-     bPenetrate=True
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassOffset=(X=-14.000000,Z=-5.000000)
-     FireRecoil=192.000000
-     FireChaos=0.250000
-     XInaccuracy=96.000000
-     YInaccuracy=96.000000
-     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilenceFire',Volume=0.700000,Radius=76.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
-     bPawnRapidFireAnim=True
-	 FireEndAnim=
-     FireAnimRate=2
-	 AimedFireAnim='SightFire'
-     FireRate=0.20000
-     AmmoClass=Class'BallisticProV55.Ammo_RS8Bullets'
-     ShakeRotMag=(X=64.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     BotRefireRate=0.750000
+	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=0.25
+	TraceRange=(Min=4000.000000,Max=4000.000000)
+	DamageType=Class'BallisticProV55.DTRS8Pistol'
+	DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
+	DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
+	PenetrateForce=135
+	bPenetrate=True
+	MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+	BrassClass=Class'BallisticProV55.Brass_Pistol'
+	BrassOffset=(X=-14.000000,Z=-5.000000)
+	FireRecoil=192.000000
+	FireChaos=0.250000
+	XInaccuracy=96.000000
+	YInaccuracy=96.000000
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilenceFire',Volume=0.700000,Radius=48.000000,bAtten=True)
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireAnimRate=2
+	AimedFireAnim='SightFire'
+	FireRate=0.20000
+	AmmoClass=Class'BallisticProV55.Ammo_RS8Bullets'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-3.00)
+	ShakeOffsetRate=(X=-60.000000)
+	ShakeOffsetTime=2.000000
+
+	BotRefireRate=0.750000
 }

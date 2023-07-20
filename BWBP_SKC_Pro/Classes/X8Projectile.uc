@@ -8,18 +8,19 @@ class X8Projectile extends BallisticProjectile;
 var   bool			bStuckInWall;
 var   bool			bHitPlayer;
 
-
 simulated function InitProjectile ()
 {
 	SetTimer(0.1, false);
 	super.InitProjectile();
 }
+
 simulated event Timer()
 {
 	super.Timer();
 	bFixedRotationDir = True;
 	RotationRate.Pitch = -100000;
 }
+
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
 	if (Other == None)
@@ -40,7 +41,6 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	Velocity = Normal(HitLocation-Other.Location)*100;
 	SetPhysics(PHYS_Falling);
 }
-
 
 simulated event Landed( vector HitNormal )
 {
@@ -80,24 +80,24 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
-     ModeIndex=1
-	 TrailClass=Class'BallisticProV55.MRLTrailEmitter'
-     ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
-     bRandomStartRotation=False
-     bUsePositionalDamage=True
-	 bIgnoreTerminalVelocity=True
-     
-     
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTX8KnifeRifleLaunchedHead'
-     bWarnEnemy=False
-     Speed=7500.000000
-     MaxSpeed=7500.000000
-     Damage=100.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTX8KnifeRifleLaunched'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8Proj'
-     bNetTemporary=False
-     Physics=PHYS_Falling
-     LifeSpan=0.000000
-     DrawScale=0.150000
-     bUnlit=False
+    WeaponClass=Class'BWBP_SKC_Pro.X8Knife'
+	ModeIndex=1
+	TrailClass=Class'BallisticProV55.MRLTrailEmitter'
+	ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
+	bRandomStartRotation=False
+	bUsePositionalDamage=True
+	bIgnoreTerminalVelocity=True
+
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTX8KnifeRifleLaunchedHead'
+	bWarnEnemy=False
+	Speed=7500.000000
+	MaxSpeed=7500.000000
+	Damage=100.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTX8KnifeRifleLaunched'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8Proj'
+	bNetTemporary=False
+	Physics=PHYS_Falling
+	LifeSpan=0.000000
+	DrawScale=0.150000
+	bUnlit=False
 }

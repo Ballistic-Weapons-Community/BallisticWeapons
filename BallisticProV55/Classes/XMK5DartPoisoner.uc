@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class XMK5DartPoisoner extends Actor
 	placeable;
@@ -86,7 +86,7 @@ static function int GetPoisonDamage()
 defaultproperties
 {
      DamageType=Class'BallisticProV55.DTXMK5DartPoison'
-     Damage=10
+     Damage=15
      PoisonTime=4.500000
      bHidden=True
      bOnlyRelevantToOwner=True

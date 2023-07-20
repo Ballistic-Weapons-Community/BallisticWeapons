@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class NRP57Thrown extends BallisticProPineapple;
+class NRP57Thrown extends BallisticHandGrenadeProjectile;
 
 var   Emitter PATrail;
 
@@ -31,21 +31,9 @@ simulated function DestroyEffects()
 		PATrail.Kill();
 }
 
-function InitProPineapple(float PSpeed, float PDelay)
-{
-	PDelay = FMax(PDelay + (0.5 - FRand()) * 0.5, 0.1);
-	
-	Speed = PSpeed;
-
-	DetonateDelay = PDelay;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.NRP57Grenade'
      DampenFactor=0.050000
      DampenFactorParallel=0.350000
      DetonateDelay=3.000000
@@ -59,7 +47,7 @@ defaultproperties
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=512.000000
      MotionBlurRadius=512.000000
-     WallPenetrationForce=256
+     WallPenetrationForce=16
      Speed=1400.000000
      MaxSpeed=1500.000000
      Damage=150.000000

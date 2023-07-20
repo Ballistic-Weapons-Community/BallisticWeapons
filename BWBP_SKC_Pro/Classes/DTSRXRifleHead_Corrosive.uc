@@ -23,7 +23,7 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 		return;
 
 	// Do additional damage to armor..
-	if(Pawn(Victim) != None)
+	if(Pawn(Victim) != None && Pawn(Victim).Inventory != None)
 	{
 		BestArmor = Pawn(Victim).Inventory.PrioritizeArmor(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 		if(BestArmor != None)
@@ -33,25 +33,6 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 		}
 	}
 }
-
-// HeadShot stuff from old sniper damage ------------------
-static function IncrementKills(Controller Killer)
-{
-	local xPlayerReplicationInfo xPRI;
-
-	if ( PlayerController(Killer) == None )
-		return;
-
-	PlayerController(Killer).ReceiveLocalizedMessage( Class'XGame.SpecialKillMessage', 0, Killer.PlayerReplicationInfo, None, None );
-	xPRI = xPlayerReplicationInfo(Killer.PlayerReplicationInfo);
-	if ( xPRI != None )
-	{
-		xPRI.headcount++;
-		if ( (xPRI.headcount == 15) && (UnrealPlayer(Killer) != None) )
-			UnrealPlayer(Killer).ClientDelayedAnnouncementNamed('HeadHunter',15);
-	}
-}
-// --------------------------------------------------------
 
 defaultproperties
 {

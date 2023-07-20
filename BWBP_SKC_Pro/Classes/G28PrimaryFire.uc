@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G28PrimaryFire extends BallisticGrenadeFire;
+class G28PrimaryFire extends BallisticHandGrenadeFire;
 
 function PlayPreFire()
 {
@@ -18,38 +18,14 @@ function PlayPreFire()
 		Weapon.PlayAnim(PreFireAnim, PreFireAnimRate, TweenTime);
 }
 
-function SpawnProjectile (Vector Start, Rotator Dir)
+function float CalculateDetonateDelay(float DetonateDelay)
 {
-	local float Speed, DetonateDelay;
-	local vector EnemyDir;
-
-	Proj = Spawn (ProjectileClass,,, Start, Dir);
-	Proj.Instigator = Instigator;
-	if (BallisticPineapple(Proj) != None)
-	{
-		if (AIController(Instigator.Controller) == None)
-		{
-			if (BW != None && BW.WeaponModes[BW.CurrentWeaponMode].Value == 0)
-				Speed = Proj.Speed * FClamp(HoldTime-0.5, 0, 2) / 2;
-			else if (BW != None)
-				Speed = Proj.Speed / BW.WeaponModes[BW.CurrentWeaponMode].Value;
-		}
-		else if (Instigator.Controller.Enemy != None)
-		{
-			EnemyDir = Instigator.Controller.Enemy.Location - Instigator.Location;
-			Speed = FMin( Proj.Speed, (1+Normal(EnemyDir).Z) * (VSize(EnemyDir)/1.5) + VSize(Instigator.Controller.Enemy.Velocity) * (Normal(Instigator.Controller.Enemy.Velocity) Dot Normal(EnemyDir)) );
-		}
-		else
-			Speed = Proj.Speed;
-
-		if (BallisticHandGrenade(Weapon).ClipReleaseTime == 666)
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - 3;
-		else if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
-		else
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay;
-		BallisticPineapple(Proj).InitPineapple(Speed, DetonateDelay);
-	}
+	if (BallisticHandGrenade(Weapon).ClipReleaseTime == 666)
+		return DetonateDelay - 3;
+	else if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
+		return DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
+	else
+		return DetonateDelay;
 }
 
 defaultproperties
@@ -63,7 +39,7 @@ defaultproperties
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
+     ShakeOffsetMag=(X=-8.00)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BWBP_SKC_Pro.G28Thrown'

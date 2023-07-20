@@ -12,6 +12,9 @@
 //=============================================================================
 class FG50MachineGun extends BallisticWeapon;
 
+//layouts
+var(FG50)	bool				bIsArmorPiercing;
+
 //aiming
 var(FG50)	Emitter		        LaserDot;
 var(FG50)	LaserActor	        Laser;
@@ -24,6 +27,7 @@ var   		bool				bStriking;
 var(FG50)	FG50Heater			Heater;
 var(FG50)	float				HeatLevel;
 var(FG50)	float 				HeatDeclineDelay;
+var(FG50)	float				HeatDecayRate;
 var(FG50) 	Sound			    OverHeatSound;		// Sound to play when it overheats
 var(FG50) 	bool				bDecorativeHeat;	//Heat is harmless, used for C and R
 
@@ -52,18 +56,21 @@ replication
 		ClientScreenStart, bLaserOn;
 }
 
-simulated event PreBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsArmorPiercing=false;
+
+	if (InStr(WeaponParams.LayoutTags, "AP") != -1)
 	{
-		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
-		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
-	}
-	if (BCRepClass.default.GameStyle == 2)
-	{
-		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
-		FireModeClass[1]=Class'BWBP_SKC_Pro.FG50DeployFire';
+		bIsArmorPiercing=true;
+		if ( ThirdPersonActor != None )
+		{
+			FG50Attachment(ThirdPersonActor).CurrentTracerMode=1;
+		}
 	}
 }
 
@@ -72,10 +79,9 @@ simulated function PostNetBeginPlay()
 	local Actor A;
 	
 	Super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		bDecorativeHeat=true;
-		FG50SecondaryFire(FireMode[0]).HeatPerShot=0.25;
 	}
 	
 	if (Heater == None || Heater.bDeleteMe)
@@ -168,18 +174,11 @@ simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmou
 	return true;
 }
 
-simulated function CheckSetNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 //=====================================================================
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-
-	CheckSetNetAim();
 
 	if (ThirdPersonActor!=None)
 		FG50Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
@@ -199,7 +198,6 @@ simulated function ClientSwitchLaser()
 		KillLaserDot();
 		PlaySound(LaserOffSound,,0.7,,32);	
 	}
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function KillLaserDot()
@@ -364,11 +362,6 @@ simulated event RenderOverlays( Canvas Canvas )
 }
 
 
-function ServerUpdateLaser(bool bNewLaserOn)
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bNewLaserOn;
-}
-
 function ServerSwitchWeaponMode(byte NewMode)
 {
 	super.ServerSwitchWeaponMode(NewMode);
@@ -388,8 +381,6 @@ function ServerSwitchWeaponMode(byte NewMode)
 
 	if (Role == ROLE_Authority)
 		ServerSwitchLaser(bLaserOn);
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	ServerUpdateLaser(bLaserOn);
 }
 
 simulated function CommonSwitchWeaponMode (byte newMode)
@@ -438,7 +429,7 @@ simulated event Tick (float DT)
 		
 	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
 	{
-		HeatLevel = FMax(0, HeatLevel - 7 * DT);
+		HeatLevel = FMax(0, HeatLevel - HeatDecayRate * DT);
 		if (Heater != None)
 			Heater.SetHeat(HeatLevel/10);
 	}
@@ -640,6 +631,7 @@ defaultproperties
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	HeatDeclineDelay=0.400000
+	HeatDecayRate=7
 	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
 	ScopeBone="Holosight"
 	BulletBone="Bullet"
@@ -658,7 +650,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=67,G=66,R=58,A=255),StartSize1=99,StartSize2=86)
 	BigIconMaterial=Texture'BWBP_SKC_Tex.FG50.BigIcon_FG50'
 	BigIconCoords=(Y1=36,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Fires powerful explosive rounds. Upon impact with the enemy, these rounds explode, dealing heavy damage to nearby targets. Sustained DPS is massive. Has no penetration ability.|Controlled mode dramatically improves the hipfire at the cost of fire rate. A laser is projected which may give away the user's position."
 	ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
@@ -678,10 +670,10 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
-	SightOffset=(Y=25.000000,Z=10.300000)
-	ParamsClasses(0)=Class'FG50WeaponParamsNoTurret'
+	ParamsClasses(0)=Class'FG50WeaponParamsComp'
 	ParamsClasses(1)=Class'FG50WeaponParamsClassic'	 
-	ParamsClasses(2)=Class'FG50WeaponParamsRealistic'	 
+	ParamsClasses(2)=Class'FG50WeaponParamsRealistic'
+    ParamsClasses(3)=Class'FG50WeaponParamsTactical'	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FG50PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.FG50SecondaryFire'
 	IdleAnimRate=0.600000
@@ -697,8 +689,11 @@ defaultproperties
 	InventoryGroup=6
 	GroupOffset=3
 	PickupClass=Class'BWBP_SKC_Pro.FG50Pickup'
-	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
-	BobDamping=2.000000
+
+	PlayerViewOffset=(X=4.00,Y=4.00,Z=-5.00)
+	SightOffset=(X=3.00,Y=0.00,Z=3.25)
+	SightBobScale=0.45f
+
 	AttachmentClass=Class'BWBP_SKC_Pro.FG50Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.FG50.SmallIcon_FG50'
 	IconCoords=(X2=127,Y2=31)
@@ -710,6 +705,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FG50'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

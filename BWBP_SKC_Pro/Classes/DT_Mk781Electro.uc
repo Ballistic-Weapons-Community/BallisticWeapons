@@ -20,7 +20,7 @@ defaultproperties
      DisplacementType=DSP_Linear
 	 InvasionDamageScaling=3
      AimDisplacementDamageThreshold=40
-     AimDisplacementDuration=0.750000
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBP_SKC_Pro.MK781Shotgun'
      DeathString="%k attempted some ranged electrotherapy on %o."
      FemaleSuicide="%o put the fork in the power outlet."

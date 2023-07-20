@@ -10,7 +10,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBP_SKC_Pro.IE_SuperchargeExplode'
      HitDecals(0)=Class'BallisticProV55.AD_HVCRedDecal'
-     HitSounds(0)=Sound'BWBP_SKC_Sounds.Misc.CXMS-Supercharge'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.Supercharger.SC-Supercharge'
      HitSoundVolume=6.400000
      HitSoundRadius=1600.000000
 }

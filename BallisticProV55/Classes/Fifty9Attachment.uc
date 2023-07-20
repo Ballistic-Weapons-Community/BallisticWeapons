@@ -55,14 +55,15 @@ simulated function MeleeFireEffects()
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+	WeaponClass=class'Fifty9MachinePistol'
+     MuzzleFlashClass=class'Fifty9FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      FlashScale=0.800000
-     BrassClass=Class'BallisticProV55.Brass_Uzi'
+     BrassClass=class'Brass_Uzi'
      TrackAnimMode=MU_Secondary
-     TracerClass=Class'BallisticProV55.TraceEmitter_FiftyNine'
+     TracerClass=class'TraceEmitter_FiftyNine'
      TracerChance=0.500000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"

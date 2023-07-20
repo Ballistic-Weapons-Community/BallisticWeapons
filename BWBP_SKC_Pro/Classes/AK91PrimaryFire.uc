@@ -28,10 +28,7 @@ function PlayFiring()
 	Super.PlayFiring();
 	Weapon.SoundPitch = Min(150, Weapon.SoundPitch + 8);
 	
-	if (BW.GameStyleIndex != 0)
-		AK91ChargeRifle(BW).AddHeat(0.45);
-	else
-		AK91ChargeRifle(BW).AddHeat(0.15);
+	AK91ChargeRifle(BW).AddHeat(HeatPerShot);
 }
 
 function Supercharger_ChargeControl GetChargeControl()
@@ -85,10 +82,7 @@ function DoFireEffect()
 	
 	if (level.Netmode == NM_DedicatedServer)
 	{
-		if (BW.GameStyleIndex != 0)
-			AK91ChargeRifle(Weapon).AddHeat(0.45);
-		else
-			AK91ChargeRifle(Weapon).AddHeat(0.15);
+		AK91ChargeRifle(Weapon).AddHeat(HeatPerShot);
 	}
 }
 
@@ -166,39 +160,38 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
-	if (BW.GameStyleIndex == 0)
-		AK91ChargeRifle(BW).AddHeat(0.67);
+	if (class'BallisticReplicationInfo'.static.IsArena())
+		AK91ChargeRifle(BW).AddHeat(0.57);
 }
 
 defaultproperties
 {
-     TraceRange=(Min=12000.000000,Max=13000.000000)
-     Damage=30
-     WaterRangeAtten=0.800000
-     KickForce=22000
-     PenetrateForce=180
-     bPenetrate=True
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
-     bCockAfterEmpty=False
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
-     FlashScaleFactor=0.400000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     BrassBone="tip"
-     BrassOffset=(X=-80.000000,Y=1.000000)
-     XInaccuracy=3.200000
-     YInaccuracy=3.200000
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireEndAnim=
-     TweenTime=0.000000
-     FireRate=0.140000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_AK762mm'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	HeatPerShot=0.45
+	TraceRange=(Min=12000.000000,Max=13000.000000)
+	KickForce=22000
+	PenetrateForce=180
+	bPenetrate=True
+	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+	bCockAfterEmpty=False
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+	FlashScaleFactor=0.400000
+	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	BrassBone="tip"
+	BrassOffset=(X=-80.000000,Y=1.000000)
+	XInaccuracy=3.200000
+	YInaccuracy=3.200000
+	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	TweenTime=0.000000
+	FireRate=0.140000
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_AK762mm'
+	ShakeRotMag=(X=128.000000,Y=64.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-30.000000)
+	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetTime=2.000000
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

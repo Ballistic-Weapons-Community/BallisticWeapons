@@ -13,7 +13,7 @@ var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for instant
 simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (AS50Rifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		ImpactManager=Class'IM_IncendiaryHMGBullet';
 	}
@@ -164,23 +164,24 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
+	WeaponClass=class'AS50Rifle'
      AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
-     MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+     MuzzleFlashClass=class'M925FlashEmitter'
      ImpactManager=Class'IM_IncendiaryBullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
      TracerMode=MU_Secondary
      InstantMode=MU_Both
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
      TracerChance=2.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.500000)
+     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=0.700000
      CockAnimRate=0.700000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_TPm'
-     RelativeLocation=(X=-17.000000,Z=2.000000)
+     RelativeLocation=(X=1.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
      PrePivot=(Z=-1.000000)
      Skins(0)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'

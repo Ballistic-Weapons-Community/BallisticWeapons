@@ -78,7 +78,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=0.900000
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=150
 		//SightOffset=(X=-8.000000,Y=-0.200000,Z=7.500000)
@@ -88,4 +88,57 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ClassicParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=M353_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M353_Jungle
+		Index=1
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD2_S2",Index=2,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD1_S2",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_Ammo_S2",Index=3,AIndex=2,PIndex=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M353_Arctic
+		Index=2
+		CamoName="Arctic"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD2_S1",Index=2,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD1_S1",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_Ammo_S1",Index=3,AIndex=2,PIndex=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M353_Ocean
+		Index=3
+		CamoName="Ocean"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD2_S3",Index=2,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD1_S3",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_Ammo_S3",Index=3,AIndex=2,PIndex=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M353_Gold
+		Index=4
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD2_S4",Index=2,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_SD1_S4",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M353Camos.M353_Ammo_S4",Index=3,AIndex=2,PIndex=2)
+	End Object
+	
+	Camos(0)=WeaponCamo'M353_Gray'
+    Camos(1)=WeaponCamo'M353_Jungle'
+    Camos(2)=WeaponCamo'M353_Arctic'
+    Camos(3)=WeaponCamo'M353_Ocean'
+    Camos(4)=WeaponCamo'M353_Gold'
 }

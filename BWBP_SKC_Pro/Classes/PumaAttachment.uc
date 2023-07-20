@@ -82,7 +82,8 @@ function SetBrightness(int b, bool hit)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+	WeaponClass=class'PumaRepeater'
+     MuzzleFlashClass=class'M50M900FlashEmitter'
 	 BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
      bHeavy=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.PUMA_TPm'

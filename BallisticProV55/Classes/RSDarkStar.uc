@@ -60,7 +60,7 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 	
-	if (GameStyleIndex != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		MaxSoulPower=10;
 	}
@@ -757,14 +757,13 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.DarkStar.BigIcon_DarkStar'
      BigIconCoords=(Y1=28,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 20% of damage dealt as HP, but cost HP equal to 20% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 20% of damage dealt as HP, but cost HP equal to 10% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
      ManualLines(1)="Engages the chainsaw. This weapon deals high sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
      ManualLines(2)="All of this weapon's modes have the potential to inflict damage to the wielder. Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will consume the user's soul, dealing significant backlash damage.||With full soul power, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soul power will drain over time.||Very effective at close and medium range."
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Putaway')
-     ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemOut',Volume=0.700000)
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemIn',Volume=0.700000)
@@ -779,14 +778,11 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=TexRotator'BW_Core_WeaponTex.DarkStar.DarkInA-Rot',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=209),Color2=(G=181),StartSize1=106,StartSize2=50)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
      NDCrosshairChaosFactor=0.500000
-	 
-     SightPivot=(Pitch=1024)
-     SightOffset=(X=-22.000000,Z=10.000000)
-     SightDisplayFOV=40.000000
 	 GunLength=128.000000
-	 ParamsClasses(0)=Class'RSDarkWeaponParams'
+	 ParamsClasses(0)=Class'RSDarkWeaponParamsComp'
 	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
 	 ParamsClasses(2)=Class'RSDarkWeaponParamsRealistic'
+     ParamsClasses(3)=Class'RSDarkWeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000
@@ -794,13 +790,19 @@ defaultproperties
      AIRating=0.70000
      CurrentRating=0.70000
      bShowChargingBar=True
+	 SightZoomFactor=1.2
      Description="Towards the end of the first war, the UTC launched a fierce assault on the substantial Skrith facility set up just outside the rim of the large crater in secter-547b on a distant outworld planet. The skrith facility appeared to be a kind of temple combined with a mine where extensive excavations had been taking place. Deep below the temple, the UTC discovered ruins of an ancient alien city. In the deepest recesses of the Skrith excavation, they found a very strange artifact in the middle of being extracted from solid, fused stone. The artifact was then fully extracted and analysed by UTC scientists. Is was made of an incredibly strong material and, judging by its design, it seemed to be an ancient alien weapon. Despite countless tests, they failed to access the device's internal mechanisms or gain any further useful information."
      Priority=38
      HudColor=(B=25,G=25,R=200)
      InventoryGroup=5
      GroupOffset=2
      PickupClass=Class'BallisticProV55.RSDarkPickup'
-     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-6.000000)
+	 
+     PlayerViewOffset=(X=0.000000,Y=4.000000,Z=-3.000000)
+	 SightOffset=(X=0.000000,Y=0,Z=4.500000)
+	 SightAnimScale=0.5
+	 SightBobScale=0.75
+
      AttachmentClass=Class'BallisticProV55.RSDarkAttachment'
      IconMaterial=Texture'BW_Core_WeaponTex.DarkStar.SmallIcon_DarkStar'
      IconCoords=(X2=127,Y2=31)

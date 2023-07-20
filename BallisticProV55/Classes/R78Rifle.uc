@@ -11,6 +11,7 @@
 //=============================================================================
 class R78Rifle extends BallisticWeapon;
 
+var   bool		bHasSilencer;
 var   bool		bSilenced;
 var() name		SilencerBone;
 var() name		SilencerOnAnim;			
@@ -24,17 +25,28 @@ replication
 		ServerSwitchSilencer;
 }
 
-simulated event PostNetBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasSilencer=false;
+	if (InStr(WeaponParams.LayoutTags, "silencer") != -1)
 	{
-		CockAnim = 'Cock';
-		CockAnimPostReload = 'Cock'; 
-		ReloadEmptyAnim='ReloadEmptySlow';
-		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock';
-		R78PrimaryFire(FireMode[0]).bExplosive = false;
+		bHasSilencer=true;
+		SetBoneScale (0, 1.0, SilencerBone);	
+		bSilenced=true; 
+		R78PrimaryFire(BFireMode[0]).SetSilenced(true);
+		OnSuppressorSwitched();
 	}
+	
+	if (InStr(WeaponParams.LayoutTags, "quickpull") != -1)
+	{
+		CockAnim = 'CockQuick';
+		CockAnimPostReload = 'CockQuick'; 
+		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock';
+	}
+	
 }
 
 function ServerSwitchSilencer(bool bDetachSuppressor)
@@ -44,8 +56,12 @@ function ServerSwitchSilencer(bool bDetachSuppressor)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (ReloadState != RS_None || SightingState != SS_None || GameStyleIndex == 0)
+    if (!bHasSilencer)
+        return;
+
+	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
+		
 	TemporaryScopeDown(0.5);
 	ServerSwitchSilencer(bSilenced);
 	SwitchSilencer(bSilenced);
@@ -189,19 +205,18 @@ defaultproperties
 
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_R78'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Bullet=True
-     ManualLines(0)="Bolt-action sniper rifle fire with explosive rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
+     ManualLines(0)="Bolt-action sniper rifle fire. High damage, long range, slow fire rate."
      ManualLines(1)="Engages the scope."
      ManualLines(2)="Does not use tracer rounds. Effective at long range and against clustered enemies."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	 PutDownTime=0.5
-     CockAnim="CockQuick"
+     CockAnim="Cock"
      //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
-	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock')
-     ReloadAnimRate=1.250000
+	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock2')
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipOut')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipIn')
@@ -221,15 +236,14 @@ defaultproperties
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
      bNoCrosshairInScope=True
-     SightPivot=(Roll=-1024)
-     SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
      MinZoom=4.000000
      MaxZoom=16.000000
      ZoomStages=2
      GunLength=80.000000
-     ParamsClasses(0)=Class'R78WeaponParams'
+     ParamsClasses(0)=Class'R78WeaponParamsComp'
      ParamsClasses(1)=Class'R78WeaponParamsClassic'
      ParamsClasses(2)=Class'R78WeaponParamsRealistic'
+     ParamsClasses(3)=Class'R78WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      BringUpTime=0.500000
@@ -237,15 +251,17 @@ defaultproperties
      AIRating=0.800000
      CurrentRating=0.800000
      bSniping=True
-     Description="Originally taken from the design of a bird hunting rifle, the R78 'Raven', is a favourite among military snipers and commando corps. Used to a great extent by the expert marksmen of the New European Army, the Raven, is extremely reliable and capable of incredible damage in a single shot. The added long distance sniping scope makes the R78 one of the most deadly weapons. Of course, the gun is only as good as the soldier using it, with a low clip capacity, long reload times and it's terrible ineffectiveness in close quarters combat."
-     DisplayFOV=55.000000
+     Description="Originally taken from the design of a bird hunting rifle, the R78 'Raven' is a favourite among military snipers and commando corps. Used to a great extent by the expert marksmen of the New European Army, the Raven is extremely reliable and capable of incredible damage in a single shot. The added long distance sniping scope makes the R78 one of the most deadly weapons. Of course, the gun is only as good as the soldier using it; it has a low magazine capacity, long reload times and is terribly ineffective in close quarters combat."
      Priority=33
      HudColor=(B=50,G=50,R=200)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=9
      GroupOffset=2
      PickupClass=Class'BallisticProV55.R78Pickup'
-     PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+     PlayerViewOffset=(X=8.50,Y=4.50,Z=-6.00)
+     SightOffset=(X=-1.50,Y=-0.50,Z=5.30)
+	 SightPivot=(Roll=-1024)
+	 SightAnimScale=0.2
      AttachmentClass=Class'BallisticProV55.R78Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_R78'
      IconCoords=(X2=127,Y2=31)
@@ -257,5 +273,5 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=5.000000
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R78'
-     DrawScale=0.450000
+     DrawScale=0.3
 }

@@ -87,7 +87,6 @@ simulated function PlayPreFire()
 defaultproperties
 {
      bUseWeaponMag=False
-     EffectString="Scope/Iron Sights"
      bFireOnRelease=True
      bModeExclusive=False
      FireAnim=

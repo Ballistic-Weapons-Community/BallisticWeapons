@@ -114,22 +114,107 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		Weight=30
+		LayoutName="Iron Sights"
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
-        InventorySize=8
+		//SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
+		SightOffset=(X=-11.50000,Y=0,Z=2.030000)
+		//Function
+        InventorySize=5
 		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=7
 		bMagPlusOne=True
-		SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
-		ViewOffset=(X=8,Y=8,Z=-18)
+		//ViewOffset=(X=8,Y=8,Z=-18)
 		WeaponName="AH104 .600 Handcannon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Holo
+		//Layout core
+		Weight=10
+		LayoutName="Holosight"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=1f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=4,AIndex=-1,PIndex=-1)
+		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
+		//Function
+        InventorySize=5
+		WeaponPrice=3000
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.21
+		MagAmmo=7
+		bMagPlusOne=True
+		//ViewOffset=(X=8,Y=8,Z=-18)
+		WeaponName="AH104 .600 Handcannon"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Holo'
 
-
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=AH_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Red
+		Index=1
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainRed",Index=1,AIndex=0,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Green
+		Index=2
+		CamoName="Green"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainGreen",Index=1,AIndex=0,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Tiger
+		Index=3
+		CamoName="Tiger"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainTiger",Index=1,AIndex=0,PIndex=1)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Meat
+		Index=4
+		CamoName="Meat"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainMeat",Index=1,AIndex=0,PIndex=1)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=AH_Gold
+		Index=5
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AH104Camos.AH104-MainGoldShine",Index=1,AIndex=0,PIndex=1)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'AH_Black'
+	Camos(1)=WeaponCamo'AH_Red'
+	Camos(2)=WeaponCamo'AH_Green'
+	Camos(3)=WeaponCamo'AH_Tiger'
+	Camos(4)=WeaponCamo'AH_Meat'
+	Camos(5)=WeaponCamo'AH_Gold'
 }

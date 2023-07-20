@@ -7,7 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicGrenadeEffectParams
+	Begin Object Class=GrenadeEffectParams Name=ClassicGrenadeEffectParams
 		ProjectileClass=Class'BallisticProV55.BOGPGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=1750.000000
@@ -26,6 +26,12 @@ defaultproperties
 		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.25
+		UnarmedDetonateOn=DT_Impact
+		UnarmedPlayerImpactType=PIT_Detonate
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicGrenadeFireParams
@@ -33,7 +39,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		PreFireAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicGrenadeEffectParams'
+	FireEffectParams(0)=GrenadeEffectParams'ClassicGrenadeEffectParams'
 	End Object
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicFlareEffectParams
@@ -121,21 +127,115 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Red"
+		Weight=30
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
 		PlayerSpeedFactor=1.100000
-		InventorySize=6
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
-		SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
-		SightPivot=(Pitch=1024,Roll=-1024)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
+		//SightPivot=(Pitch=1024,Roll=-1024)
+		SightPivot=(Pitch=300)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		ViewOffset=(X=3,Y=5.00,Z=-2.0)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicGrenadeFireParams'
 		FireParams(1)=FireParams'ClassicFlareFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	/*
+	Begin Object Class=WeaponParams Name=ClassicParams-W
+		LayoutName="White"
+		Weight=30
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=1)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		//SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicGrenadeFireParams'
+		FireParams(1)=FireParams'ClassicFlareFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-F
+		LayoutName="Radical"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=1)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		//SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicGrenadeFireParams'
+		FireParams(1)=FireParams'ClassicFlareFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-M
+		LayoutName="Medical"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.MGP",Index=1)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=5,Scale=0f)
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		//SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicGrenadeFireParams'
+		FireParams(1)=FireParams'ClassicFlareFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	*/
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=BORT_Red
+		Index=0
+		CamoName="Red"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BORT_White
+		Index=1
+		CamoName="White"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=BORT_Flame
+		Index=2
+		CamoName="Radical"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'BORT_Red'
+	Camos(1)=WeaponCamo'BORT_White'
+	Camos(2)=WeaponCamo'BORT_Flame'
 }

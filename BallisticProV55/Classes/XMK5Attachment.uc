@@ -11,16 +11,18 @@ class XMK5Attachment extends BallisticAttachment;
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+	WeaponClass=class'XMK5SubMachinegun'
+     MuzzleFlashClass=class'XK2FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"
-     BrassClass=Class'BallisticProV55.Brass_XMK5SMG'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     BrassClass=class'Brass_XMK5SMG'
+     TracerClass=class'TraceEmitter_Default'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      ReloadAnimRate=1.250000
      bRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMK5_TPm'
-     DrawScale=0.325000
+     DrawScale=0.28
+	 RelativeLocation=(X=3.00,Z=5.00)
 }

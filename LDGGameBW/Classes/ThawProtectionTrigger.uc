@@ -5,20 +5,23 @@
 //===========================================================================
 class ThawProtectionTrigger extends Freon_Trigger;
 
-var MutUTCompBW_LDG_FR 	UTCompMutator;
-var float							SkillThawAdjustment;
+var MutUTCompBW_LDG_FR 		UTCompMutator;
+var float					SkillThawAdjustment;
 
 function int DisallowInteraction(Pawn Other) 
 {
  	local ThawInfo ti;
 
 	ti = GetThawInfo(Other.Controller);
+
 	if(ti != none)
 	{
 		if(ti.bIsProtected)
 			return 0;
 		else if (ti.bRecentlyThawn)
 			return 1;
+		else if (!FastTrace(Other.Location, PawnOwner.Location)) // must be able to see target to thaw
+			return 2;
 	}
 
 	return -1;
@@ -71,8 +74,8 @@ function Timer()
 function OwnerFroze()
 { 
     FrozeTime = Level.TimeSeconds;
-	if (LDGBallisticFRTracked(Level.Game) != None && PawnOwner.Controller != None)
-		SkillThawAdjustment = LDGBallisticFRTracked(Level.Game).GetAutoThawRate(PawnOwner.Controller);
+	if (Game_Freon_Tracked(Level.Game) != None && PawnOwner.Controller != None)
+		SkillThawAdjustment = Game_Freon_Tracked(Level.Game).GetAutoThawRate(PawnOwner.Controller);
 	else log("Skill thaw adjustment failed!",'Freon');
     GotoState('PawnFrozen');
 }
@@ -98,7 +101,12 @@ state PawnFrozen
             Destroy();
             return;
         }
+
+		if (!PawnOwner.CanBeThawed())
+			return;
+
 	    invalidTouchers = 0;
+
 	    for(i = 0; i < Toucher.Length; i++)
 	    {
 		    s = DisallowInteraction(Toucher[i]);
@@ -112,7 +120,7 @@ state PawnFrozen
         }
 
         // touch thaw adjustment
-        if((PawnOwner.Health > 12 || Freon(Level.Game).bRoundOT) && Toucher.Length - invalidTouchers > 0)
+        if(Toucher.Length - invalidTouchers > 0)
         {
             if(PlayerController(PawnOwner.Controller) != None)
             {
@@ -186,9 +194,9 @@ state PawnFrozen
             AverageDistance /= i;
 
             if(AverageDistance <= 100.0)
-                HealthGain += (100.0 / ThawSpeed) * 0.5 * Touchers;
+                HealthGain += (100.0 / ThawSpeed) * 0.5 * Touchers * SkillThawAdjustment;
             else
-                HealthGain += (100.0 / ThawSpeed) * 0.25 * Touchers;
+                HealthGain += (100.0 / ThawSpeed) * 0.25 * Touchers * SkillThawAdjustment;
                 
             if(Freon(Level.Game).bRoundOT)
                 HealthGain *= 0.4;
@@ -198,7 +206,7 @@ state PawnFrozen
         else if(AutoThawTime > 0.0)
         {
             if(!Freon(Level.Game).bRoundOT)
-            HealthGain += (100.0 / AutoThawTime) * 0.5 * SkillThawAdjustment;
+            	HealthGain += (100.0 / AutoThawTime) * 0.5 * SkillThawAdjustment;
         }
 
         PawnOwner.DecimalHealth += HealthGain;

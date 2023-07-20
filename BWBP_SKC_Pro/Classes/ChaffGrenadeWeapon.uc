@@ -1,9 +1,16 @@
 //=============================================================================
 // ChaffGrenadeWeapon.
+// Can be thrown or used for melee, but once primed will explode on contact with any surfaces
+// Meleeing once primed is fairly suicidal. Auto-throw may not be the best choice...
 //
 // Handheld smoke grenade.
 //=============================================================================
 class ChaffGrenadeWeapon extends BallisticHandGrenade;
+
+var bool bPrimed; //Did we twist the HELL OUT OF THAT CAP?!!?!?
+var() name				PutdownAltAnim;	//Anim to play when grenade is unprimed on putaway
+var() name				ClipReleaseAltAnim;	//Anim to play when grenade is unprimed at rest
+var() name				GrenadeBone2;		//Bone
 
 // Fuse ran out before grenade was tossed
 simulated function ExplodeInHand()
@@ -21,6 +28,8 @@ simulated function ExplodeInHand()
 		DoExplosionEffects();
 		MakeNoise(1.0);
 		ConsumeAmmo(0, 1);
+		bPrimed=false;
+		IdleAnim = 'Idle';
 	}
 	SetTimer(0.1, false);
 }
@@ -50,13 +59,28 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, Anim, Frame, Rate);
 	
+	if (Anim == ClipReleaseAnim)
+	{
+		IdleAnim = 'IdlePrimed';
+		PlayIdle();
+	}
+	else if (Anim == ClipReleaseAltAnim)
+	{
+		IdleAnim = 'Idle';
+		PlayIdle();
+	}
+	
 	if (Anim == FireMode[0].FireAnim)
 	{
 		SetBoneScale (0, 1.0, GrenadeBone);
+		SetBoneScale (1, 1.0, GrenadeBone2);
 		CheckNoGrenades();
 	}
 	else if (Anim == SelectAnim)
+	{
+		IdleAnim = 'Idle';
 		PlayIdle();
+	}
 	else	
     	AnimEnded(Channel, anim, frame, rate);
 }
@@ -132,6 +156,14 @@ simulated function RemoteKill()
 simulated function bool PutDown()
 {
 	local BCGhostWeapon GW;
+	
+	if (bPrimed)
+	{
+		PutDownAnim=PutdownAltAnim;
+		bPrimed=false;
+	}
+	else
+		PutDownAnim=default.PutDownAnim;
 
 	if (Super.PutDown())
 	{
@@ -155,14 +187,53 @@ simulated function bool PutDown()
 	return false;
 }
 
-simulated function Notify_TurnSound()
+simulated function Notify_SilencerHide() //This was Notify_TurnSound...
 {
 	class'BUtil'.static.PlayFullSound(self, ClipReleaseSound);
 }
 
+simulated function Notify_GrenadeLeaveHand()
+{
+	SetBoneScale (0, 0.0, GrenadeBone);
+	SetBoneScale (1, 0.0, GrenadeBone2);
+	if (ClipReleaseTime > 0)
+		ClipReleaseTime=-1.0;
+}
+
+simulated function ClientStartReload(optional byte i)
+{
+//	class'BUtil'.static.PlayFullSound(self, ClipReleaseSound);
+	if (!bPrimed)
+	{
+		bPrimed=true;
+		if(!IsFiring())
+			PlayAnim(ClipReleaseAnim, 1.0, 0.1);
+	}
+	else
+	{
+		bPrimed=false;
+		if(!IsFiring())
+			PlayAnim(ClipReleaseAltAnim, 1.0, 0.1);
+
+	}
+}
+// Reload releases clip
 function ServerStartReload (optional byte i)
 {
-
+	if (Ammo[0].AmmoAmount < 1)
+		return;
+	if (AIController(Instigator.Controller) != None)
+		return;
+	if (FireMode[0].NextFireTime > Level.TimeSeconds || FireMode[1].NextFireTime > Level.TimeSeconds)
+		return;
+	ClientStartReload(i);
+}
+// Weapon special releases clip
+//simulated function DoWeaponSpecial(optional byte i)
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ClientState == WS_ReadyToFire)
+		ServerStartReload();
 }
 
 // Charging bar shows throw strength
@@ -233,19 +304,23 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
+     PutdownAltAnim="PutawayClipIn"
+     ClipReleaseAltAnim="ClipIn"
      FuseDelay=14.000000
      HeldDamage=70
      HeldRadius=350
      HeldMomentum=75000
-     HeldDamageType=Class'BWBP_SKC_Pro.DTXM84Held'
+     bPrimed=False
+     HeldDamageType=Class'BWBP_SKC_Pro.DTChaffGrenade_H'
      GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
      ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=48.000000,Pitch=1.700000,bAtten=True)
      PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
 	 GrenadeBone="MOAC"
+     GrenadeBone2="MOACTop"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.M4A1.BigIcon_MOAC'
      BigIconCoords=(Y1=16,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -255,9 +330,10 @@ defaultproperties
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
 	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-	 ParamsClasses(0)=Class'ChaffWeaponParams'
+	 ParamsClasses(0)=Class'ChaffWeaponParamsComp'
 	 ParamsClasses(1)=Class'ChaffWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ChaffWeaponParamsRealistic'
+     ParamsClasses(3)=Class'ChaffWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.ChaffPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.ChaffSecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=7,G=255,R=255,A=166),Color2=(B=255,G=26,R=12,A=229),StartSize1=112,StartSize2=210)
@@ -268,19 +344,18 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.400000
      CurrentRating=0.400000
-     Description="Majestic Firearm 12's MOA-C Chaff Grenade is designed to be barrel fired with any* type of rifle round on the market. There's no need to unload your rifle to fire a grenade; the grenade stem's primer catches the bullet to ignite the shaped charge of the stem while leaving the barrel, offering a two stage propellant system that gives the grenade a greater velocity than standard rifle grenades. The MOA-C Chaff Grenade can also be utilized by infantry not equipped with the MJ51 Carbine as a hand thrown grenade. The soldier simply primes the grenade by twisting the cap and throws it. Due to the shaped charge still being present at the time of impact, the grenade tends to produce a higher explosive yield when thrown rather than shot from the rifle. Majestic Firearms 12 is not responsible injuries caused by inappropriate use of the grenade in this manner."
+     Description="MOA-C Chaff Rifle Grenade||Manufacturer: Majestic Firearms 12|Primary: Throw Grenade|Secondary: Melee |Special: Release Clip||Majestic Firearm 12's MOA-C Chaff Grenade is designed to be barrel fired with any* type of rifle round on the market. There's no need to unload your rifle to fire a grenade; the grenade stem's primer catches the bullet to ignite the shaped charge of the stem while leaving the barrel, offering a two stage propellant system that gives the grenade a greater velocity than standard rifle grenades. The MOA-C Chaff Grenade can also be utilized by infantry not equipped with the G51 Carbine as a hand thrown grenade. The soldier simply primes the grenade by twisting the cap and throws it. Due to the shaped charge still being present at the time of impact, the grenade tends to produce a higher explosive yield when thrown rather than shot from the rifle. Majestic Firearms 12 is not responsible injuries caused by inappropriate use of the grenade in this manner."
      Priority=13
      HudColor=(B=150,G=150,R=150)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=0
      PickupClass=Class'BWBP_SKC_Pro.ChaffPickup'
-     PlayerViewOffset=(Y=4.000000,Z=-15.000000)
+     PlayerViewOffset=(Y=3.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.ChaffAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.M4A1.SmallIcon_MOAC'
      IconCoords=(X2=127,Y2=31)
      ItemName="MOA-C Chaff Grenade"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MOAC'
-     DrawScale=0.400000
+     DrawScale=0.300000
 }

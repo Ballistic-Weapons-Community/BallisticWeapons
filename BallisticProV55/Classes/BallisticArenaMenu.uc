@@ -307,7 +307,7 @@ function bool InternalOnClick(GUIComponent Sender)
 		Controller.CloseMenu();
 	}
 	else if (Sender==BBWOps) // Options
-		Controller.OpenMenu("BallisticProV55.BallisticConfigMenuPro");
+		Controller.OpenMenu("BallisticProV55.ConfigMenu_Inventory");
 
 	return true;
 }

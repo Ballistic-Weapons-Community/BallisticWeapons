@@ -62,7 +62,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 	{
 		BallisticPawn(Instigator).GiveAttributedHealth(Damage / 3, Instigator.SuperHealthMax, Instigator, True);
-		if (BW.GameStyleIndex != 0)
+		if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 		{
 			if (BW.MagAmmo < BW.default.MagAmmo)
 				BW.MagAmmo = Min(BW.default.MagAmmo, BW.MagAmmo+Damage/3);
@@ -103,7 +103,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Volume=0.5,Radius=12.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepSwipe"

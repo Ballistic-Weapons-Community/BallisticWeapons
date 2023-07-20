@@ -11,9 +11,10 @@ class A500Attachment extends BallisticAttachment;
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
+	WeaponClass=class'A500Reptile'
+     MuzzleFlashClass=class'A500FlashEmitter'
+     AltMuzzleFlashClass=class'A500FlashEmitter'
+     ImpactManager=class'IM_Bullet'
      FlashScale=0.425000
      BrassMode=MU_None
      FlashMode=MU_Both

@@ -41,7 +41,8 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
 	}
@@ -485,7 +486,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -512,34 +513,37 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMK3'
 	BigIconCoords=(X1=16,Y1=30)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Shotgun=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic 7.62mm fire. High power, but shorter effective range and suffers from high recoil."
 	ManualLines(1)="Engages the secondary shotgun. Has a shorter range than other shotguns and moderate spread."
 	ManualLines(2)="Effective at close to medium range."
-	SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
+	SpecialInfo(0)=(Info="240.0;20.0;0.9;85.0;0.1;0.9;0.4")
 	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOMeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=22
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.400000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
+	bNoCrosshairInScope=True // CHANGE THIS IN BALLSTICWEAPON.UC
 	WeaponModes(0)=(bUnavailable=True)
-	bNoCrosshairInScope=False
-	SightPivot=(Pitch=450)
-	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
+
+	PlayerViewOffset=(X=4.00,Y=3.50,Z=-5.00)
+	SightOffset=(X=1,Y=0,Z=2.13)
+	SightAnimScale=0.65
+	
 	GunLength=16.000000
-	ParamsClasses(0)=Class'CYLOWeaponParams' 
+	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOWeaponParamsRealistic' 
+    ParamsClasses(3)=Class'CYLOWeaponParamsTactical'
 	AmmoClass[0]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	AmmoClass[1]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOPrimaryFire'
@@ -554,15 +558,12 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0),Color2=(G=0),StartSize1=90,StartSize2=93)
 	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 	Description="Dipheox's most popular weapon, the CYLO Versatile Urban Assault Weapon is designed with one goal in mind: Brutal close quarters combat. The CYLO accomplishes this goal quite well, earning itself the nickname of Badger with its small frame, brutal effectiveness, and unpredictability. UTC refuses to let this weapon in the hands of its soldiers because of its erratic firing and tendency to jam.||The CYLO Versatile UAW is fully capable for urban combat. The rifle's caseless 7.62mm rounds can easily shoot through doors and thin walls, while the shotgun can clear a room quickly with its semi-automatic firing. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
-	DisplayFOV=55.000000
 	Priority=41
 	HudColor=(G=135)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=10
 	PickupClass=Class'BWBP_SKC_Pro.CYLOPickup'
-	PlayerViewOffset=(X=8.000000,Z=-14.000000)
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'
 	IconCoords=(X2=127,Y2=31)
@@ -574,5 +575,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOUAW'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

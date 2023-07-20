@@ -77,11 +77,6 @@ simulated function OnAimParamsChanged()
 		ApplyLaserAim();
 }
 
-simulated function CheckSetNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 //=================================
 //Silencer Code
 //=================================
@@ -199,7 +194,6 @@ exec simulated function WeaponSpecial(optional byte i)
 	{
 		ServerSwitchLaser(!bLaserOn);
 		PlayIdle();
-		CheckSetNetAim();
 	}
 }
 
@@ -280,8 +274,6 @@ function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
 	
-	CheckSetNetAim();
-
 	if (ThirdPersonActor!=None)
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -307,10 +299,7 @@ simulated function ClientSwitchLaser()
 	}
 
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
-
-
 
 simulated function SpawnLaserDot(optional vector Loc)
 {
@@ -531,7 +520,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -562,11 +551,11 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.LK05.BigIcon_LK05'
 	BigIconCoords=(Y1=36,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
     bNetNotify=True
     bCockOnEmpty=False
-	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
+	SpecialInfo(0)=(Info="240.0;30.0;0.9;80.0;0.7;0.7;0.4")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=1.600000)
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=1.600000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-Cock',Volume=1.200000)
@@ -578,11 +567,10 @@ defaultproperties
 	WeaponModes(3)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50In',Color1=(A=158),StartSize1=75,StartSize2=72)
-	SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-	SightDisplayFOV=25.000000
-	ParamsClasses(0)=Class'LK05WeaponParams'
+	ParamsClasses(0)=Class'LK05WeaponParamsComp'
 	ParamsClasses(1)=Class'LK05WeaponParamsClassic'
 	ParamsClasses(2)=Class'LK05WeaponParamsRealistic'
+    ParamsClasses(3)=Class'LK05WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LK05PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LK05SecondaryFire'
 	IdleAnimRate=0.500000
@@ -599,8 +587,11 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBP_SKC_Pro.LK05Pickup'
-	PlayerViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
-	BobDamping=2.000000
+
+	PlayerViewOffset=(X=6.00,Y=3.50,Z=-2.00)
+	SightOffset=(X=1.5,Y=0,Z=2.16)
+	SightAnimScale=0.5
+
 	AttachmentClass=Class'BWBP_SKC_Pro.LK05Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LK05.SmallIcon_LK05'
 	IconCoords=(X2=127,Y2=31)

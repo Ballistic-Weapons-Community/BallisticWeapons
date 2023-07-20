@@ -21,7 +21,7 @@ defaultproperties
 		HookStopFactor=1.700000
 		HookPullForce=100.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=24.000000,bAtten=True)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000
@@ -102,8 +102,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="7Fold Steel"
+		Weight=30
+		
 		PlayerSpeedFactor=1.100000
-		InventorySize=10
+		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -111,7 +114,24 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Flamer
+		LayoutName="Superheated Alloy"
+		Weight=10
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKS43Camos.Katana-KGlow",Index=1)
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-Flamer'
 
 }

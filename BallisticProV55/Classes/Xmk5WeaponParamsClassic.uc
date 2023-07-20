@@ -109,26 +109,122 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
+		Weight=30
+		LayoutName="Red Dot Sight"
+		//Visual
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
-		InventorySize=8
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
+		SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
+		//Stats
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=45
-		SightOffset=(X=1.000000,Z=17.750000)
-		SightPivot=(Pitch=200)
+		//SightOffset=(X=1.000000,Z=17.750000)
+		//SightPivot=(Pitch=200)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_NoDart
+		//Layout core
+		Weight=15
+		LayoutName="No Dart"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
+		SightOffset=(X=1.0,Y=0.01,Z=-0.3)
+		//Stats
+		InventorySize=4
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.230000
+		bNeedCock=True
+		MagAmmo=45
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	Layouts(1)=WeaponParams'ClassicParams_NoDart'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=XMK5_Tan
+		Index=0
+		CamoName="Brown"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMK5_Desert
+		Index=1
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-MainDesert",Index=1,AIndex=1,PIndex=1)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMK5_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-MainJungle",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-ShieldDark",Index=2,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMK5_Red
+		Index=3
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGMain",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGShield",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGClip",Index=3,AIndex=2,PIndex=2)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMK5_Blast
+		Index=4
+		CamoName="Blast"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-MainOrk",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGShield",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGClip",Index=3,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-DarterOrk",Index=4,AIndex=3,PIndex=3) //aka dOrk
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XMK5_Gold
+		Index=5
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-MainGold",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-ShieldDark",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-MagDark",Index=3,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.XMK5-DarterDark",Index=4,AIndex=3,PIndex=3)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'XMK5_Tan'
+	Camos(1)=WeaponCamo'XMK5_Desert'
+	Camos(2)=WeaponCamo'XMK5_Jungle'
+	Camos(3)=WeaponCamo'XMK5_Red'
+	Camos(4)=WeaponCamo'XMK5_Blast'
+	Camos(5)=WeaponCamo'XMK5_Gold'
 }

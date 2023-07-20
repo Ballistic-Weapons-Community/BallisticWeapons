@@ -6,10 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Game_BWConflictCTFMaps extends Game_BWConflict
-	transient
-	HideDropDown
-	CacheExempt;
+class Game_BWConflictCTFMaps extends Game_BWConflict;
+//	transient
+//	HideDropDown
+//	CacheExempt;
 
 simulated event PostBeginPlay()
 {
@@ -40,7 +40,7 @@ simulated function FixFlags()
 defaultproperties
 {
      MapPrefix="CTF"
-     GameName="BallisticPro Conflict (CTF Maps)"
+     GameName="Ballistic Conflict (CTF Maps)"
      Description="Standard Ballistic Conflict, but played in the CTF maps.||www.runestorm.com"
      DecoTextName="BallisticProV55.Game_BWConflictCTFMaps"
      Acronym="BWCCM"

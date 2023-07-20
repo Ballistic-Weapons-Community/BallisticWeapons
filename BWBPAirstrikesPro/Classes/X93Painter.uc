@@ -1,5 +1,7 @@
 class X93Painter extends Weapon
-    config(user);
+    HideDropDown
+	CacheExempt
+	config(user);
 
 #exec OBJ LOAD FILE=XGameShaders.utx
 

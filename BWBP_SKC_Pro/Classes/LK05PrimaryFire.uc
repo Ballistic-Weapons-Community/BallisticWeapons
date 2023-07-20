@@ -10,7 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class LK05PrimaryFire extends BallisticRangeAttenFire;
+class LK05PrimaryFire extends BallisticProInstantFire;
 
 var() sound	FireSoundLoop;
 var() sound	FireSoundLoopBegin;
@@ -90,21 +90,28 @@ function ServerPlayFiring()
 	else
 		Weapon.SetBoneScale (0, 0.0, LK05Carbine(Weapon).SilencerBone);
 	
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 
 	CheckClipFinished();
+}
+
+simulated function PlayFireAnimations()
+{
+	if (BW.MagAmmo - ConsumedLoad < 1)
+	{
+		BW.IdleAnim = 'OpenIdle';
+		BW.ReloadAnim = 'ReloadEmpty';
+
+		AimedFireAnim = 'OpenSightFire';
+		FireAnim = 'OpenFire';
+	}
+	else
+	{
+		AimedFireAnim = 'SightFire';
+		FireAnim = 'Fire';
+	}
+
+	Super.PlayFireAnimations();
 }
 
 //Do the spread on the client side
@@ -118,38 +125,7 @@ function PlayFiring()
 		Weapon.SetBoneScale (0, 0.0, LK05Carbine(Weapon).SilencerBone);
 	}
 
-	if (BW.MagAmmo - ConsumedLoad < 1)
-	{
-		BW.IdleAnim = 'OpenIdle';
-		BW.ReloadAnim = 'ReloadEmpty';
-    		if (LK05Carbine(Weapon).bScopeView)
-			FireAnim = 'OpenSightFire';
-		else
-			FireAnim = 'OpenFire';
-	}
-	else
-	{
-		BW.IdleAnim = 'Idle';
-		BW.ReloadAnim = 'Reload';
-    	if (LK05Carbine(Weapon).bScopeView)
-			FireAnim = 'SightFire';
-		else
-			FireAnim = 'Fire';
-	}
-
-	if (AimedFireAnim != '')
-	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())		
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-	}
-
-	else
-	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	}
+	PlayFireAnimations();
 	
     ClientPlayForceFeedback(FireForce);  // jdf
 
@@ -239,15 +215,7 @@ defaultproperties
      SMuzzleFlashClass=Class'BWBP_SKC_Pro.LK05SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=0.750000
-     CutOffDistance=3072.000000
-     CutOffStartRange=1792.000000
      TraceRange=(Min=9000.000000,Max=11000.000000)
-     WallPenetrationForce=16.000000
-     
-     Damage=25.000000
-
-     RangeAtten=0.400000
-     WaterRangeAtten=0.700000
      DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
@@ -269,12 +237,14 @@ defaultproperties
      FireEndAnim=
      FireRate=0.095000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_68mm'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+	 
      WarnTargetPct=0.200000
      aimerror=900.000000
 }

@@ -1,4 +1,4 @@
-class XM20AutoLas extends BallisticWeapon;
+class XM20AutoLas extends BallisticWeapon HideDropDown CacheExempt;
 
 var() name			BulletBone;
 
@@ -371,6 +371,7 @@ function int ManageHeatInteraction(Pawn P, int HeatPerShot)
 	
 	foreach P.BasedActors(class'XM20HeatManager', HM)
 		break;
+		
 	if (HM == None)
 	{
 		HM = Spawn(class'XM20HeatManager',P,,P.Location + vect(0,0,-30));
@@ -433,24 +434,22 @@ defaultproperties
 	ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.XM20P.BigIcon_XM20P'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Energy=True
 	bNoCrosshairInScope=True
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-	ReloadAnimRate=1.000000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-LeverDown')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipIn')
 	ClipInFrame=0.650000 
 	CurrentWeaponMode=2
-	SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
-	SightDisplayFOV=15
+	SightOffset=(X=21.000000,Y=10.100000,Z=17.380000)
 	GunLength=80.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(B=158,G=150,R=0,A=124),StartSize1=54,StartSize2=59)
-    ParamsClasses(0)=Class'XM20WeaponParams'
+    ParamsClasses(0)=Class'XM20WeaponParamsComp'
 	FireModeClass(0)=Class'BWBP_OP_Pro.XM20PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.XM20SecondaryFire'
 	SelectAnimRate=1.500000
@@ -467,8 +466,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=4
 	PickupClass=Class'BWBP_OP_Pro.XM20Pickup'
-	PlayerViewOffset=(X=4.000000,Y=0.000000,Z=-22.000000)
-	BobDamping=1.800000
+    PlayerViewOffset=(X=0.000000,Y=-1.000000,Z=-16.300000)
 	AttachmentClass=Class'BWBP_OP_Pro.XM20Attachment'
 	bUseBigIcon=True
 	IconMaterial=Texture'BWBP_OP_Tex.XM20P.Icon_XM20P'
@@ -481,7 +479,7 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM20'
-	DrawScale=0.500000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'ONSstructureTextures.CoreGroup.Invisible'
     Skins(2)=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainProtoShine'

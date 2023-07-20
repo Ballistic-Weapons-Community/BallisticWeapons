@@ -30,11 +30,12 @@ simulated function  Destroyed()
 
 defaultproperties
 {
-     BrassMode=MU_None
-     InstantMode=MU_None
-     FlashMode=MU_None
-     LightMode=MU_None
-     TrackAnimMode=MU_Primary
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP9Det_TPm'
-     DrawScale=0.200000
+	WeaponClass=class'FP9Explosive'
+	BrassMode=MU_None
+	InstantMode=MU_None
+	FlashMode=MU_None
+	LightMode=MU_None
+	TrackAnimMode=MU_Primary
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP9Det_TPm'
+	DrawScale=0.200000
 }

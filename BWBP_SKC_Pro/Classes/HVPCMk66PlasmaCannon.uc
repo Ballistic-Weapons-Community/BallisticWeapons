@@ -103,7 +103,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
 		if (HVPCMk66Pickup(Pickup) != None)
 			HeatLevel = FMax( 0.0, HVPCMk66Pickup(Pickup).HeatLevel - (level.TimeSeconds - HVPCMk66Pickup(Pickup).HeatTime) * 0.25 );
 		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
@@ -700,7 +714,7 @@ defaultproperties
      AIReloadTime=0.200000
      BigIconMaterial=Texture'BWBP_SKC_Tex.BFG.BigIcon_BFG'
      BigIconCoords=(Y1=30,Y2=235)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Energy=True
      bWT_Super=True
@@ -710,12 +724,10 @@ defaultproperties
      bNoMag=True
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=768)
-     SightOffset=(X=-18.000000,Z=23.299999)
-     SightDisplayFOV=40.000000
-	 ParamsClasses(0)=Class'HVPCMk66WeaponParams'
+	 ParamsClasses(0)=Class'HVPCMk66WeaponParamsComp'
 	 ParamsClasses(1)=Class'HVPCMk66WeaponParamsClassic'
 	 ParamsClasses(2)=Class'HVPCMk66WeaponParamsRealistic'
+     ParamsClasses(3)=Class'HVPCMk66WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk66SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color1=(G=248,R=0),Color2=(B=153,G=168,R=170,A=173),StartSize2=82)
@@ -733,8 +745,11 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=5
      PickupClass=Class'BWBP_SKC_Pro.HVPCMk66Pickup'
-     PlayerViewOffset=(X=-3.000000,Y=9.500000,Z=-9.500000)
-     BobDamping=1.600000
+
+     PlayerViewOffset=(X=-2.00,Y=6.33,Z=-6.33)
+     SightOffset=(X=-12.00,Z=15.53)
+	 SightPivot=(Pitch=768)
+
      AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk66Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.BFG.SmallIcon_BFG'
      IconCoords=(X2=127,Y2=31)
@@ -743,13 +758,13 @@ defaultproperties
      LightEffect=LE_NonIncidence
      LightHue=180
      LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
+     LightBrightness=192.00
+     LightRadius=12.00
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
-     DrawScale=0.450000
+     DrawScale=0.30
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'
      bFullVolume=True
      SoundVolume=64
-     SoundRadius=128.000000
+     SoundRadius=128.00
 }

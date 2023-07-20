@@ -9,8 +9,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 		ProjectileClass=Class'BallisticProV55.MACShell'
 		SpawnOffset=(X=28.000000,Y=10.000000)
-		Speed=25000.000000
-		MaxSpeed=25000.000000
+		Speed=14000.000000
+		MaxSpeed=14000.000000
 		Damage=350.000000
 		DamageRadius=192.000000
 		MomentumTransfer=80000.000000
@@ -49,6 +49,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Deploy weapon"
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -98,17 +99,44 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=51
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.000000
 		MagAmmo=5
 		ZoomType=ZT_Logarithmic
 		WeaponName="J2329-HAMR Assault Cannon"
-		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
+		//SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=MAC_Desert
+		Index=0
+		CamoName="Desert"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MAC_Jungle
+		Index=1
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainJungle",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MAC_Urban
+		Index=2
+		CamoName="Urban"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainUrban",Index=1,AIndex=0,PIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'MAC_Desert'
+	Camos(1)=WeaponCamo'MAC_Jungle'
+	Camos(2)=WeaponCamo'MAC_Urban'
 }

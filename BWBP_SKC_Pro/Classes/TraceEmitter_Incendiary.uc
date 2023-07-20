@@ -22,6 +22,9 @@ defaultproperties
          MaxParticles=1
          SpinsPerSecondRange=(Z=(Min=2.000000,Max=4.000000))
          InitialParticlesPerSecond=50000.000000
+		 StartSizeRange=(Y=(Min=0.400000,Max=0.50000),Z=(Min=0.400000,Max=0.50000))
+		 // offset to prevent drawing the back of the tracer through the weapon
+		 StartLocationOffset=(X=50)
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=11000.000000,Max=11000.000000))

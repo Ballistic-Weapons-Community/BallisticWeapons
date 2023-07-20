@@ -30,6 +30,8 @@ var()   class<DamageType>	DamageType;				// Damage type to use
 var()   class<DamageType>	DamageTypeHead;			// Damage type to use for head
 var()   class<DamageType>	DamageTypeArm;			// Damage type to use for unimportant limbs
 
+var()   int                 DamageSpecial;          // Damage dealt for unique effects like AoEs and DoTs
+
 var()   bool				UseRunningDamage;		// Enable damage variations when running towards/away from enemies
 var()   float				RunningSpeedThreshold;	// Instigator speed divided by this to figure out Running damage bonus
 //-----------------------------------------------------------------------------
@@ -51,6 +53,36 @@ var()   float				HookPullForce;			// Velocity amount added to pull victim toward
 
 static simulated function Initialize(BallisticWeapon BW);
 
+//Accessor for stats
+function FireModeStats GetStats() 
+{
+	local FireModeStats FS;
+	local int opt_range, decayed_range, max_range;
+
+    FS = super.GetStats();
+
+	FS.DamageInt = Damage;
+
+    if (RangeAtten < 1f)
+	    FS.Damage = String(FS.DamageInt) @ "-" @ String(int(Damage * RangeAtten));
+    else
+        FS.Damage = String(FS.DamageInt);
+
+    FS.HeadMult = HeadMult;
+    FS.LimbMult = LimbMult;
+	FS.RangeOpt = "Max range:"@(int(TraceRange.Max / 52.5))@"m";
+
+    opt_range = DecayRange.Min / 52.5f;
+    decayed_range = DecayRange.Max / 52.5f;
+    max_range = TraceRange.Max / 52.5f;
+
+	FS.RangeOpt = "Optimal:"@ opt_range $"m";
+    FS.RangeDecayed = "Decayed:"@ decayed_range $"m";
+    FS.RangeMax = "Maximum:"@ max_range $"m";
+	
+	return FS;
+}
+
 defaultproperties
 {
     TraceRange=(Min=5000.000000,Max=5000.000000)
@@ -58,11 +90,13 @@ defaultproperties
     RangeAtten=1f
 
     Damage=1
-    HeadMult=1.25f
-    LimbMult=0.7f
+    HeadMult=2.0f
+    LimbMult=0.75f
 
     UseRunningDamage=False
     RunningSpeedThreshold=300
+
+    ShotTypeString="shots"
 
     PDamageFactor=0.75f
     WallPDamageFactor=0.95f

@@ -247,7 +247,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_OP_Tex.Longsword.BigIcon_MAGSaw'
      BigIconCoords=(Y1=32,Y2=230)
-     BCRepClass=Class'BallisticReplicationInfo'
      ManualLines(0)="Slashes with the longsword. Has a long range and moderate damage output."
      ManualLines(1)="Prepares a thrust, which will be extended to longpoint upon getting within reach of anything, rapidly dealing damage through the animation. This attack inflicts more damage from behind."
      ManualLines(2)="The Weapon Function key allows the player to block. Whilst blocking, no attacks are possible, but all melee damage striking the player frontally will be mitigated.||The MAG-SAW is effective at close range, but has lower DPS than shorter ranged melee weapons."
@@ -257,7 +256,10 @@ defaultproperties
      bNoMag=True
      GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClasses(0)=Class'MAG78WeaponParams'
+	 ParamsClasses(0)=Class'MAG78WeaponParamsComp'
+	 ParamsClasses(1)=Class'MAG78WeaponParamsComp'
+	 ParamsClasses(2)=Class'MAG78WeaponParamsRealistic'
+	 ParamsClasses(3)=Class'MAG78WeaponParamsTactical'
      FireModeClass(0)=Class'MAG78PrimaryFire'
      FireModeClass(1)=Class'MAG78SecondaryFire'
      PutDownTime=0.500000
@@ -269,7 +271,6 @@ defaultproperties
      CurrentRating=0.300000
      bMeleeWeapon=True
 	 Description="The MAG-SAW is a robust and efficient weapon that utilizes every surface as a dangerous implement. Developed in direct response to the EKS-43 Katana, the MAG-SAW features numerous cutting edge technologies to maximize effectiveness in any and all situations. Such as a titanium alloy blade to reduce weight, combined with a recently developed and 100% tested electro-magnetic drive system which turns the chain with ease and deadly power, the MAG-SAW easily lends itself to aggressive civilian defense. But it doesn't stop there; as demonstrated in the legendary Purge of Lignus CIXIIV by the mercenary group Kriegsknecht, among whom the MAG-SAW is held in high esteem, the MAG-SAW creates absolute butchery of Krao. In any situation, any place, and against any enemy the MAG-SAW is a fierce competitor against its counterpart."
-     DisplayFOV=65.000000
      Priority=12
      HudColor=(B=255,G=200,R=200)
      CenteredOffsetY=7.000000
@@ -281,7 +282,7 @@ defaultproperties
      AttachmentClass=Class'MAG78Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.Longsword.Icon_MAGSaw'
      IconCoords=(X2=127,Y2=31)
-	 bUseBigIcon=True
+	 //bUseBigIcon=True
      ItemName="MAG-SAW Longsword"
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_MAGSAW'
      DrawScale=1.250000

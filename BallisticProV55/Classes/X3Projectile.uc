@@ -11,21 +11,9 @@ class X3Projectile extends BallisticProjectile;
 var   bool			bStuckInWall;
 var   bool			bHitPlayer;
 
-
-simulated function PreBeginPlay()
+simulated function InitParams()
 {
-    local BallisticWeapon BW;
-    Super(Projectile).PreBeginPlay();
-
-    if (Instigator == None)
-        return;
-
-    BW = BallisticWeapon(Instigator.Weapon);
-
-    if (BW == None)
-        return;
-
-    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(BW, self, 1);
+    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 1);
 }
 
 simulated function InitProjectile ()
@@ -33,6 +21,7 @@ simulated function InitProjectile ()
 	SetTimer(0.1, false);
 	super.InitProjectile();
 }
+
 simulated event Timer()
 {
 	super.Timer();
@@ -153,6 +142,7 @@ function UsedBy(Pawn User)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.X3Knife'
      ModeIndex=1
 	 ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
      bRandomStartRotation=False

@@ -154,13 +154,13 @@ function byte BestMode()
 
 defaultproperties
 {
-	TeamSkins(0)=(SkinNum=1)
-	ReloadAnimRate=2.500000
+	TeamSkins(0)=(SkinNum=0)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'MACTW_WeaponParams'
+	ParamsClasses(0)=Class'MACTW_WeaponParamsComp'
 	ParamsClasses(1)=Class'MACTW_WeaponParamsClassic'
-	ParamsClasses(2)=Class'MACTW_WeaponParamsClassic'
+	ParamsClasses(2)=Class'MACTW_WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MACTW_WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
 	SelectAnim="Deploy"
 	BringUpTime=1.500000
@@ -174,5 +174,4 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMRTurret'
 	DrawScale=0.250000
 	PrePivot=(Z=8.000000)
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

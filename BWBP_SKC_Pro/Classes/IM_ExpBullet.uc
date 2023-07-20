@@ -1,7 +1,8 @@
 //=============================================================================
-// IM_Bullet.
+// IM_ExpBullet.
 //
-// ImpactManager subclass for ordinary bullets
+// ImpactManager subclass for explosive rounds
+// Used on the X83 and AH104
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -26,6 +27,18 @@ defaultproperties
      HitDecals(6)=Class'BallisticProV55.AD_BigBulletConcrete'
      HitDecals(7)=Class'BallisticProV55.AD_BigBulletConcrete'
      HitDecals(10)=Class'BallisticProV55.AD_BigBulletConcrete'
-     HitSoundVolume=0.900000
+     HitSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletConcreteBig' //
+     HitSounds(1)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletConcreteBig' //
+     HitSounds(2)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletDirtBig'
+     HitSounds(3)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletMetalBig'
+     HitSounds(4)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletWoodBig' //
+     HitSounds(5)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletDirtBig'
+     HitSounds(6)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletConcreteBig' //
+     HitSounds(7)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletConcreteBig' //
+     HitSounds(8)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletDirtBig'
+     HitSounds(9)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletWater'
+     HitSounds(10)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletGlassBig'
+     HitSoundVolume=1.500000
      HitSoundRadius=124.000000
+     HitDelay=0.050000
 }

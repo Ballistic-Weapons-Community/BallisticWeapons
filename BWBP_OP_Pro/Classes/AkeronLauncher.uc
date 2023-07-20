@@ -13,6 +13,15 @@ replication
 	reliable if (Role == ROLE_Authority)
 		ClientSetViewRotation;
 }
+
+simulated function PreBeginPlay()
+{
+	if (class'BallisticReplicationInfo'.static.IsTactical())
+		FireModeClass[1] = class'BallisticScopeFire';
+
+	Super.PreBeginPlay();
+}
+
 function LostWarhead()
 {
 	GoToState('ControllerRecovery');
@@ -118,7 +127,7 @@ defaultproperties
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBP_OP_Tex.Akeron.BigIcon_Akeron'
      BigIconCoords=(X1=36,Y1=50,X2=486,Y2=220)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Projectile=True
@@ -128,9 +137,7 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
-     CockAnimRate=1.250000
      CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
-     ReloadAnimRate=0.900000
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff')
      bNonCocking=True
@@ -142,14 +149,15 @@ defaultproperties
      ScopeViewTex=Texture'BW_Core_WeaponTex.Artillery.Artillery-ScopeView'
      FullZoomFOV=10.000000
      bNoCrosshairInScope=True
-     SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
+     SightOffset=(X=20.000000,Y=-17.000000,Z=-1.5000000)
 
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=2
-     ParamsClasses(0)=Class'AkeronWeaponParams'
+     ParamsClasses(0)=Class'AkeronWeaponParamsComp'
      ParamsClasses(1)=Class'AkeronWeaponParamsClassic'
      ParamsClasses(2)=Class'AkeronWeaponParamsRealistic'
+     ParamsClasses(3)=Class'AkeronWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_OP_Pro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.AkeronSecondaryFire'
      SelectAnimRate=0.600000
@@ -169,7 +177,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_OP_Pro.AkeronPickup'
-     PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-18.000000)
+     PlayerViewOffset=(X=5.000000,Y=13.000000,Z=-6.000000)
      AttachmentClass=Class'BWBP_OP_Pro.AkeronAttachment'
      IconMaterial=Texture'BWBP_OP_Tex.Akeron.Icon_Akeron'
      IconCoords=(X2=127,Y2=31)

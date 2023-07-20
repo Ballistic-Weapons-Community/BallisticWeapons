@@ -34,11 +34,12 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
-     BrassMode=MU_None
-     InstantMode=MU_None
-     FlashMode=MU_Both
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRL_TPm'
-     DrawScale=0.250000
+	WeaponClass=class'MRocketLauncher'
+	MuzzleFlashClass=class'MRLFlashEmitter'
+	BrassMode=MU_None
+	InstantMode=MU_None
+	FlashMode=MU_Both
+	bRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRL_TPm'
+	DrawScale=0.250000
 }

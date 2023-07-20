@@ -47,6 +47,7 @@ var() float		ShovelAnimRate;
 var() int       Rockets;					//Rockets currently in the gun.
 var() int       ConfigX;					//Rockets currently in the gun.
 var() int      	ConfigY;					//Rockets currently in the gun.
+var() byte		SelfHeatDecayRate;
 var	bool		bHeatOnce;					//Used for playing a sound once.
 var	bool		bBarrelsOnline;				//Used for alternating laser effect in attachment class.
 var	bool		bIsReloadingGrenade;		//Are we loading grenades?
@@ -89,12 +90,15 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	LS14PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-	if (BCRepClass.default.GameStyle == 1)
+
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		LS14PrimaryFire(FireMode[0]).default.HeatPerShot = 0;
-		LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
+		//LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
 		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShot = 1;
 		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShotDouble = 3.5;
+		LS14PrimaryFire(FireMode[0]).default.SelfHeatDeclineDelay = 0;
+		SelfHeatDecayRate=2.5;
 		LS14PrimaryFire(FireMode[0]).bAnimatedOverheat = true;
 	}
 }
@@ -110,7 +114,7 @@ simulated function ScreenStart()
 {
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Client = self;
-	Skins[5] = WeaponScreenShader; //Set up scripted texture.
+	Skins[4] = WeaponScreenShader; //Set up scripted texture.
 	UpdateScreen();//Give it some numbers n shit
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Revision++;
@@ -231,7 +235,7 @@ simulated function AddHeat(float Amount, float OverrideAmount, float DeclineTime
 	SelfHeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, SelfHeatDeclineTime);
 	
 	//arena heat
-	if (BCRepClass.default.GameStyle == 0)
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
 	{
 		if (SelfHeatLevel >= 9.75)
 		{
@@ -269,7 +273,7 @@ simulated function ClientSetHeat(float NewHeat)
 simulated event Tick (float DT)
 {
 	if (SelfHeatLevel > 0 && Level.TimeSeconds > SelfHeatDeclineTime)
-		SelfHeatLevel = FMax(SelfHeatLevel - 10 * DT, 0);
+		SelfHeatLevel = FMax(SelfHeatLevel - SelfHeatDecayRate * DT, 0);
 	
 	super.Tick(DT);
 }
@@ -449,7 +453,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 }
 
-simulated event RenderOverlays (Canvas Canvas)
+simulated function DrawScopeOverlays(Canvas Canvas)
 {
 	local float tileScaleX;
 	local float tileScaleY;
@@ -462,23 +466,12 @@ simulated event RenderOverlays (Canvas Canvas)
 	local float barSizeX;
 	local float barSizeY;
 
-	if (!bScopeView)
-	{
-		WeaponRenderOverlays(Canvas);
-		if (SightFX != None)
-			RenderSightFX(Canvas);
-		return;
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
 	ScaleFactor = Canvas.ClipX / 1600;
 
     if (ScopeViewTex != None) //Now resets gun variables
     {
 		Canvas.ColorModulate.W = 1;
+		
 		if (CurrentWeaponMode == 1)
 		{
 	        Canvas.SetDrawColor(255,255,255,255);
@@ -814,6 +807,9 @@ simulated function bool PutDown()
 }
 simulated function Destroyed()
 {
+	if (Instigator != None && AIController(Instigator.Controller) == None)
+		WeaponScreen.client=None;
+		
 	if (BarrelFlare != None)	BarrelFlare.Destroy();
 	if (BarrelFlareSmall != None)	BarrelFlareSmall.Destroy();
 	if (CoverGlow != None)
@@ -1008,6 +1004,7 @@ defaultproperties
 	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
 	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
 
+	SelfHeatDecayRate=10
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
@@ -1031,7 +1028,7 @@ defaultproperties
 	Shells(2)=(ShellName="RocketOne")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.LS14.BigIcon_LS14'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Hazardous=True
 	bWT_Splash=True
@@ -1040,8 +1037,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-	ReloadAnimRate=1.150000
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Heat')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
@@ -1059,15 +1055,14 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=600,Roll=-1024)
-	SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
 	GunLength=80.000000
-	ParamsClasses(0)=Class'LS14WeaponParams'
+	ParamsClasses(0)=Class'LS14WeaponParamsComp'
 	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	ParamsClasses(2)=Class'LS14WeaponParamsRealistic'
+    ParamsClasses(3)=Class'LS14WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LS14SecondaryFire'
 	SelectAnimRate=1.500000
@@ -1083,11 +1078,14 @@ defaultproperties
 	Priority=194
 	HudColor=(B=255,G=150,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=9
+	InventoryGroup=5
 	GroupOffset=4
 	PickupClass=Class'BWBP_SKC_Pro.LS14Pickup'
-	PlayerViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
-	BobDamping=1.800000
+
+	PlayerViewOffset=(X=2.00,Y=4.50,Z=-7.00)
+	SightOffset=(X=11.00,Y=-0.5,Z=7.50)
+	SightPivot=(Pitch=600,Roll=-1024)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.LS14Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LS14.SmallIcon_LS14'
 	IconCoords=(X2=127,Y2=31)
@@ -1102,9 +1100,8 @@ defaultproperties
 	DrawScale=0.300000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
-	Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-	Skins(3)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-	Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-    Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+	Skins(2)=Texture'BWBP_SKC_Tex.LS14.LS14-RDS'
+	Skins(3)=Shader'BWBP_OP_Tex.CX61.CX61SightShad'
+    Skins(4)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
 	 
 }

@@ -10,8 +10,6 @@ simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	
-    Acceleration = vect(0,0,0);
-	
 	SetTimer(ArmingDelay, false);
 
 	if (Level.NetMode == NM_DedicatedServer)
@@ -70,6 +68,7 @@ simulated function Timer()
 	
 	Velocity = vector(Rotation) * FlightSpeed;
     Acceleration = Normal(Velocity) * AccelSpeed;
+    
     SoundVolume = 128;
 
     bArmed = true;
@@ -80,6 +79,7 @@ simulated function Timer()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.MX32Weapon'
     ModeIndex=1
     IgniteSound=sound'CicadaSnds.MissileIgnite'
     ArmingDelay=0.2

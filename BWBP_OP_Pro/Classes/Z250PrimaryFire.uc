@@ -318,7 +318,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 		Surf = int(HitMat.SurfaceType);
 		
 	if (Other == None || Other.bWorldGeometry)
-		BW.TargetedHurtRadius(5, 150, class'DTZ250Bullet', 50, HitLocation);
+		BW.TargetedHurtRadius(DamageSpecial, 150, class'DTZ250Bullet', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on
 	SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
@@ -447,64 +447,37 @@ simulated event ModeDoFire()
 	BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.DamageInt = default.Damage;
-	FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS = FS.DamageInt / 0.075;
-	FS.TTK = 0.075 * (Ceil(175/FS.DamageInt) - 1);
-	FS.RPM = String(int((1 / 0.075) * 60))@default.ShotTypeString$"/min";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
-	 TraceCount=1
-     TraceRange=(Min=12000.000000,Max=12000.000000)
-     WallPenetrationForce=0
-     
-     Damage=22.000000
-     HeadMult=1.5f
-     LimbMult=0.8f
-     
-     WaterRangeAtten=0.800000
-     DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
-     DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
-     DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
-     KickForce=1000
-     PenetrateForce=150
-     MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
-     FlashScaleFactor=0.800000
-     BrassClass=Class'BWBP_OP_Pro.Brass_Z250Shell'
-     BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     FireRecoil=64.000000
-     FirePushbackForce=150.000000
-     FireChaos=0.120000
-     XInaccuracy=16.000000
-     YInaccuracy=16.000000
-     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.Z250.Z250-Fire',Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireRate=0.200000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_Z250Rounds'
-     ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-10.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     WarnTargetPct=0.200000
-     aimerror=900.000000
+	DamageSpecial=20
+	TraceCount=1
+	TraceRange=(Min=12000.000000,Max=12000.000000)
+	DamageType=Class'BWBP_OP_Pro.DTZ250Bullet'
+	DamageTypeHead=Class'BWBP_OP_Pro.DTZ250Bullet'
+	DamageTypeArm=Class'BWBP_OP_Pro.DTZ250Bullet'
+	KickForce=1000
+	PenetrateForce=150
+	MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
+	FlashScaleFactor=0.800000
+	BrassClass=Class'BWBP_OP_Pro.Brass_Z250Shell'
+	BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
+	FireRecoil=64.000000
+	FirePushbackForce=150.000000
+	FireChaos=0.120000
+	XInaccuracy=16.000000
+	YInaccuracy=16.000000
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.Z250.Z250-Fire',Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireRate=0.200000
+	AmmoClass=Class'BWBP_OP_Pro.Ammo_Z250Rounds'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-8.00)
+	ShakeOffsetRate=(X=-160.000000)
+	ShakeOffsetTime=2.000000
+
+	WarnTargetPct=0.200000
+	aimerror=900.000000
 }

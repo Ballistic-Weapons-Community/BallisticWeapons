@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20PrimaryFire extends BallisticRangeAttenFire;
+class XM20PrimaryFire extends BallisticProInstantFire;
 
 var()	float			HeatPerShot;
 
@@ -33,15 +33,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 defaultproperties
 {
 	HeatPerShot=8.000000
-	CutOffDistance=3072.000000
-	CutOffStartRange=1536.000000
 	TraceRange=(Min=11000.000000,Max=12000.000000)
     MaxWaterTraceRange=11000
-	WallPenetrationForce=64.000000
-
-	Damage=12.000000
-	
-	
 	DamageType=Class'BWBP_OP_Pro.DTXM20Body'
 	DamageTypeHead=Class'BWBP_OP_Pro.DTXM20Head'
 	DamageTypeArm=Class'BWBP_OP_Pro.DTXM20Body'
@@ -62,7 +55,7 @@ defaultproperties
 	ShakeRotMag=(X=200.000000,Y=16.000000)
 	ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)
 	ShakeRotTime=1.000000
-	ShakeOffsetMag=(X=-2.500000)
+	ShakeOffsetMag=(X=-5.500000)
 	ShakeOffsetRate=(X=-500.000000)
 	ShakeOffsetTime=1.000000
 	

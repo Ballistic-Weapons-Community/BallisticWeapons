@@ -40,34 +40,33 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk66ProjectileSmall'
-			SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-			Speed=250.000000
-			MaxSpeed=2000000.000000
-			AccelSpeed=190000.000000
-			Damage=60
-			DamageRadius=122.000000
-			MomentumTransfer=12500.000000
-			HeadMult=2.083333
-			LimbMult=0.666666
-			MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-SmallFire',Volume=2.000000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=100.000000
-			Chaos=0.050000
-			Inaccuracy=(X=2,Y=2)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk66ProjectileSmall'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=250.000000
+		MaxSpeed=2000000.000000
+		AccelSpeed=190000.000000
+		Damage=60
+		DamageRadius=122.000000
+		MomentumTransfer=12500.000000
+		HeadMult=2.083333
+		LimbMult=0.666666
+		MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-SmallFire',Volume=2.000000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=100.000000
+		Chaos=0.050000
+		Inaccuracy=(X=2,Y=2)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.110000
-			AmmoPerFire=2
-			BurstFireRateFactor=1.00
-			FireAnim="Fire2"
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.110000
+		AmmoPerFire=2
+		BurstFireRateFactor=1.00
+		FireAnim="Fire2"
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -109,9 +108,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=0.650000
 		PlayerJumpFactor=0.600000
-		InventorySize=30
+		InventorySize=16
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=-18.000000,Z=23.299999)
+		//SightOffset=(X=-18.000000,Z=23.299999)
 		SightPivot=(Pitch=768)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

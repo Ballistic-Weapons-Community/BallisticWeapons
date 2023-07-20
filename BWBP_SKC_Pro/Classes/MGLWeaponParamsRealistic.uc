@@ -8,7 +8,7 @@ defaultproperties
     //=================================================================	
 	
 	//Impact
-	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=RealisticPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeImpact'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=10000.000000
@@ -26,12 +26,18 @@ defaultproperties
 		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bOverrideArming=true
+		ArmingDelay=0.1
+		UnarmedDetonateOn=DT_Disarm
+		UnarmedPlayerImpactType=PIT_Bounce
+		ArmedDetonateOn=DT_Impact
+		ArmedPlayerImpactType=PIT_Detonate
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.800000
 		BurstFireRateFactor=1.00	
-	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
+	FireEffectParams(0)=GrenadeEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 		
@@ -103,17 +109,17 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=24
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35
 		MagAmmo=6
-		SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
+		//SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
 		SightPivot=(Pitch=512)
 		WeaponModes(0)=(ModeName="Impact",ModeID="WM_SemiAuto",Value=1)
 		WeaponModes(1)=(ModeName="4-Round Burst",bUnavailable=True)
 		WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		WeaponName="MGL-140 40mm Grenade Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -121,6 +127,67 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=MGL_Desert
+		Index=0
+		CamoName="Desert"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainJungle",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainJungle",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Arctic
+		Index=3
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainArctic",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Purple
+		Index=4
+		CamoName="Purple"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainPurble",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Red
+		Index=5
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainRed",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Gold
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainGoldShine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'MGL_Desert'
+	Camos(1)=WeaponCamo'MGL_Black'
+	Camos(2)=WeaponCamo'MGL_Jungle'
+	Camos(3)=WeaponCamo'MGL_Arctic'
+	Camos(4)=WeaponCamo'MGL_Purple'
+	Camos(5)=WeaponCamo'MGL_Red'
+	Camos(6)=WeaponCamo'MGL_Gold'
 }

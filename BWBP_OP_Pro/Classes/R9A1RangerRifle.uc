@@ -2,13 +2,30 @@ class R9A1RangerRifle extends BallisticWeapon;
 
 #exec OBJ LOAD File=BWBP_OP_Tex.utx
 
+//Layouts
+var()   bool		bHasHybridScope;				// Uses two scopes
+
 var float LastModeChangeTime;
 
-var rotator ScopeSightPivot;
-var vector ScopeSightOffset;
+var() rotator ScopeSightPivot;
+var() vector ScopeSightOffset;
 
-var rotator IronSightPivot;
-var vector IronSightOffset;
+var() rotator IronSightPivot;
+var() vector IronSightOffset;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasHybridScope=False;
+
+	if (InStr(WeaponParams.LayoutTags, "hybrid") != -1)
+	{
+		bHasHybridScope=True;
+	}
+}
 
 simulated function PostBeginPlay()
 {
@@ -218,63 +235,72 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 //===========================================================================
 exec simulated function ScopeView()
 {
-	if (ZoomType == ZT_Fixed && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
-	if (SightingState == SS_None)
+	if (bHasHybridScope)
 	{
-		if (ZoomType == ZT_Fixed)
+		if (ZoomType == ZT_Fixed && SightingState != SS_None && SightingState != SS_Active)
+			return;
+			
+		if (SightingState == SS_None)
 		{
-			SightPivot = IronSightPivot;
-			SightOffset = IronSightOffset;
-			ZoomType = ZT_Irons;
-			ScopeViewTex = None;
-			SightingTime = default.SightingTime;
+			if (ZoomType == ZT_Fixed)
+			{
+				SightPivot = IronSightPivot;
+				SightOffset = IronSightOffset;
+				ZoomType = ZT_Irons;
+				ScopeViewTex = None;
+				SightingTime = default.SightingTime;
+			}
 		}
 	}
-	
 	Super.ScopeView();
 }
 
 exec simulated function ScopeViewRelease()
 {
-	if (ZoomType != ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
+	if (bHasHybridScope)
+	{
+		if (ZoomType != ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
+			return;
+	}
 	Super.ScopeViewRelease();
 }
 
 simulated function ScopeViewTwo()
 {
-	if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
-	if (SightingState == SS_None)
+	if (bHasHybridScope)
 	{
-		switch(CurrentWeaponMode)
+		if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
+			return;
+			
+		if (SightingState == SS_None)
 		{
-			case 1: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB1'; break;
-			case 2: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB2'; break;
-			default: ScopeViewTex = Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1';
-		}
-		
-		if (ZoomType == ZT_Irons)
-		{
-			SightPivot = ScopeSightPivot;
-			SightOffset = ScopeSightOffset;
-			ZoomType = ZT_Fixed;
-			SightingTime = 0.4;
+			switch(CurrentWeaponMode)
+			{
+				case 1: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB1'; break;
+				case 2: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB2'; break;
+				default: ScopeViewTex = Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1';
+			}
+			
+			if (ZoomType == ZT_Irons)
+			{
+				SightPivot = ScopeSightPivot;
+				SightOffset = ScopeSightOffset;
+				ZoomType = ZT_Fixed;
+				MaxZoom = 4;
+				SightingTime = 0.4;
+			}
 		}
 	}
-	
 	Super.ScopeView();
 }
 
 simulated function ScopeViewTwoRelease()
 {
-	if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
+	if (bHasHybridScope)
+	{
+		if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
+			return;
+	}
 	Super.ScopeViewRelease();
 }
 
@@ -285,7 +311,7 @@ simulated function SetHand(float InHand)
 	IronSightOffset = default.SightOffset;
 
 	super.SetHand(InHand);
-	if (Hand < 0)
+	if (Hand < 0 && bHasHybridScope)
 	{
 		if (ZoomType != ZT_Irons)
 		{
@@ -441,11 +467,15 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
+	SightPivot=(Roll=11800)
+	SightOffset=(X=0.000000,Y=0.36000,Z=4.75)
+
 	ScopeSightPivot=(Pitch=50)
-	ScopeSightOffset=(X=35.000000,Y=0.050000,Z=12.550000)
+	ScopeSightOffset=(X=2.4,Z=5.7)
+
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.R9A1.BigIcon_R9A1'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic, long-range, moderate recoil rifle fire with three choices of ammunition, switched between using the fire mode function.||Standard rounds inflict good damage with high penetration.||Freeze rounds inflict lower damage, but progressively slow struck targets.||Heat Ray shots inflict low initial damage, but heat up the target, causing subsequent shots to inflict more damage. This effect wears off over time."
 	ManualLines(1)="Raises the scope."
@@ -453,9 +483,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
@@ -466,16 +494,15 @@ defaultproperties
 	CurrentWeaponMode=0
 	FullZoomFOV=25.000000
 	bNoCrosshairInScope=True
-	SightPivot=(Roll=11800)
-	SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
-	SightDisplayFOV=25.000000
 	GunLength=80.000000
-	ParamsClasses(0)=Class'R9A1WeaponParams'
+	ParamsClasses(0)=Class'R9A1WeaponParamsComp'
 	ParamsClasses(1)=Class'R9A1WeaponParamsClassic'
 	ParamsClasses(2)=Class'R9A1WeaponParamsRealistic'
+    ParamsClasses(3)=Class'R9A1WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.R9A1PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.R9A1ScopeFire'
 	SightingTime=0.4
+	SightBobScale=0.3
 	SelectAnimRate=1.100000
 	BringUpTime=0.400000
 	SelectForce="SwitchToAssaultRifle"
@@ -490,7 +517,7 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=3
 	PickupClass=Class'BWBP_OP_Pro.R9A1Pickup'
-	PlayerViewOffset=(Y=9.500000,Z=-11.000000)
+	PlayerViewOffset=(X=7,Y=5.30000,Z=-7.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.R9A1Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.R9A1.SmallIcon_R9A1'
 	IconCoords=(X2=127,Y2=31)
@@ -502,5 +529,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_R9A1'
-	DrawScale=0.500000
+	DrawScale=0.300000
+	SightAnimScale=0.25
 }

@@ -21,6 +21,8 @@ var	  bool				bLockedOn, bLockedOld;
 var() BUtil.FullSound	LockOnSound;
 var() BUtil.FullSound	LockOffSound;
 var() BUtil.IntRange	LaserAimSpread;
+var() float         TargetUpdateRate;      //How often targeting view updates targeting brackets
+var   vector        TargetLoc;             //Used for the targeting view for choppy targeting brackets
 
 var   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can be used as camera or directed with laser
 
@@ -58,7 +60,6 @@ simulated function OutOfAmmo()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 
 	G5Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
@@ -80,7 +81,6 @@ simulated function ClientSwitchLaser()
 		PlaySound(LaserOffSound,,0.7,,32);
 	}
 	PlayIdle();
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 	OnLaserSwitched();
 }
 
@@ -203,12 +203,6 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	Canvas.DrawActor(Laser, false, false, DisplayFOV);
 }
 
-// Azarael - improved ironsights
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
-
 simulated function PlayIdle()
 {
 	Super.PlayIdle();
@@ -294,7 +288,7 @@ simulated function WeaponTick(float DT)
 {
 	local float BestAim, BestDist;
 	local Vector Start;
-	local Pawn Targ;
+	local Pawn NewTarget;
 	local bool bWasLockedOn;
 
 	Super.WeaponTick(DT);
@@ -309,15 +303,15 @@ simulated function WeaponTick(float DT)
 
 	Start = Instigator.Location + Instigator.EyePosition();
 	BestAim = 0.995;
-	Targ = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
-	if (Targ != None)
+	NewTarget = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
+	if (NewTarget != None)
 	{
-		if (Targ != Target)
+		if (NewTarget != Target)
 		{
-			Target = Targ;
+			Target = NewTarget;
 			TargetTime = 0;
 		}
-		else if (Vehicle(Targ) != None)
+		else if (Vehicle(NewTarget) != None)
 			TargetTime += 1.2 * DT * (BestAim-0.95) * 20;
 		else
 			TargetTime += DT * (BestAim-0.95) * 20;
@@ -355,25 +349,142 @@ simulated event PostNetReceive()
 	}
 	Super.PostNetReceive();
 }
-
 simulated event DrawTargeting (Canvas C)
 {
-	local Vector V, V2, X, Y, Z;
-	local float ScaleFactor;
+	local Vector V, X, Y, Z;//, V2;
+	local float ScaleFactor, XL, XY;
 
-	if (Target == None || !bLockedOn)
-		return;
 
-	ScaleFactor = C.ClipX / 1600;
+
+    if (Target != none && Instigator.Controller.LineOfSightTo(Target))
+        TargetLoc = C.WorldToScreen(Target.Location);
+
+////Jittery target update
+//    if  (Level.TimeSeconds >= TargetUpdateRate)
+//    {
+//        TargetLoc = C.WorldToScreen(Target.Location);
+//        TargetUpdateRate = Level.TimeSeconds + default.TargetUpdateRate;
+//    }
+
+
+    ScaleFactor = C.ClipY / 1200;
 	GetViewAxes(X, Y, Z);
-	V  = C.WorldToScreen(Target.Location - Y*Target.CollisionRadius + Z*Target.CollisionHeight);
-	V.X -= 32*ScaleFactor;
-	V.Y -= 32*ScaleFactor;
-	C.SetPos(V.X, V.Y);
-	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
-	C.SetDrawColor(255,255,255,255);
-//	C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', V2.X - V.X, V2.Y - V.Y, 0, 0, 1, 1);
-	C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+
+	if (Target == none || !Instigator.Controller.LineOfSightTo(Target))
+    {
+        V.X = C.ClipX/2;
+        V.Y = C.ClipY/2;
+    }
+    else
+        V = TargetLoc;
+
+    C.SetDrawColor(75,255,0,255);
+    C.StrLen("ACQUIRING TARGET LOCK...", XL, XY);
+
+    if (CurrentWeaponMode == 1)
+        C.DrawTextJustified("TOP ATTACK MODE",1, (C.ClipX/2) - XL/2, (C.ClipY/2) - (160*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) - (160*ScaleFactor) + XY/2);
+    else if (CurrentWeaponMode == 0)
+        C.DrawTextJustified("DIRECT ATTACK MODE",1, (C.ClipX/2) - XL/2, (C.ClipY/2) - (160*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) - (160*ScaleFactor) + XY/2);
+
+
+    if (bNeedCock || MagAmmo == 0)
+    {
+        C.DrawTextJustified("RELOAD",1, (C.ClipX/2) - XL/2, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+    }
+    else if (Target == none)
+    {
+	    C.DrawTextJustified("DISTANCE: N/A",0, (C.ClipX/2) - XL/2, (C.ClipY/2) + (180*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (180*ScaleFactor) + XY/2);
+    }
+    else
+    {
+
+        if (!Instigator.Controller.LineOfSightTo(Target))
+        {
+	        C.DrawTextJustified("TARGET LOST",1, C.ClipX/2 - 100*ScaleFactor, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + 100*ScaleFactor ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+            C.DrawTextJustified("DISTANCE: N/A",0, (C.ClipX/2) - XL/2, (C.ClipY/2) + (180*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (180*ScaleFactor) + XY/2);
+
+        }
+        else
+        {
+            if (bLockedOn)
+            {
+                C.SetDrawColor(255,00,0,255);
+    	        C.DrawTextJustified("LOCKED",1, C.ClipX/2 - 100*ScaleFactor, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + 100*ScaleFactor ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+            }
+            else
+            {
+                C.DrawTextJustified("ACQUIRING TARGET LOCK...",1, C.ClipX/2 - 100*ScaleFactor, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + 100*ScaleFactor ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+            }
+            C.DrawTextJustified("DISTANCE: " $ int(VSize(TargetLoc-(Instigator.Location + Instigator.EyePosition()))/50) $ "m",0, (C.ClipX/2) - XL/2, (C.ClipY/2) + (180*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (180*ScaleFactor) + XY/2);
+
+
+            //Center targeting box
+            C.SetPos(V.X - 32*ScaleFactor, V.Y - 32*ScaleFactor);
+            //C.DrawTile(texture'BallisticUI2.Crosshairs.Misc8', 48 * ScaleFactor, 48 * ScaleFactor, 0, 0, 256, 256);
+            //C.DrawTile(Texture'Crosshairs.HUD.Crosshair_Triad1', 64*ScaleFactor, 64*ScaleFactor, 0, 0, 64, 64);
+            C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', 64*ScaleFactor, 64*ScaleFactor, 0, 0, 128, 128);
+
+        }
+
+
+    }
+
+    /*if (bLockedOn)
+    {
+        //Targeting brackets
+        //Upper Left
+        C.SetPos(V.X - (((140 - (C.ClipX/2 - V.X)) + 36) * ScaleFactor), V.Y - (((140 - (C.ClipY/2 - V.Y)) + 36) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', 36*ScaleFactor, 36*ScaleFactor, 0, 0, 64, 64);
+
+        //Lower Left
+        C.SetPos(V.X - (((140 - (C.ClipX/2 - V.X)) + 36) * ScaleFactor), V.Y + ((140 - (V.Y - C.ClipY/2)) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', 36*ScaleFactor, 36*ScaleFactor, 0, 64, 64, 64);
+
+        //Upper Right
+        C.SetPos(V.X + ((140 - (V.X - C.ClipX/2)) * ScaleFactor), V.Y - (((140 - (C.ClipY/2 - V.Y)) + 36) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', 36*ScaleFactor, 36*ScaleFactor, 64, 0, 64, 64);
+
+        //Lower Right
+        C.SetPos(V.X + ((140 - (V.X - C.ClipX/2)) * ScaleFactor), V.Y + ((140 - (V.Y - C.ClipY/2)) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', 36*ScaleFactor, 36*ScaleFactor, 64, 64, 64, 64);
+
+    }
+    else*/ if (Target != none && !bLockedOn)
+    {
+        //Targeting brackets
+        //Upper Left
+        C.SetPos(V.X - (((140 - (C.ClipX/2 - V.X)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor), V.Y - (((140 - (C.ClipY/2 - V.Y)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 0, 0, 64, 64);
+
+        //Lower Left
+        C.SetPos(V.X - (((140 - (C.ClipX/2 - V.X)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor), V.Y + (((140 - (V.Y - C.ClipY/2)) * (1-TargetTime/LockonTime)) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 0, 64, 64, 64);
+
+        //Upper Right
+        C.SetPos(V.X + (((140 - (V.X - C.ClipX/2)) * (1-TargetTime/LockonTime)) * ScaleFactor), V.Y - (((140 - (C.ClipY/2 - V.Y)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 64, 0, 64, 64);
+
+        //Lower Right
+        C.SetPos(V.X + (((140 - (V.X - C.ClipX/2)) * (1-TargetTime/LockonTime)) * ScaleFactor), V.Y + (((140 - (V.Y - C.ClipY/2)) * (1-TargetTime/LockonTime)) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 64, 64, 64, 64);
+    }
+
+//// Text follows target's position
+//    C.DrawTextJustified("DISTANCE: " $ int(VSize(Target.Location-(Instigator.Location + Instigator.EyePosition()))/50) $ "m",1, V.X - 72*ScaleFactor, V.Y + 80*ScaleFactor, V.X + 72*ScaleFactor,V.Y + 92*ScaleFactor);
+//
+//    if (bLockedOn)
+//       C.DrawTextJustified("TARGET ACQUIRED",1, V.X - 72*ScaleFactor, V.Y + 94*ScaleFactor, V.X + 72*ScaleFactor,V.Y + 108*ScaleFactor);
+
+//// Old Lock-on graphics
+//	if (bLockedOn)
+//	{
+//        C.SetPos(V.X - 36*ScaleFactor, V.Y - 36*ScaleFactor);
+//        //C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Lockbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+//        C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Lockbox', 72*ScaleFactor, 72*ScaleFactor);
+//    }
+//    else
+//        //C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+//        C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', 72*ScaleFactor, 72*ScaleFactor);
 }
 
 simulated function KillLaserDot()
@@ -695,7 +806,7 @@ defaultproperties
 	LaserAimSpread=(Min=0,Max=256)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_G5'
 	BigIconCoords=(Y1=36,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -706,10 +817,9 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ReloadAnim="ReloadLoop"
-	ReloadAnimRate=1.250000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Load')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-LoadHatch')
 	bCanSkipReload=True
@@ -736,14 +846,13 @@ defaultproperties
 
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.G5OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=228),Color2=(B=0,G=255,R=255,A=228),StartSize1=97,StartSize2=103)
- 
 
 	bNoCrosshairInScope=True
-	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	SightingTime=0.500000
-	ParamsClasses(0)=Class'G5WeaponParams'
+	ParamsClasses(0)=Class'G5WeaponParamsComp'
 	ParamsClasses(1)=Class'G5WeaponParamsClassic' //todo: seeker stats
 	ParamsClasses(2)=Class'G5WeaponParamsRealistic' //todo: seeker stats
+    ParamsClasses(3)=Class'G5WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.G5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.G5SecondaryFire'
 	SelectAnimRate=0.600000
@@ -761,7 +870,8 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BallisticProV55.G5Pickup'
-	PlayerViewOffset=(X=10.000000,Y=10.500000,Z=-6.000000)
+	PlayerViewOffset=(X=0.000000,Y=8.00000,Z=-3.000000)
+	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	AttachmentClass=Class'BallisticProV55.G5Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_G5'
 	IconCoords=(X2=127,Y2=31)

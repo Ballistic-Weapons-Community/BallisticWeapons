@@ -152,19 +152,20 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=15
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.50000
 		bNeedCock=True
 		MagAmmo=10
-		SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
+		//SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Gauss: Quick Charge",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Gauss: Full Charge",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
 		InitialWeaponMode=0
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -174,6 +175,63 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=M2020_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M2020_Aliens
+		Index=1
+		CamoName="Corporate"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MiscMetal",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MainAlien",Index=2,AIndex=2,PIndex=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M2020_Desert
+		Index=2
+		CamoName="Desert"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MiscMetal",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MainDesert",Index=2,AIndex=2,PIndex=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M2020_Winter
+		Index=3
+		CamoName="Winter Hex"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MiscMetal",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MainWinter",Index=2,AIndex=2,PIndex=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M2020_Blue
+		Index=4
+		CamoName="Blue Hex"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MiscMetal",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MainBlueHex",Index=2,AIndex=2,PIndex=2)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M2020_Red
+		Index=5
+		CamoName="Red Tiger"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MiscMetal",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M2020Camos.M2020-MainRedTiger",Index=2,AIndex=2,PIndex=2)
+	End Object
+	
+	Camos(0)=WeaponCamo'M2020_Black'
+	Camos(1)=WeaponCamo'M2020_Aliens'
+	Camos(2)=WeaponCamo'M2020_Desert'
+	Camos(3)=WeaponCamo'M2020_Winter'
+	Camos(4)=WeaponCamo'M2020_Blue'
+	Camos(5)=WeaponCamo'M2020_Red'
 }

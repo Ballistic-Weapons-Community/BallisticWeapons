@@ -54,9 +54,9 @@ simulated function PlayStartHold()
     Weapon.PlayAnim('ChargeUp', 1.0, 0.1);
 }
 
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
-	return super.GetDamage (Other, HitLocation, Dir, Victim, DT) * RailPower;
+	return Super.ResolveDamageFactors(Other, TraceStart, HitLocation, Penetratecount, WallCount, WallPenForce, WaterHitLocation) * RailPower;
 }
 
 simulated function ModeTick(float DT)
@@ -71,6 +71,7 @@ simulated function ModeTick(float DT)
             RailPower = FMin(RailPower + ChargeRate*DT, PowerLevel);
             Instigator.AmbientSound = ChargeSound;
 			Instigator.SoundVolume = 255;
+			Instigator.SoundPitch = 64;
         }
         else
 		{
@@ -111,16 +112,10 @@ defaultproperties
      ChargeSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-TriCharge'
      UltraChargeSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-UltraCharge'
      UltraFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Ultra'
-     CutOffDistance=1536.000000
-     CutOffStartRange=1024.000000
      TraceCount=30
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=2560.000000,Max=2560.000000)
-     Damage=10.000000
-     
-     
-     RangeAtten=0.600000
      DamageType=Class'BWBP_SKC_Pro.DTSKASShotgunAlt'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgunAlt'
@@ -142,7 +137,7 @@ defaultproperties
      FireAnim="FireBig"
      FireEndAnim=
      FireRate=1.700000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_SKASShells'
+     AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
      AmmoPerFire=3
      ShakeRotMag=(X=256.000000,Y=128.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

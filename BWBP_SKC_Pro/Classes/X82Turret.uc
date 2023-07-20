@@ -12,15 +12,13 @@ function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocatio
 {
 	if ( InGodMode() )
  		Damage = 0;
+
+	/*
 	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
  		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp(((Driver.Location.Z + Driver.EyePosition().Z) - Location.Z)/(2 * Driver.CollisionHeight), 0, 1);
+	*/
+	
 	Momentum = vect(0,0,0);
-}
-
-exec function GetMultScale()
-{
-	Log("Damage multiplier:"$(DriverDamageMult + (1 - DriverDamageMult) * FClamp(((Driver.Location.Z + Driver.EyePosition().Z) - Location.Z)/(2 * Driver.CollisionHeight), 0, 1)));
-	Log("Driver eye: "$(Driver.Location.Z + Driver.EyePosition().Z)$" Turret loc: "$Location.Z);
 }
 
 function Fire( optional float F )
@@ -29,14 +27,13 @@ function Fire( optional float F )
 	if (Weapon!=None)
 		Weapon.Fire(F);
 }
+
 function AltFire( optional float F )
 {
 	super.AltFire();
 	if (Weapon!=None)
 		Weapon.AltFire(F);
 }
-
-function SetAbandoned();
 
 function InitTurretWeapon(Weapon Weap)
 {

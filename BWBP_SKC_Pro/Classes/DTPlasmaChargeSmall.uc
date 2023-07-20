@@ -19,7 +19,7 @@ defaultproperties
      DamageIdent="Streak"
      DamageDescription=",Plasma,"
      bOnlySeverLimbs=True
-     WeaponClass=Class'BWBP_SKC_Pro.HVPCMk66PlasmaCannon'
+     WeaponClass=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
      DeathString="%k turned %o into Swiss cheese with plasma."
      FemaleSuicide="%o shot off her toes."
      MaleSuicide="%o shot off his toes."

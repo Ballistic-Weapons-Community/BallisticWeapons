@@ -10,14 +10,13 @@
 //=============================================================================
 class A500SecondaryFire extends BallisticProProjectileFire;
 
-var Sound ChargingSound;
-var int AcidLoad;
-
-const ACIDMAX = 5;
+var Sound 			ChargingSound;
+var int 			AcidLoad;
+var const int 		MaxAcidLoad;
 
 function ModeHoldFire()
 {
-    if ( BW.HasMagAmmo(ThisModeNum) && BW.GameStyleIndex == 0)
+    if ( BW.HasMagAmmo(ThisModeNum) && (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()))
     {
         Super.ModeHoldFire();
 		BW.bPreventReload = True;
@@ -27,10 +26,41 @@ function ModeHoldFire()
 
 state Hold
 {
+	simulated function bool AllowFire()
+	{
+		if (!CheckReloading())
+			return false;		// Is weapon busy reloading
+		if (!CheckWeaponMode())
+			return false;		// Will weapon mode allow further firing
+
+		if (BW.MagAmmo == 0 && HoldTime == 0)
+		{
+			if (!bPlayedDryFire && DryFireSound.Sound != None)
+			{
+				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
+				bPlayedDryFire=true;
+			}
+			if (bDryUncock)
+				BW.bNeedCock=true;
+
+			BW.bNeedReload = BW.MayNeedReload(ThisModeNum, 0);
+
+			BW.EmptyFire(ThisModeNum);
+
+			return false;		// Is there ammo in weapon's mag
+		}
+		else if (BW.bNeedReload)
+			return false;
+		else if (BW.bNeedCock)
+			return false;		// Is gun cocked
+
+		return true;
+	}
+
     simulated function BeginState()
     {
         AcidLoad = 0;
-        SetTimer(1.25, true);
+        SetTimer(0.5, true);
         Instigator.AmbientSound = ChargingSound;
 		Instigator.SoundRadius = 256;
 		Instigator.SoundVolume = 255;
@@ -40,9 +70,12 @@ state Hold
     simulated function Timer()
     {
 		if (BW.HasMagAmmo(ThisModeNum))
+		{
 			AcidLoad++;
-        BW.ConsumeMagAmmo(ThisModeNum, 1);
-        if (AcidLoad == ACIDMAX || !BW.HasMagAmmo(ThisModeNum))
+        	BW.ConsumeMagAmmo(ThisModeNum, 1);
+		}
+		
+        if (AcidLoad == MaxAcidLoad || !BW.HasMagAmmo(ThisModeNum))
             SetTimer(0.0, false);
     }
 
@@ -66,32 +99,35 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 		return;
 		
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
+	
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		A500AltProjectile(Proj).AcidLoad = float(AcidLoad)/float(ACIDMAX);
+		A500AltProjectile(Proj).AcidLoad = float(AcidLoad)/float(MaxAcidLoad);
 		A500AltProjectile(Proj).AdjustSpeed();
 	}
 }
 
 defaultproperties
 {
-	 AcidLoad=2.5
-     ChargingSound=Sound'GeneralAmbience.texture22'
-     bFireOnRelease=True
-     AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
+	AcidLoad=1
+	MaxAcidLoad=8
+	AmmoPerFire=0
+	ChargingSound=Sound'GeneralAmbience.texture22'
+	bFireOnRelease=True
+	AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
 
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+	ShakeRotMag=(X=32.000000,Y=8.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=1.500000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=1.500000
 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=True
-	 bTossed=True
+	// AI
+	bInstantHit=True
+	bLeadTarget=True
+	bTossed=True
 
-	 BotRefireRate=0.5
+	BotRefireRate=0.5
 }

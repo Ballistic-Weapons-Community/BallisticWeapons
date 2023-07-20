@@ -39,6 +39,7 @@ defaultproperties
 		bCockAfterFire=True
 		FireEndAnim=
 		FireAnimRate=0.7500000	
+		AimedFireAnim="SightFireCock"
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 
@@ -99,16 +100,48 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=15
+		//Layout core
+		LayoutName="Variable Scope"
+		Weight=30
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
+        ZoomType=ZT_Smooth
+     	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
+		//Function
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=5
 		bMagPlusOne=True
-        ZoomType=ZT_Logarithmic
-		ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
-		SightOffset=(X=10.500000,Y=0.000000,Z=17.0500000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
+		//ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
+		WeaponName="R87A1 .416 Sniper Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_NoScope
+		//Layout core
+		LayoutName="Iron Sights"
+		LayoutTags="quickpull"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=0f)
+		ZoomType=ZT_Irons
+		SightPivot=(Pitch=-64)
+		SightOffset=(X=5.00,Y=0.00,Z=1.9)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		//Function
+		InventorySize=7
+		MagAmmo=5
+		bMagPlusOne=True
+		//ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.250000
 		WeaponName="R87A1 .416 Sniper Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -116,6 +149,84 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	Layouts(1)=WeaponParams'RealisticParams_NoScope'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=R78_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Wood
+		Index=1
+		CamoName="Black n' Wood"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainWood",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Desert
+		Index=2
+		CamoName="Desert"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainDesert",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Jungle
+		Index=3
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainTiger",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Urban
+		Index=4
+		CamoName="Urban"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainUrban",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Patriot
+		Index=5
+		CamoName="Patriot"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainPatriot",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Tiger
+		Index=6
+		CamoName="Red Tiger"
+		Weight=3
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainRedTiger",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=R78_Gold
+		Index=7
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-MainGold",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R78-ScopeDark",Index=2,AIndex=1,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'R78_Gray'
+	Camos(1)=WeaponCamo'R78_Wood'
+	Camos(2)=WeaponCamo'R78_Desert'
+	Camos(3)=WeaponCamo'R78_Jungle'
+	Camos(4)=WeaponCamo'R78_Urban'
+	Camos(5)=WeaponCamo'R78_Patriot'
+	Camos(6)=WeaponCamo'R78_Tiger'
+	Camos(7)=WeaponCamo'R78_Gold'
 }

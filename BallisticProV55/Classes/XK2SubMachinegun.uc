@@ -11,7 +11,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XK2SubMachinegun extends BallisticWeapon;
+class XK2SubMachinegun extends BallisticHandgun;
 
 var(XK2)   bool		bSilenced;				// Silencer on. Silenced
 var(XK2) name		SilencerBone;			// Bone to use for hiding silencer
@@ -391,7 +391,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -429,7 +429,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XK2'
 	BigIconCoords=(X1=24,X2=450)
 	SightFXClass=Class'BallisticProV55.XK2SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Low-velocity submachinegun fire. Low recoil, lower damage output than other submachineguns but controllable and excellent hipfire."
@@ -452,30 +452,33 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
 	
-	CockAnimRate=1.25
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=256)
-	SightOffset=(X=5.000000,Z=12.700000)
-	SightDisplayFOV=40.000000
+
 	AIRating=0.8
 	CurrentRating=0.8
-	SightZoomFactor=0.85
-	ParamsClasses(0)=Class'XK2WeaponParams'
+	SightZoomFactor=1.2
+	ParamsClasses(0)=Class'XK2WeaponParamsComp'
 	ParamsClasses(1)=Class'XK2WeaponParamsClassic'
 	ParamsClasses(2)=Class'XK2WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XK2WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.Xk2PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Xk2SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="Yet another high quality weapon by Black & Wood, the XK2 is a lightweight, suppressed sub-machinegun. It has a fast rate of fire, but its low velocity bullets make it less dangerous than other weapons. However, these low velocity rounds do allow the weapon to be easily silenced, turning it into an effective stealth weapon, used by many law enforcement organisations, and Black-Ops military units alike. The weapon's high rate of fire, and quick reload times, means that the soldier can pump out rounds quicker than even the M353, making it very useful for cover-fire."
-	DisplayFOV=55.000000
 	Priority=32
 	HudColor=(B=100,G=150,R=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=1
+	SightAnimScale=0.45f
 	PickupClass=Class'BallisticProV55.XK2Pickup'
-	PlayerViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
+
+	PlayerViewOffset=(X=10.00,Y=9.00,Z=-12.00)
+	SightOffset=(X=6.00,Y=0.02,Z=3.75)
+	SightPivot=(Pitch=64)
+	SightBobScale=0.2f
+
 	AttachmentClass=Class'BallisticProV55.Xk2Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XK2'
 	IconCoords=(X2=127,Y2=31)
@@ -487,7 +490,7 @@ defaultproperties
 	LightBrightness=130.000000
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XK2'
-	DrawScale=0.200000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
     Skins(2)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'

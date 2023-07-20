@@ -19,9 +19,11 @@ class PD97Bloodhound extends BallisticHandgun;
 
 var PD97TazerEffect TazerEffect;
 var array<PD97DartControl> StruckTargets;
+var bool bShotgunMode; //Am I a shotgun? Are you??
 
 var rotator DrumRot;
 var byte DrumPos;
+var bool bNeedRotate; //Used to ensure a rotation is called before the next shot
 
 var array<Name> ShellBones[5];
 var array<Name> SpareShellBones[5];
@@ -48,25 +50,36 @@ replication
 	    ClientAddProjectile, ClientRemoveProjectile;
 }
 
-
-simulated event PreBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bShotgunMode=false;
+	if (InStr(WeaponParams.LayoutTags, "shotgun") != -1)
 	{
-		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
-		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
+		bShotgunMode=true;
+		if ( ThirdPersonActor != None )
+		{
+			PD97Attachment(ThirdPersonActor).bShotgunMode=true;
+			PD97Attachment(ThirdPersonActor).InstantMode=MU_Primary;
+		}
 	}
-	else if (BCRepClass.default.GameStyle == 2)
-	{
-		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire';
-		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryFire';
-	}
+}
+
+simulated function Notify_DrumRotate ()
+{
+}
+
+simulated function Notify_HideShell ()
+{
+	SetBoneScale(10, 0.0, 'EjectingShell');
 }
 
 simulated function ShellFired()
 {
 	SetBoneScale(DrumPos, 0.0, ShellBones[DrumPos]);
+	bNeedRotate=true;
 }
 simulated function CycleDrum()
 {
@@ -75,6 +88,7 @@ simulated function CycleDrum()
 	else DrumPos++;
 	DrumRot.Roll -= 65535 / 5;
 	SetBoneRotation('drum',DrumRot);	
+	bNeedRotate=false;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -98,7 +112,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 }
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
-{	
+{
+	
 	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
@@ -124,20 +139,43 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		}
 	}
 	
-	//Phase out Channel 1 if a sight fire animation has just ended.
+	if (Anim == ZoomInAnim)
+	{
+		SightingState = SS_Active;
+		ScopeUpAnimEnd();
+		return;
+	}
+	else if (Anim == ZoomOutAnim)
+	{
+		SightingState = SS_None;
+		ScopeDownAnimEnd();
+		return;
+	}
+
+	if (anim == FireMode[0].FireAnim || (FireMode[1] != None && anim == FireMode[1].FireAnim) )
+		bPreventReload=false;
+		
+	if (MeleeFireMode != None && anim == MeleeFireMode.FireAnim)
+	{
+		if (MeleeState == MS_StrikePending)
+			MeleeState = MS_Pending;
+		else MeleeState = MS_None;
+		ReloadState = RS_None;
+		if (Role == ROLE_Authority)
+			bServerReloading=False;
+		bPreventReload=false;
+	}
+		
+	//Phase out channels 1 and 2 if a sight fire animation has just ended.
 	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
 	{
 		AnimBlendParams(1, 0);
+		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
-			
-		if (anim == BFireMode[0].AimedFireAnim || !BFireMode[1].IsFiring())
-		{
-			bPreventReload=False;
-			if (anim == BFireMode[0].AimedFireAnim)
-				CycleDrum();
-		}
+		CycleDrum();
+		bPreventReload=False;
 	}
 
 	// Modified stuff from Engine.Weapon
@@ -147,12 +185,16 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);
         else if (FireMode[1]!=None && anim== FireMode[1].FireAnim && HasAnim(FireMode[1].FireEndAnim))
             SafePlayAnim(FireMode[1].FireEndAnim, FireMode[1].FireEndAnimRate, 0.0);
-        else if (!FireMode[1].IsFiring() && MeleeState < MS_Held)
+        else if (MeleeState < MS_Held)
 			bPreventReload=false;
-		if (Channel == 0 && (bNeedReload || !FireMode[0].bIsFiring) && MeleeState < MS_Held)
+		if (Channel == 0 && (bNeedReload || ((FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring))) && MeleeState < MS_Held)
 			PlayIdle();
     }
 	// End stuff from Engine.Weapon
+
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
+		return;
 
 	// Start Shovel ended, move on to Shovel loop
 	if (ReloadState == RS_StartShovel)
@@ -164,7 +206,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -200,8 +242,15 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	
 	if (ReloadState == RS_GearSwitch)
+	{
+		if (Role == ROLE_Authority)
+			bServerReloading=false;
 		ReloadState = RS_None;
+		PlayIdle();
+	}
 }
+
+
 
 simulated function Notify_DrumDown()
 {
@@ -213,7 +262,7 @@ simulated function Notify_DrumDown()
 	{
 		if (i < Ammo[0].AmmoAmount)
 			SetBoneScale(j, 1, ShellBones[j]);
-		else SetBoneScale(j+default.MagAmmo, 0, SpareShellBones[j]);
+		else SetBoneScale(j+default.MagAmmo*2, 0, SpareShellBones[j]);
 		
 		if (j == 4)
 			j = 0;
@@ -228,7 +277,8 @@ simulated function Notify_ClipIn()
 	Super.Notify_ClipIn();
 	
 	for (i=0; i < default.MagAmmo; i++)
-		SetBoneScale(i+default.MagAmmo, 1, SpareShellBones[i]);
+		SetBoneScale(i+default.MagAmmo*2, 1, SpareShellBones[i]);
+	SetBoneScale(10, 1, 'EjectingShell');
 }
 
 //===========================================================================
@@ -404,7 +454,10 @@ function ServerSetRocketTarget(vector Loc)
 
 simulated function vector GetRocketTarget()
 {
-	return LockedTarget.Location;
+	if (LockedTarget != None)
+		return LockedTarget.Location;
+	else
+		return vect(0,0,0);
 }
 
 // AI Stuff
@@ -457,16 +510,15 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBP_OP_Tex.Bloodhound.BigIcon_PD97'
 	IdleTweenTime=0.000000
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Heal=True
 	ManualLines(0)="Fires projectile darts. Upon striking an enemy, these darts release a cloud of pink gas which allows the path of the enemy to be tracked. The darts will also deal damage over time. Upon striking an ally, the darts heal over time instead of dealing damage."
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing paltry DPS but slowing the enemy movement."
 	ManualLines(2)="Primarily a support weapon, the Bloodhound is most effective when used as part of a team. Nevertheless, sufficient dart hits can cause high damage. The Bloodhound has very low recoil."
-	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
+	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;0.5")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
@@ -474,12 +526,12 @@ defaultproperties
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
-	SightDisplayFOV=40.000000
+	SightOffset=(X=0.000000,Y=0.0000,Z=0.00000)
 	SightingTime=0.200000
-	ParamsClasses(0)=Class'PD97WeaponParams'
+	ParamsClasses(0)=Class'PD97WeaponParamsComp'
 	ParamsClasses(1)=Class'PD97WeaponParamsClassic'
 	ParamsClasses(2)=Class'PD97WeaponParamsRealistic'
+    ParamsClasses(3)=Class'PD97WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.PD97PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.PD97SecondaryFire'
 	PutDownTime=0.600000
@@ -495,7 +547,7 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=13
 	PickupClass=Class'BWBP_OP_Pro.PD97Pickup'
-	PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
+	PlayerViewOffset=(X=7.5,Y=4,Z=-4.5)
 	AttachmentClass=Class'BWBP_OP_Pro.PD97Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Bloodhound.Icon_PD97'
 	IconCoords=(X2=127,Y2=31)
@@ -507,5 +559,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Bloodhound'
-	DrawScale=0.200000
+	DrawScale=0.300000
 }

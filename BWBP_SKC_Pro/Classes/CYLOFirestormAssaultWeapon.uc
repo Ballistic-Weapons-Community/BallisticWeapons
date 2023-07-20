@@ -52,12 +52,12 @@ simulated event PostNetBeginPlay()
 	
 	super.PostNetBeginPlay();
 
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		bVariableHeatProps=true;
 		CYLOFirestormPrimaryFire(FireMode[0]).bVariableHeatProps=true;
 	}
-	else if (BCRepClass.default.GameStyle == 2)
+	else if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		CYLOFirestormPrimaryFire(FireMode[0]).HeatPerShot = 0.1;
 	}
@@ -541,7 +541,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
 		if (CYLOFirestormPickup(Pickup) != None)
 			HeatLevel = FMax( 0.0, CYLOFirestormPickup(Pickup).HeatLevel - (level.TimeSeconds - CYLOFirestormPickup(Pickup).HeatTime) * 2.55 );
 		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
@@ -646,7 +660,7 @@ function float GetAIRating()
 	if (Dist < 256)
 		return 0.2;
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -678,29 +692,32 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMk4'
 	BigIconCoords=(X1=16,Y1=30)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
 	ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
 	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
-	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")
+	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.2;0.7;0.4")
 	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOFirestormMeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=22
 	CockAnimPostReload="Cock"
-	CockAnimRate=1.400000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
-	SightPivot=(Pitch=900)
-	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
+
+	PlayerViewOffset=(X=2.00,Y=4.00,Z=-4.00)
+	SightOffset=(X=7.00,Y=0.01,Z=2.3)
+	SightPivot=(Pitch=256)
+
 	bNoCrosshairInScope=True
 	GunLength=16.500000
-	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
+	ParamsClasses(0)=Class'CYLOFirestormWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOFirestormWeaponParamsRealistic' 
+    ParamsClasses(3)=Class'CYLOFirestormWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOFirestormPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryFire'
 	bShowChargingBar=True
@@ -715,14 +732,11 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 	Description="The CYLO Firestorm V is an upgraded version of Dipheox's most popular weapon. The V has been redesigned from the ground up for maximum efficiency and can now chamber the fearsome 5.56mm incendiary rounds. Upgrades to the ammo feed and clip lock greatly reduce the chance of jams and ensures a more stable rate of fire, however these have been known to malfunction under excessive stress. Likewise, prolonged use of the incendiary ammunition should be avoided due to potential damage to the barrel and control mechanisms.||While not as versatile as its shotgun equipped cousin, the CYLO Firestorm is still very deadly in urban combat. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
-	DisplayFOV=55.000000
 	Priority=41
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=9
 	PickupClass=Class'BWBP_SKC_Pro.CYLOFirestormPickup'
-	PlayerViewOffset=(X=8.000000,Z=-14.000000)
-	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
 	IconCoords=(X2=127,Y2=31)
@@ -734,5 +748,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
-	DrawScale=0.400000
+	DrawScale=0.300000
 }

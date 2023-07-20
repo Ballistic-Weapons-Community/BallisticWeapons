@@ -42,7 +42,7 @@ defaultproperties
      DamageIdent="Sniper"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=100
-     AimDisplacementDuration=0.500000
+     AimDisplacementDuration=0.75
      DamageDescription=",Bullet,Flame,"
      WeaponClass=Class'BWBP_SKC_Pro.AS50Rifle'
      DeathString="%k's FSSG-50 assassinated %o with a headshot."
@@ -56,4 +56,7 @@ defaultproperties
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.500000
+
+	TagMultiplier=0.5
+	TagDuration=0.25
 }

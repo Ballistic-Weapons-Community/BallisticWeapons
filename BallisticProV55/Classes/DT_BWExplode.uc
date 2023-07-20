@@ -27,4 +27,5 @@ defaultproperties
     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
     GibPerterbation=0.500000
     KDamageImpulse=20000.000000
+	TransientSoundVolume=2
 }

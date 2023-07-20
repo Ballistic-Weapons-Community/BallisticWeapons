@@ -56,6 +56,8 @@ class BallisticTurret extends Vehicle Abstract placeable config(BallisticProV55)
 		DriverPosition			Position where OldPawn should be moved to when driving. Refpoint for drivers to 'Use'
 */
 
+var() const int MinTurretEyeDepth;
+
 // Info saved by weapons
 var() int		AmmoAmount[2];
 var() int		MagAmmoAmount;
@@ -120,7 +122,9 @@ var   byte		GunRotationYaw,			// GunRotation form sent to non-owning clients
 var   BCTurretList		TurretList;		// Link to turret list control
 var   float				LastUsedTime;	// Time when this turret was last used
 // ----------------
-
+// Variants
+var 	byte 			CamoIndex;
+var 	byte 			LayoutIndex;
 // AI Stuff
 var   float			NextBotReaimTime;	// Time when bot aim error should be recalculated
 var   rotator		BotAimError;		// Current bot inaccuracy offset
@@ -149,20 +153,24 @@ function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocatio
 {
     local float DriverEyeZ, TurretBottomZ, DriverHeight;
 
+	Momentum = vect(0,0,0);
+
 	if ( InGodMode() )
  		Damage = 0;
-	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
+
+	/*
+	if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
     {
         DriverEyeZ = Driver.Location.Z + Driver.EyePosition().Z;
         TurretBottomZ = Location.Z - CollisionHeight;
         DriverHeight = 2 * Driver.CollisionHeight;
 
- 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp( (DriverEyeZ - TurretBottomZ) / DriverHeight, 0, 1);
+ 		Damage *= DriverDamageMult;
     }
-
-	Momentum = vect(0,0,0);
+	*/
 }
 
+/*
 function bool CheckDefense(Vector EnemyLocation)
 {
     local Vector AttackDir;
@@ -176,6 +184,7 @@ function bool CheckDefense(Vector EnemyLocation)
 
     return false;
 }
+*/
 
 simulated function SetViewRotation (rotator NewRotation)
 {
@@ -233,10 +242,36 @@ function bool DriverGetAmmo(Ammunition Ammo, int AmmoToAdd)
 // Turret has just been deployed. Chance to get info from a weapon that spawned the turret. (e.g. Get ammo from machinegun when its deployed)
 function InitDeployedTurretFor(Weapon Weap)
 {
+	local int i;
+	local WeaponCamo WC;
+	local Material M;
+	
 	if (BallisticWeapon(Weap) != None)
 	{
 		MagAmmoAmount = BallisticWeapon(Weap).MagAmmo;
 		WeaponMode = 	BallisticWeapon(Weap).CurrentWeaponMode;
+		CamoIndex = BallisticWeapon(Weap).CamoIndex;
+		LayoutIndex = BallisticWeapon(Weap).LayoutIndex;
+		if (BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).WeaponCamo != None)
+		{
+			WC = BallisticWeapon(Weap).WeaponCamo;
+			for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)
+			{
+				if (WC.WeaponMaterialSwaps[i].AIndex != -1)
+				{				
+					if (WC.WeaponMaterialSwaps[i].Material != None)
+					{
+						Skins[WC.WeaponMaterialSwaps[i].AIndex] = WC.WeaponMaterialSwaps[i].Material;
+					}
+					if (WC.WeaponMaterialSwaps[i].MaterialName != "")
+					{
+						M = Material(DynamicLoadObject(WC.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+						if (M != None)
+							Skins[WC.WeaponMaterialSwaps[i].AIndex] = M;
+					}
+				}
+			}
+		}
 	}
 	AmmoAmount[0] = Weap.AmmoAmount(0);
 	AmmoAmount[1] = Weap.AmmoAmount(1);
@@ -248,6 +283,8 @@ function InitTurretWeapon(Weapon Weap)
 	{
 		BallisticWeapon(Weap).MagAmmo = 			MagAmmoAmount;
 		BallisticWeapon(Weap).CurrentWeaponMode =	WeaponMode;
+		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
+		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitTurretWeapon(self);
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
@@ -262,6 +299,8 @@ function InitUndeployedWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).CurrentWeaponMode =		WeaponMode;
 		BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		BallisticWeapon(Weap).MagAmmo =					MagAmmoAmount;
+		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
+		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
@@ -318,7 +357,14 @@ function GiveWeapon(string aClassName )
 		return;
 	newWeapon = Spawn(WeaponClass,,,Location);
 	if( newWeapon != None )
+	{
+		if (BallisticWeapon(newWeapon) != None)
+		{
+			BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+			BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
+		}
 		newWeapon.GiveTo(self);
+	}
 	InitTurretWeapon(newWeapon);
 }
 
@@ -647,6 +693,11 @@ function UndeployTurret ()
 			W = spawn(WC,OldDriver,,,rot(0,0,0));
 			if (W != None)
 			{
+				if (BallisticWeapon(W) != None)
+				{
+					BallisticWeapon(W).GenerateLayout(LayoutIndex);
+					BallisticWeapon(W).GenerateCamo(CamoIndex);
+				}
 				W.GiveTo(OldDriver);
 
 				InitUndeployedWeapon(W);
@@ -660,6 +711,8 @@ function UndeployTurret ()
 			BTI.myPawn = OldDriver;
 			BTI.GunClass = WC;
 			BTI.MagAmmo = MagAmmoAmount;
+			BTI.LayoutIndex = LayoutIndex;
+			BTI.CamoIndex = CamoIndex;
 			BTI.TurretAmmoAmount = AmmoAmount[0];
 			BTI.WeaponMode = WeaponMode;
 			if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
@@ -1004,13 +1057,22 @@ function bool TryToDrive(Pawn P)
 	if (bNonHumanControl || (PlayerController(P.Controller) == None) || (Driver != None) || (P.DrivenVehicle != None) || !P.Controller.bIsPlayer
 	     || P.IsA('Vehicle') || Health <= 0)
 		return false;
-		
-	if (P.Location.Z - MyUseTrigger.Location.Z > 60 || P.Location.Z - MyUseTrigger.Location.Z < -100)
+
+	// check on ground
+	if (P.Physics != PHYS_Walking)
 		return false;
 		
-	if (VSize((P.Location - MyUseTrigger.Location)*vect(1,1,0)) > 40)
+	// check not too high
+	if (MyUseTrigger.Location.Z - CollisionHeight > P.Location.Z + P.EyePosition().Z - MinTurretEyeDepth)
+		return false;
+	
+	// check not too low
+	if (MyUseTrigger.Location.Z < P.Location.Z - P.CollisionHeight)
+		return false;
+
+	if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 40)
 	{
-		if (VSize((P.Location - MyUseTrigger.Location)*vect(1,1,0)) > 120)
+		if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 120)
 			return false;
 		if (vector(Rotation) Dot Normal(Location - P.Location) < 0.2)
 			return false;
@@ -1116,6 +1178,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 defaultproperties
 {
+	MinTurretEyeDepth=10
      GunYawBounds=(Min=-16384.000000,Max=16384.000000)
      GunPitchBounds=(Min=-8192.000000,Max=11000.000000)
      CamYawBounds=(Min=-20000.000000,Max=20000.000000)
@@ -1143,7 +1206,6 @@ defaultproperties
      bRemoteControlled=True
      bDesiredBehindView=False
      DriveAnim="Idle_Rest"
-     DriverDamageMult=0.20000
      VehicleNameString="Ballistic Turret"
      MaxDesireability=2.000000
      bIgnoreForces=True

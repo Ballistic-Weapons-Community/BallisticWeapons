@@ -91,6 +91,8 @@ simulated function ClientSetHeat(float NewHeat)
 	HeatLevel = NewHeat;
 }
 
+
+
 function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
@@ -99,22 +101,36 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
     Instigator = Other;
     W = Weapon(Other.FindInventoryType(class));
-    if ( W == None )
+    if ( W == None || class != W.Class)
     {
 		bJustSpawned = true;
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
 		if (AK91Pickup(Pickup) != None)
 			HeatLevel = FMax( 0.0, AK91Pickup(Pickup).HeatLevel - (level.TimeSeconds - AK91Pickup(Pickup).HeatTime) * 0.25 );
 		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
 			ClientSetHeat(HeatLevel);
     }
-    else if ( !W.HasAmmo() )
+ 	
+   	else if ( !W.HasAmmo() )
 	    bPossiblySwitch = true;
-
     if ( Pickup == None )
         bPossiblySwitch = true;
 
@@ -123,15 +139,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         if ( FireMode[m] != None )
         {
             FireMode[m].Instigator = Instigator;
-            GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
+			W.GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
         }
     }
+	
+	if (MeleeFireMode != None)
+		MeleeFireMode.Instigator = Instigator;
 
 	if ( (Instigator.Weapon != None) && Instigator.Weapon.IsFiring() )
 		bPossiblySwitch = false;
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
+		
+	//Disable aim for weapons picked up by AI-controlled pawns
+	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
 
     if ( !bJustSpawned )
 	{
@@ -191,8 +213,8 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 			dir = Victims.Location - Location;
 			dist = FMax(1,VSize(dir));
 
-			log("HeatLevel is  "$HeatLevel);
-			log("HeatLevel int is  "$int(HeatLevel));
+			//log("HeatLevel is  "$HeatLevel);
+			//log("HeatLevel int is  "$int(HeatLevel));
 			dir = dir/dist;
 			//damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
 			class'BallisticDamageType'.static.GenericHurt
@@ -392,16 +414,16 @@ defaultproperties
      bShowChargingBar=True
 	 MaxHeatLevel=10
      OverHeatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
-	 HighHeatSound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle'
+	 HighHeatSound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle'
      UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_SKC_Tex.AK91.BigIcon_AK91'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      BulletBone="Bullet1"
      BulletBone2="Bullet2"
      bWT_Bullet=True
-     SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.0")
+     SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.6")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      MagAmmo=30
@@ -417,12 +439,10 @@ defaultproperties
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
      WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=2
-     SightPivot=(Pitch=64)
-     SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
-     SightDisplayFOV=20.000000
-	 ParamsClasses(0)=Class'AK91WeaponParamsArena'
+	 ParamsClasses(0)=Class'AK91WeaponParamsComp'
 	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AK91WeaponParamsRealistic'
+     ParamsClasses(3)=Class'AK91WeaponParamsTactical'
      SightingTime=0.300000
      FireModeClass(0)=Class'BWBP_SKC_Pro.AK91PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AK91SecondaryFire'
@@ -434,16 +454,18 @@ defaultproperties
      IdleAnimRate=0.400000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
-     CurrentRating=0.600000
-	 //Description=""War, war never changes. But technology does as the fight against the Skrith wages on, cultivated in various weapon research facilities across the galaxies.  While some built from the ground up, others have been reverse engineered from the enemy factions. Most of them work after hard work and dedication, then there's ZTV Exports.  Legendary for their reliable and hard hitting weapons, but even they need to catch up in the arms race. Against their code of ethics, the brilliant minds at ZTV somehow managed to reverse engineer the AMP system and slap it onto their older AK91 models, causing it to hit much harder than before.  However, they also found that it can be overloaded with unstable energy particles that can severely harm the user unless they somehow purge it.  With the war raging on, ZTV Exports are willing to risk the chance in order to save the motherland.""
-     Description="AK-91 Charge Rifle||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: 7.62 AP Rounds|Secondary: Emergency Vent||The AK-91 was designed by ZTV using reverse-engineered amplifier technology to augment the power of their existing AK-490 design. The amp works, but not without its drawbacks, it stores dangerous amounts of charge in an emergency capacitor that must be purged periodically to keep the weapon from catastrophically overheating."
+     CurrentRating=0.600000	 
+     Description="AK-91 Charge Rifle||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: 7.62 AP Rounds|Secondary: Emergency Vent||War, war never changes. But technology does as the fight against the Skrith wages on, cultivated in various weapon research facilities across the galaxies.  While some built from the ground up, others have been reverse engineered from the enemy factions. Most of them work after hard work and dedication, then there’s ZTV Exports.  Legendary for their reliable and hard hitting weapons, but even they need to catch up in the arms race. Against their code of ethics, the brilliant minds at ZTV somehow managed to reverse engineer the AMP system and slap it onto their older AK91 models, causing it to hit much harder than before.  However, they also found that it can be overloaded with unstable energy particles that can severely harm the user unless they somehow purge it.  With the war raging on, ZTV Exports are willing to risk the chance in order to save the motherland."
      Priority=65
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
 	 GroupOffset=11
      PickupClass=Class'BWBP_SKC_Pro.AK91Pickup'
-     PlayerViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
-     BobDamping=2.000000
+
+     PlayerViewOffset=(X=5.0000,Y=4.000000,Z=-5.000000)
+	 SightOffset=(X=10.5,Y=0,Z=1.7)
+	 SightAnimScale=0.5
+
      AttachmentClass=Class'BWBP_SKC_Pro.AK91Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
      IconCoords=(X2=127,Y2=31)
@@ -455,7 +477,7 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=4.000000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AK91'
-     DrawScale=0.350000
+     DrawScale=0.30000
      SoundPitch=56
      SoundRadius=32.000000
 }

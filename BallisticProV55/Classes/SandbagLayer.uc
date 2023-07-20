@@ -192,14 +192,21 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
     local bool bJustSpawned;
 
     Instigator = Other;
+
     W = Weapon(Other.FindInventoryType(class));
+
     if ( W == None || class != W.Class)
     {
 		bJustSpawned = true;
+
         Super(Inventory).GiveTo(Other);
+
         W = self;
+
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+
+		ParamsClasses[GameStyleIndex].static.Initialize(self);
     }
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
@@ -226,7 +233,7 @@ defaultproperties
 	DropSound=Sound'PlayerSounds.BFootsteps.BFootstepSnow5'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Sandbags.Icon_Sandbags'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
@@ -239,6 +246,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SandbagWeaponParams'
 	ParamsClasses(1)=Class'SandbagWeaponParams'
 	ParamsClasses(2)=Class'SandbagWeaponParams'
+    ParamsClasses(3)=Class'SandbagWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
 	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
 	PutDownTime=0.900000
@@ -249,7 +257,6 @@ defaultproperties
 	bMeleeWeapon=True
 	bNoInstagibReplace=True
 	Description="Generic sandbags, as used in militaries for decades. Useful for laying temporary cover. Can be used as a base for most deployed weapons, reducing the chance of the user being directly hit by attacks. May be picked up with the Use key when no other players are near them. Vulnerable to destruction if hit by high-powered weaponry."
-	DisplayFOV=65.000000
 	Priority=12
 	HudColor=(G=200)
 	CenteredOffsetY=7.000000

@@ -123,7 +123,7 @@ simulated function TickSighting (float DT)
 			SightingPhase = 0.0;
 			SightingState = SS_None;
 			ScopeDownAnimEnd();
-			DisplayFOV = default.DisplayFOV;
+			DisplayFOV = BaseDisplayFOV;
 		}
 	}
 }
@@ -264,8 +264,8 @@ simulated function PostBeginPlay()
 	PlayAnim(IdleAnim, IdleAnimRate, 0, 1);
 	FreezeAnimAt(0.0, 1);
 	
-	TensTex = TexScaler(Skins[2]);
-	UnitsTex = TexScaler(Skins[1]);
+	TensTex = TexScaler(Skins[3]);
+	UnitsTex = TexScaler(Skins[2]);
 }
 
 simulated function WeaponTick(float DeltaTime)
@@ -519,10 +519,10 @@ defaultproperties
 {
 	ShieldOnSound=Sound'BWBP_OP_Sounds.Raygun.ShieldOn'
 	ShieldOffSound=Sound'BWBP_OP_Sounds.Raygun.ShieldOff'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=6)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	BigIconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_512'
 	BigIconCoords=(Y1=32,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
@@ -541,12 +541,12 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
-	SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-	SightDisplayFOV=25.000000
-	SightZoomFactor=0.85
-	ParamsClasses(0)=Class'RaygunWeaponParams'
+	SightOffset=(X=-8,Y=0,Z=0.8)
+	SightZoomFactor=1.2
+	ParamsClasses(0)=Class'RaygunWeaponParamsComp'
 	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
 	ParamsClasses(2)=Class'RaygunWeaponParamsRealistic'
+    ParamsClasses(3)=Class'RaygunWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.RaygunPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.RaygunSecondaryFire'
 	BringUpTime=0.500000
@@ -556,14 +556,17 @@ defaultproperties
 	AIRating=0.750000
 	CurrentRating=0.750000
 	bShowChargingBar=True
-	Description="E38 Indivisible Particle Smasher||Manufacturer: United States Defense Department, 20th Century||Commissioned towards the end of the 20th century, the E38 "
+	Description="E38 Indivisible Particle Smasher||Manufacturer: United States Defense Department, 20th 'The truth is out there, I know it.  I've seen those skrith bastards up close back in '59 in Roswell, they're the ones who landed in Roswell in Area 51, with their creepy two headed dogs and all.  They tried to take over the base using their plasma peashooters, only it looked more like what you see in those B-movies.  Those bastards, they shot up the place, melting all the soldiers into piles of goo. I swear to you, I'm not making this up, they even activated some weird shield doohicky that made them immune to the bazookas and other explosives. You gotta believe me, please.  I can prove it to you, I just need you guys to take me to Area 51, where the original model is still being held at, sealed away in a vault!  Wait, why are you looking at me like that?  Why are you putting cuffs on me!?  HEY-'  The last known words of James Kilroy Sr.  Before he was sent to the FBI for interrogation."
 	Priority=39
 	HudColor=(B=50,G=175)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BWBP_OP_Pro.RaygunPickup'
-	PlayerViewOffset=(X=5.000000,Z=-5.000000)
+
+	PlayerViewOffset=(X=16,Y=1.6,Z=-3)
+	SightBobScale=0.25
+	
 	AttachmentClass=Class'BWBP_OP_Pro.RaygunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_128'
 	IconCoords=(X2=127,Y2=31)
@@ -575,10 +578,11 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Raygun'
-	DrawScale=0.187500
-	Skins(0)=Shader'BWBP_OP_Tex.Raygun.raygun_body_SH1'
-	Skins(1)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler'
-	Skins(2)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler2'
+	DrawScale=0.3
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBP_OP_Tex.Raygun.raygun_body_SH1'
+	Skins(2)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler'
+	Skins(3)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler2'
 	SoundPitch=56
 	SoundRadius=32.000000
 }

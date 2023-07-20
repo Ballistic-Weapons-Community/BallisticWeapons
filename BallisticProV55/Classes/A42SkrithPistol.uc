@@ -11,16 +11,16 @@
 class A42SkrithPistol extends BallisticHandgun;
 
 var float NextAmmoTickTime;
-var Actor GlowFX;
+var Actor			GlowFX;
 
-simulated event PreBeginPlay()
+var float			HeatLevel;					// Current Heat level, duh...
+var float 			HeatDeclineTime;			// Time until heat can decline
+var() Sound			OverheatSound;				// Sound to play when it overheats
+
+replication
 {
-	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
-	{
-		FireModeClass[0]=Class'BallisticProV55.A42PrimaryFireSpread';
-		FireModeClass[1]=Class'BallisticProV55.A42PrimaryFire';
-	}
+	reliable if (ROLE==ROLE_Authority)
+		ClientSetHeat;
 }
 
 simulated function bool CanAlternate(int Mode)
@@ -37,8 +37,22 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		GlowFX.Destroy();
     if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2)
     {
-    	GlowFX = None;
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFX', DrawScale, self, 'tip');
+    	if (LayoutIndex == 1)
+		{
+			GlowFX = None;
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXRed', DrawScale, self, 'tip');
+		}
+		else if (LayoutIndex == 2)
+		{
+			GlowFX = None;
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXGreen', DrawScale, self, 'tip');
+		}
+		else
+		{
+			GlowFX = None;
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFX', DrawScale, self, 'tip');
+		}
+		
 		if (GlowFX != None)
 		{
 			if ((IsSlave() && Othergun.Hand >= 0) || (!IsSlave() && Hand < 0))
@@ -46,6 +60,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		}
 	}
 }
+
 simulated function bool MayNeedReload(byte Mode, float Load)
 {
 	return false;
@@ -78,7 +93,11 @@ simulated event Tick (float DT)
 	{
 		if (MagAmmo < default.MagAmmo)
 			MagAmmo=Min(default.MagAmmo, MagAmmo+1);
-		NextAmmoTickTime = Level.TimeSeconds + 0.5;
+		NextAmmoTickTime = Level.TimeSeconds + 0.35;
+	}
+	if (HeatLevel > 0 && Level.TimeSeconds > HeatDeclineTime)
+	{
+		HeatLevel = FMax(HeatLevel - 10 * DT, 0);
 	}
 }
 
@@ -92,6 +111,26 @@ simulated event WeaponTick(float DT)
 		f = 56 + 32 * (FMin(FireMode[1].HoldTime, 2) / 2);
 		SoundPitch = f;
 	}
+}
+
+simulated function AddHeat(float Amount, float DeclineTime)
+{
+	if (bBerserk)
+		Amount *= 0.75;
+		
+	HeatLevel += Amount;
+	HeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, HeatDeclineTime);
+	
+	if (HeatLevel >= 9.75)
+	{
+		HeatLevel = 10;
+		return;
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	HeatLevel = NewHeat;
 }
 
 // AI Interface =====
@@ -237,7 +276,11 @@ function bool CanHeal(Actor Other)
 
 simulated function float ChargeBar()
 {
-	return FMin(FireMode[1].HoldTime, 1);
+	
+	if (FireMode[1].IsFiring())
+		return FMin(FireMode[1].HoldTime, 1);
+	else
+		return HeatLevel / 10;
 }
 
 defaultproperties
@@ -245,7 +288,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A42'
 	BigIconCoords=(X1=80,Y1=24,X2=410,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	MeleeFireClass=Class'BallisticProV55.A42MeleeFire'
 	bWT_RapidProj=True
 	bWT_Energy=True
@@ -262,12 +305,16 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=160,G=44,R=89,A=137),Color2=(B=151,R=0,A=202),StartSize1=84,StartSize2=61)
     NDCrosshairInfo=(SpreadRatios=(X1=0.300000,Y1=0.300000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.700000
+
+	PlayerViewOffset=(X=32,Y=19,Z=-13)
+	SightOffset=(X=-80,Y=-6.7,Z=17.5)
 	SightPivot=(Pitch=1024,Roll=-768)
-	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'A42WeaponParams'
+	SightBobScale=0.35f
+
+	ParamsClasses(0)=Class'A42WeaponParamsComp'
 	ParamsClasses(1)=Class'A42WeaponParamsClassic'
 	ParamsClasses(2)=Class'A42WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A42WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
 	BringUpTime=0.500000
@@ -281,7 +328,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
 	PickupClass=Class'BallisticProV55.A42Pickup'
-	PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
+
 	AttachmentClass=Class'BallisticProV55.A42Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A42'
 	IconCoords=(X2=127,Y2=31)
@@ -293,7 +340,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A42'
-	DrawScale=0.110000
+	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.A42.A42Skin_SD'
 	SoundPitch=56

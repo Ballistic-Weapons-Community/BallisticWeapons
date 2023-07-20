@@ -18,12 +18,13 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 
 	MyControl = T10CloudControl(Owner);
-	if (level.NetMode != NM_Client)
+	
+	if (Level.NetMode != NM_Client)
 	{
 		Fear = Spawn(class'AvoidMarker');
 		Fear.SetCollisionSize(200, 200);
 	    Fear.StartleBots();
-		if (level.netMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer)
 		{
 			Emitters[0].Disabled = true;
 			Emitters[1].Disabled = true;
@@ -91,14 +92,15 @@ defaultproperties
          FadeOutStartTime=1.050000
          FadeInEndTime=1.050000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=200
+         MaxParticles=3
          StartLocationRange=(X=(Min=-96.000000,Max=96.000000),Y=(Min=-32.000000,Max=32.000000),Z=(Min=-32.000000,Max=32.000000))
          SpinsPerSecondRange=(X=(Max=0.010000))
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.300000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=150.000000,Max=200.000000),Y=(Min=150.000000,Max=200.000000),Z=(Min=150.000000,Max=200.000000))
-         InitialParticlesPerSecond=0.700000
+         InitialParticlesPerSecond=1000
+		 ParticlesPerSecond=1
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Effects.Smoke7'
          SecondsBeforeInactive=0.000000
@@ -123,13 +125,14 @@ defaultproperties
          FadeOutStartTime=1.450000
          FadeInEndTime=0.675000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=20
+         MaxParticles=3
          StartLocationRange=(X=(Min=-64.000000,Max=64.000000))
          SpinsPerSecondRange=(X=(Max=0.030000))
          StartSpinRange=(X=(Min=1.000000,Max=1.000000))
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
-         InitialParticlesPerSecond=0.750000
+         InitialParticlesPerSecond=1000
+		 ParticlesPerSecond=1
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000

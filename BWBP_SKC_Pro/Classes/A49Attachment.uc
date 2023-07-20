@@ -12,19 +12,20 @@ class A49Attachment extends HandgunAttachment;
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-     AltMuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'
-     BrassMode=MU_None
-     TracerMode=MU_Secondary
-     InstantMode=MU_Secondary
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     ReloadAnim="Reload_AR"
-     ReloadAnimRate=1.200000
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.A49_TPm'
-     RelativeLocation=(X=-5.000000,Y=-3.000000,Z=10.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.250000
+	WeaponClass=class'A49SkrithBlaster'
+	MuzzleFlashClass=class'A42FlashEmitter'
+	AltMuzzleFlashClass=class'A42FlashEmitter'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'
+	BrassMode=MU_None
+	TracerMode=MU_Secondary
+	InstantMode=MU_Secondary
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	ReloadAnim="Reload_AR"
+	ReloadAnimRate=1.200000
+	bRapidFire=True
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.A49_TPm'
+	RelativeLocation=(X=-5.000000,Y=-3.000000,Z=10.000000)
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.250000
 }

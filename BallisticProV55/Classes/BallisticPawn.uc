@@ -33,7 +33,6 @@
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //
 // Couple of edits by Azarael:
-// Replicated DoubleJumpsLeft in order to stop strange behaviour online
 // Configurable Walking and Crouching speed.
 // Set Movement Anims for "Walking" to "Running" ones.
 //=============================================================================
@@ -41,8 +40,6 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
-var byte				            DoubleJumpsLeft;
-var float				            LastDoubleJumpTime;
 var	bool				            bResetAnimationAction;
 
 var globalconfig	bool	        bLocalDisableAnimation;
@@ -112,8 +109,9 @@ var   float				LastImpactTime;		// Time of last impact mark spawn
 var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
-var config  bool		bNoViewFlash;       // Toggle the use of the new viewflash effects when u get damaged
-var     BCSprintControl Sprinter;
+var   BCSprintControl   Sprinter;
+var	  float				LastDodgeTime;
+var	  float				DodgeInterval;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -127,18 +125,20 @@ var array<FinalBlend>	NewDeResFinalBlends;// FinalBlends' alpha ref is used to c
 //Player
 var     BallisticPlayerReplicationInfo BPRI;
 var     BallisticReplicationInfo BRI;
-var     bool            pawnNetInit;
+var     bool            	pawnNetInit;
 
 // Animations -------------------------------------------
-var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim, StaggerAnim;
+var 	name 				ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim, StaggerAnim;
 var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate, StaggerRate;
 var 	bool				bOffhandStrike;
 
 //Sound -------------------------------
-var()   float            GruntRadius;
-var()   float            FootstepRadius;
+var()   float            	GruntRadius;
+var()   float            	FootstepRadius;
 // Cover from decorations -----------------------------
 var 	array<Actor>		CoverAnchors;
+
+var		int					CrouchEyeHeight;
 
 // Flying exploit
 var 	bool				bPendingNegation;
@@ -151,7 +151,7 @@ var 	bool                bTransparencyInitialized;
 var 	bool				bTransparencyOn, bOldTransparency;
 	
 //Killstreak -----------------------------------------------
-var 	bool				bActiveKillstreak; // FIXME REMOVE?
+var 	bool				bActiveKillstreak; // still used - look to deprecate this.
 //Healing------------------------------------------------
 var 	float 				NextHealMessageTime;
 var		bool				bPreventHealing;
@@ -163,69 +163,124 @@ var     float               LastDamagedTime;
 var		class<DamageType>	LastDamagedType;
 
 //Sloth variables
-var 	float 				StrafeScale, BackScale, GroundSpeedScale, AccelRateScale;
+var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
+var     bool                bCanDodge;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility;
-	reliable if (bNetOwner && Role == ROLE_Authority)
-		DoubleJumpsLeft;
-}
-
-simulated function PostBeginPlay()
-{
-	super.PostBeginPlay();
-
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
-		bCanWallDodge = false;
 }
 
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
-		bCanWallDodge = false;
+
 	if (!class'BallisticReplicationInfo'.default.bBrightPlayers)
 	{
 		bDramaticLighting=False;
 		AmbientGlow=0;
 	}
 
-	if (class'BallisticReplicationInfo'.default.WalkingPercentage != WalkingPct)
+    ApplyMovementOverrides();
+
+	// replace walk animations if ADS multipliers tend to be high
+	if (class'BallisticGameStyles'.static.GetReplicatedStyle().default.bRunInADS)
 	{
-		WalkingPct = class'BallisticReplicationInfo'.default.WalkingPercentage;
-		default.WalkingPct = class'BallisticReplicationInfo'.default.WalkingPercentage;
-	}
-	
-	if (class'BallisticReplicationInfo'.default.CrouchingPercentage != CrouchedPct)
-	{
-		CrouchedPct = class'BallisticReplicationInfo'.default.CrouchingPercentage;
-		default.CrouchedPct = class'BallisticReplicationInfo'.default.CrouchingPercentage;
-	}
-	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && WalkingPct >= 0.75)
-	{
-		default.WalkAnims[0]='RunF';
-		default.WalkAnims[1]='RunB';
-		default.WalkAnims[2]='RunL';
-		default.WalkAnims[3]='RunR';
 		WalkAnims[0]='RunF';
 		WalkAnims[1]='RunB';
 		WalkAnims[2]='RunL';
 		WalkAnims[3]='RunR';
 	}
-	
+
+	// FIXME: why is this here? this function is the definition of net init
 	if(!pawnNetInit)
     {
         pawnNetInit = true;
-        if(Controller != none)
+
+        if (Controller != None)
         {
-            if(Controller.Adrenaline < Class'BallisticReplicationInfo'.default.iAdrenaline) Controller.Adrenaline = Class'BallisticReplicationInfo'.default.iAdrenaline;
-            Controller.AdrenalineMax = Class'BallisticReplicationInfo'.default.iAdrenalineCap;
             BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
         }
     }
+}
+
+simulated function vector CalcDrawOffset(inventory Inv)
+{
+	local vector DrawOffset;
+
+	if ( Controller == None )
+		return (Inv.PlayerViewOffset >> Rotation) + BaseEyeHeight * vect(0,0,1);
+
+	DrawOffset = ((0.9/60 * 100 * ModifiedPlayerViewOffset(Inv)) >> GetViewRotation() ); // hardcode displayfov of 60 for offset purposes here. otherwise, scaling breaks in 16:9
+
+	if ( !IsLocallyControlled() )
+		DrawOffset.Z += BaseEyeHeight;
+	else
+	{
+		DrawOffset.Z += EyeHeight;
+        //if( bWeaponBob )
+		DrawOffset += WeaponBob(Inv.BobDamping);
+        DrawOffset += CameraShake();
+	}
+
+	return DrawOffset;
+}
+
+simulated final function BindDefaultMovement()
+{
+    default.WalkingPct = WalkingPct;
+    default.CrouchedPct = CrouchedPct;
+    default.StrafeScale = StrafeScale;
+    default.BackpedalScale = BackpedalScale;
+	// used for animations in C++. do not change
+	default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerAnimationGroundSpeed;
+    default.AirSpeed = AirSpeed;
+	default.LadderSpeed = LadderSpeed;
+    default.AccelRate = AccelRate;
+    default.JumpZ = JumpZ;
+	default.DodgeSpeedFactor = DodgeSpeedFactor;
+    default.DodgeSpeedZ = DodgeSpeedZ;
+
+    default.WalkAnims[0] = WalkAnims[0];
+	default.WalkAnims[1] = WalkAnims[1];
+	default.WalkAnims[2] = WalkAnims[2];
+	default.WalkAnims[3] = WalkAnims[3];
+}
+
+simulated function ApplyMovementOverrides()
+{ 
+	if (!class'BallisticReplicationInfo'.default.bAllowDodging)
+    {
+		bCanWallDodge = false;
+        bCanDodge = false;
+    }
+
+    if (!class'BallisticReplicationInfo'.default.bAllowDoubleJump)
+    {
+        bCanDoubleJump = false;
+    }
+
+	WalkingPct = class'BallisticReplicationInfo'.default.PlayerWalkSpeedFactor;
+	CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
+	StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+	BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+	GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+	AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+	LadderSpeed = GroundSpeed * 0.65f;
+	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+	JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+	DodgeSpeedFactor = class'BallisticReplicationInfo'.default.PlayerDodgeSpeedFactor;
+	DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
+
+	if (class'BallisticReplicationInfo'.static.IsTactical())
+	{
+		DodgeInterval = 1.25;
+		bCanWallDodge = false;
+	}
+
+	BindDefaultMovement();
 }
 
 simulated function CreateColorStyle()
@@ -456,8 +511,53 @@ event Landed(vector HitNormal)
 
     MultiJumpRemaining = MaxMultiJump;
 
+	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
-        PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, FootstepRadius + (Velocity.Z * 0.65));
+		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
+	
+     //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
+}
+
+//===========================================================================
+// PawnCheckBob
+// Version of Engine.Pawn CheckBob, but prevents client disabling it
+//===========================================================================
+function PawnCheckBob(float DeltaTime, vector Y)
+{
+	local float Speed2D;
+
+    if(bJustLanded )
+    {
+		BobTime = 0;
+		WalkBob = Vect(0,0,0);
+        return;
+    }
+	Bob = FClamp(Bob, -0.01, 0.01);
+	if (Physics == PHYS_Walking )
+	{
+		Speed2D = VSize(Velocity);
+		if ( Speed2D < 10 )
+			BobTime += 0.2 * DeltaTime;
+		else
+			BobTime += DeltaTime * (0.3 + 0.7 * Speed2D/GroundSpeed);
+		WalkBob = Y * Bob * Speed2D * sin(8 * BobTime);
+		AppliedBob = AppliedBob * (1 - FMin(1, 16 * deltatime));
+		WalkBob.Z = AppliedBob;
+		if ( Speed2D > 10 )
+			WalkBob.Z = WalkBob.Z + 0.75 * Bob * Speed2D * sin(16 * BobTime);
+	}
+	else if ( Physics == PHYS_Swimming )
+	{
+		BobTime += DeltaTime;
+		Speed2D = Sqrt(Velocity.X * Velocity.X + Velocity.Y * Velocity.Y);
+		WalkBob = Y * Bob *  0.5 * Speed2D * sin(4.0 * BobTime);
+		WalkBob.Z = Bob * 1.5 * Speed2D * sin(8.0 * BobTime);
+	}
+	else
+	{
+		BobTime = 0;
+		WalkBob = WalkBob * (1 - FMin(1, 8 * deltatime));
+	}
 }
 
 //===========================================================================
@@ -470,23 +570,80 @@ function CheckBob(float DeltaTime, vector Y)
 	local float OldBobTime;
 	local int m,n;
 
-	OldBobTime = BobTime;
-	Super.CheckBob(DeltaTime,Y);
+    DeltaTime *= GroundSpeed / (class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 1.5);
 
-	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10)
-		|| ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
+	OldBobTime = BobTime;
+
+	PawnCheckBob(DeltaTime,Y);
+
+	if ( (Physics != PHYS_Walking) || bIsCrouched || (VSize(Velocity) < 10) || ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
 		return;
 
+	// BobTime is an accumulator and is never reset.
+	// Local footsteps are bound to weapon bob
 	m = int(0.5 * Pi + 9.0 * OldBobTime/Pi);
 	n = int(0.5 * Pi + 9.0 * BobTime/Pi);
 
 	if (m != n)
+	{
 		FootStepping(0);
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.35) )
+	}
+
+	// always have weapon bob on.
+	/*
+	else if ( !bWeaponBob && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) ) // fixme: link to animation speeds
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
 	}
+	*/
+}
+
+simulated final function float FootstepSurfaceScale (int Surf)
+{
+	switch (Surf)
+	{
+		Case 0:/*EST_Default*/	return 1.0; 	// bricks, concrete, drywall and such
+		Case 1:/*EST_Rock*/		return 1.0;		// rocks
+		Case 2:/*EST_Dirt*/		return 1.0;	// sand, etc - we assume it dampens
+		Case 3:/*EST_Metal*/	return 2.0;		// metal is damn loud
+		Case 4:/*EST_Wood*/		return 1.5;		// we assume floorboards and amp it
+		Case 5:/*EST_Plant*/	return 0.75;		// dampens sound well
+		Case 6:/*EST_Flesh*/	return 2.0;	 	// disgusting
+		Case 7:/*EST_Ice*/		return 1.0;
+		Case 8:/*EST_Snow*/		return 1.5;		// compacting snow makes a fair bit of noise
+		Case 9:/*EST_Water*/	return 2.0;		// almost never going to see this one
+		Case 10:/*EST_Glass*/	return 1.0;		// nor this one
+		default:				return 1.0;
+	}
+}
+
+simulated function ClientPlayLinearSound(Sound sound, ESoundSlot slot, float volume, float radius)
+{
+	local float dist;
+
+	if (IsLocallyControlled())
+		volume *= 0.65f;
+	else if (!FastTrace(Location, Level.GetLocalPlayerController().ViewTarget.Location))
+	{
+		volume *= 0.8f;
+		radius *= 0.75f;
+	}
+
+	// have to manually calculate a volume and radius in order to bypass NATIVE BULLSHIT
+	// we play the sound with the volume we want, 
+	// and the radius set exactly to the dist, to make sure we get the full volume at this dist without needing bFullVolume
+	// which would cause issues if we change view target while the sound is playing
+	dist = FMax(64, VSize(Location - Level.GetLocalPlayerController().ViewTarget.Location));
+
+	//log("Footsteps: Sound Rad: "$FSoundRad$" FootstepRadius: "$FootstepRadius);
+
+	if (dist > radius)
+		return;
+
+	volume *= (1f - (dist / radius));
+
+	PlaySound(sound, slot, volume, , dist);
 }
 
 simulated function FootStepping(int Side)
@@ -495,30 +652,56 @@ simulated function FootStepping(int Side)
 	local actor A;
 	local material FloorMat;
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
-	local float SoundScale;
-	
+	local float SoundVolumeScale, SoundRadiusScale;
+
+	// crouch - no sound
 	if (bIsCrouched)
-		SoundScale = 0.35;
-	else if (GroundSpeed > default.GroundSpeed)
-		SoundScale = 1.35;
-	else SoundScale = 1;
+		return;
+		
+	// walk/ADS - quieter
+	if (bIsWalking)
+	{
+		SoundVolumeScale = 0.65f;
+		SoundRadiusScale = 0.65f;
+	}
 
-    SurfaceNum = 0;
+	// sprint - much louder
+	else if (GroundSpeed > class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
+	{
+		SoundVolumeScale = 1.2f;
+		SoundRadiusScale = 1.4f;
+	}
 
+	// run - default
+	else
+	{
+		SoundVolumeScale = 1f;
+		SoundRadiusScale = 1f;
+	}
+
+	// handle water
     for ( i=0; i<Touching.Length; i++ )
+	{
 		if ( ((PhysicsVolume(Touching[i]) != None) && PhysicsVolume(Touching[i]).bWaterVolume)
 			|| (FluidSurfaceInfo(Touching[i]) != None) )
 		{
+			SoundVolumeScale *= 1.5f;
+			SoundRadiusScale *= 1.5f;
+
 			if ( FRand() < 0.5 )
-				PlaySound(sound'PlayerSounds.FootStepWater2', SLOT_Interact, FootstepVolume * SoundScale);
+				ClientPlayLinearSound(sound'PlayerSounds.FootStepWater2', SLOT_Interact, FootstepVolume * SoundVolumeScale, FootstepRadius * SoundRadiusScale);
 			else
-				PlaySound(sound'PlayerSounds.FootStepWater1', SLOT_Interact, FootstepVolume * SoundScale );
+				ClientPlayLinearSound(sound'PlayerSounds.FootStepWater1', SLOT_Interact, FootstepVolume * SoundVolumeScale, FootstepRadius * SoundRadiusScale);
 				
 			if ( !Level.bDropDetail && (Level.DetailMode != DM_Low) && (Level.NetMode != NM_DedicatedServer)
 				&& !Touching[i].TraceThisActor(HitLocation, HitNormal,Location - CollisionHeight*vect(0,0,1.1), Location) )
 					Spawn(class'WaterRing',,,HitLocation,rot(16384,0,0));
 			return;
 		}
+	}
+
+	// handle other surface
+	SurfaceNum = 0;
 
 	if ( (Base!=None) && (!Base.IsA('LevelInfo')) && (Base.SurfaceType!=0) )
 	{
@@ -532,7 +715,10 @@ simulated function FootStepping(int Side)
 		if (FloorMat !=None)
 			SurfaceNum = FloorMat.SurfaceType;
 	}
-	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundScale,, FootstepRadius * SoundScale );
+
+	SoundRadiusScale *= FootstepSurfaceScale(SurfaceNum);
+
+	ClientPlayLinearSound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundVolumeScale, FootstepRadius * SoundRadiusScale);
 }
 
 simulated function AssignInitialPose()
@@ -644,7 +830,7 @@ simulated event SetAnimAction(name NewAction)
 			if (ReloadAnim != '')
 			{
 				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
-				PlayAnim(ReloadAnim, ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale, 0.25 / class'BallisticReplicationInfo'.default.ReloadSpeedScale, 1);
+				PlayAnim(ReloadAnim, ReloadAnimRate, 0.25, 1);
 				FireState=FS_PlayOnce;
 				bResetAnimationAction=True;
 			}
@@ -1877,11 +2063,12 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 
     else if (PlayerReplicationInfo.CharacterName ~= "Jakob")
 		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
+	*/
 
 	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
+    // this check is fine - it won't break clients and I guarantee they won't even notice it
 	if (rec.DefaultName == "July")
 		AmbientGlow = 64;
-	*/
 
     Species = rec.Species;
 	RagdollOverride = rec.Ragdoll;
@@ -2127,12 +2314,41 @@ simulated function HideBone(name boneName)
     SetBoneScale(BoneScaleSlot, 0.01, BoneName);
 }
 
+// Eye height
+// Override crouch eye height - don't want it at the top of the cylinder...
+simulated function SetBaseEyeheight()
+{
+	if ( !bIsCrouched )
+		BaseEyeheight = Default.BaseEyeheight;
+	else
+		BaseEyeheight = CrouchEyeHeight;
+
+	Eyeheight = BaseEyeheight;
+}
+
+// Stub events called when physics actually allows crouch to begin or end
+// use these for changing the animation (if script controlled)
+event StartCrouch(float HeightAdjust)
+{
+	EyeHeight += HeightAdjust;
+	OldZ -= HeightAdjust;
+	BaseEyeHeight = CrouchEyeHeight;
+}
+
+event EndCrouch(float HeightAdjust)
+{
+	EyeHeight -= HeightAdjust;
+	OldZ += HeightAdjust;
+	BaseEyeHeight = Default.BaseEyeHeight;
+}
+
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
 // It causes BaseEyeHeight to be forced to 38 on the server for non local players (unless the server player is first person spectating that client)
 simulated function vector EyePosition()
 {
 	if (Role == ROLE_Authority && bIsCrouched && !IsLocallyControlled() && PlayerController(Controller) != None && !PlayerController(Controller).bBehindView && BaseEyeHeight == default.BaseEyeHeight)
-		return (EyeHeight-19) * vect(0,0,1) + WalkBob;
+		return CrouchEyeHeight * vect(0,0,1) + WalkBob;
+
 	return super.EyePosition();
 }
 
@@ -2152,12 +2368,6 @@ function DoDoubleJump( bool bUpdating )
 
 	if (Role == ROLE_Authority)
 		Inventory.OwnerEvent('Jumped');
-
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && !bIsCrouched && !bWantsToCrouch)
-	{
-		LastDoubleJumpTime = level.TimeSeconds;
-		DoubleJumpsLeft--;
-	}
 }
 
 singular event BaseChange()
@@ -2197,50 +2407,84 @@ singular event BaseChange()
 	OldBase = Base;
 }
 
+//==============================================================================
+// CanMantle
+//
+// Used for a cheap hack in Tactical mode, which allows a player to double jump
+// when a wall is in front of them
+//
+// TODO/FIXME:
+// We can use code similar to deploy in order to determine whether this wall 
+// should be mantled. We can then modify the double jump height based on what 
+// we find. Would need to check replication to maintain server synch.
+//==============================================================================
+final function bool CanMantle()
+{
+    local vector X,Y,Z, TraceStart, TraceEnd, HitLocation, HitNormal;
+    local Actor HitActor;
+	local rotator TurnRot;
+
+	if (MultiJumpRemaining == 0 || Physics != PHYS_Falling)
+        return false;
+
+	TurnRot.Yaw = Rotation.Yaw;
+    GetAxes(TurnRot,X,Y,Z);
+
+    TraceEnd = X;
+
+    TraceStart = Location - CollisionHeight*Vect(0,0,1) + TraceEnd*CollisionRadius;
+    TraceEnd = TraceStart + TraceEnd*32.0;
+
+    HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, false, vect(1,1,1));
+    
+    return HitActor != None && HitActor.bWorldGeometry || (Mover(HitActor) != None);
+}
+
 function bool CanDoubleJump()
 {
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 5 && level.TimeSeconds > LastDoubleJumpTime + 15)
-	{
-		LastDoubleJumpTime = level.TimeSeconds;
-		DoubleJumpsLeft++;
-	}
 	if(BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
 		return false;
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 1)
+
+    if (class'BallisticReplicationInfo'.static.IsTactical())
+        return CanMantle();
+
+	if (!bCanDoubleJump)
 		return false;
-	else
-		return super.CanDoubleJump();
+
+	return super.CanDoubleJump();
 }
 
 function bool CanMultiJump()
 {
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 1)
+	if (!bCanDoubleJump)
 		return false;
-	else
-		return super.CanMultiJump();
+
+	return super.CanMultiJump();
 }
+
 function bool Dodge(eDoubleClickDir DoubleClickMove)
 {
-//	if (bNoDodging)
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
+	if (!bCanDodge)
 		return false;
-	else
-	{
-		if (super.Dodge(DoubleClickMove))
-		{
-			if (Role == ROLE_Authority)
-				Inventory.OwnerEvent('Dodged');
-			return true;
-		}
-		else
-			return false;
-	}
+
+	if (Level.TimeSeconds - LastDodgeTime < DodgeInterval)
+		return false;
+
+    if (super.Dodge(DoubleClickMove))
+    {
+		LastDodgeTime = Level.TimeSeconds;
+
+        if (Role == ROLE_Authority)
+            Inventory.OwnerEvent('Dodged');
+        return true;
+    }
+
+    return false;
 }
 
 function bool DoJump( bool bUpdating )
 {
 	local float OldJumpZ;
-	local bool  bJR;
 
 	OldJumpZ = JumpZ;
 
@@ -2274,35 +2518,31 @@ function bool DoJump( bool bUpdating )
     return false;
 }
 
+//========================================================================
+// AddShieldStrength
+//
+// Create an armor to do hit effects, if none exists
+//========================================================================
 function bool AddShieldStrength(int ShieldAmount)
 {
 	local BallisticArmor BA;
-	local int OldShieldStrength;
 
 	BA = BallisticArmor(FindInventoryType(class'BallisticArmor'));
-	if (BA != None)
-	{
-		OldShieldStrength = BA.Charge;
-		BA.Charge = Min(BA.Charge + ShieldAmount, BA.MaxCharge);
-		BA.SetShieldDisplay(BA.Charge);
-	}
-	else
+	
+	if (BA == None)
 	{
 		BA = spawn(class'BallisticArmor',self);
-		BA.Charge = ShieldAmount;
-		BA.GiveTo (self, none);
+		BA.GiveTo(self, none);
 	}
-	if (BA == None)
-		return super.AddShieldStrength(ShieldAmount);
 
-	return (BA.Charge != OldShieldStrength);
+	return super.AddShieldStrength(ShieldAmount);
 }
-
 
 function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector Cross)
 {
     local float VelocityZ;
     local name Anim;
+	local float DodgeGroundSpeed;
 
     if ( Physics == PHYS_Falling )
     {
@@ -2325,10 +2565,27 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     }
 
     VelocityZ = Velocity.Z;
-    Velocity = DodgeSpeedFactor*GroundSpeed*Dir + (Velocity Dot Cross)*Cross;
+
+    DodgeGroundSpeed = GroundSpeed;
+
+    // prevent boost dodging with sprint
+    if ((class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism()) && class'BallisticReplicationInfo'.default.PlayerGroundSpeed < GroundSpeed)
+    {
+        DodgeGroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+    }
+
+    Velocity = DodgeSpeedFactor * DodgeGroundSpeed * Dir + (Velocity Dot Cross) * Cross;
+
+	// clamp dodge speed in realism and tactical
+	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.static.IsRealism())
+	{
+		if (VSize(Velocity) > DodgeGroundSpeed * DodgeSpeedFactor)
+			Velocity = Normal(Velocity) * DodgeGroundSpeed * DodgeSpeedFactor;
+	}
 
 	if ( !bCanDodgeDoubleJump )
 		MultiJumpRemaining = 0;
+
 	if ( bCanBoostDodge || (Velocity.Z < -100) )
 		Velocity.Z = VelocityZ + DodgeSpeedZ;
 	else
@@ -2344,12 +2601,16 @@ function CalcSpeedUp(float SpeedFactor)
 {
 	local float NewSpeed;
 	
-	NewSpeed = Instigator.default.GroundSpeed * SpeedFactor;
+	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * SpeedFactor;
+
 	if (ComboSpeed(CurrentCombo) != None)
 		NewSpeed *= 1.4;
+
 	if (BallisticWeapon(Weapon) != None && (BallisticWeapon(Weapon).PlayerSpeedFactor <= 1 || SpeedFactor <= 1))
 		NewSpeed *= BallisticWeapon(Weapon).PlayerSpeedFactor;
+
 	GroundSpeed = NewSpeed;
+    
 	Inventory.OwnerEvent('SpeedChange');
 }
 
@@ -2549,17 +2810,47 @@ function RemoveCoverAnchor(Actor A)
 	if (i < CoverAnchors.Length)
 		CoverAnchors.Remove(i, 1);
 }
+//===========================================================================
+// ShieldAbsorb
+//
+// Armor stops full damage
+// Don't play hit effects (BallisticArmor will do it)
+//===========================================================================
+function int ShieldAbsorb( int dam )
+{
+    local float Absorption;
+
+    if (ShieldStrength == 0)
+        return dam;
+
+    Absorption = FMin(ShieldStrength, dam);
+
+	// flash shield only if we absorbed all of the damage
+	if (Absorption == dam)
+		ShieldViewFlash(Absorption);
+   
+    dam -= Absorption;
+    ShieldStrength -= Absorption;
+
+    return dam;
+}
  
 function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector momentum, class<DamageType> damageType)
 {
 		local int actualDamage;
 		local Controller Killer;
 		local vector HitLocationMatchZ;
- 
+		
+		/*
+        local Vector SelfToHit, SelfToInstigator, CrossPlaneNormal;
+        local float W;
+        local float YawDir;
+		*/
+		
 		if ( damagetype == None )
 		{
 			if ( InstigatedBy != None )
-					warn("No damagetype for damage by "$instigatedby$" with weapon "$InstigatedBy.Weapon);
+				warn("No damagetype for damage by "$instigatedby$" with weapon "$InstigatedBy.Weapon);
 			DamageType = class'DamageType';
 		}
  
@@ -2583,20 +2874,22 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
  
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
-
-		if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
-			momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
-
-		if ( instigatedBy == self )
-			momentum *= 0.6;
-
-		momentum = momentum/Mass;
 		
-		if (Momentum.Z > 950)
-			Momentum.Z = 950;
-		if (Momentum.Z < -300)
-			Momentum *= (-300 / Momentum.Z);
- 
+		if (true /*!class'BallisticReplicationInfo'.static.IsClassic()*/) // Classic lets you take off into orbit
+		{
+			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
+				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
+
+			if ( instigatedBy == self )
+				momentum *= 0.6;
+
+			momentum = momentum/Mass;
+			
+			if (Momentum.Z > 950)
+				Momentum.Z = 950;
+			if (Momentum.Z < -300)
+				Momentum *= (-300 / Momentum.Z);
+		}
 		if (Weapon != None)
 			Weapon.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
 		
@@ -2672,46 +2965,87 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
+			//if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
+			//{
+				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
+				{
+					HitLocationMatchZ = Velocity;
+					HitLocationMatchZ.Z = 0;
+					AddVelocity( momentum - HitLocationMatchZ);
+				}
+				else
+					AddVelocity( momentum );
+			//}
+			/*else  //Classic/Realism: Taking damage arrests movement
 			{
-				HitLocationMatchZ = Velocity;
-				HitLocationMatchZ.Z = 0;
-				AddVelocity( momentum - HitLocationMatchZ);
-			}
-			else
-				AddVelocity( momentum );
+				if ( InstigatedBy != None )
+				{
+					// Figure out which direction to spin:
+					if( InstigatedBy.Location != Location )
+					{
+						SelfToInstigator = InstigatedBy.Location - Location;
+						SelfToHit = HitLocation - Location;
+
+						CrossPlaneNormal = Normal( SelfToInstigator cross Vect(0,0,1) );
+						W = CrossPlaneNormal dot Location;
+
+						if( HitLocation dot CrossPlaneNormal < W )
+							YawDir = -1.0;
+						else
+							YawDir = 1.0;
+					}
+				}
+				
+				if( VSize(Momentum) < 10 )
+				{
+					Momentum = - Normal(SelfToInstigator) * Damage * 1000.0;
+					Momentum.Z = Abs( Momentum.Z );
+				}
+
+				SetPhysics(PHYS_Falling);
+				Momentum = Momentum / Mass;
+				AddVelocity( Momentum );
+				bBounce = true;
+			}*/
 			if (VSize(Momentum) > 50000)
 				bPendingNegation=True;
 			if ( Controller != None )
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
-            if (PlayerController(Controller) != None)
-                HandleViewFlash(actualDamage);
+                
+            DamageViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
 }
 
-function HandleViewFlash(int damage)
+function ShieldViewFlash(int damage)
 {
     local int rnd;
 
-    if (damage == 0)
+    if (BallisticPlayer(Controller) == None || damage == 0)
         return;
 
-	if (bNoViewFlash)
-        return;
-		
-    rnd = FClamp(damage, 25, 70);
+    rnd = FClamp(damage / 2, 25, 50);
 
-	if (ShieldStrength > 0)
-    {
-        PlayerController(Controller).ClientFlash( -0.019 * rnd, ShieldFlashV);
-    }
-    else 
-    {
-		PlayerController(Controller).ClientFlash( -0.019 * rnd, rnd * BloodFlashV);  
-    }     
+	BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);    
+}
+
+function DamageViewFlash(int damage)
+{
+    local int rnd;
+
+    if (BallisticPlayer(Controller) == None || damage == 0)
+        return;
+
+    rnd = FClamp(damage / 2, 25, 50);
+
+	BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);    
+}
+
+exec simulated function TestFlash(int damage)
+{
+    DamageViewFlash(damage);
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -2785,12 +3119,17 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-	//Scaling movement speed
-	if (Physics == PHYS_Walking)
+	if (Physics != PHYS_Walking)
+		return;
+
+	// constrains strafe move
+	if (StrafeScale < 1f || BackpedalScale < 1f)
 	{
 		GetAxes(GetViewRotation(),X,Y,Z);
 		MaxStrafeSpeed = GroundSpeed * StrafeScale;
-		MaxBackSpeed = GroundSpeed * BackScale;
+		MaxBackSpeed = GroundSpeed * BackpedalScale;
+
+		// backwards speed limit
 		XSpeed = Abs(X dot Velocity);
 		
 		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
@@ -2801,7 +3140,9 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			Velocity = dir * (MaxBackSpeed / CosAngle);
 		}
 		
+		// strafe speed limit
 		YSpeed = Abs(Y dot velocity);
+
 		if (YSpeed > MaxStrafeSpeed)
 		{
 			//limiting strafespeed
@@ -2809,14 +3150,15 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			CosAngle = Abs(Y dot dir);
 			Velocity = dir * (MaxStrafeSpeed / CosAngle);
 		}
-
-		//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
 	}
-	 
-	if (Physics==PHYS_Walking)
+
+	//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+		
+	// Applies decelerative friction
+	if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
 	{
-		FSpeed = Vsize(Velocity);
-		 
+		FSpeed = VSize(Velocity);
+			
 		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
 		{
 			Control = FMin(100, FSpeed);
@@ -2825,16 +3167,17 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			NewSpeed = FSpeed + drop;
 			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
 			Velocity *= NewSpeed;
-
 		}
-		
-		OldMovementSpeed = Vsize(Velocity);
 	}
+
+	OldMovementSpeed = VSize(Velocity);
 }
 
 defaultproperties
 {
-     DoubleJumpsLeft=3
+	bAlwaysRelevant=True
+    bCanDodge=True
+    bCanDoubleJump=True
      MoverLeaveGrace=1.000000
      MinDragDistance=40.000000
      MaxPoolVelocity=20.000000
@@ -2862,28 +3205,48 @@ defaultproperties
      Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
 
-	 BloodFlashV=(X=26.5,Y=4.5,Z=4.5)
-     ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
+	 BloodFlashV=(X=1000,Y=250,Z=250)
+     ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.350000
-     FootstepRadius=400.000000
+     FootstepVolume=0.25
+     FootstepRadius=1536.000000
+	 GruntVolume=0.25
+     GruntRadius=28.000000
 
-     GruntVolume=0.2
-     GruntRadius=300.000000
-	 bNoViewFlash=True
+	 // used to play footsteps at consistent volume regardless of position
+	 // the fine sound controls, like occlusion factors and rolloff curves, are native
+	 // so we're forced into this to get the footstep behaviour we want
+	 // thankfully, it won't affect sounds we play through our weapons or attachments
+	 SoundOcclusion=OCCLUSION_None
+
+	 BaseEyeHeight=30
+	 CrouchEyeHeight=19
+
+     CollisionRadius=19.000000
+
+	 CrouchHeight=32
+
+
+
      DeResTime=4.000000
      RagDeathUpKick=0.000000
      bCanWalkOffLedges=True
      bSpecialHUD=True
      Visibility=64
      HeadRadius=13.000000
+	
      TransientSoundVolume=0.300000
 	 
 	 StrafeScale=1.000000
-     BackScale=1.000000
+     BackpedalScale=1.000000
      //MyFriction=4.000000
      RagdollLifeSpan=20.000000
+
+	// the default value of this variable is used by C++ to work out move animation rates.
+	// do not use or change the default in code - use class'BallisticReplicationInfo'.default.PlayerGroundSpeed instead.
+	// the default value is assigned from game styles as PlayerAnimationGroundSpeed
      GroundSpeed=360.000000
+
 	 LadderSpeed=280.000000
      WaterSpeed=150.000000
      //AirSpeed=270.000000

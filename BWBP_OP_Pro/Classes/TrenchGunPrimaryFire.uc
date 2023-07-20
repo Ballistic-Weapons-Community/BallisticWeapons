@@ -36,12 +36,11 @@ var() Point2					ElectroInaccuracy, ElectroDoubleInaccuracy, ExplosiveInaccuracy
 // =============================================================================================================================
 simulated state Projectile
 {
-
 	simulated function ApplyFireEffectParams(FireEffectParams params)
 	{
 		local ProjectileEffectParams effect_params;
 
-		super.ApplyFireEffectParams(params);
+		super(BallisticFire).ApplyFireEffectParams(params);
 
 		effect_params = ProjectileEffectParams(params);
 
@@ -118,7 +117,7 @@ simulated state Projectile
 		SpawnProjectile(StartTrace, Aim);
 
 		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
-		Super.DoFireEffect();
+		Super(BallisticFire).DoFireEffect();
 	}
 
 	function SpawnProjectile (Vector Start, Rotator Dir)
@@ -129,8 +128,23 @@ simulated state Projectile
 	}
 }
 
-simulated state Shotgun
+simulated state ShotgunZap
 {
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+		KickForce=4500;
+		MaxWaterTraceRange=9000;
+		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
+	}
+
 	//======================================================================
 	// Shotgun-DoFireEffect
 	//
@@ -157,6 +171,13 @@ simulated state Shotgun
 			BW.RestoreCollisions();
 
 		ApplyHits();
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
 		
 		// Tell the attachment the aim. It will calculate the rest for the clients
 		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
@@ -165,8 +186,90 @@ simulated state Shotgun
 	}
 }
 
+simulated state ShotgunHE
+{
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
+	}
+
+	//======================================================================
+	// Shotgun-DoFireEffect
+	//
+	// Send twice if double shot
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector StartTrace;
+		local Rotator R, Aim;
+		local int i;
+
+		Aim = GetFireAim(StartTrace);
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		for (i=0; i < GetTraceCount(Load); i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+		ApplyHits();
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
+		
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+
+		Super(BallisticFire).DoFireEffect();
+	}
+
+
+	//======================================================================
+	// ApplyDamage
+	//
+	// Explosive rounds
+	//======================================================================
+
+	function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+	{
+		super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+		
+		if (Target.bProjTarget)
+			BW.TargetedHurtRadius(Damage, 512, class'DT_TrenchGunExplosive', 200, HitLocation, Pawn(Target));
+	}
+}
+
 simulated state ShotgunIncendiary
 {
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+	}
 
 	function TrenchGunFireControl GetFireControl()
 	{
@@ -203,6 +306,15 @@ simulated state ShotgunIncendiary
 			BW.RestoreCollisions();
 		
 		ApplyHits();
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
+
+		// argh, no
 		
 		//============================= Flamey Bits ==========================
 		Start = Instigator.Location + Instigator.EyePosition();
@@ -259,20 +371,6 @@ simulated state ShotgunIncendiary
 		Super(BallisticFire).DoFireEffect();
 	}
 
-}
-
-//======================================================================
-// ApplyDamage
-//
-// Explosive rounds
-//======================================================================
-
-function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
-{
-	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
-	
-	if (BW.CurrentWeaponMode == 0 && Target.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 512, class'DT_TrenchGunExplosive', 200, HitLocation, Pawn(Target));
 }
 
 //======================================================================
@@ -393,15 +491,11 @@ simulated function SwitchWeaponMode (byte newMode)
 {
 	if (newMode == 1) // Electro Mode
 	{
-		KickForce=4500;
-		MaxWaterTraceRange=9000;
-		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
 	}
 	else // Explosive Mode
 	{
 		KickForce=default.KickForce;
 		MaxWaterTraceRange=default.MaxWaterTraceRange;
-		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
 	}
 }
 
@@ -488,8 +582,6 @@ simulated event ModeDoFire()
             AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         Instigator.DeactivateSpawnProtection();
     }
-	else if (!BW.bUseNetAim && !BW.bScopeView)
-    	ApplyRecoil();
     
 	if (!BW.bScopeView)
 		BW.AddFireChaos(FireChaos);
@@ -732,39 +824,6 @@ function SwitchShotParams()
 	}
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	local float AdjustedFireRate;
-	
-	AdjustedFireRate=0.6;
-	
-	FS.DamageInt = int(default.Damage * default.TraceCount);
-
-    if (default.RangeAtten < 1f)
-	    FS.Damage 		= String(FS.DamageInt) @ "-" @ String(FS.DamageInt * default.RangeAtten);
-    else 
-        FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.Damage = String(FS.DamageInt);
-	FS.DPS = (default.Damage * default.TraceCount) / AdjustedFireRate;
-	FS.TTK = 0.6 * (Ceil(175/FS.DamageInt) - 1);
-	if (AdjustedFireRate < 0.5)
-		FS.RPM = String(int((1 / AdjustedFireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/AdjustedFireRate@"times/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max:"@(default.TraceRange.Max / 52.5)@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
 	SlugFireSound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot'
@@ -775,13 +834,8 @@ defaultproperties
 	ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.000000
-
     ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
     SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-	
-    CutOffDistance=2048.000000
-    CutOffStartRange=1024.000000
-
 	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
     ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
@@ -827,12 +881,14 @@ defaultproperties
 	FireAnimRate=0.800000
 	FireRate=0.100000
 	AmmoClass=Class'BWBP_OP_Pro.Ammo_TrenchgunShells'
-	ShakeRotMag=(X=128.000000,Y=64.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-30.000000)
-	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetMag=(X=-8.00)
+	ShakeOffsetRate=(X=-160.00)
 	ShakeOffsetTime=2.000000
+
 	BotRefireRate=0.60000
 	WarnTargetPct=0.500000
 }

@@ -265,11 +265,11 @@ defaultproperties
 {
 	GrenadeBone="GrenadePistolGrenade"
 	bShouldDualInLoadout=False
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.BOGP.BigIcon_BOGP'
 	BigIconCoords=(Y1=32,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Splash=True
 	bWT_Projectile=True
 	ManualLines(0)="Grenade mode launches a grenade with good damage and blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
@@ -280,9 +280,8 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	bNoMag=True
 	CockAnim="Reload"
-	CockAnimRate=1.50000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
-	ReloadAnimRate=1.250000
+
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Close',Volume=1.000000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Open',Volume=1.000000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_GrenLoad',Volume=1.000000)
@@ -292,11 +291,11 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=300)
-	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
-	ParamsClasses(0)=Class'BOGPWeaponParams'
+
+	ParamsClasses(0)=Class'BOGPWeaponParamsComp'
 	ParamsClasses(1)=Class'BOGPWeaponParamsClassic'
 	ParamsClasses(2)=Class'BOGPWeaponParamsRealistic'
+    ParamsClasses(3)=Class'BOGPWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=126),Color2=(G=100,A=134),StartSize1=122,StartSize2=66)
@@ -309,10 +308,16 @@ defaultproperties
 	Priority=19
 	HudColor=(G=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=8
-	GroupOffset=5
+	InventoryGroup=2
+	GroupOffset=2
 	PickupClass=Class'BallisticProV55.BOGPPickup'
-	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
+
+	PlayerViewOffset=(X=6.00,Y=1.50,Z=-4.50)
+	SightOffset=(X=-8,Y=0.080000,Z=1.95)
+	SightPivot=(Pitch=300)
+	SightAnimScale=0.5
+	SightBobScale=0.35
+	
 	AttachmentClass=Class'BallisticProV55.BOGPAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.BOGP.SmallIcon_BOGP'
 	IconCoords=(X2=127,Y2=31)
@@ -325,6 +330,7 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_BORT'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
+	Skins(2)=Shader'BW_Core_WeaponTex.BOGP.BOGP_ScopeShine'
 }

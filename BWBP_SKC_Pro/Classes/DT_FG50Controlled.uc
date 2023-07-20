@@ -29,24 +29,27 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%k's FG50 sent a huge round through %o's head."
-     DeathStrings(1)="%k's FG50 popped %o's head like a little grape."
-     DeathStrings(2)="%o lost more than half %vh head to %k's FG50 round."
-     DeathStrings(3)="%o's brains were sauteed by %k's FG50 incendiary ammo."
-     SimpleKillString="FG50 Machinegun Controlled"
-     bIgniteFires=True
-     bHeaddie=True
-     DamageIdent="Machinegun"
-     DamageDescription=",Bullet,Flame,"
-     WeaponClass=Class'BWBP_SKC_Pro.FG50MachineGun'
-     DeathString="%k's FG50 sent a huge round through %o's head."
-     FemaleSuicide="%o's FG50 took her head off."
-     MaleSuicide="%o's FG50 took his head off."
-     bFastInstantHit=True
-     bAlwaysSevers=True
-     GibModifier=1.200000
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
-     GibPerterbation=0.200000
-     KDamageImpulse=1000.000000
-     VehicleDamageScaling=0.500000
+	DeathStrings(0)="%k's FG50 sent a huge round through %o's head."
+	DeathStrings(1)="%k's FG50 popped %o's head like a little grape."
+	DeathStrings(2)="%o lost more than half %vh head to %k's FG50 round."
+	DeathStrings(3)="%o's brains were sauteed by %k's FG50 incendiary ammo."
+	SimpleKillString="FG50 Machinegun Controlled"
+	bIgniteFires=True
+	bHeaddie=True
+	DamageIdent="Machinegun"
+	DamageDescription=",Bullet,Flame,"
+	WeaponClass=Class'BWBP_SKC_Pro.FG50MachineGun'
+	DeathString="%k's FG50 sent a huge round through %o's head."
+	FemaleSuicide="%o's FG50 took her head off."
+	MaleSuicide="%o's FG50 took his head off."
+	bFastInstantHit=True
+	bAlwaysSevers=True
+	GibModifier=1.200000
+	PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+	GibPerterbation=0.200000
+	KDamageImpulse=1000.000000
+	VehicleDamageScaling=0.500000
+
+	TagMultiplier=0.5
+	TagDuration=0.25
 }

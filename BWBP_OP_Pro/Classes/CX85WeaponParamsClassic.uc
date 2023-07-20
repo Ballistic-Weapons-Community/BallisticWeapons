@@ -88,7 +88,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=16,Max=768)
+		AimSpread=(Min=32,Max=2048)
 		AimAdjustTime=0.800000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
@@ -108,10 +108,10 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
-		InventorySize=12
+		InventorySize=8
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.700000
-		ReloadAnimRate=0.800000
+		//ReloadAnimRate=0.800000
 		DisplaceDurationMult=1
 		bNeedCock=True
 		MagAmmo=32

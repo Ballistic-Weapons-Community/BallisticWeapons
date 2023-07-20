@@ -20,12 +20,12 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 
 	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
 
-	if (Instigator.Controller != None && Pawn(Victim).Controller != Instigator.Controller && Instigator.Controller.SameTeamAs(Pawn(Victim).Controller))
-		return; //Yeah no melting teammate armor. that's mean
-
 	// Do additional damage to armor..
-	if(Pawn(Victim) != None)
+	if(Pawn(Victim) != None && Pawn(Victim).Inventory != None)
 	{
+		if (Instigator.Controller != None && Pawn(Victim).Controller != Instigator.Controller && Instigator.Controller.SameTeamAs(Pawn(Victim).Controller))
+			return; //Yeah no melting teammate armor. that's mean
+		
 		BestArmor = Pawn(Victim).Inventory.PrioritizeArmor(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 		if(BestArmor != None)
 		{
@@ -37,16 +37,19 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 
 defaultproperties
 {
-     ArmorDrain=0.200000
-     DeathStrings(0)="%k pounded %o to the ground with %kh AH104."
-     DeathStrings(1)="%k punched through %o with %kh AH104."
-     DeathStrings(2)="%o's body armor did nothing to stop %k's AH104."
-     DeathStrings(3)="%k's AH104 blasted %o into submission."
-     bIgniteFires=True
-     WeaponClass=Class'BWBP_SKC_Pro.AH104Pistol'
-     DeathString="%k pounded %o to the ground with %kh AH104."
-     FemaleSuicide="%o nailed herself with the AH104."
-     MaleSuicide="%o nailed himself with the AH104."
-     VehicleDamageScaling=0.875000
-     VehicleMomentumScaling=0.300000
+	ArmorDrain=0.200000
+	DeathStrings(0)="%k pounded %o to the ground with %kh AH104."
+	DeathStrings(1)="%k punched through %o with %kh AH104."
+	DeathStrings(2)="%o's body armor did nothing to stop %k's AH104."
+	DeathStrings(3)="%k's AH104 blasted %o into submission."
+	bIgniteFires=True
+	WeaponClass=Class'BWBP_SKC_Pro.AH104Pistol'
+	DeathString="%k pounded %o to the ground with %kh AH104."
+	FemaleSuicide="%o nailed herself with the AH104."
+	MaleSuicide="%o nailed himself with the AH104."
+	VehicleDamageScaling=0.875000
+	VehicleMomentumScaling=0.300000
+
+	TagMultiplier=0.6
+	TagDuration=0.2
 }

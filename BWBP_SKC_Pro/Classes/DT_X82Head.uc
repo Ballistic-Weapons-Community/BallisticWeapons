@@ -38,7 +38,7 @@ defaultproperties
      bHeaddie=True
      InvasionDamageScaling=2.000000
      DamageIdent="Sniper"
-     AimDisplacementDuration=1.00000
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBP_SKC_Pro.X82Rifle'
      DeathString="%k blew %o's skull away with a .50 Cal bullet."
      FemaleSuicide="%o shot herself in the head while cleaning her gun."
@@ -51,4 +51,7 @@ defaultproperties
      GibPerterbation=0.200000
      KDamageImpulse=10000.000000
      VehicleDamageScaling=0.650000
+
+	TagMultiplier=0.5
+	TagDuration=0.25
 }

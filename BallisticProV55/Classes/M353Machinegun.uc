@@ -41,18 +41,26 @@ function Notify_Deploy()
 	// to the centre of the bags.
 	
 	Start = Instigator.Location + Instigator.EyePosition();
+
 	for (Forward=75;Forward>=45;Forward-=15)
 	{
 		End = Start + vector(Instigator.Rotation) * Forward;
+
 		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
+
 		if (T != None && VSize(HitLoc - Start) < 30)
 			return;
+
 		if (T == None)
 			HitLoc = End;
+
 		End = HitLoc - vect(0,0,100);
+
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+
+		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth - 4 && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
+
 		if (Forward <= 45)
 			return;
 	}
@@ -63,7 +71,7 @@ function Notify_Deploy()
 	if(Sandbag(T) != None)
 	{
 		HitLoc = T.Location;
-		HitLoc.Z += class'M353Turret'.default.CollisionHeight + 30;
+		HitLoc.Z += class'M353Turret'.default.CollisionHeight + T.CollisionHeight * 0.75;
 	}
 	
 	else
@@ -149,7 +157,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -160,8 +167,23 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
         W = self;
+		
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+		}
     }
  	
    	else if ( !W.HasAmmo() )
@@ -188,18 +210,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
-		
-	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
-    {
-        Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
-		
-		if (Instigator.Weapon == None)
-			Instigator.Weapon = Self;
 			
-        if( Bags != None )
-            Bags.GiveTo(Instigator);
-    }
-		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
 
@@ -250,7 +261,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M353'
 	BigIconCoords=(Y1=50,Y2=240)
 	SightFXClass=Class'BallisticProV55.M353SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
@@ -259,10 +270,9 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ReloadAnim="ReloadStart"
-	ReloadAnimRate=1.250000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellIn')
 	ClipInFrame=0.650000
@@ -274,13 +284,14 @@ defaultproperties
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),Color2=(A=246),StartSize1=89)
     NDCrosshairInfo=(SpreadRatios=(Y2=1.000000))
-    
+    SightAnimScale=0.3
 	CurrentWeaponMode=3
 	bNoCrosshairInScope=True
-	SightOffset=(X=-6.000000,Z=5.30000)
-	ParamsClasses(0)=Class'M353WeaponParams'
+
+	ParamsClasses(0)=Class'M353WeaponParamsComp'
 	ParamsClasses(1)=Class'M353WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M353WeaponParamsRealistic' //todo: turret
+    ParamsClasses(3)=Class'M353WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M353PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
 	SelectAnimRate=1.350000
@@ -290,13 +301,13 @@ defaultproperties
 	AIRating=0.7500000
 	CurrentRating=0.7500000
 	Description="The M353 'Guardian' Machinegun has seen some of the most brutal battles ever recorded in recent history, and has helped win many of them, the most famous being the bloody 'Wasteland Seige' where 12 million Krao were slaughtered along a 500 mile line of defences. Used primarily as a defensive weapon, the M353's incredible rate of fire can quickly and effectively destroy masses of oncoming foes, especially melee attackers. When the secondary mode is activated, the Guardian becomes much more accurate when the user mounts it on the ground, allowing it to be a very effective defensive weapon. With its high rate of fire and high damage, the M353 becomes very inaccurate after just a few rounds and with its high ammo capacity, comes the difficulty of longer reload times than smaller weapons."
-	DisplayFOV=50.000000
 	Priority=43
 	HudColor=(G=150,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=6
 	PickupClass=Class'BallisticProV55.M353Pickup'
-	PlayerViewOffset=(X=2.000000,Y=3.500000,Z=-4.000000)
+	PlayerViewOffset=(X=2.00,Y=2.50,Z=-3.50)
+	SightOffset=(X=1,Z=1)
 	AttachmentClass=Class'BallisticProV55.M353Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M353'
 	IconCoords=(X2=127,Y2=31)
@@ -308,5 +319,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M353'
-	DrawScale=0.350000
+	DrawScale=0.3
 }

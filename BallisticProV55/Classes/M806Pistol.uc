@@ -105,7 +105,7 @@ function ServerWeaponSpecial(optional byte i)
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor!=None)
 		M806Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -132,8 +132,6 @@ simulated function ClientSwitchLaser()
 
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-
-	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -302,11 +300,6 @@ simulated function bool HasAmmo()
 			return true;
 	return false;	//This weapon is empty
 }
-// Change some properties when using sights...
-simulated function UpdateNetAim()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-}
 
 // AI Interface =====
 // choose between regular or alt-fire
@@ -348,7 +341,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M806'
 	SightFXClass=Class'BallisticProV55.M806SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bShouldDualInLoadout=True
 	SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
@@ -362,11 +355,15 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
-	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'M806WeaponParams'
+           //Aligned
+	bAdjustHands=true
+	RootAdjust=(Yaw=-375,Pitch=3500)
+	WristAdjust=(Yaw=-3500,Pitch=-000)
+
+	ParamsClasses(0)=Class'M806WeaponParamsComp'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M806WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
 	MeleeFireClass=Class'BallisticProV55.M806MeleeFire'
@@ -382,7 +379,10 @@ defaultproperties
 	InventoryGroup=2
 	GroupOffset=8
 	PickupClass=Class'BallisticProV55.M806Pickup'
-	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
+	PlayerViewOffset=(X=0.00,Y=6.00,Z=-20.00)
+	SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
+	SightPivot=(Pitch=-110,Roll=-675)   
+	SightBobScale=2f
 	AttachmentClass=Class'BallisticProV55.M806Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M806'
 	IconCoords=(X2=127,Y2=31)
@@ -394,5 +394,5 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806'
-	DrawScale=0.080000
+	DrawScale=0.300000
 }

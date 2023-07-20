@@ -12,7 +12,7 @@ class M75SecondaryFire extends BallisticRailgunFire;
 
 const 				MAX_RAIL_POWER = 1.3f; // charges in 2 seconds, 0.6s hold time grace
 var   	float 		RailPower;
-var		float		RailDamageBonus;
+var		float		RailDamageBonusFactor;
 
 var		float		RailWallPenetrationForceBonus;
 var		int			RailPenetrateForceBonus;
@@ -23,7 +23,7 @@ simulated event ModeDoFire()
 {
 	RailPower = FMin(RailPower, 1.0f);
 
-	Damage 					= default.Damage					+ (RailDamageBonus				* RailPower);
+	Damage 					= default.Damage					* (1 + (RailDamageBonusFactor	* RailPower));
 	WallPenetrationForce 	= default.WallPenetrationForce 		+ RailWallPenetrationForceBonus * Square(RailPower);
 	PenetrateForce 			= default.PenetrateForce 			+ RailPenetrateForceBonus 		* RailPower;
 	KickForce 				= default.KickForce 				+ RailKickForceBonus 			* RailPower;
@@ -93,12 +93,8 @@ defaultproperties
 	 RailWallPenetrationForceBonus=1280
 	 
 	 bCockAfterFire=True
-
-	 Damage=80.000000
-     HeadMult=1.5f
-     LimbMult=0.9f
 	 
-	 RailDamageBonus=40
+	 RailDamageBonusFactor=0.75
 	 
      DamageType=Class'BallisticProV55.DTM75RailgunCharged'
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunChargedHead'

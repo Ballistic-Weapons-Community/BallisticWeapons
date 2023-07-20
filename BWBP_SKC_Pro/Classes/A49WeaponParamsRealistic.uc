@@ -100,9 +100,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-        InventorySize=10
+        InventorySize=5
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=-12.000000,Z=35.000000)
+		//SightOffset=(X=-12.000000,Z=35.000000)
 		SightPivot=(Pitch=768)
 		MagAmmo=40
 		WeaponName="A49 Concussive Blaster"

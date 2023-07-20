@@ -23,10 +23,13 @@ var() BUtil.FullSound 		CamOutSound;
 var() name					CamUpAnim;			//Anim when going to cam view
 var() name					CamDownAnim;		//Anim when leaving cam view
 var() float					CamUpdateRate;		//Time interval between scripted tex screen updates
+var() bool					bHasGrenadeLauncher;
+var() bool					bHasCamera;
 
 var() Sound					GrenOpenSound;		//Sounds for grenade reloading
 var() Sound					GrenLoadSound;		//
 var() Sound					GrenCloseSound;		//
+var() Sound					BoltReleaseSound;		//
 
 var   actor GLIndicator;
 
@@ -40,13 +43,31 @@ replication
 		Camera;
 }
 
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasGrenadeLauncher=true;
+	bHasCamera=true;
+	
+	if (InStr(WeaponParams.LayoutTags, "no_grenade") != -1)
+	{
+		bHasGrenadeLauncher=false;
+		bHasCamera=false;
+		bCockOnEmpty=false;
+		MeleeFireClass=None; //todo
+	}
+}
+
 simulated function UpdateGLIndicator()
 {
 	if (!Instigator.IsLocallyControlled())
 		return;
 	if (M50SecondaryFire(FireMode[1]).bLoaded)
 	{
-		if (GLIndicator == None)
+		if (GLIndicator == None && bHasGrenadeLauncher)
 			class'BUtil'.static.InitMuzzleFlash(GLIndicator, class'M50GLIndicator', DrawScale, self, 'tip');
 	}
 	else if (GLIndicator != None)
@@ -60,6 +81,12 @@ simulated function UpdateGLIndicator()
 simulated function Notify_M50GrenadeSlideUp()	{	PlaySound(GrenOpenSound, SLOT_Misc, 0.5, ,64);	}
 simulated function Notify_M50GrenadeIn()		{	PlaySound(GrenLoadSound, SLOT_Misc, 0.5, ,64);		}
 simulated function Notify_M50GrenadeSlideDown()	{	PlaySound(GrenCloseSound, SLOT_Misc, 0.5, ,64); M50SecondaryFire(FireMode[1]).bLoaded = true; FireMode[1].PreFireTime = FireMode[1].default.PreFireTime; UpdateGLIndicator();	}
+simulated function Notify_BoltRelease()
+{
+	if (ReloadState == RS_None && !bNeedCock)	return;
+	ReloadState = RS_Cocking;
+	PlaySound(BoltReleaseSound, SLOT_Misc, 1, ,16);
+}
 
 // A grenade has just been picked up. Loads one in if we're empty
 function GrenadePickedUp ()
@@ -185,6 +212,8 @@ simulated function bool CheckWeaponMode (int Mode)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
+	if (!bHasCamera)
+		return;
 	if (Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera)
 		SwitchView();
 	else
@@ -264,7 +293,7 @@ simulated event Timer()
 	}
 
 	Level.TimeSeconds < FMin(LastRenderTime + CamUpdateRate, 0.05);
-	if (Instigator.IsLocallyControlled() && Camera != None && CamUpdateRate > 0.0 && !Camera.bBusted && PlayerController(Instigator.Controller).ViewTarget == Instigator)
+	if (Instigator.IsLocallyControlled() && bHasCamera && Camera != None && CamUpdateRate > 0.0 && !Camera.bBusted && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
 		CamTex.Client = self;
 		if (Camera != None)
@@ -411,7 +440,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (Camera != None)
 			CamTex.Revision++;
 	}
-	if (Camera == None && Role == ROLE_Authority)
+	if (bHasCamera && Camera == None && Role == ROLE_Authority)
 	{
 		foreach DynamicActors (class'M50Camera', C)
 		{
@@ -544,7 +573,7 @@ function byte BestMode()
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
 
-	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded())
+	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded() || !bHasGrenadeLauncher)
 		return 0;
 	else if (MagAmmo < 1)
 		return 1;
@@ -631,7 +660,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -655,12 +684,13 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
+	BoltReleaseSound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M50'
 	BigIconCoords=(Y1=40,Y2=235)
 	SightFXClass=Class'BallisticProV55.M50SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Splash=True
 	bWT_Machinegun=True
@@ -672,7 +702,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
-	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipOut')
@@ -682,15 +711,18 @@ defaultproperties
 	WeaponModes(1)=(Value=3.000000,bUnavailable=True)
 	MeleeFireClass=Class'BallisticProV55.M50MeleeFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=158),StartSize1=84,StartSize2=82)
-	
 	bNoCrosshairInScope=True
+	
+	PlayerViewOffset=(X=6,Y=4.500000,Z=-4.5)
+	SightOffset=(X=-8,Y=0.08,Z=2.7)
 	SightPivot=(Pitch=200)
-	SightOffset=(Y=0.050000,Z=12.130000)
-	SightDisplayFOV=40.000000
+	SightAnimScale=0.75
+
 	EffectOffset=(X=100,Z=7)
-	ParamsClasses(0)=Class'M50WeaponParams'
+	ParamsClasses(0)=Class'M50WeaponParamsComp'
 	ParamsClasses(1)=Class'M50WeaponParamsClassic'
 	ParamsClasses(2)=Class'M50WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M50WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M50PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M50SecondaryFire'
 	PutDownAnimRate=1.500000
@@ -704,7 +736,7 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.M50Pickup'
-	PlayerViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+
 	AttachmentClass=Class'BallisticProV55.M50Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M50'
 	IconCoords=(X2=127,Y2=31)

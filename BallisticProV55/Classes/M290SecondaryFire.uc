@@ -21,12 +21,14 @@ event ModeDoFire()
 			bCockAfterFire=true;
 			M290Shotgun(Weapon).bRightLoaded=false;
 			FireAnim='FireRight';
+			AimedFireAnim='FireRight';
 		}
 		else
 		{
 			bCockAfterFire=false;
 			M290Shotgun(Weapon).bLeftLoaded=false;
 			FireAnim='FireLeft';
+			AimedFireAnim='FireLeft';
 		}
 	}
 	super.ModeDoFire();
@@ -89,15 +91,10 @@ function FlashMuzzleFlash()
 defaultproperties
 {
 	 HipSpreadFactor=2
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
      TraceCount=10
      TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=2560.000000,Max=2560.000000)
-     Damage=12.000000
-
-     RangeAtten=0.250000
      DamageType=Class'BallisticProV55.DTM290Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
@@ -123,7 +120,7 @@ defaultproperties
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
+     ShakeOffsetMag=(X=-12.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
 	 

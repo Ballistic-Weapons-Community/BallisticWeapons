@@ -20,16 +20,6 @@ replication
 		ClientSetHeat;
 }
 
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
-	{
-		A73PrimaryFire(FireMode[0]).HeatPerShot = 0;
-		A73SecondaryFire(FireMode[1]).HeatPerShot = 0;
-	}
-}
-
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
@@ -102,7 +92,20 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	GunLength = default.GunLength;
 
     if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
+	{
+		if (LayoutIndex == 1)
+		{
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXBal', DrawScale, self, 'tip');
+		}
+		else if (LayoutIndex == 2)
+		{
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
+		}
+		else
+		{
 		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFX', DrawScale, self, 'tip');
+		}
+	}
 }
 
 simulated event Timer()
@@ -281,7 +284,7 @@ defaultproperties
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A73'
 	BigIconCoords=(Y1=32,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_RapidProj=True
 	bWT_Energy=True
 	ManualLines(0)="Launches a torrent of energy projectiles. The damage of these projectiles increases at range.||This attack generates heat, and if the weapon overheats, the fire rate is reduced and the player will take damage."
@@ -291,7 +294,6 @@ defaultproperties
 	MeleeFireClass=Class'BallisticProV55.A73MeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
-	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
@@ -304,12 +306,16 @@ defaultproperties
 	bNoCrosshairInScope=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=68,R=65,A=137),Color2=(B=96,G=185),StartSize1=133,StartSize2=47)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
+
+	PlayerViewOffset=(X=-5.00,Y=8.00,Z=-9.00)
+	SightOffset=(X=14.00,Z=5.50)
 	SightPivot=(Pitch=450)
-	SightOffset=(X=10.000000,Z=12.150000)
-	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'A73WeaponParams'
+	SightBobScale=0.7
+
+	ParamsClasses(0)=Class'A73WeaponParamsComp'
 	ParamsClasses(1)=Class'A73WeaponParamsClassic'
 	ParamsClasses(2)=Class'A73WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A73WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
 	BringUpTime=0.500000
@@ -324,7 +330,7 @@ defaultproperties
 	InventoryGroup=5
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.A73Pickup'
-	PlayerViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
+
 	AttachmentClass=Class'BallisticProV55.A73Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A73'
 	IconCoords=(X2=127,Y2=31)
@@ -336,7 +342,7 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A73'
-	DrawScale=0.187500
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.A73.A73AmmoSkin'
 	Skins(2)=Shader'BW_Core_WeaponTex.A73.A73Skin_SD'

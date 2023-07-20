@@ -137,6 +137,7 @@ function Timer()
 	local bool bDamage;
 	
 	for(i=0;i<Fires.length;i++)
+	{
 		for(j=0;j<Fires[i].Touching.length;j++)
 		{
 			if (Fires[i].Touching[j] == None || Pawn(Fires[i].Touching[j]) == None)
@@ -173,6 +174,7 @@ function Timer()
 				}
 			}
 		}
+	}
 }
 
 simulated function Destroyed()

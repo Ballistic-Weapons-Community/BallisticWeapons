@@ -37,7 +37,7 @@ simulated function Timer()
 	}
 	
 	DamageRadius=400;
-    WallPenetrationForce=300;
+    WallPenetrationForce=256;
 }
 
 simulated event Tick(float DT)
@@ -132,6 +132,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 
 defaultproperties
 {   
+    WeaponClass=Class'BallisticProV55.MACWeapon'
      bLimitMomentumZ=False
      FlySound=Sound'BW_Core_WeaponSound.Artillery.Art-FlyBy'
      ImpactManager=Class'BallisticProV55.IM_HAMR'

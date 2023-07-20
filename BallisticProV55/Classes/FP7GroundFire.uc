@@ -14,15 +14,37 @@ class FP7GroundFire extends BallisticEmitter
 const BURNINTERVAL = 0.2;
 
 var   float				BurnTime;		// How long its been burning
-var 	float				Damage;
+var 	float			Damage;
 var() class<DamageType>	DamageType;		// Damage type for touching damage
 var   AvoidMarker		Fear;			// Da phear spauwt...
-var Controller	InstigatorController;
-var FP7FireControl	FireControl;
+var Controller			InstigatorController;
+var FP7FireControl		FireControl;
 
 function Reset()
 {
 	Destroy();
+}
+
+function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	if (class'BallisticReplicationInfo'.static.IsTactical())
+	{
+		BurnTime = 7;
+	}
+
+	if (Level.NetMode != NM_Client)
+		SetTimer(BURNINTERVAL + (FRand() * 0.5), true);
+
+	BurnTime -= 4*FRand();
+
+	if (level.NetMode == NM_DedicatedServer)
+	{
+		Emitters[0].Disabled=true;
+		Emitters[1].Disabled=true;
+		Emitters[2].Disabled=true;
+	}
 }
 
 simulated function Tick(float DT)
@@ -61,19 +83,6 @@ function HitWall (vector HitNormal, actor Wall)
     Fear.StartleBots();
 }
 
-function PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	if (level.NetMode != NM_Client)
-		SetTimer(BURNINTERVAL + (FRand() * 0.5), true);
-	BurnTime -= 4*FRand();
-	if (level.netMode == NM_DedicatedServer)
-	{
-		Emitters[0].Disabled=true;
-		Emitters[1].Disabled=true;
-		Emitters[2].Disabled=true;
-	}
-}
 
 function Timer()
 {

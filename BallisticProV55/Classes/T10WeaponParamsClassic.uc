@@ -35,7 +35,7 @@ defaultproperties
     //=================================================================	
 		
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'BallisticProV55.T10Thrown'
+		ProjectileClass=Class'BallisticProV55.T10Rolled'
 		SpawnOffset=(Z=-14.000000)
 		Damage=20.000000
 		DamageRadius=200.000000
@@ -90,7 +90,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=4
+		LayoutName="Standard"
+		InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

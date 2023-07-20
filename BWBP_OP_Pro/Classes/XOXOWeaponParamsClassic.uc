@@ -13,7 +13,7 @@ defaultproperties
 		Speed=5000.000000
 		MaxSpeed=10000.000000
 		AccelSpeed=30000.000000
-		Damage=20
+		Damage=15
 		DamageRadius=48.000000
 		MomentumTransfer=-1000.000000
 		RadiusFallOffType=RFO_Linear
@@ -27,8 +27,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicFastPrimaryFireParams
-		FireInterval=0.090000
-		AmmoPerFire=1
+		FireInterval=0.150000
+		AmmoPerFire=2
 		FireAnim="Fire2"
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicFastPrimaryEffectParams'
@@ -63,13 +63,13 @@ defaultproperties
 	End Object
 	
 	// SHOCKWAVE FIRE
-	Begin Object Class=InstantEffectParams Name=ClassicLustPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=ClassicLustPrimaryEffectParams
 		Damage=120
 		//DamageRadius=1024.000000
 		MomentumTransfer=4000.000000
 		HeadMult=1.5f
 		LimbMult=0.8f
-		DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
+		//DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=0.000000
@@ -82,7 +82,7 @@ defaultproperties
 		AmmoPerFire=10
 		FireAnim="LustWave"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicLustPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicLustPrimaryEffectParams'
 	End Object
 	
 	// NUKE FIRE
@@ -120,6 +120,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
 		Damage=7
 		DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTXOXOStream'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTXOXOStream'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		Recoil=0.000000
 		Chaos=0.000000
@@ -130,7 +132,7 @@ defaultproperties
 		FireInterval=0.070000
 		FireAnim="SecFireLoop"
 		FireEndAnim="SecFireEnd"	
-	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
 	End Object
 	
 	//=================================================================
@@ -213,11 +215,12 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ClassicParams
-		SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
+		Weight=30
+		//SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
 		SightPivot=(Pitch=768)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.30000
 		DisplaceDurationMult=1
@@ -240,5 +243,24 @@ defaultproperties
 		AimParams(2)=AimParams'ClassicLustAimParams'
 		AimParams(3)=AimParams'ClassicNukeAimParams'
     End Object 
-    Layouts(0)=WeaponParams'ClassicParams'
+	
+	Layouts(0)=WeaponParams'ClassicParams'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=XOXO_Pink
+		Index=0
+		CamoName="Love"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=XOXO_Purple
+		Index=1
+		CamoName="Lust"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XOXOCamos.XOXOPurpleCamo-Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Camos(0)=WeaponCamo'XOXO_Pink'
+	Camos(1)=WeaponCamo'XOXO_Purple'
 }

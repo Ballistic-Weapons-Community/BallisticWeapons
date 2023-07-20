@@ -77,7 +77,7 @@ defaultproperties
         DamageGainEndTime=0.0
         FlashScaleFactor=0.750000
         Chaos=0.350000
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-SRFire',Volume=1.300000,Slot=SLOT_Interact,bNoOverride=False)
         Recoil=768.000000
         WarnTargetPct=0.1
     End Object
@@ -164,13 +164,18 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=11
+		LayoutName="Default"
+		Weight=30
+		
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=45
-		SightOffset=(X=-8.000000,Z=9.300000)
+		//SightOffset=(X=-8.000000,Z=9.300000)
 		SightPivot=(Pitch=256)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+        ZoomType=ZT_Logarithmic
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		ViewOffset=(X=4,Y=8.00,Z=-6)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
         FireParams(0)=FireParams'ClassicSeriesFireParams'
@@ -178,7 +183,24 @@ defaultproperties
         FireParams(2)=FireParams'ClassicSniperFireParams'
 		AltFireParams(0)=FireParams'ClassicLaserFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=VPR_Gray
+		Index=0
+		CamoName="Purple"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=VPR_UTC
+		Index=1
+		CamoName="UTC"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.ViperCamos.UTCViperShine",Index=1,PIndex=0,AIndex=0)
+	End Object
+	
+	Camos(0)=WeaponCamo'VPR_Gray'
+    Camos(1)=WeaponCamo'VPR_UTC'
 }

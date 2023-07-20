@@ -115,23 +115,25 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-        InventorySize=6
+        InventorySize=4
 		WeaponPrice=1100
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.160000
 		MagAmmo=60
 		bMagPlusOne=True
-		SightOffset=(X=10.000000,Y=-0.420000,Z=12.900000)
-		SightPivot=(Pitch=250,Roll=800,Yaw=0)
+		SightOffset=(X=20.000000,Y=3.000000,Z=2.800000)
+		SightPivot=(Pitch=-2300,Roll=800,Yaw=0)
 		bAdjustHands=true
-		RootAdjust=(Pitch=1000,Yaw=-50)
-		WristAdjust=(Yaw=-2500)
+		RootAdjust=(Pitch=2000,Yaw=50)
+		WristAdjust=(Yaw=0)
+		//RootAdjust=(Pitch=1000,Yaw=-50)
+		//WristAdjust=(Yaw=-2500)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		ReloadAnimRate=0.850000
-		CockAnimRate=1.200000
+		//ReloadAnimRate=0.850000
+		//CockAnimRate=1.200000
 		WeaponName="MR-DR88 9mm Wrist Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

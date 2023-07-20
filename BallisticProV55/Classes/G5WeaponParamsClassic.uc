@@ -50,6 +50,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Detonate"
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -99,20 +100,42 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
+		
 		PlayerSpeedFactor=0.850000
-		InventorySize=25
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
 		ZoomType=ZT_Logarithmic
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		//SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=G5_UTC
+		Index=0
+		CamoName="UTC Jungle"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=G5_Pirate
+		Index=1
+		CamoName="Pirate Gray"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAA-Shine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAA-Shine",Index=-1,AIndex=0,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAAScope",Index=2,AIndex=5,PIndex=4)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAARocket",Index=4,AIndex=3,PIndex=3)
+	End Object
+	
+	Camos(0)=WeaponCamo'G5_UTC'
+	Camos(1)=WeaponCamo'G5_Pirate'
 }

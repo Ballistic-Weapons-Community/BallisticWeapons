@@ -446,10 +446,10 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
-	RevReloadSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Click',Volume=0.400000,Radius=48.000000,Pitch=1.000000)
-	RevOpenSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Open',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-	RevCloseSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Close',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-	RevSpinSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Spin',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	RevReloadSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Click',Volume=0.400000,Radius=24.000000,Pitch=1.000000)
+	RevOpenSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Open',Volume=0.500000,Radius=24.000000,Pitch=1.000000)
+	RevCloseSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Close',Volume=0.500000,Radius=24.000000,Pitch=1.000000)
+	RevSpinSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Spin',Volume=0.500000,Radius=24.000000,Pitch=1.000000)
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
 	Shells(0)=(BulletName="Bullet1",ShellName="Shell1",NextShell=2)
 	Shells(1)=(BulletName="Bullet4",ShellName="Shell4",NextShell=3)
@@ -457,13 +457,12 @@ defaultproperties
 	Shells(3)=(BulletName="Bullet5",ShellName="Shell5",NextShell=5)
 	Shells(4)=(BulletName="Bullet3",ShellName="Shell3",NextShell=1)
 	Shells(5)=(BulletName="Bullet6",ShellName="Shell6")
-	bShouldDualInLoadout=False
 	HandgunGroup=1
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_D49'
 	SightFXClass=Class'BallisticProV55.D49SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Fires from a single barrel. Powerful, but short-ranged and has high recoil."
 	ManualLines(1)="Fires both barrels at once. Twice as much recoil as the single fire with lower sustained damage output."
@@ -471,9 +470,8 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;50.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-	CockAnimRate=1.750000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Cock')
-	ReloadAnimRate=1.750000
+
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellIn')
 	ClipInFrame=0.650000
@@ -482,10 +480,14 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
-	ParamsClasses(0)=Class'D49WeaponParams'
+
+	bAdjustHands=true
+	RootAdjust=(Yaw=-375,Pitch=2000)
+	WristAdjust=(Yaw=-2500,Pitch=-0000)
+	ParamsClasses(0)=Class'D49WeaponParamsComp'
 	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	ParamsClasses(2)=Class'D49WeaponParamsRealistic'
+    ParamsClasses(3)=Class'D49WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.D49PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.D49SecondaryFire'
 	
@@ -499,15 +501,18 @@ defaultproperties
 	CurrentRating=0.600000
 	bSniping=True
 	Description="Another fine weapon designed by the acclaimed 'Black & Wood' company, the D49 revolver is a true hand cannon. Based on weapons of old, the D49 was intended for non-military use, but rather for self defense and civilian purposes. The dual-barrel design has made it a favourite among it's users, capable of causing massive damage if used correctly, able to easily kill an armored Terran."
-	DisplayFOV=50.000000
 	Priority=22
 	HudColor=(B=255,G=200,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.D49Pickup'
-	PlayerViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)
-	PlayerViewPivot=(Pitch=512)
+
+	PlayerViewOffset=(X=10.00,Y=7.00,Z=-16.5)
+	SightOffset=(X=-11,Y=-4.6,Z=25.5)
+	SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
+	SightBobScale=1f
+	
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'
 	IconCoords=(X2=127,Y2=31)
@@ -519,8 +524,11 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_D49'
-	DrawScale=0.220000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.D49.D49Shells-Shiney'
+	SightAnimScale=0.5
+	bShouldDualInLoadout=False
+	bUseDualReload=False
 }

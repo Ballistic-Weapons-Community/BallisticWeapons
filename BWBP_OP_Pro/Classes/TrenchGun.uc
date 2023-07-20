@@ -98,16 +98,6 @@ simulated function PostBeginPlay()
 	}
 }
 
-
-// Cycle through the various weapon modes
-function ServerSwitchWeaponMode (byte NewMode)
-{
-	if (ReloadState != RS_None || !HasAmmo() || FireMode[1].bIsFiring)
-		return;
-	Super.ServerSwitchWeaponMode(NewMode);
-	ServerStartReload(2);
-}
-
 //First this is run on the server
 function ServerStartReload (optional byte i)
 {
@@ -288,6 +278,194 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		PlayIdle();
 	}
 }
+//===========================================================================
+// Roll switch
+//===========================================================================
+
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	local int m;
+	
+	if (bPreventReload)
+		return;
+	if (ReloadState != RS_None || !HasAmmo() || FireMode[1].bIsFiring)
+		return;
+	if (NewMode == 255)
+		NewMode = CurrentWeaponMode + 1;
+	if (NewMode == CurrentWeaponMode)
+		return;
+	
+	while (NewMode != CurrentWeaponMode && (NewMode >= WeaponModes.length || WeaponModes[NewMode].bUnavailable) )
+	{
+		if (NewMode >= WeaponModes.length)
+			NewMode = 0;
+		else
+			NewMode++;
+	}
+
+	if (!WeaponModes[NewMode].bUnavailable)
+	{
+		CommonSwitchWeaponMode(NewMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
+		NetUpdateTime = Level.TimeSeconds - 1;
+	}
+	
+	R9A1Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
+		
+	for (m=0; m < NUM_FIRE_MODES; m++)
+		if (FireMode[m] != None && FireMode[m].bIsFiring)
+			StopFire(m);
+
+	bServerReloading = true;
+
+	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+		Instigator.SetAnimAction('ReloadGun');
+
+	ServerStartReload(2);
+	//CommonStartReload(0);	//Server animation
+	//ClientStartReload(0);	//Client animation
+}
+
+exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+{
+	if (ClientState == WS_PutDown || ClientState == WS_Hidden || ReloadState != RS_None)
+		return;
+	bRedirectSwitchToFiremode=True;
+	PendingMode = CurrentWeaponMode;
+}
+
+exec simulated function WeaponModeRelease()
+{
+	bRedirectSwitchToFiremode=False;
+	ServerSwitchWeaponMode(PendingMode);
+	CurrentWeaponMode = PendingMode;
+}
+
+simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
+{
+	if (bRedirectSwitchToFiremode)
+	{
+		PendingMode--;
+		if (PendingMode >= WeaponModes.Length)
+			PendingMode = WeaponModes.Length-1;
+		return None;
+	}
+
+	return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
+}
+
+simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
+{
+	if (bRedirectSwitchToFiremode)
+	{
+		PendingMode++;
+		if (PendingMode >= WeaponModes.Length)
+			PendingMode = 0;
+		return None;
+	}
+
+	return Super.NextWeapon(CurrentChoice, CurrentWeapon);
+}
+
+simulated function bool PutDown()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+		bRedirectSwitchToFiremode = False;
+		PendingMode = CurrentWeaponMode;
+	}
+	
+	return Super.PutDown();
+}
+
+simulated function NewDrawWeaponInfo(Canvas C, float YPos)
+{
+	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local string	Temp;
+	local int i;
+	local byte StartMode;
+
+	Super(Weapon).NewDrawWeaponInfo (C, YPos);
+	
+	DrawCrosshairs(C);
+	
+	if (bSkipDrawWeaponInfo)
+		return;
+
+	ScaleFactor = C.ClipX / 1600;  // C.ClipY / 900 is correct...
+	
+	C.Font = GetFontSizeIndex(C, -2 + int(2 * class'HUD'.default.HudScale));
+	C.DrawColor = class'hud'.default.WhiteColor;
+	Temp = string(Ammo[0].AmmoAmount);
+
+	C.TextSize(Temp, XL, YL);
+
+	if (CurrentWeaponMode < WeaponModes.length && !WeaponModes[CurrentWeaponMode].bUnavailable && WeaponModes[CurrentWeaponMode].ModeName != "")
+	{
+		if (!bRedirectSwitchToFiremode)
+		{
+			// Draw the spare ammo amount
+			if (Temp == "0")
+				C.DrawColor = class'hud'.default.RedColor;
+			C.CurX = C.ClipX - 20 * ScaleFactor * class'HUD'.default.HudScale - XL;
+			C.CurY = C.ClipY - 120 * ScaleFactor * class'HUD'.default.HudScale - YL;
+			C.DrawText(Temp, false);
+			C.DrawColor = class'hud'.default.WhiteColor;
+	
+			C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+			C.TextSize(WeaponModes[CurrentWeaponMode].ModeName , XL, YL2);
+			C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+			C.CurY = C.ClipY - (130 * ScaleFactor * class'HUD'.default.HudScale) - YL2 - YL;
+			C.DrawText(WeaponModes[CurrentWeaponMode].ModeName, false);
+		}
+		
+		else
+		{
+			StartMode = PendingMode - 2;
+			if (StartMode >= WeaponModes.Length)
+				StartMode = (WeaponModes.Length-1) - (255 - StartMode);
+				
+				//case -2: desire 3
+				//case -1: desire 2
+				//case 0: desire 1
+				//case 1: desire 0
+				//case 2: desire -1
+				
+				
+			for (i=-2; i<3; i++)
+			{
+				if (i != 0)
+					C.SetDrawColor(255,128,128,255 - (75 * Abs(i)));
+				else C.SetDrawColor(255,255,255,255);
+				C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+				C.TextSize(WeaponModes[StartMode].ModeName, XL, YL2);
+				C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+				C.CurY = C.ClipY - (130 * ScaleFactor * class'HUD'.default.HudScale) - (YL2 * (-i +1)) - YL;
+				C.DrawText(WeaponModes[StartMode].ModeName, false);
+				
+				StartMode++;
+				if (StartMode >= WeaponModes.Length)
+					StartMode = 0;
+			}
+		}
+	}
+	
+	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
+	// Would be nice if someone could have a HUD function called along the inventory chain
+	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
+	{
+		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
+		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
+		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
+		if (SprintFactor < 0.2)
+			C.SetDrawColor(255, 0, 0);
+		else if (SprintFactor < 0.5)
+			C.SetDrawColor(64, 128, 255);
+		else
+			C.SetDrawColor(0, 0, 255);
+		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
+	}
+}
 
 simulated function CommonSwitchWeaponMode (byte NewMode)
 {
@@ -312,6 +490,7 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		Skins[3]=MatGreenShell;
 	}
 }
+//==================================
 
 simulated function Notify_CoachShellDown()
 {
@@ -563,7 +742,7 @@ function byte BestMode()
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
-	if (GameStyleIndex != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CurrentWeaponMode = 3;
 		TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
@@ -658,41 +837,37 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.TechGun.BigIcon_TechGun'
 	BigIconCoords=(Y1=35,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Shotgun=True
 	bWT_Energy=True
 	ManualLines(0)="Fire either a single barrel or both barrels of the loaded ammo type. Charge fire before releasing to fire both barrel simultaneously, tap to fire a single barrel. Electro Shot is capable of displacing targets' aim, with the effectiveness of this being increased by firing both barrels at once. Cryo Shot will temporarily slow targets hit by it, firing both rounds at once also increases the duration of this effect."
 	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
 	ManualLines(2)="Effective at close ranges, firing both barrels at once increases the duration of the slow down for ice rounds and displacement from electric rounds."
-	SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
+	SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.6")
 	MeleeFireClass=Class'BWBP_OP_Pro.TrenchGunMeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-	CockAnimRate=0.700000
-	SingleReloadAnimRate=1.000000
-	ReloadAnimRate=1.250000
+	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_breakclose',Volume=1.2)
 	ClipInFrame=0.800000
 	bNonCocking=True
     bNoCrosshairInScope=True
 	WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000)
 	WeaponModes(1)=(ModeName="Ammo: Electro",Value=1.000000)
-	WeaponModes(2)=(ModeName="Ammo: Cryogenic",Value=1.000000,bUnavailable=True)
-	WeaponModes(3)=(ModeName="Ammo: FRAG-12",Value=1.000000,bUnavailable=True)
-	WeaponModes(4)=(ModeName="Ammo: Dragon",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
-	SightPivot=(Pitch=256)
-	SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
-    SightDisplayFov=25
+	SightOffset=(X=0,Y=0,Z=1.22)
+	SightBobScale=0.2
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	ParamsClasses(0)=Class'TrenchGunWeaponParams'
+	ParamsClasses(0)=Class'TrenchGunWeaponParamsComp'
 	ParamsClasses(1)=Class'TrenchGunWeaponParamsClassic'
 	ParamsClasses(2)=Class'TrenchGunWeaponParamsRealistic'
+    ParamsClasses(3)=Class'TrenchGunWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.TrenchGunPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.TrenchGunSecondaryFire'
 	SelectAnimRate=2.000000
 	PutDownAnimRate=2.000000
+	 SingleReloadAnimRate=1.0
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=0,R=0,A=147),Color2=(B=255,G=255,R=255,A=255),StartSize1=96,StartSize2=72)
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	AIRating=0.800000
@@ -703,7 +878,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=7
 	PickupClass=Class'BWBP_OP_Pro.TrenchGunPickup'
-	PlayerViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
+	PlayerViewOffset=(X=10,Y=5.9,Z=-5)
 	AttachmentClass=Class'BWBP_OP_Pro.TrenchGunAttachment'
 	IconMaterial=Texture'BWBP_OP_Tex.TechGun.Icon_TechGun'
 	IconCoords=(X2=127,Y2=30)
@@ -715,7 +890,7 @@ defaultproperties
 	LightBrightness=180.000000
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.Fpm_Trenchgun'
-	DrawScale=1.250000
+	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.TechWrench.TechWrenchShiny'
 	Skins(2)=Texture'BWBP_OP_Tex.TechWrench.CryoShell'

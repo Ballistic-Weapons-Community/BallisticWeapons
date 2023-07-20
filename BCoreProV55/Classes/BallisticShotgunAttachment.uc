@@ -15,15 +15,39 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticShotgunAttachment extends BallisticAttachment;
+class BallisticShotgunAttachment extends BallisticAttachment
+	DependsOn(FireEffectParams);
 
-var() class<BallisticShotgunFire>	FireClass;
-var 	bool	bScoped;
+var	int XInaccuracy, YInaccuracy;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bScoped;
+		XInaccuracy, YInaccuracy;
+}
+
+simulated final function int GetTraceCount()
+{
+	if (WeaponClass != None)
+		return ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+
+	return 10;
+}
+
+simulated final function int GetTraceRange()
+{
+	if (WeaponClass != None)
+		return InstantEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceRange.Max;
+
+	return 3000;
+}
+
+simulated final function FireEffectParams.FireSpreadMode GetSpreadMode()
+{
+	if (WeaponClass != None)
+		return WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0].SpreadMode;
+
+	return FSM_Circle;
 }
 
 // Do trace to find impact info and then spawn the effect
@@ -34,52 +58,49 @@ simulated function InstantFireEffects(byte Mode)
 	local Rotator R;
 	local Material HitMat;
 	local int i;
-	local float XS, YS, RMin, RMax, Range, fX;
+	local float RMin, RMax, Range, fX;
 	
 	if (InstantMode == MU_None || (InstantMode == MU_Secondary && Mode != 1) || (InstantMode == MU_Primary && Mode != 0))
 		return;
+
 	if (mHitLocation == vect(0,0,0))
 		return;
+
 	if (Instigator == none)
 		return;
 
-	if (Level.NetMode == NM_Client && FireClass != None)
-	{
-		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
-		
-		if(!bScoped)
-		{
-			XS *= FireClass.static.GetAttachmentDispersionFactor();
-			YS *= FireClass.static.GetAttachmentDispersionFactor();
-		}
-		
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+	if (Level.NetMode == NM_Client)
+	{	
+		RMin = GetTraceRange(); 
+		RMax = GetTraceRange();
+
+		//log("BallisticShotgunAttachment: Client trace: XInacc "$XInaccuracy$", YInacc "$YInaccuracy);
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
-		for (i=0; i < FireClass.default.TraceCount; i++)
+		for (i=0; i < GetTraceCount(); i++)
 		{
 			mHitActor = None;
 			
 			Range = Lerp(FRand(), RMin, RMax);
 			
 			R = Rotator(mHitLocation);
-			
-			switch (FireClass.default.FireSpreadMode)
+
+			switch (GetSpreadMode())
 			{
 				case FSM_Scatter:
 					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
 					break;
 				case FSM_Circle:
 					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 					break;
 				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
+					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
 					break;
 			}
 			

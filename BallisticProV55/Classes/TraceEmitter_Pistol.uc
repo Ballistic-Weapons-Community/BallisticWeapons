@@ -16,11 +16,13 @@ defaultproperties
          SpinParticles=True
          AutomaticInitialSpawning=False
          ColorMultiplierRange=(Y=(Min=0.300000),Z=(Min=0.300000))
-         Opacity=0.750000
+         Opacity=1
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          SpinsPerSecondRange=(Z=(Min=2.000000,Max=4.000000))
          StartSizeRange=(X=(Min=0.300000,Max=0.500000),Y=(Min=0.150000,Max=0.150000),Z=(Min=0.150000,Max=0.150000))
+		 // offset to prevent drawing the back of the tracer through the weapon
+		 StartLocationOffset=(X=50)
          InitialParticlesPerSecond=50000.000000
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)

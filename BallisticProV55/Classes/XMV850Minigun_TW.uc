@@ -76,7 +76,7 @@ simulated event Timer()
 				FireMode[Mode].InitEffects();
         PlayIdle();
         ClientState = WS_ReadyToFire;
-		if (!bOldCrosshairs && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
 
 		if (bNeedCock)
@@ -156,13 +156,13 @@ function byte BestMode()
 
 defaultproperties
 {
-	ReloadAnimRate=1.200000
 	bUseSights=False
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'XMV850TW_WeaponParams'
+	ParamsClasses(0)=Class'XMV850TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'XMV850TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'XMV850TW_WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XMV850TW_WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
 	WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=False)

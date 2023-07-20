@@ -53,7 +53,7 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 
-	if (GameStyleIndex != 0)
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		MaxSouls=10;
 	}
@@ -177,7 +177,7 @@ simulated event WeaponTick(float DT)
 
 	if (Role == ROLE_Authority)
 	{
-		if (GameStyleIndex != 0 && Instigator.Health > 0 && level.TimeSeconds >= NextRegenTime)
+		if (!class'BallisticReplicationInfo'.static.IsArena() && Instigator.Health > 0 && level.TimeSeconds >= NextRegenTime)
 		{
 			if (bOnRampage)
 				Instigator.GiveHealth(2, Instigator.SuperHealthMax);
@@ -718,7 +718,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.BigIcon_NovaStaff'
 	BigIconCoords=(Y1=32,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Heal=True
 	ManualLines(0)="Slow Bolts deal high damage, gain damage over range and leech enemy HP for the user. This mode damages the user if used from the hip.|Rapid Fire bolts have moderate damage and gain damage over range.|The Lightning mode locks onto an enemy, deals damage and inflicts blind. Alternatively, it can be used to rapidly heal allies. It costs low soul power.|Thunder Strike mode generates a thunder bolt with medium range and excellent damage output. It inflicts severe damage at high soul cost.|Chain Lightning attacks multiple enemies on screen in the same fashion as Lightning, but drains soul power at an alarming rate."
 	ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
@@ -727,7 +727,6 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Putaway')
 	PutDownAnimRate=1.4
-	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalIn',Volume=0.700000)
 	ClipInFrame=0.700000
@@ -737,13 +736,11 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
 	WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
-	SightPivot=(Pitch=512)
-	SightOffset=(X=-60.000000,Z=15.000000)
-	SightDisplayFOV=40.000000
 	GunLength=128.000000
-	ParamsClasses(0)=Class'RSNovaWeaponParams'
+	ParamsClasses(0)=Class'RSNovaWeaponParamsComp'
 	ParamsClasses(1)=Class'RSNovaWeaponParamsClassic'
 	ParamsClasses(2)=Class'RSNovaWeaponParamsRealistic'
+    ParamsClasses(3)=Class'RSNovaWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
 	
@@ -757,13 +754,17 @@ defaultproperties
 	CurrentRating=0.70000
 	bShowChargingBar=True
 	Description="During a mining excavation of the large crater in sector-547b on one of the distant Outword planets, a strage, magnificent artifact was discovered. Generating great interest in the isolated facility, superstitious miners beleived it to be a magical device capable of everything from allowing god to read their minds to teleportation and the summoning of demons. The artifact was subjected to all manner of tests, but proved to be a confounding subject and revealed very little. It was made of an unimaginably strong material and appeared apparently undamaged despite it's intricate construction. For all they could say, it may have been nothing more than a candlestick.|Finally, mine coordinator R Peters, who had had a greedy eye fixed on the artifact since day one, ordered the tests cancelled and retired the artifact to his office."
-	DisplayFOV=47.000000
 	Priority=9
 	HudColor=(B=255,G=175,R=100)
+	SightZoomFactor=1.2
 	InventoryGroup=5
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.RSNovaPickup'
-	PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-6.000000)
+	
+	PlayerViewOffset=(X=10.000000,Y=5.000000,Z=-4.500000)
+	SightOffset=(X=-10.000000,Z=5.500000)
+	SightBobScale=0.7
+
 	AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.SmallIcon_NovaStaff'
 	IconCoords=(X2=127,Y2=31)

@@ -18,17 +18,10 @@ function PlayFiring()
 {
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
+
 	// Slightly modified Code from original PlayFiring()
-    if (!BW.bScopeView)
-        if (FireCount > 0)
-        {
-            if (Weapon.HasAnim(FireLoopAnim))
-                BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-            else
-                BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-        }
-        else
-            BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	PlayFireAnimations();
+
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
 	// End code from normal PlayFiring()
@@ -133,42 +126,37 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 defaultproperties
 {
-     SpecialFireSound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFireSuper'
-     LowPowerFireSound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFireLow'
-     MuzzleFlashClass2=Class'BallisticProV55.M50FlashEmitter'
-     TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=48.000000
-     
-     Damage=50.000000
-     HeadMult=1.5f
-     LimbMult=0.85f
-     
-     WaterRangeAtten=0.700000
-     DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
-     PenetrateForce=600
-     bPenetrate=True
-     PDamageFactor=0.750000
-     WallPDamageFactor=0.750000
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
-     FlashScaleFactor=1.200000
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     BrassBone="tip"
-     BrassOffset=(X=-30.000000,Y=1.000000)
-     FireRecoil=320.000000
-     FireChaos=0.600000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFire',Volume=6.700000)
-     FireEndAnim=
-     FireRate=0.325000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_42HVG'
-     ShakeRotMag=(X=400.000000,Y=32.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-5.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     BotRefireRate=0.500000
-     WarnTargetPct=0.400000
-     aimerror=800.000000
+	SpecialFireSound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFireSuper'
+	LowPowerFireSound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFireLow'
+	MuzzleFlashClass2=Class'BallisticProV55.M50FlashEmitter'
+	TraceRange=(Min=30000.000000,Max=30000.000000)
+	DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
+	PenetrateForce=600
+	bPenetrate=True
+	PDamageFactor=0.750000
+	WallPDamageFactor=0.750000
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+	FlashScaleFactor=1.200000
+	BrassClass=Class'BallisticProV55.Brass_Rifle'
+	BrassBone="tip"
+	BrassOffset=(X=-30.000000,Y=1.000000)
+	FireRecoil=320.000000
+	FireChaos=0.600000
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFire',Volume=6.700000)
+	FireEndAnim=
+	FireRate=0.325000
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_42HVG'
+
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=2.000000
+
+	BotRefireRate=0.500000
+	WarnTargetPct=0.400000
+	aimerror=800.000000
 }

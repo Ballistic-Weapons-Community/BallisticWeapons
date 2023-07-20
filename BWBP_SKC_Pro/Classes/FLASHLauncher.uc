@@ -31,50 +31,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Instigator.bFullVolume = true;
 }
 
-// Draw the scope view
-simulated event RenderOverlays (Canvas C)
-{
-	local float ImageScaleRatio;
-
-	if (!bScopeView)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-		return;
-	}
-	if (ZoomType == ZT_Irons)
-	{
-		Super.RenderOverlays(C);
-		if (SightFX != None)
-			RenderSightFX(C);
-	}
-	else
-	{
-		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
-		SetRotation(Instigator.GetViewRotation());
-	}
-
-	// Draw Scope View
-    if (ScopeViewTex != None)
-    {
-   		C.SetDrawColor(255,255,255,255);
-		C.SetPos(C.OrgX, C.OrgY);
-		
-		ImageScaleRatio = 1.3333333;
-
-		C.ColorModulate.W = 1;
-
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1024);
-
-		C.SetPos((C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeY*ImageScaleRatio), C.SizeY, 0, 0, 1024, 1024);
-
-		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.OrgY);
-		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1024);
-	}
-}
-
 simulated function PlayIdle()
 {
 	Super.PlayIdle();
@@ -203,11 +159,11 @@ defaultproperties
 
 	RunOffset=(Pitch=-4000,Yaw=-2000)
 	HatchSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Flash.BigIcon_FLASH'
 	BigIconCoords=(Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True
@@ -232,15 +188,16 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=90.000000
 	bNoCrosshairInScope=True
-	SightOffset=(Y=5.300000,Z=23.299999)
-	ParamsClasses(0)=Class'FLASHWeaponParams'
+	ParamsClasses(0)=Class'FLASHWeaponParamsComp'
 	ParamsClasses(1)=Class'FLASHWeaponParamsClassic'
 	ParamsClasses(2)=Class'FLASHWeaponParamsRealistic'
+    ParamsClasses(3)=Class'FLASHWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FLASHPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.FLASHSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=192),Color2=(B=0,G=255,R=255,A=86),StartSize1=75,StartSize2=95)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.750000
+	ScopeXScale=1.3333333
 	PutDownTime=1.400000
 	BringUpTime=1.500000
 	SelectForce="SwitchToAssaultRifle"
@@ -254,8 +211,8 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.FLASHPickup'
-	PlayerViewOffset=(X=10.000000,Z=-12.000000)
-	BobDamping=1.800000
+	PlayerViewOffset=(X=1.50000,Y=2.7,Z=3.5)
+	SightOffset=(X=4.00,Y=-0.05,Z=0.25)
 	AttachmentClass=Class'BWBP_SKC_Pro.FLASHAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.Flash.SmallIcon_FLASH'
 	IconCoords=(X2=127,Y2=31)
@@ -267,11 +224,5 @@ defaultproperties
 	LightBrightness=192.000000
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FLASH'
-	DrawScale=0.400000
-	Skins(0)=Texture'BWBP_SKC_Tex.Flash.FLASH-Scope'
-	Skins(1)=Texture'BW_Core_WeaponTex.M353.M353_Ammo'
-	Skins(2)=Texture'BWBP_SKC_Tex.Flash.FLASH-Main'
-	Skins(3)=Texture'BWBP_SKC_Tex.Flash.FLASH-Lens'
-	Skins(4)=Texture'BWBP_SKC_Tex.Flash.FLASH-Rocket'
-	Skins(5)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	DrawScale=0.300000
 }

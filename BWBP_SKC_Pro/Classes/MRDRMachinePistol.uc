@@ -15,10 +15,7 @@ var() Sound		ClipOutSound2;
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
-	{
-		bUseSights=True;
-	}
+	bUseSights=True;
 }
 
 static function class<Pickup> RecommendAmmoPickup(int Mode)
@@ -202,7 +199,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MRDR.BigIcon_MRDR'
 	BigIconCoords=(X1=64,Y1=0,Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic pistol fire. Good strength and low recoil."
@@ -223,15 +220,13 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Small Burst",Value=5.000000)
 	bUseSights=False
-	SightPivot=(Pitch=900,Roll=-800)
-	SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
-	SightDisplayFOV=40.000000
 	GunLength=0.100000
 	AIRating=0.6
 	CurrentRating=0.6
-	ParamsClasses(0)=Class'MRDRWeaponParams'
+	ParamsClasses(0)=Class'MRDRWeaponParamsComp'
 	ParamsClasses(1)=Class'MRDRWeaponParamsClassic'
 	ParamsClasses(2)=Class'MRDRWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MRDRWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MRDRPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MRDRSecondaryFire'
 	PutDownTime=0.400000
@@ -242,10 +237,14 @@ defaultproperties
 	Priority=143
 	HudColor=(B=150,G=150,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=2
+	InventoryGroup=3
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.MRDRPickup'
-	PlayerViewOffset=(X=-8.000000,Y=8.000000,Z=-8.000000)
+
+	PlayerViewOffset=(X=5.00,Y=7.00,Z=-4.00)
+	SightOffset=(X=-5.00,Y=-0.6,Z=7.10)
+	SightPivot=(Pitch=900,Roll=-800)
+
 	AttachmentClass=Class'BWBP_SKC_Pro.MRDRAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.MRDR.SmallIcon_MRDR'
 	IconCoords=(X2=127,Y2=31)

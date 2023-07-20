@@ -4,22 +4,25 @@ var Pawn TazerHit, OldTazerHit;
 var PD97TazerEffect TazerEffect;
 var() class<BallisticShotgunFire>	FireClass;
 var bool	bShotgunMode;
+var bool	bOldShotgunMode;
+
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		TazerHit;
+		TazerHit, bShotgunMode;
 }
 
-simulated event PreBeginPlay()
+function InitFor(Inventory I)
 {
-	super.PreBeginPlay();
-	if (PD97Bloodhound(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	Super.InitFor(I);
+	
+	if (PD97Bloodhound(I) != None && PD97Bloodhound(I).bShotgunMode)
 	{
-		bShotgunMode=true;
-		InstantMode=MU_Primary;
+		bShotgunMode=True;
 	}
 }
+
 //===========================================================================
 // PostNetReceive
 //
@@ -41,6 +44,11 @@ simulated function PostNetReceive()
 		}
 	}
 	
+	if (bShotgunMode != bOldShotgunMode)
+	{
+		bOldShotgunMode = bShotgunMode;
+		InstantMode=MU_Primary;
+	}
 	Super.PostNetReceive();
 }
 
@@ -191,15 +199,16 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	WeaponClass=class'PD97Bloodhound'
      FireClass=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire'
-     MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_BigBullet'
+     MuzzleFlashClass=class'D49FlashEmitter'
+     ImpactManager=class'IM_BigBullet'
      AltFlashBone="ejector"
-     BrassClass=Class'BallisticProV55.Brass_Pistol'
+     BrassClass=class'Brass_Pistol'
      InstantMode=MU_None
      FlashMode=MU_None
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     TracerClass=class'TraceEmitter_Pistol'
+     WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_None
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_BreakOpen"

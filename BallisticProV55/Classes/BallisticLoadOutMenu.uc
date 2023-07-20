@@ -1,7 +1,7 @@
 //=============================================================================
 // BallisticLoadOutMenu.
 //
-// Menu for players to select their inventory for Mut_Loadout
+// Menu for players to select their inventory for Mut_Loadout (Evolution)
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.

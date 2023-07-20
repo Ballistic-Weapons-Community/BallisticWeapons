@@ -38,18 +38,11 @@ function PlayFiring()
 {
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
-	// Slightly modified Code from original PlayFiring()
-    if (!BW.bScopeView)
-        if (FireCount > 0)
-        {
-            if (Weapon.HasAnim(FireLoopAnim))
-                BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-            else
-                BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-        }
-        else
-            BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+
+	PlayFireAnimations();
+
     ClientPlayForceFeedback(FireForce);  // jdf
+
     FireCount++;
 	// End code from normal PlayFiring()
 
@@ -147,52 +140,29 @@ simulated event Timer()
 	ConsumedLoad=0;
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-	FS.DamageInt = default.ProjectileClass.default.Damage;
-	FS.Damage = String(FS.DamageInt)@"-"@String(Int(FS.DamageInt * 1.6));
-
-
-    FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
-    FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
-
-	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
-	FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max dmg: 0.3s";
-	
-	return FS;
-}
-
 defaultproperties
 {
-     ZForce=(Z=5.000000)
-     PushStopFactor=0.100000
-     PushForce=800.000000
-     SGFireCount=3
-     bPawnRapidFireAnim=True
-     AmmoClass=Class'BallisticProV55.Ammo_E23Cells'
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+	ZForce=(Z=5.000000)
+	PushStopFactor=0.100000
+	PushForce=800.000000
+	SGFireCount=3
+	bPawnRapidFireAnim=True
+	AmmoClass=Class'BallisticProV55.Ammo_E23Cells'
 
-	 // AI
-	 bInstantHit=False
-	 bLeadTarget=True
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.99
-	 
-     aimerror=400.000000
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+
+	// AI
+	bInstantHit=False
+	bLeadTarget=True
+	bTossed=False
+	bSplashDamage=False
+	bRecommendSplashDamage=False
+	BotRefireRate=0.99
+	
+	aimerror=400.000000
 }

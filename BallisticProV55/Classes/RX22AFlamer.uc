@@ -268,21 +268,21 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	PackOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PackOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-	LeverOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-	LeverOffSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	PackOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PackOn',Volume=0.600000,Radius=24.000000,Pitch=1.000000)
+	LeverOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=24.000000,Pitch=1.000000)
+	LeverOffSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=24.000000,Pitch=1.000000)
 	ValveAnim="TurnValve"
 
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RX22A'
 	BigIconCoords=(Y2=240)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_RapidProj=True
 	bWT_Projectile=True
 	bWT_Super=True
-	bUseSights=False
+	bUseSights=True
 	ManualLines(0)="Sprays fire, blinding the enemy, inflicting initial damage and burning them for damage over time. Hip-accurate and capable of hitting multiple enemies at a time. May cause surfaces struck to burn."
 	ManualLines(1)="Sprays unignited flamer gas. This gas will collect on surfaces or players. When on a surface, it can be ignited later to set a trap for the enemy or to close off areas. When on a player, it increases the damage dealt by the next primary attack."
 	ManualLines(2)="Has a high capacity, but long reload time. Will not function underwater.||Effective at close range. Extremely effective when used defensively."
@@ -295,11 +295,13 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
 	SightPivot=(Pitch=768)
-	SightOffset=(X=-12.000000,Z=14.300000)
+	SightOffset=(X=-12.000000,Z=7.00000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'RX22AWeaponParams'
+	SightZoomFactor=1.2
+	ParamsClasses(0)=Class'RX22AWeaponParamsComp'
 	ParamsClasses(1)=Class'RX22AWeaponParamsClassic'
 	ParamsClasses(2)=Class'RX22AWeaponParamsRealistic'
+    ParamsClasses(3)=Class'RX22AWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
 	
@@ -318,7 +320,7 @@ defaultproperties
 	InventoryGroup=8
 	GroupOffset=1
 	PickupClass=Class'BallisticProV55.RX22APickup'
-	PlayerViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
+	PlayerViewOffset=(X=5.000000,Y=2.000000,Z=-2.000000)
 	AttachmentClass=Class'BallisticProV55.RX22AAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_RX22A'
 	IconCoords=(X2=127,Y2=31)

@@ -74,7 +74,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -110,7 +110,7 @@ defaultproperties
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M290'
     BigIconCoords=(Y1=40,X2=490,Y2=225)
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Shotgun=True
     ManualLines(0)="Fires both barrels at once. Deals extreme damage at close to medium range. Spread is tight, recoil is high and fire rate is moderate."
     ManualLines(1)="Fires one barrel at a time. Deals high damage with tighter spread than primary. The interval between two successive shots is short, but the weapon must cock after the second shot, or it may be manually cocked."
@@ -118,10 +118,9 @@ defaultproperties
     SpecialInfo(0)=(Info="240.0;20.0;0.5;80.0;0.0;1.0;0.0")
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
-    CockAnimRate=1.350000
     CockSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Cock')
     ReloadAnim="ReloadLoop"
-    ReloadAnimRate=1.750000
+
     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290LoadShell')
     bCockOnEmpty=True
     bCanSkipReload=True
@@ -141,23 +140,26 @@ defaultproperties
 	
     CurrentWeaponMode=0
     bNoCrosshairInScope=True
-    SightPivot=(Pitch=256)
-    SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
-    ParamsClasses(0)=Class'M290WeaponParams'
+
+
+    ParamsClasses(0)=Class'M290WeaponParamsComp'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
     ParamsClasses(2)=Class'M290WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M290WeaponParamsTactical'
     FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'
     AIRating=0.900000
     CurrentRating=0.900000
     Description="Another sturdy weapon by Black & Wood, the M290 has proven it's worth many times in combat situations, especially against alien forces, most notably the Krao. One of its greatest feats was during the second Human-Skrith war, when a wounded Captain in the UTC 27th Special Ops division single handedly defended an outpost from six advancing Krao companies, using the weapon�s wide spread to his advantage."
-    DisplayFOV=55.000000
     Priority=38
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=7
     GroupOffset=1
     PickupClass=Class'BallisticProV55.M290Pickup'
-    PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-13.000000)
+    PlayerViewOffset=(X=6.5,Y=9.6,Z=-13.5)
+	SightOffset=(X=-7.5,Y=-0.04,Z=6)
+	SightPivot=(Pitch=256)
+	SightBobScale=0.75
     AttachmentClass=Class'BallisticProV55.M290Attachment'
     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M290'
     IconCoords=(X2=127,Y2=31)
@@ -169,6 +171,7 @@ defaultproperties
     LightBrightness=180.000000
     LightRadius=5.000000
     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M290'
-    DrawScale=0.280000
+    DrawScale=0.3
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	SightAnimScale=0.5
 }

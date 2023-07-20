@@ -19,6 +19,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 			FireInterval=0.100000
 			BurstFireRateFactor=1.00
+			TargetState="BranchingFire"
 			FireEffectParams(0)=FireEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
@@ -101,9 +102,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
-		InventorySize=29
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=-12.000000,Z=14.300000)
+		//SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

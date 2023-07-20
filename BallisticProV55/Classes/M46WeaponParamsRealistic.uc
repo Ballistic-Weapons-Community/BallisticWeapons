@@ -114,24 +114,26 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=12
+		//Layout core
+		LayoutName="Scoped"
+		Weight=30
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
+		SightOffset=(X=-1,Y=0.050000,Z=3.9)
+		SightPivot=(Pitch=0,Roll=0)
+        ZoomType=ZT_Logarithmic
+		//Function
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
         SightingTime=0.300000
 		MagAmmo=24
 		bMagPlusOne=True
-		ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
 		ViewPivot=(Pitch=384)
-		SightOffset=(X=0.000000,Z=11.3500000)
-		SightPivot=(Pitch=000,Roll=0)
-        ZoomType=ZT_Logarithmic
 		InitialWeaponMode=1
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46A2 .310 Battle Rifle"
-        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -139,29 +141,84 @@ defaultproperties
 	End Object
 
     Begin Object Class=WeaponParams Name=RealisticRDSParams
+		//Layout core
+		LayoutName="RDS"
+		Weight=20
+		//Attachments
+        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		SightOffset=(X=-2.5,Y=0.04,Z=3.85)
+		SightPivot=(Pitch=0,Roll=0)
+        ZoomType=ZT_Irons
+		//Function
         SightingTime=0.210000
         MagAmmo=24
 		bMagPlusOne=True
-		InventorySize=12
+		InventorySize=7
 		WeaponPrice=2300
-        SightPivot=(Pitch=-300,Roll=0)
-        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
-		ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
+        //SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+		//ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
 		InitialWeaponMode=1
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46A2 .310 Battle Rifle (RDS)"
-        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
+	
 	Layouts(0)=WeaponParams'RealisticParams'
     Layouts(1)=WeaponParams'RealisticRDSParams'
-
-
+		
+	//Camos ====================================================
+	Begin Object Class=WeaponCamo Name=M46_Tan
+		Index=0
+		CamoName="Desert"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M46_Jungle
+		Index=1
+		CamoName="Jungle"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoGreenMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoGreenClip",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoGreenGrenadeLauncher",Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M46_Blue
+		Index=2
+		CamoName="Ocean"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoBlueMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M46Camos.AL_PulseRifle_Clip",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-CamoBlueGrenadeLauncher",Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M46_Black
+		Index=3
+		CamoName="Stealth"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-GrayMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-GrayClip",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M46Camos.AR-GrayGrenadeLauncher",Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+	End Object
+	
+	Camos(0)=WeaponCamo'M46_Tan'
+    Camos(1)=WeaponCamo'M46_Jungle'
+    Camos(2)=WeaponCamo'M46_Blue'
+    Camos(3)=WeaponCamo'M46_Black'
 }

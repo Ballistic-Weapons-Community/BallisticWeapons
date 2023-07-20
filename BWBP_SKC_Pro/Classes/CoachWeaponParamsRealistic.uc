@@ -12,7 +12,9 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		TraceCount=26
-		Damage=20.0
+		Damage=15.0
+		//TraceCount=24
+		//Damage=20
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
@@ -88,7 +90,9 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		TraceCount=13
-		Damage=20.0
+		Damage=15.0
+		//TraceCount=13
+		//Damage=20
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
@@ -198,12 +202,12 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=11
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
-		ViewOffset=(X=-25.000000,Y=2.000000,Z=-35.000000)
-		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
-		SightPivot=(Pitch=256)
+		//ViewOffset=(X=-25.000000,Y=2.000000,Z=-35.000000)
+		//SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
+		//SightPivot=(Pitch=256)
 		WeaponName="Super-10 8ga Coach Gun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -213,6 +217,49 @@ defaultproperties
 		AltFireParams(1)=FireParams'RealisticSecondaryFireSlugParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=Coach_Black
+		Index=0
+		CamoName="Blued"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Hunter
+		Index=1
+		CamoName="Hunter"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainHunter",Index=1,AIndex=1,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Veteran
+		Index=2
+		CamoName="Bloodied"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainVet",Index=1,AIndex=1,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Silver
+		Index=3
+		CamoName="Nickel"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainChromeShine",Index=1,AIndex=1,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Coach_Gold
+		Index=4
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainGoldShine",Index=1,AIndex=1,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'Coach_Black'
+	Camos(1)=WeaponCamo'Coach_Hunter'
+	Camos(2)=WeaponCamo'Coach_Veteran'
+	Camos(3)=WeaponCamo'Coach_Silver'
+	Camos(4)=WeaponCamo'Coach_Gold'
 }

@@ -53,17 +53,7 @@ simulated function bool CheckRockets()
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
-{
-	/*
-
-	//Force noobs to scope.
-	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-		BW.ScopeView();
-	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
-		return false;
-		
-	*/	
-		
+{	
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
@@ -148,7 +138,7 @@ defaultproperties
      AmmoClass=Class'BWBP_OP_Pro.Ammo_MX32Rockets'
      AmmoPerFire=1
      ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
+     ShakeOffsetMag=(X=-8.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBP_OP_Pro.MX32Rocket'

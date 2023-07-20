@@ -130,16 +130,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=24
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=6
-		SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
+		//SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
 		SightPivot=(Pitch=512)
 		WeaponModes(0)=(ModeName="Timed",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Impact",ModeID="WM_FullAuto")
 		WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -147,6 +147,67 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos ====================================
+	Begin Object Class=WeaponCamo Name=MGL_Desert
+		Index=0
+		CamoName="Desert"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Black
+		Index=1
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainJungle",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Jungle
+		Index=2
+		CamoName="Jungle"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainJungle",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Arctic
+		Index=3
+		CamoName="Arctic"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainArctic",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Purple
+		Index=4
+		CamoName="Purple"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainPurble",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Red
+		Index=5
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainRed",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=MGL_Gold
+		Index=6
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MGLCamos.MGL-MainGoldShine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'MGL_Desert'
+	Camos(1)=WeaponCamo'MGL_Black'
+	Camos(2)=WeaponCamo'MGL_Jungle'
+	Camos(3)=WeaponCamo'MGL_Arctic'
+	Camos(4)=WeaponCamo'MGL_Purple'
+	Camos(5)=WeaponCamo'MGL_Red'
+	Camos(6)=WeaponCamo'MGL_Gold'
 }

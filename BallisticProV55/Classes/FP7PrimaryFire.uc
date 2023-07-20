@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class FP7PrimaryFire extends BallisticProGrenadeFire;
+class FP7PrimaryFire extends BallisticHandGrenadeFire;
+
+/*
+FIXME: Needs to report damage from control instead. Needs its own fire params or fire effect params class to do that.
 
 //Accessor for stats
 static function FireModeStats GetStats() 
@@ -15,7 +18,6 @@ static function FireModeStats GetStats()
 
 	FS.DamageInt = class'FP7FireControl'.default.Damage;
 	FS.Damage = String(FS.DamageInt)@"+"@class'FP7FireControl'.default.BaseDamage@"initial";
-
 
     FS.HeadMult = 1;
     FS.LimbMult = 1;
@@ -31,6 +33,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {
@@ -46,7 +49,7 @@ defaultproperties
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
+     ShakeOffsetMag=(X=-8.00)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BallisticProV55.FP7Thrown'

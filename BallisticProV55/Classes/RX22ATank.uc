@@ -64,61 +64,64 @@ simulated event PostNetReceive()
 function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType)
 {
 	local bool bFire;
-	if (Weapon.BCRepClass.default.GameStyle != 0)
-	{
-		if (Role < ROLE_Authority)
-			return;
-		if (Instigator != None && (Instigator.InGodMode() ||
-		   (Instigator.Controller != None && InstigatedBy != None && InstigatedBy != Instigator && Instigator.Controller.SameTeamAs(InstigatedBy.Controller)) ||
-			Normal(HitLocation-Location) Dot vector(Rotation) > 0.4))
-			return;
 
-		if (class<BallisticDamageType>(DamageType) != None)
-		{
-			// GearSafe damage does not harm the gear, just the guy inside...
-			if (class<BallisticDamageType>(DamageType).static.IsDamage(",GearSafe,"))
-				return;
-			else if (/*class<BallisticDamageType>(DamageType).static.IsDamage(",Flame,") || */class<BallisticDamageType>(DamageType).default.bIgniteFires)
-			{
-				Damage = Max(1, Damage * 0.2);
-				bFire=true;
-			}
-		}
-		Health -= Damage;
-		if (Health > 0)
-		{
-			if (level.NetMode != NM_DedicatedServer)
-			{
-				class'IM_Bullet'.static.StartSpawn(HitLocation, normal(HitLocation-Location), 3, Instigator);
-				if (level.NetMode == NM_ListenServer)
-					HurtLoc = HitLocation;
-			}
-			else
-				HurtLoc = HitLocation;
+    // this isn't realistic (unless the attack is fire-based), but I've added the dual check nonetheless
+	if (!class'BallisticReplicationInfo'.static.IsClassicOrRealism())
+		return;
+
+	if (Role < ROLE_Authority)
+		return;
+	if (Instigator != None && (Instigator.InGodMode() ||
+		(Instigator.Controller != None && InstigatedBy != None && InstigatedBy != Instigator && Instigator.Controller.SameTeamAs(InstigatedBy.Controller)) ||
+		Normal(HitLocation-Location) Dot vector(Rotation) > 0.4))
+		return;
+
+	if (class<BallisticDamageType>(DamageType) != None)
+	{
+		// GearSafe damage does not harm the gear, just the guy inside...
+		if (class<BallisticDamageType>(DamageType).static.IsDamage(",GearSafe,"))
 			return;
-		}
-		if (!GoneOff())
+		if (class'BallisticReplicationInfo'.static.IsRealism() && !class<BallisticDamageType>(DamageType).default.bIgniteFires)
+			return;
+		else if (/*class<BallisticDamageType>(DamageType).static.IsDamage(",Flame,") || */class<BallisticDamageType>(DamageType).default.bIgniteFires)
 		{
-			Instigator = InstigatedBy;
-			LeakLoc = HitLocation;
-			LeakDir = Normal(Location-LeakLoc)<<Owner.Rotation;
-			bAlwaysRelevant=True;
-			if (bFire)
-			{
-				GotoState('RocketPack');
-				bNetGoRocket=true;
-			}
-			else
-				GotoState('JetPack');
+			Damage = Max(1, Damage * 0.2);
+			bFire=true;
 		}
-		else if (IsInState('JetPack') && bFire)
+	}
+	Health -= Damage;
+	if (Health > 0)
+	{
+		if (level.NetMode != NM_DedicatedServer)
+		{
+			class'IM_Bullet'.static.StartSpawn(HitLocation, normal(HitLocation-Location), 3, Instigator);
+			if (level.NetMode == NM_ListenServer)
+				HurtLoc = HitLocation;
+		}
+		else
+			HurtLoc = HitLocation;
+		return;
+	}
+	if (!GoneOff())
+	{
+		Instigator = InstigatedBy;
+		LeakLoc = HitLocation;
+		LeakDir = Normal(Location-LeakLoc)<<Owner.Rotation;
+		bAlwaysRelevant=True;
+		if (bFire)
 		{
 			GotoState('RocketPack');
 			bNetGoRocket=true;
 		}
+		else
+			GotoState('JetPack');
+	}
+	else if (IsInState('JetPack') && bFire)
+	{
+		GotoState('RocketPack');
+		bNetGoRocket=true;
 	}
 }
-
 
 function AttachmentDestroyed()
 {

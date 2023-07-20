@@ -1,5 +1,5 @@
 //=============================================================================
-// ClientLoadoutInterface.
+// ClientLoadoutInterface.  (Evolution)
 //
 // Communication actor between loadout mutator and a client
 //

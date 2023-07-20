@@ -77,6 +77,9 @@ simulated function vector GetFireDir(out Vector StartTrace)
 	return Vector(AdjustAim(StartTrace, AimError));
 }
 
+/*
+FIXME: Projectile weapon with shotgun-like mechanics.
+
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -84,7 +87,6 @@ static function FireModeStats GetStats()
 	
 	FS.DamageInt = default.ProjectileClass.default.Damage * default.ProjectileCount;
 	FS.Damage = String(FS.DamageInt);
-
 
     FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
     FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
@@ -100,24 +102,25 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {
-     ProjectileCount=5
-     HipSpreadFactor=1.750000
-     bNoRandomFire=True
-     AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
+	ProjectileCount=4
+	HipSpreadFactor=1.750000
+	bNoRandomFire=True
+	AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
+	ShakeRotMag=(X=32.000000,Y=8.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=1.500000
+	ShakeOffsetMag=(X=-15.00)
+	ShakeOffsetRate=(X=-300.000000)
+	ShakeOffsetTime=1.500000
 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=True
-	 bTossed=True
+	// AI
+	bInstantHit=True
+	bLeadTarget=True
+	bTossed=True
 
-	 BotRefireRate=0.7
+	BotRefireRate=0.7
 }

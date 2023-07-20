@@ -19,4 +19,5 @@ defaultproperties
      KeyData(9)=(Alias="Mutate BStartSprint|OnRelease Mutate BStopSprint",KeyLabel="Sprint")
      KeyData(10)=(Alias="CockGun",KeyLabel="Cock Weapon (optional)")
 	 KeyData(11)=(Alias="BWStats",KeyLabel="Ballistic Weapons Stats/Manual")
+	 KeyData(12)=(Alias="Preferences",KeyLabel="Ballistic Preferences Menu")
 }

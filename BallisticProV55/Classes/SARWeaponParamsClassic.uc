@@ -115,6 +115,7 @@ defaultproperties
 	   	XRandFactor=0.15 //
 		YRandFactor=0.15 //
 		YawFactor=0.700000 //
+
 		MaxRecoil=3840.000000
 		DeclineTime=0.7 //
 		ViewBindFactor=0.45
@@ -163,26 +164,73 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=10
+		LayoutName="Standard Flash"
+		Weight=30
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.320000
 		bNeedCock=True
 		MagAmmo=40
-		SightOffset=(Z=15.600000)
-		SightPivot=(Pitch=600)
+		//SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=450)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		ViewOffset=(X=12.000000,Y=12.000000,Z=-7.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		AimParams(1)=AimParams'ClassicBurstAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=SAR_Green
+		Index=0
+		CamoName="Green"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SAR_Desert
+		Index=1
+		CamoName="Desert"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.AAS-Shiny",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SAR_Gray
+		Index=2
+		CamoName="Gray"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.SAR15-Shiny",Index=1,AIndex=0,PIndex=0)
+		Weight=15
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SAR_Black
+		Index=3
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.DSARSkin-Shiny",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SAR_Ocean
+		Index=4
+		CamoName="Ocean"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.CSARSkin-Shiny",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'SAR_Green'
+	Camos(1)=WeaponCamo'SAR_Desert'
+	Camos(2)=WeaponCamo'SAR_Gray'
+	Camos(3)=WeaponCamo'SAR_Black'
+	Camos(4)=WeaponCamo'SAR_Ocean'
 }

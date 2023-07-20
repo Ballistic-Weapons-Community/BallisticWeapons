@@ -141,8 +141,6 @@ simulated event ModeDoFire()
     if(InStr(Level.Game.GameName, "Freon") != -1 && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 		class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
-    else if (!BW.bUseNetAim && !BW.bScopeView)
-    	ApplyRecoil();
 		
 	if (!BW.bScopeView)
 		BW.AddFireChaos(FireChaos);
@@ -336,8 +334,6 @@ state NovaLightning
     	        AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         	Instigator.DeactivateSpawnProtection();
 	    }
-		else if (!BW.default.bUseNetAim && !BW.bScopeView)
-			ApplyRecoil();
 
 	    // client
     	if (Instigator.IsLocallyControlled())
@@ -478,13 +474,16 @@ state NovaLightning
 			NovaStaff.SetTargetZap(Target, false);
 			
 			//Consumes soulpower or HP
-			if (RSNovaStaff(Weapon).SoulPower >= ModePowerDrain)
-				RSNovaStaff(Weapon).AddSoul(-ModePowerDrain);
-			else
+			if (!class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 			{
-				Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);
-				RSNovaStaff(Weapon).AddSoul(-5);
-				class'BallisticDamageType'.static.GenericHurt (Instigator, 100 * (ModePowerDrain - RSNovaStaff(Weapon).SoulPower), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
+				if (RSNovaStaff(Weapon).SoulPower >= ModePowerDrain)
+					RSNovaStaff(Weapon).AddSoul(-ModePowerDrain);
+				else
+				{
+					Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);
+					RSNovaStaff(Weapon).AddSoul(-5);
+					class'BallisticDamageType'.static.GenericHurt (Instigator, 100 * (ModePowerDrain - RSNovaStaff(Weapon).SoulPower), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
+				}
 			}
 		}
 	}
@@ -771,8 +770,6 @@ state ChainLightning
     	        AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         	Instigator.DeactivateSpawnProtection();
 	    }
-		else if (!BW.default.bUseNetAim && !BW.bScopeView)
-			ApplyRecoil();
 
 	    // client
     	if (Instigator.IsLocallyControlled())
@@ -1001,54 +998,28 @@ state ChainLightning
 	function FlashMuzzleFlash();
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-	FS.DamageInt = default.ProjectileClass.default.Damage;
-	FS.Damage = String(FS.DamageInt);
-
-
-    FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
-    FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
-
-	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max:"@(10000 / 52.5)@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
-     ChnLtngSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-ChainLightning'
-     FireSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireLoop'
-     Damage=2
-     SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
-	 MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
-     FireRecoil=1024.000000
-     FireChaos=0.250000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=1.350000
-     AmmoClass=Class'BallisticProV55.Ammo_NovaCrystal'
-     AmmoPerFire=3
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     ShakeOffsetMag=(X=-3.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=1.500000
-     ProjectileClass=Class'BallisticProV55.RSNovaProjectile'
-     WarnTargetPct=0.200000
+	ChnLtngSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-ChainLightning'
+	FireSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireLoop'
+	Damage=2
+	SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
+	MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
+	FireRecoil=1024.000000
+	FireChaos=0.250000
+	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireEndAnim=
+	FireRate=1.350000
+	AmmoClass=Class'BallisticProV55.Ammo_NovaCrystal'
+	AmmoPerFire=3
+	ShakeRotMag=(X=48.000000)
+	ShakeRotRate=(X=640.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-8.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+	ProjectileClass=Class'BallisticProV55.RSNovaProjectile'
+	WarnTargetPct=0.200000
 }

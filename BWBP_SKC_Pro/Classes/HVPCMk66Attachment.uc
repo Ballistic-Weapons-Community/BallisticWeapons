@@ -159,12 +159,13 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
+	WeaponClass=class'HVPCMk66PlasmaCannon'
      DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HVPCMuzzleFlash'
-     ImpactManager=Class'BallisticProV55.IM_HVCRedLightning'
+     ImpactManager=class'IM_HVCRedLightning'
      bDoWaterSplash=False
      FlashScale=2.500000
-     TracerClass=Class'BallisticProV55.TraceEmitter_HVCRedLightning'
+     TracerClass=class'TraceEmitter_HVCRedLightning'
      bHeavy=True
      bRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_TPm'

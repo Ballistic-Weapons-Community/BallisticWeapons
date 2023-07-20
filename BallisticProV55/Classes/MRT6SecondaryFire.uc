@@ -21,12 +21,14 @@ event ModeDoFire()
 			bCockAfterFire=true;
 			MRT6Shotgun(Weapon).bRightLoaded=false;
 			FireAnim='FireRight';
+			AimedFireAnim='FireRight';
 		}
 		else
 		{
 			bCockAfterFire=false;
 			MRT6Shotgun(Weapon).bLeftLoaded=false;
 			FireAnim='FireLeft';
+			AimedFireAnim='FireLeft';
 		}
 	}
 	super.ModeDoFire();
@@ -88,51 +90,46 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
-     HipSpreadFactor=1.250000
-     CutOffDistance=1024.000000
-     CutOffStartRange=768.000000
-     TraceCount=7
-     TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
-     TraceRange=(Min=5000.000000,Max=5000.000000)
-     Damage=10.000000
-     
-     
-     RangeAtten=0.500000
-     DamageType=Class'BallisticProV55.DTMRT6Shotgun'
-     DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
-     DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
-     KickForce=400
-     PenetrateForce=100
-     bPenetrate=True
-     bCockAfterFire=True
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     FlashScaleFactor=1.200000
-     BrassClass=Class'BallisticProV55.Brass_MRT6Left'
-     BrassBone="EjectorR"
-     bBrassOnCock=True
-     BrassOffset=(X=15.000000,Y=-13.000000,Z=7.000000)
-     FireRecoil=378.000000
-     FirePushbackForce=600.000000
-     FireChaos=0.200000
-     XInaccuracy=378.000000
-     YInaccuracy=378.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6SingleFire')
-     FireAnim="FireRight"
-     FireRate=0.400000
-     AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.7
-     WarnTargetPct=0.5
+	HipSpreadFactor=1.250000
+	TraceCount=7
+	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+	ImpactManager=Class'BallisticProV55.IM_Shell'
+	TraceRange=(Min=5000.000000,Max=5000.000000)
+	DamageType=Class'BallisticProV55.DTMRT6Shotgun'
+	DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
+	DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
+	KickForce=400
+	PenetrateForce=100
+	bPenetrate=True
+	bCockAfterFire=True
+	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+	FlashScaleFactor=1.200000
+	BrassClass=Class'BallisticProV55.Brass_MRT6Left'
+	BrassBone="EjectorR"
+	bBrassOnCock=True
+	BrassOffset=(X=15.000000,Y=-13.000000,Z=7.000000)
+	FireRecoil=378.000000
+	FirePushbackForce=600.000000
+	FireChaos=0.200000
+	XInaccuracy=378.000000
+	YInaccuracy=378.000000
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6SingleFire')
+	FireAnim="FireRight"
+	FireRate=0.400000
+	AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
+
+	ShakeRotMag=(X=64.000000)
+	ShakeRotRate=(X=960.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
+	// AI
+	bInstantHit=True
+	bLeadTarget=False
+	bTossed=False
+	bSplashDamage=False
+	bRecommendSplashDamage=False
+	BotRefireRate=0.7
+	WarnTargetPct=0.5
 }

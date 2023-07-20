@@ -159,8 +159,6 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageTypeHead=Class'DTCoachSlug';
 
         RangeAtten=0.250000;
-		CutOffStartRange=1536;
-		CutOffDistance=4096;
 
 		TraceRange.Min=9000;
 		TraceRange.Max=9000;
@@ -192,8 +190,6 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageTypeArm=Class'DTCoachShot';
 		DamageTypeHead=Class'DTCoachShot';
 
-        CutOffDistance=default.CutOffDistance;
-        CutOffStartRange=default.CutOffStartRange;
 		RangeAtten=default.RangeAtten;
 
 		
@@ -230,8 +226,8 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
-	if (BW.BCRepClass.default.GameStyle != 0)
-	{
+	//if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
+	//{
 		if (BW.MagAmmo == 1)
 		{
 			Load=1;
@@ -243,9 +239,8 @@ simulated event ModeDoFire()
 			super.ModeDoFire();
 		}
 		return;
-	}
-	
-
+	//}
+	/*
 	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())
@@ -289,8 +284,6 @@ simulated event ModeDoFire()
             AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         Instigator.DeactivateSpawnProtection();
     }
-	else if (!BW.bUseNetAim && !BW.bScopeView)
-    	ApplyRecoil();
     
 	if (!BW.bScopeView)
 		BW.AddFireChaos(FireChaos);
@@ -342,6 +335,7 @@ simulated event ModeDoFire()
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
 	}
+	*/
 }
 
 //======================================================================
@@ -383,6 +377,13 @@ function DoFireEffect()
         BW.RestoreCollisions();
 
 	ApplyHits();
+
+	// update client's dispersion values before shot
+	if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+	{
+		BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+		BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+	}
 	
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
@@ -489,9 +490,6 @@ defaultproperties
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.5
 
-	CutOffDistance=2048.000000
-	CutOffStartRange=1024.000000
-
 	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 	ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -502,14 +500,13 @@ defaultproperties
 
 	WallPenetrationForce=0
 
-	Damage=12.000000
     MaxHits=14 // inflict maximum of 156 damage to a single target
     SlugDamage=80
     SlugDoubleDamage=70
 	RangeAtten=0.250000
     PenetrateForce=0
 	bPenetrate=False
-	bFireOnRelease=True
+	bFireOnRelease=False
 	DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
 	DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
@@ -535,12 +532,14 @@ defaultproperties
 	FireAnimRate=1.35
 	FireRate=0.300000
 	AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
+
 	ShakeRotMag=(X=128.000000,Y=64.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
 	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-30.000000)
+	ShakeOffsetMag=(X=-12.000000)
 	ShakeOffsetRate=(X=-1000.000000)
 	ShakeOffsetTime=2.000000
+	
 	BotRefireRate=0.60000
 	WarnTargetPct=0.500000
 }

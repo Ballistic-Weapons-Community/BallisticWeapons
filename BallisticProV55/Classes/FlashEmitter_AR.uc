@@ -26,7 +26,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(B=64,G=64,R=64,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(A=255))
-         Opacity=0.250000
+         Opacity=0.40000
          FadeOutStartTime=0.037500
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -34,7 +34,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
-         StartSizeRange=(Y=(Min=1.00000,Max=1.00000),Z=(Min=1.000000,Max=1.000000))
+         StartSizeRange=(Y=(Min=2.00,Max=2.00),Z=(Min=2.00,Max=2.00))
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.10000,Max=0.10000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -58,9 +58,9 @@ defaultproperties
          FadeOutStartTime=0.020000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-		 Opacity=0.375
+		 Opacity=0.55
          StartLocationOffset=(X=20.000000)
-         StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
+         StartSizeRange=(X=(Min=100.000000,Max=100.000000),Y=(Min=100.000000,Max=100.000000),Z=(Min=100.000000,Max=100.000000))
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.10000,Max=0.10000)

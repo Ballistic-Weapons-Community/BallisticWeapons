@@ -55,11 +55,32 @@ function bool HandlePickupQuery( pickup Item )
 
 defaultproperties
 {
-     MaxAmmo=4
+     MaxAmmo=3
      InitialAmount=2
      IconFlashMaterial=Shader'BW_Core_WeaponTex.OA-AR.AmmoIcon_OAARFlash'
      PickupClass=Class'BallisticProV55.AP_M46Clip'
      IconMaterial=Texture'BW_Core_WeaponTex.OA-AR.AmmoIcon_OAAR'
      IconCoords=(X2=64,Y2=64)
      ItemName="M46 Proximity Grenades"
+
+	Begin Object Class=AmmoParams Name=ArenaParams
+		KillInitialAmmoMult=0.51f
+	End Object
+
+	Begin Object Class=AmmoParams Name=ClassicParams
+		KillInitialAmmoMult=0.51f
+	End Object
+
+	Begin Object Class=AmmoParams Name=RealismParams
+		KillInitialAmmoMult=0.0f
+	End Object
+
+	Begin Object Class=AmmoParams Name=TacticalParams
+		KillInitialAmmoMult=0.0f
+	End Object
+
+	Params[0]=ArenaParams
+	Params[1]=ClassicParams
+	Params[2]=RealismParams
+	Params[3]=TacticalParams
 }
