@@ -60,7 +60,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-Sil',Volume=1.550000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-Sil',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 		Recoil=512.000000
 		Chaos=0.1
 		Inaccuracy=(X=1,Y=1)
@@ -246,7 +246,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="GLIrons",Slot=52,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="Holo",Slot=53,Scale=0f)
 		WeaponBoneScales(4)=(BoneName="MuzzleAttachment",Slot=54,Scale=0f)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentOffset=(x=-3,y=0,z=0),AugmentRot=(Pitch=0,Yaw=32768,Roll=32768))
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-25,y=0,z=-1.1),AugmentRot=(Pitch=0,Yaw=32768,Roll=32768))
 		//Function
 		InventorySize=7
@@ -255,6 +255,10 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=9
 		ViewOffset=(X=5,Y=5,Z=-3)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="2 Shot Burst",ModeID="WM_BigBurst",Value=2.000000,bUnavailable=true)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=true)
+		InitialWeaponMode=0
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'

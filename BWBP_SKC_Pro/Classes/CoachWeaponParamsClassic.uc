@@ -30,7 +30,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-FireDouble',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=-1.0
-		Inaccuracy=(X=800,Y=650)
+		Inaccuracy=(X=1000,Y=750)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.100000
 		WarnTargetPct=0.100000
@@ -38,7 +38,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.150000
-		AmmoPerFire=2
+		AmmoPerFire=1
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
 	End Object
@@ -70,7 +70,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireSlugParams
 		FireInterval=0.300000
-		AmmoPerFire=2
+		AmmoPerFire=1
 		MaxHoldTime=0.0
 		AimedFireAnim="Fire"
 		FireAnimRate=1.35	
@@ -86,7 +86,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.400000
-		Damage=30
+		Damage=24
 		TraceCount=10
 		HeadMult=1.5
 		LimbMult=0.5

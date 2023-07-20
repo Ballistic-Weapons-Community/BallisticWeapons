@@ -105,13 +105,14 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=14
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.75000
+		SightingTime=0.8000
 		bNeedCock=True
 		MagAmmo=7
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
 		ZoomType=ZT_Logarithmic
 		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
+		ViewOffset=(X=-6,Y=8,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -137,6 +138,7 @@ defaultproperties
 		MagAmmo=7
 		//ReloadAnimRate=1.000000
 		//CockAnimRate=1.000000
+		ViewOffset=(X=-6,Y=8,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

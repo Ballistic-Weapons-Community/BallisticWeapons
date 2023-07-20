@@ -28,7 +28,7 @@ var bool bLeftLoaded;
 var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 
 
-simulated event PreBeginPlay()
+/*simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
 	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
@@ -44,7 +44,7 @@ simulated event PostNetBeginPlay()
 	{
 		CoachGunPrimaryFire(FireMode[0]).bFireOnRelease = false;
 	}
-}
+}*/
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
@@ -499,7 +499,7 @@ defaultproperties
 	 ParamsClasses(2)=Class'CoachWeaponParamsRealistic' 
      ParamsClasses(3)=Class'CoachWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.CoachGunPrimaryFire'
-     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+     FireModeClass(1)=Class'BWBP_SKC_Pro.CoachGunSecondaryFire'
      SelectAnimRate=2.000000
      PutDownAnimRate=2.000000
 	 SingleReloadAnimRate=1.0

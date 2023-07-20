@@ -105,6 +105,18 @@ defaultproperties
 		FireAnim="FireGrenade"	
 	FireEffectParams(0)=GrenadeEffectParams'ArenaSecondaryEffectParams_Sensor'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -231,9 +243,38 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_HE'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ArenaParams_3XScope
+		//Layout core
+		Weight=5
+		LayoutName="3X Scope"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ACOG',BoneName="tip",Scale=0.1,AugmentOffset=(x=-25,y=-4.6,z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+		// Zoom
+		ZoomType=ZT_Fixed
+		MaxZoom=3
+		// ADS handling
+		SightingTime=0.40 //+0.5
+		SightMoveSpeedFactor=0.35
+		//Function
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		MagAmmo=30
+        InventorySize=6
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'ArenaParams_Chaff'
 	Layouts(1)=WeaponParams'ArenaParams_Sensor'
 	Layouts(2)=WeaponParams'ArenaParams_HE'
+	Layouts(3)=WeaponParams'ArenaParams_3XScope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black

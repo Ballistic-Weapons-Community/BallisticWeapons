@@ -328,7 +328,7 @@ defaultproperties
 	bAimDisabled=True
 	ParamsClasses(0)=Class'FlameSwordWeaponParamsComp'
 	ParamsClasses(1)=Class'FlameSwordWeaponParamsClassic'
-	ParamsClasses(2)=Class'FlameSwordWeaponParamsClassic'
+	ParamsClasses(2)=Class'FlameSwordWeaponParamsRealistic'
 	ParamsClasses(3)=Class'FlameSwordWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.FlameSwordPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.FlameSwordSecondaryFire'

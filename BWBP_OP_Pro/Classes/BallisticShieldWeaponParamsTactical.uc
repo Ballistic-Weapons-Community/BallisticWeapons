@@ -79,6 +79,46 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
+		//Layout core
+		LayoutName="Riot Shield"
+		Weight=30
+		//Stats
+        ViewOffset=(Y=75.000000,Z=-125.000000)
+		PlayerSpeedFactor=0.95
+        MagAmmo=1
+        InventorySize=2
+        DisplaceDurationMult=0
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
+    Begin Object Class=WeaponParams Name=UniversalParams_P
+		//Layout core
+		LayoutName="Police Shield"
+		Weight=10
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_CivShield'
+		//Stats
+        ViewOffset=(Y=75.000000,Z=-125.000000)
+		PlayerSpeedFactor=0.95
+        MagAmmo=1
+        InventorySize=2
+        DisplaceDurationMult=0
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
+    Begin Object Class=WeaponParams Name=UniversalParams_J
+		//Layout core
+		LayoutName="Junk Shield"
+		Weight=10
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_JunkShield'
+		//Stats
         ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.95
         MagAmmo=1
@@ -90,4 +130,6 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
+    Layouts(1)=WeaponParams'UniversalParams_P'
+    Layouts(2)=WeaponParams'UniversalParams_J'
 }

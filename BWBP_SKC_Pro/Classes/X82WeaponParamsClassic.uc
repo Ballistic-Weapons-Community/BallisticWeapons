@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=8000000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=145
-		HeadMult=2.137931
-		LimbMult=0.586206
+		HeadMult=2.2
+		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'
@@ -25,6 +25,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire3',Volume=12.100000,Radius=450.000000)
 		Recoil=1950.000000
+		PushbackForce=255.000000
 		Chaos=1.500000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.050000
@@ -94,25 +95,82 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
+		Weight=30
+		LayoutName="NV Scope"
+		//Attachments
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.750000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.500000
+		SightingTime=0.650000
+		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
 		bNeedCock=True
 		MagAmmo=4
 		ViewOffset=(X=4.00,Y=6.00,Z=-4.00)
-		//SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 		SightPivot=(Roll=-1024)
 		ZoomType=ZT_Logarithmic
-		//CockAnimRate=1.000000
-		//ReloadAnimRate=0.400000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_4XScope
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		//Function
+		PlayerSpeedFactor=0.900000
+		PlayerJumpFactor=0.750000
+		InventorySize=9
+		bNeedCock=True
+		MagAmmo=4
+		ViewOffset=(X=4.00,Y=6.00,Z=-4.00)
+		SightPivot=(Roll=-1024)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		//Layout core
+		Weight=5
+		LayoutName="Irons"
+		LayoutTags="irons"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+        ZoomType=ZT_Irons
+		SightOffset=(X=3,Y=0,Z=4.43)
+		SightPivot=(Roll=0)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.400000
+		//Function
+		PlayerSpeedFactor=0.900000
+		PlayerJumpFactor=0.750000
+		InventorySize=9
+		bNeedCock=True
+		MagAmmo=4
+		ViewOffset=(X=4.00,Y=6.00,Z=-4.00)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_4XScope'
+	Layouts(2)=WeaponParams'ClassicParams_Irons'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=X83_Silver

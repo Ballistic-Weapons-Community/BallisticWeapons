@@ -133,6 +133,18 @@ defaultproperties
 		FireAnim="FireGrenade"	
 	FireEffectParams(0)=GrenadeEffectParams'RealisticSecondaryEffectParams_Sensor'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -149,6 +161,22 @@ defaultproperties
 		DeclineDelay=0.075000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=0.200000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_Scope
+		XCurve=(Points=(,(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.300000),(InVal=1.000000,OutVal=0.300000)))
+		YCurve=(Points=(,(InVal=0.400000,OutVal=0.300000),(InVal=0.700000,OutVal=0.350000),(InVal=1.000000,OutVal=0.400000)))
+		YawFactor=0.150000
+		XRandFactor=0.150000
+		YRandFactor=0.150000
+		MaxRecoil=2800
+		DeclineTime=0.725000 //
+		DeclineDelay=0.075000
+		ViewBindFactor=0.200000
+		ADSViewBindFactor=1.000000 //
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -265,9 +293,42 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_HE'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=RealisticParams_4XScope
+		//Layout core
+		Weight=5
+		LayoutName="4X Scope"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ACOG',BoneName="tip",Scale=0.1,AugmentOffset=(x=-25,y=-4.6,z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+		// Zoom
+		ZoomType=ZT_Fixed
+		MaxZoom=4
+		// ADS handling
+		SightingTime=0.40 //+0.5
+		SightMoveSpeedFactor=0.500000
+		//Function
+		InventorySize=6
+		WeaponPrice=1200
+		bMagPlusOne=True
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		WeaponName="G51 5.56mm Carbine (4X)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams_Chaff'
 	Layouts(1)=WeaponParams'RealisticParams_Sensor'
 	Layouts(2)=WeaponParams'RealisticParams_HE'
+	Layouts(3)=WeaponParams'RealisticParams_4XScope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black

@@ -26,6 +26,7 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Pitch=1.000000,Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=2300.000000
 		Chaos=1.500000
+		PushbackForce=255.000000
 		Inaccuracy=(X=2,Y=2)
 		BotRefireRate=0.300000
 		WarnTargetPct=0.050000
@@ -86,7 +87,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.600000
+		SightingTime=0.700000
 		bNeedCock=True
 		MagAmmo=10
 		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)

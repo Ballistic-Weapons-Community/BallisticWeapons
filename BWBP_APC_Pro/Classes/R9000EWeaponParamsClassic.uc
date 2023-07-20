@@ -98,6 +98,7 @@ defaultproperties
 		YRandFactor=0.10000
 		DeclineDelay=1.25
 		DeclineTime=1.000000
+		bViewDecline=True
 	End Object
 
 	//=================================================================

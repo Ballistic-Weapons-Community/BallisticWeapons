@@ -105,19 +105,39 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
 		InventorySize=7
-		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		//SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
-		//ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
-		SightPivot=(Pitch=600,Roll=-1024)
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_8XScope',BoneName="tip",Scale=0.1,AugmentOffset=(x=-20,y=-2,z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))
+		SightOffset=(X=25.00,Y=0.40,Z=11.2)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		//Function
+		SightPivot=(Pitch=0,Roll=0)
 		ZoomType=ZT_Smooth
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireHeavyParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireStandardParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		Weight=30
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
+		SightOffset=(X=20,Y=0.5,Z=3.2)
+		SightPivot=(Pitch=0,Roll=0)
+		ZoomType=ZT_Irons
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireHeavyParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireStandardParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Irons'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=VSK_Gray

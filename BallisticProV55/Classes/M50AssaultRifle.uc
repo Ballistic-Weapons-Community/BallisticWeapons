@@ -23,10 +23,13 @@ var() BUtil.FullSound 		CamOutSound;
 var() name					CamUpAnim;			//Anim when going to cam view
 var() name					CamDownAnim;		//Anim when leaving cam view
 var() float					CamUpdateRate;		//Time interval between scripted tex screen updates
+var() bool					bHasGrenadeLauncher;
+var() bool					bHasCamera;
 
 var() Sound					GrenOpenSound;		//Sounds for grenade reloading
 var() Sound					GrenLoadSound;		//
 var() Sound					GrenCloseSound;		//
+var() Sound					BoltReleaseSound;		//
 
 var   actor GLIndicator;
 
@@ -40,13 +43,31 @@ replication
 		Camera;
 }
 
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasGrenadeLauncher=true;
+	bHasCamera=true;
+	
+	if (InStr(WeaponParams.LayoutTags, "no_grenade") != -1)
+	{
+		bHasGrenadeLauncher=false;
+		bHasCamera=false;
+		bCockOnEmpty=false;
+		MeleeFireClass=None; //todo
+	}
+}
+
 simulated function UpdateGLIndicator()
 {
 	if (!Instigator.IsLocallyControlled())
 		return;
 	if (M50SecondaryFire(FireMode[1]).bLoaded)
 	{
-		if (GLIndicator == None)
+		if (GLIndicator == None && bHasGrenadeLauncher)
 			class'BUtil'.static.InitMuzzleFlash(GLIndicator, class'M50GLIndicator', DrawScale, self, 'tip');
 	}
 	else if (GLIndicator != None)
@@ -60,6 +81,12 @@ simulated function UpdateGLIndicator()
 simulated function Notify_M50GrenadeSlideUp()	{	PlaySound(GrenOpenSound, SLOT_Misc, 0.5, ,64);	}
 simulated function Notify_M50GrenadeIn()		{	PlaySound(GrenLoadSound, SLOT_Misc, 0.5, ,64);		}
 simulated function Notify_M50GrenadeSlideDown()	{	PlaySound(GrenCloseSound, SLOT_Misc, 0.5, ,64); M50SecondaryFire(FireMode[1]).bLoaded = true; FireMode[1].PreFireTime = FireMode[1].default.PreFireTime; UpdateGLIndicator();	}
+simulated function Notify_BoltRelease()
+{
+	if (ReloadState == RS_None && !bNeedCock)	return;
+	ReloadState = RS_Cocking;
+	PlaySound(BoltReleaseSound, SLOT_Misc, 1, ,16);
+}
 
 // A grenade has just been picked up. Loads one in if we're empty
 function GrenadePickedUp ()
@@ -185,6 +212,8 @@ simulated function bool CheckWeaponMode (int Mode)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
+	if (!bHasCamera)
+		return;
 	if (Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera)
 		SwitchView();
 	else
@@ -264,7 +293,7 @@ simulated event Timer()
 	}
 
 	Level.TimeSeconds < FMin(LastRenderTime + CamUpdateRate, 0.05);
-	if (Instigator.IsLocallyControlled() && Camera != None && CamUpdateRate > 0.0 && !Camera.bBusted && PlayerController(Instigator.Controller).ViewTarget == Instigator)
+	if (Instigator.IsLocallyControlled() && bHasCamera && Camera != None && CamUpdateRate > 0.0 && !Camera.bBusted && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
 		CamTex.Client = self;
 		if (Camera != None)
@@ -411,7 +440,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (Camera != None)
 			CamTex.Revision++;
 	}
-	if (Camera == None && Role == ROLE_Authority)
+	if (bHasCamera && Camera == None && Role == ROLE_Authority)
 	{
 		foreach DynamicActors (class'M50Camera', C)
 		{
@@ -544,7 +573,7 @@ function byte BestMode()
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
 
-	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded())
+	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded() || !bHasGrenadeLauncher)
 		return 0;
 	else if (MagAmmo < 1)
 		return 1;
@@ -655,6 +684,7 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
+	BoltReleaseSound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M50'

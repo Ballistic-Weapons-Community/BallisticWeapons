@@ -1,5 +1,5 @@
 //=============================================================================
-// ConfigTab_Loadout.
+// ConfigTab_Loadout. (Evolution)
 //
 // This tab is used to configure loadout boxes for Ballistic Loadout mutator
 // Includes:
@@ -809,7 +809,7 @@ defaultproperties
          Caption="Shotgun Eff"
          OnCreateComponent=RequirementDmgRtEdit.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Gun kills divided by range and deaths. How efficient the player is at clsoe combat with guns (benfit by using guns close up and avoiding death)"
+         Hint="Gun kills divided by range and deaths. How efficient the player is at close combat with guns (benefit by using guns close up and avoiding death)"
          WinTop=0.600000
          WinLeft=0.040000
          WinWidth=0.420000

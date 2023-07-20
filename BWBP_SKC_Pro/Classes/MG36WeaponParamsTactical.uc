@@ -182,7 +182,7 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=6
         DisplaceDurationMult=1.25
-		SightMoveSpeedFactor=0.45
+		SightMoveSpeedFactor=0.35
 		SightingTime=0.45
 		MagAmmo=100
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
@@ -206,7 +206,7 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=1.000000
 		InventorySize=6
-		SightMoveSpeedFactor=0.45
+		SightMoveSpeedFactor=0.35
 		SightingTime=0.40
 		MagAmmo=30
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
@@ -230,7 +230,7 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=1.000000
 		InventorySize=6
-		SightMoveSpeedFactor=0.45
+		SightMoveSpeedFactor=0.35
 		SightingTime=0.40
 		MagAmmo=20
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
@@ -238,7 +238,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		WeaponName="Mk 88 Gauss Rifle"
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Gauss'
-		AimParams(0)=AimParams'TacticalAimParams'
+		AimParams(0)=AimParams'TacticalAimParams_LMG'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Gauss'
 	End Object
 	

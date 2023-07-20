@@ -13,6 +13,8 @@ var automated moCheckbox	ch_ForceBWPawn;				//Force Ballistic Pawn
 var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
 var automated moCheckbox	ch_KillStreaks;				//Killstreaks
 var automated GUIButton		bn_ClientSettings;
+
+var() localized string		ArenaLOHint, SwapLOHint, LoadoutLOHint, InventoryLOHint, MeleeLOHint;
 //==================================================================
 // Settings & Defaults
 //==================================================================
@@ -98,7 +100,7 @@ defaultproperties
 	 Begin Object Class=moComboBox Name=co_InventoryModeCombo
          ComponentJustification=TXTA_Left
          CaptionWidth=0.550000
-         Caption="Inventory Mode"
+         Caption="Weapon Spawning"
          OnCreateComponent=co_InventoryModeCombo.InternalOnCreateComponent
          IniOption="@Internal"
          IniDefault="High"
@@ -173,4 +175,10 @@ defaultproperties
          OnKeyEvent=ClientSettingsButton.InternalOnKeyEvent
      End Object
      bn_ClientSettings=GUIButton'ClientSettingsButton'
+	 
+	ArenaLOHint="Arena gives everyoen one weapon, with the option of multiple/random weapons."
+	SwapLOHint="Pickup spawns weapons in their map pickup spots."
+	LoadoutLOHint="Loadout allows choosing starting weapons from 5 customizable categories."
+	InventoryLOHint="Inventory allows choosing starting weapons based on a limited inventory space."
+	MeleeLOHint="Only melee weapons spawn. Break some bones!"
 }

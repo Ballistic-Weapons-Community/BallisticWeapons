@@ -31,7 +31,7 @@ defaultproperties
     Begin Object Class=FireParams Name=ArenaProjFireParams
         FireInterval=0.16
         FireEndAnim=
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
         FireEffectParams(0)=ProjectileEffectParams'ArenaProjEffectParams'
     End Object
 
@@ -59,7 +59,7 @@ defaultproperties
 		TargetState="SpreadShot"
 		FireInterval=0.240000
         FireEndAnim=
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
         FireEffectParams(0)=ProjectileEffectParams'ArenaProjEffectParams_Tri'
     End Object
 

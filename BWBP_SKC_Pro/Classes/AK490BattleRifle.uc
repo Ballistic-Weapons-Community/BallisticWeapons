@@ -11,6 +11,7 @@ class AK490BattleRifle extends BallisticWeapon;
 
 var() name			KnifeLoadAnim;	//Anim for grenade reload
 var   bool			bLoaded;
+var() bool			bHasKnife;
 
 var() name			GrenBone;	
 var() name			GrenBoneBase;
@@ -22,6 +23,21 @@ var() name			KnifeThrowAnim;
 var   float			NextThrowTime;
 
 var name			BulletBone, BulletBone2;
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasKnife=true;
+	if (InStr(WeaponParams.LayoutTags, "no_knife") != -1)
+	{
+		bLoaded=false;
+		bHasKnife=false;
+		AK490MeleeFire(MeleeFireMode).SwitchBladeMode(false);
+	}
+}
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
@@ -303,9 +319,10 @@ function byte BestMode()
 	local Bot B;
 	local float Dist;
 
+
 	B = Bot(Instigator.Controller);
 	
-	if ( (B == None) || (B.Enemy == None) )
+	if ( (B == None) || (B.Enemy == None) || !bHasKnife)
 		return 0;
 		
 	Dist = VSize(B.Enemy.Location - Instigator.Location);

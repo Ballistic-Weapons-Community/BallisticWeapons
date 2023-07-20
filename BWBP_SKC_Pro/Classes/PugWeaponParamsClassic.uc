@@ -69,12 +69,15 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
-		ViewBindFactor=0.25
 		XRandFactor=0.350000
 		YRandFactor=0.350000
-		MaxRecoil=6144.000000
+		MaxRecoil=2048.000000
 		DeclineTime=1.500000
 		DeclineDelay=0.400000
+		ViewBindFactor=0.300000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
@@ -82,7 +85,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=32,Max=1024)
+		AimSpread=(Min=32,Max=1624)
 		ADSMultiplier=0.30000
 		SprintOffset=(Pitch=-1000,Yaw=-2048)
         JumpOffset=(Pitch=-6000,Yaw=-1500)

@@ -123,10 +123,12 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		SightOffset=(X=10.5,Y=0,Z=1.7)
+		// Zoom
 		ZoomType=ZT_Irons
-		//Function
+		// ADS handling
 		SightingTime=0.35
         SightMoveSpeedFactor=0.6
+		//Function
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -138,16 +140,18 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_ACOG
 		//Layout core
 		Weight=10
-		LayoutName="ACOG"
+		LayoutName="3X Scope"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=1f)
 		SightOffset=(X=0.000000,Y=0.00000,Z=3.700000)
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+		// Zoom
 		ZoomType=ZT_Fixed
 		MaxZoom=3
-		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+		// ADS handling
+		SightingTime=0.40
+        SightMoveSpeedFactor=0.35
 		//Function
-		SightingTime=0.4
-        SightMoveSpeedFactor=0.6
 		MagAmmo=25
 		InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
