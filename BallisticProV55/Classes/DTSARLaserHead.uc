@@ -8,9 +8,6 @@
 //=============================================================================
 class DTSARLaserHead extends DT_BWMiscDamage;
 
-var float	FlashF;
-var vector	FlashV;
-
 // HeadShot stuff from old sniper damage ------------------
 static function IncrementKills(Controller Killer)
 {
