@@ -118,13 +118,19 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="Suppressed"
+		//ADS
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.25
+		SightOffset=(X=6.00,Y=0.02,Z=3.75)
+		SightPivot=(Pitch=64)
+		//Stats
 		bDualBlocked=True
 		DisplaceDurationMult=0.75
 		MagAmmo=30
-		SightingTime=0.25
         InventorySize=5
-        SightMoveSpeedFactor=0.6
-		SightPivot=(Pitch=64)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -134,7 +140,37 @@ defaultproperties
 		FireParams(4)=FireParams'TacticalPrimaryIceFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		LayoutTags="no_muzzle"
+		Weight=5
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="Muzzle",Scale=0.15,AugmentOffset=(x=-180,y=0,z=-12),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="Muzzle",Scale=0.09,AugmentOffset=(x=-210,y=0,z=26),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//ADS
+		SightOffset=(X=0.000000,Y=0.080000,Z=10.2000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.25
+		//Stats
+		bDualBlocked=True
+		DisplaceDurationMult=0.75
+		MagAmmo=30
+        InventorySize=5
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryFireParams'
+		FireParams(2)=FireParams'TacticalPrimaryFireParams'
+		FireParams(3)=FireParams'TacticalPrimaryFireParams'
+		FireParams(4)=FireParams'TacticalPrimaryIceFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_RDS'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XK2_Black

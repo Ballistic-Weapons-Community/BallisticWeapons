@@ -13,6 +13,7 @@
 //=============================================================================
 class XK2SubMachinegun extends BallisticHandgun;
 
+var(XK2)	bool	bHasSuppressor;
 var(XK2)   bool		bSilenced;				// Silencer on. Silenced
 var(XK2) name		SilencerBone;			// Bone to use for hiding silencer
 var(XK2) name		SilencerOnAnim;			// Think hard about this one...
@@ -24,6 +25,7 @@ var(XK2) sound		SilencerOffTurnSound;	//
 
 var() array<Material> AmpMaterials; //We're using this for the amp
 
+var(XK2)	bool	bHasAmp;
 var(XK2)   bool		bAmped;				// Amp installed, gun has new effects
 var(XK2) name		AmplifierBone;			// Bone to use for hiding amp
 var(XK2) name		AmplifierOnAnim;			//
@@ -47,6 +49,23 @@ replication
 		ServerSwitchSilencer, ServerSwitchAmplifier;	
 	reliable if (Role == ROLE_Authority)
 		IceCharge, ClientSetHeat;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasSuppressor=true;
+	bHasAmp=true;
+
+	if (InStr(WeaponParams.LayoutTags, "no_muzzle") != -1)
+	{
+		bHasSuppressor=false;
+		bHasAmp=false;
+		bSilenced=false;
+	}
 }
 
 simulated function WeaponTick(float DT)
@@ -110,6 +129,8 @@ exec simulated function WeaponSpecial(optional byte i)
 	}
 	else
 	{
+		if (!bHasSuppressor)
+			return;
 		bSilenced = !bSilenced;
 		ServerSwitchSilencer(bSilenced);
 		SwitchSilencer(bSilenced);
@@ -172,6 +193,8 @@ exec simulated function ToggleAmplifier(optional byte i)
 	}
 	else
 	{
+		if (!bHasAmp)
+			return;
 		bAmped = !bAmped;
 		ServerSwitchAmplifier(bAmped);
 		SwitchAmplifier(bAmped);

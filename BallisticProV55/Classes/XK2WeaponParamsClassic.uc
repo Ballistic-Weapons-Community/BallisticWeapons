@@ -116,24 +116,23 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
 		Weight=30
-		LayoutName="Default"
-		
-		InventorySize=3
+		LayoutName="Suppressed"
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		SightOffset=(X=6.00,Y=0.02,Z=3.75)
+		//Stats
+		InventorySize=3
 		bNeedCock=True
 		MagAmmo=50
-		//SightOffset=(Y=-0.550000,Z=14.900000)
-		//SightPivot=(Pitch=600,Roll=-512)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=3
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=12.000000,Y=11.000000,Z=-8.000000)
 		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
