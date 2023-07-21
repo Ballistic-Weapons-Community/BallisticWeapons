@@ -300,10 +300,43 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=TacticalParams_IR
+		//Layout core
+		Weight=5
+		LayoutName="IR Scope"
+		LayoutTags="IR"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=3.000000,Y=-0.01000,Z=0.500000)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_IRScope',BoneName="tip",Scale=0.05,AugmentOffset=(x=-27,y=-2.6,z=0),AugmentRot=(Pitch=0,Yaw=0,Roll=-16384))
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-IRScope'
+		// Zoom
+		ZoomType=ZT_Fixed
+		MaxZoom=4
+		// ADS handling
+		SightingTime=0.45 //+1.0
+		SightMoveSpeedFactor=0.35
+		//Function
+		MagAmmo=30
+        InventorySize=6
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'TacticalParams_Chaff'
 	Layouts(1)=WeaponParams'TacticalParams_Sensor'
 	Layouts(2)=WeaponParams'TacticalParams_HE'
 	Layouts(3)=WeaponParams'TacticalParams_3X'
+	Layouts(4)=WeaponParams'TacticalParams_IR'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black

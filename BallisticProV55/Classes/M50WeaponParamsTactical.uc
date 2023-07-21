@@ -171,6 +171,22 @@ defaultproperties
 		MaxMoveMultiplier=2.5
 	End Object
 
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.2
+		ADSViewBindFactor=1.0 //
+		EscapeMultiplier=1.0 //
+		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.150000,OutVal=0.03),(InVal=0.30000,OutVal=0.04),(InVal=0.40000,OutVal=0.01),(InVal=0.600000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.070000),(InVal=1.00000,OutVal=0.00000)))
+		YCurve=(Points=((InVal=0,OutVal=0),(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		ClimbTime=0.04
+		DeclineDelay=0.120000     
+		DeclineTime=0.75
+		CrouchMultiplier=0.850000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2.5
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -215,7 +231,7 @@ defaultproperties
 		//Layout core
 		LayoutName="A3 Suppressed"
 		LayoutTags="no_grenade"
-		Weight=10
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
@@ -242,7 +258,7 @@ defaultproperties
 		//Layout core
 		LayoutName="A3 Holo"
 		LayoutTags="no_grenade"
-		Weight=10
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
@@ -262,10 +278,42 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
+
+    Begin Object Class=WeaponParams Name=TacticalParams_AdvScope
+		//Layout core
+		LayoutName="A3 3X Scope"
+		LayoutTags="no_grenade"
+		Weight=5
+		AllowedCamos(0)=4
+		AllowedCamos(1)=5
+		AllowedCamos(2)=6
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-43,y=-1.75,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+        WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		//ADS
+		SightMoveSpeedFactor=0.350000
+		SightingTime=0.40
+		SightOffset=(X=0.000000,Y=0.000000,Z=3.50000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		//Function
+        MagAmmo=30
+        InventorySize=7
+		WeaponName="M50A3 5.56mm Assault Rifle (3X)"
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_AdvSupp'
     Layouts(2)=WeaponParams'TacticalParams_AdvHolo'
+    Layouts(3)=WeaponParams'TacticalParams_AdvScope'
 	
 	//Camos
 	Begin Object Class=WeaponCamo Name=M50_Silver

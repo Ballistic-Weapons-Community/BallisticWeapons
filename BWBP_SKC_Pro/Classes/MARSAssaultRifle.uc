@@ -76,6 +76,7 @@ simulated function OnWeaponParamsChanged()
 	}
 	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
 	{
+		bThermal=true;
 		bHasThermalSight=True;
 	}
 	if (InStr(WeaponParams.LayoutTags, "NV") != -1)
@@ -84,6 +85,8 @@ simulated function OnWeaponParamsChanged()
 	}
 	if (InStr(WeaponParams.LayoutTags, "tracker") != -1)
 	{
+		if (!bThermal)
+			bMeatVision=true;
 		bHasTrackingSight=True;
 	}
 	if (InStr(WeaponParams.LayoutTags, "always_track_sensor") != -1)
@@ -376,7 +379,8 @@ exec simulated function WeaponSpecial(optional byte i)
 	
 	if (ZoomType != ZT_Irons )
 	{
-		if (!bThermal && !bMeatVision && bHasNightvisionSight) //Nothing on, turn on IRNV if we can!
+		//Nothing on, turn on IRNV if we can!
+		if (!bThermal && !bMeatVision && bHasNightvisionSight) 
 		{
 			bThermal = !bThermal;
 			if (bThermal)
@@ -388,7 +392,8 @@ exec simulated function WeaponSpecial(optional byte i)
 				PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
 			return;
 		}
-		if ((bThermal || !bHasNightvisionSight) && !bMeatVision) //IRNV on or missing! turn it off and turn on targeting!
+		//IRNV on or missing! turn it off and turn on targeting!
+		if ((bThermal || !bHasNightvisionSight) && !bMeatVision) 
 		{
 			if (bHasNightvisionSight)
 			{

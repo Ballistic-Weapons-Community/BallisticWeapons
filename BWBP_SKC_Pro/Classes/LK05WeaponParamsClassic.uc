@@ -103,22 +103,46 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		SightOffset=(X=1.5,Y=0,Z=2.16)
-		//SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8,AIndex=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9,AIndex=2)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
-		//Function
-		InventorySize=6
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
+		SightOffset=(X=1.5,Y=0,Z=2.16)
+		//Function
+		InventorySize=6
 		bNeedCock=True
 		MagAmmo=25
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
-		//ViewOffset=(X=1.000000,Y=5.000000,Z=0.000000)
+		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_4XScope
+		//Layout core
+		Weight=5
+		LayoutName="4X Scope"
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.2,AugmentOffset=(x=20,y=0,z=2.3),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.350000
+		SightOffset=(X=1.5,Y=0,Z=2.16)
+		//Function
+		InventorySize=6
+		bNeedCock=True
+		MagAmmo=25
 		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -128,7 +152,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Irons
 		//Layout core
-		Weight=10
+		Weight=5
 		LayoutName="Iron Sights"
 		//Attachments
 		//SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
@@ -153,7 +177,8 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams_Holo'
-	Layouts(1)=WeaponParams'ClassicParams_Irons'
+	Layouts(1)=WeaponParams'ClassicParams_4XScope'
+	Layouts(2)=WeaponParams'ClassicParams_Irons'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=LK05_Tan

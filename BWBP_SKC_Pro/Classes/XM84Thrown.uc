@@ -13,6 +13,7 @@
 class XM84Thrown extends BallisticHandGrenadeProjectile;
 
 var   Emitter PATrail;
+var()    int		CloseRadius;
 
 simulated function InitEffects ()
 {
@@ -83,6 +84,36 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 		return;
 
 	bHurtEntry = true;
+	
+
+	foreach RadiusActors( class 'Pawn', Victims, CloseRadius, Location )
+	{
+		if (Victims != Victim && Victims.bCanBeDamaged)
+		{
+			if ( Instigator == None || Instigator.Controller == None )
+				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+			class'BallisticDamageType'.static.GenericHurt
+			(
+				Victims,
+				Damage/10,
+				Instigator,
+				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				(damageScale * Momentum * dir),
+				DamageType
+			);
+			
+			PF = Spawn(class'XM84ActorCorrupt',self, ,Victims.Location);
+			PF.Instigator = Instigator;
+
+			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
+				PF.InstigatorController = Instigator.Controller;
+			PF.Initialize(Victims);
+			
+			if (Victims != None)
+				ApplySlowdown(Victims, 4);
+		}
+	}
+	
 	foreach VisibleCollidingActors( class 'Pawn', Victims, DamageRadius, HitLocation )
 	{
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
@@ -128,6 +159,7 @@ function ApplySlowdown(Pawn P, float Duration)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.XM84Flashbang'
+	CloseRadius=256
 	DetonateDelay=2.000000
 	ImpactDamage=15
 	ImpactDamageType=Class'BWBP_SKC_Pro.DTXM84Hit'

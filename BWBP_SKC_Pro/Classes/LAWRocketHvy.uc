@@ -32,8 +32,10 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	local Actor A;
 
 	foreach RadiusActors( class 'Actor', A, ShockRadius, Location )
+	{
 		if (A.bCanBeDamaged)
 			class'BallisticDamageType'.static.Hurt(A, (1.0-(VSize(A.Location - Location)/ShockRadius))*45.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWRadius');
+	}
 
 	Super.Explode(HitLocation, HitNormal);
 }
@@ -175,49 +177,49 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
-     AccelSpeed=500.000000
-     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
-     bDynamicLight=True
-     bFixedRotationDir=True
-     Damage=160.000000
-     DamageRadius=1200.000000
-     DrawScale=0.500000
-     DudChance=0.010000
-     FlySound=Sound'BWBP_SKC_Sounds.Flash.M202-FlyBy'
-     ImpactDamage=85.000000
-     ImpactDamageType=Class'BWBP_SKC_Pro.DTLAW'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_LAWSmall'
-     LightBrightness=200.000000
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=25
-     LightRadius=15.000000
-     LightSaturation=100
-     LightType=LT_Steady
-     MaxSpeed=14000.000000
-     MaxStrafeSpeed=8.000000
-     MomentumTransfer=300000.000000
-     MotionBlurFactor=6.000000
-     MotionBlurRadius=3536.000000
-     MotionBlurTime=2.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTLAW'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTLAWRadius'
-     RollRange=100000
-     RotationRate=(Roll=32768)
-     ScrewRadius=14.000000
-     ShakeOffsetMag=(X=40.000000,Y=40.000000,Z=40.000000)
-     ShakeOffsetRate=(X=650.000000,Y=650.000000,Z=650.000000)
-     ShakeOffsetTime=10.000000
-     ShakeRadius=5536.000000
-     ShakeRotMag=(X=576.000000,Y=450.000000,Z=400.000000)
-     ShakeRotRate=(X=7000.000000,Y=7000.000000,Z=5500.000000)
-     ShakeRotTime=8.000000
-     ShockRadius=2600.000000
-     SideWinderChance=1.000000
-     SoundRadius=128.000000
-     SoundVolume=192
-     Speed=6000.000000
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
-     TrailClass=Class'BWBP_SKC_Pro.LAWRocketTrail'
-     TrailOffset=(X=-14.000000)
+	AccelSpeed=500.000000
+	AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
+	bDynamicLight=True
+	bFixedRotationDir=True
+	Damage=160.000000
+	DamageRadius=1200.000000
+	DrawScale=0.500000
+	DudChance=0.010000
+	FlySound=Sound'BWBP_SKC_Sounds.Flash.M202-FlyBy'
+	ImpactDamage=85.000000
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTLAW'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_LAWSmall'
+	LightBrightness=200.000000
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=25
+	LightRadius=15.000000
+	LightSaturation=100
+	LightType=LT_Steady
+	MaxSpeed=14000.000000
+	MaxStrafeSpeed=8.000000
+	MomentumTransfer=300000.000000
+	MotionBlurFactor=6.000000
+	MotionBlurRadius=3536.000000
+	MotionBlurTime=2.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DTLAW'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTLAWRadius'
+	RollRange=100000
+	RotationRate=(Roll=32768)
+	ScrewRadius=14.000000
+	ShakeOffsetMag=(X=40.000000,Y=40.000000,Z=40.000000)
+	ShakeOffsetRate=(X=650.000000,Y=650.000000,Z=650.000000)
+	ShakeOffsetTime=10.000000
+	ShakeRadius=5536.000000
+	ShakeRotMag=(X=576.000000,Y=450.000000,Z=400.000000)
+	ShakeRotRate=(X=7000.000000,Y=7000.000000,Z=5500.000000)
+	ShakeRotTime=8.000000
+	ShockRadius=2600.000000
+	SideWinderChance=1.000000
+	SoundRadius=128.000000
+	SoundVolume=192
+	Speed=6000.000000
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
+	TrailClass=Class'BWBP_SKC_Pro.LAWRocketTrail'
+	TrailOffset=(X=-14.000000)
 }

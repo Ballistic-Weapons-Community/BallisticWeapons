@@ -145,7 +145,42 @@ defaultproperties
 		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		LayoutTags="no_muzzle"
+		Weight=5
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="Muzzle",Scale=0.15,AugmentOffset=(x=-180,y=0,z=-12),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="Muzzle",Scale=0.09,AugmentOffset=(x=-210,y=0,z=26),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//ADS
+		SightOffset=(X=0.000000,Y=0.080000,Z=10.2000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		//Function
+		InventorySize=3
+		bNeedCock=True
+		MagAmmo=50
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
+		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=3
+		ViewOffset=(X=12.000000,Y=11.000000,Z=-8.000000)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicPrimaryFireParams'
+		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_RDS'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XK2_Black

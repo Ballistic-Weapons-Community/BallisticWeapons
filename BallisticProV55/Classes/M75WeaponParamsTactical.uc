@@ -97,7 +97,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
-		LayoutName="M75 Scoped"
+		LayoutName="X-Ray Scope"
 		Weight=70
 		//Visual
 		AllowedCamos(0)=0

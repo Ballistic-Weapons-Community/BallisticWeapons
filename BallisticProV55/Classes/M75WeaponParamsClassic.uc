@@ -95,7 +95,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
-		LayoutName="M75 Scoped"
+		LayoutName="X-Ray Scope"
 		Weight=70
 		//Visual
 		AllowedCamos(0)=0
@@ -121,7 +121,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Irons
 		//Layout core
-		LayoutName="X75 Prototype"
+		LayoutName="X75 Irons"
 		Weight=5
 		//Visual
 		AllowedCamos(0)=2

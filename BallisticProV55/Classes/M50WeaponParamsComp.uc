@@ -187,7 +187,7 @@ defaultproperties
 		//Layout core
 		LayoutName="A3 Suppressed"
 		LayoutTags="no_grenade"
-		Weight=10
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
@@ -215,7 +215,7 @@ defaultproperties
 		//Layout core
 		LayoutName="A3 Holo"
 		LayoutTags="no_grenade"
-		Weight=10
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
@@ -237,9 +237,42 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
     End Object 
 	
+    Begin Object Class=WeaponParams Name=ArenaParams_AdvScope
+		//Layout core
+		LayoutName="A3 Scope"
+		LayoutTags="no_grenade"
+		Weight=5
+		AllowedCamos(0)=4
+		AllowedCamos(1)=5
+		AllowedCamos(2)=6
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-43,y=-1.75,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+        WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.35
+		SightOffset=(X=0.000000,Y=0.000000,Z=3.50000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		//Function
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
+        MagAmmo=30
+        InventorySize=6
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_HB'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
     Layouts(1)=WeaponParams'ArenaParams_AdvSupp'
     Layouts(2)=WeaponParams'ArenaParams_AdvHolo'
+    Layouts(3)=WeaponParams'ArenaParams_AdvScope'
 	
 	//Camos
 	Begin Object Class=WeaponCamo Name=M50_Silver

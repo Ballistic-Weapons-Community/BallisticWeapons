@@ -62,7 +62,7 @@ defaultproperties
 		Recoil=150.000000
 		Chaos=0.02000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-Fire',Pitch=1.250000,Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_CQC
@@ -238,7 +238,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
-		SightOffset=(X=6.50,Y=0.01,Z=3.8)
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom
@@ -263,7 +263,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
-		SightOffset=(X=6.50,Y=0.01,Z=3.8)
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom
