@@ -42,7 +42,7 @@ var   array<UziBrass>	UziBrassList;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bLaserOn;
+		bLaserOn, LaserAmmo;
 }
 
 simulated function OnWeaponParamsChanged()

@@ -21,9 +21,9 @@ var   float                 LaserSizeAdjust;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn;
+		bLaserOn, bHasCombatLaser;
 	unreliable if ( Role==ROLE_Authority )
-		LaserRot;
+		LaserRot,LaserSizeAdjust;
 }
 
 function InitFor(Inventory I)
@@ -87,6 +87,8 @@ simulated function Tick(float DT)
 	{
 		if (!Laser.bHidden)
 			Laser.bHidden = true;
+		if (LaserDot != None)
+			KillLaserDot();
 		return;
 	}
 	else
@@ -181,7 +183,7 @@ defaultproperties
 	ImpactManager=class'IM_Bullet'
 	FlashScale=2.000000
 	BrassClass=class'Brass_SAR'
-	BrassMode=MU_Both
+	BrassMode=MU_Primary
 	InstantMode=MU_Both
 	FlashMode=MU_Both
 	TracerClass=class'TraceEmitter_Default'
