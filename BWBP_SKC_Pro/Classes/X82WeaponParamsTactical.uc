@@ -13,7 +13,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=125
+		Damage=150
         HeadMult=1.75
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
