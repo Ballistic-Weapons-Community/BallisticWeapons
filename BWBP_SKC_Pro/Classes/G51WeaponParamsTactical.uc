@@ -188,6 +188,16 @@ defaultproperties
 		ChaosDeclineTime=0.75
 		ChaosSpeedThreshold=300
 	End Object
+
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.7
+		AimAdjustTime=0.6
+		AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		ChaosDeclineTime=0.75
+		ChaosSpeedThreshold=300
+	End Object
     
 	//=================================================================
 	// BASIC PARAMS
@@ -285,7 +295,7 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		MaxZoom=3
 		// ADS handling
-		SightingTime=0.40 //+0.5
+		SightingTime=0.45 //+0.1
 		SightMoveSpeedFactor=0.35
 		//Function
 		MagAmmo=30
@@ -295,7 +305,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
-		AimParams(0)=AimParams'TacticalAimParams'
+		AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
 	End Object
@@ -327,7 +337,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
-		AimParams(0)=AimParams'TacticalAimParams'
+		AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
 	End Object

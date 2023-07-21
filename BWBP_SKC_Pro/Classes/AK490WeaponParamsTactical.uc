@@ -190,6 +190,16 @@ defaultproperties
 		ChaosSpeedThreshold=300
 	End Object
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.7
+		AimAdjustTime=0.6
+		AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		ChaosDeclineTime=1.250000
+		ChaosSpeedThreshold=300
+	End Object
+
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
@@ -280,14 +290,14 @@ defaultproperties
 		MaxZoom=3
 		// ADS handling
         SightMoveSpeedFactor=0.35
-		SightingTime=0.4 //+.05
+		SightingTime=0.45 //+.1
 		//Function
 		InventorySize=7
 		DisplaceDurationMult=1
 		MagAmmo=25
 		WeaponName="AKM-490 Battle Rifle (3X)"
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
-        AimParams(0)=AimParams'TacticalAimParams'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 

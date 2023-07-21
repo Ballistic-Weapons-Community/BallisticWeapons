@@ -201,6 +201,16 @@ defaultproperties
 		ChaosSpeedThreshold=300
 	End Object
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.7
+		AimAdjustTime=0.6
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		AimSpread=(Min=256,Max=1024)
+		ChaosDeclineTime=0.75
+		ChaosSpeedThreshold=300
+	End Object
+
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
@@ -220,7 +230,7 @@ defaultproperties
         InventorySize=7
 		SightOffset=(X=-8,Y=0.08,Z=2.7)
 		SightPivot=(Pitch=200)
-		WeaponName="M50 5.56mm Assault Rifle"
+		WeaponName="M50 Assault Rifle"
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -247,7 +257,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=30
         InventorySize=7
-		WeaponName="M50A3 5.56mm Assault Rifle (Sil)"
+		WeaponName="M50A3 Assault Rifle (Sil)"
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_S'
@@ -272,7 +282,7 @@ defaultproperties
         SightMoveSpeedFactor=0.6
         MagAmmo=30
         InventorySize=7
-		WeaponName="M50A3 5.56mm Assault Rifle (Holo)"
+		WeaponName="M50A3 Assault Rifle (Holo)"
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
@@ -297,15 +307,15 @@ defaultproperties
 		MaxZoom=3
 		//ADS
 		SightMoveSpeedFactor=0.350000
-		SightingTime=0.40
+		SightingTime=0.45 // +0.1
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.50000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		//Function
         MagAmmo=30
         InventorySize=7
-		WeaponName="M50A3 5.56mm Assault Rifle (3X)"
+		WeaponName="M50A3 Assault Rifle (3X)"
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
-        AimParams(0)=AimParams'TacticalAimParams'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 

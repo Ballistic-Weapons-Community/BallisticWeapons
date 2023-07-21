@@ -247,6 +247,16 @@ defaultproperties
 		ChaosSpeedThreshold=300
 	End Object
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.7
+		AimAdjustTime=0.6
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		AimSpread=(Min=256,Max=1024)
+		ChaosDeclineTime=0.75
+		ChaosSpeedThreshold=300
+	End Object
+
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
@@ -304,7 +314,7 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		MaxZoom=3
 		// ADS handling
-		SightingTime=0.4 //+0.5
+		SightingTime=0.45 //+1
 		SightMoveSpeedFactor=0.350000
 		SightPivot=(Pitch=0)
 		//Stats
@@ -312,8 +322,8 @@ defaultproperties
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalStockOutRecoilParams_Scope'
         RecoilParams(1)=RecoilParams'TacticalStockOutRecoilParams_Scope'
-        AimParams(0)=AimParams'TacticalStockOutAimParams'
-        AimParams(1)=AimParams'TacticalStockInAimParams'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
+        AimParams(1)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalAutoFireParams'
 		FireParams(1)=FireParams'TacticalBurstFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_LaserSight'

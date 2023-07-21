@@ -142,7 +142,7 @@ defaultproperties
         ZoomType=ZT_Fixed
 		MaxZoom=3
 		// ADS handling
-		SightingTime=0.40
+		SightingTime=0.45
         SightMoveSpeedFactor=0.35
 		ScopeScale=0.65
 		//Function
