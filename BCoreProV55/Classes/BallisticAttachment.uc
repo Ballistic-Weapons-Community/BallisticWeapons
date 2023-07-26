@@ -93,7 +93,8 @@ var() BUtil.FullSound				FlyBySound;							//Sound to play for bullet flyby effe
 var() EModeUsed						FlyByMode;							//Firing mode/s that use flyby effect.
 var() float							FlybyRange;							//Max distance from bullet trace line, at which flyby by sounds will be heard
 var() float							FlyByBulletSpeed;					//Used to calculate flyby sound delay (simulate bullet speed)
-var 	int 						CamoIndex;
+var() 	int 						CamoIndex;
+var()	int							LayoutIndex;
 
 //===========================================================================
 // Animation support
@@ -151,7 +152,7 @@ replication
 	reliable if (bNetDirty && Role==Role_Authority)
 		FireCount, AltFireCount, MeleeFireCount, WallPenetrates, DirectImpact, DirectImpactCount, bIsAimed;
 	reliable if (bNetInitial && Role == ROLE_Authority)
-		CamoIndex;
+		CamoIndex, LayoutIndex;
 }
 
 simulated function PostBeginPlay()
@@ -169,6 +170,9 @@ simulated function PostBeginPlay()
 function InitFor(Inventory BW)
 {
 	Super.InitFor(BW);
+
+	LayoutIndex = BallisticWeapon(BW).LayoutIndex;
+	ApplyModel();
 
 	CamoIndex = BallisticWeapon(BW).CamoIndex;
 	ApplyCamo();
@@ -243,7 +247,25 @@ simulated function PostNetBeginPlay()
 	bHeavy = bIsAimed;
 	
 	if (Role < ROLE_Authority)
+	{
+		ApplyModel();
 		ApplyCamo();
+	}
+}
+
+simulated function ApplyModel()
+{
+	if (LayoutIndex >= WeaponClass.static.GetParams().default.Layouts.Length)
+	{
+		log(Name$"::ApplyModel: Layout index out of range: got "$LayoutIndex$", length "$WeaponClass.static.GetParams().default.Layouts.Length);
+		return;
+	}
+	
+	//Change mesh if layout dictates it
+	if (WeaponClass.static.GetParams().default.Layouts[LayoutIndex].AttachmentMesh != None)
+	{
+		LinkMesh(WeaponClass.static.GetParams().default.Layouts[LayoutIndex].AttachmentMesh);
+	}
 }
 
 simulated function ApplyCamo()

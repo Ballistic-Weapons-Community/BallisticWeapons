@@ -43,7 +43,7 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2625,Max=6300) // 50-120m
 		RangeAtten=0.75
-		Damage=65
+		Damage=65 //?
         HeadMult=3
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
@@ -67,6 +67,36 @@ defaultproperties
 		FireAnimRate=0.85
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_600'
+	End Object
+		
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Relic
+		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=2625,Max=6300) // 50-120m
+		RangeAtten=0.75
+		Damage=65 //?
+        HeadMult=3
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTSRS900Rifle'
+		DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
+        PenetrationEnergy=48
+		PenetrateForce=120
+		bPenetrate=True
+		Inaccuracy=(X=16,Y=16)
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire3',Volume=1.500000,Pitch=0.900000,Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FlashScaleFactor=0.5
+		Recoil=550.000000
+		Chaos=0.065000
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Relic
+		FireInterval=0.25000
+		FireEndAnim=
+		FireAnimRate=0.85
+		AimedFireAnim="AimedFire"	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Relic'
 	End Object
 	
 	//=================================================================
@@ -134,6 +164,14 @@ defaultproperties
 		//Layout core
 		LayoutName="Adv Scope"
 		Weight=30
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		AllowedCamos(5)=5
+		AllowedCamos(6)=6
+		AllowedCamos(7)=7
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
@@ -157,6 +195,14 @@ defaultproperties
 		//Layout core
 		LayoutName="Holosight"
 		Weight=10
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		AllowedCamos(5)=5
+		AllowedCamos(6)=6
+		AllowedCamos(7)=7
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
@@ -175,7 +221,15 @@ defaultproperties
 		//Layout core
 		LayoutName="Irons"
 		LayoutTags="irons"
-		Weight=10
+		Weight=5
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		AllowedCamos(5)=5
+		AllowedCamos(6)=6
+		AllowedCamos(7)=7
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
@@ -189,10 +243,32 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalAimParams_600'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_600'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Relic
+		//Layout core
+		LayoutName="Relic"
+		Weight=1
+		AllowedCamos(0)=8
+		AllowedCamos(1)=9
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SR18'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.SR18_TPm'
+		SightOffset=(X=1.000000,Z=0.85000)
+		//Function
+		MagAmmo=20
+        InventorySize=6
+		SightingTime=0.40
+		SightMoveSpeedFactor=0.45
+		WeaponName="SR18 Battle Rifle"
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
+		AimParams(0)=AimParams'TacticalAimParams_600'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Relic'
+    End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams_Scope'
     Layouts(1)=WeaponParams'TacticalParams_RDS'
 	Layouts(2)=WeaponParams'TacticalParams_IRONS'
+	Layouts(3)=WeaponParams'TacticalParams_Relic'
 	
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=SRS_Gray
@@ -271,6 +347,28 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS-HSight-S",Index=5,AIndex=-1,PIndex=-1)
 	End Object
 	
+	Begin Object Class=WeaponCamo Name=SRS_RelicWood
+		Index=8
+		CamoName="Wood"
+		Weight=20
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.SRS900.SR18-Main',Index=1,AIndex=0,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.SRS900.SR18-Misc',Index=2,AIndex=1,PIndex=-1))
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo',Index=3,AIndex=-1,PIndex=2))
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.SRS900.SRS900Main',Index=4,AIndex=2,PIndex=-1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRS_RelicBlack
+		Index=9
+		CamoName="Black"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SR18-MainBlack",Index=1,AIndex=0,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SR18-MiscBlack",Index=2,AIndex=1,PIndex=-1))
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo',Index=3,AIndex=-1,PIndex=2))
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.SRS900.SRS900Main',Index=4,AIndex=2,PIndex=-1)
+	End Object
+	
 	Camos(0)=WeaponCamo'SRS_Gray'
     Camos(1)=WeaponCamo'SRS_Desert'
     Camos(2)=WeaponCamo'SRS_DesertTac'
@@ -279,4 +377,6 @@ defaultproperties
     Camos(5)=WeaponCamo'SRS_Blue'
     Camos(6)=WeaponCamo'SRS_Red'
     Camos(7)=WeaponCamo'SRS_RedTiger'
+    Camos(8)=WeaponCamo'SRS_RelicWood'
+    Camos(9)=WeaponCamo'SRS_RelicBlack'
 }

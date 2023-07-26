@@ -11,9 +11,9 @@ defaultproperties
 		TraceRange=(Min=800.000000,Max=4000.000000)  //.45
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=47.0
-		HeadMult=2.276595
-		LimbMult=0.617021
+		Damage=45.0
+		HeadMult=2.3
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'

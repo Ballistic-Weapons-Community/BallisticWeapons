@@ -109,6 +109,7 @@ var() Vector                ViewOffset;            // Offset when at rest
 var() Rotator               ViewPivot;            // Pivot when at rest
 var() String				WeaponName;
 var() Mesh					LayoutMesh;
+var() Mesh					AttachmentMesh;
 var() array<GunAugment>		GunAugments;		//The RDS, Suppressor, Bayonet actor. Will look for a socket called "Attach"
 var() array<int>			AllowedCamos;			// Which camos we can use for this layout, leave blank for all
 //-----------------------------------------------------------------------------

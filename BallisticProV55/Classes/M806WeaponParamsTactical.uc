@@ -16,7 +16,7 @@ defaultproperties
         DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
-		Damage=36  // .42
+		Damage=36  // .45
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM806Pistol'

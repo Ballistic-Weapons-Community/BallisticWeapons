@@ -125,24 +125,26 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		Weight=30
+		LayoutName="Suppressed"
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.18
+		SightOffset=(X=6.00,Y=0.02,Z=3.75)
+		SightPivot=(Pitch=40)
+		//Stats
 		bDualBlocked=True
 		PlayerSpeedFactor=1.050000
 		InventorySize=5
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.18
 		MagAmmo=40
 		bMagPlusOne=True
-		//ViewOffset=(X=-2.000000,Y=6.500000,Z=-11.000000)
-		//SightOffset=(X=3.000000,Y=-0.032500,Z=11.300000)
-		SightPivot=(Pitch=40)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Burst",ModeID="WM_BigBurst",Value=4.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=3
-		//ReloadAnimRate=0.950000
-		//CockAnimRate=1.000000
 		WeaponName="XK2-SD 9mm Submachinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -153,7 +155,45 @@ defaultproperties
 		FireParams(4)=FireParams'RealisticPrimaryIceFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		LayoutTags="no_muzzle"
+		Weight=5
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="Muzzle",Scale=0.15,AugmentOffset=(x=-180,y=0,z=-12),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="Muzzle",Scale=0.09,AugmentOffset=(x=-210,y=0,z=26),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//ADS
+		SightOffset=(X=0.000000,Y=0.080000,Z=10.2000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.18
+		//Function
+		bDualBlocked=True
+		PlayerSpeedFactor=1.050000
+		InventorySize=5
+		MagAmmo=40
+		bMagPlusOne=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Burst",ModeID="WM_BigBurst",Value=4.000000)
+		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=3
+		WeaponName="XK2 9mm Submachinegun"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		FireParams(3)=FireParams'RealisticPrimaryFireParams'
+		FireParams(4)=FireParams'RealisticPrimaryIceFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_RDS'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XK2_Black

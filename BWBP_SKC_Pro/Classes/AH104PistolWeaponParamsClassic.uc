@@ -16,7 +16,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AH104Pistol'
-		PenetrationEnergy=32.000000
+		PenetrationEnergy=48.000000
 		PenetrateForce=250
 		bPenetrate=True
 		PDamageFactor=0.800000

@@ -14,7 +14,7 @@ defaultproperties
 			DecayRange=(Min=1050,Max=3150) // 20-60m
 			Inaccuracy=(X=128,Y=128)
 			PenetrationEnergy=96
-			Damage=80.000000
+			Damage=80.000000 //.600 HEAT
             HeadMult=2.5
             LimbMult=0.75
 			RangeAtten=0.5

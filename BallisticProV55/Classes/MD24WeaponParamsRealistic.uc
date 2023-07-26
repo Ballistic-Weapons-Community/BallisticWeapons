@@ -7,8 +7,44 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+	//10mm
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_10mm
 		TraceRange=(Min=800.000000,Max=4000.000000) //10mm Super
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=50.0
+		HeadMult=2.2
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMD24Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
+		PenetrationEnergy=9.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.750000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_FireHeavy',Volume=4.000000)
+		Recoil=1024.000000
+		Chaos=-1.0
+		Inaccuracy=(X=14,Y=14)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_10mm
+		FireInterval=0.220000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1.700000	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_10mm'
+	End Object
+	
+	//.40
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+		TraceRange=(Min=800.000000,Max=3500.000000) //.40
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=37.0
@@ -39,6 +75,41 @@ defaultproperties
 		FireEndAnim=
 		FireAnimRate=2.400000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//.40 supp
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Supp
+		TraceRange=(Min=800.000000,Max=3500.000000) //.40
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=37.0
+		HeadMult=2.2
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMD24Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
+		PenetrationEnergy=9.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+		FlashScaleFactor=0.650000
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MD24.MD24_FireSil',Volume=0.800000,Radius=48.000000,bAtten=True)
+		Recoil=600.000000
+		Chaos=-1.0
+		Inaccuracy=(X=14,Y=14)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Supp
+		FireInterval=0.200000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=2.400000	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Supp'
 	End Object
 		
 	//=================================================================
@@ -121,17 +192,19 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=RealisticParams
+	Begin Object Class=WeaponParams Name=RealisticParams_10mm
 		//Layout core
-		LayoutName="Default"
+		LayoutName="10mm Super"
 		Weight=30
 		//Attachments
+		//ADS
+		SightOffset=(X=-7.00000,Y=0,Z=1.7)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.12
 		//Function
 		PlayerSpeedFactor=1.100000
 		InventorySize=2
 		WeaponPrice=650
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.12
 		MagAmmo=15
 		//ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
 		//SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
@@ -141,11 +214,68 @@ defaultproperties
 		WeaponName="MD24 10mm Commando Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_10mm'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		LayoutName=".40 RDS"
+		Weight=30
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronSights",Slot=50,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RMR',BoneName="Slide",AugmentOffset=(x=5,y=0,z=4),Scale=0.05,AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		//ADS
+		SightOffset=(X=-7.00000,Y=-0.01,Z=1.82)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.12
+		//Function
+		PlayerSpeedFactor=1.100000
+		InventorySize=2
+		WeaponPrice=650
+		MagAmmo=15
+		//ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
+		//SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
+		SightPivot=(Pitch=0,Roll=-0)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		WeaponName="MD24 .40 Commando Pistol (RDS)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'RealisticParams'
+	Begin Object Class=WeaponParams Name=RealisticParams_Supp
+		//Layout core
+		LayoutName=".40 Suppressed"
+		Weight=10
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorSOCOM',BoneName="Muzzle",Scale=0.04,AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		//ADS
+		SightOffset=(X=-7.00000,Y=-0.01,Z=1.82)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.12
+		//Function
+		PlayerSpeedFactor=1.100000
+		InventorySize=2
+		WeaponPrice=650
+		MagAmmo=15
+		//ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
+		//SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
+		SightPivot=(Pitch=0,Roll=-0)
+		//ReloadAnimRate=1.000000
+		//CockAnimRate=1.000000
+		WeaponName="MD24 .40 Commando Pistol (Supp)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'RealisticParams_10mm'
+	Layouts(1)=WeaponParams'RealisticParams'
+	Layouts(2)=WeaponParams'RealisticParams_Supp'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=MD24_Green
