@@ -74,6 +74,20 @@ defaultproperties
 		MaxMoveMultiplier=1.5
 	End Object
 
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.15
+		ADSViewBindFactor=1 //
+		EscapeMultiplier=1 //
+		XRandFactor=0.1
+		YRandFactor=0.1
+		ClimbTime=0.06
+		DeclineTime=0.75
+		DeclineDelay=0.25
+		CrouchMultiplier=1
+		HipMultiplier=1
+		MaxMoveMultiplier=1.5
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -88,18 +102,34 @@ defaultproperties
         ChaosSpeedThreshold=300
 	End Object
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.35
+		AimAdjustTime=0.6
+    	AimSpread=(Min=256,Max=768)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
+		ChaosDeclineTime=0.320000
+        ChaosSpeedThreshold=300
+	End Object
+
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		LayoutName="Laser Sight"
+		Weight=30
+		//ADS
+		SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
-		DisplaceDurationMult=0.5
 		SightingTime=0.20
         SightMoveSpeedFactor=0.6
+		//Stats
+		DisplaceDurationMult=0.5
 		MagAmmo=12
         InventorySize=2
 		bDualBlocked=True
@@ -108,7 +138,39 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Scope
+		//Layout core
+		LayoutName="Scoped"
+		Weight=10
+		//Attachments
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.M806.M806_Main-SD',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=2)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="Muzzle",Scale=0.35,AugmentOffset=(x=-60,y=0,z=-50),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.35,AugmentOffset=(x=-120,y=0,z=25),AugmentRot=(Pitch=0,Roll=0,Yaw=0))
+		//Zoom
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		ZoomType=ZT_Fixed	
+		MaxZoom=4	
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.30000
+		SightOffset=(X=0,Y=0,Z=18)
+		SightPivot=(Pitch=0,Roll=0)
+		//Function
+		DisplaceDurationMult=0.5
+		MagAmmo=12
+        InventorySize=2
+		bDualBlocked=True
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M806_Gray

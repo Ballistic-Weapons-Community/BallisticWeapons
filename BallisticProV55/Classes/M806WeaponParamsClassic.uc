@@ -111,20 +111,22 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Iron Sights"
+		//Layout core
+		LayoutName="Laser Sight"
 		Weight=30
-		
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
+		//ADS
 		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=12
+		SightingTime=0.2250000
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
+		SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		bNeedCock=True
+		MagAmmo=12
 		ViewOffset=(X=3.000000,Y=25.000000,Z=-23.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -134,27 +136,29 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Scope
+		//Layout core
 		LayoutName="Scoped"
 		Weight=10
-		
+		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.M806.M806_Main-SD',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=2)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="ScopeRail",Scale=0.1)
-		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Scope",Scale=0.07)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="Muzzle",Scale=0.35,AugmentOffset=(x=-60,y=0,z=-50),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.35,AugmentOffset=(x=-120,y=0,z=25),AugmentRot=(Pitch=0,Roll=0,Yaw=0))
+		//Zoom
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
-		ZoomType=ZT_Fixed
-		
+		ZoomType=ZT_Fixed	
+		MaxZoom=4	
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.350000
+		SightOffset=(X=0,Y=0,Z=18)
+		SightPivot=(Pitch=0,Roll=0)
+		//Function
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.22500
 		bNeedCock=True
 		MagAmmo=12
-		//SightOffset=(X=-15.000000,Y=-0.350000,Z=8.750000)
-		SightPivot=(Pitch=1024,Roll=-1024)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=3.000000,Y=25.000000,Z=-23.000000)
 		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -165,7 +169,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	//Layouts(1)=WeaponParams'ClassicParams_Scope'
+	Layouts(1)=WeaponParams'ClassicParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M806_Gray
