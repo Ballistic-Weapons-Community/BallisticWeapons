@@ -257,6 +257,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
 		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+        WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
 		SightOffset=(X=0.000000,Y=0.000000,Z=4.25000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		//Function
@@ -309,7 +310,7 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Long'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
-	
+	/*
 	Begin Object Class=WeaponParams Name=ClassicParams_Stealth
 		LayoutName="Burst Suppressed"
 		Weight=10
@@ -397,7 +398,7 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
+	End Object*/
 	
 	Layouts(0)=WeaponParams'ClassicParams' //M50 (Silver, GL)
 	Layouts(1)=WeaponParams'ClassicParams_AdvStealth'//M50A3 Stealth (Black, Suppressed, EO Tech)

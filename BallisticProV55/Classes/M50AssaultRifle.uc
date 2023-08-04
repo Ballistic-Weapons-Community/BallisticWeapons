@@ -58,6 +58,7 @@ simulated function OnWeaponParamsChanged()
 		bHasCamera=false;
 		bCockOnEmpty=false;
 		MeleeFireClass=None; //todo
+		SightFXClass=None;
 	}
 }
 

@@ -15,7 +15,8 @@ class SRS900Rifle extends BallisticWeapon;
 
 var float LastRangeFound, LastStabilityFound, StealthRating, StealthImps, ZRefHeight;
 
-var   bool		bSilenced;
+var() bool		bHasSuppressor;
+var() bool		bSilenced;
 var() name		SilencerBone;
 var() name		SilencerOnAnim;			
 var() name		SilencerOffAnim;
@@ -82,10 +83,22 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 
+	bHasSuppressor=true;
+
 	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
 	{
 		SightAnimScale = 0.75;
 		SightBobScale = 0.1 *class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+	}
+	if (InStr(WeaponParams.LayoutTags, "no_suppress") != -1)
+	{
+		bHasSuppressor=false;
+	}
+	if (InStr(WeaponParams.LayoutTags, "start_suppressed") != -1)
+	{
+		bSilenced=true;
+		ApplySuppressorAim();
+		SightingTime *= 1.25;
 	}
 	
 }
@@ -172,7 +185,7 @@ function ServerSwitchSilencer(bool bDetachSuppressor)
 exec simulated function WeaponSpecial(optional byte i)
 {
     // too strong
-    if (class'BallisticReplicationInfo'.static.IsTactical())
+    if (!bHasSuppressor)
         return;
 
 	if (ReloadState != RS_None || SightingState != SS_None)
@@ -580,6 +593,7 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
+	bHasSuppressor=true
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"

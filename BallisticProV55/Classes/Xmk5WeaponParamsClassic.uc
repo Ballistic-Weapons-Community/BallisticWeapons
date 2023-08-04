@@ -66,6 +66,18 @@ defaultproperties
 		FireAnim="Fire2"	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -159,7 +171,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

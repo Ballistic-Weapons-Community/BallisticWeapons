@@ -25,6 +25,7 @@ defaultproperties
 	
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
         TargetState="ChargedRail"
+		AimedFireAnim="SightFire"
 		FireInterval=1.500000
 		bCockAfterFire=True
 		FireEndAnim="'"

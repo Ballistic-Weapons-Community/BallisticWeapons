@@ -23,6 +23,7 @@ defaultproperties
 	
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
         TargetState="ChargedRail"
+		AimedFireAnim="SightFire"
 		FireInterval=1.500000
 		bCockAfterFire=True
 		FireEndAnim="'"

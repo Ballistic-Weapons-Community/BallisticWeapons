@@ -672,90 +672,90 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-	 PlayerSpeedFactor=0.75
-	 PlayerJumpFactor=0.75
-	 AIReloadTime=4.000000
-	 ManualLines(0)="Higher DPS than comparable weapons, but awkward recoil and highly visible tracers."
-     ManualLines(1)="Attaches or remvoes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range."
-     ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
-     ThermalOnSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-     ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-     NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
-     NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	 WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
-     Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
-     ThermalRange=2500.000000
-	 SilencerBone="Silencer"
-     SilencerOnSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOn'
-     SilencerOffSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOff'
-     SilencerOnAnim="SilencerOn"
-     SilencerOffAnim="SilencerOff"
-     //Description="Despite being a relic from the old world, the MG36 still remains a deadly modular weapon to this day.  While it can be a carbine, the machinegun form is a popular choice among the troops to lay down suppressive fire while being able to reload far more quicker than a belt-fed LMG.  Plus with dual scopes and a threaded barrel to attach suppressors, the MG36 is a worthy candidate to hold key positions and thin out hordes of Krao."
-     Description="Mk.88 Light Support Weapon||Manufacturer: Majestic Firearms 12|Primary: 5.56mm Rifle Rounds|Secondary: Attach Suppressor|Special: Mount Bipod (Unscoped)/ Activate NV (Scoped)||A limited production weapon, the Mk.88 was Majestic's first foray into infantry support weaponry. After the first Skrith war jump-started the ballistic weapons business, Majestic Firearms 12 designed the Mk.88 to replace the aging M353's still in use by the UTC. The fast-firing and powerful Mk.88 was well received by troops, however its high recoil and prohibitive cost prevented it from seeing mainstream adoption. The Mk.88 currently sees limited service in special operations units and private military groups."
-	 TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_LargeIcon'
-     BigIconCoords=(Y1=36,Y2=225)
-     bWT_Bullet=True
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
-     CockSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Cock',Volume=2.000000)
-     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagOut',Volume=2.400000)
-     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagIn',Volume=2.400000)
-     ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(Value=4.000000)
-     WeaponModes(3)=(bUnavailable=True)
-     bNoCrosshairInScope=True
-	 ScopeViewTex=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
-     ScopeViewTex1X=Texture'BWBP_SKC_Tex.MG36.G36ScopeViewDot'
-     ScopeViewTex3X=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
-	 ScopeViewTexThermal = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed';
-	 ScopeViewTexTracker = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget';
-     FullZoomFOV=45
-	 bLowZoom=True
-	 ZoomType=ZT_Logarithmic
-	 MinZoom=1.000000
-	 MaxZoom=3.000000
-	 ZoomStages=1
-	 SightingTime=0.850000
-	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=197),Color2=(B=0,G=255,R=255,A=255),StartSize1=79,StartSize2=55)
-     FireModeClass(0)=Class'BWBP_SKC_Pro.MG36PrimaryFire'
-     FireModeClass(1)=Class'BWBP_SKC_Pro.MG36SecondaryFire'
-     IdleAnimRate=0.500000
-     SelectAnimRate=1.000000
-     PutDownAnimRate=1.000000
-     PutDownTime=0.600000
-     BringUpTime=0.650000
-	 CockingBringUpTime=1.300000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.70000
-     CurrentRating=0.700000
-     Priority=41
-     HudColor=(B=24,G=48)
-	 bCockOnEmpty=True
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=6
-     PickupClass=Class'BWBP_SKC_Pro.MG36Pickup'
+	PlayerSpeedFactor=0.75
+	PlayerJumpFactor=0.75
+	AIReloadTime=4.000000
+	ManualLines(0)="Higher DPS than comparable weapons, but awkward recoil and highly visible tracers."
+	ManualLines(1)="Attaches or remvoes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range."
+	ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
+	ThermalOnSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
+	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+	WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
+	Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
+	ThermalRange=2500.000000
+	SilencerBone="Silencer"
+	SilencerOnSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOff'
+	SilencerOnAnim="SilencerOn"
+	SilencerOffAnim="SilencerOff"
+	//Description="Despite being a relic from the old world, the MG36 still remains a deadly modular weapon to this day.  While it can be a carbine, the machinegun form is a popular choice among the troops to lay down suppressive fire while being able to reload far more quicker than a belt-fed LMG.  Plus with dual scopes and a threaded barrel to attach suppressors, the MG36 is a worthy candidate to hold key positions and thin out hordes of Krao."
+	Description="Mk.88 Light Support Weapon||Manufacturer: Majestic Firearms 12|Primary: 5.56mm Rifle Rounds|Secondary: Attach Suppressor|Special: Mount Bipod (Unscoped)/ Activate NV (Scoped)||A limited production weapon, the Mk.88 was Majestic's first foray into infantry support weaponry. After the first Skrith war jump-started the ballistic weapons business, Majestic Firearms 12 designed the Mk.88 to replace the aging M353's still in use by the UTC. The fast-firing and powerful Mk.88 was well received by troops, however its high recoil and prohibitive cost prevented it from seeing mainstream adoption. The Mk.88 currently sees limited service in special operations units and private military groups."
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_LargeIcon'
+	BigIconCoords=(Y1=36,Y2=225)
+	bWT_Bullet=True
+	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Cock',Volume=2.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagOut',Volume=2.400000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagIn',Volume=2.400000)
+	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+	WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	bNoCrosshairInScope=True
+	ScopeViewTex=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
+	ScopeViewTex1X=Texture'BWBP_SKC_Tex.MG36.G36ScopeViewDot'
+	ScopeViewTex3X=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
+	ScopeViewTexThermal = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed';
+	ScopeViewTexTracker = Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget';
+	FullZoomFOV=45
+	bLowZoom=True
+	ZoomType=ZT_Logarithmic
+	MinZoom=1.000000
+	MaxZoom=3.000000
+	ZoomStages=1
+	SightingTime=0.850000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=197),Color2=(B=0,G=255,R=255,A=255),StartSize1=79,StartSize2=55)
+	FireModeClass(0)=Class'BWBP_SKC_Pro.MG36PrimaryFire'
+	FireModeClass(1)=Class'BWBP_SKC_Pro.MG36SecondaryFire'
+	IdleAnimRate=0.500000
+	SelectAnimRate=1.000000
+	PutDownAnimRate=1.000000
+	PutDownTime=0.600000
+	BringUpTime=0.650000
+	CockingBringUpTime=1.300000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.70000
+	CurrentRating=0.700000
+	Priority=41
+	HudColor=(B=24,G=48)
+	bCockOnEmpty=True
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=6
+	PickupClass=Class'BWBP_SKC_Pro.MG36Pickup'
 
-     PlayerViewOffset=(X=6.00,Y=4.50,Z=-4.50)
-	 SightOffset=(X=-5.00,Y=0.35,Z=2.00)
+	PlayerViewOffset=(X=6.00,Y=4.50,Z=-4.50)
+	SightOffset=(X=-5.00,Y=0.35,Z=2.00)
 
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBP_SKC_Pro.MG36Attachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_SmallIcon'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Mk.88 Light Support Weapon"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-	 ParamsClasses(0)=Class'MG36WeaponParamsComp'
-	 ParamsClasses(1)=Class'MG36WeaponParamsClassic'
-	 ParamsClasses(2)=Class'MG36WeaponParamsRealistic'
-	 ParamsClasses(3)=Class'MG36WeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36'
-     DrawScale=0.3
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBP_SKC_Pro.MG36Attachment'
+	IconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_SmallIcon'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Mk.88 Light Support Weapon"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	ParamsClasses(0)=Class'MG36WeaponParamsComp'
+	ParamsClasses(1)=Class'MG36WeaponParamsClassic'
+	ParamsClasses(2)=Class'MG36WeaponParamsRealistic'
+	ParamsClasses(3)=Class'MG36WeaponParamsTactical'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36'
+	DrawScale=0.3
 }

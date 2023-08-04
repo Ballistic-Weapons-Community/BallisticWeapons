@@ -163,6 +163,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams_Scope
 		//Layout core
 		LayoutName="Adv Scope"
+		LayoutTags="no_suppress"
 		Weight=30
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
@@ -194,6 +195,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_RDS
 		//Layout core
 		LayoutName="Holosight"
+		LayoutTags="no_suppress"
 		Weight=10
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
@@ -219,8 +221,8 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams_IRONS
 		//Layout core
-		LayoutName="Irons"
-		LayoutTags="irons"
+		LayoutName="Suppressor"
+		LayoutTags="irons, start_suppressed"
 		Weight=5
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1

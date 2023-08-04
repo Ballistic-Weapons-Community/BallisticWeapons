@@ -33,6 +33,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
         TargetState="ClassicRail"
+		AimedFireAnim="SightFire"
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	

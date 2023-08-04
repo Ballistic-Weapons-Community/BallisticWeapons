@@ -51,7 +51,8 @@ simulated function PostNetBeginPlay()
 	{
 		foreach DynamicActors (class'RX22AFireControl', FC)
 		{
-			FireControl = FC;
+			if (FC.class == class'RX22AFireControl')
+				FireControl = FC;
 			return;
 		}
 		FireControl = Spawn(class'RX22AFireControl', None);

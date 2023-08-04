@@ -88,7 +88,7 @@ simulated event WeaponTick(float DT)
 	if (AmpCharge > 0)
 		AddHeat(-DrainRate * DT);
 	
-	if (GlowFX != None)
+	if (GlowFX != None && !class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		GRSXXAmbientFX(GlowFX).SetReadyIndicator (FireMode[1]!=None && !FireMode[1].IsFiring() && level.TimeSeconds - GRSXXSecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo > 0);
 		if (FireMode[1]!=None && FireMode[1].IsFiring())
@@ -675,7 +675,8 @@ function byte BestMode()
 {
 	local Bot B;
 	local float Result, Dist;
-
+	if (class'BallisticReplicationInfo'.static.IsRealism())
+		return 0;
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;

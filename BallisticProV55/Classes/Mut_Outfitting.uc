@@ -128,8 +128,8 @@ static function array<string> SGetGroup (byte GroupNum)
 		case	2:	return default.LoadoutGroup2;
 		case	3:	return default.LoadoutGroup3;
 		case	4:	return default.LoadoutGroup4;
-		case	5:	return default.LoadoutGroup3;
-		case	6:	return default.LoadoutGroup4;
+		case	5:	return default.LoadoutGroup5;
+		case	6:	return default.LoadoutGroup6;
 	}
 }
 

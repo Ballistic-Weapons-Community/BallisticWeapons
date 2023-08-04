@@ -24,12 +24,16 @@ var() globalconfig array<string>	RedLoadoutGroup1;	// Weapons available in Sidea
 var() globalconfig array<string>	RedLoadoutGroup2;	// Weapons available in Primary Box
 var() globalconfig array<string>	RedLoadoutGroup3;	// Weapons available in Secondayr Box
 var() globalconfig array<string>	RedLoadoutGroup4;	// Weapons available in Grenade Box
+var() globalconfig array<string>	RedLoadoutGroup5;	// Killstreak One
+var() globalconfig array<string>	RedLoadoutGroup6;	// Killstreak Two
 
 var() globalconfig array<string>	BlueLoadoutGroup0;	// Weapons available in Melee Box
 var() globalconfig array<string>	BlueLoadoutGroup1;	// Weapons available in Sidearm Box
 var() globalconfig array<string>	BlueLoadoutGroup2;	// Weapons available in Primary Box
 var() globalconfig array<string>	BlueLoadoutGroup3;	// Weapons available in Secondayr Box
 var() globalconfig array<string>	BlueLoadoutGroup4;	// Weapons available in Grenade Box
+var() globalconfig array<string>	BlueLoadoutGroup5;	// Killstreak One
+var() globalconfig array<string>	BlueLoadoutGroup6;	// Killstreak Two
 
 
 var() globalconfig bool				bAllowAllWeaponry; // Allow weaponry even if it's not present in the loadout groups
@@ -55,6 +59,8 @@ var   byte							NetRedLoadoutGroups;
 function BeginPlay()
 {
 	local byte i, j, k;
+	local class<BC_GameStyle> game_style;
+	local WeaponList_Killstreak streaks;
 	
 	Super.BeginPlay();
 	
@@ -63,6 +69,30 @@ function BeginPlay()
 			for (k=0; k < GetGroup(i,j).Length; k++)
 				if (Right(GetGroup(i,j)[k], 5) ~= "Dummy")
 					DummyGroups[i].Positions[DummyGroups[i].Positions.Length] = k;
+				
+	//Load in KS lists so that we'll allow their spawns
+	game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
+
+	log("Loading killstreak weapon list from "$game_style.default.StyleName);
+
+	streaks = new(None, game_style.default.StyleName) class'WeaponList_Killstreak';
+
+	RedLoadoutGroup5.Length = streaks.Streak1s.Length;
+	RedLoadoutGroup6.Length = streaks.Streak2s.Length;
+	BlueLoadoutGroup5.Length = streaks.Streak1s.Length;
+	BlueLoadoutGroup6.Length = streaks.Streak2s.Length;
+
+	for (i = 0; i < streaks.Streak1s.Length; ++i)
+	{
+		RedLoadoutGroup5[i] = streaks.Streak1s[i];
+		BlueLoadoutGroup5[i] = streaks.Streak1s[i];
+	}
+
+	for (i = 0; i < streaks.Streak2s.Length; ++i)
+	{
+		RedLoadoutGroup6[i] = streaks.Streak2s[i];	
+		BlueLoadoutGroup6[i] = streaks.Streak2s[i];	
+	}
 }
 	
 simulated function string GetGroupItem(byte GroupNum, int ItemNum, byte inTeam)
@@ -76,6 +106,8 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum, byte inTeam)
 			case	2:	return BlueLoadoutGroup2[ItemNum];
 			case	3:	return BlueLoadoutGroup3[ItemNum];
 			case	4:	return BlueLoadoutGroup4[ItemNum];
+			case	3:	return BlueLoadoutGroup5[ItemNum];
+			case	4:	return BlueLoadoutGroup6[ItemNum];
 		}
 	}
 	else
@@ -87,6 +119,8 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum, byte inTeam)
 			case	2:	return RedLoadoutGroup2[ItemNum];
 			case	3:	return RedLoadoutGroup3[ItemNum];
 			case	4:	return RedLoadoutGroup4[ItemNum];
+			case	3:	return RedLoadoutGroup5[ItemNum];
+			case	4:	return RedLoadoutGroup6[ItemNum];
 		}
 	}
 }
@@ -102,6 +136,8 @@ simulated function array<string> GetGroup(byte GroupNum, byte inTeam)
 			case	2:	return BlueLoadoutGroup2;
 			case	3:	return BlueLoadoutGroup3;
 			case	4:	return BlueLoadoutGroup4;
+			case	5:	return BlueLoadoutGroup5;
+			case	6:	return BlueLoadoutGroup6;
 		}
 	}
 	else
@@ -113,6 +149,8 @@ simulated function array<string> GetGroup(byte GroupNum, byte inTeam)
 			case	2:	return RedLoadoutGroup2;
 			case	3:	return RedLoadoutGroup3;
 			case	4:	return RedLoadoutGroup4;
+			case	5:	return RedLoadoutGroup5;
+			case	6:	return RedLoadoutGroup6;
 		}
 	}
 }
@@ -128,6 +166,8 @@ static function array<string> SGetGroup (byte GroupNum, byte inTeam)
 		case	2:	return default.BlueLoadoutGroup2;
 		case	3:	return default.BlueLoadoutGroup3;
 		case	4:	return default.BlueLoadoutGroup4;
+		case	5:	return default.BlueLoadoutGroup5;
+		case	6:	return default.BlueLoadoutGroup6;
 		}
 	}
 	else
@@ -139,6 +179,8 @@ static function array<string> SGetGroup (byte GroupNum, byte inTeam)
 		case	2:	return default.RedLoadoutGroup2;
 		case	3:	return default.RedLoadoutGroup3;
 		case	4:	return default.RedLoadoutGroup4;
+		case	5:	return default.RedLoadoutGroup5;
+		case	6:	return default.RedLoadoutGroup6;
 		}
 	}
 }

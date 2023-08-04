@@ -129,6 +129,6 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Pitbull'
+	//Layouts(1)=WeaponParams'ClassicParams-Pitbull'
 
 }

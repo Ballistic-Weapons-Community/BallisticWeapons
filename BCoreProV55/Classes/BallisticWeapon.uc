@@ -1140,7 +1140,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= WeaponParams.MagAmmo || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -1395,7 +1395,7 @@ simulated function Notify_ShellIn()
 		ReloadState = RS_PostShellIn;
 		if (Role == ROLE_Authority)
 		{
-			AmmoNeeded = Min(ShovelIncrement, default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
+			AmmoNeeded = Min(ShovelIncrement, WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
 
 			if (AmmoNeeded > Ammo[0].AmmoAmount)
 				MagAmmo+=Ammo[0].AmmoAmount;
@@ -1425,7 +1425,7 @@ simulated function Notify_ClipIn()
 	class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 	if (level.NetMode != NM_Client)
 	{
-		AmmoNeeded = default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
+		AmmoNeeded = WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
 		if (AmmoNeeded > Ammo[0].AmmoAmount)
 			MagAmmo+=Ammo[0].AmmoAmount;
 		else
@@ -2979,7 +2979,7 @@ function ServerStartReload (optional byte i)
 	if (ReloadState != RS_None)
 		return;
 		
-	if (MagAmmo >= default.MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
+	if (MagAmmo >= WeaponParams.MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
 	{
 		if (bNeedCock)
 			ServerCockGun(0);
@@ -3554,7 +3554,7 @@ simulated function float RateSelf()
 	{
 		CurrentRating = Instigator.Controller.RateWeapon(self);
 		if (!bNoMag){
-			if(!HasNonMagAmmo(255) && MagAmmo < default.MagAmmo / 4)
+			if(!HasNonMagAmmo(255) && MagAmmo < WeaponParams.MagAmmo / 4)
 				CurrentRating /= (1+AIReloadTime);
 //				CurrentRating = CurrentRating * 0.25;
 			else if (MagAmmo <= 0)
@@ -3594,7 +3594,7 @@ function bool BotReload(optional bool bForced)
 // Is reloading a good idea???
 function bool BotShouldReload ()
 {
-	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/default.MagAmmo)) &&
+	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/WeaponParams.MagAmmo)) &&
 		 (Level.TimeSeconds - Instigator.LastPainTime > AIReloadTime) )
 		return true;
 	return false;
@@ -4706,8 +4706,9 @@ simulated final function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreView
 simulated final function Rotator GetRecoilPivot()
 {
 	local float mult_factor;
-
-	mult_factor = DisplayFOV / Instigator.Controller.FOVAngle;
+	
+	if (Instigator != None && Instigator.Controller != None)
+		mult_factor = DisplayFOV / Instigator.Controller.FOVAngle;
 
 	// if (Instigator.Weapon == self)
 	//		log("GetRecoilPivot: MultFactor "$mult_factor$" Display FOV "$DisplayFOV$" FOV angle: "$Instigator.Controller.FOVAngle);
@@ -5020,7 +5021,7 @@ simulated function GetAmmoCount(out float MaxAmmoPrimary, out float CurAmmoPrima
 	}
 	else
 	{
-		MaxAmmoPrimary = default.MagAmmo;
+		MaxAmmoPrimary = WeaponParams.MagAmmo;
 		CurAmmoPrimary = MagAmmo;
 	}
 }
