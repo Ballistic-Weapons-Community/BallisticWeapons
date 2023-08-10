@@ -34,6 +34,35 @@ defaultproperties
 	End Object
 		
 	//=================================================================
+	// SUPPRESSED PRIMARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimarySuppressedEffectParams
+		TraceRange=(Min=10000.000000,Max=13000.000000)
+		DecayRange=(Min=1575,Max=3675)
+		PenetrationEnergy=32
+		RangeAtten=0.760000
+		Damage=23
+		DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
+		FlashScaleFactor=0.010000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced')
+		Recoil=130.000000
+		Chaos=0.130000
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimarySuppressedFireParams
+		FireInterval=0.0825
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimarySuppressedEffectParams'
+	End Object
+	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
 	
@@ -301,12 +330,42 @@ defaultproperties
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
 	End Object
 	
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_Suppressed
+		//Layout core
+		Weight=5
+		LayoutName="Suppressed"
+		LayoutTags="silencer"
+			
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
+
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.15,AugmentOffset=(X=0,Y=0,Z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))	
+		// ADS handling
+		SightingTime=0.35 //+1.0
+		SightMoveSpeedFactor=0.35
+		//Function
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		MagAmmo=30
+        InventorySize=6
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimarySuppressedFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
+
 	Layouts(0)=WeaponParams'ArenaParams_Chaff'
 	Layouts(1)=WeaponParams'ArenaParams_Sensor'
 	Layouts(2)=WeaponParams'ArenaParams_HE'
 	Layouts(3)=WeaponParams'ArenaParams_3XScope'
 	Layouts(4)=WeaponParams'ArenaParams_IRScope'
-	
+	Layouts(5)=WeaponParams'ArenaParams_Suppressed'
+
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black
 		Index=0

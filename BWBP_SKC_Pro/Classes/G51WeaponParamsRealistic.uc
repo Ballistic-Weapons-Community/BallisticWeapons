@@ -40,6 +40,43 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
+	
+	//=================================================================
+	// SUPPRESSED PRIMARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=RealisticPrimarySuppressedEffectParams
+		TraceRange=(Min=1400.000000,Max=5200.000000) //5.56mm Short Barrel
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=43.0
+		HeadMult=2.15
+		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
+		PenetrationEnergy=18.000000
+		PenetrateForce=50
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
+		FlashScaleFactor=0.050000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=1.5500000)
+		Recoil=650.000000
+		Chaos=0.050000
+		Inaccuracy=(X=12,Y=12)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimarySuppressedFireParams
+		FireInterval=0.1
+		BurstFireRateFactor=0.825
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimarySuppressedEffectParams'
+	End Object
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
@@ -331,11 +368,14 @@ defaultproperties
 		LayoutName="IR Scope"
 		LayoutTags="IR"
 		//Attachments
+			
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		SightOffset=(X=3.000000,Y=-0.01000,Z=0.500000)
+		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
+
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_IRScope',BoneName="tip",Scale=0.05,AugmentOffset=(x=-27,y=-2.6,z=0),AugmentRot=(Pitch=0,Yaw=0,Roll=-16384))
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-IRScope'
 		// Zoom
@@ -359,12 +399,43 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=RealisticParams_Suppressed
+		//Layout core
+		Weight=5
+		LayoutName="Suppressed"
+		LayoutTags="silencer"
+			
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
+
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.15,AugmentOffset=(X=0,Y=0,Z=0),AugmentRot=(Pitch=32768,Yaw=,Roll=-16384))
+		// ADS handling
+		SightingTime=0.40 //+1.0
+		SightMoveSpeedFactor=0.35
+		//Function
+		InventorySize=6
+		WeaponPrice=1200
+		bMagPlusOne=True
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		WeaponName="G51 5.56mm Carbine (IR)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimarySuppressedFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
 	Layouts(0)=WeaponParams'RealisticParams_Chaff'
 	Layouts(1)=WeaponParams'RealisticParams_Sensor'
 	Layouts(2)=WeaponParams'RealisticParams_HE'
 	Layouts(3)=WeaponParams'RealisticParams_4XScope'
 	Layouts(4)=WeaponParams'RealisticParams_IRScope'
-	
+	Layouts(5)=WeaponParams'RealisticParams_Suppressed'
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black
 		Index=0
