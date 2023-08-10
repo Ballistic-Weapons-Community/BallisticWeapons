@@ -120,7 +120,7 @@ defaultproperties
      FireEndAnim=
      FireAnimRate=1.200000
      FireRate=0.115000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_CX61Rounds'
+     AmmoClass=Class'BallisticProV55.Ammo_556mm'
 
 	ShakeRotMag=(X=48.000000)
 	ShakeRotRate=(X=640.000000)

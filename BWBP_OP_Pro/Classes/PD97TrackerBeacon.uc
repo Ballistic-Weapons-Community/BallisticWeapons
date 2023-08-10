@@ -10,15 +10,55 @@
 class PD97TrackerBeacon extends BallisticProjectile;
 
 
-var() Class<DamageType>	StuckDamageType;// Type of Damage caused for sticking to players
-var() bool bNoFXOnExplode; //Do FX in Destroyed and not in Explode
-var() Sound				DetonateSound;
-var   float				TriggerStartTime;	// Time when trigger will be active
+var() Class<DamageType>		StuckDamageType;// Type of Damage caused for sticking to players
+var() bool 					bNoFXOnExplode; //Do FX in Destroyed and not in Explode
+var() Sound					DetonateSound;
+var()   float				TriggerStartTime;	// Time when trigger will be active
+var()   PD97TrackerTrail	MineEffect;			//beep beep!
+var()	bool				bLightSpawned;
 
-var PD97Bloodhound Master;
+var() PD97Bloodhound 		Master;
+
+replication
+{
+	reliable if(Role == ROLE_Authority)
+		bLightSpawned;
+}
+
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	
+	if (Role == ROLE_Authority)
+	{
+		MineEffect = SpawnMineLight();
+		MineEffect.SetBase(self);
+		bLightSpawned=true;
+	}
+}
+
+simulated event PostNetReceive()
+{
+	Super.PostNetReceive();
+	
+	if (MineEffect == None && bLightSpawned != default.bLightSpawned)
+	{
+		MineEffect = SpawnMineLight();
+		MineEffect.SetBase(self);
+	}	
+}
+
+simulated function PD97TrackerTrail SpawnMineLight()
+{
+	local Vector X, Y, Z;
+	local PD97TrackerTrail ML;
+	
+	GetAxes(Rotation, X, Y, Z);
+	ML = Spawn(class'PD97TrackerTrail',self,,Location - (X * 16), Rotation);
+	return ML;
+}
 
 simulated function ProcessTouch (Actor Other, vector HitLocation);
-function SetManualMode (bool bManual);	
 
 function bool IsStationary()
 {
@@ -41,6 +81,9 @@ simulated function Destroyed()
 				ImpactManager.static.StartSpawn(Location, -Vector(Rotation), Surf, Instigator);
 		}
 	}
+	
+	if (MineEffect != None)
+		MineEffect.Destroy();
 	
 	Super.Destroyed();
 }
@@ -84,7 +127,7 @@ simulated function InitProjectile()
 	super.InitProjectile();
 
 	PlaySound(DetonateSound,,2.0,,256,,);
-	SetTimer(30.0, false);
+	SetTimer(20.0, false);
 	return;
 }
 
@@ -150,7 +193,7 @@ defaultproperties
 	 bNetTemporary=False
 	 Physics=PHYS_None
 	 LifeSpan=0.000000
-	 DrawScale=0.450000
+	 DrawScale=0.250000
 	 bUnlit=False
 	 CollisionRadius=16.000000
 	 CollisionHeight=16.000000

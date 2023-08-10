@@ -223,9 +223,9 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
 		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-1.4,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
         WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
-		SightOffset=(X=0.000000,Y=0.000000,Z=4.25000)
+		SightOffset=(X=0.000000,Y=0.000000,Z=3.35000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		//Function
 		CockAnimRate=1.250000

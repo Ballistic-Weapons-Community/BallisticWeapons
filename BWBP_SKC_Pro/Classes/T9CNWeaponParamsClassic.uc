@@ -41,6 +41,76 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
+	//Stock
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Stock
+		TraceRange=(Max=5000.000000)
+		WaterTraceRange=3000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.700000
+		Damage=22
+		HeadMult=2.3
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
+		Recoil=500.000000 //-100
+		Chaos=-1.0
+		Inaccuracy=(X=42,Y=42)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Stock
+		FireInterval=0.080000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Stock'
+	End Object
+	
+	//Robo
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Robo
+		TraceRange=(Max=5000.000000)
+		WaterTraceRange=3000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.800000 //
+		Damage=22
+		HeadMult=2.3
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+		FlashScaleFactor=0.700000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireRobo',Volume=1.500000)
+		Recoil=500.000000 //-100
+		Chaos=-1.0
+		Inaccuracy=(X=16,Y=16) //x0.3
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Robo
+		FireInterval=0.085000 //
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Robo'
+	End Object
+		
 	//=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -111,19 +181,34 @@ defaultproperties
 		bViewDecline=True
 	End Object
 
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams_Stock
+		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=0.100000 //
+		YawFactor=0.000000
+		XRandFactor=0.250000
+		YRandFactor=0.100000 //
+		DeclineTime=0.400000
+		DeclineDelay=0.100000
+		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.400000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.800000
+		bViewDecline=True
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams_Light
-		AimSpread=(Min=64,Max=8192)
+		AimSpread=(Min=48,Max=8192) //
 		AimAdjustTime=0.350000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
-		SprintChaos=0.050000
-		JumpChaos=0.050000
+		SprintChaos=0.050000 //
+		JumpChaos=0.050000 //
 		JumpOffSet=(Pitch=1000,Yaw=-500)
-		FallingChaos=0.050000
+		FallingChaos=0.050000 //
 		AimDamageThreshold=480.000000
 		ChaosDeclineTime=0.450000
 		ChaosSpeedThreshold=11200.000000
@@ -142,6 +227,21 @@ defaultproperties
 		ChaosDeclineTime=0.450000
 		ChaosSpeedThreshold=11200.000000
 		ChaosTurnThreshold=196608.000000
+	End Object
+ 
+	Begin Object Class=AimParams Name=ClassicAimParams_Stock
+		AimSpread=(Min=32,Max=4096) //x0.5
+		AimAdjustTime=0.350000
+		ADSMultiplier=0.700000
+		ViewBindFactor=0.050000
+		SprintChaos=0.400000
+		JumpChaos=0.300000 //
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
+		AimDamageThreshold=480.000000
+		ChaosDeclineTime=1.000000 //
+		ChaosSpeedThreshold=650.000000 //
+		ChaosTurnThreshold=140000.000000 //
 	End Object
 	
 	//=================================================================
@@ -162,29 +262,32 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
-		SightPivot=(Pitch=128)
-		ViewOffset=(X=0.000000,Y=8.000000,Z=-4.000000)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.225000
+		SightOffset=(X=5.00,Y=0.05,Z=1.2)
+		SightPivot=(Pitch=-128)
 		//Functions
+		PlayerSpeedFactor=1.100000
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
 		InventorySize=2
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.250000
 		bNeedCock=True
 		MagAmmo=18
 		bDualMixing=true
+		ViewOffset=(X=0.000000,Y=8.000000,Z=-4.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Robo'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
 		LayoutName="Automatic Mod"
-		Weight=10
+		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
@@ -194,23 +297,59 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
-		SightPivot=(Pitch=128)
-		ViewOffset=(X=0.000000,Y=8.000000,Z=-4.000000)
-		//Functions
-		InventorySize=2
+		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.250000
+		SightingTime=0.225000
+		SightOffset=(X=0.00,Y=0.00,Z=1.73)
+		SightPivot=(Pitch=128)
+		//Functions
+		PlayerSpeedFactor=1.100000
+		InventorySize=2
 		bNeedCock=True
 		MagAmmo=18
 		bDualMixing=true
+		ViewOffset=(X=0.000000,Y=8.000000,Z=-4.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(0)=AimParams'ClassicAimParams_Light'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Stock
+		//Layout core
+		LayoutName="Braced"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CN'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.T9CN.T9CN-Stock',Index=4,Index=4,PIndex=-1)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000 //+.025
+		SightOffset=(X=0.00,Y=0.30,Z=1)
+		SightPivot=(Pitch=0)
+		//Functions
+		PlayerSpeedFactor=1.000000 //no speed bonus
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		ViewOffset=(X=0.000000,Y=8.000000,Z=-4.000000)
+		InitialWeaponMode=1
+		InventorySize=2 //3
+		bNeedCock=True
+		MagAmmo=18
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_Stock'
+		AimParams(0)=AimParams'ClassicAimParams_Stock'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Stock'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams_Robocop' //Robocop
-	Layouts(1)=WeaponParams'ClassicParams' //Stock
+	Layouts(1)=WeaponParams'ClassicParams' //Auto
+	Layouts(2)=WeaponParams'ClassicParams_Stock' //Raffica
 	
 	//Camos =====================================
 	

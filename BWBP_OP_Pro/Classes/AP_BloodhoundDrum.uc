@@ -1,5 +1,21 @@
 class AP_BloodhoundDrum extends BallisticAmmoPickup;
 
+function inventory SpawnCopy( Pawn Other )
+{
+	local Inventory Copy, Copy2;
+
+	InventoryType = Class'Ammo_BloodhoundTazer';
+	AmmoAmount = 5;
+	Copy = Super.SpawnCopy(Other);
+	AmmoAmount = default.AmmoAmount;
+	InventoryType = default.InventoryType;
+
+	Copy2 = Super.SpawnCopy(Other);
+	Ammo_BloodhoundDarts(Copy2).Tazers = Ammo_BloodhoundTazer(Copy);
+	Ammo_BloodhoundTazer(Copy).Bullets = Ammo_BloodhoundDarts(Copy2);
+	return Copy2;
+}
+
 defaultproperties
 {
      AmmoAmount=10

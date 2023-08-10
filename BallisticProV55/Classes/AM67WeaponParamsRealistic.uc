@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=1000.000000,Max=5000.000000) //.50
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=62.0
+		Damage=70.0
 		HeadMult=2.3f
 		LimbMult=0.6f
 		DamageType=Class'BallisticProV55.DTAM67Pistol'
@@ -126,7 +126,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-        InventorySize=3
+        InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.17
 		MagAmmo=9
@@ -154,7 +154,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_RDS
 		PlayerSpeedFactor=1.100000
-        InventorySize=3
+        InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.17
 		MagAmmo=9

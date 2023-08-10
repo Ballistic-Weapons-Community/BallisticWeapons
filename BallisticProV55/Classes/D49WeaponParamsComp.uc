@@ -103,28 +103,67 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		//Layout
+		LayoutName="Laser"
+		Weight=30
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
-		CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
-        DisplaceDurationMult=0.5
-        SightingTime=0.200000
+		//ADS
 		SightMoveSpeedFactor=0.9
-        MagAmmo=6
-        InventorySize=3
-		//SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
-		ViewOffset=(X=10,Y=22,Z=-16)
-		bDualBlocked=True
+        SightingTime=0.200000
+		SightOffset=(X=-11,Y=-4.6,Z=25.5)
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)
 		WristAdjust=(Yaw=-2500,Pitch=-0000)
+		//Stats
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
+        DisplaceDurationMult=0.5
+        MagAmmo=6
+        InventorySize=3
+		ViewOffset=(X=10,Y=22,Z=-16)
+		bDualBlocked=True
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaFireParams'
         AltFireParams(0)=FireParams'ArenaAltFireParams'
     End Object 
+
+    Begin Object Class=WeaponParams Name=ArenaParams_Scope
+		//Layout
+		LayoutName="3X Scope"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
+		//Zoom
+		MaxZoom=3
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		//ADS
+		SightMoveSpeedFactor=0.600000
+		SightingTime=0.4
+		SightOffset=(X=50,Y=-0.5,Z=10)
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		bAdjustHands=false
+		//Stats
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
+        DisplaceDurationMult=0.5
+        MagAmmo=6
+        InventorySize=3
+		ViewOffset=(X=10,Y=22,Z=-16)
+		bDualBlocked=True
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+        FireParams(0)=FireParams'ArenaFireParams'
+        AltFireParams(0)=FireParams'ArenaAltFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=D49_Silver

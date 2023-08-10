@@ -1,25 +1,25 @@
-class Ammo_BloodhoundDarts extends BallisticAmmo;
+class Ammo_BloodhoundTazer extends BallisticAmmo;
 
-var Ammo_BloodhoundTazer Tazers;
+var Ammo_BloodhoundDarts Bullets;
 
 function bool HandlePickupQuery( pickup Item )
 {
 	if ( Item.IsA('AP_leMat') )// Item.class == class'AP_leMat' )
 	{
-		if (Tazers==None)
+		if (Bullets==None)
 		{
-			Tazers = Ammo_BloodhoundTazer(Pawn(Owner).FindInventoryType(class'Ammo_BloodhoundTazer'));
-			if (Tazers == None)
+			Bullets = Ammo_BloodhoundDarts(Pawn(Owner).FindInventoryType(class'Ammo_BloodhoundDarts'));
+			if (Bullets == None)
 			{
-				Tazers = spawn(class'Ammo_BloodhoundTazer',Owner,,,rot(0,0,0));
-				Tazers.GiveTo( Pawn(Owner), Item );
+				Bullets = spawn(class'Ammo_BloodhoundDarts',Owner,,,rot(0,0,0));
+				Bullets.GiveTo( Pawn(Owner), Item );
 			}
 		}
-		if (Tazers!=None)
+		if (Bullets!=None)
 		{
-			if (Tazers.AmmoAmount < Tazers.MaxAmmo)
+			if (Bullets.AmmoAmount < Bullets.MaxAmmo)
 			{
-				Tazers.AddAmmo(5);
+				Bullets.AddAmmo(Ammo(item).AmmoAmount);
 				if (AmmoAmount<MaxAmmo)
 				{
 					item.AnnouncePickup(Pawn(Owner));
@@ -30,7 +30,7 @@ function bool HandlePickupQuery( pickup Item )
 		if (AmmoAmount>=MaxAmmo)
 			return true;
 		item.AnnouncePickup(Pawn(Owner));
-		AddAmmo(Ammo(item).AmmoAmount);
+		AddAmmo(5);
         item.SetRespawn();
 		return true;
 	}
@@ -40,11 +40,11 @@ function bool HandlePickupQuery( pickup Item )
 
 defaultproperties
 {
-     MaxAmmo=90
-     InitialAmount=45
+     MaxAmmo=10
+     InitialAmount=3
      IconFlashMaterial=Shader'BWBP_OP_Tex.Bloodhound.AmmoIcon_BloodhoundFlash'
      PickupClass=Class'BWBP_OP_Pro.AP_BloodhoundDrum'
      IconMaterial=Texture'BWBP_OP_Tex.Bloodhound.AmmoIcon_Bloodhound'
      IconCoords=(X2=64,Y2=64)
-     ItemName="Bloodhound Darts"
+     ItemName="Bloodhound Tazers"
 }

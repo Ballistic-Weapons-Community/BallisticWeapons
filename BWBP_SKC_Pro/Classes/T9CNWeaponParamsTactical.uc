@@ -7,7 +7,8 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=TacticalControlledEffectParams
+	//Semi
+	Begin Object Class=InstantEffectParams Name=TacticalSemiEffectParams
         TraceRange=(Min=4000.000000,Max=4000.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
 		Inaccuracy=(X=128,Y=128)
@@ -30,12 +31,12 @@ defaultproperties
 		WarnTargetPct=0.100000
 	End Object
 
-	Begin Object Class=FireParams Name=TacticalControlledFireParams
+	Begin Object Class=FireParams Name=TacticalSemiFireParams
 		FireInterval=0.130000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1
-	FireEffectParams(0)=InstantEffectParams'TacticalControlledEffectParams'
+	FireEffectParams(0)=InstantEffectParams'TacticalSemiEffectParams'
 	End Object
 
 	//Burst
@@ -70,6 +71,70 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'TacticalAutoEffectParams'
 	End Object
 
+	//Burst Stock (Reduced recoil, increased chaos)
+	Begin Object Class=InstantEffectParams Name=TacticalEffectParams_Stock
+        TraceRange=(Min=4000.000000,Max=4000.000000)
+        DecayRange=(Min=788,Max=2363) // 15-45m
+		Inaccuracy=(X=128,Y=128)
+        RangeAtten=0.5
+        Damage=23
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+        PenetrationEnergy=16
+        PenetrateForce=100
+        bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
+		Recoil=220.000000 //
+		Chaos=0.140000 //
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalFireParams_Stock
+		FireInterval=0.060000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1
+	FireEffectParams(0)=InstantEffectParams'TacticalEffectParams_Stock'
+	End Object
+
+	//Burst Gauss Barrel (Improved acc, reduced recoil, reduced fire rate)
+	Begin Object Class=InstantEffectParams Name=TacticalEffectParams_Gauss
+        TraceRange=(Min=4000.000000,Max=4000.000000)
+        DecayRange=(Min=788,Max=2363) // 15-45m
+		Inaccuracy=(X=96,Y=96) //
+        RangeAtten=0.5
+        Damage=23
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+        PenetrationEnergy=16
+        PenetrateForce=100
+        bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireRobo',Volume=1.500000)
+		Recoil=240.000000 //
+		Chaos=0.10000 //
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalFireParams_Gauss
+		FireInterval=0.070000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1
+	FireEffectParams(0)=InstantEffectParams'TacticalEffectParams_Gauss'
+	End Object
+
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
@@ -77,9 +142,9 @@ defaultproperties
 	//Gauss
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryFireEffectParams
         TraceRange=(Min=6000.000000,Max=6000.000000)
-        DecayRange=(Min=1288,Max=2363) // 15-45m
+        DecayRange=(Min=2500,Max=5000) // 45-90m
 		Inaccuracy=(X=128,Y=128)
-        RangeAtten=0.5
+        RangeAtten=0.75
         Damage=69 // 9mm
         HeadMult=3.25
         LimbMult=0.75
@@ -142,7 +207,7 @@ defaultproperties
 	// Auto
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams
 		ViewBindFactor=0.15
-		ADSViewBindFactor=0.25
+		ADSViewBindFactor=0.25 //
 		EscapeMultiplier=1.1
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.090000),(InVal=0.3500000,OutVal=-0.09),(InVal=0.500000,OutVal=0.021),(InVal=0.6500000,OutVal=0.36),(InVal=0.800000,OutVal=-0.18),(InVal=1.000000,OutVal=0.21)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.18),(InVal=0.300000,OutVal=0.35),(InVal=1.000000,OutVal=1.000000)))
@@ -159,6 +224,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
+	//Standard
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSViewBindFactor=0
 		ADSMultiplier=0.35
@@ -166,6 +232,20 @@ defaultproperties
         AimSpread=(Min=256,Max=768)
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
         SprintChaos=0.050000
+		CrouchMultiplier=1
+        ChaosDeclineTime=0.450000
+        ChaosSpeedThreshold=300
+	End Object
+
+	//Stock
+	Begin Object Class=AimParams Name=TacticalAimParams_Stock
+		ADSViewBindFactor=0.5 //
+		ADSMultiplier=0.35
+		AimAdjustTime=0.5
+        AimSpread=(Min=256,Max=768)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
+        SprintChaos=0.050000
+		CrouchMultiplier=0.85 //
         ChaosDeclineTime=0.450000
         ChaosSpeedThreshold=300
 	End Object
@@ -178,18 +258,20 @@ defaultproperties
 		//Layout core
 		LayoutName="Automatic Mod"
 		Weight=10
+		WeaponPrice=1200
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
-		//Functions
-		InventorySize=3
-		WeaponPrice=1200
+		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.20
-		MagAmmo=18
+		SightOffset=(X=0.00,Y=0.00,Z=1.73)
 		SightPivot=(Pitch=128)
+		//Functions
+		InventorySize=3
+		MagAmmo=18
 		bDualBlocked=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -198,12 +280,12 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'TacticalControlledRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalControlledFireParams'
+		FireParams(0)=FireParams'TacticalSemiFireParams'
 		FireParams(1)=FireParams'TacticalAutoFireParams'
 		FireParams(2)=FireParams'TacticalAutoFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(2)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams_Scope'
+		AltFireParams(2)=FireParams'TacticalSecondaryFireParams_Scope'
 	End Object
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Robocop
@@ -211,6 +293,7 @@ defaultproperties
 		LayoutName="Gauss Mod"
 		LayoutTags="gauss"
 		Weight=10
+		WeaponPrice=1200
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=1f)
@@ -220,13 +303,14 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
-		//Functions
-		InventorySize=3
-		WeaponPrice=1200
+		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.20
+		SightOffset=(X=5.00,Y=0.05,Z=1.2)
+		SightPivot=(Pitch=-128)
+		//Functions
+		InventorySize=3
 		MagAmmo=18
-		SightPivot=(Pitch=128)
 		bDualBlocked=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -235,14 +319,44 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'TacticalControlledRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalControlledFireParams'
-		FireParams(1)=FireParams'TacticalAutoFireParams'
+		FireParams(0)=FireParams'TacticalFireParams_Gauss'
+		FireParams(1)=FireParams'TacticalFireParams_Gauss'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'TacticalParams_Auto' // better sights
+	Begin Object Class=WeaponParams Name=TacticalParams_Stock
+		//Layout core
+		LayoutName="Braced"
+		Weight=10
+		WeaponPrice=1200
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CN'
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.225000 //+.025
+		SightOffset=(X=0.00,Y=0.30,Z=1)
+		SightPivot=(Pitch=0)
+		//Functions
+		InventorySize=3
+		MagAmmo=18
+		bDualBlocked=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'TacticalControlledRecoilParams'
+		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams_Stock'
+		FireParams(0)=FireParams'TacticalFireParams_Stock'
+		FireParams(1)=FireParams'TacticalFireParams_Stock'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams_Scope'
+	End Object
+	
+	Layouts(0)=WeaponParams'TacticalParams_Auto'
 	Layouts(1)=WeaponParams'TacticalParams_Robocop'
+	Layouts(2)=WeaponParams'TacticalParams_Stock'
 	
 	//Camos =====================================
 	

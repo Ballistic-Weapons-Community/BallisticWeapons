@@ -8,12 +8,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1200.000000,Max=6000.000000)
+		TraceRange=(Min=6000.000000,Max=6000.000000)
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=87.0
-		HeadMult=2.356321
-		LimbMult=0.586206
+		RangeAtten=0.5
+		DecayRange=(Min=1200.0,Max=6000.0)
+		Damage=65.0
+		HeadMult=2.3
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTD49Revolver'
 		DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
 		DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
@@ -47,10 +48,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
-		TraceRange=(Min=1200.000000,Max=6000.000000)
+		TraceRange=(Min=6000.000000,Max=6000.000000)
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=87.0
+		RangeAtten=0.5
+		DecayRange=(Min=1200.0,Max=6000.0)
+		Damage=130.0
 		HeadMult=2.3f
 		LimbMult=0.6f
 		DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -101,6 +103,22 @@ defaultproperties
 		bViewDecline=True
 	End Object
 
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_Scope
+		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=0.600000
+		YawFactor=0.000000
+		XRandFactor=0.500000
+		YRandFactor=0.500000
+		MaxRecoil=3072.000000
+		DeclineTime=0.700000
+		DeclineDelay=0.200000
+		ViewBindFactor=1.000000
+		ADSViewBindFactor=0.400000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -126,30 +144,64 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout
+		LayoutName="Laser"
+		Weight=30
+		WeaponPrice=1800
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		WeaponPrice=1800
+		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.15
-		MagAmmo=6
-		ViewOffset=(X=10,Y=22,Z=-16)
-		//ViewOffset=(X=4.000000,Y=10.500000,Z=-13.000000)
-		//SightOffset=(X=-20.000000,Y=-3.500000,Z=23.9500000)
-		//SightPivot=(Pitch=-175,Roll=-500)
+		SightingTime=0.15000
+		SightOffset=(X=-11,Y=-4.6,Z=25.5)
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)
 		WristAdjust=(Yaw=-2500,Pitch=-0000)
-		//ReloadAnimRate=1.700000
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		MagAmmo=6
+		ViewOffset=(X=10,Y=22,Z=-16)
 		WeaponName="D49 .44 Magnum Revolver"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Scope
+		//Layout
+		LayoutName="4X Scope"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
+		//Zoom
+		MaxZoom=4
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
+		SightOffset=(X=50,Y=-0.5,Z=10)
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		bAdjustHands=false
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		MagAmmo=6
+		ViewOffset=(X=10,Y=22,Z=-16)
+		WeaponName="D49 .44 Magnum Revolver (4X)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=D49_Silver

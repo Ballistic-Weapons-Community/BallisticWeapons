@@ -10,8 +10,7 @@ defaultproperties
 		TraceRange=(Min=1500.000000,Max=6000.000000) //.60 armor piercing
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		RangeAtten=0.350000
-		Damage=100
+		Damage=95
 		HeadMult=2.3f
 		LimbMult=0.6f
 		DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'

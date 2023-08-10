@@ -258,7 +258,7 @@ defaultproperties
 		SightingTime=0.12
 		//Function
 		PlayerSpeedFactor=1.100000
-		InventorySize=2
+		InventorySize=2 //3 in future
 		WeaponPrice=650
 		MagAmmo=15
 		//ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)

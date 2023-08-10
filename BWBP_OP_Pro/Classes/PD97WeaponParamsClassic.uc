@@ -89,24 +89,47 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Tazer
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'BWBP_OP_Pro.PD97TrackerProj'
+		ProjectileClass=Class'BWBP_OP_Pro.PD97TazerProj'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		AccelSpeed=8000.000000
 		Speed=2240.000000
 		MaxSpeed=10000.000000
-		Damage=5
+		Damage=10
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.900000
-		AmmoPerFire=0
+		FireInterval=0.300000
+		AmmoPerFire=1
 		PreFireAnim=
 		FireAnim="TazerFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
+	//Tracker
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_Tracker
+		ProjectileClass=Class'BWBP_OP_Pro.PD97TrackerProj'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		AccelSpeed=8000.000000
+		Speed=2240.000000
+		MaxSpeed=10000.000000
+		Damage=10
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Tracker
+		TargetState="Tracker"
+		FireInterval=0.100000
+		AmmoPerFire=1
+		PreFireAnim=
+		FireAnim="TazerFire"	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Tracker'
 	End Object
 		
 	//=================================================================
@@ -153,7 +176,7 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
-		InventorySize=3
+		InventorySize=4
 		SightMoveSpeedFactor=1
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5
@@ -180,7 +203,7 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
-		InventorySize=3
+		InventorySize=4
 		SightMoveSpeedFactor=1
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5
@@ -195,7 +218,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Rocket'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Tracker'
     End Object 
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Dart
@@ -207,7 +230,7 @@ defaultproperties
 		//Stats
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
-		InventorySize=3
+		InventorySize=4
 		SightMoveSpeedFactor=1
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5

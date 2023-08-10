@@ -45,6 +45,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Laser
 	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams
 		BotRefireRate=0.300000
         EffectString="Laser sight"
@@ -54,6 +55,39 @@ defaultproperties
 		FireInterval=0.200000
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
+	End Object
+	
+	//Shotgun
+	Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams_Shotgun
+		TraceRange=(Min=5000.000000,Max=5000.000000)
+		RangeAtten=0.750000
+		TraceCount=7
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=10
+		DamageType=Class'BallisticProV55.DTM806Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM806ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM806Shotgun'
+		PenetrationEnergy=4.000000
+		PenetrateForce=100
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		Recoil=768.000000
+		Chaos=0.500000
+		Inaccuracy=(X=400,Y=400)
+		BotRefireRate=0.700000
+		WarnTargetPct=0.500000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Fire',Volume=1.100000,Radius=256.000000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Shotgun
+		TargetState="Shotgun"
+		FireInterval=0.700000
+		PreFireAnim=
+		FireAnim="FireAlt"
+		AimedFireAnim='FireAlt'
+		FireAnimRate=1.100000	
+		FireEffectParams(0)=ShotgunEffectParams'TacticalSecondaryEffectParams_Shotgun'
 	End Object
 		
 	//=================================================================
@@ -120,6 +154,7 @@ defaultproperties
 		//Layout core
 		LayoutName="Laser Sight"
 		Weight=30
+		WeaponPrice=800
 		//ADS
 		SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
@@ -143,6 +178,7 @@ defaultproperties
 		//Layout core
 		LayoutName="Scoped"
 		Weight=10
+		WeaponPrice=1000
 		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.M806.M806_Main-SD',Index=1)
@@ -155,7 +191,7 @@ defaultproperties
 		MaxZoom=4	
 		//ADS
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.30000
+		SightingTime=0.45000 //+.25
 		SightOffset=(X=0,Y=0,Z=18)
 		SightPivot=(Pitch=0,Roll=0)
 		//Function
@@ -168,9 +204,36 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Shotgun
+		// Layout core
+		LayoutName="Shotgun"
+		LayoutTags="shotgun"
+		Weight=5
+		WeaponPrice=1200
+		// Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806SG'
+		// ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000 //+.05
+		SightPivot=(Pitch=0,Roll=0) 
+		SightOffset=(X=-25.000000,Y=0.16,Z=0.20000)
+		bAdjustHands=false
+		// Stats
+		DisplaceDurationMult=0.5
+		MagAmmo=12
+        InventorySize=2
+		bDualBlocked=True
+		ViewOffset=(X=15.000000,Y=5.000000,Z=-3.000000)
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Shotgun'
+    End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_Scope'
+    Layouts(2)=WeaponParams'TacticalParams_Shotgun'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M806_Gray

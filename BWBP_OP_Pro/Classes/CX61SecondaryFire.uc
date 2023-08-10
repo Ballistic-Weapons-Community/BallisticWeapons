@@ -276,7 +276,7 @@ defaultproperties
      bPawnRapidFireAnim=True
      FireAnim=
      FireRate=0.090000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_CX61Rounds'
+     AmmoClass=Class'BallisticProV55.Ammo_556mm'
      AmmoPerFire=0
      WarnTargetPct=0.200000
 }

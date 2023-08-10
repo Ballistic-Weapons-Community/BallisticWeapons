@@ -138,7 +138,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=1f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel-MainSpec',Index=4,AIndex=-1,PIndex=-1)
 		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
 		//Function
         InventorySize=5

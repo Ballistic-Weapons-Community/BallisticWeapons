@@ -279,13 +279,11 @@ function HolderDied()
 	// avoid dropping grenades on death - it's not good for gameplay
 	// fix this check later - grenade should still be dropped if user was attempting to cook off
     if (Instigator != None && Instigator.Weapon == self && Role == ROLE_Authority && BallisticHandGrenadeFire(FireMode[0]) != None && !FireMode[0].IsFiring() && !FireMode[1].IsFiring() && FireMode[0].NextFireTime < level.TimeSeconds)
-	{
-		/*
+	{	
 		CurrentWeaponMode=0;
 		FireMode[0].HoldTime = 0;
 		FireMode[0].ModeDoFire();
 		CurrentWeaponMode=1;
-		*/
     }
     else
     {
@@ -296,11 +294,8 @@ function HolderDied()
 	        if (FireMode[m].bIsFiring)
     	    {
         	    StopFire(m);
-
-				/*
             	if (FireMode[m].bFireOnRelease && (BFireMode[m] == None || BFireMode[m].bReleaseFireOnDie))
                 	FireMode[m].ModeDoFire();
-				*/
 	        }
     	}
     }

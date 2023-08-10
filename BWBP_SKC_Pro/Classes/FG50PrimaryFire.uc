@@ -14,7 +14,7 @@ var   Actor		Heater;
 
 simulated function bool AllowFire()
 {
-	if ((FG50Machinegun(Weapon).HeatLevel >= 10) || !super.AllowFire())
+	if ((FG50Machinegun(Weapon).HeatLevel >= 10 && !class'BallisticReplicationInfo'.static.IsClassic()) || !super.AllowFire())
 		return false;
 	return true;
 }

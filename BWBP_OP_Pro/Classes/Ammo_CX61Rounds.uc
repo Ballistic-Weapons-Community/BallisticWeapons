@@ -1,5 +1,5 @@
 //=============================================================================
-// Ammo_CX61.
+// Ammo_CX61. 14mm darts
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.

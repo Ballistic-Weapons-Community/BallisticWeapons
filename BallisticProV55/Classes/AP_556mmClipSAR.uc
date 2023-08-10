@@ -10,8 +10,8 @@ class AP_556mmClipSAR extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=64
-     InventoryType=Class'BallisticProV55.Ammo_556mmSAR'
+     AmmoAmount=80
+     InventoryType=Class'BallisticProV55.Ammo_556mm'
      PickupMessage="You got two 5.56mm magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M50Magazine'

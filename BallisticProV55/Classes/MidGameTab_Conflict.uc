@@ -439,6 +439,10 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	local byte GameStyleIndex;
 	local int i;
 	local array<int> AllowedCamos;
+	local byte oldCamoIndex, oldLength;
+	
+	oldCamoIndex = CamoIndexList[lb_Weapons.List.Index];
+	
 	//clear old layouts
 	cb_WeapCamoIndex.Clear();
 	
@@ -471,19 +475,22 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
 					cb_WeapCamoIndex.AddItem("None",, "0");
 				else
-					cb_WeapCamoIndex.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+					cb_WeapCamoIndex.AddItem("Camo: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 			}
 			cb_WeapCamoIndex.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 		}
-		cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+		//cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+		cb_WeapCamoIndex.setIndex(oldCamoIndex);
 	}
 	else
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
 			cb_WeapCamoIndex.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
-			if (CamoIndexList[lb_Weapons.List.Index] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
-				cb_WeapCamoIndex.setIndex(i);
+			if (oldCamoIndex == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+				cb_WeapCamoIndex.setIndex(i);			
+			//if (CamoIndexList[lb_Weapons.List.Index] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+			//	cb_WeapCamoIndex.setIndex(i);
 		}
 	}
 	

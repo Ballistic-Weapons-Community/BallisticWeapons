@@ -11,11 +11,12 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//.44 comp
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=9000.000000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
-		RangeAtten=0.67
-		Damage=55 // .44
+		RangeAtten=0.67 //+.17
+		Damage=55
         HeadMult=2.5
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
@@ -25,10 +26,10 @@ defaultproperties
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000
-		Inaccuracy=(X=16,Y=16)
+		Inaccuracy=(X=16,Y=16) //+56
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-		FlashScaleFactor=0.5
-		Recoil=1536.000000
+		FlashScaleFactor=0.4
+		Recoil=1436.000000 //-100
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -43,6 +44,7 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 
+	//.44
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_208
 		TraceRange=(Min=7500.000000,Max=7500.000000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
@@ -72,6 +74,38 @@ defaultproperties
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_208'
+	End Object
+
+	//.50
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_50
+		TraceRange=(Min=7500.000000,Max=7500.000000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.5
+		Damage=65 //+10
+        HeadMult=2.5
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
+        PenetrationEnergy=48
+		PenetrateForce=200
+		bPenetrate=True
+		PushbackForce=150.000000
+		Inaccuracy=(X=72,Y=72)
+		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
+		FlashScaleFactor=0.5
+		Recoil=1736.000000 //+200
+		Chaos=0.350000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Eagle.Eagle50-Fire',Volume=5.500000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_50
+		FireInterval=0.550000 //+.05
+		FireEndAnim=
+		AimedFireAnim='SightFire'	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_50'
 	End Object
 
 	//=================================================================
@@ -137,14 +171,14 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Scope
 		//Layout core
-		LayoutName="Scoped Marksman"
+		LayoutName=".44 Marksman"
 		Weight=10
 		bDualBlocked=True
 
 		//Function
 		InventorySize=4
 		DisplaceDurationMult=0.75
-		MagAmmo=7
+		MagAmmo=8
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
@@ -169,8 +203,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_RDS
 		//Layout core
-		LayoutName="Red Dot Sight"
-		Weight=30
+		LayoutName=".44 RDS"
+		Weight=10
 		bDualBlocked=True
 		
 		//Attachments
@@ -178,15 +212,19 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+
+		// ADS handling
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.25
+		
+		//Zoom
 		SightOffset=(X=-11,Y=0,Z=2.78)
 		ZoomType=ZT_Irons
 		
 		//Function
 		InventorySize=3
-        SightMoveSpeedFactor=0.6
-		SightingTime=0.25
 		DisplaceDurationMult=0.5
-		MagAmmo=7
+		MagAmmo=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'
         AimParams(0)=AimParams'TacticalAimParams_208'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_208'
@@ -194,7 +232,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Laser
 		//Layout core
-		LayoutName="Laser Sight"
+		LayoutName=".44 Laser"
 		LayoutTags="laser"
 		Weight=30
 		bDualBlocked=True
@@ -204,23 +242,57 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+
+		// ADS handling
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.25
+		
+		//Zoom
 		SightOffset=(X=-11,Y=0,Z=1.39)
 		ZoomType=ZT_Irons
 		
 		//Function
 		InventorySize=3
-        SightMoveSpeedFactor=0.6
-		SightingTime=0.25
 		DisplaceDurationMult=0.5
-		MagAmmo=7
+		MagAmmo=8
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'
 		AimParams(0)=AimParams'TacticalAimParams_208'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_208'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=TacticalParams_50
+		//Layout core
+		LayoutName=".50"
+		Weight=10
+		bDualBlocked=True
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+
+		// ADS handling
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.25
+		
+		//Zoom
+		SightOffset=(X=-11,Y=0,Z=1.39)
+		ZoomType=ZT_Irons
+		
+		//Function
+		InventorySize=3
+		DisplaceDurationMult=0.5
+		MagAmmo=7
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'
+		AimParams(0)=AimParams'TacticalAimParams_208'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_50'
+	End Object
+	
     Layouts(0)=WeaponParams'TacticalParams_Laser'
     Layouts(1)=WeaponParams'TacticalParams_RDS'
     Layouts(2)=WeaponParams'TacticalParams_Scope'
+    Layouts(3)=WeaponParams'TacticalParams_50'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=Eagle_Silver

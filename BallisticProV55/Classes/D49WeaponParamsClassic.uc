@@ -11,7 +11,8 @@ defaultproperties
 		TraceRange=(Min=8000.000000,Max=9000.000000)
 		WaterTraceRange=7200.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=90.0
+		RangeAtten=0.800000
+		Damage=75.0
 		HeadMult=1.5
 		LimbMult=0.5
 		DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -119,24 +120,53 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Default"
+		//Layout
+		LayoutName="Laser"
 		Weight=30
+		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
-		
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25000
-		MagAmmo=6
-		//SightOffset=(X=-20.000000,Y=-1.800000,Z=25.100000)
-		//SightPivot=(Pitch=768,Roll=-1024)
+		SightOffset=(X=-11,Y=-4.6,Z=25.5)
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)
 		WristAdjust=(Yaw=-2500,Pitch=-0000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		MagAmmo=6
+		ViewOffset=(X=-7,Y=18.00,Z=-8.5)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Scope
+		//Layout
+		LayoutName="4X Scope"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
+		//Zoom
+		MaxZoom=4
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
+		SightOffset=(X=50,Y=-0.5,Z=10)
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		bAdjustHands=false
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		MagAmmo=6
 		ViewOffset=(X=-7,Y=18.00,Z=-8.5)
 		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -168,8 +198,8 @@ defaultproperties
 	End Object*/
 	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Scope'
 	//Layouts(1)=WeaponParams'ClassicParams_Tech'
-	//Layouts(1)=WeaponParams'ClassicParams_Scope'
 	//Layouts(1)=WeaponParams'ClassicParams_Snub'
 	
 	//Camos =====================================

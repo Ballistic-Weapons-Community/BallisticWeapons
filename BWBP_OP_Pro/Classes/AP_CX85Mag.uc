@@ -11,8 +11,8 @@ function inventory SpawnCopy( Pawn Other )
 	InventoryType = default.InventoryType;
 
 	Copy2 = Super.SpawnCopy(Other);
-	Ammo_CX85Bullets(Copy2).Darts = Ammo_CX85Darts(Copy);
-	Ammo_CX85Darts(Copy).Bullets = Ammo_CX85Bullets(Copy2);
+	//Ammo_CX85Bullets(Copy2).Darts = Ammo_CX85Darts(Copy);
+	Ammo_CX85Darts(Copy).Bullets = Ammo_556mm(Copy2);
 	return Copy2;
 }
 

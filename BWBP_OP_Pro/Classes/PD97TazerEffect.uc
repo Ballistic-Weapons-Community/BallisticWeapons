@@ -48,8 +48,7 @@ function Timer()
 		PD97Attachment(Owner).TazeEnd();
 		return;
 	}
-	
-	class'BallisticDamageType'.static.GenericHurt (Target, 5, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTPD97Tazer');
+	class'BallisticDamageType'.static.GenericHurt (Target, 10, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTPD97Tazer');
 	class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval);
 	
 }

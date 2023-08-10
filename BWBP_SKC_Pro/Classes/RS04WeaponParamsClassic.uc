@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Max=5500.000000)
 		WaterTraceRange=3300.0
 		DecayRange=(Min=0.0,Max=0.0)
-		RangeAtten=0.900000
+		RangeAtten=0.800000
 		Damage=32
 		HeadMult=2.65
 		LimbMult=0.375

@@ -16,7 +16,7 @@ defaultproperties
         DecayRange=(Min=1050,Max=3150) // 20-60m
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
-        Damage=45.000000 // .44 Magnum
+        Damage=55.000000 // .44 Magnum
         HeadMult=3.5
         LimbMult=0.75
         DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -51,7 +51,7 @@ defaultproperties
         DecayRange=(Min=1050,Max=3150) // 20-60m
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=16
-        Damage=90.000000
+        Damage=110.000000
         HeadMult=3.5
         LimbMult=0.75
         RangeAtten=0.5
@@ -97,6 +97,22 @@ defaultproperties
 		MaxMoveMultiplier=2
 	End Object
 
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.15
+		ADSViewBindFactor=1
+		EscapeMultiplier=1
+		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.5,OutVal=0.03),(InVal=1,OutVal=0.07)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		MaxRecoil=8192
+		ClimbTime=0.1
+		DeclineDelay=0.40000
+		DeclineTime=1
+		CrouchMultiplier=1
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -112,30 +128,78 @@ defaultproperties
         ChaosSpeedThreshold=300
 	End Object
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.35
+		AimAdjustTime=0.5
+        AimSpread=(Min=256,Max=768)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
+		JumpChaos=0.750000
+		ChaosDeclineTime=0.450000
+        ChaosSpeedThreshold=300
+	End Object
+
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-        WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		//Layout
+		LayoutName="Laser"
+		Weight=30
+		WeaponPrice=1800
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
-        DisplaceDurationMult=0.5
+		//ADS
         SightingTime=0.2
         SightMoveSpeedFactor=0.6
-        MagAmmo=6
-        InventorySize=3
-		bDualBlocked=True
-		//SightOffset=(X=25.000000,Y=-3.700000,Z=24.000000)
+		SightOffset=(X=-11,Y=-4.6,Z=25.5)
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)
 		WristAdjust=(Yaw=-2500,Pitch=-0000)
+		//Stats
+        DisplaceDurationMult=0.5
+        MagAmmo=6
+        InventorySize=3
+		bDualBlocked=True
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalFireParams'
         AltFireParams(0)=FireParams'TacticalAltFireParams'
     End Object 
+
+    Begin Object Class=WeaponParams Name=TacticalParams_Scope
+		//Layout
+		LayoutName="3X Scope"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
+		//Zoom
+		MaxZoom=3
+		ZoomType=ZT_Fixed
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.45
+		SightOffset=(X=50,Y=-0.5,Z=10)
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		bAdjustHands=false
+		//Stats
+        DisplaceDurationMult=0.5
+        MagAmmo=6
+        InventorySize=3
+		bDualBlocked=True
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+        FireParams(0)=FireParams'TacticalFireParams'
+        AltFireParams(0)=FireParams'TacticalAltFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=D49_Silver

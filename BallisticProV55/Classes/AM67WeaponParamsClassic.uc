@@ -7,63 +7,61 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			WaterTraceRange=2500.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.350000
-			Damage=55.0
-			HeadMult=2.0
-			LimbMult=0.636363
-			DamageType=Class'BallisticProV55.DTAM67Pistol'
-			DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'
-			DamageTypeArm=Class'BallisticProV55.DTAM67Pistol'
-			PenetrationEnergy=24.000000
-			PenetrateForce=200
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-			FlashScaleFactor=0.900000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
-			Recoil=2048.000000
-			Chaos=0.300000
-			Inaccuracy=(X=4,Y=4)
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		WaterTraceRange=2500.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.350000
+		Damage=55.0
+		HeadMult=2.0
+		LimbMult=0.65
+		DamageType=Class'BallisticProV55.DTAM67Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTAM67Pistol'
+		PenetrationEnergy=24.000000
+		PenetrateForce=200
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
+		Recoil=2048.000000
+		Chaos=0.300000
+		Inaccuracy=(X=4,Y=4)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.200000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.200000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+		EffectString="Blinding flash"
+	End Object
 	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-            EffectString="Blinding flash"
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=4.000000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireAnim="SecFire"
-			FireEndAnim=
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=4.000000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="SecFire"
+		FireEndAnim=
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
