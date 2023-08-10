@@ -37,7 +37,7 @@ var(IR) float				ThermalRange;	// Maximum range at which it is possible to see e
 var(IR)   ColorModifier		ColorMod;
 var(IR)   actor			NVLight;
 var   float				NextPawnListUpdateTime;
-
+var bool			bSilenced;
 
 replication
 {
@@ -53,12 +53,18 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	bHasIR=false;
-	
+	bSilenced=false;
+
 	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
 	{
 		bHasIR=true;
 		bThermal=true;
 		AdjustThermalView(true);
+	}
+
+	if (InStr(WeaponParams.LayoutTags, "silencer") != -1)
+	{
+		bSilenced = true;
 	}
 }
 

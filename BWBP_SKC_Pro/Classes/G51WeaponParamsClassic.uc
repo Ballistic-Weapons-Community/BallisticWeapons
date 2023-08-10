@@ -41,6 +41,43 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
+   //=================================================================
+    // SUPPRESSED PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ClassicPrimarySuppressedEffectParams
+		TraceRange=(Min=10000.000000,Max=13000.000000)
+		WaterTraceRange=10400.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=24
+		HeadMult=3.125
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
+		FlashScaleFactor=0.010000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=2.600000)
+		Recoil=110.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimarySuppressedFireParams
+		FireInterval=0.075000
+		AimedFireAnim="SightFire"
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimarySuppressedEffectParams'
+	End Object
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -338,12 +375,43 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Suppressed
+		//Layout core
+		Weight=5
+		LayoutName="Suppressed"
+		LayoutTags="silencer"
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
+
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.15,AugmentOffset=(X=0,Y=0,Z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))	
+		// ADS handling
+		SightingTime=0.30 //+0.5
+		SightMoveSpeedFactor=0.500000
+		//Function
+		InventorySize=6
+		bNeedCock=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		ViewOffset=(X=5.000000,Y=6.000000,Z=-2.500000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimarySuppressedFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams_HoloChaff'
 	Layouts(1)=WeaponParams'ClassicParams_NoCarrySensor'
 	Layouts(2)=WeaponParams'ClassicParams_IronsHE'
 	Layouts(3)=WeaponParams'ClassicParams_4XScope'
 	Layouts(4)=WeaponParams'ClassicParams_IRScope'
-	
+	Layouts(5)=WeaponParams'ClassicParams_Suppressed'
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black
 		Index=0

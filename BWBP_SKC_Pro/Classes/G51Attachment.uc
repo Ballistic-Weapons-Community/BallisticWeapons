@@ -37,6 +37,7 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 }
 
+
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
@@ -57,6 +58,11 @@ function InitFor(Inventory I)
 
 	if (BallisticWeapon(I) != None)
 		myWeap = BallisticWeapon(I);
+   	if (G51Carbine(I) != None && G51Carbine(I).bSilenced)
+    	{
+		ModeInfos[0].TracerChance = 0;
+		ModeInfos[0].TracerMix = 0;
+	}
 }
 
 simulated function Tick(float DT)
