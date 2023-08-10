@@ -43,10 +43,7 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		
-	//=================================================================
-	// SUPPRESSED PRIMARY FIRE
-	//=================================================================	
-	
+	//Suppressed
 	Begin Object Class=InstantEffectParams Name=TacticalPrimarySuppressedEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=1838,Max=4250) // 35-100m
@@ -63,7 +60,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.100000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=1.5500000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=1.500000,Radius=192.000000,bAtten=True)
 		Recoil=160.000000
 		Chaos=0.306942
 		WarnTargetPct=0.200000
