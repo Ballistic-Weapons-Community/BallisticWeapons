@@ -55,7 +55,7 @@ simulated function OnWeaponParamsChanged()
 	bHasIR=false;
 	bSilenced=false;
 
-	if (InStr(WeaponParams.LayoutTags, "IR") != -1  && AIController(Instigator.Controller) == None)
+	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
 	{
 		bHasIR=true;
 		bThermal=true;
@@ -666,6 +666,9 @@ function byte BestMode()
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
+		return 0;
+	
+	if (bHasIR == true)
 		return 0;
 
 	if (B.Skill > Rand(6))
