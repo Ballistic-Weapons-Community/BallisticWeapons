@@ -44,6 +44,7 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasShotgun=true;
 		FireMode[1].AmmoClass=class'Ammo_16GaugeleMat';
+		SightFXClass=None;
 	}
 	else
 	{

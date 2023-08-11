@@ -60,7 +60,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.100000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=1.500000,Radius=192.000000,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=1.500000,Radius=232.000000,bAtten=True)
 		Recoil=160.000000
 		Chaos=0.306942
 		WarnTargetPct=0.200000

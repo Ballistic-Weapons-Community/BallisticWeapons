@@ -40,6 +40,38 @@ defaultproperties
 		FireAnimRate=1.5	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
+	
+	//Primary w/ Underbarrel
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Underbarrel
+		TraceRange=(Min=4000,Max=4000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		Inaccuracy=(X=128,Y=128)
+		RangeAtten=0.5
+		Damage=36  // .45
+        HeadMult=3.5
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTM806Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
+        PenetrationEnergy=16
+		PenetrateForce=150
+		bPenetrate=True
+		FlashScaleFactor=0.5 //model issue
+		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
+		Recoil=412.000000 //
+		Chaos=0.6 //
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Fire',Volume=0.700000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Underbarrel
+		FireInterval=0.3500
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.5	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Underbarrel'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -227,7 +259,7 @@ defaultproperties
 		ViewOffset=(X=15.000000,Y=5.000000,Z=-3.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Underbarrel'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Shotgun'
     End Object 
 	
