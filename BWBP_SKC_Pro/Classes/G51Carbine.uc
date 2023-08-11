@@ -55,7 +55,7 @@ simulated function OnWeaponParamsChanged()
 	bHasIR=false;
 	bSilenced=false;
 
-	if (InStr(WeaponParams.LayoutTags, "IR") != -1  && !(AIController(Instigator.Controller) != None))
+	if (InStr(WeaponParams.LayoutTags, "IR") != -1  && AIController(Instigator.Controller) == None)
 	{
 		bHasIR=true;
 		bThermal=true;
