@@ -13,6 +13,7 @@ class MD24Pistol extends BallisticHandgun;
 
 var   bool			bLaserOn;
 var   bool			bStriking;
+var() bool			bHasKnife;
 var   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
@@ -23,6 +24,21 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
+}
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasKnife=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "tacknife") != -1)
+	{
+		bHasKnife=true;
+		MeleeFireMode.Damage = 70;
+	}
 }
 
 // Animation notify for when the clip is stuck in

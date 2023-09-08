@@ -12,7 +12,7 @@ defaultproperties
 		WaterTraceRange=3300.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.900000
-		Damage=45
+		Damage=40
 		HeadMult=2.65
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
@@ -26,9 +26,9 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire2',Volume=1.200000)
-		Recoil=1000.000000
+		Recoil=1200.000000
 		Chaos=0.060000
-		Inaccuracy=(X=20,Y=20)
+		Inaccuracy=(X=25,Y=25)
 		BotRefireRate=0.300000
 		WarnTargetPct=0.100000
 	End Object
@@ -87,7 +87,7 @@ defaultproperties
 		MaxRecoil=1768.000000
 		DeclineTime=0.300000
 		DeclineDelay=0.100000
-		ViewBindFactor=0.100000
+		ViewBindFactor=0.050000
 		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000

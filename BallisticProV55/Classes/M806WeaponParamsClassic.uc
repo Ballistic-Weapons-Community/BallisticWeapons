@@ -12,7 +12,7 @@ defaultproperties
 		WaterTraceRange=3600.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.800000
-		Damage=32.0
+		Damage=35.0
 		HeadMult=3.125
 		LimbMult=0.625
 		DamageType=Class'BallisticProV55.DTM806Pistol'
@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Fire',Volume=0.700000)
-		Recoil=3072.000000
+		Recoil=1836.000000
 		Chaos=-1.0
 		Inaccuracy=(X=4,Y=4)
 		BotRefireRate=0.900000
@@ -116,7 +116,7 @@ defaultproperties
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=0.300000
-		HipMultiplier=1.000000
+		HipMultiplier=1.600000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object

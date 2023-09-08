@@ -75,6 +75,38 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Supp'
 	End Object
 	
+	//9mm Tac Knife
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_TacKnife
+		TraceRange=(Min=4000.000000,Max=4000.000000)
+        DecayRange=(Min=788,Max=2363) // 15-45m
+		Inaccuracy=(X=256,Y=256) //x2
+		RangeAtten=0.5
+		Damage=23 // 9mm
+        HeadMult=3.5
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTMD24Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
+        PenetrationEnergy=16
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.750000
+		Recoil=512.000000 //x2
+		Chaos=1.200000 //x5
+		BotRefireRate=0.900000
+		WarnTargetPct=0.300000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Fire',Volume=4.000000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_TacKnife
+		FireInterval=0.13000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.450000	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_TacKnife'
+	End Object
+	
 	//10mm
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_10mm
 		TraceRange=(Min=4000.000000,Max=4000.000000)
@@ -106,6 +138,22 @@ defaultproperties
 		FireAnimRate=1.000000	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_10mm'
 	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -125,6 +173,20 @@ defaultproperties
 		MaxMoveMultiplier=1.5
 	End Object
 
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_TacKnife
+		ViewBindFactor=0.15
+		ADSViewBindFactor=0.5
+		EscapeMultiplier=1.1
+		XRandFactor=0.2 //x2
+		YRandFactor=0.2 //x2
+		ClimbTime=0.06
+		DeclineDelay=0.250000
+		DeclineTime=0.35
+		CrouchMultiplier=1
+		HipMultiplier=1
+		MaxMoveMultiplier=1.5
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -134,6 +196,15 @@ defaultproperties
 		ADSMultiplier=0.35
 		AimAdjustTime=0.5
         AimSpread=(Min=128,Max=512)
+		SprintOffset=(Pitch=-2048,Yaw=-1024)
+        ChaosSpeedThreshold=300
+	End Object
+
+	Begin Object Class=AimParams Name=TacticalAimParams_TacKnife
+		ADSViewBindFactor=0
+		ADSMultiplier=0.7 //x2
+		AimAdjustTime=0.5
+        AimSpread=(Min=256,Max=512) //x2
 		SprintOffset=(Pitch=-2048,Yaw=-1024)
         ChaosSpeedThreshold=300
 	End Object
@@ -161,6 +232,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Supp
@@ -181,6 +253,29 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Supp'
+		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_TacKnife
+		//Layout core
+		LayoutName="9mm Tac Knife"
+		LayoutTags="tacknife"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24Melee'
+		//ADS
+		SightOffset=(X=-7.00000,Y=-0.01,Z=2.5)
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.20
+		//Function
+		bDualBlocked=True
+        DisplaceDurationMult=0.33
+		MagAmmo=15
+        InventorySize=2
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_TacKnife'
+        AimParams(0)=AimParams'TacticalAimParams_TacKnife'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_TacKnife'
+		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams_TacKnife'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_10mm
@@ -200,11 +295,13 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_10mm'
+		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_Supp'
-    Layouts(2)=WeaponParams'TacticalParams_10mm'
+    Layouts(2)=WeaponParams'TacticalParams_TacKnife'
+    Layouts(3)=WeaponParams'TacticalParams_10mm'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=MD24_Green

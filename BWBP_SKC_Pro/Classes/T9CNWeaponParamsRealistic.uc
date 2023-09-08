@@ -51,6 +51,9 @@ defaultproperties
 		Damage=33.0
 		HeadMult=2.2
 		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
 		PenetrationEnergy=6.000000
 		PenetrateForce=16
 		bPenetrate=True
@@ -84,6 +87,9 @@ defaultproperties
 		Damage=33.0
 		HeadMult=2.2
 		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
 		PenetrationEnergy=6.000000
 		PenetrateForce=16
 		bPenetrate=True
@@ -117,6 +123,9 @@ defaultproperties
 		Damage=33.0
 		HeadMult=2.2
 		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
 		PenetrationEnergy=6.000000
 		PenetrateForce=16
 		bPenetrate=True

@@ -12,7 +12,7 @@ defaultproperties
         DecayRange=(Min=788,Max=2363) // 15-45m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
-		Damage=28 // .45
+		Damage=30 // .45, compact
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
@@ -23,7 +23,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
-		Recoil=300.000000
+		Recoil=640.000000
 		Chaos=0.2
 		BotRefireRate=0.300000
 		WarnTargetPct=0.100000
@@ -40,7 +40,7 @@ defaultproperties
         DecayRange=(Min=788,Max=2363) // 15-45m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
-		Damage=28
+		Damage=30
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'

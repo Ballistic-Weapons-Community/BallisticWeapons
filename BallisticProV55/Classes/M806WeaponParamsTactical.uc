@@ -14,7 +14,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000,Max=4000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
-		Inaccuracy=(X=128,Y=128)
+		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=36  // .45
         HeadMult=3.5
@@ -26,7 +26,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-		Recoil=512.000000
+		Recoil=412.000000
 		Chaos=0.2
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -45,7 +45,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Underbarrel
 		TraceRange=(Min=4000,Max=4000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
-		Inaccuracy=(X=128,Y=128)
+		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
 		Damage=36  // .45
         HeadMult=3.5
@@ -58,7 +58,7 @@ defaultproperties
 		bPenetrate=True
 		FlashScaleFactor=0.5 //model issue
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-		Recoil=412.000000 //
+		Recoil=312.000000 //
 		Chaos=0.6 //
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000

@@ -26,9 +26,9 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
-		Recoil=640.000000
+		Recoil=840.000000
 		Chaos=0.050000
-		Inaccuracy=(X=11,Y=11)
+		Inaccuracy=(X=16,Y=16)
 		BotRefireRate=0.300000
 		WarnTargetPct=0.100000
 	End Object
@@ -53,8 +53,8 @@ defaultproperties
 		DeclineTime=0.600000
 		DeclineDelay=0.100000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
-		HipMultiplier=1.000000
+		ADSViewBindFactor=0.300000
+		HipMultiplier=1.500000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object

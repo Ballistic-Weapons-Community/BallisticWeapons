@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=800.000000,Max=4000.000000)  //.45
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=45.0
+		Damage=40.0
 		HeadMult=2.276595
 		LimbMult=0.617021
 		PenetrationEnergy=9.000000
@@ -25,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=640.000000
+		Recoil=800.000000
 		Chaos=0.100000
 		Inaccuracy=(X=18,Y=18)
 		BotRefireRate=0.300000

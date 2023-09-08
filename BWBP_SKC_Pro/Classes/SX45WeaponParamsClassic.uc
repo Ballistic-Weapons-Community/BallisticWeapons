@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=2.300000)
-		Recoil=640.000000
+		Recoil=1240.000000
 		Chaos=0.050000
 		Inaccuracy=(X=11,Y=11)
 		BotRefireRate=0.300000
@@ -90,7 +90,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 		FlashScaleFactor=5.0
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-RadFire',Volume=1.200000)
-		Recoil=128.000000
+		Recoil=512.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
@@ -117,7 +117,7 @@ defaultproperties
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=0.200000
-		HipMultiplier=1.000000
+		HipMultiplier=1.500000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object

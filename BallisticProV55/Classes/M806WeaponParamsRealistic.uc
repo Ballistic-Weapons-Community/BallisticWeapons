@@ -12,7 +12,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		RangeAtten=0.5
 		DecayRange=(Min=800.0,Max=4000.0)
-		Damage=45.0
+		Damage=45.0 //longer barrel than rs04/sx45
 		HeadMult=2.3
 		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTM806Pistol'
@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Fire',Volume=0.700000) //Custom Sound
-		Recoil=800.000000
+		Recoil=640.000000
 		Chaos=0.080000
 		Inaccuracy=(X=15,Y=15)
 		BotRefireRate=0.900000

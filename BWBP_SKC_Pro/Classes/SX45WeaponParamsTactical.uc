@@ -16,7 +16,7 @@ defaultproperties
 		TraceRange=(Min=4000.000000,Max=4000.000000)
 		DecayRange=(Min=788,Max=2363) // 15-45m
 		RangeAtten=0.5
-		Damage=28 // .45
+		Damage=32 // .45
 		HeadMult=3.5
 		LimbMult=0.75
 		PenetrationEnergy=16
@@ -25,11 +25,11 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
 		PenetrateForce=135
 		bPenetrate=True
-		Inaccuracy=(X=128,Y=128)
+		Inaccuracy=(X=100,Y=100)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=256.000000
+		Recoil=512.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
