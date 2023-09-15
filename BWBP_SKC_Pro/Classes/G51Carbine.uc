@@ -664,6 +664,9 @@ function byte BestMode()
 {
 	local Bot B;
 
+	if (bHasIR || bSilenced)
+		return 0;
+
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;

@@ -67,7 +67,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          SizeScale(3)=(RelativeTime=0.370000,RelativeSize=0.900000)
          SizeScale(4)=(RelativeTime=1.000000,RelativeSize=1.000000)
-         StartSizeRange=(X=(Min=70.000000,Max=84.000000),Y=(Min=70.000000,Max=84.000000),Z=(Min=70.000000,Max=84.000000))
+         StartSizeRange=(X=(Min=35.000000,Max=42.000000),Y=(Min=35.000000,Max=43.000000),Z=(Min=35.000000,Max=42.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
@@ -94,7 +94,7 @@ defaultproperties
          FadeOutStartTime=0.200000
          MaxParticles=1
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=5.000000)
-         StartSizeRange=(X=(Min=140.000000,Max=140.000000),Y=(Min=70.000000,Max=70.000000),Z=(Min=70.000000,Max=70.000000))
+         StartSizeRange=(X=(Min=70.000000,Max=70.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
          Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
@@ -116,7 +116,7 @@ defaultproperties
          FadeOutStartTime=0.200000
          MaxParticles=1
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=5.000000)
-         StartSizeRange=(X=(Min=140.000000,Max=140.000000),Y=(Min=70.000000,Max=70.000000),Z=(Min=70.000000,Max=70.000000))
+         StartSizeRange=(X=(Min=70.000000,Max=70.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
          Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
@@ -142,7 +142,7 @@ defaultproperties
          MaxParticles=100
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
-         StartSizeRange=(X=(Min=2.500000,Max=5.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
+         StartSizeRange=(X=(Min=2.500000,Max=5.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
          Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
@@ -170,7 +170,7 @@ defaultproperties
          MaxParticles=1
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=5.000000)
-         StartSizeRange=(X=(Min=70.000000,Max=70.000000),Y=(Min=70.000000,Max=70.000000),Z=(Min=70.000000,Max=70.000000))
+         StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
          InitialParticlesPerSecond=50000.000000
          Texture=Texture'XEffects.WispSmoke_t'
          SecondsBeforeInactive=0.000000
@@ -194,7 +194,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255))
          ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.000000,Max=0.000000))
          FadeOutStartTime=1.120000
-         MaxParticles=100
+         MaxParticles=50
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=100.000000,Max=200.000000)
          StartSpinRange=(X=(Min=-1.000000,Max=1.000000))
@@ -243,7 +243,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          SizeScale(3)=(RelativeTime=0.370000,RelativeSize=0.900000)
          SizeScale(4)=(RelativeTime=1.000000,RelativeSize=1.000000)
-         StartSizeRange=(X=(Min=70.000000,Max=119.000000),Y=(Min=70.000000,Max=119.000000),Z=(Min=70.000000,Max=119.000000))
+         StartSizeRange=(X=(Min=35.000000,Max=60.000000),Y=(Min=35.000000,Max=60.000000),Z=(Min=35.000000,Max=60.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'

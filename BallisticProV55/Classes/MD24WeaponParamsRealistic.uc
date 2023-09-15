@@ -96,8 +96,8 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.650000
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MD24.MD24_FireSil',Volume=0.800000,Radius=48.000000,bAtten=True)
-		Recoil=600.000000
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MD24.MD24_FireSil',Volume=0.800000,Radius=48.000000,bAtten=True) //
+		Recoil=600.000000 //-40
 		Chaos=-1.0
 		Inaccuracy=(X=14,Y=14)
 		BotRefireRate=0.900000
@@ -111,17 +111,65 @@ defaultproperties
 		FireAnimRate=2.400000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Supp'
 	End Object
+	
+	//.40 tac knife
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_TacKnife
+		TraceRange=(Min=800.000000,Max=3500.000000) //.40
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=37.0
+		HeadMult=2.2
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMD24Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
+		PenetrationEnergy=9.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.750000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Fire',Volume=4.000000)
+		Recoil=1240.000000 //x2
+		Chaos=1.0 //
+		Inaccuracy=(X=256,Y=256) //256
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_TacKnife
+		FireInterval=0.200000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=2.400000	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_TacKnife'
+	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	End Object	
+	
+	//Smack
+	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams_Melee
 		TraceRange=(Min=84.000000,Max=84.000000)
 		WaterTraceRange=5000.0
 		Damage=36.0
-		HeadMult=2.083333
-		LimbMult=0.472222
+		HeadMult=2.0
+		LimbMult=0.5
 		DamageType=Class'BallisticProV55.DTMD24Melee'
 		DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
 		DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
@@ -137,7 +185,7 @@ defaultproperties
 		WarnTargetPct=0.050000
 	End Object
 		
-	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Melee
 		FireInterval=0.400000
 		AmmoPerFire=0
 		BurstFireRateFactor=1.00
@@ -145,7 +193,36 @@ defaultproperties
 		FireAnim="Melee"
 		PreFireAnimRate=1.500000
 		FireAnimRate=1.250000
-	FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams'
+	FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams_Melee'
+	End Object
+	
+	//Stab
+	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams_TacKnife
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=46.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_TacKnife
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Stab"
+		FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams_TacKnife'
 	End Object
 		
 	//=================================================================
@@ -206,11 +283,7 @@ defaultproperties
 		InventorySize=2
 		WeaponPrice=650
 		MagAmmo=15
-		//ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
-		//SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
 		SightPivot=(Pitch=0,Roll=-0)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MD24 10mm Commando Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -234,11 +307,7 @@ defaultproperties
 		InventorySize=2
 		WeaponPrice=650
 		MagAmmo=15
-		//ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
-		//SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
 		SightPivot=(Pitch=0,Roll=-0)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MD24 .40 Commando Pistol (RDS)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -261,16 +330,37 @@ defaultproperties
 		InventorySize=2 //3 in future
 		WeaponPrice=650
 		MagAmmo=15
-		//ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
-		//SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
 		SightPivot=(Pitch=0,Roll=-0)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="MD24 .40 Commando Pistol (Supp)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_TacKnife
+		//Layout core
+		LayoutName=".40 Tac Knife"
+		LayoutTags="tacknife"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24Melee'
+		//ADS
+		SightOffset=(X=-7.00000,Y=-0.01,Z=2.5)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.12
+		//Function
+		bDualBlocked=true
+		PlayerSpeedFactor=1.100000
+		InventorySize=2 //3 in future
+		WeaponPrice=650
+		MagAmmo=15
+		SightPivot=(Pitch=0,Roll=-0)
+		WeaponName="MD24 .40 Commando Pistol (Tac Knife)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_TacKnife'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams_10mm'

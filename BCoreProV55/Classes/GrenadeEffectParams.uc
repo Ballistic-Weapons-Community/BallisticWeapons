@@ -18,6 +18,7 @@ enum EPlayerImpactType	// Different ways that grenade can impact with players
 };
 
 var() float					ImpactDamage;	// Damage on direct impact
+var() bool					bCombinedSplashImpact; // Deal both impact and splash damage on hit
 
 var() bool					bOverrideArming;
 var() float					ArmingDelay;	// Delay before switching to DT_Impact

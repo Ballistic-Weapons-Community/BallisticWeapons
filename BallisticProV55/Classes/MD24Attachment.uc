@@ -9,17 +9,31 @@
 //=============================================================================
 class MD24Attachment extends HandgunAttachment;
 
+var   bool					bHasKnife;	//shank?
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
 var   Rotator				LaserRot;
+var	  BallisticWeapon		myWeap;
 
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn;
+		bLaserOn, bHasKnife;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	if (MD24Pistol(I) != None && MD24Pistol(I).bHasKnife)
+	{
+		bHasKnife=true;
+	}
 }
 
 simulated function Tick(float DT)
@@ -119,7 +133,10 @@ simulated function MeleeFireEffects()
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
 //	if (ImpactManager != None)
+	if (!bHasKnife)
 		class'IM_GunHit'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	else 
+		class'IM_Knife'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, Instigator);
 }
 
 defaultproperties

@@ -68,6 +68,38 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Supp'
 	End Object
 	
+	//9mm Tac Knife
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_TacKnife
+		TraceRange=(Min=4000.000000,Max=4000.000000)
+        DecayRange=(Min=525,Max=1225)
+		Inaccuracy=(X=256,Y=256) //
+		PenetrationEnergy=16
+		RangeAtten=0.5
+		Damage=23
+        HeadMult=2.00
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTMD24Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.750000
+		Recoil=512.000000 //
+		Chaos=1.200000 //
+		BotRefireRate=0.900000
+		WarnTargetPct=0.300000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Fire',Volume=4.000000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_TacKnife
+		FireInterval=0.13000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.450000	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_TacKnife'
+	End Object
+	
 	//10mm
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_10mm
 		TraceRange=(Min=4000,Max=4000)
@@ -97,6 +129,51 @@ defaultproperties
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.450000	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_10mm'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================		
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+	End Object	
+	
+	//Stab
+	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams_TacKnife
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=35.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_TacKnife
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Stab"
+		FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams_TacKnife'
 	End Object
 		
 	//=================================================================
@@ -145,6 +222,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object	
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Supp
@@ -165,6 +243,30 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object	
+
+	Begin Object Class=WeaponParams Name=ArenaParams_TacKnife
+		//Layout core
+		LayoutName="9mm Tac Knife"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronSights",Slot=50,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RMR',BoneName="Slide",AugmentOffset=(x=5,y=0,z=4),Scale=0.05,AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		//ADS
+		SightOffset=(X=-7.00000,Y=-0.01,Z=1.82)
+        SightMoveSpeedFactor=0.9
+		SightingTime=0.200000
+		//Function
+		bDualBlocked=true
+		ReloadAnimRate=1.25
+        DisplaceDurationMult=0.33
+		MagAmmo=15
+        InventorySize=2
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_TacKnife'
     End Object	
 
 	Begin Object Class=WeaponParams Name=ArenaParams_10mm
@@ -184,11 +286,13 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_10mm'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object
     
 	Layouts(0)=WeaponParams'ArenaParams'
 	Layouts(1)=WeaponParams'ArenaParams_Supp'
-	Layouts(2)=WeaponParams'ArenaParams_10mm'
+	Layouts(2)=WeaponParams'ArenaParams_TacKnife'
+	Layouts(3)=WeaponParams'ArenaParams_10mm'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=MD24_Green

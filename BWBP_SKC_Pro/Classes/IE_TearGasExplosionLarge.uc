@@ -1,10 +1,10 @@
 //=============================================================================
-// IE_TearGasExplosion.
+// IE_TearGasExplosionLarge.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IE_TearGasExplosion extends BallisticEmitter
+class IE_TearGasExplosionLarge extends BallisticEmitter
 	placeable;
 
 simulated event PostBeginPlay()
@@ -77,7 +77,7 @@ defaultproperties
          VelocityLossRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=4.000000,Max=4.000000))
          GetVelocityDirectionFrom=PTVD_AddRadial
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter56'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter56'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter57
          UseDirectionAs=PTDU_Normal
@@ -101,7 +101,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter57'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter57'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter76
          FadeOut=True
@@ -123,7 +123,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter76'
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter76'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter77
          UseCollision=True
@@ -152,7 +152,7 @@ defaultproperties
          StartVelocityRadialRange=(Min=-560.000000,Max=-350.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial
      End Object
-     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter77'
+     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter77'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter79
          FadeOut=True
@@ -176,7 +176,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(4)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter79'
+     Emitters(4)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter79'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter80
          UseCollision=True
@@ -212,7 +212,7 @@ defaultproperties
          StartVelocityRadialRange=(Min=-80.000000,Max=-50.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial
      End Object
-     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter80'
+     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter80'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter82
          UseCollision=True
@@ -254,7 +254,7 @@ defaultproperties
          VelocityLossRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=4.000000,Max=4.000000))
          GetVelocityDirectionFrom=PTVD_AddRadial
      End Object
-     Emitters(6)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter82'
+     Emitters(6)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter82'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter84
          UseCollision=True
@@ -289,7 +289,7 @@ defaultproperties
          StartVelocityRadialRange=(Min=-56.000000,Max=-35.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial
      End Object
-     Emitters(7)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosion.SpriteEmitter84'
+     Emitters(7)=SpriteEmitter'BWBP_SKC_Pro.IE_TearGasExplosionLarge.SpriteEmitter84'
 
      AutoDestroy=True
      LightType=LT_Pulse

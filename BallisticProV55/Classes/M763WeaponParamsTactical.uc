@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//12ga Shot
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=3072.000000,Max=3072.000000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
@@ -37,6 +38,41 @@ defaultproperties
 		bCockAfterFire=True
 		FireAnimRate=0.9	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	
+	//12ga Slug
+	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams_Slug
+		TraceRange=(Min=9000.000000,Max=9000.000000) //
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.2
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+		Damage=150
+        HeadMult=2.5
+        LimbMult=0.75
+		PushbackForce=250.000000
+		DamageType=Class'BallisticProV55.DTM763Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=3192.000000 //x1.5
+		Chaos=0.40000 //+.1
+		BotRefireRate=0.7
+		WarnTargetPct=0.5
+		Inaccuracy=(X=32,Y=32)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire2',Volume=1.600000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Slug
+		FireInterval=0.85
+		FireAnim="FireCombined"
+		FireEndAnim=
+		AimedFireAnim="FireCombinedSight"
+		bCockAfterFire=True
+		FireAnimRate=0.9	
+		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams_Slug'
 	End Object
 		
     //=================================================================
@@ -110,17 +146,35 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		LayoutName="Buckshot"
+		Weight=30
+		
 		MagAmmo=6
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
-		SightPivot=(Pitch=128)
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Slug
+		LayoutName="Slug"
+		Weight=10
+		
+		MagAmmo=6
+        SightingTime=0.35
+        SightMoveSpeedFactor=0.6
+        InventorySize=6
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Slug'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Slug'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M763_Gray

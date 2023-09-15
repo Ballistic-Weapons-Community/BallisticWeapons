@@ -154,6 +154,35 @@ defaultproperties
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
 	End Object	
+	
+	//Stab
+	Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams_TacKnife
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=80.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_TacKnife
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Stab"
+		FireEffectParams(0)=MeleeEffectParams'TacticalSecondaryEffectParams_TacKnife'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -232,7 +261,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Supp
@@ -253,7 +282,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Supp'
-		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_TacKnife
@@ -274,8 +303,8 @@ defaultproperties
         InventorySize=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_TacKnife'
         AimParams(0)=AimParams'TacticalAimParams_TacKnife'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams_TacKnife'
-		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams_TacKnife'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_TacKnife'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_10mm
@@ -295,7 +324,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_10mm'
-		//AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'

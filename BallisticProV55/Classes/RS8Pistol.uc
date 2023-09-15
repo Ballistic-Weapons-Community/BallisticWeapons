@@ -22,7 +22,9 @@ var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
 var   Emitter		LaserBlast;
 var   Emitter		LaserDot;
+
 var   bool			bStriking;
+var() bool			bHasKnife;
 
 replication
 {
@@ -30,6 +32,21 @@ replication
 		bLaserOn;
 	reliable if (Role < ROLE_Authority)
 		ServerSwitchSilencer;
+}
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasKnife=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "tacknife") != -1)
+	{
+		bHasKnife=true;
+		MeleeFireMode.Damage = 70;
+	}
 }
 
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
@@ -279,6 +296,13 @@ exec simulated function WeaponSpecial(optional byte i)
 		return;
 	if (Clientstate != WS_ReadyToFire)
 		return;
+	
+	if (bHasKnife)
+	{
+		ServerSwitchLaser(!bLaserOn);
+		return;
+	}
+	
 	if (Othergun != None)
 	{
 		if (Othergun.Clientstate != WS_ReadyToFire)

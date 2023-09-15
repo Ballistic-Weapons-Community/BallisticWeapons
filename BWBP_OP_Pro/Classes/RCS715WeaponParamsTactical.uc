@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//12ga Buckshot
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=6000.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
@@ -38,6 +39,36 @@ defaultproperties
 		AimedFireAnim="SightFire"
 		FireAnimRate=2.50000	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	
+	//12ga Frag
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams_Frag
+		ProjectileClass=Class'BWBP_OP_Pro.RCS715Slug_HE'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=7000.000000
+		AccelSpeed=27000.000000
+		MaxSpeed=27000.000000
+		bCombinedSplashImpact=true
+		Damage=75
+        ImpactDamage=25
+		PushbackForce=100.000000
+		DamageRadius=200.000000
+		MomentumTransfer=60000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
+		Recoil=768.000000
+		Chaos=1.000000
+		BotRefireRate=0.5
+		WarnTargetPct=0.75	
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.RCS.RCS-FireFrag')
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Frag
+		TargetState="Projectile"
+		FireInterval=0.200000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=2.50000	
+	FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Frag'
 	End Object
 		
     //=================================================================
@@ -111,10 +142,19 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		PlayerSpeedFactor=0.95
-		InventorySize=6
+		//Layout core
+		LayoutName="12ga Shot"
+		Weight=10
+		//Attachments
+        WeaponBoneScales(1)=(BoneName="LadderSightHinge",Slot=8,Scale=0f)
+        WeaponBoneScales(2)=(BoneName="LadderSight",Slot=9,Scale=0f)
+		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.45
+		SightOffset=(X=0,Y=0,Z=1.4)
+		//Function
+		PlayerSpeedFactor=0.95
+		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=15
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -122,7 +162,30 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Frag
+		//Layout core
+		LayoutName="12ga Frag"
+		Weight=10
+		//Attachments
+        WeaponBoneScales(1)=(BoneName="RedDotSight",Slot=8,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.45
+		SightOffset=(X=0,Y=0,Z=3.4)
+		//Function
+		PlayerSpeedFactor=0.95
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=8
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Frag'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Frag'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RCS_Red

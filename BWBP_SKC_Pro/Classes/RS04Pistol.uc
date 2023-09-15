@@ -19,10 +19,28 @@ var() Sound		TorchOffSound;
 var() Sound		DrawSoundQuick;		//For first draw
 var() name		FlashlightAnim;
 
+var   bool			bStriking;
+var() bool			bHasKnife;
+
 replication
 {
 	reliable if (Role < ROLE_Authority)
 		ServerFlashLight;
+}
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasKnife=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "tacknife") != -1)
+	{
+		bHasKnife=true;
+		MeleeFireMode.Damage = 70;
+	}
 }
 
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}

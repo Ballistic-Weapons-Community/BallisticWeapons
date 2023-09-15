@@ -35,7 +35,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-     ImpactManager=Class'BWBP_SKC_Pro.IM_TearGasProj'
+     ImpactManager=Class'BWBP_SKC_Pro.IM_TearGasProjLarge'
      AccelSpeed=50000.000000
      TrailClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DTPugFRAGRadius'

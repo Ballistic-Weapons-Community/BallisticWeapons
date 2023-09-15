@@ -57,9 +57,9 @@ simulated function DestroyEffects()
 
 function ServerPlayFiring()
 {
-	if (Mk781Shotgun(Weapon) != None && Mk781Shotgun(Weapon).bSilenced && SilencedFireSound.Sound != None)
-		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,SilencedFireSound.bNoOverride,SilencedFireSound.Radius,SilencedFireSound.Pitch,SilencedFireSound.bAtten);
-	else if (BallisticFireSound.Sound != None)
+//	if (Mk781Shotgun(Weapon) != None && Mk781Shotgun(Weapon).bSilenced && SilencedFireSound.Sound != None)
+//		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,SilencedFireSound.bNoOverride,SilencedFireSound.Radius,SilencedFireSound.Pitch,SilencedFireSound.bAtten);
+//	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
 	PlayFireAnimations();
@@ -91,9 +91,9 @@ function PlayFiring()
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
 
-	if (Mk781Shotgun(Weapon) != None && Mk781Shotgun(Weapon).bSilenced && SilencedFireSound.Sound != None)
-		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
-	else if (BallisticFireSound.Sound != None)
+//	if (Mk781Shotgun(Weapon) != None && Mk781Shotgun(Weapon).bSilenced && SilencedFireSound.Sound != None)
+//		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
+//	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 
 	CheckClipFinished();

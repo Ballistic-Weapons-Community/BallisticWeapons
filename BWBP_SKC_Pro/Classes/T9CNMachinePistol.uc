@@ -27,6 +27,11 @@ simulated function OnWeaponParamsChanged()
 		bShowChargingBar=True;
 	}
 	
+	if (InStr(WeaponParams.LayoutTags, "raffica") != -1)
+	{
+		SupportHandBone = 'l_upperarm';
+	}
+	
 }
 
 // Gauss Stuff ==================================

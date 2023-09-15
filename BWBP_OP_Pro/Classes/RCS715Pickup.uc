@@ -62,7 +62,7 @@ defaultproperties
      PickupDrawScale=0.100000
      InventoryType=Class'BWBP_OP_Pro.RCS715Shotgun'
      RespawnTime=20.000000
-     PickupMessage="You picked up the RCS-715 Tactical Buster."
+     PickupMessage="You picked up the RCS-715 Assault Shotgun."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.AssaultShotgun.AA12Pickup'
      Physics=PHYS_None

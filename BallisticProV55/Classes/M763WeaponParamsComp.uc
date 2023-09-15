@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//12ga buck
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=3072.000000,Max=3072.000000)
         DecayRange=(Min=1250,Max=3000)
@@ -35,6 +36,38 @@ defaultproperties
 		bCockAfterFire=True
 		FireAnimRate=0.9	
 		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams'
+	End Object
+	
+	//12ga slug
+	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams_Slug
+		TraceRange=(Min=6000.000000,Max=6000.000000)
+        DecayRange=(Min=1250,Max=3000)
+		RangeAtten=0.15
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+		Damage=100
+		DamageType=Class'BallisticProV55.DTM763Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=3192.000000 //x1.5
+		Chaos=0.30000
+		BotRefireRate=0.7
+		WarnTargetPct=0.5
+		Inaccuracy=(X=32,Y=32)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire2',Volume=1.600000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Slug
+		FireInterval=0.85
+		FireAnim="FireCombined"
+		FireEndAnim=
+		AimedFireAnim="FireCombinedSight"
+		bCockAfterFire=True
+		FireAnimRate=0.9	
+		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams_Slug'
 	End Object
 		
     //=================================================================
@@ -102,19 +135,39 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		LayoutName="12ga Buckshot"
+		Weight=30
+		
 		CockAnimRate=1.100000
 		ReloadAnimRate=1.100000
 		MagAmmo=6
         SightingTime=0.350000
 		SightMoveSpeedFactor=0.8
-		SightPivot=(Pitch=128)
         InventorySize=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Slug
+		LayoutName="12ga Slug"
+		Weight=10
+		
+		CockAnimRate=1.100000
+		ReloadAnimRate=1.100000
+		MagAmmo=6
+        SightingTime=0.350000
+		SightMoveSpeedFactor=0.8
+        InventorySize=5
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Slug'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Slug'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M763_Gray

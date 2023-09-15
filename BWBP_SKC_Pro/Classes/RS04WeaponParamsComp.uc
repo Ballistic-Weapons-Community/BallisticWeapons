@@ -76,9 +76,39 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		TargetState="Light"
 		FireInterval=0.200000
 		AmmoPerFire=0
 	FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+	End Object
+	
+	//Stab
+	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams_TacKnife
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=35.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTRS8Stab'
+		DamageTypeHead=Class'BallisticProV55.DTRS8Stab'
+		DamageTypeArm=Class'BallisticProV55.DTRS8Stab'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_TacKnife
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Stab"
+		FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams_TacKnife'
 	End Object
 		
 	//=================================================================
@@ -112,7 +142,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		Weight=30
-		LayoutName="Default"
+		LayoutName="Tac Light"
 		//Attachments
 		//Function
 		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
@@ -130,7 +160,33 @@ defaultproperties
 		FireParams(1)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_TacKnife
+		//Layout core
+		Weight=30
+		LayoutName="Tac Knife"
+		LayoutTags="tacknife"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04Melee'
+		//Function
+		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
+		PlayerSpeedFactor=1
+		MagAmmo=10
+        InventorySize=3
+		SightingTime=0.200000
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		//SightOffset=(X=5.000000,Y=-1.9500000,Z=17.000000)
+		SightPivot=(Roll=-256)
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_TacKnife'
+	End Object
+	
 	Layouts(0)=WeaponParams'ArenaParams'
+	Layouts(1)=WeaponParams'ArenaParams_TacKnife'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS04_Tan

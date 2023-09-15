@@ -7,6 +7,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//12ga Buckshot
 	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
@@ -36,11 +37,44 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.270000
+		FireInterval=0.220000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.2000000	
 	FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//10ga FRAG
+	Begin Object Class=GrenadeEffectParams Name=RealisticPrimaryEffectParams_Frag
+		ProjectileClass=Class'BWBP_OP_Pro.RCS715Slug_HE'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=20000.000000
+		MaxSpeed=55000.000000
+		AccelSpeed=55000.000000
+		ImpactDamage=90.000000
+		Damage=125.000000
+		DamageRadius=200.000000 //4 meter dmg radius, approx 1.5 meter kill radius
+		MomentumTransfer=30000.000000
+		HeadMult=2.0
+		LimbMult=0.5
+		MuzzleFlashClass=Class'BWBP_OP_Pro.RCS715FlashEmitter'
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.RCS.RCS-FireFrag')
+		Recoil=1400.000000
+		Chaos=0.25
+		SplashDamage=True
+		RecommendSplashDamage=True
+		Inaccuracy=(X=64,Y=64)
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Frag
+		TargetState="Projectile"
+		FireInterval=0.220000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1.2000000	
+	FireEffectParams(0)=GrenadeEffectParams'RealisticPrimaryEffectParams_Frag'
 	End Object
 		
     //=================================================================
@@ -116,19 +150,48 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=8
+		//Layout core
+		LayoutName="12ga Shot"
+		Weight=10
+		//Attachments
+        WeaponBoneScales(1)=(BoneName="LadderSightHinge",Slot=8,Scale=0f)
+        WeaponBoneScales(2)=(BoneName="LadderSight",Slot=9,Scale=0f)
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.500000
+		SightOffset=(X=0,Y=0,Z=1.4)
+		//Function
+		InventorySize=8
 		MagAmmo=20
-		//ViewOffset=(X=-20.000000,Y=3.00000,Z=-32.000000)
-		//SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
 		WeaponName="RCS-715 12ga Auto-Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object	
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Frag
+		//Layout core
+		LayoutName="12ga Frag"
+		Weight=10
+		//Attachments
+        WeaponBoneScales(1)=(BoneName="RedDotSight",Slot=8,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.500000
+		SightOffset=(X=0,Y=0,Z=3.4)
+		//Function
+		InventorySize=8
+		MagAmmo=8
+		WeaponName="RCS-715 12ga Auto-Shotgun (FRAG)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Frag'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Frag'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RCS_Red

@@ -207,6 +207,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_Stock
 		//Layout core
 		LayoutName="Brace"
+		LayoutTags="raffica"
 		Weight=10
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CN'

@@ -328,6 +328,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Stock
 		//Layout core
 		LayoutName="Braced"
+		LayoutTags="raffica"
 		Weight=10
 		WeaponPrice=1200
 		//Attachments

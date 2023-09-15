@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//12ga Flechette
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=2560.000000,Max=2560.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
@@ -38,7 +39,7 @@ defaultproperties
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
 	End Object
 
-	//Suppressed
+	//12ga Flechette - Suppressed
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimarySilEffectParams
 		TraceRange=(Min=3000.000000,Max=5000.000000)
 		DecayRange=(Min=788,Max=2363) // 15-45m
@@ -47,7 +48,7 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=8
+		Damage=15
         HeadMult=1.75
         LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -56,7 +57,7 @@ defaultproperties
 		PenetrationEnergy=16.000000
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=1.25,Radius=256.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=1.45,Radius=256.000000,bAtten=True)
 		Recoil=512.000000
 		Inaccuracy=(X=128,Y=128)
 		BotRefireRate=0.800000
@@ -69,6 +70,76 @@ defaultproperties
 		FireAnimRate=1.150000
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimarySilEffectParams'
+	End Object
+	
+	//12ga Sabot
+	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams_Dart
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		WaterTraceRange=3400.0
+		DecayRange=(Min=3500.0,Max=7000.0) //70-140m
+		RangeAtten=0.45
+		TracerClass=Class'BallisticProV55.TraceEmitter_AP'
+		ImpactManager=Class'BallisticProV55.IM_BigBullet'
+		TraceCount=1
+		Damage=120.0
+		HeadMult=2.25
+		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
+		PenetrationEnergy=32.000000
+		PenetrateForce=200
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MK781.Mk781-FireDart',Volume=1.500000)
+		Recoil=1024.000000 //+256
+		Inaccuracy=(X=32,Y=32)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Dart
+		AimedFireAnim="SightFire"
+		FireInterval=0.325000
+		FireAnimRate=1.150000
+		FireEndAnim=	
+	FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams_Dart'
+	End Object
+	
+	//12ga Sabot - Suppressed
+	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams_DartSil
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		WaterTraceRange=3400.0
+		DecayRange=(Min=3500.0,Max=7000.0) //70-140m
+		RangeAtten=0.45
+		TracerClass=Class'BallisticProV55.TraceEmitter_AP'
+		ImpactManager=Class'BallisticProV55.IM_BigBullet'
+		TraceCount=1
+		Damage=120.0
+		HeadMult=2.25
+		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
+		PenetrationEnergy=32.000000
+		PenetrateForce=200
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=2.05,Radius=386.000000,bAtten=True)
+		Recoil=768.000000 //
+		Inaccuracy=(X=32,Y=32)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_DartSil
+		AimedFireAnim="SightFire"
+		FireInterval=0.325000
+		FireAnimRate=1.150000
+		FireEndAnim=	
+	FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams_DartSil'
 	End Object
 	
 	//=================================================================
@@ -140,6 +211,18 @@ defaultproperties
 	FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryBoltEffectParams'
 	End Object
 	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -177,9 +260,11 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_RDS
 		//Layout core
 		Weight=10
-		LayoutName="Red Dot Sight"
+		LayoutName="Holo + LAM"
+		LayoutTags="lam,no_suppressor"
 		//Attachments
 		SightOffset=(X=4.20,Y=0.01,Z=6.97)
+		SightPivot=(Pitch=0,Yaw=0)
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.6
@@ -189,22 +274,17 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		FireParams(1)=FireParams'TacticalPrimaryFireParams'
-		FireParams(2)=FireParams'TacticalPrimaryFireParams'
-		FireParams(3)=FireParams'TacticalPrimarySilFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(2)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(3)=FireParams'TacticalSecondaryBoltFireParams'
     End Object 
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
 		Weight=30
-		LayoutName="Iron Sights"
+		LayoutName="Suppressed"
+		LayoutTags="start_suppressed"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=-5.00,Y=0.08,Z=2.65)
+		SightOffset=(X=-5.00,Y=0.00,Z=2.65)
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
 		InventorySize=6
@@ -224,8 +304,38 @@ defaultproperties
 		AltFireParams(3)=FireParams'TacticalSecondaryBoltFireParams'
     End Object 
 	
+	Begin Object Class=WeaponParams Name=TacticalParams_Dart
+		//Layout core
+		Weight=10
+		LayoutName="Supp + 3X Scope Sabot"
+		LayoutTags="no_alt"
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.15,AugmentOffset=(x=-28,y=0,z=-0.3),AugmentRot=(Pitch=0,Roll=16384,Yaw=32678))
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+        WeaponBoneScales(1)=(BoneName="ShellHolder",Slot=8,Scale=0f)
+        WeaponBoneScales(2)=(BoneName="HShells",Slot=9,Scale=0f)
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		//ADS
+		SightMoveSpeedFactor=0.350000
+		SightingTime=0.450000
+		SightOffset=(X=4.00,Y=0.00,Z=8.6)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		//Function
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=8
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Dart'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams_RDS'
     Layouts(1)=WeaponParams'TacticalParams'
+    Layouts(2)=WeaponParams'TacticalParams_Dart'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M781_Gray

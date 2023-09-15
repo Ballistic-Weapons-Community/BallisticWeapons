@@ -67,6 +67,59 @@ defaultproperties
 	End Object
 		
 	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams
+		SpreadMode=None
+		MuzzleFlashClass=None
+		FlashScaleFactor=None
+		Recoil=None
+		Chaos=None
+		PushbackForce=None
+		SplashDamage=None
+		RecommendSplashDamage=None
+		BotRefireRate=0.300000
+		WarnTargetPct=None
+	End Object
+		
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		TargetState="Light"
+		FireInterval=0.200000
+		AmmoPerFire=0
+	FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
+	End Object
+	
+	//Stab
+	Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams_TacKnife
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=80.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTRS8Stab'
+		DamageTypeHead=Class'BallisticProV55.DTRS8Stab'
+		DamageTypeArm=Class'BallisticProV55.DTRS8Stab'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_TacKnife
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Stab"
+		FireEffectParams(0)=MeleeEffectParams'TacticalSecondaryEffectParams_TacKnife'
+	End Object
+		
+	//=================================================================
 	// RECOIL
 	//=================================================================
 
@@ -103,7 +156,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
 		Weight=30
-		LayoutName="Default"
+		LayoutName="Tac Light"
 		//Attachments
 		//Function
 		InventorySize=2
@@ -120,8 +173,36 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_TacKnife
+		//Layout core
+		LayoutName="Tac Knife"
+		LayoutTags="tacknife"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04Melee'
+		//Function
+		InventorySize=2
+		WeaponPrice=700
+		DisplaceDurationMult=0.5
+		SightingTime=0.20
+        SightMoveSpeedFactor=0.6
+		MagAmmo=10
+		bDualBlocked=True
+		//SightOffset=(X=-20.000000,Y=-1.9500000,Z=17.000000)
+		SightPivot=(Roll=-256)
+		WeaponName="RS4 Compact Handgun"
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_TacKnife'
+	End Object
+	
 	Layouts(0)=WeaponParams'TacticalParams'
+	Layouts(1)=WeaponParams'TacticalParams_TacKnife'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS04_Tan

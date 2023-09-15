@@ -40,6 +40,8 @@ simulated function bool AllowFire()
 
 function PlayFiring()
 {
+	local float Rand;
+	
 	if (BW.MagAmmo - ConsumedLoad < 1 ||class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		AimedFireAnim = 'FireSight';
@@ -47,8 +49,32 @@ function PlayFiring()
 	}
 	else if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
-		AimedFireAnim = 'FireCombinedSight';
-		FireAnim = 'FireClassic';
+		Rand = FRand();
+		if (Rand > 0.8)
+		{
+			FireAnim = 'FireClassic';
+			AimedFireAnim = 'FireSightClassic';
+		}
+		else if (Rand > 0.6)
+		{
+			FireAnim = 'FireClassic2';
+			AimedFireAnim = 'FireSightClassic';
+		}
+		else if (Rand > 0.4)
+		{
+			FireAnim = 'FireClassic3';
+			AimedFireAnim = 'FireSightClassic2';
+		}
+		else if (Rand > 0.2)
+		{
+			FireAnim = 'FireClassic4';
+			AimedFireAnim = 'FireSightClassic2';
+		}
+		else
+		{
+			FireAnim = 'FireClassic5';
+			AimedFireAnim = 'FireSightClassic3';
+		}
 	}
 	else
 	{

@@ -125,7 +125,6 @@ defaultproperties
 		TraceCount=1
 	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
-		MaxHits=14
 		Damage=125
 		DamageType=Class'BWBP_SKC_Pro.DTCoachSlug'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachSlug'

@@ -1,12 +1,12 @@
 //=============================================================================
-// IM_TearGasProj.
+// IM_TearGasProjLarge.
 //
 // ImpactManager subclass for Grenade Explosions
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IM_TearGasProj extends BCImpactManager;
+class IM_TearGasProjLarge extends BCImpactManager;
 
 var() float		SurfaceRange;
 var() float		MinFluidDepth;
@@ -39,7 +39,7 @@ defaultproperties
 {
      SurfaceRange=384.000000
      MinFluidDepth=128.000000
-     HitEffects(0)=Class'BWBP_SKC_Pro.IE_TearGasExplosion'
+     HitEffects(0)=Class'BWBP_SKC_Pro.IE_TearGasExplosionLarge'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
      HitSounds(0)=Sound'BWBP_SKC_Sounds.Chaff.Chaff-Explode'
      HitSoundRadius=512.000000

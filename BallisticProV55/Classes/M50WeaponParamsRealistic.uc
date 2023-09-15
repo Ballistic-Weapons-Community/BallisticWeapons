@@ -255,7 +255,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_AdvSupp
 		//Layout core
 		LayoutName="A3 Suppressed"
-		LayoutTags="no_grenade"
+		LayoutTags="no_grenade, suppressed"
 		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
@@ -288,7 +288,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_AdvHolo
 		//Layout core
 		LayoutName="A3 Holo"
-		LayoutTags="no_grenade"
+		LayoutTags="no_grenade, lam"
 		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
@@ -297,6 +297,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
 		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-1.4,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.04,AugmentOffset=(x=-20,y=0,z=-1.5),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
         WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.35000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)

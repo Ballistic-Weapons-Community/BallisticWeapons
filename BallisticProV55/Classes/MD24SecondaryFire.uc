@@ -25,7 +25,7 @@ function PlayFiring()
 {
 	if (BW.MagAmmo == 0)
 	{
-		FireAnim = 'Stab';
+		FireAnim = 'StabOpen';
 	}
 	else
 	{

@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Darts
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=2560.000000,Max=2560.000000)
         DecayRange=(Min=1050,Max=2100)
@@ -36,7 +37,7 @@ defaultproperties
 		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams'
 	End Object
 
-	//Suppressed
+	//Darts Suppressed
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimarySilEffectParams
 		TraceRange=(Min=3000.000000,Max=5000.000000)
 		WaterTraceRange=5000.0
@@ -51,7 +52,8 @@ defaultproperties
 		PenetrationEnergy=16.000000
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=1.25,Radius=256.000000,bAtten=True)
+		//FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=1.25,Radius=256.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=2.05,Radius=256.000000,bAtten=True)
 		Recoil=512.000000
 		Inaccuracy=(X=128,Y=128)
 		BotRefireRate=0.800000
@@ -64,6 +66,41 @@ defaultproperties
 		FireAnimRate=1.150000
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimarySilEffectParams'
+	End Object
+	
+	//12ga Sabot
+	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams_Dart
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		WaterTraceRange=3400.0
+		DecayRange=(Min=3400.0,Max=9000.0)
+		RangeAtten=0.45
+		TracerClass=Class'BallisticProV55.TraceEmitter_AP'
+		ImpactManager=Class'BallisticProV55.IM_BigBullet'
+		TraceCount=1
+		Damage=85
+		HeadMult=2.25
+		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
+		PenetrationEnergy=32.000000
+		PenetrateForce=200
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MK781.Mk781-FireDart',Volume=1.500000)
+		Recoil=1400.000000
+		Chaos=0.120000
+		Inaccuracy=(X=32,Y=32)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Dart
+		AimedFireAnim="SightFire"
+		FireInterval=0.325000
+		FireAnimRate=1.150000
+		FireEndAnim=	
+	FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams_Dart'
 	End Object
 	
 	//=================================================================
@@ -133,6 +170,18 @@ defaultproperties
 	FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryBoltEffectParams'
 	End Object
 	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -166,10 +215,11 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		Weight=30
-		LayoutName="Iron Sights"
+		LayoutName="Suppressed"
+		LayoutTags="start_suppressed"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=-5.00,Y=0.08,Z=2.65)
+		SightOffset=(X=-5.00,Y=0.00,Z=2.65)
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
 		ReloadAnimRate=1.5
@@ -192,13 +242,15 @@ defaultproperties
 		AltFireParams(3)=FireParams'ArenaSecondaryBoltFireParams'
     End Object 
 	
-	Begin Object Class=WeaponParams Name=ArenaParams_RDS
+	Begin Object Class=WeaponParams Name=ArenaParams_Holo
 		//Layout core
 		Weight=10
-		LayoutName="Red Dot Sight"
+		LayoutName="Holo + LAM"
+		LayoutTags="lam,no_suppressor"
 		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.06,AugmentOffset=(x=-12,y=0,z=-1.1),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
 		SightOffset=(X=4.20,Y=0.02,Z=6.97)
-		SightPivot=(Pitch=-64,Roll=0,Yaw=0)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		//Function
 		ReloadAnimRate=1.5
 		CockAnimRate=1.25
@@ -221,8 +273,48 @@ defaultproperties
 		AltFireParams(3)=FireParams'ArenaSecondaryBoltFireParams'
     End Object 
 	
-    Layouts(0)=WeaponParams'ArenaParams_RDS'
+	Begin Object Class=WeaponParams Name=ArenaParams_ScopeDart
+		//Layout core
+		Weight=10
+		LayoutName="3X Scope + Sabot"
+		LayoutTags="lam,no_suppressor,no_alt"
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.06,AugmentOffset=(x=-12,y=0,z=-1.1),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.15,AugmentOffset=(x=-28,y=0,z=-0.3),AugmentRot=(Pitch=0,Roll=16384,Yaw=32678))
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+        WeaponBoneScales(1)=(BoneName="ShellHolder",Slot=8,Scale=0f)
+        WeaponBoneScales(2)=(BoneName="HShells",Slot=9,Scale=0f)
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.400000
+		SightOffset=(X=4.00,Y=0.00,Z=8.6)
+		SightPivot=(Pitch=0,Roll=0,Yaw=0)
+		//Function
+		ReloadAnimRate=1.5
+		CockAnimRate=1.25
+		PlayerJumpFactor=1.000000
+		InventorySize=5
+		DisplaceDurationMult=1
+		MagAmmo=8
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Dart'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams_Dart'
+		FireParams(2)=FireParams'ArenaPrimaryFireParams_Dart'
+		FireParams(3)=FireParams'ArenaPrimaryFireParams_Dart'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireParams_Scope'
+		AltFireParams(2)=FireParams'ArenaSecondaryFireParams_Scope'
+		AltFireParams(3)=FireParams'ArenaSecondaryFireParams_Scope'
+    End Object 
+	
+    Layouts(0)=WeaponParams'ArenaParams_Holo'
     Layouts(1)=WeaponParams'ArenaParams'
+    Layouts(2)=WeaponParams'ArenaParams_ScopeDart'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M781_Gray

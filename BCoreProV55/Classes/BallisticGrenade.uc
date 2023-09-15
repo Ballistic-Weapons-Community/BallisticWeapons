@@ -31,6 +31,7 @@ var() float						RandomSpin;				// Random spin amount
 var() bool						bNoInitialSpin;			// Do not apply random spin until impact
 var() bool						bAlignToVelocity;		// If true, grenaded always faces in the direction of its velocity
 var	  bool						bHasImpacted;			// Has it hit anything yet?
+var() bool						bCombinedSplashImpact;	// Do we add splash dmg and impact dmg to the target? Useful for high velocity grenades with small payloads
 //var	  bool					bCanHitOwner;			// Can impact with owner
 
 var() float						ArmingDelay;			// Time before switching to armed handling.
@@ -67,6 +68,8 @@ simulated function ApplyParams(ProjectileEffectParams params)
     {
 		ImpactDamage = gren_params.ImpactDamage;
 		default.ImpactDamage = gren_params.ImpactDamage;
+		bCombinedSplashImpact = gren_params.bCombinedSplashImpact;
+		default.bCombinedSplashImpact = gren_params.bCombinedSplashImpact;
 		
 		if (gren_params.bOverrideArming)
 		{
@@ -182,7 +185,12 @@ simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
     if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
+	{
+		if (bCombinedSplashImpact)
+			class'BallisticDamageType'.static.GenericHurt (Other, Damage+ImpactDamage, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), ImpactDamageType);
+		else
         class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), ImpactDamageType);
+	}
     else 
         class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), ImpactDamageType);
 }

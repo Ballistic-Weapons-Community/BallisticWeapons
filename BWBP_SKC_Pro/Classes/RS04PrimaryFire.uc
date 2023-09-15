@@ -8,6 +8,23 @@
 //=============================================================================
 class RS04PrimaryFire extends BallisticProInstantFire;
 
+
+simulated function OnEffectParamsChanged(int EffectIndex)
+{
+	super.OnEffectParamsChanged(EffectIndex);
+	
+    if (RS04Pistol(Weapon).bHasKnife)
+        ApplyTacKnifeEffectParams();
+}
+
+simulated function ApplyTacKnifeEffectParams()
+{
+	FireRecoil *= 1.5;
+	FireChaos = 1;
+    XInaccuracy	= 256;
+    YInaccuracy = 256;
+}
+
 simulated function PlayFireAnimations()
 {
 	if (BW.MagAmmo - ConsumedLoad < 1)

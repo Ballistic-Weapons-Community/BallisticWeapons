@@ -75,6 +75,59 @@ defaultproperties
 	End Object
 		
 	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		SpreadMode=None
+		MuzzleFlashClass=None
+		FlashScaleFactor=None
+		Recoil=None
+		Chaos=None
+		PushbackForce=None
+		SplashDamage=None
+		RecommendSplashDamage=None
+		BotRefireRate=0.300000
+		WarnTargetPct=None
+	End Object
+		
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		TargetState="Light"
+		FireInterval=0.200000
+		AmmoPerFire=0
+	FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	End Object
+	
+	//Stab
+	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams_TacKnife
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=35.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTRS8Stab'
+		DamageTypeHead=Class'BallisticProV55.DTRS8Stab'
+		DamageTypeArm=Class'BallisticProV55.DTRS8Stab'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_TacKnife
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Stab"
+		FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams_TacKnife'
+	End Object
+		
+	//=================================================================
 	// RECOIL
 	//=================================================================
 
@@ -121,7 +174,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		//Layout core
 		Weight=30
-		LayoutName="Default"
+		LayoutName="Tac Light"
 		//Attachments
 		//Function
 		InventorySize=2
@@ -138,8 +191,36 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_TacKnife
+		//Layout core
+		LayoutName="Tac Knife"
+		LayoutTags="tacknife"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04Melee'
+		//Function
+		InventorySize=2
+		WeaponPrice=700
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.110000
+		MagAmmo=10
+		bMagPlusOne=True
+		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
+		//SightOffset=(X=-20.000000,Y=-1.9500000,Z=17.000000)
+		SightPivot=(Roll=-256)
+		WeaponName="RS4 .45 Compact Handgun (Tac Knife)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_TacKnife'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_TacKnife'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS04_Tan
