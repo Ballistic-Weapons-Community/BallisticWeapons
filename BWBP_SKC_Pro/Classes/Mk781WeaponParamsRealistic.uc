@@ -266,6 +266,21 @@ defaultproperties
 		bViewDecline=True
 	End Object
 
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_Scope
+		XCurve=(Points=(,(InVal=0.100000,OutVal=-0.300000),(InVal=1.000000,OutVal=0.100000)))
+		YawFactor=0.120000
+		XRandFactor=0.300000
+		YRandFactor=0.300000
+		MaxRecoil=3260.000000
+		DeclineTime=0.850000
+		DeclineDelay=0.150000
+		ViewBindFactor=0.750000
+		ADSViewBindFactor=1.000000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -275,6 +290,19 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
+		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.700000
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
+		FallingChaos=0.400000
+		ChaosDeclineTime=1.000000
+	End Object
+
+	Begin Object Class=AimParams Name=RealisticAimParams_Scope
+		AimSpread=(Min=16,Max=1250)
+		CrouchMultiplier=0.700000
+		ADSMultiplier=0.700000
+		ViewBindFactor=1.000000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		JumpChaos=0.700000
@@ -377,8 +405,8 @@ defaultproperties
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
 		InitialWeaponMode=1
 		WeaponName="Mk 781 12ga Sabot Shotgun"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
+		AimParams(0)=AimParams'RealisticAimParams_Scope'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams_Dart'
 		FireParams(1)=FireParams'RealisticPrimaryFireParams_Dart'
 		FireParams(2)=FireParams'RealisticPrimaryFireParams_Dart'

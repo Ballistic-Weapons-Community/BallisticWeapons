@@ -81,7 +81,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_AP'
 		ImpactManager=Class'BallisticProV55.IM_BigBullet'
 		TraceCount=1
-		Damage=120.0
+		Damage=105.0
 		HeadMult=2.25
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -92,7 +92,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MK781.Mk781-FireDart',Volume=1.500000)
-		Recoil=1024.000000 //+256
+		Recoil=2048.000000 //+1280
 		Inaccuracy=(X=32,Y=32)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
@@ -116,7 +116,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_AP'
 		ImpactManager=Class'BallisticProV55.IM_BigBullet'
 		TraceCount=1
-		Damage=120.0
+		Damage=105.0
 		HeadMult=2.25
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -127,7 +127,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=2.05,Radius=386.000000,bAtten=True)
-		Recoil=768.000000 //
+		Recoil=1500.000000 //
 		Inaccuracy=(X=32,Y=32)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
@@ -242,6 +242,23 @@ defaultproperties
 		HipMultiplier=1.5
 		MaxMoveMultiplier=2.5
 	End Object
+	
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.25
+		ADSViewBindFactor=1.0 //
+		EscapeMultiplier=1.0 //
+		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.040000),(InVal=0.400000,OutVal=0.020000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=-0.0500),(InVal=1.000000,OutVal=0.000000)))
+		YCurve=(Points=(,(InVal=0.300000,OutVal=0.5),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		ClimbTime=0.1 //
+		MaxRecoil=8192.000000
+		DeclineDelay=0.35000 //
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.5
+		MaxMoveMultiplier=2.5
+	End Object
 
 	//=================================================================
 	// AIM
@@ -249,6 +266,12 @@ defaultproperties
 	
 	Begin Object Class=AimParams Name=TacticalAimParams		
 		ADSViewBindFactor=0
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+        ChaosSpeedThreshold=300
+	End Object
+	
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
         ChaosSpeedThreshold=300
 	End Object
@@ -327,8 +350,8 @@ defaultproperties
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=8
-        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Dart'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 

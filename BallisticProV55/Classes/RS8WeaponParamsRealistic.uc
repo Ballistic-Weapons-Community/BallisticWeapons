@@ -137,19 +137,21 @@ defaultproperties
 		//Layout core
 		LayoutName=".40 Suppressed"
 		Weight=10
-		//Stats
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
-		WeaponPrice=750
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.12
-		MagAmmo=14
-		bMagPlusOne=True
-		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
+		SightOffset=(X=-43,Y=-1.4,Z=13.4)
 		SightPivot=(Pitch=-200,Roll=-1050)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-290,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		WeaponPrice=750
+		MagAmmo=14
+		bMagPlusOne=True
+		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
 		WeaponName="RS8 .40 Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -162,20 +164,24 @@ defaultproperties
 		LayoutName=".40 Tac Knife"
 		LayoutTags="tacknife"
 		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
+		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.12
+		SightOffset=(X=-30,Y=0.26,Z=3.5)
+		SightPivot=(Pitch=0,Roll=0)
+		bAdjustHands=false
+		RootAdjust=(Yaw=0,Pitch=0)
+		WristAdjust=(Yaw=0,Pitch=0)
 		//Stats
 		bDualBlocked=true
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		WeaponPrice=750
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.12
 		MagAmmo=14
 		bMagPlusOne=True
-		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
-		SightPivot=(Pitch=-200,Roll=-1050)
-		bAdjustHands=true
-		RootAdjust=(Yaw=-290,Pitch=3000)
-		WristAdjust=(Yaw=-3000,Pitch=-000)
 		WeaponName="RS8 .40 Handgun (Tac Knife)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -211,7 +217,7 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'RealisticParams'
 	Layouts(1)=WeaponParams'RealisticParams_TacKnife'
-	Layouts(2)=WeaponParams'RealisticParams_10mm'
+	//Layouts(2)=WeaponParams'RealisticParams_10mm'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS8_Silver

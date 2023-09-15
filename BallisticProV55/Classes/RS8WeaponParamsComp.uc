@@ -110,17 +110,19 @@ defaultproperties
 		//Layout core
 		LayoutName="Suppressable"
 		Weight=30
-		//Functions
-		CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.200000
+		SightOffset=(X=-43,Y=-1.4,Z=13.4)
 		SightPivot=(Pitch=-200,Roll=-1050)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-290,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
+		//Functions
 		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		DisplaceDurationMult=0.33
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.200000
 		MagAmmo=9
         InventorySize=2
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -136,18 +138,20 @@ defaultproperties
 		Weight=10
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
+		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.200000
+		SightOffset=(X=-30,Y=0.26,Z=3.5)
+		SightPivot=(Pitch=0,Roll=0)
+		bAdjustHands=false
+		RootAdjust=(Yaw=0,Pitch=0)
+		WristAdjust=(Yaw=0,Pitch=0)
 		//Functions
 		bDualBlocked=true
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		SightPivot=(Pitch=-200,Roll=-1050)
-		bAdjustHands=true
-		RootAdjust=(Yaw=-290,Pitch=3000)
-		WristAdjust=(Yaw=-3000,Pitch=-000)
-		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
 		DisplaceDurationMult=0.33
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.200000
 		MagAmmo=9
         InventorySize=2
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

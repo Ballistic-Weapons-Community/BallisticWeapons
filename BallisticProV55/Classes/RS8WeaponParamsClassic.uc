@@ -218,7 +218,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
 		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		//ADS
-		SightOffset=(X=-20,Y=0.26,Z=3.5)
+		SightOffset=(X=-30,Y=0.26,Z=3.5)
 		SightPivot=(Pitch=0,Roll=0)
 		bAdjustHands=false
 		RootAdjust=(Yaw=0,Pitch=0)

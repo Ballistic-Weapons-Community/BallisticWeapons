@@ -40,7 +40,8 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams_Frag
 		ProjectileClass=Class'BallisticProV55.MRS138Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=2700.000000
+		//Speed=9000.000000
+		Speed=20000.000000 //for now, needs accel tweaks, phys_fall override
 		AccelSpeed=27000.000000
 		MaxSpeed=27000.000000
 		bCombinedSplashImpact=true
@@ -83,7 +84,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.75	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.500000)	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.250000)	
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Gas

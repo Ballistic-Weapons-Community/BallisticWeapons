@@ -51,7 +51,7 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=ClassicPrimaryEffectParams_Frag
 		ProjectileClass=Class'BallisticProV55.MRS138Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=2000.000000
+		Speed=20000.000000 //for now, needs accel tweaks
 		MaxSpeed=35000.000000
 		AccelSpeed=35000.000000
 		bCombinedSplashImpact=true
@@ -105,7 +105,7 @@ defaultproperties
 		LimbMult=1.0
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter_C'
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.500000)	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.250000)	
 		Recoil=1048.000000
 		Chaos=-1.000000
 		SplashDamage=True

@@ -95,7 +95,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.500000)	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.250000)	
 		Recoil=1792.000000
 		Chaos=0.15
 		SplashDamage=True

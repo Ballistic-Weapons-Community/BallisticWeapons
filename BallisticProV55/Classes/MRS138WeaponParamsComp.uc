@@ -80,7 +80,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.75	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.500000)	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.250000)	
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Gas
