@@ -340,7 +340,7 @@ defaultproperties
 		bDualMixing=false
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
-		bNeedCock=True
+		//bNeedCock=True //netcode issue, needs pulloutfancy in main anim set
 		MagAmmo=16
 		ViewOffset=(X=2,Y=5.00,Z=-2.5)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

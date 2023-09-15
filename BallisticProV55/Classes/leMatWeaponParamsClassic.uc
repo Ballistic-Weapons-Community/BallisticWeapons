@@ -86,10 +86,10 @@ defaultproperties
 		TraceRange=(Min=4500.000000,Max=4500)
 		WaterTraceRange=5000.0
 		RangeAtten=0.300000
-		TraceCount=1
+		TraceCount=1 //
 		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
 		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
-		Damage=85.0
+		Damage=85.0 //
 		HeadMult=1.5
 		LimbMult=0.5
 		DamageType=Class'BallisticProV55.DTleMatShotgun'
@@ -104,7 +104,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=2.000000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-SecFireSlug',Volume=1.500000)
-		Recoil=768.000000
+		Recoil=768.000000 //
 		Chaos=-1.0
 		Inaccuracy=(X=32,Y=32)
 		BotRefireRate=0.900000

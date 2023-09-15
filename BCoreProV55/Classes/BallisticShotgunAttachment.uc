@@ -26,7 +26,7 @@ replication
 		XInaccuracy, YInaccuracy;
 }
 
-simulated final function int GetTraceCount()
+simulated function int GetTraceCount()
 {
 	if (WeaponClass != None)
 		return ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
