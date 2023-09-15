@@ -142,23 +142,23 @@ simulated function MeleeFireEffects()
 defaultproperties
 {
 	WeaponClass=class'MD24Pistol'
-     MuzzleFlashClass=class'M806FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     MeleeImpactManager=class'IM_GunHit'
-     FlashScale=0.125000
-     BrassClass=class'Brass_Pistol'
-     InstantMode=MU_Both
-     TrackAnimMode=MU_Secondary
-     TracerClass=class'TraceEmitter_Pistol'
-     TracerChance=0.600000
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_Pistol"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.400000
-     CockAnimRate=0.800000
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.MD24_TPm'
-     DrawScale=0.320000
-	 RelativeLocation=(Z=4)
+	MuzzleFlashClass=class'M806FlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	MeleeImpactManager=class'IM_GunHit'
+	FlashScale=0.125000
+	BrassClass=class'Brass_Pistol'
+	InstantMode=MU_Both
+	TrackAnimMode=MU_Secondary
+	TracerClass=class'TraceEmitter_Pistol'
+	TracerChance=0.600000
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_Pistol"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.400000
+	CockAnimRate=0.800000
+	bRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MD24_TPm'
+	DrawScale=0.320000
+	RelativeLocation=(Z=4)
 }

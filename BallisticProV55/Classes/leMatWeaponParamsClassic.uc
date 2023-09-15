@@ -44,6 +44,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//20ga Shot
 	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
 		TraceRange=(Min=1500.000000)
 		WaterTraceRange=5000.0
@@ -78,6 +79,43 @@ defaultproperties
 		FireAnim="Fire2"
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
+	End Object	
+	
+	//20ga Slug
+	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams_Slug
+		TraceRange=(Min=4500.000000,Max=4500)
+		WaterTraceRange=5000.0
+		RangeAtten=0.300000
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+		Damage=85.0
+		HeadMult=1.5
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTleMatShotgun'
+		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
+		PenetrationEnergy=32.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Circle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
+		FlashScaleFactor=2.000000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-SecFireSlug',Volume=1.500000)
+		Recoil=768.000000
+		Chaos=-1.0
+		Inaccuracy=(X=32,Y=32)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Slug
+		BurstFireRateFactor=1.00
+		FireAnim="Fire2"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_Slug'
 	End Object
 		
 	//=================================================================
@@ -121,22 +159,18 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Engraved"
-		Weight=90
+		LayoutName="20ga Shot"
+		Weight=30
 		
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.2500
 		MagAmmo=9
-		//SightOffset=(X=-30.000000,Y=-0.550000,Z=12.300000)
-		//SightPivot=(Pitch=768,Roll=-1024)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=-2,Y=10.00,Z=-8.5)
 		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -145,7 +179,29 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Slug
+		LayoutName="20ga Slug"
+		Weight=10
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.2500
+		MagAmmo=9
+		SightPivot=(Pitch=512,Roll=-50)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-350,Pitch=2500)
+		WristAdjust=(Yaw=-3000,Pitch=-0000)
+		ViewOffset=(X=-2,Y=10.00,Z=-8.5)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Slug'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Slug'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=LeMat_Engraved

@@ -33,6 +33,8 @@ var() byte		PreviousWeaponMode;		//Used to store the last referenced firemode pr
 var() bool		bReady;			//Weapon ready for alt fire
 var   byte				ShellIndex;
 
+var()	bool		bIsSlug;
+
 var()	bool		bHasLAM;
 var()   byte		GearStatus;			//LAM configuration
 var()   bool		bLaserOn, bOldLaserOn;
@@ -98,7 +100,12 @@ simulated function OnWeaponParamsChanged()
 	bHasLAM=false;
 	bHasSuppressor=true;
 	bHasAltShells=true;
+	bIsSlug=false;
 	
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
+	{
+		bIsSlug=true;
+	}
 	if (InStr(WeaponParams.LayoutTags, "lam") != -1)
 	{
 		bHasLAM=true;
@@ -121,7 +128,6 @@ simulated function OnWeaponParamsChanged()
 		Mk781PrimaryFire(FireMode[0]).SwitchSilencerMode(true);
 		Mk781SecondaryFire(FireMode[1]).SwitchSilencerMode(true);
 		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
-
 	}
 }
 

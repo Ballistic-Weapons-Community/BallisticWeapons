@@ -11,12 +11,27 @@ class M763Shotgun extends BallisticProShotgun;
 var M763GasControl GC;
 var bool bAltLoaded;
 
+var()	bool		bIsSlug;
+
 var Name SingleLoadAnim;
 
 replication
 {
 	reliable if (Role < ROLE_Authority)
 		ServerLoadShell;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bIsSlug=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
+	{
+		bIsSlug=true;
+	}
 }
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)

@@ -277,7 +277,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="3X Scope + Sabot"
-		LayoutTags="lam,no_suppressor,no_alt"
+		LayoutTags="lam,no_suppressor,no_alt,slug"
 		//Attachments
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.06,AugmentOffset=(x=-12,y=0,z=-1.1),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.15,AugmentOffset=(x=-28,y=0,z=-0.3),AugmentRot=(Pitch=0,Roll=16384,Yaw=32678))

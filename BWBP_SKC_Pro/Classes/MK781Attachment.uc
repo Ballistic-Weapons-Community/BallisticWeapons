@@ -9,8 +9,11 @@
 class MK781Attachment extends BallisticShotgunAttachment;
 
 var() class<BallisticShotgunFire>	FireClassAlt;
-var() class<BCImpactManager>ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
-var() class<BCTraceEmitter>	TracerClassAlt;		//Type of tracer to use for alt fire effects
+
+var byte CurrentTracerMode;
+var array< class<BCTraceEmitter> >	TracerClasses[3];
+var array< class<BCImpactManager> >	ImpactManagers[3];
+
 var bool		bSilenced;
 var bool		bOldSilenced;
 
@@ -28,11 +31,10 @@ replication
 {
 	// Things the server should send to the client.
 	reliable if(Role==ROLE_Authority)
-		bSilenced, bLightsOn, bLaserOn;
+		bSilenced, bLightsOn, bLaserOn, CurrentTracerMode;
 	reliable if ( Role==ROLE_Authority )
 		LaserRot;
 }
-
 
 simulated event PostNetReceive()
 {
@@ -45,6 +47,31 @@ simulated event PostNetReceive()
 			SetBoneScale (0, 0.0, 'Muzzle2');
 	}
 	Super.PostNetReceive();
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	if (MK781Shotgun(I) != None && MK781Shotgun(I).bIsSlug)
+	{
+		CurrentTracerMode=1;
+	}
+}
+
+simulated function int GetTraceCount()
+{
+	if (WeaponClass != None)
+	{
+		if (CurrentTracerMode == 1)
+			return 1;
+		else
+			return ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+	}
+
+	return 10;
 }
 
 function SetSilenced(bool bIsSilenced)
@@ -119,8 +146,8 @@ simulated function InstantFireEffects(byte Mode)
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (ImpactManager != None)
-				ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+			if (ImpactManagers[CurrentTracerMode] != None)
+				ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
 		}
 	}
 	
@@ -173,8 +200,8 @@ simulated function InstantFireEffects(byte Mode)
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (ImpactManagerAlt != None)
-				ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+			if (ImpactManagers[2] != None)
+				ImpactManagers[2].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
 		}
 	}
 	
@@ -213,19 +240,19 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			bThisShot=true;					}
 	}
 	// Spawn a tracer
-	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
+	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
 		bThisShot && (TracerChance >= 1 || FRand() < TracerChance) && !bSilenced)
 	{
 		if (Dist > 200)
-			Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
+			Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
 	}
 	// Spawn an alt tracer
-	if (TracerClassAlt != None && !bSilenced && TracerMode != MU_None && (TracerMode == MU_Both && Mode != 0) && (TracerChance >= 1 || FRand() < TracerChance))
+	if (TracerClasses[2] != None && !bSilenced && TracerMode != MU_None && (TracerMode == MU_Both && Mode != 0) && (TracerChance >= 1 || FRand() < TracerChance))
 	{
 		if (Dist > 200)
-			Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
+			Tracer = Spawn(TracerClasses[2], self, , TipLoc, Rotator(V - TipLoc));
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
 	}
@@ -331,14 +358,6 @@ simulated function SwitchFlashLight ()
 	}
 }
 
-function InitFor(Inventory I)
-{
-	Super.InitFor(I);
-
-	if (BallisticWeapon(I) != None)
-		myWeap = BallisticWeapon(I);
-}
-
 simulated function Tick(float DT)
 {
 	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc;
@@ -432,24 +451,28 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     FireClassAlt=Class'BWBP_SKC_Pro.MK781SecondaryFire'
-     ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_Supercharge'
-     TracerClassAlt=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
-     WeaponClass=Class'BWBP_SKC_Pro.MK781Shotgun'
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
-     AltMuzzleFlashClass=class'XK2SilencedFlash'
-     ImpactManager=class'IM_Shell'
-     FlashScale=1.800000
-     BrassClass=class'Brass_Shotgun'
-     BrassMode=MU_Both
-     TracerMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.MK781_TPm'
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.500000
-     PrePivot=(Z=-5.000000)
-     Skins(0)=Texture'BWBP_SKC_Tex.M1014.M1014-Misc'
+	WeaponClass=class'MK781Shotgun'
+	TracerClasses(0)=class'TraceEmitter_Flechette' //shot
+	TracerClasses(1)=class'TraceEmitter_AP' //sabot
+	TracerClasses(2)=class'TraceEmitter_Supercharge' //zaps
+	ImpactManagers(0)=class'IM_Shell'
+	ImpactManagers(1)=class'IM_BigBulletHMG'
+	ImpactManagers(2)=class'IM_Supercharge'
+	FireClassAlt=Class'BWBP_SKC_Pro.MK781SecondaryFire'
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
+	AltMuzzleFlashClass=class'XK2SilencedFlash'
+	ImpactManager=class'IM_Shell'
+	FlashScale=1.800000
+	BrassClass=class'Brass_Shotgun'
+	BrassMode=MU_Both
+	TracerMode=MU_Both
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MK781_TPm'
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.500000
+	PrePivot=(Z=-5.000000)
+	Skins(0)=Texture'BWBP_SKC_Tex.M1014.M1014-Misc'
 }

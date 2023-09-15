@@ -218,6 +218,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Slug
 		LayoutName="12ga Slug"
+		LayoutTags="slug"
 		Weight=10
 		
 		InventorySize=7

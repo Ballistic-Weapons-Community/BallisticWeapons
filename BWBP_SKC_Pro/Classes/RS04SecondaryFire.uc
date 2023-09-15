@@ -70,9 +70,9 @@ defaultproperties
      TraceRange=(Min=140.000000,Max=140.000000)
      Damage=70.000000
      
-     DamageType=Class'BallisticProV55.DTRS8Stab'
-     DamageTypeHead=Class'BallisticProV55.DTRS8Stab'
-     DamageTypeArm=Class'BallisticProV55.DTRS8Stab'
+     DamageType=Class'BWBP_SKC_Pro.DTRS04Stab'
+     DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04Stab'
+     DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Stab'
      KickForce=100
      HookStopFactor=1.700000
      HookPullForce=100.000000

@@ -152,6 +152,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Slug
 		LayoutName="12ga Slug"
+		LayoutTags="slug"
 		Weight=10
 		
 		CockAnimRate=1.100000

@@ -161,6 +161,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Slug
 		LayoutName="Slug"
+		LayoutTags="slug"
 		Weight=10
 		
 		MagAmmo=6
