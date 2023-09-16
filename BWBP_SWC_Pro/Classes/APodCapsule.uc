@@ -2,8 +2,11 @@
 // A51Grenade
 // Skrith Acid Grenade
 //=============================================================================
-class APodCapsule extends BallisticHandGrenade;
-
+class APodCapsule extends BallisticHandGrenade
+	transient
+	HideDropDown
+	CacheExempt;
+	
 #exec OBJ LOAD FILE=..\StaticMeshes\BWBP_SWC_Static.usx
 
 var() float AdrenalineAmount;
@@ -86,7 +89,7 @@ defaultproperties
      IconMaterial=Texture'BWBP_SWC_Tex.APod.SmallIcon_APod'
      IconCoords=(X2=127,Y2=31)
      ItemName="A-Pod Capsule"
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_APod'
+     //Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_APod'
 	 ParamsClasses(0)=Class'ApodCapsuleWeaponParamsArena'
 	 ParamsClasses(1)=Class'ApodCapsuleWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ApodCapsuleWeaponParamsRealistic'

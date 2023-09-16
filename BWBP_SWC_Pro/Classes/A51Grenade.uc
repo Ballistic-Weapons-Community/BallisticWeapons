@@ -2,8 +2,11 @@
 // A51Grenade
 // Skrith Acid Grenade
 //=============================================================================
-class A51Grenade extends BallisticHandGrenade;
-
+class A51Grenade extends BallisticHandGrenade
+	transient
+	HideDropDown
+	CacheExempt;
+	
 function DoExplosion()
 {
 	local A51AcidControl F;
@@ -87,6 +90,6 @@ defaultproperties
 	 ParamsClasses(2)=Class'A51GrenadeWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'A51GrenadeWeaponParamsTactical'
      ItemName="AD-51 Reptile Corrosive Grenade"
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithGrenade'
+     //Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithGrenade'
      DrawScale=0.400000
 }

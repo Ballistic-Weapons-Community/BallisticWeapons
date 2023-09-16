@@ -377,6 +377,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Cock')
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipIn')
 	ClipInFrame=0.650000

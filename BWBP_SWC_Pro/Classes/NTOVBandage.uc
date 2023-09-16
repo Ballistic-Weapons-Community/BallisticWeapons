@@ -2,7 +2,10 @@
 // A51Grenade
 // Skrith Acid Grenade
 //=============================================================================
-class NTOVBandage extends BallisticHandGrenade;
+class NTOVBandage extends BallisticHandGrenade
+	transient
+	HideDropDown
+	CacheExempt;
 
 #exec OBJ LOAD FILE=..\StaticMeshes\BWBP_SWC_Static.usx
 
@@ -96,6 +99,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'NTOVBandageWeaponParamsClassic'
 	 ParamsClasses(2)=Class'NTOVBandageWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'NTOVBandageWeaponParamsRealistic'
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_NTOV'
+     //Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_NTOV'
      DrawScale=0.400000
 }

@@ -13,6 +13,6 @@ defaultproperties
 	 WeaponClass=class'A51Grenade'
      ExplodeManager=Class'BWBP_SWC_Pro.IM_AcidGrenade'
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.SkrithGrenade_TPm'
+     //Mesh=SkeletalMesh'BWBP_SWC_Anims.SkrithGrenade_TPm'
      DrawScale=0.300000
 }
