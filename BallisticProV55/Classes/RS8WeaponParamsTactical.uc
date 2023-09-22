@@ -11,12 +11,13 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//.40
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
 		Inaccuracy=(X=128,Y=128)
 		RangeAtten=0.5
-		Damage=30 // 10mm Auto
+		Damage=30 // .40
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTRS8Pistol'
@@ -39,6 +40,36 @@ defaultproperties
 		FireAnimRate=1	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
+	
+	//10mm Auto
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Heavy
+		TraceRange=(Min=4000.000000,Max=4000.000000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		Inaccuracy=(X=128,Y=128)
+		RangeAtten=0.5
+		Damage=40 // 10mm
+        HeadMult=3.5
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTRS8Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
+        PenetrationEnergy=16
+		PenetrateForce=135
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		Recoil=666.000000
+		Chaos=0.350000
+		BotRefireRate=0.750000
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Pistol.RS8-HFire',Volume=1.500000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Heavy
+		FireInterval=0.28000
+		FireEndAnim=
+		//AimedFireAnim='SightFire'
+		FireAnimRate=1	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Heavy'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -55,6 +86,18 @@ defaultproperties
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 	
 	//Stab
 	Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams_TacKnife
@@ -123,7 +166,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
-		LayoutName="Suppressable"
+		LayoutName="10mm Suppressable"
 		Weight=30
 		//ADS
 		SightingTime=0.20
@@ -146,7 +189,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams_TacKnife
 		//Layout core
-		LayoutName="Tactical Knife"
+		LayoutName="10mm Tac Knife"
 		LayoutTags="tacknife"
 		Weight=10
 		//Attachments
@@ -170,8 +213,37 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_TacKnife'
     End Object 
 	
+	Begin Object Class=WeaponParams Name=TacticalParams_Heavy
+		//Layout core
+		LayoutName="HV Ammo + RDS"
+		LayoutTags="comp"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Heavy'
+		ViewOffset=(X=0.000000,Y=10.000000,Z=-10.000000)
+		AllowedCamos(0)=5
+		//ADS
+		SightMoveSpeedFactor=0.600000
+		SightingTime=0.200000
+		SightOffset=(X=0,Y=-2,Z=21.8)
+		SightPivot=(Pitch=0,Roll=-1050)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-290,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
+		//Functions
+		bDualBlocked=True
+		DisplaceDurationMult=0.33
+		MagAmmo=7
+        InventorySize=2
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Heavy'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 	
+	
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_TacKnife'
+    Layouts(2)=WeaponParams'TacticalParams_Heavy'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS8_Silver
@@ -212,9 +284,20 @@ defaultproperties
 		Weight=1
 	End Object
 	
+	Begin Object Class=WeaponCamo Name=RS45_Silver
+		Index=5
+		CamoName="Silver"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.RS8.RS8-MainHeavy',Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-RDS-Glow',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney',Index=3,AIndex=0,PIndex=0)
+		Weight=30
+	End Object
+	
 	Camos(0)=WeaponCamo'RS8_Silver'
 	Camos(1)=WeaponCamo'RS8_Gray'
 	Camos(2)=WeaponCamo'RS8_Black'
 	Camos(3)=WeaponCamo'RS8_Rainbow'
 	Camos(4)=WeaponCamo'RS8_Gold'
+	Camos(5)=WeaponCamo'RS45_Silver'
 }

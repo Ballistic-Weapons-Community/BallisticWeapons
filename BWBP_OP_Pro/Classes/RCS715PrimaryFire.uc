@@ -165,7 +165,7 @@ defaultproperties
 	bPenetrate=True
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
 	FlashScaleFactor=1.000000
-	BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+	BrassClass=class'Brass_Shotgun'
 	BrassBone="EjectorDoor"
 	BrassOffset=(X=-1.000000,Z=-1.000000)
 	AimedFireAnim="SightFire"

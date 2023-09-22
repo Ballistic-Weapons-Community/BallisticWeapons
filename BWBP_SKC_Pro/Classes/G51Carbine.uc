@@ -35,6 +35,7 @@ var(IR)   Pawn				UpdatedPawns[16];// List of pawns to view in thermal scope
 var(IR) material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var(IR) float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
 var(IR)   ColorModifier		ColorMod;
+var(IR)   Array<M58Cloud>	SmokeList;		// A list of all the potential pawns to view in thermal mode
 var(IR)   actor			NVLight;
 var   float				NextPawnListUpdateTime;
 var bool			bSilenced;
@@ -392,10 +393,25 @@ simulated function UpdatePawnList()
 	}
 }
 
-// Draws players through walls and all the other Thermal Mode stuff
+//Blocks IR
+/*simulated function UpdateSmokeList()
+{
+	local Smoke S;
+	local int i;
+	local float Dist;
+
+	SmokeList.Length=0;
+	ForEach VisibleActors( class 'M58Cloud', S)
+	{
+		SmokeList[SmokeList.length] = S;
+	}
+}*/
+
+// Draws players in bright colors and all the other Thermal Mode stuff
 simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
+	local M58Cloud Other;
 	local int i, j;
 	local float Dist, DotP;//, OtherRatio;
 	local Array<Material>	OldSkins;
@@ -404,6 +420,8 @@ simulated event DrawThermalMode (Canvas C)
 	local vector Start;
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
+	
+	local Vector					HitLocation, HitNormal;
 
 	C.Style = ERenderStyle.STY_Modulated;
 	
@@ -437,6 +455,16 @@ simulated event DrawThermalMode (Canvas C)
 			// If we have a clear LOS then they can be drawn
 			if (Instigator.LineOfSightTo(P))
 				bLOS=true;
+			//check for smoke (todo: replace this with a more efficient vector check)
+			ForEach TraceActors(class'M58Cloud', Other, HitLocation, HitNormal, P.Location, Location)
+			{
+				if (Other != None)
+					bLOS=false;
+			}
+			//Other = Trace(HitLocation, HitNormal, P.Location, Location, true, vect(1,1,1));
+			//log("Trace found "$Other);
+			//if (Other != None && M58Cloud(Other) != None)
+			//	bLOS=false;
 			if (bLOS)
 			{
 				DotP = (DotP-0.6) / 0.4;
@@ -454,7 +482,6 @@ simulated event DrawThermalMode (Canvas C)
 				for (i=0;i<Max(2, OldSkinCount);i++)
 				{	if (OldSkinCount > i) OldSkins[i] = P.Skins[i]; else OldSkins[i]=None;	P.Skins[i] = ColorMod;	}
 				P.bUnlit=true;
-
 				for (i=0;i<P.Attached.length;i++)
 					if (P.Attached[i] != None)
 					{

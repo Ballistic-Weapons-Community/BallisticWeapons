@@ -1,14 +1,14 @@
 //=============================================================================
-// G51Mine_Sensor
+// RS04Mine_Sensor
 // A pulsing radar that pings nearby pawns.
 //
-// Will emit 3 radar beeps
+// Will emit 1 sonar sweep
 //
 // by SK and Aza
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G51Mine_Sensor extends BallisticProjectile;
+class RS04Mine_Sensor extends BallisticProjectile;
 
 var() Sound						ArmingSound;
 var() Sound						PingSound;
@@ -196,9 +196,9 @@ function bool IsStationary()
 
 defaultproperties
 {
-	 WeaponClass=Class'BWBP_SKC_Pro.G51Carbine'
+	 WeaponClass=Class'BWBP_SKC_Pro.RS04Pistol'
      ModeIndex=1
-	 MaxPulseNum=5
+	 MaxPulseNum=1
      ArmingSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep7'
 	 PingDirectSound=Sound'BWBP_SKC_Sounds.MJ51.Sensor-PingDirect'

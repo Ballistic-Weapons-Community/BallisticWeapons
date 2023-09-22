@@ -269,7 +269,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	// Draw dot at end of beam
-	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2 && Level.TimeSeconds - FireMode[1].NextFireTime > 0.2)
 		SpawnLaserDot(HitLocation);
 	else
 		KillLaserDot();
@@ -280,7 +280,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
 	Laser.SetLocation(Loc);
 	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
-	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2 && Level.TimeSeconds - FireMode[1].NextFireTime > 0.2)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
 	{

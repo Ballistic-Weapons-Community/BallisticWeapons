@@ -43,7 +43,7 @@ defaultproperties
 	//12ga Slug
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams_Slug
 		TraceRange=(Min=9000.000000,Max=9000.000000) //
-        DecayRange=(Min=1050,Max=3150) // 20-60m
+        DecayRange=(Min=500,Max=2150) // 10-40m
 		RangeAtten=0.2
 		TraceCount=1
 		TracerClass=Class'BallisticProV55.TraceEmitter_Default'

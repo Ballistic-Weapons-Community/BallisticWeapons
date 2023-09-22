@@ -56,7 +56,10 @@ state Shotgun
 			BW.ReloadAnim = 'OpenReload';
 			AimedFireAnim = 'SightFireAltOpen';
 			FireAnim = 'FireAltOpen';
-			M806Pistol(BW).ReloadAltAnim = 'ReloadAltOpen';
+			if (M806Pistol(BW).AltAmmo < 1)
+				M806Pistol(BW).ReloadAltAnim = 'ReloadAltOpen';
+			else
+				M806Pistol(BW).ReloadAltAnim = 'ReloadAlt2Open';
 		}
 		else
 		{
@@ -64,7 +67,10 @@ state Shotgun
 			BW.ReloadAnim = 'Reload';
 			AimedFireAnim = 'SightFireAlt';
 			FireAnim = 'FireAlt';
-			M806Pistol(BW).ReloadAltAnim = 'ReloadAlt';
+			if (M806Pistol(BW).AltAmmo < 1)
+				M806Pistol(BW).ReloadAltAnim = 'ReloadAlt';
+			else
+				M806Pistol(BW).ReloadAltAnim = 'ReloadAlt2';
 		}
 
 		if (ScopeDownOn == SDO_Fire)

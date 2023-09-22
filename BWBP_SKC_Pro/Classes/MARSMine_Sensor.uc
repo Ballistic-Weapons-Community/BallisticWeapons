@@ -13,7 +13,8 @@ class MARSMine_Sensor extends BallisticProjectile;
 var() Sound			ArmingSound;
 var() Sound			PingSound;
 var() Sound			PingDirectSound;
-var	int					SensorRadius;
+var	int				SensorRadius;
+var int				PingSoundRadius;
 
 var() class<DamageType>			MyShotDamageType;	// Damagetype to use when you get pulsed
 var() class<DamageType>			MyPulseDamageType;	// Damagetype to use when detonated by damage
@@ -177,13 +178,13 @@ function Ping(vector HitLocation)
 		{
 			if (FastTrace(A.Location, Location))
 			{
-				A.PlaySound(PingDirectSound,,2.0,,768,,);
+				A.PlaySound(PingDirectSound,,6.0,,PingSoundRadius,,);
 				if (Owner != None && Pawn(A) != None)
 					MARSAssaultRifle(Owner).AddTarget(Pawn(A));
 			}
 			else 
 			{
-				A.PlaySound(PingSound,,2.0,,768,,);
+				A.PlaySound(PingSound,,4.0,,PingSoundRadius,,);
 				if (Owner != None && Pawn(A) != None)
 					MARSAssaultRifle(Owner).AddTarget(Pawn(A));
 			}
@@ -206,7 +207,8 @@ defaultproperties
 	 MaxPulseNum=3
      ArmingSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep6'
-	 PingDirectSound=Sound'GeneralAmbience.beep7'
+	 PingDirectSound=Sound'BWBP_SKC_Sounds.MJ51.Sensor-PingDirect'
+	 PingSoundRadius=256 // PlaySound mechanics - see UDN
      SensorRadius=768
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'

@@ -1,14 +1,15 @@
 //=============================================================================
-// G51Mine_Sensor
+// RS04Mine_Tracker
 // A pulsing radar that pings nearby pawns.
 //
-// Will emit 3 radar beeps
+// Will emit several beeps over a course of time, and will flash.
+// Can be destroyed
 //
 // by SK and Aza
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G51Mine_Sensor extends BallisticProjectile;
+class RS04Mine_Tracker extends BallisticProjectile;
 
 var() Sound						ArmingSound;
 var() Sound						PingSound;
@@ -68,12 +69,6 @@ simulated event PostNetReceive()
 			TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		else TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		TeamLight.SetBase(self);
-	}	
-
-	if (bPulse != bOldPulse)
-	{
-		bOldPulse = bPulse;
-		EmitPulse(Location, vector(Rotation));
 	}
 }
 
@@ -108,10 +103,20 @@ simulated function Timer()
 
 	if (PulseNum < MaxPulseNum)
 	{
-		EmitPulse(Location, vector(Rotation));
+		Ping();
 		bPulse = !bPulse;
 	}
 	else Explode(Location, vector(Rotation));
+}
+
+// Make a sound
+function Ping()
+{
+	if (bExploded)
+		return;
+	PlaySound(PingDirectSound, , 6.0, , PingSoundRadius);
+	PulseNum++;
+	SetTimer(2.0, false);
 }
 
 simulated function ProcessTouch (Actor Other, vector HitLocation);
@@ -122,6 +127,8 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 	if (class<BallisticDamageType>(DamageType) != None && !class<BallisticDamageType>(DamageType).default.bDetonatesBombs)
 		return;
 	if (EventInstigator != Instigator && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(InstigatorController))
+		return;
+	if (EventInstigator == Base)
 		return;
 	if (StartDelay > 0)
 		return;
@@ -141,54 +148,6 @@ function BlowUp(vector HitLocation)
 	MakeNoise(1.0);
 }
 
-// Do shockwave effects and run Shockwave.
-simulated function EmitPulse(vector HitLocation, vector HitNormal)
-{
-	local int Surf;
-
-	if (bExploded)
-		return;
-
-	if (ShakeRadius > 0 || MotionBlurRadius > 0)
-		ShakeView(HitLocation);
-
-    if (ImpactManager2 != None && level.NetMode != NM_DedicatedServer)
-	{
-		if (bCheckHitSurface)
-			CheckSurface(HitLocation, HitNormal, Surf);
-		if (Instigator == None)
-			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
-		else
-			ImpactManager2.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
-	}
-
-	Ping(HitLocation);
-}
-
-// Search for players
-function Ping(vector HitLocation)
-{
-	local xPawn P;
-
-	foreach CollidingActors( class'xPawn', P, SensorRadius, Location )
-	{
-		if (P.Controller != None && P.bCanBeDamaged && P.bProjTarget  && P != Instigator && (!Level.Game.bTeamGame || !Instigator.Controller.SameTeamAs(P.Controller)))
-		{
-			if (FastTrace(P.Location, Location))
-			{
-				P.PlaySound(PingDirectSound, , 6.0, , PingSoundRadius);
-			}
-			else 
-			{
-				P.PlaySound(PingSound, , 4.0, , PingSoundRadius);	// ditto
-			}
-		}
-	}
-	PulseNum++;
-	SetTimer(2.0, false);
-
-}
-
 function bool IsStationary()
 {
 	return true;
@@ -196,18 +155,16 @@ function bool IsStationary()
 
 defaultproperties
 {
-	 WeaponClass=Class'BWBP_SKC_Pro.G51Carbine'
+	 WeaponClass=Class'BWBP_SKC_Pro.RS04Pistol'
      ModeIndex=1
 	 MaxPulseNum=5
      ArmingSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep7'
-	 PingDirectSound=Sound'BWBP_SKC_Sounds.MJ51.Sensor-PingDirect'
+	 PingDirectSound=Sound'GeneralAmbience.beep6'
 	 PingSoundRadius=256 // PlaySound mechanics - see UDN
-     SensorRadius=1024
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'
-     ImpactManager2=Class'BWBP_SKC_Pro.IM_RadarWave' //Ping fx
-     Health=40
+     Health=200
      EndDamageRadius=256.000000
      TeamLightColor=128
      ActivationDelay=2.000000

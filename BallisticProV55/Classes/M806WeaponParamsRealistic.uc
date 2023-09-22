@@ -226,15 +226,17 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.180000 //+.05
 		SightPivot=(Pitch=0,Roll=0) 
-		SightOffset=(X=-25.000000,Y=0.16,Z=0.20000)
+		SightOffset=(X=-5.000000,Y=0,Z=4.50000)
 		bAdjustHands=false
+		RootAdjust=(Yaw=0,Pitch=0)
+		WristAdjust=(Yaw=0,Pitch=0)
 		// Stats
 		PlayerSpeedFactor=1.050000 //-.05
 		InventorySize=3
 		MagAmmo=12
 		bMagPlusOne=True
 		bDualBlocked=true //too big
-		ViewOffset=(X=15.000000,Y=5.000000,Z=-3.000000)
+		ViewOffset=(X=0.00,Y=20.00,Z=-20.00)
 		WeaponName="M806 .45/16ga Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

@@ -800,7 +800,10 @@ simulated function Destroyed ()
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	if (bSilenced)
+	{
 		Mk781Attachment(ThirdPersonActor).bSilenced=True;
+		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
+	}
 
 	VisGrenades=Grenades;
 	ShellIndex = FMin(Grenades-1, 5);

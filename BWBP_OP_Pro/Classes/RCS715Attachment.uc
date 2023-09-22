@@ -16,7 +16,7 @@ defaultproperties
      MeleeImpactManager=class'IM_GunHit'
      FlashScale=0.6
      AltFlashBone="tip2"
-     BrassClass=class'Brass_MRS138Shotgun'
+     BrassClass=class'Brass_Shotgun'
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      TracerChance=0.500000
      ReloadAnim="Reload_AR"

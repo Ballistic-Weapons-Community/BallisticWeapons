@@ -401,13 +401,19 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		IdleAnim = 'OpenIdle';
 		ReloadAnim = 'OpenReload';
-		ReloadAltAnim = 'ReloadAltOpen';
+		if (AltAmmo < 1)
+			ReloadAltAnim = 'ReloadAltOpen';
+		else
+			ReloadAltAnim = 'ReloadAlt2Open';
 	}
 	else
 	{
 		IdleAnim = 'Idle';
 		ReloadAnim = 'Reload';
-		ReloadAltAnim = 'ReloadAlt';
+		if (AltAmmo < 1)
+			ReloadAltAnim = 'ReloadAlt';
+		else
+			ReloadAltAnim = 'ReloadAlt2';
 	}
 
 	if ( ThirdPersonActor != None )

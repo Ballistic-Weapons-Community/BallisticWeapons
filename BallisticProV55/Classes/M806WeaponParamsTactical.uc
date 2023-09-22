@@ -58,7 +58,7 @@ defaultproperties
 		bPenetrate=True
 		FlashScaleFactor=0.5 //model issue
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
-		Recoil=312.000000 //
+		Recoil=152.000000 //
 		Chaos=0.6 //
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -68,6 +68,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Underbarrel
 		FireInterval=0.3500
 		FireEndAnim=
+		FireAnim="SightFire"
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.5	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Underbarrel'
@@ -189,7 +190,7 @@ defaultproperties
 		WeaponPrice=800
 		//ADS
 		SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
-		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
+		SightPivot=(Pitch=-110,Roll=-675)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
@@ -249,14 +250,15 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000 //+.05
 		SightPivot=(Pitch=0,Roll=0) 
-		SightOffset=(X=-25.000000,Y=0.16,Z=0.20000)
+		SightOffset=(X=-5.000000,Y=0,Z=4.50000)
 		bAdjustHands=false
+		RootAdjust=(Yaw=0,Pitch=0)
+		WristAdjust=(Yaw=0,Pitch=0)
 		// Stats
 		DisplaceDurationMult=0.5
 		MagAmmo=12
         InventorySize=2
 		bDualBlocked=True
-		ViewOffset=(X=15.000000,Y=5.000000,Z=-3.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Underbarrel'

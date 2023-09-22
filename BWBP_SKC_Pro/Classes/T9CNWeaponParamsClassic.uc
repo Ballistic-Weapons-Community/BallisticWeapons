@@ -12,7 +12,7 @@ defaultproperties
 		WaterTraceRange=3000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.700000
-		Damage=22
+		Damage=25
 		HeadMult=2.3
 		LimbMult=0.5
 		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
@@ -47,7 +47,7 @@ defaultproperties
 		WaterTraceRange=3000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.700000
-		Damage=22
+		Damage=25
 		HeadMult=2.3
 		LimbMult=0.5
 		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
@@ -82,7 +82,7 @@ defaultproperties
 		WaterTraceRange=3000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.800000 //
-		Damage=22
+		Damage=25
 		HeadMult=2.3
 		LimbMult=0.5
 		DamageType=Class'BWBP_SKC_Pro.DTT9CN'

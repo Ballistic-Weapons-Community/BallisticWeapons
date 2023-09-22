@@ -10,11 +10,16 @@ class leMatAttachment extends HandgunAttachment;
 
 var   byte		RevolverBrass;
 var() class<BallisticShotgunFire>	FireClass;
+	
+var byte CurrentTracerMode;
+var array< class<BCTraceEmitter> >	TracerClasses[3];
+var array< class<BCImpactManager> >	ImpactManagers[3];
+var	  BallisticWeapon		myWeap;
 
 replication
 {
-	reliable if (Role == ROLE_Authority)
-		RevolverBrass;
+	reliable if ( Role==ROLE_Authority )
+		CurrentTracerMode, RevolverBrass;
 }
 
 simulated event PostNetReceive()
@@ -27,6 +32,22 @@ simulated event PostNetReceive()
 		RevolverBrass = 0;
 	}
 	super.PostNetReceive();
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	if (leMatRevolver(I) != None && leMatRevolver(I).bHasSlug)
+	{
+		CurrentTracerMode=1;
+	}
+	if (leMatRevolver(I) != None && leMatRevolver(I).bHasDecoy)
+	{
+		CurrentTracerMode=2;
+	}
 }
 
 simulated function InstantFireEffects(byte Mode)
@@ -99,8 +120,8 @@ simulated function ShotgunFireEffects(byte Mode)
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (FireClass.default.ImpactManager != None)
-				FireClass.default.ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+			if (ImpactManagers[CurrentTracerMode] != None)
+				ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 		}
 	}
 }
@@ -167,23 +188,29 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-	 WeaponClass=class'leMatRevolver'
-     FireClass=class'leMatSecondaryFire'
-     MuzzleFlashClass=class'D49FlashEmitter'
-     AltMuzzleFlashClass=class'MRT6FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     AltFlashBone="tip2"
-     BrassClass=class'Brass_Magnum'
-     BrassBone="leMat-3rd"
-     TracerMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=class'TraceEmitter_Pistol'
-     TracerChance=0.600000
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_TPm'
-     DrawScale=0.125000
+	WeaponClass=class'leMatRevolver'
+	FireClass=class'leMatSecondaryFire'
+	MuzzleFlashClass=class'D49FlashEmitter'
+	AltMuzzleFlashClass=class'MRT6FlashEmitter'
+	TracerClasses(0)=class'TraceEmitter_Shotgun' //shot
+	TracerClasses(1)=class'TraceEmitter_Default' //slug
+	TracerClasses(2)=None //decoy
+	ImpactManagers(0)=class'IM_Shell'
+	ImpactManagers(1)=class'IM_BigBulletHMG'
+	ImpactManagers(2)=class'IM_Decoy'
+	ImpactManager=class'IM_Bullet'
+	AltFlashBone="tip2"
+	BrassClass=class'Brass_Magnum'
+	BrassBone="leMat-3rd"
+	TracerMode=MU_Both
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerClass=class'TraceEmitter_Pistol'
+	TracerChance=0.600000
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_TPm'
+	DrawScale=0.125000
 }

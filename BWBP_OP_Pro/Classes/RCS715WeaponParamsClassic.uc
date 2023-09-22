@@ -48,7 +48,7 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=ClassicPrimaryEffectParams_Frag
 		ProjectileClass=Class'BWBP_OP_Pro.RCS715Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=2000.000000
+		Speed=18000.000000
 		MaxSpeed=37000.000000
 		AccelSpeed=37000.000000
 		bCombinedSplashImpact=true

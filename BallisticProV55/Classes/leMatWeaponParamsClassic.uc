@@ -116,6 +116,43 @@ defaultproperties
 		FireAnim="Fire2"
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_Slug'
+	End Object	
+	
+	//Noisemaker
+	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams_Decoy
+		TraceRange=(Min=4500.000000,Max=4500)
+		WaterTraceRange=5000.0
+		RangeAtten=0.300000
+		TraceCount=1 //
+		TracerClass=None //
+		ImpactManager=Class'BallisticProV55.IM_Decoy' //
+		Damage=45.0 //
+		HeadMult=1.5
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTleMatShotgun'
+		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
+		PenetrationEnergy=32.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Circle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
+		FlashScaleFactor=2.000000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.700000,Radius=48.000000,bAtten=True)
+		Recoil=256.000000 //
+		Chaos=-1.0
+		Inaccuracy=(X=32,Y=32)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Decoy
+		BurstFireRateFactor=1.00
+		FireAnim="Fire2"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_Decoy'
 	End Object
 		
 	//=================================================================
@@ -181,6 +218,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Slug
 		LayoutName="20ga Slug"
+		LayoutTags="slug"
 		Weight=10
 		
 		PlayerSpeedFactor=1.100000
@@ -200,8 +238,31 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Slug'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Decoy
+		LayoutName="Noisemaker"
+		LayoutTags="decoy"
+		Weight=5
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.2500
+		MagAmmo=9
+		SightPivot=(Pitch=512,Roll=-50)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-350,Pitch=2500)
+		WristAdjust=(Yaw=-3000,Pitch=-0000)
+		ViewOffset=(X=-2,Y=10.00,Z=-8.5)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Decoy'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_Slug'
+	Layouts(2)=WeaponParams'ClassicParams_Decoy'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=LeMat_Engraved

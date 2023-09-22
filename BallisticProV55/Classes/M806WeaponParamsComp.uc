@@ -178,11 +178,13 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		SightPivot=(Pitch=0,Roll=0) 
-		SightOffset=(X=-25.000000,Y=0.16,Z=0.20000)
+		SightOffset=(X=-5.000000,Y=0,Z=4.50000)
 		bAdjustHands=false
+		RootAdjust=(Yaw=0,Pitch=0)
+		WristAdjust=(Yaw=0,Pitch=0)
 		// Stats
 		bDualBlocked=true
-		ViewOffset=(X=15.000000,Y=5.000000,Z=-3.000000)
+		ViewOffset=(X=0,Y=30,Z=-20)
 		DisplaceDurationMult=0.5
 		MagAmmo=12
         InventorySize=2

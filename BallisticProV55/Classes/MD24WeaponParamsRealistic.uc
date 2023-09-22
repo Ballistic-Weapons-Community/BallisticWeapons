@@ -9,9 +9,10 @@ defaultproperties
 	
 	//10mm
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_10mm
-		TraceRange=(Min=800.000000,Max=4000.000000) //10mm Super
-		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		TraceRange=(Min=4000.000000,Max=4000.000000) //10mm Super
+		WaterTraceRange=1500.0
+		DecayRange=(Min=800.0,Max=4000.0)
+		RangeAtten=0.5
 		Damage=50.0
 		HeadMult=2.2
 		LimbMult=0.6
@@ -44,9 +45,10 @@ defaultproperties
 	
 	//.40
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=800.000000,Max=3500.000000) //.40
-		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		TraceRange=(Min=3500.000000,Max=3500.000000) //.40
+		WaterTraceRange=1500.0
+		DecayRange=(Min=800.0,Max=3500.0)
+		RangeAtten=0.5
 		Damage=37.0
 		HeadMult=2.2
 		LimbMult=0.6
@@ -79,9 +81,10 @@ defaultproperties
 	
 	//.40 supp
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Supp
-		TraceRange=(Min=800.000000,Max=3500.000000) //.40
-		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		TraceRange=(Min=3500.000000,Max=3500.000000) //.40
+		WaterTraceRange=1500.0
+		DecayRange=(Min=800.0,Max=3500.0)
+		RangeAtten=0.5
 		Damage=37.0
 		HeadMult=2.2
 		LimbMult=0.6
@@ -114,9 +117,10 @@ defaultproperties
 	
 	//.40 tac knife
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_TacKnife
-		TraceRange=(Min=800.000000,Max=3500.000000) //.40
+		TraceRange=(Min=3500.000000,Max=3500.000000) //.40
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		DecayRange=(Min=800.0,Max=3500.0)
+		RangeAtten=0.5
 		Damage=37.0
 		HeadMult=2.2
 		LimbMult=0.6

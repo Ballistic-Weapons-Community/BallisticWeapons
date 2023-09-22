@@ -36,6 +36,34 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 	
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams_Spike
+		ProjectileClass=Class'BWBP_OP_Pro.CX61Flechette'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=15000.000000
+		MaxSpeed=20000.000000
+		AccelSpeed=1000.000000
+		Damage=45
+		DamageRadius=8.000000
+		MomentumTransfer=20000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=0.700000
+		Recoil=256.000000
+		Chaos=-1.00000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX61.CX61-FireHeavy',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Spike
+		FireInterval=0.375000
+		BurstFireRateFactor=0.4
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.000000	
+		TargetState="Flechette"
+		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams_Spike'
+	End Object
+	
 	//=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -43,7 +71,7 @@ defaultproperties
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		Chaos=0.050000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoopStart',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
@@ -97,21 +125,57 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		LayoutName="5.56mm Mod"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.300000
+		//Stats
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		PlayerJumpFactor=1
 		InventorySize=6
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.300000
 		DisplaceDurationMult=1
 		MagAmmo=30
+		WeaponModes(0)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Healing Gas",ModeID="WM_FullAuto")
+		WeaponModes(2)=(bUnavailable=True)
+		InitialWeaponMode=0
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 		AltFireParams(1)=FireParams'ArenaSecondaryFireHealParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Spike
+		//Layout core
+		LayoutName="Cryon Spikes"
+		Weight=10
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.300000
+		//Stats
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		PlayerJumpFactor=1
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=16
+		WeaponModes(0)=(ModeName="Flamethrower",Value=2,ModeID="WM_BigBurst")
+		WeaponModes(1)=(ModeName="Healing Gas",Value=2,ModeID="WM_BigBurst")
+		WeaponModes(2)=(bUnavailable=True)
+		InitialWeaponMode=0
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Spike'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireHealParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Spike'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=CX61_Blue
@@ -125,7 +189,8 @@ defaultproperties
 		CamoName="Red"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainRedShine",Index=1,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(2)=(Material=TexOscillator'BW_Core_WeaponTex.A73RedLayout.A73BEnergyOsc',Index=4,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.CX61.CX61-MagShine',Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(Material=TexOscillator'BW_Core_WeaponTex.A73RedLayout.A73BEnergyOsc',Index=4,AIndex=2,PIndex=2)
 		Weight=15
 	End Object
 	
@@ -134,6 +199,7 @@ defaultproperties
 		CamoName="White"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainWhiteShine",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.CX61.CX61-MagShine',Index=2,AIndex=0,PIndex=0)
 		Weight=15
 	End Object
 	
@@ -142,6 +208,7 @@ defaultproperties
 		CamoName="Hex Blue"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainHexShine",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.CX61.CX61-MagShine',Index=2,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	
@@ -150,6 +217,7 @@ defaultproperties
 		CamoName="Limited"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainStripesShine",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.CX61.CX61-MagShine',Index=2,AIndex=0,PIndex=0)
 		Weight=7
 	End Object
 	
@@ -158,7 +226,9 @@ defaultproperties
 		CamoName="MEAT"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainMeat",Index=1,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(2)=(Material=TexOscillator'BW_Core_WeaponTex.A73RedLayout.A73BEnergyOsc',Index=4,AIndex=2,PIndex=2)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.CX61.CX61-MagShine',Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(3)=(Material=TexOscillator'BW_Core_WeaponTex.A73RedLayout.A73BEnergyOsc',Index=4,AIndex=2,PIndex=2)
+		
 		Weight=3
 	End Object
 	
@@ -167,6 +237,7 @@ defaultproperties
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CX61Camos.CX61-MainGold",Index=1,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.CX61.CX61-MagShine',Index=2,AIndex=0,PIndex=0)
 		Weight=1
 	End Object
 	

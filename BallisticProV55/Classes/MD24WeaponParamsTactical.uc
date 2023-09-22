@@ -132,7 +132,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_10mm
-		FireInterval=0.28000
+		FireInterval=0.22000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.000000	

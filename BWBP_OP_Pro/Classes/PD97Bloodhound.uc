@@ -17,11 +17,11 @@
 //===========================================================================
 class PD97Bloodhound extends BallisticHandgun;
 
-var(PD97) PD97TazerEffect TazerEffect;
+var(PD97) PD97TazerEffect 		TazerEffect;
 var(PD97) array<PD97DartControl> StruckTargets;
-var(PD97) bool bShotgunMode; //Am I a shotgun? Are you??
+var(PD97) bool 					bShotgunMode; //Am I a shotgun? Are you??
 var(PD97) name					TazerLoadAnim;	//Anim for grenade reload
-var(PD97) BUtil.FullSound						TazerLoadSound;		//
+var(PD97) BUtil.FullSound		TazerLoadSound;		//
 
 var(PD97) rotator DrumRot;
 var(PD97) byte DrumPos;
@@ -34,9 +34,9 @@ var(PD97) array<Name> SpareShellBones[5];
 var(PD97)   Pawn			LockedTarget;
 var(PD97)	  bool			bLockedOn;
 var(PD97)   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can be used as camera or directed with laser
-var(PD97) array<Actor> ActiveRockets;
-var(PD97) sound		LockedOnSound;		// beep!
-var(PD97) sound		LockedOffSound;		// lock it off
+var(PD97) array<Actor> 		ActiveRockets;
+var(PD97) sound				LockedOnSound;		// beep!
+var(PD97) sound				LockedOffSound;		// lock it off
 var(PD97) PD97TrackerBeacon ActiveBeacon;
 
 

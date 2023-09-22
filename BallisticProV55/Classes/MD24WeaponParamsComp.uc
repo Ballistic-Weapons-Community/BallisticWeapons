@@ -127,7 +127,7 @@ defaultproperties
 		FireInterval=0.23000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
-		FireAnimRate=1.450000	
+		FireAnimRate=1.20000	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_10mm'
 	End Object
 		

@@ -1,10 +1,12 @@
 //=============================================================================
-// AM67ViewMesser.
+// GRS9ViewMesser.
+//
+// Slightly weaker view messer for compact pistols
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AM67ViewMesser extends Actor;
+class GRS9ViewMesser extends Actor;
 
 var PlayerController 	PC;
 var float	FlashF;
@@ -36,14 +38,14 @@ simulated function AddImpulse(float Amount)
 	else
 		PC.ClientFlash(FlashF+(1-Amount), FlashV);
 	if (Amount > 0 )
-		class'BC_MotionBlurActor'.static.DoMotionBlur(PC, 5.0 * Amount, 10 * Amount);
+		class'BC_MotionBlurActor'.static.DoMotionBlur(PC, 3.0 * Amount, 10 * Amount);
 }
 
 defaultproperties
 {
-     FlashF=-1.200000
+     FlashF=-0.600000
      FlashV=(X=2500.000000,Y=2500.000000,Z=2500.000000)
-     AltFlashF=-1.800000
+     AltFlashF=-1.400000
      AltFlashV=(X=500.000000,Y=500.000000,Z=500.000000)
      bHidden=True
      bOnlyRelevantToOwner=True

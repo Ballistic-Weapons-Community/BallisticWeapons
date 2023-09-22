@@ -166,7 +166,7 @@ simulated function InstantFireEffects(byte Mode)
 		super.InstantFireEffects(Mode);
 		return;
 	}
-//	L = GetModeTipLocation();
+
 	L = Instigator.Location + Instigator.EyePosition();
 	Dir = Normal(mHitLocation - L);
 

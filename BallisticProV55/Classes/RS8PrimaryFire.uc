@@ -108,7 +108,7 @@ function PlayFiring()
 		FireAnim = 'Fire';
 	}
 
-	if (RS8Pistol(Weapon).bSilenced)
+	if (RS8Pistol(Weapon).bSilenced || RS8Pistol(Weapon).bCompensated)
 		Weapon.SetBoneScale (0, 1.0, RS8Pistol(Weapon).SilencerBone);
 	else
 		Weapon.SetBoneScale (0, 0.0, RS8Pistol(Weapon).SilencerBone);

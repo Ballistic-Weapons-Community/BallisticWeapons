@@ -35,6 +35,27 @@ const NumShells	= 9;
 var   Emitter		LaserDot;
 var   bool			bLaserOn;
 
+var()	bool	bHasSlug;
+var()	bool	bHasDecoy;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasSlug=false;
+	bHasDecoy=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
+	{
+		bHasSlug=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "decoy") != -1)
+	{
+		bHasDecoy=true;
+	}
+}
+
 simulated state PendingSGReload extends PendingDualAction
 {
 	simulated function BeginState()	{	OtherGun.LowerHandGun();	}

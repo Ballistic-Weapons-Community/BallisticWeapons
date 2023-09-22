@@ -8,7 +8,8 @@
 //=============================================================================
 class RS8Pistol extends BallisticHandgun;
 
-var   bool		bSilenced;				// Silencer on. Silenced
+var()   bool		bSilenced;				// Silencer on. Silenced
+var() bool		bCompensated;			// Compensated, uses same bone as sil
 var() name		SilencerBone;			// Bone to use for hiding silencer
 var() name		SilencerOnAnim;			// Think hard about this one...
 var() name		SilencerOffAnim;		//
@@ -16,14 +17,14 @@ var() sound		SilencerOnSound;		// Silencer stuck on sound
 var() sound		SilencerOffSound;		//
 var() sound		SilencerOnTurnSound;	// Silencer screw on sound
 var() sound		SilencerOffTurnSound;	//
-var   bool			bLaserOn;
-var   LaserActor	Laser;
+var()   bool		bLaserOn;
+var()   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
-var   Emitter		LaserBlast;
-var   Emitter		LaserDot;
+var()   Emitter		LaserBlast;
+var()   Emitter		LaserDot;
 
-var   bool			bStriking;
+var()   bool		bStriking;
 var() bool			bHasKnife;
 
 replication
@@ -41,11 +42,17 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	bHasKnife=false;
+	bCompensated=false;
 	
 	if (InStr(WeaponParams.LayoutTags, "tacknife") != -1)
 	{
 		bHasKnife=true;
 		MeleeFireMode.Damage = 70;
+	}
+	
+	if (InStr(WeaponParams.LayoutTags, "comp") != -1)
+	{
+		bCompensated=true;
 	}
 }
 
@@ -90,8 +97,9 @@ simulated function OnAimParamsChanged()
 
 simulated function ApplyLaserAim()
 {
-	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimAdjustTime *= 0.65;
 	AimComponent.AimSpread.Max *= 0.65;
+	AimComponent.AimSpread.Min *= 0.65;
 }
 
 simulated event PostNetReceive()
@@ -213,7 +221,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	/// Draw dot at end of beam
-	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.1)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.1 && Level.TimeSeconds - FireMode[1].NextFireTime > 0.2)
 	{
 	    GetAnimParams(0, anim, frame, rate);
  		if (anim != SilencerOnAnim && anim != SilencerOffAnim)
@@ -233,7 +241,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
 	Laser.SetLocation(Loc);
 	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
-	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2 && Level.TimeSeconds - FireMode[1].NextFireTime > 0.2)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
 	{
@@ -296,7 +304,8 @@ exec simulated function WeaponSpecial(optional byte i)
 		return;
 	if (Clientstate != WS_ReadyToFire)
 		return;
-	
+	if (bCompensated)
+		return;
 	if (bHasKnife)
 	{
 		ServerSwitchLaser(!bLaserOn);
@@ -389,7 +398,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (AIController(Instigator.Controller) != None)
 		bSilenced = (FRand() > 0.5);
 
-	if (bSilenced)
+	if (bSilenced || bCompensated)
 		SetBoneScale (0, 1.0, SilencerBone);
 	else
 		SetBoneScale (0, 0.0, SilencerBone);
@@ -436,7 +445,7 @@ simulated function PlayReload()
 	if (MagAmmo < 1)
 		SetBoneScale (1, 0.0, 'Bullet');
 
-	if (bSilenced)
+	if (bSilenced || bCompensated)
 		SetBoneScale (0, 1.0, SilencerBone);
 	else
 		SetBoneScale (0, 0.0, SilencerBone);

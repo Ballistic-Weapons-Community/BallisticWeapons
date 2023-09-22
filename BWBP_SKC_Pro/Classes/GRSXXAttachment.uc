@@ -139,7 +139,7 @@ simulated function InstantFireEffects(byte Mode)
 	{
 		if (VSize(PreviousHitLoc - mHitLocation) < 2)
 			return;
-		PreviousHitLoc = mHitLocation;
+		//PreviousHitLoc = mHitLocation;
 		ImpactManager = class'IM_GRSXXLaser';
 	}
 	super.InstantFireEffects(Mode);
@@ -150,6 +150,7 @@ defaultproperties
 	WeaponClass=class'GRSXXPistol'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXFlashemitter'
      ImpactManager=class'IM_Bullet'
+     //AltImpactManager=class'IM_GRSXXLaser'
      BrassClass=Class'BWBP_SKC_Pro.Brass_GRSXX'
      InstantMode=MU_Both
      TracerClass=class'TraceEmitter_Pistol'

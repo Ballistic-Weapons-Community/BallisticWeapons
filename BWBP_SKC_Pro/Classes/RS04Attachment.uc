@@ -7,6 +7,7 @@
 class RS04Attachment extends HandgunAttachment;
 
 var bool					bHasKnife;	//shank?
+var bool					bHasFlash;	//blind?
 var bool		bLightsOn, bLightsOnOld;
 var Projector	FlashLightProj;
 var Emitter		FlashLightEmitter;
@@ -27,6 +28,10 @@ function InitFor(Inventory I)
 	if (RS04Pistol(I) != None && RS04Pistol(I).bHasKnife)
 	{
 		bHasKnife=true;
+	}
+	if (RS04Pistol(I) != None && RS04Pistol(I).bHasFlash)
+	{
+		bHasFlash=true;
 	}
 }
 
@@ -131,10 +136,25 @@ simulated function Destroyed()
 
 simulated function InstantFireEffects(byte Mode)
 {
-	if (FiringMode != 0)
+	if (FiringMode != 0 && bHasKnife)
 		MeleeFireEffects();
+	else if (FiringMode != 0 && bHasFlash)
+		FlashFireEffects();
 	else
 		Super.InstantFireEffects(FiringMode);
+}
+
+simulated function FlashFireEffects()
+{
+	local vector L, Dir;
+
+	L = Instigator.Location + Instigator.EyePosition();
+	Dir = Normal(mHitLocation - L);
+
+	if (Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
+		Spawn(class'AM67FlashProjector',Instigator,,L+Dir*25,rotator(Dir));
+	else
+		Spawn(class'AM67FlashProjector',Instigator,,GetTipLocation(),rotator(Dir));
 }
 
 // Do trace to find impact info and then spawn the effect
@@ -170,12 +190,37 @@ simulated function MeleeFireEffects()
 		class'IM_Knife'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, Instigator);
 }
 
+simulated function FlashMuzzleFlash(byte Mode)
+{
+	local rotator R;
+	local float DF;
+
+	if (Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
+		return;
+
+	if (Mode != 0 && bHasFlash && AltMuzzleFlashClass != None)
+	{
+		if (AltMuzzleFlash == None)
+			class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
+		Emitter(AltMuzzleFlash).Emitters[0].StartSizeRange.X.Min = (200 + DF*600) * DrawScale * FlashScale;
+		Emitter(AltMuzzleFlash).Emitters[0].StartSizeRange.X.Max = Emitter(AltMuzzleFlash).Emitters[0].StartSizeRange.X.Min;
+		AltMuzzleFlash.Trigger(self, Instigator);
+	}
+	else if (Mode == 0 && MuzzleFlashClass != None)
+	{
+		if (MuzzleFlash == None)
+			class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
+		MuzzleFlash.Trigger(self, Instigator);
+		if (bRandomFlashRoll)	SetBoneRotation(FlashBone, R, 0, 1.f);
+	}
+}
+
 defaultproperties
 {
 	WeaponClass=class'RS04Pistol'
 	SlavePivot=(Roll=32768)
 	MuzzleFlashClass=class'XK2FlashEmitter'
-	AltMuzzleFlashClass=class'XK2SilencedFlash'
+    AltMuzzleFlashClass=class'AM67FlashEmitter'
 	ImpactManager=class'IM_Bullet'
 	AltFlashBone="tip2"
 	BrassClass=class'Brass_Pistol'

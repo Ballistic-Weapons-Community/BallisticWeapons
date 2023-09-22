@@ -7,13 +7,15 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//.40
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=800.000000,Max=4000.000000)
-		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		TraceRange=(Min=3500.000000,Max=3500.000000) //.40
+		WaterTraceRange=1500.0
+		DecayRange=(Min=800.0,Max=3500.0)
+		RangeAtten=0.5
 		Damage=37.0
-		HeadMult=2.216216
-		LimbMult=0.594594
+		HeadMult=2.2
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTRS8Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
@@ -38,6 +40,40 @@ defaultproperties
 		FireAnimRate=2.000000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
+	
+	//10mm
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Heavy
+		TraceRange=(Min=4000.000000,Max=4000.000000) //10mm Super
+		WaterTraceRange=1500.0
+		DecayRange=(Min=800.0,Max=4000.0)
+		RangeAtten=0.5
+		Damage=50.0
+		HeadMult=2.2
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTRS8Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
+		PenetrationEnergy=9.000000
+		PenetrateForce=35
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.850000
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Pistol.RS8-HFire',Volume=1.500000)
+		Recoil=1000.000000
+		Chaos=0.080000
+		Inaccuracy=(X=11,Y=11)
+		BotRefireRate=0.750000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Heavy
+		FireInterval=0.250000
+		BurstFireRateFactor=1.00
+		FireAnimRate=1.500000	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Heavy'
+	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
@@ -58,6 +94,18 @@ defaultproperties
 		BurstFireRateFactor=1.00
 	FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 	
 	//Stab
 	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams_TacKnife
@@ -191,33 +239,37 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_10mm
 		//Layout core
-		LayoutName="10mm Super"
+		LayoutName="10mm RDS"
+		LayoutTags="comp"
 		Weight=10
-		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
-		//Stats
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
 		WeaponPrice=750
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Heavy'
+		ViewOffset=(X=0.000000,Y=10.000000,Z=-10.000000)
+		AllowedCamos(0)=5
+		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.12
-		MagAmmo=14
-		bMagPlusOne=True
-		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)
-		SightPivot=(Pitch=-200,Roll=-1050)
+		SightingTime=0.120000
+		SightOffset=(X=0,Y=-2,Z=21.8)
+		SightPivot=(Pitch=0,Roll=-1050)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-290,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
-		WeaponName="RS8 10mm Handgun"
+		//Functions
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		MagAmmo=14
+		bMagPlusOne=True
+		WeaponName="RS8 10mm Handgun (RDS)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Heavy'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'
 	Layouts(1)=WeaponParams'RealisticParams_TacKnife'
-	//Layouts(2)=WeaponParams'RealisticParams_10mm'
+	Layouts(2)=WeaponParams'RealisticParams_10mm'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS8_Silver
@@ -258,9 +310,20 @@ defaultproperties
 		Weight=1
 	End Object
 	
+	Begin Object Class=WeaponCamo Name=RS45_Silver
+		Index=5
+		CamoName="Silver"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.RS8.RS8-MainHeavy',Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-RDS-Glow',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney',Index=3,AIndex=0,PIndex=0)
+		Weight=30
+	End Object
+	
 	Camos(0)=WeaponCamo'RS8_Silver'
 	Camos(1)=WeaponCamo'RS8_Gray'
 	Camos(2)=WeaponCamo'RS8_Black'
 	Camos(3)=WeaponCamo'RS8_Rainbow'
 	Camos(4)=WeaponCamo'RS8_Gold'
+	Camos(5)=WeaponCamo'RS45_Silver'
 }
