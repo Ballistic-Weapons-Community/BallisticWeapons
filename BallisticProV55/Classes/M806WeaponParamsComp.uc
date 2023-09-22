@@ -156,7 +156,7 @@ defaultproperties
 		SightOffset=(X=0,Y=0,Z=18)
 		SightPivot=(Pitch=0,Roll=0)
 		//Function
-		ViewOffset=(X=0,Y=30,Z=-20)
+		ViewOffset=(X=0.00,Y=20.00,Z=-20.00)
 		DisplaceDurationMult=0.5
 		MagAmmo=12
         InventorySize=2

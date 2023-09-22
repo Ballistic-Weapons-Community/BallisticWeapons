@@ -16,7 +16,7 @@ var	  BallisticWeapon		myWeap;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLightsOn, bHasKnife;
+		bLightsOn, bHasKnife, bHasFlash;
 }
 
 function InitFor(Inventory I)

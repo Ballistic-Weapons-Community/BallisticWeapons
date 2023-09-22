@@ -42,9 +42,9 @@ var() BUtil.FullSound		SensorLoadSound;		//
 replication
 {
 	reliable if (Role < ROLE_Authority)
-		ServerFlashLight;
+		ServerFlashLight, ServerPing;
 	reliable if (Role == ROLE_Authority)
-		AltCharge, bLoaded;
+		AltCharge;
 }
 
 
@@ -75,7 +75,7 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "sensor") != -1)
 	{
 		bHasSensor=true;
-		bLoaded=true;
+		RS04SecondaryFire(FireMode[1]).bLoaded=true;
 		bShowChargingBar=true;
 		AmmoClass[1] = class'Ammo_G51Grenades';
 	}
@@ -87,9 +87,9 @@ simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 exec simulated function WeaponSpecial(optional byte i)
 {
 	SafePlayAnim(FlashlightAnim, 1, 0, ,"FIRE");
-	if (bHasSensor && bLoaded && AltCharge >= default.AltCharge)
+	if (bHasSensor && RS04SecondaryFire(FireMode[1]).bLoaded && AltCharge >= default.AltCharge)
 	{
-		Ping();
+		ServerPing();
 	}
 	if (bHasLight)
 	{
@@ -143,7 +143,7 @@ simulated function KillProjector()
 //===================================================
 
 // Search for players
-function Ping()
+function ServerPing()
 {
 	local xPawn P;
 	PlaySound(PingSound, , 2.0, , PingSoundRadius*2);
@@ -169,7 +169,7 @@ function Ping()
 // Load in a sensor
 simulated function LoadSensor()
 {
-	if (Ammo[1].AmmoAmount < 1 || bLoaded)
+	if (Ammo[1].AmmoAmount < 1 || RS04SecondaryFire(FireMode[1]).bLoaded)
 		return;
 	if (ReloadState == RS_None)
 	{
@@ -191,7 +191,49 @@ simulated function bool IsReloadingSensor()
 simulated function Notify_SensorReload()	
 {	
 	class'BUtil'.static.PlayFullSound(self, SensorLoadSound);
-	bLoaded = true; 
+	RS04SecondaryFire(FireMode[1]).bLoaded = true; 
+}
+
+function ServerStartReload (optional byte i)
+{
+	local int channel;
+	local name seq;
+	local float frame, rate;
+
+	if (bPreventReload)
+		return;
+	if (ReloadState != RS_None)
+		return;
+
+	GetAnimParams(channel, seq, frame, rate);
+	
+	if (seq == SensorLoadAnim)
+		return;
+
+	if (bHasSensor && (i == 1 || (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1)))
+	{
+		if (AmmoAmount(1) > 0 && !IsReloadingSensor())
+		{
+			LoadSensor();
+			ClientStartReload(1);
+		}
+		return;
+	}
+	super.ServerStartReload();
+}
+
+simulated function ClientStartReload(optional byte i)
+{
+	if (Level.NetMode == NM_Client)
+	{
+		if (bHasSensor && (i == 1 || (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1)))
+		{
+			if (AmmoAmount(1) > 0 && !IsReloadingSensor())
+				LoadSensor();
+		}
+		else
+			CommonStartReload(i);
+	}
 }
 
 simulated event Tick(float DT)
@@ -206,7 +248,7 @@ simulated event Tick(float DT)
 			StartProjector();
 	}
 	
-	if (bHasFlash || (bHasSensor && bLoaded))
+	if (bHasFlash || (bHasSensor && RS04SecondaryFire(FireMode[1]).bLoaded))
 	{
 		if (AltCharge < default.AltCharge && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
 		{
@@ -223,7 +265,7 @@ simulated function float ChargeBar()
 {
 	if (bHasSensor)
 	{
-		if (!bLoaded)
+		if (!RS04SecondaryFire(FireMode[1]).bLoaded)
 			return 0;
 		else
 			return FClamp(AltCharge/default.AltCharge, 0, 1);

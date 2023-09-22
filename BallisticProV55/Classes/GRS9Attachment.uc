@@ -24,7 +24,7 @@ var	  BallisticWeapon		myWeap;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn, bHasCombatLaser;
+		bLaserOn, bHasCombatLaser, bHasKnife, bHasFlash;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot, bBigLaser;
 }

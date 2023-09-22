@@ -121,7 +121,6 @@ simulated function OnWeaponParamsChanged()
 	}
 	if (InStr(WeaponParams.LayoutTags, "start_suppressed") != -1)
 	{
-		Mk781Attachment(ThirdPersonActor).SetSilenced(true);
 		bSilenced = true;
 		BFireMode[0].bAISilent = true;
 		

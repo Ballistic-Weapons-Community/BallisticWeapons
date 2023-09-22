@@ -197,6 +197,7 @@ defaultproperties
 		SightingTime=0.20
         SightMoveSpeedFactor=0.6
 		//Stats
+		ViewOffset=(X=0,Y=30,Z=-20)
 		DisplaceDurationMult=0.5
 		MagAmmo=12
         InventorySize=2
@@ -228,6 +229,7 @@ defaultproperties
 		SightOffset=(X=0,Y=0,Z=18)
 		SightPivot=(Pitch=0,Roll=0)
 		//Function
+		ViewOffset=(X=0.00,Y=20.00,Z=-20.00)
 		DisplaceDurationMult=0.5
 		MagAmmo=12
         InventorySize=2
@@ -255,6 +257,7 @@ defaultproperties
 		RootAdjust=(Yaw=0,Pitch=0)
 		WristAdjust=(Yaw=0,Pitch=0)
 		// Stats
+		ViewOffset=(X=0,Y=30,Z=-20)
 		DisplaceDurationMult=0.5
 		MagAmmo=12
         InventorySize=2

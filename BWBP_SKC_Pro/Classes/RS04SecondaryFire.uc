@@ -8,9 +8,12 @@
 //=============================================================================
 class RS04SecondaryFire extends BallisticMeleeFire;
 
+//sensor
 var() Vector			SpawnOffset;		// Projectile spawned at this offset
 var	  Projectile		Proj;				// The projectile actor
+var   bool		bLoaded;
 
+//flash
 var() Sound				ChargeSound;
 var()	byte			ChargeSoundPitch;
 var() float				DecayCharge;
@@ -24,7 +27,7 @@ function PlayPreFire()
 {
 	super.PlayPreFire();
 
-	MD24Pistol(Weapon).bStriking = true;
+	RS04Pistol(Weapon).bStriking = true;
 }
 
 function PlayFiring()
@@ -264,7 +267,7 @@ simulated state Projectile
 		local name seq;
 		local float frame, rate;
 
-		if (!RS04Pistol(Weapon).bLoaded)
+		if (!bLoaded)
 		{
 			weapon.GetAnimParams(channel, seq, frame, rate);
 			if (seq == RS04Pistol(Weapon).SensorLoadAnim)
@@ -285,11 +288,11 @@ simulated state Projectile
 		if (!CheckWeaponMode())
 			return false;		// Will weapon mode allow further firing
 
-		if(!Super.AllowFire() || !RS04Pistol(Weapon).bLoaded)
+		if(!Super.AllowFire() || !bLoaded)
 		{
 			if (DryFireSound.Sound != None)
 				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
-			CheckSensor();
+			BW.EmptyFire(1);
 			return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
 		}
 
@@ -306,7 +309,7 @@ simulated state Projectile
 			
 		Super.ModeDoFire();
 		
-		RS04Pistol(Weapon).bLoaded = false;
+		bLoaded = false;
 		RS04Pistol(Weapon).AltCharge = 0;
 		PreFireTime = 0;
 	}

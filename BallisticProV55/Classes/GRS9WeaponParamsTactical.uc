@@ -307,9 +307,9 @@ defaultproperties
 		LayoutName="Tazer"
 		LayoutTags="no_combat_laser,target_laser,tacknife"
 		//Attachments
-		WeaponBoneScales(0)=(BoneName="Laser",Slot=4,Scale=0.1f)
+		WeaponBoneScales(0)=(BoneName="LAM",Slot=4,Scale=0)
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_GRS9Melee'
-		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Laser',BoneName="Muzzle",AugmentOffset=(x=-20,y=-3,z=-20),Scale=0.25,AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Laser',BoneName="Muzzle",AugmentOffset=(x=-20,y=-3,z=-20),Scale=0.25,AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
 		//ADS
 		SightOffset=(X=0,Y=-0.3,Z=3.5)
         SightingTime=0.200000

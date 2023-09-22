@@ -177,6 +177,7 @@ defaultproperties
 		RootAdjust=(Yaw=-290,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
 		//Functions
+		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		bDualBlocked=True
 		DisplaceDurationMult=0.33
 		MagAmmo=9
@@ -194,6 +195,7 @@ defaultproperties
 		Weight=10
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
+		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		//ADS
 		SightingTime=0.20
         SightMoveSpeedFactor=0.6
