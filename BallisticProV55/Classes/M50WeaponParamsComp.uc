@@ -168,13 +168,14 @@ defaultproperties
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
-		//Stats
-		CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
+		//ADS
         SightingTime=0.35
 		SightMoveSpeedFactor=0.9
 		SightOffset=(X=-8,Y=0.08,Z=2.7)
 		SightPivot=(Pitch=200)
+		//Stats
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
         MagAmmo=30
         InventorySize=6
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -195,15 +196,15 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
 		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		//GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.05)
         WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
+		//ADS
+        SightingTime=0.35
+		SightMoveSpeedFactor=0.9
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.40000)
 		SightPivot=(Pitch=80,Roll=0,Yaw=0)
 		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-        SightingTime=0.35
-		SightMoveSpeedFactor=0.9
         MagAmmo=30
         InventorySize=6
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -226,13 +227,14 @@ defaultproperties
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-1.4,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.04,AugmentOffset=(x=-20,y=0,z=-1.5),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
         WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
+		//ADS
+        SightingTime=0.35
+		SightMoveSpeedFactor=0.9
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.35000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-        SightingTime=0.35
-		SightMoveSpeedFactor=0.9
         MagAmmo=30
         InventorySize=6
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -260,7 +262,7 @@ defaultproperties
 		MaxZoom=3
 		//ADS
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.35
+		SightingTime=0.4
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.50000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		//Function
