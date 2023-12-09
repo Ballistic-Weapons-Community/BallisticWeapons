@@ -23,7 +23,7 @@ defaultproperties
         DamageTypeArm=Class'BallisticProV55.DTAM67Pistol'
         PenetrateForce=200
         bPenetrate=True
-        MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
         FlashScaleFactor=0.900000
         Recoil=1536.000000
         Chaos=0.2

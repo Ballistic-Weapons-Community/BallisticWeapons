@@ -203,6 +203,10 @@ defaultproperties
 		//Layout core
 		LayoutName="Iron Sights"
 		Weight=30
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		//ADS
@@ -227,6 +231,10 @@ defaultproperties
 		LayoutName="Gauss Mod"
 		LayoutTags="gauss"
 		Weight=5
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		//ADS
