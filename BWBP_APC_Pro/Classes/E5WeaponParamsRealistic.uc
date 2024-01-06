@@ -196,7 +196,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYWeapon_Shine",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYWeapon2_Shine",Index=2,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYPadding_Shine",Index=4,AIndex=2,PIndex=2)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
 		Weight=15
@@ -208,7 +208,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5-MainBlack",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5-MiscBlack",Index=2,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYPadding_Shine",Index=4,AIndex=2,PIndex=2)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
 		Weight=10
@@ -220,7 +220,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSWeapon_Shine",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSWeapon2_Shine",Index=2,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSPadding_Shine",Index=4,AIndex=2,PIndex=2)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
 		Weight=10
@@ -232,7 +232,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5UTC-Main-Shine",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5UTC-Main2-Shine",Index=2,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.E5Camos.E5UTC-Padding-Shine",Index=4,AIndex=2,PIndex=2)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
 		Weight=3
@@ -244,7 +244,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_AUWeapon_Shine",Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_AUWeapon2_Shine",Index=2,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_OP_Tex.MVPR.Shader',Index=3,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_AUPadding_Shine",Index=4)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5,AIndex=-1,PIndex=-1)
 		Weight=1

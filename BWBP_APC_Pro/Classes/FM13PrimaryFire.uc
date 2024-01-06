@@ -247,7 +247,7 @@ defaultproperties
      FireChaos=0.30000
      XInaccuracy=150.000000
      YInaccuracy=150.000000
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
      FireAnim="FireCombined"
      FireEndAnim=
      FireAnimRate=0.9
@@ -259,7 +259,7 @@ defaultproperties
      ShakeOffsetMag=(X=-30.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
-	 ClipFinishSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Roar',Volume=1.900000,Radius=1024.000000,Pitch=0.500000,bNoOverride=True)
+	 ClipFinishSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Roar',Volume=1.900000,Radius=1024.000000,Pitch=0.500000,bNoOverride=True)
 	 
 	 // AI
 	 bInstantHit=True

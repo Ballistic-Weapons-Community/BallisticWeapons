@@ -18,7 +18,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_APC_Pro.DTFM13Shotgun'
 		MuzzleFlashClass=Class'BWBP_APC_Pro.FM13FlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
 		Recoil=1792.000000
 		Chaos=1.000000
 		SpreadMode=FSM_Rectangle
@@ -51,7 +51,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams

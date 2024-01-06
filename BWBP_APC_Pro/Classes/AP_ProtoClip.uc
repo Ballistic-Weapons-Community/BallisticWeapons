@@ -48,7 +48,7 @@ defaultproperties
      InventoryType=Class'BWBP_APC_Pro.Ammo_Proto'
      PickupMessage="You picked up Prototype LMG rounds."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_CC_Static.ProtoLMG.ProtoLMG_SM_Ammo'
+     StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM_Ammo'
      DrawScale=0.100000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

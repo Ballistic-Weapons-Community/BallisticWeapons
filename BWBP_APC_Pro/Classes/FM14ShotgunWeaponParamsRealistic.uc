@@ -24,7 +24,7 @@ defaultproperties
 			WarnTargetPct=0.5	
 			SpreadMode=FSM_Rectangle
 			Inaccuracy=(X=200,Y=200)
-			FireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+			FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
 		End Object
 
 		Begin Object Class=FireParams Name=RealisticPrimaryFireParams
@@ -50,7 +50,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams

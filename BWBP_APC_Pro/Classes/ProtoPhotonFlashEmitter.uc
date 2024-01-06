@@ -9,7 +9,7 @@ class ProtoPhotonFlashEmitter extends BallisticEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter5
-         StaticMesh=StaticMesh'BWBP_CC_Static.ProtoLMG.ProtoLMGMuzzleFlash'
+         StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMGMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

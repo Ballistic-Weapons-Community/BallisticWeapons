@@ -39,7 +39,7 @@ defaultproperties
      AimedFireAnim="SightFire"
      FireRecoil=1280.000000
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
      FireAnim="Fire"
      FireEndAnim=
      FireAnimRate=1.100000

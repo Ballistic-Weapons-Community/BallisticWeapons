@@ -65,7 +65,7 @@ defaultproperties
      AimedFireAnim="SightFire"
      FireRecoil=1280.000000
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
      FireAnim="Fire"
      FireEndAnim=
      FireAnimRate=1.100000
@@ -78,7 +78,7 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
 	 ProjectileClass=Class'BWBP_APC_Pro.FM13Grenade'
-	 DragonSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-RoarBig',Volume=1.800000,Radius=1024.000000,Pitch=0.500000,bNoOverride=True)
+	 DragonSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-RoarBig',Volume=1.800000,Radius=1024.000000,Pitch=0.500000,bNoOverride=True)
 	 
 	 // AI
 	 bInstantHit=True

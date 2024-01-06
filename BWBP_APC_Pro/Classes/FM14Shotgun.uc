@@ -295,7 +295,7 @@ defaultproperties
 {
 	SingleLoadAnim="LoadSpecial"
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_CC_Tex.FM14.BigIcon_FM14'
+	BigIconMaterial=Texture'BWBP_OP_Tex.FM14.BigIcon_FM14'
 	BigIconCoords=(Y1=35,Y2=230)
 	bWT_Shotgun=True
 	ManualLines(0)="Long-ranged pump-action shotgun fire. Slug rounds and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
@@ -307,7 +307,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
-	CockSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Cock')
+	CockSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Cock')
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=1.100000
 	BringUpTime=1.400000
@@ -347,7 +347,7 @@ defaultproperties
 	PickupClass=Class'BWBP_APC_Pro.FM14Pickup'
 	PlayerViewOffset=(X=-14.000000,Y=5.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.FM14Attachment'
-	IconMaterial=Texture'BWBP_CC_Tex.FM14.SmallIcon_FM14'
+	IconMaterial=Texture'BWBP_OP_Tex.FM14.SmallIcon_FM14'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="[B] FM14 Pitbull Blunderbuss"
 	bNoCrosshairInScope=True
@@ -357,6 +357,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_Pitbull'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_FM14'
 	DrawScale=0.500000
 }

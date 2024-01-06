@@ -3,7 +3,7 @@
 //=============================================================================
 class ProtoSMG extends BallisticWeapon;
 
-#exec OBJ LOAD File=BWBP_CC_Tex.utx
+#exec OBJ LOAD File=BWBP_OP_Tex.utx
 
 var() name			PhotonLoadAnim, PhotonLoadEmptyAnim;	// Anim for reloading photon ammo
 
@@ -437,7 +437,7 @@ simulated function ScopeViewTwo()
 		
 	if (SightingState == SS_None)
 	{
-		ScopeViewTex = Texture'BWBP_CC_Tex.ProtoLMG.ProtoScope1';
+		ScopeViewTex = Texture'BWBP_OP_Tex.ProtoLMG.ProtoScope1';
 		if (ZoomType == ZT_Irons)
 		{
 			SightPivot = ScopeSightPivot;
@@ -582,7 +582,7 @@ defaultproperties
 	//AltClipSlideInSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_CC_Tex.ProtoLMG.BigIcon_ProtoLMG'
+	BigIconMaterial=Texture'BWBP_OP_Tex.ProtoLMG.BigIcon_ProtoLMG'
 	BigIconCoords=(X1=16,Y1=30)
 	bWT_Bullet=True
 	bWT_Shotgun=True
@@ -639,7 +639,7 @@ defaultproperties
 	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-18.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_APC_Pro.ProtoAttachment'
-	IconMaterial=Texture'BWBP_CC_Tex.ProtoLMG.SmallIcon_ProtoLMG'
+	IconMaterial=Texture'BWBP_OP_Tex.ProtoLMG.SmallIcon_ProtoLMG'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="FC-01B PROTO PDW"
 	LightType=LT_Pulse
@@ -649,6 +649,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	bShowChargingBar=True
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_ProtoLMG'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Proto'
 	DrawScale=0.400000
 }
