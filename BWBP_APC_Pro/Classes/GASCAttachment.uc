@@ -144,6 +144,6 @@ defaultproperties
 	ReloadAnimRate=1.400000
 	CockAnimRate=0.800000
 	bRapidFire=True
-	Mesh=SkeletalMesh'BWBP_CC_Anim.GASC_TPm'
+	Mesh=SkeletalMesh'BWBP_CC_Anim.TPm_GASC'
 	DrawScale=1.000000
 }

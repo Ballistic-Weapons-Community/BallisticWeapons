@@ -175,7 +175,7 @@ defaultproperties
      ReloadAnim="Reload_AR"
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_CC_Anim.ZX98_TPm'
+     Mesh=SkeletalMesh'BWBP_CC_Anim.TPm_ZX98'
      RelativeLocation=(Z=1.000000)
      RelativeRotation=(Pitch=32768)
 	 PrePivot=(z=-3)
