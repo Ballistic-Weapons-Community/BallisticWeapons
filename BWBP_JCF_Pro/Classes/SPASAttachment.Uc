@@ -145,6 +145,6 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      TracerChance=0.500000
-     Mesh=SkeletalMesh'BWBP_JCF_Anims.SPAS_TPm'
+     Mesh=SkeletalMesh'BWBP_JCF_Anims.TPm_SPAS'
      DrawScale=0.300000
 }

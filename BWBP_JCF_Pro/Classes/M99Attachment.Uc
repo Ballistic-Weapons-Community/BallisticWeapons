@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M99Attachment extends HandgunAttachment;
+class M99Attachment extends BallisticAttachment;
 
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
@@ -132,6 +132,6 @@ defaultproperties
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
-     Mesh=SkeletalMesh'BWBP_JCF_Anims.M99_TPm'
+     Mesh=SkeletalMesh'BWBP_JCF_Anims.TPm_M99'
      DrawScale=0.350000
 }

@@ -91,7 +91,7 @@ defaultproperties
      DriverBackOff=65.000000
      bDrawDriverInTP=True
      VehicleNameString="M99 Mounted ECS Anti-MaterialRifle"
-     Mesh=SkeletalMesh'BWBP_JCF_Anims.M99_Turret_TPm'
+     Mesh=SkeletalMesh'BWBP_JCF_Anims.TPm_M99_Turret'
      DrawScale=0.300000
      CollisionHeight=18.000000
 }
