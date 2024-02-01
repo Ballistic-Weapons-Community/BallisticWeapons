@@ -72,7 +72,7 @@ defaultproperties
 		CockAnimRate=1.25
 		SightPivot=(Pitch=16)
 		SightOffset=(X=-10.000000,Y=-0.050000,Z=41.000000)
-		ViewOffset=(X=15.000000,Y=12.000000,Z=-30.000000)
+		ViewOffset=(X=12,Y=15,Z=-34)
 		DisplaceDurationMult=0.75
 		PlayerSpeedFactor=1.000000
 		MagAmmo=26
