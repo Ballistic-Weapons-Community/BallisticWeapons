@@ -104,6 +104,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		ViewOffset=(X=9,Y=9,Z=-7)
 		//SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
