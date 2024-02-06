@@ -147,7 +147,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=129),Color2=(B=148,R=0,A=141),StartSize1=99,StartSize2=84)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
 
-	PlayerViewOffset=(X=10,Y=15,Z=-8)
+	PlayerViewOffset=(X=10.00,Y=12.00,Z=-14.00)
 	SightOffset=(X=10.00,Y=0.16,Z=14.00)
 	SightAnimScale=0.35
 	SightBobScale=1.5
