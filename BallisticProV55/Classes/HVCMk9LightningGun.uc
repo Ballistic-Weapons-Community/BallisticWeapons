@@ -861,7 +861,7 @@ defaultproperties
 	InventoryGroup=5
 	PickupClass=Class'BallisticProV55.HVCMk9Pickup'
 
-	PlayerViewOffset=(X=9,Y=9,Z=-7)
+	PlayerViewOffset=(X=19.5,Y=9,Z=-12)
 	SightOffset=(X=-14.400000,Z=31.200000)
 	SightPivot=(Pitch=1024)
 	
