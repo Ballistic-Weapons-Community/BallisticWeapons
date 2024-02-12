@@ -293,6 +293,6 @@ defaultproperties
      bRapidFire=True
 	 FlashBone="Tip2"
 	 FlashScale=0.200000
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.SkrithHyperBlaster_TPm'
+     Mesh=SkeletalMesh'BWBP_SWC_Anims.TPm_SkrithHyperBlaster'
      DrawScale=0.650000
 }
