@@ -342,7 +342,7 @@ defaultproperties
 		InventorySize=3
 		//bNeedCock=True //netcode issue, needs pulloutfancy in main anim set
 		MagAmmo=16
-		ViewOffset=(X=2,Y=5.00,Z=-2.5)
+		ViewOffset=(X=7,Y=4,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams_TacKnife'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_9mm'
