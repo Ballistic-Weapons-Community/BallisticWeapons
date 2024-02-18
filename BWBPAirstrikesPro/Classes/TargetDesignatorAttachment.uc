@@ -36,8 +36,7 @@ simulated event ThirdPersonEffects()
 defaultproperties
 {
 	 WeaponClass=class'TargetDesignator'
-     Mesh=SkeletalMesh'BWBP_OP_Anim.Designator_TPm'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_Designator'
      RelativeLocation=(Y=-15.000000,Z=5.000000)
-     RelativeRotation=(Pitch=-32768)
      DrawScale=0.150000
 }

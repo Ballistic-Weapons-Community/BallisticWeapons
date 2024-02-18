@@ -85,7 +85,7 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
      TrackAnimMode=MU_Both
-     Mesh=SkeletalMesh'BWBP_OP_Anim.MAGSAW_TPm'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_MAGSAW'
      DrawScale=0.200000
-	 RelativeRotation=(Pitch=32768,Yaw=32768)
+	 RelativeRotation=(Pitch=32768,Yaw=16384)
 }

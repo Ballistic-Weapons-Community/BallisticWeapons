@@ -337,7 +337,7 @@ defaultproperties
      ReloadAnimRate=1.500000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.Z250_TPm'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_Z250'
      RelativeLocation=(X=3.000000,Z=8.000000)
      DrawScale=0.350000
 }

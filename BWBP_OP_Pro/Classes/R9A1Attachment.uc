@@ -176,7 +176,6 @@ defaultproperties
 	AltMuzzleFlashClass=class'XK2SilencedFlash'
 	ImpactManager=class'IM_Bullet'
 	FlashScale=2.000000
-	FlashBone="Muzzle"
 	BrassClass=class'Brass_Rifle'
 	TracerMode=MU_Both
 	InstantMode=MU_Both
@@ -186,7 +185,7 @@ defaultproperties
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	ReloadAnim="Reload_AR"
 	CockingAnim="Cock_RearPull"
-	Mesh=SkeletalMesh'BWBP_OP_Anim.R9A1_TPm'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_R9A1'
 	RelativeLocation=(X=3.000000,Z=1.000000)
 	DrawScale=0.160000
 	//Skins(0)=Shader'BWBP_OP_Tex.R9_body_SH1'

@@ -23,6 +23,6 @@ defaultproperties
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      MeleeStrikeAnim="Blade_Stab"
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.Techwrench_TPm'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_Techwrench'
      DrawScale=1.000000
 }
