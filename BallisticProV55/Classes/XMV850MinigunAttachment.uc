@@ -344,6 +344,6 @@ defaultproperties
      ReloadAnimRate=1.500000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_XMV850'
      DrawScale=0.300000
 }

@@ -168,7 +168,7 @@ defaultproperties
      TracerClass=class'TraceEmitter_HVCRedLightning'
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_HVC'
      DrawScale=0.150000
      Skins(0)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'
      Skins(1)=FinalBlend'BW_Core_WeaponTex.Lighter.LightGlassFinal'

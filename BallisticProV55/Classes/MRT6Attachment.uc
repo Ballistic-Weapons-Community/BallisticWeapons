@@ -87,6 +87,6 @@ defaultproperties
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.500000
      CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRT6_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_MRT6'
      DrawScale=0.250000
 }

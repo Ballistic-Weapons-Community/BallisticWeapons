@@ -13,6 +13,6 @@ defaultproperties
 	WeaponClass=class'FP7Grenade'
 	ExplodeManager=class'IM_Grenade'
 	GrenadeSmokeClass=class'NRP57Trail'
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP7_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_FP7'
 	DrawScale=0.250000
 }

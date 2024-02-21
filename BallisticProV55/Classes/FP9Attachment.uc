@@ -36,6 +36,6 @@ defaultproperties
 	FlashMode=MU_None
 	LightMode=MU_None
 	TrackAnimMode=MU_Primary
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP9Det_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_FP9Det'
 	DrawScale=0.200000
 }

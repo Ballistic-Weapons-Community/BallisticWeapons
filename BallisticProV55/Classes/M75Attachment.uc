@@ -100,7 +100,7 @@ defaultproperties
 	ReloadAnim="Reload_AR"
 	CockingAnim="Cock_RearPull"
 	AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M75_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_M75'
 	DrawScale=0.130000
 	SoundVolume=48
 	SoundRadius=128.000000

@@ -164,6 +164,6 @@ defaultproperties
 	FlashMode=MU_Primary
 	FlyByMode=MU_Primary
 	MeleeStrikeAnim="Melee_Smash"
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_Marlin'
 	DrawScale=0.125000
 }

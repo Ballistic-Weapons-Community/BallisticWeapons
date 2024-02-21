@@ -12,6 +12,6 @@ defaultproperties
 {
 	WeaponClass=class'T10Grenade'
      ExplodeManager=class'IM_Grenade'
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_T10'
      DrawScale=0.175000
 }

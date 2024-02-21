@@ -18,7 +18,7 @@ defaultproperties
 	InstantMode=MU_None
 	WaterTracerMode=MU_None
 	bHeavy=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.BORT_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_BORT'
 	DrawScale=0.325000
 	CockingAnim="Reload_BreakOpen"
 }

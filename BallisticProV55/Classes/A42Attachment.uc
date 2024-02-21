@@ -61,6 +61,6 @@ defaultproperties
 	LightMode=MU_Both
 	TracerClass=class'TraceEmitter_A42Beam'
 	bRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A42_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A42'
 	DrawScale=0.080000
 }

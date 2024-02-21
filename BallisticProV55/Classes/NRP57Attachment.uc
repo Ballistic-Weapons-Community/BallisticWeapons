@@ -13,6 +13,6 @@ defaultproperties
 	WeaponClass=class'NRP57Grenade'
      ExplodeManager=class'IM_NRP57Grenade'
      GrenadeSmokeClass=class'NRP57Trail'
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.NRPGrenade_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_NRPGrenade'
      DrawScale=0.100000
 }

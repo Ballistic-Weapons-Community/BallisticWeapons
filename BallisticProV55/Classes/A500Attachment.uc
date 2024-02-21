@@ -23,6 +23,6 @@ defaultproperties
      ReloadAnim="Reload_AR"
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A500AcidGun_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A500AcidGun'
      DrawScale=0.175000
 }

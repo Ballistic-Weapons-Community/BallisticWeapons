@@ -196,7 +196,7 @@ defaultproperties
 	bHeavy=True
 	bRapidFire=True
 	bAltRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.SAR12_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_SAR12'
 	DrawScale=0.100000
 	SoundRadius=256.000000
 }

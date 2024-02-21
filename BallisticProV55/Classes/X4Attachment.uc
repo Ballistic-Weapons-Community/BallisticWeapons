@@ -24,6 +24,6 @@ defaultproperties
      bRapidFire=True
      RelativeLocation=(X=5.000000,Z=10.000000)
      RelativeRotation=(Pitch=-40000)	 
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.X4_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_X4'
      DrawScale=0.135000
 }

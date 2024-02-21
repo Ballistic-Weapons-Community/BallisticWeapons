@@ -282,6 +282,6 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMC'
      TracerChance=2.000000
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.RX22A_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_RX22A'
      DrawScale=0.250000
 }
