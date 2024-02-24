@@ -405,7 +405,7 @@ defaultproperties
     InstantMode = MU_Both
     BrassClass=class'Brass_MRS138Shotgun'
     TrackAnimMode=MU_None
-    Mesh=SkeletalMesh'BWBP_SKC_Anim.ScifiSawnOff_TPm'
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_ScifiSawnOff'
     DrawScale=0.150000
     SingleFireAnim="Reload_BreakOpenFast"
     SingleAimedFireAnim="Reload_BreakOpenFast"

@@ -76,7 +76,7 @@ defaultproperties
 	GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
 	TrackAnimMode=MU_Primary
 	InstantMode=MU_Secondary
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_MOAC'
 	RelativeLocation=(X=-2.000000,Y=-3.000000,Z=20.000000)
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.650000

@@ -22,7 +22,7 @@ defaultproperties
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
 	bRapidFire=True
 	RelativeRotation=(Pitch=32768)
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.AK91_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_AK91'
 	DrawScale=0.250000
 	TracerMix=1
 }

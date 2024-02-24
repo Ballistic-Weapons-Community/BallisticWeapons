@@ -184,7 +184,7 @@ defaultproperties
      ReloadAnimRate=0.800000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.CYLOFirestorm_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_CYLOFirestorm'
      RelativeLocation=(Z=1.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000

@@ -68,8 +68,6 @@ simulated event ThirdPersonEffects()
 		FlashWeaponLight(FiringMode);
 		//Play pawn anims
 		PlayPawnFiring(FiringMode);
-		//Eject Brass
-		EjectBrass(FiringMode);
     	}
 
     	Super.ThirdPersonEffects();
@@ -98,7 +96,7 @@ defaultproperties
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.700000)
 	BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
 	bHeavy=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.Typhon_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Typhon'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.550000
 	RelativeLocation=(Z=5.00)

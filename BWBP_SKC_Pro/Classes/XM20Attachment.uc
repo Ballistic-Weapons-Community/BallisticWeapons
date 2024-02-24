@@ -153,7 +153,7 @@ simulated function Vector GetTipLocation()
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return Instigator.Weapon.GetEffectStart();
         
-    return GetBoneCoords('Muzzle').Origin;
+    return GetBoneCoords('tip').Origin;
 }
 
 simulated function Destroyed()
@@ -183,8 +183,8 @@ simulated function EjectBrass(byte Mode);
 defaultproperties
 {
 	WeaponClass=class'XM20Carbine'
-	FlashBone="Muzzle"
-	AltFlashBone="Muzzle"
+	FlashBone="tip"
+	AltFlashBone="tip"
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20'
 	ImpactManager=Class'BWBP_SKC_Pro.IM_XM20Laser'
@@ -197,6 +197,6 @@ defaultproperties
 	TracerMix=0
 	RelativeLocation=(X=1.00,Z=5.00)
 	RelativeRotation=(Pitch=32768)
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_XM20'
 	DrawScale=0.15
 }

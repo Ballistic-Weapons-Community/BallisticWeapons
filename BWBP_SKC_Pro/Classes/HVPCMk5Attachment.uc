@@ -87,7 +87,7 @@ defaultproperties
 	TracerClass=class'TraceEmitter_HVCRedLightning'
 	bHeavy=True
 	bRapidFire=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.HVPC_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HVPC'
 	DrawScale=1.000000
 	RelativeRotation=(Pitch=32768)
 }

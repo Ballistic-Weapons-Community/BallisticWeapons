@@ -18,7 +18,7 @@ defaultproperties
 	LightMode=MU_None
 	TrackAnimMode=MU_Both
 	bHeavy=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.BOB_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_BOB'
 	RelativeLocation=(X=-12.000000,Z=12.000000)
 	DrawScale=0.500000
 }

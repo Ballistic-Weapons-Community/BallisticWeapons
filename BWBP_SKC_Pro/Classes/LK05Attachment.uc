@@ -226,7 +226,7 @@ defaultproperties
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	ReloadAnim="Reload_AR"
 	ReloadAnimRate=1.200000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.LK05_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LK05'
 	RelativeRotation=(Pitch=32768)
 	PrePivot=(X=1.000000,Z=-3.000000)
 }

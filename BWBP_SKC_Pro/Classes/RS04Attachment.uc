@@ -232,7 +232,7 @@ defaultproperties
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	bRapidFire=True
 	bAltRapidFire=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.RS04_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_RS04'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.210000
 	PrePivot=(Z=-2.000000)

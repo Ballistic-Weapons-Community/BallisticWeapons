@@ -12,6 +12,6 @@ defaultproperties
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
 	 RelativeRotation=(Roll=16384)
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FMDLeft_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPM_FMDLeft'
      DrawScale=0.200000
 }

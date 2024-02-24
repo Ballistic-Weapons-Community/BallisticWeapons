@@ -137,7 +137,7 @@ defaultproperties
 	bRapidFire=true;
 	RelativeLocation=(X=-3.000000,Z=2.000000)
 	RelativeRotation=(Pitch=32768)
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.LS14_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS14'
 	DrawScale=0.200000
 	Skins(0)=Shader'BWBP_SKC_Tex.LS440M.LS440_SD'
 }

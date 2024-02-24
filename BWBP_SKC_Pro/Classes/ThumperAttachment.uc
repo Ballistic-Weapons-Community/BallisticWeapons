@@ -17,7 +17,7 @@ defaultproperties
 	InstantMode=MU_None
 	WaterTracerMode=MU_None
 	bHeavy=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.Thumper_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Thumper'
 	RelativeLocation=(X=-3.000000,Z=2.000000)
 	RelativeRotation=(Pitch=32768)
 	DrawScale=1.100000

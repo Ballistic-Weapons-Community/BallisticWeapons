@@ -130,11 +130,10 @@ defaultproperties
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.AR23_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_AR23'
 	 FlashScale=0.4
      DrawScale=1.000000
 	 Skins(0)=Shader'BWBP_SKC_Tex.AR23.AR23-MainShine'
 	 Skins(1)=Shader'BWBP_SKC_Tex.AR23.AR23-MiscShine'
-	 Skins(2)=Shader'BWBP_SKC_Tex.AR23.AR23-HoloShine'
-	 Skins(3)=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View'
+	 Skins(2)=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View'
 }
