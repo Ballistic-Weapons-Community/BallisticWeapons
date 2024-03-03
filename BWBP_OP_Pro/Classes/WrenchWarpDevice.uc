@@ -674,8 +674,8 @@ defaultproperties
      ManualLines(2)="Grants a 10% speed increase."
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      MeleeFireClass=Class'WrenchMeleeFire'
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut',Volume=0.152500)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway',Volume=0.152500)
      bNoMag=True
      WeaponModes(0)=(ModeName="Boost Pad",bUnavailable=False,ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Teleporter",bUnavailable=False,ModeID="WM_SemiAuto")

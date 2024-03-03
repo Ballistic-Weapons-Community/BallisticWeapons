@@ -260,7 +260,7 @@ defaultproperties
 	bCanBlock=False
 	KnifeBone="Blade"
 	PinBone="Pin"
-	PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
+	PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.138000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.600000,bAtten=True)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.BigIcon_X8'
 	BigIconCoords=(Y1=25,Y2=230)
@@ -269,8 +269,8 @@ defaultproperties
 	ManualLines(1)="When held, readies the ballistic knife. When released, the knife is fired in a straight trajectory, dealing good damage to targets hit."
 	ManualLines(2)="Effective at close range and while moving."
 	SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut',Volume=0.153000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway',Volume=0.153000)
 	MagAmmo=1
 	bNoMag=True
 	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
