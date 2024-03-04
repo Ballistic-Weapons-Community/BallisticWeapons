@@ -176,9 +176,9 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	ToothUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Up',Volume=0.290000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
-	ToothDownSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Down',Volume=0.290000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
-	//LoopAmbientSound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Loop'
+	ToothUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Up',Volume=0.190000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
+	ToothDownSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Down',Volume=0.213000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
+	LoopAmbientSound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Loop'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.DragonToothSword.BigIcon_DTS'
 	BigIconCoords=(Y1=40,Y2=240)
@@ -187,7 +187,7 @@ defaultproperties
 	ManualLines(1)="Strikes twice consecutively for good damage. Good for baiting block."
 	ManualLines(2)="The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Devastating at close range."
 	SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Draw',Volume=0.420000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Draw',Volume=0.302500)
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
