@@ -754,8 +754,8 @@ defaultproperties
 	ManualLines(1)="Projects a lethal laser beam. Does major damage and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing high damage. The GRS-XX is effective at close/mid range."
     SpecialInfo(0)=(Info="1200.0;65.0;4.0;150.0;2.0;2.0;1.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Glod.GRSXX-Select')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Glod.GRSXX-Select',Volume=0.219000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Cock',Volume=0.600000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipHit',Volume=0.700000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipOut')

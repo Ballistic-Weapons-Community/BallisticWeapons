@@ -340,7 +340,7 @@ defaultproperties
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
 	
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_AM67'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
 	BringUpTime=0.900000
 
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
@@ -386,7 +386,7 @@ defaultproperties
 	SightBobScale=0.5f 
 	
 	Priority=24
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	PutDownTime=0.600000
 
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(R=0,A=194),Color2=(R=0),StartSize1=80,StartSize2=26)

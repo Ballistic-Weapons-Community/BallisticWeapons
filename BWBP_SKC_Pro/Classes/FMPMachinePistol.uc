@@ -341,8 +341,8 @@ defaultproperties
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MP40.BigIcon_MP40'
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="240.0;15.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Pullout',Volume=1.400000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Putaway',Volume=1.400000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Pullout',Volume=0.215000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Putaway',Volume=0.217000)
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Cock',Volume=1.400000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagHit',Volume=1.400000)

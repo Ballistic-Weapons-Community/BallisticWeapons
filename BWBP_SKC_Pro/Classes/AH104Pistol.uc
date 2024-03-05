@@ -475,8 +475,8 @@ defaultproperties
 	bNoCrosshairInScope=True
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Draw')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Draw',Volume=0.200000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.220000)
 	MagAmmo=7
 	AltMagAmmo=50
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Cock',Volume=0.800000)

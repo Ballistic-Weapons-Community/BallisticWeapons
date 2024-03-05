@@ -591,8 +591,8 @@ defaultproperties
 	ManualLines(1)="Burst Fire Enables a Photon Burst, allowing for a forced faster rate of fire for the longer range engagement"
 	ManualLines(2)="Effective at close to medium to long range. With the addition of the Scope, Red Dot Sight & the attachable Silencer"
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.220000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.220000)
 	MagAmmo=50
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.400000

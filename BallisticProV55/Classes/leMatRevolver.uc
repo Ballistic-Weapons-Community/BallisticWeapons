@@ -606,8 +606,8 @@ defaultproperties
 	ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
 	ManualLines(2)="Effective at close range."
 	SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-Cock')
 
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-BulletsOut')

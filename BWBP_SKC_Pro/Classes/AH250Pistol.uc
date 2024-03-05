@@ -365,8 +365,8 @@ defaultproperties
 	
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Pitch=0.9)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Pitch=0.9)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Pitch=0.9,Volume=0.170000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Pitch=0.9,Volume=0.175000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Cock',Volume=5.100000,Radius=48.000000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=48.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=48.000000)

@@ -285,8 +285,8 @@ defaultproperties
     bWT_Shotgun=True
     bWT_Sidearm=True
     SpecialInfo(0)=(Info="180.0;10.0;-999.0;25.0;0.0;0.8;-999.0")
-    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Pullout')
-    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Pullout',Volume=0.153000) 
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Putaway',Volume=0.153000)
     CockSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Cock')
     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipHit')
     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipOut')

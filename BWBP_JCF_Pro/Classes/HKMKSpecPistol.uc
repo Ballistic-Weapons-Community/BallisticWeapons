@@ -526,8 +526,8 @@ defaultproperties
 	ManualLines(1)="Alt fire is a potent close range shotgun attachment."
 	ManualLines(2)="Weapon Function attaches a suppressor, reducing the flash and reducing the noise output."
     SpecialInfo(0)=(Info="120.0;12.0;0.6;50.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.145000)
 	PutDownTime=0.500000
 	CockingBringUpTime=0.600000
 	CockAnimRate=1.000000

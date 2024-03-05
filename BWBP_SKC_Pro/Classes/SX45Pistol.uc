@@ -518,8 +518,8 @@ defaultproperties
 	ManualLines(1)="Attach/Detach AMP. With a Choice of Radiation Bullets and Cryogenic Bullets"
 	ManualLines(2)="Torch Available on the Weapon Function"	
 	SpecialInfo(0)=(Info="120.0;12.0;-999.0;35.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.147000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.147000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-Cock',Volume=1.6)
 	SelectAnimRate=1.500000
 	BringUpTime=0.700000

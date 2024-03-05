@@ -313,8 +313,8 @@ defaultproperties
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 	 SpecialInfo(0)=(Info="120.0;10.0;-999.0;25.0;0.0;0.0;-999.0")
      MeleeFireClass=Class'BWBP_APC_Pro.GASCMeleeFire'
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	 BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
      MagAmmo=16
      CockSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Cock',Volume=0.675000)
      ReloadAnimRate=1.350000

@@ -725,8 +725,8 @@ defaultproperties
      
 	 bWT_Bullet=True
      SpecialInfo(0)=(Info="240.0;15.0;0.4;25.0;0.8;0.0;-999.0")
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw',Volume=0.216000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.220000)
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
      ReloadAnim="Reload"
 	 ReloadEmptyAnim="ReloadEmpty"
