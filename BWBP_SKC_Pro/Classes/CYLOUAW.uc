@@ -522,8 +522,8 @@ defaultproperties
 	ManualLines(2)="Effective at close to medium range."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;85.0;0.1;0.9;0.4")
 	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOMeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)

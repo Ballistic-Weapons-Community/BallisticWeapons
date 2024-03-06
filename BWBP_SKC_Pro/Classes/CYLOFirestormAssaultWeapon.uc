@@ -698,8 +698,8 @@ defaultproperties
 	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.2;0.7;0.4")
 	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOFirestormMeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
