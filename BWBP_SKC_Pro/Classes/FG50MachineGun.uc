@@ -656,8 +656,8 @@ defaultproperties
 	ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
 	ManualLines(2)="The FG50 is heavy and restricts movement. However, the weight compensates for a significant amount of recoil. Takes a long time to aim. Effective at medium to long range."
 	SpecialInfo(0)=(Info="320.0;35.0;1.0;100.0;0.8;0.5;0.1")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.222000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
 	MagAmmo=40
 	MeleeFireClass=Class'BWBP_SKC_Pro.FG50MeleeFire'
 	CockAnimPostReload="ReloadEndCock"

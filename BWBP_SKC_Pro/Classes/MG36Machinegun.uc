@@ -697,8 +697,8 @@ defaultproperties
 	BigIconCoords=(Y1=36,Y2=225)
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout',Volume=0.215000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway',Volume=0.207000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Cock',Volume=2.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagOut',Volume=2.400000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagIn',Volume=2.400000)

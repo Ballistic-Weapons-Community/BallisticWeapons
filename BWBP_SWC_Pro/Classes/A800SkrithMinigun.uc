@@ -287,8 +287,8 @@ defaultproperties
      bWT_Machinegun=True
      bWT_Super=True
      SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-     BringUpSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Pullout',Volume=1.500000)
-     PutDownSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Putaway',Volume=1.500000)
+     BringUpSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Pullout',Volume=0.218000)
+     PutDownSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Putaway',Volume=0.218000)
      MagAmmo=90
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
