@@ -662,8 +662,8 @@ defaultproperties
      bWT_Energy=True
      bWT_Super=True
      SpecialInfo(0)=(Info="360.0;50.0;1.0;90.0;0.0;0.5;1.0")
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=2.200000)
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.218000)
      bNoMag=True
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'

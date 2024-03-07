@@ -828,8 +828,8 @@ defaultproperties
 	ManualLines(1)="Charges up the weapon to unleash a searing bolt of red lightning. Like the primary, has no recoil and perfect hip accuracy."
 	ManualLines(2)="Holding Reload will cool off the weapon, reducing the heat buildup and preventing the threat of overcharge.||Will not function correctly underwater. Causes the user and nearby targets to be electrocuted if so used.||The HVC-Mk9 does not possess any iron sights.||This weapon is effective at all ranges."
 	SpecialInfo(0)=(Info="360.0;60.0;1.0;90.0;0.0;0.5;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.218000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.220000)
 	bNoMag=True
 	WeaponModes(0)=(ModeName="Stream",ModeID="WM_None")
 	WeaponModes(1)=(bUnavailable=True,Value=4.000000)

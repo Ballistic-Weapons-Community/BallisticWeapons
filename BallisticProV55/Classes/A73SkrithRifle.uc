@@ -292,8 +292,8 @@ defaultproperties
 	ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab.||The A73 is effective at close range and very effective at medium range. It is also capable of healing nodes and vehicles with its plasma attacks. As an energy weapon, the A73 has lower recoil than conventional arms and its projectiles penetrate players but not walls and surfaces."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
 	MeleeFireClass=Class'BallisticProV55.A73MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout',Volume=0.220000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.225000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')

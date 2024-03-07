@@ -1035,8 +1035,8 @@ defaultproperties
 	bWT_Projectile=True
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select',Volume=0.218000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect',Volume=0.220000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Heat')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
