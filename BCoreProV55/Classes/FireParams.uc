@@ -50,7 +50,7 @@ var() editinline array<FireEffectParams>   FireEffectParams;       // subobjects
 
 static simulated final function Initialize(BallisticWeapon BW, int ModeIndex, int AmmoIndex);
 
-// for short manual displayed on fonclit
+// for short manual displayed on conflict
 final function string BuildShortManualString()
 {
 	local FireEffectParams.FireModeStats FS;

@@ -220,8 +220,9 @@ defaultproperties
 		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
 	End Object
 	
-    Layouts(0)=WeaponParams'TacticalParams_Scope'
-    Layouts(1)=WeaponParams'TacticalParams_RDS'
+	Layouts(0)=WeaponParams'TacticalParams_RDS'
+    //Layouts(1)=WeaponParams'TacticalParams_Scope'
+    
 	Camos(0)=WeaponCamo'M46_Tan'
     Camos(1)=WeaponCamo'M46_Jungle'
     Camos(2)=WeaponCamo'M46_Blue'

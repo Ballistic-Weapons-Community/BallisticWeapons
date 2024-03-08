@@ -157,12 +157,12 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.2
-		ADSViewBindFactor=0.7
-		EscapeMultiplier=1.35
-		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.150000,OutVal=0.03),(InVal=0.30000,OutVal=0.04),(InVal=0.40000,OutVal=0.01),(InVal=0.600000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.070000),(InVal=1.00000,OutVal=0.00000)))
+		ADSViewBindFactor=0.6
+		EscapeMultiplier=1.45
+		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.100000,OutVal=0.02),(InVal=0.170000,OutVal=-0.01),(InVal=0.25000,OutVal=0.04),(InVal=0.40000,OutVal=0.01),(InVal=0.600000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.070000),(InVal=1.00000,OutVal=0.00000)))
 		YCurve=(Points=((InVal=0,OutVal=0),(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.1
-		YRandFactor=0.1
+		XRandFactor=0.15
+		YRandFactor=0.15
 		ClimbTime=0.04
 		DeclineDelay=0.120000     
 		DeclineTime=0.75
@@ -175,10 +175,10 @@ defaultproperties
 		ViewBindFactor=0.2
 		ADSViewBindFactor=1.0 //
 		EscapeMultiplier=1.0 //
-		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.150000,OutVal=0.03),(InVal=0.30000,OutVal=0.04),(InVal=0.40000,OutVal=0.01),(InVal=0.600000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.070000),(InVal=1.00000,OutVal=0.00000)))
+		XCurve=(Points=((InVal=0,OutVal=0),(InVal=0.100000,OutVal=0.02),(InVal=0.170000,OutVal=-0.01),(InVal=0.25000,OutVal=0.04),(InVal=0.40000,OutVal=0.01),(InVal=0.600000,OutVal=-0.04000),(InVal=0.800000,OutVal=0.070000),(InVal=1.00000,OutVal=0.00000)))
 		YCurve=(Points=((InVal=0,OutVal=0),(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.1
-		YRandFactor=0.1
+		XRandFactor=0.15
+		YRandFactor=0.15
 		ClimbTime=0.04
 		DeclineDelay=0.120000     
 		DeclineTime=0.75
@@ -328,7 +328,7 @@ defaultproperties
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_AdvSupp'
     Layouts(2)=WeaponParams'TacticalParams_AdvHolo'
-    Layouts(3)=WeaponParams'TacticalParams_AdvScope'
+    //Layouts(3)=WeaponParams'TacticalParams_AdvScope'
 	
 	//Camos
 	Begin Object Class=WeaponCamo Name=M50_Silver

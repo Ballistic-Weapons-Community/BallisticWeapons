@@ -64,9 +64,9 @@ var() float			JumpDrain;
 // KILL REWARD
 //=============================================================================
 var() int			HealthKillReward; // the amount of healthpoints a player gets for a kill
-var() int			KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceel this value
+var() int			KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceed this value
 var() int			ShieldKillReward;  // armor points for a kill
-var() int			KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
+var() int			KillRewardShieldMax;  // Limiter, the additional armor points will not exceed this value
 
 static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 {	
