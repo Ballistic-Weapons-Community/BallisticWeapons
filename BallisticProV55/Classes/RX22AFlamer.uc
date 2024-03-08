@@ -288,8 +288,8 @@ defaultproperties
 	ManualLines(1)="Sprays unignited flamer gas. This gas will collect on surfaces or players. When on a surface, it can be ignited later to set a trap for the enemy or to close off areas. When on a player, it increases the damage dealt by the next primary attack."
 	ManualLines(2)="Has a high capacity, but long reload time. Will not function underwater.||Effective at close range. Extremely effective when used defensively."
 	SpecialInfo(0)=(Info="360.0;50.0;0.96;90.0;0.0;0.3;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Pullout',Volume=0.210000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Putaway',Volume=0.210000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PipeOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PipeIn')
 	ClipInFrame=0.700000
