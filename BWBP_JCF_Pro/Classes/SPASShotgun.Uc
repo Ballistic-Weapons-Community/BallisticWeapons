@@ -112,8 +112,8 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_JCF_Tex.SPAS.BigIcon_SPAS'
      bWT_Shotgun=True
      SpecialInfo(0)=(Info="240.0;30.0;1.5;100.0;0.0;2.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
      MagAmmo=10
      CockSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Cock',Volume=0.800000)
      ReloadAnim="ReloadLoop"

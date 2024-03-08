@@ -845,8 +845,8 @@ defaultproperties
 	ManualLines(2)="Effective at close ranges, firing both barrels at once increases the duration of the slow down for ice rounds and displacement from electric rounds."
 	SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.6")
 	MeleeFireClass=Class'BWBP_OP_Pro.TrenchGunMeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout',Volume=0.218000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway',Volume=0.218000)
 	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_breakclose',Volume=1.2)
 	ClipInFrame=0.800000
 	bNonCocking=True

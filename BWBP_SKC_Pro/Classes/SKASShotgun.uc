@@ -328,8 +328,8 @@ defaultproperties
     bWT_Shotgun=True
     bWT_Machinegun=True
     SpecialInfo(0)=(Info="360.0;45.0;0.9;120.0;0.0;3.0;0.0")
-    BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Select')
-    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Select',Volume=0.225000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
     MagAmmo=24
     CockSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-CockLong',Volume=1.000000)
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-ClipOut1',Volume=2.000000)

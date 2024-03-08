@@ -480,8 +480,8 @@ defaultproperties
      ManualLines(2)="Effective at close to medium range depending on active mode."
      SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
      MeleeFireClass=Class'BWBP_SKC_Pro.CoachGunMeleeFire'
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout',Volume=0.218000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway',Volume=0.216000)
      ClipInFrame=0.800000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)
