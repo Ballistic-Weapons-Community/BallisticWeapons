@@ -61,9 +61,9 @@ defaultproperties
      HeldMomentum=75000
      HeldDamageType=Class'BallisticProV55.DTNRP57Held'
      GrenadeSmokeClass=Class'BWBP_APC_Pro.ScarabTrail'
-     ClipReleaseSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-Cock',Volume=1.000000,Radius=24.000000,Pitch=1.000000,bAtten=False)
-     PinPullSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-PullRingOut',Volume=0.076000,Radius=24.000000,Pitch=1.000000,bAtten=False)
-     PinPushSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-PutRingIn',Volume=0.086000,Radius=24.000000,Pitch=1.000000,bAtten=False)
+     ClipReleaseSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-Cock',Volume=1.000000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-PullRingOut',Volume=0.076000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     PinPushSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-PutRingIn',Volume=0.086000,Radius=24.000000,Pitch=1.000000,bAtten=True)
 	 TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_CC_Tex.Grenade.BigIcon_CruGren'
      BigIconCoords=(Y1=16,Y2=245)

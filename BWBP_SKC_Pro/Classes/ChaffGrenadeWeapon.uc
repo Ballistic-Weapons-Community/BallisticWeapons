@@ -313,8 +313,8 @@ defaultproperties
      bPrimed=False
      HeldDamageType=Class'BWBP_SKC_Pro.DTChaffGrenade_H'
      GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=24.000000,Pitch=1.700000,bAtten=False)
-     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.100000,Radius=24.000000,Pitch=1.000000,bAtten=False)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=24.000000,Pitch=1.700000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.100000,Radius=24.000000,Pitch=1.000000,bAtten=True)
 	 GrenadeBone="MOAC"
      GrenadeBone2="MOACTop"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
