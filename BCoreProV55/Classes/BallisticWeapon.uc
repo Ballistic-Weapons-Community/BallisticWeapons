@@ -5682,8 +5682,8 @@ defaultproperties
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
 	 
-     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
+     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
 	 
 	 MagAmmo=30
 	 
