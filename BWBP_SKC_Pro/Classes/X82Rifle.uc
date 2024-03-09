@@ -356,8 +356,8 @@ defaultproperties
 	
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;80.0;10.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn',Volume=0.210000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff',Volume=0.210000)
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
