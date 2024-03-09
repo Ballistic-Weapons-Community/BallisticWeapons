@@ -313,8 +313,8 @@ defaultproperties
      bPrimed=False
      HeldDamageType=Class'BWBP_SKC_Pro.DTChaffGrenade_H'
      GrenadeSmokeClass=Class'BWBP_SKC_Pro.ChaffTrail'
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=48.000000,Pitch=1.700000,bAtten=True)
-     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=24.000000,Pitch=1.700000,bAtten=False)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.100000,Radius=24.000000,Pitch=1.000000,bAtten=False)
 	 GrenadeBone="MOAC"
      GrenadeBone2="MOACTop"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -328,8 +328,8 @@ defaultproperties
      ManualLines(1)="Melee attack with the grenade. Damage increases over hold time, with the maximum being reached after 1.5 seconds of holding. As a blunt attack, inflicts a short-duration blind when striking."
      ManualLines(2)="Synergises with the MARS-2."
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
-	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout',Volume=0.112000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway',Volume=0.111000)
 	 ParamsClasses(0)=Class'ChaffWeaponParamsComp'
 	 ParamsClasses(1)=Class'ChaffWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ChaffWeaponParamsRealistic'

@@ -660,8 +660,8 @@ defaultproperties
 	ManualLines(1)="Detonates the FP9. The user must be facing the mine to detonate, which will be displayed surrounded by a red box."
 	ManualLines(2)="The FP9 has a number of special functions.||When not facing a placed bomb:|The Weapon Function key toggles whether the next bomb placed will use the laser tripwire.||When facing a placed bomb:|The Weapon Function key toggles whether the placed bomb will use the laser tripwire.|The Switch Fire Mode key selects the faced bomb, highlighting it in green.||With a bomb highlighted:|Targeting an area and pressing Switch Weapon Mode will cause the endpoint of the selected bomb's laser, if active, to shift to the targeted location."
 	SpecialInfo(0)=(Info="180.0;10.0;0.4;-1.0;0.0;0.0;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Pullout',Volume=0.128000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Putaway',Volume=0.110000)
 	bNoMag=True
 	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
 	WeaponModes(1)=(bUnavailable=True)
