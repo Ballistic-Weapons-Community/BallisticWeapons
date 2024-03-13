@@ -171,6 +171,7 @@ function BlowUp(vector HitLocation)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_OP_Pro.PD97Bloodhound'
 	 StuckDamageType=Class'BallisticProV55.DTM46GrenadeStuck'
 	 bNoFXOnExplode=True
 	 bTearOnExplode=False

@@ -251,6 +251,7 @@ defaultproperties
 		LayoutName="9mm Tac Knife"
 		Weight=10
 		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24Melee'
 		WeaponBoneScales(0)=(BoneName="IronSights",Slot=50,Scale=0f)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RMR',BoneName="Slide",AugmentOffset=(x=5,y=0,z=4),Scale=0.05,AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
 		//ADS

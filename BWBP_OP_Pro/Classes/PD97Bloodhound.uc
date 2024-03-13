@@ -490,8 +490,8 @@ simulated function GotTarget(Pawn A)
 {
 	LockedTarget = A;
 	bLockedOn = true;
-	Log("bLockedOn: "$bLockedOn);
-	Log("LockedTarget:" $LockedTarget);
+	//Log("bLockedOn: "$bLockedOn);
+	//Log("LockedTarget:" $LockedTarget);
     PlaySound(LockedOnSound,,0.7,,16);
 }
 

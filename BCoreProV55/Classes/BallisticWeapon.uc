@@ -194,6 +194,7 @@ var() 	float						AIReloadTime;					// How long it's likely to take to reload. U
 var		float						BotTryReloadTime;				// Time when bot should try reload again
 var		Vehicle						OwnerLastVehicle;				// Vehicle being driven last tick...
 var		Controller					InstigatorController;			// Controller of the instigator
+var   	bool						bNoaltfire;						// Dissalow a bot to use alt-fire (use this when the alt-fire makes the gun ADS but the gun has multiple layout alt-fires that we want to keep)
 //-----------------------------------------------------------------------------
 // Fire Modes
 //-----------------------------------------------------------------------------
@@ -844,7 +845,9 @@ simulated function OnWeaponParamsChanged()
     ZoomType                    = WeaponParams.ZoomType;
 
 	ScopeScale					= FMin(1f, WeaponParams.ScopeScale);
-
+	
+	bNoaltfire					= WeaponParams.bNoaltfire;
+	
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
 			
