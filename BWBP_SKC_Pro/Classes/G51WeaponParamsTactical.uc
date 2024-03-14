@@ -339,6 +339,7 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+		bNoaltfire=True
 	End Object
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_IR
