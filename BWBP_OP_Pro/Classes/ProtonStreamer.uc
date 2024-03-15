@@ -328,6 +328,9 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	Super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 
+function byte BestMode()	
+{	return 0;	}
+
 function float GetAIRating()
 {
 	local Bot B;

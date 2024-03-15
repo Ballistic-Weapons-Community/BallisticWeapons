@@ -5,9 +5,6 @@ simulated function SetAltColor(bool bColorAlt)
 	bAltColor = bColorAlt;
 	if(bAltColor)
 	{
-		BeamEmitter(Emitters[2]).ColorScale[0].Color.B	= 255;
-		BeamEmitter(Emitters[2]).ColorScale[0].Color.G	= 64;
-		BeamEmitter(Emitters[2]).ColorScale[0].Color.R	= 0;
 		BeamEmitter(Emitters[1]).ColorScale[0].Color.B	= 255;
 		BeamEmitter(Emitters[1]).ColorScale[0].Color.G	= 64;
 		BeamEmitter(Emitters[1]).ColorScale[0].Color.R	= 0;	
@@ -15,9 +12,6 @@ simulated function SetAltColor(bool bColorAlt)
 		BeamEmitter(Emitters[0]).ColorScale[0].Color.G	= 64;
 		BeamEmitter(Emitters[0]).ColorScale[0].Color.R	= 0;		
 
-		BeamEmitter(Emitters[2]).ColorScale[1].Color.B	= 255;
-		BeamEmitter(Emitters[2]).ColorScale[1].Color.G	= 64;
-		BeamEmitter(Emitters[2]).ColorScale[1].Color.R	= 0;
 		BeamEmitter(Emitters[1]).ColorScale[1].Color.B	= 255;
 		BeamEmitter(Emitters[1]).ColorScale[1].Color.G	= 64;
 		BeamEmitter(Emitters[1]).ColorScale[1].Color.R	= 0;	
@@ -139,9 +133,4 @@ defaultproperties
          StartVelocityRange=(X=(Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
      End Object
      Emitters(1)=SpriteEmitter'BWBP_OP_Pro.ProtonStreamEffectAlt.Sparks'
-
-     Emitters(2)=None
-
-     Emitters(3)=None
-
 }

@@ -240,7 +240,7 @@ simulated function AddHeat(float Amount, float OverrideAmount, float DeclineTime
 		if (SelfHeatLevel >= 9.75)
 		{
 			SelfHeatLevel = 10;
-			class'BallisticDamageType'.static.GenericHurt (Instigator, 15, None, Instigator.Location, vect(0,0,0), class'DTLS14Overheat');
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 15, Instigator, Instigator.Location, vect(0,0,0), class'DTLS14Overheat');
 			return;
 		}
 	}
