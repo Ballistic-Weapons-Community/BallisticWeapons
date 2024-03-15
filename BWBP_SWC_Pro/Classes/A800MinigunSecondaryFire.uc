@@ -214,7 +214,7 @@ simulated event ModeDoFire()
 // Timer modified to handle firing a burst after the trigger is released, consumption delay code removed
 simulated event Timer()
 {
-	log("timer triggered");
+	//log("timer triggered");
 	if (BurstSize > 0)
 		ModeDoFire();
 }

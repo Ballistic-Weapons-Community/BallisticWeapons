@@ -275,6 +275,7 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
+	 bNoCrosshairInScope=True
      BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
      BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
      BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
