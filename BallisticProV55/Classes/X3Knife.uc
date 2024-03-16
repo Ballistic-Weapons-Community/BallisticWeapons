@@ -150,7 +150,7 @@ defaultproperties
 	CurrentRating=0.6
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_X3'
-     
+     bShowChargingBar=False
      ManualLines(0)="Slashes with the knife. Short range and less damage than other melee weapons."
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
      ManualLines(2)="The Weapon Function key throws a knife, dealing good damage. Thrown knives have a very short range."

@@ -264,7 +264,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.BigIcon_X8'
 	BigIconCoords=(Y1=25,Y2=230)
-	
+	bShowChargingBar=False
 	ManualLines(0)="Slashes rapidly with the knife."
 	ManualLines(1)="When held, readies the ballistic knife. When released, the knife is fired in a straight trajectory, dealing good damage to targets hit."
 	ManualLines(2)="Effective at close range and while moving."

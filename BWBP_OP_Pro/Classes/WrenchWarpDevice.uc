@@ -179,7 +179,8 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	{
 		if (!bRedirectSwitchToFiremode)
 		{
-			// Draw the spare ammo amount
+			// Draw the spare ammo amount 
+			/*
 			C.Font = GetFontSizeIndex(C, -2 + int(2 * class'HUD'.default.HudScale));
 			C.DrawColor = class'hud'.default.WhiteColor;
 			Temp = string(Ammo[0].AmmoAmount);
@@ -189,8 +190,9 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 			C.CurX = C.ClipX - 20 * ScaleFactor * class'HUD'.default.HudScale - XL;
 			C.CurY = C.ClipY - 200 * ScaleFactor * class'HUD'.default.HudScale - YL;
 			C.DrawText(Temp, false);
+			*/
+
 			C.DrawColor = class'hud'.default.WhiteColor;
-	
 			C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
 			C.TextSize(WeaponModes[CurrentWeaponMode].ModeName @ "(" $Deployables[CurrentWeaponMode].AmmoReq$")", XL, YL2);
 			C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
@@ -668,7 +670,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_OP_Tex.Wrench.BigIcon_Wrench'
      BigIconCoords=(Y2=240)
      bAllowWeaponInfoOverride=False
-     
+     bShowChargingBar=False
      ManualLines(0)="Constructs various deployables. Will deploy to the aim point. A description of each deployable is given underneath the fire mode text. Holding Weapon Function allows the user to scroll through the modes."
      ManualLines(1)="Constructs an energy barrier, regardless of the currently active mode."
      ManualLines(2)="Grants a 10% speed increase."
