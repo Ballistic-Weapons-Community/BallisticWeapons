@@ -483,6 +483,8 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout',Volume=0.218000)
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway',Volume=0.216000)
      ClipInFrame=0.800000
+	 ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-ShellIn')
+	 ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-ShellOut')
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)
      WeaponModes(1)=(ModeName="Slug",Value=1.000000)

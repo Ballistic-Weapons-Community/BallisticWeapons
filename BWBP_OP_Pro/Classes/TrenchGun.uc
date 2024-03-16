@@ -849,6 +849,8 @@ defaultproperties
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway',Volume=0.218000)
 	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_breakclose',Volume=1.2)
 	ClipInFrame=0.800000
+	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_shellin')
+	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_breakopen')
 	bNonCocking=True
     bNoCrosshairInScope=True
 	WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000)
@@ -867,7 +869,7 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_OP_Pro.TrenchGunSecondaryFire'
 	SelectAnimRate=2.000000
 	PutDownAnimRate=2.000000
-	 SingleReloadAnimRate=1.0
+	SingleReloadAnimRate=1.0
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=0,R=0,A=147),Color2=(B=255,G=255,R=255,A=255),StartSize1=96,StartSize2=72)
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	AIRating=0.800000
