@@ -556,6 +556,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
 	bCanSkipReload=True
 	bShovelLoad=True
+	ClipInSound=(Sound=Sound'BWBP_CC_Sounds.Launcher.Launcher-RelSlideClosed')
 	StartShovelAnim="ReloadPrep"
 	EndShovelAnim="ReloadFinish"
 	ReloadAnim="ReloadLoop"
