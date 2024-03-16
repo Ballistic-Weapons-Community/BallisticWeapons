@@ -360,7 +360,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff',Volume=0.210000)
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Out',Volume=1.500000)
 	ClipInFrame=0.850000
 	bCockOnEmpty=True
