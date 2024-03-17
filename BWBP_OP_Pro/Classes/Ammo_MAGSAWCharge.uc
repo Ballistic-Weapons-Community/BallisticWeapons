@@ -7,8 +7,8 @@ class Ammo_MAGSAWCharge extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=30
-     InitialAmount=30
+     MaxAmmo=1
+     InitialAmount=1
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
      PickupClass=None
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'

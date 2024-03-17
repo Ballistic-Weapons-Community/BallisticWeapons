@@ -56,6 +56,6 @@ defaultproperties
 	LightRadius=64.000000
 	bDynamicLight=True
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_DTS'
-	RelativeLocation=(Z=6.000000)
+	RelativeLocation=(Y=-3.000000,Z=6.000000)
 	DrawScale=0.120000
 }

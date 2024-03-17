@@ -24,5 +24,6 @@ defaultproperties
      MeleeStrikeAnim="Blade_Stab"
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_Techwrench'
-     DrawScale=1.000000
+     DrawScale=0.750000
+	 RelativeLocation=(X=-2.000000,Y=-4.000000)
 }
