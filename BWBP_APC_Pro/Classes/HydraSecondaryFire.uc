@@ -154,6 +154,7 @@ defaultproperties
 	 MaxChargeOvertime=3.0f
 	 ChargeGainPerSecond=3.6f
 	 ChargeDecayPerSecond=18.0f
+	 ChargeAnim="ChargeUp"
      bFireOnRelease=True
 	 //ChargingSound=Sound'GeneralAmbience.texture22'
 	 SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)

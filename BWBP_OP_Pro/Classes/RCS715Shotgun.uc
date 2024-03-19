@@ -709,8 +709,8 @@ defaultproperties
 	ManualLines(1)="Loads an incendiary grenade and fires. Deals good impact damage and minor radius damage, as well as a blast of fire upon impact."
 	ManualLines(2)="This weapon is heavy and has poor shoulder fire properties.||Effective at close range."
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.150000)
 	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagOut',Volume=1.300000)

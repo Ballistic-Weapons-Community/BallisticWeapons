@@ -468,8 +468,8 @@ simulated function AddHeat(float Amount)
 		Heatlevel = 12;
 		PlaySound(OverHeatSound,,0.7,,32);
 		if (Instigator.Physics != PHYS_Falling)
-			class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
-		else class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTCYLOFirestormOverheat');
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
+		else class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, vect(0,0,0), class'DTCYLOFirestormOverheat');
 		return;
 	}
 	if (bVariableHeatProps)

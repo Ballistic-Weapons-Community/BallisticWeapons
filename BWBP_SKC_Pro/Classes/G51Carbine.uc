@@ -691,8 +691,8 @@ function byte BestMode()
 {
 	local Bot B;
 
-	if (bHasIR || bSilenced)
-		return 0;
+	if (bHasIR || bSilenced || bNoaltfire)
+		return 0;		
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
@@ -771,6 +771,7 @@ defaultproperties
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=2.200000)
      ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=2.200000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagOut',Volume=2.200000)
+	 ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagIn',Volume=2.200000)
      ClipInFrame=0.650000
      LongGunOffset=(X=10.000000)
      bWT_Bullet=True

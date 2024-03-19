@@ -57,8 +57,8 @@ defaultproperties
 {
 	 bCookable=True
      FuseDelay=2.000000
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.100000,Radius=24.000000,Pitch=1.000000,bAtten=True)
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_T10'
      BigIconCoords=(Y1=12,Y2=240)
@@ -70,8 +70,8 @@ defaultproperties
      ManualLines(1)="As primary, except the throw is underarm."
      ManualLines(2)="As with all grenades, Reload and Weapon Function keys will remove the pin. With the T10 this is important, as throwing a grenade when the fuse is about to expire leads to the grenade spreading gas as it travels in the air, granting greater coverage. Overcooking the grenade will result in the gassing of the user. Effective in corridors and against static positions."
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout',Volume=0.112000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway',Volume=0.111000)
      CurrentWeaponMode=0
      ParamsClasses(0)=Class'T10WeaponParamsComp'
      ParamsClasses(1)=Class'T10WeaponParamsClassic'

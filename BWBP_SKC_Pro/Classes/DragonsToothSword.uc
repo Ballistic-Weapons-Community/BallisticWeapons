@@ -176,8 +176,8 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	ToothUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Up',Volume=0.190000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
-	ToothDownSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Down',Volume=0.213000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=False)
+	ToothUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Up',Volume=0.190000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	ToothDownSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Down',Volume=0.213000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	LoopAmbientSound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Loop'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.DragonToothSword.BigIcon_DTS'

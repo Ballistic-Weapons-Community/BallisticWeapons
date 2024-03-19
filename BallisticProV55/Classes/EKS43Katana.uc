@@ -11,6 +11,22 @@
 //=============================================================================
 class EKS43Katana extends BallisticMeleeWeapon;
 
+var() bool	bIsSuperHeated;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsSuperHeated=false;
+
+	if (InStr(WeaponParams.LayoutTags, "superheated") != -1)
+	{
+		bIsSuperHeated=true;
+	}
+}
+
 // choose between regular or alt-fire
 function byte BestMode()
 {

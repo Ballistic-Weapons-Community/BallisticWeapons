@@ -101,8 +101,8 @@ simulated event AnimEnd (int Channel)
 defaultproperties
 {
      FuseDelay=0.500000
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.100000,Radius=24.000000,Pitch=1.000000,bAtten=True)
      GrenadeBone="G28"
      SmokeBone="G28"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -116,8 +116,8 @@ defaultproperties
      ManualLines(1)="As primary, except the grenade is rolled underarm."
      ManualLines(2)="Like all grenades, the grenade can be cooked in the hand. However, due to the short fuse time, this is not useful for the G28."
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout',Volume=0.112000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway',Volume=0.111000)
 	 CurrentWeaponMode=0
 	 ParamsClasses(0)=Class'G28WeaponParamsComp'
 	 ParamsClasses(1)=Class'G28WeaponParamsClassic'

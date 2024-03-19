@@ -53,7 +53,7 @@ simulated function AddHeat(float Amount)
 	if (HeatLevel >= 9.75 && !bVariableHeatProps)
 	{
 		Heatlevel = 10;
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
 		return;
 	}
 	else if (HeatLevel >= 10.5)

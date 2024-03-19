@@ -438,8 +438,8 @@ defaultproperties
 	ManualLines(1)="Deploys the HAMR. Unlike machineguns, it cannot be deployed upon sandbags, only upon the ground or a wall. While deployed, recoil is reduced, fire rate improves and the user takes less damage from any frontal locational-hit attack."
 	ManualLines(2)="While viewing through the HAMR's optical system, the Weapon Function key will cause the targeting system to simulate the trajectory, travel time and impact radius of a shell fired from the HAMR at the current aim rotation. This can be used to finely target a shot at long range.||The HAMR is heavy and will badly restrict the player's movement while it is active.||Effective at medium to long range. Extremely effective against groups and with height advantage."
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;90.0;0.8;0.0;1.2")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
 	ReloadAnim="ReloadLoop"
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-ShellIn')
 	bNonCocking=True

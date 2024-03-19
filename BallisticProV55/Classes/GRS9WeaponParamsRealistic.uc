@@ -332,6 +332,7 @@ defaultproperties
 		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
 		FireParams(2)=FireParams'RealisticPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+		bNoaltfire=True
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_RDS

@@ -613,6 +613,11 @@ function byte BestMode()
 	local Bot B;
 	local float Result, Dist;
 
+	if (bNoaltfire)
+		return 0;
+
+	else 
+
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
@@ -631,6 +636,7 @@ function byte BestMode()
 	if (Result > 0.5)
 		return 1;
 	return 0;
+	
 }
 
 function float GetAIRating()
@@ -663,6 +669,7 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
+	bNoaltfire=False
 	AIRating=0.6
 	CurrentRating=0.6
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'

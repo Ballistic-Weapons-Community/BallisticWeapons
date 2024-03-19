@@ -650,6 +650,7 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
+	 bNoCrosshairInScope=True
      VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
      OverHeatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
      PlayerSpeedFactor=0.800000

@@ -453,7 +453,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
 	ReloadAnim="ReloadLoop"
 	PutDownTime=0.35
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	PutDownAnimRate=1.5
 	Priority=36
 	PlayerViewOffset=(X=10.00,Y=6.00,Z=-7.00)
@@ -499,7 +499,7 @@ defaultproperties
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Cock',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-ShellIn')
 	ClipInFrame=0.375000
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRS138'
 	BigIconCoords=(Y1=36,Y2=230)
 	

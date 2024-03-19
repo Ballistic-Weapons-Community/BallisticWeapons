@@ -336,6 +336,7 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+		bNoaltfire=True		
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_IRScope
