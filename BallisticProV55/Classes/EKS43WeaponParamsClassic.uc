@@ -102,9 +102,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="7Fold Steel"
+		LayoutName="Fold Steel"
 		Weight=30
-		
+		AllowedCamos(0)=0
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
@@ -118,9 +118,9 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Flamer
 		LayoutName="Superheated Alloy"
 		Weight=10
-		
+		AllowedCamos(0)=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKS43Camos.Katana-KGlow",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKSCamos.Katana-KGlow",Index=1)
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
@@ -134,4 +134,21 @@ defaultproperties
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams-Flamer'
 
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=EKS_Steel
+		Index=0
+		CamoName="Fold Steel"
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=EKS_Heated
+		Index=1
+		CamoName="Superheated Alloy"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKSCamos.Katana-KGlow",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'EKS_Steel'
+	Camos(1)=WeaponCamo'EKS_Heated'	
 }
