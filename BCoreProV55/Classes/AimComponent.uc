@@ -270,6 +270,15 @@ final simulated function Recalculate()
     ChaosTurnThreshold	= Params.ChaosTurnThreshold;
 	CrouchMultiplier    = Params.CrouchMultiplier;
 
+	// Testing - no chaos, hard aim lock
+	if (class'BallisticGameStyles'.static.WYSIWYG())
+	{
+		Params.ViewBindFactor = 1;
+		Params.ADSViewBindFactor = 1;
+		AimSpread.Min = 0;
+		AimSpread.Max = 0;
+	}
+
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;
 

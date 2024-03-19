@@ -224,6 +224,13 @@ final function Recalculate()
     bViewDecline        = Params.bViewDecline;
     bUseAltSightCurve   = Params.bUseAltSightCurve;
 
+	// Testing - hard recoil lock
+	if (class'BallisticGameStyles'.static.WYSIWYG())
+	{
+		Params.ViewBindFactor = 1;
+		Params.ADSViewBindFactor = 1;
+	}
+
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;
 

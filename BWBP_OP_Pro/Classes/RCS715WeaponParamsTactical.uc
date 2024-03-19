@@ -14,7 +14,7 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=15
+		Damage=17
         HeadMult=1.75
         LimbMult=0.85
 		DamageType=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
