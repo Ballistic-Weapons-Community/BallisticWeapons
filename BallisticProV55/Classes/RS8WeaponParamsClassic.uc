@@ -266,7 +266,7 @@ defaultproperties
 		Weight=10
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
-		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
+		ViewOffset=(X=21,Y=6,Z=-5)
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
