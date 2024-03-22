@@ -74,6 +74,13 @@ simulated function PostNetBeginPlay()
 	}
 }
 
+function GiveTo( pawn Other, optional Pickup Pickup )
+{
+	Super.GiveTo(Other, Pickup);
+
+	UpdateSpeed();
+}
+
 function UpdateSpeed()
 {
 	local float NewSpeed;
@@ -339,7 +346,8 @@ function AddSlow(float myFactor, float myDuration)
 		NextTimerPop = TimerRate;
 		SlowFactor = LowestFactor;
 		
-		UpdateSpeed();
+		if (Instigator != None)
+			UpdateSpeed();
 	}
 	
 	//Otherwise just add duration to the existing slow.

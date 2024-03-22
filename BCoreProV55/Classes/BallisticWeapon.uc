@@ -2847,6 +2847,7 @@ function UpdateSpeed()
 		return;
 	}
 
+	// fallback if sprint control isn't in use
 	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
     //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
@@ -3368,16 +3369,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		// If factor differs from previous wep, or no previous wep, set groundspeed anew
 		if (BallisticWeapon(PrevWeapon) == None || BallisticWeapon(PrevWeapon).PlayerSpeedFactor != PlayerSpeedFactor)
 		{
-			NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
-
-			if (SprintControl != None && SprintControl.bSprinting)
-				NewSpeed *= SprintControl.SpeedFactor;
-
-			if (xPawn(Instigator) != None && ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-				NewSpeed *= 1.4;
-
-			if (Instigator.GroundSpeed != NewSpeed)
-				Instigator.GroundSpeed = NewSpeed;
+			UpdateSpeed();
 		}
 		
 		//Transfer over SpeedUp responsibility if we can
@@ -4075,9 +4067,7 @@ simulated function Destroyed()
 	{
 		if (PlayerSpeedUp)
 		{
-			Instigator.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-			if (SprintControl != None && SprintControl.bSprinting)
-				Instigator.GroundSpeed *= SprintControl.SpeedFactor;
+			UpdateSpeed();
 			PlayerSpeedUp=false;
 		}
 		

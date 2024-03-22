@@ -266,7 +266,11 @@ simulated function ApplyMovementOverrides()
 	CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
 	StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
 	BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
-	GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+
+	// prevent fighting with server when using Freon round start locker
+	if (Role == ROLE_Authority)
+		GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+
 	AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
 	LadderSpeed = GroundSpeed * 0.65f;
 	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
@@ -2595,23 +2599,6 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     SetPhysics(PHYS_Falling);
     PlayOwnedSound(GetSound(EST_Dodge), SLOT_Pain, GruntVolume, , GruntRadius);
     return true;
-}
-
-function CalcSpeedUp(float SpeedFactor)
-{
-	local float NewSpeed;
-	
-	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * SpeedFactor;
-
-	if (ComboSpeed(CurrentCombo) != None)
-		NewSpeed *= 1.4;
-
-	if (BallisticWeapon(Weapon) != None && (BallisticWeapon(Weapon).PlayerSpeedFactor <= 1 || SpeedFactor <= 1))
-		NewSpeed *= BallisticWeapon(Weapon).PlayerSpeedFactor;
-
-	GroundSpeed = NewSpeed;
-    
-	Inventory.OwnerEvent('SpeedChange');
 }
 
 //Used by BW's fix of PintSize
