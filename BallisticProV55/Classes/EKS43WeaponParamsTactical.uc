@@ -77,6 +77,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=UniversalParams
 		LayoutName="Perfect Steel"
 		Weight=30
+		AllowedCamos(0)=0	
         DisplaceDurationMult=0.33
         MagAmmo=1
         InventorySize=1
@@ -90,9 +91,9 @@ defaultproperties
     Begin Object Class=WeaponParams Name=UniversalParams_Hot
 		LayoutName="Superheated"
 		Weight=10
-		
+		AllowedCamos(0)=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKS43Camos.Katana-KGlow",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKSCamos.Katana-KGlow",Index=1)
         DisplaceDurationMult=0.33
         MagAmmo=1
         InventorySize=1
@@ -102,6 +103,26 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+	
     Layouts(0)=WeaponParams'UniversalParams'
     Layouts(1)=WeaponParams'UniversalParams_Hot'
+	
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=EKS_Steel
+		Index=0
+		CamoName="Perfect Steel"
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=EKS_Heated
+		Index=1
+		CamoName="Superheated"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKSCamos.Katana-KGlow",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Camos(0)=WeaponCamo'EKS_Steel'
+	Camos(1)=WeaponCamo'EKS_Heated'	
+
 }
