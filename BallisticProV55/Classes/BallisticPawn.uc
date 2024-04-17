@@ -2126,7 +2126,7 @@ simulated function StartDeRes()
 	// Wicked new BW DeRes ---------
 	Spawn(class'BWDeresFX',self,, Location);
 	NewDeResDecal = Spawn(class'BWDeResDecal', self, , Location, rot(-16384,0,0));
-	PlaySound(NewDeResSound, SLOT_Interact, 1.0);
+	PlaySound(NewDeResSound, SLOT_Interact, 0.8,, 40);
 
 
 	for (i=0;i<Skins.Length;i++)
