@@ -38,8 +38,8 @@ simulated function Initialize(Pawn V, PD97Bloodhound Gun)
 	}
 
 
-	if (Level.NetMode == NM_DedicatedServer || Instigator.GetTeamNum() == 255 || (V.PlayerReplicationInfo.Team.TeamIndex != 255 && V.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex))
-		Emitters[0].Disabled=true;
+//	if (Level.NetMode == NM_DedicatedServer || Instigator.GetTeamNum() == 255 || (V.PlayerReplicationInfo.Team.TeamIndex != 255 && V.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex))
+//		Emitters[0].Disabled=true;
 	
 	DartDurations[0] = BaseDuration;
 	SetBase(Victim);
