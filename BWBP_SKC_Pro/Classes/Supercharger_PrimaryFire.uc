@@ -242,7 +242,7 @@ defaultproperties
 	DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 	DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
-	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat',Volume=1.000000)
+	//DryFireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat',Volume=1.000000)
 	FireAnim="FireLoop"
     FireLoopAnim="FireLoop"
 	FireEndAnim=
