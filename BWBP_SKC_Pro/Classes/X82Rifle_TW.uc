@@ -165,7 +165,7 @@ simulated event RenderOverlays (Canvas C)
 simulated function PlayReload()
 {
 	super.PlayReload();
-	PlayAnim('ReloadFinishFew', ReloadAnimRate, , 0.25);
+	PlayAnim('Reload', ReloadAnimRate, , 0.25);
 }
 
 // Animation notify to make gun cock after reload
