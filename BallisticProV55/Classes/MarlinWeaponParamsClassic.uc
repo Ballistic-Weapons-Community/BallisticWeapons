@@ -240,7 +240,7 @@ defaultproperties
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
 		//Attachments
-		ViewOffset=(X=15,Y=7.00000,Z=-10.000000)
+		ViewOffset=(X=10,Y=8,Z=-6)
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		//ADS
 		SightMoveSpeedFactor=0.500000
@@ -269,7 +269,7 @@ defaultproperties
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
 		//Attachments
-		ViewOffset=(X=15,Y=7.00000,Z=-10.000000)
+		ViewOffset=(X=10,Y=8,Z=-6)
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		//ADS
 		SightMoveSpeedFactor=0.500000

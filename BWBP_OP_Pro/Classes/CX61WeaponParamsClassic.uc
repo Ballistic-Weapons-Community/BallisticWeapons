@@ -152,6 +152,7 @@ defaultproperties
 		InitialWeaponMode=0
 		bNeedCock=True
 		MagAmmo=16
+		ViewOffset=(X=8,Y=6,Z=-2.5)
 		WeaponName="CX61 Flechette Rifle"
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
@@ -178,6 +179,7 @@ defaultproperties
 		InitialWeaponMode=0
 		bNeedCock=True
 		MagAmmo=30
+		ViewOffset=(X=8,Y=6,Z=-2.5)
 		WeaponName="CX61 Assault Rifle"
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
