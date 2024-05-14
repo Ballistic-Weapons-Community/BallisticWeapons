@@ -352,8 +352,8 @@ defaultproperties
 	ManualLines(2)="As a long-ranged weapon lacking a scope, it has a very quick aiming time. Does not use tracer rounds. Effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.6;50.0;1.0;0.5;-999.0")
 	MeleeFireClass=Class'BallisticProV55.MarlinMeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	PutDownTime=0.4
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Cock',Volume=0.650000)
 	ReloadAnim="ReloadLoop"

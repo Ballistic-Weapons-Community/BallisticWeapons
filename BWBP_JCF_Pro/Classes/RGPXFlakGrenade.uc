@@ -100,7 +100,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		{
 			NewNormal = HitNormal;
 			
-			log(HitNormal);
+			//log(HitNormal);
 			
 			NewNormal.X += FRand()*0.4 - 0.2;
 			NewNormal.Y += FRand()*0.4 - 0.2;

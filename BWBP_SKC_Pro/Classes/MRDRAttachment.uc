@@ -63,7 +63,7 @@ defaultproperties
      ReloadAnimRate=1.250000
      CockAnimRate=0.800000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.MRDR_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_MRDR'
      RelativeLocation=(X=-3.000000,Z=5.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.140000

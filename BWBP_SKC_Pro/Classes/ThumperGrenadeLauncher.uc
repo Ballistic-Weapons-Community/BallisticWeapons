@@ -86,8 +86,8 @@ defaultproperties
 	bWT_Hazardous=True
 	bWT_Projectile=True
 	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	MagAmmo=5
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Cock')
     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagIn')

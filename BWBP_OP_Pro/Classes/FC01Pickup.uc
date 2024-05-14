@@ -1,7 +1,7 @@
 //=============================================================================
-// ProtoPickup.
+// FC01Pickup.
 //=============================================================================
-class ProtoPickup extends BallisticWeaponPickup
+class FC01Pickup extends BallisticWeaponPickup
 	placeable;
 
 //===========================================================================
@@ -14,9 +14,9 @@ class ProtoPickup extends BallisticWeaponPickup
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM'
-     InventoryType=Class'BWBP_APC_Pro.ProtoSMG'
+     InventoryType=Class'BWBP_OP_Pro.FC01SmartGun'
      RespawnTime=20.000000
-     PickupMessage="You picked up the FC-01B Prototype Light Machinegun."
+     PickupMessage="You picked up the FC-01 Smartgun."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM'
      Physics=PHYS_None

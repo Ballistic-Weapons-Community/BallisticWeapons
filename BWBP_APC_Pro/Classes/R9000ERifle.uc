@@ -274,8 +274,8 @@ defaultproperties
      ManualLines(1)="Engages the scope."
      ManualLines(2)="Be wary of tracer rounds due to different variations of ammo. Effective at long range and against clustered enemies."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	 PutDownTime=0.5
      CockAnim="Cock"
 	 CockSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Cock')

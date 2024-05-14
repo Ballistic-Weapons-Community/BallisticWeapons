@@ -589,8 +589,8 @@ defaultproperties
      ManualLines(1)="Fires a gas-powered rocket barrage, with heavy inaccuracy and recoil with repeated shots."
      ManualLines(2)="Activates a guiding laser, which stabilises secondary fire and directs rockets. Suitable for further distances."
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;2.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.222000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
      CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-Cock',Volume=1.350000)
 	 ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagHit',Volume=1.350000)

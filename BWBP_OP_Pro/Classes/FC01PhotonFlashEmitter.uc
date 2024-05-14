@@ -1,15 +1,15 @@
 //=============================================================================
-// ProtoPhotonFlashEmitter.
+// FC01PhotonFlashEmitter.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ProtoPhotonFlashEmitter extends BallisticEmitter;
+class FC01PhotonFlashEmitter extends BallisticEmitter;
 
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter5
-         StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMGMuzzleFlash'
+         StaticMesh=StaticMesh'BWBP_OP_Static.FC01LMG.ProtoLMGMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -36,7 +36,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(0)=MeshEmitter'BWBP_APC_Pro.ProtoPhotonFlashEmitter.MeshEmitter5'
+     Emitters(0)=MeshEmitter'BWBP_OP_Pro.FC01PhotonFlashEmitter.MeshEmitter5'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter26
          FadeOut=True
@@ -67,7 +67,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=3.000000,Max=3.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_APC_Pro.ProtoPhotonFlashEmitter.SpriteEmitter26'
+     Emitters(1)=SpriteEmitter'BWBP_OP_Pro.FC01PhotonFlashEmitter.SpriteEmitter26'
      
 	 bNoDelete=False
 }

@@ -339,6 +339,7 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+		bNoaltfire=True
 	End Object
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_IR
@@ -404,9 +405,10 @@ defaultproperties
 	Layouts(0)=WeaponParams'TacticalParams_Chaff'
 	Layouts(1)=WeaponParams'TacticalParams_Sensor'
 	Layouts(2)=WeaponParams'TacticalParams_HE'
-	Layouts(3)=WeaponParams'TacticalParams_3X'
-	Layouts(4)=WeaponParams'TacticalParams_IR'
-	Layouts(5)=WeaponParams'TacticalParams_Suppressed'
+	Layouts(3)=WeaponParams'TacticalParams_Suppressed'
+	//Layouts(4)=WeaponParams'TacticalParams_3X'
+	//Layouts(5)=WeaponParams'TacticalParams_IR'
+	
 
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black

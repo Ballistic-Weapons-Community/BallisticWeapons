@@ -376,7 +376,8 @@ defaultproperties
     //WeaponModes(15)=(ModeName="GBU-43 MOAB",ModeID="WM_FullAuto,bUnavailable=True")
     //WeaponModes(16)=(ModeName="LUU-4 Illumination Flare",ModeID="WM_FullAuto,bUnavailable=True")
     //WeaponModes(17)=(ModeName="W54 Nuclear Warhead",ModeID="WM_FullAuto,bUnavailable=True")
-	
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Pullout',Volume=0.128000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Putaway',Volume=0.110000)
     CurrentWeaponMode=2
     ScopeXScale=1.400000
     ZoomInAnim="Raise"

@@ -112,6 +112,6 @@ defaultproperties
      ReloadAnimRate=1.650000
      bRapidFire=True
      bAltRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XRS10_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_XRS10'
      DrawScale=0.100000
 }

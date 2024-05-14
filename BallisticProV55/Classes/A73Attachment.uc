@@ -19,6 +19,6 @@ defaultproperties
 	ReloadAnim="Reload_MG"
 	ReloadAnimRate=1.50000
 	bRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A73_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A73'
 	DrawScale=1.700000
 }

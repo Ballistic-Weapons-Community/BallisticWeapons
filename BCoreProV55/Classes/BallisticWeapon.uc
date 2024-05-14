@@ -194,6 +194,7 @@ var() 	float						AIReloadTime;					// How long it's likely to take to reload. U
 var		float						BotTryReloadTime;				// Time when bot should try reload again
 var		Vehicle						OwnerLastVehicle;				// Vehicle being driven last tick...
 var		Controller					InstigatorController;			// Controller of the instigator
+var   	bool						bNoaltfire;						// Dissalow a bot to use alt-fire (use this when the alt-fire makes the gun ADS but the gun has multiple layout alt-fires that we want to keep)
 //-----------------------------------------------------------------------------
 // Fire Modes
 //-----------------------------------------------------------------------------
@@ -844,7 +845,9 @@ simulated function OnWeaponParamsChanged()
     ZoomType                    = WeaponParams.ZoomType;
 
 	ScopeScale					= FMin(1f, WeaponParams.ScopeScale);
-
+	
+	bNoaltfire					= WeaponParams.bNoaltfire;
+	
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
 			
@@ -2844,6 +2847,7 @@ function UpdateSpeed()
 		return;
 	}
 
+	// fallback if sprint control isn't in use
 	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
     //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
@@ -3365,16 +3369,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		// If factor differs from previous wep, or no previous wep, set groundspeed anew
 		if (BallisticWeapon(PrevWeapon) == None || BallisticWeapon(PrevWeapon).PlayerSpeedFactor != PlayerSpeedFactor)
 		{
-			NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
-
-			if (SprintControl != None && SprintControl.bSprinting)
-				NewSpeed *= SprintControl.SpeedFactor;
-
-			if (xPawn(Instigator) != None && ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-				NewSpeed *= 1.4;
-
-			if (Instigator.GroundSpeed != NewSpeed)
-				Instigator.GroundSpeed = NewSpeed;
+			UpdateSpeed();
 		}
 		
 		//Transfer over SpeedUp responsibility if we can
@@ -4072,9 +4067,7 @@ simulated function Destroyed()
 	{
 		if (PlayerSpeedUp)
 		{
-			Instigator.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-			if (SprintControl != None && SprintControl.bSprinting)
-				Instigator.GroundSpeed *= SprintControl.SpeedFactor;
+			UpdateSpeed();
 			PlayerSpeedUp=false;
 		}
 		

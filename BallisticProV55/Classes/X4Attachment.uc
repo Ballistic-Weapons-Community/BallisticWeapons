@@ -22,8 +22,8 @@ defaultproperties
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      MeleeStrikeAnim="Blade_Stab"
      bRapidFire=True
-     RelativeLocation=(X=5.000000,Z=10.000000)
-     RelativeRotation=(Pitch=-40000)	 
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.X4_TPm'
+     RelativeLocation=(Y=-2.000000,Z=8.000000)
+     RelativeRotation=(Pitch=-35000)	 
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_X4'
      DrawScale=0.135000
 }

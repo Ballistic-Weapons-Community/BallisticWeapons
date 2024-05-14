@@ -1,4 +1,4 @@
-class ProtoWeaponParamsClassic extends BallisticWeaponParams;
+class FC01WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,16 +7,46 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//Smart Seeker
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams_Smart
+		ProjectileClass=Class'BWBP_OP_Pro.FC01SmartProj'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=10000.000000
+		MaxSpeed=10000.000000
+		AccelSpeed=1000.000000
+		Damage=20
+		DamageRadius=8.000000
+		MomentumTransfer=20000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=1.350000
+		Recoil=256.000000
+		Chaos=0.20000
+		WarnTargetPct=0.200000
+		//FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX85.CX85-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-SmartShot',Volume=1.0)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Smart
+		FireInterval=0.150000
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.000000	
+		TargetState="SeekerFlechette"
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams_Smart'
+	End Object
+	
+	//5.7mm fire
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
 		WaterTraceRange=2500.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.500000
-		Damage=12.0
+		Damage=13.0
 		HeadMult=3.75
-		LimbMult=0.833333
-		DamageType=Class'BWBP_APC_Pro.DTProto'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTProtoHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTProto'
+		LimbMult=0.85
+		DamageType=Class'BWBP_OP_Pro.DT_FC01Body'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_FC01Head'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_FC01Body'
 		PenetrationEnergy=24.000000
 		PenetrateForce=180
 		bPenetrate=True
@@ -45,9 +75,9 @@ defaultproperties
 		TraceRange=(Min=8000.000000,Max=12000.000000)
 		RangeAtten=0.100000
 		Damage=22
-		DamageType=Class'BWBP_APC_Pro.DTProtoPhoton'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTProtoPhotonHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTProtoPhoton'
+		DamageType=Class'BWBP_OP_Pro.DT_FC01Photon'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_FC01PhotonHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_FC01Photon'
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
@@ -103,20 +133,41 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=5
-		SightMoveSpeedFactor=0.500000
+	Begin Object Class=WeaponParams Name=ClassicParams_Smart
+		//Layout core
+		LayoutName="Laser Tracker"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
 		SightingTime=0.25
+		//Stats
+		InventorySize=5
+		MagAmmo=40
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Smart'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
+		LayoutName="5.7mm Dumbfire"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.25
+		//Stats
+		InventorySize=5
 		MagAmmo=50
-		//SightOffset=(X=-8,Y=5.870000,Z=8.000000)
-		//SightPivot=(Pitch=600)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPhotonPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ClassicParams'
+	
+	Layouts(0)=WeaponParams'ClassicParams_Smart'
+	Layouts(1)=WeaponParams'ClassicParams'
 
 
 }

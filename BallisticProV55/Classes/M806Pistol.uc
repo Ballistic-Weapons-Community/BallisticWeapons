@@ -613,8 +613,8 @@ defaultproperties
 	bWT_Bullet=True
 	bShouldDualInLoadout=True
 	SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipOut')

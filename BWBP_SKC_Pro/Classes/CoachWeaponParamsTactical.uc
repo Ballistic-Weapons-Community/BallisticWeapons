@@ -15,7 +15,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		MaxHits=15 // inflict maximum of 150 damage to a single target, before modifiers
-		Damage=10
+		Damage=17
         HeadMult=1.75
         LimbMult=0.85
 		PushbackForce=100.000000
@@ -89,7 +89,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		MaxHits=15 // inflict maximum of 150 damage to a single target, before modifiers
-		Damage=10
+		Damage=17
         HeadMult=1.75
         LimbMult=0.85
 		PushbackForce=100.000000

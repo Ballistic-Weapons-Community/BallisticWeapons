@@ -253,8 +253,8 @@ defaultproperties
 	ManualLines(1)="Deploys the machinegun on the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, automatic fire is available. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="The M925, as a heavy machine gun, burdens the player, reducing movement speed and jump height. It also has poor shoulder fire properties and a long sighting time.||It is effective at medium to long range and when employed defensively."
 	SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout',Volume=0.215000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway',Volume=0.207000)
 	CurrentWeaponMode=0
     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

@@ -172,7 +172,7 @@ defaultproperties
      PivotBone="StandPivot"
      bDrawDriverInTP=True
      VehicleNameString="J2329-HAMR Turret"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMRTurret_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_HAMRTurret'
      DrawScale=0.250000
      PrePivot=(Z=8.000000)
      CollisionHeight=32.000000

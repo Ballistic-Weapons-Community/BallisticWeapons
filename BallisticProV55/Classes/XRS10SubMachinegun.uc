@@ -400,8 +400,8 @@ defaultproperties
 	ManualLines(1)="Toggles the laser sight. While active, reduces the hipfire spread, but broadcasts the user's position to the enemy."
 	ManualLines(2)="The Weapon Function key attaches a suppressor, reducing recoil, range and noise output and removing the flash.||This weapon is highly effective at very close range."
 	SpecialInfo(0)=(Info="60.0;5.0;0.4;-1.0;0.0;0.2;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
 	MagAmmo=30
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Clipout')

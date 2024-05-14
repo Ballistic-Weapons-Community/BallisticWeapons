@@ -690,8 +690,8 @@ defaultproperties
 	ManualLines(1)="Fires a dart. Good fire rate and fast flight speed. Enemies hit by the darts show up on the scope when within a given range of the user. The tracking range increases with successive hits."
 	ManualLines(2)="Weapon Function for this weapon causes all the darts attached to the last player to be hit for the first time to explode. This feature works independently of range.||The CX85 is effective at long range."
 	SpecialInfo(0)=(Info="240.0;30.0;0.9;75.0;1.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.219000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.219000)
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-Cock')
 	ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-MagOut')

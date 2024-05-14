@@ -132,8 +132,8 @@ defaultproperties
 	ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Power, number of pools and radius of coverage all increase with charge, while speed decreases."
 	ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
 	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout',Volume=0.220000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.225000)
 	MagAmmo=8
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_ClipOut',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_ClipIn',Volume=0.800000)

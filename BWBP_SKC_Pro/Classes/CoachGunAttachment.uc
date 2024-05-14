@@ -412,7 +412,7 @@ defaultproperties
 
     TrackAnimMode=MU_None
 
-    Mesh=SkeletalMesh'BWBP_SKC_Anim.Coachgun_TPm'
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Coachgun'
     RelativeLocation=(X=5.000000,Z=4.000000)
     RelativeRotation=(Pitch=32768)
     DrawScale=0.450000

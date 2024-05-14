@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//556
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1250,Max=3750)
@@ -36,6 +37,7 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 	
+	//spike shot
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams_Spike
 		ProjectileClass=Class'BWBP_OP_Pro.CX61Flechette'
 		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)

@@ -243,7 +243,7 @@ defaultproperties
 		AllowedCamos(1)=9
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SR18'
-		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.SR18_TPm'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_SR18'
 		SightOffset=(X=1.000000,Z=0.85000)
 		//Function
 		ZoomType=ZT_Irons

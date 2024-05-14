@@ -336,8 +336,8 @@ defaultproperties
      ManualLines(1)=" If a knife is attached, it will be launched, dealing high damage. This attack is hip-accurate and has no recoil. If no knife is attached, one will be attached if available.||This weapon is effective at medium range."
      ManualLines(2)="Rugged, reliable, no fancy attachments needed.  That's the mantra of ZTV Exports PKMA-420 General Purpose Machine Gun, an old timey design brought back from the glory days of the MSR (Merged States Republic).  A 7.62mm belt-fed machine gun that can get the job done even without the frills of optics and other attachments, however there have been upgrades so that it can mount the infamous X8 seen on the AK-490. The PKMA can fight, no matter how harsh the conditions are or how many Krao come surging, nothing can stop this machine gun from performing above and beyond."
      SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.3;0.4;1.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
+	 BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout',Volume=0.220000)
+	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway',Volume=0.270000)
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BWBP_CC_Sounds.RPK940.RPK-Bolt',Volume=1.500000)
      ReloadAnim="ReloadStart"

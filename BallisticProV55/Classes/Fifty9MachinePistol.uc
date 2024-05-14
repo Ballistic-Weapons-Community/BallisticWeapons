@@ -311,8 +311,8 @@ defaultproperties
 	ManualLines(1)="Continually slashes with the attached blade. Damage output is modest and range is low."
 	ManualLines(2)="The Fifty-9's stock can be engaged or disengaged with the Weapon Function key. With the stock engaged, the recoil is reduced but the hipfire spread increases. The Fifty-9 is extremely effective at very close range."
 	SpecialInfo(0)=(Info="120.0;10.0;0.8;40.0;0.0;0.4;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
 	MagAmmo=25
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Cock',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-ClipOut',Volume=0.700000)

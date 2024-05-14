@@ -295,9 +295,9 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Ice'
     End Object 	
 
-	Layouts(0)=TacticalParams_Smoker
-	Layouts(1)=TacticalParams_Sensor
-    Layouts(2)=TacticalParams_Holosight
+	//Layouts(0)=TacticalParams_Smoker
+	//Layouts(1)=TacticalParams_Sensor
+    Layouts(0)=TacticalParams_Holosight
 	
 	
 	//Camos =========================================

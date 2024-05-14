@@ -522,8 +522,8 @@ defaultproperties
 	ManualLines(1)="Raises the scope."
 	ManualLines(2)="Effective at long range. Excels at stealth."
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.220000)
 	CockAnim='CockRotateMag'
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')

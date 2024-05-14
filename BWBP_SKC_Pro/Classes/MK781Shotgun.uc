@@ -1046,8 +1046,8 @@ defaultproperties
 	ManualLines(1)="Loads an electroshock shell.|Without the suppressor employed, will subsequently generate an electric shot with high power and excellent range.|With the suppressor employed, will generate an arcing bolt with fast travel time and strong impact damage. Deals lesser damage in a radius around the point of impact."
 	ManualLines(2)="The Weapon Function key attaches the suppressor, which removes the flash, reduces recoil, quietens the fire sound of the primary and changes the functionality of the weapon. Due to the suppressor's length, the weapon will offset while jumping if it is attached.||Effective at medium range."
 	SpecialInfo(0)=(Info="300.0;25.0;0.5;60.0;0.6;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
 	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock',Volume=2.300000,Radius=32.000000)
 	ReloadAnim="ReloadLoop"

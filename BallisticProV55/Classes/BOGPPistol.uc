@@ -276,8 +276,8 @@ defaultproperties
 	ManualLines(1)="Used to toggle between grenade and flare modes."
 	ManualLines(2)="The BORT grenade is effective at medium range and when the player has height advantage. The BORT flare is most effective at close range. Recoil and hip spread are low, except when jumping. When dual wielded, the BORT pistols will fire simultaneously."
 	SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	bNoMag=True
 	CockAnim="Reload"
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')

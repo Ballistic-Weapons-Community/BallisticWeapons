@@ -16,10 +16,10 @@ simulated function Initialize(float Distance, optional float Power)
 //	Emitters[3].Opacity = Emitters[3].default.Opacity * Power;
 	BeamEmitter(Emitters[1]).BeamDistanceRange.Min = Distance;
 	BeamEmitter(Emitters[1]).BeamDistanceRange.Max = Distance;
-	BeamEmitter(Emitters[5]).BeamDistanceRange.Min = Distance;
-	BeamEmitter(Emitters[5]).BeamDistanceRange.Max = Distance;
-	Emitters[6].LifeTimeRange.Min = Distance / 8000;
-	Emitters[6].LifeTimeRange.Max = Distance / 8000;
+	BeamEmitter(Emitters[4]).BeamDistanceRange.Min = Distance;
+	BeamEmitter(Emitters[4]).BeamDistanceRange.Max = Distance;
+	Emitters[5].LifeTimeRange.Min = Distance / 8000;
+	Emitters[5].LifeTimeRange.Max = Distance / 8000;
 }
 
 defaultproperties
@@ -84,7 +84,7 @@ defaultproperties
     End Object
      Emitters(1)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.BeamEmitter1'
 
-    Begin Object Class=SpriteEmitter Name=SpriteEmitter0
+    Begin Object Class=SpriteEmitter Name=SpriteEmitter2
         FadeOut=True
         FadeIn=True
         RespawnDeadParticles=False
@@ -119,9 +119,9 @@ defaultproperties
         LifetimeRange=(Min=1.500000,Max=1.500000)
         StartVelocityRange=(X=(Max=5.000000))
     End Object
-     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.SpriteEmitter0'
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.SpriteEmitter2'
 
-    Begin Object Class=BeamEmitter Name=BeamEmitter2
+    Begin Object Class=BeamEmitter Name=BeamEmitter3
         BeamDistanceRange=(Min=100.000000,Max=100.000000)
         DetermineEndPointBy=PTEP_Distance
         UseColorScale=True
@@ -147,9 +147,9 @@ defaultproperties
         LifetimeRange=(Min=0.350000,Max=0.350000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
-     Emitters(3)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.BeamEmitter2'
+     Emitters(3)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.BeamEmitter3'
 
-    Begin Object Class=BeamEmitter Name=BeamEmitter3
+    Begin Object Class=BeamEmitter Name=BeamEmitter4
         BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
         DetermineEndPointBy=PTEP_Distance
         BeamTextureUScale=16.000000
@@ -180,9 +180,9 @@ defaultproperties
         LifetimeRange=(Min=0.300000,Max=0.400000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
-     Emitters(5)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.BeamEmitter3'
+     Emitters(4)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.BeamEmitter4'
 
-    Begin Object Class=SpriteEmitter Name=SpriteEmitter1
+    Begin Object Class=SpriteEmitter Name=SpriteEmitter5
         FadeOut=True
         RespawnDeadParticles=False
         SpinParticles=True
@@ -210,6 +210,6 @@ defaultproperties
         LifetimeRange=(Min=0.325000,Max=0.325000)
         StartVelocityRange=(X=(Min=-40.000000,Max=40.000000),Y=(Min=-40.000000,Max=40.000000),Z=(Min=-40.000000,Max=40.000000))
     End Object
-     Emitters(6)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.SpriteEmitter1'
+     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20B.SpriteEmitter5'
 
 }

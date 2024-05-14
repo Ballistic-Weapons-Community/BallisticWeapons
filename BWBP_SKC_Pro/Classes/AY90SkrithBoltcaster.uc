@@ -536,10 +536,11 @@ defaultproperties
      bWT_RapidProj=True
      bWT_Energy=True
      SpecialInfo(0)=(Info="300.0;25.0;1.5;85.0;0.6;0.6;0.6")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
+	 BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout',Volume=0.220000) 
+	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.225000)
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
+	 
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
      ClipInFrame=0.700000
      bNonCocking=True

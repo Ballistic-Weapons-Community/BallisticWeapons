@@ -13,6 +13,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//5.56mm
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=1838,Max=5250) // 35-100m
@@ -43,6 +44,34 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 	
+	//15mm Cryon Seeker Spike
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_Seeker
+		ProjectileClass=Class'BWBP_OP_Pro.CX85Flechette'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=10000.000000
+		MaxSpeed=10000.000000
+		AccelSpeed=1000.000000
+		Damage=50
+		DamageRadius=8.000000
+		MomentumTransfer=20000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=1.350000
+		Recoil=512.000000
+		Chaos=0.20000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX85.CX85-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Seeker
+		FireInterval=0.250000
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.000000	
+		TargetState="SeekerFlechette"
+		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Seeker'
+	End Object
+	
 	//=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -62,6 +91,15 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
 		FireInterval=0.350000
+		AmmoPerFire=0
+		PreFireAnim=
+		FireAnim="FireAlt"	
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams'
+	End Object
+
+	//Smart linked dart
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Smart
+		FireInterval=0.750000
 		AmmoPerFire=0
 		PreFireAnim=
 		FireAnim="FireAlt"	
@@ -103,11 +141,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
-		//SightOffset=(X=15.000000,Y=-0.6,Z=34.000000)
-		PlayerSpeedFactor=0.95
-		InventorySize=6
+		//Layout core
+		LayoutName="5.56mm Mod"
+		Weight=30
+		//ADS
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.45	
+		//Attachments
+		PlayerSpeedFactor=0.95
+		InventorySize=6
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=50
@@ -119,5 +161,29 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_Seeker
+		//Layout core
+		LayoutName="Seeker Spikes"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.45	
+		//Attachments
+		PlayerSpeedFactor=0.95
+		InventorySize=6
+		ScopeScale=0.7
+		DisplaceDurationMult=1
+		MagAmmo=20
+        // fixed 4x
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Seeker'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Smart'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Seeker'
 }

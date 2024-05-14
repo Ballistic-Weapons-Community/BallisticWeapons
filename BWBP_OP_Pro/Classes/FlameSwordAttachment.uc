@@ -35,10 +35,10 @@ defaultproperties
      LightRadius=64.000000
      bDynamicLight=True
      AmbientSound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-IdleLite'
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FlameSword_TPm'
-     RelativeLocation=(Z=6.000000)
-	 RelativeRotation=(Pitch=32768)
-     DrawScale=0.700000
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_FlameSword'
+	 DrawScale=1.200000
+     RelativeLocation=(Y=-3.000000,Z=4.000000)
+	 RelativeRotation=(Pitch=32768,Yaw=1638416384)
      bFullVolume=True
      SoundVolume=255
      SoundRadius=256.000000

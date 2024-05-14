@@ -68,7 +68,7 @@ defaultproperties
      TracerChance=0.500000
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.950000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.SKAS_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_SKAS'
      RelativeLocation=(X=-2.000000,Z=7.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.130000

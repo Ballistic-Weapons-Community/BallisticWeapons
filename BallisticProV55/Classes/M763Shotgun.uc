@@ -399,8 +399,8 @@ defaultproperties
 	ManualLines(2)="Has a melee attack. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind.||As a shotgun, has poor penetration.||Most effective at medium range."
 	SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.0")
 	MeleeFireClass=Class'BallisticProV55.M763MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Cock1')

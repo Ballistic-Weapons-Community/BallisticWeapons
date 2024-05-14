@@ -92,7 +92,7 @@ defaultproperties
      DriverBackOff=100.000000
      bDrawDriverInTP=True
      VehicleNameString="MG36 Mounted Machinegun"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36_Turret_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_MG36_Turret'
      DrawScale=0.320000
      CollisionHeight=18.000000
 }

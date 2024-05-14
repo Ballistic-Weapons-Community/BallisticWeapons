@@ -154,8 +154,8 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_OP_Tex.AmmoPack.BigIcon_AmmoPack'
      bWT_Grenade=True
      SpecialInfo(0)=(Info="0.0;5.0;-999.0;25.0;-999.0;0.0;0.5")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout',Volume=0.112000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway',Volume=0.111000)
      FireModeClass(0)=Class'BWBP_OP_Pro.L8GIPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.L8GISecondaryFire'
      SelectForce="SwitchToAssaultRifle"

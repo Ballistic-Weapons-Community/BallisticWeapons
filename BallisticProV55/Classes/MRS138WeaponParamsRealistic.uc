@@ -51,8 +51,8 @@ defaultproperties
 		ProjectileClass=Class'BallisticProV55.MRS138Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=20000.000000
-		MaxSpeed=35000.000000
-		AccelSpeed=35000.000000
+		MaxSpeed=350000.000000
+		AccelSpeed=350000.000000
 		ImpactDamage=110.000000
 		Damage=150.000000
 		DamageRadius=200.000000 //4 meter dmg radius, approx 2 meter kill radius
@@ -85,8 +85,8 @@ defaultproperties
 		ProjectileClass=Class'BallisticProV55.MRS138Slug_Gas'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=20000.000000
-		MaxSpeed=35000.000000
-		AccelSpeed=35000.000000
+		MaxSpeed=350000.000000
+		AccelSpeed=350000.000000
 		ImpactDamage=60.000000
 		Damage=50.000000
 		DamageRadius=200.000000 //4 meter dmg radius

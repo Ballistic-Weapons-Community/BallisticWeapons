@@ -342,5 +342,5 @@ defaultproperties
 	RelativeLocation=(X=5.00,Z=4.00)
 	DrawScale=0.65
 	RelativeRotation=(Pitch=32768)
-	Mesh=SkeletalMesh'BWBP_OP_Anim.SRX_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_SRX'
 }

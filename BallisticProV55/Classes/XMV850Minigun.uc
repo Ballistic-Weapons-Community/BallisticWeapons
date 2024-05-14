@@ -436,8 +436,8 @@ defaultproperties
 	ManualLines(1)="Deploys the minigun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="The XMV-850 is one of the heaviest weapons in the game and halves your movement speed when equipped.||Effective at medium range. Extremely effective from ambush and deployed mode."
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout',Volume=0.212000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway',Volume=0.212000)
 
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')

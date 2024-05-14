@@ -61,7 +61,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
  		{
  			G5Mortar(Proj).SetMortarTarget(G5Bazooka(Weapon).Target);
  			if (PlayerController(G5Bazooka(Weapon).Target.Controller) != None)
- 			PlayerController(G5Bazooka(Weapon).Target.Controller).ReceiveLocalizedMessage(class'G5LockOnMessage', 0); 			
+				PlayerController(G5Bazooka(Weapon).Target.Controller).ReceiveLocalizedMessage(class'G5LockOnMessage', 0); 			
  		}
 
  		else

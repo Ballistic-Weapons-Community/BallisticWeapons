@@ -301,8 +301,8 @@ defaultproperties
      bWT_Machinegun=True
      bWT_Projectile=True
      SpecialInfo(0)=(Info="240.0;30.0;0.9;80.0;1.3;1.3;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.222000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
      MagAmmo=18
      bCockOnEmpty=False
      CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_Cock',Volume=1.100000)

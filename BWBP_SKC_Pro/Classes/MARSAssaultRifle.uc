@@ -1089,8 +1089,8 @@ defaultproperties
 	ManualLines(1)="Launches a smoke grenade. Upon impact, generates a cloud of smoke and deals minor radius damage. There is a bonus for a direct hit."
 	ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
 	SpecialInfo(0)=(Info="320.0;30.0;1.0;110.0;0.8;0.5;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
 	
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)

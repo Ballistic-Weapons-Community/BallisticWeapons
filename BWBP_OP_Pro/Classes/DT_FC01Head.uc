@@ -1,12 +1,12 @@
 //=============================================================================
-// DTM353MGHead.
+// DT_FC01Head.
 //
-// Damage type for the M353 Machinegun headshot
+// Damage type for the FC01 headshot
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTProtoPhotonHead extends DT_BWBullet;
+class DT_FC01Head extends DT_BWBullet;
 
 // HeadShot stuff from old sniper damage ------------------
 static function IncrementKills(Controller Killer)
@@ -29,16 +29,16 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o had their nervous system fried to the point where they couldn't reboot thanks to %k."
-     DeathStrings(1)="%k scorched %o's memories with a photon burst until they went blank."
-     DeathStrings(2)="%o became the guinea pig to %k's experimental photon burst, it was a success."
-	 DeathStrings(3)="%k got the results they wanted after subject %o to some mind altering photon tech."
-     WeaponClass=Class'BWBP_APC_Pro.ProtoSMG'
-     DeathString="%o was torn to shreds by %k's FC01-B."
-     FemaleSuicide="%o shot herself in the foot with the FC01-B."
-     MaleSuicide="%o shot himself in the foot with the FC01-B."
-     bFastInstantHit=True
+     DeathStrings(0)="%k filled %o's mind with the truth and about 30 bullets."
+     DeathStrings(1)="%o's gray matter didn't need photon tech to scramble %vh gray matter, %k's 5.7mm lead works."
+     DeathStrings(2)="%k reduced %o's skull into bony shrapnel without them ever noticing."
+	 DeathStrings(3)="One by one, %o got shot in the head by %k's experimental PDW until they died."
      bHeaddie=True
+     WeaponClass=Class'BWBP_OP_Pro.FC01SmartGun'
+     DeathString="%k furiously machinegunned %o's head off."
+     FemaleSuicide="%o shot herself in the head with the FC01-B."
+     MaleSuicide="%o shot himself in the head with the FC01-B."
+     bFastInstantHit=True
      bAlwaysSevers=True
      bSpecial=True
      PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'

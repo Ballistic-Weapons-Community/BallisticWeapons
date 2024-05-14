@@ -70,7 +70,7 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
 	 AmbientSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Idle'
-	 Mesh=SkeletalMesh'BWBP_SKC_Anim.PlasEdgeAxe_TPm'
+	 Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_PlasEdgeAxe'
      DrawScale=0.130000
 	 bFullVolume=True
      SoundVolume=255

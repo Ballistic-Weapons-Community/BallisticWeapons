@@ -12,6 +12,6 @@ defaultproperties
 {
 	WeaponClass=class'L8GIAmmoPack'
 	GrenadeSmokeClass=class'NRP57Trail'
-	Mesh=SkeletalMesh'BWBP_OP_Anim.AmmoPack_TPm'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_AmmoPack'
 	DrawScale=0.25
 }

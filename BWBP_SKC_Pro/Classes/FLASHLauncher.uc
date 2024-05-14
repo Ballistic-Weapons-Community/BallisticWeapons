@@ -172,8 +172,8 @@ defaultproperties
 	ManualLines(1)="Dumps the entire load of remaining rockets at once. Overlapping fire patches will only deal damage once. Invariably fatal to any target directly struck."
 	ManualLines(2)="As a rocket launcher, it has no recoil. Ineffective while jumping and at close range due to the risk of burning the user."
 	SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=2.200000)
+    BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=0.223000)
+    PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=0.270000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Flash.FLASH-PullOut',Volume=1.100000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Flash.FLASH-Insert',Volume=1.100000)

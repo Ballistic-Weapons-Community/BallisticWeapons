@@ -328,6 +328,9 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	Super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 
+function byte BestMode()	
+{	return 0;	}
+
 function float GetAIRating()
 {
 	local Bot B;
@@ -361,8 +364,8 @@ defaultproperties
 	bWT_Energy=True
 	bWT_Heal=True
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Pullout')
-	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Putaway')
+	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Pullout',Volume=0.205000) 
+	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Putaway',Volume=0.220000) 
 	bNoMag=True
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Proton Stream",ModeID="WM_FullAuto")

@@ -93,11 +93,12 @@ var config int  FlakAmmo;
 var config int  RocketAmmo;
 var config int  LightningAmmo;
 
-var bool        bWeaponsLocked;
+var bool        	bWeaponsLocked;
 /* added for an attempt to fix the weapon lock issue */
-var bool		   bPendingCheckLocks;
-var float		   NextCheckLockTime;
-var config int CheckLockInterval;
+var bool		    bPendingCheckLocks;
+var float		    NextCheckLockTime;
+var config int 		CheckLockInterval;
+var config bool		bLockMovement; // slow movement on spawn? used in tactical
 
 var array<Misc_Player> unreceptiveControllers;
 /* weapon related */
@@ -108,7 +109,6 @@ var config int		PracticeRoundLength;
 
 /* ballistic precache */
 var private const array< class<WeaponPickup> > PrecachePickups;
-
 
 /* ctf map support */
 
@@ -338,6 +338,10 @@ function ParseOptions(string Options)
     InOpt = ParseOption(Options, "Timeouts");
     if(InOpt != "")
         Timeouts = int(InOpt);
+
+    InOpt = ParseOption(Options, "LockMovement");
+    if(InOpt != "")
+        bLockMovement = bool(InOpt);
 }
 
 event InitGame(string Options, out string Error)

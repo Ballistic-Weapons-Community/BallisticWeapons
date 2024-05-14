@@ -53,7 +53,7 @@ simulated function AddHeat(float Amount)
 	if (HeatLevel >= 9.75 && !bVariableHeatProps)
 	{
 		Heatlevel = 10;
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
 		return;
 	}
 	else if (HeatLevel >= 10.5)
@@ -383,8 +383,8 @@ defaultproperties
 	bWT_RapidProj=True
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="60.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout',Volume=0.145000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway',Volume=0.150000)
 	CockAnim="Overheat"
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')

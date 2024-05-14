@@ -30,6 +30,12 @@ static final function class<BC_GameStyle_Config> GetLocalConfigStyle()
 	return class<BC_GameStyle_Config>(default.Styles[default.CurrentStyle]);
 }
 
+// SHOULD NOT BE SET EXCEPT FOR TESTING
+static final function bool WYSIWYG()
+{
+	return false;
+}
+
 defaultproperties
 {
 	Styles(0)=class'GameStyle_Pro'

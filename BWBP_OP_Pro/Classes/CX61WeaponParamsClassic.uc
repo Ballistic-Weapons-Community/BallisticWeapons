@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Seeker Flechette
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.CX61Flechette'
 		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
@@ -35,6 +36,7 @@ defaultproperties
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	
+	//556mm ammo
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_556mm
 		TraceRange=(Min=10000.000000,Max=13000.000000)
 		WaterTraceRange=10400.0
@@ -54,6 +56,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.6
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=150
 		Chaos=0.03
 		WarnTargetPct=0.200000

@@ -724,8 +724,8 @@ defaultproperties
 	ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
 	ManualLines(2)="Enemies killed by this weapon leave souls behind. These can be collected to power the Lightning, Thunder Strike and Chain Lightning modes. Use of those modes without external soul power will cause the user's soul to be used instead, dealing significant backlash damage.||With full soulpower, the weapon can enter rampage mode, reducing all damage taken and granting the ability to fly. In this mode, soulpower will drain over time.||Effective at close and medium range."
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;1.0;0.0;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Pullout',Volume=0.208000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Putaway',Volume=0.208000)
 	PutDownAnimRate=1.4
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalIn',Volume=0.700000)

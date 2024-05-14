@@ -1,4 +1,4 @@
-class ProtoWeaponParams extends BallisticWeaponParams;
+class FC01WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -6,13 +6,42 @@ defaultproperties
     // PRIMARY FIRE - Standard
     //=================================================================	
 	
+	//Smart Seeker
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams_Smart
+		ProjectileClass=Class'BWBP_OP_Pro.FC01SmartProj'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=10000.000000
+		MaxSpeed=10000.000000
+		AccelSpeed=1000.000000
+		Damage=20
+		DamageRadius=8.000000
+		MomentumTransfer=20000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=1.350000
+		Recoil=256.000000
+		Chaos=0.20000
+		WarnTargetPct=0.200000
+		//FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX85.CX85-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-SmartShot',Volume=1.0)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Smart
+		FireInterval=0.150000
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.000000	
+		TargetState="SeekerFlechette"
+		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams_Smart'
+	End Object
+	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=12000.000000)
 		RangeAtten=0.100000
 		Damage=20
-		DamageType=Class'BWBP_APC_Pro.DTProto'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTProtoHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTProto'
+		DamageType=Class'BWBP_OP_Pro.DT_FC01Body'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_FC01Head'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_FC01Body'
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -40,9 +69,9 @@ defaultproperties
 		TraceRange=(Min=8000.000000,Max=12000.000000)
 		RangeAtten=0.100000
 		Damage=22
-		DamageType=Class'BWBP_APC_Pro.DTProtoPhoton'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTProtoPhotonHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTProtoPhoton'
+		DamageType=Class'BWBP_OP_Pro.DT_FC01Photon'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_FC01PhotonHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_FC01Photon'
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -94,7 +123,14 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=ArenaParams
+	Begin Object Class=WeaponParams Name=ArenaParams_Smart
+		//Layout core
+		LayoutName="Laser Tracker"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.350000		
+		//Stats
 		CockAnimRate=1.400000
 		SightPivot=(Pitch=128)
 		SightOffset=(X=0.000000,Y=-0.950000,Z=24.950000)
@@ -102,8 +138,29 @@ defaultproperties
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=5
+		DisplaceDurationMult=1
+		MagAmmo=40
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Smart'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		LayoutName="5.7mm Dumbfire"
+		Weight=30
+		//ADS
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000		
+		//Stats
+		CockAnimRate=1.400000
+		SightPivot=(Pitch=128)
+		SightOffset=(X=0.000000,Y=-0.950000,Z=24.950000)
+		ViewOffset=(X=10.000000,Y=6.000000,Z=-18.000000)
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+		InventorySize=5
 		DisplaceDurationMult=1
 		MagAmmo=50
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -112,5 +169,7 @@ defaultproperties
 		FireParams(1)=FireParams'ArenaPhotonPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
+	
+    Layouts(0)=WeaponParams'ArenaParams_Smart'
+    Layouts(1)=WeaponParams'ArenaParams'
 }

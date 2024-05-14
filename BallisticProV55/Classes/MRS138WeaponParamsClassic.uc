@@ -52,8 +52,8 @@ defaultproperties
 		ProjectileClass=Class'BallisticProV55.MRS138Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=20000.000000 //for now, needs accel tweaks
-		MaxSpeed=35000.000000
-		AccelSpeed=35000.000000
+		MaxSpeed=350000.000000
+		AccelSpeed=350000.000000
 		bCombinedSplashImpact=true
 		ImpactDamage=40.000000
 		Damage=70.000000
@@ -94,8 +94,8 @@ defaultproperties
 		ProjectileClass=Class'BallisticProV55.MRS138Slug_Gas'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2000.000000
-		MaxSpeed=35000.000000
-		AccelSpeed=35000.000000
+		MaxSpeed=350000.000000
+		AccelSpeed=350000.000000
 		bCombinedSplashImpact=true
 		ImpactDamage=40.000000
 		Damage=40

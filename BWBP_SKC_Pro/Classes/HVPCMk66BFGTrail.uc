@@ -8,7 +8,7 @@ class HVPCMk66BFGTrail extends BallisticEmitter;
 
 defaultproperties
 {
-     Begin Object Class=SpriteEmitter Name=SpriteEmitter1
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          UseColorScale=True
          UniformSize=True
          ColorScale(0)=(Color=(G=128,R=255))
@@ -25,9 +25,9 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.200000)
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.HVPCMk66BFGTrail.SpriteEmitter1'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.HVPCMk66BFGTrail.SpriteEmitter0'
 
-     Begin Object Class=BeamEmitter Name=BeamEmitter4
+     Begin Object Class=BeamEmitter Name=BeamEmitter1
          BeamDistanceRange=(Min=250.000000,Max=250.000000)
          DetermineEndPointBy=PTEP_Distance
          LowFrequencyNoiseRange=(Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
@@ -56,6 +56,6 @@ defaultproperties
          LifetimeRange=(Min=0.800000,Max=0.800000)
          StartVelocityRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=-4.000000,Max=4.000000),Z=(Min=-4.000000,Max=4.000000))
      End Object
-     Emitters(8)=BeamEmitter'BWBP_SKC_Pro.HVPCMk66BFGTrail.BeamEmitter4'
+     Emitters(1)=BeamEmitter'BWBP_SKC_Pro.HVPCMk66BFGTrail.BeamEmitter1'
 
 }

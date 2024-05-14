@@ -97,7 +97,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 defaultproperties
 {
      bAISilent=True
-     FireAnim="UseOnSelf"
+     FireAnim="putaway"
      FireRate=2.850000
      AmmoClass=Class'BWBP_OP_Pro.Ammo_L8GI'
      AmmoPerFire=0

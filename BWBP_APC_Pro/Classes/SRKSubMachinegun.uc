@@ -293,8 +293,8 @@ defaultproperties
      AIReloadTime=1.000000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_OP_Tex.SPXSmg.BigIcon_SPXSmg'
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)
-     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=2.200000)
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=0.270000)
      WeaponModes(0)=(ModeName="Semi-Auto")
      WeaponModes(1)=(ModeName="Burst Fire")
      WeaponModes(2)=(bUnavailable=True)

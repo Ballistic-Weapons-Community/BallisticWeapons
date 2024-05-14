@@ -201,7 +201,6 @@ defaultproperties
 	ImpactManager=class'IM_Bullet'
 	AltFlashBone="tip2"
 	BrassClass=class'Brass_Magnum'
-	BrassBone="leMat-3rd"
 	TracerMode=MU_Both
 	InstantMode=MU_Both
 	FlashMode=MU_Both
@@ -211,6 +210,6 @@ defaultproperties
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_TPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_Wilson'
 	DrawScale=0.125000
 }

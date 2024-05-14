@@ -56,7 +56,7 @@ defaultproperties
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
 	bRapidFire=True
 	bAltRapidFire=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.SuperCharger_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_SuperCharger'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=1.100000
 }

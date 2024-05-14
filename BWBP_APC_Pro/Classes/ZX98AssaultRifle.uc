@@ -262,8 +262,8 @@ defaultproperties
      ManualLines(1)="Automatic Gauss fire. High Power, Slower fire rate and Lower recoil."
      ManualLines(2)="Effective at medium range."
      SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
      CockAnimPostReload="Cock"
      CockAnimRate=1.400000
      CockSound=(Sound=Sound'BWBP_CC_Sounds.ZX98.ZX98-Cock')

@@ -13,7 +13,7 @@ defaultproperties
 	WeaponClass=class'XM84Flashbang'
 	ExplodeManager=Class'BWBP_SKC_Pro.IM_XM84Grenade'
 	GrenadeSmokeClass=Class'BWBP_SKC_Pro.XM84Trail'
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM84_TPm'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_XM84'
 	DrawScale=0.500000
 	RelativeRotation=(Pitch=32768)
 	RelativeLocation=(Z=15)

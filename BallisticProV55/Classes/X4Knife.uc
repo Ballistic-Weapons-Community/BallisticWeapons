@@ -57,8 +57,8 @@ defaultproperties
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
      ManualLines(2)=""
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut',Volume=0.109000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway',Volume=0.109000)
 	 bShowChargingBar=True
      bCanBlock=False
      bNoMag=True

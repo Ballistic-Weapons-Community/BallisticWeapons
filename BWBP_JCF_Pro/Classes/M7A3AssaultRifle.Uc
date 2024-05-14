@@ -112,8 +112,8 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_JCF_Tex.M7A3.BigIcon_M7A3'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="340.0;30.0;1.2;60.0;0.9;0.0;0.0")
-     BringUpSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3_Pickup')
-     PutDownSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3_Select')
+     BringUpSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3_Pickup',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3_Select',Volume=0.600000)
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3-Cock',Volume=350.500000)
      ClipHitSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3_Mag_Hit',Volume=350.500000)

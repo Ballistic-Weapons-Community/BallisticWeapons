@@ -139,6 +139,13 @@ var() editinline array<AimParams>		AimParams;
 var() editinline array<FireParams>    	FireParams;
 var() editinline array<FireParams>     	AltFireParams;
 
+//-----------------------------------------------------------------------------
+// AI
+//-----------------------------------------------------------------------------
+var   bool			bNoaltfire;			//Dissalow a bot to use alt-fire (use this when the alt-fire makes the gun ADS but the gun has multiple layout alt-fires that we want to keep)
+
+//-----------------------------------------------------------------------------
+
 final function FireEffectParams.FireModeStats GetFireStats() 
 {
     local FireEffectParams.FireModeStats FS;

@@ -127,7 +127,7 @@ defaultproperties
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.800000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.X83_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_X83'
      RelativeLocation=(X=-17.000000,Z=-4.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.250000

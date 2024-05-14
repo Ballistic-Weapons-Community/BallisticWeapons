@@ -302,8 +302,8 @@ defaultproperties
 	ManualLines(1)="Flak Shot"
 	ManualLines(2)="Regular Laser (Non Guidance)"
 	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.8;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ReloadAnimRate=1.000000
 	ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.RGX.RGX_RocketOut',Volume=2.500000)

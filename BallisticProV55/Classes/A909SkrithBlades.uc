@@ -47,8 +47,8 @@ defaultproperties
      ManualLines(1)="Prepares a slash, which will be executed upon release. The damage of this slash increases the longer altfire is held, up to 1.5 seconds for maximum damage output. This attack inflicts more damage from behind."
      ManualLines(2)="The Weapon Function key allows the player to block. Whilst blocking, no attacks are possible, but all melee damage striking the player frontally will be mitigated.||The A909s have extreme damage output at close range, but their short range makes realizing this potential difficult.||The player moves faster with the blades equipped."
      SpecialInfo(0)=(Info="120.0;2.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A909.A909Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A909.A909Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A909.A909Pullout',Volume=0.105000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A909.A909Putaway',Volume=0.105000)
      GunLength=0.000000
      bAimDisabled=True
      NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0),Color2=(R=0),StartSize1=108,StartSize2=101)

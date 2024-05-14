@@ -624,8 +624,8 @@ defaultproperties
      ManualLines(2)="Enable the Hybrid Scope. While the hybrid scope is enabled, you will have access to a fixed 2X Scope, which can be taken off when out of combat."
 	 ManualLines(3)="In response to not just the regular UTC troops demanding a new LMG, but also the ODST troops finding the M353 to be inadequate in stopping skrith dead in their tracks, Enravion updated the platform into the new M575 Machine Gun. In addition to firing 7.62mm rounds instead of the old 5.56mm rounds, the M575 also has rail support for all the optics one could ever ask for; when the weapon first debuted, it came with a C-All Red Dot Sight along with a 2x magnifier scope. While the M353 is still hanging around, it is slated to be phased by the M575 within 6 months if all goes well."
      SpecialInfo(0)=(Info="330.0;25.0;0.7;-1.0;1.0;0.2;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout',Pitch=0.9)
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway',Pitch=0.9)
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout',Pitch=0.9,Volume=0.215000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway',Pitch=0.9,Volume=0.285000)
      CockSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-BoltQuick',Volume=1.500000)
 	 CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-BoltQuick',Volume=1.500000)
      ReloadAnim="ReloadStart"

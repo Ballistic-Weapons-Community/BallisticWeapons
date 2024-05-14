@@ -327,14 +327,13 @@ defaultproperties
 	 TrackAnimMode=MU_None
 	 FlashScale=0.3
 	 TracerMix=-3
-	 FlashBone="Muzzle"
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
 	 CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.500000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.M575_TPm'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_M575'
      DrawScale=0.75
 	 RelativeLocation=(X=1,Z=4)
 }

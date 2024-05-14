@@ -352,8 +352,8 @@ defaultproperties
 	ManualLines(2)="Has a melee attack.|By killing enemies, you can collect their lewdness (similar to Dark Star and Nova Staff souls) and fill up your luv-o-meter. Filling it up, makes it possible to activate love-mode by pressing the Weapon Special-Key. This gives you damage resistance, improved jump, reduces the Lewdness cost of Lust Shockwave and allows the Sexplosion to be used.||The Sexplosion is an impressive firemode, which creates a gargantuan ball of love, acting bomb-like, but much slower. Upon impact, it explodes violently and kills pretty much everyone in proximity. The Sexplosion however wastes the complete charge of Le Big Xoxo and ends Love-Mode. Think twice, before wasting it!"
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
 	MeleeFireClass=Class'BWBP_OP_Pro.XOXOMeleeFire'
-	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Pullout')
-	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Putdown')
+	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Pullout',Volume=0.222000)
+	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Putdown',Volume=0.216000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagIn',Volume=0.700000)

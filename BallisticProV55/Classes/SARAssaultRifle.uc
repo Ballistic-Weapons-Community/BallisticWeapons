@@ -647,8 +647,8 @@ defaultproperties
 	ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
 	ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.210000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.208000)
 	MeleeFireClass=Class'BallisticProV55.SARMeleeFire'
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')

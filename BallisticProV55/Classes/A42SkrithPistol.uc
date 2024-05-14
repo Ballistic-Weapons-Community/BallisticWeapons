@@ -296,8 +296,8 @@ defaultproperties
 	ManualLines(1)="A charging hitscan beam whose lethality increases with charge. Both pistols will charge and fire simultaneously if dual wielded."
 	ManualLines(2)="Due to rechargeable batteries, the A42 will regain ammo at a slow rate when not in use. It is moderately effective at close range, with low recoil and good hipfire. A42 plasma will repair nodes and vehicles. The projectile attack will only penetrate players and not the environment."
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout',Volume=0.148500)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway',Volume=0.151000)
 	MagAmmo=18
 	bShouldDualInLoadout=False
 	bNonCocking=True

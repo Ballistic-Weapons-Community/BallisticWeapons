@@ -1,4 +1,4 @@
-class ProtoWeaponParamsTactical extends BallisticWeaponParams;
+class FC01WeaponParamsTactical extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,6 +7,35 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//6mm Smart Seeker
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_Smart
+		ProjectileClass=Class'BWBP_OP_Pro.FC01SmartProj'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=10000.000000
+		MaxSpeed=10000.000000
+		AccelSpeed=1000.000000
+		Damage=25
+		DamageRadius=8.000000
+		MomentumTransfer=20000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=1.350000
+		Recoil=256.000000
+		Chaos=0.20000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-SmartShot',Volume=1.0)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Smart
+		FireInterval=0.150000
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.000000	
+		TargetState="SeekerFlechette"
+		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Smart'
+	End Object
+	
+	//5.7mm FMJ
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1838,Max=5250) // 35-100m
@@ -14,9 +43,9 @@ defaultproperties
 		Damage=28 // 4.77mm?
         HeadMult=3.25
         LimbMult=0.75
-		DamageType=Class'BWBP_APC_Pro.DTProto'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTProtoHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTProto'
+		DamageType=Class'BWBP_OP_Pro.DT_FC01Body'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_FC01Head'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_FC01Body'
         PenetrationEnergy=16
 		PenetrateForce=100
 		bPenetrate=True
@@ -42,9 +71,9 @@ defaultproperties
 		TraceRange=(Min=8000.000000,Max=12000.000000)
 		RangeAtten=0.100000
 		Damage=22
-		DamageType=Class'BWBP_APC_Pro.DTProtoPhoton'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTProtoPhotonHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTProtoPhoton'
+		DamageType=Class'BWBP_OP_Pro.DT_FC01Photon'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_FC01PhotonHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_FC01Photon'
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
@@ -73,9 +102,9 @@ defaultproperties
 		WaterTraceRange=5000.0
 		HeadMult=1.0
 		LimbMult=1.0
-		DamageType=Class'BWBP_APC_Pro.DTProtoPhoton'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTProtoPhotonHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTProtoPhoton'
+		DamageType=Class'BWBP_OP_Pro.DT_FC01Photon'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_FC01PhotonHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_FC01Photon'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'

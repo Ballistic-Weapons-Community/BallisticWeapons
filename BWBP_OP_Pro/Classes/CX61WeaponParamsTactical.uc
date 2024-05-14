@@ -63,7 +63,7 @@ defaultproperties
 		Recoil=768.000000
 		Chaos=0.20000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX61.CX61-FireHeavy',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX61.CX61-FireHeavy',Volume=1.500000,Pitch=1.4,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Spike

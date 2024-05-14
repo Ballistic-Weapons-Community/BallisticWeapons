@@ -374,8 +374,8 @@ defaultproperties
 	ManualLines(1)="Activates the internal compressor when firing. Rounds will inflict less damage, but will slow the target."
 	ManualLines(2)="The Weapon Function key attaches or removes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range.||Effective from the hip and at close range."
 	SpecialInfo(0)=(Info="240.0;15.0;0.6;60.0;0.7;0.1;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.205000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.205000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Cock')
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')

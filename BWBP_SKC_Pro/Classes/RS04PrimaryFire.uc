@@ -39,7 +39,7 @@ simulated function PlayFireAnimations()
 		}
 		else
 		{
-			AimedFireAnim = 'FireSightsOpen';
+			AimedFireAnim = 'SightFireOpen';
 			FireAnim = 'FireOpen';
 		}
 	}
@@ -56,7 +56,7 @@ simulated function PlayFireAnimations()
 		}
 		else
 		{
-			AimedFireAnim = 'FireSights';
+			AimedFireAnim = 'SightFire';
 			FireAnim = 'Fire';
 		}
 	}

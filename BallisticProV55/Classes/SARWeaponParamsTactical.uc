@@ -354,8 +354,9 @@ defaultproperties
 	
     Layouts(0)=WeaponParams'TacticalParams'
 	Layouts(1)=WeaponParams'TacticalParams_CombatLaser'
-	Layouts(2)=WeaponParams'TacticalParams_Scope'
-	Layouts(3)=WeaponParams'TacticalParams_Supp'
+	Layouts(2)=WeaponParams'TacticalParams_Supp'
+	//Layouts(3)=WeaponParams'TacticalParams_Scope'
+
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SAR_Green

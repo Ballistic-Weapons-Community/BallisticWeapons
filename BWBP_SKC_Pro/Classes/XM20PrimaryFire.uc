@@ -50,6 +50,7 @@ defaultproperties
 	YInaccuracy=16.000000
 	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	FireEndAnim=None
+	AimedFireAnim="SightFire"
 	TweenTime=0.000000
 	FireRate=0.150000
 	AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'

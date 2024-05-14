@@ -12,7 +12,7 @@ defaultproperties
 {
 	WeaponClass=class'M58Grenade'
      ExplodeManager=class'IM_Grenade'
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_T10'
      DrawScale=0.175000
 	 Skins(0)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'
 }

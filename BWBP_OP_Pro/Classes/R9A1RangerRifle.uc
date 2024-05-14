@@ -481,8 +481,8 @@ defaultproperties
 	ManualLines(1)="Raises the scope."
 	ManualLines(2)="The R9A1 has both a scope (secondary fire) and iron sights (normal key).||Modes are switched by holding the Fire Mode key and then scrolling the mouse.||Effective at long range and against enemies making use of healing items and weapons."
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')

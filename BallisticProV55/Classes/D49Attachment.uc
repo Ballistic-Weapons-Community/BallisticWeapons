@@ -145,7 +145,6 @@ defaultproperties
      AltMuzzleFlashClass=class'D49FlashEmitter'
      ImpactManager=class'IM_BigBullet'
      BrassClass=class'Brass_Magnum'
-     BrassBone="MagnumWhole"
      TracerMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
@@ -156,6 +155,6 @@ defaultproperties
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.D49_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_D49'
      DrawScale=0.150000
 }

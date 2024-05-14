@@ -1,12 +1,12 @@
 //=============================================================================
-// DTM353MG.
+// DT_FC01Body.
 //
-// Damage type for the M353 Machinegun
+// Damage type for the FC01 Smartgun
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTProto extends DT_BWBullet;
+class DT_FC01Body extends DT_BWBullet;
 
 defaultproperties
 {
@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o was peppered and ripped into shreds silently by %k's proto PDW."
      DeathStrings(2)="%k flooded %o's lungs with lead, drowning %vm literally in bullets."
      DeathStrings(3)="%o didn't want to be subjected to experimental photon tech, so %k just shot %vm with bullets."
-     WeaponClass=Class'BWBP_APC_Pro.ProtoSMG'
+     WeaponClass=Class'BWBP_OP_Pro.FC01SmartGun'
      DeathString="%o was torn to shreds by %k's FC01-B."
      FemaleSuicide="%o shot herself in the foot with the FC01-B."
      MaleSuicide="%o shot himself in the foot with the FC01-B."

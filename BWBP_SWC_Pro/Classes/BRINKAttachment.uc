@@ -34,6 +34,6 @@ defaultproperties
 	 CockingAnim="Cock_RearPull"
      bRapidFire=True
      bAltRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.BRINK_TPm'
+     Mesh=SkeletalMesh'BWBP_SWC_Anims.TPm_BRINK'
      DrawScale=1.000000
 }

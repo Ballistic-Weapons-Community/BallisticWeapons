@@ -535,6 +535,6 @@ defaultproperties
      MeleeAnimRate=1.000000
      TrackNum(1)=0
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.NovaStaff_TPm'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_NovaStaff'
      DrawScale=0.650000
 }

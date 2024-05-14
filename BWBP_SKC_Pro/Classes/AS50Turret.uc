@@ -91,7 +91,7 @@ defaultproperties
      DriverBackOff=100.000000
      bDrawDriverInTP=True
      VehicleNameString="AS50 Mounted Sniper"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_Turret_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_FSSG-50_Turret'
      DrawScale=0.420000
      CollisionHeight=18.000000
 }

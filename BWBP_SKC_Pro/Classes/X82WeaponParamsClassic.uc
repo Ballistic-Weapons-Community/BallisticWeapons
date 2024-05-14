@@ -169,8 +169,8 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_4XScope'
-	Layouts(2)=WeaponParams'ClassicParams_Irons'
+	//Layouts(1)=WeaponParams'ClassicParams_4XScope'
+	//Layouts(2)=WeaponParams'ClassicParams_Irons'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=X83_Silver
