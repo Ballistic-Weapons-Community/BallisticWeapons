@@ -1,9 +1,30 @@
 //=============================================================================
-// ProtoLMG
+// FC01SmartGun
+//
+// Advanced weapon that can use multiple methods to lock onto targets.
+// Once the gun has a lock, the primary fire projectiles will attempt to seek.
+//
+// by SK
 //=============================================================================
-class ProtoSMG extends BallisticWeapon;
+class FC01SmartGun extends BallisticWeapon;
 
 #exec OBJ LOAD File=BWBP_OP_Tex.utx
+
+var   Pawn				Target;
+var   float				TargetTime;
+var() float				LockOnTime;
+var	  bool				bLockedOn, bLockedOld;
+var() BUtil.FullSound	LockOnSound;
+var() BUtil.FullSound	LockOffSound;
+var() BUtil.IntRange	LaserAimSpread;
+var() float         TargetUpdateRate;      //How often targeting view updates targeting brackets
+var   vector        TargetLoc;             //Used for the targeting view for choppy targeting brackets
+
+var   bool			bLaserOn, bLaserOld;
+var   LaserActor	Laser;
+var() Sound			LaserOnSound;
+var() Sound			LaserOffSound;
+var   Emitter		LaserDot;
 
 var() name			PhotonLoadAnim, PhotonLoadEmptyAnim;	// Anim for reloading photon ammo
 
@@ -35,10 +56,324 @@ var float StealthRating, StealthImps;
 
 replication
 {
-	reliable if (Role < ROLE_Authority)
+	reliable if(Role==ROLE_Authority)
+		Target, bLockedOn, bLaserOn;
+
+	reliable if(Role<ROLE_Authority)
 		ServerSwitchSilencer;
+
 	unreliable if (ROLE == Role_Authority)
 		ClientPhotonPickedUp; 
+}
+
+//=====================================================================
+// TRACKER CODE
+//=====================================================================
+
+//===========================================================================
+// GetFlechetteTarget
+//
+// Find and return the locked on target.
+//===========================================================================
+simulated event RenderOverlays (Canvas C)
+{
+	if (!Instigator.IsLocallyControlled())
+		return;
+	if (bScopeView)
+	    DrawTargeting(C);
+	Super.RenderOverlays(C);
+	DrawLaserSight(C);
+}
+
+simulated function WeaponTick(float DT)
+{
+	local float BestAim, BestDist;
+	local Vector Start;
+	local Pawn NewTarget;
+	local bool bWasLockedOn;
+
+	Super.WeaponTick(DT);
+
+	//if (Instigator != None && Instigator.IsLocallyControlled())
+	//	TickLaser(DT);
+
+	if (!bScopeView || Role < ROLE_Authority)
+	{
+		TargetTime = 0;
+		return;
+	}
+
+	bWasLockedOn = TargetTime >= LockOnTime;
+
+	Start = Instigator.Location + Instigator.EyePosition();
+	BestAim = 0.995;
+	NewTarget = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
+	if (NewTarget != None)
+	{
+		if (NewTarget != Target)
+		{
+			Target = NewTarget;
+			TargetTime = 0;
+		}
+		else if (Vehicle(NewTarget) != None)
+			TargetTime += 1.2 * DT * (BestAim-0.95) * 20;
+		else
+			TargetTime += DT * (BestAim-0.95) * 20;
+	}
+	else
+	{
+		TargetTime = FMax(0, TargetTime - DT * 0.5);
+	}
+	if (Instigator.IsLocallyControlled())
+	{
+		if (!bWasLockedOn && TargetTime >= LockOnTime)
+		    class'BUtil'.static.PlayFullSound(self, LockOnSound);
+		else if (TargetTime < LockOnTime && bWasLockedOn)
+		    class'BUtil'.static.PlayFullSound(self, LockOffSound);
+	}
+	bLockedOn = TargetTime >= LockOnTime;
+	
+	if (AIController(Instigator.Controller) != None && !IsPhotonLoaded() && AmmoAmount(1) > 0 && BotShouldReloadPhoton() && !IsReloadingPhoton())
+		LoadPhoton();
+}
+
+simulated event PostNetReceive()
+{
+	if (level.NetMode != NM_Client)
+		return;
+	if (bLaserOn != bLaserOld)
+	{
+		bLaserOld = bLaserOn;
+		ClientSwitchLaser();
+	}
+	if (bLockedOn != bLockedOld)
+	{
+		bLockedOld = bLockedOn;
+		if (bLockedOn)
+		    class'BUtil'.static.PlayFullSound(self, LockOnSound);
+		else
+		    class'BUtil'.static.PlayFullSound(self, LockOffSound);
+	}
+	Super.PostNetReceive();
+}
+
+simulated event DrawTargeting (Canvas C)
+{
+	local Vector V, X, Y, Z;//, V2;
+	local float ScaleFactor, XL, XY;
+
+    if (Target != none && Instigator.Controller.LineOfSightTo(Target))
+        TargetLoc = C.WorldToScreen(Target.Location);
+
+    ScaleFactor = C.ClipY / 1200;
+	GetViewAxes(X, Y, Z);
+
+	if (Target == none || !Instigator.Controller.LineOfSightTo(Target))
+    {
+        V.X = C.ClipX/2;
+        V.Y = C.ClipY/2;
+    }
+    else
+        V = TargetLoc;
+
+    C.SetDrawColor(75,255,0,255);
+    C.StrLen("ACQUIRING TARGET LOCK...", XL, XY);
+
+    if (bNeedCock || MagAmmo == 0)
+    {
+        C.DrawTextJustified("RELOAD",1, (C.ClipX/2) - XL/2, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+    }
+    else if (Target == none)
+    {
+	    C.DrawTextJustified("DISTANCE: N/A",0, (C.ClipX/2) - XL/2, (C.ClipY/2) + (180*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (180*ScaleFactor) + XY/2);
+    }
+    else
+    {
+
+        if (!Instigator.Controller.LineOfSightTo(Target))
+        {
+	        C.DrawTextJustified("TARGET LOST",1, C.ClipX/2 - 100*ScaleFactor, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + 100*ScaleFactor ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+            C.DrawTextJustified("DISTANCE: N/A",0, (C.ClipX/2) - XL/2, (C.ClipY/2) + (180*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (180*ScaleFactor) + XY/2);
+        }
+        else
+        {
+            if (bLockedOn)
+            {
+                C.SetDrawColor(255,00,0,255);
+    	        C.DrawTextJustified("LOCKED",1, C.ClipX/2 - 100*ScaleFactor, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + 100*ScaleFactor ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+            }
+            else
+            {
+                C.DrawTextJustified("ACQUIRING TARGET LOCK...",1, C.ClipX/2 - 100*ScaleFactor, (C.ClipY/2) + (160*ScaleFactor) - XY/2, C.ClipX/2 + 100*ScaleFactor ,(C.ClipY/2) + (160*ScaleFactor) + XY/2);
+            }
+            C.DrawTextJustified("DISTANCE: " $ int(VSize(TargetLoc-(Instigator.Location + Instigator.EyePosition()))/50) $ "m",0, (C.ClipX/2) - XL/2, (C.ClipY/2) + (180*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (180*ScaleFactor) + XY/2);
+
+            //Center targeting box
+            C.SetPos(V.X - 32*ScaleFactor, V.Y - 32*ScaleFactor);
+            //C.DrawTile(texture'BallisticUI2.Crosshairs.Misc8', 48 * ScaleFactor, 48 * ScaleFactor, 0, 0, 256, 256);
+            //C.DrawTile(Texture'Crosshairs.HUD.Crosshair_Triad1', 64*ScaleFactor, 64*ScaleFactor, 0, 0, 64, 64);
+            C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', 64*ScaleFactor, 64*ScaleFactor, 0, 0, 128, 128);
+        }
+    }
+
+	if (Target != none && !bLockedOn)
+    {
+        //Targeting brackets
+        //Upper Left
+        C.SetPos(V.X - (((140 - (C.ClipX/2 - V.X)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor), V.Y - (((140 - (C.ClipY/2 - V.Y)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 0, 0, 64, 64);
+
+        //Lower Left
+        C.SetPos(V.X - (((140 - (C.ClipX/2 - V.X)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor), V.Y + (((140 - (V.Y - C.ClipY/2)) * (1-TargetTime/LockonTime)) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 0, 64, 64, 64);
+
+        //Upper Right
+        C.SetPos(V.X + (((140 - (V.X - C.ClipX/2)) * (1-TargetTime/LockonTime)) * ScaleFactor), V.Y - (((140 - (C.ClipY/2 - V.Y)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 64, 0, 64, 64);
+
+        //Lower Right
+        C.SetPos(V.X + (((140 - (V.X - C.ClipX/2)) * (1-TargetTime/LockonTime)) * ScaleFactor), V.Y + (((140 - (V.Y - C.ClipY/2)) * (1-TargetTime/LockonTime)) * ScaleFactor));
+        C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 64, 64, 64, 64);
+    }
+}
+
+//============================================================
+// Laser management
+//============================================================
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	bLaserOn = bNewLaserOn;
+
+	FC01Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+	OnLaserSwitched();
+}
+
+simulated function ClientSwitchLaser()
+{
+	//TickLaser (0.05);
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+	}
+	PlayIdle();
+	OnLaserSwitched();
+}
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimSpread.Max *= 0.8f;
+	AimComponent.AimAdjustTime *= 1.5f;
+}
+
+simulated function Destroyed ()
+{
+	default.bLaserOn = false;
+	if (Laser != None)
+		Laser.Destroy();
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	Super.Destroyed();
+}
+
+// Draw a laser beam and dot to show exact path of bullets before they're fired, point it at the tracked dude
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc, AimDir;
+	local Actor Other;
+
+	if ((ClientState == WS_Hidden) || !bLaserOn || bScopeView || Instigator == None || Instigator.Controller == None || Laser==None)
+		return;
+
+	Loc = GetBoneCoords('tip2').Origin;
+
+	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs), or closest target
+	Laser.SetLocation(Loc);
+	if (!bLockedOn) //Calc from barrel to wall
+	{
+		AimDir = BallisticFire(FireMode[0]).GetFireDir(Start);
+		End = Start + Normal(AimDir)*10000;
+		Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+		if (Other == None)
+			HitLocation = End;
+		if ( ThirdPersonActor != None )
+			FC01Attachment(ThirdPersonActor).LaserEndLoc = HitLocation;
+	}
+	else //Calc to target
+	{
+		HitLocation = ConvertFOVs(TargetLoc, Instigator.Controller.FovAngle, DisplayFOV, 400);
+		if ( ThirdPersonActor != None )
+			FC01Attachment(ThirdPersonActor).LaserEndLoc = TargetLoc;
+	}
+	
+	// Draw dot at end of beam
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
+	
+	if (LaserDot != None && !bLockedOn)
+		LaserDot.SetLocation(HitLocation);
+	else
+		LaserDot.SetLocation(TargetLoc);
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+	
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire /* && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2*/)
+		Laser.SetRotation(Rotator(HitLocation - Loc));
+	else
+		Laser.SetRotation(GetBoneRotation('tip2'));
+
+	Scale3D.X = VSize(HitLocation-Loc)/128;
+	Scale3D.Y = 1.5;
+	Scale3D.Z = 1.5;
+	Laser.SetDrawScale3D(Scale3D);
+	Canvas.DrawActor(Laser, false, false, DisplayFOV);
+}
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'G5LaserDot',,,Loc);
+}
+
+simulated function PlayIdle()
+{
+	Super.PlayIdle();
+	if (!bLaserOn || bPendingSightUp || SightingState != SS_None || !CanPlayAnim(IdleAnim, ,"IDLE"))
+		return;
+	FreezeAnimAt(0.0);
 }
 
 //=====================================================================
@@ -172,6 +507,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
 
+	//targetting laser
+	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
+		Laser = Spawn(class'LaserActor_G5Painter');
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
+
+	if ( ThirdPersonActor != None )
+		FC01Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+
 	if (AIController(Instigator.Controller) != None)
 		bSilenced = (FRand() > 0.5);
 
@@ -186,11 +530,16 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Instigator.SoundRadius = default.SoundRadius;
 	Instigator.bFullVolume = true;
 }
+	
 
 simulated function bool PutDown()
 {
 	if (Super.PutDown())
 	{
+		KillLaserDot();
+
+		if (ThirdPersonActor != None)
+			FC01Attachment(ThirdPersonActor).bLaserOn = false;
 		Instigator.AmbientSound = UsedAmbientSound;
 		Instigator.SoundVolume = default.SoundVolume;
 		Instigator.SoundPitch = default.SoundPitch;
@@ -212,10 +561,10 @@ simulated function Notify_SGCock()				{	PlaySound(PhotonMagCockSound, SLOT_Misc,
 simulated function Notify_AltClipIn()	
 {	
 	PlaySound(PhotonMagHitSound, SLOT_Misc, 0.5, ,64);
-	if (Ammo[1].AmmoAmount < ProtoPrimaryFire(FireMode[0]).default.PhotonCharge)
-		ProtoPrimaryFire(FireMode[0]).PhotonCharge = Ammo[1].AmmoAmount;
+	if (Ammo[1].AmmoAmount < FC01PrimaryFire(FireMode[0]).default.PhotonCharge)
+		FC01PrimaryFire(FireMode[0]).PhotonCharge = Ammo[1].AmmoAmount;
 	else
-		ProtoPrimaryFire(FireMode[0]).PhotonCharge = ProtoPrimaryFire(FireMode[0]).default.PhotonCharge;
+		FC01PrimaryFire(FireMode[0]).PhotonCharge = FC01PrimaryFire(FireMode[0]).default.PhotonCharge;
 }
 
 // Photon has just been picked up. Loads one in if we're empty
@@ -227,10 +576,10 @@ function PhotonPickedUp ()
 			LoadPhoton();
 		else
 		{
-			if (Ammo[1].AmmoAmount < ProtoPrimaryFire(FireMode[0]).default.PhotonCharge)
-				ProtoPrimaryFire(FireMode[0]).PhotonCharge = Ammo[1].AmmoAmount;
+			if (Ammo[1].AmmoAmount < FC01PrimaryFire(FireMode[0]).default.PhotonCharge)
+				FC01PrimaryFire(FireMode[0]).PhotonCharge = Ammo[1].AmmoAmount;
 			else
-				ProtoPrimaryFire(FireMode[0]).PhotonCharge = ProtoPrimaryFire(FireMode[0]).default.PhotonCharge;
+				FC01PrimaryFire(FireMode[0]).PhotonCharge = FC01PrimaryFire(FireMode[0]).default.PhotonCharge;
 		}
 	}
 	if (!Instigator.IsLocallyControlled())
@@ -245,17 +594,17 @@ simulated function ClientPhotonPickedUp()
 			LoadPhoton();
 		else
 		{
-			if (Ammo[1].AmmoAmount < ProtoPrimaryFire(FireMode[0]).default.PhotonCharge)
-				ProtoPrimaryFire(FireMode[0]).PhotonCharge = Ammo[1].AmmoAmount;
+			if (Ammo[1].AmmoAmount < FC01PrimaryFire(FireMode[0]).default.PhotonCharge)
+				FC01PrimaryFire(FireMode[0]).PhotonCharge = Ammo[1].AmmoAmount;
 			else
-				ProtoPrimaryFire(FireMode[0]).PhotonCharge = ProtoPrimaryFire(FireMode[0]).default.PhotonCharge;
+				FC01PrimaryFire(FireMode[0]).PhotonCharge = FC01PrimaryFire(FireMode[0]).default.PhotonCharge;
 		}
 	}
 }
 
 simulated function bool IsPhotonLoaded()
 {
-	if (ProtoPrimaryFire(FireMode[0]).PhotonCharge > 0)
+	if (FC01PrimaryFire(FireMode[0]).PhotonCharge > 0)
 		return true;
 	else 
 		return false;
@@ -264,8 +613,8 @@ simulated function bool IsPhotonLoaded()
 function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 {
 	Super.GiveAmmo(m, WP, bJustSpawned);
-	if (Ammo[1] != None && Ammo_ProtoAlt(Ammo[1]) != None)
-		Ammo_ProtoAlt(Ammo[1]).Gun = self;
+	if (Ammo[1] != None && Ammo_FC01Alt(Ammo[1]) != None)
+		Ammo_FC01Alt(Ammo[1]).Gun = self;
 }
 
 simulated event AnimEnd (int Channel)
@@ -292,10 +641,10 @@ simulated event AnimEnd (int Channel)
 
 simulated function LoadPhoton()
 {
-	if (Ammo[1].AmmoAmount > ProtoPrimaryFire(FireMode[0]).default.PhotonCharge && ProtoPrimaryFire(FireMode[0]).PhotonCharge >= ProtoPrimaryFire(FireMode[0]).default.PhotonCharge)
+	if (Ammo[1].AmmoAmount > FC01PrimaryFire(FireMode[0]).default.PhotonCharge && FC01PrimaryFire(FireMode[0]).PhotonCharge >= FC01PrimaryFire(FireMode[0]).default.PhotonCharge)
 		return;
 		
-	if (Ammo[1].AmmoAmount <= ProtoPrimaryFire(FireMode[0]).default.PhotonCharge && ProtoPrimaryFire(FireMode[0]).PhotonCharge >= Ammo[1].AmmoAmount)
+	if (Ammo[1].AmmoAmount <= FC01PrimaryFire(FireMode[0]).default.PhotonCharge && FC01PrimaryFire(FireMode[0]).PhotonCharge >= Ammo[1].AmmoAmount)
 		return;
 		
 	if (ReloadState == RS_None)
@@ -305,7 +654,7 @@ simulated function LoadPhoton()
 		if (bScopeView && Instigator.IsLocallyControlled())
 			TemporaryScopeDown(Default.SightingTime);
 		
-		if (ProtoPrimaryFire(FireMode[0]).PhotonCharge < 1 && HasAnim(PhotonLoadEmptyAnim))
+		if (FC01PrimaryFire(FireMode[0]).PhotonCharge < 1 && HasAnim(PhotonLoadEmptyAnim))
 			PlayAnim(PhotonLoadEmptyAnim, 0.75, , 0);
 		else
 			PlayAnim(PhotonLoadAnim, 0.75, , 0);
@@ -367,7 +716,7 @@ simulated function ClientStartReload(optional byte i)
 simulated function bool CheckWeaponMode (int Mode)
 {
 	if (CurrentWeaponMode == 1)
-		return FireCount <= ProtoPrimaryFire(FireMode[0]).default.PhotonCharge;
+		return FireCount <= FC01PrimaryFire(FireMode[0]).default.PhotonCharge;
 		
 	return super.CheckWeaponMode(Mode);
 }
@@ -377,14 +726,6 @@ function bool BotShouldReloadPhoton()
 	if ( (Level.TimeSeconds - Instigator.LastPainTime > 1.0) )
 		return true;
 	return false;
-}
-
-simulated event WeaponTick(float DT)
-{
-	super.WeaponTick(DT);
-
-	if (AIController(Instigator.Controller) != None && !IsPhotonLoaded() && AmmoAmount(1) > 0 && BotShouldReloadPhoton() && !IsReloadingPhoton())
-		LoadPhoton();
 }
 
 // Consume ammo from one of the possible sources depending on various factors
@@ -487,7 +828,7 @@ simulated function SetHand(float InHand)
 //=====================================================================
 simulated function float ChargeBar()
 {
-	return float(ProtoPrimaryFire(BFireMode[0]).PhotonCharge)/float(ProtoPrimaryFire(BFireMode[0]).default.PhotonCharge);
+	return float(FC01PrimaryFire(BFireMode[0]).PhotonCharge)/float(FC01PrimaryFire(BFireMode[0]).default.PhotonCharge);
 }
 
 //=====================================================================
@@ -560,6 +901,10 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
+	LockOnTime=1.500000
+	LockOnSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-TargetOn',Volume=0.500000,Pitch=1.000000)
+	LockOffSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-TargetOff',Volume=0.500000,Pitch=1.000000)
+	
 	PhotonMagOutSound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff'
 	PhotonMagSlideInSound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn'
 	PhotonMagHitSound=Sound'BW_Core_WeaponSound.A73.A73-PipeIn'
@@ -603,7 +948,7 @@ defaultproperties
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
 	WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="Photon Burst",ModeID="WM_Burst",Value=3.000000)
+	WeaponModes(1)=(ModeName="Photon Burst",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=255),Color2=(B=255,G=52,R=59,A=255),StartSize1=96,StartSize2=96)
@@ -614,14 +959,14 @@ defaultproperties
 	SightPivot=(Pitch=128)
 	SightOffset=(X=0.000000,Y=-0.950000,Z=24.950000)
 	GunLength=16.000000
-	ParamsClasses(0)=Class'ProtoWeaponParams' 
-	ParamsClasses(1)=Class'ProtoWeaponParamsClassic' 
-	ParamsClasses(2)=Class'ProtoWeaponParamsRealistic' 
-	ParamsClasses(3)=Class'ProtoWeaponParamsTactical' 
-	//AmmoClass[0]=Class'BWBP_APC_Pro.Ammo_Proto'
-	//AmmoClass[1]=Class'BWBP_APC_Pro.Ammo_ProtoAlt'
-	FireModeClass(0)=Class'BWBP_APC_Pro.ProtoPrimaryFire'
-	FireModeClass(1)=Class'BWBP_APC_Pro.ProtoScopeFire'
+	ParamsClasses(0)=Class'FC01WeaponParams' 
+	ParamsClasses(1)=Class'FC01WeaponParamsClassic' 
+	ParamsClasses(2)=Class'FC01WeaponParamsRealistic' 
+	ParamsClasses(3)=Class'FC01WeaponParamsTactical' 
+	//AmmoClass[0]=Class'BWBP_OP_Pro.Ammo_Proto'
+	//AmmoClass[1]=Class'BWBP_OP_Pro.Ammo_ProtoAlt'
+	FireModeClass(0)=Class'BWBP_OP_Pro.FC01PrimaryFire'
+	FireModeClass(1)=Class'BWBP_OP_Pro.FC01ScopeFire'
 	SelectAnimRate=1.000000
 	PutDownAnimRate=1.000000
 	PutDownTime=1.000000
@@ -629,19 +974,19 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.750000
 	CurrentRating=0.750000
-	Description="After the restrictions of photon based weaponry was lifted, several manufacturers began working on making new weapons with the technology in mind.  One such company was NDTR Industries, who saw the development of the EP90 and decided to make a PDW like that on their own, utilizing the old P90 as their inspiration.  Now known as the FCO1-B Proto PDW, as the name implies, it's still a prototype with only a few 100 being made for testing.  Still relatively potent thanks to an integral silencer and a unique second magazine that is actually a photon battery, powering a special burst that disorients and disables any organic or mechanized target."
+	Description="After the restrictions of photon based weaponry was lifted, several manufacturers began working on making new weapons with the technology in mind.  One such company was NDTR Industries, who saw the development of the EP90 and decided to make a PDW like that on their own, utilizing the old P90 as their inspiration.  Now known as the FCO1-B Smart PDW, as the name implies, it's still a prototype with only a few 100 being made for testing.  Still relatively potent thanks to an integral silencer and a unique second magazine that is actually a photon battery, powering a special burst that disorients and disables any organic or mechanized target."
 	Priority=41
 	HudColor=(B=135)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=3
 	GroupOffset=10
-	PickupClass=Class'BWBP_APC_Pro.ProtoPickup'
+	PickupClass=Class'BWBP_OP_Pro.FC01Pickup'
 	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-18.000000)
 	BobDamping=2.000000
-	AttachmentClass=Class'BWBP_APC_Pro.ProtoAttachment'
+	AttachmentClass=Class'BWBP_OP_Pro.FC01Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.ProtoLMG.SmallIcon_ProtoLMG'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="FC-01B PROTO PDW"
+	ItemName="FC-01 Smartgun"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30

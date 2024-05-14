@@ -142,19 +142,19 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'CX85AssaultWeapon'
-     MuzzleFlashClass=class'M50FlashEmitter'
-     AltMuzzleFlashClass=class'M50M900FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     AltFlashBone="tip2"
-     BrassClass=class'Brass_Rifle'
-     FlashMode=MU_Primary
-     LightMode=MU_Primary
-     TracerClass=class'TraceEmitter_Default'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_CX85'
-     RelativeLocation=(Z=5.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.250000
+	MuzzleFlashClass=class'M50FlashEmitter'
+	AltMuzzleFlashClass=class'M50M900FlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	AltFlashBone="tip2"
+	BrassClass=class'Brass_Rifle'
+	FlashMode=MU_Primary
+	LightMode=MU_Primary
+	TracerClass=class'TraceEmitter_Default'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	bRapidFire=True
+	Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_CX85'
+	RelativeLocation=(Z=5.000000)
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.250000
 }

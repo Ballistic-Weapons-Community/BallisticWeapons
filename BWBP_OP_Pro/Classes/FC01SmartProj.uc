@@ -1,27 +1,27 @@
 //=============================================================================
-// CX85Flechette.
+// FC01SmartProj.
 //
-// Rapid spike that deals impact damage and causes bleed. Target tracking.
+// Target seeking projectile
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CX85Flechette extends BallisticProjectile;
+class FC01SmartProj extends BallisticProjectile;
 
 var   actor		Target;				// The actor we are trying to anihilate
 var   vector	LastLoc;			// Place where target was last seen, used to guide the rocket
 var() float		TurnRate;			// Rate of rotation towards target. Rotator units per seconds.
 var() float		ArmingDelay;		// Time before we start seeking
 var() bool		bSeeking;			// Seeking mode on. Trying to get to our target point
-var() bool		bArmed;				// seeking time
+var() bool		bArmed;				// We can seek now
 var() float		LastSendTargetTime; // Time when a target location has been set, used for difference formula
 
-var() CX85AssaultWeapon  Master;
+var() FC01SmartGun  Master;
 
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		Target, LastLoc, TurnRate, ArmingDelay;
+		Target, LastLoc;
 
 }
 
@@ -32,13 +32,6 @@ replication
 simulated function ApplyParams(ProjectileEffectParams params)
 {
     Super.ApplyParams(params);
-	
-	if (Master != None && Master.StuckDarts.Length != 0) //more trackers improve seeker func
-	{
-		log(Master.StuckDarts.Length);
-		TurnRate *= Master.StuckDarts.Length;
-		ArmingDelay -= Master.StuckDarts.Length*0.025;
-	}
 	
 	if (ArmingDelay > 0)
 	{
@@ -58,7 +51,7 @@ simulated event Timer()
 	}
 }
 
-function SetFlechetteTarget(Actor Targ)
+function SetSmartProjTarget(Actor Targ)
 {
 	local vector HitLoc, HitNorm, Start, End;
 	local Actor T;
@@ -78,15 +71,15 @@ function SetFlechetteTarget(Actor Targ)
 	}
 }
 
-function SetFlechetteDestination()
+/*function SetSmartProjDestination()
 {
-	if (Master != None && Master.StuckDarts.Length != 0)
+	if (Master != None && Master.bLockedOn)
 	{
-		LastLoc = Master.GetFlechetteTarget();
+		LastLoc = Master.GetSmartProjTarget();
 		if (LastLoc != vect(0,0,0))
 			bSeeking = true;
 	}
-}
+}*/
 
 simulated event Tick(float DT)
 {
@@ -95,10 +88,23 @@ simulated event Tick(float DT)
 	local float TurnNeeded;
 	
 	// Query the master weapon for a target lock
-	if (Role == ROLE_Authority && level.TimeSeconds - LastSendTargetTime > 0.04)
+	//if (Role == ROLE_Authority && level.TimeSeconds - LastSendTargetTime > 0.04)
+	//{
+	//	LastSendTargetTime = level.TimeSeconds;
+	//	SetSmartProjDestination();
+	//}
+	//check for our target
+	if (Role == ROLE_Authority)
 	{
-		LastSendTargetTime = level.TimeSeconds;
-		SetFlechetteDestination();
+		if (Target != None)
+		{
+			if(FastTrace(Location, Target.Location))
+			{
+				LastLoc = Target.Location;
+				bSeeking=true;
+			}
+			else bSeeking = false; //break seek while target is out of sight
+		}
 	}
 	
 	if (bSeeking && bArmed)  // Guide the projectile if the previous call returned a valid lock
@@ -134,9 +140,10 @@ simulated event Landed( vector HitNormal )
 
 defaultproperties
 {
-	ArmingDelay=0.125
-	TurnRate=8192.000000 //mutliple darts improves rate
-    WeaponClass=Class'BWBP_OP_Pro.CX85AssaultWeapon'
+	WeaponClass=Class'BWBP_OP_Pro.FC01SmartGun'
+	ArmingDelay=0.05
+	
+	TurnRate=16384.000000
 	ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
 	TrailClass=Class'BallisticProV55.PineappleTrail'
 	//bRandomStartRotaion=False

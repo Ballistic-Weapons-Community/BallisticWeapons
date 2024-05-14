@@ -14,7 +14,7 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=17
+		Damage=15
         HeadMult=1.75
         LimbMult=0.85
 		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
@@ -42,8 +42,8 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		//Speed=9000.000000
 		Speed=20000.000000 //for now, needs accel tweaks, phys_fall override
-		AccelSpeed=27000.000000
-		MaxSpeed=27000.000000
+		AccelSpeed=270000.000000
+		MaxSpeed=270000.000000
 		bCombinedSplashImpact=true
 		Damage=75
         ImpactDamage=70
@@ -71,8 +71,8 @@ defaultproperties
 		ProjectileClass=Class'BallisticProV55.MRS138Slug_Gas'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=2700.000000
-		AccelSpeed=23000.000000
-		MaxSpeed=23000.000000
+		AccelSpeed=230000.000000
+		MaxSpeed=230000.000000
 		bCombinedSplashImpact=true
 		Damage=35
         ImpactDamage=25

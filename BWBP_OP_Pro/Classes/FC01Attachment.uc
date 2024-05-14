@@ -1,12 +1,13 @@
 //=============================================================================
-// ProtoAttachment.
+// FC01Attachment.
 //
-// 3rd person weapon attachment for CYLO Versitile UAW
+// 3rd person weapon attachment for the FC01
+// has a laser that tracks tagged targets
 //
 // by Casey 'Xavious' Johnson and Marc 'Sergeant Kelly'
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ProtoAttachment extends BallisticAttachment;
+class FC01Attachment extends BallisticAttachment;
 
 var int PhotonFireCount, OldPhotonFireCount;
 var() class<BCTraceEmitter>		PhotonTracerClass;
@@ -14,11 +15,90 @@ var() class<BCImpactManager>	PhotonImpactManager;
 var() actor						PhotonMuzzleFlash;
 var() class<Actor>              PhotonMuzzleFlashClass;
 
+var   bool			bLaserOn;		//Is laser currently active
+var   bool			bOldLaserOn;	//Old bLaserOn
+var   LaserActor	Laser;			//The laser actor
+var   vector		LaserEndLoc;
+var   Emitter		LaserDot;
+
+
 replication
 {
-	reliable if (Role == ROLE_Authority)
-		PhotonFireCount;
+	reliable if ( Role==ROLE_Authority )
+		bLaserOn,PhotonFireCount;
+	unreliable if ( Role==ROLE_Authority && !bNetOwner )
+		LaserEndLoc;
 }
+
+//Laser
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'G5LaserDot',,,Loc);
+	laserDot.bHidden=false;
+}
+
+simulated function Tick(float DT)
+{
+	local Vector Scale3D, Loc;
+
+	Super.Tick(DT);
+
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+
+	if (Laser == None)
+		Laser = Spawn(class'LaserActor_G5Painter',,,Location);
+
+	if (bLaserOn != bOldLaserOn)
+		bOldLaserOn = bLaserOn;
+
+	if (!bLaserOn || Instigator == None || Instigator.IsFirstPerson() || Instigator.DrivenVehicle != None)
+	{
+		if (!Laser.bHidden)
+			Laser.bHidden = true;
+		KillLaserDot();
+		return;
+	}
+	else
+	{
+		if (Laser.bHidden)
+			Laser.bHidden = false;
+		SpawnLaserDot();
+	}
+
+	if (LaserDot != None)
+		LaserDot.SetLocation(LaserEndLoc);
+
+	Loc = GetModeTipLocation();
+
+	Laser.SetLocation(Loc);
+	Laser.SetRotation(Rotator(LaserEndLoc - Loc));
+//	Laser.SetRelativeRotation(Rotator(HitLocation - Loc) - GetBoneRotation('tip'));
+	Scale3D.X = VSize(LaserEndLoc-Laser.Location)/128;
+	Scale3D.Y = 1.5;
+	Scale3D.Z = 1.5;
+	Laser.SetDrawScale3D(Scale3D);
+}
+
+simulated function Destroyed()
+{
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	if (Laser != None)
+		Laser.Destroy();
+	Super.Destroyed();
+}
+
+//photon
 
 function PhotonUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int HitSurf, optional bool bIsAlt, optional vector WaterHitLoc)
 {
@@ -219,10 +299,10 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-	 WeaponClass=class'ProtoSMG'
-	 PhotonTracerClass=Class'BWBP_APC_Pro.TraceEmitter_ProtoPhoton'
-     PhotonImpactManager=Class'BWBP_APC_Pro.IM_ProtoPhoton'
-	 PhotonMuzzleFlashClass=Class'BWBP_APC_Pro.ProtoPhotonFlashEmitter'
+	 WeaponClass=class'FC01SmartGun'
+	 PhotonTracerClass=Class'BWBP_OP_Pro.TraceEmitter_FC01Photon'
+     PhotonImpactManager=Class'BWBP_OP_Pro.IM_FC01Photon'
+	 PhotonMuzzleFlashClass=Class'BWBP_OP_Pro.FC01PhotonFlashEmitter'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone="tipalt"

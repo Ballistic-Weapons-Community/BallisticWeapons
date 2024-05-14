@@ -23,7 +23,8 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=0.35
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS',Volume=1.500000)
+		//FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS',Volume=1.500000)
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-HFire',Volume=1.800000)
 		Recoil=650.000000
 		Chaos=0.3
 		Inaccuracy=(X=190,Y=270)

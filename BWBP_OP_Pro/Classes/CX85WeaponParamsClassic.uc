@@ -6,22 +6,15 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Seeker Shot
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.CX85Flechette'
 		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-		//TraceRange=(Min=9000.000000,Max=9000.000000)
 		Speed=10000.000000
 		MaxSpeed=10000.000000
 		AccelSpeed=1000.000000
-		//RangeAtten=0.350000
 		Damage=45
-		//Damage=85.000000
 		DamageRadius=8.000000
-		//DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
-		//DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
-		//DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'
-		//PenetrateForce=180
-		//bPenetrate=True
 		MomentumTransfer=20000.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 		FlashScaleFactor=1.350000
@@ -40,6 +33,42 @@ defaultproperties
 		TargetState="SeekerFlechette"
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
+	
+	//556mm ammo
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_556mm
+		TraceRange=(Min=10000.000000,Max=13000.000000)
+		WaterTraceRange=10400.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=24
+		HeadMult=3.125
+		LimbMult=0.5
+		DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=1.6
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=150
+		Chaos=0.03
+		WarnTargetPct=0.200000
+		Inaccuracy=(X=48,Y=48)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_556mm
+		FireInterval=0.08000
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.200000
+		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_556mm'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -56,10 +85,18 @@ defaultproperties
 		bPenetrate=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
-		FireSound=(Sound=Sound'AssaultSounds.PD97.TargetCycle01',Volume=1.250000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.350000
+		AmmoPerFire=0
+		PreFireAnim=
+		FireAnim="FireAlt"
+		FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Smart
 		FireInterval=0.700000
 		AmmoPerFire=0
 		PreFireAnim=
@@ -106,11 +143,16 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
+		LayoutName="Seeker Spikes"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.700000
+		//Attachments
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		InventorySize=8
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.700000
 		//ReloadAnimRate=0.800000
 		DisplaceDurationMult=1
 		bNeedCock=True
@@ -119,7 +161,30 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Smart'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ClassicParams_556
+		//Layout core
+		LayoutName="5.56mm Mod"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.700000
+		//Attachments
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+		InventorySize=8
+		//ReloadAnimRate=0.800000
+		DisplaceDurationMult=1
+		bNeedCock=True
+		MagAmmo=50
+        ZoomType=ZT_Logarithmic
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_556mm'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ClassicParams'
+    Layouts(1)=WeaponParams'ClassicParams_556'
 }

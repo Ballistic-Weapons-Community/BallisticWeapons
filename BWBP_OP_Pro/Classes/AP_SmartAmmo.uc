@@ -1,12 +1,12 @@
 //=============================================================================
-// AP_CYLOClip.
+// AP_SmartAmmo.
 //
-// A 25 round 7.62mm caseless magazine.
+// Smart rounds for dumb guns.
 //
 // by Casey 'Xavious' Johnson
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AP_ProtoClip extends BallisticAmmoPickup;
+class AP_SmartAmmo extends BallisticAmmoPickup;
 var   Pickup			M900Ammo;
 var() class<Pickup>		M900AmmoClass;
 
@@ -43,10 +43,10 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     M900AmmoClass=Class'BWBP_APC_Pro.AP_ProtoAlt'
+     M900AmmoClass=Class'BWBP_OP_Pro.AP_FC01Alt'
      AmmoAmount=100
-     InventoryType=Class'BWBP_APC_Pro.Ammo_Proto'
-     PickupMessage="You picked up Prototype LMG rounds."
+     InventoryType=Class'BWBP_OP_Pro.Ammo_SmartAmmo'
+     PickupMessage="You picked up Smart PDW rounds."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM_Ammo'
      DrawScale=0.100000

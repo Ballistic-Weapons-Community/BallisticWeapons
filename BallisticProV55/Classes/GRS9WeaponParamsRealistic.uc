@@ -321,10 +321,10 @@ defaultproperties
 		MagAmmo=19
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1,bUnavailable=True)
-		InitialWeaponMode=1
-		WeaponName="GRS9-L2 9mm Handgun"
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+		InitialWeaponMode=2
+		WeaponName="GRS9-L3 9mm Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

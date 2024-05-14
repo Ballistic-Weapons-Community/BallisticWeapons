@@ -14,7 +14,7 @@ defaultproperties
 		TraceCount=10
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=17
+		Damage=15
         HeadMult=1.75
         LimbMult=0.85
 		DamageType=Class'BWBP_OP_Pro.DT_RCS715Shotgun'
@@ -45,9 +45,9 @@ defaultproperties
 	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams_Frag
 		ProjectileClass=Class'BWBP_OP_Pro.RCS715Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=7000.000000
-		AccelSpeed=27000.000000
-		MaxSpeed=27000.000000
+		Speed=500.000000
+		AccelSpeed=800000.000000
+		MaxSpeed=2000000.000000
 		bCombinedSplashImpact=true
 		Damage=75
         ImpactDamage=25
@@ -177,7 +177,7 @@ defaultproperties
 		PlayerSpeedFactor=0.95
 		InventorySize=6
 		DisplaceDurationMult=1
-		MagAmmo=8
+		MagAmmo=20 //set to 8 once model changes
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Frag'

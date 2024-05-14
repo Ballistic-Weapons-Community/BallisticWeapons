@@ -49,8 +49,8 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.RCS715Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=20000.000000
-		MaxSpeed=55000.000000
-		AccelSpeed=55000.000000
+		MaxSpeed=550000.000000
+		AccelSpeed=550000.000000
 		ImpactDamage=90.000000
 		Damage=125.000000
 		DamageRadius=200.000000 //4 meter dmg radius, approx 1.5 meter kill radius
@@ -182,7 +182,7 @@ defaultproperties
 		SightOffset=(X=0,Y=0,Z=3.4)
 		//Function
 		InventorySize=8
-		MagAmmo=8
+		MagAmmo=20 //set to 8 once model changes
 		WeaponName="RCS-715 12ga Auto-Shotgun (FRAG)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

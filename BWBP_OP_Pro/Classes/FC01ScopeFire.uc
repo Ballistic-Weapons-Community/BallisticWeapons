@@ -1,13 +1,12 @@
 //=============================================================================
-// M50SecondaryFire.
+// FC01ScopeFire.
 //
-// A grenade that bonces off walls and detonates a certain time after impact
-// Good for scaring enemies out of dark corners and not much else
+// its a scope
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ProtoScopeFire extends BallisticFire;
+class FC01ScopeFire extends BallisticFire;
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
@@ -59,7 +58,7 @@ simulated function bool CheckReloading()
 simulated event ModeDoFire()
 {
 	if (AllowFire() && Instigator.IsLocallyControlled() && BW != None)
-    	ProtoSMG(BW).ScopeViewTwoRelease();
+    	FC01SmartGun(BW).ScopeViewTwoRelease();
 }
 
 // Send sight key press event to weapon
@@ -67,7 +66,7 @@ simulated function PlayPreFire()
 {
 	if (Instigator.IsLocallyControlled() && BW != None)
 	{
-		ProtoSMG(BW).ScopeViewTwo();
+		FC01SmartGun(BW).ScopeViewTwo();
 	}
 }
 
@@ -78,7 +77,7 @@ defaultproperties
      bFireOnRelease=True
      FireAnim=
      FireRate=0.020000
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_ProtoAlt'
+     AmmoClass=Class'BWBP_OP_Pro.Ammo_FC01Alt'
      AmmoPerFire=0
      BotRefireRate=0.300000
 }

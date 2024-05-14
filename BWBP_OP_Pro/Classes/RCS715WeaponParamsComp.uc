@@ -44,8 +44,8 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.RCS715Slug_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=9000.000000
-        MaxSpeed=15000.000000
-        AccelSpeed=6000.000000
+        MaxSpeed=300000.000000
+        AccelSpeed=150000.000000
 		ImpactDamage=60.0f
 		Damage=60.0f
 		PushbackForce=100.000000

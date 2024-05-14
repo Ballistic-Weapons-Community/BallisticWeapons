@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TraceEmitter_ProtoPhoton extends BCTraceEmitter;
+class TraceEmitter_FC01Photon extends BCTraceEmitter;
 
 defaultproperties
 {
@@ -31,6 +31,6 @@ defaultproperties
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=5000.000000,Max=5000.000000))
      End Object
-     Emitters(0)=MeshEmitter'BWBP_APC_Pro.TraceEmitter_ProtoPhoton.MeshEmitter0'
+     Emitters(0)=MeshEmitter'BWBP_OP_Pro.TraceEmitter_FC01Photon.MeshEmitter0'
 
 }
