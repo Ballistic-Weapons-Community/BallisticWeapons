@@ -49,7 +49,7 @@ defaultproperties
 		Recoil=70.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.P90.P90Fire',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FC01.P90Fire',Volume=1.300000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
