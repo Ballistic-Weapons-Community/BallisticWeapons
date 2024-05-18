@@ -329,7 +329,7 @@ defaultproperties
 	FlashScaleFactor=0.500000
 	SFlashScaleFactor=1.000000
 	PhotonFlashScaleFactor=0.400000
-	SilencedFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.P90SilFire',Volume=2.000000,Radius=192.000000,bAtten=True)
+	SilencedFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-SmartShot',Pitch=1.4,Volume=2.000000,Radius=192.000000,bAtten=True)
 	DecayRange=(Min=1536,Max=3072)
 	TraceRange=(Min=8000.000000,Max=12000.000000)
 	WallPenetrationForce=24.000000
