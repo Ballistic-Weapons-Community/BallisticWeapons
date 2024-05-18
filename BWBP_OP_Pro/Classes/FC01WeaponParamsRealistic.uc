@@ -54,7 +54,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.P90.P90Fire2',Pitch=1.200000,Volume=0.950000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FC01.P90Fire2',Pitch=1.200000,Volume=0.950000)
 		//FireSound=(sound=sound'BallisticSounds3.UZI.UZI-Fire',Pitch=1.200000,Volume=0.950000)
 		Recoil=480.000000
 		Chaos=-1.0
@@ -161,11 +161,18 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=RealisticParams
+	Begin Object Class=WeaponParams Name=RealisticParams_Smart
+		//Layout core
+		LayoutName="6mm Smart"
+		LayoutTags="TargetScope"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.25
+		//Stats
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=50
+		MagAmmo=40
 		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
 		//SightOffset=(X=-10.00000,Z=10.450000)
 		//SightPivot=(Pitch=16)
@@ -175,7 +182,27 @@ defaultproperties
 		FireParams(1)=FireParams'RealisticPhotonPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
+	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		LayoutName="5.7mm AP"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.25
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=5
+		MagAmmo=50
+		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
+		//SightOffset=(X=-10.00000,Z=10.450000)
+		//SightPivot=(Pitch=16)
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Smart'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'RealisticParams_Smart'
+	Layouts(1)=WeaponParams'RealisticParams'
 }

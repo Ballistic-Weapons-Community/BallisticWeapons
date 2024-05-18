@@ -329,7 +329,7 @@ defaultproperties
 	FlashScaleFactor=0.500000
 	SFlashScaleFactor=1.000000
 	PhotonFlashScaleFactor=0.400000
-	SilencedFireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.P90.P90SilFire',Volume=2.000000,Radius=192.000000,bAtten=True)
+	SilencedFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.P90SilFire',Volume=2.000000,Radius=192.000000,bAtten=True)
 	DecayRange=(Min=1536,Max=3072)
 	TraceRange=(Min=8000.000000,Max=12000.000000)
 	WallPenetrationForce=24.000000
@@ -359,12 +359,13 @@ defaultproperties
 	FireRate=0.1050000
 	AmmoClass=Class'BWBP_OP_Pro.Ammo_SmartAmmo'
 	AltAmmoClass=Class'BWBP_OP_Pro.Ammo_FC01Alt'
-	ShakeRotMag=(X=64.000000,Y=32.000000)
-	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-	ShakeRotTime=2.000000
-	ShakeOffsetMag=(X=-30.000000)
-	ShakeOffsetRate=(X=-1000.000000)
-	ShakeOffsetTime=2.000000
 	WarnTargetPct=0.200000
 	aimerror=900.000000
+	
+	ShakeRotMag=(X=24.000000)
+	ShakeRotRate=(X=360.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-5.00)
+	ShakeOffsetRate=(X=-100.000000)
+	ShakeOffsetTime=2.000000
 }

@@ -21,7 +21,7 @@ var() FC01SmartGun  Master;
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		Target, LastLoc;
+		Target, LastLoc, bSeeking, bArmed;
 
 }
 

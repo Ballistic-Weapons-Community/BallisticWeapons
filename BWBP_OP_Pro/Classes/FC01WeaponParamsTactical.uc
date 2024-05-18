@@ -52,7 +52,7 @@ defaultproperties
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.P90.P90Fire2',Pitch=1.200000,Volume=0.950000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FC01.P90Fire2',Pitch=1.200000,Volume=0.950000)
 		Recoil=480.000000
 		Chaos=-1.0
 	End Object
@@ -159,10 +159,36 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=TacticalParams
-		InventorySize=6
+	Begin Object Class=WeaponParams Name=TacticalParams_Smart
+		//Layout core
+		LayoutName="6mm Smart"
+		LayoutTags="TargetScope"
+		Weight=30
+		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35
+		//Stats
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=40
+		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
+		//SightOffset=(X=-10.00000,Z=10.450000)
+		//SightPivot=(Pitch=16)
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Smart'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		LayoutName="5.7mm AP"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.35
+		//Stats
+		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=50
 		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
@@ -174,7 +200,9 @@ defaultproperties
 		FireParams(1)=FireParams'TacticalPhotonPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'TacticalParams'
+	
+	Layouts(0)=WeaponParams'TacticalParams_Smart'
+	Layouts(1)=WeaponParams'TacticalParams'
 
 
 }

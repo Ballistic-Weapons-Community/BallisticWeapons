@@ -125,7 +125,8 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Smart
 		//Layout core
-		LayoutName="Laser Tracker"
+		LayoutName="6mm Smart"
+		LayoutTags="TargetScope"
 		Weight=30
 		//ADS
 		SightMoveSpeedFactor=0.9
@@ -148,7 +149,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
-		LayoutName="5.7mm Dumbfire"
+		LayoutName="5.7mm AP"
 		Weight=30
 		//ADS
 		SightMoveSpeedFactor=0.9

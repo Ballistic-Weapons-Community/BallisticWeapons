@@ -55,7 +55,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.P90.P90Fire2',Volume=1.3)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FC01.P90Fire2',Volume=1.3)
 		Recoil=48.000000
 		Chaos=-1.0
 		Inaccuracy=(X=21,Y=21)
@@ -135,7 +135,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Smart
 		//Layout core
-		LayoutName="Laser Tracker"
+		LayoutName="6mm Smart"
+		LayoutTags="TargetScope"
 		Weight=30
 		//ADS
 		SightMoveSpeedFactor=0.5
@@ -151,7 +152,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
-		LayoutName="5.7mm Dumbfire"
+		LayoutName="5.7mm AP"
 		Weight=30
 		//ADS
 		SightMoveSpeedFactor=0.5

@@ -10,6 +10,7 @@ class FC01SmartGun extends BallisticWeapon;
 
 #exec OBJ LOAD File=BWBP_OP_Tex.utx
 
+var() bool				bADSTrack;
 var   Pawn				Target;
 var   float				TargetTime;
 var() float				LockOnTime;
@@ -66,6 +67,21 @@ replication
 		ClientPhotonPickedUp; 
 }
 
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bADSTrack=false;
+
+	if (InStr(WeaponParams.LayoutTags, "TargetScope") != -1)
+	{
+		bADSTrack=true;
+	}
+}
+
 //=====================================================================
 // TRACKER CODE
 //=====================================================================
@@ -97,7 +113,7 @@ simulated function WeaponTick(float DT)
 	//if (Instigator != None && Instigator.IsLocallyControlled())
 	//	TickLaser(DT);
 
-	if (!bScopeView || Role < ROLE_Authority)
+	if (!bScopeView || !bADSTrack || Role < ROLE_Authority)
 	{
 		TargetTime = 0;
 		return;
