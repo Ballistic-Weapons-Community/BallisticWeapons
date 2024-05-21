@@ -41,8 +41,9 @@ defaultproperties
 		FireAnimRate=0.8500000	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
 	End Object
+	
 	//Shot
-	/*Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams_Shot
 		TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
 		RangeAtten=0.15
@@ -59,25 +60,38 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=0.35
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS',Volume=1.500000)
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-Fire',Volume=1.500000)
 		Recoil=1536.000000
 		Chaos=0.3
-		Inaccuracy=(X=256,Y=256)
+		Inaccuracy=(X=300,Y=300)
 		BotRefireRate=0.900000
 		WarnTargetPct=0.500000	
 	End Object
 
-	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Shot
 		FireInterval=0.550000
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
-	FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
-	End Object*/
+	FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams_Shot'
+	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
 	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
+	
+	//Alt Shot
 	Begin Object Class=ShotgunEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=3072.000000,Max=3072.000000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
@@ -152,19 +166,46 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		LayoutName="12 Gauge Slug"
+		LayoutTags="slug"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.35
+		//Stats
 		ReloadAnimRate=1.500000
 		MagAmmo=5
-		SightingTime=0.35
-		SightMoveSpeedFactor=0.6
-        InventorySize=6
+        InventorySize=5
 		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
 		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_Shot
+		//Layout core
+		LayoutName="12 Gauge Shot"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.35
+		//Stats
+		ReloadAnimRate=1.500000
+		MagAmmo=5
+        InventorySize=5
+		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
+		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Shot'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'TacticalParams'
+	Layouts(1)=WeaponParams'TacticalParams_Shot'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SP_Gray

@@ -7,8 +7,10 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//12ga Slug
 	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=5500.000000,Max=7000.000000)
+		TraceRange=(Min=7000.000000,Max=7000.000000)
+		DecayRange=(Min=1200.0,Max=7000.0)
 		WaterTraceRange=5000.0
 		TraceCount=1
 		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
@@ -41,6 +43,45 @@ defaultproperties
 		FireAnimRate=0.8500000	
 		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
+	
+	//12ga Shot
+	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams_Shot
+		TraceRange=(Min=4200.000000,Max=4200.000000)
+		WaterTraceRange=4800.0
+		DecayRange=(Min=1200.0,Max=4200.0)
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		TraceCount=8
+		Damage=16.5
+		HeadMult=2.25
+		LimbMult=0.666
+		DamageType=Class'BallisticProV55.DTM763Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+		PenetrationEnergy=7.000000
+		PenetrateForce=24
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-Fire',Volume=1.500000)
+		Recoil=920.000000
+		Chaos=0.120000
+		Inaccuracy=(X=450,Y=450)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Shot
+		FireInterval=0.40000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=0.8500000	
+	FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams_Shot'
+	End Object
 		
 	//=================================================================
     // SECONDARY FIRE
@@ -51,6 +92,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		TargetState="Scope"
 		FireInterval=0.200000
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
@@ -96,8 +138,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		LayoutName="12 Gauge Slug"
+		LayoutTags="slug"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.350000
+		//Stats
 		InventorySize=6
-		SightMoveSpeedFactor=0.500000
 		MagAmmo=4
 		SightOffset=(X=2.000000,Y=-0.050000,Z=10.200000)
 		ReloadAnimRate=1.250000
@@ -108,7 +157,28 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Shot
+		//Layout core
+		LayoutName="12 Gauge Shot"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.350000
+		//Stats
+		InventorySize=6
+		MagAmmo=4
+		SightOffset=(X=2.000000,Y=-0.050000,Z=10.200000)
+		ReloadAnimRate=1.250000
+		CockAnimRate=1.400000
+		WeaponName="SP-12 12ga Shotgun"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Shot'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Shot'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SP_Gray

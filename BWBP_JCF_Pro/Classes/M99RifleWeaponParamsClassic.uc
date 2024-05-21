@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=120000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=190.0
-		HeadMult=1.973684
-		LimbMult=0.552631
+		HeadMult=2
+		LimbMult=0.55
 		DamageType=Class'BWBP_JCF_Pro.DTM99Rifle'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTM99RifleHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTM99Rifle'

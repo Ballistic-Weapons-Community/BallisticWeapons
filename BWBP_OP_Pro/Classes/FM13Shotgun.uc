@@ -9,6 +9,7 @@
 class FM13Shotgun extends BallisticProShotgun;
 
 var bool bAltLoaded;
+var bool bLoadsShot;
 var Name SingleLoadAnim;
 
 var FM13FireControl FireControl;
@@ -25,13 +26,15 @@ simulated function OnWeaponParamsChanged()
     super.OnWeaponParamsChanged();
 		
 	assert(WeaponParams != None);
-
+	bLoadsShot=false;
+	
 	if (InStr(WeaponParams.LayoutTags, "8Gauge") != -1)
 	{
+		bLoadsShot=true;
 		CockSound.Sound=Sound'BWBP_OP_Sounds.FM13.FM13-CockHeavyQuick';
 		CockSelectSound.Sound=Sound'BWBP_OP_Sounds.FM13.FM13-CockHeavyQuick';
-		CockSound.Volume=1.4;
-		CockSelectSound.Volume=1.4;
+		CockSound.Volume=1.2;
+		CockSelectSound.Volume=1.2;
 	}
 }
 

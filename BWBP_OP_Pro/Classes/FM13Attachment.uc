@@ -1,15 +1,36 @@
 //=============================================================================
 // FM13Attachment.
 //
-// _TPm person weapon attachment for M763 Shotgun
+// _TPm person weapon attachment for FM13 Shotgun
+// Can support fire and shot particles
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class FM13Attachment extends BallisticShotgunAttachment
-	DependsOn(M763GasControl);
+class FM13Attachment extends BallisticShotgunAttachment;
 
-var class<BCTraceEmitter> AltTracerClass;
+var byte CurrentTracerMode;
+var array< class<BCTraceEmitter> >	TracerClasses[3];
+var array< class<BCImpactManager> >	ImpactManagers[2];
+var	  BallisticWeapon		myWeap;
+
+replication
+{
+	reliable if ( Role==ROLE_Authority )
+		CurrentTracerMode;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	if (FM13Shotgun(I) != None && FM13Shotgun(I).bLoadsShot)
+	{
+		CurrentTracerMode=1;
+	}
+}
 
 // Do trace to find impact info and then spawn the effect
 // This should be called from sub-classes
@@ -78,8 +99,8 @@ simulated function InstantFireEffects(byte Mode)
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (ImpactManager != None)
-				ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+			if (ImpactManagers[CurrentTracerMode] != None)
+				ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
 		}
 	}
 }
@@ -131,21 +152,21 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			bThisShot=true;					}
 	}
 	// Spawn a tracer
-	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
+	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
 		bThisShot && (Mode == 1 || TracerChance >= 1 || FRand() < TracerChance))
 
 	{
 		if (Mode == 0)
 		{
 			if (Dist > 200)
-				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
+				Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
 
 				if (Tracer != None)
 				Tracer.Initialize(Dist);
 		}
 
 		else
-			Tracer = Spawn(AltTracerClass, self, , TipLoc, Rotator(V - TipLoc));
+			Tracer = Spawn(TracerClasses[2], self, , TipLoc, Rotator(V - TipLoc));
 	}
 	// Spawn under water bullet effect
 	if ( Mode == 0 && Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
@@ -161,20 +182,22 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-	 WeaponClass=class'FM13Shotgun'
-     AltTracerClass=Class'BWBP_OP_Pro.TraceEmitter_ShotgunHE'
-     MuzzleFlashClass=Class'BWBP_OP_Pro.FM13FlashEmitter'
-     AltMuzzleFlashClass=Class'BWBP_OP_Pro.FM13GrenadeFlashEmitter'
-	 ImpactManager=Class'BallisticProV55.IM_Shell'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
-     FlashScale=1.800000
-     BrassClass=Class'BallisticProV55.Brass_Shotgun'
-     TracerMode=MU_Both
-     TracerClass=Class'BWBP_OP_Pro.TraceEmitter_ShotgunFlame'
-     TracerChance=0.500000
-     MeleeStrikeAnim="Melee_swing"
-     SingleFireAnim="RifleHip_FireCock"
-     SingleAimedFireAnim="RifleAimed_FireCock"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_FM13'
-     DrawScale=0.180000
+	WeaponClass=class'FM13Shotgun'
+	TracerClasses(0)=class'TraceEmitter_ShotgunFlame' //fire
+	TracerClasses(1)=class'TraceEmitter_Shotgun' //shot
+	TracerClasses(2)=class'TraceEmitter_ShotgunHE' //grenade alt?
+	ImpactManagers(0)=class'IM_FireShot'
+	ImpactManagers(1)=class'IM_Shell'
+	MuzzleFlashClass=Class'BWBP_OP_Pro.FM13FlashEmitter'
+	AltMuzzleFlashClass=Class'BWBP_OP_Pro.FM13GrenadeFlashEmitter'
+	MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+	FlashScale=1.800000
+	BrassClass=Class'BallisticProV55.Brass_Shotgun'
+	TracerMode=MU_Both
+	TracerChance=0.500000
+	MeleeStrikeAnim="Melee_swing"
+	SingleFireAnim="RifleHip_FireCock"
+	SingleAimedFireAnim="RifleAimed_FireCock"
+	Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_FM13'
+	DrawScale=0.180000
 }

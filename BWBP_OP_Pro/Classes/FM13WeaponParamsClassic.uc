@@ -48,7 +48,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_BigBullet'
 		Damage=45.0
-		LimbMult=0.35
+		LimbMult=0.5
 		DamageType=Class'BWBP_OP_Pro.DT_FM13Shotgun'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_FM13ShotgunHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_FM13Shotgun'
@@ -61,6 +61,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter_C'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-FireStrong',Volume=3.300000)
 		Recoil=2048.000000
+		PushbackForce=1000.000000
 		Chaos=1.0
 		Inaccuracy=(X=1300,Y=1300)
 		HipSpreadFactor=1.000000
@@ -138,14 +139,19 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=ClassicParams_Flame
+		//Layout core
+		LayoutName="Dragon's Breath"
 		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.6
+        SightingTime=0.350000
+		//Stats
 		ViewOffset=(X=0.000000,Y=13.000000,Z=-23.000000)
 		SightOffset=(X=-5.000000,Y=-0.100000,Z=27.000000)
 		SightPivot=(Pitch=128)
 		bNeedCock=True
 		MagAmmo=6
-        SightingTime=0.350000
         InventorySize=6
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -153,16 +159,20 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams-Pitbull
+	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
+		LayoutName="8 Gauge Shot"
 		LayoutTags="8Gauge"
 		Weight=30
-		//LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_FM14'
+		//ADS
+		SightMoveSpeedFactor=0.6
+        SightingTime=0.350000
+		//Stats
 		ViewOffset=(X=0.000000,Y=13.000000,Z=-23.000000)
 		SightOffset=(X=-5.000000,Y=-0.100000,Z=29.000000)
 		SightPivot=(Pitch=128)
 		bNeedCock=True
 		MagAmmo=4
-        SightingTime=0.350000
         InventorySize=6
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -170,7 +180,7 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Pitbull'
+	Layouts(0)=WeaponParams'ClassicParams_Flame'
+	Layouts(1)=WeaponParams'ClassicParams'
 
 }
