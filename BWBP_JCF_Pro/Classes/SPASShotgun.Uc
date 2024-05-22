@@ -139,8 +139,8 @@ defaultproperties
      LongGunPivot=(Pitch=4500,Yaw=-8000)
 	 bNoCrosshairInScope=True
 	 Bobdamping=2.35
-     FireModeClass(0)=Class'BWBP_JCF_Pro.SPASSecondaryFire'
-     FireModeClass(1)=Class'BWBP_JCF_Pro.SPASPrimaryFire'
+     FireModeClass(0)=Class'BWBP_JCF_Pro.SPASPrimaryFire'
+     FireModeClass(1)=Class'BWBP_JCF_Pro.SPASSecondaryFire'
      PutDownTime=0.500000
      AIRating=0.600000
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=121,G=123,R=125,A=177),Color2=(B=21,G=23,R=27,A=255),StartSize1=32,StartSize2=96)

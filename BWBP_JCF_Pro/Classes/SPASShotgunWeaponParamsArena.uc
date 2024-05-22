@@ -160,7 +160,7 @@ defaultproperties
 		SightingTime=0.35
 		//Stats
 		ReloadAnimRate=1.500000
-		MagAmmo=8
+		MagAmmo=5
         InventorySize=4
 		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
 		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
@@ -179,7 +179,7 @@ defaultproperties
 		SightingTime=0.35
 		//Stats
 		ReloadAnimRate=1.500000
-		MagAmmo=8
+		MagAmmo=5
         InventorySize=4
 		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
 		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
