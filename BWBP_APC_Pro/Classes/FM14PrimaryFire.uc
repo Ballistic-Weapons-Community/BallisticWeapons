@@ -86,8 +86,8 @@ defaultproperties
      HipSpreadFactor=3.000000
 	 DecayRange=(Min=1562,Max=3124)
      TraceCount=1
-     TracerClass=Class'BWBP_APC_Pro.TraceEmitter_ShotgunFlame'
-     ImpactManager=Class'BWBP_APC_Pro.IM_FireShot'
+     TracerClass=Class'BallisticProV55.TraceEmitter_AP'
+	ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
      TraceRange=(Min=3072.000000,Max=3072.000000)
      Damage=80.000000
      RangeAtten=0.15000

@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTFM14HitHead extends DTFM13Hit;
+class DTFM14HitHead extends DTFM14Hit;
 
 defaultproperties
 {

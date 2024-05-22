@@ -24,15 +24,6 @@ simulated function OnWeaponParamsChanged()
 	}
 }
 
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-	if (!class'BallisticReplicationInfo'.static.IsArena() )
-	{
-		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
-	}
-}
-
 simulated function AltFire(float F)	{	FirePressed(F);	}
 
 // AI Interface =====

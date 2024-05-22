@@ -11,7 +11,7 @@ defaultproperties
 			RangeAtten=0.15000
 			TraceCount=1
 			TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-			ImpactManager=Class'BWBP_APC_Pro.IM_FireShot'
+			ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
 			Damage=80
 			DamageType=Class'BWBP_APC_Pro.DTFM14Shotgun'
 			DamageTypeHead=Class'BWBP_APC_Pro.DTFM14ShotgunHead'
