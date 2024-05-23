@@ -7,6 +7,20 @@ class CYLOPickup extends BallisticWeaponPickup
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 #exec OBJ LOAD FILE=BWBP_SKC_Static.usx
 
+var float	HeatLevel;
+var float	HeatTime;
+
+function InitDroppedPickupFor(Inventory Inv)
+{
+    Super.InitDroppedPickupFor(Inv);
+
+    if (CYLOUAW(Inv) != None)
+    {
+    	HeatLevel = CYLOUAW(Inv).HeatLevel;
+    	HeatTime = level.TimeSeconds;
+    }
+}
+
 //===========================================================================
 // StaticPrecache
 //

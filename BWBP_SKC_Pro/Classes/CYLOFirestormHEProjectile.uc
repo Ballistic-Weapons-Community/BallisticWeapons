@@ -59,7 +59,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 defaultproperties
 {
 	PawnDampAdjust=0.01
-    WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+    WeaponClass=Class'BWBP_SKC_Pro.CYLOUAW'
 	ArmedDetonateOn=DT_Impact
 	bNoInitialSpin=True
 	bAlignToVelocity=True

@@ -17,7 +17,7 @@ defaultproperties
      bHeaddie=True
      InvasionDamageScaling=2
      DamageIdent="Shotgun"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOUAW'
      DeathString="%k uncorked %o with the CYLO."
      FemaleSuicide="%o nailed herself with the CYLO."
      MaleSuicide="%o nailed himself with the CYLO."

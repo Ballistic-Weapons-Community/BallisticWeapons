@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%k's CYLO Firestorm likes %o extra crispy."
      InvasionDamageScaling=2
      DamageIdent="Shotgun"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOUAW'
      DeathString="%o was cooked into burnt BBQ by %k's CYLO Firestorm."
      FemaleSuicide="%o nailed herself with the CYLO."
      MaleSuicide="%o nailed himself with the CYLO."

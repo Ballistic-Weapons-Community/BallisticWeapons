@@ -6,7 +6,6 @@ class CYLOFirestormPickup extends BallisticWeaponPickup
 	
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 #exec OBJ LOAD FILE=BWBP_SKC_Static.usx
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 
 var float	HeatLevel;
 var float	HeatTime;

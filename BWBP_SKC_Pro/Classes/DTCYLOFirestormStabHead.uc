@@ -16,7 +16,7 @@ defaultproperties
      bHeaddie=True
      DamageIdent="Melee"
      DamageDescription=",Stab,"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOUAW'
      DeathString="%o was was mauled by %k's CYLO."
      FemaleSuicide="%o sliced her own head in half with the CYLO."
      MaleSuicide="%o sliced his own head in half with the CYLO."

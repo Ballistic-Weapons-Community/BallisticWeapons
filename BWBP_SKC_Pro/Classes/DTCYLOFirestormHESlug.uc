@@ -7,7 +7,7 @@ defaultproperties
      InvasionDamageScaling=2
      DamageIdent="Assault"
      DamageDescription=",Flame,"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOUAW'
      DeathString="%o got blasted by %k's HE shell."
      FemaleSuicide="%o blasted herself with a HE shell."
      MaleSuicide="%o blasted himself with a HE shell."
