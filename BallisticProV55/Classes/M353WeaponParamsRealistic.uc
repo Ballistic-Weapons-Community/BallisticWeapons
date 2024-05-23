@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=45.0
-		HeadMult=2.266666
-		LimbMult=0.666666
+		HeadMult=2.25
+		LimbMult=0.65
 		DamageType=Class'BallisticProV55.DTM353MG'
 		DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
 		DamageTypeArm=Class'BallisticProV55.DTM353MG'
