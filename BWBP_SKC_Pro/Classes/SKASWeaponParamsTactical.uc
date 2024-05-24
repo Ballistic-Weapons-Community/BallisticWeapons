@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//10ga Auto
     Begin Object Class=ShotgunEffectParams Name=TacticalAutoEffectParams
         TraceRange=(Min=2560.000000,Max=2560.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
@@ -33,12 +34,13 @@ defaultproperties
 
     Begin Object Class=FireParams Name=TacticalAutoFireParams
         FireInterval=0.300000
-        FireAnim="Fire"
+		FireAnim="FireRot"
         FireEndAnim=
         FireAnimRate=1.500000	
         FireEffectParams(0)=ShotgunEffectParams'TacticalAutoEffectParams'
     End Object
 
+	//10ga Manual
     Begin Object Class=ShotgunEffectParams Name=TacticalManualEffectParams
         TraceRange=(Min=2048.000000,Max=4096.000000)
         DecayRange=(Min=2100,Max=6200)
@@ -71,6 +73,77 @@ defaultproperties
         FireEndAnim=
         FireAnimRate=1.450000	
         FireEffectParams(0)=ShotgunEffectParams'TacticalManualEffectParams'
+    End Object
+	
+	//12ga Gatling
+    Begin Object Class=ShotgunEffectParams Name=TacticalAutoEffectParams_Gatling
+        TraceRange=(Min=2560.000000,Max=2560.000000)
+        DecayRange=(Min=788,Max=2363) // 15-45m
+        RangeAtten=0.25
+        TraceCount=5
+        TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+        ImpactManager=Class'BallisticProV55.IM_Shell'
+        Damage=30
+        HeadMult=1.75
+        LimbMult=0.85
+        PushbackForce=180.000000
+		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
+        DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
+        DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
+        PenetrateForce=100
+        bPenetrate=True
+        MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+        Recoil=350.000000
+        Chaos=0.300000
+        BotRefireRate=0.800000
+        WarnTargetPct=0.400000	
+		Inaccuracy=(X=310,Y=310)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Rapid',Volume=1.300000)
+    End Object
+
+    Begin Object Class=FireParams Name=TacticalAutoFireParams_Gatling
+		TargetState="SpinUpFire"
+		FireInterval=0.130000
+		BurstFireRateFactor=1.00
+        FireAnimRate=2.000000	
+		FireAnim="Fire"
+		FireEndAnim=	
+        FireEffectParams(0)=ShotgunEffectParams'TacticalAutoEffectParams_Gatling'
+    End Object
+
+	//10ga FRAG
+    Begin Object Class=ShotgunEffectParams Name=TacticalAutoEffectParams_Frag
+        TraceRange=(Min=2048.000000,Max=4096.000000)
+        DecayRange=(Min=2100,Max=6200)
+        RangeAtten=0.25
+        TraceCount=1
+        TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Bulldog'
+        ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFrag'
+        Damage=200
+        HeadMult=1.75
+        LimbMult=0.85
+        DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
+        DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
+        DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
+        PushbackForce=180.000000
+		PenetrateForce=100
+        bPenetrate=True
+        MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+        FlashScaleFactor=1.5
+        Recoil=256.000000
+        Chaos=0.200000
+        BotRefireRate=0.800000
+        WarnTargetPct=0.400000
+		Inaccuracy=(X=35,Y=35)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.SRAC-Fire2',Volume=1.450000)
+    End Object
+
+    Begin Object Class=FireParams Name=TacticalAutoFireParams_Frag
+        FireInterval=0.400000
+		FireAnim="FireRot"
+        FireEndAnim=
+        FireAnimRate=1.500000	
+        FireEffectParams(0)=ShotgunEffectParams'TacticalAutoEffectParams_Frag'
     End Object
 		
     //=================================================================
@@ -146,12 +219,25 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		InventorySize=8
+		//Layout core
+		LayoutName="10ga Rotary"
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		AllowedCamos(5)=5
+		AllowedCamos(6)=6
+		Weight=30
+		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.3
 		SightPivot=(Pitch=1024)
+		//Function
+		InventorySize=8
 		DisplaceDurationMult=1
 		MagAmmo=24
+		ViewOffset=(X=10.00,Y=5.00,Z=-4.50)
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -160,7 +246,69 @@ defaultproperties
         FireParams(1)=FireParams'TacticalManualFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Gatling
+		//Layout core
+		LayoutName="10ga Gatling"
+		LayoutTags="spinup"
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		AllowedCamos(5)=5
+		AllowedCamos(6)=6
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.3
+		SightPivot=(Pitch=1024)
+		//Function
+		InventorySize=8
+		DisplaceDurationMult=1
+		MagAmmo=30
+		ViewOffset=(X=10.00,Y=5.00,Z=-4.50)
+		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Manual",bUnavailable=true,ModeID="WM_SemiAuto",Value=1.000000)
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalAutoFireParams_Gatling'
+        FireParams(1)=FireParams'TacticalManualFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Frag
+		//Layout core
+		LayoutName="SRAC HE"
+		Weight=10
+		AllowedCamos(0)=7
+		AllowedCamos(1)=8
+		AllowedCamos(2)=9
+		AllowedCamos(3)=10
+		AllowedCamos(4)=11
+		AllowedCamos(5)=12
+		AllowedCamos(6)=13
+		AllowedCamos(7)=14
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.3
+		SightPivot=(Pitch=1024)
+		//Function
+		InventorySize=8
+		DisplaceDurationMult=1
+		MagAmmo=24
+		ViewOffset=(X=5,Y=6,Z=-2)
+		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Manual",bUnavailable=true,ModeID="WM_SemiAuto",Value=1.000000)
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalAutoFireParams_Frag'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Gatling'
+    Layouts(2)=WeaponParams'TacticalParams_Frag'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SKAS_Gray
@@ -217,6 +365,71 @@ defaultproperties
 		Weight=1
 	End Object
 	
+	Begin Object Class=WeaponCamo Name=SRAC_Gray
+		Index=7
+		CamoName="Gray"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-MainShine",Index=1,AIndex=0,PIndex=0)
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRAC_Tactical
+		Index=8
+		CamoName="Urban"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-TacticalShine",Index=1,AIndex=0,PIndex=0)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRAC_Steel
+		Index=9
+		CamoName="Steel"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-SteelShine",Index=1,AIndex=0,PIndex=0)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRAC_Blood
+		Index=10
+		CamoName="Blood"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-BloodShine",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRAC_Tiger
+		Index=11
+		CamoName="Tiger"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-RedTiger",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRAC_DarkTiger
+		Index=12
+		CamoName="Dark Tiger"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-TigerShine",Index=1,AIndex=0,PIndex=0)
+		Weight=5
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRAC_Pink
+		Index=13
+		CamoName="Fabulous"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-PinkShine",Index=1,AIndex=0,PIndex=0)
+		Weight=3
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=SRAC_Gold
+		Index=14
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SKASCamos.SRAC-GoldShine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	//SKAS
 	Camos(0)=WeaponCamo'SKAS_Gray'
 	Camos(1)=WeaponCamo'SKAS_Urban'
 	Camos(2)=WeaponCamo'SKAS_Digital'
@@ -224,4 +437,13 @@ defaultproperties
 	Camos(4)=WeaponCamo'SKAS_Jungle'
 	Camos(5)=WeaponCamo'SKAS_Glitch'
 	Camos(6)=WeaponCamo'SKAS_Glitch2'
+	//SRAC
+	Camos(7)=WeaponCamo'SRAC_Gray'
+	Camos(8)=WeaponCamo'SRAC_Tactical'
+	Camos(9)=WeaponCamo'SRAC_Steel'
+	Camos(10)=WeaponCamo'SRAC_Blood'
+	Camos(11)=WeaponCamo'SRAC_Tiger'
+	Camos(12)=WeaponCamo'SRAC_DarkTiger'
+	Camos(13)=WeaponCamo'SRAC_Pink'
+	Camos(14)=WeaponCamo'SRAC_Gold'
 }

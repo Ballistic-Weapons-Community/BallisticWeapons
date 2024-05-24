@@ -1,41 +1,47 @@
 //=============================================================================
 // SKASShotgun.
 //
-// Automatic shotgun.
+// Super weapon shotgun. Fully automatic 10 gauge. Multiple fire modes.
+// Has gatling and frag layouts.
 //
 // by Nolan "Dark Carnivour" Richert
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class SKASShotgun extends BallisticProShotgun;
 
-var bool		bIsSuper;			// Manual mode!
-var float		lastModeChangeTime;
 var() sound     QuickCockSound;
 var() sound		UltraDrawSound;       	//56k MODEM ACTION.
 
 var()     float Heat;
 var()     float CoolRate;
 
-var   float DesiredSpeed, BarrelSpeed;
-var   float MaxRotationSpeed;
-var   int	BarrelTurn;
+var() bool	bGatlingMode;
+var()   float DesiredSpeed, BarrelSpeed;
+var()   float MaxRotationSpeed;
+var()   int	BarrelTurn;
 var() Sound BarrelSpinSound;
 var() Sound BarrelStopSound;
 var() Sound BarrelStartSound;
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bGatlingMode=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "spinup") != -1)
+	{
+		bGatlingMode=true;
+		SKASPrimaryFire(FireMode[0]).bRequireSpool=true;
+	}
+}
 
 function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 {
 	SKASPrimaryFire(FireMode[0]).TurnVelocity.Yaw = NewTVYaw;
 	SKASPrimaryFire(FireMode[0]).TurnVelocity.Pitch = NewTVPitch;
-}
-
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
-	{
-		SKASPrimaryFire(FireMode[0]).bRequireSpool=true;
-	}
 }
 
 simulated event PostBeginPlay()
@@ -53,7 +59,7 @@ simulated function float GetRampUpSpeed()
 	
 	mult = 1 - (BarrelSpeed / MaxRotationSpeed);
 	
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+	if (bGatlingMode)
 		return 0.075f + (3.0 * mult * (1 + 0.25*int(bBerserk)));
 	else
 		return 0.075f + (mult * (1 + 0.25*int(bBerserk)));
@@ -68,7 +74,7 @@ simulated event WeaponTick (float DT)
 
 	super.WeaponTick(DT);
 
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+	if (!bGatlingMode)
 		return;
 	
 	BT.Pitch = BarrelTurn;
@@ -93,7 +99,7 @@ simulated event Tick (float DT)
 
 	super.Tick(DT);
 
-	if (class'BallisticReplicationInfo'.static.IsClassic() || CurrentWeaponMode != 0)
+	if (!bGatlingMode)
 		return;
 
 	if (FireMode[0].IsFiring() && !bServerReloading)
@@ -131,7 +137,7 @@ simulated function float ChargeBar()
 	if (Heat + SKASSecondaryFire(Firemode[1]).RailPower > 0)
 		return FMin((Heat + SKASSecondaryFire(Firemode[1]).RailPower), 1);
 	
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+	if (!bGatlingMode)
 		return 0;
 	
     return BarrelSpeed / DesiredSpeed;

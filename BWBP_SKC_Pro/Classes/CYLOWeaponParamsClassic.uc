@@ -252,8 +252,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
-		LayoutName="UAW"
-		LayoutTags="cheap"
+		LayoutName="UAW IV"
 		Weight=30
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
@@ -276,9 +275,33 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Cheap
+		//Layout core
+		LayoutName="UAW II"
+		LayoutTags="cheap"
+		Weight=30
+		AllowedCamos(0)=13
+		AllowedCamos(1)=14
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOIV'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.CYLOIV_TPm'
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25000
+		//Function
+		InventorySize=6 //Make this 5 later
+		bNeedCock=True
+		MagAmmo=28
+		ViewOffset=(X=9,Y=7.00,Z=-4)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Begin Object Class=WeaponParams Name=ClassicParams_FS
 		//Layout core
-		LayoutName="Firestorm"
+		LayoutName="Firestorm V"
 		LayoutTags="inc,heat,charge"
 		Weight=20
 		AllowedCamos(0)=7
@@ -306,7 +329,8 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_FS'
+	Layouts(1)=WeaponParams'ClassicParams_Cheap'
+	Layouts(2)=WeaponParams'ClassicParams_FS'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=CYLO_Standard
@@ -409,6 +433,22 @@ defaultproperties
 		Weight=1
 	End Object
 	
+	Begin Object Class=WeaponCamo Name=CYLOld_Tan
+		Index=13
+		CamoName="Real Brown"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk1',Index=1,AIndex=0,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOld_Black
+		Index=14
+		CamoName="Black (TM)"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk2',Index=1,AIndex=0,PIndex=-1)
+		Weight=10
+	End Object
+	
 	Camos(0)=WeaponCamo'CYLO_Standard'
 	Camos(1)=WeaponCamo'CYLO_CYLO'
 	Camos(2)=WeaponCamo'CYLO_Ork'
@@ -422,4 +462,6 @@ defaultproperties
 	Camos(10)=WeaponCamo'CYLOFS_Yellow'
 	Camos(11)=WeaponCamo'CYLOFS_OrangeFancy'
 	Camos(12)=WeaponCamo'CYLOFS_Gold'
+	Camos(13)=WeaponCamo'CYLOld_Tan'
+	Camos(14)=WeaponCamo'CYLOld_Black'
 }

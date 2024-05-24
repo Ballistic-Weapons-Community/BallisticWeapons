@@ -54,7 +54,6 @@ replication
 		ClientOverCharge, ClientSetHeat;
 }
 
-
 simulated function OnWeaponParamsChanged()
 {
     super.OnWeaponParamsChanged();
