@@ -50,8 +50,10 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 	    SGShells, FireControl;
+	reliable if (ROLE < ROLE_Authority)
+		ServerSetFireRate;
 	reliable if (ROLE==ROLE_Authority)
-		ClientOverCharge, ClientSetHeat;
+		ClientOverCharge, ClientSetHeat, ClientSetFireRate;
 }
 
 simulated function OnWeaponParamsChanged()
@@ -642,6 +644,38 @@ simulated event Destroyed()
 	if (GlowFX != None)
 		GlowFX.Destroy();
 	super.Destroyed();
+}
+//Net Stuff =========
+
+simulated function SetFireRate(float NewFireRate)
+{
+	ServerSetFireRate(NewFireRate);
+	BallisticInstantFire(FireMode[0]).FireRate = NewFireRate;
+}
+
+// Cycle through the various weapon modes
+function ServerSetFireRate (byte NewFireRate)
+{
+	BallisticInstantFire(FireMode[0]).FireRate = NewFireRate;
+
+	ClientSetFireRate(NewFireRate);
+	NetUpdateTime = Level.TimeSeconds - 1;
+}
+
+simulated function CommonSwitchFireRate(byte NewFireRate)
+{
+	if (Instigator == None)
+		return;
+
+	BallisticInstantFire(FireMode[0]).FireRate = NewFireRate;
+}
+
+simulated function ClientSetFireRate (byte NewFireRate)
+{
+	if (Level.NetMode != NM_Client)
+		return;
+
+	CommonSwitchFireRate(NewFireRate);
 }
 
 // AI Interface =====

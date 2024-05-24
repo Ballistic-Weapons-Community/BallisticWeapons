@@ -9,7 +9,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOFirestormAssaultWeapon extends BallisticWeapon;
+class CYLOFirestormAssaultWeapon extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 //Heating
 var	bool			bVariableHeatProps;				// Heat changes weapon properties, used in Classic

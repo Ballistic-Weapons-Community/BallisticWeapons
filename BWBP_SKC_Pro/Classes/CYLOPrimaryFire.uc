@@ -16,7 +16,6 @@ var	bool		bCanOverheat;
 var bool		bRadiusDamage;
 var bool		bPlayerRadiusDamage;
 
-
 simulated function bool AllowFire()
 {
 	if ((bCanOverheat && CYLOUAW(Weapon).HeatLevel >= 12) || !super.AllowFire())
@@ -88,7 +87,7 @@ simulated event ModeDoFire()
 		}
 		else
 		{
-			FireRate = Params.FireInterval * 2.0;
+			CYLOUAW(BW).SetFireRate(Params.FireInterval + (FRand() * 0.15));
 		}
 	}
 	Super.ModeDoFire();

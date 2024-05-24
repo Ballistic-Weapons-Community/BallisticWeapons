@@ -191,13 +191,33 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-		TargetState="SpinUpFire"
         FireInterval=1.700000
         AmmoPerFire=3
         FireAnim="FireBig"
         FireEndAnim=	
         FireEffectParams(0)=ShotgunEffectParams'ArenaSecondaryEffectParams'
     End Object
+
+    Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Gatling
+		TargetState="SpinUpFire"
+        FireInterval=1.000000
+        AmmoPerFire=3
+        FireAnim="FireBig"
+        FireEndAnim=	
+        FireEffectParams(0)=ShotgunEffectParams'ArenaSecondaryEffectParams'
+    End Object
+
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -288,7 +308,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaAutoFireParams_Gatling'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Gatling'
     End Object 
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Frag
@@ -320,7 +340,7 @@ defaultproperties
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Frag'
         FireParams(1)=FireParams'ArenaPrimaryFireParams_FragManual'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'

@@ -185,7 +185,6 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		TargetState="SpinUpFire"
 		FireInterval=1.700000
 		AmmoPerFire=3
 		BurstFireRateFactor=1.00
@@ -193,6 +192,29 @@ defaultproperties
 		FireAnim="FireBig"
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Gatling
+		TargetState="SpinUpFire"
+		FireInterval=1.000000
+		AmmoPerFire=3
+		BurstFireRateFactor=1.00
+		PreFireAnim="ChargeUp"
+		FireAnim="FireBig"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
+	End Object
+
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
 	End Object
 		
 	//=================================================================
@@ -308,7 +330,7 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
         FireParams(1)=FireParams'RealisticPrimaryManualFireParams'
 		FireParams(2)=FireParams'RealisticPrimaryFireSemiParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Gatling'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Frag
@@ -346,7 +368,7 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams_Frag'
         FireParams(1)=FireParams'RealisticPrimaryFireParams_FragManual'
 		FireParams(2)=FireParams'RealisticPrimaryFireParams_Frag'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'

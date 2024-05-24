@@ -110,41 +110,64 @@ defaultproperties
 		FireEndAnim=	
         FireEffectParams(0)=ShotgunEffectParams'TacticalAutoEffectParams_Gatling'
     End Object
-
-	//10ga FRAG
-    Begin Object Class=ShotgunEffectParams Name=TacticalAutoEffectParams_Frag
-        TraceRange=(Min=2048.000000,Max=4096.000000)
-        DecayRange=(Min=2100,Max=6200)
-        RangeAtten=0.25
-        TraceCount=1
-        TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Bulldog'
-        ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFrag'
-        Damage=200
-        HeadMult=1.75
-        LimbMult=0.85
-        DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
-        DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
-        DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
-        PushbackForce=180.000000
-		PenetrateForce=100
-        bPenetrate=True
-        MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-        FlashScaleFactor=1.5
-        Recoil=256.000000
-        Chaos=0.200000
-        BotRefireRate=0.800000
-        WarnTargetPct=0.400000
-		Inaccuracy=(X=35,Y=35)
+	
+	//FRAG-10 Auto
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_Frag
+		ProjectileClass=Class'BWBP_SKC_Pro.SKASRocket'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=150.000000
+		MaxSpeed=50000.000000
+		AccelSpeed=25000.000000
+		Damage=105
+		DamageRadius=130.000000
+		MomentumTransfer=30000.000000
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.SRAC-Fire2',Volume=1.450000)
-    End Object
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-    Begin Object Class=FireParams Name=TacticalAutoFireParams_Frag
-        FireInterval=0.400000
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Frag
+		TargetState="Projectile"
+		FireInterval=0.400000
+		BurstFireRateFactor=1.00
 		FireAnim="FireRot"
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Frag'
+	End Object
+	
+	//FRAG-10 Manual
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_FragManual
+		ProjectileClass=Class'BWBP_SKC_Pro.SKASRocket'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=200.000000
+		MaxSpeed=100000.000000
+		AccelSpeed=50000.000000
+		Damage=110
+		DamageRadius=180.000000
+		MomentumTransfer=30000.000000
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.SRAC-Fire',Volume=1.450000)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_FragManual
+		TargetState="Projectile"
+        FireInterval=1.750000
+        FireAnim="SemiFire"
         FireEndAnim=
-        FireAnimRate=1.500000	
-        FireEffectParams(0)=ShotgunEffectParams'TacticalAutoEffectParams_Frag'
-    End Object
+        FireAnimRate=1.000000	
+        FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_FragManual'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -176,13 +199,33 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		TargetState="SpinUpFire"
         FireInterval=1.700000
         AmmoPerFire=3
         FireAnim="FireBig"
         FireEndAnim=	
         FireEffectParams(0)=ShotgunEffectParams'TacticalSecondaryEffectParams'
     End Object
+
+    Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Gatling
+		TargetState="SpinUpFire"
+        FireInterval=1.000000
+        AmmoPerFire=3
+        FireAnim="FireBig"
+        FireEndAnim=	
+        FireEffectParams(0)=ShotgunEffectParams'TacticalSecondaryEffectParams'
+    End Object
+
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -274,7 +317,7 @@ defaultproperties
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalAutoFireParams_Gatling'
         FireParams(1)=FireParams'TacticalManualFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Gatling'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Frag
@@ -302,8 +345,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Manual",bUnavailable=true,ModeID="WM_SemiAuto",Value=1.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalAutoFireParams_Frag'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Frag'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'
