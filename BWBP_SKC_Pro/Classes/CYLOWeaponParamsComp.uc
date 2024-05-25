@@ -262,9 +262,35 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_FS'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Slug'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Cheap
+		//Layout core
+		LayoutName="Budget"
+		LayoutTags="cheap"
+		Weight=5
+		AllowedCamos(0)=13
+		AllowedCamos(1)=14
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOIV'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.CYLOIV_TPm'
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.35
+		//Function
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		InventorySize=5
+		DisplaceDurationMult=1
+		MagAmmo=22
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'
     Layouts(1)=WeaponParams'ArenaParams_FS'
+    Layouts(2)=WeaponParams'ArenaParams_Cheap'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=CYLO_Standard
@@ -367,6 +393,22 @@ defaultproperties
 		Weight=1
 	End Object
 	
+	Begin Object Class=WeaponCamo Name=CYLOld_Tan
+		Index=13
+		CamoName="Real Brown"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk1',Index=1,AIndex=0,PIndex=-1)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=CYLOld_Black
+		Index=14
+		CamoName="Black (TM)"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk2',Index=1,AIndex=0,PIndex=-1)
+		Weight=10
+	End Object
+	
 	Camos(0)=WeaponCamo'CYLO_Standard'
 	Camos(1)=WeaponCamo'CYLO_CYLO'
 	Camos(2)=WeaponCamo'CYLO_Ork'
@@ -380,4 +422,6 @@ defaultproperties
 	Camos(10)=WeaponCamo'CYLOFS_Yellow'
 	Camos(11)=WeaponCamo'CYLOFS_OrangeFancy'
 	Camos(12)=WeaponCamo'CYLOFS_Gold'
+	Camos(13)=WeaponCamo'CYLOld_Tan'
+	Camos(14)=WeaponCamo'CYLOld_Black'
 }

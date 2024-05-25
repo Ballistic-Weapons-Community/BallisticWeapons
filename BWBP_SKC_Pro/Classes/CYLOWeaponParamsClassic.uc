@@ -279,7 +279,7 @@ defaultproperties
 		//Layout core
 		LayoutName="UAW II"
 		LayoutTags="cheap"
-		Weight=30
+		Weight=5
 		AllowedCamos(0)=13
 		AllowedCamos(1)=14
 		//Attachments
