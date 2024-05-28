@@ -26,6 +26,11 @@ defaultproperties
 		FireInterval=0.15
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Proto
+		FireInterval=0.13
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
 	
 	//=================================================================
     // SECONDARY FIRE - QUICK CHARGE
@@ -44,11 +49,26 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		TargetState="Laser"
 		FireInterval=0.070000
 		PreFireAnim="LoopStart"
 		FireLoopAnim="LoopFire"
 		FireEndAnim="LoopEnd"	
 	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	End Object
+	
+	//Shield
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Shield
+
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Shield
+		TargetState="Shield"
+		FireInterval=1.000000
+		AmmoPerFire=0
+		FireAnim="Cock"
+		FireAnimRate=1.00
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Shield'
 	End Object
 
 	//=================================================================
@@ -68,6 +88,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParamsOvercharge
+		TargetState="Laser"
 		FireInterval=0.07000
 		PreFireAnim="LoopOpenStart"
 		FireLoopAnim="LoopOpenFire"
@@ -100,7 +121,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		Weight=30
-		LayoutName="Production"
+		LayoutName="Quick Charge"
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
@@ -126,6 +147,38 @@ defaultproperties
 		AltFireParams(2)=FireParams'ArenaSecondaryFireParamsOvercharge'
     End Object 
 	
+	Begin Object Class=WeaponParams Name=ArenaParams_Shield
+		//Layout core
+		Weight=30
+		LayoutName="Shield System"
+		LayoutTags="shield"
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		//Attachments
+		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
+		//SightPivot=(Pitch=600,Roll=-1024)
+		ZoomType=ZT_Fixed
+		MaxZoom=4
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.40000
+		//Function
+		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
+		WeaponModes(1)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		PlayerJumpFactor=1
+		InventorySize=6
+		DisplaceDurationMult=1         
+		MagAmmo=34
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Shield'
+    End Object 
+	
 	Begin Object Class=WeaponParams Name=ArenaParams_Proto
 		//Layout core
 		Weight=10
@@ -142,28 +195,36 @@ defaultproperties
 		WeaponMaterialSwaps(5)=(Material=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-WiresProto',Index=5,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(6)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader',Index=6,AIndex=-1,PIndex=-1)
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
-		ReloadAnimRate=1.25
-		CockAnimRate=1.25
-		ScopeScale=0.6
+		//ADS
 		SightOffset=(X=8.00,Y=0.00,Z=3.30)
 		ZoomType=ZT_Fixed
 		MaxZoom=4
-		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.35000
+		ScopeScale=0.6
+		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
 		//Function
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
 		PlayerJumpFactor=1
 		InventorySize=6
 		DisplaceDurationMult=1
-		MagAmmo=34
+		MagAmmo=40
+		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
+		WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Proto'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 		AltFireParams(1)=FireParams'ArenaSecondaryFireParams'
 		AltFireParams(2)=FireParams'ArenaSecondaryFireParamsOvercharge'
     End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
-    Layouts(1)=WeaponParams'ArenaParams_Proto'
+    Layouts(1)=WeaponParams'ArenaParams_Shield'
+    Layouts(2)=WeaponParams'ArenaParams_Proto'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XM20_Black

@@ -12,6 +12,9 @@ var()	float			HeatPerShot;
 
 simulated function bool AllowFire()
 {
+	if (XM20Carbine(BW).bShieldUp)
+		return false;
+	
     if (super.AllowFire())
 	{ 
 		if (XM20Carbine(BW).bIsCharging)

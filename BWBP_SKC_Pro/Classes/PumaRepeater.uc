@@ -703,10 +703,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     local vector HitNormal;
     local float DamageMax;
 
-
-
 	DamageMax = 50.0;
-	//if (CamoIndex == 3)
+	
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
 	else if (class<DT_PumaSelf>(DamageType) != none && bShieldUp &&  ShieldPower > 0) //Shield Jump
@@ -718,42 +716,42 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
         		Momentum *= -2.00;
 		}
 		ShieldPower -= 80;
-    		ClientTakeHit(80);
+    	ClientTakeHit(80);
 		return;
 	}
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
 	{
 //		ShieldPower = -200;
-    		ClientTakeHit(200, 200);
+    	ClientTakeHit(200, 200);
 		return;
 	}
-    	else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
-        	return;
+    else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
+        return;
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
     {
-        Drain = Min( ShieldPower*2, Damage );
-	Drain = Min(Drain,DamageMax);
-	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
-	if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
-	{
-		bPierce=true;
-		Drain+=10;
-	}
-        Damage -= Drain;
-        Momentum *= 1.25;
-        if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
-        {
+		Drain = Min( ShieldPower*2, Damage );
+		Drain = Min(Drain,DamageMax);
+		Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
+		if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
+		{
+			bPierce=true;
+			Drain+=10;
+		}
+		Damage -= Drain;
+		Momentum *= 1.25;
+		if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
+		{
 			Drain = Min(ShieldPower, Drain);
 			ShieldPower -= Drain;
 			DoReflectEffectA(Drain, bPierce);
-	}
-        else
-        {
+		}
+		else
+		{
 			ShieldPower -= Drain/2;
 			DoReflectEffectA(Drain/2, bPierce);
-	}
-	bPierce=false;
+		}
+		bPierce=false;
     }
 }
 

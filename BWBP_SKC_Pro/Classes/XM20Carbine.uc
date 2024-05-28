@@ -5,9 +5,11 @@
 // Secondary fire is a chargeable laser. Can be charged at low or high power
 // Has a good mid-range scope
 //
+// Has a shield layout. Shield will block 200 damage
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
-// Modified by Marc 'Sergeant Kelly' Moylan
+// Modified by Marc 'Sergeant Kelly'
 // Scope code by Kaboodles
 //=============================================================================
 class XM20Carbine extends BallisticWeapon;
@@ -39,31 +41,63 @@ var() Material	Numbers;
 var protected const color MyFontColor; //If you forget to set this you get a black screen! RIP a couple hours of my life
 
 //Effects
-var actor HeatSteam;
-var actor VentCore;
-var actor VentBarrel;
-var actor CoverGlow;
-var Actor	Glow1;				// Laser charge effect
+var() actor HeatSteam;
+var() actor VentCore;
+var() actor VentBarrel;
+var() actor CoverGlow;
+var() Actor	Glow1;				// Laser charge effect
 
 //Laser junk
-var   bool			bLaserOn;
-var   LaserActor	Laser;
-var   Emitter		LaserBlast;
-var   Emitter		LaserDot;
-var   bool			bBigLaser;
-var   bool			bIsCharging;
-var   bool 			bOvercharged;
+var()   bool		bLaserOn;
+var()   LaserActor	Laser;
+var()   Emitter		LaserBlast;
+var()   Emitter		LaserDot;
+var()   bool		bBigLaser;
+var()   bool		bIsCharging;
+var()   bool 		bOvercharged;
 
-var   float ChargeRate, ChargeRateOvercharge;
-var	  float LaserCharge, MaxCharge;
-var()     float Heat, CoolRate;
+//Shield
+var() bool			bShieldEquipped;
+var() bool			bShieldUp; 			//Shield is online
+var() bool			bOldShieldUp;
+
+var() bool			bBroken; 			//Ooops, your broke the shield emitter.
+var() name			ShieldBone;			// Bone to attach SightFX to
+var() 	int			ShieldPower, ShieldPowerMax;
+var()	float		ShieldGainPerSecond;
+var()   float		ShieldPowerFraction; // recharge
+
+var() Sound       	ShieldHitSound;
+var() Sound       	ShieldOnSound;
+var() Sound       	ShieldOffSound;
+var() Sound       	ShieldPierceSound;
+var() String		ShieldHitForce;
+var() byte			ShieldSoundVolume;
+
+var() int 			PierceThreshold;
+
+var() Sound 		ChargingSound;      // charging sound
+var() Sound			DamageSound;		// Sound to play when it first breaks
+var() Sound			BrokenSound;		// Sound to play when its very damaged
+var() Actor			ShieldTipFX;				// The top ShieldTipFXs
+var() Actor 		GlowFX;
+var() XM20ShieldEffect XM20ShieldEffect;
+
+var()   float ChargeRate, ChargeRateOvercharge;
+var()	float LaserCharge, MaxCharge;
+var()   float Heat, CoolRate;
 
 var float X1, X2, X3, X4, Y1, Y2, Y3, Y4;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		ClientScreenStart, bLaserOn, bOvercharged, ChargeRate, ChargeRateOvercharge;
+		ClientScreenStart, bLaserOn, bOvercharged, ChargeRate, ChargeRateOvercharge, ClientTakeHit, bShieldUp;
+	// Things the server should send to the client.
+	reliable if( bNetOwner && bNetDirty && (Role==ROLE_Authority) )
+		ShieldPower, bBroken;
+	reliable if (Role < ROLE_Authority)
+		ServerSwitchShield;
 }
 
 simulated function OnWeaponParamsChanged()
@@ -73,13 +107,28 @@ simulated function OnWeaponParamsChanged()
 	assert(WeaponParams != None);
 	
 	bIsPrototype=false;
-
+	bShieldEquipped=false;
 	if (InStr(WeaponParams.LayoutTags, "prototype") != -1)
 	{
 		bIsPrototype=true;
 		if ( ThirdPersonActor != None )
 			XM20Attachment(ThirdPersonActor).bIsPrototype=true;
 	}
+
+	if (InStr(WeaponParams.LayoutTags, "shield") != -1)
+	{
+		bShieldEquipped=true;
+	}
+}
+
+simulated event PostNetReceive()
+{
+	if (bShieldUp != bOldShieldUp)
+	{
+		bOldShieldUp = bShieldUp;
+		AdjustShieldProperties();
+	}
+	Super.PostNetReceive();
 }
 
 //========================== AMMO COUNTER NON-STATIC TEXTURE ============
@@ -101,18 +150,26 @@ simulated function ScreenStart()
 
 simulated event RenderTexture( ScriptedTexture Tex )
 {
+	local float ShieldCharge;
+	
+	ShieldCharge = ShieldPower / float(ShieldPowerMax);
+	
 	//Quick Note: X1,Y1 are start pos, X2,Y2 are size, X3,Y4 are subtexture start, X4,Y4 are subtexture size
 	Tex.DrawTile(0,0,512,512,0,0,512,512,ScreenTex, MyFontColor); //Basic Screen
 
 //	Tex.DrawTile(X1,Y1,X2,Y2,X3,Y3,X4,Y4,ScreenRedBar, MyFontColor);
-	Tex.DrawTile(0,512-512*LaserCharge,512,512*LaserCharge,0,512-512*LaserCharge,512,512*LaserCharge,ScreenRedBar, MyFontColor); //Charge Bar
+	if (!bShieldEquipped)
+		Tex.DrawTile(0,512-512*LaserCharge,512,512*LaserCharge,0,512-512*LaserCharge,512,512*LaserCharge,ScreenRedBar, MyFontColor); //Charge Bar
+	else if (bShieldUp)
+		Tex.DrawTile(0,512-512*ShieldCharge,512,512*ShieldCharge,0,512-512*ShieldCharge,512,512*ShieldCharge,ScreenRedBar, MyFontColor);
+		
 
 	if (!bNoMag)
 	{
 		Tex.DrawTile(80,65,250,250,45,NumpadYOffset1,50,50,Numbers, MyFontColor); //Ammo
 		Tex.DrawTile(220,65,250,250,45,NumpadYOffset2,50,50,Numbers, MyFontColor);
 	}
-	Tex.DrawTile(140,300,NumpadXScaleHunreds,120,45,NumpadYOffset3,50,50,Numbers, MyFontColor); //Reserve Ammo
+	Tex.DrawTile(140,300,NumpadXScaleHunreds,120,45,NumpadYOffset3,50,50,Numbers, MyFontColor); //Reserve Ammo or Shield Power
 	Tex.DrawTile(NumpadXPosTens,300,120,120,45,NumpadYOffset4,50,50,Numbers, MyFontColor);
 	Tex.DrawTile(NumpadXPosOnes,300,120,120,45,NumpadYOffset5,50,50,Numbers, MyFontColor);
 	
@@ -120,7 +177,6 @@ simulated event RenderTexture( ScriptedTexture Tex )
 	
 simulated function UpdateScreen()
 {
-
 	if (bIsPrototype || (Instigator != None && AIController(Instigator.Controller) != None)) //Bots cannot update your screen
 		return;
 
@@ -189,12 +245,51 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (!Instigator.IsLocallyControlled())
 			ClientScreenStart();
 	}
-	
+	if (bShieldEquipped && XM20ShieldEffect == None)
+	{
+		XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
+		if (Level.Game.bTeamGame && Instigator.GetTeamNum() == 0)
+		    XM20ShieldEffect.SetRedSkin();
+	}
+
 	if (Instigator != None && Laser == None && AIController(Instigator.Controller) == None)
 	{
 		Laser = Spawn(class'BWBP_SKC_Pro.LaserActor_XM20Red');
 	}
 		
+}
+
+simulated function bool PutDown()
+{
+	if (super.PutDown())
+	{
+		KillLaserDot();
+		if (ThirdPersonActor != None)
+			XM20Attachment(ThirdPersonActor).bLaserOn = false;
+		if (Glow1 != None)	Glow1.Destroy();
+		if (CoverGlow != None)	CoverGlow.Destroy();
+		if (Role == ROLE_Authority && bShieldUp)
+		{
+			bShieldUp = false;
+			AdjustShieldProperties();
+		}
+		if (ShieldTipFX != None)	
+			ShieldTipFX.Destroy();
+	}
+	return false;
+}
+
+simulated function Destroyed()
+{
+	if (Instigator != None && AIController(Instigator.Controller) == None)
+		WeaponScreen.client=None;
+	if (Glow1 != None)	Glow1.Destroy();
+	if (CoverGlow != None)	CoverGlow.Destroy();
+	if (Laser != None)	Laser.Destroy();
+	if (LaserDot != None)	LaserDot.Destroy();
+	if (ShieldTipFX != None)	
+		ShieldTipFX.Destroy();
+	super.Destroyed();
 }
 
 simulated event WeaponTick(float DT)
@@ -251,8 +346,219 @@ simulated function ClientSwitchLaserMode (byte newMode)
 	UpdateScreen();
 }
 
+//=====================================================
+//			SHIELD CODE
+//=====================================================
 
-// End Heat Junk
+exec simulated function ShieldDeploy(optional byte i) //Was previously weapon special
+{
+	if (ClientState != WS_ReadyToFire || bBroken)
+		return;
+		
+	if (bShieldUp)
+    	PlaySound(ShieldOffSound, SLOT_None);
+	else
+    	PlaySound(ShieldOnSound, SLOT_None);
+		
+	ServerSwitchShield(!bShieldUp);
+}
+
+function ServerSwitchShield(bool bNewValue)
+{
+    local XM20Attachment Attachment;
+
+	DebugMessage("ServerSwitchShield:"@bNewValue);
+	
+	bShieldUp = bNewValue;
+	
+    Attachment = XM20Attachment(ThirdPersonActor);
+   
+    if (Attachment != None && Attachment.XM20ShieldEffect3rd != None)
+	{
+		if (bShieldUp)
+        	Attachment.XM20ShieldEffect3rd.bHidden = false;
+		else
+        	Attachment.XM20ShieldEffect3rd.bHidden = true;
+	}
+
+	AdjustShieldProperties();
+}
+
+simulated function AdjustShieldProperties()
+{
+    local ShieldAttachment Attachment;
+
+	if (bShieldUp)
+	{
+		Instigator.AmbientSound = ChargingSound;
+		Instigator.SoundVolume = ShieldSoundVolume;
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+			Attachment.ShieldEffect3rd.bHidden = false;
+
+		if (ShieldTipFX == None)
+			class'bUtil'.static.InitMuzzleFlash(ShieldTipFX, class'M2020ShieldEffect', DrawScale, self, 'tip');
+        XM20ShieldEffect.Flash(0, ShieldPower);
+	}
+	else
+	{
+    	Attachment = ShieldAttachment(ThirdPersonActor);
+		Instigator.AmbientSound = None;
+    	Instigator.SoundVolume = Instigator.Default.SoundVolume;
+    
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+		{
+			Attachment.ShieldEffect3rd.bHidden = true;
+			StopForceFeedback( "ShieldNoise" );  // jdf
+		}
+
+		if (ShieldTipFX != None)
+			Emitter(ShieldTipFX).Kill();
+	}
+}
+
+simulated event Tick (float DT)
+{
+	if (ShieldPower < ShieldPowerMax)
+	{
+		if (!bShieldUp)
+		{
+			ShieldPowerFraction += ShieldGainPerSecond * DT;
+			
+			while (ShieldPowerFraction > 1.0f)
+			{
+				++ShieldPower;
+				ShieldPowerFraction -= 1.0f;
+			}
+		}
+	}
+	
+	if (Role == ROLE_Authority && bBroken && ShieldPower > 25)
+		bBroken = False;
+
+	super.Tick(DT);
+}
+
+function SetBrightness(bool bHit)
+{
+    local XM20Attachment Attachment;
+ 	local float Brightness;
+
+	Brightness = ShieldPower;
+		
+    if (XM20ShieldEffect != None)
+        XM20ShieldEffect.SetBrightness(Brightness);
+
+    Attachment = XM20Attachment(ThirdPersonActor);
+    if( Attachment != None )
+        Attachment.SetBrightness(Brightness, bHit);
+}
+
+simulated function TakeHit(int Drain)
+{
+	DebugMessage("TakeHit: Shield power:"@ShieldPower);
+	
+    if (XM20ShieldEffect != None)
+    {
+        XM20ShieldEffect.Flash(Drain, ShieldPower);
+    }
+	
+	if (ShieldPower <= 0)
+	{
+		DebugMessage("TakeHit: Shield cancel");
+		
+		bShieldUp=false;
+		ServerSwitchShield(false);
+		AdjustShieldProperties();
+		
+		bBroken=true;
+		AmbientSound = None;
+		Instigator.AmbientSound = BrokenSound;
+		Instigator.SoundVolume = default.SoundVolume;
+		Instigator.SoundPitch = default.SoundPitch;
+		Instigator.SoundRadius = default.SoundRadius;
+		Instigator.bFullVolume = true;
+	}
+	
+    SetBrightness(true);
+}
+
+//=====================================================
+//			SHIELD DAMAGE
+//=====================================================
+
+function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation,
+						         out Vector Momentum, class<DamageType> DamageType)
+{
+    local float Drain;
+	local vector Reflect;
+    local vector HitNormal;
+	
+	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
+		return;
+	
+	if (bBerserk)
+		Damage *= 0.75;
+
+	if(!DamageType.default.bArmorStops)
+        return;
+	
+    if (!CheckReflect(HitLocation, HitNormal, 0))
+		return;
+
+	Drain = Min(ShieldPower, Damage);
+	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
+	Damage -= Drain;
+	Momentum *= 2;
+	ShieldPower -= Drain;
+
+	DoReflectEffectA(Drain, Damage > PierceThreshold);
+}
+
+function DoReflectEffectA(int Drain, bool Pierce)
+{
+	DebugMessage("DoReflectEffectA");
+	
+	if (Pierce)
+		PlaySound(ShieldPierceSound, SLOT_None);
+	else
+		PlaySound(ShieldHitSound, SLOT_None);
+		
+	ClientTakeHit(Drain);
+}
+
+simulated function ClientTakeHit(int Drain)
+{
+	DebugMessage("ClientTakeHit: Drain:"@Drain);
+	ClientPlayForceFeedback(ShieldHitForce);
+	TakeHit(Drain);
+}
+
+function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )
+{
+    local Vector HitDir;
+    local Vector FaceDir;
+
+    if (!bShieldUp || ShieldPower <= 0) return false;
+
+    FaceDir = Vector(Instigator.Controller.Rotation);
+    HitDir = Normal(Instigator.Location - HitLocation + Vect(0,0,8));
+    //Log(self@"HitDir"@(FaceDir dot HitDir));
+
+    RefNormal = FaceDir;
+
+    if ( FaceDir dot HitDir < -0.37 ) // 68 degree protection arc
+    {
+        if (AmmoDrain > 0)
+            ShieldPower -= AmmoDrain;
+        return true;
+    }
+    return false;
+}
+
+//=====================================================
+//			LASER CODE + OVERLAYS
+//=====================================================
+
 simulated function PlayIdle()
 {
 	super.PlayIdle();
@@ -261,8 +567,6 @@ simulated function PlayIdle()
 		return;
 	FreezeAnimAt(0.0);
 }
-
-
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
@@ -296,35 +600,6 @@ simulated function SpawnLaserDot(vector Loc)
 {
 	if (LaserDot == None)
 		LaserDot = Spawn(class'BWBP_SKC_Pro.IE_XM20Impact',,,Loc);
-}
-
-
-
-
-
-simulated function bool PutDown()
-{
-	if (super.PutDown())
-	{
-		KillLaserDot();
-		if (ThirdPersonActor != None)
-			XM20Attachment(ThirdPersonActor).bLaserOn = false;
-		if (Glow1 != None)	Glow1.Destroy();
-		if (CoverGlow != None)	CoverGlow.Destroy();
-	}
-	return false;
-}
-
-
-simulated function Destroyed()
-{
-	if (Instigator != None && AIController(Instigator.Controller) == None)
-		WeaponScreen.client=None;
-	if (Glow1 != None)	Glow1.Destroy();
-	if (CoverGlow != None)	CoverGlow.Destroy();
-	if (Laser != None)	Laser.Destroy();
-	if (LaserDot != None)	LaserDot.Destroy();
-	super.Destroyed();
 }
 
 // Draw a laser beam and dot to show exact path of bullets before they're fired
@@ -394,9 +669,18 @@ simulated function DrawLaserSight ( Canvas Canvas )
 
 simulated event RenderOverlays( Canvas C )
 {
+	local coords Z;
 	local float	ScaleFactor;//, XL, XY;
 
-	if (CurrentWeaponMode == 1)
+	if (bShieldUp && XM20ShieldEffect != None)
+	{
+		Z = GetBoneCoords(ShieldBone);
+        XM20ShieldEffect.SetLocation(Z.Origin);
+		XM20ShieldEffect.SetRotation( Instigator.GetViewRotation() );
+        C.DrawActor( XM20ShieldEffect, false, false, DisplayFOV );
+    }
+
+	if (CurrentWeaponMode == 1) //overcharge background
 	{
 		ScreenTex=ScreenTexBase1;
 	}
@@ -408,10 +692,20 @@ simulated event RenderOverlays( Canvas C )
 	NumpadYOffset1=(5+(MagAmmo/10)*49);
 	NumpadYOffset2=(5+(MagAmmo%10)*49);
 	
-	NumpadYOffset3=(5+(Ammo[0].AmmoAmount/100)*49); //Hundreds place
-	NumpadYOffset4=(5+(Ammo[0].AmmoAmount/10 % 10)*49);  //Tens place
-	NumpadYOffset5=(5+((Ammo[0].AmmoAmount%100)%10)*49);  //Ones place
-	if (Ammo[0].AmmoAmount >= 100 )
+	if (!bShieldEquipped)
+	{
+		NumpadYOffset3=(5+(Ammo[0].AmmoAmount/100)*49); //Hundreds place
+		NumpadYOffset4=(5+(Ammo[0].AmmoAmount/10 % 10)*49);  //Tens place
+		NumpadYOffset5=(5+((Ammo[0].AmmoAmount%100)%10)*49);  //Ones place
+	}
+	else
+	{
+		NumpadYOffset3=(5+(ShieldPower/100)*49); //Hundreds place
+		NumpadYOffset4=(5+(ShieldPower/10 % 10)*49);  //Tens place
+		NumpadYOffset5=(5+((ShieldPower%100)%10)*49);  //Ones place
+	}
+	
+	if (Ammo[0].AmmoAmount >= 100 || (bShieldEquipped && ShieldPower >= 100))
 	{
 		NumpadXScaleHunreds=120; //Show hundreds
 		NumpadXPosTens=200; //Tens X coord
@@ -549,14 +843,33 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 simulated function float ChargeBar()
 {
-    return FMin(LaserCharge, MaxCharge);
+	if (bShieldEquipped)
+		return ShieldPower / float(ShieldPowerMax);
+	else
+		return FMin(LaserCharge, MaxCharge);
 }
 
 defaultproperties
 {
+	PierceThreshold=50
+	ShieldBone="tip"
+	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
+	ShieldOnSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldOn'
+	ShieldOffSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldOff'
+	ShieldPierceSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldPierce'
+	ShieldHitForce="ShieldReflection"
+	DamageSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Overload'
+	BrokenSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
+	ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
+	ShieldSoundVolume=220	 
+	ShieldPower=100
+	ShieldPowerMax=200
+	ShieldGainPerSecond=5.0f
+	
  	 MaxCharge=1.000000
 	 ChargeRate=2.400000
 	 ChargeRateOvercharge=0.600000
+	 
 	 MyFontColor=(R=255,G=255,B=255,A=255)
      WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.XM20.XM20-ScriptLCD'
      WeaponScreenShader=Shader'BWBP_SKC_Tex.XM20.XM20-ScriptLCD-SD'

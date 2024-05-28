@@ -4,6 +4,8 @@
 // Burning laser fire that fires while altfire is held after a delay
 // Can fire in high power or low power, and will update the gun screen.
 //
+// Layout 1: Toggles shield
+//
 // by DC, SK, Jiffy
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
@@ -48,131 +50,251 @@ function StartSuperBerserk()
 		FireRate = default.OverChargedFireRate/Level.GRI.WeaponBerserk;
 }
 
-simulated function ModeTick(float DT)
-{	
-	if (bIsFiring && !bPreventFire && BW.MagAmmo > 0)
-		XM20Carbine(BW).SetLaserCharge(FMin(XM20Carbine(BW).LaserCharge + XM20Carbine(BW).ChargeRate * DT * (1 + 2*int(BW.bBerserk)), XM20Carbine(BW).MaxCharge));
-	else if (XM20Carbine(BW).LaserCharge > 0)
-	{
-		if (level.TimeSeconds > StopFireTime)
-			StopFiring();
-			
-		bPreventFire=true;
-		XM20Carbine(BW).SetLaserCharge(FMax(0.0, XM20Carbine(BW).LaserCharge - XM20Carbine(BW).CoolRate * DT * (1 + 2*int(BW.bBerserk))));
-		
-		if (XM20Carbine(BW).LaserCharge <= 0)
-			bPreventFire=false;
-	}
-		
-	Super.ModeTick(DT);
-}
-
-// ModeDoFire from WeaponFire.uc, but with a few changes
-simulated event ModeDoFire()
+simulated state Shield
 {
-    if (!AllowFire() || XM20Carbine(BW).LaserCharge < XM20Carbine(BW).MaxCharge || bPreventFire)
-        return;
-
-	if (BW != None)
+	simulated function bool AllowFire()
 	{
-		BW.bPreventReload=true;
-		BW.FireCount++;
+		return (!XM20Carbine(BW).bBroken && Weapon.AmmoAmount(ThisModeNum) >= AmmoPerFire && !BW.bServerReloading && BW.MeleeState == MS_None);
+	}
 
-		if (BW.FireCount == 1)
-			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
+	// ModeDoFire from WeaponFire.uc, but with a few changes
+	simulated event ModeDoFire()
+	{
+		if (!AllowFire())
+			return;
 
-		if (BW.ReloadState != RS_None)
+		if (BW != None)
 		{
-			if (weapon.Role == ROLE_Authority)
-				BW.bServerReloading=false;
-			BW.ReloadState = RS_None;
+			BW.bPreventReload=true;
+			BW.FireCount++;
+
+			if (BW.ReloadState != RS_None)
+			{
+				if (weapon.Role == ROLE_Authority)
+					BW.bServerReloading=false;
+				BW.ReloadState = RS_None;
+			}
+		}
+		
+		XM20Carbine(Weapon).ShieldDeploy();
+		
+		ConsumedLoad += Load;
+		// server
+		if (Weapon.Role == ROLE_Authority)
+		{
+			if ( (Instigator == None) || (Instigator.Controller == None) )
+				return;
+			if ( AIController(Instigator.Controller) != None )
+				AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
+			Instigator.DeactivateSpawnProtection();
+		}
+		
+		BW.LastFireTime = Level.TimeSeconds;
+
+		// client
+		if (Instigator.IsLocallyControlled())
+			PlayFiring();
+		else // server
+			ServerPlayFiring();
+
+
+		NextFireTime += FireRate;
+		NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
+
+		
+		Load = AmmoPerFire;
+
+		if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
+		{
+			bIsFiring = false;
+			Weapon.PutDown();
 		}
 	}
-
-    Load = AmmoPerFire;
-    HoldTime = 0;
-
-    // server
-    if (Weapon.Role == ROLE_Authority)
-    {
-        DoFireEffect();
-        if ( (Instigator == None) || (Instigator.Controller == None) )
-			return;
-        if ( AIController(Instigator.Controller) != None )
-            AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
-        Instigator.DeactivateSpawnProtection();
-        if(BallisticTurret(Weapon.Owner) == None  && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
-			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
-    }
-	if (!BW.bScopeView)
-		BW.AddFireChaos(FireChaos);
-	
-	BW.LastFireTime = Level.TimeSeconds;
-
-    // client
-    if (Instigator.IsLocallyControlled())
-    {
-        ShakeView();
-        PlayFiring();
-        FlashMuzzleFlash();
-        StartMuzzleSmoke();
-		XM20Carbine(BW).UpdateScreen();
-    }
-    else // server
-        ServerPlayFiring();
-
-	NextFireTime += FireRate;
-	NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
-
-    if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
-    {
-        bIsFiring = false;
-        Weapon.PutDown();
-    }
-
-	BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
 }
-
-// Get aim then run several individual traces using different spread for each one
-function DoFireEffect()
+simulated state Laser
 {
-    local Vector StartTrace;
-    local Rotator Aim;
-	local int i;
-
-	XM20Carbine(Weapon).ServerSwitchLaser(true);
-	if (!bLaserFiring)
-	{
-		if (XM20Carbine(BW).bOvercharged)
-			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-		else
-			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-	}
-	bLaserFiring=true;
-
-	if (!bAISilent)
-		Instigator.MakeNoise(1.0);
-
-    if (Level.NetMode == NM_DedicatedServer)
-        BW.RewindCollisions();
-
-	for (i=0;i<TraceCount && ConsumedLoad < BW.MagAmmo ;i++)
-	{
-		ConsumedLoad += Load;
-		Aim = GetFireAim(StartTrace);
-		Aim = Rotator(GetFireSpread() >> Aim);
-		DoTrace(StartTrace, Aim);
-		ApplyRecoil();
+	simulated function ModeTick(float DT)
+	{	
+		if (bIsFiring && !bPreventFire && BW.MagAmmo > 0)
+			XM20Carbine(BW).SetLaserCharge(FMin(XM20Carbine(BW).LaserCharge + XM20Carbine(BW).ChargeRate * DT * (1 + 2*int(BW.bBerserk)), XM20Carbine(BW).MaxCharge));
+		else if (XM20Carbine(BW).LaserCharge > 0)
+		{
+			if (level.TimeSeconds > StopFireTime)
+				StopFiring();
+				
+			bPreventFire=true;
+			XM20Carbine(BW).SetLaserCharge(FMax(0.0, XM20Carbine(BW).LaserCharge - XM20Carbine(BW).CoolRate * DT * (1 + 2*int(BW.bBerserk))));
+			
+			if (XM20Carbine(BW).LaserCharge <= 0)
+				bPreventFire=false;
+		}
+			
+		Super.ModeTick(DT);
 	}
 
-    if (Level.NetMode == NM_DedicatedServer)
-        BW.RestoreCollisions();
+	// ModeDoFire from WeaponFire.uc, but with a few changes
+	simulated event ModeDoFire()
+	{
+		if (!AllowFire() || XM20Carbine(BW).LaserCharge < XM20Carbine(BW).MaxCharge || bPreventFire)
+			return;
 
-	SetTimer(FMin(0.1, FireRate/2), false);
+		if (BW != None)
+		{
+			BW.bPreventReload=true;
+			BW.FireCount++;
 
-	Super(WeaponFire).DoFireEffect();
+			if (BW.FireCount == 1)
+				NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
+
+			if (BW.ReloadState != RS_None)
+			{
+				if (weapon.Role == ROLE_Authority)
+					BW.bServerReloading=false;
+				BW.ReloadState = RS_None;
+			}
+		}
+
+		Load = AmmoPerFire;
+		HoldTime = 0;
+
+		// server
+		if (Weapon.Role == ROLE_Authority)
+		{
+			DoFireEffect();
+			if ( (Instigator == None) || (Instigator.Controller == None) )
+				return;
+			if ( AIController(Instigator.Controller) != None )
+				AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
+			Instigator.DeactivateSpawnProtection();
+			if(BallisticTurret(Weapon.Owner) == None  && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
+				class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
+		}
+		if (!BW.bScopeView)
+			BW.AddFireChaos(FireChaos);
+		
+		BW.LastFireTime = Level.TimeSeconds;
+
+		// client
+		if (Instigator.IsLocallyControlled())
+		{
+			ShakeView();
+			PlayFiring();
+			FlashMuzzleFlash();
+			StartMuzzleSmoke();
+			XM20Carbine(BW).UpdateScreen();
+		}
+		else // server
+			ServerPlayFiring();
+
+		NextFireTime += FireRate;
+		NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
+
+		if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
+		{
+			bIsFiring = false;
+			Weapon.PutDown();
+		}
+
+		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
+	}
+
+	// Get aim then run several individual traces using different spread for each one
+	function DoFireEffect()
+	{
+		local Vector StartTrace;
+		local Rotator Aim;
+		local int i;
+
+		XM20Carbine(Weapon).ServerSwitchLaser(true);
+		if (!bLaserFiring)
+		{
+			if (XM20Carbine(BW).bOvercharged)
+				Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+			else
+				Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		}
+		bLaserFiring=true;
+
+		if (!bAISilent)
+			Instigator.MakeNoise(1.0);
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+
+		for (i=0;i<TraceCount && ConsumedLoad < BW.MagAmmo ;i++)
+		{
+			ConsumedLoad += Load;
+			Aim = GetFireAim(StartTrace);
+			Aim = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, Aim);
+			ApplyRecoil();
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+		SetTimer(FMin(0.1, FireRate/2), false);
+
+		Super(WeaponFire).DoFireEffect();
+	}
+	
+	simulated function PlayPreFire()
+	{    
+		Instigator.AmbientSound = ChargeSound;
+		//Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
+		Instigator.SoundVolume = 255;
+		super.PlayPreFire();
+	}
+
+	//Client fire
+	function PlayFiring()
+	{
+		super.PlayFiring();
+		if (FireSoundLoop != None)
+		{
+			Instigator.AmbientSound = FireSoundLoop;
+			Instigator.SoundVolume = 255;
+		}
+		if (!bLaserFiring)
+		{
+			if (XM20Carbine(BW).bOvercharged)
+				Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+			else
+				Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		}
+		bLaserFiring=true;
+	}
+
+	//Server fire
+	function ServerPlayFiring()
+	{
+		super.ServerPlayFiring();
+
+		if (FireSoundLoop != None)
+		{
+			Instigator.AmbientSound = FireSoundLoop;
+			Instigator.SoundVolume = 255;
+		}
+		if (!bLaserFiring)
+		{
+			if (XM20Carbine(BW).bOvercharged)
+				Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+			else
+				Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		}
+		bLaserFiring=true;
+	}
+
+	function StopFiring()
+	{
+		Instigator.AmbientSound = XM20Carbine(BW).UsedAmbientSound;
+		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+		bLaserFiring=false;
+		XM20Carbine(Weapon).ServerSwitchLaser(false);
+		StopFireTime = level.TimeSeconds;
+	}	
+	
 }
-
 simulated function SwitchLaserMode (byte NewMode)
 {
 	if (NewMode == 2) //overcharged
@@ -193,13 +315,6 @@ simulated function SwitchLaserMode (byte NewMode)
 
 //effects code
 
-simulated function PlayPreFire()
-{    
-    Instigator.AmbientSound = ChargeSound;
-    //Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
-    Instigator.SoundVolume = 255;
-	super.PlayPreFire();
-}
 
 function InitEffects()
 {
@@ -215,58 +330,9 @@ simulated function DestroyEffects()
 {
 	Super(WeaponFire).DestroyEffects();
 
-//	class'BUtil'.static.KillEmitterEffect (MuzzleFlashRed);
-//	class'BUtil'.static.KillEmitterEffect (MuzzleFlashBlue);
 }
 
-//Client fire
-function PlayFiring()
-{
-	super.PlayFiring();
-	if (FireSoundLoop != None)
-	{
-		Instigator.AmbientSound = FireSoundLoop;
-        Instigator.SoundVolume = 255;
-	}
-	if (!bLaserFiring)
-	{
-		if (XM20Carbine(BW).bOvercharged)
-			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-		else
-			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-	}
-	bLaserFiring=true;
-}
-
-//Server fire
-function ServerPlayFiring()
-{
-	super.ServerPlayFiring();
-
-	if (FireSoundLoop != None)
-	{
-		Instigator.AmbientSound = FireSoundLoop;
-        Instigator.SoundVolume = 255;
-	}
-	if (!bLaserFiring)
-	{
-		if (XM20Carbine(BW).bOvercharged)
-			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-		else
-			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-	}
-	bLaserFiring=true;
-}
-
-function StopFiring()
-{
-    Instigator.AmbientSound = XM20Carbine(BW).UsedAmbientSound;
-    Instigator.SoundVolume = Instigator.Default.SoundVolume;
-	bLaserFiring=false;
-	XM20Carbine(Weapon).ServerSwitchLaser(false);
-	StopFireTime = level.TimeSeconds;
-}	
-
+//Impact effects + radius dmg
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
 {
 	TargetedHurtRadius(7, 20, class'DT_XM20_Body', 0, HitLocation, Other);

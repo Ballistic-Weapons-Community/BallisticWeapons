@@ -19,10 +19,15 @@ var   Emitter				LaserDot;
 var   Vector				SpawnOffset;
 var   bool					bBigLaser;
 
+var ForceRing ForceRing3rd;
+var XM20ShieldEffect3rd XM20ShieldEffect3rd;
+
 var   BallisticWeapon 		myWeap;
 
 replication
 {
+	reliable if (bNetInitial && Role == ROLE_Authority)
+		XM20ShieldEffect3rd;
 	reliable if ( Role==ROLE_Authority )
 		bLaserOn;
 	unreliable if ( Role==ROLE_Authority )
@@ -56,13 +61,6 @@ simulated function SpawnLaserDot(vector Loc)
 		LaserDot = Spawn(class'BWBP_SKC_Pro.IE_XM20Impact',,,Loc);
 		laserDot.bHidden=false;
 	}
-}
-function InitFor(Inventory I)
-{
-	Super.InitFor(I);
-
-	if (BallisticWeapon(I) != None)
-		myWeap = BallisticWeapon(I);
 }
 
 simulated function Tick(float DT)
@@ -158,6 +156,20 @@ simulated function Vector GetTipLocation()
 
 simulated function Destroyed()
 {
+	local int i;
+    if (XM20ShieldEffect3rd != None)
+        XM20ShieldEffect3rd.Destroy();
+
+    if (ForceRing3rd != None)
+        ForceRing3rd.Destroy();
+
+
+	if (Instigator != None && level.TimeSeconds <= TrackEndTime)
+	{
+		for(i=0;i<GetTrackCount(ActiveTrack);i++)
+			Instigator.SetBoneRotation(GetTrack(ActiveTrack,i).Bone, rot(0,0,0), 0, 1.0);
+	}
+	
 	if (Laser != None)
 		Laser.Destroy();
 	KillLaserDot();
@@ -176,7 +188,48 @@ simulated function InstantFireEffects(byte Mode)
 	super.InstantFireEffects(Mode);
 }
 
+//shield
+function InitFor(Inventory I)
+{
+    Super.InitFor(I);
 
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+
+	if ( (Instigator.PlayerReplicationInfo == None) || (Instigator.PlayerReplicationInfo.Team == None)
+		|| (Instigator.PlayerReplicationInfo.Team.TeamIndex > 1) )
+		XM20ShieldEffect3rd = Spawn(class'XM20ShieldEffect3rd', I.Instigator);
+	else if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
+		XM20ShieldEffect3rd = Spawn(class'XM20ShieldEffect3rdRED', I.Instigator);
+	else if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 1 )
+		XM20ShieldEffect3rd = Spawn(class'XM20ShieldEffect3rd', I.Instigator);
+    XM20ShieldEffect3rd.SetBase(I.Instigator);
+}
+
+simulated event ThirdPersonEffects()
+{
+    	if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
+	{
+		//Spawn impacts, streaks, etc
+		InstantFireEffects(FiringMode);
+		//Flash muzzle flash
+		FlashMuzzleFlash (FiringMode);
+		//Weapon light
+		FlashWeaponLight(FiringMode);
+		//Play pawn anims
+		PlayPawnFiring(FiringMode);
+		//Eject Brass
+		EjectBrass(FiringMode);
+    	}
+
+    	Super.ThirdPersonEffects();
+}
+
+function SetBrightness(int b, bool hit)
+{
+    if (XM20ShieldEffect3rd != None)
+        XM20ShieldEffect3rd.SetBrightness(b, hit);
+}
 
 simulated function EjectBrass(byte Mode);
 

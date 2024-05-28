@@ -607,25 +607,24 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	DamageMax = 50.0;
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
-
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
 	{
     	ClientTakeHit(200, 200);
 		return;
 	}
-    	else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
-        	return;
+    else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
+        return;
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
     {
         Drain = Min( ShieldPower*2, Damage );
-	Drain = Min(Drain,DamageMax);
-	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
-	if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
-	{
-		bPierce=true;
-		Drain+=10;
-	}
+		Drain = Min(Drain,DamageMax);
+		Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
+		if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
+		{
+			bPierce=true;
+			Drain+=10;
+		}
         Damage -= Drain;
         Momentum *= 1.25;
         if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
@@ -633,12 +632,12 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 			Drain = Min(ShieldPower, Drain);
 			ShieldPower -= Drain;
 			DoReflectEffectA(Drain, bPierce);
-	}
+		}
         else
         {
 			ShieldPower -= Drain/2;
 			DoReflectEffectA(Drain/2, bPierce);
-	}
+		}
 	bPierce=false;
     }
 }
