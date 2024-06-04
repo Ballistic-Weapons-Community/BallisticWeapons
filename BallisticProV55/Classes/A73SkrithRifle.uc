@@ -13,11 +13,23 @@ var float			HeatLevel;					// Current Heat level, duh...
 var float 			HeatDeclineTime;			// Time until heat can decline
 var() Sound			OverheatSound;				// Sound to play when it overheats
 var Actor 			GlowFX, HeatFX;
+var(A73) 	bool				bDecorativeHeat;	//Heat is harmless, used for C and R
 
 replication
 {
 	reliable if (ROLE==ROLE_Authority)
 		ClientSetHeat;
+}
+
+simulated function PostNetBeginPlay()
+{
+	local Actor A;
+	
+	Super.PostNetBeginPlay();
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
+	{
+		bDecorativeHeat=true;
+	}
 }
 
 simulated event WeaponTick(float DT)
@@ -47,7 +59,7 @@ simulated function AddHeat(float Amount, float DeclineTime)
 	SoundPitch = 56 + HeatLevel * 11;
 	HeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, HeatDeclineTime);
 	
-	if (HeatLevel >= 9.75)
+	if (HeatLevel >= 9.75 && !bDecorativeHeat)
 	{
 		HeatLevel = 10;
 		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, vect(0,0,0), class'DTA73Overheat');
@@ -95,15 +107,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		if (LayoutIndex == 1)
 		{
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXBal', DrawScale, self, 'tip');
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXBal', DrawScale, self, 'tip');
 		}
 		else if (LayoutIndex == 2)
 		{
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
 		}
 		else
 		{
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFX', DrawScale, self, 'tip');
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFX', DrawScale, self, 'tip');
 		}
 	}
 }

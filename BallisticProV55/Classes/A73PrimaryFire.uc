@@ -13,7 +13,7 @@ var float HeatDeclineDelay;
 
 simulated function bool AllowFire()
 {
-	if ((A73SkrithRifle(Weapon).HeatLevel >= 10) || !super.AllowFire())
+	if ((A73SkrithRifle(Weapon).HeatLevel >= 10 && !A73SkrithRifle(Weapon).bDecorativeHeat) || !super.AllowFire())
 		return false;
 	return true;
 }

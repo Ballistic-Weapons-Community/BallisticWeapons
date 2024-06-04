@@ -37,6 +37,7 @@ defaultproperties
         FireEffectParams(0)=ProjectileEffectParams'TacticalProjEffectParams'
     End Object
 
+	//Triple Shot
     Begin Object Class=ProjectileEffectParams Name=TacticalProjEffectParams_Tri
     	ProjectileClass=Class'BallisticProV55.A42ProjectileBal'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)

@@ -165,7 +165,7 @@ defaultproperties
         MaxDamageGainFactor=1.00
         DamageGainStartTime=0.05
         DamageGainEndTime=0.7
-        Recoil=960.000000
+        Recoil=1536.000000
         Chaos=0.020000
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		ProjectileClass=Class'BallisticProV55.A73PowerProjectileB'
@@ -173,7 +173,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ArenaPowerFireParams_Elite
-        AmmoPerFire=8
+        AmmoPerFire=10
 	    FireEndAnim=
         AimedFireAnim="Fire"
 	    FireInterval=0.850000

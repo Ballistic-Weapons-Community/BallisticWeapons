@@ -1389,6 +1389,7 @@ defaultproperties
      l_WeapTitle=GUILabel'BallisticProV55.MidGameTab_Conflict.l_WeapTitlelabel'
 
      Begin Object Class=GUIScrollTextBox Name=WeaponDescription
+		bNoTeletype=true
          CharDelay=0.001500
          EOLDelay=0.250000
          bVisibleWhenEmpty=True

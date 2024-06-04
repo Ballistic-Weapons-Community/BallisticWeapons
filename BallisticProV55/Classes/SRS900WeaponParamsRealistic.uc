@@ -8,11 +8,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1800.000000,Max=9000.000000)
+		TraceRange=(Min=10000.000000,Max=10000.000000)
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		DecayRange=(Min=1800.0,Max=9000.0)
 		RangeAtten=0.1
-		Damage=55.0
+		Damage=60.0
 		HeadMult=2.2
 		LimbMult=0.66
 		DamageType=Class'BallisticProV55.DTSRS900Rifle'
@@ -43,9 +43,9 @@ defaultproperties
 	
 	//Relic
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Relic
-		TraceRange=(Min=1800.000000,Max=9000.000000)
+		TraceRange=(Min=10000.000000,Max=10000.000000)
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		DecayRange=(Min=1800.0,Max=9000.0)
 		RangeAtten=0.1
 		Damage=55.0
 		HeadMult=2.2

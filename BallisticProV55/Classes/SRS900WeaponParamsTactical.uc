@@ -176,17 +176,18 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=1f)
-		//Function
+		//ADS
 		SightOffset=(X=9.000000,Z=3.150000)
-		MagAmmo=20
 		SightingTime=0.50
 		SightMoveSpeedFactor=0.35
-        InventorySize=6
-		// sniper 4-8x
-        ZoomType=ZT_Logarithmic
 		MinZoom=4
 		MaxZoom=8
 		ZoomStages=1
+		// sniper 4-8x
+        ZoomType=ZT_Logarithmic
+		//Function
+		MagAmmo=20
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -208,10 +209,11 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		//Function
+		//ADS
 		SightOffset=(X=2.000000,Z=2.03)
         SightingTime=0.40
 		SightMoveSpeedFactor=0.45
+		//Function
 		MagAmmo=20
         InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
@@ -235,12 +237,13 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		//Function
+		//ADS
+		SightingTime=0.35 //faster in irons
+		SightMoveSpeedFactor=0.45
 		SightOffset=(X=3.000000,Z=1.30000)
+		//Function
 		MagAmmo=20
         InventorySize=6
-		SightingTime=0.40
-		SightMoveSpeedFactor=0.45
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
 		AimParams(0)=AimParams'TacticalAimParams_600'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_600'
@@ -256,11 +259,12 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SR18'
 		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_SR18'
 		SightOffset=(X=1.000000,Z=0.85000)
+		//ADS
+		SightingTime=0.3
+		SightMoveSpeedFactor=0.45
 		//Function
 		MagAmmo=20
         InventorySize=6
-		SightingTime=0.40
-		SightMoveSpeedFactor=0.45
 		WeaponName="SR18 Battle Rifle"
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
 		AimParams(0)=AimParams'TacticalAimParams_600'

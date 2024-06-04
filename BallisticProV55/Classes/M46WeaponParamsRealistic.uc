@@ -8,12 +8,12 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1800.000000,Max=9000.000000) //.310 (7.87mm)
+		TraceRange=(Min=9000.000000,Max=9000.000000) //.310 (7.87mm)
 		WaterTraceRange=7200.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=55.0
-		HeadMult=2.127272
-		LimbMult=0.654545
+		DecayRange=(Min=1800.0,Max=9000.0)
+		Damage=60.0
+		HeadMult=2.2
+		LimbMult=0.65
         DamageType=Class'BallisticProV55.DTM46Assault'
         DamageTypeHead=Class'BallisticProV55.DTM46AssaultHead'
         DamageTypeArm=Class'BallisticProV55.DTM46Assault'

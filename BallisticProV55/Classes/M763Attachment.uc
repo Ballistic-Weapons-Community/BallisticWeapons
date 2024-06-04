@@ -130,7 +130,6 @@ simulated function GasShotFX()
 }
 
 // Spawn a tracer and water tracer
-
 simulated function SpawnTracer(byte Mode, Vector V)
 {
 	local BCTraceEmitter Tracer;
@@ -140,7 +139,6 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 
 	if (class'BallisticMod'.default.EffectsDetailMode == 0 && Mode == 0)
-
 		return;
 
 	TipLoc = GetModeTipLocation();

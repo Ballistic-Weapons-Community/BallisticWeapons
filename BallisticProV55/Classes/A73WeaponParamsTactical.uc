@@ -144,7 +144,7 @@ defaultproperties
         DamageGainEndTime=0.7
         Recoil=1536.000000
         Chaos=0.5
-		Heat=3.0
+		Heat=3.0 //
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         ProjectileClass=Class'BallisticProV55.A73PowerProjectileBal'
         WarnTargetPct=0.5
@@ -166,17 +166,17 @@ defaultproperties
         Speed=1500.000000
         AccelSpeed=0.000000
         MaxSpeed=2000.000000
-        Damage=105.000000
-        DamageRadius=200.000000
+        Damage=110.000000
+        DamageRadius=220.000000
         MomentumTransfer=2000.000000
 		SplashDamage=True
 		RecommendSplashDamage=True
         MaxDamageGainFactor=1.00
         DamageGainStartTime=0.05
         DamageGainEndTime=0.7
-        Recoil=1460.000000
-        Chaos=0.020000
-		Heat=3.4
+        Recoil=1536.000000
+        Chaos=0.5
+		Heat=8.0
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		ProjectileClass=Class'BallisticProV55.A73PowerProjectileB'
         WarnTargetPct=0.500000
