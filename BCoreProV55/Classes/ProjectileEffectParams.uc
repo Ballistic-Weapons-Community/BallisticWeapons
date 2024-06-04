@@ -27,6 +27,7 @@ var()   float                       AccelSpeed;
 
 var()   float                       Damage;
 var()   float	                    DamageRadius;
+var()   float                 		DamageSpecial;          // Damage dealt for unique effects like AoEs and DoTs
 var()   float	                    MomentumTransfer;       // Momentum magnitude imparted by impacting projectile.
 var()   bool                      	bLimitMomentumZ;        // Prevents Z momentum exceeding certain value
 var()   float					    HeadMult;		        // Multiplier for effect against head

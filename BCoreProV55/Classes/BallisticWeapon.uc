@@ -5636,14 +5636,16 @@ static function String GetManual()
 	return S;
 }
 
-static function String GetShortManual()
+static function String GetShortManual(optional int layoutIndex)
 {
 	local String S;
 
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Basic Stats"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
 
 	// iterate and calculate damage and basic fire rate
-	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].BuildShortManualString();
+	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].FireParams[0].BuildShortManualString();
+	// iterate and get basic gun stats
+	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].BuildShortManualString();
 
 	S $= "||";
 

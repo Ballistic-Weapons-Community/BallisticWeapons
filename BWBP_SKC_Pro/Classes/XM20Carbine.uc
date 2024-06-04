@@ -111,8 +111,14 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "prototype") != -1)
 	{
 		bIsPrototype=true;
+		bOvercharged=true;
+		ChargeRate=ChargeRateOvercharge;
+		bBigLaser=True;
 		if ( ThirdPersonActor != None )
+		{
 			XM20Attachment(ThirdPersonActor).bIsPrototype=true;
+			XM20Attachment(ThirdPersonActor).bBigLaser=true;
+		}
 	}
 
 	if (InStr(WeaponParams.LayoutTags, "shield") != -1)
@@ -367,7 +373,7 @@ function ServerSwitchShield(bool bNewValue)
 {
     local XM20Attachment Attachment;
 
-	DebugMessage("ServerSwitchShield:"@bNewValue);
+	//DebugMessage("ServerSwitchShield:"@bNewValue);
 	
 	bShieldUp = bNewValue;
 	
@@ -455,7 +461,7 @@ function SetBrightness(bool bHit)
 
 simulated function TakeHit(int Drain)
 {
-	DebugMessage("TakeHit: Shield power:"@ShieldPower);
+	//DebugMessage("TakeHit: Shield power:"@ShieldPower);
 	
     if (XM20ShieldEffect != None)
     {
@@ -464,7 +470,7 @@ simulated function TakeHit(int Drain)
 	
 	if (ShieldPower <= 0)
 	{
-		DebugMessage("TakeHit: Shield cancel");
+		//DebugMessage("TakeHit: Shield cancel");
 		
 		bShieldUp=false;
 		ServerSwitchShield(false);
@@ -516,7 +522,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
 function DoReflectEffectA(int Drain, bool Pierce)
 {
-	DebugMessage("DoReflectEffectA");
+	//DebugMessage("DoReflectEffectA");
 	
 	if (Pierce)
 		PlaySound(ShieldPierceSound, SLOT_None);
@@ -528,7 +534,7 @@ function DoReflectEffectA(int Drain, bool Pierce)
 
 simulated function ClientTakeHit(int Drain)
 {
-	DebugMessage("ClientTakeHit: Drain:"@Drain);
+	//DebugMessage("ClientTakeHit: Drain:"@Drain);
 	ClientPlayForceFeedback(ShieldHitForce);
 	TakeHit(Drain);
 }

@@ -85,6 +85,7 @@ var() float					    NetTrappedDelay;		// How long to remain in nettrapped state 
 //-----------------------------------------------------------------------------
 // Damage
 //-----------------------------------------------------------------------------
+var() float    					DamageSpecial;			// Special damage used for unique effects (DoT, charge modifiers, etc)
 var() class<DamageType>		    DamageTypeHead;			// Damagetype for headshots
 var() class<DamageType>		    DamageTypeLimb;			// Damagetype for limbshots
 var() class<DamageType>		    MyRadiusDamageType;		// DamageType to use for splash damage
@@ -308,6 +309,9 @@ simulated function ApplyParams(ProjectileEffectParams params)
 
     Damage = params.Damage;
 	default.Damage = params.Damage;
+	
+    DamageSpecial = params.DamageSpecial;
+    default.DamageSpecial = params.DamageSpecial;
 	
     DamageRadius = params.DamageRadius;
 	default.DamageRadius = params.DamageRadius;

@@ -779,7 +779,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.750000
 	CurrentRating=0.750000
-	Description="BR1-NK Combat Assault Rifle||Manufacturer: Black & Wood|Primary: Variable bullets (fully automatic)|Secondary: Launch Grenade|Special: Motion Tracker||The UTC space station 'Argent' was responsible for reverse engineering Skrith technology for use in the war. When Argent was taken by a regiment of Krao, the UTC commissioned Black & Wood to create a new weapon that would allow a small strike team to reclaim the outpost. The BR1-NK was given smaller rounds and a high rate of fire in order to quickly dispatch Krao swarms, as well as piercing rounds that could be shot through the Kraos' newly erected barriers. The high-velocity grenades were intentionally made less potent so as not to damage the facility. The one thing that made the weapon invaluable against the Krao, however, was the advanced motion tracker that the UTC soldiers used to avoid ambushes and any roaming Krao that hid in vents. Thanks to the BR1-NK, the UTC reclaimed the station with minimal damage and zero loss of life."
+	Description="BR1-NK Light Support Weapon||Manufacturer: Black & Wood|Primary: Variable bullets (fully automatic)|Secondary: Launch Grenade|Special: Motion Tracker||The UTC space station 'Argent' was responsible for reverse engineering Skrith technology for use in the war. When Argent was taken by a regiment of Krao, the UTC commissioned Black & Wood to create a new weapon that would allow a small strike team to reclaim the outpost. The BR1-NK was given smaller rounds and a high rate of fire in order to quickly dispatch Krao swarms, as well as piercing rounds that could be shot through the Kraos' newly erected barriers. The high-velocity grenades were intentionally made less potent so as not to damage the facility. The one thing that made the weapon invaluable against the Krao, however, was the advanced motion tracker that the UTC soldiers used to avoid ambushes and any roaming Krao that hid in vents. Thanks to the BR1-NK, the UTC reclaimed the station with minimal damage and zero loss of life."
 	Priority=65
 	HudColor=(B=255,G=175,R=125)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -790,7 +790,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_SWC_Pro.BRINKAttachment'
 	IconMaterial=Texture'BWBP_SWC_Tex.BR1NK.SmallIcon_BR1NK'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="BR1-NK Mod-2 LMR"
+	ItemName="BR1-NK Mod-2 LSW"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30

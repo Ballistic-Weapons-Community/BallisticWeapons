@@ -10,6 +10,7 @@
 class A49SkrithBlaster extends BallisticWeapon;
 
 var	bool		bVariableHeatProps; //Gun heat changes accuracy and RoF
+var bool		bCharging; 			//lets draw some cool charging effects
 
 var float		HeatLevel;
 var float 		HeatDeclineDelay;		
@@ -22,6 +23,7 @@ var() class<DamageType>	BlastDamageType;
 var actor VentSteam;
 var actor VentSteam2;
 var actor GlowFX;
+var actor Glow1;
 var actor GlowFXDamaged;
 
 replication
@@ -30,13 +32,21 @@ replication
 		ClientSetHeat;
 }
 
-simulated event PostNetBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bVariableHeatProps=false;
+	bCharging=false;
+	if (InStr(WeaponParams.LayoutTags, "mod_rof") != -1)
 	{
-		bVariableHeatProps=True;
-		A49PrimaryFire(FireMode[0]).bVariableHeatProps = True;
+		bVariableHeatProps=true;
+		A49PrimaryFire(FireMode[0]).bVariableHeatProps = true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "charge") != -1)
+	{
+		bCharging=true;
 	}
 }
 
@@ -96,9 +106,40 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	GunLength = default.GunLength;
 	
 	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A49GlowFX', DrawScale, self, 'tip');
+	{
+		if (LayoutIndex == 1)
+		{
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A49GlowFXRed', DrawScale, self, 'tip');
+		}
+		else if (LayoutIndex == 2)
+		{
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
+		}
+		else
+		{
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A49GlowFX', DrawScale, self, 'tip');
+		}
+	}
+}
 
-	
+simulated function SetGlowSize(float newSize)
+{
+	if (GlowFX != None && A49GlowFXRed(GlowFX) != None)
+		A49GlowFXRed(GlowFX).SetSize(newSize);
+}
+
+simulated event WeaponTick(float DT)
+{
+	super.WeaponTick(DT);
+
+	if (bCharging && Firemode[0].bIsFiring )
+	{
+		class'bUtil'.static.InitMuzzleFlash(Glow1, class'HMCBarrelGlowRed', DrawScale*4, self, 'tip');
+	}
+	else
+	{
+		if (Glow1 != None)	Glow1.Destroy();
+	}
 }
 
 simulated event Timer()
@@ -117,7 +158,8 @@ simulated event Destroyed()
 {
 	if (GlowFX != None)
 		GlowFX.Destroy();
-
+	if (Glow1 != None)	Glow1.Destroy();
+	
 	super.Destroyed();
 }
 

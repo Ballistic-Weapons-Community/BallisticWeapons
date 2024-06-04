@@ -5,9 +5,16 @@
 //=============================================================================
 class A49PrimaryFire extends BallisticProProjectileFire;
 
-var	bool  bVariableHeatProps; //Gun heat changes accuracy and RoF
-var float StopFireTime;
-var float HeatPerShot;
+var() bool 	bChargable;
+var() float ChargeRate;
+var() int 	MaxChargeLevel;
+var() int 	ChargeLevel;
+var() int 	ChargeIncrement;
+var()   sound	ChargeSound;
+var()   sound	ChargeLoopSound;
+
+var	bool  	bVariableHeatProps; //Gun heat changes accuracy and RoF
+var float 	StopFireTime;
 
 simulated function bool AllowFire()
 {
@@ -16,6 +23,74 @@ simulated function bool AllowFire()
 	return true;
 }
 
+simulated state ChargeFire
+{
+	simulated function ApplyFireEffectParams(FireEffectParams effect_params)
+	{
+		super(BallisticProProjectileFire).ApplyFireEffectParams(effect_params);
+		bFireOnRelease=true;
+		bModeExclusive=true;
+		bChargable=true;
+		ChargeIncrement = AmmoPerFire;
+		
+		if (bFireOnRelease)
+			bWaitForRelease = true;
+
+		if (bWaitForRelease)
+			bNowWaiting = true;
+	}
+
+	function ModeHoldFire()
+	{
+		if ( BW.MagAmmo > ChargeIncrement )
+		{
+			Super.ModeHoldFire();
+			GotoState('Hold');
+		}
+	}
+	
+}
+
+state Hold
+{
+    simulated function BeginState()
+    {
+        ChargeLevel = 0;
+        SetTimer(ChargeRate, true);
+		Instigator.AmbientSound = ChargeSound;
+        //Weapon.PlayOwnedSound(ChargeSound,SLOT_Interact,TransientSoundVolume,false);
+        //Timer();
+    }
+
+    simulated function Timer()
+    {
+		if ( BW.MagAmmo > ChargeIncrement )
+		{
+			ChargeLevel++;
+			BW.ConsumeMagAmmo(ThisModeNum, ChargeIncrement);
+		}
+		A49SkrithBlaster(BW).SetGlowSize(ChargeLevel/float(MaxChargeLevel));
+        if (ChargeLevel == MaxChargeLevel || BW.AmmoAmount(ThisModeNum) < ChargeIncrement)
+        {
+            SetTimer(0.0, false);
+			Instigator.AmbientSound = ChargeLoopSound;
+			Instigator.SoundPitch = 150;
+			Instigator.SoundRadius = 50;
+			Instigator.SoundVolume = 250;
+        }
+    }
+
+    simulated function EndState()
+    {
+		if ( (Instigator != None) && ((Instigator.AmbientSound == ChargeLoopSound) || (Instigator.AmbientSound == ChargeSound)) )
+			Instigator.AmbientSound = None;
+		A49SkrithBlaster(BW).SetGlowSize(0);
+		Instigator.SoundPitch = Instigator.Default.SoundPitch;
+		Instigator.SoundRadius = Instigator.Default.SoundRadius;
+		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+
+    }
+}
 
 simulated event ModeDoFire()
 {
@@ -53,9 +128,9 @@ function PlayFiring()
 	Super.PlayFiring();
 	if (bVariableHeatProps && A49SkrithBlaster(BW).HeatLevel < 5)
 	{
-		A49SkrithBlaster(BW).AddHeat(HeatPerShot*1.6);
+		A49SkrithBlaster(BW).AddHeat((HeatPerShot+ChargeLevel)*1.6);
 	}
-	A49SkrithBlaster(BW).AddHeat(HeatPerShot);
+	A49SkrithBlaster(BW).AddHeat(HeatPerShot+ChargeLevel);
 }
 
 // Get aim then run trace...
@@ -66,14 +141,36 @@ function DoFireEffect()
 	{
 		if (bVariableHeatProps && A49SkrithBlaster(BW).HeatLevel < 5)
 		{
-			A49SkrithBlaster(BW).AddHeat(HeatPerShot*1.6);
+			A49SkrithBlaster(BW).AddHeat((HeatPerShot+ChargeLevel)*1.6);
 		}
-		A49SkrithBlaster(BW).AddHeat(HeatPerShot);
+		A49SkrithBlaster(BW).AddHeat(HeatPerShot+ChargeLevel);
 	}
+}
+
+function SpawnProjectile (Vector Start, Rotator Dir)
+{
+	if (bChargable)
+		GotoState('ChargeFire');
+	else
+		GotoState('');
+	
+	Proj = Spawn (ProjectileClass,,, Start, Dir);
+	if (Proj != None && BallisticProjectile(Proj) != None && bChargable)
+	{
+		Proj.Damage += (BallisticProjectile(Proj).DamageSpecial * ChargeLevel/float(MaxChargeLevel));
+		Proj.Instigator = Instigator;
+		Proj.SetDrawScale((ChargeLevel+1)*Proj.default.DrawScale);
+	}
+	ChargeLevel=0;
 }
 
 defaultproperties
 {
+    ChargeRate=0.650000
+    MaxChargeLevel=3
+	ChargeIncrement=10
+    ChargeSound=Sound'BWBP_SKC_Sounds.EP90.EP90-Overcharge'
+	ChargeLoopSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
     FlashBone="MuzzleTip"
     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
     bPawnRapidFireAnim=True

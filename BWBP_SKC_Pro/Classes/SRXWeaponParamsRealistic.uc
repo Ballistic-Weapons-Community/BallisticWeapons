@@ -12,7 +12,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.1
-		Damage=55.0
+		Damage=60.0
 		HeadMult=2.2
 		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'

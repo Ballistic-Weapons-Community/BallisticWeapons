@@ -7,58 +7,60 @@ static simulated function SetAttachmentParams(BallisticAttachment BWA)
 
 defaultproperties
 {
-   //=================================================================
-    // PRIMARY FIRE
-    //=================================================================	
-		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
-			DecayRange=(Min=1050,Max=3150) // 20-60m
-			Inaccuracy=(X=128,Y=128)
-			PenetrationEnergy=96
-			Damage=80.000000 //.600 HEAT
-            HeadMult=2.5
-            LimbMult=0.75
-			RangeAtten=0.5
-			DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_AH104Pistol'
-			PenetrateForce=200
-			bPenetrate=True
-			MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-			FlashScaleFactor=0.900000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
-			Recoil=1536.000000
-			Chaos=0.2
-			WarnTargetPct=0.400000
-			BotRefireRate=0.7
-		End Object
+	//=================================================================
+	// PRIMARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
+		DecayRange=(Min=1050,Max=3150) // 20-60m
+		Inaccuracy=(X=128,Y=128)
+		PenetrationEnergy=96
+		Damage=80.000000 //.600 HEAT
+		HeadMult=2.5
+		LimbMult=0.75
+		RangeAtten=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AH104Pistol'
+		PenetrateForce=200
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AH104.AH104-HFire',Volume=7.100000)
+		Recoil=1536.000000
+		Chaos=0.2
+		WarnTargetPct=0.400000
+		BotRefireRate=0.7
+	End Object
 
-		Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-			AimedFireAnim="SightFire"
-			FireEndAnim=
-			FireInterval=0.85
-		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+		AimedFireAnim="SightFire"
+		FireEndAnim=
+		FireAnimRate=0.7
+		FireInterval=1.00
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-		Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.01
-			Chaos=0.05
-			Damage=20.000000
-			DamageRadius=192
-			Inaccuracy=(X=0,Y=0)
-			BotRefireRate=0.300000
-		End Object
-		
-		Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-			FireInterval=0.090000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.01
+		Chaos=0.05
+		Damage=20.000000
+		DamageRadius=192
+		Inaccuracy=(X=0,Y=0)
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		FireInterval=0.090000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

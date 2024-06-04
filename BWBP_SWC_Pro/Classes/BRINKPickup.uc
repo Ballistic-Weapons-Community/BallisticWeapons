@@ -6,7 +6,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BWBP_SWC_Static.BRINK.BRINK_Weapon'
      InventoryType=Class'BWBP_SWC_Pro.BRINKAssaultRifle'
      RespawnTime=20.000000
-     PickupMessage="You picked up the BR1-NK Mod-2 LMR."
+     PickupMessage="You picked up the BR1-NK Mod-2 LSW."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SWC_Static.BRINK.BRINK_Weapon'
      Physics=PHYS_None

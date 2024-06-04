@@ -58,6 +58,7 @@ enum EZoomType
 //-----------------------------------------------------------------------------
 var() int					Weight;					// How likely it is for this layout to be chosen, higher is more likely
 var() String				LayoutName;				// The layout name in menus
+var() String				LayoutDescription;		// Short description to show in UI.
 var() String				LayoutTags;				// Internal tag used to change gun functionality eg gauss, explosive, suppressed
 //-----------------------------------------------------------------------------
 // Movement speed
@@ -164,6 +165,20 @@ final function FireEffectParams.FireModeStats GetAltFireStats()
 	    return AltFireParams[0].GetStats();
 
     return FS;
+}
+
+// for short manual displayed on conflict
+final function string BuildShortManualString()
+{
+	local FireEffectParams.FireModeStats FS;
+	local string S;
+
+	S = "Mag Ammo: "$ MagAmmo $ "|";
+	S $= "ADS Speed: "$ SightingTime $ " seconds|";
+	//if (WeaponPrice != 0)
+	//	S $= "Price: "$ WeaponPrice $ " credits|";
+
+	return S;
 }
 
 defaultproperties
