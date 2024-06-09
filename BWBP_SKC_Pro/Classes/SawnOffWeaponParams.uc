@@ -14,9 +14,9 @@ defaultproperties
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		MaxHits=14
 		Damage=6
-		DamageType=Class'BWBP_SKC_Pro.DTSawnOff'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTSawnOff'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTSawnOff'
+		DamageType=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
 		Recoil=1152.000000
@@ -43,9 +43,9 @@ defaultproperties
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
 		MaxHits=14 
 		Damage=80
-		DamageType=Class'BWBP_SKC_Pro.DTSawnOff'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTSawnOff'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTSawnOff'
+		DamageType=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
         HeadMult=1.5f
         LimbMult=0.8f
         PenetrateForce=500

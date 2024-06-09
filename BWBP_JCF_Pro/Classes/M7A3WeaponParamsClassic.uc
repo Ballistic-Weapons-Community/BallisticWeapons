@@ -237,7 +237,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_57mm
 		//Layout Core
-		LayoutName="5.7mm Holosight"
+		LayoutName="5.7mm M7B2"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=14,Scale=1f)
@@ -260,7 +260,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_57mmSupp
 		//Layout Core
-		LayoutName="5.7mm Suppressor"
+		LayoutName="5.7mm M7B2 Supp"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=14,Scale=1f)

@@ -18,9 +18,9 @@ defaultproperties
 	SwipePoints(5)=(Weight=1,offset=(Pitch=-1500,Yaw=-1500))
 	SwipePoints(6)=(offset=(Pitch=-3000))
 	WallHitPoint=4    
-	DamageType=Class'BWBP_SKC_Pro.DTCoachMelee'
-	DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachMeleeHead'
-	DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachMelee'
+	DamageType=Class'BWBP_SKC_Pro.DT_CoachMelee'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_CoachMeleeHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DT_CoachMelee'
 	KickForce=2000
 	bUseWeaponMag=False
 	bReleaseFireOnDie=False

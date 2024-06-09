@@ -85,7 +85,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 	bHurtEntry = true;
 	
-
+	//Radiation wave, procs in CQC, prevents uneven terrain and bits of meshes from blocking nade
 	foreach RadiusActors( class 'Pawn', Victims, CloseRadius, Location )
 	{
 		if (Victims != Victim && Victims.bCanBeDamaged)

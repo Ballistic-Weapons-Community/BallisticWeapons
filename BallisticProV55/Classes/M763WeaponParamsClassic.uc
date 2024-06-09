@@ -202,11 +202,6 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		//SightOffset=(X=5.000000,Z=18.500000)
-		//SightPivot=(Pitch=512)
-		//SightPivot=(Pitch=128)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -226,7 +221,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Slug'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Spray'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Slug'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

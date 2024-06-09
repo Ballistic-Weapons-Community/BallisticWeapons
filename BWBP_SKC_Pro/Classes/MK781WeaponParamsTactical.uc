@@ -101,7 +101,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Dart
 		AimedFireAnim="SightFire"
-		FireInterval=0.325000
+		FireInterval=0.455000
 		FireAnimRate=1.150000
 		FireEndAnim=	
 	FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams_Dart'
@@ -127,7 +127,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=2.05,Radius=386.000000,bAtten=True)
-		Recoil=1500.000000 //
+		Recoil=1800.000000 //
 		Inaccuracy=(X=32,Y=32)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
@@ -136,7 +136,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_DartSil
 		AimedFireAnim="SightFire"
-		FireInterval=0.325000
+		FireInterval=0.455000
 		FireAnimRate=1.150000
 		FireEndAnim=	
 	FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams_DartSil'
@@ -353,6 +353,9 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
         AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Dart'
+		FireParams(1)=FireParams'TacticalPrimaryFireParams_Dart'
+		FireParams(2)=FireParams'TacticalPrimaryFireParams_Dart'
+		FireParams(3)=FireParams'TacticalPrimaryFireParams_DartSil'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
 	

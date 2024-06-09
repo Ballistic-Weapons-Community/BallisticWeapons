@@ -39,7 +39,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams_Tri
     	ProjectileClass=Class'BallisticProV55.A42ProjectileBal'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
-        Damage=25.000000
+        Damage=18.000000
         Speed=3000.000000
         MaxSpeed=4500.000000
         DamageRadius=48.000000

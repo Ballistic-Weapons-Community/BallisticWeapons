@@ -243,7 +243,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_57mm
 		//Layout Core
-		LayoutName="5.7mm Conversion"
+		LayoutName="5.7mm M7B2"
 		WeaponPrice=2000
 		Weight=10
 		//Attachments
@@ -269,7 +269,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_57mmSupp
 		//Layout Core
-		LayoutName="5.7mm Suppressed"
+		LayoutName="5.7mm M7B2 Supp"
 		WeaponPrice=2300
 		Weight=10
 		//Attachments

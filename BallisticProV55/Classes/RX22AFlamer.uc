@@ -201,7 +201,7 @@ function byte BestMode()
 		return 0;
 
 	//Smart Bot: Try drench enemy, then ignite them when fuel high enough or almost out of ammo or almost dead
-	if (B.Skill > Rand(7))
+	if (B.Skill > Rand(7) && FireControl != None)
 	{
 		for (i=0;i<FireControl.GasNodes.length;i++)
 			if (FireControl.GasNodes[i]!= None && FireControl.GasNodes[i].Base == B.Target)

@@ -10,6 +10,7 @@ var() float ChargeRate;
 var() int 	MaxChargeLevel;
 var() int 	ChargeLevel;
 var() int 	ChargeIncrement;
+var() float	ChargeRadiusBonus;
 var()   sound	ChargeSound;
 var()   sound	ChargeLoopSound;
 
@@ -158,6 +159,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	if (Proj != None && BallisticProjectile(Proj) != None && bChargable)
 	{
 		Proj.Damage += (BallisticProjectile(Proj).DamageSpecial * ChargeLevel/float(MaxChargeLevel));
+		Proj.DamageRadius += (ChargeRadiusBonus * ChargeLevel/float(MaxChargeLevel));
 		Proj.Instigator = Instigator;
 		Proj.SetDrawScale((ChargeLevel+1)*Proj.default.DrawScale);
 	}
@@ -169,6 +171,7 @@ defaultproperties
     ChargeRate=0.650000
     MaxChargeLevel=3
 	ChargeIncrement=10
+	ChargeRadiusBonus=30
     ChargeSound=Sound'BWBP_SKC_Sounds.EP90.EP90-Overcharge'
 	ChargeLoopSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
     FlashBone="MuzzleTip"

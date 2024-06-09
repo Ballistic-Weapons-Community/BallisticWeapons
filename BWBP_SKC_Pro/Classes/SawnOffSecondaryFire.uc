@@ -98,9 +98,9 @@ defaultproperties
      Damage=12.000000
 
      RangeAtten=0.250000
-	DamageType=Class'BWBP_SKC_Pro.DTSawnOff'
-	DamageTypeHead=Class'BWBP_SKC_Pro.DTSawnOff'
-	DamageTypeArm=Class'BWBP_SKC_Pro.DTSawnOff'
+	DamageType=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DT_CoachSawnOff'
      KickForce=600
      PenetrateForce=100
      bPenetrate=True

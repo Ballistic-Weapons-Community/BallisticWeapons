@@ -7,12 +7,19 @@ class CoachGunAttachment extends BallisticShotgunAttachment;
 
 const SHOT_AMMO = 0;
 const SLUG_AMMO = 1;
+const ZAP_AMMO = 2;
+const FLAME_AMMO = 3;
+const HE_AMMO = 4;
+const FRAG_AMMO = 5;
 
 var bool						Side;
 var byte						AmmoType;
 
 var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
 var() class<BCTraceEmitter>	    TracerClassAlt;		    //Type of tracer to use for alt fire effects
+
+var array< class<BCTraceEmitter> >	TracerClasses[6]; //0-shot,1-slug,2-zap,3-flame,4-he
+var array< class<BCImpactManager> >	ImpactManagers[6];
 
 var	Actor	MuzzleFlashRight;
 
@@ -96,10 +103,7 @@ simulated function InstantFireEffects(byte IsDoubleFire)
 		SingleFireAnim		= default.SingleFireAnim;
 	}
 	
-	if (AmmoType == SLUG_AMMO)
-		SlugFireEffects(IsDoubleFire);
-	else 
-		ShotFireEffects(IsDoubleFire);
+	ShotFireEffects(IsDoubleFire);
 }
 
 //======================================================================
@@ -187,8 +191,8 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (ImpactManager != None)
-				ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+			if (ImpactManagers[AmmoType] != None)
+				ImpactManagers[AmmoType].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
 		}
 	}
 }
@@ -298,13 +302,11 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 	Dist = VSize(V - TipLoc);
 
 	// Spawn a tracer for the appropriate mode
-	if (TracerClass != None)
+	if (TracerClasses[AmmoType] != None)
 	{
 		if (Dist > 200)
 		{
-			if (AmmoType == SHOT_AMMO)
-				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
-			else Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
+			Tracer = Spawn(TracerClasses[AmmoType], self, , TipLoc, Rotator(V - TipLoc));
 		}
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
@@ -392,11 +394,21 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
+	TracerClasses(0)=class'TraceEmitter_Shotgun' //shot
+	TracerClasses(1)=class'TraceEmitter_X83AM' //super slug
+	TracerClasses(2)=class'TraceEmitter_Supercharge' //zap
+	TracerClasses(3)=class'TraceEmitter_ShotgunFlame' //flame
+	TracerClasses(4)=class'TraceEmitter_Shotgun' //he
+	TracerClasses(5)=None //frag
+	ImpactManagers(0)=class'IM_Shell' //shot
+	ImpactManagers(1)=class'IM_ExpBullet' //super slug
+	ImpactManagers(2)=class'IM_Shell' //zap
+	ImpactManagers(3)=class'IM_ShellHE' //flame
+	ImpactManagers(4)=class'IM_ShellHE' //he
+	ImpactManagers(5)=None //frag
+	
     TracerClass=class'TraceEmitter_Shotgun'
     ImpactManager=class'IM_Shell'
-
-    TracerClassAlt=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
-    ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_ExpBullet'
 
     MeleeImpactManager=class'IM_GunHit'
 

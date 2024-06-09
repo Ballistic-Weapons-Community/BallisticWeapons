@@ -279,10 +279,10 @@ exec simulated function WeaponSpecial(optional byte i)
 {
 	if (bHasCamera)
 	{
-	if (Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera)
-		SwitchView();
-	else
-		ServerWeaponSpecial(i);
+		if (Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera)
+			SwitchView();
+		else
+			ServerWeaponSpecial(i);
 	}
 	else if (bHasLAM)
 	{

@@ -1303,8 +1303,8 @@ simulated event WeaponTick(float DT)
 	
 	//FIXME. This shouldn't be necessary at all.
 	if (bPreventReload && !IsFiring())
-		if(CheckFireAnim())
-			bPreventReload = false;
+		bPreventReload = false;
+		//if(CheckFireAnim()) -- removing due to penalization to guns with longer, decorative fire anims
 
 	if (!bNoMag && level.TimeSeconds > BotTryReloadTime && AIController(InstigatorController) != None && (!InstigatorController.LineOfSightTo(AIController(InstigatorController).Enemy)) && BotShouldReload() )
 	{

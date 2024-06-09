@@ -3,7 +3,7 @@
 //
 // Reworked by Azarael "Big Rael" Azarael
 //=============================================================================
-class TrenchGun extends BallisticProShotgun;
+class TrenchGun extends BallisticProShotgun HideDropDown CacheExempt;
 
 var byte                OldWeaponMode;
 var actor               ReloadSteam;

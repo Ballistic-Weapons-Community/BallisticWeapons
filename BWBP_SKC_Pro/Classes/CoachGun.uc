@@ -5,6 +5,10 @@
 //=============================================================================
 class CoachGun extends BallisticProShotgun;
 
+var() Sound		CoachOpenSound;		//Sounds for coach reloading
+var() Sound		CoachCloseSound;		//
+var() Sound		ShieldFailSound;
+
 var byte                OldWeaponMode;
 var actor               ReloadSteam;
 var actor               ReloadSteam2;
@@ -21,11 +25,83 @@ var() name				ShellTipBone4;		// Spare Super Slug 2
 var() name				LastShellBone;		// Name of the right shell.
 var   bool				bLastShell;			// Checks if only one shell is left
 var   bool				bNowEmpty;			// Checks if it should play modified animation.
+var()	bool			bQuickLoad;			// Loads rapidly during fire anim
 
 var	bool bRightLoaded;
 var bool bLeftLoaded;
 
 var() float				SingleReloadAnimRate;   // Animation rate for single reload.
+
+var()	bool			bHasShield;
+struct DeployableInfo
+{
+	var class<Actor> 	    dClass;
+	var float				WarpInTime;
+	var int					SpawnOffset;
+	var bool				CheckSlope;     // should block unless placed on flat enough area
+	var float				CoolDownDelay;
+};
+
+var DeployableInfo      AltDeployable;
+const                   DeployRange = 512;
+var float	            CooldownTime;
+
+var	CoachGunFireControl	FireControl;
+
+exec function Offset(int index, int value)
+{
+	if (Level.NetMode != NM_Standalone)
+		return;
+
+	AltDeployable.SpawnOffset = value;
+}
+
+replication
+{
+	reliable if (Role==ROLE_Authority)
+		FireControl;
+}
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bQuickLoad=false;
+	bHasShield=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "quickload") != -1) //reloads during fire anim, doom style
+	{
+		bQuickLoad=true;
+	}
+	
+	if (InStr(WeaponParams.LayoutTags, "shield") != -1) //it.. can make shields? with magic?
+	{
+		bHasShield=true;
+	}
+}
+
+simulated function PostNetBeginPlay()
+{
+	local CoachGunFireControl FC;
+
+	super.PostNetBeginPlay();
+	if (Role == ROLE_Authority && FireControl == None)
+	{
+		foreach DynamicActors (class'CoachGunFireControl', FC)
+		{
+			FireControl = FC;
+			return;
+		}
+		FireControl = Spawn(class'CoachGunFireControl', None);
+	}
+}
+
+function CoachGunFireControl GetFireControl()
+{
+	return FireControl;
+}
 
 
 /*simulated event PreBeginPlay()
@@ -145,6 +221,16 @@ simulated function PlayReload()
 		bLeftLoaded=true;
 		bRightLoaded=true;
 	}
+}
+
+// Returns true if gun will need reloading after a certain amount of ammo is consumed. Subclass for special stuff
+simulated function bool MayNeedReload(byte Mode, float Load)
+{
+	if (bQuickLoad)
+		return bNeedReload;
+	if (!bNoMag && BFireMode[Mode]!= None && BFireMode[Mode].bUseWeaponMag && (/*MagAmmo < 1 || */MagAmmo - Load < 1))
+		return true;
+	return bNeedReload;
 }
 
 simulated function bool CheckScope()
@@ -285,6 +371,19 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 	}
 }
 
+// Notify for mid shot reload animations
+simulated function Notify_StartFireReload()
+{
+	//if (HasNonMagAmmo(0))
+	//{
+		//DebugMessage("EmptyFire reload");
+	//	ReloadState = RS_PreClipOut;
+	//}
+}
+
+simulated function Notify_CoachOpen()	{	PlaySound(CoachOpenSound, SLOT_Misc, 0.5, ,64);	}
+simulated function Notify_CoachClose()		{	PlaySound(CoachCloseSound, SLOT_Misc, 0.5, ,64);	}
+
 simulated function Notify_CoachShellDown()
 {
 	local vector start;
@@ -366,6 +465,162 @@ simulated function Destroyed ()
 		ReloadSteam2.Destroy();
 
 	super.Destroyed(); 
+}
+
+//place a shield if you're trenched up
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (bHasShield)
+	{
+		Notify_BarrierDeploy();
+	}
+}
+
+//===========================================================================
+// OrientToSlope
+//
+// Returns a rotator with the correct Pitch and Roll values to orient the 
+// deployable to the detected HitNormal.
+//===========================================================================
+function Rotator GetSlopeRotator(Rotator deploy_rotation_yaw, vector hit_normal)
+{
+	local float pitch_degrees, roll_degrees;
+	local Rotator result;
+	
+	//log("GetSlopeRotator: Input yaw rotator: "$deploy_rotation_yaw$" HitNormal: "$hit_normal);
+	
+	// get hitnormal orientation as global coordinate relative to direction of deployable
+	hit_normal = hit_normal << deploy_rotation_yaw;
+	
+	//log("GetSlopeRotator: Rotated HitNormal: "$hit_normal);
+	
+	// x value determines pitch adjustment and is equal to the sine of the pitch angle
+	// if x is positive, we need to pitch down (negative)
+	pitch_degrees = Asin(hit_normal.X) * 180/pi;
+	
+	//log("GetSlopeRotator: Pitch degrees: "$pitch_degrees);
+	
+	result.Pitch = -(pitch_degrees * (65536 / 360));
+	
+	// y factor is the same for roll, but directionality is a problem (I think right is positive)
+	roll_degrees = Asin(hit_normal.Y) * 180/pi;
+	
+	//log("GetSlopeRotator: Roll degrees: "$roll_degrees);
+
+	result.Roll = (roll_degrees * (65536 / 360));
+	
+	//log("GetSlopeRotator: Result: "$result);
+		
+	return result;
+}
+
+//===========================================================================
+// XAVEDIT
+// Notify_BarrierDeploy
+//
+// Responsible for spawning the pre-warp effect for any given deployable.
+// Traces out from the view to hit something, then does an extent trace to check for room.
+// If OK, spawns the pre-warp at the required height.
+//===========================================================================
+function Notify_BarrierDeploy()
+{
+	local Actor HitActor;
+	local Vector Start, End, HitNorm, HitLoc;
+	local CoachGunPreconstructor FSP;
+	
+	local Rotator SlopeInputYaw, SlopeRotation;
+
+	Start = Instigator.Location + Instigator.EyePosition();
+	End = Start + vector(Instigator.GetViewRotation()) * DeployRange;
+	
+	HitActor = Trace(HitLoc, HitNorm, End, Start, true);
+	
+	if (HitActor == None)
+		HitActor = Trace(HitLoc, HitNorm, End - vect(0,0,256), End, true);
+		
+	if (CoachDeployable(HitActor) != None && CoachDeployable(HitActor).OwningController == Instigator.Controller)
+	{
+		CoachDeployable(HitActor).bWarpOut=True;
+		CoachDeployable(HitActor).GoToState('Destroying');
+		return;
+	}
+	
+	//Safety for mode switch during attack
+	/*if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
+	{
+		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[0].ModeName$".");
+		PlayerController(Instigator.Controller).ClientPlaySound(ShieldFailSound, ,1);
+		return;
+	}*/
+		
+	if (CooldownTime > level.TimeSeconds)
+	{
+		Instigator.ClientMessage("Barrier is still recharging.");
+		PlayerController(Instigator.Controller).ClientPlaySound(ShieldFailSound, ,1);
+		return;
+	}		
+		
+	if (HitActor == None || !HitActor.bWorldGeometry)
+	{
+		Instigator.ClientMessage("Must target an unoccupied surface.");
+		PlayerController(Instigator.Controller).ClientPlaySound(ShieldFailSound, ,1);
+		return;
+	}
+	
+	if (HitLoc == vect(0,0,0))
+	{
+		Instigator.ClientMessage("Out of range.");
+		PlayerController(Instigator.Controller).ClientPlaySound(ShieldFailSound, ,1);
+		return;
+	}
+	
+	// Use HitNormal value to attempt to reorient actor.
+	SlopeInputYaw.Yaw = Instigator.Rotation.Yaw;
+	SlopeRotation = GetSlopeRotator(SlopeInputYaw, HitNorm);
+	
+	Start = HitLoc + HitNorm; // offset from the floor by 1 unit, it's already normalized
+	
+	if (!SpaceToDeploy(HitLoc, HitNorm, SlopeRotation, AltDeployable.dClass.default.CollisionHeight, AltDeployable.dClass.default.CollisionRadius))
+	{
+		Instigator.ClientMessage("Insufficient space for construction.");
+		PlayerController(Instigator.Controller).ClientPlaySound(ShieldFailSound, ,1);
+		return;
+	}
+	
+	SlopeRotation.Yaw = Instigator.Rotation.Yaw;
+		
+	FSP = Spawn(class'CoachGunPreconstructor', Instigator, , Start + HitNorm * AltDeployable.dClass.default.CollisionRadius, SlopeRotation);
+	
+	FSP.GroundPoint = Start + (HitNorm * (AltDeployable.SpawnOffset + AltDeployable.dClass.default.CollisionRadius));
+
+	FSP.Instigator = Instigator;
+	FSP.Master = self;
+	FSP.Initialize(AltDeployable.dClass,AltDeployable.WarpInTime);
+	CooldownTime = level.TimeSeconds + AltDeployable.CooldownDelay;
+}
+
+//===========================================================================
+// SpaceToDeploy
+//
+// Verifies that there is enough room to spawn the given deployable.
+// Traces out from the center in the X and Y directions, 
+// corresponding to the collision cylinder.
+// 
+// Imperfect - but functional enough for this game
+//===========================================================================
+function bool SpaceToDeploy(Vector hit_location, Vector hit_normal, Rotator slope_rotation, float collision_height, float collision_radius)
+{
+	local Vector center_point;
+	
+	// n.b: collision height property is actually half the collision height - do not halve the input value
+	center_point = hit_location + hit_normal * collision_height;
+	
+	return (
+	FastTrace(center_point, center_point + collision_radius * (vect(1,0,0) >> slope_rotation)) &&
+	FastTrace(center_point, center_point + collision_radius * (vect(-1,0,0) >> slope_rotation)) &&
+	FastTrace(center_point, center_point + collision_radius * (vect(0,-1,0) >> slope_rotation)) &&
+	FastTrace(center_point, center_point + collision_radius * (vect(0,1,0) >> slope_rotation))
+	);
 }
 
 // AI Interface =====
@@ -473,6 +728,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
+	 ShieldFailSound=Sound'BWBP_OP_Sounds.Wrench.EnergyStationError'
      
      bWT_Shotgun=True
      ManualLines(0)="Shot mode fires two shots with high power and moderate spread. Enemies hit by the shot bleed, dealing damage over time. Bleed duration is proportional to the number of pellets which struck the target.|Slug mode fires two slugs with long range and penetration. Recoil is moderate with both modes."
@@ -483,12 +739,17 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout',Volume=0.218000)
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway',Volume=0.216000)
      ClipInFrame=0.800000
+	 CoachOpenSound=Sound'BW_Core_WeaponSound.leMat.LM-Open'
+	 CoachCloseSound=Sound'BW_Core_WeaponSound.leMat.LM-Close'
 	 ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-ShellIn')
 	 ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-ShellOut')
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Shot",Value=1.000000)
-     WeaponModes(1)=(ModeName="Slug",Value=1.000000)
-     WeaponModes(2)=(bUnavailable=True)
+     WeaponModes(0)=(ModeName="Ammo: Shot",Value=1.000000)
+     WeaponModes(1)=(ModeName="Ammo: Slug",Value=1.000000)
+     WeaponModes(2)=(ModeName="Ammo: Electro",Value=1.000000,bUnavailable=True)
+     WeaponModes(3)=(ModeName="Ammo: Flame",Value=1.000000,bUnavailable=True)
+     WeaponModes(4)=(ModeName="Ammo: Explosive",Value=1.000000,bUnavailable=True)
+     WeaponModes(5)=(ModeName="Ammo: FRAG",Value=1.000000,bUnavailable=True)
      CurrentWeaponMode=0
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,A=101),Color2=(G=0,R=0),StartSize1=92,StartSize2=82)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)

@@ -28,6 +28,30 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_68mm
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+        DecayRange=(Min=1536,Max=4000)
+		PenetrationEnergy=48
+		RangeAtten=0.75
+		Damage=34
+		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		PenetrateForce=150
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		FlashScaleFactor=1
+		Recoil=260.000000
+		Chaos=0.032000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.500000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_68mm
+		FireInterval=0.098000
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_68mm'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -65,7 +89,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		Weight=30
-		LayoutName="Holosight"
+		LayoutName="CQC"
 		SightOffset=(X=1.5,Y=0,Z=2.16)
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
@@ -82,6 +106,36 @@ defaultproperties
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
     End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_3X
+		//Layout core
+		Weight=10
+		LayoutName="Marksman"
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.05,AugmentOffset=(x=-20,y=-2.3,z=0),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=-2f)
+		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
+		WeaponBoneScales(3)=(BoneName="EOTech",Slot=54,Scale=0f)
+		// ADS handling
+		SightingTime=0.4
+        SightMoveSpeedFactor=0.6
+		SightOffset=(X=1.5,Y=0,Z=2.16)
+		// Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		//Function	
+		PlayerJumpFactor=1
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=25
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_68mm'
+    End Object	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_Irons
 		//Layout core
@@ -108,7 +162,8 @@ defaultproperties
     End Object	
 	
     Layouts(0)=WeaponParams'ArenaParams'
-    Layouts(1)=WeaponParams'ArenaParams_Irons'
+    Layouts(1)=WeaponParams'ArenaParams_3X'
+    Layouts(2)=WeaponParams'ArenaParams_Irons'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=LK05_Tan

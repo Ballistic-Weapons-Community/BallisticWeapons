@@ -7,14 +7,15 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//5.56mm
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=10000.000000,Max=12000.000000)
 		WaterTraceRange=9600.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.800000
 		Damage=24
-		HeadMult=3.125
-		LimbMult=0.541666
+		HeadMult=3.2
+		LimbMult=0.55
 		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
@@ -38,6 +39,38 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+	
+	//6.8mm
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_68mm
+		TraceRange=(Min=10000.000000,Max=12000.000000)
+		WaterTraceRange=9600.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=30
+		HeadMult=3.2
+		LimbMult=0.55
+		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		PenetrationEnergy=32.000000
+		PenetrateForce=75
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.500000)
+		Recoil=256.000000
+		Chaos=-1.0
+		Inaccuracy=(X=96,Y=96)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_68mm
+		FireInterval=0.10000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_68mm'
 	End Object
 		
     //=================================================================
@@ -108,6 +141,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
@@ -115,8 +149,12 @@ defaultproperties
 		//Function
 		InventorySize=6
 		bNeedCock=True
-		MagAmmo=25
+		MagAmmo=30
 		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -125,12 +163,14 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_4XScope
 		//Layout core
-		Weight=5
+		Weight=10
 		LayoutName="4X Scope"
 		//Attachments
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.2,AugmentOffset=(x=20,y=0,z=2.3),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.05,AugmentOffset=(x=-20,y=-2.3,z=0),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=-2f)
+		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
+		WeaponBoneScales(3)=(BoneName="EOTech",Slot=54,Scale=0f)
 		//Zoom
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
         ZoomType=ZT_Fixed
@@ -142,8 +182,12 @@ defaultproperties
 		//Function
 		InventorySize=6
 		bNeedCock=True
-		MagAmmo=25
+		MagAmmo=30
 		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -155,30 +199,62 @@ defaultproperties
 		Weight=5
 		LayoutName="Iron Sights"
 		//Attachments
-		//SightOffset=(X=10.000000,Y=-8.600000,Z=24.250000)
-		//SightOffset=(X=7.00,Y=0.00,Z=-0.50)
 		SightOffset=(X=3,Y=0,Z=1.59)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
-		//Function
-		InventorySize=6
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		//Function
+		InventorySize=6
 		bNeedCock=True
-		MagAmmo=25
+		MagAmmo=30
 		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_68mm
+		//Layout core
+		Weight=10
+		LayoutName="6.8mm LK10"
+		//Attachments
+		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8,AIndex=8)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9,AIndex=2)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.300000
+		SightOffset=(X=1.5,Y=0,Z=2.16)
+		//Function
+		InventorySize=6
+		bNeedCock=True
+		MagAmmo=25
+		ViewOffset=(X=5.00,Y=5.00,Z=-2.00)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_68mm'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams_Holo'
 	Layouts(1)=WeaponParams'ClassicParams_4XScope'
-	Layouts(2)=WeaponParams'ClassicParams_Irons'
+	Layouts(2)=WeaponParams'ClassicParams_68mm'
+	Layouts(3)=WeaponParams'ClassicParams_Irons'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=LK05_Tan

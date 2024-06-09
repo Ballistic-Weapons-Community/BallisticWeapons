@@ -194,7 +194,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_57mm
 		//Layout Core
-		LayoutName="Holosight"
+		LayoutName="5.7mm M7B2"
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=14,Scale=1f)
@@ -218,7 +218,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_57mmSupp
 		//Layout Core
-		LayoutName="Holosight"
+		LayoutName="5.7mm M7B2 Supp"
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=14,Scale=1f)
