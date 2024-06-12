@@ -41,6 +41,37 @@ defaultproperties
 		FireAnimRate=1	
 	FireEffectParams(0)=InstantEffectParams'TacticalStandardPrimaryEffectParams'
 	End Object
+	
+	//Supp
+	Begin Object Class=InstantEffectParams Name=TacticalStandardPrimaryEffectParams_Supp
+		TraceRange=(Min=4000.000000,Max=4000.000000)
+		DecayRange=(Min=788,Max=2363) // 15-45m
+		RangeAtten=0.5
+		Damage=32 // .45
+		HeadMult=3.5
+		LimbMult=0.75
+		PenetrationEnergy=16
+		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		PenetrateForce=135
+		bPenetrate=True
+		Inaccuracy=(X=90,Y=90) //
+		FlashScaleFactor=0.9
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,bAtten=True) //
+		Recoil=400.000000 //
+		Chaos=0.3 //
+		BotRefireRate=0.750000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalStandardPrimaryFireParams_Supp
+		FireInterval=0.2000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1	
+	FireEffectParams(0)=InstantEffectParams'TacticalStandardPrimaryEffectParams_Supp'
+	End Object
 		
 	//=================================================================
 	// FIRE PARAMS WEAPON MODE 1 - CRYOGENIC
@@ -107,6 +138,33 @@ defaultproperties
 		FireAnimRate=1	
 	FireEffectParams(0)=InstantEffectParams'TacticalRadPrimaryEffectParams'
 	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================		
+	
+	//Amp
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object		
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 
 	//=================================================================
 	// RECOIL
@@ -187,8 +245,31 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalRadPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Supp
+		//Layout core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=10
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorOsprey',BoneName="tip",Scale=0.08,AugmentOffset=(X=-2,Y=0.2),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		//ADS
+		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.20
+		//Functions
+		DisplaceDurationMult=0.33
+		MagAmmo=15
+        InventorySize=3
+		bDualBlocked=True
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalStandardPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+	End Object
 	
 	Layouts(0)=WeaponParams'TacticalParams_Irons'
+	Layouts(1)=WeaponParams'TacticalParams_Supp'
 	//Layouts(1)=WeaponParams'TacticalParams_RDS' // downgrade
 	
 	//Camos =====================================

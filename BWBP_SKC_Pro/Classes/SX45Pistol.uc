@@ -8,6 +8,7 @@
 //=============================================================================
 class SX45Pistol extends BallisticHandgun;
 
+var(SX45)	bool		bHasAmp;
 var(SX45)   bool		bAmped;						// ARE YOU AMPED? BECAUSE THIS GUN IS!
 var(SX45) name		AmplifierBone;				// Bone to use for hiding cool shit
 var(SX45) name		AmplifierBone2;				// Xav likes to make my life difficult
@@ -42,6 +43,20 @@ replication
 		ClientSetHeat;
 }
 
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasAmp=true;
+	
+	if (InStr(WeaponParams.LayoutTags, "no_amp") != -1)
+	{
+		bHasAmp=false;
+	}
+}
+
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 
@@ -64,6 +79,8 @@ simulated state PendingSwitchAmplifier extends PendingDualAction
 exec simulated function ToggleAmplifier(optional byte i)
 {
 	if (ReloadState != RS_None || SightingState != SS_None)
+		return;
+	if (!bHasAmp)
 		return;
 	if (Othergun != None)
 	{
@@ -450,7 +467,8 @@ simulated function bool HasAmmo()
 // choose between regular or alt-fire
 function byte BestMode()
 {
-	CurrentWeaponMode=2;
+	if (bAmped && CurrentWeaponMode != 2)
+		CurrentWeaponMode=2;
 	return 0;
 }
 function float GetAIRating()

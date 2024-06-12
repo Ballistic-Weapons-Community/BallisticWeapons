@@ -38,7 +38,8 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 
-    Begin Object Class=FireEffectParams Name=ArenaFlashEffectParams
+	//Flash
+    Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Flash
         MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
         FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
         WarnTargetPct=1.000000
@@ -46,14 +47,66 @@ defaultproperties
         EffectString="Blinding flash"
     End Object
 
-    Begin Object Class=FireParams Name=ArenaFlashFireParams
+    Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Flash
+		TargetState="Flash"
         MaxHoldTime=0.500000
         FireAnim="Idle"
         FireEndAnim=
         FireInterval=10.000000
         AmmoPerFire=0
-        FireEffectParams(0)=FireEffectParams'ArenaFlashEffectParams'
+        FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Flash'
     End Object
+	
+	//Combat Laser
+	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams_CombatLaser
+		TraceRange=(Min=1500.000000,Max=6000.000000)
+		WaterTraceRange=4200.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.10000
+		Damage=8.0
+		HeadMult=2.5
+		LimbMult=0.375
+		DamageType=Class'BallisticProV55.DTAM67Laser'
+		DamageTypeHead=Class'BallisticProV55.DTAM67LaserHead'
+		DamageTypeArm=Class'BallisticProV55.DTAM67Laser'
+		PenetrateForce=10
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.GRS9LaserFlashEmitter'
+		FlashScaleFactor=0.700000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
+		Recoil=0.0
+		Chaos=0.000000
+		Inaccuracy=(X=2,Y=2)
+		BotRefireRate=0.999000
+		WarnTargetPct=0.010000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_CombatLaser
+		TargetState="CombatLaser"
+		FireInterval=0.050000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Idle"	
+	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams_CombatLaser'
+	End Object
+	
+	//Laser
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_LaserSight
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_LaserSight
+		TargetState="LaserSight"
+		FireInterval=10.000000
+		AmmoPerFire=0
+		MaxHoldTime=0.500000
+		FireAnim=
+		FireEndAnim=
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_LaserSight'
+	End Object
 
 	//=================================================================
 	// RECOIL
@@ -91,22 +144,79 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		LayoutName="Flash Bulb"
+		Weight=7
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		//ADS
+		SightingTime=0.250000
+		SightMoveSpeedFactor=0.9
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Function
         ReloadAnimRate=1.250000
 		CockAnimRate=1.250000
-		
         DisplaceDurationMult=0.75
         MagAmmo=9
         InventorySize=4
-		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
 		bDualBlocked=True
-		SightingTime=0.250000
-		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaPriFireParams'
-        AltFireParams(0)=FireParams'ArenaFlashFireParams'
+        AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Flash'
     End Object 
+
+    Begin Object Class=WeaponParams Name=ArenaParams_RDS
+		//Layout core
+		LayoutName="RDS + Lasersight"
+		Weight=2
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.25
+		SightOffset=(X=-24,Y=0.06,Z=4.43)
+		//Function
+        ReloadAnimRate=1.250000
+		CockAnimRate=1.250000
+        DisplaceDurationMult=0.75
+        MagAmmo=9
+        InventorySize=4
+		bDualBlocked=True
+		bNoaltfire=true
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+        FireParams(0)=FireParams'ArenaPriFireParams'
+        AltFireParams(0)=FireParams'ArenaSecondaryFireParams_LaserSight'
+    End Object 
+
+    Begin Object Class=WeaponParams Name=ArenaParams_CombatLaser
+		//Layout core
+		LayoutName="Combat Laser"
+		LayoutTags="combat_laser"
+		Weight=2
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		// ADS handling
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.25
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Stats
+        ReloadAnimRate=1.250000
+		CockAnimRate=1.250000
+        DisplaceDurationMult=0.75
+        MagAmmo=9
+        InventorySize=4
+		bDualBlocked=True
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+        FireParams(0)=FireParams'ArenaPriFireParams'
+        AltFireParams(0)=FireParams'ArenaSecondaryFireParams_CombatLaser'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_RDS'
+    Layouts(2)=WeaponParams'ArenaParams_CombatLaser'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AM67_Green

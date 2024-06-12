@@ -9,11 +9,12 @@
 class AM67Attachment extends HandgunAttachment;
 
 //Laser Vars
-var   bool					bLaserVariant; 
+var	  bool					bHasCombatLaser; //We big burnin
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
 var   Rotator				LaserRot;
+var   BallisticWeapon		myWeap;
 var   vector				PreviousHitLoc;
 var   Emitter				LaserDot;
 var   float                 LaserSizeAdjust;
@@ -21,18 +22,20 @@ var   float                 LaserSizeAdjust;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn, bLaserVariant;
+		bLaserOn, bHasCombatLaser;
 	unreliable if ( Role==ROLE_Authority )
-		LaserRot;
+		LaserRot,LaserSizeAdjust;
 }
 
-simulated event PreBeginPlay()
+function InitFor(Inventory I)
 {
-	super.PreBeginPlay();
+	Super.InitFor(I);
 
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	if (AM67Pistol(I) != None && AM67Pistol(I).bHasCombatLaser)
 	{
-		bLaserVariant=true;
+		bHasCombatLaser=true;
 	}
 }
 
@@ -46,7 +49,7 @@ simulated function InstantFireEffects(byte Mode)
 		super.InstantFireEffects(Mode);
 		return;
 	}
-	else if (bLaserVariant)
+	else if (bHasCombatLaser && Mode == 1)
 	{
 		if (VSize(PreviousHitLoc - mHitLocation) < 2)
 			return;
@@ -141,7 +144,12 @@ simulated function Tick(float DT)
 		return;
 
 	if (Laser == None)
-		Laser = Spawn(class'LaserActor_GRSNine',,,Location);
+	{
+		if (bHasCombatLaser)
+			Laser = Spawn(class'LaserActor_GRSNine',,,Location);
+		else
+			Laser = Spawn(class'LaserActor_Third',,,Location);
+	}
 
 	if (bLaserOn != bOldLaserOn)
 		bOldLaserOn = bLaserOn;
@@ -180,21 +188,32 @@ simulated function Tick(float DT)
 			HitLocation = End;
 	}
 
-	if (LaserDot == None && Other != None)
-		SpawnLaserDot(HitLocation);
-	else if (LaserDot != None && Other == None)
-		KilllaserDot();
-	if (LaserDot != None)
+	if (bHasCombatLaser)
 	{
-		LaserDot.SetLocation(HitLocation);
-		LaserDot.SetRotation(rotator(HitNormal));
+		if (LaserDot == None && Other != None)
+			SpawnLaserDot(HitLocation);
+		else if (LaserDot != None && Other == None)
+			KilllaserDot();
+		if (LaserDot != None)
+		{
+			LaserDot.SetLocation(HitLocation);
+			LaserDot.SetRotation(rotator(HitNormal));
+		}
 	}
 
 	Laser.SetLocation(Loc);
 	Laser.SetRotation(Rotator(HitLocation - Loc));
 	Scale3D.X = VSize(HitLocation-Laser.Location)/128;
-	Scale3D.Y = 2.5*(1 + 4*FMax(0, LaserSizeAdjust - 0.5));
-	Scale3D.Z = Scale3D.Y;
+	if (bHasCombatLaser)
+	{
+		Scale3D.Y = 2.5 * (1 + 4*FMax(0, LaserSizeAdjust - 0.5));
+		Scale3D.Z = Scale3D.Y;
+	}
+	else
+	{
+		Scale3D.Y = 1;
+		Scale3D.Z = 1;
+	}
 	Laser.SetDrawScale3D(Scale3D);
 }
 
@@ -209,19 +228,19 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'AM67Pistol'
-     MuzzleFlashClass=class'D49FlashEmitter'
-     AltMuzzleFlashClass=class'AM67FlashEmitter'
-     ImpactManager=class'IM_BigBullet'
-     AltFlashBone="ejector"
-     BrassClass=class'Brass_Pistol'
-     FlashMode=MU_Both
-     TracerClass=class'TraceEmitter_Pistol'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_Pistol"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=0.950000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_AM67'
-     DrawScale=0.140000
+	MuzzleFlashClass=class'D49FlashEmitter'
+	AltMuzzleFlashClass=class'AM67FlashEmitter'
+	ImpactManager=class'IM_BigBullet'
+	AltFlashBone="ejector"
+	BrassClass=class'Brass_Pistol'
+	FlashMode=MU_Both
+	TracerClass=class'TraceEmitter_Pistol'
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_Pistol"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=0.950000
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_AM67'
+	DrawScale=0.140000
 }

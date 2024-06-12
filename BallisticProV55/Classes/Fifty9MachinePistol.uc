@@ -337,7 +337,7 @@ defaultproperties
 	PutDownTime=0.400000
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
-	bShowChargingBar=True
+	bShowChargingBar=false
 	Description="Krome Firepower is a relatively new arms company created with the aim of producing guns with 'style'. The Fifty-9 is one such weapon. Taking an original small arm, and replacing certain parts, adding new attachments, custom paint jobs, etc. Krome weapons are designed for civilian purposes, self defense, bounty hunters, enthusiasts, and collectors. This particular model comes with attached Krome blades, to add some extra flair to the weapon."
 	Priority=31
 	HudColor=(B=255,G=125,R=75)

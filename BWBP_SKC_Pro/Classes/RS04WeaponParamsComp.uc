@@ -119,7 +119,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Sensor
 		TargetState="Projectile"
-		FireInterval=0.300000
+		FireInterval=1.000000
 		AmmoPerFire=1
 		PreFireAnim=
 		FireAnim="FlashLightToggle"
@@ -269,6 +269,7 @@ defaultproperties
 		SightPivot=(Roll=0)
 		SightingTime=0.200000
 		//Function
+		bDualBlocked=true
 		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
 		PlayerSpeedFactor=1
 		MagAmmo=10

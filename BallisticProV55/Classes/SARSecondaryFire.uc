@@ -294,9 +294,9 @@ defaultproperties
 	FireSoundLoop=Sound'BW_Core_WeaponSound.Glock.Glk-LaserBurn'
 	Damage=(Min=8.000000,Max=9.000000)
 	RangeAtten=0.10000
-	DamageType=Class'BallisticProV55.DTAM67Laser'
-	DamageTypeHead=Class'BallisticProV55.DTAM67LaserHead'
-	DamageTypeArm=Class'BallisticProV55.DTAM67Laser'
+	DamageType=Class'BallisticProV55.DTSARLaser'
+	DamageTypeHead=Class'BallisticProV55.DTSARLaserHead'
+	DamageTypeArm=Class'BallisticProV55.DTSARLaser'
 	PenetrateForce=10
 	bPenetrate=True
 	bUseWeaponMag=False

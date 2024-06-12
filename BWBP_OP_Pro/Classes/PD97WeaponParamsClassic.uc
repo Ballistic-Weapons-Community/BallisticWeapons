@@ -14,7 +14,7 @@ defaultproperties
 		Speed=4500.000000
 		MaxSpeed=10000.000000
 		Damage=40.000000
-		DamageRadius=192.000000
+		DamageRadius=128.000000
 		MomentumTransfer=20000.000000
 		Recoil=256.000000
 		Chaos=0.150000

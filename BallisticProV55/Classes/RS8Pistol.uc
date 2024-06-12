@@ -395,7 +395,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		PutDownAnim = 'Putaway';
 	}
 
-	if (AIController(Instigator.Controller) != None)
+	if (!bCompensated && AIController(Instigator.Controller) != None)
 		bSilenced = (FRand() > 0.5);
 
 	if (bSilenced || bCompensated)

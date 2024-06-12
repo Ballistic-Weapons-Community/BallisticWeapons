@@ -126,7 +126,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Sensor
 		TargetState="Projectile"
-		FireInterval=0.300000
+		FireInterval=1.000000
 		AmmoPerFire=1
 		PreFireAnim=
 		FireAnim="FlashLightToggle"

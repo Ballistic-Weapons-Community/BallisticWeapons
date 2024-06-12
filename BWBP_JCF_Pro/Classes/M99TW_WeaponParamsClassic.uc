@@ -1,8 +1,7 @@
-class M99RifleWeaponParamsClassic extends BallisticWeaponParams;
+class M99TW_WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
-
 	//=================================================================
 	// PRIMARY FIRE
 	//=================================================================	
@@ -25,18 +24,16 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-FireOld',Volume=5.500000)
-		Recoil=6972.000000
-		PushbackForce=100.000000
+		Recoil=100.000000
 		Chaos=-1.0
 		BotRefireRate=0.300000
 		WarnTargetPct=0.050000
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireAnim="Fire"
-		AimedFireAnim="SightFire"
 		FireInterval=2.000000
-		BurstFireRateFactor=1.00	
+		FireAnim="Fire"	
+		FireAnimRate=1.20000
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
@@ -45,16 +42,13 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
-		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		YawFactor=0.100000
-		XRandFactor=0.200000
-		YRandFactor=0.200000
-		MaxRecoil=3072.000000
+		ViewBindFactor=0.35
+		XRandFactor=0.050000
+		YRandFactor=0.050000
 		DeclineTime=1.000000
-		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
-		HipMultiplier=1.000000
-		CrouchMultiplier=0.300000
+		DeclineDelay=1.2
+		HipMultiplier=3
+		CrouchMultiplier=0.95
 		bViewDecline=True
 	End Object
 
@@ -63,12 +57,11 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=128,Max=3072)
-		AimAdjustTime=0.700000
-		CrouchMultiplier=0.300000
-		ADSMultiplier=0.700000
-		ViewBindFactor=0.250000
-		SprintChaos=0.400000
+		AimSpread=(Min=0,Max=0)
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		JumpOffset=(Pitch=-6000,Yaw=-8000)
+		ADSMultiplier=0.15
+		AimAdjustTime=0.500000
 		ChaosDeclineTime=1.500000
 		ChaosSpeedThreshold=400.000000
 	End Object
@@ -78,23 +71,21 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=9
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.900000
-		bNeedCock=True
+		InventorySize=12
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.010000		
+		DisplaceDurationMult=1.25
 		MagAmmo=1
-		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
+		PlayerSpeedFactor=0.850000
+		PlayerJumpFactor=0.880000
+		SightOffset=(X=-10.000000,Y=-2.000000,Z=12.000000)
 		SightPivot=(Roll=-1024)
-		//ViewOffset=(X=25.000000,Y=-3.000000,Z=-24.500000)
-		ViewOffset=(X=5.000000,Y=-4.000000,Z=-25.000000)
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Layouts(0)=WeaponParams'ClassicParams'
+    End Object 
+    Layouts(0)=WeaponParams'ClassicParams'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=M99_Gray

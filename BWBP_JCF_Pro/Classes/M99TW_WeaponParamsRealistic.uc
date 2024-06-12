@@ -1,19 +1,18 @@
-class M99RifleWeaponParamsClassic extends BallisticWeaponParams;
+class M99TW_WeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
-
 	//=================================================================
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-		TraceRange=(Min=150000.000000,Max=150000.000000)
-		WaterTraceRange=120000.0
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+		TraceRange=(Min=15000.000000,Max=15000.000000) //55 cal
+		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=190.0
-		HeadMult=2
-		LimbMult=0.55
+		Damage=205.0
+		HeadMult=2.0
+		LimbMult=0.65
 		DamageType=Class'BWBP_JCF_Pro.DTM99Rifle'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTM99RifleHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTM99Rifle'
@@ -23,38 +22,33 @@ defaultproperties
 		PDamageFactor=0.900000
 		WallPDamageFactor=0.900000
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-FireOld',Volume=5.500000)
-		Recoil=6972.000000
-		PushbackForce=100.000000
-		Chaos=-1.0
-		BotRefireRate=0.300000
-		WarnTargetPct=0.050000
+		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-Fire',Volume=5.500000)
+		Recoil=3000.000000
+		Chaos=0.050000
+		Inaccuracy=(X=12,Y=12)
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireAnim="Fire"
-		AimedFireAnim="SightFire"
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=2.000000
-		BurstFireRateFactor=1.00	
-	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+		FireAnim="Fire"	
+		FireAnimRate=1.20000
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
-		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		YawFactor=0.100000
-		XRandFactor=0.200000
-		YRandFactor=0.200000
-		MaxRecoil=3072.000000
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
+		ViewBindFactor=0.35
+		XRandFactor=0.050000
+		YRandFactor=0.050000
 		DeclineTime=1.000000
-		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
-		HipMultiplier=1.000000
-		CrouchMultiplier=0.300000
+		DeclineDelay=1.2
+		HipMultiplier=3
+		CrouchMultiplier=0.95
 		bViewDecline=True
 	End Object
 
@@ -62,13 +56,12 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=128,Max=3072)
-		AimAdjustTime=0.700000
-		CrouchMultiplier=0.300000
-		ADSMultiplier=0.700000
-		ViewBindFactor=0.250000
-		SprintChaos=0.400000
+	Begin Object Class=AimParams Name=RealisticAimParams
+		AimSpread=(Min=0,Max=0)
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		JumpOffset=(Pitch=-6000,Yaw=-8000)
+		ADSMultiplier=0.15
+		AimAdjustTime=0.500000
 		ChaosDeclineTime=1.500000
 		ChaosSpeedThreshold=400.000000
 	End Object
@@ -77,24 +70,22 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=9
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.900000
-		bNeedCock=True
+	Begin Object Class=WeaponParams Name=RealisticParams
+		InventorySize=12
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.010000		
+		DisplaceDurationMult=1.25
 		MagAmmo=1
-		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
+		PlayerSpeedFactor=0.850000
+		PlayerJumpFactor=0.880000
+		SightOffset=(X=-10.000000,Y=-2.000000,Z=12.000000)
 		SightPivot=(Roll=-1024)
-		//ViewOffset=(X=25.000000,Y=-3.000000,Z=-24.500000)
-		ViewOffset=(X=5.000000,Y=-4.000000,Z=-25.000000)
-		ZoomType=ZT_Smooth
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Layouts(0)=WeaponParams'ClassicParams'
+		ZoomType=ZT_Logarithmic
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+    End Object 
+    Layouts(0)=WeaponParams'RealisticParams'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=M99_Gray

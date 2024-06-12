@@ -58,6 +58,16 @@ simulated function InstantFireEffects(byte Mode)
 		Super.InstantFireEffects(FiringMode);
 }
 
+simulated function int GetTraceCount()
+{
+	if (CurrentTracerMode == 1 || CurrentTracerMode == 2)
+		return 1;
+	else if (WeaponClass != None)
+		return ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+	else
+		return 10;
+}
+
 // Do trace to find impact info and then spawn the effect
 // This should be called from sub-classes
 simulated function ShotgunFireEffects(byte Mode)
@@ -73,7 +83,7 @@ simulated function ShotgunFireEffects(byte Mode)
 		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
 		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
 		Start = Instigator.Location + Instigator.EyePosition();
-		for (i=0;i<FireClass.default.TraceCount;i++)
+		for (i=0; i < GetTraceCount(); i++)
 		{
 			mHitActor = None;
 			Range = Lerp(FRand(), RMin, RMax);

@@ -170,10 +170,14 @@ function ServerPing()
 simulated function LoadSensor()
 {
 	if (Ammo[1].AmmoAmount < 1 || RS04SecondaryFire(FireMode[1]).bLoaded)
+	{
+		if(!RS04SecondaryFire(FireMode[1]).bLoaded)
+			PlayIdle();
 		return;
+	}
 	if (ReloadState == RS_None)
 	{
-		ReloadState = RS_Cocking;
+		ReloadState = RS_GearSwitch;
 		PlayAnim(SensorLoadAnim, 1.0, , 0);
 	}		
 }
@@ -190,6 +194,7 @@ simulated function bool IsReloadingSensor()
 
 simulated function Notify_SensorReload()	
 {	
+	ReloadState = RS_PostClipIn;
 	class'BUtil'.static.PlayFullSound(self, SensorLoadSound);
 	RS04SecondaryFire(FireMode[1]).bLoaded = true; 
 }
@@ -374,6 +379,14 @@ simulated event AnimEnd (int Channel)
     local float Frame, Rate;
 
     GetAnimParams(0, Anim, Frame, Rate);
+	if (anim == SensorLoadAnim)
+	{
+		ReloadState = RS_None;
+		IdleTweenTime=0.0;
+		PlayIdle();
+	}
+	else
+		IdleTweenTime=default.IdleTweenTime;
 
 	if (Anim == 'FireOpen' || Anim == 'Pullout' || Anim == 'PulloutFancy' || Anim == 'Fire' || Anim == 'FireDualOpen' || Anim == 'FireDual' ||Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
@@ -384,7 +397,7 @@ simulated event AnimEnd (int Channel)
 			PutDownAnim = 'PutawayOpen';
 			ReloadAnim = 'ReloadOpen';
 			FlashlightAnim = 'FlashLightToggleOpen';
-			SensorLoadAnim='ReloadLauncherOpen';
+			SensorLoadAnim = 'ReloadLauncherOpen';
 		}
 		else
 		{
@@ -393,7 +406,7 @@ simulated event AnimEnd (int Channel)
 			PutDownAnim = 'Putaway';
 			ReloadAnim = 'Reload';
 			FlashlightAnim = 'FlashLightToggle';
-			SensorLoadAnim='ReloadLauncher';
+			SensorLoadAnim = 'ReloadLauncher';
 		}
 	}
 	Super.AnimEnd(Channel);
@@ -481,7 +494,7 @@ defaultproperties
 	PingDetectSoundDirect=Sound'BWBP_SKC_Sounds.MJ51.Sensor-PingDirect'
 	SensorRadius=512
 	PingSoundRadius=72 // PlaySound mechanics - see UDN
-	SensorLoadAnim='ReloadLauncher'
+	SensorLoadAnim="ReloadLauncher"
 	SensorLoadSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit',Volume=0.500000,Pitch=1.500000)
 	
     ChargeRateSensor=0.06

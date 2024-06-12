@@ -211,6 +211,8 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Heavy'
 		ViewOffset=(X=0.000000,Y=10.000000,Z=-10.000000)
 		AllowedCamos(0)=5
+		AllowedCamos(1)=6
+		AllowedCamos(2)=7
 		//ADS
 		SightMoveSpeedFactor=0.900000
 		SightingTime=0.200000
@@ -284,10 +286,32 @@ defaultproperties
 		Weight=30
 	End Object
 	
+	Begin Object Class=WeaponCamo Name=RS45_Black
+		Index=6
+		CamoName="Black"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.RS8-MainHeavyBlack",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-RDS-Glow',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney',Index=3,AIndex=0,PIndex=0)
+		Weight=20
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=RS45_Gold
+		Index=7
+		CamoName="Gold"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS8Camos.RS8-MainHeavyGoldShine",Index=1,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-RDS-Glow',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney',Index=3,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
 	Camos(0)=WeaponCamo'RS8_Silver'
 	Camos(1)=WeaponCamo'RS8_Gray'
 	Camos(2)=WeaponCamo'RS8_Black'
 	Camos(3)=WeaponCamo'RS8_Rainbow'
 	Camos(4)=WeaponCamo'RS8_Gold'
 	Camos(5)=WeaponCamo'RS45_Silver'
+	Camos(6)=WeaponCamo'RS45_Black'
+	Camos(7)=WeaponCamo'RS45_Gold'
 }

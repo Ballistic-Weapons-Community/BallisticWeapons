@@ -880,22 +880,14 @@ simulated function OnWeaponParamsChanged()
     if (WeaponParams.SightOffset != vect(0,0,0))
     {
         SightOffset = WeaponParams.SightOffset;
-        default.SightOffset = WeaponParams.SightOffset;
     }
 	
 	SightPivot = WeaponParams.SightPivot;
-	default.SightPivot = WeaponParams.SightPivot;
 
-	if (WeaponParams.ViewOffset != vect(0,0,0))
-    {
-        PlayerViewOffset = WeaponParams.ViewOffset;
-        default.PlayerViewOffset = WeaponParams.ViewOffset;
-    }
-
+	//PlayerViewOffset is down in DrawFPWeapon
     if (WeaponParams.ViewPivot != rot(0,0,0))
     {
         PlayerViewPivot = WeaponParams.ViewPivot;
-        default.PlayerViewPivot = WeaponParams.ViewPivot;
     }
 	
 	//Visuals
@@ -2385,12 +2377,15 @@ simulated function DrawFPWeapon( Canvas Canvas )
 		}
 		RenderedHand = Hand;
 	}
-	if ( class'PlayerController'.Default.bSmallWeapons )
+	if (WeaponParams != None && WeaponParams.ViewOffset != vect(0,0,0))
+		PlayerViewOffset = WeaponParams.ViewOffset;
+	else if ( class'PlayerController'.Default.bSmallWeapons )
 		PlayerViewOffset = SmallViewOffset;
 	else if ( Mesh == OldMesh )
 		PlayerViewOffset = OldPlayerViewOffset;
 	else
 		PlayerViewOffset = Default.PlayerViewOffset;
+	
 	if ( Hand == 0 )
 		PlayerViewOffset.Y = CenteredOffsetY;
 	else

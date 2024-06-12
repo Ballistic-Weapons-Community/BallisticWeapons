@@ -280,7 +280,7 @@ simulated function float RateSelf()
 // AI Interface =====
 function byte BestMode()	
 {		
-	if (CurrentWeaponMode != 2)
+	if (bAmped && CurrentWeaponMode != 2)
 	{
 		CurrentWeaponMode = 2;
 	}

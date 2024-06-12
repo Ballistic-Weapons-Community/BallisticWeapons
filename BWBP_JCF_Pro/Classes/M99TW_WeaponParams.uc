@@ -77,4 +77,23 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
+	
+	//Camos ==========================================
+	Begin Object Class=WeaponCamo Name=M99_Gray
+		Index=0
+		CamoName="Gray"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M99_Digital
+		Index=1
+		CamoName="Digital"
+		Weight=15
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99BShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99AShine",Index=2,AIndex=0,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'M99_Gray'
+	Camos(1)=WeaponCamo'M99_Digital'
 }

@@ -163,9 +163,9 @@ defaultproperties
 	End Object
 	
 	Camos(0)=WeaponCamo'Raygun_Silver'
-	Camos(1)=WeaponCamo'Raygun_Blue'
-	Camos(2)=WeaponCamo'Raygun_Black'
-	Camos(3)=WeaponCamo'Raygun_Wood'
-	Camos(4)=WeaponCamo'Raygun_Emerald'
-	Camos(5)=WeaponCamo'Raygun_Gold'
+	//Camos(1)=WeaponCamo'Raygun_Blue'
+	//Camos(2)=WeaponCamo'Raygun_Black'
+	//Camos(3)=WeaponCamo'Raygun_Wood'
+	//Camos(4)=WeaponCamo'Raygun_Emerald'
+	//Camos(5)=WeaponCamo'Raygun_Gold'
 }

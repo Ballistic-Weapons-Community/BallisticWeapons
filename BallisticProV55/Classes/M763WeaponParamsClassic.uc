@@ -27,7 +27,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter_C'
-		FlashScaleFactor=2.000000
+		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 		Recoil=512.000000
 		Chaos=-1.0
@@ -69,7 +69,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter_C'
-		FlashScaleFactor=2.000000
+		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire2',Volume=1.600000)
 		Recoil=768.000000 //x1.5
 		Chaos=-1.0

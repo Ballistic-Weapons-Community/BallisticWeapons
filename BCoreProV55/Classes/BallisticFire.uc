@@ -520,7 +520,8 @@ simulated event ModeTick(float dt)
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
-	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, (ThisModeNum > 0), WaterHitLoc);
+	if (Weapon != None)
+		BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, (ThisModeNum > 0), WaterHitLoc);
 }
 
 function PlayPreFire()

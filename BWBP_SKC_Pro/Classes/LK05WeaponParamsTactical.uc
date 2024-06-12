@@ -22,14 +22,14 @@ defaultproperties
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1
-		Recoil=170.000000
+		Recoil=190.000000
 		Chaos=0.022000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-RapidFire',Volume=1.200000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.095000
+		FireInterval=0.085000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -57,7 +57,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_68mm
-		FireInterval=0.105000
+		FireInterval=0.095000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_68mm'
 	End Object
@@ -106,7 +106,6 @@ defaultproperties
 		LayoutName="5.56mm Holo"
 		SightOffset=(X=1.5,Y=0,Z=2.16)
 		//Attachments
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
@@ -127,7 +126,6 @@ defaultproperties
 		LayoutName="6.8mm Holo"
 		SightOffset=(X=1.5,Y=0,Z=2.16)
 		//Attachments
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
@@ -147,11 +145,8 @@ defaultproperties
 		Weight=10
 		LayoutName="5.56mm Irons"
 		//Attachments
-		//SightOffset=(X=-0.50,Y=0.00,Z=1.75)
-		//SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		SightOffset=(X=3,Y=0,Z=1.59)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
 		//Function
 		InventorySize=6

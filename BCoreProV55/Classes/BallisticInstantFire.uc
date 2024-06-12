@@ -491,6 +491,9 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
 
+	if (Weapon == None || BW == None)
+		return;
+
 	WallPenForce = WallPenetrationForce;
 	BW.UpdatePenetrationStatus(0);
 	

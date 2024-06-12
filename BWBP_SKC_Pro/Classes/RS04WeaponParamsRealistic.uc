@@ -134,7 +134,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Sensor
 		TargetState="Projectile"
-		FireInterval=0.300000
+		FireInterval=1.000000
 		AmmoPerFire=1
 		PreFireAnim=
 		FireAnim="FlashLightToggle"
@@ -195,7 +195,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=512,Max=768)
+		AimSpread=(Min=32,Max=768)
 		AimAdjustTime=0.400000
 		CrouchMultiplier=0.820000
 		ADSMultiplier=0.770000
@@ -304,6 +304,7 @@ defaultproperties
 		SightingTime=0.110000
 		SightMoveSpeedFactor=0.500000
 		//Function
+		bDualBlocked=true
 		InventorySize=2
 		MagAmmo=10
 		bMagPlusOne=True

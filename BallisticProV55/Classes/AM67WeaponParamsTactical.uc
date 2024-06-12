@@ -43,7 +43,8 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 
-    Begin Object Class=FireEffectParams Name=TacticalFlashEffectParams
+	//Flash
+    Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Flash
         MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
         FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
         WarnTargetPct=1.000000
@@ -51,14 +52,65 @@ defaultproperties
         EffectString="Blinding flash"
     End Object
 
-    Begin Object Class=FireParams Name=TacticalFlashFireParams
+    Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Flash
         MaxHoldTime=0.5
         FireAnim="Idle"
         FireEndAnim=
         FireInterval=10.000000
         AmmoPerFire=0
-        FireEffectParams(0)=FireEffectParams'TacticalFlashEffectParams'
+        FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Flash'
     End Object
+	
+	//Combat Laser
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams_CombatLaser
+		TraceRange=(Min=1500.000000,Max=6000.000000)
+		WaterTraceRange=4200.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.10000
+		Damage=8.0
+		HeadMult=2.5
+		LimbMult=0.375
+		DamageType=Class'BallisticProV55.DTAM67Laser'
+		DamageTypeHead=Class'BallisticProV55.DTAM67LaserHead'
+		DamageTypeArm=Class'BallisticProV55.DTAM67Laser'
+		PenetrateForce=10
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.GRS9LaserFlashEmitter'
+		FlashScaleFactor=0.700000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
+		Recoil=0.0
+		Chaos=0.000000
+		Inaccuracy=(X=2,Y=2)
+		BotRefireRate=0.999000
+		WarnTargetPct=0.010000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_CombatLaser
+		TargetState="CombatLaser"
+		FireInterval=0.050000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Idle"	
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams_CombatLaser'
+	End Object
+	
+	//Laser
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_LaserSight
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_LaserSight
+		TargetState="LaserSight"
+		FireInterval=10.000000
+		AmmoPerFire=0
+		MaxHoldTime=0.500000
+		FireAnim=
+		FireEndAnim=
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_LaserSight'
+	End Object
 
 	//=================================================================
 	// RECOIL
@@ -101,19 +153,73 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		LayoutName="Flash Bulb"
+		Weight=7
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		//ADS
+        SightingTime=0.2
+        SightMoveSpeedFactor=0.6
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Function
         DisplaceDurationMult=0.75
         MagAmmo=9
         InventorySize=4
 		bDualBlocked=True
-		//SightOffset=(X=0.000000,Y=0.04,Z=7.950000)
-        SightingTime=0.2
-        SightMoveSpeedFactor=0.6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalPriFireParams'
-        AltFireParams(0)=FireParams'TacticalFlashFireParams'
+        AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Flash'
     End Object 
+
+    Begin Object Class=WeaponParams Name=TacticalParams_RDS
+		//Layout core
+		LayoutName="RDS + Lasersight"
+		Weight=2
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.2
+		SightOffset=(X=-24,Y=0.06,Z=4.43)
+		//Function
+        DisplaceDurationMult=0.75
+        MagAmmo=9
+        InventorySize=4
+		bDualBlocked=True
+		bNoaltfire=true
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+        FireParams(0)=FireParams'TacticalPriFireParams'
+        AltFireParams(0)=FireParams'TacticalSecondaryFireParams_LaserSight'
+    End Object 
+
+    Begin Object Class=WeaponParams Name=TacticalParams_CombatLaser
+		//Layout core
+		LayoutName="Combat Laser"
+		LayoutTags="combat_laser"
+		Weight=2
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		// ADS handling
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.2
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Stats
+        DisplaceDurationMult=0.75
+        MagAmmo=9
+        InventorySize=4
+		bDualBlocked=True
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+        FireParams(0)=FireParams'TacticalPriFireParams'
+        AltFireParams(0)=FireParams'TacticalSecondaryFireParams_CombatLaser'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_RDS'
+    Layouts(2)=WeaponParams'TacticalParams_CombatLaser'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AM67_Green

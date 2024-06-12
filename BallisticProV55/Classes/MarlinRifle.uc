@@ -51,8 +51,10 @@ simulated function AddGauss(optional float Amount)
 	
 	if (GaussLevel == MaxGaussLevel && CurrentWeaponMode == 0)
 	{			
-		GaussGlow1.bHidden=false;
-		GaussGlow2.bHidden=false;
+		if (GaussGlow1 != None)
+			GaussGlow1.bHidden=false;
+		if (GaussGlow2 != None)
+			GaussGlow2.bHidden=false;
 		PlaySound(GaussOnSound,,1.2,,32);
 		ServerSwitchWeaponMode(1);
 		ClientSwitchWeaponMode(1);

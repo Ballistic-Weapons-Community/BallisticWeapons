@@ -101,7 +101,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Sensor
 		TargetState="Projectile"
-		FireInterval=0.300000
+		FireInterval=1.000000
 		AmmoPerFire=1
 		PreFireAnim=
 		FireAnim="FlashLightToggle"
@@ -204,7 +204,6 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
 		//Layout core
 		LayoutName="RDS"
-		LayoutTags="flash,light"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="LightModule",Slot=4,Scale=0f)
@@ -239,7 +238,6 @@ defaultproperties
 		SightPivot=(Roll=0)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
-		//Stats
 		//Function
 		bDualBlocked=true
 		InventorySize=2

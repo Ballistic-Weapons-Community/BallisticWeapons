@@ -266,6 +266,10 @@ defaultproperties
 		MagAmmo=20
         InventorySize=6
 		WeaponName="SR18 Battle Rifle"
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=0
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_600'
 		AimParams(0)=AimParams'TacticalAimParams_600'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Relic'

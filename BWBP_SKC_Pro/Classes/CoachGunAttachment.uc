@@ -15,9 +15,6 @@ const FRAG_AMMO = 5;
 var bool						Side;
 var byte						AmmoType;
 
-var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
-var() class<BCTraceEmitter>	    TracerClassAlt;		    //Type of tracer to use for alt fire effects
-
 var array< class<BCTraceEmitter> >	TracerClasses[6]; //0-shot,1-slug,2-zap,3-flame,4-he
 var array< class<BCImpactManager> >	ImpactManagers[6];
 
@@ -196,97 +193,6 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 		}
 	}
 }
-
-//======================================================================
-// SlugFireEffects
-//
-// Use alternate impact manager
-//======================================================================
-simulated function SlugFireEffects(byte IsDoubleFire)
-{
-	local Vector HitLocation, Start, End;
-	local Rotator R;
-	local Material HitMat;
-	local int i, j, ShotCount;
-	local float RMin, RMax, Range, fX;
-	
-	ShotCount = IsDoubleFire + 1;
-	
-	if (mHitLocation == vect(0,0,0))
-		return;
-	if (Instigator == none)
-		return;
-	
-	if (Level.NetMode == NM_Client)
-	{	
-		RMin = GetTraceRange(); RMax = GetTraceRange();
-		
-		Start = Instigator.Location + Instigator.EyePosition();
-		
-		for (i=0; i < ShotCount; i++)
-		{
-			mHitActor = None;
-			
-			Range = Lerp(FRand(), RMin, RMax);
-			
-			R = Rotator(mHitLocation);
-			
-			switch (GetSpreadMode())
-			{
-				case FSM_Scatter:
-					fX = frand();
-					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
-					break;
-				case FSM_Circle:
-					fX = frand();
-					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-					break;
-				default:
-					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
-					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
-					break;
-			}
-			
-			End = Start + Vector(R) * Range;
-			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
-
-			if (mHitActor == None)
-			{
-				DoWaterTrace(0, Start, End);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, End);
-					Side = !Side;
-				}
-			}
-			else
-			{
-				DoWaterTrace(0, Start, HitLocation);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, HitLocation);
-					Side = !Side;
-				}
-			}
-
-			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
-				continue;
-
-			if (HitMat == None)
-				mHitSurf = int(mHitActor.SurfaceType);
-			else
-				mHitSurf = int(HitMat.SurfaceType);
-
-			if (ImpactManagerAlt != None)
-				ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
-		}
-	}
-}
-
 
 // Spawn a tracer and water tracer
 simulated function SpawnTracer(byte IsDoubleFire, Vector V)

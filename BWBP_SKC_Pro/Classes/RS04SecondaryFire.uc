@@ -326,6 +326,7 @@ simulated state Projectile
 		}
 		super.PlayFiring();
 	}
+
 	// Became complicated when acceleration came into the picture
 	// Override for even weirder situations
 	function float MaxRange()

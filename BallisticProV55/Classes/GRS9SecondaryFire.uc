@@ -111,6 +111,7 @@ simulated state LaserSight
 		bFireOnRelease=true;
 		bWaitForRelease=true;
 		bModeExclusive=False;
+		bIgnoreReload=true;
 		FireRate=0.200000;
 		
 		if (bFireOnRelease)

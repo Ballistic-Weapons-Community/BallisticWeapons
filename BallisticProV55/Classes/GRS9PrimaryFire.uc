@@ -27,7 +27,7 @@ simulated function ApplyTacKnifeEffectParams()
 //Do the spread on the client side
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 2)
+	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';

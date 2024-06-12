@@ -179,10 +179,10 @@ simulated event WeaponTick(float DT)
 	BestAim = 0.995;
 	Targ = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
 
-    if (!FastTrace(Targ.Location, Instigator.Location))
+    if (Targ != None && !FastTrace(Targ.Location, Instigator.Location))
         Targ = None;
 
-    if (Targ != Target)
+    if (Targ != None && Targ != Target)
     {
         Target = Targ;
         TargetTime = 0;

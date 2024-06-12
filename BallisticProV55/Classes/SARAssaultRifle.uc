@@ -331,6 +331,7 @@ simulated function ApplyLaserAim()
 {
 	AimComponent.AimAdjustTime *= 1.5;
 	AimComponent.AimSpread.Max *= 0.8;
+	AimComponent.AimSpread.Min *= 0.8;
 }
 
 simulated event PostNetReceive()

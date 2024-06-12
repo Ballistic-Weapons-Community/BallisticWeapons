@@ -94,7 +94,7 @@ simulated function Destroyed()
 
 simulated function InstantFireEffects(byte Mode)
 {
-	if (FiringMode != 0)
+	if (bHasKnife && Mode == 1)
 		MeleeFireEffects();
 	else
 		Super.InstantFireEffects(FiringMode);

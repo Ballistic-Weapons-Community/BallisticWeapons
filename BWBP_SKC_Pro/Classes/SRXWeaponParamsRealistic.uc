@@ -48,8 +48,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=65
-		HeadMult=2.127272
-		LimbMult=0.654545
+		HeadMult=2.2
+		LimbMult=0.65
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
@@ -77,8 +77,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=55
-		HeadMult=2.127272
-		LimbMult=0.654545
+		HeadMult=2.2
+		LimbMult=0.65
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';
@@ -133,7 +133,7 @@ defaultproperties
 		YRandFactor=0.165000
 		MaxRecoil=4000
 		DeclineTime=0.800000
-		DeclineDelay=0.180000;
+		DeclineDelay=0.180000
 		ViewBindFactor=0.500000
 		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
@@ -159,7 +159,7 @@ defaultproperties
 		YRandFactor=0.1
 		MaxRecoil=4000
 		DeclineTime=0.30000
-		DeclineDelay=0.300000
+		DeclineDelay=0.800000
 		bViewDecline=True
 	End Object
 

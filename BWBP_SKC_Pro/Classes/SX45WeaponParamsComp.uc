@@ -34,6 +34,35 @@ defaultproperties
 		FireAnimRate=1	
 	FireEffectParams(0)=InstantEffectParams'ArenaStandardPrimaryEffectParams'
 	End Object
+	
+	//Supp
+	Begin Object Class=InstantEffectParams Name=ArenaStandardPrimaryEffectParams_Supp
+		TraceRange=(Min=4000.000000,Max=4000.000000)
+		DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.67
+		Damage=25
+		HeadMult=2.00
+		LimbMult=0.75f
+		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		PenetrateForce=135
+		bPenetrate=True
+		FlashScaleFactor=0.9
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,bAtten=True) //
+		Recoil=200.000000
+		Chaos=0.250000
+		BotRefireRate=0.750000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams_Supp
+		FireInterval=0.2000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1	
+	FireEffectParams(0)=InstantEffectParams'ArenaStandardPrimaryEffectParams_Supp'
+	End Object
 		
 	//=================================================================
 	// FIRE PARAMS WEAPON MODE 1 - CRYOGENIC
@@ -67,7 +96,7 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ArenaCryoPrimaryEffectParams'
 	End Object
 	
-//=================================================================
+	//=================================================================
 	// FIRE PARAMS WEAPON MODE 2 - RADIATION
 	//=================================================================	
 	
@@ -98,6 +127,33 @@ defaultproperties
 		FireAnimRate=1	
 	FireEffectParams(0)=InstantEffectParams'ArenaRadPrimaryEffectParams'
 	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================		
+	
+	//Amp
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object		
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 
 	//=================================================================
 	// RECOIL
@@ -169,8 +225,31 @@ defaultproperties
 		FireParams(2)=FireParams'ArenaRadPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_Supp
+		//Layout core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=10
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorOsprey',BoneName="tip",Scale=0.08,AugmentOffset=(X=-2,Y=0.2),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		//ADS
+		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.200000
+		//Functions
+		ViewOffset=(X=8,Y=8,Z=-6)
+		DisplaceDurationMult=0.33
+		MagAmmo=15
+        InventorySize=3
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaStandardPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
 
 	Layouts(0)=WeaponParams'ArenaParams_Irons'
+	Layouts(1)=WeaponParams'ArenaParams_Supp'
 	//Layouts(1)=WeaponParams'ArenaParams_RDS'  // downgrade
 	
 	//Camos =====================================

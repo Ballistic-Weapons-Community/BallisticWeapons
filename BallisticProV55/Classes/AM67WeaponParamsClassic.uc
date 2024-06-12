@@ -44,6 +44,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Flash
 	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
@@ -55,12 +56,64 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		TargetState="Flash"
 		FireInterval=4.000000
 		AmmoPerFire=0
 		BurstFireRateFactor=1.00
 		FireAnim="SecFire"
 		FireEndAnim=
 		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
+	//Combat Laser
+	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams_CombatLaser
+		TraceRange=(Min=1500.000000,Max=6000.000000)
+		WaterTraceRange=4200.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.10000
+		Damage=8.0
+		HeadMult=2.5
+		LimbMult=0.375
+		DamageType=Class'BallisticProV55.DTAM67Laser'
+		DamageTypeHead=Class'BallisticProV55.DTAM67LaserHead'
+		DamageTypeArm=Class'BallisticProV55.DTAM67Laser'
+		PenetrateForce=10
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.GRS9LaserFlashEmitter'
+		FlashScaleFactor=0.700000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
+		Recoil=0.0
+		Chaos=0.000000
+		Inaccuracy=(X=2,Y=2)
+		BotRefireRate=0.999000
+		WarnTargetPct=0.010000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_CombatLaser
+		TargetState="CombatLaser"
+		FireInterval=0.050000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Idle"	
+	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams_CombatLaser'
+	End Object
+	
+	//Laser
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_LaserSight
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_LaserSight
+		TargetState="LaserSight"
+		FireInterval=10.000000
+		AmmoPerFire=0
+		MaxHoldTime=0.500000
+		FireAnim=
+		FireEndAnim=
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_LaserSight'
 	End Object
 		
 	//=================================================================
@@ -105,23 +158,23 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Iron Sights"
-		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		//Layout core
+		LayoutName="Flash Bulb"
 		Weight=7
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.30000
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Function
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
 		bNeedCock=True
 		MagAmmo=14
-		SightOffset=(X=-24,Y=0.06,Z=2.5)
-		//SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
-		//SightPivot=(Pitch=1024,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=16.000000,Y=9.000000,Z=-5.500000)
 		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -131,32 +184,63 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
-		LayoutName="RDS"
-		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
+		//Layout core
+		LayoutName="RDS + Lasersight"
 		Weight=2
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.30000
+		SightOffset=(X=-24,Y=0.06,Z=4.43)
+		//Function
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
 		bNeedCock=True
 		MagAmmo=14
-		//SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
 		SightPivot=(Pitch=0,Roll=-0)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=16.000000,Y=9.000000,Z=-5.500000)
 		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_LaserSight'
+		bNoaltfire=True
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_CombatLaser
+		//Layout core
+		LayoutName="Combat Laser"
+		LayoutTags="combat_laser"
+		Weight=2
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		// ADS handling
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30000
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		bNeedCock=True
+		MagAmmo=14
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		ViewOffset=(X=16.000000,Y=9.000000,Z=-5.500000)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_CombatLaser'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_RDS'
+	Layouts(2)=WeaponParams'ClassicParams_CombatLaser'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AM67_Green

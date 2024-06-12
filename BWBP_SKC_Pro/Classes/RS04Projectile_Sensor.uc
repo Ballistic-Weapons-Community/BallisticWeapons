@@ -80,7 +80,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	R = Rotator(LastHitNorm);
 	R.Roll = Rand(65536);
 	
-	if(StuckActor == None)
+	if (StuckActor == None)
 	{
 		Proj = Spawn (class'RS04Mine_Sensor',,, LastHitLoc, R);
 		Proj.Instigator = Instigator;
@@ -89,7 +89,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	}
 	else
 	{
-		Proj = Spawn (class'RS04Mine_Tracker',,, LastHitLoc, R);
+		Proj = Spawn (class'RS04Mine_Sensor',,, LastHitLoc, R);
 		Proj.Instigator = Instigator;
 		Proj.SetPhysics(PHYS_None);
 		Proj.bHardAttach = true;

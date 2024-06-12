@@ -612,29 +612,43 @@ function byte BestMode()
 {
 	local Bot B;
 	local float Result, Dist;
-
-	if (bNoaltfire)
-		return 0;
-
-	else 
-
+	
 	B = Bot(Instigator.Controller);
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
-
-	if (LaserAmmo < 0.3 || level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime < 0.8)
+		
+	if (bNoaltfire)
 		return 0;
+	else if (bHasKnife)
+	{		
+		if (Dist < 100)
+			return 1;
+	}
+	else if (bHasFlash)
+	{
+		if (level.TimeSeconds >= FireMode[1].NextFireTime && FRand() > 0.6 && Dist < 1200)
+			return 1;
+	}
+	else if (bHasCombatLaser)
+	{
+		if ( (B == None) || (B.Enemy == None) )
+			return 0;
 
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	if (Dist > 3000)
-		return 0;
-	Result = FRand()*0.2 + FMin(1.0, LaserAmmo / (default.LaserAmmo/2));
-	if (Dist < 500)
-		Result += 0.5;
-	else if (Dist > 1500)
-		Result -= 0.3;
-	if (Result > 0.5)
-		return 1;
+		if (LaserAmmo < 0.3 || level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime < 0.8)
+			return 0;
+
+		if (Dist > 3000)
+			return 0;
+		Result = FRand()*0.2 + FMin(1.0, LaserAmmo / (default.LaserAmmo/2));
+		if (Dist < 500)
+			Result += 0.5;
+		else if (Dist > 1500)
+			Result -= 0.3;
+		if (Result > 0.5)
+			return 1;
+	}
 	return 0;
 	
 }
