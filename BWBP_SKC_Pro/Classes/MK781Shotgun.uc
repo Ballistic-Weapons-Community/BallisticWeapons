@@ -194,13 +194,15 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	ScaleFactor2 = 99 * C.ClipX/3200;
 	C.Style = ERenderStyle.STY_Alpha;
 	C.DrawColor = class'HUD'.Default.WhiteColor;
-	Count = Min(8,Grenades);
-    for( i=0; i<Count; i++ )
-    {
-		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile( Texture'BWBP_SKC_Tex.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+	if (bHasAltShells)
+	{
+		Count = Min(8,Grenades);
+		for( i=0; i<Count; i++ )
+		{
+			C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
+			C.DrawTile( Texture'BWBP_SKC_Tex.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		}
 	}
-
 	if (bSkipDrawWeaponInfo)
 		return;
 

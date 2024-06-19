@@ -181,7 +181,18 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	super.BringUp(PrevWeapon);
 
 	if (AIController(Instigator.Controller) != None)
+	{
 		bAmped = (FRand() > 0.5);
+		ServerSwitchAmplifier(bAmped);
+		SwitchAmplifier(bAmped);
+		if (bAmped)
+		{
+			AmpCharge=100;
+			DrainRate=0;
+			if (FRand() > 0.5)
+				CommonSwitchWeaponMode(2);
+		}
+	}
 
 	if (bAmped)
 	{
@@ -280,11 +291,6 @@ simulated function float RateSelf()
 // AI Interface =====
 function byte BestMode()	
 {		
-	if (bAmped && CurrentWeaponMode != 2)
-	{
-		CurrentWeaponMode = 2;
-	}
-
 	return 0;
 }
 

@@ -12,8 +12,8 @@ defaultproperties
 			TraceRange=(Min=100.000000,Max=100.000000)
 			WaterTraceRange=5000.0
 			Damage=22.0
-			HeadMult=2.954545
-			LimbMult=0.545454
+			HeadMult=3
+			LimbMult=0.55
 			DamageType=Class'BallisticProV55.DTA909Blades'
 			DamageTypeHead=Class'BallisticProV55.DTA909Head'
 			DamageTypeArm=Class'BallisticProV55.DTA909Limb'
@@ -47,8 +47,8 @@ defaultproperties
 			TraceRange=(Min=120.000000,Max=120.000000)
 			WaterTraceRange=5000.0
 			Damage=75.0
-			HeadMult=1.466666
-			LimbMult=0.466666
+			HeadMult=1.5
+			LimbMult=0.5
 			DamageType=Class'BallisticProV55.DTA909Blades'
 			DamageTypeHead=Class'BallisticProV55.DTA909Head'
 			DamageTypeArm=Class'BallisticProV55.DTA909Limb'
@@ -130,6 +130,7 @@ defaultproperties
 		CamoName="Blue"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=-1,AIndex=1,PIndex=-1)
 		Weight=10
 	End Object
 	

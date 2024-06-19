@@ -101,6 +101,18 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_Shotgun'
 	End Object	
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -173,6 +185,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Scope
 		//Layout core
 		LayoutName="4X Scope"
+		LayoutTags="scope"
 		Weight=5
 		WeaponPrice=800
 		//Attachments
@@ -201,7 +214,7 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Shotgun

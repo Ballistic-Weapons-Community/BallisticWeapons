@@ -33,7 +33,7 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.160000
+		FireInterval=0.2
 		BurstFireRateFactor=1.00
 		FireAnimRate=1.550000
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
@@ -61,7 +61,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPriControlledFireParams
-		FireInterval=0.500000
+		FireInterval=0.600000
 		FireEndAnim=
 		AimedFireAnim="SGCFireAimed"
 		FireAnimRate=2.400000	
@@ -166,6 +166,9 @@ defaultproperties
 		SightPivot=(Pitch=32)
 		//ReloadAnimRate=0.900000
 		//CockAnimRate=1.000000
+		WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
+		WeaponModes(1)=(bUnavailable=True)
+		InitialWeaponMode=2
 		WeaponName="Mounted FG-50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

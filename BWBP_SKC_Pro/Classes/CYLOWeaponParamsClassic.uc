@@ -120,7 +120,7 @@ defaultproperties
 	End Object
 	
 	//Flame
-	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams_FS
+	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams_Flame
 		TraceRange=(Min=1572.000000,Max=1572.000000)
 		RangeAtten=0.200000
 		TraceCount=4
@@ -141,17 +141,17 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000)
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_FS
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Flame
 		FireInterval=0.4
 		AmmoPerFire=0
 		FireAnim="FireSG"
 		FireEndAnim=	
 		TargetState="FireShot"
-	FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_FS'
+	FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_Flame'
 	End Object
 	
 	//BOOM
-	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams_Slug
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_Slug
 		ProjectileClass=Class'BWBP_SKC_Pro.CYLOFirestormHEProjectile'
 		SpawnOffset=(Y=20.000000,Z=-20.000000)
         Speed=6300.000000
@@ -171,13 +171,13 @@ defaultproperties
         WarnTargetPct=0.4	
     End Object
 
-    Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Slug
+    Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Slug
 		FireInterval=0.4
 		AmmoPerFire=0
 		FireAnim="FireSG"
 		FireEndAnim=	
 		TargetState="HESlug"
-        FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams_Slug'
+        FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Slug'
     End Object
 		
 	//=================================================================

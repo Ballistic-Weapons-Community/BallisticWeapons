@@ -374,6 +374,8 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
+	local float BotRand;
+	
 	super.BringUp(PrevWeapon);
 
 	if (bHasOptic && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
@@ -391,7 +393,25 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 
 	if (AIController(Instigator.Controller) != None)
-		bSilenced = (FRand() > 0.5);
+	{
+		BotRand = FRand();
+		if (BotRand > 0.25)
+		{
+			bSilenced = true;
+			ServerSwitchSilencer(bSilenced);
+			SwitchSilencer(bSilenced);
+		}
+		else if (BotRand > 0.5)
+		{
+			bAmped = true;
+			ServerSwitchAmplifier(bAmped);
+			SwitchAmplifier(bAmped);
+			AmpCharge=100;
+			DrainRate=0;
+			if (BotRand > 0.75)
+				CommonSwitchWeaponMode(2);
+		}
+	}
 
 	if (bAmped)
 		SetBoneScale (2, 1.0, AmplifierBone);
@@ -464,11 +484,6 @@ simulated function bool HasAmmo()
 // AI Interface =====
 function byte BestMode()	
 {		
-	if (CurrentWeaponMode != 2)
-	{
-		CurrentWeaponMode = 2;
-	}
-
 	return 0;
 }
 
@@ -548,6 +563,7 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
 	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=0)
 	WeaponModes(1)=(ModeName="Amplified: Explosive",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True,RecoilParamsIndex=1)
     WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True,RecoilParamsIndex=2)
 	CurrentWeaponMode=0

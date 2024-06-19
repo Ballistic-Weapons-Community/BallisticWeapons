@@ -239,6 +239,7 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPriControlledFireParams'
 		FireParams(2)=FireParams'ArenaPriStandardFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Mount'
+		AltFireParams(2)=FireParams'ArenaSecondaryFireParams_Mount'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'

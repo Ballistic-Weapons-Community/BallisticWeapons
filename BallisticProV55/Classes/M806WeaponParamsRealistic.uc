@@ -94,6 +94,18 @@ defaultproperties
 		FireAnimRate=1.100000	
 		FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams_SG'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -184,6 +196,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_Scope
 		//Layout core
 		LayoutName="4X Scope"
+		LayoutTags="scope"
 		Weight=5
 		WeaponPrice=800
 		//Attachments
@@ -211,7 +224,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Shotgun

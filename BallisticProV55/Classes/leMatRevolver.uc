@@ -109,7 +109,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	else if (Anim == FireMode[0].FireAnim || Anim == FireMode[1].FireAnim)
 	{
-		PlayIdle();
+		SafePlayAnim(CockAnim, 1.0, 0.2);
 		bPreventReload=false;
 	}
 	else

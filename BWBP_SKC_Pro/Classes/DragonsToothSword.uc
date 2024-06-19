@@ -187,7 +187,7 @@ defaultproperties
 	ManualLines(1)="Strikes twice consecutively for good damage. Good for baiting block."
 	ManualLines(2)="The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Devastating at close range."
 	SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Draw',Volume=0.302500)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Draw',Volume=1.000)
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True

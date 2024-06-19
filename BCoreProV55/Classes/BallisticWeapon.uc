@@ -908,13 +908,16 @@ simulated function OnWeaponParamsChanged()
 	{
 		for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
 		{
-			if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
-				Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = WeaponCamo.WeaponMaterialSwaps[i].Material;
-			if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+			if (WeaponCamo.WeaponMaterialSwaps[i].Index != -1)
 			{
-				M = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
-				if (M != None)
-					Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = M;
+				if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+					Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+				if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+				{
+					M = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+					if (M != None)
+						Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = M;
+				}
 			}
 		}
 	}
@@ -2662,15 +2665,15 @@ simulated function SetHand(float InHand)
 	super.SetHand(InHand);
 	if (Hand < 0)
 	{
-		SightOffset.Y = default.SightOffset.Y * -1;
-		SightPivot.Roll = default.SightPivot.Roll * -1;
-		SightPivot.Yaw = default.SightPivot.Yaw * -1;
+		SightOffset.Y = WeaponParams.SightOffset.Y * -1;
+		SightPivot.Roll = WeaponParams.SightPivot.Roll * -1;
+		SightPivot.Yaw = WeaponParams.SightPivot.Yaw * -1;
 	}
 	else
 	{
-		SightOffset.Y = default.SightOffset.Y;
-		SightPivot.Roll = default.SightPivot.Roll;
-		SightPivot.Yaw = default.SightPivot.Yaw;
+		SightOffset.Y = WeaponParams.SightOffset.Y;
+		SightPivot.Roll = WeaponParams.SightPivot.Roll;
+		SightPivot.Yaw = WeaponParams.SightPivot.Yaw;
 	}
 }
 //---------------------------------------------------------------------------

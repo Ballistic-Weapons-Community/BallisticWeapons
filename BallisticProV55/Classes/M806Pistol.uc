@@ -12,8 +12,9 @@
 class M806Pistol extends BallisticHandgun;
 
 //Laser
-var()   bool			bLaserOn;
-var()   bool			bStriking;
+var() bool			bHasLaser;
+var()   bool		bLaserOn;
+var()   bool		bStriking;
 var()   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
@@ -38,11 +39,18 @@ simulated function OnWeaponParamsChanged()
     super.OnWeaponParamsChanged();
 		
 	assert(WeaponParams != None);
+	bHasLaser=true;
 	bHasShotgun=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "scope") != -1)
+	{
+		bHasLaser=false;
+	}
 	
 	if (InStr(WeaponParams.LayoutTags, "shotgun") != -1)
 	{
 		bHasShotgun=true;
+		bHasLaser=false;
 		FireMode[1].AmmoClass=class'Ammo_16GaugeleMat';
 		SightFXClass=None;
 	}
@@ -154,7 +162,7 @@ function ServerStartReload (optional byte i)
 		return;
 	if (ReloadState != RS_None)
 		return;
-	if (MagAmmo < default.MagAmmo && Ammo[0].AmmoAmount > 0)
+	if (MagAmmo < WeaponParams.MagAmmo && Ammo[0].AmmoAmount > 0)
 		Loadings[0] = 1;
 	if (bHasShotgun && AltAmmo < 6 && Ammo[1].AmmoAmount > 0)
 		Loadings[1] = 1;
@@ -350,13 +358,15 @@ simulated event PostNetReceive()
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (bServerReloading)
+	if (bServerReloading || !bHasLaser)
 		return;
 	ServerSwitchLaser(!bLaserOn);
 }
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
+	if (!bHasLaser)
+		return;
 	bLaserOn = bNewLaserOn;
 
 	if (ThirdPersonActor!=None)
@@ -394,7 +404,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		Laser = Spawn(class'LaserActor');
 	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
 		SpawnLaserDot();
-	if (Instigator != None && AIController(Instigator.Controller) != None)
+	if (Instigator != None && AIController(Instigator.Controller) != None && bHasLaser)
 		ServerSwitchLaser(FRand() > 0.5);
 
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
@@ -566,7 +576,35 @@ simulated function bool HasAmmo()
 
 // AI Interface =====
 // choose between regular or alt-fire
-function byte BestMode()	{	return 0;	}
+function byte BestMode()
+{
+	local Bot B;
+	local float Dist, Result;
+
+	if (!bHasShotgun)
+		return 0;
+
+	B = Bot(Instigator.Controller);
+	if ( (B == None) || (B.Enemy == None) )
+		return 0;
+
+	if (AltAmmo < 1)
+		return 0;
+	if (MagAmmo < 1)
+		return 1;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	if (Dist > 1700)
+		return 0;
+
+	Result = FRand()*0.5;
+
+	Result += 1 - Dist / 1700;
+
+	if (Result > 0.5)
+		return 1;
+	return 0;
+}
 
 function float GetAIRating()
 {

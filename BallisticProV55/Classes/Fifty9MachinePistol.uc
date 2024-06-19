@@ -96,7 +96,12 @@ simulated event RenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 }
 
-exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+//======================================================================
+// Weapon mode behaviour (removed post layouts)
+//
+// Switches mode by animating the stock
+//======================================================================
+/*exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
 	// 59 animates to change weapon mode
 	if (ReloadState != RS_None)
@@ -146,6 +151,21 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	{
 		SwitchStock(false);
 	}
+}*/
+//======================================================================
+// Stock behaviour
+//
+// Increase accuracy by extending stock
+//======================================================================
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ReloadState != RS_None)
+		return;
+	if (Clientstate != WS_ReadyToFire)
+		return;
+
+	SwitchStock(!bStockOpen);
 }
 
 simulated function SwitchStock(bool bNewValue)
@@ -176,7 +196,26 @@ simulated function SwitchStock(bool bNewValue)
 simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
+		ApplyStockAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyStockAim()
+{
+	if (bStockOpen)
 	{
+		AimComponent.CrouchMultiplier 	*= 0.7f;
+		AimComponent.AimAdjustTime 		*= 1.5;
+		AimComponent.AimSpread.Max 		*= 1.2;
+		AimComponent.AimSpread.Min 		*= 1.2;
+		AimComponent.ChaosDeclineTime	*= 1.2;
+		RcComponent.PitchFactor			*= 0.8;
+		RcComponent.YawFactor			*= 0.8;
+		RcComponent.XRandFactor			*= 0.8;
+		RcComponent.YRandFactor			*= 0.8;
+		RcComponent.CrouchMultiplier 	*= 0.8;
+		
 		SightingTime = 0.3f; // awkward to sight
 		SightBobScale = 0.15f * class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
 	}
@@ -320,7 +359,7 @@ defaultproperties
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
     WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=5.000000)
-    WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+    WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	

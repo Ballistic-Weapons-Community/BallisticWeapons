@@ -122,6 +122,18 @@ defaultproperties
 		FireAnimRate=1.100000	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalSecondaryEffectParams_Shotgun'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -211,6 +223,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Scope
 		//Layout core
 		LayoutName="Scoped"
+		LayoutTags="scope"
 		Weight=10
 		WeaponPrice=1000
 		//Attachments
@@ -237,7 +250,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
         AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Shotgun

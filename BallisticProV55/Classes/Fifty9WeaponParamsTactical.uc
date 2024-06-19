@@ -174,10 +174,10 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'TacticalBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'
-        FireParams(1)=FireParams'AutoFireParams'
+        //FireParams(1)=FireParams'AutoFireParams'
         AltFireParams(0)=FireParams'MeleeFireParams'
         AimParams(0)=AimParams'TacticalBurstAimParams'
-		AimParams(1)=AimParams'TacticalAutoAimParams'
+		//AimParams(1)=AimParams'TacticalAutoAimParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
 }

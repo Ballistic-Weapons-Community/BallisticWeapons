@@ -245,6 +245,8 @@ defaultproperties
 	ParamsClasses(1)=Class'FG50TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'FG50TW_WeaponParamsTactical'
+	WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
+	WeaponModes(1)=(bUnavailable=True)
 	SelectAnim="Deploy"
     BringUpTime=1.600000
 	bCanThrow=False

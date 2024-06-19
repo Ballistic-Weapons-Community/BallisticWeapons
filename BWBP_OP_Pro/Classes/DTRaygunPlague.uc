@@ -2,6 +2,8 @@ class DTRaygunPlague extends DT_BWMiscDamage;
 
 defaultproperties
 {
+     FlashF=0.200000
+     FlashV=(X=1500.000000,Y=1500.000000)
      DeathStrings(0)="%o couldn't withstand %k's irradiation."
      DeathStrings(1)="%k's lingering radiation overcame %o."
      DeathStrings(2)="%k's raygun made %o a terminal biohazard."

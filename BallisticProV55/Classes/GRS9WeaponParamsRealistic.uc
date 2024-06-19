@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=33.0
-		HeadMult=2.181818
-		LimbMult=0.606060
+		HeadMult=2.2
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTGRS9Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
@@ -47,8 +47,8 @@ defaultproperties
 		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=33.0
-		HeadMult=2.181818
-		LimbMult=0.606060
+		HeadMult=2.2
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTGRS9Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
@@ -391,6 +391,8 @@ defaultproperties
 		InventorySize=3
 		MagAmmo=19
 		bMagPlusOne=True
+		bDualBlocked=true
+		bDualMixing=false
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1,bUnavailable=True)

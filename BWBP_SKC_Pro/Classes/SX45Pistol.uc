@@ -242,7 +242,19 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	if (AIController(Instigator.Controller) != None)
 	{
-		bAmped = (FRand() > 0.5);
+		if (bHasAmp)
+		{
+			bAmped = (FRand() > 0.5);
+			ServerSwitchAmplifier(bAmped);
+			SwitchAmplifier(bAmped);
+			if (bAmped)
+			{
+				AmpCharge=100;
+				DrainRate=0;
+				if (FRand() > 0.5)
+					CommonSwitchWeaponMode(2);
+			}
+		}
 		bLightsOn == (FRand() > 0.5);
 	}
 
@@ -467,8 +479,6 @@ simulated function bool HasAmmo()
 // choose between regular or alt-fire
 function byte BestMode()
 {
-	if (bAmped && CurrentWeaponMode != 2)
-		CurrentWeaponMode=2;
 	return 0;
 }
 function float GetAIRating()

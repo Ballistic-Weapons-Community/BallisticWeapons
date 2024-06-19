@@ -128,6 +128,14 @@ simulated function Notify_ClipOutOfSight()
 	SetBoneScale (2, 1.0, 'Bullet2');
 }
 
+simulated function Notify_HideBullet()
+{
+	if (MagAmmo < 2)
+		SetBoneScale (1, 0.0, 'Bullet2');
+	if (MagAmmo < 1)
+		SetBoneScale (2, 0.0, 'Bullet1');
+}
+
 simulated function PlayReload()
 {
 	super.PlayReload();

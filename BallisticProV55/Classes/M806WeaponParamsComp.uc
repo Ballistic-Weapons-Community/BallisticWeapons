@@ -83,6 +83,18 @@ defaultproperties
 		FireAnimRate=1.100000	
 		FireEffectParams(0)=ShotgunEffectParams'ArenaSecondaryEffectParams_SG'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -138,6 +150,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_Scope
 		//Layout core
 		LayoutName="4X Scope"
+		LayoutTags="scope"
 		Weight=5
 		WeaponPrice=800
 		//Attachments
@@ -163,7 +176,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
     End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams_SG

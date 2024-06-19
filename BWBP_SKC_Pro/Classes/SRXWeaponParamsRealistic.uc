@@ -142,24 +142,32 @@ defaultproperties
 	End Object
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParamsInc
-		ViewBindFactor=0.1
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.25),(InVal=0.5,OutVal=0.16),(InVal=0.7,OutVal=0.3),(InVal=0.85,OutVal=-0.1),(InVal=1,OutVal=-0.4)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
+		XRandFactor=0.165000
 		YRandFactor=0.2
 		MaxRecoil=4000
 		DeclineTime=1.20000
 		DeclineDelay=1.000000
+		ViewBindFactor=0.1
+		ADSViewBindFactor=0.500000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParamsAcid
-		ViewBindFactor=0.1
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.25),(InVal=0.5,OutVal=0.16),(InVal=0.7,OutVal=0.3),(InVal=0.85,OutVal=-0.1),(InVal=1,OutVal=-0.4)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.18),(InVal=0.2,OutVal=0.45),(InVal=0.4,OutVal=0.32),(InVal=0.5,OutVal=0.6),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=0.88)))
+		XRandFactor=0.165000
 		YRandFactor=0.1
 		MaxRecoil=4000
 		DeclineTime=0.30000
 		DeclineDelay=0.800000
+		ViewBindFactor=0.1
+		ADSViewBindFactor=0.500000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
 
