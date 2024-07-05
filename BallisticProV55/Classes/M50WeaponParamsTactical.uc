@@ -247,7 +247,7 @@ defaultproperties
 		AllowedCamos(2)=6
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
-		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_M50A3'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_M50A3'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.05)
         WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
@@ -275,7 +275,7 @@ defaultproperties
 		AllowedCamos(2)=6
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
-		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_M50A3'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_M50A3'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-1.4,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.04,AugmentOffset=(x=-20,y=0,z=-1.5),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
         WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
@@ -303,7 +303,7 @@ defaultproperties
 		AllowedCamos(2)=6
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
-		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_M50A3'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_M50A3'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-43,y=-1.75,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
         WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
 		//Zoom
