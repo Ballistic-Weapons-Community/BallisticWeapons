@@ -23,7 +23,7 @@ simulated function bool AllowFire()
 simulated event ModeDoFire()
 {
     if (FRand() > 0.5)
-		FireAnim = 'Fire1';
+		FireAnim = 'Fire';
 	else
 		FireAnim = 'Fire2';
 

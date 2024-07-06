@@ -33,7 +33,7 @@ defaultproperties
     Begin Object Class=FireParams Name=TacticalProjFireParams
         FireInterval=0.155
         FireEndAnim=
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
         FireEffectParams(0)=ProjectileEffectParams'TacticalProjEffectParams'
     End Object
 
@@ -63,7 +63,7 @@ defaultproperties
 		TargetState="SpreadShot"
 		FireInterval=0.240000
         FireEndAnim=
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
         FireEffectParams(0)=ProjectileEffectParams'TacticalProjEffectParams_Tri'
     End Object
 
