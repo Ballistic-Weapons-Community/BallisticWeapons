@@ -130,7 +130,7 @@ defaultproperties
 		Index=1
 		CamoName="Blue"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Blue_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Blue_S",Index=1,AIndex=0,PIndex=0)
 		Weight=15
 	End Object
 	
@@ -138,7 +138,7 @@ defaultproperties
 		Index=2
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Black_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Black_S",Index=1,AIndex=0,PIndex=0)
 		Weight=15
 	End Object
 	
@@ -146,7 +146,7 @@ defaultproperties
 		Index=3
 		CamoName="Wood"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Wooden_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Wooden_S",Index=1,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	
@@ -154,7 +154,7 @@ defaultproperties
 		Index=4
 		CamoName="Emerald"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Emerald_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Emerald_S",Index=1,AIndex=0,PIndex=0)
 		Weight=5
 	End Object
 	
@@ -162,7 +162,7 @@ defaultproperties
 		Index=5
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_GnB_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_GnB_S",Index=1,AIndex=0,PIndex=0)
 		Weight=1
 	End Object
 	

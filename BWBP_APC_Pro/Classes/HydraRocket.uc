@@ -145,7 +145,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=200.000000
 	LightRadius=15.000000
-	StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5Rocket'
+	StaticMesh=StaticMesh'BWBP_CC_Static.RL.CruRLRocket'
 	bDynamicLight=True
 	bNetTemporary=False
 	bUpdateSimulatedPosition=True

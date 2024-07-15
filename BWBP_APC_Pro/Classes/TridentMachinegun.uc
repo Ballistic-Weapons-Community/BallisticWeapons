@@ -10,10 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TridentMachinegun extends BallisticMachinegun
-	transient
-	HideDropDown
-	CacheExempt;
+class TridentMachinegun extends BallisticMachinegun;
 
 var   float DesiredSpeed, BarrelSpeed;
 var   int	BarrelTurn;
