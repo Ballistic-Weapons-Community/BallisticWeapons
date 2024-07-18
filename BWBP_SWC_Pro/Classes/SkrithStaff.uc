@@ -440,7 +440,7 @@ defaultproperties
 {
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
-     BigIconMaterial=Texture'BWBP_SWC_Tex.SkrithStaff.BigIcon_SkrithStaff'
+     //BigIconMaterial=Texture'BWBP_SWC_Tex.SkrithStaff.BigIcon_SkrithStaff'
      bWT_RapidProj=True
      bWT_Energy=True
      SpecialInfo(0)=(Info="300.0;25.0;0.5;85.0;0.2;0.2;0.2")
@@ -479,7 +479,7 @@ defaultproperties
      PickupClass=Class'BWBP_SWC_Pro.SkrithStaffPickup'
      BobDamping=1.600000
      AttachmentClass=Class'BWBP_SWC_Pro.SkrithStaffAttachment'
-     IconMaterial=Texture'BWBP_SWC_Tex.SkrithStaff.SmallIcon_SkrithStaff'
+     //IconMaterial=Texture'BWBP_SWC_Tex.SkrithStaff.SmallIcon_SkrithStaff'
      IconCoords=(X2=127,Y2=31)
      ItemName="A2-W Skrith Shillelagh"
      LightType=LT_Pulse

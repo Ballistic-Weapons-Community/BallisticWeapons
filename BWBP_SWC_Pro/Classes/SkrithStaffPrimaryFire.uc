@@ -56,7 +56,7 @@ simulated function SwitchCannonMode (byte NewMode)
 
 defaultproperties
 {
-     ChargeFireSound=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-Shot'
+     //ChargeFireSound=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-Shot'
      PowerFireSound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power'
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
@@ -64,7 +64,7 @@ defaultproperties
      XInaccuracy=64.000000
      YInaccuracy=64.000000
 	 FireChaos=0.25000
-     BallisticFireSound=(Sound=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-Shot',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+     //BallisticFireSound=(Sound=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-Shot',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
 	 FlashScaleFactor=0.200000
 	 AimedFireAnim="FireSight"
@@ -73,7 +73,7 @@ defaultproperties
      FireRate=0.170000
 	 FlashBone="Muzzle"
 	 AmmoPerFire=2
-	AmmoClass=Class'BallisticProV55.Ammo_Cells'
+	 AmmoClass=Class'BallisticProV55.Ammo_Cells'
      ShakeRotMag=(X=32.000000,Y=10.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.750000

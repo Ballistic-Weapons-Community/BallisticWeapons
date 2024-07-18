@@ -18,7 +18,7 @@ defaultproperties
 		MomentumTransfer=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
 		FlashScaleFactor=0.200000
-		FireSound=(Sound=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-Shot',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		//FireSound=(Sound=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-Shot',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=128.000000
 		Chaos=0.25000
 		WarnTargetPct=0.200000	

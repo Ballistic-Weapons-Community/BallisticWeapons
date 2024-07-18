@@ -14,7 +14,7 @@ defaultproperties
      InventoryType=Class'BWBP_SWC_Pro.Ammo_MDK9mm'
      PickupMessage="You picked up MDK SubMachine gun rounds."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SWC_Static.MDK.MDK_SM_Ammo'
+     StaticMesh=StaticMesh'BWBP_SWC_Static.MDK.MDKClip'
      DrawScale=0.100000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

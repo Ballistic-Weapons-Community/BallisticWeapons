@@ -14,7 +14,7 @@ defaultproperties
      InventoryType=Class'BWBP_SWC_Pro.Ammo_NTov'
      PickupMessage="You picked up 3 N-TOV bandages"
      PickupSound=Sound'BW_Core_WeaponSound.Health.NTovPickup'
-     StaticMesh=StaticMesh'BWBP_SWC_Static.NTOV.NTovPickup'
+     //StaticMesh=StaticMesh'BWBP_SWC_Static.NTOV.NTovPickup'
      DrawScale=0.500000
      CollisionRadius=12.000000
      CollisionHeight=5.000000

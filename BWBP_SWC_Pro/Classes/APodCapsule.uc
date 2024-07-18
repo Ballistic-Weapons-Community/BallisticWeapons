@@ -63,9 +63,9 @@ defaultproperties
      ClipBone=
      SmokeBone=
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SWC_Tex.APod.BigIcon_APod'
+     //BigIconMaterial=Texture'BWBP_SWC_Tex.APod.BigIcon_APod'
      bWT_Grenade=True
-	 bShowChargingBar=False
+	bShowChargingBar=False
      SpecialInfo(0)=(Info="0.0;5.0;-999.0;25.0;-999.0;0.0;0.5")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
@@ -86,7 +86,7 @@ defaultproperties
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBP_SWC_Pro.APodAttachment'
-     IconMaterial=Texture'BWBP_SWC_Tex.APod.SmallIcon_APod'
+     //IconMaterial=Texture'BWBP_SWC_Tex.APod.SmallIcon_APod'
      IconCoords=(X2=127,Y2=31)
      ItemName="A-Pod Capsule"
      //Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_APod'
