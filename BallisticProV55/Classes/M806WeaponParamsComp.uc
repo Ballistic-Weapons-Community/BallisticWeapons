@@ -164,7 +164,7 @@ defaultproperties
 		ZoomType=ZT_Fixed	
 		MaxZoom=4	
 		//ADS
-		SightMoveSpeedFactor=0.35
+		SightMoveSpeedFactor=0.6
 		SightingTime=0.4 //+.2
 		SightOffset=(X=0,Y=0,Z=18)
 		SightPivot=(Pitch=0,Roll=0)
@@ -188,7 +188,7 @@ defaultproperties
 		// Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806SG'
 		// ADS
-		SightMoveSpeedFactor=0.500000
+		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		SightPivot=(Pitch=0,Roll=0) 
 		SightOffset=(X=-5.000000,Y=0,Z=4.50000)

@@ -96,20 +96,22 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
-		Weight=30
 		LayoutName="NV Scope"
-		//Attachments
-		PlayerSpeedFactor=0.900000
-		PlayerJumpFactor=0.750000
-		InventorySize=9
+		LayoutTags="nv"
+		Weight=30
+		//ADS
+		ZoomType=ZT_Logarithmic
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.650000
 		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+		SightPivot=(Roll=-1024)
+		//Stats
+		PlayerSpeedFactor=0.900000
+		PlayerJumpFactor=0.750000
+		InventorySize=9
 		bNeedCock=True
 		MagAmmo=4
 		ViewOffset=(X=4.00,Y=6.00,Z=-4.00)
-		SightPivot=(Roll=-1024)
-		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -118,15 +120,17 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_4XScope
 		//Layout core
-		Weight=10
 		LayoutName="4X Scope"
+		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		//ADS
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
         ZoomType=ZT_Fixed
 		MaxZoom=4
 		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+		SightPivot=(Roll=-1024)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
 		//Function
@@ -136,7 +140,6 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=4
 		ViewOffset=(X=4.00,Y=6.00,Z=-4.00)
-		SightPivot=(Roll=-1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -145,11 +148,12 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Irons
 		//Layout core
-		Weight=5
 		LayoutName="Irons"
 		LayoutTags="irons"
+		Weight=1
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		//ADS
         ZoomType=ZT_Irons
 		SightOffset=(X=3,Y=0,Z=4.43)
 		SightPivot=(Roll=0)
@@ -169,8 +173,8 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	//Layouts(1)=WeaponParams'ClassicParams_4XScope'
-	//Layouts(2)=WeaponParams'ClassicParams_Irons'
+	Layouts(1)=WeaponParams'ClassicParams_4XScope'
+	Layouts(2)=WeaponParams'ClassicParams_Irons'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=X83_Silver

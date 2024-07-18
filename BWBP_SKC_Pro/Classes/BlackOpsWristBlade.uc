@@ -1,15 +1,30 @@
 //=============================================================================
-// EKS43Katana.
+// BlackOpsWristBlade.
 //
-// A large sword that takes advantage of a sweeping melee attack. More range
-// than akinfe, but slower and can't be thrown. Can be used to block otehr
-// melee attacks and has a held attack for secondary which sweeps down and is
-// prone to headshots.
+// A large pokey arm thing.
+// If you have one, you can shank people.
+// If you have two, you can double chop people.
+// If you have four....
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BlackOpsWristBlade extends BallisticMeleeWeapon;
+var bool bSingle; //is it lonely?
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bSingle=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "single") != -1) //indicates A3 new model
+	{
+		bSingle=true;
+	}
+}
 
 // AI Interface =====
 function bool CanAttack(Actor Other)

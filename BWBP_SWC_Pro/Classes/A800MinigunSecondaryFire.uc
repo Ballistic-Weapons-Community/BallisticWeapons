@@ -264,10 +264,14 @@ simulated function ModeTick(float DT)
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
-	Proj.Instigator = Instigator;
-	A800StickyBombProjectile(Proj).Master = A800SkrithMinigun(BW);
-	if (A800SkrithMinigun(BW).Target != None)
-		A800StickyBombProjectile(Proj).SetProjTarget(A800SkrithMinigun(BW).Target);
+	
+	if (Proj != None)
+	{
+		Proj.Instigator = Instigator;
+		A800StickyBombProjectile(Proj).Master = A800SkrithMinigun(BW);
+		if (A800SkrithMinigun(BW) != None && A800SkrithMinigun(BW).Target != None)
+			A800StickyBombProjectile(Proj).SetProjTarget(A800SkrithMinigun(BW).Target);
+	}
 }
 
 

@@ -36,24 +36,26 @@ simulated event ModeDoFire()
     {
 		BallisticFireSound.Volume=0.7+RailPower*0.8;
 		BallisticFireSound.Radius=(280.0+RailPower*350.0);
-		super.ModeDoFire();
-
 		SMATLauncher(BW).CoolRate = SMATLauncher(BW).default.CoolRate;
 		Instigator.AmbientSound = BW.UsedAmbientSound;
-
+		SMATLauncher(BW).PickupClass = None;
+		SMATLauncher(BW).bExploded = true;
+		
+		super.ModeDoFire();
 	  	Super.DoFireEffect();
+		
 	 	if (level.Netmode == NM_DedicatedServer)
 		{
 	 		class'BallisticDamageType'.static.GenericHurt (Instigator, 200, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTSMATSuicide');
        		super.ModeDoFire();
-			SMATLauncher(BW).Destroy();
+			//SMATLauncher(BW).Destroy();
 		}
-	 	SMATLauncher(BW).Destroy();
+	 	//SMATLauncher(BW).Destroy();
     }
     else
     {
-	  SMATLauncher(BW).Heat = 0;
-	  RailPower=0;
+		SMATLauncher(BW).Heat = 0;
+		RailPower=0;
     }
 
     SMATLauncher(BW).Heat += RailPower;
@@ -91,8 +93,9 @@ simulated function ModeTick(float DT)
 
     if (RailPower >= PowerLevel)
     {
-	  class'BallisticDamageType'.static.GenericHurt (Instigator, 400, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTSMATSuicide');
-        Weapon.ClientStopFire(ThisModeNum);
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 400, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTSMATSuicide');
+        if (Weapon != None)
+			Weapon.ClientStopFire(ThisModeNum);
     }
 }
 

@@ -140,7 +140,8 @@ simulated function InstantFireEffects(byte Mode)
 		if (VSize(PreviousHitLoc - mHitLocation) < 2)
 			return;
 		//PreviousHitLoc = mHitLocation;
-		ImpactManager = class'IM_GRSXXLaser';
+        ModeInfos[1].ImpactManager = class'IM_GRSXXLaser';
+		//ImpactManager = class'IM_GRSXXLaser';
 	}
 	super.InstantFireEffects(Mode);
 }

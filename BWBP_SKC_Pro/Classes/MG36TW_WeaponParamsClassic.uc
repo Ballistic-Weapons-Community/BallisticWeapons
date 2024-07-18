@@ -24,7 +24,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
-		FlashScaleFactor=0.200000
+		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=80.000000
 		Chaos=-1.0
@@ -57,7 +57,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
-		FlashScaleFactor=0.200000
+		FlashScaleFactor=0.500000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireAR',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=90.000000
 		Chaos=-1.0
@@ -83,7 +83,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
-		PenetrationEnergy=64.000000
+		PenetrationEnergy=200.000000
 		PenetrateForce=600
 		bPenetrate=True
 		PDamageFactor=0.750000
@@ -177,13 +177,15 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="mag",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=33,Scale=0f)
 		//Stats
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=30
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
-		ZoomType=ZT_Logarithmic
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_AR'

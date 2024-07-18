@@ -18,7 +18,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
-		PenetrationEnergy=64.000000
+		PenetrationEnergy=150.000000
 		PenetrateForce=600
 		bPenetrate=True
 		PDamageFactor=0.750000
@@ -47,8 +47,8 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.1
 		Damage=55.0
-		HeadMult=2.127272
-		LimbMult=0.654545
+		HeadMult=2.2
+		LimbMult=0.7
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
      	DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';
      	DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off';

@@ -40,7 +40,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1838,Max=5250) // 35-100m
 		RangeAtten=0.67
-		Damage=28 // 4.77mm?
+		Damage=20 // 5.7mm
         HeadMult=3.25
         LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DT_FC01Body'
@@ -53,8 +53,8 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.FC01.P90Fire2',Pitch=1.200000,Volume=0.950000)
-		Recoil=480.000000
-		Chaos=-1.0
+		Recoil=360.000000
+		Chaos=0.02
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -131,7 +131,7 @@ defaultproperties
 		YawFactor=0.300000
 		XRandFactor=0.240000
 		YRandFactor=0.240000
-		MaxRecoil=3200.000000
+		MaxRecoil=6400.000000
 		DeclineTime=0.550000
 		DeclineDelay=0.140000
 		ViewBindFactor=0.25
@@ -140,7 +140,7 @@ defaultproperties
 		ClimbTime=0.02
 		CrouchMultiplier=0.850000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -173,8 +173,8 @@ defaultproperties
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=40
-		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
-		//SightOffset=(X=-10.00000,Z=10.450000)
+		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
+		SightOffset=(X=0.00000,Y=-0.95,Z=24.450000)
 		//SightPivot=(Pitch=16)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
@@ -193,8 +193,8 @@ defaultproperties
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=50
-		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
-		//SightOffset=(X=-10.00000,Z=10.450000)
+		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
+		SightOffset=(X=0.00000,Y=-0.95,Z=24.450000)
 		//SightPivot=(Pitch=16)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

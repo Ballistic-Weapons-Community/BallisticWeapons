@@ -27,7 +27,7 @@ defaultproperties
 		Chaos=0.150000
 		Inaccuracy=(X=256,Y=256)
 		WarnTargetPct=0.200000	
-		Heat=4.5
+		Heat=3.0
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Triple
@@ -110,7 +110,7 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_Green
-		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk66ProjectileSmall'
+		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk5ProjectileSmall_Green'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 		Speed=200.000000
 		MaxSpeed=2000000.000000
@@ -131,7 +131,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Green
-		FireInterval=0.160000
+		FireInterval=0.180000
 		BurstFireRateFactor=1.00
 		FireAnim="Fire"
 		AimedFireAnim="SightFire"
@@ -180,7 +180,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Proto
-		LayoutName="MK1 Unstable"
+		LayoutName="MK1 Tripleshot"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MainProto",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MiscProto",Index=2)
@@ -203,7 +203,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_DX
-		LayoutName="MK3 Mainline"
+		LayoutName="MK3 Tripleshot"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-Main",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-Misc",Index=2)
@@ -217,6 +217,7 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.65000
+		SightPivot=(Pitch=256)
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -233,6 +234,7 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.65000
+		SightPivot=(Pitch=256)
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -255,6 +257,7 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.65000
+		SightPivot=(Pitch=256)
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

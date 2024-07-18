@@ -60,7 +60,8 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
-		PenetrateForce=150
+		PenetrationEnergy=150
+		PenetrateForce=600
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.300000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
@@ -170,6 +171,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=33,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-48,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//Stats
 		ReloadAnimRate=0.800000
 		PlayerSpeedFactor=0.95
@@ -179,8 +182,8 @@ defaultproperties
 		DisplaceDurationMult=1.5
 		MagAmmo=30
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
-		//ViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
-		ZoomType=ZT_Logarithmic
+		SightOffset=(X=-5.000000,Y=0.0000,Z=1.950000)
+		ZoomType=ZT_Irons
 		MinZoom=4.000000
 		MaxZoom=8.000000
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

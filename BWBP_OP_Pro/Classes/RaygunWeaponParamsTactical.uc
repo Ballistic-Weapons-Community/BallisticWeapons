@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Fasto
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.RaygunProjectile'
 		SpawnOffset=(X=40.000000,Y=3.000000,Z=-15.000000)
@@ -33,6 +34,37 @@ defaultproperties
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	
+	//Blasto
+	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams_Blast
+		ProjectileClass=Class'BWBP_OP_Pro.RaygunBlastProjectile'
+		SpawnOffset=(X=40.000000,Y=3.000000,Z=-15.000000)
+		Speed=2300.000000
+		MaxSpeed=10000.000000
+		AccelSpeed=80000.000000
+		Damage=90
+		DamageRadius=100
+        HeadMult=2
+        LimbMult=0.75
+		MaxDamageGainFactor=0.5
+		DamageGainStartTime=0.05
+		DamageGainEndTime=0.2
+		MuzzleFlashClass=Class'BWBP_OP_Pro.RaygunMuzzleFlashAlt'
+		FlashScaleFactor=2.500000
+		Recoil=260.000000
+		Chaos=0.070000
+		BotRefireRate=0.70000
+		WarnTargetPct=0.200000	
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.Raygun.Raygun-BlastFireHeavy',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Blast
+		FireInterval=0.33000
+		FireAnim="FireSmall"
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Blast'
 	End Object
 		
     //=================================================================
@@ -102,6 +134,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="Rapid-Ray"
+		//Stats
         DisplaceDurationMult=0.75
 		InventorySize=5
 		SightMoveSpeedFactor=0.6
@@ -113,7 +149,26 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Blast
+		//Layout core
+		Weight=30
+		LayoutName="Explo-Ray"
+		//Stats
+        DisplaceDurationMult=0.75
+		InventorySize=5
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.30
+		SightPivot=(Pitch=450)
+		MagAmmo=24
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Blast'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Blast'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=Raygun_Silver
@@ -126,7 +181,7 @@ defaultproperties
 		Index=1
 		CamoName="Blue"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Blue_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Blue_S",Index=1,AIndex=0,PIndex=0)
 		Weight=15
 	End Object
 	
@@ -134,7 +189,7 @@ defaultproperties
 		Index=2
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Black_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Black_S",Index=1,AIndex=0,PIndex=0)
 		Weight=15
 	End Object
 	
@@ -142,7 +197,7 @@ defaultproperties
 		Index=3
 		CamoName="Wood"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Wooden_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Wooden_S",Index=1,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	
@@ -150,7 +205,7 @@ defaultproperties
 		Index=4
 		CamoName="Emerald"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_Emerald_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Emerald_S",Index=1,AIndex=0,PIndex=0)
 		Weight=5
 	End Object
 	
@@ -158,14 +213,14 @@ defaultproperties
 		Index=5
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_CC_Tex.RaygunCamos.Raygun_GnB_S",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_GnB_S",Index=1,AIndex=0,PIndex=0)
 		Weight=1
 	End Object
 	
 	Camos(0)=WeaponCamo'Raygun_Silver'
-	//Camos(1)=WeaponCamo'Raygun_Blue'
-	//Camos(2)=WeaponCamo'Raygun_Black'
-	//Camos(3)=WeaponCamo'Raygun_Wood'
-	//Camos(4)=WeaponCamo'Raygun_Emerald'
-	//Camos(5)=WeaponCamo'Raygun_Gold'
+	Camos(1)=WeaponCamo'Raygun_Blue'
+	Camos(2)=WeaponCamo'Raygun_Black'
+	Camos(3)=WeaponCamo'Raygun_Wood'
+	Camos(4)=WeaponCamo'Raygun_Emerald'
+	Camos(5)=WeaponCamo'Raygun_Gold'
 }

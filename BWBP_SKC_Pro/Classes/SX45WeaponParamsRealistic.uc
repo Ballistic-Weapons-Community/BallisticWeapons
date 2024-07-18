@@ -33,7 +33,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.300000
+		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
@@ -66,7 +66,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Supp
-		FireInterval=0.300000
+		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Supp'
@@ -97,7 +97,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticCryoPrimaryFireParams
-		FireInterval=0.400000
+		FireInterval=0.150000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -128,7 +128,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticRadPrimaryFireParams
-		FireInterval=0.500000
+		FireInterval=0.150000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	

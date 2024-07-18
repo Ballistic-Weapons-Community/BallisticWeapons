@@ -37,7 +37,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.5000
+		FireInterval=0.3000 //.5
 		FireAnimRate=0.9
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
@@ -70,7 +70,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_208
-		FireInterval=0.500000
+		FireInterval=0.300000
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_208'
@@ -102,7 +102,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_50
-		FireInterval=0.550000 //+.05
+		FireInterval=0.350000 //+.05
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_50'
@@ -123,7 +123,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_208
@@ -139,7 +139,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
     End Object
 
 	//=================================================================

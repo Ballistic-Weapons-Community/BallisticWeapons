@@ -35,7 +35,7 @@ defaultproperties
 
     Begin Object Class=FireParams Name=TacticalPriFireParams
         FireEndAnim=
-        FireInterval=0.5
+        FireInterval=0.27 //.5
         FireEffectParams(0)=InstantEffectParams'TacticalPriEffectParams'
     End Object 
 
@@ -130,7 +130,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
     End Object
 
 	//=================================================================

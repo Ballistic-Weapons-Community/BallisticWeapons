@@ -36,7 +36,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_10mm
-		FireInterval=0.220000
+		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.700000	
@@ -72,7 +72,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.200000
+		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=2.400000	
@@ -108,7 +108,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Supp
-		FireInterval=0.200000
+		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=2.400000	

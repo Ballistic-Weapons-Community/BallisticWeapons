@@ -86,20 +86,87 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="NV Scope"
+		LayoutTags="nv"
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.01
+		ScopeScale=0.8	
+		SightPivot=(Roll=-1024)
+		// sniper 5-10x
+        ZoomType=ZT_Logarithmic
+		MinZoom=4
+		MaxZoom=8
+		ZoomStages=1
+		//Stats
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		InventorySize=7
-		SightMoveSpeedFactor=0.35
-		SightingTime=0.010000		
 		DisplaceDurationMult=1.25
 		MagAmmo=5
-        ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_ACOG
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		//ADS
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+		SightPivot=(Roll=-1024)
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.01
+		//Stats
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+		InventorySize=7
+		DisplaceDurationMult=1.25
+		MagAmmo=5
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Irons
+		//Layout core
+		LayoutName="Irons"
+		LayoutTags="irons"
+		Weight=1
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		//ADS
+        ZoomType=ZT_Irons
+		SightOffset=(X=3,Y=0,Z=4.43)
+		SightPivot=(Roll=0)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.01
+		//Function
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+		InventorySize=7
+		DisplaceDurationMult=1.25
+		MagAmmo=5
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_ACOG'
+    Layouts(2)=WeaponParams'TacticalParams_Irons'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=X83_Silver

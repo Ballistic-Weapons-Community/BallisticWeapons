@@ -190,7 +190,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2.0
 	End Object
 
 	//Firestorm
@@ -207,7 +207,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.850000
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5
+		MaxMoveMultiplier=2.0
 	End Object
 	
 	//=================================================================

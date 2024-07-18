@@ -210,9 +210,11 @@ simulated event ModeDoFire()
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
-	BallisticProjectile(Proj).Override(OverrideMode);
 	if (Proj != None)
+	{
+		BallisticProjectile(Proj).Override(OverrideMode);
 		Proj.Instigator = Instigator;
+	}
 }
 
 simulated function ModeTick(float DT)

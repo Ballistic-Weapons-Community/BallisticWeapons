@@ -207,8 +207,8 @@ simulated function Overheat(bool bForceClose)
 	ReloadState = RS_GearSwitch;
 	bMagnetOpen=false;
 	MagnetSwitchTime = level.TimeSeconds + 5;	//delay before magnet can be turned on again
-	class'BallisticDamageType'.static.GenericHurt (Instigator, 30, None, Instigator.Location, vect(0,0,0), class'DT_M2020Overheat');
 	AdjustMagnetProperties();
+	class'BallisticDamageType'.static.GenericHurt (Instigator, 30, None, Instigator.Location, vect(0,0,0), class'DT_M2020Overheat');
 }
 
 simulated function AdjustMagnetProperties ()

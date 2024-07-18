@@ -71,6 +71,22 @@ function float BotDesireability(Actor S, int TeamIndex, Actor Objective)
 	return MaxDesireability * 0.5 + (MaxDesireability * 0.5) * (MagAmmoAmount / 50.0);
 }
 
+simulated function NextWeapon()
+{
+	if (Weapon != None && BallisticWeapon(Weapon) != None)
+		super(Pawn).NextWeapon();
+	else
+		super.NextWeapon();
+}
+
+simulated function PrevWeapon()
+{
+	if (Weapon != None && BallisticWeapon(Weapon) != None)
+		super(Pawn).PrevWeapon();
+	else
+		super.PrevWeapon();
+}
+
 defaultproperties
 {
      UndeployedWeaponName="BWBP_SKC_Pro.MG36Machinegun"

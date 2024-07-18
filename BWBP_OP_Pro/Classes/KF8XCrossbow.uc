@@ -91,6 +91,11 @@ simulated function PlayReload()
 //rotate drum, notify that we've done so
 simulated function RotateClip()
 {
+	if (MagAmmo > 7)
+	{
+		bNeedRotate=false;
+		return;
+	}
 	//65536 = 360 degrees
 	//each cock sets the mag bone rotation by 4 degrees depending on the MagAmmo
 	MagBoneRotation.Roll = -4 * (8-MagAmmo) * (65536/360);

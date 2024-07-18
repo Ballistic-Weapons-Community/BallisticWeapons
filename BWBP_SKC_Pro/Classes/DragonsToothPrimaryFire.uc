@@ -1,7 +1,7 @@
 //=============================================================================
 // DragonsToothPrimaryFire.
 //
-// Horizontalish swipe attack for the EKS43. Uses melee swpie system to do
+// Horizontalish swipe attack for the DTS. Uses melee swpie system to do
 // horizontal swipes. When the swipe traces find a player, the trace closest to
 // the aim will be used to do the damage.
 //
@@ -10,6 +10,19 @@
 //=============================================================================
 class DragonsToothPrimaryFire extends BallisticMeleeFire;
 
+var() Array<name> SliceAnims;
+var int SliceAnim;
+
+simulated event ModeDoFire()
+{
+	FireAnim = SliceAnims[SliceAnim];
+	SliceAnim++;
+	if (SliceAnim >= SliceAnims.Length)
+		SliceAnim = 0;
+
+	Super.ModeDoFire();
+}
+
 simulated function bool HasAmmo()
 {
 	return true;
@@ -17,6 +30,9 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
+     SliceAnims(0)="Swing1"
+     SliceAnims(1)="Swing2"
+     SliceAnims(2)="Swing3"
      SwipePoints(0)=(offset=(Yaw=1280))
      SwipePoints(1)=(offset=(Yaw=0))
      SwipePoints(2)=(offset=(Yaw=-1280))

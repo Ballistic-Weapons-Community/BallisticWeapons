@@ -78,7 +78,9 @@ function DoFireEffect()
 		SpawnOffset.X = 28;
 		SpawnOffset.Z = 0;
 		super.DoFireEffect();
-		if (!BW.bScopeView && Instigator != None)
+		if (BW.bScopeView && class'BallisticReplicationInfo'.static.IsArena())
+			return;
+		if (Instigator != None)
 		{
 			if (Instigator.Physics == PHYS_Falling)
 				Instigator.TakeDamage(80, Instigator, Instigator.Location, -Vector(Instigator.GetViewRotation())*4000, class'DT_MACSelf');

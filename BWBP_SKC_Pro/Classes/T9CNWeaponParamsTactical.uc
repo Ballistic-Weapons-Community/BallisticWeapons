@@ -151,7 +151,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
-        PenetrationEnergy=48
+        PenetrationEnergy=100
         PenetrateForce=300
         bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
@@ -201,7 +201,7 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.5 //stock
 	End Object
 
 	// Auto
@@ -217,7 +217,7 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.120000
 		DeclineTime=0.750000
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
 	End Object
 	
 	//=================================================================

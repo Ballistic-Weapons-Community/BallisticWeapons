@@ -14,7 +14,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
-        PenetrationEnergy=64
+        PenetrationEnergy=100
 		PenetrateForce=600
 		bPenetrate=True
 		PDamageFactor=0.750000
@@ -48,7 +48,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
 		PenetrateForce=600
-		PenetrationEnergy=96
+		PenetrationEnergy=150
 		bPenetrate=True
 		PDamageFactor=0.750000
 		WallPDamageFactor=0.750000

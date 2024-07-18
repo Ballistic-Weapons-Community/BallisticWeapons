@@ -126,7 +126,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
-		PenetrationEnergy=48.000000
+		PenetrationEnergy=100.000000
 		PenetrateForce=300
 		bPenetrate=True
 		PDamageFactor=0.6

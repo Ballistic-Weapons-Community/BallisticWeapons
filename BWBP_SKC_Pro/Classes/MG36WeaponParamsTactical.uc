@@ -26,7 +26,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=140.000000
+		Recoil=230.000000
 		Inaccuracy=(X=3,Y=3)
 		WarnTargetPct=0.200000
 	End Object
@@ -78,7 +78,7 @@ defaultproperties
 		Damage=74  // 5.56mm Accel
         HeadMult=3.25
         LimbMult=0.75
-        PenetrationEnergy=64 //x3
+        PenetrationEnergy=150 //
 		PenetrateForce=600 //x3
 		bPenetrate=True
 		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
@@ -91,8 +91,8 @@ defaultproperties
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
 		PushbackForce=250 //
-		Recoil=600.000000 //x3
-		Chaos=0.6
+		Recoil=700.000000 //x3
+		Chaos=0.05
 		Inaccuracy=(X=1,Y=1) //
 		WarnTargetPct=0.200000
 	End Object
@@ -110,7 +110,8 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		XCurve=(Points=(,(InVal=0.300000,OutVal=-0.100000),(InVal=0.600000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
-		YCurve=(Points=(,(InVal=0.500000,OutVal=0.200000),(InVal=0.800000,OutVal=0.500000),(InVal=1.000000,OutVal=0.400000)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.30000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		//YCurve=(Points=(,(InVal=0.500000,OutVal=0.200000),(InVal=0.800000,OutVal=0.500000),(InVal=1.000000,OutVal=0.400000)))
 		PitchFactor=0.250000
 		YawFactor=0.300000
 		XRandFactor=0.250000
@@ -140,6 +141,23 @@ defaultproperties
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.800000
 	End Object
+
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_AR
+		ViewBindFactor=0.2
+		ADSViewBindFactor=0.6
+		EscapeMultiplier=1.45
+		XCurve=(Points=(,(InVal=0.10000,OutVal=0.000000),(InVal=0.150000,OutVal=0.080000),(InVal=0.25000,OutVal=0.04000),(InVal=0.300000,OutVal=-0.0500000),(InVal=0.450000,OutVal=0.0000000),(InVal=0.600000,OutVal=-0.40000),(InVal=0.800000,OutVal=-0.12),(InVal=1.000000,OutVal=0.0)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.30000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.15
+		YRandFactor=0.45
+		ClimbTime=0.04
+		DeclineDelay=0.120000     
+		DeclineTime=0.75
+		CrouchMultiplier=0.850000
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2.5
+	End Object
+
 
 	//=================================================================
 	// AIM
@@ -203,6 +221,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=33,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-48,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//Stats
 		PlayerSpeedFactor=1.000000
 		InventorySize=6
@@ -210,10 +230,10 @@ defaultproperties
 		SightingTime=0.40
 		MagAmmo=30
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
-		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
-		ZoomType=ZT_Logarithmic
+		SightOffset=(X=-5.000000,Y=0.0000,Z=1.950000)
+		ZoomType=ZT_Irons
 		WeaponName="Mk 88 Assault Rifle"
-		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_AR'
 		AimParams(0)=AimParams'TacticalAimParams_AR'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_AR'
 	End Object
@@ -233,6 +253,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.40
 		MagAmmo=20
+		InitialWeaponMode=0
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic

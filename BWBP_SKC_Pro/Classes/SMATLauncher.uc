@@ -18,6 +18,7 @@ var   bool          bRunOffsetting;
 var   bool          bRunOverride;
 var	bool		  bInUse;
 var() rotator       RunOffset;
+var() bool			bExploded; //you blew it all to hell! don't spawn a pickup
 
 var()     float Heat;
 var()     float CoolRate;
@@ -97,6 +98,17 @@ simulated function WeaponTick(float DT)
 	else
 		bInUse = false;
 
+}
+
+function DropFrom(vector StartLocation)
+{
+
+	if (bExploded || PickupClass == None)
+	{
+		return;
+	}
+	else
+		super.DropFrom(StartLocation);
 }
 
 

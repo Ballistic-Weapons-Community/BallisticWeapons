@@ -81,26 +81,89 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		Weight=30
+		LayoutName="NV Scope"
+		LayoutTags="nv"
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.6	
+        ZoomType=ZT_Logarithmic
+		ScopeScale=0.8	
+		//Stats
 		CockAnimRate=1.700000
 		ReloadAnimRate=0.70000
 		SightPivot=(Roll=-1024)
-		//SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
-		//ViewOffset=(X=4.000000,Y=6.000000,Z=-7.500000)
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
         DisplaceDurationMult=1.4
 		InventorySize=7
-		SightMoveSpeedFactor=0.6
-		SightingTime=0.6	
-		ScopeScale=0.8	
 		MagAmmo=5
-        ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_ACOG
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		//ADS
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+		SightPivot=(Roll=-1024)
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.6	
+		//Stats
+		CockAnimRate=1.700000
+		ReloadAnimRate=0.70000
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+        DisplaceDurationMult=1.4
+		InventorySize=7
+		MagAmmo=5
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Irons
+		//Layout core
+		Weight=1
+		LayoutName="Irons"
+		LayoutTags="irons"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		//ADS
+        ZoomType=ZT_Irons
+		SightOffset=(X=3,Y=0,Z=4.43)
+		SightPivot=(Roll=0)
+		SightMoveSpeedFactor=0.900000
+		SightingTime=0.400000
+		//Function
+		CockAnimRate=1.700000
+		ReloadAnimRate=0.70000
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
+        DisplaceDurationMult=1.4
+		InventorySize=7
+		MagAmmo=5
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_ACOG'
+    Layouts(2)=WeaponParams'ArenaParams_Irons'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=X83_Silver

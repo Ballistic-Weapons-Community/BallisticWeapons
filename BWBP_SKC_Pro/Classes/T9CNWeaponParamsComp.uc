@@ -79,6 +79,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
 		PenetrateForce=580
+		PenetrationEnergy=100.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
 		FlashScaleFactor=0.500000

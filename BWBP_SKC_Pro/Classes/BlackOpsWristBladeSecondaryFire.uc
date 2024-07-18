@@ -1,17 +1,28 @@
 //=============================================================================
-// EKS43SecondaryFire.
+// BlackOpsWristBladeSecondaryFire.
 //
-// Vertical/Diagonal held swipe for the EKS43. Uses swipe system and is prone
-// to headshots because the highest trace that hits an enemy will be used to do
-// the damage and check hit area.
+// Dual slice. Uses charge code to time the second stab.
+// If a single BoB is equipped, it does a lunge stab
 //
-// by Nolan "Dark Carnivour" Richert.
+// by DC, SK
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BlackOpsWristBladeSecondaryFire extends BallisticMeleeFire;
 
 var 	float 			RailPower;
 var 	bool			bIsCharging;
+
+
+simulated event ModeDoFire()
+{
+    if (!AllowFire())
+	  return;
+
+	if (!BlackOpsWristBlade(BW).bSingle)
+		bIsCharging=True;
+
+	Super.ModeDoFire();
+}
 
 simulated function ModeTick(float DT)
 {

@@ -61,13 +61,13 @@ defaultproperties
 
     Begin Object Class=FireParams Name=BurstFireParams
         AimedFireAnim="SightFire"
-        FireInterval=0.072
+        FireInterval=0.05
         FireEffectParams(0)=InstantEffectParams'BurstFireEffect'
     End Object
 
     Begin Object Class=FireParams Name=AutoFireParams
         AimedFireAnim="SightFire"
-        FireInterval=0.072
+        FireInterval=0.05 //.072
         FireEffectParams(0)=InstantEffectParams'AutoFireEffect'
     End Object
 
@@ -117,7 +117,7 @@ defaultproperties
 		DeclineTime=1.1
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams // for stock
@@ -134,7 +134,7 @@ defaultproperties
 		DeclineTime=1.1
 		CrouchMultiplier=0.85 //
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.5
 	End Object
 
 	//=================================================================

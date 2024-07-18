@@ -1,14 +1,12 @@
 //=============================================================================
-// HVPCBoltPlasmaRedMk5HVPCBlueGreen
+// HVPCMk5ProjectileSmall_Green.
 //
-// Massive damage red plasma bolt. Explodes terrorists like it's Wednesday.
-//
-// Added healing of vehicles and Powercores to replace linkgun in Onslaught
+// Green flavored HVPC alt fire
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class HVPCMk5ProjectileTriple extends BallisticProjectile;
+class HVPCMk5ProjectileSmall_Green extends BallisticProjectile;
 
 var vector					StartLocation;
 var bool					bScaleDone;
@@ -48,23 +46,6 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		return;
 	}
 	super.DoDamage(Other, HitLocation);
-}
-
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSDarkProjectile(Other)!=None || RSDarkFastProjectile(Other)!=None)
-		return;
-
-	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
-	else
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
-	ImpactManager = None;
-	HitActor = Other;
-	Explode(HitLocation, vect(0,0,1));
 }
 
 simulated function Explode(vector HitLocation, vector HitNormal)
@@ -143,38 +124,41 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-	 WeaponClass=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_HVPCProjectileTriple'
-     PenetrateManager=Class'BWBP_SKC_Pro.IM_HVPCProjectileTriple'
-     bPenetrate=True
-     bRandomStartRotation=False
-	 AccelSpeed=90000.000000
-     TrailClass=Class'BWBP_SKC_Pro.A73BTrailEmitter'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTPlasmaCharge'
-     bUsePositionalDamage=True
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTPlasmaChargeHead'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=50.000000
-     MaxSpeed=8000.000000
-     Damage=65.000000
-     DamageRadius=200.000000
-     MomentumTransfer=65000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTPlasmaCharge'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightSaturation=70
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
-     bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
-     LifeSpan=6.000000
-     DrawScale3D=(X=0.500000,Y=3.000000,Z=3.000000)
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProjFB'
-     Skins(1)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProj2FB'
-     Style=STY_Additive
-     SoundVolume=255
-     SoundRadius=75.000000
-     bFixedRotationDir=True
-     RotationRate=(Roll=12384)
+	WeaponClass=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_BFGProjectileSmall'
+	PenetrateManager=Class'BWBP_SKC_Pro.IM_BFGProjectileSmall'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	bPenetrate=True
+	bRandomStartRotation=False
+	TrailClass=Class'BWBP_SKC_Pro.BFGSmallTrailEmitter'
+	
+	MyDamageType=Class'BWBP_SKC_Pro.DTPlasmaChargeSmall'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTPlasmaChargeSmall'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTPlasmaChargeHeadSmall'
+	bUsePositionalDamage=True
+
+	Speed=8000.000000
+	MaxSpeed=8000.000000
+	Damage=65.000000
+	DamageRadius=128.000000
+	MomentumTransfer=12500.000000
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=100
+	LightSaturation=70
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
+	bDynamicLight=True
+	AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
+	LifeSpan=6.000000
+	DrawScale3D=(X=0.250000,Y=1.500000,Z=1.500000)
+	Skins(0)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProjFB'
+	Skins(1)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProj2FB'
+	Style=STY_Additive
+	SoundVolume=255
+	SoundRadius=75.000000
+	bFixedRotationDir=True
+	RotationRate=(Roll=12384)
+	ModeIndex=1
 }

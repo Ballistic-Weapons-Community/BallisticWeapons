@@ -35,7 +35,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardPrimaryFireParams
-		FireInterval=0.2000
+		FireInterval=0.1500
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -66,7 +66,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardPrimaryFireParams_Supp
-		FireInterval=0.2000
+		FireInterval=0.15000 //.2
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -99,7 +99,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalCryoPrimaryFireParams
-		FireInterval=0.275
+		FireInterval=0.175 //.275
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -132,7 +132,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalRadPrimaryFireParams
-		FireInterval=0.275
+		FireInterval=0.175
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -181,7 +181,7 @@ defaultproperties
 		DeclineTime=0.500000
 		CrouchMultiplier=1
 		HipMultiplier=1
-		MaxMoveMultiplier=1.5
+		MaxMoveMultiplier=1.25
 	End Object
 
 	//=================================================================

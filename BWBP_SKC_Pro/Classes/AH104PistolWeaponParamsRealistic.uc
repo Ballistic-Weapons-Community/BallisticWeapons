@@ -34,7 +34,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		BurstFireRateFactor=1.00
-		FireInterval=1.1
+		FireInterval=0.5
 		PreFireAnimRate=0.800000	
 		FireEndAnim=
 		AimedFireAnim="SightFire"

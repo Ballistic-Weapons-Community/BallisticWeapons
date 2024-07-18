@@ -97,25 +97,86 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		LayoutName="NV Scope"
+		LayoutTags="nv"
+		Weight=30
+		//ADS
+		ZoomType=ZT_Logarithmic
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.550000
+		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+		SightPivot=(Roll=-1024)
+		//Stats
 		PlayerSpeedFactor=0.850000
 		InventorySize=8
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.4
 		MagAmmo=5
 		bMagPlusOne=True
 		ViewOffset=(X=1,Y=3,Z=-5)
-		//SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
-		SightPivot=(Roll=-1024)
-		ZoomType=ZT_Logarithmic
-		//CockAnimRate=1.000000
-		//ReloadAnimRate=0.400000
 		WeaponName="X83A1 12.7mm Anti-Materiel Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_ACOG
+		//Layout core
+		LayoutName="4X Scope"
+		Weight=10
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		//ADS
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		SightOffset=(X=5.00,Y=-0.50,Z=4.25)
+		SightPivot=(Roll=-1024)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		//Function
+		PlayerSpeedFactor=0.850000
+		InventorySize=8
+		MagAmmo=5
+		bMagPlusOne=True
+		ViewOffset=(X=1,Y=3,Z=-5)
+		WeaponName="X83A1 12.7mm Anti-Materiel Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Irons
+		//Layout core
+		LayoutName="Irons"
+		LayoutTags="irons"
+		Weight=1
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		//ADS
+        ZoomType=ZT_Irons
+		SightOffset=(X=3,Y=0,Z=4.43)
+		SightPivot=(Roll=0)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.30 //quick!
+		//Function
+		PlayerSpeedFactor=0.850000
+		InventorySize=8
+		MagAmmo=5
+		bMagPlusOne=True
+		ViewOffset=(X=1,Y=3,Z=-5)
+		WeaponName="X83A1 12.7mm Anti-Materiel Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_ACOG'
+	Layouts(2)=WeaponParams'RealisticParams_Irons'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=X83_Silver

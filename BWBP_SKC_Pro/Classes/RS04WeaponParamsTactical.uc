@@ -176,7 +176,7 @@ defaultproperties
 		ClimbTime=0.06
 		DeclineDelay=0.250000
 		DeclineTime=0.5
-		MaxMoveMultiplier=1.5
+		MaxMoveMultiplier=1.25
 	End Object
 
 	//=================================================================
