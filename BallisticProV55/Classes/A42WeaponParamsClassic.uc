@@ -31,7 +31,7 @@ defaultproperties
 		FireInterval=0.250000
 		BurstFireRateFactor=0.3
 		FireEndAnim=	
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	
@@ -61,7 +61,7 @@ defaultproperties
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Red'
 	End Object
 	
@@ -92,7 +92,7 @@ defaultproperties
 		AmmoPerFire=1
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Acid'
 	End Object
 		

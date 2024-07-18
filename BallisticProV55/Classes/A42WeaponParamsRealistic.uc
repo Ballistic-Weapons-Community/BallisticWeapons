@@ -32,7 +32,7 @@ defaultproperties
 		FireInterval=0.250000
 		BurstFireRateFactor=0.75
 		FireEndAnim=	
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
 	
@@ -63,7 +63,7 @@ defaultproperties
 		FireInterval=0.240000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams_TriShot'
 	End Object
 		

@@ -121,7 +121,6 @@ defaultproperties
 	 PreFireAnim="LoopStart"
 	 FireLoopAnim="LoopFire"
 	 FireEndAnim="LoopEnd"
-	 
 	 DecayRange=(Min=2048,Max=5120)
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=16.000000
@@ -146,7 +145,7 @@ defaultproperties
      SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.F2000-SilFire2',Volume=1.100000,Radius=192.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
-     FlashBone="tip1"
+     FlashBone="tip"
 	 FireRate=0.080000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_545mmSTANAG'
      ShakeRotMag=(X=128.000000,Y=64.000000)
