@@ -157,7 +157,7 @@ defaultproperties
      XInaccuracy=96.000000
      YInaccuracy=96.000000
      SilencedFireSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MkFire_2',Volume=1.500000,Radius=24.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.MkFire_1',Volume=1.000000)
+     BallisticFireSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MkFire_1',Volume=1.000000)
      bPawnRapidFireAnim=True
 	 FireEndAnim=
      FireAnimRate=2

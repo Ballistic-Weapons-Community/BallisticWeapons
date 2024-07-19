@@ -24,7 +24,7 @@ defaultproperties
 		Recoil=256.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.MkFire_1',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MkFire_1',Volume=1.300000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams

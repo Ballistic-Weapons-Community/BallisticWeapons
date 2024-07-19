@@ -21,7 +21,7 @@ defaultproperties
 		Recoil=200.000000
 		Chaos=0.280000
 		BotRefireRate=0.750000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.MkFire_1',Volume=1.100000)
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MkFire_1',Volume=1.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

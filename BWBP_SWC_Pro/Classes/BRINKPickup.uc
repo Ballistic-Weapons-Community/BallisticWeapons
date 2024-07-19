@@ -1,6 +1,29 @@
 class BRINKPickup extends BallisticWeaponPickup
 	placeable;
 
+static function StaticPrecache(LevelInfo L)
+{
+	L.AddPrecacheMaterial(Texture'BWBP_SWC_Tex.BR1NK.BR1-Mat1-Main');
+	L.AddPrecacheMaterial(Texture'BWBP_SWC_Tex.BR1NK.BR1-Mat2-Main');
+     L.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.BRINK.BRINKPickupHi');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.BRINK.BRINKPickupLo');
+
+}
+
+simulated function UpdatePrecacheMaterials()
+{
+     super.UpdatePrecacheMaterials();
+	Level.AddPrecacheMaterial(Texture'BWBP_SWC_Tex.BR1NK.BR1-Mat1-Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_SWC_Tex.BR1NK.BR1-Mat2-Main');
+}
+
+simulated function UpdatePrecacheStaticMeshes()
+{
+     super.UpdatePrecacheStaticMeshes();
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.BRINK.BRINKPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.BRINK.BRINKPickupLo');
+}
+
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SWC_Static.BRINK.BRINKPickupLo'
