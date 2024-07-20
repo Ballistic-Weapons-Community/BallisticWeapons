@@ -7,7 +7,10 @@
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 // Modified by Marc 'Sergeant Kelly' Moylan
 //=============================================================================
-class LS440Instagib extends BallisticWeapon;
+class LS440Instagib extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 var	bool		bBarrelsOnline;		//Used for alternating laser effect in attachment class.
 var	bool		bOverloaded;	//You exploded it.
