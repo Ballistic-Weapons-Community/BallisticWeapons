@@ -461,7 +461,7 @@ defaultproperties
      LastShellBone="ShellR"
      Deployables=(dClass=Class'BWBP_APC_Pro.WrenchgunEnergyBarrier',WarpInTime=0.500000,CooldownDelay=2.000000,dDescription="A five-second barrier of infinite durability.")
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_CC_Tex.Wrenchgun.BigIcon_Wrenchgun'
+     //BigIconMaterial=Texture'BWBP_CC_Tex.Wrenchgun.BigIcon_Wrenchgun'
      BigIconCoords=(Y1=35,Y2=225)
      bWT_Shotgun=True
      ManualLines(0)="Primary fires two shots with high power and moderate spread. Enemies hit by the shot bleed, dealing damage over time. Bleed duration is proportional to the number of pellets which struck the target.|Alternate fires two wrenches at the enemy. Don't plan on it really being useful but imagine if you do get the kill! Recoil is moderate with both modes."
@@ -518,7 +518,7 @@ defaultproperties
      DrawScale=1.250000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.Coach-Main'
-     Skins(2)=Texture'BWBP_CC_Tex.Wrenchgun.WrenchShells'
-     Skins(3)=Texture'BWBP_CC_Tex.Wrenchgun.WrenchShells'
+     //Skins(2)=Texture'BWBP_CC_Tex.Wrenchgun.WrenchShells'
+     //Skins(3)=Texture'BWBP_CC_Tex.Wrenchgun.WrenchShells'
      Skins(4)=Shader'BWBP_OP_Tex.Wrench.WrenchShader'
 }

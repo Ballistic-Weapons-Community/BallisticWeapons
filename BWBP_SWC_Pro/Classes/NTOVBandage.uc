@@ -69,9 +69,9 @@ defaultproperties
      ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
      PinPullSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50CamDie')
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SWC_Tex.NTOV.BigIcon_NTOV'
+     //BigIconMaterial=Texture'BWBP_SWC_Tex.NTOV.BigIcon_NTOV'
      bWT_Grenade=True
-	 bShowChargingBar=False
+	bShowChargingBar=False
      SpecialInfo(0)=(Info="0.0;5.0;-999.0;25.0;-999.0;0.0;0.5")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
@@ -92,7 +92,7 @@ defaultproperties
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBP_SWC_Pro.NTOVAttachment'
-     IconMaterial=Texture'BWBP_SWC_Tex.NTOV.SmallIcon_NTOV'
+     //IconMaterial=Texture'BWBP_SWC_Tex.NTOV.SmallIcon_NTOV'
      IconCoords=(X2=127,Y2=31)
      ItemName="N-TOV Emergency Bandage"
 	 ParamsClasses(0)=Class'NTOVBandageWeaponParamsArena'

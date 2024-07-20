@@ -204,7 +204,7 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-ShockLoop'
+     //FireSoundLoop=Sound'BWBP_SWC_Sounds.SkrithStaff.SkrithStaff-ShockLoop'
      TraceRange=(Min=10000.000000,Max=10000.000000)
      Damage=8.000000
      WaterRangeAtten=0.800000

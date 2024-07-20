@@ -32,7 +32,7 @@ defaultproperties
      YInaccuracy=170.000000
 	 FlashScaleFactor=0.35
 	 FireChaos=0.3
-     BallisticFireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS',Volume=1.500000)
+     BallisticFireSound=(Sound=Sound'BWBP_JCF_Sounds.SPAS.SPAS-FireOld2',Volume=1.500000)
      FireAnim="Fire"
 	 AimedFireAnim="SightFire"
      FireEndAnim=

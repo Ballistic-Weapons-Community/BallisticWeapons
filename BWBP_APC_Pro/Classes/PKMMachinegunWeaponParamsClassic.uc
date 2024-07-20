@@ -47,7 +47,7 @@ defaultproperties
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_APC_Pro.PKMRocketFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.RPG.Fire',Volume=4.500000)
+		FireSound=(Sound=Sound'BWBP_CC_Sounds.rpk940.Fire',Volume=4.500000)
 		Recoil=64.000000
 		Chaos=-1.0
 		Inaccuracy=(X=64,Y=64)

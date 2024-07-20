@@ -28,7 +28,6 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=0.35
-		//FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS',Volume=1.500000)
 		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-HFire',Volume=1.800000)
 		Recoil=728.000000
 		Chaos=-1.0
@@ -108,7 +107,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=2.000000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS_Cock',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.SPAS.SPAS-FireCock',Volume=1.200000)
 		Recoil=512.000000
 		Chaos=-1.0
 		Inaccuracy=(X=32,Y=32)
