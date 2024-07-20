@@ -18,6 +18,9 @@ simulated function SwitchBladeMode (bool bLoaded)
 		FireAnim='Pokies';
 		FireAnimRate=0.900000;
 		Damage=default.Damage;
+		DamageType=Class'BWBP_SKC_Pro.DT_AK490Slash';
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK490SlashHead';
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK490Slash';
 	}
 	else
 	{
@@ -25,7 +28,10 @@ simulated function SwitchBladeMode (bool bLoaded)
 		PreFireAnim='PrepBash';
 		FireAnim='Bash';
 		FireAnimRate=default.FireAnimRate;
-		Damage=60;
+		Damage *= 0.8;
+		DamageType=default.DamageType;
+		DamageTypeHead=default.DamageTypeHead;
+		DamageTypeArm=default.DamageTypeArm;
 	}
 
 	if (Weapon.bBerserk)

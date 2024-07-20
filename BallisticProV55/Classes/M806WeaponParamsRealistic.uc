@@ -137,7 +137,7 @@ defaultproperties
 		DeclineTime=0.400000
 		DeclineDelay=0.1250000
 		ViewBindFactor=1.00000
-		ADSViewBindFactor=0.30000
+		ADSViewBindFactor=1.00000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.820000
 		bViewDecline=True
@@ -217,7 +217,7 @@ defaultproperties
 		//Function
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
-		MagAmmo=12
+		MagAmmo=8
 		bMagPlusOne=True
 		ViewOffset=(X=0.00,Y=20.00,Z=-20.00)
 		WeaponName="M806 .45 Handgun (4X)"
@@ -246,7 +246,7 @@ defaultproperties
 		// Stats
 		PlayerSpeedFactor=1.050000 //-.05
 		InventorySize=3
-		MagAmmo=12
+		MagAmmo=8
 		bMagPlusOne=True
 		bDualBlocked=true //too big
 		ViewOffset=(X=0.00,Y=20.00,Z=-20.00)

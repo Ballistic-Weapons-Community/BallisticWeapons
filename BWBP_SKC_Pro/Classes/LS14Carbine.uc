@@ -22,10 +22,10 @@ var() Material	WeaponScreenShader; //Scripted Texture with self illum applied
 var() Material	ScreenBase;
 var() Material	ScreenAmmoBlue; //Norm
 var() Material	ScreenAmmoRed; //Low Ammo
-var protected const color MyFontColor; //Why do I even need this?
+var() protected const color MyFontColor; //Why do I even need this?
 
-var	float	AmmoBarLeftPos;
-var	float	AmmoBarRightPos;
+var() float		AmmoBarLeftPos;
+var() float		AmmoBarRightPos;
 
 var() Sound		GrenOpenSound;				//Sounds for rocket reloading
 var() Sound		GrenLoadSound;				//
@@ -34,7 +34,7 @@ var() Sound		GrenCloseSound;				//
 var() Sound		DoubleVentSound;	//Sound for double fire's vent
 var() Sound		OverHeatSound;		//Sounds for hot firing
 
-var   actor GLIndicator;
+var() actor 	GLIndicator;
 var() name		GrenadeLoadAnim;			//Anim for rocket reload
 var() float		GrenadeLoadAnimRate;
 var() name		SingleGrenadeLoadAnim;		//Anim for rocket reload loop
@@ -45,30 +45,43 @@ var() float 	HatchCloseAnimRate;
 var() Name		ShovelAnim;					//Anim to play after shovel loop ends
 var() float		ShovelAnimRate;
 var() int       Rockets;					//Rockets currently in the gun.
-var() int       ConfigX;					//Rockets currently in the gun.
-var() int      	ConfigY;					//Rockets currently in the gun.
 var() byte		SelfHeatDecayRate;
-var	bool		bHeatOnce;					//Used for playing a sound once.
-var	bool		bBarrelsOnline;				//Used for alternating laser effect in attachment class.
-var	bool		bIsReloadingGrenade;		//Are we loading grenades?
-var	bool		bWantsToShoot;				//Are we interrupting reload?
-var	bool		bOverloaded;				//You exploded it.
-var float		lastModeChangeTime;
+var() bool		bHeatOnce;					//Used for playing a sound once.
+var() bool		bBarrelsOnline;				//Used for alternating laser effect in attachment class.
+var() bool		bIsReloadingGrenade;		//Are we loading grenades?
+var() bool		bWantsToShoot;				//Are we interrupting reload?
+var() bool		bOverloaded;				//You exploded it.
+var() float		lastModeChangeTime;
 
-var float 		SelfHeatLevel, SelfHeatDeclineTime;
+var() float 	SelfHeatLevel, SelfHeatDeclineTime;
 
 var() Material	StabBackTex;
-var(Gfx) Color ChargeColor;
+var(Gfx) Color 	ChargeColor;
 var(Gfx) vector RechargeOrigin;
 var(Gfx) vector RechargeSize;
 
+// autofire
+var() bool	bGatling;
+var() bool	bRapid;
+var() float ChargeRate;
+var() float CoolRate;
+var() float LaserCharge;
+var() float MaxCharge;
+var() bool	bIsCharging;
+// Barrel rotation
+var   float DesiredSpeed, BarrelSpeed;
+var   int	BarrelTurn;
+var() Sound BarrelSpinSound;
+var() Sound BarrelStopSound;
+var() Sound BarrelStartSound;
 
-var actor HeatSteam;
-var actor BarrelFlare;
-var actor BarrelFlareSmall;
-var actor VentCore;
-var actor VentBarrel;
-var actor CoverGlow;
+// visual effects
+var() actor HeatSteam;
+var() actor BarrelFlare;
+var() actor BarrelFlareSmall;
+var() actor VentCore;
+var() actor VentBarrel;
+var() actor CoverGlow;
 
 struct RevInfo
 {
@@ -83,7 +96,34 @@ replication
 		Rockets;
 
 	reliable if (ROLE==ROLE_Authority)
-		ClientSetHeat, ClientScreenStart;
+		ClientSetHeat, ClientScreenStart, ChargeRate;
+}
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bGatling=false;
+	bRapid=false;
+	if (InStr(WeaponParams.LayoutTags, "backpack") != -1)
+	{
+		bNoMag=true;
+		LS14PrimaryFire(FireMode[0]).DryFireSound.Sound=None;
+	}
+	if (InStr(WeaponParams.LayoutTags, "rapid") != -1)
+	{
+		bRapid=true;
+		bFullVolume=True;
+		SoundVolume=255;
+		SoundRadius=256.000000;
+	}
+	if (InStr(WeaponParams.LayoutTags, "gatling") != -1)
+	{
+		bGatling=true;
+		Rockets=0;
+	}
 }
 
 simulated event PostNetBeginPlay()
@@ -270,8 +310,51 @@ simulated function ClientSetHeat(float NewHeat)
 	SelfHeatLevel = NewHeat;
 }
 
+simulated function SetLaserCharge(float NewLaserCharge)
+{
+	LaserCharge = NewLaserCharge;
+}
+
 simulated event Tick (float DT)
 {
+	local float OldBarrelTurn;
+	
+	if (bGatling)
+	{
+		if (FireMode[0].IsFiring())
+		{
+			BarrelSpeed = BarrelSpeed + FClamp(0.2 - BarrelSpeed, -0.2*DT, 0.4*DT);
+			BarrelTurn += BarrelSpeed * 655360 * DT;
+			CoolRate = 0;
+			bIsCharging = true;
+		}
+		else if (BarrelSpeed > 0)
+		{
+			BarrelSpeed = FMax(BarrelSpeed-0.1*DT, 0.01);
+			OldBarrelTurn = BarrelTurn;
+			BarrelTurn += BarrelSpeed * 655360 * DT;
+			if (BarrelSpeed <= 0.025 && int(OldBarrelTurn/10922.66667) < int(BarrelTurn/10922.66667))
+			{
+				BarrelTurn = int(BarrelTurn/10922.66667) * 10922.66667;
+				BarrelSpeed = 0;
+				PlaySound(BarrelStopSound, SLOT_None, 0.2, , 16, 1.0, true);
+				//AmbientSound = None;
+			}
+			CoolRate = default.CoolRate;
+			bIsCharging = false;
+		}
+		else
+		{
+			CoolRate = default.CoolRate;
+			bIsCharging = false;
+		}
+		if (BarrelSpeed > 0)
+		{
+			//AmbientSound = BarrelSpinSound;
+			//SoundPitch = 32 + 96 * BarrelSpeed;
+		}
+	}
+	
 	if (SelfHeatLevel > 0 && Level.TimeSeconds > SelfHeatDeclineTime)
 		SelfHeatLevel = FMax(SelfHeatLevel - SelfHeatDecayRate * DT, 0);
 	
@@ -745,7 +828,7 @@ function ServerStartReload (optional byte i)
 		return;
 	if (MagAmmo < default.MagAmmo && Ammo[0].AmmoAmount > 0)
 		Loadings[0] = 1;
-	if (Rockets < 3 && Ammo[1].AmmoAmount > 0)
+	if (Rockets < 3 && Ammo[1].AmmoAmount > 0 && !bGatling)
 		Loadings[1] = 1;
 	if (Loadings[0] == 0 && Loadings[1] == 0)
 		return;
@@ -831,22 +914,33 @@ function bool BotShouldReloadGrenade ()
 simulated event WeaponTick(float DT)
 {
 	local int i;
+	local rotator BT;
+
+	if (bGatling)
+	{
+		BT.Roll = BarrelTurn;
+		SetBoneRotation('BarrelArray', BT);
+	}
+	
 	super.WeaponTick(DT);
 
-	if (LS14PrimaryFire(FireMode[0]).bSecondBarrel)
-		bBarrelsOnline=true;
-	if (AIController(Instigator.Controller) != None && !IsGrenadeLoaded()&& AmmoAmount(1) > 0 && BotShouldReloadGrenade() && !IsReloadingGrenade())
-		LoadGrenade();
-
-	if (Rockets<0)
-		Rockets=0;
-	for(i=2;i>(Rockets-1);i--)
+	if (!bGatling)
 	{
-		if (ReloadState == RS_None)
-		SetBoneScale(i, 0.0, Shells[i].ShellName);
+		if (LS14PrimaryFire(FireMode[0]).bSecondBarrel)
+			bBarrelsOnline=true;
+		if (AIController(Instigator.Controller) != None && !IsGrenadeLoaded()&& AmmoAmount(1) > 0 && BotShouldReloadGrenade() && !IsReloadingGrenade())
+			LoadGrenade();
+
+		if (Rockets<0)
+			Rockets=0;
+		for(i=2;i>(Rockets-1);i--)
+		{
+			if (ReloadState == RS_None)
+			SetBoneScale(i, 0.0, Shells[i].ShellName);
+		}
+		for(i=0;i<Rockets;i++)
+			SetBoneScale(i, 1.0, Shells[i].ShellName);
 	}
-	for(i=0;i<Rockets;i++)
-		SetBoneScale(i, 1.0, Shells[i].ShellName);
 }
 
 simulated function float RateSelf()
@@ -988,18 +1082,28 @@ simulated function PlayShovelLoop()
 
 simulated function float ChargeBar()
 {
-	return SelfHeatLevel / 10;
+	if (bRapid)
+		return FMin(LaserCharge, MaxCharge);
+	else
+		return SelfHeatLevel / 10;
 }
 
 defaultproperties
 {
-	 MyFontColor=(R=255,G=255,B=255,A=255)
-     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.LS14.LS14-ScriptLCD'
-     WeaponScreenShader=Shader'BWBP_SKC_Tex.LS14.LS14-ScriptLCD-SD'
-	 ScreenBase=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenBase'
-	 ScreenAmmoBlue=Texture'BWBP_SKC_Tex.LS14.LS14-Screen'
-	 ScreenAmmoRed=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenRed'
-	 
+	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
+	BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
+	BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
+	ChargeRate=1.000000
+	CoolRate=1.0
+ 	MaxCharge=1.000000
+
+	MyFontColor=(R=255,G=255,B=255,A=255)
+	WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.LS14.LS14-ScriptLCD'
+	WeaponScreenShader=Shader'BWBP_SKC_Tex.LS14.LS14-ScriptLCD-SD'
+	ScreenBase=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenBase'
+	ScreenAmmoBlue=Texture'BWBP_SKC_Tex.LS14.LS14-Screen'
+	ScreenAmmoRed=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenRed'
+
 	ManualLines(0)="Single Fire mode fires one barrel at once for low damage, with good fire rate.||Double Fire fires both barrels, for moderate damage, with low fire rate.||Both modes heat up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
 	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
 	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
@@ -1008,8 +1112,8 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-    OverHeatSound=Sound'WeaponSounds.BaseImpactAndExplosions.BShieldReflection'
-    DoubleVentSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-MedHeat'
+	OverHeatSound=Sound'WeaponSounds.BaseImpactAndExplosions.BShieldReflection'
+	DoubleVentSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-MedHeat'
 	GrenadeLoadAnim="RLLoad"
 	GrenadeLoadAnimRate=1.500000
 	SingleGrenadeLoadAnim="RLLoadLoop"
@@ -1028,7 +1132,7 @@ defaultproperties
 	Shells(2)=(ShellName="RocketOne")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.LS14.BigIcon_LS14'
-	
+
 	bWT_Bullet=True
 	bWT_Hazardous=True
 	bWT_Splash=True
@@ -1062,7 +1166,7 @@ defaultproperties
 	ParamsClasses(0)=Class'LS14WeaponParamsComp'
 	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	ParamsClasses(2)=Class'LS14WeaponParamsRealistic'
-    ParamsClasses(3)=Class'LS14WeaponParamsTactical'
+	ParamsClasses(3)=Class'LS14WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LS14SecondaryFire'
 	SelectAnimRate=1.500000
@@ -1086,6 +1190,8 @@ defaultproperties
 	SightOffset=(X=11.00,Y=-0.5,Z=7.50)
 	SightPivot=(Pitch=600,Roll=-1024)
 
+	UsedAmbientSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Idle'
+		
 	AttachmentClass=Class'BWBP_SKC_Pro.LS14Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.LS14.SmallIcon_LS14'
 	IconCoords=(X2=127,Y2=31)
@@ -1098,10 +1204,9 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS14'
 	DrawScale=0.300000
-    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
 	Skins(2)=Texture'BWBP_SKC_Tex.LS14.LS14-RDS'
 	Skins(3)=Shader'BWBP_OP_Tex.CX61.CX61SightShad'
-    Skins(4)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
-	 
+	Skins(4)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
 }

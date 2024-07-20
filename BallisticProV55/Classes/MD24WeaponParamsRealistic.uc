@@ -370,6 +370,7 @@ defaultproperties
 	Layouts(0)=WeaponParams'RealisticParams_10mm'
 	Layouts(1)=WeaponParams'RealisticParams'
 	Layouts(2)=WeaponParams'RealisticParams_Supp'
+	Layouts(3)=WeaponParams'RealisticParams_TacKnife'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=MD24_Green

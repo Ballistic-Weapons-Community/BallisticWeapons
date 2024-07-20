@@ -10,6 +10,34 @@
 //=============================================================================
 class RS04MeleeFire extends BallisticMeleeFire;
 
+
+simulated function SwitchBladeMode (bool bLoaded)
+{
+	if (bLoaded)
+	{
+		FireAnimRate=0.900000;
+		Damage *= 1.5;
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Stab';
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04Stab';
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Stab';
+	}
+	else
+	{
+		PreFireAnim='PrepBash';
+		FireAnim='Bash';
+		FireAnimRate=default.FireAnimRate;
+		Damage=default.Damage;
+		DamageType=default.DamageType;
+		DamageTypeHead=default.DamageTypeHead;
+		DamageTypeArm=default.DamageTypeArm;
+	}
+
+	if (Weapon.bBerserk)
+		FireRate *= 0.75;
+	if ( Level.GRI.WeaponBerserk > 1.0 )
+	    FireRate /= Level.GRI.WeaponBerserk;
+}
+
 simulated function bool HasAmmo()
 {
 	return true;
@@ -48,9 +76,9 @@ defaultproperties
 	Damage=35.000000
 
 
-	DamageType=Class'BWBP_SKC_Pro.DTRS04Stab'
-	DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04Stab'
-	DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Stab'
+	DamageType=Class'BWBP_SKC_Pro.DTRS04Bonk'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04Bonk'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Bonk'
 	KickForce=100
 	HookStopFactor=1.700000
 	HookPullForce=100.000000

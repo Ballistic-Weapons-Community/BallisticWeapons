@@ -67,9 +67,9 @@ simulated function PlayFireAnimations()
 defaultproperties
 {
 	TraceRange=(Max=5500.000000)
-	DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-	DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-	DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+	DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
 	KickForce=15000
 	PenetrateForce=150
 	bPenetrate=True

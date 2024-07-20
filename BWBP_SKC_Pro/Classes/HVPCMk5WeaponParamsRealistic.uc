@@ -58,7 +58,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Fire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=270.000000
 		Chaos=0.150000
-		Inaccuracy=(X=12,Y=12)
+		Inaccuracy=(X=256,Y=256)
 		WarnTargetPct=0.200000	
 		Heat=3.0
 	End Object
@@ -96,6 +96,7 @@ defaultproperties
 		Chaos=0.050000
 		Inaccuracy=(X=12,Y=12)
 		WarnTargetPct=0.200000	
+		Heat=0.3
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -126,6 +127,7 @@ defaultproperties
 		Chaos=0.050000
 		Inaccuracy=(X=12,Y=12)
 		WarnTargetPct=0.200000	
+		Heat=0.3
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Green

@@ -39,6 +39,41 @@ defaultproperties
 		AimedFireAnim="AimedFire"	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
+	
+	//Supp
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Supp
+		TraceRange=(Min=7000.000000,Max=7000.000000)
+		WaterTraceRange=5600.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.600000
+		Damage=15.0
+		HeadMult=3.7
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
+		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
+		PenetrationEnergy=24.000000
+		PenetrateForce=175
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Pitch=0.8,Radius=128,bAtten=True) //
+		Recoil=80.000000 //
+		Chaos=-1.0
+		Inaccuracy=(X=6,Y=6) //
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Supp
+		FireInterval=0.110000 //
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+		AimedFireAnim="AimedFire"	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Supp'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -123,7 +158,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
 		Weight=30
-		LayoutName="Red Dot Sight"
+		LayoutName="Dart + RDS"
 		//Visual
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
@@ -148,14 +183,16 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_NoDart
+	Begin Object Class=WeaponParams Name=ClassicParams_Supp
 		//Layout core
 		Weight=15
-		LayoutName="No Dart"
+		LayoutName="Suppressed"
 		//Visual
-		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=1f)
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
-		SightOffset=(X=1.0,Y=0.01,Z=-0.3)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorSOCOM',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-50,y=0,z=-0),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="Muzzle",Scale=0.025,AugmentOffset=(x=-60,y=-0.3,z=7),AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		SightOffset=(X=1.0,Y=0.01,Z=-0.6)
 		//Stats
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
@@ -170,12 +207,12 @@ defaultproperties
 		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Supp'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_NoDart'
+	Layouts(1)=WeaponParams'ClassicParams_Supp'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XMK5_Tan

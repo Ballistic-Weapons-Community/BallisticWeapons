@@ -59,7 +59,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Fire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=270.000000
 		Chaos=0.150000
-		Inaccuracy=(X=256,Y=256)
+		Inaccuracy=(X=6,Y=6)
 		WarnTargetPct=0.200000	
 		Heat=1.5
 	End Object
@@ -98,6 +98,7 @@ defaultproperties
 		Chaos=0.050000
 		Inaccuracy=(X=12,Y=6)
 		WarnTargetPct=0.200000	
+		Heat=0.3
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -127,7 +128,8 @@ defaultproperties
 		Recoil=100.000000
 		Chaos=0.050000
 		Inaccuracy=(X=12,Y=6)
-		WarnTargetPct=0.200000	
+		WarnTargetPct=0.200000
+		Heat=0.3	
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Green
@@ -244,6 +246,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Military
 		LayoutName="E55 Plasma Cannon"
+		LayoutTags="milspec"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MainBlack",Index=1)
@@ -252,11 +255,12 @@ defaultproperties
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4)
 		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5)
 		
-		PlayerSpeedFactor=0.800000
-		PlayerJumpFactor=0.700000
+		MagAmmo=50
+		PlayerSpeedFactor=0.850000
+		PlayerJumpFactor=0.850000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.65000
+		SightingTime=0.55000
 		SightPivot=(Pitch=256)
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

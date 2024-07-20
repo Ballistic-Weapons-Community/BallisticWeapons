@@ -7,7 +7,7 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTM1911TrackerStuck extends DT_BWExplode;
+class DTRS04TrackerStuck extends DT_BWExplode;
 
 defaultproperties
 {

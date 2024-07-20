@@ -15,9 +15,9 @@ defaultproperties
 		Damage=32
 		HeadMult=2.65
 		LimbMult=0.375
-		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
 		PenetrationEnergy=32.000000
 		PenetrateForce=150
 		bPenetrate=True

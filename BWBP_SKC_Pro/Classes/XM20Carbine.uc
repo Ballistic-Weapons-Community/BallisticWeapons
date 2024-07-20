@@ -114,11 +114,6 @@ simulated function OnWeaponParamsChanged()
 		bOvercharged=true;
 		ChargeRate=ChargeRateOvercharge;
 		bBigLaser=True;
-		if ( ThirdPersonActor != None )
-		{
-			XM20Attachment(ThirdPersonActor).bIsPrototype=true;
-			XM20Attachment(ThirdPersonActor).bBigLaser=true;
-		}
 	}
 
 	if (InStr(WeaponParams.LayoutTags, "shield") != -1)

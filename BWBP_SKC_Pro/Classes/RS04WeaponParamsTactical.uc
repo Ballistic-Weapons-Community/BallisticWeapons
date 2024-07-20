@@ -15,9 +15,9 @@ defaultproperties
 		Damage=30 // .45, compact
         HeadMult=3.5
         LimbMult=0.75
-		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
         PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True
@@ -43,9 +43,9 @@ defaultproperties
 		Damage=30
         HeadMult=3.5
         LimbMult=0.75
-		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
         PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True

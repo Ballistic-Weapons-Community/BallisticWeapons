@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTM1911Pistol extends DT_BWBullet;
+class DTRS04Pistol extends DT_BWBullet;
 
 defaultproperties
 {

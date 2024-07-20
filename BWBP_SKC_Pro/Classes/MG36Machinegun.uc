@@ -38,6 +38,7 @@ var Texture ScopeViewTexTracker; //Target Detector
 var	bool	bLowZoom; //We're using the RDS
 
 var   bool		bIsGauss;				// Has the gauss barrel, can't be silenced
+var   bool		bHasSuppressor;			// 
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer
 var() sound		SilencerOnSound;		// Silencer stuck on sound
@@ -60,7 +61,8 @@ simulated function OnWeaponParamsChanged()
 	assert(WeaponParams != None);
 	
 	bIsGauss=false;
-
+	bHasSuppressor=false;
+	
 	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
 	{
 		bIsGauss=true;
@@ -68,6 +70,11 @@ simulated function OnWeaponParamsChanged()
 		{
 			MG36Attachment(ThirdPersonActor).bIsGauss=true;
 		}
+	}
+
+	if (InStr(WeaponParams.LayoutTags, "ar") != -1)
+	{
+		bHasSuppressor=true;
 	}
 }
 
@@ -378,7 +385,7 @@ function ServerAdjustThermal(bool bNewValue)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (!bScopeView && !bIsGauss) //Not in scope, lets play with the suppressor if possible
+	if (!bScopeView && bHasSuppressor) //Not in scope, lets play with the suppressor if possible
 	{
 		SwitchSilencer();
 		return;

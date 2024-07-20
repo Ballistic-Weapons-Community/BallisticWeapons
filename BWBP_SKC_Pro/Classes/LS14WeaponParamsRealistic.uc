@@ -13,8 +13,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=40
-		HeadMult=2.714285
-		LimbMult=0.628571
+		HeadMult=2.75
+		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
@@ -37,6 +37,39 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//Long Barrel - Dbl
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Dbl
+		TraceRange=(Min=1500000.000000,Max=1500000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=80
+		HeadMult=2.75
+		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
+		PenetrationEnergy=64.000000
+		PenetrateForce=400
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble',Volume=0.900000)
+		Recoil=50.000000
+		Chaos=-1.00
+		BotRefireRate=1.050000
+		WarnTargetPct=0.050000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Dbl
+		FireInterval=0.200000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+		AmmoPerFire=2
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Dbl'
 	End Object
 
 	//Carbine
@@ -188,6 +221,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams_Dbl'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
@@ -220,7 +254,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'
-	Layouts(1)=WeaponParams'RealisticCarbineParams'
+	//Layouts(1)=WeaponParams'RealisticCarbineParams'
 
 
 }

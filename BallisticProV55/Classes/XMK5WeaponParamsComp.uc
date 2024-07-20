@@ -33,6 +33,35 @@ defaultproperties
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_Supp
+		TraceRange=(Min=4096.000000,Max=4096.000000)
+        DecayRange=(Min=788,Max=1838)
+		PenetrationEnergy=16
+		RangeAtten=0.5
+		Damage=23
+        HeadMult=2.00f
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
+		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
+		PenetrateForce=175
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.800000
+		Recoil=170.000000 //
+		Chaos=0.035000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Pitch=0.8,Radius=128,bAtten=True) //
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Supp
+		FireInterval=0.09000 //
+		FireEndAnim=
+		AimedFireAnim="AimedFire"	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Supp'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -54,6 +83,18 @@ defaultproperties
 		FireAnim="Fire2"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -91,9 +132,16 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		Weight=30
+		LayoutName="Dart + RDS"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
+		SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
+		//Stats
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		DisplaceDurationMult=0.75
 		SightMoveSpeedFactor=0.9
 		MagAmmo=32
@@ -104,7 +152,33 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Supp
+		//Layout core
+		Weight=15
+		LayoutName="Suppressed"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorSOCOM',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-50,y=0,z=-0),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="Muzzle",Scale=0.025,AugmentOffset=(x=-60,y=-0.3,z=7),AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		SightOffset=(X=1.0,Y=0.01,Z=-0.6)
+		//Stats
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
+		DisplaceDurationMult=0.75
+		SightMoveSpeedFactor=0.9
+		MagAmmo=32
+		SightingTime=0.250000
+        InventorySize=4
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Supp'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XMK5_Tan

@@ -62,6 +62,7 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasKnife=true;
 		MeleeFireMode.Damage = 70;
+		RS04MeleeFire(MeleeFireMode).SwitchBladeMode(true);
 	}
 	if (InStr(WeaponParams.LayoutTags, "light") != -1)
 	{

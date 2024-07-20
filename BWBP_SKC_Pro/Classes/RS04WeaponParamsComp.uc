@@ -11,9 +11,9 @@ defaultproperties
 		TraceRange=(Max=5500.000000)
 		RangeAtten=0.900000
 		Damage=25
-		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -35,9 +35,9 @@ defaultproperties
 		TraceRange=(Max=5500.000000)
 		RangeAtten=0.900000
 		Damage=25
-		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'

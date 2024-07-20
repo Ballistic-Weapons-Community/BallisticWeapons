@@ -110,7 +110,7 @@ defaultproperties
 	bAlignToVelocity=True
 	DetonateDelay=0.000000
 	ImpactDamage=30
-	ImpactDamageType=Class'BWBP_SKC_Pro.DTM1911TrackerStuck'
+	ImpactDamageType=Class'BWBP_SKC_Pro.DTRS04TrackerStuck'
 	ImpactManager=Class'BallisticProV55.IM_M46GrenadeImpact'
 	TrailClass=Class'BallisticProV55.M50GrenadeTrail'
 	TrailOffset=(X=-8.000000)

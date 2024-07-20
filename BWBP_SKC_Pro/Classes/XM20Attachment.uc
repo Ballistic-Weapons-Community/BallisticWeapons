@@ -8,8 +8,9 @@
 //=============================================================================
 class XM20Attachment extends BallisticAttachment;
 
+var byte CurrentTracerMode;
+var array< class<BCTraceEmitter> >	TracerClasses[2];
 
-var   bool					bIsPrototype;	//Proto version has a larger beam
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
@@ -29,21 +30,12 @@ replication
 	reliable if (bNetInitial && Role == ROLE_Authority)
 		XM20ShieldEffect3rd;
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn;
+		bLaserOn, CurrentTracerMode;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot, bBigLaser;
 }
 
 
-
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-	if (bIsPrototype)
-	{
-		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20P';
-	}
-}
 
 simulated function KillLaserDot()
 {
@@ -178,7 +170,7 @@ simulated function Destroyed()
 
 simulated function InstantFireEffects(byte Mode)
 {
-	if (Mode == 0)
+	if (Mode == 1)
 	{
 		if (VSize(PreviousHitLoc - mHitLocation) < 2)
 			return;
@@ -188,6 +180,110 @@ simulated function InstantFireEffects(byte Mode)
 	super.InstantFireEffects(Mode);
 }
 
+// Spawn a tracer and water tracer
+simulated function SpawnTracer(byte Mode, Vector V)
+{
+	local BCTraceEmitter Tracer;
+	local Vector TipLoc, WLoc, WNorm;
+	local float Dist;
+	local bool bThisShot;
+
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
+		return;
+
+	TipLoc = GetModeTipLocation(Mode);
+	Dist = VSize(V - TipLoc);
+
+	// Count shots to determine if it's time to spawn a tracer
+	if (ModeInfos[Mode].TracerMix == 0)
+		bThisShot=true;
+	else
+	{
+		ModeInfos[Mode].TracerCounter++;
+		if (TracerMix < 0)
+		{
+			if (ModeInfos[Mode].TracerCounter >= -ModeInfos[Mode].TracerMix)	{
+				ModeInfos[Mode].TracerCounter = 0;
+				bThisShot=false;			}
+			else
+				bThisShot=true;
+		}
+		else if (ModeInfos[Mode].TracerCounter >= ModeInfos[Mode].TracerMix)	{
+			ModeInfos[Mode].TracerCounter = 0;
+			bThisShot=true;					}
+	}
+	// Spawn a tracer
+	if (ModeInfos[Mode].bTracer && TracerClasses[CurrentTracerMode] != None &&
+		bThisShot && (ModeInfos[Mode].TracerChance >= 1 || FRand() < ModeInfos[Mode].TracerChance))
+	{
+		if (Dist > 200)
+			Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(Dist);
+	}
+	// Spawn under water bullet effect
+	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh 
+    && ModeInfos[Mode].WaterTracerClass != None && ModeInfos[Mode].bWaterTracer)
+	{
+		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
+			Tracer = Spawn(ModeInfos[Mode].WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(VSize(WLoc - TipLoc));
+	}
+}
+
+// Spawn a tracer and water tracer
+/*simulated function SpawnTracer(byte Mode, Vector V)
+{
+	local BCTraceEmitter Tracer;
+	local Vector TipLoc, WLoc, WNorm;
+	local float Dist;
+	local bool bThisShot;
+
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
+		return;
+
+	TipLoc = GetTipLocation();
+	Dist = VSize(V - TipLoc);
+
+	// Count shots to determine if it's time to spawn a tracer
+	if (TracerMix == 0)
+		bThisShot=true;
+	else
+	{
+		TracerCounter++;
+		if (TracerMix < 0)
+		{
+			if (TracerCounter >= -TracerMix)	{
+				TracerCounter = 0;
+				bThisShot=false;			}
+			else
+				bThisShot=true;
+		}
+		else if (TracerCounter >= TracerMix)	{
+			TracerCounter = 0;
+			bThisShot=true;					}
+	}
+	// Spawn a tracer
+	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
+		bThisShot && (TracerChance >= 1 || FRand() < TracerChance))
+	{
+		if (Dist > 200)
+		Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(Dist);
+	}
+	// Spawn under water bullet effect
+	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
+		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
+	{
+		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
+			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(VSize(WLoc - TipLoc));
+	}
+}*/
+
 //shield
 function InitFor(Inventory I)
 {
@@ -196,6 +292,12 @@ function InitFor(Inventory I)
 	if (BallisticWeapon(I) != None)
 		myWeap = BallisticWeapon(I);
 
+	if (XM20Carbine(I) != None && XM20Carbine(I).bIsPrototype)
+	{
+		CurrentTracerMode=1;
+		bBigLaser=true;
+	}
+	
 	if ( (Instigator.PlayerReplicationInfo == None) || (Instigator.PlayerReplicationInfo.Team == None)
 		|| (Instigator.PlayerReplicationInfo.Team.TeamIndex > 1) )
 		XM20ShieldEffect3rd = Spawn(class'XM20ShieldEffect3rd', I.Instigator);
@@ -208,7 +310,7 @@ function InitFor(Inventory I)
 
 simulated event ThirdPersonEffects()
 {
-    	if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
+	if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
 	{
 		//Spawn impacts, streaks, etc
 		InstantFireEffects(FiringMode);
@@ -220,7 +322,7 @@ simulated event ThirdPersonEffects()
 		PlayPawnFiring(FiringMode);
 		//Eject Brass
 		EjectBrass(FiringMode);
-    	}
+	}
 
     	Super.ThirdPersonEffects();
 }
@@ -239,6 +341,8 @@ defaultproperties
 	FlashBone="tip"
 	AltFlashBone="tip"
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
+	TracerClasses(0)=class'TraceEmitter_XM20'
+	TracerClasses(1)=class'TraceEmitter_XM20P'
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20'
 	ImpactManager=Class'BWBP_SKC_Pro.IM_XM20Laser'
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)

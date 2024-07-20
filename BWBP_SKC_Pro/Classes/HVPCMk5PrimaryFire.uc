@@ -30,7 +30,8 @@ simulated function bool AllowFire()
 function PlayFiring()
 {
 	Super.PlayFiring();
-	HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
+	if (!HVPCMk5PlasmaCannon(BW).bMilSpec)
+		HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 }
 
 
@@ -46,7 +47,7 @@ simulated state SingleShot
 	function DoFireEffect()
 	{
 		Super.DoFireEffect();
-		if (level.Netmode == NM_DedicatedServer)
+		if (level.Netmode == NM_DedicatedServer && !HVPCMk5PlasmaCannon(BW).bMilSpec)
 			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 	}
 }
@@ -84,7 +85,7 @@ simulated state SpreadShot
 
 		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
 		Super(BallisticFire).DoFireEffect();
-		if (level.Netmode == NM_DedicatedServer)
+		if (level.Netmode == NM_DedicatedServer && !HVPCMk5PlasmaCannon(BW).bMilSpec)
 			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 	}
 

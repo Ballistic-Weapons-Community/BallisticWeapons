@@ -273,7 +273,7 @@ defaultproperties
 		WeaponName="SX-45 .45 Pistol (Sil)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	

@@ -18,20 +18,21 @@ simulated function bool AllowFire()
 function PlayFiring()
 {
 	Super.PlayFiring();
-	HVPCMk5PlasmaCannon(BW).AddHeat(0.30);
+	if (!HVPCMk5PlasmaCannon(BW).bMilSpec)
+		HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 }
 
 
 function DoFireEffect()
 {
-
 	Super.DoFireEffect();
-	if (level.Netmode == NM_DedicatedServer)
-		HVPCMk5PlasmaCannon(Weapon).AddHeat(0.30);
+	if (level.Netmode == NM_DedicatedServer && !HVPCMk5PlasmaCannon(BW).bMilSpec)
+		HVPCMk5PlasmaCannon(Weapon).AddHeat(HeatPerShot);
 }
 
 defaultproperties
 {
+	HeatPerShot=0.3
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BWBP_SKC_Pro.A48FlashEmitter'
      FireRecoil=200.000000

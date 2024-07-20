@@ -24,6 +24,7 @@ defaultproperties
 		Recoil=700.000000
 		Chaos=0.400000
 		WarnTargetPct=0.200000	
+		Inaccuracy=(X=6,Y=6)
 		Heat=1.5
 	End Object
 
@@ -54,6 +55,7 @@ defaultproperties
 		Recoil=700.000000
 		Chaos=0.400000
 		WarnTargetPct=0.200000	
+		Inaccuracy=(X=256,Y=256)
 		Heat=3.0
 	End Object
 
@@ -89,6 +91,7 @@ defaultproperties
 		Recoil=200.000000
 		Chaos=0.025000
 		WarnTargetPct=0.200000	
+		Heat=0.3
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
@@ -117,6 +120,7 @@ defaultproperties
 		Recoil=200.000000
 		Chaos=0.025000
 		WarnTargetPct=0.200000	
+		Heat=0.3
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Green

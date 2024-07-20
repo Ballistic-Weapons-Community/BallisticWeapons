@@ -12,20 +12,20 @@
 class XM20SecondaryFire extends BallisticProInstantFire;
 
 var() sound		FireSoundLoop;
-var   float		StopFireTime;
-var   bool		bLaserFiring;
-var   bool 		bPreventFire;	//prevent fire/recharging when laser is cooling
-var   Actor		MuzzleFlashBlue;
+var() float		StopFireTime;
+var() bool		bLaserFiring;
+var() bool 		bPreventFire;	//prevent fire/recharging when laser is cooling
+var() Actor		MuzzleFlashBlue;
 
 var() name		PreFireAnimCharged;
 var() name		FireLoopAnimCharged;
 var() name		FireEndAnimCharged;
 
-var	int		TraceCount;
+var() int		TraceCount;
 
-var() float	OverChargedFireRate;
-var   int SoundAdjust;
-var()   sound	ChargeSound;
+var() float		OverChargedFireRate;
+var() int 		SoundAdjust;
+var() sound		ChargeSound;
 var() sound		PowerFireSound;
 var() sound		RegularFireSound;
 

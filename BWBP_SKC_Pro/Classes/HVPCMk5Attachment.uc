@@ -11,6 +11,7 @@ class HVPCMk5Attachment extends BallisticAttachment;
 var Actor 		Pack;			// The Backpack
 
 var bool		bDischarge, bDischargeOld;
+var bool		bMilSpec;			// No backpack
 
 var() Sound DischargeSound;			// Sound of water discharge
 
@@ -32,6 +33,14 @@ simulated function Hide(bool NewbHidden)
 	if (Pack!= None)
 		Pack.bHidden = NewbHidden;
 }
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (bMilSpec && Pack != None)
+	{
+		Pack.bHidden = true;
+	}
+}
 
 simulated event PostNetReceive()
 {
@@ -47,6 +56,9 @@ simulated event PostNetReceive()
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
+
+	if (bMilSpec)
+		return;
 
 	Pack = Spawn(class'HVPCPack');
 

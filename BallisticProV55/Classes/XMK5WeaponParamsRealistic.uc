@@ -8,13 +8,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=900.000000,Max=4500.000000) //10mm
+		TraceRange=(Min=5000.000000,Max=5000.000000) //10mm
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		DecayRange=(Min=900.0,Max=4500.0)
 		RangeAtten=0.100000
 		Damage=37.0
-		HeadMult=2.216216
-		LimbMult=0.594594
+		HeadMult=2.2
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
 		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
@@ -38,6 +38,40 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Supp
+		TraceRange=(Min=5000.000000,Max=5000.000000) //10mm
+		WaterTraceRange=5000.0
+		DecayRange=(Min=900.0,Max=4500.0)
+		RangeAtten=0.100000
+		Damage=37.0
+		HeadMult=2.2
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
+		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
+		PenetrationEnergy=9.000000
+		PenetrateForce=35
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Pitch=0.8,Radius=128,bAtten=True) //
+		Recoil=600.000000 //
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8) //
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Supp
+		FireInterval=0.10000 //
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Supp'
 	End Object
 		
 	//=================================================================
@@ -66,6 +100,18 @@ defaultproperties
 		FireAnim="Fire2"	
 	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -113,7 +159,14 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		Weight=30
+		LayoutName="Dart + RDS"
+		//Visual
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
+		SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
+		//Stats
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
@@ -130,7 +183,32 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Supp
+		//Layout core
+		Weight=15
+		LayoutName="Suppressed"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorSOCOM',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-50,y=0,z=-0),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="Muzzle",Scale=0.025,AugmentOffset=(x=-60,y=-0.3,z=7),AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		SightOffset=(X=1.0,Y=0.01,Z=-0.6)
+		//Stats
+		InventorySize=5
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.21
+		MagAmmo=35
+		bMagPlusOne=True
+		WeaponName="XMk5 10mm Urban Submachinegun (Sil)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Supp'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XMK5_Tan
