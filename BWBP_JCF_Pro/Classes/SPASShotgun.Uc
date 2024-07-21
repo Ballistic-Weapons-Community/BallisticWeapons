@@ -34,8 +34,8 @@ function byte BestMode()
 	local float Dist;
 	local Vector Dir;
 
-	if (!class'BallisticReplicationInfo'.static.IsArena())
-		return 0;
+	if (bNoaltfire)
+		return 0;	
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
