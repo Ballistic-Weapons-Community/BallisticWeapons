@@ -452,6 +452,7 @@ defaultproperties
 		AllowedCamos(4)=4
 		//ADS
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.23
 		//Function
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
@@ -479,7 +480,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SawnOff'
 		//ADS
 		SightMoveSpeedFactor=0.9
-		SightingTime=0.250000
+		SightingTime=0.2
 		//Function
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
@@ -504,7 +505,7 @@ defaultproperties
 		AttachmentMesh=SkeletalMesh'BWBP_OP_Anim.TPm_Trenchgun'
 		//ADS
 		SightMoveSpeedFactor=0.9
-		SightingTime=0.350000
+		SightingTime=0.25
 		//Function
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1

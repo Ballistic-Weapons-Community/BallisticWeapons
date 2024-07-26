@@ -191,7 +191,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
 		SightOffset=(X=0,Y=0,Z=2.60)
 		//Function
-        SightingTime=0.40
+        SightingTime=0.35
 		MagAmmo=20
         InventorySize=6
         SightMoveSpeedFactor=0.45
@@ -216,7 +216,7 @@ defaultproperties
 		//SightPivot=(Pitch=-128,Yaw=16)
 		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
 		//Function
-        SightingTime=0.40
+        SightingTime=0.35
 		MagAmmo=20
         InventorySize=6
         SightMoveSpeedFactor=0.45

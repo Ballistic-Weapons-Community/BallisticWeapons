@@ -266,7 +266,7 @@ defaultproperties
 		LayoutName="Flash Bulb"
 		Weight=30
 		// ADS handling
-        SightingTime=0.35
+        SightingTime=0.3
 		SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=450)
 		//Stats
@@ -287,7 +287,7 @@ defaultproperties
 		LayoutTags="combat_laser"
 		Weight=10
 		// ADS handling
-        SightingTime=0.35
+        SightingTime=0.3
 		SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=450)
 		//Stats
@@ -337,7 +337,7 @@ defaultproperties
 		//Attachments
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.3,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		// ADS handling
-        SightingTime=0.35
+        SightingTime=0.3
 		SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=450)
 		//Stats

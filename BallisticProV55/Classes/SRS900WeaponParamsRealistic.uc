@@ -203,7 +203,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.300000
+		SightingTime=0.25
 		MagAmmo=20
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -237,7 +237,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.300000
+		SightingTime=0.22
 		MagAmmo=20
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -264,7 +264,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.300000
+		SightingTime=0.2
 		MagAmmo=20
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)

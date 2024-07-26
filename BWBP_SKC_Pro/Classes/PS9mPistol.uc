@@ -9,11 +9,12 @@
 //=============================================================================
 class PS9mPistol extends BallisticHandGun;
 
+var() bool			bToxin; //Does it proc DoT
+
 var() name			GrenBone;			
 var() name			GrenBoneBase;
 var() name			GrenadeLoadAnim;	//Anim for grenade reload
 var   bool			bLoaded;
-
 
 var() Sound			GrenSlideSound;		//Sounds for grenade reloading
 var() Sound			GrenLoadSound;		//	
@@ -21,6 +22,20 @@ var() Sound			GrenLoadSound;		//
 var() sound			PartialReloadSound;	// Silencer stuck on sound
 var() name			HealAnim;		// Anim for murdering Simon
 var() sound			HealSound;		// The sound of a thousand dying orphans
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bToxin=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "tox") != -1) //indicates reloading version
+	{
+		bToxin=true;
+	}
+}
 
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}

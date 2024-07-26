@@ -46,7 +46,7 @@ defaultproperties
 {
      SecondaryAmmoClass=Class'BWBP_OP_Pro.AP_MX32Rockets'
      AmmoAmount=100
-     InventoryType=Class'BWBP_OP_Pro.Ammo_MX32Bullets'
+     InventoryType=Class'BallisticProV55.Ammo_556mm'
      PickupMessage="You got two MX-32 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.MX32.MX32-AmmoStatic'

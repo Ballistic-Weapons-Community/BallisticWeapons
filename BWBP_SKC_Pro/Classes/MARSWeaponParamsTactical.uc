@@ -286,7 +286,7 @@ defaultproperties
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.35
+		SightingTime=0.32
 		DisplaceDurationMult=1
 		MagAmmo=30
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_CQC'

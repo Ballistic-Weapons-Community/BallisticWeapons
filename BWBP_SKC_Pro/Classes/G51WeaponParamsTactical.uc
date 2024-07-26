@@ -244,7 +244,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.32
 		SightMoveSpeedFactor=0.6
 		//Function
 		MagAmmo=30
@@ -270,7 +270,7 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=1f)
 		SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.32
 		SightMoveSpeedFactor=0.6
 		//Function
 		MagAmmo=30
@@ -296,7 +296,7 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.32
 		SightMoveSpeedFactor=0.6
 		//Function
 		MagAmmo=30
@@ -387,7 +387,7 @@ defaultproperties
 		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.15,AugmentOffset=(X=0,Y=0,Z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.32
 		SightMoveSpeedFactor=0.6
 		//Function
 		MagAmmo=30

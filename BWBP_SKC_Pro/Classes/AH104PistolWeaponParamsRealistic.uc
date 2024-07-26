@@ -124,7 +124,7 @@ defaultproperties
         InventorySize=5
 		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.21
+		SightingTime=0.22
 		MagAmmo=7
 		bMagPlusOne=True
 		//ViewOffset=(X=8,Y=8,Z=-18)
@@ -149,7 +149,7 @@ defaultproperties
         InventorySize=5
 		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.21
+		SightingTime=0.22
 		MagAmmo=7
 		bMagPlusOne=True
 		//ViewOffset=(X=8,Y=8,Z=-18)

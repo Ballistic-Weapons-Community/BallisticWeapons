@@ -77,11 +77,11 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=5250,Max=10250) // 100-200m
 		RangeAtten=0.97
-		Damage=102  // 5.56mm Accel
+		Damage=60  // 5.56mm Accel
         HeadMult=3.25
         LimbMult=0.75
         PenetrationEnergy=150 //x6
-		PenetrateForce=450 //x3
+		PenetrateForce=600 //x3
 		bPenetrate=True
 		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'

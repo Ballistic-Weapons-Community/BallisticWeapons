@@ -82,7 +82,7 @@ defaultproperties
         DecayRange=(Min=1050,Max=3150) // 20-60m
 		RangeAtten=0.5
 		Damage=65 //+10
-        HeadMult=2.5
+        HeadMult=3.0
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
@@ -215,7 +215,7 @@ defaultproperties
 
 		// ADS handling
         SightMoveSpeedFactor=0.6
-		SightingTime=0.25
+		SightingTime=0.2
 		
 		//Zoom
 		SightOffset=(X=-11,Y=0,Z=2.78)
@@ -245,7 +245,7 @@ defaultproperties
 
 		// ADS handling
         SightMoveSpeedFactor=0.6
-		SightingTime=0.25
+		SightingTime=0.2
 		
 		//Zoom
 		SightOffset=(X=-11,Y=0,Z=1.39)
@@ -274,7 +274,7 @@ defaultproperties
 
 		// ADS handling
         SightMoveSpeedFactor=0.6
-		SightingTime=0.25
+		SightingTime=0.2
 		
 		//Zoom
 		SightOffset=(X=-11,Y=0,Z=1.39)

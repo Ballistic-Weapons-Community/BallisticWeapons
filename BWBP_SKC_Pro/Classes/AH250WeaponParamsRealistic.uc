@@ -166,7 +166,7 @@ defaultproperties
 		MaxZoom=3
 		ZoomType=ZT_Fixed
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
-		SightingTime=0.300000
+		SightingTime=0.300000 //+.12
 		SightMoveSpeedFactor=0.500000
 		
 		//Function
@@ -195,7 +195,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-11,Y=0,Z=2.78)
 		ZoomType=ZT_Irons
-		SightingTime=0.250000
+		SightingTime=0.180000
 		SightMoveSpeedFactor=0.500000
 		
 		//Function
@@ -225,7 +225,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-11,Y=0,Z=1.39)
 		ZoomType=ZT_Irons
-		SightingTime=0.250000
+		SightingTime=0.18
 		SightMoveSpeedFactor=0.500000
 		
 		//Function

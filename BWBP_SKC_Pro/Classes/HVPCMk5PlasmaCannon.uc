@@ -52,10 +52,6 @@ simulated function OnWeaponParamsChanged()
 		bMilSpec=true;
 		bNoMag=false;
 		bShowChargingBar=false;
-		if ( ThirdPersonActor != None )
-		{
-			HVPCMk5Attachment(ThirdPersonActor).bMilSpec=true;
-		}
 	}
 }
 

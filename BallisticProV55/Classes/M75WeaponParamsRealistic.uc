@@ -110,7 +110,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.500000
+		SightingTime=1.000000
 		MagAmmo=3
 		bMagPlusOne=True
 		//ReloadAnimRate=1.100000

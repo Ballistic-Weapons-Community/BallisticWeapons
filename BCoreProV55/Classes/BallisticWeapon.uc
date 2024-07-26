@@ -818,7 +818,7 @@ simulated function OnWeaponParamsChanged()
     assert(WeaponParams != None);
 
 	SightingTime 				= WeaponParams.SightingTime;
-	default.SightingTime 		= WeaponParams.SightingTime;
+	//default.SightingTime 		= WeaponParams.SightingTime;
 
 	MagAmmo 					= WeaponParams.MagAmmo;
 	default.MagAmmo				= WeaponParams.MagAmmo;
@@ -830,10 +830,10 @@ simulated function OnWeaponParamsChanged()
 	default.PlayerSpeedFactor	= WeaponParams.PlayerSpeedFactor;
 
 	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
-	default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
+	//default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
 	
 	ReloadAnimRate 					= WeaponParams.ReloadAnimRate;
-	default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
+	//default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
 	ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 	default.ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 	

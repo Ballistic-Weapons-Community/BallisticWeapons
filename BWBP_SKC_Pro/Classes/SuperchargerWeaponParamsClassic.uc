@@ -119,6 +119,7 @@ defaultproperties
 		JumpChaos=0.500000
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 		FallingChaos=0.500000
+		ChaosSpeedThreshold=300.000000
 	End Object
     
 	//=================================================================
@@ -130,7 +131,6 @@ defaultproperties
 		SightingTime=0.300000
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		//SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
         ZoomType=ZT_Fixed
 		ViewOffset=(X=1,Y=10.00,Z=0)

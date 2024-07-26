@@ -150,7 +150,7 @@ defaultproperties
 		SightPivot=(Pitch=0,Roll=0)
         ZoomType=ZT_Irons
 		//Function
-        SightingTime=0.210000
+        SightingTime=0.25
         MagAmmo=24
 		bMagPlusOne=True
 		InventorySize=7

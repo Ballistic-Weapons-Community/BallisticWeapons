@@ -253,7 +253,7 @@ defaultproperties
 		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
 
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.22
 		SightMoveSpeedFactor=0.5
 		
 		//Function
@@ -284,7 +284,7 @@ defaultproperties
 		SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
 
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.22
 		SightMoveSpeedFactor=0.5
 		
 		//Function
@@ -315,7 +315,7 @@ defaultproperties
 		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
 
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.22
 		SightMoveSpeedFactor=0.5
 		
 		//Function
@@ -351,7 +351,7 @@ defaultproperties
 		MaxZoom=4
 
 		// ADS handling
-		SightingTime=0.40 //+0.5
+		SightingTime=0.30 //+0.5
 		SightMoveSpeedFactor=0.500000
 
 		//Function
@@ -390,7 +390,7 @@ defaultproperties
 		MaxZoom=4
 
 		// ADS handling
-		SightingTime=0.45 //+1.0
+		SightingTime=0.35 //+1.0
 		SightMoveSpeedFactor=0.5
 
 		//Function
@@ -423,7 +423,7 @@ defaultproperties
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.15,AugmentOffset=(X=0,Y=0,Z=0),AugmentRot=(Pitch=32768,Yaw=,Roll=-16384))
 
 		// ADS handling
-		SightingTime=0.35
+		SightingTime=0.23
 		SightMoveSpeedFactor=0.5
 
 		//Function

@@ -16,7 +16,7 @@ defaultproperties
         DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
-		Damage=36  // .45
+		Damage=37  // .45
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM806Pistol'
@@ -47,7 +47,7 @@ defaultproperties
         DecayRange=(Min=1050,Max=3150) // 20-60m
 		Inaccuracy=(X=72,Y=72)
 		RangeAtten=0.5
-		Damage=36  // .45
+		Damage=37  // .45
         HeadMult=3.5
         LimbMult=0.75
 		DamageType=Class'BallisticProV55.DTM806Pistol'
@@ -206,7 +206,7 @@ defaultproperties
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
-		SightingTime=0.20
+		SightingTime=0.17
         SightMoveSpeedFactor=0.6
 		//Stats
 		ViewOffset=(X=0,Y=30,Z=-20)
@@ -238,7 +238,7 @@ defaultproperties
 		MaxZoom=4	
 		//ADS
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.45000 //+.25
+		SightingTime=0.32000 //+.25
 		SightOffset=(X=0,Y=0,Z=18)
 		SightPivot=(Pitch=0,Roll=0)
 		//Function
@@ -263,7 +263,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806SG'
 		// ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.250000 //+.05
+		SightingTime=0.220000 //+.05
 		SightPivot=(Pitch=0,Roll=0) 
 		SightOffset=(X=-5.000000,Y=0,Z=4.50000)
 		bAdjustHands=false

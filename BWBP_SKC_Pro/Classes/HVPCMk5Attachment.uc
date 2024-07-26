@@ -27,10 +27,21 @@ simulated function SetOverlayMaterial( Material mat, float time, bool bOverride 
 		Pack.SetOverlayMaterial(mat, time, bOverride);
 }
 
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (HVPCMk5PlasmaCannon(I) != None && HVPCMk5PlasmaCannon(I).bMilSpec)
+	{
+		if (Pack != None)
+			Pack.bHidden = true;
+	}
+}
+
 simulated function Hide(bool NewbHidden)
 {
 	super.Hide(NewbHidden);
-	if (Pack!= None)
+	if (Pack != None)
 		Pack.bHidden = NewbHidden;
 }
 simulated event PreBeginPlay()

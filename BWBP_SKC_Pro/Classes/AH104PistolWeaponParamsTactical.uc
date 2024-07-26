@@ -36,8 +36,9 @@ defaultproperties
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		AimedFireAnim="SightFire"
 		FireEndAnim=
-		FireAnimRate=0.5
-		FireInterval=1.00
+		//FireAnimRate=0.5
+		FireInterval=0.5
+		FireAnim="FireBig"
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		
@@ -113,7 +114,7 @@ defaultproperties
 		SightOffset=(X=-11.50000,Y=0,Z=2.030000)
 		//Function
 		InventorySize=5
-		SightingTime=0.40
+		SightingTime=0.27
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.45
 		MagAmmo=9
@@ -135,7 +136,7 @@ defaultproperties
 		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
 		//Function
 		InventorySize=5
-		SightingTime=0.40
+		SightingTime=0.27
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.45
 		MagAmmo=9

@@ -213,7 +213,7 @@ defaultproperties
 		//Functions
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.17
 		MagAmmo=15
         InventorySize=3
 		bDualBlocked=True
@@ -235,7 +235,7 @@ defaultproperties
 		InventorySize=3
 		DisplaceDurationMult=0.33
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.17
 		MagAmmo=15
 		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -256,7 +256,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.17
 		//Functions
 		DisplaceDurationMult=0.33
 		MagAmmo=15

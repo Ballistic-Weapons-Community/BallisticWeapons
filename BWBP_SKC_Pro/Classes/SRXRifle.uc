@@ -367,10 +367,10 @@ simulated function PlayReload()
 		SetBoneScale (0, 0.0, SilencerBone);
 }
 
-static function class<Pickup> RecommendAmmoPickup(int Mode)
+/*static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_SRXClip';
-}
+}*/
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {

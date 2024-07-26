@@ -168,7 +168,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.17
+		SightingTime=0.18
 		SightOffset=(X=-24,Y=0.06,Z=2.5)
 		//Function
 		PlayerSpeedFactor=1.100000
@@ -201,7 +201,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
 		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.17
+		SightingTime=0.18
 		SightOffset=(X=-24,Y=0.06,Z=4.43)
 		//Function
 		PlayerSpeedFactor=1.100000
@@ -230,7 +230,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		// ADS handling
 		SightMoveSpeedFactor=0.5
-		SightingTime=0.17
+		SightingTime=0.18
 		SightOffset=(X=-24,Y=0.06,Z=2.5)
 		//Stats
 		PlayerSpeedFactor=1.100000

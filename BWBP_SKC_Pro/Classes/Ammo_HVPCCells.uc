@@ -10,7 +10,7 @@ class Ammo_HVPCCells extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=200
+     MaxAmmo=250
      InitialAmount=100
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_LGFlash'
      PickupClass=Class'BWBP_SKC_Pro.AP_HVPCMk5Cell'

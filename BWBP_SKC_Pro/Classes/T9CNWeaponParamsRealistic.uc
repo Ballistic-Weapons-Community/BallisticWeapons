@@ -296,7 +296,7 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.130000
+		SightingTime=0.170000 ///+.04
 		SightOffset=(X=5.00,Y=0.05,Z=1.2)
 		SightPivot=(Pitch=-128)
 		//Functions

@@ -198,11 +198,11 @@ defaultproperties
 		ZoomType=ZT_Irons
 		//ADS
 		SightOffset=(X=-3.00,Y=-0.44,Z=10.70)
-		SightingTime=0.35
+		SightingTime=0.32
 		SightMoveSpeedFactor=0.45
 		//Function
 		MagAmmo=20
-        InventorySize=5
+        InventorySize=6
 		ViewOffset=(X=6.00,Y=3.00,Z=-8.00)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
@@ -226,7 +226,7 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		//Function
 		MagAmmo=20
-        InventorySize=5
+        InventorySize=6
 		ViewOffset=(X=6.00,Y=3.00,Z=-8.00)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
 		AimParams(0)=AimParams'TacticalAimParams_Scope'
@@ -244,12 +244,12 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=16,Scale=0f)
 		//ADS
 		SightOffset=(X=-3.00,Y=-0.44,Z=10.70)
-		SightingTime=0.35
+		SightingTime=0.32
 		SightMoveSpeedFactor=0.45
 		ZoomType=ZT_Irons
 		//Function
 		MagAmmo=50
-        InventorySize=5
+        InventorySize=6
 		ViewOffset=(X=6.00,Y=3.00,Z=-8.00)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
@@ -267,12 +267,12 @@ defaultproperties
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",AugmentOffset=(x=-5,y=0,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//ADS
 		SightOffset=(X=-3.00,Y=-0.44,Z=10.70)
-		SightingTime=0.35
+		SightingTime=0.32
 		SightMoveSpeedFactor=0.45
 		ZoomType=ZT_Irons
 		//Function
 		MagAmmo=50
-        InventorySize=5
+        InventorySize=6
 		ViewOffset=(X=6.00,Y=3.00,Z=-8.00)
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

@@ -63,6 +63,7 @@ var(Gfx) vector RechargeSize;
 // autofire
 var() bool	bGatling;
 var() bool	bRapid;
+var() bool  bHighPower;
 var() float ChargeRate;
 var() float CoolRate;
 var() float LaserCharge;
@@ -107,9 +108,12 @@ simulated function OnWeaponParamsChanged()
 	assert(WeaponParams != None);
 	bGatling=false;
 	bRapid=false;
+	bHighPower=false;
 	if (InStr(WeaponParams.LayoutTags, "backpack") != -1)
 	{
 		bNoMag=true;
+		AmmoClass[0]=class'Ammo_HVPCCells';
+		LS14PrimaryFire(FireMode[0]).AmmoClass=class'Ammo_HVPCCells';
 		LS14PrimaryFire(FireMode[0]).DryFireSound.Sound=None;
 	}
 	if (InStr(WeaponParams.LayoutTags, "rapid") != -1)
@@ -123,6 +127,10 @@ simulated function OnWeaponParamsChanged()
 	{
 		bGatling=true;
 		Rockets=0;
+	}
+	if (InStr(WeaponParams.LayoutTags, "heavy") != -1)
+	{
+		bHighPower=true;
 	}
 }
 

@@ -304,7 +304,7 @@ defaultproperties
 	XInaccuracy=2.000000
 	YInaccuracy=2.000000
 	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
-	bModeExclusive=True
+	bModeExclusive=false
 	FireAnim="Idle"
 	TweenTime=0.000000
 	FireRate=0.050000

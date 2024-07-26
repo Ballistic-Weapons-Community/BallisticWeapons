@@ -174,7 +174,7 @@ defaultproperties
 		WeaponPrice=800
 		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.13
+		SightingTime=0.15
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
 		SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
 		bAdjustHands=true
@@ -211,7 +211,7 @@ defaultproperties
 		MaxZoom=4	
 		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.250000 //+.12
+		SightingTime=0.270000 //+.12
 		SightOffset=(X=0,Y=0,Z=18)
 		SightPivot=(Pitch=0,Roll=0)
 		//Function
@@ -237,7 +237,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806SG'
 		// ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.180000 //+.05
+		SightingTime=0.20000 //+.05
 		SightPivot=(Pitch=0,Roll=0) 
 		SightOffset=(X=-5.000000,Y=0,Z=4.50000)
 		bAdjustHands=false

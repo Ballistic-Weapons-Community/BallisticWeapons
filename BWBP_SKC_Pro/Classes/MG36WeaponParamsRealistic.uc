@@ -177,7 +177,7 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.3
+		SightingTime=0.4
 		MagAmmo=100
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
@@ -233,7 +233,7 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.3
+		SightingTime=0.4
 		MagAmmo=30
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)

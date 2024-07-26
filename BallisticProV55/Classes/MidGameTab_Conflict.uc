@@ -921,7 +921,7 @@ function InternalOnChange(GUIComponent Sender)
 				bUpdatingWeapon=true;
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
 				Pic_Weapon.Image = BW.default.BigIconMaterial;
-				tb_Desc.SetContent(BW.static.GetShortManual());
+				tb_Desc.SetContent(BW.static.GetShortManual(LayoutIndexList[lb_Weapons.List.Index]));
 				log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[lb_Weapons.List.Index]); 
 				LoadLIFromBW(BW);
 				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
@@ -985,6 +985,7 @@ function InternalOnChange(GUIComponent Sender)
 			{
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
 				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index]);
+				tb_Desc.SetContent(BW.static.GetShortManual(cb_WeapLayoutIndex.getIndex()));
 			}
 			log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
 

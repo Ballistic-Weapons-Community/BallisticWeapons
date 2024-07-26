@@ -124,7 +124,7 @@ defaultproperties
 		InventorySize=5
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.250000
+		SightingTime=0.22
 		MagAmmo=6
 		//ReloadAnimRate=1.100000
 		//CockAnimRate=1.000000
@@ -151,7 +151,7 @@ defaultproperties
 		InventorySize=5
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.250000
+		SightingTime=0.22
 		MagAmmo=6
 		bMagPlusOne=True
 		//ReloadAnimRate=1.100000

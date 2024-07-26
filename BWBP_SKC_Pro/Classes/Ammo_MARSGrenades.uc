@@ -10,7 +10,7 @@
 class Ammo_MARSGrenades extends BallisticAmmo;
 
 var MARSAssaultRifle		DaF2K;
-var Ammo_545mmSTANAG Bullets;
+var Ammo_556mm Bullets;
 
 function bool HandlePickupQuery( pickup Item )
 {
@@ -18,10 +18,10 @@ function bool HandlePickupQuery( pickup Item )
 	{
 		if (Bullets==None)
 		{
-			Bullets = Ammo_545mmSTANAG(Pawn(Owner).FindInventoryType(class'Ammo_545mmSTANAG'));
+			Bullets = Ammo_556mm(Pawn(Owner).FindInventoryType(class'Ammo_556mm'));
 			if (Bullets == None)
 			{
-				Bullets = spawn(class'Ammo_545mmSTANAG',Owner,,,rot(0,0,0));
+				Bullets = spawn(class'Ammo_556mm',Owner,,,rot(0,0,0));
 				Bullets.GiveTo( Pawn(Owner), Item );
 			}
 		}

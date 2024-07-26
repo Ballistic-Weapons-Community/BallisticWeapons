@@ -1,6 +1,8 @@
 //=============================================================================
 // TraceEmitter_LS14R. Effects for the laser refractor.
 //
+// red auto laser tracer, used by the ls440
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================

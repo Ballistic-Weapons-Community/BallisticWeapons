@@ -8,7 +8,7 @@
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AP_STANAGShockwave extends BallisticAmmoPickup;
-
+/*
 function inventory SpawnCopy( Pawn Other )
 {
 	local Inventory Copy, Copy2;
@@ -20,15 +20,15 @@ function inventory SpawnCopy( Pawn Other )
 	InventoryType = default.InventoryType;
 
 	Copy2 = Super.SpawnCopy(Other);
-	Ammo_545mmSTANAG(Copy2).Grenades = Ammo_MARSGrenades(Copy);
-	Ammo_MARSGrenades(Copy).Bullets = Ammo_545mmSTANAG(Copy2);
+	Ammo_556mm(Copy2).Grenades = Ammo_MARSGrenades(Copy);
+	Ammo_MARSGrenades(Copy).Bullets = Ammo_556mm(Copy2);
 	return Copy2;
-}
+}*/
 
 defaultproperties
 {
      AmmoAmount=60
-     InventoryType=Class'BWBP_SKC_Pro.Ammo_545mmSTANAG'
+     InventoryType=Class'BallisticProV55.Ammo_556mm'
      PickupMessage="You picked up two MARS magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARSAmmo'

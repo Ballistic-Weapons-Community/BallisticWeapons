@@ -200,6 +200,7 @@ defaultproperties
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 		FallingChaos=0.500000
 		ChaosDeclineTime=1.500000
+		ChaosSpeedThreshold=300.000000
 	End Object
 
 	Begin Object Class=AimParams Name=ClassicControlledAimParams

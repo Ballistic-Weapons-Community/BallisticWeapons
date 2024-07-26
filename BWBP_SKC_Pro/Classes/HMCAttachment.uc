@@ -253,9 +253,9 @@ simulated function InstantFireEffects(byte Mode)
 	if (Mode == 0)
 	{
 		if ( (Instigator.PlayerReplicationInfo.Team != None) && (Instigator.PlayerReplicationInfo.Team.TeamIndex == 0) || bRedTeam)
-			ImpactManager = class'IM_HVPCProjectile';
+			ModeInfos[0].ImpactManager = class'IM_HVPCProjectile';
 		else
-			ImpactManager = class'IM_HMCBlast';
+			ModeInfos[0].ImpactManager = class'IM_HMCBlast';
 	}
 	else
 	{
@@ -263,9 +263,9 @@ simulated function InstantFireEffects(byte Mode)
 			return;
 		PreviousHitLoc = mHitLocation;
 		if ( (Instigator.PlayerReplicationInfo.Team != None) && (Instigator.PlayerReplicationInfo.Team.TeamIndex == 0) || bRedTeam)
-			ImpactManager = class'IM_GRS9Laser';
+			ModeInfos[1].ImpactManager = class'IM_GRS9Laser';
 		else
-			ImpactManager = class'IM_HMCLase';
+			ModeInfos[1].ImpactManager = class'IM_HMCLase';
 	}
 	super.InstantFireEffects(Mode);
 }
@@ -273,15 +273,15 @@ simulated function InstantFireEffects(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'HMCBeamCannon'
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
-     AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_HMCBlast'
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMC'
-     TracerChance=2.000000
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_RX22A'
-     DrawScale=0.250000
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
+	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
+	ImpactManager=Class'BWBP_SKC_Pro.IM_HMCBlast'
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMC'
+	TracerChance=2.000000
+	bRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_RX22A'
+	DrawScale=0.250000
 }

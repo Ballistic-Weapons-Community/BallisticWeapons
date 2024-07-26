@@ -115,9 +115,9 @@ defaultproperties
 		Damage=35.0
 		HeadMult=2.5
 		LimbMult=0.6
-		DamageType=Class'BallisticProV55.DTRS8Stab'
-		DamageTypeHead=Class'BallisticProV55.DTRS8Stab'
-		DamageTypeArm=Class'BallisticProV55.DTRS8Stab'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Stab'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04Stab'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Stab'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000

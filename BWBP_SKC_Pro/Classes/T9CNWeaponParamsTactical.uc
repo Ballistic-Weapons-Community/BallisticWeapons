@@ -266,7 +266,7 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
 		//ADS
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.17
 		SightOffset=(X=0.00,Y=0.00,Z=1.73)
 		SightPivot=(Pitch=128)
 		//Functions
@@ -305,7 +305,7 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		//ADS
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.20 //+.03
 		SightOffset=(X=5.00,Y=0.05,Z=1.2)
 		SightPivot=(Pitch=-128)
 		//Functions
@@ -335,7 +335,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CN'
 		//ADS
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.225000 //+.025
+		SightingTime=0.22000 //+.05
 		SightOffset=(X=0.00,Y=0.30,Z=1)
 		SightPivot=(Pitch=0)
 		//Functions

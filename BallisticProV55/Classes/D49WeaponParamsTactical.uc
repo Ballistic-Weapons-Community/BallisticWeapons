@@ -29,7 +29,7 @@ defaultproperties
         FlashScaleFactor=1.200000
         Recoil=1280.000000
         Chaos=0.400000
-        Inaccuracy=(X=128,Y=128)
+        Inaccuracy=(X=96,Y=96)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-FireSingle',Volume=1.200000)
         WarnTargetPct=0.4
 		BotRefireRate=0.7
@@ -64,7 +64,7 @@ defaultproperties
         FlashScaleFactor=1.200000
         Recoil=2560.000000
         Chaos=0.800000
-        Inaccuracy=(X=128,Y=128)
+        Inaccuracy=(X=96,Y=96)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Fire',Volume=1.300000)
         WarnTargetPct=0.5
 		BotRefireRate=0.7
@@ -152,7 +152,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		//ADS
-        SightingTime=0.2
+        SightingTime=0.19
         SightMoveSpeedFactor=0.6
 		SightOffset=(X=-11,Y=-4.6,Z=25.5)
 		SightPivot=(Pitch=350,Yaw=-48,Roll=-500)
@@ -183,7 +183,7 @@ defaultproperties
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		//ADS
 		SightMoveSpeedFactor=0.35
-		SightingTime=0.45
+		SightingTime=0.4
 		SightOffset=(X=50,Y=-0.5,Z=10)
 		SightPivot=(Pitch=0,Yaw=0,Roll=0)
 		bAdjustHands=false

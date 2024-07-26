@@ -252,7 +252,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-7.00000,Y=-0.01,Z=1.82)
         SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.15
 		//Function
 		bDualBlocked=True
         DisplaceDurationMult=0.33
@@ -273,7 +273,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-7.00000,Y=-0.01,Z=1.82)
         SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.15
 		//Function
 		bDualBlocked=True
         DisplaceDurationMult=0.33
@@ -295,7 +295,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-7.00000,Y=-0.01,Z=2.5)
         SightMoveSpeedFactor=0.6
-		SightingTime=0.20
+		SightingTime=0.15
 		//Function
 		bDualBlocked=True
         DisplaceDurationMult=0.33
@@ -314,7 +314,7 @@ defaultproperties
 		//Attachments
 		//ADS
 		SightOffset=(X=-7.00000,Y=0,Z=1.7)
-		SightingTime=0.20
+		SightingTime=0.15
         SightMoveSpeedFactor=0.6
 		//Function
 		bDualBlocked=True

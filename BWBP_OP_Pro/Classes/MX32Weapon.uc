@@ -247,6 +247,11 @@ simulated function bool AreRocketsLoaded()
 		return false;
 }
 
+//static function class<Pickup> RecommendAmmoPickup(int Mode)
+//{
+//	return class'AP_MX32Bullet';
+//}
+
 function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 {
 	Super.GiveAmmo(m, WP, bJustSpawned);

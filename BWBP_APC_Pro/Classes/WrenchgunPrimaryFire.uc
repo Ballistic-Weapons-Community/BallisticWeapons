@@ -306,7 +306,7 @@ defaultproperties
      FireAnimRate=0.800000
      FireForce="AssaultRifleAltFire"
      FireRate=0.350000
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_WrenchgunShells'
+     AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-20.000000)
      ShakeOffsetRate=(X=-1000.000000)

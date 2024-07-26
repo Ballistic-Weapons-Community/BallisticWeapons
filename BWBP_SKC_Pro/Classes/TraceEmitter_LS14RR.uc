@@ -1,6 +1,8 @@
 //=============================================================================
 // TraceEmitter_LS14RR. Effects for the laser replicator refractor.
 //
+// Instagib red laser tracer
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================

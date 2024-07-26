@@ -194,7 +194,7 @@ defaultproperties
 		Weight=30
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=26.7)
-        SightingTime=0.20
+        SightingTime=0.15
         SightMoveSpeedFactor=0.6
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
@@ -221,7 +221,7 @@ defaultproperties
 		Weight=10
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=26.7)
-        SightingTime=0.200000
+        SightingTime=0.15
 		SightMoveSpeedFactor=0.6
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
@@ -251,7 +251,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=26.7)
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.2000
+		SightingTime=0.15
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
@@ -282,7 +282,7 @@ defaultproperties
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Laser',BoneName="Muzzle",AugmentOffset=(x=-20,y=-3,z=-20),Scale=0.25,AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=28.65)
-        SightingTime=0.200000
+        SightingTime=0.15
 		SightMoveSpeedFactor=0.6
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
@@ -313,7 +313,7 @@ defaultproperties
 		//GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Laser',BoneName="Muzzle",AugmentOffset=(x=-20,y=-3,z=-20),Scale=0.25,AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
 		//ADS
 		SightOffset=(X=0,Y=-0.3,Z=3.5)
-        SightingTime=0.200000
+        SightingTime=0.15
 		SightMoveSpeedFactor=0.6
 		bAdjustHands=false
 		RootAdjust=(Yaw=0,Pitch=0)

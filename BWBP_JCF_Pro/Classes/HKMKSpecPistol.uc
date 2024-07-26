@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class HKMKSpecPistol extends BallisticHandgun;
+class HKMKSpecPistol extends BallisticHandgun
+	transient
+	HideDropDown
+	CacheExempt;
 
 var   bool			bSilenced;				// Silencer on. Silenced
 var() name			SilencerBone;			// Bone to use for hiding silencer

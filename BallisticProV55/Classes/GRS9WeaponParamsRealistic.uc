@@ -247,7 +247,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=26.7)
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.2000
+		SightingTime=0.12
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
@@ -278,7 +278,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=26.7)
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.2000
+		SightingTime=0.12
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
@@ -311,7 +311,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=26.7)
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.2000
+		SightingTime=0.11
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
@@ -347,7 +347,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-20,Y=-1.85,Z=28.65)
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.2000
+		SightingTime=0.12
 		bAdjustHands=true
 		RootAdjust=(Yaw=-300,Pitch=3000)
 		WristAdjust=(Yaw=-3000,Pitch=-000)
@@ -382,7 +382,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=0,Y=-0.3,Z=3.5)
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.2000
+		SightingTime=0.12
 		bAdjustHands=false
 		RootAdjust=(Yaw=0,Pitch=0)
 		WristAdjust=(Yaw=0,Pitch=0)

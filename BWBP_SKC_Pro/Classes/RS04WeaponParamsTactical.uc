@@ -140,9 +140,9 @@ defaultproperties
 		Damage=80.0
 		HeadMult=2.5
 		LimbMult=0.6
-		DamageType=Class'BallisticProV55.DTRS8Stab'
-		DamageTypeHead=Class'BallisticProV55.DTRS8Stab'
-		DamageTypeArm=Class'BallisticProV55.DTRS8Stab'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Stab'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04Stab'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Stab'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000
@@ -204,7 +204,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-3.50,Y=0.2,Z=1.07)
 		SightPivot=(Roll=-256)
-		SightingTime=0.20
+		SightingTime=0.15
         SightMoveSpeedFactor=0.6
 		//Stats
 		InventorySize=2
@@ -231,7 +231,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-3.50,Y=0.2,Z=1.07)
 		SightPivot=(Roll=-256)
-		SightingTime=0.20
+		SightingTime=0.15
         SightMoveSpeedFactor=0.6
 		//Stats
 		InventorySize=2
@@ -257,7 +257,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-3.50,Y=0.2,Z=1.9)
 		SightPivot=(Roll=-256)
-		SightingTime=0.20
+		SightingTime=0.15
         SightMoveSpeedFactor=0.6
 		//Stats
 		InventorySize=2
@@ -283,7 +283,7 @@ defaultproperties
 		//ADS
 		SightOffset=(X=-3.50,Y=-0.03,Z=1.07)
 		SightPivot=(Roll=0)
-		SightingTime=0.20
+		SightingTime=0.15
         SightMoveSpeedFactor=0.6
 		//Function
 		InventorySize=2

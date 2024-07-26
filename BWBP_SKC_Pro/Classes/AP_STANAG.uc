@@ -11,7 +11,7 @@ class AP_STANAG extends BallisticAmmoPickup;
 defaultproperties
 {
      AmmoAmount=60
-     InventoryType=Class'BWBP_SKC_Pro.Ammo_556mmSTANAG'
+     InventoryType=Class'BallisticProV55.Ammo_556mm'
      PickupMessage="You picked up two STANAG magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARSAmmo'

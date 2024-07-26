@@ -510,10 +510,10 @@ function float SuggestAttackStyle()	{	return 0.1;	}
 function float SuggestDefenseStyle()	{	return 0.5;	}
 // End AI Stuff =====
 
-static function class<Pickup> RecommendAmmoPickup(int Mode)
+/*static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_SX45Clip';
-}
+}*/
 
 defaultproperties
 {

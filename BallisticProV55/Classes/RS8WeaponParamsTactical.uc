@@ -169,7 +169,7 @@ defaultproperties
 		LayoutName="10mm Suppressable"
 		Weight=30
 		//ADS
-		SightingTime=0.20
+		SightingTime=0.17
         SightMoveSpeedFactor=0.6
 		SightOffset=(X=-43,Y=-1.4,Z=13.4)
 		SightPivot=(Pitch=-200,Roll=-1050)
@@ -197,7 +197,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
 		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		//ADS
-		SightingTime=0.20
+		SightingTime=0.17
         SightMoveSpeedFactor=0.6
 		SightOffset=(X=-30,Y=0.26,Z=3.5)
 		SightPivot=(Pitch=0,Roll=0)
@@ -228,7 +228,7 @@ defaultproperties
 		AllowedCamos(2)=7
 		//ADS
 		SightMoveSpeedFactor=0.600000
-		SightingTime=0.200000
+		SightingTime=0.17
 		SightOffset=(X=0,Y=-2,Z=21.8)
 		SightPivot=(Pitch=0,Roll=-1050)
 		bAdjustHands=true

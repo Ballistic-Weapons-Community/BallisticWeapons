@@ -75,11 +75,11 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
         DecayRange=(Min=5250,Max=10250) // 100-200m
 		RangeAtten=0.97
-		Damage=74  // 5.56mm Accel
+		Damage=60  // 5.56mm Accel
         HeadMult=3.25
         LimbMult=0.75
         PenetrationEnergy=150 //
-		PenetrateForce=600 //x3
+		PenetrateForce=600 //
 		bPenetrate=True
 		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
@@ -91,7 +91,7 @@ defaultproperties
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
 		PushbackForce=250 //
-		Recoil=700.000000 //x3
+		Recoil=1200.000000 //
 		Chaos=0.05
 		Inaccuracy=(X=1,Y=1) //
 		WarnTargetPct=0.200000

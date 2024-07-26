@@ -272,7 +272,7 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.3
+		SightingTime=0.23
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
