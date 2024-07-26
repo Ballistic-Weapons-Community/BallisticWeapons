@@ -163,6 +163,9 @@ function byte BestMode()
 	local Bot B;
 	local float Result, Height, Dist, VDot;
 
+	if (bNoaltfire)
+		return 0;
+
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;

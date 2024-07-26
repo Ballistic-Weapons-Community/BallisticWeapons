@@ -88,6 +88,6 @@ defaultproperties
 	DamageRadius=250.000000
 	MyDamageType=Class'BWBP_SWC_Pro.DTA51Grenade'
 	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-	StaticMesh=StaticMesh'BWBP_SWC_Static.SG.SkrithGrenadeProj'
+	//StaticMesh=StaticMesh'BWBP_SWC_Static.SG.SkrithGrenadeProj'
 	DrawScale=0.500000
 }
