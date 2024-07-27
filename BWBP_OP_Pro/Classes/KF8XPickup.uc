@@ -26,17 +26,18 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XBow.XBow_static');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XBow.XBowPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XBow.XBowPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBow_static'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBowPickupLo'
      InventoryType=Class'BWBP_OP_Pro.KF8XCrossbow'
      RespawnTime=20.000000
      PickupMessage="You picked up the KF8X stealth crossbow."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBow_static'
+     StaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBowPickupHi'
      Physics=PHYS_None
      DrawScale=0.250000
      CollisionHeight=4.000000

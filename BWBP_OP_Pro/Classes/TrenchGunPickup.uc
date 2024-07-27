@@ -44,17 +44,18 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TechGun.TechGunPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TechGun.TechGunPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TechGun.TechGunPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.TechGun.TechGunPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.TechGun.TechGunPickupLo'
      InventoryType=Class'BWBP_OP_Pro.TrenchGun'
      RespawnTime=15.000000
      PickupMessage="You picked up the BR-112 sapper's trenchgun."
      PickupSound=Sound'BW_Core_WeaponSound.M290.M290Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.TechGun.TechGunPickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.TechGun.TechGunPickupHi'
      Physics=PHYS_None
      DrawScale=1.50000
      CollisionHeight=3.500000

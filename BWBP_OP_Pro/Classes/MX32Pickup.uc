@@ -13,33 +13,31 @@ class MX32Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Main-S');
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Attach-S');
-	L.AddPrecacheMaterial(Texture'ONSstructureTextures.CoreGroup.Invisible');
-	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32-MainStatic');
-	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32-AmmoStatic');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Main-D');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Attach-D');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32PickupHi');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32PickupLo');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Main-S');
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Attach-S');
-	Level.AddPrecacheMaterial(Texture'ONSstructureTextures.CoreGroup.Invisible');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Main-D');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Attach-D');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32-MainStatic');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32-AmmoStatic');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.MX32.MX32-MainStatic'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.MX32.MX32PickupLo'
      InventoryType=Class'BWBP_OP_Pro.MX32Weapon'
      RespawnTime=20.000000
      PickupMessage="You picked up the MX-32 Rocket Machine Gun."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.MX32.MX32-MainStatic'
+     StaticMesh=StaticMesh'BWBP_OP_Static.MX32.MX32PickupHi'
      Physics=PHYS_None
      DrawScale=0.100000
      CollisionHeight=4.000000

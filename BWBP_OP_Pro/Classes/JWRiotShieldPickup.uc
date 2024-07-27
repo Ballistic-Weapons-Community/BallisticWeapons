@@ -17,13 +17,14 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.JWRiotShieldPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.JWRiotShieldPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.JWRiotShieldPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWRiotShieldPickup'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWRiotShieldPickup'	 
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWRiotShieldPickupLo'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWRiotShieldPickupHi'	 
      InventoryType=Class'BWBP_OP_Pro.JWRiotShieldWeapon'
      RespawnTime=10.000000
      PickupMessage="You picked up a civilion riot shield."

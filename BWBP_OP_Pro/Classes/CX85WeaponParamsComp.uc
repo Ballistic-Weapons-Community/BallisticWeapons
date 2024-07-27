@@ -58,7 +58,7 @@ defaultproperties
 		FireInterval=0.25
 		FireAnim="Fire"
 		FireEndAnim=
-		AimedFireAnim="SightFire"
+		AimedFireAnim="Fire"
 		FireAnimRate=1.000000	
 		TargetState="SeekerFlechette"
 		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams_Seeker'

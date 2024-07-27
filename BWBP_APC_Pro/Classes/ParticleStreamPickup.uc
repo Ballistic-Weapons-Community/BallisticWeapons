@@ -12,7 +12,8 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.ProtonPack.Proton_gun_SH1');
 	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.ProtonPack.Proton_pack_SH_1');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.Proton_Pack_Static');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupHi');
+     L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupLo');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.Proton_Pack_Static_Test');
 }
 
@@ -23,20 +24,21 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.Proton_Pack_Static');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.ProtonPack.Proton_Pack_Static_Test');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.proton_pack_static'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupLo'
      PickupDrawScale=0.750000
      InventoryType=Class'BWBP_APC_Pro.ParticleStreamer'
      RespawnTime=20.000000
      PickupMessage="You picked up the mk.II E90-N particle accelerator."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.proton_pack_static'
+     StaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupHi'
      Physics=PHYS_None
      DrawScale=0.750000
      CollisionHeight=4.500000

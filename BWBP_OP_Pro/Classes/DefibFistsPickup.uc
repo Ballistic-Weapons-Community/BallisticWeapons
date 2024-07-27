@@ -8,9 +8,6 @@ var() int HealingAmount;
 var() bool bSuperHeal;
 var() float AdrenalineAmount;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 
 //===========================================================================
@@ -22,14 +19,18 @@ var() float AdrenalineAmount;
 static function StaticPrecache(LevelInfo L)
 {
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.LCestus');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.RCestus');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.Graph');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.CX85.CX85PickupHi');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.CX85.CX85PickupLo');	
 }
 simulated function UpdatePrecacheMaterials()
 {
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.LCestus');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.RCestus');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.Graph');
+}
+
+simulated function UpdatePrecacheStaticMeshes()
+{
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.CX85.CX85PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.CX85.CX85PickupLo');
 }
 
 simulated static function UpdateHUD(HUD H)

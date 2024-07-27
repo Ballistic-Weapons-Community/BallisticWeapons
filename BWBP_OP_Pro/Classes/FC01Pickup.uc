@@ -13,12 +13,12 @@ class FC01Pickup extends BallisticWeaponPickup
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMGPickupLo'
      InventoryType=Class'BWBP_OP_Pro.FC01SmartGun'
      RespawnTime=20.000000
      PickupMessage="You picked up the FC-01 Smartgun."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM'
+     StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMGPickupHi'
      Physics=PHYS_None
      CollisionHeight=4.000000
 	 Drawscale=0.1

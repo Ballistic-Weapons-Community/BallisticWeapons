@@ -32,18 +32,19 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MAGSaw.ChainsawSwordPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.ChainsawSwordPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupLo'
      InventoryType=Class'BWBP_OP_Pro.MAG78Longsword'
      RespawnTime=10.000000
      PickupMessage="You picked up the MAG-SAW longsword."
      PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.ChainsawSwordPickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupHi'
      Physics=PHYS_None
-     DrawScale=1.60000
+     DrawScale=2.50000
      CollisionHeight=3.500000
 }
