@@ -415,7 +415,7 @@ defaultproperties
      BrassClass=class'Brass_MRS138Shotgun'
 	 
      TrackAnimMode=MU_None
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_TrenchGun'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Trenchgun'
      RelativeLocation=(X=5.000000,Z=4.000000)
      DrawScale=0.450000
 	 

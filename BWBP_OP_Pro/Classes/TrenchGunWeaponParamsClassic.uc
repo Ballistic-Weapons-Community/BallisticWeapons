@@ -19,7 +19,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)
 		Recoil=512.000000
 		Chaos=1.000000
 		PushbackForce=1200.000000
@@ -53,7 +53,7 @@ defaultproperties
 		DamageTypeHead=Class'DT_TrenchGunElectro'
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.electro_Shot',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
 		Recoil=355.000000
 		Chaos=1.000000
 		Inaccuracy=(X=800,Y=750)
@@ -88,7 +88,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchFire'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.RCS715FlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)
 		Recoil=355.000000
 		Chaos=1.000000
 		Inaccuracy=(X=400,Y=350)

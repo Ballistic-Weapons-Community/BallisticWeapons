@@ -173,7 +173,7 @@ defaultproperties
 		bPenetrate=False
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
 		Recoil=1024.000000
 		Chaos=1.000000
 		PushbackForce=1200.000000
@@ -210,7 +210,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.electro_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
 		Recoil=512.000000
 		Chaos=1.000000
 		PushbackForce=1200.000000
@@ -419,8 +419,8 @@ defaultproperties
 		Weight=10
 		AllowedCamos(0)=5
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_Trenchgun'
-		AttachmentMesh=SkeletalMesh'BWBP_OP_Anim.TPm_Trenchgun'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Trenchgun'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Trenchgun'
 		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.30
@@ -499,10 +499,10 @@ defaultproperties
 		CamoName="Trench"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_OP_Tex.TechWrench.TechWrenchShiny',Index=1,AIndex=0,PIndex=-1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_OP_Tex.TechWrench.ExplodoShell',Index=2,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_OP_Tex.TechWrench.ShockShell',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_OP_Tex.TechWrench.WrenchShiny',Index=4,AIndex=1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.TechWrench.TechWrenchShiny',Index=1,AIndex=0,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.TechWrench.ExplodoShell',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.TechWrench.ShockShell',Index=3,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_SKC_Tex.TechWrench.WrenchShiny',Index=4,AIndex=1,PIndex=-1)
 		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.CYLO.ReflexShine',Index=5,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(6)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader',Index=6,AIndex=-1,PIndex=-1)
 	End Object

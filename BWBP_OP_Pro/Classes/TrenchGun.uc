@@ -825,8 +825,8 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-	MatGreenShell=Texture'BWBP_OP_Tex.TechWrench.ExplodoShell'
-	MatBlackShell=Texture'BWBP_OP_Tex.TechWrench.ShockShell'
+	MatGreenShell=Texture'BWBP_SKC_Tex.TechWrench.ExplodoShell'
+	MatBlackShell=Texture'BWBP_SKC_Tex.TechWrench.ShockShell'
 	ShellTipBone1="ShellLSuper"
 	ShellTipBone2="ShellRSuper"
 	ShellTipBone3="SpareShellLSuper"
@@ -835,7 +835,7 @@ defaultproperties
 	FireAnimCutThreshold=3.000000
 	AltDeployable=(dClass=Class'BWBP_OP_Pro.TrenchGunEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,CheckSlope=False,CooldownDelay=2.00) 
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.TechGun.BigIcon_TechGun'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.TechWrench.BigIcon_TechGun'
 	BigIconCoords=(Y1=35,Y2=225)
 	
 	bWT_Shotgun=True
@@ -847,10 +847,10 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_OP_Pro.TrenchGunMeleeFire'
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout',Volume=0.218000)
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway',Volume=0.218000)
-	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_breakclose',Volume=1.2)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.trenchie_breakclose',Volume=1.2)
 	ClipInFrame=0.800000
-	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_shellin')
-	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.trenchie_breakopen')
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.trenchie_shellin')
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.trenchie_breakopen')
 	bNonCocking=True
     bNoCrosshairInScope=True
 	WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000)
@@ -882,7 +882,7 @@ defaultproperties
 	PickupClass=Class'BWBP_OP_Pro.TrenchGunPickup'
 	PlayerViewOffset=(X=10,Y=5.9,Z=-5)
 	AttachmentClass=Class'BWBP_OP_Pro.TrenchGunAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.TechGun.Icon_TechGun'
+	IconMaterial=Texture'BWBP_SKC_Tex.TechWrench.Icon_TechGun'
 	IconCoords=(X2=127,Y2=30)
 	ItemName="BR-112 Trenchgun"
 	LightType=LT_Pulse
@@ -891,12 +891,12 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=180.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.Fpm_Trenchgun'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Trenchgun'
 	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BWBP_OP_Tex.TechWrench.TechWrenchShiny'
-	Skins(2)=Texture'BWBP_OP_Tex.TechWrench.CryoShell'
-	Skins(3)=Texture'BWBP_OP_Tex.TechWrench.CryoShell'
-	Skins(4)=Shader'BWBP_OP_Tex.TechWrench.WrenchShiny'
+	Skins(1)=Shader'BWBP_SKC_Tex.TechWrench.TechWrenchShiny'
+	Skins(2)=Texture'BWBP_SKC_Tex.TechWrench.CryoShell'
+	Skins(3)=Texture'BWBP_SKC_Tex.TechWrench.CryoShell'
+	Skins(4)=Shader'BWBP_SKC_Tex.TechWrench.WrenchShiny'
 	bShowChargingBar=True
 }

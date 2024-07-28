@@ -826,7 +826,7 @@ function SwitchShotParams()
 
 defaultproperties
 {
-	SlugFireSound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot'
+	SlugFireSound=Sound'BWBP_SKC_Sounds.TechGun.electro_Shot'
 	AimedFireEmptyAnim="SightFire"
 	FireEmptyAnim="Fire"	
 	AimedFireSingleAnim="SightFire"
@@ -876,7 +876,7 @@ defaultproperties
 
 	ElectroInaccuracy=(X=150,Y=150)
 	ElectroDoubleInaccuracy=(X=378,Y=220)
-	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
 	FireAnim="FireCombined"
 	FireAnimRate=0.800000
 	FireRate=0.100000
