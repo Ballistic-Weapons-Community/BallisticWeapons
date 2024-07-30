@@ -60,6 +60,7 @@ defaultproperties
 	FlashMode=MU_Both
 	LightMode=MU_Both
 	TracerClass=class'TraceEmitter_A42Beam'
+	MeleeImpactManager=class'IM_GunHit'
 	bRapidFire=True
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A42'
 	DrawScale=0.080000
