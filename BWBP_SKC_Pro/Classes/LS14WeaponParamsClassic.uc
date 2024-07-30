@@ -80,8 +80,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=30
-		HeadMult=2.75
-		LimbMult=0.65
+		HeadMult=1.75
+		LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
@@ -115,7 +115,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=30
-		HeadMult=2.75
+		HeadMult=1.75
 		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
@@ -263,7 +263,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
-		LayoutName="Laser Rifle"
+		LayoutName="Marksman"
 		LayoutDescription="Scope, Rockets, Double Barrel"
 		Weight=30
 		
@@ -272,24 +272,21 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="RDS",Slot=92,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=93,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=94,Scale=0f)
+		AllowedCamos(0)=0
+		
+		//ADS
 		ZoomType=ZT_Logarithmic
+		SightPivot=(Pitch=600,Roll=-1024)
+		SightMoveSpeedFactor=0.500000
 		
 		//Function
 		PlayerSpeedFactor=1.000000
 		PlayerJumpFactor=1.000000
 		InventorySize=8
-		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20
-		//SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		ViewOffset=(X=0.000000,Y=6.000000,Z=-5.000000)
-		SightPivot=(Pitch=600,Roll=-1024)
-		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="LS14 Laser Rifle"
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -309,14 +306,16 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=93,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=94,Scale=1f)
 		SightOffset=(X=11.000000,Y=-0.00000,Z=4.700000)
-		//SightPivot=(Pitch=600,Roll=-1024)
+		AllowedCamos(0)=0
+		
+		//ADS
 		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
 		
 		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
 		InventorySize=7
-		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=20
 		WeaponModes(0)=(ModeName="Burst Barrel",ModeID="WM_BigBurst",Value=2.0)
@@ -324,8 +323,6 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=0
 		WeaponName="LS10 Laser Carbine"
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams_Carbine'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -341,20 +338,23 @@ defaultproperties
 		
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=1f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.LS440.LS440-Blue',Index=1,AIndex=-1,PIndex=-1)
-		//WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainProtoShine',Index=2,AIndex=1,PIndex=3)
-		SightOffset=(X=11.000000,Y=-0.00000,Z=4.700000)
 		ViewOffset=(X=5.000000,Y=10.000000,Z=-3.000000)
-		//SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Irons
+		AllowedCamos(0)=1
+		AllowedCamos(1)=2
+		
+		//ADS
+		SightOffset=(X=5.000000,Y=0.00000,Z=2.750000)
+		ZoomType=ZT_Fixed
+		SightMoveSpeedFactor=0.500000
 		
 		//Function
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.900000
 		InventorySize=7
-		SightMoveSpeedFactor=0.500000
 		ReloadAnimRate=0.8
 		bNeedCock=True
 		MagAmmo=40
@@ -378,18 +378,22 @@ defaultproperties
 		
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.LS440.LS440-Blue',Index=1,AIndex=-1,PIndex=-1)
+		AllowedCamos(0)=1
+		AllowedCamos(1)=2
+		
+		//ADS
 		SightOffset=(X=11.000000,Y=-0.00000,Z=4.700000)
-		//SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
 		
 		//Function
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
 		InventorySize=7
-		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=500
 		WeaponModes(0)=(ModeName="Rotary Barrel",ModeID="WM_FullAuto")
@@ -407,4 +411,29 @@ defaultproperties
 	Layouts(1)=WeaponParams'ClassicParams_Carbine'
 	Layouts(2)=WeaponParams'ClassicParams_Auto'
 	Layouts(3)=WeaponParams'ClassicParams_Gatling'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=LS14_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LS440_Black
+		Index=1
+		CamoName="Prototype"
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LS440_Green
+		Index=2
+		CamoName="Test Bed"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LS14Camos.LS440-MainGreen",Index=1,AIndex=1,PIndex=-1)
+		Weight=5
+	End Object
+	
+	Camos(0)=WeaponCamo'LS14_Black'
+	Camos(1)=WeaponCamo'LS440_Black'
+	Camos(2)=WeaponCamo'LS440_Green'
 }

@@ -38,7 +38,7 @@ function FlashMuzzleFlash()
 	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
 		return;
 
-    if (MuzzleFlashNaked != None && GRSXXPistol(Weapon).CurrentWeaponMode != 3 && bRemovableAmp)
+    if (MuzzleFlashNaked != None && GRSXXPistol(Weapon).CurrentWeaponMode != 3 && (bRemovableAmp || !bAmped))
        	MuzzleFlashNaked.Trigger(Weapon, Instigator);
 	else
 		MuzzleFlash.Trigger(Weapon, Instigator);
@@ -58,7 +58,7 @@ simulated function DestroyEffects()
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
-	if (NewMode != 3 && bRemovableAmp) //Realism amp is limited
+	if (NewMode != 3 && (bRemovableAmp || !bAmped)) //Realism amp is limited
 	{
 		FlashBone=NakedFlashBone;
 		bAmped=False;

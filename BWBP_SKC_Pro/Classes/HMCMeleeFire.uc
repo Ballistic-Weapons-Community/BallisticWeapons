@@ -1,7 +1,7 @@
 //=============================================================================
-// Melee attack for AH2xx family
+// Melee attack for a big ol laser
 //=============================================================================
-class FG50MeleeFire extends BallisticMeleeFire;
+class HMCMeleeFire extends BallisticMeleeFire;
 
 simulated function ModeHoldFire()
 {
@@ -23,8 +23,8 @@ simulated function bool HasAmmo()
 function PlayPreFire()
 {
 	super.PlayPreFire();
-	if (FG50MachineGun(BW) != None)
-		FG50MachineGun(BW).bStriking = true;
+
+	//FG50MachineGun(Weapon).bStriking = true;
 }
 
 defaultproperties
@@ -36,11 +36,11 @@ defaultproperties
      SwipePoints(4)=(offset=(Yaw=0))
      SwipePoints(5)=(Weight=1,offset=(Pitch=-1500,Yaw=-1500))
      SwipePoints(6)=(offset=(Pitch=-3000))
-     WallHitPoint=4
+     WallHitPoint=6
      TraceRange=(Min=130.000000,Max=130.000000)     
-     DamageType=Class'BWBP_SKC_Pro.DT_FG50Melee'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Melee'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Melee'
+     DamageType=Class'BWBP_SKC_Pro.DTHMCMelee'
+     DamageTypeHead=Class'BWBP_SKC_Pro.DTHMCMelee'
+     DamageTypeArm=Class'BWBP_SKC_Pro.DTHMCMelee'
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      bIgnoreReload=True
@@ -48,10 +48,10 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.35,Radius=12.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
-     PreFireAnim="MeleePrep"
+     //PreFireAnim="MeleePrep"
      FireAnim="Melee"
      TweenTime=0.000000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_50IncDrum'
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
      AmmoPerFire=0
      ShakeRotTime=1.000000
      ShakeOffsetMag=(X=5.000000)

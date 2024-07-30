@@ -116,21 +116,21 @@ simulated function OnWeaponParamsChanged()
 		LS14PrimaryFire(FireMode[0]).AmmoClass=class'Ammo_HVPCCells';
 		LS14PrimaryFire(FireMode[0]).DryFireSound.Sound=None;
 	}
-	if (InStr(WeaponParams.LayoutTags, "rapid") != -1)
+	if (InStr(WeaponParams.LayoutTags, "rapid") != -1) //prefire, fast sound, spin up effect
 	{
 		bRapid=true;
 		bFullVolume=True;
 		SoundVolume=255;
 		SoundRadius=256.000000;
 	}
-	if (InStr(WeaponParams.LayoutTags, "gatling") != -1)
+	if (InStr(WeaponParams.LayoutTags, "gatling") != -1) //spin up effect
 	{
 		bGatling=true;
 		Rockets=0;
 	}
-	if (InStr(WeaponParams.LayoutTags, "heavy") != -1)
+	if (InStr(WeaponParams.LayoutTags, "heavy") != -1) //big tracer, no rapidfire sounds
 	{
-		bHighPower=true;
+		bHighPower=true; 
 	}
 }
 
@@ -1158,9 +1158,9 @@ defaultproperties
 	StartShovelAnimRate=2.000000
 	EndShovelAnim="RLLoadEnd"
 	EndShovelAnimRate=2.000000
-	WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_FullAuto")
+	WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
-	WeaponModes(2)=(ModeName="Bot Firemode",bUnavailable=True)
+	WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
 	ScopeViewTex=Texture'BWBP_SKC_Tex.LS14.LS14Scope'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)

@@ -263,6 +263,7 @@ defaultproperties
 	CockingAnim="Cock_RearPull"
 	ReloadAnimRate=1.500000
 	CockAnimRate=0.700000
+	MeleeImpactManager=class'IM_GunHit'
 	bRapidFire=True
 	bAltRapidFire=True
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_FG50'

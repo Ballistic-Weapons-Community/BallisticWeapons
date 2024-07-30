@@ -114,7 +114,7 @@ simulated state GatlingLaser
 			Instigator.AmbientSound = FireSoundLoopRapid;
 			Instigator.SoundVolume = 255;
 		}
-		else if (FireSoundLoop != None)
+		else if (FireSoundLoop != None && !LS14Carbine(BW).bHighPower)
 		{
 			Instigator.AmbientSound = FireSoundLoop;
 			Instigator.SoundVolume = 255;

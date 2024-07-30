@@ -1,4 +1,4 @@
-class HMCBeamCannonParamsArena extends BallisticWeaponParams;
+class HMCBeamCannonParamsTactical extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,7 +7,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=50000.000000,Max=50000.000000)
 		Damage=245
 		DamageType=Class'BWBP_SKC_Pro.DTHMCBlast'
@@ -26,15 +26,15 @@ defaultproperties
 		WarnTargetPct=0.010000
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.080000
 		AmmoPerFire=50
 		FireAnim="ChargeFireBig"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_Gravitron
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Gravitron
 		TraceRange=(Min=50000.000000,Max=50000.000000)
 		Damage=145
 		DamageType=Class'BWBP_SKC_Pro.DTHMCBlast'
@@ -50,22 +50,22 @@ defaultproperties
 		WarnTargetPct=0.010000
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Gravitron
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Gravitron
 		FireInterval=0.080000
-		AmmoPerFire=40
+		AmmoPerFire=25
 		FireAnim="ChargeFire"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Gravitron'
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Gravitron'
 	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=6000.000000,Max=6000.000000)
 		RangeAtten=0.750000
-		Damage=10
+		Damage=15
 		DamageType=Class'BWBP_SKC_Pro.DTHMCBeam'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTHMCBeamHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTHMCBeam'
@@ -80,17 +80,17 @@ defaultproperties
 		Heat=0.03
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
 		FireInterval=0.080000
 		FireAnim="FireLoop"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams'
 	End Object
 	
-	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams_Tractor
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams_Tractor
 		TraceRange=(Min=6000.000000,Max=6000.000000)
 		RangeAtten=0.750000
-		Damage=6
+		Damage=10
 		DamageType=Class'BWBP_SKC_Pro.DTHMCBeam'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTHMCBeamHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTHMCBeam'
@@ -107,18 +107,18 @@ defaultproperties
 		Heat=0.02
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Tractor
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Tractor
 		TargetState="RepulsorBeamMode"
 		FireInterval=0.080000
 		FireAnim="FireLoop"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams_Tractor'
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams_Tractor'
 	End Object
 	
-	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams_Repulsor
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams_Repulsor
 		TraceRange=(Min=6000.000000,Max=6000.000000)
 		RangeAtten=0.750000
-		Damage=6
+		Damage=10
 		DamageType=Class'BWBP_SKC_Pro.DTHMCBeam'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTHMCBeamHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTHMCBeam'
@@ -135,35 +135,47 @@ defaultproperties
 		Heat=0.02
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Repulsor
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Repulsor
 		TargetState="RepulsorBeamMode"
 		FireInterval=0.080000
 		FireAnim="FireLoop"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams_Repulsor'
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams_Repulsor'
 	End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams
 		ViewBindFactor=0.000000
-		CrouchMultiplier=0.800000
+		ClimbTime=0.03
+		CrouchMultiplier=0.85
+		HipMultiplier=1.25
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ArenaAimParams
+	Begin Object Class=AimParams Name=TacticalAimParams
+		AimSpread=(Min=384,Max=1280)
+        ADSMultiplier=0.7
+		ViewBindFactor=0.200000
+		ChaosDeclineTime=1.500000
+		SprintChaos=0.5
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		JumpChaos=0.5
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+        ChaosSpeedThreshold=300.000000
 	End Object
     
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ArenaParams
+	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
 		Weight=30
 		LayoutName="Industrial Laser"
@@ -178,13 +190,13 @@ defaultproperties
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
 		MagAmmo=500
-		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ArenaParams_Cryon
+	Begin Object Class=WeaponParams Name=TacticalParams_Cryon
 		//Layout core
 		Weight=10
 		LayoutName="Cryon Gravitron"
@@ -209,15 +221,15 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Beam: Repulsor",ModeID="WM_FullAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Healing Beam",Value=0.333333,bUnavailable=true)
 		InitialWeaponMode=0
-		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams_Gravitron'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Tractor'
-		AltFireParams(1)=FireParams'ArenaSecondaryFireParams_Repulsor'
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Gravitron'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Tractor'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams_Repulsor'
 	End Object
 	
-	Layouts(0)=WeaponParams'ArenaParams'
-	Layouts(1)=WeaponParams'ArenaParams_Cryon'
+	Layouts(0)=WeaponParams'TacticalParams'
+	Layouts(1)=WeaponParams'TacticalParams_Cryon'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=HMC_Black

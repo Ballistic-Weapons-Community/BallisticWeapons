@@ -15,7 +15,10 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTHMCBlast'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTHMCBlastHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTHMCBlast'
-		PenetrateForce=400
+		PenetrationEnergy=200.000000
+		PenetrateForce=600
+		PDamageFactor=0.80000
+		WallPDamageFactor=0.80000
 		bPenetrate=True
 		HookStopFactor=2.500000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
@@ -233,6 +236,7 @@ defaultproperties
 		AllowedCamos(2)=3
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HMCCryon'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HMCCryon'
 		ViewOffset=(X=10,Y=15,Z=-15)
 		//ADS
 		SightingTime=0.300000
@@ -272,7 +276,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=HMC_CryonBlack
 		Index=2
 		CamoName="Black"
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HMCCamos.HMC-CryonRed",Index=1,AIndex=-1,PIndex=-1)
 		Weight=10
 	End Object
@@ -280,7 +284,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=HMC_CryonStripes
 		Index=3
 		CamoName="MLN Labs"
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HMCCamos.HMC-CryonStripes",Index=1,AIndex=-1,PIndex=-1)
 		Weight=3
 	End Object

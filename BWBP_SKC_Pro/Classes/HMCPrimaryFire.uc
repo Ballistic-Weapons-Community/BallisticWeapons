@@ -149,7 +149,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	}
 	else
 	{
-		BallisticWeapon(Weapon).TargetedHurtRadius(60, 128, class'DTHMCBlast', 0, HitLocation, Pawn(Other));	
+		BallisticWeapon(Weapon).TargetedHurtRadius(90, 200, class'DTHMCBlast', 0, HitLocation, Pawn(Other));	
 	}
 	BallisticWeapon(Weapon).TargetedHurtRadius(30, 512, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
 }

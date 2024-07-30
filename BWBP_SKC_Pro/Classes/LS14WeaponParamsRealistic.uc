@@ -73,13 +73,13 @@ defaultproperties
 	End Object
 
 	//Carbine
-	Begin Object Class=InstantEffectParams Name=RealisticCarbinePrimaryEffectParams
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Carbine
 		TraceRange=(Min=1500000.000000,Max=1500000.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=30
-		HeadMult=2.714285
-		LimbMult=0.628571
+		HeadMult=2.75
+		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
@@ -97,11 +97,78 @@ defaultproperties
 		WarnTargetPct=0.050000
 	End Object
 
-	Begin Object Class=FireParams Name=RealisticCarbinePrimaryFireParams
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Carbine
 		FireInterval=0.100000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'RealisticCarbinePrimaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Carbine'
+	End Object
+	
+	//Auto Barrel
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Auto
+		TraceRange=(Min=1500000.000000,Max=1500000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=35 //
+		HeadMult=2.75
+		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
+		PenetrationEnergy=64.000000
+		PenetrateForce=400
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS440.AQ-Fire',Volume=0.900000)
+		Recoil=25.000000
+		Chaos=-1.00
+		BotRefireRate=1.050000
+		WarnTargetPct=0.050000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Auto
+		TargetState="GatlingLaser"
+		FireInterval=0.200000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Auto'
+	End Object
+	
+	//Gatling Barrel
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Gatling
+		TraceRange=(Min=1500000.000000,Max=1500000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=30 //
+		HeadMult=2.75
+		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
+		PenetrationEnergy=64.000000
+		PenetrateForce=400
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=None) //
+		Inaccuracy=(X=256,Y=256) //
+		Recoil=16.000000 //
+		Chaos=-1.00
+		BotRefireRate=1.050000
+		WarnTargetPct=0.050000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Gatling
+		TargetState="GatlingLaser"
+		FireInterval=0.04
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Gatling'
 	End Object
 	
     //=================================================================
@@ -195,29 +262,29 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=1f)
-		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=1f)
-		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=0f)
-		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=1f)
-		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=0f)
-		PlayerSpeedFactor=1.100000
-		PlayerJumpFactor=1.100000
-		InventorySize=7
+		//Layout core
+		LayoutName="Marksman"
+		LayoutDescription="Scope, Rockets, Double Barrel"
+		LayoutTags="heavy"
+		Weight=30
+		
+		//Visual
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="RDS",Slot=92,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=93,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=94,Scale=0f)
+		AllowedCamos(0)=0
+		
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
-		MagAmmo=20
-		//ViewOffset=(X=-4.000000,Y=10.000000,Z=-16.000000)
-		//ViewOffset=(X=-8.000000,Y=9.000000,Z=-16.000000)
-		//SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Logarithmic
-		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
+		
+		//Stats
+		InventorySize=7
+		MagAmmo=20
 		WeaponName="LS14 Directed Energy Weapon"
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -225,36 +292,119 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
-		Begin Object Class=WeaponParams Name=RealisticCarbineParams
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=1f)
-		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=1f)
-		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=0f)
-		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=1f)
+	Begin Object Class=WeaponParams Name=RealisticParams_Carbine
+		//Layout core
+		LayoutName="Carbine"
+		LayoutDescription="Reflex Sight, Rockets, Double Barrel, Light"
+		Weight=10
+		
+		//Visual
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RDS",Slot=92,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=93,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=94,Scale=1f)
+		SightOffset=(X=11.000000,Y=-0.00000,Z=4.700000)
+		
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
+		ZoomType=ZT_Fixed
+		SightPivot=(Pitch=600,Roll=-1024)
+		
+		//Stats
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
 		InventorySize=7
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.25
 		MagAmmo=20
-		//SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
-		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Logarithmic
-		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_FullAuto")
-		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
-		WeaponName="LS10 Laser Carbine"
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
+		WeaponName="LS14K Directed Energy Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticCarbineAimParams'
-		FireParams(0)=FireParams'RealisticCarbinePrimaryFireParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Carbine'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=RealisticParams_Auto
+		//Layout core
+		LayoutName="Laser Repeater"
+		LayoutDescription="Automatic Barrel, Big Battery"
+		LayoutTags="heavy,gatling"
+		Weight=10
+		
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=1f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.LS440.LS440-Blue',Index=1,AIndex=-1,PIndex=-1)
+		ViewOffset=(X=5.000000,Y=10.000000,Z=-3.000000)
+		AllowedCamos(0)=1
+		AllowedCamos(1)=2
+		
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.35
+		ZoomType=ZT_Fixed
+		SightOffset=(X=5.000000,Y=0.00000,Z=2.750000)
+		
+		//Stats
+		InventorySize=7
+		MagAmmo=40 //
+		PlayerSpeedFactor=0.900000 //
+		PlayerJumpFactor=0.900000 //
+		ReloadAnimRate=0.8 //
+		WeaponModes(0)=(ModeName="Rotary Barrel",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=0
+		WeaponName="LS10 Auto Directed Energy Weapon"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Auto'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Gatling
+		//Layout core
+		LayoutName="Laser Gatling"
+		LayoutDescription="Gatling Barrel, Backpack Battery"
+		LayoutTags="gatling,rapid,backpack"
+		Weight=10
+		
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=0f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.LS440.LS440-Blue',Index=1,AIndex=-1,PIndex=-1)
+		AllowedCamos(0)=1
+		AllowedCamos(1)=2
+		
+		//ADS
+		SightOffset=(X=11.000000,Y=-0.00000,Z=4.700000)
+		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.45
+		
+		//Stats
+		InventorySize=7
+		MagAmmo=200
+		PlayerSpeedFactor=0.800000
+		PlayerJumpFactor=0.700000
+		WeaponModes(0)=(ModeName="Gatling Barrel",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=0
+		WeaponName="LS440 Suppressive DEW"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Gatling'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-	//Layouts(1)=WeaponParams'RealisticCarbineParams'
+	Layouts(1)=WeaponParams'RealisticParams_Auto'
+	Layouts(2)=WeaponParams'RealisticParams_Gatling'
+	//Layouts(1)=WeaponParams'RealisticParams_Carbine'
 
 
 }

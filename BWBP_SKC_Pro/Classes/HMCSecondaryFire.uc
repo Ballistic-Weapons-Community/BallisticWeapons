@@ -125,9 +125,9 @@ state RepulsorBeamMode
 		if (!bLaserFiring)
 		{
 			if (HookPullForce < 0)
-				Weapon.PlayOwnedSound(TractorStartSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+				Weapon.PlayOwnedSound(TractorStartSound,BallisticFireSound.Slot,2.0,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 			else
-				Weapon.PlayOwnedSound(RepulsorStartSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+				Weapon.PlayOwnedSound(RepulsorStartSound,BallisticFireSound.Slot,2.0,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		}
 		bLaserFiring=true;
 		
