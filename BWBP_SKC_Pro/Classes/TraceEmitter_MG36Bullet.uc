@@ -1,10 +1,10 @@
 //=============================================================================
-// TraceEmitter_MG36. Bright tracer.
+// TraceEmitter_MG36Bullet. Bright tracer.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TraceEmitter_MG36 extends BCTraceEmitter;
+class TraceEmitter_MG36Bullet extends BCTraceEmitter;
 
 defaultproperties
 {
@@ -29,7 +29,7 @@ defaultproperties
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=9000.000000,Max=9000.000000))
      End Object
-     Emitters(0)=MeshEmitter'BWBP_SKC_Pro.TraceEmitter_MG36.MeshEmitter0'
+     Emitters(0)=MeshEmitter'BWBP_SKC_Pro.TraceEmitter_MG36Bullet.MeshEmitter0'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          FadeOut=True
@@ -53,7 +53,7 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=9000.000000,Max=9000.000000))
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_MG36.SpriteEmitter0'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_MG36Bullet.SpriteEmitter0'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter1
          FadeOut=True
@@ -74,6 +74,6 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=9000.000000,Max=9000.000000))
      End Object
-     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_MG36.SpriteEmitter1'
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_MG36Bullet.SpriteEmitter1'
 
 }

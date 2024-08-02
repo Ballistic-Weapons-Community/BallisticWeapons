@@ -196,6 +196,7 @@ defaultproperties
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HMCCryon'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HMCCryon'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.HMC.HMCCryonPickup'
 		ViewOffset=(X=10,Y=15,Z=-15)
 		SightOffset=(X=-20,Y=0,Z=40)
 		SightPivot=(Pitch=4096)

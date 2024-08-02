@@ -235,6 +235,7 @@ defaultproperties
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HMCCryon'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HMCCryon'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.HMC.HMCCryonPickup'
 		ViewOffset=(X=10,Y=15,Z=-15)
 		//ADS
 		SightingTime=0.300000

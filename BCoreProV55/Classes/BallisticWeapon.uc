@@ -3330,7 +3330,6 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	local int mode, i;
-	local float NewSpeed;
 	
 	// Set ambient sound when gun is held
 	if (UsedAmbientSound != None)

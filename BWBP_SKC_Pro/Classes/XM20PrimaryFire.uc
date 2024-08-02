@@ -8,8 +8,6 @@
 //=============================================================================
 class XM20PrimaryFire extends BallisticProInstantFire;
 
-var()	float			HeatPerShot;
-
 simulated function bool AllowFire()
 {
 	if (XM20Carbine(BW).bShieldUp)

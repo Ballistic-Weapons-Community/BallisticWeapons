@@ -17,22 +17,25 @@ var() StaticMesh			LowPolyStaticMesh;		    // Mesh for low poly stuff, like when
 var() float					LowPolyDist;				// How far must player be to use low poly mesh
 var() float					PickupDrawScale;			// DrawScale may be weird so it looks good in the menu. Use this for in game pickups
 
-var   float					ChangeTime;				    // Time when next change should occur
-var	float					PassedRespawnTime; 	        //Set on a swapped-in pickup if the replaced pickup was sleeping
-var   int					ReplacementsIndex;		    // Index into Mutator Replacement list associated with this pickup
+var() float					ChangeTime;				    // Time when next change should occur
+var() float					PassedRespawnTime; 	        // Set on a swapped-in pickup if the replaced pickup was sleeping
+var() int					ReplacementsIndex;		    // Index into Mutator Replacement list associated with this pickup
 
-var   rotator				LandedRot;
-var   Actor					FadeOutEffect;
-var   Pawn					LastPickedUpBy;
-var   bool					bAlternativePickups;    // tp prevent class<BallisticWeapon>(InventoryType).default.BCRepClass.default.bAlternativePickups;
-var   BallisticPickupTrigger    puTrigger;
+var()   rotator					LandedRot;
+var()   Actor					FadeOutEffect;
+var()   Pawn					LastPickedUpBy;
+var()   bool					bAlternativePickups;   	 	// tp prevent class<BallisticWeapon>(InventoryType).default.BCRepClass.default.bAlternativePickups;
+var()   BallisticPickupTrigger  puTrigger;
 
 
-var float	                LastBlockNotificationTime;
+var() float	                LastBlockNotificationTime;
 
-var	int						DetectedInventorySize;		// Hack. Tracking inventory size calculcated during BallisticWeapon.HandlePickupQuery
-var byte 		LayoutIndex, OldLayoutIndex;
-var byte 		CamoIndex, OldCamoIndex;
+var() int					DetectedInventorySize;		// Hack. Tracking inventory size calculcated during BallisticWeapon.HandlePickupQuery
+var() byte 					LayoutIndex, OldLayoutIndex;
+var() byte 					CamoIndex, OldCamoIndex;
+var() bool					bNewMesh;					// Mesh has been updated by a layout, bypass default
+var() StaticMesh			NewStaticMesh;		    	// New mesh given by layout
+var() StaticMesh			NewLowPolyStaticMesh;		  
 
 replication
 {
@@ -92,10 +95,20 @@ simulated event Tick(float DT)
 		return;
 	if (PC.ViewTarget != None && VSize(Location - PC.ViewTarget.Location) > LowPolyDist * (90 / PC.FOVAngle))
 	{
-		if (StaticMesh != LowPolyStaticMesh)
-			SetStaticMesh(LowPolyStaticMesh);
+		if (bNewMesh)
+		{
+			if (StaticMesh != NewLowPolyStaticMesh)
+				SetStaticMesh(NewLowPolyStaticMesh);
+		}
+		else
+		{
+			if (StaticMesh != LowPolyStaticMesh)
+				SetStaticMesh(LowPolyStaticMesh);
+		}
 	}
-	else if (StaticMesh != default.StaticMesh)
+	else if (bNewMesh && StaticMesh != NewStaticMesh)
+		SetStaticMesh(NewStaticMesh);
+	else if (!bNewMesh && StaticMesh != default.StaticMesh)
 		SetStaticMesh(default.StaticMesh);
 }
 
@@ -299,6 +312,15 @@ function InitDroppedPickupFor(Inventory Inv)
     W = Weapon(Inv);
     if (W != None)
     {
+		//set layout/camo
+		if (BallisticWeapon(W) != None)
+		{
+			LayoutIndex = BallisticWeapon(W).LayoutIndex;
+			CamoIndex = BallisticWeapon(W).CamoIndex;
+			UpdateMesh(LayoutIndex);
+			UpdateSkins(CamoIndex);
+		}
+		//set ammo
 		if (BallisticWeapon(W) == None || BallisticWeapon(W).bNoMag)
 		{
 			GetAmmoAmount(0, W);
@@ -308,8 +330,6 @@ function InitDroppedPickupFor(Inventory Inv)
 		else if (BallisticWeapon(W) != None && !BallisticWeapon(W).bNoMag)
 		{
 			MagAmmo = BallisticWeapon(W).MagAmmo;
-			LayoutIndex = BallisticWeapon(W).LayoutIndex;
-			CamoIndex = BallisticWeapon(W).CamoIndex;
 	        if ((!bThrown || BallisticFire(W.GetFireMode(0)) == None || BallisticFire(W.GetFireMode(0)).bUseWeaponMag==false))
 				GetAmmoAmount(0, W);
 			if (W!=None && W.GetAmmoClass(1) != W.GetAmmoClass(0) && (!bThrown || BallisticFire(W.GetFireMode(1)) == None || BallisticFire(W.GetFireMode(1)).bUseWeaponMag==false))
@@ -356,18 +376,35 @@ simulated function PostNetReceive()
 	if (LayoutIndex != OldLayoutIndex)
 	{
 		OldLayoutIndex = LayoutIndex;
-		//Skins[0] = class<BallisticCamoWeapon>(InventoryType).default.CamoMaterials[CamoIndex];
+		UpdateMesh(LayoutIndex);
 	}
 	if (CamoIndex != OldCamoIndex)
 	{
 		OldCamoIndex = CamoIndex;
 		UpdateSkins(CamoIndex);
-		//Skins[0] = class<BallisticCamoWeapon>(InventoryType).default.CamoMaterials[CamoIndex];
 	}
 	if (level.NetMode != NM_Client)
 		return;
 	if (LandedRot != rot(0,0,0))	{
 		SetRotation(LandedRot);
+	}
+}
+
+simulated function UpdateMesh(byte PassedIndex)
+{
+	local WeaponParams WP;
+	
+	WP = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[PassedIndex];
+	if (WP != None)
+	{
+		//Change mesh if layout dictates it
+		if (WP.PickupMesh != None)
+		{
+			SetStaticMesh(WP.PickupMesh);
+			NewStaticMesh = WP.PickupMesh;
+			NewLowPolyStaticMesh = WP.PickupMesh;
+			bNewMesh=true;
+		}
 	}
 }
 
@@ -550,22 +587,22 @@ Respawn:
 
 defaultproperties
 {
-	 LayoutIndex=255
-	 OldLayoutIndex=255
-	 CamoIndex=255
-	 OldCamoIndex=255
-     bOnSide=True
-     LowPolyDist=500.000000
-     ReplacementsIndex=-1
-     StandUp=(Y=0.250000,Z=0.000000)
-     bAmbientGlow=False
-     DrawType=DT_StaticMesh
-     bOrientOnSlope=False
-     bNetInitialRotation=True
-     AmbientGlow=0
-     TransientSoundVolume=1.000000
-     TransientSoundRadius=64.000000
-     CollisionRadius=26.000000
-     MessageClass=Class'BCoreProV55.BallisticPickupMessage'
+	LayoutIndex=255
+	OldLayoutIndex=255
+	CamoIndex=255
+	OldCamoIndex=255
+	bOnSide=True
+	LowPolyDist=500.000000
+	ReplacementsIndex=-1
+	StandUp=(Y=0.250000,Z=0.000000)
+	bAmbientGlow=False
+	DrawType=DT_StaticMesh
+	bOrientOnSlope=False
+	bNetInitialRotation=True
+	AmbientGlow=0
+	TransientSoundVolume=1.000000
+	TransientSoundRadius=64.000000
+	CollisionRadius=26.000000
+	MessageClass=Class'BCoreProV55.BallisticPickupMessage'
 	bNetNotify=True
 }

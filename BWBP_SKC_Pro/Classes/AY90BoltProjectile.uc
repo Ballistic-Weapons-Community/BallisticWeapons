@@ -59,7 +59,6 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	local Vector	Start, End, LastHitLoc, LastHitNorm;
 	local Rotator R;
 	local Projectile Proj;
-	local float BoneDist;
 
 	if(bPlaced)
 		return;

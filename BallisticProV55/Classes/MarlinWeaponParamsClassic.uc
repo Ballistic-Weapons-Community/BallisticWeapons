@@ -302,6 +302,7 @@ defaultproperties
 		ViewOffset=(X=0,Y=10.00000,Z=-10.000000)
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MarlinIvory'
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Suppressor",Slot=20,Scale=-1f)
 		//Zoom
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
         ZoomType=ZT_Fixed
@@ -337,6 +338,7 @@ defaultproperties
 		ViewOffset=(X=0,Y=10.00000,Z=-10.000000)
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MarlinIvory'
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Suppressor",Slot=20,Scale=1f)
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=20.000000,Y=-0.020000,Z=3.650000)

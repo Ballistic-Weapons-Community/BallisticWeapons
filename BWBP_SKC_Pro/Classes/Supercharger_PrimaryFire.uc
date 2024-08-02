@@ -15,7 +15,6 @@ var   Actor		Heater;
 var   bool		bIgnited;
 var() sound		FireSoundLoop;
 var() sound		BotFireSound;
-var() float		HeatPerShot;
 
 var() 	bool		bDoOverCharge;
 

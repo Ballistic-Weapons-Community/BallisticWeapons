@@ -48,44 +48,44 @@ var() actor CoverGlow;
 var() Actor	Glow1;				// Laser charge effect
 
 //Laser junk
-var()   bool		bLaserOn;
-var()   LaserActor	Laser;
-var()   Emitter		LaserBlast;
-var()   Emitter		LaserDot;
-var()   bool		bBigLaser;
-var()   bool		bIsCharging;
-var()   bool 		bOvercharged;
+var()   bool			bLaserOn;
+var()   LaserActor		Laser;
+var()   Emitter			LaserBlast;
+var()   Emitter			LaserDot;
+var()   bool			bBigLaser;
+var()   bool			bIsCharging;
+var()   bool 			bOvercharged;
 
 //Shield
-var() bool			bShieldEquipped;
-var() bool			bShieldUp; 			//Shield is online
-var() bool			bOldShieldUp;
+var() bool				bShieldEquipped;
+var() bool				bShieldUp; 			//Shield is online
+var() bool				bOldShieldUp;
 
-var() bool			bBroken; 			//Ooops, your broke the shield emitter.
-var() name			ShieldBone;			// Bone to attach SightFX to
-var() 	int			ShieldPower, ShieldPowerMax;
-var()	float		ShieldGainPerSecond;
-var()   float		ShieldPowerFraction; // recharge
+var() bool				bBroken; 			//Ooops, your broke the shield emitter.
+var() name				ShieldBone;			// Bone to attach SightFX to
+var() 	int				ShieldPower, ShieldPowerMax;
+var()	float			ShieldGainPerSecond;
+var()   float			ShieldPowerFraction; // recharge
 
-var() Sound       	ShieldHitSound;
-var() Sound       	ShieldOnSound;
-var() Sound       	ShieldOffSound;
-var() Sound       	ShieldPierceSound;
-var() String		ShieldHitForce;
-var() byte			ShieldSoundVolume;
+var() Sound       		ShieldHitSound;
+var() BUtil.FullSound   ShieldOnSound;
+var() BUtil.FullSound   ShieldOffSound;
+var() Sound       		ShieldPierceSound;
+var() String			ShieldHitForce;
+var() byte				ShieldSoundVolume;
 
-var() int 			PierceThreshold;
+var() int 				PierceThreshold;
 
-var() Sound 		ChargingSound;      // charging sound
-var() Sound			DamageSound;		// Sound to play when it first breaks
-var() Sound			BrokenSound;		// Sound to play when its very damaged
-var() Actor			ShieldTipFX;				// The top ShieldTipFXs
-var() Actor 		GlowFX;
-var() XM20ShieldEffect XM20ShieldEffect;
+var() Sound 			ChargingSound;      // charging sound
+var() Sound				DamageSound;		// Sound to play when it first breaks
+var() Sound				BrokenSound;		// Sound to play when its very damaged
+var() Actor				ShieldTipFX;				// The top ShieldTipFXs
+var() Actor 			GlowFX;
+var() XM20ShieldEffect 	XM20ShieldEffect;
 
-var()   float ChargeRate, ChargeRateOvercharge;
-var()	float LaserCharge, MaxCharge;
-var()   float Heat, CoolRate;
+var()   float 			ChargeRate, ChargeRateOvercharge;
+var()	float 			LaserCharge, MaxCharge;
+var()   float 			Heat, CoolRate;
 
 var float X1, X2, X3, X4, Y1, Y2, Y3, Y4;
 
@@ -357,9 +357,9 @@ exec simulated function ShieldDeploy(optional byte i) //Was previously weapon sp
 		return;
 		
 	if (bShieldUp)
-    	PlaySound(ShieldOffSound, SLOT_None);
+    	class'BUtil'.static.PlayFullSound(self, ShieldOffSound);
 	else
-    	PlaySound(ShieldOnSound, SLOT_None);
+    	class'BUtil'.static.PlayFullSound(self, ShieldOnSound);
 		
 	ServerSwitchShield(!bShieldUp);
 }
@@ -855,8 +855,8 @@ defaultproperties
 	PierceThreshold=50
 	ShieldBone="tip"
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-	ShieldOnSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldOn'
-	ShieldOffSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldOff'
+	ShieldOnSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-CockQuick',Volume=1.300000,Pitch=1.000000)
+	ShieldOffSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-CockQuickWarn',Volume=1.300000,Pitch=1.000000)
 	ShieldPierceSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldPierce'
 	ShieldHitForce="ShieldReflection"
 	DamageSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Overload'
@@ -866,97 +866,98 @@ defaultproperties
 	ShieldPower=100
 	ShieldPowerMax=200
 	ShieldGainPerSecond=5.0f
-	
- 	 MaxCharge=1.000000
-	 ChargeRate=2.400000
-	 ChargeRateOvercharge=0.600000
-	 
-	 MyFontColor=(R=255,G=255,B=255,A=255)
-     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.XM20.XM20-ScriptLCD'
-     WeaponScreenShader=Shader'BWBP_SKC_Tex.XM20.XM20-ScriptLCD-SD'
-	 Numbers=Texture'BWBP_SKC_Tex.XM20.XM20-Numbers'
-	 ScreenTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBase'
-	 ScreenTexBase1=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBase'
-	 ScreenTexBase2=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBaseCharged'
-	 ScreenRedBar=Texture'BWBP_SKC_Tex.XM20.XM20-DisplayBars'
-	 
-	 CoolRate=1.0
-     ModeCycleSound=Sound'BWBP_SKC_Sounds.AH104.AH104-ModeCycle'
-     PlayerSpeedFactor=1.100000
-     PlayerJumpFactor=1.100000
-     PutDownAnimRate=1.500000
-     PutDownTime=1.000000
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
-     BigIconMaterial=Texture'BWBP_SKC_Tex.XM20.BigIcon_XM20'
-     InventoryGroup=5
-	 GroupOffset=8
-     bWT_Bullet=True
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_Projectile=True
-     bWT_Energy=True
-     bNoCrosshairInScope=true;
-     SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
-	 HudColor=(B=25,G=0,R=150)
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-Deploy',Volume=0.280000)
-     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect',Volume=0.221500)
-     CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
-     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
-     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
-     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
-     ClipInFrame=0.650000
-     bNeedCock=False
-     WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
-     WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
-	 CurrentWeaponMode=1
-	 
-     ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
-     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=40.000000
 
-	 ParamsClasses(0)=Class'XM20WeaponParamsComp'
-	 ParamsClasses(1)=Class'XM20WeaponParamsClassic'
-	 ParamsClasses(2)=Class'XM20WeaponParamsRealistic'
-     ParamsClasses(3)=Class'XM20WeaponParamsTactical'
-     FireModeClass(0)=Class'BWBP_SKC_Pro.XM20PrimaryFire'
-     FireModeClass(1)=Class'BWBP_SKC_Pro.XM20SecondaryFire'
-     BringUpTime=0.800000
-	 CockingBringUpTime=1.200000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
-     bSniping=True
-     bShowChargingBar=True
-     Description="XM-20 Laser Carbine||Manufacturer: UTC Defense Tech|Primary: Laser Blasts|Secondary: Laser Stream||The XM-20 is an experimental laser weapon that has been designed to bypass the Skrith shielding technology that rendered most UTC energy weapons obsolete. Unlike earlier designs, the XM20 emits variable wavelength photons from an automated phase splitter which rapidly pulses Skrith shields. Fields tests have shown it to be effective so far, and UTC command has ordered this weapon into widespread phase 2 testing. An advanced version of the LS14 laser controller has been installed into this weapon, allowing it to switch between laser pulses or a sustained laser beam. The high powered beam is known to turn Cryon ballistic armor to slag with relative ease!"
-     Priority=194
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     PickupClass=Class'BWBP_SKC_Pro.XM20Pickup'
+	MaxCharge=1.000000
+	ChargeRate=2.400000
+	ChargeRateOvercharge=0.600000
 
-     PlayerViewOffset=(X=10.00,Y=5.00,Z=-7.50)
-	 SightOffset=(X=-2.00,Y=0.00,Z=2.89)
+	MyFontColor=(R=255,G=255,B=255,A=255)
+	WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.XM20.XM20-ScriptLCD'
+	WeaponScreenShader=Shader'BWBP_SKC_Tex.XM20.XM20-ScriptLCD-SD'
+	Numbers=Texture'BWBP_SKC_Tex.XM20.XM20-Numbers'
+	ScreenTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBase'
+	ScreenTexBase1=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBase'
+	ScreenTexBase2=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBaseCharged'
+	ScreenRedBar=Texture'BWBP_SKC_Tex.XM20.XM20-DisplayBars'
 
-     AttachmentClass=Class'BWBP_SKC_Pro.XM20Attachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="XM20 Laser Carbine"
-	 MagAmmo=40
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM20'
-     DrawScale=0.300000
-     UsedAmbientSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Idle'
-     bFullVolume=True
-     SoundVolume=255
-     SoundRadius=256.000000
-     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     //Skins(1)=Combiner'BWBP_SKC_Tex.M30A2.M30A2-GunScope'
-     Skins(2)=Texture'BWBP_SKC_Tex.XM20.XM20-Main'
-     Skins(3)=Texture'BWBP_SKC_Tex.XM20.XM20-Misc'
-     Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible' //The outermost one
+	CoolRate=1.0
+	ModeCycleSound=Sound'BWBP_SKC_Sounds.AH104.AH104-ModeCycle'
+	PlayerSpeedFactor=1.100000
+	PlayerJumpFactor=1.100000
+	PutDownAnimRate=1.500000
+	PutDownTime=1.000000
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
+	BigIconMaterial=Texture'BWBP_SKC_Tex.XM20.BigIcon_XM20'
+	InventoryGroup=5
+	GroupOffset=8
+	bWT_Bullet=True
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Projectile=True
+	bWT_Energy=True
+	bNoCrosshairInScope=true;
+	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
+	HudColor=(B=25,G=0,R=150)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-Deploy',Volume=0.880000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect',Volume=0.8200)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-CockQuick')
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-Cock')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-MagClose',Volume=1.4200)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-MagOpen',Volume=1.4200)
+	ClipInFrame=0.650000
+	bNeedCock=False
+	WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
+	WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
+	WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
+	CurrentWeaponMode=1
+
+	ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=40.000000
+
+	ParamsClasses(0)=Class'XM20WeaponParamsComp'
+	ParamsClasses(1)=Class'XM20WeaponParamsClassic'
+	ParamsClasses(2)=Class'XM20WeaponParamsRealistic'
+	ParamsClasses(3)=Class'XM20WeaponParamsTactical'
+	FireModeClass(0)=Class'BWBP_SKC_Pro.XM20PrimaryFire'
+	FireModeClass(1)=Class'BWBP_SKC_Pro.XM20SecondaryFire'
+	BringUpTime=0.800000
+	CockingBringUpTime=1.200000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.600000
+	CurrentRating=0.600000
+	bSniping=True
+	bShowChargingBar=True
+	Description="XM-20 Laser Carbine||Manufacturer: UTC Defense Tech|Primary: Laser Blasts|Secondary: Laser Stream||The XM-20 is an experimental laser weapon that has been designed to bypass the Skrith shielding technology that rendered most UTC energy weapons obsolete. Unlike earlier designs, the XM20 emits variable wavelength photons from an automated phase splitter which rapidly pulses Skrith shields. Fields tests have shown it to be effective so far, and UTC command has ordered this weapon into widespread phase 2 testing. An advanced version of the LS14 laser controller has been installed into this weapon, allowing it to switch between laser pulses or a sustained laser beam. The high powered beam is known to turn Cryon ballistic armor to slag with relative ease!"
+	Priority=194
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	PickupClass=Class'BWBP_SKC_Pro.XM20Pickup'
+
+	PlayerViewOffset=(X=10.00,Y=5.00,Z=-7.50)
+	SightOffset=(X=-2.00,Y=0.00,Z=2.89)
+
+	AttachmentClass=Class'BWBP_SKC_Pro.XM20Attachment'
+	IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="XM20 Laser Carbine"
+	MagAmmo=40
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM20'
+	DrawScale=0.300000
+	UsedAmbientSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Idle'
+	bFullVolume=True
+	SoundVolume=255
+	SoundRadius=256.000000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	//Skins(1)=Combiner'BWBP_SKC_Tex.M30A2.M30A2-GunScope'
+	Skins(2)=Texture'BWBP_SKC_Tex.XM20.XM20-Main'
+	Skins(3)=Texture'BWBP_SKC_Tex.XM20.XM20-Misc'
+	Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible' //The outermost one
 }

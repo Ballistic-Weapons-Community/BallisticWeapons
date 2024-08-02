@@ -366,7 +366,7 @@ defaultproperties
         StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
         StartSizeRange=(X=(Min=400.000000,Max=400.000000),Y=(Min=400.000000,Max=400.000000),Z=(Min=400.000000,Max=400.000000))
         InitialParticlesPerSecond=5000.000000
-        Texture=Texture'BallisticEffects.Specularity.BWSpecularity'
+        Texture=Texture'BW_Core_WeaponTex.Specularity.BWSpecularity'
         LifetimeRange=(Min=0.200000,Max=0.200000)
     End Object
     Emitters(10)=SpriteEmitter'BWBP_SKC_Pro.IE_WillyPete.SpriteEmitter101'

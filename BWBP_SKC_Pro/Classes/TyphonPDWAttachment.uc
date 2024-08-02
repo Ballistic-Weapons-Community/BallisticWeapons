@@ -86,7 +86,7 @@ defaultproperties
 	FlashScale=0.1
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.TyphonPDWFlashEmitter'
 	ImpactManager=Class'BWBP_SKC_Pro.IM_LS14Impacted'
-	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse'
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_PulseFast'
 	TracerChance=1.000000
 	TracerMode=MU_Primary
 	InstantMode=MU_Primary

@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o lost the war to %k's FMP-2012."
      DeathStrings(2)="%k enacted blitzkrieg on %o with %kh FMP-2012."
      DeathStrings(3)="%o was removed from the gene pool by %k's FMP."
-     DeathStrings(4)="%k's FMP-2012 executed the untermensch %o."
+     DeathStrings(4)="%k's FMP-2012 executed %o."
      WeaponClass=Class'BWBP_SKC_Pro.FMPMachinePistol'
      DeathString="%k embraced Schadenfreude as %kh FMP destroyed %o."
      FemaleSuicide="%o did her fuhrer impression."

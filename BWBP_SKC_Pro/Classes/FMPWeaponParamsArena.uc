@@ -12,9 +12,9 @@ defaultproperties
 			TraceRange=(Min=9000.000000,Max=9000.000000)
 			RangeAtten=0.700000
 			Damage=25
-			DamageType=Class'BWBP_SKC_Pro.DT_MP40'
+			DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
 			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40'
+			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
 			PenetrateForce=150
 			HookStopFactor=0.200000
 			HookPullForce=-10.000000
@@ -41,9 +41,9 @@ defaultproperties
 			TraceRange=(Min=9000.000000,Max=9000.000000)
 			RangeAtten=0.700000
 			Damage=35
-			DamageType=Class'BWBP_SKC_Pro.DT_MP40'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40'
+			DamageType=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
+			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Incendiary'
+			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
 			PenetrateForce=150
 			HookStopFactor=0.200000
 			HookPullForce=-10.000000
@@ -70,9 +70,9 @@ defaultproperties
 			TraceRange=(Min=9000.000000,Max=9000.000000)
 			RangeAtten=0.700000
 			Damage=20
-			DamageType=Class'BWBP_SKC_Pro.DT_MP40'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40'
+			DamageType=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'
+			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Corrosive'
+			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'
 			PenetrateForce=150
 			HookStopFactor=0.200000
 			HookPullForce=-10.000000

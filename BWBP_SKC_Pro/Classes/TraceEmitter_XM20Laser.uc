@@ -1,11 +1,11 @@
 //=============================================================================
-// TraceEmitter_XM20Laser. Effects for the laser carbine.
+// TraceEmitter_XM20LaserLaser. Effects for the laser carbine.
 //
 // by SK
 // based on code by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TraceEmitter_XM20 extends BCTraceEmitter;
+class TraceEmitter_XM20Laser extends BCTraceEmitter;
 
 simulated function Initialize(float Distance, optional float Power)
 {
@@ -52,7 +52,7 @@ defaultproperties
         LifetimeRange=(Min=0.350000,Max=0.350000)
         StartVelocityRange=(X=(Min=0.010000,Max=0.010000))
     End Object
-     Emitters(0)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20.BeamEmitter0'
+     Emitters(0)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20Laser.BeamEmitter0'
 
     Begin Object Class=BeamEmitter Name=BeamEmitter1
         BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
@@ -83,7 +83,7 @@ defaultproperties
         LifetimeRange=(Min=0.300000,Max=0.300000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
-     Emitters(1)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20.BeamEmitter1'
+     Emitters(1)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20Laser.BeamEmitter1'
 
     Begin Object Class=SpriteEmitter Name=SpriteEmitter2
         FadeOut=True
@@ -120,7 +120,7 @@ defaultproperties
         LifetimeRange=(Min=1.500000,Max=1.500000)
         StartVelocityRange=(X=(Max=5.000000))
     End Object
-     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20.SpriteEmitter2'
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20Laser.SpriteEmitter2'
 
     Begin Object Class=BeamEmitter Name=BeamEmitter3
         BeamDistanceRange=(Min=100.000000,Max=100.000000)
@@ -148,7 +148,7 @@ defaultproperties
         LifetimeRange=(Min=0.350000,Max=0.350000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
-     Emitters(3)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20.BeamEmitter3'
+     Emitters(3)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20Laser.BeamEmitter3'
 
     Begin Object Class=BeamEmitter Name=BeamEmitter4
         BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
@@ -181,7 +181,7 @@ defaultproperties
         LifetimeRange=(Min=0.300000,Max=0.400000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
-     Emitters(4)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20.BeamEmitter4'
+     Emitters(4)=BeamEmitter'BWBP_SKC_Pro.TraceEmitter_XM20Laser.BeamEmitter4'
 
     Begin Object Class=SpriteEmitter Name=SpriteEmitter5
         FadeOut=True
@@ -211,6 +211,6 @@ defaultproperties
         LifetimeRange=(Min=0.325000,Max=0.325000)
         StartVelocityRange=(X=(Min=-40.000000,Max=40.000000),Y=(Min=-40.000000,Max=40.000000),Z=(Min=-40.000000,Max=40.000000))
     End Object
-     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20.SpriteEmitter5'
+     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.TraceEmitter_XM20Laser.SpriteEmitter5'
 
 }

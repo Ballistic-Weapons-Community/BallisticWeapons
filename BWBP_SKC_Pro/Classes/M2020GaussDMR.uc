@@ -279,8 +279,6 @@ simulated event Tick (float DT)
 // Draw the scope view
 simulated event RenderOverlays (Canvas C)
 {
-	local Vector X, Y, Z;
-	
 	if (MagAmmo == 0)
 	{
 		NumpadXOffset=160; NumpadYOffset=10;

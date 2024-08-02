@@ -210,7 +210,7 @@ defaultproperties
 	InstantMode=MU_Both
 	FlashMode=MU_Both
 	LightMode=MU_Both
-	TracerClass=class'BWBP_SKC_Pro.TraceEmitter_MG36'
+	TracerClass=class'BWBP_SKC_Pro.TraceEmitter_MG36Bullet'
 	TracerClassAlt=class'TraceEmitter_Gauss'
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both

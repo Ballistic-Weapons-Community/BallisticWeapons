@@ -405,6 +405,29 @@ defaultproperties
 	Layouts(1)=WeaponParams'RealisticParams_Auto'
 	Layouts(2)=WeaponParams'RealisticParams_Gatling'
 	//Layouts(1)=WeaponParams'RealisticParams_Carbine'
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=LS14_Black
+		Index=0
+		CamoName="Black"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LS440_Black
+		Index=1
+		CamoName="Black"
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=LS440_Green
+		Index=2
+		CamoName="OD Green"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LS14Camos.LS440-MainGreen",Index=1,AIndex=1,PIndex=-1)
+		Weight=5
+	End Object
+	
+	Camos(0)=WeaponCamo'LS14_Black'
+	Camos(1)=WeaponCamo'LS440_Black'
+	Camos(2)=WeaponCamo'LS440_Green'
 }

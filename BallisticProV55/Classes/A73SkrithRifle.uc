@@ -23,8 +23,6 @@ replication
 
 simulated function PostNetBeginPlay()
 {
-	local Actor A;
-	
 	Super.PostNetBeginPlay();
 	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{

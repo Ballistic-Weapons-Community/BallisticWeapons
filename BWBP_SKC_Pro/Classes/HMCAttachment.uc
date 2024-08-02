@@ -285,4 +285,5 @@ defaultproperties
 	bRapidFire=True
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HMC117'
 	DrawScale=1.0
+	FlashScale=0.500000
 }

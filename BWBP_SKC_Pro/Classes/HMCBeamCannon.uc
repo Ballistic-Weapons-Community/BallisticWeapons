@@ -453,7 +453,6 @@ simulated function TargetedSlowRadius( float SlowAmount, float SlowDuration, flo
 	local Pawn target;
 	local float damageScale, dist;
 	local vector dir;
-    local UnlaggedPawnCollision col;
 
 	if( bHurtEntry ) //not handled well...
 		return;

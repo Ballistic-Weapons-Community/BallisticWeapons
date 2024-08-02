@@ -10,11 +10,17 @@
 class MarlinRifle extends BallisticWeapon;
 
 //Layouts
+var()	bool		bHasLaser;
 var()   bool		bHasGauss;				// Fancy version
 var	 	float 		GaussLevel, MaxGaussLevel;
 var() 	Sound		GaussOnSound;
+var() Sound			LaserOnSound;
+var() Sound			LaserOffSound;
 
 var		Actor		GaussGlow1, GaussGlow2;
+
+var   Emitter			LaserDot;
+var   bool				bLaserOn;
 
 simulated function OnWeaponParamsChanged()
 {
@@ -22,11 +28,17 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	
-	bHasGauss=False;
+	bHasGauss=false;
+	bHasLaser=false;
 	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
 	{
-		bHasGauss=True;
-		bShowChargingBar=True;
+		bHasGauss=true;
+		bShowChargingBar=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "laser") != -1)
+	{
+		bHasLaser=true;
+		ServerSwitchLaser(true);
 	}
 	
 }
@@ -102,6 +114,9 @@ simulated event Destroyed()
 		
 	if (GaussGlow2 != None)
 		GaussGlow2.Destroy();
+	
+	if (LaserDot != None)
+		LaserDot.Destroy();
 
 	Super.Destroyed();
 }
@@ -110,6 +125,7 @@ simulated function bool PutDown()
 {
 	if (super.PutDown())
 	{
+		KillLaserDot();
 		if (GaussGlow1 != None)	GaussGlow1.Destroy();
 		if (GaussGlow2 != None)	GaussGlow2.Destroy();
 		return true;
@@ -122,7 +138,133 @@ simulated function float ChargeBar()
 	return FMax(0, GaussLevel/MaxGaussLevel);
 }
 
+//============ LASER =============================================
 
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 0.65;
+	AimComponent.AimSpread.Min *= 0.65;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
+simulated event PostNetReceive()
+{
+	if (level.NetMode != NM_Client)
+		return;
+	if (bLaserOn != default.bLaserOn)
+	{
+		OnLaserSwitched();
+
+		default.bLaserOn = bLaserOn;
+		ClientSwitchLaser();
+	}
+	Super.PostNetReceive();
+}
+
+function ServerWeaponSpecial(optional byte i)
+{
+	if (bServerReloading || !bHasLaser)
+		return;
+	ServerSwitchLaser(!bLaserOn);
+}
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	if (!bHasLaser)
+		return;
+	bLaserOn = bNewLaserOn;
+
+	OnLaserSwitched();
+
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+}
+
+simulated function ClientSwitchLaser()
+{
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+		Skins[4]=FinalBlend'BW_Core_WeaponTex.Marlin.Ivory_UT2_beam_FB';
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+		Skins[4]=Texture'BW_Core_WeaponTex.Misc.Invisible';
+	}
+}
+
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'M806LaserDot',,,Loc);
+}
+
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal;
+	local Rotator AimDir;
+	local Actor Other;
+
+	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
+
+	End = Start + Normal(Vector(AimDir))*5000;
+	
+	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+	if (Other == None)
+		HitLocation = End;
+
+	// Draw dot at end of beam
+	SpawnLaserDot(HitLocation);
+	
+	if (LaserDot != None)
+		LaserDot.SetLocation(HitLocation);
+		
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+}
+
+simulated event RenderOverlays( Canvas Canvas )
+{
+	super.RenderOverlays(Canvas);
+	
+	if (bLaserOn && !IsInState('Lowered'))
+		DrawLaserSight(Canvas);
+}
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	ServerSwitchLaser(!bLaserOn);
+}
 
 //================================================================
 
@@ -343,6 +485,8 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
+	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	GaussOnSound=Sound'BW_Core_WeaponSound.Gauss.Gauss-Charge'
 	MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

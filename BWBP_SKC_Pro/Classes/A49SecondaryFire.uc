@@ -10,7 +10,6 @@ class A49SecondaryFire extends BallisticFire;
 
 var float	ForceMag;
 var float	Damage;
-var float HeatPerShot;
 
 simulated function bool AllowFire()
 {

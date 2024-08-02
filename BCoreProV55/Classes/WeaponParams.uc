@@ -111,6 +111,7 @@ var() Rotator               ViewPivot;            // Pivot when at rest
 var() String				WeaponName;
 var() Mesh					LayoutMesh;
 var() Mesh					AttachmentMesh;
+var() StaticMesh			PickupMesh;
 var() array<GunAugment>		GunAugments;		//The RDS, Suppressor, Bayonet actor. Will look for a socket called "Attach"
 var() array<int>			AllowedCamos;			// Which camos we can use for this layout, leave blank for all
 //-----------------------------------------------------------------------------
@@ -170,7 +171,6 @@ final function FireEffectParams.FireModeStats GetAltFireStats()
 // for short manual displayed on conflict
 final function string BuildShortManualString()
 {
-	local FireEffectParams.FireModeStats FS;
 	local string S;
 
 	S = "Mag Ammo: "$ MagAmmo $ "|";
