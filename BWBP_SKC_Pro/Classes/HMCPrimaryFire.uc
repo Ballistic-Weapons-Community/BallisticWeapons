@@ -42,7 +42,7 @@ simulated event ModeHoldFire()
 function StopFiring()
 {
     Instigator.AmbientSound = Instigator.default.AmbientSound;
-	BW.SafeLoopAnim(IdleAnim, 1.0, TweenTime, ,"IDLE");
+	BW.SafeLoopAnim(HMCBeamCannon(BW).IdleAnim, 1.0, TweenTime, ,"IDLE");
     HoldTime = 0;
 }	
 
