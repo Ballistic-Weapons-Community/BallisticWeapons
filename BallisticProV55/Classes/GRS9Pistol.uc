@@ -614,10 +614,11 @@ function byte BestMode()
 	local float Result, Dist;
 	
 	B = Bot(Instigator.Controller);
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
+	
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
 		
 	if (bNoaltfire)
 		return 0;

@@ -76,6 +76,18 @@ defaultproperties
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -142,6 +154,7 @@ defaultproperties
 		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 		FireParams(3)=FireParams'ClassicPrimaryFireParams'
 		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
@@ -172,10 +185,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParams'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
-		FireParams(3)=FireParams'ClassicPrimaryFireParams'
-		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

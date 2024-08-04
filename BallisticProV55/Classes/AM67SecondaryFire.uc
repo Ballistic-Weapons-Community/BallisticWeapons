@@ -113,6 +113,14 @@ simulated state LaserSight
 	simulated function ApplyFireEffectParams(FireEffectParams effect_params)
 	{
 		super(BallisticFire).ApplyFireEffectParams(effect_params);
+		bUseWeaponMag=False;
+		bFireOnRelease=True;
+		bModeExclusive=False;
+		if (bFireOnRelease)
+			bWaitForRelease = true;
+
+		if (bWaitForRelease)
+			bNowWaiting = true;
 	}
 	
 	event ModeDoFire()

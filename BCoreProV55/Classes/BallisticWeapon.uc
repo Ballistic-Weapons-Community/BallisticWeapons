@@ -840,7 +840,8 @@ simulated function OnWeaponParamsChanged()
 	CockAnimRate 					= WeaponParams.CockAnimRate;
 	default.CockAnimRate				= WeaponParams.CockAnimRate;
 	
-	bNeedCock						= WeaponParams.bNeedCock;
+	if (Bot(Instigator.Controller) == None)
+		bNeedCock						= WeaponParams.bNeedCock;
 
     ZoomType                    = WeaponParams.ZoomType;
 
@@ -3772,6 +3773,7 @@ simulated function bool StartFire(int Mode)
     return true;
 }
 
+//Give to code sets up ammo as well as layout and camo. When overriding, ensure GenerateLayout and Camo are preserved
 function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
@@ -4203,6 +4205,15 @@ function DropFrom(vector StartLocation)
 		{
 			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
 			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
+			//Change mesh if layout dictates it
+			if (WeaponParams.PickupMesh != None)
+			{
+				BallisticWeaponPickup(Pickup).SetStaticMesh(WeaponParams.PickupMesh);
+				BallisticWeaponPickup(Pickup).NewStaticMesh = WeaponParams.PickupMesh;
+				BallisticWeaponPickup(Pickup).NewLowPolyStaticMesh = WeaponParams.PickupMesh;
+				BallisticWeaponPickup(Pickup).bNewMesh=true;
+			}
+			//set up camo
 			if (WeaponCamo != None)
 			{
 				for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)

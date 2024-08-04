@@ -72,6 +72,18 @@ defaultproperties
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -160,7 +172,7 @@ defaultproperties
 		FireParams(2)=FireParams'ArenaPrimaryFireParams'
 		FireParams(3)=FireParams'ArenaPrimaryFireParams'
 		FireParams(4)=FireParams'ArenaPrimaryIceFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'

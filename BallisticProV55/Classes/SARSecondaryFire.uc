@@ -114,12 +114,21 @@ simulated state LaserSight
 	simulated function ApplyFireEffectParams(FireEffectParams effect_params)
 	{
 		super(BallisticFire).ApplyFireEffectParams(effect_params);
+		bUseWeaponMag=False;
+		bFireOnRelease=True;
+		bModeExclusive=False;
+		if (bFireOnRelease)
+			bWaitForRelease = true;
+
+		if (bWaitForRelease)
+			bNowWaiting = true;
 	}
 	
 	event ModeDoFire()
 	{
 		if (Weapon.Role == ROLE_Authority)
 			SARAssaultRifle(Weapon).ServerSwitchlaser(!SARAssaultRifle(Weapon).bLaserOn);
+		BW.StopFire(ThisModeNum);
 	}
 }
 simulated state Flash

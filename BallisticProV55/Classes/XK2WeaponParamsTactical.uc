@@ -78,6 +78,18 @@ defaultproperties
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -166,7 +178,7 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalPrimaryFireParams'
 		FireParams(3)=FireParams'TacticalPrimaryFireParams'
 		FireParams(4)=FireParams'TacticalPrimaryIceFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'

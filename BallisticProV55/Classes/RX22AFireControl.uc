@@ -159,7 +159,7 @@ function Timer()
 	{
 		for(j=0;j<GroundFires[i].Touching.length;j++)
 		{
-			if (GroundFires[i].Touching[j] == None || ( Pawn(GroundFires[i].Touching[j]) == None && BW_FuelPatch(Touching[i]) != None) )
+			if (GroundFires[i].Touching[j] == None || ( Pawn(GroundFires[i].Touching[j]) == None && BW_FuelPatch(GroundFires[i].Touching[j]) == None) )
 				continue;
 			for(k=0;k<Served.length;k++)
 				if (Served[k] == GroundFires[i].Touching[j])

@@ -154,6 +154,18 @@ defaultproperties
 		FireAnim="Stab"
 		FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams_TacKnife'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -254,7 +266,7 @@ defaultproperties
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		FireParams(1)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_TacKnife

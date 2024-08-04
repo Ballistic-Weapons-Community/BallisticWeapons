@@ -317,8 +317,6 @@ function InitDroppedPickupFor(Inventory Inv)
 		{
 			LayoutIndex = BallisticWeapon(W).LayoutIndex;
 			CamoIndex = BallisticWeapon(W).CamoIndex;
-			UpdateMesh(LayoutIndex);
-			UpdateSkins(CamoIndex);
 		}
 		//set ammo
 		if (BallisticWeapon(W) == None || BallisticWeapon(W).bNoMag)
