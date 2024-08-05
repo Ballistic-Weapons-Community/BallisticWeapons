@@ -19,14 +19,6 @@ simulated function bool AllowFire()
 	return true;
 }
 
-simulated function SwitchWeaponMode (byte NewMode)
-{
-	if (Weapon.bBerserk)
-		FireRate *= 0.75;
-	if ( Level.GRI.WeaponBerserk > 1.0 )
-	    FireRate /= Level.GRI.WeaponBerserk;
-}
-
 simulated state HEAmmo //Explodes on human targets
 {
 	// Do the trace to find out where bullet really goes

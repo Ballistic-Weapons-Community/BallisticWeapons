@@ -4995,7 +4995,25 @@ simulated function OnRecoilParamsChanged()
 //====================================================================================
 
 // These can be called when a turret undeploys and gives this weapon. Override in sub-classes to add some functionality
-function InitWeaponFromTurret(BallisticTurret Turret);
+// Used to set weapon modes in case the turret had different modes
+function InitWeaponFromTurret(BallisticTurret Turret)
+{
+	while (CurrentWeaponMode >= WeaponModes.length || WeaponModes[CurrentWeaponMode].bUnavailable )
+	{
+		if (CurrentWeaponMode >= WeaponModes.length)
+			CurrentWeaponMode = 0;
+		else
+			CurrentWeaponMode++;
+	}
+	
+	if (!WeaponModes[CurrentWeaponMode].bUnavailable)
+	{
+		CommonSwitchWeaponMode(CurrentWeaponMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
+		NetUpdateTime = Level.TimeSeconds - 1;
+	}
+	
+}
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret);
 function InitTurretWeapon(BallisticTurret Turret);
 //same for automated turrets

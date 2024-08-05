@@ -204,6 +204,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.2500
 		MagAmmo=9
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
@@ -226,6 +227,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.2500
 		MagAmmo=9
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
@@ -248,6 +250,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.2500
 		MagAmmo=9
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)

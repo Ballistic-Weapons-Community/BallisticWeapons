@@ -156,7 +156,7 @@ defaultproperties
     InventoryGroup=7
     GroupOffset=1
     PickupClass=Class'BallisticProV55.M290Pickup'
-    PlayerViewOffset=(X=6.5,Y=9.6,Z=-13.5)
+    PlayerViewOffset=(X=0,Y=9.6,Z=-12)
 	SightOffset=(X=-7.5,Y=-0.04,Z=6)
 	SightPivot=(Pitch=256)
 	SightBobScale=0.75

@@ -478,6 +478,8 @@ defaultproperties
 		AllowedCamos(4)=4
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SawnOff'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.SawnOff.SawnOff-High'
+		PickupDrawScale=0.5
 		//ADS
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.2
@@ -503,6 +505,8 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Trenchgun'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Trenchgun'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.TechGun.TechGunPickupHi'
+		PickupDrawScale=1.50000
 		//ADS
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.25
@@ -551,7 +555,7 @@ defaultproperties
 		Index=1
 		CamoName="Hunter"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainHunter",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainHunter",Index=1,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	
@@ -559,7 +563,7 @@ defaultproperties
 		Index=2
 		CamoName="Bloodied"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainVet",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainVet",Index=1,AIndex=0,PIndex=0)
 		Weight=5
 	End Object
 	
@@ -567,7 +571,7 @@ defaultproperties
 		Index=3
 		CamoName="Nickel"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainChromeShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainChromeShine",Index=1,AIndex=0,PIndex=0)
 		Weight=5
 	End Object
 	
@@ -575,7 +579,7 @@ defaultproperties
 		Index=4
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainGoldShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.CoachCamos.Coach-MainGoldShine",Index=1,AIndex=0,PIndex=0)
 		Weight=1
 	End Object
 	

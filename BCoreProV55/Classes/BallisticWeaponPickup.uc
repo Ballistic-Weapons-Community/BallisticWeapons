@@ -402,6 +402,8 @@ simulated function UpdateMesh(byte PassedIndex)
 			NewStaticMesh = WP.PickupMesh;
 			NewLowPolyStaticMesh = WP.PickupMesh;
 			bNewMesh=true;
+			if (WP.PickupDrawScale != 0)
+				SetDrawScale(WP.PickupDrawScale);
 		}
 	}
 }

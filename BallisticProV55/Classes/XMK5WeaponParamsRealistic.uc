@@ -178,6 +178,10 @@ defaultproperties
 		//ReloadAnimRate=1.200000
 		//CockAnimRate=1.200000
 		WeaponName="XMk5 10mm Urban Submachinegun"
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=true)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -201,6 +205,10 @@ defaultproperties
 		MagAmmo=35
 		bMagPlusOne=True
 		WeaponName="XMk5 10mm Urban Submachinegun (Sil)"
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=true)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'

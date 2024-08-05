@@ -286,7 +286,7 @@ defaultproperties
 		LayoutName="Suppressable"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
-		SightOffset=(X=-5.00,Y=0.00,Z=2.65)
+		SightOffset=(X=-5.00,Y=0.01,Z=2.65)
 		SightPivot=(Pitch=-64,Yaw=10)
 		//Function
 		InventorySize=7

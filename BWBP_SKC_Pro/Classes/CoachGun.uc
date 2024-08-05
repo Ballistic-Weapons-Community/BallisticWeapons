@@ -70,10 +70,13 @@ simulated function OnWeaponParamsChanged()
 	assert(WeaponParams != None);
 	bQuickLoad=false;
 	bHasShield=false;
-	
+
 	if (InStr(WeaponParams.LayoutTags, "quickload") != -1) //reloads during fire anim, doom style
 	{
 		bQuickLoad=true;
+		AmmoClass[0]=class'Ammo_12Gauge'; //quickload happens to be on the 12g sawn off. move out if needed
+		CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_12Gauge';
+		CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_12Gauge';
 	}
 	
 	if (InStr(WeaponParams.LayoutTags, "shield") != -1) //it.. can make shields? with magic?

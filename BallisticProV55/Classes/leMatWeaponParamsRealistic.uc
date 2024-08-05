@@ -202,6 +202,8 @@ defaultproperties
 		SightingTime=0.14
 		MagAmmo=9
 		ViewPivot=(Pitch=512)
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
@@ -223,6 +225,8 @@ defaultproperties
 		SightingTime=0.14
 		MagAmmo=9
 		ViewPivot=(Pitch=512)
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
@@ -244,6 +248,8 @@ defaultproperties
 		SightingTime=0.14
 		MagAmmo=9
 		ViewPivot=(Pitch=512)
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)

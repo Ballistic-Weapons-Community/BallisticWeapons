@@ -109,7 +109,7 @@ simulated state Projectile
 	}
 }
 
-simulated state ShotgunHE
+simulated state ShotgunZap
 {
 
 	simulated function ApplyFireEffectParams(FireEffectParams params)
@@ -121,7 +121,8 @@ simulated state ShotgunHE
 		effect_params = ShotgunEffectParams(params);
 
 		HipSpreadFactor = effect_params.HipSpreadFactor;
-		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
+		KickForce=4500;
+		MaxWaterTraceRange=9000;
 	}
 
 	//======================================================================
@@ -162,6 +163,63 @@ simulated state ShotgunHE
 		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 
 		Super(BallisticFire).DoFireEffect();
+	}
+}
+
+simulated state ShotgunHE
+{
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
+	}
+
+	//======================================================================
+	// Shotgun-DoFireEffect
+	//
+	// Send twice if double shot
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector StartTrace;
+		local Rotator R, Aim;
+		local int i;
+
+		Aim = GetFireAim(StartTrace);
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		for (i=0; i < TraceCount; i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
+		
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+
+		Super(BallisticFire).DoFireEffect();
+		
+		//Moving to the end in case we kill ourselves with apply damage
+		ApplyHits();
 	}
 
 

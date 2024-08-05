@@ -147,6 +147,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.5
 		SightingTime=0.350000
 		//Stats
+		bNoaltfire=true
 		InventorySize=6
 		MagAmmo=4
 		SightOffset=(X=2.000000,Y=-0.050000,Z=10.200000)
@@ -167,6 +168,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.5
 		SightingTime=0.350000
 		//Stats
+		bNoaltfire=true
 		InventorySize=6
 		MagAmmo=4
 		SightOffset=(X=2.000000,Y=-0.050000,Z=10.200000)

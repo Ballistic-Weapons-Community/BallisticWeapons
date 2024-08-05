@@ -238,7 +238,7 @@ simulated event ModeDoFire()
 		super.ModeDoFire();	
 	}
 	
-	if (LS14Carbine(Weapon).bIsReloadingGrenade)
+	if (LS14Carbine(Weapon) != None && LS14Carbine(Weapon).bIsReloadingGrenade)
 		LS14Carbine(Weapon).bWantsToShoot=true;
 }
 

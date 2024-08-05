@@ -230,19 +230,16 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=0f)
 		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.55000
 		SightOffset=(X=3.00,Y=0.00,Z=3.25)
-		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		//Function
 		PlayerSpeedFactor=0.890000
 		PlayerJumpFactor=0.750000
 		InventorySize=10
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.55000
 		bNeedCock=True
 		MagAmmo=40
-		//ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -262,19 +259,16 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="Support",Slot=52,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="LegLeft",Slot=53,Scale=1f)
 		WeaponBoneScales(4)=(BoneName="LegRight",Slot=54,Scale=1f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.55000
 		SightOffset=(X=0.00,Y=0.05,Z=2.00)
-		//SightOffset=(X=0.000000,Y=25.000000,Z=8.200000)
 		//Function
 		PlayerSpeedFactor=0.890000
 		PlayerJumpFactor=0.750000
 		InventorySize=10
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.55000
 		bNeedCock=True
 		MagAmmo=40
-		//ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

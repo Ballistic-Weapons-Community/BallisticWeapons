@@ -55,7 +55,8 @@ simulated function SwitchSilencerMode(bool bSilenced)
 {
 	if (bSilenced == true)
 	{
-		Mk781Attachment(Weapon.ThirdPersonActor).bSilenced=true;
+		if (Mk781Attachment(Weapon.ThirdPersonActor) != None)
+			Mk781Attachment(Weapon.ThirdPersonActor).bSilenced=true;
 		bLeadTarget=true;
 		bInstantHit=false;
 		GotoState('ElektroSlug');

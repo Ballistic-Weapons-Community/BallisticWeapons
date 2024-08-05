@@ -434,7 +434,7 @@ simulated function AddHeat(float Amount)
 	Heat += Amount;
 	if (Heat > 1.0 && Heat < 1.2)
 	{
-		Heat = 1.2;
+		Heat = 1.4;
 		PlaySound(OverHeatSound,,6.7,,64);
 	}
 }

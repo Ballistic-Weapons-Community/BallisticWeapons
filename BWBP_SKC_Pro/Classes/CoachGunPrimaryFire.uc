@@ -43,7 +43,8 @@ simulated state Projectile
 		SpawnOffset = effect_params.SpawnOffset;    
 		default.ProjectileClass =  effect_params.ProjectileClass;
 		default.SpawnOffset = effect_params.SpawnOffset;
-		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(FRAG_AMMO);
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(FRAG_AMMO);
 	}
 
 	// Copied from Proj Fire
@@ -138,7 +139,8 @@ simulated state ShotgunZap
 		HipSpreadFactor = effect_params.HipSpreadFactor;
 		KickForce=4500;
 		MaxWaterTraceRange=9000;
-		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(ZAP_AMMO);
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(ZAP_AMMO);
 	}
 
 	//======================================================================
@@ -194,7 +196,8 @@ simulated state ShotgunHE
 		effect_params = ShotgunEffectParams(params);
 
 		HipSpreadFactor = effect_params.HipSpreadFactor;
-		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(HE_AMMO);
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(HE_AMMO);
 	}
 
 	//======================================================================
@@ -222,7 +225,6 @@ simulated state ShotgunHE
 		if (Level.NetMode == NM_DedicatedServer)
 			BW.RestoreCollisions();
 
-		ApplyHits();
 
 		// update client's dispersion values before shot
 		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
@@ -235,6 +237,9 @@ simulated state ShotgunHE
 		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 
 		Super(BallisticFire).DoFireEffect();
+		
+		//Moving to the end in case we kill ourselves with apply damage
+		ApplyHits();
 	}
 
 
@@ -265,7 +270,8 @@ simulated state ShotgunIncendiary
 		effect_params = ShotgunEffectParams(params);
 
 		HipSpreadFactor = effect_params.HipSpreadFactor;
-		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(FLAME_AMMO);
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(FLAME_AMMO);
 	}
 
 	function CoachGunFireControl GetFireControl()

@@ -100,7 +100,8 @@ defaultproperties
 		MagAmmo=1
 		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
 		SightPivot=(Roll=-1024)
-		ViewOffset=(X=5.000000,Y=-10.000000,Z=-30.500000)
+		//ViewOffset=(X=5.000000,Y=-10.000000,Z=-30.500000)
+		ViewOffset=(X=-5.000000,Y=-4.000000,Z=-30.000000)
 		ZoomType=ZT_Logarithmic
 		CockAnimRate=1.000000
 		ReloadAnimRate=1.000000

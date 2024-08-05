@@ -183,6 +183,7 @@ defaultproperties
 		LayoutName="20ga Shot"
 		Weight=30
 		
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
@@ -205,6 +206,7 @@ defaultproperties
 		Weight=10
 		
 		
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
@@ -227,6 +229,7 @@ defaultproperties
 		Weight=5
 		
 		
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
 		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)

@@ -113,7 +113,7 @@ defaultproperties
 {
      UndeployedWeaponName="BWBP_SKC_Pro.X82Rifle"
      WeaponClassName="BWBP_SKC_Pro.X82Rifle_TW"
-     GunYawBounds=(Min=-12000.000000,Max=12000.000000)
+     GunYawBounds=(Min=-4000.000000,Max=4000.000000)
      GunPitchBounds=(Min=-10000.000000,Max=8192.000000)
      CamYawBounds=(Min=-12000.000000,Max=12000.000000)
      CamPitchBounds=(Min=-10000,Max=8192.000000)

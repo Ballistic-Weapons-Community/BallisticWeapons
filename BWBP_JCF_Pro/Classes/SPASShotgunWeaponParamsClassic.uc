@@ -188,6 +188,7 @@ defaultproperties
 		ReloadAnimRate=1.0
 		CockAnimRate=1.0
 		SightOffset=(X=5.000000,Y=-0.050000,Z=10.200000)
+		bNoaltfire=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -208,6 +209,7 @@ defaultproperties
 		ReloadAnimRate=1.0
 		CockAnimRate=1.0
 		SightOffset=(X=5.000000,Y=-0.050000,Z=10.200000)
+		bNoaltfire=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Shot'

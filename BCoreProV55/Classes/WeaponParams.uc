@@ -112,6 +112,7 @@ var() String				WeaponName;
 var() Mesh					LayoutMesh;
 var() Mesh					AttachmentMesh;
 var() StaticMesh			PickupMesh;
+var() float					PickupDrawScale;	// DrawScale may be weird so it looks good in the menu. Use this for in game pickups
 var() array<GunAugment>		GunAugments;		//The RDS, Suppressor, Bayonet actor. Will look for a socket called "Attach"
 var() array<int>			AllowedCamos;			// Which camos we can use for this layout, leave blank for all
 //-----------------------------------------------------------------------------

@@ -180,6 +180,7 @@ defaultproperties
         InventorySize=5
 		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
 		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
+		bNoaltfire=true
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
@@ -199,6 +200,7 @@ defaultproperties
         InventorySize=5
 		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
 		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
+		bNoaltfire=true
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Shot'

@@ -53,7 +53,7 @@ simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
 	BFireMode[0].FirePushbackForce = 0;
-	BFireMode[0].BrassOffset = vect(0,0,0);
+	BFireMode[0].BrassOffset = vect(-120,0,0);
 }
 
 simulated function Notify_Undeploy ()
@@ -67,6 +67,7 @@ simulated function Notify_Deploy ();
 simulated function PreDrawFPWeapon()
 {
 	SetRotation(Instigator.Rotation);
+	ScreenStart();
 }
 
 function GiveTo(Pawn Other, optional Pickup Pickup)
