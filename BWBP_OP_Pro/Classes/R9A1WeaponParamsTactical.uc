@@ -41,9 +41,9 @@ defaultproperties
 		Damage=40
         HeadMult=3
         LimbMult=0.75
-		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
-		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
-		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle_Freeze'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead_Freeze'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle_Freeze'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
@@ -69,9 +69,9 @@ defaultproperties
 		Damage=40
         HeadMult=3
         LimbMult=0.75
-		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
-		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
-		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle_Laser'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead_Laser'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle_Laser'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'

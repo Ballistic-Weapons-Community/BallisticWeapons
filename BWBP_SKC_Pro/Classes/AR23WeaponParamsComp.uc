@@ -102,7 +102,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-		FireInterval=2.000000
+		FireInterval=0.500000
 		PreFireAnim="GrenadePrep"
 		FireAnim="GrenadeFire"
 		AimedFireAnim="GrenadeFireAimed"

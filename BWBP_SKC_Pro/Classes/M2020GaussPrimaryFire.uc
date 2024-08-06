@@ -140,7 +140,7 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
 	FlashScaleFactor=1.200000
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
-	BrassBone="tip"
+	BrassBone="ejector"
 	BrassOffset=(X=-30.000000,Y=1.000000)
 	FireRecoil=320.000000
 	FireChaos=0.600000

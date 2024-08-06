@@ -12,15 +12,16 @@ class MarlinRifle extends BallisticWeapon;
 //Layouts
 var()	bool		bHasLaser;
 var()   bool		bHasGauss;				// Fancy version
-var	 	float 		GaussLevel, MaxGaussLevel;
+var()	float 		GaussLevel, MaxGaussLevel;
 var() 	Sound		GaussOnSound;
-var() Sound			LaserOnSound;
-var() Sound			LaserOffSound;
+var() 	Sound			LaserOnSound;
+var() 	Sound			LaserOffSound;
 
-var		Actor		GaussGlow1, GaussGlow2;
+var()	Actor		GaussGlow1, GaussGlow2;
 
-var   Emitter			LaserDot;
-var   bool				bLaserOn;
+var()   Emitter			LaserDot;
+var()   bool				bLaserOn;
+var()   bool		bStriking;
 
 simulated function OnWeaponParamsChanged()
 {
@@ -245,7 +246,10 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	// Draw dot at end of beam
-	SpawnLaserDot(HitLocation);
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
 	
 	if (LaserDot != None)
 		LaserDot.SetLocation(HitLocation);
@@ -274,6 +278,19 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		Momentum *= 0.5;
 	
 	super.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+}
+
+simulated event AnimEnd (int Channel)
+{
+    local name Anim;
+    local float Frame, Rate;
+
+    GetAnimParams(0, Anim, Frame, Rate);
+	
+	if(Anim != 'MeleePrep')
+		bStriking = false;
+
+	Super.AnimEnd(Channel);
 }
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)

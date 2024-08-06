@@ -108,7 +108,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=2.500000
+		FireInterval=0.500000
 		PreFireAnim="GrenadePrep"
 		FireAnim="GrenadeFire"
 		AimedFireAnim="GrenadeFireAimed"

@@ -51,9 +51,9 @@ defaultproperties
 		Damage=100
         HeadMult=2.5
         LimbMult=0.75
-		DamageType=Class'BallisticProV55.DTMarlinRifle'
-		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
-		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
+		DamageType=Class'BallisticProV55.DTMarlinRifle_Gauss'
+		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead_Gauss'
+		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle_Gauss'
 		PenetrateForce=20
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'

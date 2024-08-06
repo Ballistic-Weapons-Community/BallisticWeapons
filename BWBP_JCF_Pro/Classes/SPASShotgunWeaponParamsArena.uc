@@ -169,7 +169,6 @@ defaultproperties
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Slug'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
-		bNoaltfire=True	
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
