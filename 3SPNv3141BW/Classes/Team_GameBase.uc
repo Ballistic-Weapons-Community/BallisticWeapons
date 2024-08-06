@@ -2820,12 +2820,11 @@ defaultproperties
      PrecachePickups(87)=Class'BWBP_OP_Pro.BallisticShieldPickup'
      PrecachePickups(88)=Class'BWBP_OP_Pro.FlameSwordPickup'
 	 PrecachePickups(89)=Class'BWBP_OP_Pro.MAG78Pickup'
-	 PrecachePickups(90)=Class'BWBP_OP_Pro.TrenchGunPickup'
-     PrecachePickups(91)=Class'BWBP_SKC_Pro.XM20Pickup'
-     PrecachePickups(92)=Class'BWBP_OP_Pro.RCS715Pickup'
-     PrecachePickups(93)=Class'BWBP_OP_Pro.LightningPickup'
+     PrecachePickups(90)=Class'BWBP_SKC_Pro.XM20Pickup'
+     PrecachePickups(91)=Class'BWBP_OP_Pro.RCS715Pickup'
+     PrecachePickups(92)=Class'BWBP_OP_Pro.LightningPickup'
 
-     PrecachePickups(94)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
+     PrecachePickups(93)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
 
     // for ctf support
      bNetTemporary=True
