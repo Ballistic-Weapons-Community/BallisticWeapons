@@ -263,6 +263,7 @@ defaultproperties
 		LayoutName="CQC Icestorm"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3_Pickup'
 		//SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		//Function

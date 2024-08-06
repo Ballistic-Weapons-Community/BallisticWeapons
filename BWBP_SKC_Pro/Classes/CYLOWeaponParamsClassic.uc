@@ -285,6 +285,8 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOIV'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.CYLOIV_TPm'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOPickupHi'
+		PickupDrawScale=1.75
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25000
@@ -313,6 +315,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_CYLOFirestorm'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOFireStorm'
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.30000
@@ -437,7 +440,7 @@ defaultproperties
 		Index=13
 		CamoName="Real Brown"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk1',Index=1,AIndex=0,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk1',Index=1,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	
@@ -445,7 +448,7 @@ defaultproperties
 		Index=14
 		CamoName="Black (TM)"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk2',Index=1,AIndex=0,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-MainShineMk2',Index=1,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	

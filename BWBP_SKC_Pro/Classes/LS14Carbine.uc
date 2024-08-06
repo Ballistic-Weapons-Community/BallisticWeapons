@@ -226,21 +226,7 @@ simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmou
 // Animation notify for when the clip is stuck in
 simulated function Notify_ClipIn()
 {
-	local int AmmoNeeded;
-
-	if (ReloadState == RS_None)
-		return;
-	ReloadState = RS_PostClipIn;
-	PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
-	if (level.NetMode != NM_Client)
-	{
-		AmmoNeeded = default.MagAmmo-MagAmmo;
-		if (AmmoNeeded > Ammo[0].AmmoAmount)
-			MagAmmo+=Ammo[0].AmmoAmount;
-		else
-			MagAmmo = default.MagAmmo;
-		Ammo[0].UseAmmo (AmmoNeeded, True);
-	}
+	super.Notify_ClipIn();
 	UpdateScreen();
 }
 

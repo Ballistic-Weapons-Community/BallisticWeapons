@@ -37,7 +37,9 @@ var Texture ScopeViewTexThermal; //IRNV
 var Texture ScopeViewTexTracker; //Target Detector
 var	bool	bLowZoom; //We're using the RDS
 
-var   bool		bIsGauss;				// Has the gauss barrel, can't be silenced
+var   bool		bHasGauss;				// Has the gauss barrel, can't be silenced
+var   bool		bHasDrum;				// 30rd or 100rd?
+var	  bool		bHasScope;				// Do we have a scope?
 var   bool		bHasSuppressor;			// 
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer
@@ -60,21 +62,26 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	
-	bIsGauss=false;
+	bHasGauss=false;
+	bHasScope=true;
+	bHasDrum=true;
 	bHasSuppressor=false;
 	
 	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
 	{
-		bIsGauss=true;
+		bHasGauss=true;
+		bHasDrum=false;
 		if ( ThirdPersonActor != None )
 		{
-			MG36Attachment(ThirdPersonActor).bIsGauss=true;
+			MG36Attachment(ThirdPersonActor).bHasGauss=true;
 		}
 	}
 
 	if (InStr(WeaponParams.LayoutTags, "ar") != -1)
 	{
 		bHasSuppressor=true;
+		bHasScope=false;
+		bHasDrum=false;
 	}
 }
 
@@ -390,45 +397,48 @@ exec simulated function WeaponSpecial(optional byte i)
 		SwitchSilencer();
 		return;
 	}
-	if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
+	if (bHasScope)
 	{
-		bThermal = !bThermal;
-		if (bThermal)
-				class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
-		else
-				class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-		AdjustThermalView(bThermal);
-		if (!bScopeView)
-			PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
-		return;
-	}
-	if (bThermal && !bMeatVision) //IRNV on! turn it off and turn on targeting!
-	{
-		bThermal = !bThermal;
-		if (bThermal)
-				class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
-		else
-				class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-		AdjustThermalView(bThermal);
-		if (!bScopeView)
-			PlayerController(InstigatorController).ClientMessage("Activated infrared targeting scope.");
-		bMeatVision = !bMeatVision;
-		if (bMeatVision)
-				class'BUtil'.static.PlayFullSound(self, NVOnSound);
-		else
-				class'BUtil'.static.PlayFullSound(self, NVOffSound);
-		return;
-	}
-	if (!bThermal && bMeatVision) //targeting on! turn it off!
-	{
-		bMeatVision = !bMeatVision;
-		if (bMeatVision)
-				class'BUtil'.static.PlayFullSound(self, NVOnSound);
-		else
-				class'BUtil'.static.PlayFullSound(self, NVOffSound);
-		if (!bScopeView)
-			PlayerController(InstigatorController).ClientMessage("Activated standard scope.");
-		return;
+		if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
+		{
+			bThermal = !bThermal;
+			if (bThermal)
+					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+			else
+					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+			AdjustThermalView(bThermal);
+			if (!bScopeView)
+				PlayerController(InstigatorController).ClientMessage("Activated 4X nightvision scope.");
+			return;
+		}
+		if (bThermal && !bMeatVision) //IRNV on! turn it off and turn on targeting!
+		{
+			bThermal = !bThermal;
+			if (bThermal)
+					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+			else
+					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+			AdjustThermalView(bThermal);
+			if (!bScopeView)
+				PlayerController(InstigatorController).ClientMessage("Activated 4X infrared targeting scope.");
+			bMeatVision = !bMeatVision;
+			if (bMeatVision)
+					class'BUtil'.static.PlayFullSound(self, NVOnSound);
+			else
+					class'BUtil'.static.PlayFullSound(self, NVOffSound);
+			return;
+		}
+		if (!bThermal && bMeatVision) //targeting on! turn it off!
+		{
+			bMeatVision = !bMeatVision;
+			if (bMeatVision)
+					class'BUtil'.static.PlayFullSound(self, NVOnSound);
+			else
+					class'BUtil'.static.PlayFullSound(self, NVOffSound);
+			if (!bScopeView)
+				PlayerController(InstigatorController).ClientMessage("Activated 4X standard scope.");
+			return;
+		}
 	}
 }
 

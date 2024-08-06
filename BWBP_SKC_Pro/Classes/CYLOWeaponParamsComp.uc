@@ -246,6 +246,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_CYLOFirestorm'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOFireStorm'
 		//ADS
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.350000	
@@ -273,6 +274,8 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOIV'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.CYLOIV_TPm'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOPickupHi'
+		PickupDrawScale=1.75
 		//ADS
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.35

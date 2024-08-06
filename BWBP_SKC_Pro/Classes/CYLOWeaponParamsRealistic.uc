@@ -286,6 +286,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_CYLOFirestorm'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOFireStorm'
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.23

@@ -34,6 +34,30 @@ function InitTurretWeapon(Weapon Weap)
 
 	}
 	super.InitTurretWeapon(Weap);
+	
+	if (BallisticWeapon(Weap) != None && MG36MG_TW(Weap) != None)
+	{
+		SetBoneScale (0, 0.0, 'Silencer');
+		if (!MG36MG_TW(Weap).bHasGauss)
+		{
+			Skins[5]=Texture'BW_Core_WeaponTex.Misc.Invisible';
+		}
+		if (!MG36MG_TW(Weap).bHasScope)
+		{
+			SetBoneScale (2, 0.0, 'Scope');
+		}
+		if (!MG36MG_TW(Weap).bHasDrum)
+		{
+			SetBoneScale (3, 0.0, 'magBig');
+			SetBoneScale (4, 1.0, 'MagSmall');
+		}
+		else
+		{
+			SetBoneScale (3, 1.0, 'magBig');
+			SetBoneScale (4, 0.0, 'MagSmall');
+		}
+	}
+		
 }
 
 function SaveTurretWeaponInfo()

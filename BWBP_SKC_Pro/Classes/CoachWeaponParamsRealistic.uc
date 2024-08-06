@@ -479,7 +479,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SawnOff'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.SawnOff.SawnOff-High'
-		PickupDrawScale=0.5
+		PickupDrawScale=0.1
 		//ADS
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.2

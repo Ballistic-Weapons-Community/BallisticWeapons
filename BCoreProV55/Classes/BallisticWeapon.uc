@@ -840,7 +840,7 @@ simulated function OnWeaponParamsChanged()
 	CockAnimRate 					= WeaponParams.CockAnimRate;
 	default.CockAnimRate				= WeaponParams.CockAnimRate;
 	
-	if (Bot(Instigator.Controller) == None)
+	if (PlayerController(Instigator.Controller) != None)
 		bNeedCock						= WeaponParams.bNeedCock;
 
     ZoomType                    = WeaponParams.ZoomType;
@@ -4212,6 +4212,9 @@ function DropFrom(vector StartLocation)
 				BallisticWeaponPickup(Pickup).NewStaticMesh = WeaponParams.PickupMesh;
 				BallisticWeaponPickup(Pickup).NewLowPolyStaticMesh = WeaponParams.PickupMesh;
 				BallisticWeaponPickup(Pickup).bNewMesh=true;
+				if (WeaponParams.PickupDrawScale != 0)
+					BallisticWeaponPickup(Pickup).SetDrawScale(WeaponParams.PickupDrawScale);
+					
 			}
 			//set up camo
 			if (WeaponCamo != None)

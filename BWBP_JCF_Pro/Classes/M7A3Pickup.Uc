@@ -31,13 +31,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_JCF_Static.M7A3.M7A3PickupLo'
-     PickupDrawScale=0.250000
+     PickupDrawScale=0.260000
      InventoryType=Class'BWBP_JCF_Pro.M7A3AssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the M7A3 Assault Rifle"
      PickupSound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway'
      StaticMesh=StaticMesh'BWBP_JCF_Static.M7A3.M7A3PickupHi'
      Physics=PHYS_None
-     DrawScale=0.250000
+     DrawScale=0.260000
      CollisionHeight=4.000000
 }
