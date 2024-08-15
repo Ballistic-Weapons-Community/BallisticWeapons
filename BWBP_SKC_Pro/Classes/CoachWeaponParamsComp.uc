@@ -396,7 +396,7 @@ defaultproperties
 		AllowedCamos(4)=4
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SawnOff'
-		PickupMesh=StaticMesh'BWBP_SKC_Static.SawnOff.SawnOff-High'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.SawnOff.SawnOffPickupLo'
 		PickupDrawScale=0.1
 		//ADS
 		SightMoveSpeedFactor=0.9

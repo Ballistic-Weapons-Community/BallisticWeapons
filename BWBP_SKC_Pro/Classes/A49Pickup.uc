@@ -29,6 +29,8 @@ static function StaticPrecache(LevelInfo L)
 	
 	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile');
 	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.A49.A49PickupHi');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.A49.A49PickupLo');
 }
 
 simulated function UpdatePrecacheMaterials()
@@ -48,19 +50,19 @@ simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.A49.A49PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.A49.A49PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.A49.A49Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.A49.A49PickupLo'
      PickupDrawScale=0.187000
      InventoryType=Class'BWBP_SKC_Pro.A49SkrithBlaster'
      RespawnTime=20.000000
      PickupMessage="You picked up the A49 Skrith blaster."
      PickupSound=Sound'BW_Core_WeaponSound.A42.A42-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.A49.A49Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.A49.A49PickupHi'
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.500000

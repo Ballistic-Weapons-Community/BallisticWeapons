@@ -339,7 +339,7 @@ defaultproperties
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
-		PickupMesh=StaticMesh'BWBP_SKC_Static.LS440.LS440_SM'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.LS440.LS440PickupLo'
 		PickupDrawScale=0.1
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=1f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
@@ -381,7 +381,7 @@ defaultproperties
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
 		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
-		PickupMesh=StaticMesh'BWBP_SKC_Static.LS440.LS440_SM'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.LS440.LS440PickupLo'
 		PickupDrawScale=0.1
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)

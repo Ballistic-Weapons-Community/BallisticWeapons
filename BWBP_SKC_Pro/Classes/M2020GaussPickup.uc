@@ -41,17 +41,18 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.M2020.M2020Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.M2020.M2020PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.M2020.M2020PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.M2020.M2020Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.M2020.M2020PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.M2020GaussDMR'
      RespawnTime=20.000000
      PickupMessage="You picked up the M2020 Gauss rifle."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.M2020.M2020Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.M2020.M2020PickupHi'
      Physics=PHYS_None
      DrawScale=0.700000
      CollisionHeight=4.000000

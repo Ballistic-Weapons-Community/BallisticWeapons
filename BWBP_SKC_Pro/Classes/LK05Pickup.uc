@@ -43,17 +43,18 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LK05.LK05Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LK05.LK05PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LK05.LK05PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LK05.LK05Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LK05.LK05PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.LK05Carbine'
      RespawnTime=20.000000
      PickupMessage="You picked up the LK-05 advanced carbine."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LK05.LK05Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.LK05.LK05PickupHi'
      Physics=PHYS_None
 	 Drawscale=0.25
      CollisionHeight=4.000000

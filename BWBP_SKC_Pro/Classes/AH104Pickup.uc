@@ -22,19 +22,20 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AH104.AH104_SM_Main');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AH104.AH104PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AH104.AH104PickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AH104.AH104_SM_Ammo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AH104.AH104_SM_Main'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AH104.AH104PickupLo'
      PickupDrawScale=0.100000
      InventoryType=Class'BWBP_SKC_Pro.AH104Pistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the AH104 Handcannon"
      PickupSound=Sound'BW_Core_WeaponSound.M806.M806Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.AH104.AH104_SM_Main'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.AH104.AH104PickupHi'
      Physics=PHYS_None
      DrawScale=0.100000
      PrePivot=(Y=-26.000000)

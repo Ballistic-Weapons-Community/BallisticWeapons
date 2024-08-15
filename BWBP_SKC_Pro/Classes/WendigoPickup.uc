@@ -13,12 +13,12 @@ class WendigoPickup extends BallisticWeaponPickup
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOUAWLow'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Wendigo.WendigoPickupLo'
      InventoryType=Class'BWBP_SKC_Pro.WendigoSMG'
      RespawnTime=20.000000
      PickupMessage="You picked up the Wendigo SMG."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOUAWHigh'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Wendigo.WendigoPickupHi'
      Physics=PHYS_None
      CollisionHeight=4.000000
 }

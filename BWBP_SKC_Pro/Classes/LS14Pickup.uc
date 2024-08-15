@@ -35,19 +35,20 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LaserCarbine.PlasmaMuzzleFlash');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickupLo'
      PickupDrawScale=1.100000
      InventoryType=Class'BWBP_SKC_Pro.LS14Carbine'
      RespawnTime=20.000000
      PickupMessage="You picked up the LS-14 laser carbine."
      PickupSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickupHi'
      Physics=PHYS_None
      DrawScale=1.100000
      CollisionHeight=3.000000

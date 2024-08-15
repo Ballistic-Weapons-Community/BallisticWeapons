@@ -270,7 +270,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
-		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3_Pickup'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.23

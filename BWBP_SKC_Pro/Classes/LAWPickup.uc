@@ -50,18 +50,19 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaMuzzleFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaBackFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LAW.LAWAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LAW.LAWPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LAW.LAWPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LAW.LAWPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWPickupLo'
      PickupDrawScale=0.700000
      InventoryType=Class'BWBP_SKC_Pro.LAWLauncher'
      RespawnTime=120.000000
      PickupMessage="You picked up the FGM-70 'Shockwave' LAW."
      PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWPickupHi'
      Physics=PHYS_None
      DrawScale=0.700000
      CollisionHeight=6.000000

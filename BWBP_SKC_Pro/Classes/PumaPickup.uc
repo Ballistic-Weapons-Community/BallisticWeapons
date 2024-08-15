@@ -42,7 +42,8 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.Puma_SM');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.PumaPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.PumaPickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.Puma_SM_Ammo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.PumaShield');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.ShieldShard');
@@ -51,13 +52,13 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.PUMA.Puma_SM'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.PUMA.PumaPickupLo'
      PickupDrawScale=0.200000
      InventoryType=Class'BWBP_SKC_Pro.PumaRepeater'
      RespawnTime=20.000000
      PickupMessage="You picked up the PUMA-77 Repeater"
      PickupSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Pickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.PUMA.Puma_SM'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.PUMA.PumaPickupHi'
      Physics=PHYS_None
      DrawScale=0.220000
      CollisionHeight=4.000000

@@ -30,12 +30,12 @@ function InitDroppedPickupFor(Inventory Inv)
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Supercharger.Supercharger_SM'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Supercharger.SuperchargerPickupLo'
      InventoryType=Class'BWBP_SKC_Pro.Supercharger_AssaultWeapon'
      RespawnTime=20.000000
      PickupMessage="You picked up the Van Holt 500KW Supercharger"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Supercharger.Supercharger_SM'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Supercharger.SuperchargerPickupHi'
      Physics=PHYS_None
      DrawScale=0.100000
      CollisionHeight=4.000000

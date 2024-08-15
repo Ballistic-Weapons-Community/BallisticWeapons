@@ -18,7 +18,8 @@ static function StaticPrecache(LevelInfo L)
 {
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.XM84.XM84-MainDark');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84Projectile');
-	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84Pickup');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84PickupHi');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84PickupLo');
 }
 
 simulated function UpdatePrecacheMaterials()
@@ -35,20 +36,21 @@ simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84Clip');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84Projectile');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.XM84.XM84PickupLo');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84PickupLo'
      PickupDrawScale=1.000000
      bWeaponStay=False
      InventoryType=Class'BWBP_SKC_Pro.XM84Flashbang'
      RespawnTime=20.000000
      PickupMessage="You picked up the XM84 heavy tech grenade."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.GrenadePickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=2.000000

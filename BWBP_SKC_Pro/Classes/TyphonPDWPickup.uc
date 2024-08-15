@@ -36,7 +36,8 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.PumaShield');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.ShieldShard');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
@@ -44,13 +45,13 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickupLo'
      PickupDrawScale=0.200000
      InventoryType=Class'BWBP_SKC_Pro.TyphonPDW'
      RespawnTime=10.000000
      PickupMessage="You picked up the LRX-5 'Typhon' Pulse PDW."
      PickupSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Pickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickupHi'
      Physics=PHYS_None
      DrawScale=0.220000
      CollisionHeight=4.000000
