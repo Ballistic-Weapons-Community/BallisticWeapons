@@ -35,6 +35,7 @@ defaultproperties
 		FireInterval=0.450000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
@@ -124,7 +125,7 @@ defaultproperties
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RearSight",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
 		//ADS
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
         ZoomType=ZT_Fixed

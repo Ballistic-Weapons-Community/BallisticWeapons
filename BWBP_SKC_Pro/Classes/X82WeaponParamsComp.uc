@@ -29,6 +29,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=1.25
 		FireEndAnim=	
+		AimedFireAnim="SightFire"
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		
@@ -111,7 +112,7 @@ defaultproperties
 		LayoutName="4X Scope"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RearSight",Scale=0.04,AugmentOffset=(x=3.90,y=-0.25,z=0),AugmentRot=(Pitch=0,Yaw=0,Roll=-16384))
 		//ADS
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
         ZoomType=ZT_Fixed
@@ -143,7 +144,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		//ADS
         ZoomType=ZT_Irons
-		SightOffset=(X=3,Y=0,Z=4.43)
+		SightOffset=(X=3,Y=-0.0215,Z=4.372500)
 		SightPivot=(Roll=0)
 		SightMoveSpeedFactor=0.900000
 		SightingTime=0.400000

@@ -37,8 +37,8 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
 	{
 		bIsIrons=true;
-		SetBoneRotation('RearSightP', rot(15000,0,0));
-		SetBoneRotation('FrontSight', rot(0,0,16000));
+		SetBoneRotation('RearSight', rot(0,16384,0));
+		SetBoneRotation('FrontSight', rot(0,16384,-32768));
 	}
 }
 
@@ -384,12 +384,10 @@ defaultproperties
     ParamsClasses(3)=Class'X82WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.X82SecondaryFire'
-	SelectAnim="Takeout"
-	PutDownAnim="PutDown"
 	IdleAnimRate=0.040000
 	SelectAnimRate=0.500000
-	PutDownAnimRate=0.400000
-	PutDownTime=0.400000
+	PutDownAnimRate=0.800000
+	PutDownTime=1.400000
 	BringUpTime=1.200000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.80000
@@ -403,7 +401,7 @@ defaultproperties
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
 
-	PlayerViewOffset=(X=5.00,Y=4.50,Z=-5.00)
+	PlayerViewOffset=(X=4.00,Y=4.50,Z=-5.00)
 	SightOffset=(X=5.00,Y=-0.50,Z=4.25)
 	SightPivot=(Roll=-1024)
 
@@ -417,7 +415,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.X83_FPm'
 	DrawScale=0.30000
 	//Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	//Skins(1)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'

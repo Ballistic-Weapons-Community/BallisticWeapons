@@ -209,7 +209,7 @@ simulated event AnimEnd (int Channel)
     GetAnimParams(0, Anim, Frame, Rate);
 	if (Anim == HealAnim)
 		ReloadState = RS_None;
-	if (Anim == 'FireOpen' || Anim == 'Pullout' || Anim == 'Fire' || Anim == 'Dart_Fire' || Anim == 'Dart_FireOpen' ||Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
+	if (Anim == 'FireOpen' || Anim == 'Pullout' || Anim == 'Fire' || Anim == 'DartFire' || Anim == 'DartFireOpen' ||Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
@@ -403,7 +403,8 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PS9M'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.PS9M_FPm'
+	SupportHandBone="l_upperarm"
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.Stealth.Stealth-Main'

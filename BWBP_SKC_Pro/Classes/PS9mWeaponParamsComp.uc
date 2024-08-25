@@ -73,7 +73,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
 		FireInterval=0.600000
 		AmmoPerFire=0
-		FireAnim="Dart_Fire"	
+		FireAnim="DartFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
 	End Object
 		

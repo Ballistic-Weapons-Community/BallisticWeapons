@@ -199,7 +199,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MRDR.BigIcon_MRDR'
 	BigIconCoords=(X1=64,Y1=0,Y2=255)
-    SupportHandBone="Root_01"
+    SupportHandBone="Root 01"
 	
 	bWT_Bullet=True
 	bWT_Machinegun=True

@@ -94,7 +94,7 @@ defaultproperties
 			FireInterval=0.600000
 			BurstFireRateFactor=1.00
 			AmmoPerFire=0
-			FireAnim="Dart_Fire"	
+			FireAnim="DartFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 		End Object
 		
