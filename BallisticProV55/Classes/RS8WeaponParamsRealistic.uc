@@ -273,7 +273,7 @@ defaultproperties
 	Layouts(1)=WeaponParams'RealisticParams_TacKnife'
 	Layouts(2)=WeaponParams'RealisticParams_10mm'
 	
-	//Camos =====================================
+//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS8_Silver
 		Index=0
 		CamoName="Silver"

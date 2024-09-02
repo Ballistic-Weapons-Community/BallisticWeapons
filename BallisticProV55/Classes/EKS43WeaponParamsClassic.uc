@@ -120,7 +120,7 @@ defaultproperties
 		Weight=10
 		AllowedCamos(0)=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKSCamos.Katana-KGlow",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BW_Core_WeaponTex.EKS43.Katana-KGlow",Index=1)
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		SightMoveSpeedFactor=0.500000
@@ -145,7 +145,7 @@ defaultproperties
 		Index=1
 		CamoName="Superheated Alloy"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EKSCamos.Katana-KGlow",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BW_Core_WeaponTex.EKS43.Katana-KGlow",Index=1,AIndex=0,PIndex=0)
 		Weight=1
 	End Object
 	

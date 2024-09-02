@@ -168,6 +168,11 @@ defaultproperties
 		//Layout core
 		LayoutName="10mm Suppressable"
 		Weight=30
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
 		//ADS
 		SightingTime=0.17
         SightMoveSpeedFactor=0.6
@@ -193,6 +198,11 @@ defaultproperties
 		LayoutName="10mm Tac Knife"
 		LayoutTags="tacknife"
 		Weight=10
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
 		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
@@ -249,7 +259,7 @@ defaultproperties
     Layouts(1)=WeaponParams'TacticalParams_TacKnife'
     Layouts(2)=WeaponParams'TacticalParams_Heavy'
 	
-	//Camos =====================================
+//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS8_Silver
 		Index=0
 		CamoName="Silver"

@@ -227,13 +227,13 @@ defaultproperties
 		//Layout core
 		LayoutName="Suppressable"
 		Weight=30
-		//Attachments
-		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
 		AllowedCamos(4)=4
+		//Attachments
+		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		//ADS
 		SightOffset=(X=-43,Y=-1.4,Z=13.4)
 		SightPivot=(Pitch=-200,Roll=-1050)
@@ -264,14 +264,14 @@ defaultproperties
 		LayoutName="Classic Knife"
 		LayoutTags="tacknife"
 		Weight=10
-		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
-		ViewOffset=(X=21,Y=6,Z=-5)
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
 		AllowedCamos(4)=4
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
+		ViewOffset=(X=21,Y=6,Z=-5)
 		//ADS
 		SightOffset=(X=-30,Y=0.26,Z=3.5)
 		SightPivot=(Pitch=0,Roll=0)
@@ -337,7 +337,7 @@ defaultproperties
 	Layouts(1)=WeaponParams'ClassicParams_TacKnife'
 	Layouts(2)=WeaponParams'ClassicParams_Heavy'
 	
-	//Camos =====================================
+//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS8_Silver
 		Index=0
 		CamoName="Silver"

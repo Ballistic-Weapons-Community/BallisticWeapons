@@ -866,7 +866,7 @@ defaultproperties
      PlayerViewOffset=(X=5.00,Y=4.00,Z=-3.50)
      SightOffset=(X=-3.00,Y=0.00,Z=2.00)
 	 SightPivot=(Pitch=150)
-
+	 PlayerViewPivot=(Yaw=-16400)
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)
@@ -881,7 +881,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'PUMAWeaponParamsClassic'
 	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
      ParamsClasses(3)=Class'PUMAWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.PUMA_FPm'
      DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.PUMA.PUMA-MainShine'

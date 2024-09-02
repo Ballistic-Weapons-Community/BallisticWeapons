@@ -138,6 +138,7 @@ defaultproperties
 		Weight=30
 		//Visual
 		AllowedCamos(0)=0
+		AllowedCamos(1)=2
 		//Stats
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
@@ -194,7 +195,7 @@ defaultproperties
 		CamoName="Red"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Layouts.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=A42_Green
@@ -202,10 +203,10 @@ defaultproperties
 		CamoName="Green"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A512_ExpShine',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A512_ExpShine",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Camos(0)=WeaponCamo'A42_Blue'
 	Camos(1)=WeaponCamo'A42_Red'
-	Camos(2)=WeaponCamo'A42_Green'
+	//Camos(2)=WeaponCamo'A42_Green'
 }

@@ -152,6 +152,11 @@ defaultproperties
 		//Layout core
 		LayoutName="Suppressable"
 		Weight=30
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
 		//ADS
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.200000
@@ -178,6 +183,11 @@ defaultproperties
 		LayoutName="Arena Knife"
 		LayoutTags="tacknife"
 		Weight=10
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
 		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)

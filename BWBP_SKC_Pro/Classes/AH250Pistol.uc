@@ -360,7 +360,7 @@ defaultproperties
 	BulletBone="Bullet"
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BWBP_SKC_Tex.Eagle.BigIcon_EagleAlt'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.Eagle.BigIcon_Eagle'
 	BigIconCoords=(X1=48,Y1=0,X2=455,Y2=255)
 	
 	bWT_Bullet=True
@@ -411,7 +411,7 @@ defaultproperties
 	SightBobScale=0.45f
 
 	AttachmentClass=Class'BWBP_SKC_Pro.AH250Attachment'
-	IconMaterial=Texture'BWBP_SKC_Tex.Eagle.SmallIcon_EagleAlt'
+	IconMaterial=Texture'BWBP_SKC_Tex.Eagle.SmallIcon_Eagle'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="AH250 Assault Pistol"
 	LightType=LT_Pulse
@@ -423,9 +423,9 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AHDeagle'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack'
-	Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack'
-	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope'
-	Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack'
+	Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine'
+	Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
+	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed'
+	Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front'
 	Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
 }

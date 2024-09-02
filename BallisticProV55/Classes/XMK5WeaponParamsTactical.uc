@@ -243,8 +243,8 @@ defaultproperties
 	End Object
 	
 	Camos(0)=WeaponCamo'XMK5_Tan'
-	Camos(1)=WeaponCamo'XMK5_Jungle'
-	Camos(2)=WeaponCamo'XMK5_Desert'
+	Camos(1)=WeaponCamo'XMK5_Desert'
+	Camos(2)=WeaponCamo'XMK5_Jungle'
 	Camos(3)=WeaponCamo'XMK5_Red'
 	Camos(4)=WeaponCamo'XMK5_Blast'
 	Camos(5)=WeaponCamo'XMK5_Gold'
