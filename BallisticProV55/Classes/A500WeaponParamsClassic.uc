@@ -222,10 +222,6 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-SSS
 		LayoutName="Reverse Engineered"
 		Weight=1
-		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=1f)
-		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=1f)
-		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=1f)
-		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=1f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A500Camos.SSW_Main",Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Lighter.LightGunSkin',Index=2)

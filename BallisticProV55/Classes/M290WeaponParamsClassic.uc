@@ -170,8 +170,6 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		InventorySize=7
 		
 		SightMoveSpeedFactor=0.500000

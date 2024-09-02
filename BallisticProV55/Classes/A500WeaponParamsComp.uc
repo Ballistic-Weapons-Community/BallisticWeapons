@@ -96,10 +96,6 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		ReloadAnimRate=1.250000
 		MagAmmo=8
         SightingTime=0.25

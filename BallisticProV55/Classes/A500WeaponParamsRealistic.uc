@@ -105,10 +105,6 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=6
-		WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=10
