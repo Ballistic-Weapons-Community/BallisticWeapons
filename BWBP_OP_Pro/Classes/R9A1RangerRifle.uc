@@ -421,14 +421,14 @@ function byte BestMode()
 		if (CurrentWeaponMode != 2)
 		{
 			CurrentWeaponMode = 2;
-			R9PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			R9A1PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
 	
 	else if (CurrentWeaponMode != 0)
 	{
 		CurrentWeaponMode = 0;
-		R9PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		R9A1PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	}
 	
 	LastModeChangeTime = level.TimeSeconds;

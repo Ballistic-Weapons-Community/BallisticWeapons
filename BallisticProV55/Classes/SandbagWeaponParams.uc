@@ -54,4 +54,13 @@ defaultproperties
         AltFireParams(0)=FireParams'UniversalFireParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
+
+	//Camos ===================================
+	Begin Object Class=WeaponCamo Name=Default
+		Index=0
+		CamoName="Default"
+		Weight=30
+	End Object
+
+    Camos(0)=WeaponCamo'Default'  
 }
