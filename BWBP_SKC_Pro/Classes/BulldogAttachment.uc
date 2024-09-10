@@ -45,6 +45,7 @@ defaultproperties
      AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
+	 FlashScale=0.400000
      ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge'
      AltFlashBone="ejector"
      BrassClass=Class'BWBP_SKC_Pro.Brass_BOLT'

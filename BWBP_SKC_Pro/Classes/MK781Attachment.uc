@@ -462,7 +462,7 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
 	AltMuzzleFlashClass=class'XK2SilencedFlash'
 	ImpactManager=class'IM_Shell'
-	FlashScale=1.800000
+	FlashScale=0.800000
 	BrassClass=class'Brass_Shotgun'
 	BrassMode=MU_Both
 	TracerMode=MU_Both

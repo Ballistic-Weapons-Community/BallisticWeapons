@@ -211,6 +211,7 @@ defaultproperties
 	WeaponClass=class'M2020GaussDMR'
      MuzzleFlashClass=class'BWBP_SKC_Pro.M2020FlashEmitter'
      AltMuzzleFlashClass=class'M806FlashEmitter'
+	 FlashScale=0.250000
      ImpactManager=class'IM_Bullet'
      ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
      BrassClass=class'Brass_Rifle'

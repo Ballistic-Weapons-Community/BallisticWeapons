@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class GASCAttachment extends HandgunAttachment;
 
@@ -144,6 +144,7 @@ defaultproperties
 	ReloadAnimRate=1.400000
 	CockAnimRate=0.800000
 	bRapidFire=True
+	RelativeLocation=(X=-20.000000,Y=-5.000000,Z=1.000000)
 	Mesh=SkeletalMesh'BWBP_CC_Anim.TPm_GASC'
 	DrawScale=1.000000
 }

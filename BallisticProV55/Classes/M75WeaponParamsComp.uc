@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
-		FlashScaleFactor=0.750000
+		FlashScaleFactor=0.400000
 		Recoil=3072.000000
 		Chaos=0.750000
 		BotRefireRate=0.3
@@ -36,6 +36,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
+		FlashScaleFactor=0.400000
 		Recoil=4096.000000
 		Chaos=0.750000
 		Damage=170

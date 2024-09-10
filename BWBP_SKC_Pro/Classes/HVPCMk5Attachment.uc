@@ -103,11 +103,13 @@ defaultproperties
 {
 	WeaponClass=class'HVPCMk5PlasmaCannon'
 	DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
+	MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
 	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HVPCMuzzleFlash'
 	ImpactManager=class'IM_HVCRedLightning'
 	bDoWaterSplash=False
-	FlashScale=2.500000
+	FlashScale=0.750000
 	TracerClass=class'TraceEmitter_HVCRedLightning'
+	FlashMode=MU_Both
 	bHeavy=True
 	bRapidFire=True
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HVPC'

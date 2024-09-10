@@ -328,7 +328,6 @@ defaultproperties
 {
 	WeaponClass=class'CYLOUAW'
 	FireClass=class'CYLOSecondaryFire'
-	
 	TracerClasses(0)=class'TraceEmitter_Default' //bullet
 	TracerClasses(1)=class'TraceEmitter_Incendiary' //inc
 	TracerClasses(2)=class'TraceEmitter_Incendiary' //inc
@@ -339,7 +338,6 @@ defaultproperties
 	AltTracerClasses(1)=class'TraceEmitter_ShotgunFlameLight'
 	AltImpactManagers(0)=class'IM_Shell'
 	AltImpactManagers(1)=class'IM_ShellHE'
-	
 	MuzzleFlashClass=class'M50FlashEmitter'
 	AltMuzzleFlashClass=class'M50M900FlashEmitter'
 	ImpactManager=class'IM_Bullet'

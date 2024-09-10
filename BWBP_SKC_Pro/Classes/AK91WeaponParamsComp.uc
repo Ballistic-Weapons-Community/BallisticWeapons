@@ -18,7 +18,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		PenetrateForce=0
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
-		FlashScaleFactor=0.200000
+		FlashScaleFactor=0.300000
 		Recoil=128.000000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		WarnTargetPct=0.200000

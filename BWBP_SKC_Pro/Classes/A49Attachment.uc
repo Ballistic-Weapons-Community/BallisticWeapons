@@ -15,6 +15,7 @@ defaultproperties
 	WeaponClass=class'A49SkrithBlaster'
 	MuzzleFlashClass=class'A42FlashEmitter'
 	AltMuzzleFlashClass=class'A42FlashEmitter'
+	FlashScale=0.500000
 	ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'
 	BrassMode=MU_None
 	TracerMode=MU_Secondary

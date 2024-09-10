@@ -304,6 +304,7 @@ defaultproperties
      PhotonImpactManager=Class'BWBP_OP_Pro.IM_FC01Photon'
 	 PhotonMuzzleFlashClass=Class'BWBP_OP_Pro.FC01PhotonFlashEmitter'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	 FlashScale=0.275000
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone="tipalt"
      BrassClass=Class'BallisticProV55.Brass_Shotgun'

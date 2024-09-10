@@ -250,7 +250,7 @@ defaultproperties
 	TracerClasses(1)=class'TraceEmitter_AP'
 	ImpactManagers(0)=class'IM_IncendiaryHMGBullet'
 	ImpactManagers(1)=class'IM_BigBulletHMG'
-	FlashScale=1.750000
+	FlashScale=1.050000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
 	InstantMode=MU_Both
 	FlashMode=MU_Both

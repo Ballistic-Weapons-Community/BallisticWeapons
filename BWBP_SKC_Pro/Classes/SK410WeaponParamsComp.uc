@@ -18,7 +18,7 @@ defaultproperties
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
         MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
-        FlashScaleFactor=0.500000
+        FlashScaleFactor=0.400000
         Recoil=1024.000000
         Chaos=0.400000
         BotRefireRate=0.900000

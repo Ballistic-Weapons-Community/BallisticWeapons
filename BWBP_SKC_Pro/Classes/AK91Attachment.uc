@@ -12,6 +12,7 @@ defaultproperties
 {
 	WeaponClass=class'AK91ChargeRifle'
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+	FlashScale=0.500000
 	ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
 	BrassClass=class'Brass_Rifle'
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'

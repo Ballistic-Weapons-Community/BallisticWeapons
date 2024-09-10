@@ -382,6 +382,7 @@ defaultproperties
 	MuzzleFlashClassAmp2=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
+	FlashScale=0.250000
 	ImpactManager=class'IM_Bullet'
 	AltFlashBone="tip2"
 	BrassClass=class'Brass_Pistol'
@@ -403,4 +404,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_SX45'
 	DrawScale=1.000000
 	RelativeLocation=(Z=10)
+	Skins(0)=Texture'BWBP_SKC_Tex.SX45.SX45-Mag'
 }

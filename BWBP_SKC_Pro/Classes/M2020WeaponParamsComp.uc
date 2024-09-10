@@ -21,7 +21,7 @@ defaultproperties
 		WallPDamageFactor=0.750000
 		PushbackForce=120.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
-		FlashScaleFactor=1.200000
+		FlashScaleFactor=0.500000
 		Recoil=400.000000
 		Chaos=0.600000
 		BotRefireRate=0.500000

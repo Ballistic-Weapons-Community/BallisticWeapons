@@ -145,7 +145,7 @@ defaultproperties
 	MuzzleFlashClass=class'M806FlashEmitter'
 	ImpactManager=class'IM_Bullet'
 	MeleeImpactManager=class'IM_GunHit'
-	FlashScale=0.125000
+	FlashScale=0.050000
 	BrassClass=class'Brass_Pistol'
 	InstantMode=MU_Both
 	TrackAnimMode=MU_Secondary

@@ -16,6 +16,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_APC_Pro.DTR9000ERifle'
 		PDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_APC_Pro.R9000EFlashEmitter'
+		FlashScaleFactor=1.300000
 		Recoil=378.000000
 		Chaos=0.500000
 		BotRefireRate=0.4

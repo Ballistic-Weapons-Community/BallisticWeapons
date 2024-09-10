@@ -12,7 +12,7 @@ defaultproperties
 {
 	WeaponClass=class'ThumperGrenadeLauncher'
 	MuzzleFlashClass=class'M50M900FlashEmitter'
-	FlashScale=0.650000
+	FlashScale=0.350000
 	BrassMode=MU_None
 	InstantMode=MU_None
 	WaterTracerMode=MU_None

@@ -325,7 +325,7 @@ defaultproperties
      InstantMode=MU_Both
      FlashMode=MU_Both
 	 TrackAnimMode=MU_None
-	 FlashScale=0.3
+	 FlashScale=0.200000
 	 TracerMix=-3
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"

@@ -77,7 +77,7 @@ defaultproperties
 {
 	WeaponClass=class'MX32Weapon'
      MuzzleFlashClass=class'M50FlashEmitter'
-	 FlashScale=0.200000
+	 FlashScale=0.300000
      AltMuzzleFlashClass=class'M50M900FlashEmitter'
      ImpactManager=class'IM_Bullet'
      AltFlashBone="tip2"

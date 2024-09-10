@@ -167,6 +167,7 @@ defaultproperties
 	WeaponClass=class'AS50Rifle'
      AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
      MuzzleFlashClass=class'M925FlashEmitter'
+	 FlashScale=0.700000
      ImpactManager=Class'IM_IncendiaryBullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
      TracerMode=MU_Secondary

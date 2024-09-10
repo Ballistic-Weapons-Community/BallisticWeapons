@@ -20,7 +20,7 @@ defaultproperties
 			PenetrateForce=180
 			bPenetrate=True
 			MuzzleFlashClass=Class'BWBP_APC_Pro.ZX98FlashEmitter'
-			FlashScaleFactor=0.500000
+			FlashScaleFactor=1.250000
 			Recoil=180.000000
 			Chaos=0.032000
 			WarnTargetPct=0.200000

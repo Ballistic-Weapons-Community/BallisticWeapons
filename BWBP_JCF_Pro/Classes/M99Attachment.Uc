@@ -126,6 +126,7 @@ defaultproperties
 {
 	 WeaponClass=class'M99Rifle'
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+	 FlashScale=0.800000
      ImpactManager=Class'BallisticProV55.IM_BigBullet'
      BrassClass=Class'BWBP_JCF_Pro.Brass_50BMG'
      TracerClass=Class'BWBP_JCF_Pro.TraceEmitter_M99ECS'

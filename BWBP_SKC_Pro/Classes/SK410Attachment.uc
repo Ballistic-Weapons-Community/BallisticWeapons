@@ -14,7 +14,7 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
      MeleeImpactManager=class'IM_GunHit'
-     FlashScale=1.800000
+     FlashScale=0.700000
      BrassClass=Class'BWBP_SKC_Pro.Brass_ShotgunHE'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
      TracerChance=0.500000

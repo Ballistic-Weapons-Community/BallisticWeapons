@@ -16,7 +16,7 @@ defaultproperties
         Damage=40.000000
         DamageRadius=48.000000
      	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-		FlashScaleFactor=0.150000
+		FlashScaleFactor=0.200000
      	Recoil=108.000000
      	Chaos=0.070000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)
@@ -40,7 +40,7 @@ defaultproperties
 		Damage=80
 		DamageRadius=100.000000
 		MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-		FlashScaleFactor=1.200000
+		FlashScaleFactor=0.350000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire',Volume=1.300000)
 		Recoil=880.000000
      	Chaos=0.370000
@@ -69,7 +69,7 @@ defaultproperties
 		HeadMult=2.0
 		LimbMult=0.5
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
-		FlashScaleFactor=1.200000
+		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire',Volume=1.300000)
 		Recoil=1280.000000
      	Chaos=0.370000
@@ -92,7 +92,7 @@ defaultproperties
 
 	Begin Object Class=FireEffectParams Name=ArenaAltEffectParams
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.A49FlashEmitter'
-		FlashScaleFactor=1.200000
+		FlashScaleFactor=0.500000
      	Recoil=512.000000
      	Chaos=0.500000
 		PushbackForce=1500.000000

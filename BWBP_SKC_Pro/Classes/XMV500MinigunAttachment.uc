@@ -405,8 +405,8 @@ defaultproperties
 {
 	WeaponClass=class'XMV500Minigun'
 	FireClass=Class'BWBP_SKC_Pro.XMV500MinigunPrimaryFire'
-	MuzzleFlashClass=class'XK2FlashEmitter'
-	AltMuzzleFlashClass=class'XK2FlashEmitter'
+	MuzzleFlashClass=class'XMV850FlashEmitter'
+	AltMuzzleFlashClass=class'XMV850FlashEmitter'
 	ImpactManager=Class'IM_IncendiaryHMGBullet'
 	BrassClass=class'Brass_Minigun'
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary' //todo: fix inc emmitters for classic pro guns

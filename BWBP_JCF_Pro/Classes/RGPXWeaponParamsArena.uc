@@ -16,7 +16,7 @@ defaultproperties
 		DamageRadius=356.000000
 		MomentumTransfer=100000.000000
 		MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
-		FlashScaleFactor=0.250000
+		FlashScaleFactor=0.750000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.RGX.RGX_Fire',Volume=1.500000)
 		Recoil=256.000000
 		RecommendSplashDamage=True
@@ -45,7 +45,7 @@ defaultproperties
 		DamageRadius=520.000000
 		MomentumTransfer=100000.000000
 		MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
-		FlashScaleFactor=0.250000
+		FlashScaleFactor=0.750000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.RGX.RGX_FireFlak',Volume=1.800000)
 		Recoil=256.000000
 		RecommendSplashDamage=True

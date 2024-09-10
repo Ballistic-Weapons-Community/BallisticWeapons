@@ -136,7 +136,7 @@ defaultproperties
 	MuzzleFlashClass=class'M50FlashEmitter'
 	AltMuzzleFlashClass=class'M50FlashEmitter'
 	ImpactManager=class'IM_Bullet'
-	FlashScale=0.500000
+	FlashScale=0.200000
 	BrassClass=class'Brass_Rifle'
 	InstantMode=MU_Both
 	FlashMode=MU_Both

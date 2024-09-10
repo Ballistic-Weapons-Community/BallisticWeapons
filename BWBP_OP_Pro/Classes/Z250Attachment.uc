@@ -327,8 +327,9 @@ defaultproperties
 {
 	WeaponClass=class'Z250Minigun'
      FireClass=Class'BWBP_OP_Pro.Z250PrimaryFire'
-     MuzzleFlashClass=class'XK2FlashEmitter'
-     AltMuzzleFlashClass=class'XK2FlashEmitter'
+     MuzzleFlashClass=class'XMV850FlashEmitter'
+     AltMuzzleFlashClass=class'XMV850FlashEmitter'
+	 FlashScale=0.450000
      ImpactManager=class'IM_MinigunBullet'
      BrassClass=class'Brass_Minigun'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'

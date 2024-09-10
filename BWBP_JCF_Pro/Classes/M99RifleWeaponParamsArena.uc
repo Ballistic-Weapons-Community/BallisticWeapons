@@ -21,6 +21,7 @@ defaultproperties
 		PDamageFactor=0.900000
 		WallPDamageFactor=0.900000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+		FlashScaleFactor=3.000000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99FireNew',Volume=10.00000)
 		Recoil=7000
 		BotRefireRate=0.300000

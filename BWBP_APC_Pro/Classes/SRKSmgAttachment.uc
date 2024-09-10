@@ -40,11 +40,11 @@ function IAOverride(bool bGrenadier)
 
 defaultproperties
 {
-	 WeaponClass=class'SRKSubMachinegun'
+	WeaponClass=class'SRKSubMachinegun'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
-     FlashScale=0.100000
+     FlashScale=0.150000
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both

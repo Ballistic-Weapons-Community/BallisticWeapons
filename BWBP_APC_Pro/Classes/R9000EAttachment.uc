@@ -143,6 +143,7 @@ defaultproperties
      ImpactManagers(1)=Class'BWBP_APC_Pro.IM_BulletHE'
      ImpactManagers(2)=Class'BWBP_APC_Pro.IM_BulletRad'
      MuzzleFlashClass=Class'BWBP_APC_Pro.R9000EFlashEmitter'
+	 FlashScale=0.125000
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'

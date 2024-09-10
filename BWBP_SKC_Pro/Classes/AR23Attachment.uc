@@ -131,7 +131,7 @@ defaultproperties
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_AR23'
-	 FlashScale=0.4
+	 FlashScale=0.200000
      DrawScale=1.000000
 	 Skins(0)=Shader'BWBP_SKC_Tex.AR23.AR23-MainShine'
 	 Skins(1)=Shader'BWBP_SKC_Tex.AR23.AR23-MiscShine'

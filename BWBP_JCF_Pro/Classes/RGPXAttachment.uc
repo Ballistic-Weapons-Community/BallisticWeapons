@@ -100,7 +100,7 @@ defaultproperties
      RelativeRotation=(Pitch=32768)
 	 MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
-     FlashScale=1.200000
+     FlashScale=0.250000
      BrassMode=MU_None
      InstantMode=MU_None
 	 ReloadAnim="Reload_MG"

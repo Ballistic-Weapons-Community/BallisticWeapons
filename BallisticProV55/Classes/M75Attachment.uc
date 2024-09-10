@@ -87,6 +87,7 @@ defaultproperties
 	WeaponClass=class'M75Railgun'
 	SpawnOffset=(X=-120.000000,Y=-5.000000,Z=13.000000)
 	MuzzleFlashClass=class'M75FlashEmitter'
+	FlashScale=0.600000
 	AltMuzzleFlashClass=class'M75FlashEmitter'
 	ImpactManager=class'IM_RailBullet'
 	BrassClass=class'Brass_Railgun'

@@ -344,6 +344,7 @@ defaultproperties
 	TracerClasses(0)=class'TraceEmitter_XM20Laser'
 	TracerClasses(1)=class'TraceEmitter_XM20Laser_P'
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20Laser'
+	FlashScale=0.750000
 	ImpactManager=Class'BWBP_SKC_Pro.IM_XM20Laser'
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
 	InstantMode=MU_Both

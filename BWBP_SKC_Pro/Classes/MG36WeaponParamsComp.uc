@@ -16,7 +16,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-		FlashScaleFactor=0.100000
+		FlashScaleFactor=0.650000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=100.000000
 		Chaos=0.030000
@@ -39,7 +39,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-		FlashScaleFactor=0.100000
+		FlashScaleFactor=0.650000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireAR',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=128.000000
 		Chaos=-1.000000
@@ -63,7 +63,7 @@ defaultproperties
 		PenetrationEnergy=150
 		PenetrateForce=600
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-		FlashScaleFactor=0.300000
+		FlashScaleFactor=0.800000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.JSOC.JSOC-FireGauss',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
 		PushbackForce=150 //
 		Recoil=428.000000

@@ -234,6 +234,7 @@ defaultproperties
 {
 	WeaponClass=class'GRS9Pistol'
 	MuzzleFlashClass=class'XK2FlashEmitter'
+	FlashScale=2.000000
 	ImpactManager=class'IM_Bullet'
 	//AltImpactManager=class'IM_GRS9Laser'
 	BrassClass=class'Brass_GRSNine'

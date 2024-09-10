@@ -52,7 +52,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTSPASShotgunHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTSPASShotgun'
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-		FlashScaleFactor=1.000000
+		FlashScaleFactor=0.650000
 		Recoil=2048.000000 //x1.5
 		Chaos=0.30000
 		BotRefireRate=0.7

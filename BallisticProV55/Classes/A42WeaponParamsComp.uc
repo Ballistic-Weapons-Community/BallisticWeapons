@@ -129,7 +129,7 @@ defaultproperties
 		Weight=30
 		//Visual
 		AllowedCamos(0)=0
-		AllowedCamos(1)=2
+		//AllowedCamos(1)=2
 		//Stats
         MagAmmo=40
         InventorySize=2

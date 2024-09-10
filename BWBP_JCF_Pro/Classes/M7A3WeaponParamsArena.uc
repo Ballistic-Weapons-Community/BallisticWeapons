@@ -20,7 +20,7 @@ defaultproperties
 		PenetrateForce=450
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_JCF_Pro.M7A3FlashEmitter'
-		FlashScaleFactor=0.100000
+		FlashScaleFactor=0.200000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3-HFire4',Volume=1.4,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=200.000000
 		Chaos=0.10000
