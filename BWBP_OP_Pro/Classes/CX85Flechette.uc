@@ -90,7 +90,7 @@ function SetFlechetteDestination()
 
 simulated event Tick(float DT)
 {
-	local vector V, X,Y,Z, ScrewCenter;
+	local vector V, X,Y,Z; //ScrewCenter
 	local Rotator R, AxisDir;
 	local float TurnNeeded;
 	

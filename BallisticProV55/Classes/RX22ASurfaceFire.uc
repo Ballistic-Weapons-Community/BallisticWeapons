@@ -69,7 +69,7 @@ simulated function FuelChanged()
 
 function Timer()
 {
-	local int i;
+  //local int i;
 	
 	if (PhysicsVolume.bWaterVolume)
 		return;

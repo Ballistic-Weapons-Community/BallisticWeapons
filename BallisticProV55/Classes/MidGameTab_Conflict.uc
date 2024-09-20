@@ -439,7 +439,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	local byte GameStyleIndex;
 	local int i;
 	local array<int> AllowedCamos;
-	local byte oldCamoIndex, oldLength;
+	local byte oldCamoIndex; //oldLength
 	
 	oldCamoIndex = CamoIndexList[lb_Weapons.List.Index];
 	

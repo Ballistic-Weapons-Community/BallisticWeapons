@@ -8,8 +8,8 @@
 //=============================================================================
 class RGPXFlakGrenade extends BallisticGrenade;
 
-var bool bArmed;
-var float ArmingDelay;
+//var bool bArmed;
+//var float ArmingDelay;
 var RGPXFlakRocket FlakProj[6];
 
 var int	OldMagAmmo;

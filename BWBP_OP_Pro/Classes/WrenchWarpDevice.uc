@@ -162,7 +162,7 @@ simulated function bool PutDown()
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
 	local float		ScaleFactor, XL, YL, YL2;
-	local string	Temp;
+  //local string	Temp;
 	local int i;
 	local byte StartMode;
 

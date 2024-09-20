@@ -1,6 +1,6 @@
 class FM13Grenade extends BallisticGrenade;
 
-var bool bArmed;
+//var bool bArmed;
 var FM13FireControl	FireControl;
 
 simulated function PostNetBeginPlay()

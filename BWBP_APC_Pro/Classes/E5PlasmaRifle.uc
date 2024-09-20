@@ -184,7 +184,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 
 simulated function TickSighting (float DT)
 {
-	local vector V;
+  //local vector V;
 	local Rotator FT;
 
 	if (SightingState == SS_None && Instigator.IsLocallyControlled() && LastSightDownTime > 0 && level.TimeSeconds - LastSightDownTime > 2)

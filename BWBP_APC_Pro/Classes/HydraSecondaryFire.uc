@@ -80,7 +80,7 @@ simulated function ModeTick(float DeltaTime)
 
 function DoFireEffect()
 {
-    local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace, FireLocation;
+    local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace; //FireLocation
     local Rotator Aim, FireDirection;
 	local actor Other;
 	local int i;

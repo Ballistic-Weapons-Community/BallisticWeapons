@@ -39,7 +39,7 @@ function DoFireEffect()
 
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-    local int i;
+  //local int i;
 	local CX85DartDirect Proj, MasterProj;
     local Rotator R;
 	local float             BoneDist;

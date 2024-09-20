@@ -131,8 +131,8 @@ event InitGame(string options, out string error)
      local string InOpt;
      local Mutator M;
      local int i;
-     local Class<Weapon> W;
-     local array<string> WeaponClasses;
+   //local Class<Weapon> W;
+   //local array<string> WeaponClasses;
 
      Super.InitGame(Options, Error);
 

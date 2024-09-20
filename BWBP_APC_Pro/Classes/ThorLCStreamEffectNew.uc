@@ -27,7 +27,7 @@ replication
 
 simulated function Destroyed()
 {
-    local int c;
+  //local int c;
 
     if ( Sparks != None )
     {

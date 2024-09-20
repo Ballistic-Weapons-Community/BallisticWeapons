@@ -377,10 +377,12 @@ simulated function Vector GetTipLocation()
 // Return the location of the muzzle.
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {
-	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)	
-		return Instigator.Weapon.GetEffectStart();
-
-    return GetBoneCoords('tip').Origin;
+    if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)    
+        return Instigator.Weapon.GetEffectStart();
+    else if ((Level.TimeSeconds - LastRenderTime) < 1)
+        return GetBoneCoords('tip').Origin;
+    else
+        return Instigator.Location;
 }
 
 // Return location of brass ejector

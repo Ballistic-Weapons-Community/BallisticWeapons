@@ -155,7 +155,7 @@ simulated function bool HasUDamage()
 
 function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-    local float DriverEyeZ, TurretBottomZ, DriverHeight;
+  //local float DriverEyeZ, TurretBottomZ, DriverHeight;
 
 	if ( InGodMode() )
  		Damage = 0;

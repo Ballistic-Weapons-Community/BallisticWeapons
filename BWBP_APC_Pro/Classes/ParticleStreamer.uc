@@ -133,9 +133,9 @@ simulated event WeaponTick(float DT)
 //===========================================================================
 simulated function RenderOverlays (Canvas C)
 {
-	local int i;
+  //local int i;
 	local vector	EndEffect;
-	local float Magnitude;
+  //local float Magnitude;
 	
 	Super.RenderOverlays(C);
 

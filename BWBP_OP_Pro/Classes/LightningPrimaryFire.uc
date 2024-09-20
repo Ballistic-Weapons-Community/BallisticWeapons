@@ -50,7 +50,7 @@ function AdjustChargeVolume()
 
 simulated function int CalculateAmmoUse()
 {	
-    local int load;
+  //local int load;
 
 	load = Max(1, int(LightningRifle(BW).ChargePower * FullChargeAmmo));
 

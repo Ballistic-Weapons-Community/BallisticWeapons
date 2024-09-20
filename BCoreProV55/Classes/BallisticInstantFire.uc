@@ -309,7 +309,7 @@ final function float GetDamageForCollision(UnlaggedPawnCollision Other, vector H
 {
 	local float	Dmg;
     local Vector HeadPositionApprox;
-    local Vector HeadTestPoint;
+  //local Vector HeadTestPoint;
 
 	Dmg = Damage;
 	DT = DamageType;

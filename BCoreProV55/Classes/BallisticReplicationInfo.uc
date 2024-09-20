@@ -399,7 +399,6 @@ defaultproperties
 {
     RemoteRole=ROLE_SimulatedProxy
 	bAlwaysRelevant=True
-
 	// defaults used from pro, config styles will override them directly
 	AccuracyScale=1
 	RecoilScale=1
@@ -407,22 +406,18 @@ defaultproperties
 	ReloadScale=1
 	DamageScale=1
 	VehicleDamageScale=1
-
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bNoReloading=False
-	bNoRandomCamo=False
-
+	bNoRandomCamo=True
 	bAlternativePickups=False
 	bUniversalMineLights=True
-
 	bBrightPlayers=True
     StartingHealth=100
 	PlayerHealthMax=100
 	PlayerSuperHealthMax=200
 	StartingShield=100
 	PlayerShieldMax=200
-
     bAllowDodging=True
 	bAllowDoubleJump=True
     PlayerWalkSpeedFactor=0.9

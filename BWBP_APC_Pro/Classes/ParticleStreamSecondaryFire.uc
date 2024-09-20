@@ -109,17 +109,16 @@ if (!AllowFire())
 function DoFireEffect()
 {
 	local Actor Target, Victims, Other;
-	local float TargetAngle, DR, BHD;
+	local float TargetAngle, DR; //BHD
 	local vector ForceDir, EndEffect;
 	
-	local Rotator AimDir;
+  //local Rotator AimDir;
 	local Vector HitLocation, HitNormal;
-	
-	local DestroyableObjective HealObjective;
-	local Vehicle HealVehicle;
-	local int AdjustedDamage;
+  //local DestroyableObjective HealObjective;
+  //local Vehicle HealVehicle;
+  //local int AdjustedDamage;
 	local bool bWasAlive, bDidHeal;
-	local RSBlackHole BH;
+  //local RSBlackHole BH;
 
 		if (ParticleStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
 	{
