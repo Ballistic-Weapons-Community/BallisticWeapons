@@ -104,13 +104,14 @@ defaultproperties
 		//Visual
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
+		//ADS
 		ZoomType=ZT_Logarithmic
+		SightMoveSpeedFactor=0.500000
+		SightingTime=1.000000
 		//Stats
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
 		InventorySize=10
-		SightMoveSpeedFactor=0.500000
-		SightingTime=1.000000
 		MagAmmo=3
 		bMagPlusOne=True
 		//ReloadAnimRate=1.100000

@@ -14,7 +14,7 @@ defaultproperties
 		MaxSpeed=14000.000000
 		AccelSpeed=100000.000000
 		Damage=60
-		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=SoundGroup'BWBP_SWC_Sounds.A800.A800-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=120.000000
@@ -43,7 +43,7 @@ defaultproperties
 		Damage=150
 		DamageRadius=384.000000
 		MomentumTransfer=50000.000000
-		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-AltFire2',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=650.000000
@@ -100,13 +100,17 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		LayoutName="Replacable Cells"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=1.000000
+		//Stats
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		SightingTime=0.600000
         MagAmmo=80
         InventorySize=9
-        SightMoveSpeedFactor=0.75
-		ZoomType=ZT_Logarithmic
 		SightOffset=(X=-30.000000,Y=-25.000000,Z=6.500000)
 		SightPivot=(Roll=-1900)
 		ViewOffset=(X=20.000000,Y=20.000000,Z=-15.000000)
@@ -117,7 +121,33 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_BigBattery
+		//Layout core
+		LayoutName="Integrated Cells"
+		LayoutTags="no_reload"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=1.000000
+		//Stats
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.750000
+        MagAmmo=200
+        InventorySize=9
+		SightOffset=(X=-30.000000,Y=-25.000000,Z=6.500000)
+		SightPivot=(Roll=-1900)
+		ViewOffset=(X=20.000000,Y=20.000000,Z=-15.000000)
+		ViewPivot=(Roll=-256)
+		ReloadAnimRate=1.300000
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_BigBattery'
 
 
 }

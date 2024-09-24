@@ -286,31 +286,31 @@ defaultproperties
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.Glock.Glock_Shiny',Index=1,AIndex=0,PIndex=0)
-		Weight=5
+		Weight=1
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Glock_Brown
 		Index=2
 		CamoName="Brown"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainDesert",Index=1,AIndex=0,PIndex=0)
-		Weight=5
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRSCamos.GlockFullBrown_Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Glock_Green
 		Index=3
 		CamoName="Green"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainTigerShine",Index=1,AIndex=0,PIndex=0)
-		Weight=5
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRSCamos.GlockGreen_Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Glock_Silver
 		Index=4
 		CamoName="Silver"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainBlackShine",Index=1,AIndex=0,PIndex=0)
-		Weight=5
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.GlockSilver_Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Glock_UTC
@@ -318,7 +318,7 @@ defaultproperties
 		CamoName="UTC"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.UTCGlockShine",Index=1)
-		Weight=5
+		Weight=1
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=Glock_Butter
@@ -326,7 +326,7 @@ defaultproperties
 		CamoName="Butter"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.Glock_GoldShine",Index=1)
-		Weight=1
+		Weight=5
 	End Object
 	
 	Camos(0)=WeaponCamo'Glock_Gold'

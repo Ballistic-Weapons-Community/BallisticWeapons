@@ -71,7 +71,7 @@ event ModeTick(float DT)
 defaultproperties
 {
      SpawnOffset=(X=1.000000,Y=5.000000,Z=-5.000000)
-     MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
+     MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
      FlashScaleFactor=0.100000
      FireRecoil=120.000000
      FirePushBackForce=15.000000

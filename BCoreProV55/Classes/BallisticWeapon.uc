@@ -4055,7 +4055,7 @@ function bool HandlePickupQuery( pickup Item )
 
 simulated function Destroyed()
 {
-    local int m;
+    local int m,i;
 
 	AmbientSound = None;
 
@@ -4095,6 +4095,11 @@ simulated function Destroyed()
 				Ammo[m].Destroy();
 			Ammo[m] = None;
 		}
+	}
+	
+	for (i = 0; i < GunAugments.Length; ++i)
+	{
+		GunAugments[i].Destroy();
 	}
 	
 	//Actor references may cause us severe pain.

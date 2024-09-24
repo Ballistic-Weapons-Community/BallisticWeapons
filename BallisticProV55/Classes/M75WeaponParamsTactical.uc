@@ -103,6 +103,10 @@ defaultproperties
 		//Visual
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.55	
+		ScopeScale=0.6
 		// sniper 5-10x
         ZoomType=ZT_Logarithmic
 		MinZoom=5
@@ -113,9 +117,6 @@ defaultproperties
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
-		SightMoveSpeedFactor=0.35
-		SightingTime=0.55	
-		ScopeScale=0.6
         MagAmmo=5
         InventorySize=10
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
@@ -131,14 +132,15 @@ defaultproperties
 		//Visual
 		AllowedCamos(0)=2
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.50 //	
 		SightOffset=(X=15.000000,Z=0)
 		ZoomType=ZT_Irons
 		//Stats
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
-		SightMoveSpeedFactor=0.35
-		SightingTime=0.50 //	
         MagAmmo=5
         InventorySize=10
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
