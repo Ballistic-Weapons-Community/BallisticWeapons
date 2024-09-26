@@ -87,7 +87,6 @@ defaultproperties
          Acceleration=(Z=20.000000)
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Z=(Min=0.000000,Max=0.000000))
          Opacity=0.050000
          FadeOutStartTime=1.050000
          FadeInEndTime=1.050000
@@ -120,7 +119,6 @@ defaultproperties
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Z=(Min=0.000000,Max=0.000000))
          Opacity=0.050000
          FadeOutStartTime=1.450000
          FadeInEndTime=0.675000

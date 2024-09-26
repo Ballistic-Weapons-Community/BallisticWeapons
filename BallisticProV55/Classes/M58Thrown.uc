@@ -10,25 +10,34 @@ class M58Thrown extends BallisticHandGrenadeProjectile;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
-var   Emitter PATrail;
+var	    Actor					PATrail;					// The trail Actor
+var() class<Actor>			    PATrailClass;				// Actor to use for trail
 
 simulated function InitEffects ()
 {
-	if (Level.NetMode != NM_DedicatedServer && Speed > 400 && PATrail==None && level.DetailMode == DM_SuperHigh)
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+
+	if (Speed > 400 && PATrailClass != None && PATrail == None && level.DetailMode == DM_SuperHigh)
 	{
-		PATrail = Spawn(class'PineappleTrail', self,, Location);
-		if (PATrail != None)
-			class'BallisticEmitter'.static.ScaleEmitter(PATrail, DrawScale);
+		PATrail = Spawn(PATrailClass, self,, Location);
+		if (Emitter(PATrail) != None)
+			class'BallisticEmitter'.static.ScaleEmitter(Emitter(PATrail), DrawScale);
 		if (PATrail != None)
 			PATrail.SetBase (self);
 	}
 }
 
-simulated function DestroyEffects()
+simulated function Destroyed()
 {
-	super.DestroyEffects();
 	if (PATrail != None)
-		PATrail.Kill();
+	{
+		if (Emitter(PATrail) != None)
+			Emitter(PATrail).Kill();
+		else
+			PATrail.Destroy();
+	}
+	Super.Destroyed();
 }
 
 simulated function Explode(vector HitLocation, vector HitNormal)
@@ -82,6 +91,7 @@ defaultproperties
 	ImpactManager=Class'BallisticProV55.IM_Grenade'
 	TrailClass=Class'BallisticProV55.M58Spray'
 	TrailOffset=(Z=8.000000)
+	PATrailClass=Class'BallisticProV55.PineappleTrail'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
 	StaticMesh=StaticMesh'BW_Core_WeaponStatic.M58.M58Projectile'

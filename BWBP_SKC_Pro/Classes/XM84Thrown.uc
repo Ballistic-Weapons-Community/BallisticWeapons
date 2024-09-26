@@ -12,28 +12,35 @@
 //=============================================================================
 class XM84Thrown extends BallisticHandGrenadeProjectile;
 
-var   Emitter PATrail;
+var	    Actor					PATrail;					// The trail Actor
+var() class<Actor>			    PATrailClass;				// Actor to use for trail
 var()    int		CloseRadius;
 
 simulated function InitEffects ()
 {
-	super.InitEffects();
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
 
-	if (Level.NetMode != NM_DedicatedServer && Speed > 400 && PATrail==None && level.DetailMode == DM_SuperHigh)
+	if (Speed > 400 && PATrailClass != None && PATrail == None && level.DetailMode == DM_SuperHigh)
 	{
-		PATrail = Spawn(class'PineappleTrail', self,, Location);
-		if (PATrail != None)
-			class'BallisticEmitter'.static.ScaleEmitter(PATrail, DrawScale);
+		PATrail = Spawn(PATrailClass, self,, Location);
+		if (Emitter(PATrail) != None)
+			class'BallisticEmitter'.static.ScaleEmitter(Emitter(PATrail), DrawScale);
 		if (PATrail != None)
 			PATrail.SetBase (self);
 	}
 }
 
-simulated function DestroyEffects()
+simulated function Destroyed()
 {
-	super.DestroyEffects();
 	if (PATrail != None)
-		PATrail.Kill();
+	{
+		if (Emitter(PATrail) != None)
+			Emitter(PATrail).Kill();
+		else
+			PATrail.Destroy();
+	}
+	Super.Destroyed();
 }
 
 simulated event KVelDropBelow()
@@ -41,14 +48,14 @@ simulated event KVelDropBelow()
 	super.KVelDropBelow();
 
 	if (PATrail != None)
-		PATrail.Kill();
+		PATrail.Destroy();
 }
 
 simulated event KImpact(actor other, vector pos, vector impactVel, vector impactNorm)
 {
 	super.KImpact(other, pos, impactVel, impactNorm);
 	if (PATrail!= None && VSize(impactVel) > 200)
-		PATrail.Kill();
+		PATrail.Destroy();
 }
 
 simulated function Explode(vector HitLocation, vector HitNormal)
@@ -167,6 +174,7 @@ defaultproperties
 	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
 	TrailClass=Class'BWBP_SKC_Pro.XM84Trail'
 	TrailOffset=(X=1.600000,Z=6.400000)
+	PATrailClass=Class'BallisticProV55.PineappleTrail'
 	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTXM84GrenadeRadius'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	ShakeRadius=0.000000

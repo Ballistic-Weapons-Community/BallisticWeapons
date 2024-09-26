@@ -8,12 +8,10 @@
 //=============================================================================
 class A800Projectile_Red extends BallisticGrenade;
 
-
-
 // don't override - use DampenFactor and DampenFactorParallel
 simulated function HitWall(vector HitNormal, actor Wall)
 {
-    local Vector VNorm;
+  //local Vector VNorm;
 
 	super.HitWall(HitNormal, Wall);
 
