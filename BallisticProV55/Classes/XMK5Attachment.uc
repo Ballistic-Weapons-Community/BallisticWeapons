@@ -22,7 +22,7 @@ defaultproperties
      ReloadAnim="Reload_AR"
      ReloadAnimRate=1.250000
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_XMK5'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMK5_TPm'
      DrawScale=0.28
 	 RelativeLocation=(X=3.00,Z=5.00)
 }

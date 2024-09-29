@@ -802,7 +802,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_G51Carbine'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.G51Carbine_FPm'
 	 ParamsClasses(0)=Class'G51WeaponParamsComp'
      ParamsClasses(1)=Class'G51WeaponParamsClassic'
      ParamsClasses(2)=Class'G51WeaponParamsRealistic'

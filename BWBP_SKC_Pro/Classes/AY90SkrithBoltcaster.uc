@@ -587,7 +587,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SkrithCrossbow'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.AY90_FPm'
      DrawScale=0.3000
      bFullVolume=True
      SoundVolume=255

@@ -107,15 +107,17 @@ auto state Pickup
 
 defaultproperties
 {
+	 LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DefibFists.DefibFistsPickupLo'
      HealingAmount=50
      bSuperHeal=True
      AdrenalineAmount=100.000000
-     PickupDrawScale=5.000000
+     PickupDrawScale=1.000000
      InventoryType=Class'BWBP_OP_Pro.DefibFists'
      RespawnTime=70.000000
+	 StaticMesh=StaticMesh'BWBP_SKC_Static.DefibFists.DefibFistsPickupHi'
      PickupMessage="You got the Combat Defibrillators."
      Physics=PHYS_None
-     DrawScale=5.000000
+     DrawScale=0.820000
      TransientSoundVolume=0.600000
      TransientSoundRadius=128.000000
      CollisionRadius=16.000000

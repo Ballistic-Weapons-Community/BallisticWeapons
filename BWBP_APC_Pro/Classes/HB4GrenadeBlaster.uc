@@ -134,7 +134,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	ManualLines(0)="High-powered Blaster fire. Recoil is high."
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_HoloBlaster'
+	Mesh=SkeletalMesh'BWBP_CC_Anim.HB4_FPm'
 	ParamsClasses(0)=Class'HB4WeaponParams'
 	ParamsClasses(1)=Class'HB4WeaponParamsClassic'
 	ParamsClasses(2)=Class'HB4WeaponParamsRealistic'

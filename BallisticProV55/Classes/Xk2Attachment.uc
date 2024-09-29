@@ -235,6 +235,6 @@ defaultproperties
 	CockAnimRate=0.900000
 	bRapidFire=True
 	bAltRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_Xk2'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XK2_TPm'
 	DrawScale=0.110000
 }

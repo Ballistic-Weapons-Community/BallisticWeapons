@@ -266,7 +266,7 @@ defaultproperties
 	MeleeImpactManager=class'IM_GunHit'
 	bRapidFire=True
 	bAltRapidFire=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_FG50'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_TPm'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.320000
 	PrePivot=(Y=-1.000000,Z=-3.000000)

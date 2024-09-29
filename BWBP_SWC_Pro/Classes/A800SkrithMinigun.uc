@@ -388,7 +388,7 @@ defaultproperties
 	ParamsClasses(1)=Class'A800SkrithMinigunWeaponParamsClassic'
 	ParamsClasses(2)=Class'A800SkrithMinigunWeaponParamsRealistic'
 	ParamsClasses(3)=Class'A800SkrithMinigunWeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithHyperBlaster'
+	Mesh=SkeletalMesh'BWBP_SWC_Anims.A800_FPm'
 	DrawScale=0.400000
 	SoundRadius=128.000000
 	bShowChargingBar=True

@@ -797,7 +797,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_BR1NK'
+	Mesh=SkeletalMesh'BWBP_SWC_Anims.BRINK_FPm'
 	DrawScale=0.250000
 	RadarScale=0.200000
 	RadarPosX=0.900000

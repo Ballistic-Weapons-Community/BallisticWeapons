@@ -64,6 +64,6 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MinePickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.650000
+     DrawScale=0.550000
      CollisionHeight=5.600000
 }

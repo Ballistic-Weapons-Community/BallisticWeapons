@@ -251,7 +251,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-60.000000)
 	ItemName="Mk.88 Turret"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36_Turret'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36Turret_FPm'
 	DrawScale=0.50000
 	CollisionHeight=24.000000
 }

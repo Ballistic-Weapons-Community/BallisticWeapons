@@ -332,7 +332,7 @@ defaultproperties
 		Weight=10
 		WeaponPrice=1200
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CN'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.T9CN_FPm'
 		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.22000 //+.05

@@ -97,6 +97,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_NRP57'
      IconCoords=(X2=127,Y2=31)
      ItemName="NRP-57 'Pineapple'"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_NRPGrenade'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.NRP57_FPm'
      DrawScale=0.300000
 }

@@ -149,6 +149,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'BlackOpsWristBladeWeaponParamsClassic'
 	 ParamsClasses(2)=Class'BlackOpsWristBladeWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'BlackOpsWristBladeWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_BOB'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.BOB_FPm'
      DrawScale=1.250000
 }

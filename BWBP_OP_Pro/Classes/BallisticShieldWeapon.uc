@@ -265,6 +265,6 @@ defaultproperties
      IconMaterial=Texture'BWBP_OP_Tex.BallisticShield.Icon_BallisticShield'
      IconCoords=(X2=110,Y2=32)
      ItemName="RSH-1034 Riot Shield"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_BallisticShield'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShield_FPm'
      DrawScale=1.250000
 }

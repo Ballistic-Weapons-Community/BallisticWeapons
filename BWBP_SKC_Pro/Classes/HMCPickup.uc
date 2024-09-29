@@ -30,6 +30,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.HMC.HMC117Pickup'
      Physics=PHYS_None
-     DrawScale=0.1
+     DrawScale=0.080000
      CollisionHeight=5.000000
 }

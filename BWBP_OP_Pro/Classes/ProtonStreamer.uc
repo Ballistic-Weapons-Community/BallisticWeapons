@@ -409,7 +409,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_ProtonPack'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.ProtonPack_FPm'
 	DrawScale=0.300000
 	SoundPitch=56
 	SoundRadius=32.000000

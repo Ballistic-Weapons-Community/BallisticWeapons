@@ -398,7 +398,7 @@ defaultproperties
 	LightSaturation=64
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_XOXO'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.XOXO_FPm'
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=32.000000

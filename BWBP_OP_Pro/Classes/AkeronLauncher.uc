@@ -188,6 +188,6 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Akeron'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.Akeron_FPm'
      DrawScale=0.300000
 }

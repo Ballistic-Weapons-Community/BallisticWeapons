@@ -419,7 +419,7 @@ defaultproperties
     IconMaterial=Texture'BWBP_OP_Tex.Designator.SmallIcon_Designator'
     IconCoords=(X2=128,Y2=32)
     ItemName="MAU-52 Target Designator"
-    Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Designator'
+    Mesh=SkeletalMesh'BWBP_OP_Anim.Designator_FPm'
     DrawScale=0.600000
     AmbientGlow=64
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

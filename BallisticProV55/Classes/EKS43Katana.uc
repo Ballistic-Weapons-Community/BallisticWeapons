@@ -95,6 +95,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_EKS43'
      IconCoords=(X2=127,Y2=31)
      ItemName="EKS-43 Katana"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Katana'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.EKS43_FPm'
      DrawScale=0.3
 }

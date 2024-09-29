@@ -321,7 +321,7 @@ defaultproperties
 		AllowedCamos(2)=6
 		//Attachments
 		ViewOffset=(X=0,Y=10.00000,Z=-10.000000)
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MarlinIvory'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.MarlinIvory_FPm'
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Suppressor",Slot=20,Scale=1f)
 		//ADS
@@ -353,7 +353,7 @@ defaultproperties
 		AllowedCamos(2)=6
 		//Attachments
 		ViewOffset=(X=0,Y=10.00000,Z=-10.000000)
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MarlinIvory'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.MarlinIvory_FPm'
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Suppressor",Slot=20,Scale=-1f)
 		//Zoom

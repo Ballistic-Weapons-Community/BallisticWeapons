@@ -13,6 +13,6 @@ defaultproperties
 	 WeaponClass=class'ScarabGrenade'
      ExplodeManager=Class'BallisticProV55.IM_NRP57Grenade'
      GrenadeSmokeClass=Class'BWBP_APC_Pro.ScarabTrail'
-     Mesh=SkeletalMesh'BWBP_CC_Anim.TPm_CruGren'
+     Mesh=SkeletalMesh'BWBP_CC_Anim.CruGren_TPm'
      DrawScale=0.250000
 }

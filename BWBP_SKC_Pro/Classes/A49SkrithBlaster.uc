@@ -471,7 +471,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=160,G=44,R=89,A=137),Color2=(B=151,R=0,A=202),StartSize1=84,StartSize2=61)
     NDCrosshairInfo=(SpreadRatios=(X1=0.300000,Y1=0.300000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.700000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_A49'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.A49_FPm'
 	SoundPitch=56
 	SoundRadius=32.000000
 	bShowChargingBar=True

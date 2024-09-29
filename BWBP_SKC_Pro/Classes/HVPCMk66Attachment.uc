@@ -170,7 +170,7 @@ defaultproperties
 	 FlashMode=MU_Both
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_HVC'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_TPm'
      DrawScale=0.150000
      Skins(0)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'
      Skins(1)=FinalBlend'BW_Core_WeaponTex.Lighter.LightGlassFinal'

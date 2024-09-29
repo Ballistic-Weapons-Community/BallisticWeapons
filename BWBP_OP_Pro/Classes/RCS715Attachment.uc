@@ -21,7 +21,7 @@ defaultproperties
      TracerChance=0.500000
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.900000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_AssaultShotgun'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.RCS715_TPm'
      DrawScale=0.500000
      RelativeLocation=(X=1.000000,Z=5.000000)
 }

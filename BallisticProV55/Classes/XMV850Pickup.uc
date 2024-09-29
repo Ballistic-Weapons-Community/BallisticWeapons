@@ -48,7 +48,7 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850PickupHD'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.350000
+     DrawScale=0.300000
      PrePivot=(Z=35.000000)
      CollisionHeight=8.000000
 }

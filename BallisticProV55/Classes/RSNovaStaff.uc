@@ -775,7 +775,7 @@ defaultproperties
 	LightSaturation=96
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_NovaStaff'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.NovaStaff_FPm'
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=32.000000

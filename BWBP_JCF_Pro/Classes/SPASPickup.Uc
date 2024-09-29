@@ -36,5 +36,5 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_JCF_Static.SPAS.SPASPickupHi'
      Physics=PHYS_None
      CollisionHeight=3.000000
-	 DrawScale=0.100000
+	DrawScale=0.150000
 }

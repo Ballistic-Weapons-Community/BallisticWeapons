@@ -53,6 +53,6 @@ defaultproperties
      PickupSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Pickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickupHi'
      Physics=PHYS_None
-     DrawScale=0.220000
+     DrawScale=0.180000
      CollisionHeight=4.000000
 }

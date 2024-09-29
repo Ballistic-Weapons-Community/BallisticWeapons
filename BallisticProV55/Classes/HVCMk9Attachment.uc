@@ -476,6 +476,6 @@ defaultproperties
 	FlashMode=MU_Secondary
 	TracerClass=class'TraceEmitter_HVCRedLightning'
 	bRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_HVC'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_TPm'
 	DrawScale=0.150000
 }

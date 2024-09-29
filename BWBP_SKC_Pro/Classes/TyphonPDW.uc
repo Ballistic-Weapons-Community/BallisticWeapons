@@ -781,7 +781,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'TyphonPDWWeaponParamsClassic'
 	 ParamsClasses(2)=Class'TyphonPDWWeaponParamsRealistic'
      ParamsClasses(3)=Class'TyphonPDWWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Typhon'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.Typhon_FPm'
      DrawScale=0.30000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.Typhon.Typhon-Shine'

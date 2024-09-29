@@ -257,7 +257,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-100.000000)
 	ItemName="Deployed M99 Turret"
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_M99_Turret'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.M99Turret_FPm'
 	DrawScale=0.50000
 	CollisionHeight=24.000000
 }

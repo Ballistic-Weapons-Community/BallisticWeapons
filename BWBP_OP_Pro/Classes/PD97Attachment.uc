@@ -214,7 +214,7 @@ defaultproperties
      ReloadAnim="Reload_BreakOpen"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.70000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_Bloodhound'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.PD97_TPm'
      RelativeLocation=(Z=11.000000)
      DrawScale=0.200000
 }

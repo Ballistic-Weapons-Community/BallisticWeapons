@@ -284,7 +284,7 @@ defaultproperties
      IconCoords=(X2=127,Y2=31)
 	 //bUseBigIcon=True
      ItemName="MAG-SAW Longsword"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_MAGSAW'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.MAG78_FPm'
      DrawScale=1.250000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_OP_Tex.Longsword.ChainsawLongswordShiny'

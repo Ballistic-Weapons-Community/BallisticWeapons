@@ -181,7 +181,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=150.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A500AcidGun'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A500AcidGun_FPm'
 	DrawScale=0.3
 	SoundPitch=56
 	SoundRadius=32.000000

@@ -773,6 +773,6 @@ defaultproperties
 	ParamsClasses(1)=Class'MG36WeaponParamsClassic'
 	ParamsClasses(2)=Class'MG36WeaponParamsRealistic'
 	ParamsClasses(3)=Class'MG36WeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36_FPm'
 	DrawScale=0.3
 }

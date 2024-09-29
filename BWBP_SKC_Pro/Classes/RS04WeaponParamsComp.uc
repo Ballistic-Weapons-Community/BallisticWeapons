@@ -275,7 +275,7 @@ defaultproperties
 		LayoutName="Tac Knife"
 		LayoutTags="tacknife,light"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04Melee'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.RS04Melee_FPm'
 		//ADS
 		SightOffset=(X=-3.50,Y=-0.03,Z=1.07)
 		SightPivot=(Roll=0)

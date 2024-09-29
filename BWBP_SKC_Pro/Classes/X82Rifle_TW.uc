@@ -208,7 +208,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-80.000000)
 	ItemName="Deployed X83 Sniper Rifle"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83Turret'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.X83Turret_FPm'
 	DrawScale=0.650000
 	CollisionHeight=24.000000
 }

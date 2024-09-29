@@ -496,7 +496,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMV850'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_FPm'
 	DrawScale=0.300000
 	SoundRadius=128.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

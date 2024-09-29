@@ -60,7 +60,7 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.M58.SmallIcon_M58'
      IconCoords=(X2=127,Y2=31)
      ItemName="M58 Smoke Grenade"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_FPm'
      DrawScale=0.3
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'

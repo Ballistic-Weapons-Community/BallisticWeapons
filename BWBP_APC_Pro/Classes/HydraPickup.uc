@@ -35,6 +35,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
      StaticMesh=StaticMesh'BWBP_CC_Static.RL.CruRLPickupHi'
      Physics=PHYS_None
-     DrawScale=0.450000
+     DrawScale=0.300000
      CollisionHeight=6.000000
 }

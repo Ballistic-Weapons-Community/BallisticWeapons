@@ -348,7 +348,7 @@ defaultproperties
 		LayoutTags="tacknife"
 		Weight=10
 		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24Melee'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.MD24Melee_FPm'
 		//ADS
 		SightOffset=(X=-7.00000,Y=-0.01,Z=2.5)
 		SightMoveSpeedFactor=0.500000

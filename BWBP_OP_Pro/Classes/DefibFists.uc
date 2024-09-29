@@ -473,7 +473,7 @@ defaultproperties
      IconMaterial=Texture'BWBP_SKC_Tex.Defist.Icon_DefibFists'
      IconCoords=(X2=127,Y2=31)
      ItemName="FMD H14 Combat Defibrillator"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FMD'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FMD_FPm'
      DrawScale=0.300000
      bFullVolume=True
      SoundVolume=64

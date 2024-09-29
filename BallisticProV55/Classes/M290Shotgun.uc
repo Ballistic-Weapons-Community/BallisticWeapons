@@ -170,7 +170,7 @@ defaultproperties
     LightSaturation=150
     LightBrightness=180.000000
     LightRadius=5.000000
-    Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M290'
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.M290_FPm'
     DrawScale=0.3
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	SightAnimScale=0.5

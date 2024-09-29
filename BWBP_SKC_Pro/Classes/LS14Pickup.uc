@@ -50,6 +50,6 @@ defaultproperties
      PickupSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickupHi'
      Physics=PHYS_None
-     DrawScale=1.100000
+     DrawScale=1.000000
      CollisionHeight=3.000000
 }

@@ -328,7 +328,7 @@ defaultproperties
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_BX5'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="BX5-SM Land Mine"
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_BX5'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.BX5_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.BX5.BX5Skin'

@@ -17,7 +17,7 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_OP_Static.M575.M575PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.100000
+     DrawScale=0.062000
      CollisionHeight=12.000000
-	 CollisionRadius=52.000000
+	CollisionRadius=52.000000
 }

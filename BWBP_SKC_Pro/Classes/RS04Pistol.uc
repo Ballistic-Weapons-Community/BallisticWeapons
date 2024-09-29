@@ -563,7 +563,7 @@ defaultproperties
 	ParamsClasses(1)=Class'RS04WeaponParamsClassic'
 	ParamsClasses(2)=Class'RS04WeaponParamsRealistic'
 	ParamsClasses(3)=Class'RS04WeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.RS04_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.RS04.RS04-MainShine'

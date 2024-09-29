@@ -77,6 +77,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_FP7'
      IconCoords=(X2=127,Y2=31)
      ItemName="FP7 Grenade"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_FP7'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP7_FPm'
      DrawScale=0.300000
 }

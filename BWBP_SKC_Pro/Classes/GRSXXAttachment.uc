@@ -163,7 +163,7 @@ defaultproperties
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
      CockAnimRate=0.800000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_GRS9'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_TPm'
      DrawScale=0.070000
 	 Skins(0)=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-MainShine'
 }

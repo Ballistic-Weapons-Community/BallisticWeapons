@@ -266,8 +266,8 @@ defaultproperties
 		AllowedCamos(4)=11
 		AllowedCamos(5)=12
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
-		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_CYLOFirestorm'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.CYLOFirestorm_FPm'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.CYLOFirestorm_TPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOFireStormPickupHi'
 		//ADS
 		SightMoveSpeedFactor=0.6

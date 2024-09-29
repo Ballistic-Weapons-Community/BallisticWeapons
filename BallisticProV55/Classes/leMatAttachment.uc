@@ -220,6 +220,6 @@ defaultproperties
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_Wilson'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_TPm'
 	DrawScale=0.125000
 }

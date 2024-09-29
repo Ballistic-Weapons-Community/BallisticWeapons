@@ -40,6 +40,6 @@ defaultproperties
      PickupSound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Pickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.PS9M.PS9mPickupHi'
      Physics=PHYS_None
-     DrawScale=0.150000
+     DrawScale=0.220000
      CollisionHeight=4.000000
 }

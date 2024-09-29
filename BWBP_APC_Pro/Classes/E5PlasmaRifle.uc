@@ -464,7 +464,7 @@ defaultproperties
 	LightSaturation=96
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_E5Plasma'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.E5Plasma_FPm'
 	DrawScale=0.200000
 	bFullVolume=True
 	SoundRadius=32.000000

@@ -126,7 +126,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_CryoCannon'
+	Mesh=SkeletalMesh'BWBP_CC_Anim.CryoCannon_FPm'
 	DrawScale=0.400000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

@@ -99,6 +99,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_T10'
      IconCoords=(X2=127,Y2=31)
      ItemName="T10 Toxic Grenade"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_FPm'
      DrawScale=0.300000
 }

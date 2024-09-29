@@ -222,7 +222,7 @@ defaultproperties
 	IconMaterial=Texture'BWBP_SKC_Tex.DragonToothSword.SmallIcon_DTS'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XM300 Dragon Nanoblade"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_DTS'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.DTS_FPm'
 	DrawScale=1.250000
 	SoundRadius=32.000000
 }

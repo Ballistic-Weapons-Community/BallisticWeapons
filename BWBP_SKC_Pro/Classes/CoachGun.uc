@@ -791,7 +791,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=180.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CoachGun'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.Coachgun_FPm'
      DrawScale=0.3
 
      bShowChargingBar=True

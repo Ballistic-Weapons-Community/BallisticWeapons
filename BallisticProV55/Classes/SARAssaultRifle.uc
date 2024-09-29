@@ -699,7 +699,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SAR12'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.SAR12_FPm'
 	DrawScale=0.300000
 	SoundPitch=56
 	SoundRadius=32.000000

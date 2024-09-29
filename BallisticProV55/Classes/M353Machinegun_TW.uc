@@ -309,7 +309,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M353Turret'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M353Turret_FPm'
 	DrawScale=0.600000
 	CollisionHeight=26.000000
 }

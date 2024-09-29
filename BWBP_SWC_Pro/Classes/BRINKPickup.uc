@@ -33,6 +33,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SWC_Static.BRINK.BRINKPickupHi'
      Physics=PHYS_None
-     DrawScale=0.100000
+     DrawScale=0.300000
      CollisionHeight=4.000000
 }

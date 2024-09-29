@@ -882,6 +882,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_G5Bazooka'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.G5Bazooka_FPm'
 	DrawScale=0.300000
 }

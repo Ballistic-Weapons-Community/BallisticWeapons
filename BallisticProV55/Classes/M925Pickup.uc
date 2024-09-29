@@ -51,7 +51,7 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.250000
+     DrawScale=0.160000
      TransientSoundVolume=0.600000
      CollisionHeight=8.000000
 }

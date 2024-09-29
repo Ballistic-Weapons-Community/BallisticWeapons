@@ -1010,6 +1010,6 @@ defaultproperties
 	LightBrightness=150.000000
 	LightRadius=4.000000
 	bShowChargingBar=True
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Proto'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FC01_FPm'
 	DrawScale=0.400000
 }

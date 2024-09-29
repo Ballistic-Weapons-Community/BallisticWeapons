@@ -511,7 +511,7 @@ defaultproperties
 		AllowedCamos(3)=3
 		AllowedCamos(4)=4
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SawnOff'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.SawnOff_FPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.SawnOff.SawnOffPickupLo'
 		PickupDrawScale=0.1
 		//ADS
@@ -537,8 +537,8 @@ defaultproperties
 		Weight=10
 		AllowedCamos(0)=5
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Trenchgun'
-		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Trenchgun'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.Trenchgun_FPm'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.Trenchgun_TPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.TechGun.TechGunPickupHi'
 		PickupDrawScale=1.50000
 		//ADS

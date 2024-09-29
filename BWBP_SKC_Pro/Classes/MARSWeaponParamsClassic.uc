@@ -265,7 +265,7 @@ defaultproperties
 		LayoutTags="IRNV,tracker"
 		
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS2_FPm'
 		ZoomType=ZT_Logarithmic
 		SightOffset=(X=6.50,Y=0.01,Z=3.8)
 		
@@ -292,7 +292,7 @@ defaultproperties
 		LayoutTags="IRNV"
 		
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 		ZoomType=ZT_Logarithmic
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
@@ -322,7 +322,7 @@ defaultproperties
 		LayoutTags="tracker"
 		
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 		ZoomType=ZT_Logarithmic
 		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		
@@ -350,7 +350,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons
@@ -384,7 +384,7 @@ defaultproperties
 		LayoutTags="suppressor"
 		
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		ZoomType=ZT_Irons

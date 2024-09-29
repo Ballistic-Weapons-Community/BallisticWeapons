@@ -248,6 +248,6 @@ defaultproperties
 	ReloadAnim="Reload_Pistol"
 	CockingAnim="Cock_RearPull"
 	CockAnimRate=0.800000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_GRS9'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_TPm'
 	DrawScale=0.070000
 }

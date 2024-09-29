@@ -263,7 +263,7 @@ defaultproperties
      IconMaterial=Texture'BWBP_SKC_Tex.XM84.SmallIcon_XM84'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM84 Heavy Tech Grenade"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM84'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.XM84_FPm'
      DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

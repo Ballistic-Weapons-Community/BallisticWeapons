@@ -696,7 +696,7 @@ defaultproperties
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_FP9Explosive'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="FP9A5 Explosive Device"
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_FP9'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP9_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.FP9A5.FP9Bomb'

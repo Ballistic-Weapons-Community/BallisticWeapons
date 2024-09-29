@@ -347,6 +347,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_RGP-X350'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.RGPX_FPm'
 	DrawScale=0.600000
 }

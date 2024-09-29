@@ -352,7 +352,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_TAC30'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.TAC30_FPm'
      DrawScale=0.260000
 	 ParamsClasses(0)=Class'TAC30CannonWeaponParamsArena'
 	 ParamsClasses(1)=Class'TAC30WeaponParamsClassic'

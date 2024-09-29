@@ -168,7 +168,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'SPASShotgunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'SPASShotgunWeaponParamsRealistic'
      ParamsClasses(3)=Class'SPASShotgunWeaponParamsTactical'
-	 Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_Spas'
+	 Mesh=SkeletalMesh'BWBP_JCF_Anims.SPAS_FPm'
      DrawScale=1.000000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

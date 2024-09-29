@@ -631,6 +631,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Bloodhound'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.PD97_FPm'
 	DrawScale=0.300000
 }

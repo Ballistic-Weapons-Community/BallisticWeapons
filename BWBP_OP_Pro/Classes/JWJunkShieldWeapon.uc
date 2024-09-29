@@ -257,6 +257,6 @@ defaultproperties
 	IconMaterial=Texture'BWBP_OP_Tex.OtherShields.Icon_JWJunkShield'
 	IconCoords=(X2=132,Y2=32)
 	ItemName="Scavenged Junk Shield"
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_JunkShield'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.JunkShield_FPm'
 	DrawScale=1.250000
 }

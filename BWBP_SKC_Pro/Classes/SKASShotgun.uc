@@ -385,7 +385,7 @@ defaultproperties
     LightSaturation=150
     LightBrightness=150.000000
     LightRadius=5.000000
-    Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SKAS'
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.SKAS_FPm'
     DrawScale=0.30000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

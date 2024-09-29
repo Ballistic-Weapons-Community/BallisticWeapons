@@ -299,7 +299,7 @@ defaultproperties
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.250000
      CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_Crossbow'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.KF8X_TPm'
      DrawScale=1.000000
      Skins(0)=Shader'BWBP_OP_Tex.XBow.XBow_SH1'
 }

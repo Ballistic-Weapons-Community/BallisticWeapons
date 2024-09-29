@@ -143,6 +143,6 @@ defaultproperties
      IconMaterial=Texture'BWBP_SKC_Tex.G28.SmallIcon_G28'
      IconCoords=(X2=127,Y2=31)
      ItemName="FMD G28 Medicinal Aerosol"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_G28'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.G28_FPm'
      DrawScale=0.300000
 }

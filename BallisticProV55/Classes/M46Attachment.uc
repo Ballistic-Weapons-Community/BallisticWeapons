@@ -45,6 +45,6 @@ defaultproperties
 	ReloadAnimRate=1.400000
 	CockAnimRate=1.050000
 	bRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_M46A1'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M46A1_TPm'
 	DrawScale=0.275000
 }

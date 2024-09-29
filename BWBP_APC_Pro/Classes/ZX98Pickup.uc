@@ -38,6 +38,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_CC_Static.ZX98.ZX98PickupHi'
      Physics=PHYS_None
-	DrawScale=0.350000
+	DrawScale=0.250000
      CollisionHeight=4.000000
 }

@@ -760,7 +760,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.00
      LightRadius=12.00
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_FPm'
      DrawScale=0.30
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'

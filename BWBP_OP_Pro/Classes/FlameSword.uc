@@ -356,7 +356,7 @@ defaultproperties
 	IconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_128'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="PSI-56 Fire Sword"
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_FlameSword'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FlameSword_FPm'
 	DrawScale=0.3
 	SoundRadius=32.000000
 	PlayerViewOffset=(X=5.000000,Y=2.500000,Z=-5.000000)

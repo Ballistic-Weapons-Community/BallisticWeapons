@@ -22,6 +22,6 @@ defaultproperties
      bRapidFire=True
 	 RelativeLocation=(Z=6.50)
      RelativeRotation=(Roll=34000)	 
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_Stimpack'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.Stimpack_TPm'
      DrawScale=0.35000
 }

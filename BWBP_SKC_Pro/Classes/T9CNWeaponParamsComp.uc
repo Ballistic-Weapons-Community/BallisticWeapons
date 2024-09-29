@@ -211,7 +211,7 @@ defaultproperties
 		LayoutTags="raffica"
 		Weight=10
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CN'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.T9CN_FPm'
 		//ADS
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000 //

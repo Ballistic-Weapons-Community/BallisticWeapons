@@ -475,7 +475,7 @@ defaultproperties
 	ManualLines(0)="High-powered bullet fire. Recoil is high."
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_AM67'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.AM67_FPm'
 	ParamsClasses(0)=Class'AM67WeaponParamsComp'
 	ParamsClasses(1)=Class'AM67WeaponParamsClassic'
 	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'

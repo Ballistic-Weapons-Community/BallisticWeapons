@@ -266,6 +266,6 @@ defaultproperties
 	ParamsClasses(1)=Class'M7A3WeaponParamsClassic'
 	ParamsClasses(2)=Class'M7A3WeaponParamsRealistic'
 	ParamsClasses(3)=Class'M7A3WeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_M7A3'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.M7A3_FPm'
 	DrawScale=1.0000000
 }

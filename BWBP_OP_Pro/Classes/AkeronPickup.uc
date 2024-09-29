@@ -38,6 +38,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.Akeron.AkeronPickupHi'
      Physics=PHYS_None
-     DrawScale=1.450000
+     DrawScale=1.700000
      CollisionHeight=6.000000
 }

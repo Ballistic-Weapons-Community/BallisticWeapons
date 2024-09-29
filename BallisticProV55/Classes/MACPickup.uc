@@ -51,7 +51,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Artillery.ArtilleryPickup-HD'
      Physics=PHYS_None
-     DrawScale=0.325000
+     DrawScale=0.225000
      PrePivot=(Z=-14.000000)
      CollisionHeight=6.000000
 }

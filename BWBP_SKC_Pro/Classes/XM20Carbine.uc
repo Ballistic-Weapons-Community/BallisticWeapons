@@ -949,7 +949,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM20'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_FPm'
 	DrawScale=0.300000
 	UsedAmbientSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Idle'
 	bFullVolume=True

@@ -174,7 +174,7 @@ defaultproperties
      IconMaterial=Texture'BWBP_OP_Tex.AmmoPack.SmallIcon_AmmoPack'
      IconCoords=(X2=127,Y2=31)
      ItemName="L8 GI Ammunition Pack"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_AmmoPack'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.L8GI_FPm'
 	 ParamsClasses(0)=Class'L8GIAmmoPackWeaponParamsComp'
 	 ParamsClasses(1)=Class'L8GIAmmoPackWeaponParamsClassic'
 	 ParamsClasses(2)=Class'L8GIAmmoPackWeaponParamsRealistic'

@@ -459,7 +459,7 @@ defaultproperties
 	PlayerViewOffset=(X=10.00,Y=6.00,Z=-7.00)
 	SightOffset=(X=-6,Z=2.1)
 	PickupClass=Class'BallisticProV55.MRS138Pickup'
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRS'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRS138_FPm'
 	MeleeFireClass=Class'BallisticProV55.MRS138MeleeFire'
 	ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. The attack inflicts more damage from behind. Inflicts a medium-duration blind upon enemies when impacting and knocks them away from the user.||Weapon Function engages a flashlight which illuminates dark areas.||This weapon is extremely effective at close range."
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing low sustained damage but slowing the enemy movement."

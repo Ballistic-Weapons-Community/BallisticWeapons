@@ -418,6 +418,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_MDK'
+	Mesh=SkeletalMesh'BWBP_SWC_Anims.MDK_FPm'
 	DrawScale=0.400000
 }

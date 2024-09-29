@@ -11,6 +11,6 @@ defaultproperties
      DrawType=DT_Mesh
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A909Left'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A909Left_TPm'
      DrawScale=0.150000
 }

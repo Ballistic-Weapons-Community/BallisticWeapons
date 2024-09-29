@@ -22,7 +22,7 @@ defaultproperties
 	LightMode=MU_None
 	TrackAnimMode=MU_Both
 	bHeavy=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_Katana'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.EKS43_TPm'
 	DrawScale=0.100000
 	RelativeLocation=(Y=-2.000000,Z=-10.000000)
 }

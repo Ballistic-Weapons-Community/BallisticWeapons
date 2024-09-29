@@ -309,6 +309,6 @@ defaultproperties
 	IconMaterial=Texture'BWBP_SKC_Tex.SmallIcon_X8'
 	IconCoords=(X2=128,Y2=32)
 	ItemName="X8 Ballistic Knife"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X8Knife'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.X8Knife_FPm'
 	DrawScale=0.300000
 }

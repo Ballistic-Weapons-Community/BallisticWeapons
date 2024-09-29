@@ -181,6 +181,6 @@ defaultproperties
      bRapidFire=True
 	 FlashScale=0.3
 	 RelativeLocation=(Z=5.000000)
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_E5Plasma'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.E5Plasma_TPm'
      DrawScale=0.750000
 }

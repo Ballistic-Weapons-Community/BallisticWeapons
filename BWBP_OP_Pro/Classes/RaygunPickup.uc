@@ -24,6 +24,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.Raygun.RaygunPickupHi'
      Physics=PHYS_None
-     DrawScale=1.250000
+     DrawScale=2.500000
      CollisionHeight=4.500000
 }

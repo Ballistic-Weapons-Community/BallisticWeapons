@@ -270,7 +270,7 @@ defaultproperties
 	IconMaterial=Texture'BW_Core_WeaponTex.Sandbags.SmallIcon_Sandbags'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Sandbags"
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SandBags'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.SandBags_FPm'
 	DrawScale=0.600000
 	SoundVolume=150
 	TransientSoundRadius=256.000000

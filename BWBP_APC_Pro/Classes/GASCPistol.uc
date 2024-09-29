@@ -356,6 +356,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'GASCPistolWeaponParamsClassic'
 	 ParamsClasses(2)=Class'GASCPistolWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'GASCPistolWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_GASC'
+     Mesh=SkeletalMesh'BWBP_CC_Anim.GASC_FPm'
      DrawScale=1.000000
 }

@@ -30,6 +30,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.X5W.X5WPickupHi'
      Physics=PHYS_None
-     DrawScale=0.200000
+     DrawScale=0.600000
      CollisionHeight=4.000000
 }

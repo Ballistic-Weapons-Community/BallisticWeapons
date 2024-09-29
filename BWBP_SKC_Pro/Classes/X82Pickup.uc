@@ -48,6 +48,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn'
      StaticMesh=StaticMesh'BWBP_SKC_Static.X83.X83PickupHi'
      Physics=PHYS_None
-     DrawScale=0.400000
+     DrawScale=0.330000
      CollisionHeight=3.000000
 }

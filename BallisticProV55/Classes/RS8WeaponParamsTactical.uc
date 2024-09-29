@@ -204,7 +204,7 @@ defaultproperties
 		AllowedCamos(3)=3
 		AllowedCamos(4)=4
 		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Melee'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.RS8Melee_FPm'
 		ViewOffset=(X=20.000000,Y=7.000000,Z=-8.000000)
 		//ADS
 		SightingTime=0.17
@@ -231,7 +231,7 @@ defaultproperties
 		LayoutTags="comp"
 		Weight=10
 		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8Heavy'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.RS8Heavy_FPm'
 		ViewOffset=(X=0.000000,Y=10.000000,Z=-10.000000)
 		AllowedCamos(0)=5
 		AllowedCamos(1)=6

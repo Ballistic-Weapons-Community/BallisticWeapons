@@ -41,5 +41,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.MRT6.MRT6Pullout'
      StaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickupHi'
      Physics=PHYS_None
+     DrawScale=1.400000
      CollisionHeight=4.000000
 }

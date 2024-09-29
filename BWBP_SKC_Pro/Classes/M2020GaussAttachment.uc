@@ -229,7 +229,7 @@ defaultproperties
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.700000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_M2020'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.M2020_TPm'
      RelativeRotation=(Pitch=32768)
      DrawScale=0.350000
 }

@@ -174,7 +174,7 @@ defaultproperties
 		Weight=10
 		LayoutName="Holosight"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.R9_FPm'
 		SightOffset=(X=-5.000000,Y=-0.020000,Z=3.100000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=1f)
@@ -202,7 +202,7 @@ defaultproperties
 		Weight=10
 		LayoutName="Iron Sights"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.R9_FPm'
 		SightOffset=(X=-5.000000,Y=-0.000000,Z=2.000000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=0f)

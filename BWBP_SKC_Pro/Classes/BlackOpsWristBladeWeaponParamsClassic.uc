@@ -82,7 +82,7 @@ defaultproperties
 		LayoutTags="single"
 		Weight=5
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_BOBOg'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.BOBOg_FPm'
 		//Function
 		PlayerSpeedFactor=1.20000
 		MagAmmo=1

@@ -45,6 +45,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupHi'
      Physics=PHYS_None
-     DrawScale=2.50000
+     DrawScale=0.700000
      CollisionHeight=3.500000
 }

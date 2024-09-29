@@ -234,7 +234,7 @@ defaultproperties
 		Weight=5
 		WeaponPrice=1200
 		// Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806SG'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M806SG_FPm'
 		// ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.20000 //+.05

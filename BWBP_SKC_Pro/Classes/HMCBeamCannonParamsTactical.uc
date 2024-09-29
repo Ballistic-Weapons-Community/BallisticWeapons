@@ -206,8 +206,8 @@ defaultproperties
 		AllowedCamos(1)=2
 		AllowedCamos(2)=3
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HMCCryon'
-		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HMCCryon'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.HMCCryon_FPm'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.HMCCryon_TPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.HMC.HMCCryonPickup'
 		ViewOffset=(X=10,Y=15,Z=-15)
 		SightOffset=(X=-20,Y=0,Z=40)

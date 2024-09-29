@@ -355,6 +355,6 @@ defaultproperties
 	TracerMix=0
 	RelativeLocation=(X=1.00,Z=5.00)
 	RelativeRotation=(Pitch=32768)
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_XM20'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_TPm'
 	DrawScale=0.15
 }

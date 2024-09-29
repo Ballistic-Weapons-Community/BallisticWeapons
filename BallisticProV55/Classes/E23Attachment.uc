@@ -179,6 +179,6 @@ defaultproperties
      LightMode=MU_Both
      ReloadAnim="Reload_AR"
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_VPR'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.VPR_TPm'
      DrawScale=0.150000
 }

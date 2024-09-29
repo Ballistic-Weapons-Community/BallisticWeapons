@@ -331,8 +331,8 @@ defaultproperties
 		Weight=10
 		
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
-		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.LS440_FPm'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.LS440_TPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.LS440.LS440PickupLo'
 		PickupDrawScale=0.1
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=1f)
@@ -374,8 +374,8 @@ defaultproperties
 		Weight=10
 		
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
-		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.TPm_LS440'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.LS440_FPm'
+		AttachmentMesh=SkeletalMesh'BWBP_SKC_Anim.LS440_TPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.LS440.LS440PickupLo'
 		PickupDrawScale=0.1
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=0f)

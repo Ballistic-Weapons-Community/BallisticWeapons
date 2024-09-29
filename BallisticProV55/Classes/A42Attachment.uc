@@ -62,6 +62,6 @@ defaultproperties
 	TracerClass=class'TraceEmitter_A42Beam'
 	MeleeImpactManager=class'IM_GunHit'
 	bRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A42'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A42_TPm'
 	DrawScale=0.080000
 }

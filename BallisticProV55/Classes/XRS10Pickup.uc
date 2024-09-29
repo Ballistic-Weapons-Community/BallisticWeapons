@@ -44,7 +44,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.XRS10.XRS10PickupHi'
      Physics=PHYS_None
-     DrawScale=0.350000
+     DrawScale=0.220000
      PrePivot=(Y=-20.000000)
      CollisionHeight=4.000000
 }

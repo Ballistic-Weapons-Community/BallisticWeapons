@@ -338,7 +338,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_SRK'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.SRK_FPm'
 	 ParamsClasses(0)=Class'SRKSmgWeaponParamsArena'
      ParamsClasses(1)=Class'SRKSmgWeaponParamsClassic'
      ParamsClasses(2)=Class'SRKSmgWeaponParamsRealistic'

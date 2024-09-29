@@ -283,7 +283,7 @@ defaultproperties
 	TracerChance=2.000000
 	MeleeImpactManager=class'IM_GunHit'
 	bRapidFire=True
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_HMC117'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.HMC117_TPm'
 	DrawScale=1.0
 	FlashScale=0.500000
 }

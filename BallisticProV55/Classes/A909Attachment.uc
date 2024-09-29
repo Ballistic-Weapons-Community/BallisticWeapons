@@ -43,6 +43,6 @@ defaultproperties
      IdleRifleAnim="Punchies_Idle"
      MeleeStrikeAnim="Punchies_JabLeft"
      bHeavy=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A909Right'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A909Right_TPm'
      DrawScale=0.150000
 }

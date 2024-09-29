@@ -715,6 +715,6 @@ defaultproperties
      IconMaterial=Texture'BWBP_OP_Tex.Wrench.Icon_Wrench'
      IconCoords=(X2=128,Y2=32)
      ItemName="NFUD Combat Wrench"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Techwrench'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.Techwrench_FPm'
      DrawScale=0.300000
 }

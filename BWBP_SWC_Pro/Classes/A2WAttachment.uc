@@ -17,6 +17,6 @@ defaultproperties
      BrassMode=MU_None
      TracerClass=Class'BallisticProV55.TraceEmitter_A42Beam'
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_A42'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A42_TPm'
      DrawScale=0.080000
 }

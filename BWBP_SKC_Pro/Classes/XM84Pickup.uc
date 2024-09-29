@@ -53,6 +53,6 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=2.000000
+     DrawScale=1.600000
      CollisionHeight=5.600000
 }

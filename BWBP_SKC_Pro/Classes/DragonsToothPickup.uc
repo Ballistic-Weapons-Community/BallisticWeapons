@@ -53,6 +53,6 @@ defaultproperties
      PickupSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Pullout'
      StaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupHi'
      Physics=PHYS_None
-     DrawScale=0.600000
+     DrawScale=0.400000
      CollisionHeight=4.000000
 }

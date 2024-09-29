@@ -759,6 +759,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_AssaultShotgun'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.RCS715_FPm'
 	DrawScale=0.300000
 }

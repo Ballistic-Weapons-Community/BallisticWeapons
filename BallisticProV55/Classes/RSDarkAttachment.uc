@@ -342,5 +342,5 @@ defaultproperties
 	MeleeStrikeAnim="RifleHip_Burst"
 	ReloadAnimRate=1.700000
 	bRapidFire=True
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_DarkStar'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.DarkStar_TPm'
 }

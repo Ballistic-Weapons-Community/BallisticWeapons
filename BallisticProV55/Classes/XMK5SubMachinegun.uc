@@ -330,6 +330,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMK5'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMK5_FPm'
 	DrawScale=0.30000
 }

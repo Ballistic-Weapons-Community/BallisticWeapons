@@ -242,6 +242,6 @@ defaultproperties
      bHeavy=True
      bRapidFire=True
      bAltRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_RX22A'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.RX22A_TPm'
      DrawScale=0.250000
 }

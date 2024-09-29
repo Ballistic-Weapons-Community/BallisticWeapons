@@ -43,7 +43,7 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_SWC_Static.SkrithHyperBlaster.SkrithHyperBlasterPickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.07
+     DrawScale=0.300000
      PrePivot=(Z=35.000000)
      CollisionHeight=8.000000
 }

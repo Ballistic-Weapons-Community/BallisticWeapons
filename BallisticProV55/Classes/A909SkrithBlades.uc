@@ -77,6 +77,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A909'
      IconCoords=(X2=127,Y2=31)
      ItemName="A909 Skrith Blades"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A909'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A909_FPm'
      DrawScale=0.30
 }

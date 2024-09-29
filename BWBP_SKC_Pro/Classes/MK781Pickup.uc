@@ -47,6 +47,7 @@ defaultproperties
      PickupMessage="You picked up the MK781 combat shotgun."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.M1014.M1014PickupHi'
+	 DrawScale=0.410000
      Physics=PHYS_None
      CollisionHeight=3.000000
 }

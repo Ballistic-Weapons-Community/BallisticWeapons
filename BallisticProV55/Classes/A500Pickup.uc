@@ -55,6 +55,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Reptile.Reptile_PickupHi'
      Physics=PHYS_None
-     DrawScale=0.250000
+     DrawScale=0.220000
      CollisionHeight=4.500000
 }

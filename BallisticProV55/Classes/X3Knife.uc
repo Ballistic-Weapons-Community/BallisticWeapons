@@ -189,6 +189,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_X3'
      IconCoords=(X2=127,Y2=31)
      ItemName="X3 Knife"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_X3'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.X3_FPm'
      DrawScale=0.300000
 }

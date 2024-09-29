@@ -154,6 +154,6 @@ defaultproperties
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
      CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBP_CC_Anim.TPm_R9000E'
+     Mesh=SkeletalMesh'BWBP_CC_Anim.R9000E_TPm'
      DrawScale=3.000000
 }

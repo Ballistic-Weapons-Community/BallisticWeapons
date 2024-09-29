@@ -230,7 +230,7 @@ defaultproperties
 		LayoutName="NV + Smoke"
 		LayoutTags="NV,tracker"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
 		//Function
@@ -257,7 +257,7 @@ defaultproperties
 		LayoutName="Sensor"
 		LayoutTags="always_track_sensor"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 		//Function
 		InventorySize=6
 		DisplaceDurationMult=1
@@ -281,7 +281,7 @@ defaultproperties
 		Weight=30
 		LayoutName="Holo + Ice"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		//Function

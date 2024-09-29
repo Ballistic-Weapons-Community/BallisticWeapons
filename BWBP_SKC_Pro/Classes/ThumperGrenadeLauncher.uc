@@ -132,7 +132,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=150.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Thumper'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.Thumper_FPm'
 	DrawScale=0.600000
 	SoundPitch=56
 	SoundRadius=32.000000

@@ -300,7 +300,7 @@ defaultproperties
      ReloadAnimRate=0.800000
      bRapidFire=True
      bAltRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_CX61'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.CX61_TPm'
      RelativeLocation=(X=2.000000,Y=-2.000000,Z=35.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000

@@ -57,5 +57,6 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.FP7.FP7PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
+	 DrawScale=0.900000
      CollisionHeight=5.600000
 }

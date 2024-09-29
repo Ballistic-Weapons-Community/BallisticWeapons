@@ -434,6 +434,6 @@ defaultproperties
 	ParamsClasses(1)=Class'M99RifleWeaponParamsClassic'
 	ParamsClasses(2)=Class'M99RifleWeaponParamsRealistic'
 	ParamsClasses(3)=Class'M99RifleWeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_M99Classic'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.M99Classic_FPm'
 	DrawScale=0.140000
 }

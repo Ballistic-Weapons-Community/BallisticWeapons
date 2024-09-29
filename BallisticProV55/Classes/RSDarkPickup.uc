@@ -97,7 +97,7 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkPickup-HD'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.600000
+     DrawScale=0.500000
      PrePivot=(Z=7.000000)
      CollisionHeight=4.500000
 }

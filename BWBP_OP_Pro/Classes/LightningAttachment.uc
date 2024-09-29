@@ -108,6 +108,6 @@ defaultproperties
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	CockAnimRate=1.400000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_LightningRifle'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_TPm'
 	DrawScale=0.600000
 }

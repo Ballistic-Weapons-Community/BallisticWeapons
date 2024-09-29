@@ -18,7 +18,7 @@ defaultproperties
      ReloadAnim="Reload_MG"
      ReloadAnimRate=1.50000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_SkrithCrossbow'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.AY90_TPm'
      DrawScale=1.200000
 	 RelativeRotation=(Pitch=32768)
 }

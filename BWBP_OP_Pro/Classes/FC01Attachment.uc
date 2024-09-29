@@ -316,7 +316,7 @@ defaultproperties
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_Proto'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FC01_TPm'
 	 RelativeRotation=(Pitch=32768)
 	 RelativeLocation=(Z=10)
      DrawScale=0.900000

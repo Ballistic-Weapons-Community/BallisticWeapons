@@ -393,7 +393,7 @@ defaultproperties
 	ParamsClasses(1)=Class'FMPWeaponParamsClassic'
 	ParamsClasses(2)=Class'FMPWeaponParamsRealistic'
 	ParamsClasses(3)=Class'FMPWeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MP40'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MP40_FPm'
 	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.MP40.MP40-MainShine'

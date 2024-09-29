@@ -47,6 +47,6 @@ defaultproperties
      PickupSound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Equip'
      StaticMesh=StaticMesh'BWBP_OP_Static.FlameSword.FlameSwordPickupHi'
      Physics=PHYS_None
-     DrawScale=2.50000
+     DrawScale=1.000000
      CollisionHeight=3.500000
 }

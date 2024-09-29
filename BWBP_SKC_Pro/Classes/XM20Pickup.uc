@@ -36,7 +36,7 @@ defaultproperties
      PickupSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.XM20.XM20PickupHi'
      Physics=PHYS_None
-     DrawScale=1.000000
+     DrawScale=1.100000
      PickupDrawScale=1.000000
      CollisionHeight=3.000000
 }

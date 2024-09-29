@@ -356,6 +356,6 @@ defaultproperties
      IconMaterial=Texture'BWBP_SKC_Tex.M4A1.SmallIcon_MOAC'
      IconCoords=(X2=127,Y2=31)
      ItemName="MOA-C Chaff Grenade"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MOAC'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_FPm'
      DrawScale=0.300000
 }

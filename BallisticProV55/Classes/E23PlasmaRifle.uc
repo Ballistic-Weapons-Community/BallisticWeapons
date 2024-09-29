@@ -498,7 +498,7 @@ defaultproperties
 	LightSaturation=96
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_VPR'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.VPR_FPm'
 	DrawScale=0.3
 	bFullVolume=True
 	SoundRadius=32.000000

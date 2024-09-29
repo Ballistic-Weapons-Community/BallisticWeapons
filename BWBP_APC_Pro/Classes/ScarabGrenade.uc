@@ -105,6 +105,6 @@ defaultproperties
      IconMaterial=Texture'BWBP_CC_Tex.Grenade.SmallIcon_CruGren'
      IconCoords=(X2=127,Y2=31)
      ItemName="NRX-82 'Scarab' Cluster Grenade"
-     Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_CruGren'
+     Mesh=SkeletalMesh'BWBP_CC_Anim.CruGren_FPm'
      DrawScale=0.400000
 }

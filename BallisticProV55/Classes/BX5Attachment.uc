@@ -16,6 +16,6 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
      bHeavy=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.TPm_BX5'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.BX5_TPm'
      DrawScale=0.150000
 }

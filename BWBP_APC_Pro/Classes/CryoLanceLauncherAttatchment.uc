@@ -50,7 +50,7 @@ defaultproperties
 	 CockingAnim="Cock_RearPull"
      bRapidFire=True
      bAltRapidFire=True
-     Mesh=SkeletalMesh'BWBP_CC_Anim.TPm_CryoCannon'
+     Mesh=SkeletalMesh'BWBP_CC_Anim.CryoCannon_TPm'
 	 RelativeLocation=(X=15)
      DrawScale=1.000000
 }

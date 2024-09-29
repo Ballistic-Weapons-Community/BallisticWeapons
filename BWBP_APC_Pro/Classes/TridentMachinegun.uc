@@ -366,6 +366,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_CruMG'
+	Mesh=SkeletalMesh'BWBP_CC_Anim.CruMG_FPm'
 	DrawScale=0.350000
 }

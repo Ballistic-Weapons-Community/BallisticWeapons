@@ -108,7 +108,7 @@ defaultproperties
 	CockingAnim="Cock_RearPull"
 	ReloadAnimRate=0.850000
 	CockAnimRate=0.900000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.TPm_AHDeagle'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.AHDeagle_TPm'
 	RelativeLocation=(Z=6.000000)
 	DrawScale=0.175
 	Skins(0)=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine'

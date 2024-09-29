@@ -174,6 +174,6 @@ defaultproperties
 	FlashMode=MU_Both
 	LightMode=MU_Both
 	TracerChance=0.500000
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.TPm_SPAS'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.SPAS_TPm'
 	DrawScale=0.300000
 }

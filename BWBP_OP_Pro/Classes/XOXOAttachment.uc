@@ -168,7 +168,7 @@ defaultproperties
      ReloadAnim="Reload_MG"
      ReloadAnimRate=1.700000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.TPm_XOXO'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.XOXO_TPm'
      DrawScale=0.280000
      bFullVolume=True
      SoundVolume=255

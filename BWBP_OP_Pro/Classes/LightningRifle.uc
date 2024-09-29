@@ -243,6 +243,6 @@ defaultproperties
     LightSaturation=150
     LightBrightness=150.000000
     LightRadius=5.000000
-    Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_LightningRifle'
+    Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_FPm'
     DrawScale=0.300000
 }

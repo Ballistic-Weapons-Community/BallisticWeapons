@@ -257,7 +257,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-80.000000)
 	ItemName="FG50 Turret"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FG50_Turret'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50Turret_FPm'
 	DrawScale=0.50000
 	CollisionHeight=24.000000
 }
