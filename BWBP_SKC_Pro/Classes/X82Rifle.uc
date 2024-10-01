@@ -400,11 +400,10 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
-
+	CockingBringUpTime=1.800000
 	PlayerViewOffset=(X=4.00,Y=4.50,Z=-5.00)
 	SightOffset=(X=5.00,Y=-0.50,Z=4.25)
 	SightPivot=(Roll=-1024)
-
 	AttachmentClass=Class'BWBP_SKC_Pro.X82Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.X82.SmallIcon_X82'
 	IconCoords=(X2=127,Y2=31)
