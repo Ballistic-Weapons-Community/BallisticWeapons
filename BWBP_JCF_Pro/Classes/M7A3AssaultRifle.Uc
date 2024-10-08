@@ -56,10 +56,10 @@ simulated function Destroyed()
 
 simulated event RenderTexture( ScriptedTexture Tex )
 {
-	Tex.DrawTile(0,0,256,128,0,0,256,128,ScreenBase, MyFontColor); //Basic screen
+	Tex.DrawTile(20,0,128,64,0,0,128,64,ScreenBase, MyFontColor); //Basic screen
 
-	Tex.DrawTile(0,45,70,70,45,NumpadYOffset1,50,50,Numbers, MyFontColor); //Ammo
-	Tex.DrawTile(20,45,70,70,40,NumpadYOffset2,50,50,Numbers, MyFontColor);
+	Tex.DrawTile(85,32,70,70,45,NumpadYOffset1,50,50,Numbers, MyFontColor); //Ammo
+	Tex.DrawTile(105,32,70,70,40,NumpadYOffset2,50,50,Numbers, MyFontColor);
 }
 	
 simulated function UpdateScreen()
@@ -209,7 +209,7 @@ defaultproperties
     ScreenIndex=5
 	WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.FG50.FG50-ScriptLCD'
 	screen=Shader'BWBP_SKC_Tex.FG50.FG50-ScriptLCD-SD'
-	ScreenBase=Texture'BWBP_SKC_Tex.FG50.FG50-Screen'
+	ScreenBase=Texture'UCGeneric.SolidColours.Black'
 	Numbers=Texture'BWBP_SKC_Tex.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
 	
