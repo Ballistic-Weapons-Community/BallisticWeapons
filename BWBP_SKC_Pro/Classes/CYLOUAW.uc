@@ -30,6 +30,7 @@ var() int	     	SGShells;
 var byte			OldWeaponMode;
 var() float			GunCockTime;				// Used so players cant interrupt the shotgun.
 var() bool			bSlugger;					//used to tell attachment not to spawn alt effects		
+var() bool			bOldModel;					// needed to fix an alt reload deadlock on the cheap layout
 
 //Heating
 var() bool			bExplosive;
@@ -69,6 +70,8 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "cheap") != -1)
 	{
 		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
+		bOldModel=true;
+
 	}
 	if (InStr(WeaponParams.LayoutTags, "inc") != -1)
 	{
@@ -445,7 +448,7 @@ simulated function CommonStartReload (optional byte i)
 
 simulated function PlayReloadAlt()
 {
-	if (SGShells == 0)
+	if (SGShells == 0 && !bOldModel)
 		SafePlayAnim(ShotgunEmptyLoadAnim, 1, , 0, "RELOAD");
 	else
 		SafePlayAnim(ShotgunLoadAnim, 1, , 0, "RELOAD");

@@ -277,6 +277,7 @@ defaultproperties
 		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOPickupHi'
 		PickupDrawScale=1.75
 		//ADS
+		SightOffset=(X=0.00000,Y=0.000000,Z=-0.500000)
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.35
 		//Function
@@ -285,6 +286,7 @@ defaultproperties
 		InventorySize=5
 		DisplaceDurationMult=1
 		MagAmmo=22
+		ViewOffset=(X=4.000000,Y=3.500000,Z=-2.500000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
