@@ -26,7 +26,7 @@ defaultproperties
 		Chaos=0.600000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFire',Volume=6.700000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-FireGaussAlt',Volume=1.750000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaRechargeFireParams
@@ -41,7 +41,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaPowerEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=100
+		Damage=125
         HeadMult=1.50
         LimbMult=0.90
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
@@ -63,7 +63,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaPowerFireParams
 		FireAnim="FirePowered"
-		FireInterval=1.000000
+		FireInterval=1.500000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPowerEffectParams'
 	End Object

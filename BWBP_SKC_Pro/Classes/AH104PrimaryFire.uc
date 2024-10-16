@@ -27,7 +27,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget)
+	if (Victim != None && Victim.bProjTarget)
 	{
 		BW.TargetedHurtRadius(SplashDamage, SplashDamageRadius, class'DT_AH104Pistol', 200, HitLocation, Pawn(Victim));
 	}

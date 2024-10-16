@@ -780,8 +780,15 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		CockingAnim = BAtt.CockingAnim;
 		CockAnimRate = BAtt.CockAnimRate;
 		
-		IdleHeavyAnim = BAtt.IdleHeavyAnim;
-		IdleRifleAnim = Batt.IdleRifleAnim;
+		if (HasAnim(BAtt.IdleHeavyAnim))
+			IdleHeavyAnim = BAtt.IdleHeavyAnim;
+		else
+			IdleHeavyAnim = 'Idle_Biggun';
+		
+		if (HasAnim(BAtt.IdleRifleAnim))
+			IdleRifleAnim = Batt.IdleRifleAnim;
+		else
+			IdleHeavyAnim = 'Idle_Rifle';
 		
 		FireHeavyBurstAnim = BAtt.SingleFireAnim;
 		FireHeavyRapidAnim = BAtt.RapidFireAnim;
@@ -831,7 +838,7 @@ simulated event SetAnimAction(name NewAction)
 		// Covers Reload, Cocking, Weapon Raise and Weapon Lower. More to come.
 		if (AnimAction == 'ReloadGun')
 		{
-			if (ReloadAnim != '')
+			if (ReloadAnim != '' && HasAnim(ReloadAnim))
 			{
 				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 				PlayAnim(ReloadAnim, ReloadAnimRate, 0.25, 1);
@@ -841,7 +848,7 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}
-		if (AnimAction == 'MeleeStrike')
+		if (AnimAction == 'MeleeStrike' && HasAnim(MeleeAnim))
 		{
 			AnimBlendParams(1, 1, 0, 0.2, FireRootBone);
 			PlayAnim(MeleeAnim, 1, 0.05, 1);
@@ -849,7 +856,7 @@ simulated event SetAnimAction(name NewAction)
 			bResetAnimationAction=True;
 			return;
 		}
-		if (AnimAction == 'Shovel')
+		if (AnimAction == 'Shovel' && HasAnim('Reload_ShovelBottom'))
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			PlayAnim('Reload_ShovelBottom', 1, 0.25, 1);
@@ -858,7 +865,7 @@ simulated event SetAnimAction(name NewAction)
 			//bResetAnimationAction=True;
 			return;
 		}
-		if (AnimAction == 'CockGun')
+		if (AnimAction == 'CockGun' && HasAnim(CockingAnim))
 		{
 			if (CockingAnim != '')
 			{
@@ -870,7 +877,7 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}
-		if (AnimAction == 'WeaponSpecial')
+		if (AnimAction == 'WeaponSpecial' && HasAnim(WeaponSpecialAnim))
 		{
 			if (ReloadAnim != '')
 			{
@@ -882,7 +889,7 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}		
-		if (AnimAction == 'Stagger')
+		if (AnimAction == 'Stagger' && HasAnim(StaggerAnim))
 		{
 			if (ReloadAnim != '')
 			{
@@ -904,7 +911,7 @@ simulated event SetAnimAction(name NewAction)
 			Instigator.ClientMessage("Blocking");
 			return;
 		}		
-		else */if (AnimAction == 'Raise')
+		else */if (AnimAction == 'Raise' && HasAnim(IdleRifleAnim))
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			if (FireState == FS_None || FireState == FS_Ready)
@@ -913,7 +920,7 @@ simulated event SetAnimAction(name NewAction)
 			FireState = FS_None;
 			return;
 		}
-		else if (AnimAction == 'Lower')
+		else if (AnimAction == 'Lower' && HasAnim(IdleHeavyAnim))
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			if (FireState == FS_None || FireState == FS_Ready)
@@ -970,21 +977,74 @@ simulated function StartFiring(bool bHeavy, bool bRapid)
 {
     local name FireAnim;
 	
+	if ( HasUDamage() && (Level.TimeSeconds - LastUDamageSoundTime > 0.25) )
+	{
+		LastUDamageSoundTime = Level.TimeSeconds;
+		PlaySound(UDamageSound, SLOT_None, 1.5*TransientSoundVolume,,700);
+	}
+
+	if (Physics == PHYS_Swimming)
+		return;
+	
 	if (BallisticMeleeAttachment(WeaponAttachment) == None)
 	{	
-		Super.StartFiring(bHeavy, bRapid);
+
+		if (bHeavy)
+		{
+			if (bRapid)
+			{
+				if (HasAnim(FireHeavyRapidAnim))
+					FireAnim = FireHeavyRapidAnim;
+				else
+					FireAnim = 'Biggun_Burst';
+			}
+			else
+			{
+				if (HasAnim(FireHeavyBurstAnim))
+					FireAnim = FireHeavyBurstAnim;
+				else
+					FireAnim = 'Biggun_Aimed';
+			}
+		}
+		else
+		{
+			if (bRapid)
+			{
+				if (HasAnim(FireRifleRapidAnim))
+					FireAnim = FireRifleRapidAnim;
+				else
+					FireAnim = 'Rifle_Burst';
+			}
+			else
+			{
+				if (HasAnim(FireRifleBurstAnim))
+					FireAnim = FireRifleBurstAnim;
+				else
+					FireAnim = 'Rifle_Aimed';
+			}
+		}
+
+		AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
+
+		if (bRapid)
+		{
+			if (FireState != FS_Looping)
+			{
+				LoopAnim(FireAnim,, 0.0, 1);
+				FireState = FS_Looping;
+			}
+		}
+		else
+		{
+			PlayAnim(FireAnim,, 0.0, 1);
+			FireState = FS_PlayOnce;
+		}
+
+		IdleTime = Level.TimeSeconds;
 		return;
 	}
 
-    if ( HasUDamage() && (Level.TimeSeconds - LastUDamageSoundTime > 0.25) )
-    {
-        LastUDamageSoundTime = Level.TimeSeconds;
-        PlaySound(UDamageSound, SLOT_None, 1.5*TransientSoundVolume,,700);
-    }
-
-    if (Physics == PHYS_Swimming)
-        return;
-
+	//Melee specific
 	if (!bHeavy)
 	{
 		if (MeleeOffhandAnim != '')
@@ -1029,7 +1089,7 @@ simulated function AnimEnd(int Channel)
         }
         else if (FireState == FS_PlayOnce)
         {
-            PlayAnim(IdleWeaponAnim,, 0.2, 1);
+			PlayAnim(IdleWeaponAnim,, 0.2, 1);
             FireState = FS_Ready;
             IdleTime = Level.TimeSeconds;
         }

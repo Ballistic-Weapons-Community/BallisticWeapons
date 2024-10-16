@@ -71,6 +71,9 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasGauss=true;
 		bHasDrum=false;
+		AmmoClass[0]=class'Ammo_42HVG';
+		CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_42HVG';
+		CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_42HVG';
 		if ( ThirdPersonActor != None )
 		{
 			MG36Attachment(ThirdPersonActor).bHasGauss=true;

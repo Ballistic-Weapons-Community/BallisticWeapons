@@ -41,7 +41,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget && bPlayerRadiusDamage)
+	if (Victim != None && Victim.bProjTarget && bPlayerRadiusDamage)
 	{
 		if (BallisticShield(Victim) != None)
 			BW.TargetedHurtRadius(Damage, 210, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Victim));

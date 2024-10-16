@@ -127,7 +127,10 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				else if (Mover(Other) == None)
 				{
 					bHitWall = true;
-					SendFireEffect(Other, HitLocation, HitNormal, HitMaterial.SurfaceType);
+					if (HitMaterial != None)
+						SendFireEffect(Other, HitLocation, HitNormal, HitMaterial.SurfaceType);
+					else
+						SendFireEffect(Other, HitLocation, HitNormal, 6);
 					break;
 				}
 			}

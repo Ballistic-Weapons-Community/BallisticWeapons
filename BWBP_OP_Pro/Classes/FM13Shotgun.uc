@@ -70,106 +70,27 @@ simulated function Notify_CockStart()
 	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
 
-simulated event AnimEnded (int Channel, name anim, float frame, float rate) 
+
+simulated event AnimEnd (int Channel)
 {
-	if (MeleeFireMode != None && anim == MeleeFireMode.FireAnim)
-	{
-		if (MeleeState == MS_StrikePending)
-			MeleeState = MS_Pending;
-		else MeleeState = MS_None;
-		ReloadState = RS_None;
-		if (Role == ROLE_Authority)
-			bServerReloading=False;
-		bPreventReload=false;
-	}
-	
-	//Phase out Channel 1 if a sight fire animation has just ended.
-	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
-	{
-		AnimBlendParams(1, 0);
-		//Cut the basic fire anim if it's too long.
-		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
-			FreezeAnimAt(0.0);
-		bPreventReload=False;
-	}
+    local name anim;
+    local float frame, rate;
 
-	// Modified stuff from Engine.Weapon
-	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator.Weapon == self)) && ReloadState == RS_None)
-    {
-		if (MeleeState < MS_Held)
-			bPreventReload=false;
-		if (Channel == 0 && (bNeedReload || ((FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring))) && MeleeState < MS_Held)
-			PlayIdle();
-    }
-	// End stuff from Engine.Weapon
-
-	if (ReloadState == RS_None)
-		return;
+    GetAnimParams(0, anim, frame, rate);
 	
-	// Start Shovel ended, move on to Shovel loop
-	else if (ReloadState == RS_StartShovel)
+	if (Anim == SingleLoadAnim)
 	{
-		ReloadState = RS_Shovel;
-		PlayShovelLoop();
-		return;
-	}
-	// Shovel loop ended, start it again
-	else if (ReloadState == RS_PostShellIn)
-	{
-		if (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
-		{
-			PlayShovelEnd();
-			ReloadState = RS_EndShovel;
-			return;
-		}
-		ReloadState = RS_Shovel;
-		PlayShovelLoop();
-		return;
-	}
-	// End of reloading, either cock the gun or go to idle
-	else if (ReloadState == RS_EndShovel)
-	{
-		if (bNeedCock && MagAmmo > 0)
-			CommonCockGun();
-		else
-		{
-			bNeedCock=false;
-			ReloadState = RS_None;
-			ReloadFinished();
-			PlayIdle();
-			AimComponent.ReAim(0.05);
-		}
-		return;
-	}
-	//Cock anim ended, goto idle
-	else if (ReloadState == RS_Cocking)
-	{
+		bAltLoaded = True;
+		WeaponModes[0].ModeName="Grenade Loaded";
 		bNeedCock=false;
 		ReloadState = RS_None;
 		ReloadFinished();
-		
-		if (Anim == SingleLoadAnim)
-		{
-			bAltLoaded = True;
-			WeaponModes[0].ModeName="Grenade Loaded";
-		}
-		
-		else
-		{
-			bAltLoaded=False;
-			WeaponModes[0].ModeName=default.WeaponModes[0].ModeName;
-		}
-		
 		PlayIdle();
-		AimComponent.ReAim(0.05);
 	}
-	
-	else if (ReloadState == RS_GearSwitch)
+	else
 	{
-		if (Role == ROLE_Authority)
-			bServerReloading=false;
-		ReloadState = RS_None;
-		PlayIdle();
+		WeaponModes[0].ModeName=default.WeaponModes[0].ModeName;
+		Super.AnimEnd(Channel);
 	}
 }
 
@@ -206,6 +127,7 @@ simulated function FirePressed(float F)
 	{
 		if (reloadState == RS_None && (bNeedCock || bAltLoaded) && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
 		{
+			bAltLoaded=false;
 			CommonCockGun();
 			if (Level.NetMode == NM_Client)
 				ServerCockGun();
