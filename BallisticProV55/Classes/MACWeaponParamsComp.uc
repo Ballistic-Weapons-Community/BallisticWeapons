@@ -79,7 +79,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		SightPivot=(Pitch=450)
-		//SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
+		SightOffset=(X=-20.000000,Y=-10.000000,Z=-0.500000)
 		//ViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)
 		DisplaceDurationMult=1.25
 		PlayerSpeedFactor=0.9

@@ -112,7 +112,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		//SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
+		SightOffset=(X=20.000000,Y=-17.000000,Z=-1.500000)
 		//ViewOffset=(X=15.000000,Y=13.000000,Z=-16.000000)
 		WeaponModes(0)=(ModeName="Barrage",ModeID="WM_BigBurst",Value=3)
 		WeaponModes(1)=(ModeName="High Velocity",ModeID="WM_FullAuto",Value=1)
