@@ -183,7 +183,8 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-    ApplyMovementOverrides();
+	ApplyMovementOverrides();
+	ApplySizeOverrides();
 
 	// replace walk animations if ADS multipliers tend to be high
 	if (class'BallisticGameStyles'.static.GetReplicatedStyle().default.bRunInADS)
@@ -268,7 +269,7 @@ simulated function ApplyMovementOverrides()
 	BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
 
 	// prevent fighting with server when using Freon round start locker
-	if (Role == ROLE_Authority)
+	if (Role == ROLE_Authority )
 		GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 
 	AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
@@ -285,6 +286,16 @@ simulated function ApplyMovementOverrides()
 	}
 
 	BindDefaultMovement();
+}
+
+simulated function ApplySizeOverrides()
+{
+	//I should put this in gamestyleconfig but I'm lazy. Arena applies to non BW games that use BPawn
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsClassic())
+	{
+		default.BaseEyeHeight=38.000000; //UT38 (BW30)
+		default.CrouchHeight=29.000000; //UT29 (BW32)
+	}
 }
 
 simulated function CreateColorStyle()
@@ -3268,10 +3279,11 @@ defaultproperties
 
 	 BaseEyeHeight=30
 	 CrouchEyeHeight=19
-
-     CollisionRadius=19.000000
-
 	 CrouchHeight=32
+
+     CollisionRadius=22.000000
+     HeadRadius=13.000000
+
 
 
 
@@ -3280,7 +3292,6 @@ defaultproperties
      bCanWalkOffLedges=True
      bSpecialHUD=True
      Visibility=64
-     HeadRadius=13.000000
 	
      TransientSoundVolume=0.300000
 	 

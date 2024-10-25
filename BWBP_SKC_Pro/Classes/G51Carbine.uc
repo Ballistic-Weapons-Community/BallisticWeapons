@@ -456,11 +456,11 @@ simulated event DrawThermalMode (Canvas C)
 			if (Instigator.LineOfSightTo(P))
 				bLOS=true;
 			//check for smoke (todo: replace this with a more efficient vector check)
-			ForEach TraceActors(class'M58Cloud', Other, HitLocation, HitNormal, P.Location, Location)
-			{
-				if (Other != None)
-					bLOS=false;
-			}
+			//ForEach TraceActors(class'M58Cloud', Other, HitLocation, HitNormal, P.Location, Location)
+			//{
+			//	if (Other != None)
+			//		bLOS=false;
+			//}
 			//Other = Trace(HitLocation, HitNormal, P.Location, Location, true, vect(1,1,1));
 			//log("Trace found "$Other);
 			//if (Other != None && M58Cloud(Other) != None)
