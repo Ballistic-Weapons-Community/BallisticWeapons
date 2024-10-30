@@ -470,6 +470,7 @@ defaultproperties
 	FlashMode=MU_Both
 	LightMode=MU_Both
 	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
+	CockAnimRate=0.800000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.MK781_TPm'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.500000

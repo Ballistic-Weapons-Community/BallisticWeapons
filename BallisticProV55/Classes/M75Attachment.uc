@@ -100,6 +100,8 @@ defaultproperties
 	FlyByBulletSpeed=-1.000000
 	ReloadAnim="Reload_AR"
 	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=0.750000
+	CockAnimRate=0.710000
 	AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M75_TPm'
 	DrawScale=0.130000

@@ -228,6 +228,7 @@ defaultproperties
 	SoundRadius=128.000000
 	ReloadAnim="Reload_AR"
 	ReloadAnimRate=0.700000
+	CockAnimRate=0.950000
 	bRapidFire=True
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.350000

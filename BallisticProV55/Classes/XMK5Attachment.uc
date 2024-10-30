@@ -20,9 +20,10 @@ defaultproperties
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
-     ReloadAnimRate=1.250000
      bRapidFire=True
+ 	ReloadAnimRate=0.975000
+	CockAnimRate=0.725000
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMK5_TPm'
      DrawScale=0.28
-	 RelativeLocation=(X=3.00,Z=5.00)
+	RelativeLocation=(X=3.00,Z=5.00)
 }

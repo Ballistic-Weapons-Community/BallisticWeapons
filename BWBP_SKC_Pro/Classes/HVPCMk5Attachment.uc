@@ -112,6 +112,7 @@ defaultproperties
 	FlashMode=MU_Both
 	bHeavy=True
 	bRapidFire=True
+	ReloadAnimRate=0.750000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.HVPC_TPm'
 	DrawScale=1.000000
 	RelativeRotation=(Pitch=32768)

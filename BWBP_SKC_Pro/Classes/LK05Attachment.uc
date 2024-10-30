@@ -225,7 +225,8 @@ defaultproperties
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	ReloadAnim="Reload_AR"
-	ReloadAnimRate=1.200000
+	ReloadAnimRate=1.350000
+	CockAnimRate=1.100000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.LK05_TPm'
 	RelativeRotation=(Pitch=32768)
 	PrePivot=(X=1.000000,Z=-3.000000)

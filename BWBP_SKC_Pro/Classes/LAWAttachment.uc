@@ -153,7 +153,7 @@ defaultproperties
      BrassMode=MU_None
      InstantMode=MU_None
      ReloadAnim="Reload_MG"
-	 ReloadAnimRate=1.000000
+	 ReloadAnimRate=1.105000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.LAW_TPm'
      DrawScale=0.350000
      PrePivot=(Z=5.000000)

@@ -70,21 +70,22 @@ function M290UpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     WeaponClass=class'M290Shotgun'
-     MuzzleFlashClass=class'MRT6FlashEmitter'
-     AltMuzzleFlashClass=class'MRT6FlashEmitter'
-     ImpactManager=class'IM_Shell'
-     AltFlashBone="tip2"
-     FlashScale=3.500000
-     BrassClass=class'Brass_M290Left'
-     BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=class'TraceEmitter_Shotgun'
-     TracerChance=0.500000
-     CockingAnim="Cock_Pump"
-     CockAnimRate=1.700000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M290_TPm'
-     DrawScale=0.180000
+    WeaponClass=class'M290Shotgun'
+    MuzzleFlashClass=class'MRT6FlashEmitter'
+    AltMuzzleFlashClass=class'MRT6FlashEmitter'
+    ImpactManager=class'IM_Shell'
+    AltFlashBone="tip2"
+    FlashScale=3.500000
+    BrassClass=class'Brass_M290Left'
+    BrassMode=MU_Both
+    InstantMode=MU_Both
+    FlashMode=MU_Both
+    LightMode=MU_Both
+    TracerClass=class'TraceEmitter_Shotgun'
+    TracerChance=0.500000
+    CockingAnim="Cock_Pump"
+	ReloadAnimRate=1.000000	 
+    CockAnimRate=0.810000
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.M290_TPm'
+    DrawScale=0.180000
 }

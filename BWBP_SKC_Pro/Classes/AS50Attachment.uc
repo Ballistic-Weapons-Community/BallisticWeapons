@@ -179,8 +179,8 @@ defaultproperties
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
-     ReloadAnimRate=0.700000
-     CockAnimRate=0.700000
+     ReloadAnimRate=0.500000
+     CockAnimRate=0.665000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_TPm'
      RelativeLocation=(X=1.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)

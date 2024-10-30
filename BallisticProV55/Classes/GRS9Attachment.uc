@@ -247,7 +247,8 @@ defaultproperties
 	FlyByMode=MU_Primary
 	ReloadAnim="Reload_Pistol"
 	CockingAnim="Cock_RearPull"
-	CockAnimRate=0.800000
+	ReloadAnimRate=0.975000
+	CockAnimRate=0.775000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_TPm'
 	DrawScale=0.070000
 }

@@ -353,6 +353,8 @@ defaultproperties
 	TracerMode=MU_Primary
 	TracerChance=1
 	TracerMix=0
+	ReloadAnimRate=0.725000
+	CockAnimRate=2.000000
 	RelativeLocation=(X=1.00,Z=5.00)
 	RelativeRotation=(Pitch=32768)
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_TPm'

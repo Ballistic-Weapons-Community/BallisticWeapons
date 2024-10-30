@@ -335,7 +335,7 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
-     ReloadAnimRate=1.500000
+     ReloadAnimRate=2.150000
      bHeavy=True
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.Z250_TPm'

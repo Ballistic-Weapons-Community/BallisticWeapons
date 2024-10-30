@@ -286,22 +286,23 @@ simulated function FlameFireEffects()
 defaultproperties
 {
 	WeaponClass=class'CX61AssaultRifle'
-     AltFlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
-     MuzzleFlashClass=class'XK2FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     BrassClass=class'Brass_Rifle'
-     TrackAnimMode=MU_Secondary
-     TracerClass=class'TraceEmitter_Default'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     FlyByMode=MU_Primary
-     ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.800000
-     bRapidFire=True
-     bAltRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.CX61_TPm'
-     RelativeLocation=(X=2.000000,Y=-2.000000,Z=35.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.300000
+    AltFlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
+    MuzzleFlashClass=class'XK2FlashEmitter'
+    ImpactManager=class'IM_Bullet'
+    BrassClass=class'Brass_Rifle'
+    TrackAnimMode=MU_Secondary
+    TracerClass=class'TraceEmitter_Default'
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    FlyByMode=MU_Primary
+    ReloadAnim="Reload_AR"
+	ReloadAnimRate=1.250000
+	CockAnimRate=1.100000
+    bRapidFire=True
+    bAltRapidFire=True
+    Mesh=SkeletalMesh'BWBP_OP_Anim.CX61_TPm'
+    RelativeLocation=(X=2.000000,Y=-2.000000,Z=35.000000)
+    RelativeRotation=(Pitch=32768)
+    DrawScale=0.300000
 }

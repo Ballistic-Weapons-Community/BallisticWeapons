@@ -164,6 +164,8 @@ defaultproperties
 	FlashMode=MU_Primary
 	FlyByMode=MU_Primary
 	MeleeStrikeAnim="Melee_Smash"
+	ReloadAnimRate=1.000000
+	CockAnimRate=1.800000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_TPm'
 	DrawScale=0.125000
 }

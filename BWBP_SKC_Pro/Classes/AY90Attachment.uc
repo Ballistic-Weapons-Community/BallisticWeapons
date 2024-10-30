@@ -16,9 +16,9 @@ defaultproperties
      FlashScale=0.100000
      BrassMode=MU_None
      ReloadAnim="Reload_MG"
-     ReloadAnimRate=1.50000
+     ReloadAnimRate=1.570000
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.AY90_TPm'
      DrawScale=1.200000
-	 RelativeRotation=(Pitch=32768)
+	RelativeRotation=(Pitch=32768)
 }

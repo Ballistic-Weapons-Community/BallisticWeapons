@@ -340,7 +340,7 @@ defaultproperties
 	LightMode=MU_Both
 	ReloadAnim="Reload_MG"
 	MeleeStrikeAnim="RifleHip_Burst"
-	ReloadAnimRate=1.700000
+	ReloadAnimRate=2.050000
 	bRapidFire=True
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.DarkStar_TPm'
 }

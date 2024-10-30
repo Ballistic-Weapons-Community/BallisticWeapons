@@ -198,6 +198,8 @@ defaultproperties
 	MeleeStrikeAnim="Melee_swing"
 	SingleFireAnim="RifleHip_FireCock"
 	SingleAimedFireAnim="RifleAimed_FireCock"
+	ReloadAnimRate=1.000000
+	CockAnimRate=0.625000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FM13_TPm'
 	DrawScale=0.180000
 }

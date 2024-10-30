@@ -233,15 +233,15 @@ simulated event Destroyed()
 defaultproperties
 {
 	WeaponClass=class'RX22AFlamer'
-     MuzzleFlashClass=class'RX22AMuzzleFlame'
-     WeaponLightTime=0.300000
-     FlashScale=2.000000
-     FlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
-     ReloadAnim="Reload_MG"
-	 ReloadAnimRate=1.050000
-     bHeavy=True
-     bRapidFire=True
-     bAltRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.RX22A_TPm'
-     DrawScale=0.250000
+    MuzzleFlashClass=class'RX22AMuzzleFlame'
+    WeaponLightTime=0.300000
+    FlashScale=2.000000
+    FlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
+    ReloadAnim="Reload_MG"
+	ReloadAnimRate=1.725000
+    bHeavy=True
+    bRapidFire=True
+    bAltRapidFire=True
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.RX22A_TPm'
+    DrawScale=0.250000
 }

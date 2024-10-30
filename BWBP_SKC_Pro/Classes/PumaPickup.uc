@@ -53,7 +53,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.PUMA.PumaPickupLo'
-     PickupDrawScale=0.200000
+     PickupDrawScale=0.110000
      InventoryType=Class'BWBP_SKC_Pro.PumaRepeater'
      RespawnTime=20.000000
      PickupMessage="You picked up the PUMA-77 Repeater"

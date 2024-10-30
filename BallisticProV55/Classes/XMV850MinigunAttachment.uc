@@ -342,7 +342,7 @@ defaultproperties
      TracerChance=0.800000
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
-     ReloadAnimRate=1.500000
+     ReloadAnimRate=1.375000
      bHeavy=True
      bRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_TPm'

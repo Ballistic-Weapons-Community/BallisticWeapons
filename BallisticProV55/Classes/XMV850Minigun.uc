@@ -485,7 +485,7 @@ defaultproperties
 	SightOffset=(X=-6.5,Y=-1,Z=7.5)
 	SightPivot=(Pitch=700,Roll=2048)
 	SightBobScale=0.5f
-
+	bnoncocking=True
 	AttachmentClass=Class'BallisticProV55.XMV850MinigunAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XMV850'
 	IconCoords=(X2=127,Y2=31)

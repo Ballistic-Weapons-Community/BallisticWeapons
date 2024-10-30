@@ -316,6 +316,7 @@ defaultproperties
 	 BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
 	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
      MagAmmo=16
+	 bNonCocking=True
      CockSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Cock',Volume=0.675000)
      ReloadAnimRate=1.350000
      ClipHitSound=(Sound=Sound'BWBP_CC_Sounds.GASC.GASC-SlideBack',Volume=0.800000)

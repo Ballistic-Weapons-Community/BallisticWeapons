@@ -101,7 +101,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaPrimaryShieldFireParams
 		FireInterval=1.125000
 		BurstFireRateFactor=1.00
-		FireAnim="FireAlt"	
+		FireAnim="Fire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryShieldEffectParams'
 	End Object
 		
@@ -124,6 +124,7 @@ defaultproperties
 		
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
 		FireInterval=0.600000
+		FireAnim="FireAlt"
 		AmmoPerFire=0
 	FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
 	End Object

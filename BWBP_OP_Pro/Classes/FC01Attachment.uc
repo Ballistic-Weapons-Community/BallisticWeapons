@@ -299,25 +299,27 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-	 WeaponClass=class'FC01SmartGun'
-	 PhotonTracerClass=Class'BWBP_OP_Pro.TraceEmitter_FC01Photon'
-     PhotonImpactManager=Class'BWBP_OP_Pro.IM_FC01Photon'
-	 PhotonMuzzleFlashClass=Class'BWBP_OP_Pro.FC01PhotonFlashEmitter'
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-	 FlashScale=0.275000
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     AltFlashBone="tipalt"
-     BrassClass=Class'BallisticProV55.Brass_Shotgun'
-     BrassMode=MU_Secondary
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FC01_TPm'
-	 RelativeRotation=(Pitch=32768)
-	 RelativeLocation=(Z=10)
-     DrawScale=0.900000
+	WeaponClass=class'FC01SmartGun'
+	PhotonTracerClass=Class'BWBP_OP_Pro.TraceEmitter_FC01Photon'
+    PhotonImpactManager=Class'BWBP_OP_Pro.IM_FC01Photon'
+	PhotonMuzzleFlashClass=Class'BWBP_OP_Pro.FC01PhotonFlashEmitter'
+    MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	FlashScale=0.275000
+    ImpactManager=Class'BallisticProV55.IM_Bullet'
+    AltFlashBone="tipalt"
+    BrassClass=Class'BallisticProV55.Brass_Shotgun'
+    BrassMode=MU_Secondary
+    FlashMode=MU_Both
+    LightMode=MU_Both
+    TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+    WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    bHeavy=True
+    bRapidFire=True
+	ReloadAnimRate=0.660000
+	CockAnimRate=0.850000
+    Mesh=SkeletalMesh'BWBP_OP_Anim.FC01_TPm'
+	RelativeRotation=(Pitch=32768)
+	RelativeLocation=(Z=10)
+    DrawScale=0.900000
 }

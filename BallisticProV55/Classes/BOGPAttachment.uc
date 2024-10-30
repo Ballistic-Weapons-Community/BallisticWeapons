@@ -21,4 +21,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.BORT_TPm'
 	DrawScale=0.325000
 	CockingAnim="Reload_BreakOpen"
+	CockAnimRate=1.200000
 }

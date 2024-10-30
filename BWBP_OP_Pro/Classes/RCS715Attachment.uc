@@ -20,7 +20,8 @@ defaultproperties
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      TracerChance=0.500000
      ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.900000
+     ReloadAnimRate=0.690000
+     CockAnimRate=0.650000
      Mesh=SkeletalMesh'BWBP_OP_Anim.RCS715_TPm'
      DrawScale=0.500000
      RelativeLocation=(X=1.000000,Z=5.000000)

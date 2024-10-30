@@ -129,16 +129,17 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'G5Bazooka'
-     MuzzleFlashClass=class'G5FlashEmitter'
-     AltMuzzleFlashClass=class'G5BackFlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     AltFlashBone="tip2"
-     FlashScale=1.200000
-     BrassMode=MU_None
-     InstantMode=MU_None
-	 ReloadAnim="Reload_MG"
-	 ReloadAnimRate=1.500000
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.G5Bazooka_TPm'
-     DrawScale=0.230000
+    MuzzleFlashClass=class'G5FlashEmitter'
+    AltMuzzleFlashClass=class'G5BackFlashEmitter'
+    ImpactManager=class'IM_Bullet'
+    AltFlashBone="tip2"
+    FlashScale=1.200000
+    BrassMode=MU_None
+    InstantMode=MU_None
+	ReloadAnim="Reload_MG"
+	ReloadAnimRate=1.800000
+	CockAnimRate= 0.790000
+    bRapidFire=True
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.G5Bazooka_TPm'
+    DrawScale=0.230000
 }

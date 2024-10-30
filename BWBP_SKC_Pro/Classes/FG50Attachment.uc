@@ -261,8 +261,8 @@ defaultproperties
     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
 	ReloadAnim="Reload_MG"
 	CockingAnim="Cock_RearPull"
-	ReloadAnimRate=1.500000
-	CockAnimRate=0.700000
+	ReloadAnimRate=1.450000
+	CockAnimRate=0.672500
 	MeleeImpactManager=class'IM_GunHit'
 	bRapidFire=True
 	bAltRapidFire=True

@@ -89,8 +89,8 @@ defaultproperties
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.250000
-     CockAnimRate=1.400000
+     ReloadAnimRate=0.700000
+     CockAnimRate=0.815000
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.MX32_TPm'
      DrawScale=0.75

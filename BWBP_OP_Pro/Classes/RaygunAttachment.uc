@@ -21,18 +21,18 @@ defaultproperties
 {
 	WeaponClass=class'Raygun'
      TracerClass=Class'TraceEmitter_Raygun'
-	 TracerChance=1
-	 ImpactManager=Class'IM_Raygun'
+	TracerChance=1
+	ImpactManager=Class'IM_Raygun'
      MuzzleFlashClass=Class'BWBP_OP_Pro.RaygunMuzzleFlash'
      AltMuzzleFlashClass=Class'BWBP_OP_Pro.RaygunMuzzleFlashAlt'
      FlashScale=2.000000
-	 TracerMode=MU_Secondary
+	TracerMode=MU_Secondary
      InstantMode=MU_Secondary
-	 LightMode=MU_Secondary
+	LightMode=MU_Secondary
      BrassMode=MU_None
      FlashMode=MU_Both
      ReloadAnim="Reload_MG"
-     ReloadAnimRate=2.000000
+     ReloadAnimRate=1.900000
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.Raygun_TPm'
      RelativeLocation=(Z=7.000000)

@@ -530,7 +530,7 @@ defaultproperties
      InstantMode=MU_Secondary
      LightMode=MU_Both
      ReloadAnim="Reload_MG"
-     ReloadAnimRate=0.800000
+     ReloadAnimRate=1.800000
 	 MeleeStrikeAnim="Melee_Stab"
      MeleeAnimRate=1.000000
      TrackNum(1)=0

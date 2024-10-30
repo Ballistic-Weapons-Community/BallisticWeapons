@@ -293,6 +293,7 @@ defaultproperties
      bRapidFire=True
 	 FlashBone="Tip2"
 	 FlashScale=0.200000
+	 ReloadAnimRate=0.339000
      Mesh=SkeletalMesh'BWBP_SWC_Anims.A800_TPm'
      DrawScale=0.650000
 }

@@ -689,6 +689,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=1.00)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=1.00)
 	bNoMag=True
+	bNonCocking=True
 	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
 	FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk5SecondaryFire'

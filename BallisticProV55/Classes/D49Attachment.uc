@@ -151,7 +151,7 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=class'TraceEmitter_Pistol'
      TracerChance=0.600000
-	 ReloadAnimRate=0.450000
+	 ReloadAnimRate=0.500000
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)

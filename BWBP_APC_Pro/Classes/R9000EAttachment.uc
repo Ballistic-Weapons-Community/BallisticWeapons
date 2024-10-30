@@ -135,25 +135,26 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-	 WeaponClass=class'R9000ERifle'
-	 TracerClasses(0)=Class'BallisticProV55.TraceEmitter_Default'
-     TracerClasses(1)=Class'BWBP_APC_Pro.TraceEmitter_R9000Incendiary'
-     TracerClasses(2)=Class'BWBP_APC_Pro.TraceEmitter_RAD'
-     ImpactManagers(0)=Class'BallisticProV55.IM_Bullet'
-     ImpactManagers(1)=Class'BWBP_APC_Pro.IM_BulletHE'
-     ImpactManagers(2)=Class'BWBP_APC_Pro.IM_BulletRad'
-     MuzzleFlashClass=Class'BWBP_APC_Pro.R9000EFlashEmitter'
-	 FlashScale=0.125000
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     TracerChance=0.000000
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_AR"
-     CockingAnim="Cock_RearPull"
-     CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBP_CC_Anim.R9000E_TPm'
-     DrawScale=3.000000
+	WeaponClass=class'R9000ERifle'
+	TracerClasses(0)=Class'BallisticProV55.TraceEmitter_Default'
+    TracerClasses(1)=Class'BWBP_APC_Pro.TraceEmitter_R9000Incendiary'
+    TracerClasses(2)=Class'BWBP_APC_Pro.TraceEmitter_RAD'
+    ImpactManagers(0)=Class'BallisticProV55.IM_Bullet'
+    ImpactManagers(1)=Class'BWBP_APC_Pro.IM_BulletHE'
+    ImpactManagers(2)=Class'BWBP_APC_Pro.IM_BulletRad'
+    MuzzleFlashClass=Class'BWBP_APC_Pro.R9000EFlashEmitter'
+	FlashScale=0.125000
+    ImpactManager=Class'BallisticProV55.IM_Bullet'
+    BrassClass=Class'BallisticProV55.Brass_Rifle'
+    TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+    TracerChance=0.000000
+    WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    ReloadAnim="Reload_AR"
+    CockingAnim="Cock_RearPull"
+	ReloadAnimRate=0.750000
+    CockAnimRate=0.560000
+    Mesh=SkeletalMesh'BWBP_CC_Anim.R9000E_TPm'
+    DrawScale=3.000000
 }

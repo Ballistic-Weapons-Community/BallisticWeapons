@@ -335,11 +335,6 @@ defaultproperties
     RelativeRotation=(Pitch=32768)
     DrawScale=0.450000
 
-    SingleFireAnim="Reload_BreakOpenFast"
-    SingleAimedFireAnim="Reload_BreakOpenFast"
-    RapidFireAnim="RifleHip_Fire"
-    RapidAimedFireAnim="RifleAimed_Fire"
-
     ReloadAnim="Reload_BreakOpen"
     CockingAnim="Reload_BreakOpen"
 }

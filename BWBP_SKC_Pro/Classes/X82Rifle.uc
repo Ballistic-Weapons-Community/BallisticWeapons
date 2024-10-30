@@ -372,7 +372,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)
-	
+	ReloadEmptyAnim="ReloadEmptyClosed"
 	bNoCrosshairInScope=True
 	MinZoom=4.000000
 	MaxZoom=32.000000

@@ -342,5 +342,7 @@ defaultproperties
 	RelativeLocation=(X=5.00,Z=4.00)
 	DrawScale=0.65
 	RelativeRotation=(Pitch=32768)
+	ReloadAnimRate=0.925000
+	CockAnimRate=0.950000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.SRX_TPm'
 }
