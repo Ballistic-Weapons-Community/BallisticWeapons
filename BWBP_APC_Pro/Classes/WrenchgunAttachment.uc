@@ -284,7 +284,7 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ReloadAnim="Reload_MuzzlePistol"
-     //Mesh=SkeletalMesh'BWBP_CC_Anim.Wrenchgun_TPm'
+     //Mesh=SkeletalMesh'BWBP_APC_Anim.Wrenchgun_TPm'
      RelativeLocation=(X=5.000000,Z=4.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.450000

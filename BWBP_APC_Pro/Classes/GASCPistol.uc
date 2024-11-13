@@ -302,7 +302,7 @@ defaultproperties
      BulletBone="Bullet"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
-     BigIconMaterial=Texture'BWBP_CC_Tex.GASC.BigIcon_GASC'
+     BigIconMaterial=Texture'BWBP_APC_Tex.GASC.BigIcon_GASC'
      bWT_Bullet=True
      ManualLines(0)="High Fire Rate Burst Pistol and Dagger. 4 Round Burst. Low Recoil."
      ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. This attack inflicts more damage from behind."
@@ -319,9 +319,9 @@ defaultproperties
 	 bNonCocking=True
      CockSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Cock',Volume=0.675000)
      ReloadAnimRate=1.350000
-     ClipHitSound=(Sound=Sound'BWBP_CC_Sounds.GASC.GASC-SlideBack',Volume=0.800000)
-     ClipOutSound=(Sound=Sound'BWBP_CC_Sounds.GASC.GASC-ClipOut',Volume=1.000000)
-     ClipInSound=(Sound=Sound'BWBP_CC_Sounds.GASC.GASC-ClipIn',Volume=1.000000)
+     ClipHitSound=(Sound=Sound'BWBP_APC_Sounds.GASC.GASC-SlideBack',Volume=0.800000)
+     ClipOutSound=(Sound=Sound'BWBP_APC_Sounds.GASC.GASC-ClipOut',Volume=1.000000)
+     ClipInSound=(Sound=Sound'BWBP_APC_Sounds.GASC.GASC-ClipIn',Volume=1.000000)
      ClipInFrame=0.580000
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
@@ -344,7 +344,7 @@ defaultproperties
      PickupClass=Class'BWBP_APC_Pro.GASCPickup'
      PlayerViewOffset=(X=-5.500000,Y=7.000000,Z=-9.000000)
      AttachmentClass=Class'BWBP_APC_Pro.GASCAttachment'
-     IconMaterial=Texture'BWBP_CC_Tex.GASC.SmallIcon_GASC'
+     IconMaterial=Texture'BWBP_APC_Tex.GASC.SmallIcon_GASC'
      IconCoords=(X2=127,Y2=31)
      ItemName="Gaucho and Stallion"
      LightType=LT_Pulse
@@ -357,6 +357,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'GASCPistolWeaponParamsClassic'
 	 ParamsClasses(2)=Class'GASCPistolWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'GASCPistolWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_CC_Anim.GASC_FPm'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.GASC_FPm'
      DrawScale=1.000000
 }

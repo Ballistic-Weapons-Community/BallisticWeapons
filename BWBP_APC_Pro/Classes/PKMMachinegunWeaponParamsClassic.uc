@@ -20,7 +20,7 @@ defaultproperties
 		FlashScaleFactor=2.000000
 		Recoil=192.000000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.RPK940.RPK-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.RPK940.RPK-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
@@ -47,7 +47,7 @@ defaultproperties
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_APC_Pro.PKMRocketFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.rpk940.Fire',Volume=4.500000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.rpk940.Fire',Volume=4.500000)
 		Recoil=64.000000
 		Chaos=-1.0
 		Inaccuracy=(X=64,Y=64)

@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%o was at the business end of %k's minigun."
      bIgniteFires=True
      DamageDescription=",Bullet,Flame,"
-     WeaponClass=Class'BWBP_SKC_Pro.XMV500Minigun'
+     WeaponClass=Class'BWBP_APC_Pro.XMV500Minigun'
      DeathString="%o was gunned down by %k's XMB-500."
      FemaleSuicide="%o was rejected by her own minigun."
      MaleSuicide="%o was rejected by his own minigun."

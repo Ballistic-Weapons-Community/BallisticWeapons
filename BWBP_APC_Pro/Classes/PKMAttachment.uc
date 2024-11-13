@@ -167,6 +167,6 @@ defaultproperties
 	ReloadAnimRate=1.050000
 	CockAnimRate=0.835000
 	RelativeLocation=(X=-15.000000,Z=-15.000000)
-    Mesh=SkeletalMesh'BWBP_CC_Anim.PKMA_TPm'
+    Mesh=SkeletalMesh'BWBP_APC_Anim.PKMA_TPm'
     DrawScale=0.180000
 }

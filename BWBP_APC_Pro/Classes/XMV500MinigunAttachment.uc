@@ -404,7 +404,7 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 defaultproperties
 {
 	WeaponClass=class'XMV500Minigun'
-	FireClass=Class'BWBP_SKC_Pro.XMV500MinigunPrimaryFire'
+	FireClass=Class'BWBP_APC_Pro.XMV500MinigunPrimaryFire'
 	MuzzleFlashClass=class'XMV850FlashEmitter'
 	AltMuzzleFlashClass=class'XMV850FlashEmitter'
 	ImpactManager=Class'IM_IncendiaryHMGBullet'

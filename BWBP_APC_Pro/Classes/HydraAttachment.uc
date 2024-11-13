@@ -182,6 +182,6 @@ defaultproperties
 	 ReloadAnim="Reload_MG"
 	 ReloadAnimRate=1.180000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_CC_Anim.CruRL_TPm'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.CruRL_TPm'
      DrawScale=0.230000
 }

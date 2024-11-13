@@ -8,7 +8,7 @@ class Wendigo_EMPTrail extends BallisticEmitter;
 
 defaultproperties
 {
-     Begin Object Class=SpriteEmitter Name=SpriteEmitter1
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          UseColorScale=True
          UniformSize=True
          ColorScale(0)=(Color=(B=128,R=255))
@@ -25,9 +25,9 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.200000)
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.Wendigo_EMPTrail.SpriteEmitter1'
+     Emitters(0)=SpriteEmitter'BWBP_APC_Pro.Wendigo_EMPTrail.SpriteEmitter0'
 
-     Begin Object Class=BeamEmitter Name=BeamEmitter4
+     Begin Object Class=BeamEmitter Name=BeamEmitter0
          BeamDistanceRange=(Min=250.000000,Max=250.000000)
          DetermineEndPointBy=PTEP_Distance
          LowFrequencyNoiseRange=(Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
@@ -56,7 +56,6 @@ defaultproperties
          LifetimeRange=(Min=0.200000,Max=0.300000)
          StartVelocityRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=-4.000000,Max=4.000000),Z=(Min=-4.000000,Max=4.000000))
      End Object
-     Emitters(8)=BeamEmitter'BWBP_SKC_Pro.Wendigo_EMPTrail.BeamEmitter4'
-
+     Emitters(1)=BeamEmitter'BWBP_APC_Pro.Wendigo_EMPTrail.BeamEmitter0'
      bNoDelete=False
 }

@@ -164,7 +164,7 @@ defaultproperties
 	ParamsClasses(1)=Class'XMV500TW_WeaponParams'
 	ParamsClasses(3)=Class'XMV500TW_WeaponParams'
 	ParamsClasses(4)=Class'XMV500TW_WeaponParams'
-	FireModeClass(0)=Class'BWBP_SKC_Pro.XMV500TW_PrimaryFire'
+	FireModeClass(0)=Class'BWBP_APC_Pro.XMV500TW_PrimaryFire'
 	WeaponModes(0)=(ModeName="600 RPM",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 	WeaponModes(2)=(ModeName="2400 RPM",ModeID="WM_FullAuto")

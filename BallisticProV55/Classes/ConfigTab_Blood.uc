@@ -192,7 +192,7 @@ defaultproperties
          MaxValue=100.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
-         Caption="Blood Stay Scale"
+         Caption="Blood Stay Scale [!]"
          OnCreateComponent=fl_BloodTimeScaleFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the life time of blood effects. 0 = Forever."
@@ -205,7 +205,7 @@ defaultproperties
      Begin Object Class=moSlider Name=sl_GibMultiSlider
          MaxValue=20.000000
          bIntSlider=True
-         Caption="Gib Multiplier"
+         Caption="Gib Multiplier [!]"
          OnCreateComponent=sl_GibMultiSlider.InternalOnCreateComponent
          Hint="Multiplies number of gibs spawned. 1 = Normal, 0 = None. WARNING: Higher than 1 may kill performance!"
          WinTop=0.60000

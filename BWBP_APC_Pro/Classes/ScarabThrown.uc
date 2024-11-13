@@ -63,6 +63,6 @@ defaultproperties
 	Damage=50.000000
 	DamageRadius=512.000000
 	MyDamageType=Class'BWBP_APC_Pro.DTScarabGrenade'
-	ImpactSound=SoundGroup'BWBP_CC_Sounds.CruGren.CruGren-Concrete'
-	StaticMesh=StaticMesh'BWBP_CC_Static.CruGren.CruGrenProjectile'
+	ImpactSound=SoundGroup'BWBP_APC_Sounds.CruGren.CruGren-Concrete'
+	StaticMesh=StaticMesh'BWBP_APC_Static.CruGren.CruGrenProjectile'
 }

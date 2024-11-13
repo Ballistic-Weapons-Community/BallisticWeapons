@@ -529,8 +529,8 @@ defaultproperties
 	ParamsClasses(1)=Class'WendigoWeaponParams' 
 	AmmoClass[0]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	AmmoClass[1]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
-	FireModeClass(0)=Class'BWBP_SKC_Pro.WendigoPrimaryFire'
-	FireModeClass(1)=Class'BWBP_SKC_Pro.WendigoSecondaryFire'
+	FireModeClass(0)=Class'BWBP_APC_Pro.WendigoPrimaryFire'
+	FireModeClass(1)=Class'BWBP_APC_Pro.WendigoSecondaryFire'
 	SelectAnimRate=1.000000
 	PutDownAnimRate=1.000000
 	PutDownTime=1.000000
@@ -548,13 +548,13 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	GroupOffset=10
-	PickupClass=Class'BWBP_SKC_Pro.WendigoPickup'
+	PickupClass=Class'BWBP_APC_Pro.WendigoPickup'
 
 	PlayerViewOffset=(X=8.000000,Y=8.000000,Z=-15.000000)
 	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 
 	BobDamping=2.000000
-	AttachmentClass=Class'BWBP_SKC_Pro.WendigoAttachment'
+	AttachmentClass=Class'BWBP_APC_Pro.WendigoAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="[B] Type-76 Wendigo EMP-R"
@@ -564,6 +564,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.Wendigo_FPm'
+	Mesh=SkeletalMesh'BWBP_APC_Anim.Wendigo_FPm'
 	DrawScale=0.400000
 }

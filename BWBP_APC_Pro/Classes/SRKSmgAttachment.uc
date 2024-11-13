@@ -56,7 +56,7 @@ defaultproperties
      bRapidFire=True
      CockAnimRate=0.775000
      ReloadAnimRate=0.900000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.SRK_TPm'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.SRK_TPm'
      DrawScale=1.00000
      PrePivot=(Y=-1.000000,Z=-5.000000)
 }

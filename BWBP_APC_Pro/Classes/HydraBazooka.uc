@@ -540,7 +540,7 @@ defaultproperties
 	LaserAimSpread=(Min=0,Max=256)
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
     LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
-	BigIconMaterial=Texture'BWBP_CC_Tex.RL.BigIcon_CruRL'
+	BigIconMaterial=Texture'BWBP_APC_Tex.RL.BigIcon_CruRL'
 	BigIconCoords=(Y1=36,Y2=230)
 	bWT_Hazardous=True
 	bWT_Splash=True
@@ -556,7 +556,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
 	bCanSkipReload=True
 	bShovelLoad=True
-	ClipInSound=(Sound=Sound'BWBP_CC_Sounds.Launcher.Launcher-RelSlideClosed')
+	ClipInSound=(Sound=Sound'BWBP_APC_Sounds.Launcher.Launcher-RelSlideClosed')
 	StartShovelAnim="ReloadPrep"
 	EndShovelAnim="ReloadFinish"
 	ReloadAnim="ReloadLoop"
@@ -597,7 +597,7 @@ defaultproperties
 	PickupClass=Class'BWBP_APC_Pro.HydraPickup'
 	PlayerViewOffset=(X=2.000000,Y=11.000000,Z=-7.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.HydraAttachment'
-	IconMaterial=Texture'BWBP_CC_Tex.RL.SmallIcon_CruRL'
+	IconMaterial=Texture'BWBP_APC_Tex.RL.SmallIcon_CruRL'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M11-X Hydra MRL"
 	LightType=LT_Pulse
@@ -606,6 +606,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.CruRL_FPm'
+	Mesh=SkeletalMesh'BWBP_APC_Anim.CruRL_FPm'
 	DrawScale=0.300000
 }

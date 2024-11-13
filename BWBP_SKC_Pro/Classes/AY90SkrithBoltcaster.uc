@@ -540,7 +540,7 @@ defaultproperties
 	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.225000)
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
-	 
+	 bNoCrosshairInScope=True
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
      ClipInFrame=0.700000
      bNonCocking=True

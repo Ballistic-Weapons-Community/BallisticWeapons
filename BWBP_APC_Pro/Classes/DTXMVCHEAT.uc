@@ -20,7 +20,7 @@ defaultproperties
      MaleSuicides(0)="%o forgot to read his XMB instruction manual."
      MaleSuicides(1)="%o broke his wrists with a malfunctioning XMB-500."
      MaleSuicides(2)="%o tried firing an uncontrollable XMB-500."
-     WeaponClass=Class'BWBP_SKC_Pro.XMV500Minigun'
+     WeaponClass=Class'BWBP_APC_Pro.XMV500Minigun'
      DeathString="%o was gunned down by %k's XMB-500."
      FemaleSuicide="%o forgot to read her XMB instruction manual."
      MaleSuicide="%o forgot to read his XMB instruction manual."

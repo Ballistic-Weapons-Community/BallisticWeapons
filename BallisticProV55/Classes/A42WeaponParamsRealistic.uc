@@ -146,9 +146,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=72
-		//ViewOffset=(X=9.000000,Y=9.000000,Z=-10.000000)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-		SightPivot=(Pitch=1024,Roll=-768)
+		SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+		SightPivot=(Pitch=1024)
         WeaponName="A42 Skrith Blaster"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -170,9 +169,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=72
-		//ViewOffset=(X=9.000000,Y=9.000000,Z=-10.000000)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-		SightPivot=(Pitch=1024,Roll=-768)
+		SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+		SightPivot=(Pitch=1024)
         WeaponName="A48-E Skrith Blaster"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

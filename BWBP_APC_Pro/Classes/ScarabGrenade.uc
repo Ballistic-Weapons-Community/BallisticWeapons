@@ -61,11 +61,11 @@ defaultproperties
      HeldMomentum=75000
      HeldDamageType=Class'BallisticProV55.DTNRP57Held'
      GrenadeSmokeClass=Class'BWBP_APC_Pro.ScarabTrail'
-     ClipReleaseSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-Cock',Volume=1.000000,Radius=24.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-PullRingOut',Volume=0.076000,Radius=24.000000,Pitch=1.000000,bAtten=True)
-     PinPushSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-PutRingIn',Volume=0.086000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-Cock',Volume=1.000000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-PullRingOut',Volume=0.076000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     PinPushSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-PutRingIn',Volume=0.086000,Radius=24.000000,Pitch=1.000000,bAtten=True)
 	 TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_CC_Tex.Grenade.BigIcon_CruGren'
+     BigIconMaterial=Texture'BWBP_APC_Tex.Grenade.BigIcon_CruGren'
      BigIconCoords=(Y1=16,Y2=245)
      bWT_Hazardous=True
      bWT_Splash=True
@@ -102,9 +102,9 @@ defaultproperties
      PlayerViewOffset=(X=3.000000,Y=10.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BWBP_APC_Pro.ScarabAttachment'
-     IconMaterial=Texture'BWBP_CC_Tex.Grenade.SmallIcon_CruGren'
+     IconMaterial=Texture'BWBP_APC_Tex.Grenade.SmallIcon_CruGren'
      IconCoords=(X2=127,Y2=31)
      ItemName="NRX-82 'Scarab' Cluster Grenade"
-     Mesh=SkeletalMesh'BWBP_CC_Anim.CruGren_FPm'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.CruGren_FPm'
      DrawScale=0.400000
 }

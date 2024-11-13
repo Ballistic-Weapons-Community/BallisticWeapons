@@ -14,9 +14,9 @@ defaultproperties
 		Damage=35.0
 		HeadMult=1.5
 		LimbMult=0.5
-		DamageType=Class'BWBP_SKC_Pro.DTXMV500MG'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTXMV500MGHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTXMV500MG'
+		DamageType=Class'BWBP_APC_Pro.DTXMV500MG'
+		DamageTypeHead=Class'BWBP_APC_Pro.DTXMV500MGHead'
+		DamageTypeArm=Class'BWBP_APC_Pro.DTXMV500MG'
 		PenetrationEnergy=40.000000
 		PenetrateForce=125
 		bPenetrate=True

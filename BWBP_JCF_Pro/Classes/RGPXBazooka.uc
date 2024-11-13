@@ -298,6 +298,7 @@ defaultproperties
 	bWT_Splash=True
 	bWT_Projectile=True
 	bWT_Super=True
+	bNoCrosshairInScope=True
 	ManualLines(0)="Fires a rocket. These rockets have an arming delay and will ricochet off surfaces when unarmed."
 	ManualLines(1)="Flak Shot"
 	ManualLines(2)="Regular Laser (Non Guidance)"
@@ -314,7 +315,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightPivot=(Yaw=-512)
     PlayerViewOffset=(X=5.000000,Y=20.000000,Z=-22.000000)
-	SightOffset=(X=-5.000000,Y=-30.000000,Z=24.300000)
+	SightOffset=(X=-5.000000,Y=-26.250000,Z=24.400000)
 	SightingTime=0.350000
 	ParamsClasses(0)=Class'RGPXWeaponParamsArena'
 	ParamsClasses(1)=Class'RGPXWeaponParamsClassic'

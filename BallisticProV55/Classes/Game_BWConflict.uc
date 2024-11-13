@@ -861,7 +861,7 @@ static function FillPlayInfo(PlayInfo PI)
 	PI.AddSetting(default.RulesGroup, "bKeepHealth",		GetDisplayText("bKeepHealth"),     		50, 1, "Check",         ,,     	,);
 	PI.AddSetting(default.RulesGroup, "bKeepWeapons",		GetDisplayText("bKeepWeapons"),			50, 1, "Check",         ,,		,);
 	PI.AddSetting(default.RulesGroup, "bPurgeActors",		GetDisplayText("bPurgeActors"),         50, 1, "Check",         ,,		,True);
-	PI.AddSetting(default.RulesGroup, "WeapListsVar",		GetDisplayText("WeapListsVar"), 		60, 2, "Custom", ";;BallisticProV55.BallisticConflictWeaponMenu");
+	PI.AddSetting(default.RulesGroup, "WeapListsVar",		GetDisplayText("WeapListsVar"), 		60, 2, "Custom", ";;BallisticProV55.BallisticConflictWeaponMenuPro");
 	PI.AddSetting(default.GameGroup, "ConfigMenuVar",		GetDisplayText("ConfigMenuVar"), 		60, 2, "Custom", ";;BallisticProV55.ConfigMenu_Rules");
 }
 

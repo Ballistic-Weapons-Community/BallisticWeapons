@@ -51,7 +51,7 @@ defaultproperties
      InventoryType=Class'BWBP_APC_Pro.Ammo_45APC'
      PickupMessage="You got two 108 round 10mm HV magazines"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_OP_Static.SPXSmg.SPXSmg_Mag'
+     StaticMesh=StaticMesh'BWBP_APC_Static.SPXSmg.SPXSmg_Mag'
      DrawScale=0.100000
      PrePivot=(Z=5.000000)
      CollisionRadius=8.000000

@@ -54,7 +54,7 @@ defaultproperties
         PlayerSpeedFactor=1.150000
         MagAmmo=1
         InventorySize=10
-        ZoomType=ZT_Smooth
+        ZoomType=ZT_Logarithmic
 		//WeaponModes(0)=(ModeName="AIM-9 Missiles",ModeID="WM_FullAuto")
 		//WeaponModes(1)=(ModeName="Carpet Bombing",ModeID="WM_FullAuto")
 		//WeaponModes(2)=(ModeName="CBU-30 Chemical Cluster Bomb")

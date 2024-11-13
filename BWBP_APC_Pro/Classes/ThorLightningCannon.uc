@@ -194,10 +194,10 @@ defaultproperties
      bWT_Energy=True
      bWT_Heal=True
      SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     //BringUpSound=(Sound=Sound'BWBP_CC_Sounds.ThorLG.Pullout')
-     //PutDownSound=(Sound=Sound'BWBP_CC_Sounds.ThorLG.Putaway')
-	 //ClipOutSound=(Sound=Sound'BWBP_CC_Sounds.ThorLG.ClipOut',Volume=1.250000)
-	 //ClipInSound=(Sound=Sound'BWBP_CC_Sounds.ThorLG.ClipIn',Volume=1.250000)
+     //BringUpSound=(Sound=Sound'BWBP_APC_Sounds.ThorLG.Pullout')
+     //PutDownSound=(Sound=Sound'BWBP_APC_Sounds.ThorLG.Putaway')
+	 //ClipOutSound=(Sound=Sound'BWBP_APC_Sounds.ThorLG.ClipOut',Volume=1.250000)
+	 //ClipInSound=(Sound=Sound'BWBP_APC_Sounds.ThorLG.ClipIn',Volume=1.250000)
      bNonCocking=True
      WeaponModes(0)=(ModeName="Gravity Proton Stream",ModeID="WM_FullAuto")
      WeaponModes(1)=(bUnavailable=True)
@@ -236,7 +236,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     //Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_ThorLG'
+     //Mesh=SkeletalMesh'BWBP_APC_Anim.FPm_ThorLG'
      DrawScale=0.250000
      SoundPitch=56
      SoundRadius=32.000000

@@ -182,7 +182,7 @@ defaultproperties
 	 //FireAnim="Drop"
      FireAnim="Undeploy"
      FireRate=0.700000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_MinigunInc'
+     AmmoClass=Class'BWBP_APC_Pro.Ammo_MinigunInc'
      AmmoPerFire=0
      BotRefireRate=0.300000
 }

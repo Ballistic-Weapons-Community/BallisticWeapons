@@ -646,8 +646,8 @@ defaultproperties
      CurrentWeaponMode=0
 	 ParamsClasses(0)=Class'XMV500WeaponParams'
 	 ParamsClasses(1)=Class'XMV500WeaponParamsClassic'
-     FireModeClass(0)=Class'BWBP_SKC_Pro.XMV500MinigunPrimaryFire'
-     FireModeClass(1)=Class'BWBP_SKC_Pro.XMV500MinigunSecondaryFire'
+     FireModeClass(0)=Class'BWBP_APC_Pro.XMV500MinigunPrimaryFire'
+     FireModeClass(1)=Class'BWBP_APC_Pro.XMV500MinigunSecondaryFire'
      SelectAnimRate=0.750000
      PutDownTime=0.800000
      BringUpTime=2.000000
@@ -658,14 +658,14 @@ defaultproperties
      Priority=48
      InventoryGroup=6
      GroupOffset=3
-     PickupClass=Class'BWBP_SKC_Pro.XMV500Pickup'
+     PickupClass=Class'BWBP_APC_Pro.XMV500Pickup'
 
      PlayerViewOffset=(X=20.000000,Y=17.000000,Z=-50.000000)
 	 SightOffset=(X=15.000000,Y=-17.000000,Z=75.000000)
 
      BobDamping=0.5
 	 SightBobScale=0.5f
-     AttachmentClass=Class'BWBP_SKC_Pro.XMV500MinigunAttachment'
+     AttachmentClass=Class'BWBP_APC_Pro.XMV500MinigunAttachment'
      //IconMaterial=Texture'BWBP_SKC_Tex.XMV500.SmallIcon_XMV500'
      IconCoords=(X2=127,Y2=25)
      ItemName="[B] XMB-500 Smart Minigun"

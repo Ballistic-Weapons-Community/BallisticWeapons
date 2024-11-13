@@ -406,7 +406,7 @@ defaultproperties
 {
 	ScopePopupHeight=-3.000000
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.MVPR.BigIcon_MVPR'
+	BigIconMaterial=Texture'BWBP_APC_Tex.MVPR.BigIcon_MVPR'
 	BigIconCoords=(Y1=36,Y2=225)
 	SightFXClass=Class'BWBP_APC_Pro.E5ClipEffect'
 	SightFXBone="MagFX"
@@ -455,7 +455,7 @@ defaultproperties
 	PickupClass=Class'BWBP_APC_Pro.E5Pickup'
 	PlayerViewOffset=(X=-6.000000,Y=4.000000,Z=-10.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.E5Attachment'
-	IconMaterial=Texture'BWBP_OP_Tex.MVPR.SmallIcon_MVPR'
+	IconMaterial=Texture'BWBP_APC_Tex.MVPR.SmallIcon_MVPR'
 	IconCoords=(X2=127,Y2=40)
 	ItemName="E-5 'AsP' Plasma Pistol"
 	LightType=LT_Pulse
@@ -464,7 +464,7 @@ defaultproperties
 	LightSaturation=96
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.E5Plasma_FPm'
+	Mesh=SkeletalMesh'BWBP_APC_Anim.E5Plasma_FPm'
 	DrawScale=0.200000
 	bFullVolume=True
 	SoundRadius=32.000000

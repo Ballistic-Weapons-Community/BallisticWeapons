@@ -41,7 +41,7 @@ defaultproperties
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BallisticProV55.IE_RocketExplosion'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=Sound'BWBP_CC_Sounds.rpk940.RPG.RPGExplode'
+     HitSounds(0)=Sound'BWBP_JCF_Sounds.RGX.RPGExplode'
      HitSoundVolume=1.000000
      HitSoundRadius=2048.000000
      EffectBackOff=256.000000

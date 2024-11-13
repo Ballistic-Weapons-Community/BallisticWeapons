@@ -66,7 +66,7 @@ defaultproperties
      FireEndAnim=
      FireRate=0.900000
 	 FlashScaleFactor=0.750000
-	 ProjectileClass=Class'BWBP_SKC_Pro.Wendigo_EMPTorpedo'
+	 ProjectileClass=Class'BWBP_APC_Pro.Wendigo_EMPTorpedo'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

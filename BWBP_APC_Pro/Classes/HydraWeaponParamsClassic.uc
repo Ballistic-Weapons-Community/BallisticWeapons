@@ -25,7 +25,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.5
 		WarnTargetPct=0.8	
-		FireSound=(Sound=SoundGroup'BWBP_CC_Sounds.Launcher.Launcher-Fire',Volume=1.700000)
+		FireSound=(Sound=SoundGroup'BWBP_APC_Sounds.Launcher.Launcher-Fire',Volume=1.700000)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
@@ -53,7 +53,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.5
 		WarnTargetPct=0.8	
-		FireSound=(Sound=SoundGroup'BWBP_CC_Sounds.Launcher.Launcher-Fire')
+		FireSound=(Sound=SoundGroup'BWBP_APC_Sounds.Launcher.Launcher-Fire')
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimarySFireParams
@@ -85,7 +85,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.5
 		WarnTargetPct=0.8	
-		FireSound=(Sound=SoundGroup'BWBP_CC_Sounds.Launcher.Launcher-Fire')
+		FireSound=(Sound=SoundGroup'BWBP_APC_Sounds.Launcher.Launcher-Fire')
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -113,7 +113,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.5
 		WarnTargetPct=0.8	
-		FireSound=(Sound=SoundGroup'BWBP_CC_Sounds.Launcher.Launcher-Fire')
+		FireSound=(Sound=SoundGroup'BWBP_APC_Sounds.Launcher.Launcher-Fire')
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondarySFireParams

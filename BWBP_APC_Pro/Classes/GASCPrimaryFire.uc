@@ -90,7 +90,7 @@ defaultproperties
      FireChaos=0.100000
      XInaccuracy=32.000000
      YInaccuracy=32.000000
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.GASC.GASC-Fire',Volume=0.800000)
+     BallisticFireSound=(Sound=Sound'BWBP_APC_Sounds.GASC.GASC-Fire',Volume=0.800000)
      FireEndAnim=
      FireAnimRate=1.450000
      FireRate=0.095000

@@ -116,7 +116,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.ThumperPickup'
-
+	bNoCrosshairInScope=True
 	PlayerViewOffset=(X=0.000000,Y=5.000000,Z=-3.000000)
 	PlayerViewPivot=(Pitch=600)
 	SightOffset=(X=10.000000,Y=0.00,Z=0.00)

@@ -21,7 +21,7 @@ defaultproperties
 		FlashScaleFactor=0.700000
 		Recoil=96.000000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-Fire',Volume=1.400000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-Fire',Volume=1.400000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams

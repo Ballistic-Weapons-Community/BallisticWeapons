@@ -346,9 +346,9 @@ defaultproperties
 	//SplashDamageRadius=64
 	RangeAtten=0.500000
 	WaterRangeAtten=0.300000
-	DamageType=Class'BWBP_SKC_Pro.DTXMV500MG'
-	DamageTypeHead=Class'BWBP_SKC_Pro.DTXMV500MGHead'
-	DamageTypeArm=Class'BWBP_SKC_Pro.DTXMV500MG'
+	DamageType=Class'BWBP_APC_Pro.DTXMV500MG'
+	DamageTypeHead=Class'BWBP_APC_Pro.DTXMV500MGHead'
+	DamageTypeArm=Class'BWBP_APC_Pro.DTXMV500MG'
 	KickForce=2500
 	PenetrateForce=125
 	bPenetrate=True
@@ -359,7 +359,7 @@ defaultproperties
 	bPawnRapidFireAnim=True
 	TweenTime=0.000000
 	FireRate=0.050000
-	AmmoClass=Class'BWBP_SKC_Pro.Ammo_MinigunInc'
+	AmmoClass=Class'BWBP_APC_Pro.Ammo_MinigunInc'
 	ShakeRotMag=(X=48.000000)
 	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000

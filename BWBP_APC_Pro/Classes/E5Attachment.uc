@@ -182,6 +182,6 @@ defaultproperties
 	FlashScale=0.300000
 	RelativeLocation=(Z=5.000000)
 	ReloadAnimRate=0.750000
-    Mesh=SkeletalMesh'BWBP_OP_Anim.E5Plasma_TPm'
+    Mesh=SkeletalMesh'BWBP_APC_Anim.E5Plasma_TPm'
     DrawScale=0.750000
 }

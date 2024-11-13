@@ -15,7 +15,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_GClip'
      BrassBone="tip"
      BrassOffset=(X=10.000000)
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,bAtten=True)
      PreFireAnim="PrepThrow"
      FireAnim="Throw"
      AmmoClass=Class'BallisticProV55.Ammo_Pineapple'

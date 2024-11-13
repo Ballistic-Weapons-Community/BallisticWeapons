@@ -35,7 +35,7 @@ defaultproperties
      DeathStrings(2)="%o lost %vh head in a fight with %k's XMB-500."
      DeathStrings(3)="%k's XMB-500 smashed rounds through %o's cranium."
      bIgniteFires=True
-     WeaponClass=Class'BWBP_SKC_Pro.XMV500Minigun'
+     WeaponClass=Class'BWBP_APC_Pro.XMV500Minigun'
      DeathString="%k's smart minigun blew %o's brain."
      FemaleSuicide="%o minigunned her own head off."
      MaleSuicide="%o minigunned his own head off."

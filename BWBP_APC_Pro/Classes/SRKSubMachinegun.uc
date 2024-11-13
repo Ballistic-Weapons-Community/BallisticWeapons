@@ -292,7 +292,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;0.8;0.7;0.2")
      AIReloadTime=1.000000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_OP_Tex.SPXSmg.BigIcon_SPXSmg'
+     BigIconMaterial=Texture'BWBP_APC_Tex.SPXSmg.BigIcon_SPXSmg'
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=0.220000)
      PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=0.270000)
      WeaponModes(0)=(ModeName="Semi-Auto")
@@ -302,9 +302,9 @@ defaultproperties
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
      SightOffset=(X=0.000000,Y=-0.350000,Z=15.800000)
-     CockSound=(Sound=Sound'BWBP_OP_Sounds.SRKS.SRKS-Cock',Volume=1.600000)
-     ClipInSound=(Sound=Sound'BWBP_OP_Sounds.SRKS.SRKS-ClipIn',Volume=1.600000)
-     ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.SRKS.SRKS-ClipOut',Volume=1.600000)
+     CockSound=(Sound=Sound'BWBP_APC_Sounds.SRKS.SRKS-Cock',Volume=1.600000)
+     ClipInSound=(Sound=Sound'BWBP_APC_Sounds.SRKS.SRKS-ClipIn',Volume=1.600000)
+     ClipOutSound=(Sound=Sound'BWBP_APC_Sounds.SRKS.SRKS-ClipOut',Volume=1.600000)
      ClipInFrame=0.650000
      LongGunOffset=(X=5.000000)
      bWT_Bullet=True
@@ -329,7 +329,7 @@ defaultproperties
      PlayerViewOffset=(X=-6.000000,Y=6.000000,Z=-14.000000)
      BobDamping=2.250000
      AttachmentClass=Class'BWBP_APC_Pro.SRKSmgAttachment'
-     IconMaterial=Texture'BWBP_OP_Tex.SRKSmg.SmallIcon_SPXSmg'
+     IconMaterial=Texture'BWBP_APC_Tex.SPXSmg.SmallIcon_SPXSmg'
      IconCoords=(X2=127,Y2=31)
      ItemName="SRK-205 Submachinegun"
      LightType=LT_Pulse
@@ -338,7 +338,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.SRK_FPm'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.SRK_FPm'
 	 ParamsClasses(0)=Class'SRKSmgWeaponParamsArena'
      ParamsClasses(1)=Class'SRKSmgWeaponParamsClassic'
      ParamsClasses(2)=Class'SRKSmgWeaponParamsRealistic'

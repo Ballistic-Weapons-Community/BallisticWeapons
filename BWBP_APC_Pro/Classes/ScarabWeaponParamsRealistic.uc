@@ -17,7 +17,7 @@ defaultproperties
 		LimbMult=1.0
         BotRefireRate=0.4
         WarnTargetPct=0.75	
-        FireSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,bAtten=True)
     End Object
 
     Begin Object Class=FireParams Name=RealisticPrimaryFireParams
@@ -40,7 +40,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		WarnTargetPct=0.500000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=RealisticSecondaryFireParams

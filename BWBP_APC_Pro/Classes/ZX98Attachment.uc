@@ -177,7 +177,7 @@ defaultproperties
     bRapidFire=True
 	ReloadAnimRate=1.075000
 	CockAnimRate=1.100000
-    Mesh=SkeletalMesh'BWBP_CC_Anim.ZX98_TPm'
+    Mesh=SkeletalMesh'BWBP_APC_Anim.ZX98_TPm'
     RelativeLocation=(Z=1.000000)
     RelativeRotation=(Pitch=32768)
 	PrePivot=(z=-3)

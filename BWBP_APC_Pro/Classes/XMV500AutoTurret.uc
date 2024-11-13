@@ -82,8 +82,8 @@ defaultproperties
      //DefaultWeaponClassName="BWBP_SKC_Pro.XMV500Minigun_TW"
      //AutoTurretControllerClass=Class'UT2k4AssaultFull.LinkTurretController'
 	 TargetAcquiredSound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn'
-	 UndeployedWeaponName="BWBP_SKC_Pro.XMV500Minigun"
-     WeaponClassName="BWBP_SKC_Pro.XMV500Minigun_TW"
+	 UndeployedWeaponName="BWBP_APC_Pro.XMV500Minigun"
+     WeaponClassName="BWBP_APC_Pro.XMV500Minigun_TW"
      GunBone="Minigun"
      PivotBone="StandBase"
      bDrawDriverInTP=True

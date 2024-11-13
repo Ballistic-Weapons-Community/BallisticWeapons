@@ -17,7 +17,7 @@ defaultproperties
         WarnTargetPct=0.300000
 		BotRefireRate=0.300000	
 		FlashScaleFactor=0.650000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.EP110.EP110-Fire',Pitch=1.500000,Volume=9.200000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.EP110.EP110-Fire',Pitch=1.500000,Volume=9.200000)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams

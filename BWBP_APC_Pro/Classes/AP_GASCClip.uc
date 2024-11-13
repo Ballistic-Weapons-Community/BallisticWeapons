@@ -15,7 +15,7 @@ defaultproperties
      InventoryType=Class'BWBP_APC_Pro.Ammo_GASCClip'
      PickupMessage="You picked up two Gaucho magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_CC_Static.GASC.GASCClip'
+     StaticMesh=StaticMesh'BWBP_APC_Static.GASC.GASCClip'
      DrawScale=0.100000
      CollisionRadius=8.000000
      CollisionHeight=16.000000

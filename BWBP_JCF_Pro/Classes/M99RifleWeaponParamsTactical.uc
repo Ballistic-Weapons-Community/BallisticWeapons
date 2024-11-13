@@ -78,7 +78,7 @@ defaultproperties
 		MagAmmo=1
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.800000
-		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
+		SightOffset=(X=5.000000,Y=16.000000,Z=36.000000)
 		SightPivot=(Roll=-1024)
 		//ViewOffset=(X=10.000000,Y=-4.000000,Z=-30.000000)
 		ViewOffset=(X=-5.000000,Y=-4.000000,Z=-30.000000)

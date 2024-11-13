@@ -145,11 +145,11 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=200.000000
 	LightRadius=15.000000
-	StaticMesh=StaticMesh'BWBP_CC_Static.RL.CruRLRocket'
+	StaticMesh=StaticMesh'BWBP_APC_Static.RL.CruRLRocket'
 	bDynamicLight=True
 	bNetTemporary=False
 	bUpdateSimulatedPosition=True
-	AmbientSound=Sound'BWBP_CC_Sounds.Launcher.Launcher-Fly1'
+	AmbientSound=Sound'BWBP_APC_Sounds.Launcher.Launcher-Fly1'
 	DrawScale=0.500000
 	SoundVolume=192
 	SoundRadius=128.000000

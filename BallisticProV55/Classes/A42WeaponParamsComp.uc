@@ -136,8 +136,8 @@ defaultproperties
         SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
-		SightPivot=(Pitch=1024,Roll=-768)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	    SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+	    SightPivot=(Pitch=1024)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams'
@@ -157,8 +157,8 @@ defaultproperties
         SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
-		SightPivot=(Pitch=1024,Roll=-768)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	    SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+	    SightPivot=(Pitch=1024)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams_Tri' //

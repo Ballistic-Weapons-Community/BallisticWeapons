@@ -148,7 +148,7 @@ defaultproperties
 	TrailClass=Class'BallisticProV55.PineappleTrail'
 	//bRandomStartRotaion=False
 	TrailOffset=(X=-4.000000)
-	MyRadiusDamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
+	MyRadiusDamageType=Class'BWBP_OP_Pro.DTFC01Bullet'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	Speed=10000.000000
 	AccelSpeed=1000.000000
@@ -156,7 +156,7 @@ defaultproperties
 	Damage=85.000000
 	DamageRadius=192.000000
 	MomentumTransfer=20000.000000
-	MyDamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
+	MyDamageType=Class'BWBP_OP_Pro.DTFC01Bullet'
 	StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
 	AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
 	SoundVolume=64

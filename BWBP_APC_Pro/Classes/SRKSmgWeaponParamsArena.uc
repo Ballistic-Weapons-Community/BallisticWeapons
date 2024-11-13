@@ -20,7 +20,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_APC_Pro.SRKSmgFlashEmitter'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.SRKS.SRKS-Fire')
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.SRKS.SRKS-Fire')
 		Recoil=128.000000
 		Chaos=0.040000
 		WarnTargetPct=0.200000

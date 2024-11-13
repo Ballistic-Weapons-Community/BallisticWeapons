@@ -150,7 +150,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
-	 RocketCountSound=Sound'BWBP_CC_Sounds.Launcher.Launcher-Beep'
+	 RocketCountSound=Sound'BWBP_APC_Sounds.Launcher.Launcher-Beep'
 	 MaxChargeOvertime=3.0f
 	 ChargeGainPerSecond=3.6f
 	 ChargeDecayPerSecond=18.0f
@@ -164,7 +164,7 @@ defaultproperties
      FireChaos=0.500000
      XInaccuracy=4.000000
      YInaccuracy=4.000000
-     //BallisticFireSound=(SoundGroup=Sound'BWBP_CC_Sounds.Launcher.Launcher-Fire')
+     //BallisticFireSound=(SoundGroup=Sound'BWBP_APC_Sounds.Launcher.Launcher-Fire')
      FireEndAnim=
      FireRate=1.200000
      AmmoClass=Class'BWBP_APC_Pro.Ammo_HRPG'
