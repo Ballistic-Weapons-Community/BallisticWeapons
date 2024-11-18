@@ -35,7 +35,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_SWC_Static.SkrithHyperBlaster.SkrithHyperBlasterPickupLo'
-     PickupDrawScale=0.070000
+     PickupDrawScale=0.400000
      InventoryType=Class'BWBP_SWC_Pro.A800SkrithMinigun'
      RespawnTime=20.000000
      PickupMessage="You picked up the A800 Skrith HyperBlaster"

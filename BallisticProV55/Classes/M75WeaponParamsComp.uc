@@ -168,8 +168,8 @@ defaultproperties
 		Index=2
 		CamoName="Prototype"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75_SKPart1_Shine",Index=3,AIndex=1,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75_SKPart2_Shine",Index=4,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BW_Core_WeaponTex.M75.M75_SKPart1_Shine",Index=3,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BW_Core_WeaponTex.M75.M75_SKPart2_Shine",Index=4,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	

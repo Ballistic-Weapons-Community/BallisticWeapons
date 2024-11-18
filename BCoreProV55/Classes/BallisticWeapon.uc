@@ -4182,7 +4182,7 @@ function DropFrom(vector StartLocation)
 	local Pickup Pickup;
 	local Material N;
 
-    if (!bCanThrow)// || !HasAmmo())
+    if (!bCanThrow || !Level.Game.bAllowWeaponThrowing)// || !HasAmmo())
         return;
 
 	if (AmbientSound != None)
