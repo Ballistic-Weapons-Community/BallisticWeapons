@@ -7,88 +7,141 @@ defaultproperties
     // FIRE PARAMS WEAPON MODE 0 - AUTOMATIC
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ArenaStandardPrimaryEffectParams
-			TraceRange=(Min=9000.000000,Max=9000.000000)
-			RangeAtten=0.700000
-			Damage=25
-			DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
-			PenetrateForce=150
-			HookStopFactor=0.200000
-			HookPullForce=-10.000000
-			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-			FlashScaleFactor=0.900000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Fire',Volume=1.200000)
-			Recoil=90.000000
-			Chaos=0.030000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ArenaStandardPrimaryEffectParams
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		RangeAtten=0.700000
+		Damage=25
+		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		PenetrateForce=150
+		HookStopFactor=0.200000
+		HookPullForce=-10.000000
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Fire',Volume=1.200000)
+		Recoil=90.000000
+		Chaos=0.030000
+	End Object
 
-		Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams
-			FireInterval=0.12800
-			FireEndAnim=	
-			AimedFireAnim="SightFire"
-		FireEffectParams(0)=InstantEffectParams'ArenaStandardPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams
+		FireInterval=0.12800
+		FireEndAnim=	
+		AimedFireAnim="SightFire"
+	FireEffectParams(0)=InstantEffectParams'ArenaStandardPrimaryEffectParams'
+	End Object
+
+	//Supp
+	Begin Object Class=InstantEffectParams Name=ArenaStandardPrimaryEffectParams_Supp
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		RangeAtten=0.700000
+		Damage=25
+		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		PenetrateForce=150
+		HookStopFactor=0.200000
+		HookPullForce=-10.000000
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Pitch=1.5,Volume=0.800000,Radius=256.000000,bAtten=True) //
+		Recoil=80.000000 //
+		Chaos=0.040000 //
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaStandardPrimaryFireParams_Supp
+		FireInterval=0.13 //
+		FireEndAnim=	
+		AimedFireAnim="SightFire"
+	FireEffectParams(0)=InstantEffectParams'ArenaStandardPrimaryEffectParams_Supp'
+	End Object
 		
 	//=================================================================
     // FIRE PARAMS WEAPON MODE 1 - INCENDIARY AMP
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ArenaIncPrimaryEffectParams
-			TraceRange=(Min=9000.000000,Max=9000.000000)
-			RangeAtten=0.700000
-			Damage=35
-			DamageType=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Incendiary'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
-			PenetrateForce=150
-			HookStopFactor=0.200000
-			HookPullForce=-10.000000
-			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-			FlashScaleFactor=1.100000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-HotFire',Volume=1.600000)
-			Recoil=512.000000
-			Chaos=0.030000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ArenaIncPrimaryEffectParams
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		RangeAtten=0.700000
+		Damage=35
+		DamageType=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Incendiary'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Incendiary'
+		PenetrateForce=150
+		HookStopFactor=0.200000
+		HookPullForce=-10.000000
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		FlashScaleFactor=1.100000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-HotFire',Volume=1.600000)
+		Recoil=512.000000
+		Chaos=0.030000
+	End Object
 
-		Begin Object Class=FireParams Name=ArenaIncPrimaryFireParams
-			FireInterval=0.235000
-			FireEndAnim=
-			AimedFireAnim="SightFire"
-		FireEffectParams(0)=InstantEffectParams'ArenaIncPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ArenaIncPrimaryFireParams
+		FireInterval=0.235000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+	FireEffectParams(0)=InstantEffectParams'ArenaIncPrimaryEffectParams'
+	End Object
 		
 	//=================================================================
     // FIRE PARAMS WEAPON MODE 2 - CORROSIVE AMP
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ArenaCorrosivePrimaryEffectParams
-			TraceRange=(Min=9000.000000,Max=9000.000000)
-			RangeAtten=0.700000
-			Damage=20
-			DamageType=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Corrosive'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'
-			PenetrateForce=150
-			HookStopFactor=0.200000
-			HookPullForce=-10.000000
-			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-			FlashScaleFactor=0.400000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-AcidFire',Volume=1.000000)
-			Recoil=60.000000
-			Chaos=0.030000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ArenaCorrosivePrimaryEffectParams
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		RangeAtten=0.700000
+		Damage=20
+		DamageType=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head_Corrosive'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40_Corrosive'
+		PenetrateForce=150
+		HookStopFactor=0.200000
+		HookPullForce=-10.000000
+		MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-AcidFire',Volume=1.000000)
+		Recoil=60.000000
+		Chaos=0.030000
+	End Object
 
-		Begin Object Class=FireParams Name=ArenaCorrosivePrimaryFireParams
-			FireInterval=0.100000
-			FireEndAnim=
-			AimedFireAnim="SightFire"
-		FireEffectParams(0)=InstantEffectParams'ArenaCorrosivePrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ArenaCorrosivePrimaryFireParams
+		FireInterval=0.100000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+	FireEffectParams(0)=InstantEffectParams'ArenaCorrosivePrimaryEffectParams'
+	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	//Amp
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object
 		
 	//=================================================================
 	// RECOIL PARAMS WEAPON MODE 0 - AUTOMATIC
@@ -153,12 +206,17 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout Core
+		LayoutName="Amplifier"
+		Weight=10
+		//ADS
+		SightMoveSpeedFactor=0.90000
+		SightingTime=0.300000
+		//Stats
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		DisplaceDurationMult=1
 		InventorySize=4
-		SightMoveSpeedFactor=0.90000
-		SightingTime=0.300000
 		MagAmmo=24
 		RecoilParams(0)=RecoilParams'ArenaStandardRecoilParams'
 		RecoilParams(1)=RecoilParams'ArenaIncRecoilParams'
@@ -167,8 +225,59 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaStandardPrimaryFireParams'
 		FireParams(1)=FireParams'ArenaIncPrimaryFireParams'
 		FireParams(2)=FireParams'ArenaCorrosivePrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_Supp
+		//Layout Core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="tip",AugmentOffset=(x=0,y=0.0,z=0.1),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightMoveSpeedFactor=0.90000
+		SightingTime=0.300000
+		//Stats
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+		DisplaceDurationMult=1
+		InventorySize=4
+		MagAmmo=24
+		RecoilParams(0)=RecoilParams'ArenaStandardRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaStandardPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_Holo
+		//Layout Core
+		LayoutName="Holosight"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RifleRail',BoneName="tip",AugmentOffset=(x=-25,y=1,z=0),Scale=0.05,AugmentRot=(Pitch=32768,Roll=16384,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="tip",AugmentOffset=(x=-25,y=-1.75,z=-0.15),Scale=0.035,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightMoveSpeedFactor=0.90000
+		SightingTime=0.300000
+		SightOffset=(X=-3.5,Y=-0.05,Z=4.45)
+		SightPivot=(YAW=10)
+		//Stats
+		PlayerSpeedFactor=1
+		PlayerJumpFactor=1
+		DisplaceDurationMult=1
+		InventorySize=4
+		MagAmmo=24
+		RecoilParams(0)=RecoilParams'ArenaStandardRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaStandardPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'ArenaParams'
+	Layouts(1)=WeaponParams'ArenaParams_Supp'
+	Layouts(2)=WeaponParams'ArenaParams_Holo'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MP40_Black

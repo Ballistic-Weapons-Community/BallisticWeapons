@@ -35,6 +35,36 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Supp
+		TraceRange=(Min=4096.000000,Max=4096.000000)
+        DecayRange=(Min=788,Max=2363) // 15-45m
+		Inaccuracy=(X=72,Y=72)
+		RangeAtten=0.5
+		Damage=30 // .40 SMG
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		PenetrationEnergy=16
+		PenetrateForce=135
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Pitch=1.5,Volume=0.800000,Radius=256.000000,bAtten=True) //
+		Recoil=120.000000 //
+		Chaos=0.08 //
+
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Supp
+		FireInterval=0.130000 //
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Supp'
+	End Object
 		
 	//=================================================================
     // FIRE PARAMS WEAPON MODE 1 - INCENDIARY AMP
@@ -100,6 +130,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Amp
 	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams
 		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
 		Recoil=0.0
@@ -113,6 +144,18 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL - Automatic
@@ -193,10 +236,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
-		DisplaceDurationMult=0.75
-        SightMoveSpeedFactor=0.6
-		MagAmmo=28
+		//Layout Core
+		LayoutName="Amplifier"
+		Weight=10
+		//ADS
 		SightingTime=0.25
+        SightMoveSpeedFactor=0.6
+		//Stats
+		MagAmmo=28
+		DisplaceDurationMult=0.75
 		InventorySize=4
 		bDualBlocked=True
 		WeaponName="FMP-2012 .40 Machine Pistol"
@@ -209,7 +257,57 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalCorrosivePrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_Supp
+		//Layout Core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="tip",AugmentOffset=(x=0,y=0.0,z=0.1),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightingTime=0.25
+        SightMoveSpeedFactor=0.6
+		//Stats
+		MagAmmo=28
+		DisplaceDurationMult=0.75
+		InventorySize=4
+		bDualBlocked=True
+		WeaponName="FMP-2012 .40 Machine Pistol"
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_Holo
+		//Layout Core
+		LayoutName="Holosight"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RifleRail',BoneName="tip",AugmentOffset=(x=-25,y=1,z=0),Scale=0.05,AugmentRot=(Pitch=32768,Roll=16384,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="tip",AugmentOffset=(x=-25,y=-1.75,z=-0.15),Scale=0.035,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightingTime=0.25
+        SightMoveSpeedFactor=0.6
+		SightOffset=(X=-3.5,Y=-0.05,Z=4.45)
+		SightPivot=(YAW=10)
+		//Stats
+		MagAmmo=28
+		DisplaceDurationMult=0.75
+		InventorySize=4
+		bDualBlocked=True
+		WeaponName="FMP-2012 .40 Machine Pistol"
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'TacticalParams'
+	Layouts(1)=WeaponParams'TacticalParams_Supp'
+	Layouts(2)=WeaponParams'TacticalParams_Holo'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MP40_Black

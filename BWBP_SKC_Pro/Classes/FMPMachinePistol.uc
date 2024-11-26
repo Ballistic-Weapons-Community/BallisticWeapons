@@ -8,7 +8,8 @@
 //=============================================================================
 class FMPMachinePistol extends BallisticWeapon;
 
-var(FMP)   bool		bAmped;				// AMPED UP!!! YEAH!!! WOOOO!!!! WHITE CLAWW!!!!
+var(FMP)   bool		bHasAmp;				//Do we have an amp?
+var(FMP)   bool		bAmped;					// AMPED UP!!! YEAH!!! WOOOO!!!! WHITE CLAWW!!!!
 var(FMP) name		AmplifierBone;			// Bone to use for hiding cool shit
 var(FMP) name		AmplifierBone2;			// Xav likes to make my life difficult
 var(FMP) name		AmplifierOnAnim;			//
@@ -32,6 +33,20 @@ replication
 		
 }
 
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasAmp=true;
+
+	if (InStr(WeaponParams.LayoutTags, "no_amp") != -1)
+	{
+		bHasAmp=false;
+	}
+}
+
 //==============================================
 // Amp Code
 //==============================================
@@ -39,7 +54,7 @@ replication
 //mount or unmount amp
 exec simulated function ToggleAmplifier(optional byte i)
 {
-	if (ReloadState != RS_None || SightingState != SS_None)
+	if (ReloadState != RS_None || SightingState != SS_None || !bHasAmp)
 		return;
 
 	TemporaryScopeDown(0.5);

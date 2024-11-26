@@ -38,6 +38,39 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Supp
+		TraceRange=(Min=1000.000000,Max=4500.000000) //.40 SMG
+		WaterTraceRange=2000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.100000
+		Damage=44.0
+		HeadMult=2.318181
+		LimbMult=0.568181
+		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		PenetrationEnergy=9.000000
+		PenetrateForce=35
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Pitch=1.5,Volume=0.800000,Radius=256.000000,bAtten=True) //
+		Recoil=70.000000 //
+		Chaos=0.08 //
+		Inaccuracy=(X=24,Y=24) //
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Supp
+		FireInterval=0.130000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Supp'
+	End Object
 		
 	//=================================================================
     // FIRE PARAMS WEAPON MODE 1 - INCENDIARY AMP
@@ -99,6 +132,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Amp
 	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
 		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
 		Recoil=0.0
@@ -112,6 +146,18 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL - Automatic
@@ -186,12 +232,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=5
+		//Layout Core
+		LayoutName="Amplifier"
+		Weight=10
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.185000
-		MagAmmo=28
-		//SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
 		SightPivot=(YAW=10)
+		//Stats
+		InventorySize=5
+		MagAmmo=28
 		WeaponName="FMP-2012 .40 Machine Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticIncRecoilParams'
@@ -201,8 +251,55 @@ defaultproperties
 		FireParams(1)=FireParams'RealisticIncPrimaryFireParams'
 		FireParams(2)=FireParams'RealisticCorrosivePrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object	
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Supp
+		//Layout Core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="tip",AugmentOffset=(x=0,y=0.0,z=0.1),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.185000
+		SightPivot=(YAW=10)
+		//Stats
+		InventorySize=5
+		MagAmmo=28
+		WeaponName="FMP-2012 .40 Machine Pistol"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object	
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Holo
+		//Layout Core
+		LayoutName="Holosight"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RifleRail',BoneName="tip",AugmentOffset=(x=-25,y=1,z=0),Scale=0.05,AugmentRot=(Pitch=32768,Roll=16384,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="tip",AugmentOffset=(x=-25,y=-1.75,z=-0.15),Scale=0.035,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.185000
+		SightOffset=(X=-3.5,Y=-0.05,Z=4.45)
+		SightPivot=(YAW=10)
+		//Stats
+		InventorySize=5
+		MagAmmo=28
+		WeaponName="FMP-2012 .40 Machine Pistol"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Supp'
+	Layouts(2)=WeaponParams'RealisticParams_Holo'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MP40_Black
