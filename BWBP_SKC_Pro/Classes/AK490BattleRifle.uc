@@ -61,7 +61,6 @@ simulated function NewDrawWeaponInfo(Canvas C, Float YPos)
 	
 	ScaleFactor = C.ClipX / 1600;
 	ScaleFactor2 = 99 * C.ClipX/3200;
-	C.Style = ERenderStyle.STY_Alpha;
 	C.DrawColor = class'HUD'.Default.WhiteColor;
     if(bLoaded)
     {
