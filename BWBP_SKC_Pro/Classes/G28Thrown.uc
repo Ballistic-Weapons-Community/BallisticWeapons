@@ -10,7 +10,8 @@ class G28Thrown extends BallisticHandGrenadeProjectile;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
-var   Emitter 				PATrail;
+var	    Actor					PATrail;					// The trail Actor
+var() class<Actor>			    PATrailClass;				// Actor to use for trail
 
 var() class<damageType>		ShotDamageType;	// Damagetype to use when detonated by damage
 var() bool					bDamaged;		// Has been damaged and is about to blow
@@ -18,21 +19,29 @@ var() int					Health;			// Distance from death
 
 simulated function InitEffects ()
 {
-	if (Level.NetMode != NM_DedicatedServer && Speed > 400 && PATrail==None && level.DetailMode == DM_SuperHigh)
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+
+	if (Speed > 400 && PATrailClass != None && PATrail == None && level.DetailMode == DM_SuperHigh)
 	{
-		PATrail = Spawn(class'PineappleTrail', self,, Location);
-		if (PATrail != None)
-			class'BallisticEmitter'.static.ScaleEmitter(PATrail, DrawScale);
+		PATrail = Spawn(PATrailClass, self,, Location);
+		if (Emitter(PATrail) != None)
+			class'BallisticEmitter'.static.ScaleEmitter(Emitter(PATrail), DrawScale);
 		if (PATrail != None)
 			PATrail.SetBase (self);
 	}
 }
 
-simulated function DestroyEffects()
+simulated function Destroyed()
 {
-	super.DestroyEffects();
 	if (PATrail != None)
-		PATrail.Kill();
+	{
+		if (Emitter(PATrail) != None)
+			Emitter(PATrail).Kill();
+		else
+			PATrail.Destroy();
+	}
+	Super.Destroyed();
 }
 
 /*
@@ -194,12 +203,12 @@ defaultproperties
 	ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
 	TrailClass=Class'BWBP_SKC_Pro.G28Spray'
 	TrailOffset=(Z=8.000000)
+	PATrailClass=Class'BallisticProV55.PineappleTrail'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
 	StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
 	SoundVolume=192
 	SoundRadius=128.000000
-
 	Damage=120.000000
 	DamageRadius=300.000000
 	MyDamageType=Class'BWBP_SKC_Pro.DTG28Grenade'

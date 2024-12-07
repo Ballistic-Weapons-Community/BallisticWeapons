@@ -33,10 +33,11 @@ defaultproperties
     Begin Object Class=FireParams Name=TacticalProjFireParams
         FireInterval=0.155
         FireEndAnim=
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
         FireEffectParams(0)=ProjectileEffectParams'TacticalProjEffectParams'
     End Object
 
+	//Triple Shot
     Begin Object Class=ProjectileEffectParams Name=TacticalProjEffectParams_Tri
     	ProjectileClass=Class'BallisticProV55.A42ProjectileBal'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
@@ -62,7 +63,7 @@ defaultproperties
 		TargetState="SpreadShot"
 		FireInterval=0.240000
         FireEndAnim=
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
         FireEffectParams(0)=ProjectileEffectParams'TacticalProjEffectParams_Tri'
     End Object
 
@@ -112,7 +113,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
         HipMultiplier=1
-		MaxMoveMultiplier=1.5
+		MaxMoveMultiplier=1.25
     End Object
 
     //=================================================================
@@ -139,6 +140,7 @@ defaultproperties
 		Weight=30
 		//Visual
 		AllowedCamos(0)=0
+		AllowedCamos(1)=2
 		//Stats
         MagAmmo=40
         InventorySize=2
@@ -146,8 +148,8 @@ defaultproperties
         SightingTime=0.20
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5
-		SightPivot=(Pitch=1024,Roll=-768)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	    SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+	    SightPivot=(Pitch=1024)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalProjFireParams'
@@ -161,6 +163,7 @@ defaultproperties
 		Weight=10
 		//Visual
 		AllowedCamos(0)=1
+        AllowedCamos(1)=2
 		//Stats
         MagAmmo=40
         InventorySize=2
@@ -168,8 +171,8 @@ defaultproperties
         SightingTime=0.20
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5
-		SightPivot=(Pitch=1024,Roll=-768)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	    SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+	    SightPivot=(Pitch=1024)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalProjFireParams_Tri'
@@ -190,7 +193,7 @@ defaultproperties
 		CamoName="Red"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Layouts.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=A42_Green
@@ -198,10 +201,10 @@ defaultproperties
 		CamoName="Green"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A512_ExpShine',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A512_ExpShine",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Camos(0)=WeaponCamo'A42_Blue'
 	Camos(1)=WeaponCamo'A42_Red'
-	Camos(2)=WeaponCamo'A42_Green'
+	//Camos(2)=WeaponCamo'A42_Green'
 }

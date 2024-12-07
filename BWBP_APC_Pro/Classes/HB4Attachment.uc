@@ -17,7 +17,7 @@ defaultproperties
      InstantMode=MU_None
      WaterTracerMode=MU_None
      bHeavy=True
-     Mesh=SkeletalMesh'BWBP_CC_Anim.HoloBlaster_TPm'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.HB4_TPm'
      DrawScale=1.000000
 	 CockingAnim="Reload_BreakOpen"
 }

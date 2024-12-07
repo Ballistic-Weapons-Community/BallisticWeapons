@@ -2,8 +2,11 @@
 // A51Grenade
 // Skrith Acid Grenade
 //=============================================================================
-class A51Grenade extends BallisticHandGrenade;
-
+class A51Grenade extends BallisticHandGrenade
+	transient
+	HideDropDown
+	CacheExempt;
+	
 function DoExplosion()
 {
 	local A51AcidControl F;
@@ -27,8 +30,8 @@ function DoExplosion()
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.SkrithGrenadeProj');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.SkrithGrenadePickupHi');
+	//Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.SkrithGrenadeProj');
+	//Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SWC_Static.SkrithGrenadePickupHi');
 
 }
 
@@ -55,7 +58,7 @@ defaultproperties
      ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806LSight',Volume=1.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
      PinPullSound=(Sound=Sound'2K4MenuSounds.Generic.msfxDrag',Volume=5.000000)
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SWC_Tex.Main.BigIcon_SkrithGrenade'
+     //BigIconMaterial=Texture'BWBP_SWC_Tex.Main.BigIcon_SkrithGrenade'
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
@@ -67,7 +70,7 @@ defaultproperties
      SelectAnimRate=1.000000
      BringUpTime=2.500000
      SelectForce="SwitchToAssaultRifle"
-	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=128),Color2=(B=0,G=0,R=255,A=212),StartSize1=98,StartSize2=101)
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=128),Color2=(B=0,G=0,R=255,A=212),StartSize1=98,StartSize2=101)
      NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
      AIRating=0.400000
      CurrentRating=0.400000
@@ -80,13 +83,13 @@ defaultproperties
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBP_SWC_Pro.A51Attachment'
-     IconMaterial=Texture'BWBP_SWC_Tex.Main.SmallIcon_SkrithGrenade'
+     //IconMaterial=Texture'BWBP_SWC_Tex.Main.SmallIcon_SkrithGrenade'
      IconCoords=(X2=127,Y2=31)
 	 ParamsClasses(0)=Class'A51GrenadeWeaponParamsArena'
 	 ParamsClasses(1)=Class'A51GrenadeWeaponParamsClassic'
 	 ParamsClasses(2)=Class'A51GrenadeWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'A51GrenadeWeaponParamsTactical'
      ItemName="AD-51 Reptile Corrosive Grenade"
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithGrenade'
+     //Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithGrenade'
      DrawScale=0.400000
 }

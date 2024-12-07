@@ -61,13 +61,13 @@ defaultproperties
 
     Begin Object Class=FireParams Name=BurstFireParams
         AimedFireAnim="SightFire"
-        FireInterval=0.072
+        FireInterval=0.05
         FireEffectParams(0)=InstantEffectParams'BurstFireEffect'
     End Object
 
     Begin Object Class=FireParams Name=AutoFireParams
         AimedFireAnim="SightFire"
-        FireInterval=0.072
+        FireInterval=0.05 //.072
         FireEffectParams(0)=InstantEffectParams'AutoFireEffect'
     End Object
 
@@ -117,12 +117,12 @@ defaultproperties
 		DeclineTime=1.1
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAutoRecoilParams // for stock
 		ViewBindFactor=0.2
-		ADSViewBindFactor=0.7
+		ADSViewBindFactor=0.7 //
 		EscapeMultiplier=1.2
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
@@ -132,9 +132,9 @@ defaultproperties
 		ClimbTime=0.04
 		DeclineDelay=0.14
 		DeclineTime=1.1
-		CrouchMultiplier=0.85
+		CrouchMultiplier=0.85 //
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.5
 	End Object
 
 	//=================================================================
@@ -167,17 +167,17 @@ defaultproperties
 		DisplaceDurationMult=0.5
         MagAmmo=25        
 		InventorySize=3
-        SightingTime=0.2
+        SightingTime=0.19
         SightMoveSpeedFactor=0.6
 		SightPivot=(Pitch=128)
 		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'TacticalBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'
-        FireParams(1)=FireParams'AutoFireParams'
+        //FireParams(1)=FireParams'AutoFireParams'
         AltFireParams(0)=FireParams'MeleeFireParams'
         AimParams(0)=AimParams'TacticalBurstAimParams'
-		AimParams(1)=AimParams'TacticalAutoAimParams'
+		//AimParams(1)=AimParams'TacticalAutoAimParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
 }

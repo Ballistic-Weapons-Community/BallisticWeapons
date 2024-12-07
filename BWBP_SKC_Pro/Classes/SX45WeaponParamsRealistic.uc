@@ -8,12 +8,12 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=800.000000,Max=4000.000000)  //.45
+		TraceRange=(Min=5000.000000,Max=5000.000000)  //.45
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=45.0
-		HeadMult=2.276595
-		LimbMult=0.617021
+		DecayRange=(Min=800.0,Max=4000.0)
+		Damage=40.0
+		HeadMult=2.35
+		LimbMult=0.6
 		PenetrationEnergy=9.000000
 		PenetrateForce=30
 		bPenetrate=True
@@ -25,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
-		Recoil=640.000000
+		Recoil=800.000000
 		Chaos=0.100000
 		Inaccuracy=(X=18,Y=18)
 		BotRefireRate=0.300000
@@ -33,10 +33,43 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.300000
+		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//Supp
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Supp
+		TraceRange=(Min=5000.000000,Max=5000.000000)  //.45
+		WaterTraceRange=5000.0
+		DecayRange=(Min=800.0,Max=4000.0)
+		Damage=40.0
+		HeadMult=2.3
+		LimbMult=0.6
+		PenetrationEnergy=9.000000
+		PenetrateForce=30
+		bPenetrate=True
+		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,bAtten=True) //
+		Recoil=700.000000
+		Chaos=0.150000
+		Inaccuracy=(X=18,Y=18)
+		BotRefireRate=0.300000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Supp
+		FireInterval=0.150000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Supp'
 	End Object
 		
 				
@@ -64,7 +97,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticCryoPrimaryFireParams
-		FireInterval=0.400000
+		FireInterval=0.150000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
@@ -95,12 +128,39 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticRadPrimaryFireParams
-		FireInterval=0.500000
+		FireInterval=0.150000
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1	
 	FireEffectParams(0)=InstantEffectParams'RealisticRadPrimaryEffectParams'
 	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================		
+	
+	//Amp
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object		
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -165,6 +225,7 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticCryoPrimaryFireParams'
 		FireParams(2)=FireParams'RealisticRadPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Irons
@@ -188,10 +249,37 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticCryoPrimaryFireParams'
 		FireParams(2)=FireParams'RealisticRadPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Supp
+		//Layout core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=10
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorOsprey',BoneName="tip",Scale=0.08,AugmentOffset=(X=-2,Y=0.2),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
+		//ADS
+		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.130000
+		//Functions
+		ViewOffset=(X=8,Y=8,Z=-6)
+		InventorySize=3
+		MagAmmo=15
+		bMagPlusOne=True
+		WeaponName="SX-45 .45 Pistol (Sil)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams_RDS'
 	Layouts(1)=WeaponParams'RealisticParams_Irons'
+	Layouts(2)=WeaponParams'RealisticParams_Supp'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=FNX_Green

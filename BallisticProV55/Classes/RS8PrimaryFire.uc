@@ -11,6 +11,23 @@ var() class<Actor>				SMuzzleFlashClass;
 var() Name						SFlashBone;
 var() float						SFlashScaleFactor;
 
+
+simulated function OnEffectParamsChanged(int EffectIndex)
+{
+	super.OnEffectParamsChanged(EffectIndex);
+	
+    if (RS8Pistol(Weapon).bHasKnife)
+        ApplyTacKnifeEffectParams();
+}
+
+simulated function ApplyTacKnifeEffectParams()
+{
+	FireRecoil *= 1.5;
+	FireChaos = 1;
+    XInaccuracy	= 256;
+    YInaccuracy = 256;
+}
+
 function InitEffects()
 {
 	if (AIController(Instigator.Controller) != None)
@@ -91,7 +108,7 @@ function PlayFiring()
 		FireAnim = 'Fire';
 	}
 
-	if (RS8Pistol(Weapon).bSilenced)
+	if (RS8Pistol(Weapon).bSilenced || RS8Pistol(Weapon).bCompensated)
 		Weapon.SetBoneScale (0, 1.0, RS8Pistol(Weapon).SilencerBone);
 	else
 		Weapon.SetBoneScale (0, 0.0, RS8Pistol(Weapon).SilencerBone);

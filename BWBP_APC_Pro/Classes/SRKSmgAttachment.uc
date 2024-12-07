@@ -40,11 +40,11 @@ function IAOverride(bool bGrenadier)
 
 defaultproperties
 {
-	 WeaponClass=class'SRKSubMachinegun'
+	WeaponClass=class'SRKSubMachinegun'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
-     FlashScale=0.100000
+     FlashScale=0.150000
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both
@@ -54,7 +54,9 @@ defaultproperties
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_CC_Anim.SPXSmg_TPm'
+     CockAnimRate=0.775000
+     ReloadAnimRate=0.900000
+     Mesh=SkeletalMesh'BWBP_APC_Anim.SRK_TPm'
      DrawScale=1.00000
      PrePivot=(Y=-1.000000,Z=-5.000000)
 }

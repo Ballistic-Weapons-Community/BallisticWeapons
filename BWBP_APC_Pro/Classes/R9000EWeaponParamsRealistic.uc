@@ -20,7 +20,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Fire1',Volume=2.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-Fire1',Volume=2.000000,Radius=1024.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimarySTDFireParams
@@ -48,7 +48,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Fire2',Volume=2.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-Fire2',Volume=2.000000,Radius=1024.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryINCFireParams
@@ -76,7 +76,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Fire4',Volume=2.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-Fire4',Volume=2.000000,Radius=1024.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryRADFireParams

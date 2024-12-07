@@ -301,8 +301,8 @@ defaultproperties
      bWT_Machinegun=True
      bWT_Projectile=True
      SpecialInfo(0)=(Info="240.0;30.0;0.9;80.0;1.3;1.3;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.222000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
      MagAmmo=18
      bCockOnEmpty=False
      CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_Cock',Volume=1.100000)
@@ -349,7 +349,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AR23'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.AR23_FPm'
      DrawScale=0.300000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Shader'BWBP_SKC_Tex.AR23.AR23-MainShine'

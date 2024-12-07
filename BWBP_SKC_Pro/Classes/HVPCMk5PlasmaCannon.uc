@@ -10,6 +10,7 @@
 class HVPCMk5PlasmaCannon extends BallisticWeapon;
 
 var float		HeatLevel;			// Current Heat level, duh...
+var bool		bMilSpec;			// Variant that reloads and has no heat issues
 var bool		bIsVenting;			// Busy venting
 var() Sound		VentingSound;		// Sound to loop when venting
 var() Sound		OverHeatSound;		// Sound to play when it overheats
@@ -38,13 +39,19 @@ replication
 		ClientOverCharge, ClientSetHeat;
 }
 
-simulated event PostNetBeginPlay()
+
+simulated function OnWeaponParamsChanged()
 {
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bMilSpec=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "milspec") != -1) //indicates reloading version
 	{
-		HVPCMk5PrimaryFire(FireMode[0]).ProjectileCount = 1;
-		HVPCMk5PrimaryFire(FireMode[0]).HeatPerShot = 1.0;
+		bMilSpec=true;
+		bNoMag=false;
+		bShowChargingBar=false;
 	}
 }
 
@@ -340,6 +347,11 @@ simulated function bool IsGoingToVent()
 
 exec simulated function Reload(optional byte i)
 {
+	if (bMilSpec)
+	{
+		super.Reload(i);
+		return;
+	}
 	if (!IsFiring())
 		SafePlayAnim('ReloadStart', 1.0, 0.1);
 }
@@ -371,9 +383,15 @@ simulated event AnimEnd (int Channel)
 
 function ServerStartReload (optional byte i)
 {
+	if (bMilSpec)
+	{
+		super.ServerStartReload(i);
+		return;
+	}
 	if (!Instigator.IsLocallyControlled())
 	{	Instigator.AmbientSound = VentingSound;
-		Instigator.SoundVolume = 128;	}
+		Instigator.SoundVolume = 128;
+	}
 	bIsVenting = true;
 }
 
@@ -389,6 +407,9 @@ exec simulated  function ReloadRelease(optional byte i)
 {
     local name anim;
     local float frame, rate;
+
+	if (bMilSpec)
+		return;
 
 	Instigator.AmbientSound = UsedAmbientSound;
 	Instigator.SoundVolume = default.SoundVolume;
@@ -650,61 +671,65 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
-     VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
-     OverHeatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
-     PlayerSpeedFactor=0.800000
-     PlayerJumpFactor=0.700000
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
-     AIReloadTime=0.200000
-     BigIconMaterial=Texture'BWBP_SKC_Tex.HVPC.BigIcon_HVPC'
-     bWT_Hazardous=True
-     bWT_Energy=True
-     bWT_Super=True
-     SpecialInfo(0)=(Info="360.0;50.0;1.0;90.0;0.0;0.5;1.0")
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=2.200000)
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
-     bNoMag=True
-     WeaponModes(1)=(bUnavailable=True,Value=4.000000)
-     FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'
-     FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk5SecondaryFire'
-	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color2=(B=153,G=168,R=170,A=83),StartSize2=84)
-     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
-     NDCrosshairChaosFactor=0.700000
-	 PutDownTime=0.500000
-     BringUpTime=0.500000
-     AIRating=0.750000
-     CurrentRating=0.600000
-     bShowChargingBar=True
-     Description="H-V Magnetic Plasma Cannon Mk5||Manufacturer: Nexron Defence|Primary: Contained Plasma Charge|Secondary: Directed Plasma Pulse||[Document Begins] The High Voltage Magnetic Plasma Cannon [Mark 5] - Codename 'Shock & Awe' - is a potent energy delivery system. State of the art magnetically charged sustaining coils powered by a portable back-mounted power generator can now, due to a recent breakthrough in plasma technology, successfully govern an operational array of plasma injectors. The Mk-5 uses these injectors to artificially condense and contain small 1 eV plasma 'charges' that can be propelled at high velocities towards hostile forces. Testing is currently underway. [Document Ends]"
-     Priority=73
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     GroupOffset=10
-     PickupClass=Class'BWBP_SKC_Pro.HVPCMk5Pickup'
-     PlayerViewOffset=(X=6.00,Y=5,Z=-9.00000)
-     SightOffset=(X=-2.50,Y=0.00,Z=7.75)
-	 SightPivot=(Pitch=256)
-	 SightAnimScale=0.5
-	 SightBobScale=0.35f
-     AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk5Attachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="H-V Plasma Cannon Mk5"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-	 ParamsClasses(0)=Class'HVPCMk5WeaponParamsComp'
-	 ParamsClasses(1)=Class'HVPCMk5WeaponParamsClassic'
-	 ParamsClasses(2)=Class'HVPCMk5WeaponParamsRealistic'
-	 ParamsClasses(3)=Class'HVPCMk5WeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HVPC'
-     DrawScale=0.300000
-     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     bFullVolume=True
-     SoundVolume=64
-     SoundRadius=128.000000
+	bNoCrosshairInScope=True
+	VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
+	OverHeatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.HVPC.HVPC-ReloadStart',Volume=1.80)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.HVPC.HVPC-ReloadEnd',Volume=1.80)
+	PlayerSpeedFactor=0.800000
+	PlayerJumpFactor=0.700000
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
+	AIReloadTime=0.200000
+	BigIconMaterial=Texture'BWBP_SKC_Tex.HVPC.BigIcon_HVPC'
+	bWT_Hazardous=True
+	bWT_Energy=True
+	bWT_Super=True
+	SpecialInfo(0)=(Info="360.0;50.0;1.0;90.0;0.0;0.5;1.0")
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=1.00)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=1.00)
+	bNoMag=True
+	bNonCocking=True
+	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
+	FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk5PrimaryFire'
+	FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk5SecondaryFire'
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color2=(B=153,G=168,R=170,A=83),StartSize2=84)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+	NDCrosshairChaosFactor=0.700000
+	PutDownTime=0.500000
+	BringUpTime=0.500000
+	AIRating=0.750000
+	CurrentRating=0.600000
+	bShowChargingBar=True
+	Description="H-V Magnetic Plasma Cannon Mk5||Manufacturer: Nexron Defence|Primary: Contained Plasma Charge|Secondary: Directed Plasma Pulse||[Document Begins] The High Voltage Magnetic Plasma Cannon [Mark 5] - Codename 'Shock & Awe' - is a potent energy delivery system. State of the art magnetically charged sustaining coils powered by a portable back-mounted power generator can now, due to a recent breakthrough in plasma technology, successfully govern an operational array of plasma injectors. The Mk-5 uses these injectors to artificially condense and contain small 1 eV plasma 'charges' that can be propelled at high velocities towards hostile forces. Testing is currently underway. [Document Ends]"
+	Priority=73
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	GroupOffset=10
+	PickupClass=Class'BWBP_SKC_Pro.HVPCMk5Pickup'
+	PlayerViewOffset=(X=6.00,Y=5,Z=-9.00000)
+	SightOffset=(X=-2.50,Y=0.00,Z=7.75)
+	SightPivot=(Pitch=256)
+	SightAnimScale=0.5
+	SightBobScale=0.35f
+	AttachmentClass=Class'BWBP_SKC_Pro.HVPCMk5Attachment'
+	IconMaterial=Texture'BWBP_SKC_Tex.HVPC.SmallIcon_HVPC'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="H-V Plasma Cannon Mk5"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	ParamsClasses(0)=Class'HVPCMk5WeaponParamsComp'
+	ParamsClasses(1)=Class'HVPCMk5WeaponParamsClassic'
+	ParamsClasses(2)=Class'HVPCMk5WeaponParamsRealistic'
+	ParamsClasses(3)=Class'HVPCMk5WeaponParamsTactical'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.HVPC_FPm'
+	DrawScale=0.300000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	bFullVolume=True
+	SoundVolume=64
+	SoundRadius=128.000000
 }

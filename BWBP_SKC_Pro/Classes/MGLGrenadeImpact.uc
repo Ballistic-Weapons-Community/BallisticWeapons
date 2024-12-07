@@ -9,8 +9,6 @@
 //=============================================================================
 class MGLGrenadeImpact extends BallisticGrenade;
 
-var bool bArmed;
-
 defaultproperties
 {
 	WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'

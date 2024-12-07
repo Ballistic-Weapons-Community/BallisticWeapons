@@ -158,8 +158,8 @@ defaultproperties
 		Index=1
 		CamoName="Red"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-MainRedFinal',Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.DragonToothSword.DTS-BladeMaskRed',Index=2,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.DragonToothSword.DTS-BladeGlowRed',Index=2,AIndex=-1,PIndex=-1)
 		Weight=1
 	End Object
 	

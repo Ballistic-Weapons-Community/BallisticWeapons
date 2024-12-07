@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=135.0
+		Damage=155.0
 		HeadMult=2.0
 		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
@@ -45,7 +45,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=135.0
+		Damage=155.0
 		HeadMult=2.0
 		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'

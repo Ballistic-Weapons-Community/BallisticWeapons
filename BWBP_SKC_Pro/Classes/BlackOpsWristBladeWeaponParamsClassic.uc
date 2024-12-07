@@ -77,7 +77,14 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		PlayerSpeedFactor=1.150000
+		//Layout core
+		LayoutName="Single"
+		LayoutTags="single"
+		Weight=5
+		//Visual
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.BOBOg_FPm'
+		//Function
+		PlayerSpeedFactor=1.20000
 		MagAmmo=1
 		InventorySize=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -85,7 +92,23 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Double
+		//Layout core
+		LayoutName="Double"
+		Weight=10
+		//Function
+		PlayerSpeedFactor=1.10000
+		MagAmmo=1
+		InventorySize=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Double'
 
 
 }

@@ -86,8 +86,11 @@ simulated event ModeDoFire()
 	
 	if (bGauss)
 	{
-		MarlinRifle(BW).GaussGlow1.bHidden=true;
-		MarlinRifle(BW).GaussGlow2.bHidden=true;
+		
+		if (MarlinRifle(BW).GaussGlow1 != None)
+			MarlinRifle(BW).GaussGlow1.bHidden=true;
+		if (MarlinRifle(BW).GaussGlow2 != None)
+			MarlinRifle(BW).GaussGlow2.bHidden=true;
 		MarlinRifle(BW).GaussLevel = 0;			
 		MarlinRifle(BW).ServerSwitchWeaponMode(0);
 		MarlinRifle(BW).ClientSwitchWeaponMode(0);

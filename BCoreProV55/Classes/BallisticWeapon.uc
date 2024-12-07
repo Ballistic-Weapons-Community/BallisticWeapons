@@ -194,6 +194,7 @@ var() 	float						AIReloadTime;					// How long it's likely to take to reload. U
 var		float						BotTryReloadTime;				// Time when bot should try reload again
 var		Vehicle						OwnerLastVehicle;				// Vehicle being driven last tick...
 var		Controller					InstigatorController;			// Controller of the instigator
+var   	bool						bNoaltfire;						// Dissalow a bot to use alt-fire (use this when the alt-fire makes the gun ADS but the gun has multiple layout alt-fires that we want to keep)
 //-----------------------------------------------------------------------------
 // Fire Modes
 //-----------------------------------------------------------------------------
@@ -817,7 +818,7 @@ simulated function OnWeaponParamsChanged()
     assert(WeaponParams != None);
 
 	SightingTime 				= WeaponParams.SightingTime;
-	default.SightingTime 		= WeaponParams.SightingTime;
+	//default.SightingTime 		= WeaponParams.SightingTime;
 
 	MagAmmo 					= WeaponParams.MagAmmo;
 	default.MagAmmo				= WeaponParams.MagAmmo;
@@ -829,22 +830,25 @@ simulated function OnWeaponParamsChanged()
 	default.PlayerSpeedFactor	= WeaponParams.PlayerSpeedFactor;
 
 	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
-	default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
+	//default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
 	
 	ReloadAnimRate 					= WeaponParams.ReloadAnimRate;
-	default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
+	//default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
 	ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 	default.ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 	
 	CockAnimRate 					= WeaponParams.CockAnimRate;
 	default.CockAnimRate				= WeaponParams.CockAnimRate;
 	
-	bNeedCock						= WeaponParams.bNeedCock;
+	if (PlayerController(Instigator.Controller) != None)
+		bNeedCock						= WeaponParams.bNeedCock;
 
     ZoomType                    = WeaponParams.ZoomType;
 
 	ScopeScale					= FMin(1f, WeaponParams.ScopeScale);
-
+	
+	bNoaltfire					= WeaponParams.bNoaltfire;
+	
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
 			
@@ -877,22 +881,14 @@ simulated function OnWeaponParamsChanged()
     if (WeaponParams.SightOffset != vect(0,0,0))
     {
         SightOffset = WeaponParams.SightOffset;
-        default.SightOffset = WeaponParams.SightOffset;
     }
 	
 	SightPivot = WeaponParams.SightPivot;
-	default.SightPivot = WeaponParams.SightPivot;
 
-	if (WeaponParams.ViewOffset != vect(0,0,0))
-    {
-        PlayerViewOffset = WeaponParams.ViewOffset;
-        default.PlayerViewOffset = WeaponParams.ViewOffset;
-    }
-
+	//PlayerViewOffset is down in DrawFPWeapon
     if (WeaponParams.ViewPivot != rot(0,0,0))
     {
         PlayerViewPivot = WeaponParams.ViewPivot;
-        default.PlayerViewPivot = WeaponParams.ViewPivot;
     }
 	
 	//Visuals
@@ -913,13 +909,16 @@ simulated function OnWeaponParamsChanged()
 	{
 		for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
 		{
-			if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
-				Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = WeaponCamo.WeaponMaterialSwaps[i].Material;
-			if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+			if (WeaponCamo.WeaponMaterialSwaps[i].Index != -1)
 			{
-				M = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
-				if (M != None)
-					Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = M;
+				if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+					Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+				if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+				{
+					M = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+					if (M != None)
+						Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = M;
+				}
 			}
 		}
 	}
@@ -1140,7 +1139,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= WeaponParams.MagAmmo || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -1300,8 +1299,8 @@ simulated event WeaponTick(float DT)
 	
 	//FIXME. This shouldn't be necessary at all.
 	if (bPreventReload && !IsFiring())
-		if(CheckFireAnim())
-			bPreventReload = false;
+		bPreventReload = false;
+		//if(CheckFireAnim()) -- removing due to penalization to guns with longer, decorative fire anims
 
 	if (!bNoMag && level.TimeSeconds > BotTryReloadTime && AIController(InstigatorController) != None && (!InstigatorController.LineOfSightTo(AIController(InstigatorController).Enemy)) && BotShouldReload() )
 	{
@@ -1395,7 +1394,7 @@ simulated function Notify_ShellIn()
 		ReloadState = RS_PostShellIn;
 		if (Role == ROLE_Authority)
 		{
-			AmmoNeeded = Min(ShovelIncrement, default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
+			AmmoNeeded = Min(ShovelIncrement, WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
 
 			if (AmmoNeeded > Ammo[0].AmmoAmount)
 				MagAmmo+=Ammo[0].AmmoAmount;
@@ -1425,7 +1424,7 @@ simulated function Notify_ClipIn()
 	class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 	if (level.NetMode != NM_Client)
 	{
-		AmmoNeeded = default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
+		AmmoNeeded = WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
 		if (AmmoNeeded > Ammo[0].AmmoAmount)
 			MagAmmo+=Ammo[0].AmmoAmount;
 		else
@@ -2382,12 +2381,15 @@ simulated function DrawFPWeapon( Canvas Canvas )
 		}
 		RenderedHand = Hand;
 	}
-	if ( class'PlayerController'.Default.bSmallWeapons )
+	if (WeaponParams != None && WeaponParams.ViewOffset != vect(0,0,0))
+		PlayerViewOffset = WeaponParams.ViewOffset;
+	else if ( class'PlayerController'.Default.bSmallWeapons )
 		PlayerViewOffset = SmallViewOffset;
 	else if ( Mesh == OldMesh )
 		PlayerViewOffset = OldPlayerViewOffset;
 	else
 		PlayerViewOffset = Default.PlayerViewOffset;
+	
 	if ( Hand == 0 )
 		PlayerViewOffset.Y = CenteredOffsetY;
 	else
@@ -2664,15 +2666,15 @@ simulated function SetHand(float InHand)
 	super.SetHand(InHand);
 	if (Hand < 0)
 	{
-		SightOffset.Y = default.SightOffset.Y * -1;
-		SightPivot.Roll = default.SightPivot.Roll * -1;
-		SightPivot.Yaw = default.SightPivot.Yaw * -1;
+		SightOffset.Y = WeaponParams.SightOffset.Y * -1;
+		SightPivot.Roll = WeaponParams.SightPivot.Roll * -1;
+		SightPivot.Yaw = WeaponParams.SightPivot.Yaw * -1;
 	}
 	else
 	{
-		SightOffset.Y = default.SightOffset.Y;
-		SightPivot.Roll = default.SightPivot.Roll;
-		SightPivot.Yaw = default.SightPivot.Yaw;
+		SightOffset.Y = WeaponParams.SightOffset.Y;
+		SightPivot.Roll = WeaponParams.SightPivot.Roll;
+		SightPivot.Yaw = WeaponParams.SightPivot.Yaw;
 	}
 }
 //---------------------------------------------------------------------------
@@ -2844,6 +2846,7 @@ function UpdateSpeed()
 		return;
 	}
 
+	// fallback if sprint control isn't in use
 	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
     //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
@@ -2979,7 +2982,7 @@ function ServerStartReload (optional byte i)
 	if (ReloadState != RS_None)
 		return;
 		
-	if (MagAmmo >= default.MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
+	if (MagAmmo >= WeaponParams.MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
 	{
 		if (bNeedCock)
 			ServerCockGun(0);
@@ -3328,7 +3331,6 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	local int mode, i;
-	local float NewSpeed;
 	
 	// Set ambient sound when gun is held
 	if (UsedAmbientSound != None)
@@ -3365,16 +3367,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		// If factor differs from previous wep, or no previous wep, set groundspeed anew
 		if (BallisticWeapon(PrevWeapon) == None || BallisticWeapon(PrevWeapon).PlayerSpeedFactor != PlayerSpeedFactor)
 		{
-			NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
-
-			if (SprintControl != None && SprintControl.bSprinting)
-				NewSpeed *= SprintControl.SpeedFactor;
-
-			if (xPawn(Instigator) != None && ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-				NewSpeed *= 1.4;
-
-			if (Instigator.GroundSpeed != NewSpeed)
-				Instigator.GroundSpeed = NewSpeed;
+			UpdateSpeed();
 		}
 		
 		//Transfer over SpeedUp responsibility if we can
@@ -3554,7 +3547,7 @@ simulated function float RateSelf()
 	{
 		CurrentRating = Instigator.Controller.RateWeapon(self);
 		if (!bNoMag){
-			if(!HasNonMagAmmo(255) && MagAmmo < default.MagAmmo / 4)
+			if(!HasNonMagAmmo(255) && MagAmmo < WeaponParams.MagAmmo / 4)
 				CurrentRating /= (1+AIReloadTime);
 //				CurrentRating = CurrentRating * 0.25;
 			else if (MagAmmo <= 0)
@@ -3594,7 +3587,7 @@ function bool BotReload(optional bool bForced)
 // Is reloading a good idea???
 function bool BotShouldReload ()
 {
-	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/default.MagAmmo)) &&
+	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/WeaponParams.MagAmmo)) &&
 		 (Level.TimeSeconds - Instigator.LastPainTime > AIReloadTime) )
 		return true;
 	return false;
@@ -3780,6 +3773,7 @@ simulated function bool StartFire(int Mode)
     return true;
 }
 
+//Give to code sets up ammo as well as layout and camo. When overriding, ensure GenerateLayout and Camo are preserved
 function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
@@ -4061,7 +4055,7 @@ function bool HandlePickupQuery( pickup Item )
 
 simulated function Destroyed()
 {
-    local int m;
+    local int m,i;
 
 	AmbientSound = None;
 
@@ -4072,9 +4066,7 @@ simulated function Destroyed()
 	{
 		if (PlayerSpeedUp)
 		{
-			Instigator.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-			if (SprintControl != None && SprintControl.bSprinting)
-				Instigator.GroundSpeed *= SprintControl.SpeedFactor;
+			UpdateSpeed();
 			PlayerSpeedUp=false;
 		}
 		
@@ -4103,6 +4095,11 @@ simulated function Destroyed()
 				Ammo[m].Destroy();
 			Ammo[m] = None;
 		}
+	}
+	
+	for (i = 0; i < GunAugments.Length; ++i)
+	{
+		GunAugments[i].Destroy();
 	}
 	
 	//Actor references may cause us severe pain.
@@ -4185,7 +4182,7 @@ function DropFrom(vector StartLocation)
 	local Pickup Pickup;
 	local Material N;
 
-    if (!bCanThrow)// || !HasAmmo())
+    if (!bCanThrow || !Level.Game.bAllowWeaponThrowing)// || !HasAmmo())
         return;
 
 	if (AmbientSound != None)
@@ -4213,6 +4210,18 @@ function DropFrom(vector StartLocation)
 		{
 			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
 			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
+			//Change mesh if layout dictates it
+			if (WeaponParams.PickupMesh != None)
+			{
+				BallisticWeaponPickup(Pickup).SetStaticMesh(WeaponParams.PickupMesh);
+				BallisticWeaponPickup(Pickup).NewStaticMesh = WeaponParams.PickupMesh;
+				BallisticWeaponPickup(Pickup).NewLowPolyStaticMesh = WeaponParams.PickupMesh;
+				BallisticWeaponPickup(Pickup).bNewMesh=true;
+				if (WeaponParams.PickupDrawScale != 0)
+					BallisticWeaponPickup(Pickup).SetDrawScale(WeaponParams.PickupDrawScale);
+					
+			}
+			//set up camo
 			if (WeaponCamo != None)
 			{
 				for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
@@ -4706,8 +4715,9 @@ simulated final function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreView
 simulated final function Rotator GetRecoilPivot()
 {
 	local float mult_factor;
-
-	mult_factor = DisplayFOV / Instigator.Controller.FOVAngle;
+	
+	if (Instigator != None && Instigator.Controller != None)
+		mult_factor = DisplayFOV / Instigator.Controller.FOVAngle;
 
 	// if (Instigator.Weapon == self)
 	//		log("GetRecoilPivot: MultFactor "$mult_factor$" Display FOV "$DisplayFOV$" FOV angle: "$Instigator.Controller.FOVAngle);
@@ -4993,7 +5003,25 @@ simulated function OnRecoilParamsChanged()
 //====================================================================================
 
 // These can be called when a turret undeploys and gives this weapon. Override in sub-classes to add some functionality
-function InitWeaponFromTurret(BallisticTurret Turret);
+// Used to set weapon modes in case the turret had different modes
+function InitWeaponFromTurret(BallisticTurret Turret)
+{
+	while (CurrentWeaponMode >= WeaponModes.length || WeaponModes[CurrentWeaponMode].bUnavailable )
+	{
+		if (CurrentWeaponMode >= WeaponModes.length)
+			CurrentWeaponMode = 0;
+		else
+			CurrentWeaponMode++;
+	}
+	
+	if (!WeaponModes[CurrentWeaponMode].bUnavailable)
+	{
+		CommonSwitchWeaponMode(CurrentWeaponMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
+		NetUpdateTime = Level.TimeSeconds - 1;
+	}
+	
+}
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret);
 function InitTurretWeapon(BallisticTurret Turret);
 //same for automated turrets
@@ -5020,7 +5048,7 @@ simulated function GetAmmoCount(out float MaxAmmoPrimary, out float CurAmmoPrima
 	}
 	else
 	{
-		MaxAmmoPrimary = default.MagAmmo;
+		MaxAmmoPrimary = WeaponParams.MagAmmo;
 		CurAmmoPrimary = MagAmmo;
 	}
 }
@@ -5642,14 +5670,16 @@ static function String GetManual()
 	return S;
 }
 
-static function String GetShortManual()
+static function String GetShortManual(optional int layoutIndex)
 {
 	local String S;
 
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Basic Stats"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
 
 	// iterate and calculate damage and basic fire rate
-	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].BuildShortManualString();
+	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].FireParams[0].BuildShortManualString();
+	// iterate and get basic gun stats
+	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].BuildShortManualString();
 
 	S $= "||";
 

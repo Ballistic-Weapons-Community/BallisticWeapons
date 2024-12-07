@@ -7,16 +7,17 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//12ga Shot
 	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1200.000000,Max=4800.000000)
-		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		TraceRange=(Min=4800.000000,Max=4800.000000)
+		WaterTraceRange=4800.0
+		DecayRange=(Min=1200.0,Max=4800.0)
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		TraceCount=8
 		Damage=18.0
 		HeadMult=2.25
-		LimbMult=0.666666
+		LimbMult=0.666
 		DamageType=Class'BallisticProV55.DTM763Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
@@ -31,7 +32,6 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 		Recoil=920.000000
 		Chaos=0.120000
-		//Inaccuracy=(X=800,Y=800)
 		Inaccuracy=(X=300,Y=300)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
@@ -44,8 +44,50 @@ defaultproperties
 		AimedFireAnim="Fire"
 		BurstFireRateFactor=1.00
 		FireEndAnim=
-		FireAnimRate=2.500000	
+		FireAnimRate=1.500000	
 	FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//12ga Slug
+	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams_Slug
+		TraceRange=(Min=7000.000000,Max=7000.000000)
+		WaterTraceRange=1200.0
+		DecayRange=(Min=1200.0,Max=7000.0)
+		RangeAtten=0.15
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+		TraceCount=1
+		Damage=150.0
+		HeadMult=2.25
+		LimbMult=0.666
+		DamageType=Class'BallisticProV55.DTM763Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+		PenetrationEnergy=32.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire2',Volume=1.600000)
+		Recoil=1400.000000
+		Chaos=0.120000
+		Inaccuracy=(X=32,Y=32)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Slug
+		FireInterval=0.360000
+		FireAnim="Fire"
+		AimedFireAnim="Fire"
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1.500000	
+	FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams_Slug'
 	End Object
 		
 	//=================================================================
@@ -156,32 +198,46 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		LayoutName="12ga Shot"
+		Weight=30
+		
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=8
 		bMagPlusOne=True
-		//ViewOffset=(X=-2.000000,Y=6.000000,Z=-12.000000)
-		//SightOffset=(X=5.000000,Y=0,Z=11.500000)
-		//SightPivot=(Pitch=-128)
-		SightPivot=(Pitch=128)
 		InitialWeaponMode=0
 		WeaponModes(0)=(ModeName="Single Fire",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=true)
-		//ReloadAnimRate=1.300000
-		//CockAnimRate=1.100000
 		WeaponName="M763-CS 12ga Combat Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		FireParams(1)=FireParams'RealisticPrimaryFireParams'
-		FireParams(2)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Spray'
-		AltFireParams(1)=FireParams'RealisticSecondaryFireParams_Spray'
-		AltFireParams(2)=FireParams'RealisticSecondaryFireParams_Spray'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Slug
+		LayoutName="12ga Slug"
+		LayoutTags="slug"
+		Weight=10
+		
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
+		MagAmmo=8
+		bMagPlusOne=True
+		InitialWeaponMode=0
+		WeaponModes(0)=(ModeName="Single Fire",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(bUnavailable=true)
+		WeaponName="M763-CS 12ga Combat Shotgun (Slug)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Slug'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Spray'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Slug'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M763_Gray

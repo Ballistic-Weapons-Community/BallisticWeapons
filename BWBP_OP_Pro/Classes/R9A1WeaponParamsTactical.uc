@@ -41,9 +41,9 @@ defaultproperties
 		Damage=40
         HeadMult=3
         LimbMult=0.75
-		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
-		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
-		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle_Freeze'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead_Freeze'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle_Freeze'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
@@ -69,9 +69,9 @@ defaultproperties
 		Damage=40
         HeadMult=3
         LimbMult=0.75
-		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
-		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
-		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle_Laser'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead_Laser'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle_Laser'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
@@ -168,7 +168,7 @@ defaultproperties
 		Weight=30
 		LayoutName="Holosight"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.R9_FPm'
 		SightOffset=(X=-5.000000,Y=-0.020000,Z=3.100000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=1f)
@@ -191,7 +191,7 @@ defaultproperties
 		Weight=10
 		LayoutName="Iron Sights"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.R9_FPm'
 		SightOffset=(X=-5.000000,Y=-0.000000,Z=2.000000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=0)
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=58,Scale=0f)

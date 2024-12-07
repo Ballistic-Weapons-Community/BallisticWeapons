@@ -207,8 +207,8 @@ simulated function Overheat(bool bForceClose)
 	ReloadState = RS_GearSwitch;
 	bMagnetOpen=false;
 	MagnetSwitchTime = level.TimeSeconds + 5;	//delay before magnet can be turned on again
-	class'BallisticDamageType'.static.GenericHurt (Instigator, 30, None, Instigator.Location, vect(0,0,0), class'DT_M2020Overheat');
 	AdjustMagnetProperties();
+	class'BallisticDamageType'.static.GenericHurt (Instigator, 30, None, Instigator.Location, vect(0,0,0), class'DT_M2020Overheat');
 }
 
 simulated function AdjustMagnetProperties ()
@@ -279,8 +279,6 @@ simulated event Tick (float DT)
 // Draw the scope view
 simulated event RenderOverlays (Canvas C)
 {
-	local Vector X, Y, Z;
-	
 	if (MagAmmo == 0)
 	{
 		NumpadXOffset=160; NumpadYOffset=10;
@@ -538,8 +536,8 @@ defaultproperties
 	ManualLines(1)="Raises the scope."
 	ManualLines(2)="The Weapon Function key generates a frontal magnetic deflection shield, locking the rifle to Offline mode. This shield lasts up to 10 seconds and immunizes the user against any frontal attack which is delivered by means of any metal object. ||Effective at long range."
 	SpecialInfo(0)=(Info="240.0;25.0;1.0;80.0;2.0;0.1;0.1")
-	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun',Volume=0.182000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.187000)
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-Cock',Volume=1.400000)
 	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-CockOld',Volume=1.400000)
@@ -599,7 +597,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M2020'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.M2020_FPm'
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundVolume=64

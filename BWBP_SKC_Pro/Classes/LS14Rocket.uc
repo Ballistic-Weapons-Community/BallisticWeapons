@@ -23,24 +23,24 @@ simulated event Landed( vector HitNormal )
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.LS14Carbine'
-     ImpactManager=Class'BallisticProV55.IM_MRLRocket'
-     bRandomStartRotation=False
-     TrailClass=Class'BallisticProV55.MRLTrailEmitter'
-     TrailOffset=(X=-4.000000)
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LS14RocketRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=750.000000
-     MaxSpeed=9000.000000
-     AccelSpeed=6750.000000
-     Damage=70.000000
-     DamageRadius=384.000000
-     WallPenetrationForce=64
-     MomentumTransfer=50000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DT_LS14Rocket'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
-     AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
-     SoundVolume=64
-     bFixedRotationDir=True
-     RotationRate=(Roll=32768)
-	 ModeIndex=1
+	ImpactManager=Class'BallisticProV55.IM_MRLRocket'
+	bRandomStartRotation=False
+	TrailClass=Class'BallisticProV55.MRLTrailEmitter'
+	TrailOffset=(X=-4.000000)
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LS14RocketRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Speed=750.000000
+	MaxSpeed=9000.000000
+	AccelSpeed=6750.000000
+	Damage=70.000000
+	DamageRadius=384.000000
+	WallPenetrationForce=64
+	MomentumTransfer=50000.000000
+	MyDamageType=Class'BWBP_SKC_Pro.DT_LS14Rocket'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
+	AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
+	SoundVolume=64
+	bFixedRotationDir=True
+	RotationRate=(Roll=32768)
+	ModeIndex=1
 }

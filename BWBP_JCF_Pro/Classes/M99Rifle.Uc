@@ -16,6 +16,7 @@ var   LaserActor_LAW	Laser;
 var() Sound				LaserOnSound;
 var() Sound				LaserOffSound;
 var   Emitter			LaserDot;
+var() name		    	BulletBone;		
 
 replication
 {
@@ -34,6 +35,16 @@ simulated event PostNetBeginPlay()
 		SelectAnim='PulloutFancy';
 		PutDownAnim='PutawayFancy';
 	}
+}
+
+simulated function Notify_ShowBullet()
+{
+	SetBoneScale (0, 1.0, BulletBone);
+}
+
+simulated function Notify_HideBullet()
+{
+	SetBoneScale (0, 0.0, BulletBone);
 }
 
 exec simulated function WeaponSpecial(optional byte i)
@@ -368,9 +379,10 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_JCF_Tex.M99.BigIcon_M99'
 	bWT_Bullet=True
+	BulletBone=Bullet
 	SpecialInfo(0)=(Info="240.0;35.0;2.0;120.0;10.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	CockSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99Cock',Volume=100.500000)
 	ClipHitSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99BoltClose',Volume=100.500000)
 	ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99OpenBolt',Volume=100.500000)
@@ -388,10 +400,12 @@ defaultproperties
 	ScopeXScale=1.000000
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-	FullZoomFOV=2.000000
+	MinZoom=4.000000
+    MaxZoom=16.000000
+	FullZoomFOV=20.000000
 	bNoCrosshairInScope=True
 	SightPivot=(Roll=-1024)
-	SightOffset=(X=-10.000000,Y=-2.000000,Z=12.000000)
+	SightOffset=(X=5.000000,Y=16.000000,Z=36.000000)
 	GunLength=85.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=130,G=135,R=137,A=62),Color2=(B=0,G=172,R=0,A=80),StartSize1=127,StartSize2=96)
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
@@ -408,6 +422,7 @@ defaultproperties
 	AIRating=0.600000
 	CurrentRating=0.600000
 	bSniping=True
+	bNonCocking=True
 	Description="M99 ECS .55 Anti Material Rifle||Manufacturer: Enravion Combat Solutions|Primary: Single Powerful Shot|Secondary: Activate Zooming Scope||In the 21st century the M99 was an effective long range sniper rifle, with a high penetration power. During the Skrith wars however the M99 lost its relevance due to its slow fire rate and old ammunition. Weapons like the M75-TIC Railgun were far more effective and feared. In the middle of the war the production of the M75 was too expensive to arm every sniper with it. Thus Enravion Combat Solutions started to do researches on how to improve old firearms and they succeeded. The M99-ECS was the result. Many improvements like better materials and a high quality scope made the rifle useful again. The major improvement however was the ammunition. The new 55.cal ECS armor piercing round easily penetrates concrete wall, with minimal deformations. Due to its nano coating the 55.cal ECS projectile glides through the air with minimal aerodynamic drag. This way it keeps its high V0"
 	Priority=33
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -423,8 +438,6 @@ defaultproperties
 	LightEffect=LE_NonIncidence
 	LightHue=30
 	LightSaturation=150
-	ReloadAnim="ReloadFast"
-	ReloadEmptyAnim="ReloadFast"
 	ReloadAnimRate=1.000000
 	LightBrightness=150.000000
 	LightRadius=5.000000
@@ -432,6 +445,6 @@ defaultproperties
 	ParamsClasses(1)=Class'M99RifleWeaponParamsClassic'
 	ParamsClasses(2)=Class'M99RifleWeaponParamsRealistic'
 	ParamsClasses(3)=Class'M99RifleWeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_M99Classic'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.M99_FPm'
 	DrawScale=0.140000
 }

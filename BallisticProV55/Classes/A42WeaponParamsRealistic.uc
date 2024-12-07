@@ -32,7 +32,7 @@ defaultproperties
 		FireInterval=0.250000
 		BurstFireRateFactor=0.75
 		FireEndAnim=	
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
 	
@@ -63,7 +63,7 @@ defaultproperties
 		FireInterval=0.240000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-		AimedFireAnim="Fire1"
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams_TriShot'
 	End Object
 		
@@ -138,6 +138,7 @@ defaultproperties
 		Weight=30
 		//Visual
 		AllowedCamos(0)=0
+		AllowedCamos(1)=2
 		//Stats
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
@@ -145,9 +146,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=72
-		//ViewOffset=(X=9.000000,Y=9.000000,Z=-10.000000)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-		SightPivot=(Pitch=1024,Roll=-768)
+		SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+		SightPivot=(Pitch=1024)
         WeaponName="A42 Skrith Blaster"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -169,9 +169,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=72
-		//ViewOffset=(X=9.000000,Y=9.000000,Z=-10.000000)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-		SightPivot=(Pitch=1024,Roll=-768)
+		SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+		SightPivot=(Pitch=1024)
         WeaponName="A48-E Skrith Blaster"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -194,7 +193,7 @@ defaultproperties
 		CamoName="Red"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Layouts.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=A42_Green
@@ -202,10 +201,10 @@ defaultproperties
 		CamoName="Green"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A512_ExpShine',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A512_ExpShine",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Camos(0)=WeaponCamo'A42_Blue'
 	Camos(1)=WeaponCamo'A42_Red'
-	Camos(2)=WeaponCamo'A42_Green'
+	//Camos(2)=WeaponCamo'A42_Green'
 }

@@ -367,13 +367,15 @@ simulated function PlayReload()
 		SetBoneScale (0, 0.0, SilencerBone);
 }
 
-static function class<Pickup> RecommendAmmoPickup(int Mode)
+/*static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_SRXClip';
-}
+}*/
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
+	local float BotRand;
+	
 	super.BringUp(PrevWeapon);
 
 	if (bHasOptic && Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
@@ -391,7 +393,25 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 
 	if (AIController(Instigator.Controller) != None)
-		bSilenced = (FRand() > 0.5);
+	{
+		BotRand = FRand();
+		if (BotRand > 0.25)
+		{
+			bSilenced = true;
+			ServerSwitchSilencer(bSilenced);
+			SwitchSilencer(bSilenced);
+		}
+		else if (BotRand > 0.5)
+		{
+			bAmped = true;
+			ServerSwitchAmplifier(bAmped);
+			SwitchAmplifier(bAmped);
+			AmpCharge=100;
+			DrainRate=0;
+			if (BotRand > 0.75)
+				CommonSwitchWeaponMode(2);
+		}
+	}
 
 	if (bAmped)
 		SetBoneScale (2, 1.0, AmplifierBone);
@@ -464,11 +484,6 @@ simulated function bool HasAmmo()
 // AI Interface =====
 function byte BestMode()	
 {		
-	if (CurrentWeaponMode != 2)
-	{
-		CurrentWeaponMode = 2;
-	}
-
 	return 0;
 }
 
@@ -541,13 +556,14 @@ defaultproperties
 	ManualLines(1)="Attach/Detach AMP. Corrosive does extra damage to shield while Explosive damage does radius damage."
 	ManualLines(2)="Attach/Detach Silencer."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Cock',Volume=0.650000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipIn')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
 	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=0)
 	WeaponModes(1)=(ModeName="Amplified: Explosive",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True,RecoilParamsIndex=1)
     WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
@@ -588,7 +604,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SRX'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.SRX_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BWBP_SKC_Tex.SRX.SRX-RifleDark'

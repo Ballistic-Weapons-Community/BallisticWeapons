@@ -14,7 +14,7 @@ defaultproperties
 		MaxSpeed=14000.000000
 		AccelSpeed=100000.000000
 		Damage=45
-		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.100000
 		FireSound=(Sound=SoundGroup'BWBP_SWC_Sounds.A800.A800-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=100.000000
@@ -43,7 +43,7 @@ defaultproperties
 		Damage=75
 		DamageRadius=384.000000
 		MomentumTransfer=50000.000000
-		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-AltFire2',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=650.000000
@@ -98,15 +98,45 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
-		LayoutName="Default"
+		//Layout core
+		LayoutName="Reloadable Cells"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.6	
+		//Stats
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		SightingTime=0.600000
-        MagAmmo=90
-        InventorySize=10
-        SightMoveSpeedFactor=0.35
-		DisplaceDurationMult=1.5
 		ZoomType=ZT_Logarithmic
+        MagAmmo=100
+        InventorySize=10
+		DisplaceDurationMult=1.5
+		SightOffset=(X=-15.000000,Y=-25.000000,Z=6.500000)
+		SightPivot=(Roll=-1900)
+		ViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
+		ViewPivot=(Roll=-256)
+		ReloadAnimRate=1.300000
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_BigBattery
+		//Layout core
+		LayoutName="Integrated Cells"
+		LayoutTags="no_reload"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.6	
+		ZoomType=ZT_Logarithmic
+		//Stats
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.750000
+        MagAmmo=250
+        InventorySize=10
+		DisplaceDurationMult=1.5
 		SightOffset=(X=-15.000000,Y=-25.000000,Z=6.500000)
 		SightPivot=(Roll=-1900)
 		ViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
@@ -118,4 +148,5 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'TacticalParams'
+	Layouts(1)=WeaponParams'TacticalParams_BigBattery'
 }

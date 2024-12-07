@@ -39,7 +39,7 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams_Tri
     	ProjectileClass=Class'BallisticProV55.A42ProjectileBal'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
-        Damage=25.000000
+        Damage=18.000000
         Speed=3000.000000
         MaxSpeed=4500.000000
         DamageRadius=48.000000
@@ -129,14 +129,15 @@ defaultproperties
 		Weight=30
 		//Visual
 		AllowedCamos(0)=0
+		//AllowedCamos(1)=2
 		//Stats
         MagAmmo=40
         InventorySize=2
         SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
-		SightPivot=(Pitch=1024,Roll=-768)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	    SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+	    SightPivot=(Pitch=1024)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams'
@@ -156,8 +157,8 @@ defaultproperties
         SightingTime=0.200000
 		SightMoveSpeedFactor=0.9
         DisplaceDurationMult=0.5
-		SightPivot=(Pitch=1024,Roll=-768)
-		//SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	    SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+	    SightPivot=(Pitch=1024)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams_Tri' //
@@ -179,7 +180,7 @@ defaultproperties
 		CamoName="Red"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Layouts.A48Skin_SD',Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=A42_Green
@@ -187,10 +188,10 @@ defaultproperties
 		CamoName="Green"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.A42Camos.A512_ExpShine',Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42Camos.A512_ExpShine",Index=1,AIndex=0,PIndex=0)
 	End Object
 	
 	Camos(0)=WeaponCamo'A42_Blue'
 	Camos(1)=WeaponCamo'A42_Red'
-	Camos(2)=WeaponCamo'A42_Green'
+	//Camos(2)=WeaponCamo'A42_Green'
 }

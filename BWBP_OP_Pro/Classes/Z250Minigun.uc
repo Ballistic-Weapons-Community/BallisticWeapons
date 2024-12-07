@@ -509,8 +509,8 @@ defaultproperties
 	ManualLines(1)="Secondary fire launches a fuel grenade, which spreads fuel on the ground. This fuel can be ignited using the primary fire or other fire-based weapons. Enemies hit by the grenade or who walk into the fuel spilled will be ignited and receive damage, in addition to the damage inflicted by the ground fires."
 	ManualLines(2)="Effective against groups of players and at area denial."
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout',Volume=0.212000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway',Volume=0.212000)
 	MagAmmo=100
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
@@ -569,7 +569,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Z250'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.Z250_FPm'
 	DrawScale=0.300000
 	SoundRadius=128.000000
 }

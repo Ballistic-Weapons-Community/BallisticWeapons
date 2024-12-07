@@ -17,7 +17,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 		PDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
-		FlashScaleFactor=0.600000
+		FlashScaleFactor=1.250000
 		PushbackForce=256.000000
 		Recoil=1024.000000
 		Chaos=0.800000
@@ -46,7 +46,7 @@ defaultproperties
 		DamageRadius=384.000000
 		PushbackForce=256.000000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
-		FlashScaleFactor=0.600000
+		FlashScaleFactor=1.250000
 		Recoil=400.000000
 		Chaos=0.800000
 		BotRefireRate=0.400000

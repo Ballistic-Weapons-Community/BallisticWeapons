@@ -28,7 +28,7 @@
 //=============================================================================
 class A800SkrithMinigun extends BallisticWeapon;
 
-
+var() bool bNoReload;
 
 var   float DesiredSpeed, BarrelSpeed;
 var   int	BarrelTurn;
@@ -40,12 +40,46 @@ var float NextTickTime;
 var   Pawn				Target;
 var Actor	Glow;				// Blue charge effect
 
+var float		RotationSpeeds[3];
+
 replication
 {
 	reliable if (Role < ROLE_Authority)
 		SetServerTurnVelocity;
 	reliable if(Role==ROLE_Authority)
 		Target;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bNoReload=false;
+
+	if (InStr(WeaponParams.LayoutTags, "no_reload") != -1)
+	{
+		if (AIController(Instigator.Controller) != None)
+			bNoMag=true; //they're cheaters!
+		bNoReload=true;
+	}
+}
+
+exec simulated function Reload (optional byte i)
+{
+	if (bNoReload)
+		return;
+	
+	super.Reload(i);
+}
+
+//First this is run on the server
+function ServerStartReload (optional byte i)
+{
+	if (bNoReload)
+		return;
+		
+	super.ServerStartReload(i);
 }
 
 function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
@@ -88,6 +122,8 @@ simulated event WeaponTick (float DT)
 
 	SetBoneRotation('BarrelArray', BT);
 
+	DesiredSpeed = RotationSpeeds[CurrentWeaponMode];
+
 	super.WeaponTick(DT);
 
 	if (Firemode[1].bIsFiring)
@@ -102,6 +138,7 @@ simulated event WeaponTick (float DT)
 	if (Role < ROLE_Authority)
 		return;
 
+	//Auto tracking alt fire shots
 	Start = Instigator.Location + Instigator.EyePosition();
 	BestAim = 0.995;
 	NewTarget = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
@@ -212,8 +249,13 @@ simulated function string GetHUDAmmoText(int Mode)
 simulated function bool HasAmmo()
 {
 	//First Check the magazine
-	if (FireMode[0] != None && MagAmmo >= FireMode[0].AmmoPerFire || FireMode[1] != None && MagAmmo >= FireMode[1].AmmoPerFire)
+	if ((FireMode[0] != None && MagAmmo >= FireMode[0].AmmoPerFire) || (FireMode[1] != None && MagAmmo >= FireMode[1].AmmoPerFire))
 		return true;
+	
+	//If we can't remove the batteries, we're out
+	if (bNoReload)
+		return false;
+	
 	//If it is a non-mag or the magazine is empty
 	if (Ammo[0] != None && FireMode[0] != None && Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire || Ammo[1] != None && FireMode[1] != None && Ammo[1].AmmoAmount >= FireMode[1].AmmoPerFire)
 			return true;
@@ -275,75 +317,79 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-     BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
-     BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
-     BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
-	 ChargeLoadSound=Sound'BWBP_SWC_Sounds.A800.A800-Load2'
-     PlayerSpeedFactor=0.780000
-     PlayerJumpFactor=0.750000
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     AIReloadTime=4.000000
-     BigIconMaterial=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.BigIcon_HyperBlaster'
-     bWT_Machinegun=True
-     bWT_Super=True
-     SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-     BringUpSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Pullout',Volume=1.500000)
-     PutDownSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Putaway',Volume=1.500000)
-     MagAmmo=90
-     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
-     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
-     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
-     ClipInFrame=0.650000
-     bNonCocking=True
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="1200 RPM",bUnavailable=True,ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="Rapid Fire")
-     WeaponModes(3)=(ModeName="3600 RPM",bUnavailable=True,ModeID="WM_FullAuto")
-	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=160,G=80,R=88,A=137),Color2=(B=151,G=150,R=0,A=202),StartSize1=84,StartSize2=61)
-     DesiredSpeed=0.33
-     SightOffset=(X=-15.000000,Y=-25.000000,Z=6.500000)
-	 SightingTime=0.600000
-	 ReloadAnimRate=1.3
-	 MinZoom=2.000000
-     MaxZoom=8.000000
-	 FireModeClass(0)=Class'BWBP_SWC_Pro.A800MinigunPrimaryFire'
-     FireModeClass(1)=Class'BWBP_SWC_Pro.A800MinigunSecondaryFire'
-     ScopeViewTex=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.HyperBlaster-Scope'
-     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-	 SelectAnimRate=1.20000
-     PutDownTime=1.200000
-     BringUpTime=1.200000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     Description="One of the more devastating skrith tools of destruction, the Y11 is their answer to the XMV-850 Minigun. Able to spit out a deluge of plasma bolts at a rapid pace of fire, the Y11 can cut down anyone who isn't prepared; such was the case when only 3 skrith warriors were able to mow down a small battalion of UTC troops in the dense forests. Without their armor, the soldiers fell quickly, leaving only a few scarred survivors to tell the tale; calling them 'Warthogs' due to the voracious firepower and speed. Newer models of the Y11 have the capabilities to fire HV Plasma Rockets, making it even more potent against personnel."
-     Priority=78
-     CustomCrossHairColor=(A=219)
-     CustomCrossHairScale=1.008803
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=6
-     PickupClass=Class'BWBP_SWC_Pro.A800MinigunPickup'
-     PlayerViewOffset=(X=25.000000,Y=25.000000,Z=-15.000000)
-     //PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
-	 PlayerViewPivot=(Roll=-256)
-     BobDamping=2.200000
-     AttachmentClass=Class'BWBP_SWC_Pro.A800MinigunAttachment'
-     IconMaterial=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.SmallIcon_HyperBlaster'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="A800 Skrith Hyperblaster"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-	 ParamsClasses(0)=Class'A800SkrithMinigunWeaponParamsArena'
-	 ParamsClasses(1)=Class'A800SkrithMinigunWeaponParamsClassic'
-	 ParamsClasses(2)=Class'A800SkrithMinigunWeaponParamsRealistic'
-	 ParamsClasses(3)=Class'A800SkrithMinigunWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithHyperBlaster'
-     DrawScale=0.400000
-     SoundRadius=128.000000
-	 bShowChargingBar=True
+	bNoCrosshairInScope=True
+	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
+	BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
+	BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
+	ChargeLoadSound=Sound'BWBP_SWC_Sounds.A800.A800-Load2'
+	PlayerSpeedFactor=0.780000
+	PlayerJumpFactor=0.750000
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	AIReloadTime=4.000000
+	BigIconMaterial=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.BigIcon_HyperBlaster'
+	bWT_Machinegun=True
+	bWT_Super=True
+	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
+	BringUpSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Pullout',Volume=0.218000)
+	PutDownSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-Putaway',Volume=0.218000)
+	MagAmmo=90
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
+	ClipInFrame=0.650000
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="600 RPM",bUnavailable=True,ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
+	WeaponModes(2)=(ModeName="2400 RPM",bUnavailable=True,ModeID="WM_FullAuto")
+	RotationSpeeds(0)=0.15 // 600 RPM - 75 revolutions per minute x 6 shots
+	RotationSpeeds(1)=0.33 // 1200 RPM - 150 revolutions per minute x 6 shots
+	RotationSpeeds(2)=0.66 // 2400 RPM - 600 revolutions per minute x 6 shots
+	CurrentWeaponMode=1
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=160,G=80,R=88,A=137),Color2=(B=151,G=150,R=0,A=202),StartSize1=84,StartSize2=61)
+	DesiredSpeed=0.33
+	SightOffset=(X=-15.000000,Y=-25.000000,Z=6.500000)
+	SightingTime=0.600000
+	ReloadAnimRate=1.3
+	MinZoom=2.000000
+	MaxZoom=8.000000
+	FireModeClass(0)=Class'BWBP_SWC_Pro.A800MinigunPrimaryFire'
+	FireModeClass(1)=Class'BWBP_SWC_Pro.A800MinigunSecondaryFire'
+	ScopeViewTex=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.HyperBlaster-Scope'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	SelectAnimRate=1.20000
+	PutDownTime=1.200000
+	BringUpTime=1.200000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	Description="One of the more devastating skrith tools of destruction, the Y11 is their answer to the XMV-850 Minigun. Able to spit out a deluge of plasma bolts at a rapid pace of fire, the Y11 can cut down anyone who isn't prepared; such was the case when only 3 skrith warriors were able to mow down a small battalion of UTC troops in the dense forests. Without their armor, the soldiers fell quickly, leaving only a few scarred survivors to tell the tale; calling them 'Warthogs' due to the voracious firepower and speed. Newer models of the Y11 have the capabilities to fire HV Plasma Rockets, making it even more potent against personnel."
+	Priority=78
+	CustomCrossHairColor=(A=219)
+	CustomCrossHairScale=1.008803
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=6
+	PickupClass=Class'BWBP_SWC_Pro.A800MinigunPickup'
+	PlayerViewOffset=(X=25.000000,Y=25.000000,Z=-15.000000)
+	//PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
+	PlayerViewPivot=(Roll=-256)
+	BobDamping=2.200000
+	AttachmentClass=Class'BWBP_SWC_Pro.A800MinigunAttachment'
+	IconMaterial=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.SmallIcon_HyperBlaster'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="A800 Skrith Hyperblaster"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	ParamsClasses(0)=Class'A800SkrithMinigunWeaponParamsArena'
+	ParamsClasses(1)=Class'A800SkrithMinigunWeaponParamsClassic'
+	ParamsClasses(2)=Class'A800SkrithMinigunWeaponParamsRealistic'
+	ParamsClasses(3)=Class'A800SkrithMinigunWeaponParamsTactical'
+	Mesh=SkeletalMesh'BWBP_SWC_Anims.A800_FPm'
+	DrawScale=0.400000
+	SoundRadius=128.000000
+	bShowChargingBar=True
 }

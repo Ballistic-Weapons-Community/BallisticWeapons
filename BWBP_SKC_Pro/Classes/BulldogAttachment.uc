@@ -41,21 +41,24 @@ simulated function EjectBrass(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'BulldogAssaultCannon'
-     AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
-     AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
-     AltMuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge'
-     AltFlashBone="ejector"
-     BrassClass=Class'BWBP_SKC_Pro.Brass_BOLT'
-     BrassMode=MU_Both
-     FlashMode=MU_Both
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Bulldog'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.Bulldog_TPm'
-     RelativeLocation=(X=-2.000000,Z=5.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.300000
+    AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
+    AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
+    MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
+    AltMuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
+	FlashScale=0.400000
+    ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge'
+    AltFlashBone="ejector"
+    BrassClass=Class'BWBP_SKC_Pro.Brass_BOLT'
+    BrassMode=MU_Both
+    FlashMode=MU_Both
+    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Bulldog'
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+	ReloadAnimRate=1.000000
+	CockAnimRate=0.860000
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.Bulldog_TPm'
+    RelativeLocation=(X=-2.000000,Z=5.000000)
+    RelativeRotation=(Pitch=32768)
+    DrawScale=0.300000
 }

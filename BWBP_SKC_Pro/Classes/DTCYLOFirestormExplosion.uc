@@ -20,7 +20,7 @@ defaultproperties
      InvasionDamageScaling=1.250000
      DamageIdent="Assault"
      DamageDescription=",Bullet,Flame,"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOUAW'
      DeathString="%o's chest was given airholes by %k's CYLO Firestorm."
      FemaleSuicide="%o spat fire at her feet."
      MaleSuicide="%o spat fire at his feet."

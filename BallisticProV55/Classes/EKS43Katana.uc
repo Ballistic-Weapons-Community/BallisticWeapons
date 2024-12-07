@@ -11,6 +11,22 @@
 //=============================================================================
 class EKS43Katana extends BallisticMeleeWeapon;
 
+var() bool	bIsSuperHeated;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsSuperHeated=false;
+
+	if (InStr(WeaponParams.LayoutTags, "superheated") != -1)
+	{
+		bIsSuperHeated=true;
+	}
+}
+
 // choose between regular or alt-fire
 function byte BestMode()
 {
@@ -46,8 +62,8 @@ defaultproperties
      ManualLines(1)="Prepares a slash, which will be executed upon release. The damage of this slash increases the longer altfire is held, up to 1.5 seconds for maximum damage output. This attack inflicts more damage from behind."
      ManualLines(2)="The Weapon Function key allows the player to block. Whilst blocking, no attacks are possible, but all melee damage striking the player frontally will be mitigated.||The EKS-43 is effective at close range, but has lower DPS than shorter ranged melee weapons."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout',Volume=0.209000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway',Volume=0.209000)
      GunLength=0.000000
      bAimDisabled=True
      ParamsClasses(0)=Class'EKS43WeaponParamsComp'
@@ -79,6 +95,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_EKS43'
      IconCoords=(X2=127,Y2=31)
      ItemName="EKS-43 Katana"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Katana'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.EKS43_FPm'
      DrawScale=0.3
 }

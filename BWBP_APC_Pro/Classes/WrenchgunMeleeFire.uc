@@ -34,7 +34,7 @@ defaultproperties
      PreFireAnimRate=2.000000
      TweenTime=0.000000
      FireRate=0.700000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_CoachShells'
+     AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
      AmmoPerFire=0
      ShakeRotTime=1.000000
      ShakeOffsetMag=(X=5.000000)

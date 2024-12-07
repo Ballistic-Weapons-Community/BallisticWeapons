@@ -37,13 +37,14 @@ simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FSSG50.FSSG50PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FSSG50.FSSG50PickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FSSG50.FSSG50AmmoPickup');
 
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.FSSG50.FSSG50PickupHi'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.FSSG50.FSSG50PickupLo'
      PickupDrawScale=0.750000
      MaxDesireability=0.750000
      InventoryType=Class'BWBP_SKC_Pro.AS50Rifle'

@@ -293,8 +293,8 @@ defaultproperties
 	ManualLines(1)="Changes the mode of the mine. With the base extended outwards, the mine will spring off its base and explode in the air after a short delay. It will have a greater trigger radius in this mode. With the base not extended, the mine will explode immediately, but only upon direct contact."
 	ManualLines(2)="This weapon is no longer available due to its effectiveness being independent of skill and its primary usage being to trap places where it cannot be avoided."
 	SpecialInfo(0)=(Info="260.0;20.0;0.6;60.0;0.0;0.0;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Pullout',Volume=0.107000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-Putaway',Volume=0.107000)
 	bNoMag=True
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
@@ -328,7 +328,7 @@ defaultproperties
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_BX5'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="BX5-SM Land Mine"
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_BX5'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.BX5_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.BX5.BX5Skin'

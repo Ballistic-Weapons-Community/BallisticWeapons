@@ -12,6 +12,6 @@ defaultproperties
 {
 	 WeaponClass=class'NTOVBandage'
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     Mesh=SkeletalMesh'BWBP_SWC_Anims.NTOV_TPm'
+     //Mesh=SkeletalMesh'BWBP_SWC_Anims.NTOV_TPm'
      DrawScale=0.300000
 }

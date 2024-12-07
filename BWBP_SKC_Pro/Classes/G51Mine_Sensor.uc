@@ -176,11 +176,11 @@ function Ping(vector HitLocation)
 		{
 			if (FastTrace(P.Location, Location))
 			{
-				P.PlaySound(PingDirectSound, , 2.0, , PingSoundRadius);
+				P.PlaySound(PingDirectSound, , 6.0, , PingSoundRadius);
 			}
 			else 
 			{
-				P.PlaySound(PingSound, , 2.0, , PingSoundRadius);	// ditto
+				P.PlaySound(PingSound, , 4.0, , PingSoundRadius);	// ditto
 			}
 		}
 	}
@@ -201,8 +201,8 @@ defaultproperties
 	 MaxPulseNum=5
      ArmingSound=Sound'BWBP_SKC_Sounds.MARS.MARS-MineAlarm'
 	 PingSound=Sound'GeneralAmbience.beep7'
-	 PingDirectSound=Sound'GeneralAmbience.beep6'
-	 PingSoundRadius=72 // PlaySound mechanics - see UDN
+	 PingDirectSound=Sound'BWBP_SKC_Sounds.MJ51.Sensor-PingDirect'
+	 PingSoundRadius=256 // PlaySound mechanics - see UDN
      SensorRadius=1024
      MyShotDamageType=Class'BWBP_SKC_Pro.DT_MARSMineShot'
      MyPulseDamageType=Class'BWBP_SKC_Pro.DT_MARSMinePulse'
@@ -215,7 +215,7 @@ defaultproperties
      StartDelay=0.300000
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_MARSMineDet'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=1000.000000
+     ShakeRadius=128.000000
      MotionBlurRadius=384.000000
      MotionBlurFactor=1.500000
      MotionBlurTime=3.000000

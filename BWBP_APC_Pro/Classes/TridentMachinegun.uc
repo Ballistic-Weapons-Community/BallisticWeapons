@@ -303,15 +303,15 @@ defaultproperties
     BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
 	bShowChargingBar=True
 	BeltBones(0)="Bullet2"
-	LeverUpSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-LeverUp')
-	LeverDownSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-LeverDown')
-	BoxOnSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-BoxOn')
-	BoxOffSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-BoxOff')
-	FlapUpSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-FlapUp')
-	FlapDownSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-FlapDown')
+	LeverUpSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-LeverUp')
+	LeverDownSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-LeverDown')
+	BoxOnSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-BoxOn')
+	BoxOffSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-BoxOff')
+	FlapUpSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-FlapUp')
+	FlapDownSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-FlapDown')
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BWBP_CC_Tex.CruMg.BigIcon_CruML'
+	BigIconMaterial=Texture'BWBP_APC_Tex.CruMg.BigIcon_CruML'
 	BigIconCoords=(Y1=50,Y2=240)
 	bWT_Bullet=True
 	bWT_Machinegun=True
@@ -322,11 +322,11 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-Cock')
+	CockSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-Cock')
 	ReloadAnim="ReloadStart"
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-BulletsOff')
-	ClipInSound=(Sound=Sound'BWBP_CC_Sounds.CruMG.MG-BulletsOn')
+	ClipOutSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-BulletsOff')
+	ClipInSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-BulletsOn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(0)=(ModeName="800 RPM",ModeID="WM_FullAuto")
@@ -360,7 +360,7 @@ defaultproperties
 	SightOffset=(X=5.000000,Y=-0.900000,Z=19.30000)
 	PlayerViewOffset=(X=-5.000000,Y=10.000000,Z=-16.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.TridentAttachment'
-	IconMaterial=Texture'BWBP_CC_Tex.CruMg.SmallIcon_CruML'
+	IconMaterial=Texture'BWBP_APC_Tex.CruMg.SmallIcon_CruML'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="[B] Trident Splitter Machinegun"
 	LightType=LT_Pulse
@@ -369,6 +369,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_CruMG'
+	Mesh=SkeletalMesh'BWBP_APC_Anim.CruMG_FPm'
 	DrawScale=0.350000
 }

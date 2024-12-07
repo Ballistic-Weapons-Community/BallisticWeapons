@@ -18,7 +18,7 @@ simulated function Initialize(float Distance, optional float Power)
 
 defaultproperties
 {
-     Begin Object Class=BeamEmitter Name=BeamEmitter1
+     Begin Object Class=BeamEmitter Name=BeamEmitter0
          BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
          DetermineEndPointBy=PTEP_Distance
          BeamTextureUScale=8.000000
@@ -42,9 +42,9 @@ defaultproperties
          LifetimeRange=(Min=1.200000,Max=1.200000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
-     Emitters(0)=BeamEmitter'BWBP_JCF_Pro.TraceEmitter_M99ECS.BeamEmitter1'
+     Emitters(0)=BeamEmitter'BWBP_JCF_Pro.TraceEmitter_M99ECS.BeamEmitter0'
 
-     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter1
          FadeOut=True
          FadeIn=True
          RespawnDeadParticles=False
@@ -71,9 +71,9 @@ defaultproperties
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Max=5.000000))
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_JCF_Pro.TraceEmitter_M99ECS.SpriteEmitter0'
+     Emitters(1)=SpriteEmitter'BWBP_JCF_Pro.TraceEmitter_M99ECS.SpriteEmitter1'
 
-     Begin Object Class=BeamEmitter Name=BeamEmitter3
+     Begin Object Class=BeamEmitter Name=BeamEmitter2
          BeamDistanceRange=(Min=5000.000000,Max=5000.000000)
          DetermineEndPointBy=PTEP_Distance
          BeamTextureUScale=16.000000
@@ -96,6 +96,6 @@ defaultproperties
          LifetimeRange=(Min=3.500000,Max=3.500000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
-     Emitters(5)=BeamEmitter'BWBP_JCF_Pro.TraceEmitter_M99ECS.BeamEmitter3'
+     Emitters(2)=BeamEmitter'BWBP_JCF_Pro.TraceEmitter_M99ECS.BeamEmitter2'
 
 }

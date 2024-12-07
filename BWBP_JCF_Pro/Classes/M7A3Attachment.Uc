@@ -212,20 +212,22 @@ simulated function Destroyed()
 
 defaultproperties
 {
-	 WeaponClass=class'M7A3AssaultRifle'
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     FlashScale=2.000000
-     BrassClass=Class'BWBP_JCF_Pro.Brass_M7A3AR'
-     BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     TracerMix=-3
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_JCF_Anims.M7A3_TPm'
-     DrawScale=0.350000
+	WeaponClass=class'M7A3AssaultRifle'
+    MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+    ImpactManager=Class'BallisticProV55.IM_Bullet'
+    FlashScale=2.000000
+    BrassClass=Class'BWBP_JCF_Pro.Brass_M7A3AR'
+    BrassMode=MU_Both
+    InstantMode=MU_Both
+    FlashMode=MU_Both
+    TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+    TracerMix=-3
+    WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    bRapidFire=True
+	ReloadAnimRate=0.660000
+	CockAnimRate=0.695000
+    Mesh=SkeletalMesh'BWBP_JCF_Anims.M7A3_TPm'
+    DrawScale=0.350000
 }

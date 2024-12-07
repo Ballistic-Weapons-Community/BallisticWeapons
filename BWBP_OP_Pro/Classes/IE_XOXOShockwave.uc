@@ -78,6 +78,6 @@ defaultproperties
          StartVelocityRadialRange=(Min=-400.000000,Max=-100.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial
      End Object
-     Emitters(5)=SpriteEmitter'BWBP_OP_Pro.IE_XOXOShockwave.IE_XOXOShockwaveEmitter2'
+     Emitters(2)=SpriteEmitter'BWBP_OP_Pro.IE_XOXOShockwave.IE_XOXOShockwaveEmitter2'
 
 }

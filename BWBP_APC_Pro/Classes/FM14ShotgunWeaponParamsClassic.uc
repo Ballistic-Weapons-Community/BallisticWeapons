@@ -11,7 +11,7 @@ defaultproperties
 			RangeAtten=0.15000
 			TraceCount=1
 			TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-			ImpactManager=Class'BWBP_APC_Pro.IM_FireShot'
+			ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
 			Damage=80
 			DamageType=Class'BWBP_APC_Pro.DTFM14Shotgun'
 			DamageTypeHead=Class'BWBP_APC_Pro.DTFM14ShotgunHead'
@@ -24,7 +24,7 @@ defaultproperties
 			WarnTargetPct=0.5	
 			SpreadMode=FSM_Rectangle
 			Inaccuracy=(X=200,Y=200)
-			FireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+			FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
 		End Object
 
 		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
@@ -50,7 +50,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams

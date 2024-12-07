@@ -41,17 +41,19 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Wrench.EnergyWall');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Wrench.ShieldGenCore');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Wrench.ShieldOut2');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Wrench.WrenchPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Wrench.WrenchPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Wrench.WrenchPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Wrench.WrenchPickupLo'
      PickupDrawScale=0.750000
      InventoryType=Class'BWBP_OP_Pro.WrenchWarpDevice'
      RespawnTime=10.000000
      PickupMessage="You picked up the NFUD Combat Wrench."
      PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.WrenchPickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.WrenchPickupHi'
      Physics=PHYS_None
      DrawScale=0.750000
      CollisionHeight=4.000000

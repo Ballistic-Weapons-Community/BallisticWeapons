@@ -6,17 +6,31 @@
 //=============================================================================
 class RS8Attachment extends HandgunAttachment;
 
+var   bool					bHasKnife;	//shank?
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
 var   Rotator				LaserRot;
+var	  BallisticWeapon		myWeap;
 
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn;
+		bLaserOn, bHasKnife;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	if (RS8Pistol(I) != None && RS8Pistol(I).bHasKnife)
+	{
+		bHasKnife=true;
+	}
 }
 
 simulated function Tick(float DT)
@@ -78,6 +92,47 @@ simulated function Destroyed()
 	Super.Destroyed();
 }
 
+simulated function InstantFireEffects(byte Mode)
+{
+	if (bHasKnife && Mode == 1)
+		MeleeFireEffects();
+	else
+		Super.InstantFireEffects(FiringMode);
+}
+
+// Do trace to find impact info and then spawn the effect
+simulated function MeleeFireEffects()
+{
+	local Vector HitLocation, Dir, Start;
+	local Material HitMat;
+
+	if (mHitLocation == vect(0,0,0))
+		return;
+
+	if (Level.NetMode == NM_Client)
+	{
+		mHitActor = None;
+		Start = Instigator.Location + Instigator.EyePosition();
+		Dir = Normal(mHitLocation - Start);
+		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
+		if (mHitActor == None || (!mHitActor.bWorldGeometry))
+			return;
+
+		if (HitMat == None)
+			mHitSurf = int(mHitActor.SurfaceType);
+		else
+			mHitSurf = int(HitMat.SurfaceType);
+	}
+	else
+		HitLocation = mHitLocation;
+	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
+		return;
+	if (!bHasKnife)
+		class'IM_GunHit'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	else 
+		class'IM_Knife'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, Instigator);
+}
+
 
 simulated event ThirdPersonEffects()
 {
@@ -94,24 +149,23 @@ simulated event ThirdPersonEffects()
 defaultproperties
 {
 	WeaponClass=class'RS8Pistol'
-     MuzzleFlashClass=class'XK2FlashEmitter'
-     AltMuzzleFlashClass=class'XK2SilencedFlash'
-     ImpactManager=class'IM_Bullet'
-     AltFlashBone="tip2"
-     BrassClass=class'Brass_Pistol'
-     BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     TracerClass=class'TraceEmitter_Default'
-     TracerMix=-3
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_Pistol"
-     CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.400000
-     bRapidFire=True
-     bAltRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.RS8_TPm'
-     DrawScale=0.150000
+	MuzzleFlashClass=class'XK2FlashEmitter'
+	AltMuzzleFlashClass=class'XK2SilencedFlash'
+	ImpactManager=class'IM_Bullet'
+	AltFlashBone="tip2"
+	BrassClass=class'Brass_Pistol'
+	InstantMode=MU_Both
+	TrackAnimMode=MU_Secondary
+	TracerClass=class'TraceEmitter_Default'
+	TracerMix=-3
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_Pistol"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.050000
+	CockAnimRate=0.950000
+	bRapidFire=True
+	bAltRapidFire=True
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.RS8_TPm'
+	DrawScale=0.150000
 }

@@ -12,6 +12,12 @@ class SARAssaultRifle extends BallisticWeapon;
 const AUTO_MODE = 0;
 const BURST_MODE = 1;
 
+var()   name		StockOpenAnim;
+var()   name		StockCloseAnim;
+var()   bool		bStockExtended, bStockBoneOpen, bLockedStock;
+
+// Standard Laser
+var()	bool		bHasLaserSight;
 var()   bool			bLaserOn, bOldLaserOn;
 var()   bool			bStriking;
 var()   LaserActor	Laser;
@@ -19,9 +25,11 @@ var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
 var   Emitter		LaserDot;
 
-var()   name		StockOpenAnim;
-var()   name		StockCloseAnim;
-var()   bool		bStockExtended, bStockBoneOpen;
+// Kill Laser
+var	  bool			bHasCombatLaser;
+var   Emitter		LaserBlast;
+var() float			LaserAmmo;
+var() float			LaserChargeRate;
 
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
@@ -34,10 +42,40 @@ var   array<UziBrass>	UziBrassList;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bLaserOn;
+		bLaserOn, LaserAmmo;
 }
 
-simulated function PostBeginPlay()
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasCombatLaser=false;
+	bHasLaserSight=false;
+	bLockedStock=false;
+
+	if (InStr(WeaponParams.LayoutTags, "combat_laser") != -1)
+	{
+		bHasCombatLaser=true;
+	}
+
+	if (InStr(WeaponParams.LayoutTags, "target_laser") != -1)
+	{
+		bHasLaserSight=true;
+		bShowChargingBar=false;
+	}
+
+	if (InStr(WeaponParams.LayoutTags, "lock_stock") != -1)
+	{
+		bLockedStock=true;
+		bStockExtended=True;
+		SetStockRotation();
+		OnStockSwitched();
+	}
+}
+
+/*simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 	
@@ -49,17 +87,24 @@ simulated function PostBeginPlay()
 
 	if (bStockExtended)
 		OnStockSwitched();
-}
+}*/
 
 simulated function float ChargeBar()
 {
-	if (level.TimeSeconds >= FireMode[1].NextFireTime)
+	if (bHasCombatLaser)
 	{
-		if (FireMode[1].bIsFiring)
-			return FMin(1, FireMode[1].HoldTime / FireMode[1].MaxHoldTime);
-		return FMin(1, SARFlashFire(FireMode[1]).DecayCharge / FireMode[1].MaxHoldTime);
+		return FClamp(LaserAmmo/default.LaserAmmo, 0, 1);
 	}
-	return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
+	else
+	{
+		if (level.TimeSeconds >= FireMode[1].NextFireTime)
+		{
+			if (FireMode[1].bIsFiring)
+				return FMin(1, FireMode[1].HoldTime / FireMode[1].MaxHoldTime);
+			return FMin(1, SARSecondaryFire(FireMode[1]).DecayCharge / FireMode[1].MaxHoldTime);
+		}
+		return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
+	}
 }
 
 static function class<Pickup> RecommendAmmoPickup(int Mode)
@@ -78,11 +123,11 @@ simulated function OnAimParamsChanged()
 }
 
 //======================================================================
-// Weapon mode behaviour
+// Weapon mode behaviour (removed post layouts)
 //
 // Switches mode by animating the stock
 //======================================================================
-exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+/*exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
 	// SAR animates to change weapon mode
 	if (ReloadState != RS_None)
@@ -124,8 +169,28 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 		SwitchStock(NewMode == AUTO_MODE); //Stock is out on auto for A/T
 	else
 		SwitchStock(NewMode == BURST_MODE);//Stock is out on burst for C/R
-}
+}*/
 
+//simulated function DoWeaponSpecial(optional byte i)
+
+//======================================================================
+// Stock behaviour
+//
+// Increase accuracy by extending stock
+//======================================================================
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ReloadState != RS_None)
+		return;
+	if (Clientstate != WS_ReadyToFire)
+		return;
+	if (bLockedStock)
+		return;
+
+	//ServerSwitchStock(!bStockExtended);
+	SwitchStock(!bStockExtended);
+}
 simulated function OnStockSwitched()
 {
 	if (bStockExtended)
@@ -138,8 +203,8 @@ simulated function OnStockSwitched()
 
 simulated function SwitchStock(bool bNewValue)
 {
-	if (bNewValue == bStockExtended)
-		return;
+	//if (bNewValue == bStockExtended)
+	//	return;
 
 	Log("SAR SwitchStock: Stock open: "$bStockExtended);
 	
@@ -234,12 +299,25 @@ simulated function PlayIdle()
 //=======================================================================
 // Laser handling
 //=======================================================================
-function ServerWeaponSpecial(optional byte i)
+
+simulated event Tick (float DT)
+{
+	super.Tick(DT);
+	if (bHasCombatLaser)
+	{
+		if (LaserAmmo < default.LaserAmmo && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
+			LaserAmmo = FMin(default.LaserAmmo, LaserAmmo + DT*LaserChargeRate);
+		if (bLaserOn && SARAttachment(ThirdPersonActor) != none)
+			SARAttachment(ThirdPersonActor).LaserSizeAdjust = LaserAmmo;
+	}
+}
+
+/*function ServerWeaponSpecial(optional byte i)
 {
 	if (bServerReloading)
 		return;
 	ServerSwitchLaser(!bLaserOn);
-}
+}*/
 
 simulated function OnLaserSwitched()
 {
@@ -253,6 +331,7 @@ simulated function ApplyLaserAim()
 {
 	AimComponent.AimAdjustTime *= 1.5;
 	AimComponent.AimSpread.Max *= 0.8;
+	AimComponent.AimSpread.Min *= 0.8;
 }
 
 simulated event PostNetReceive()
@@ -274,7 +353,9 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bLaserOn = bNewLaserOn;
     
 	if (ThirdPersonActor!=None)
+	{
 		SARAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
+	}
 
 	OnLaserSwitched();
 
@@ -289,12 +370,14 @@ simulated function ClientSwitchLaser()
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
-		PlaySound(LaserOnSound,,0.7,,32);
+		if (!bHasCombatLaser)
+			PlaySound(LaserOnSound,,0.7,,32);
 	}
 	else
 	{
 		KillLaserDot();
-		PlaySound(LaserOffSound,,0.7,,32);
+		if (!bHasCombatLaser)
+			PlaySound(LaserOffSound,,0.7,,32);
 	}
 
 	PlayIdle();
@@ -303,11 +386,22 @@ simulated function ClientSwitchLaser()
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
+
 	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
-		Laser = Spawn(class'LaserActor');
+	{
+		if (bHasCombatLaser)
+			Laser = Spawn(class'LaserActor_GRSNine');
+		else
+			Laser = Spawn(class'LaserActor');
+	}
 	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
 		SpawnLaserDot();
-	if (Instigator != None && AIController(Instigator.Controller) != None)
+	if (Instigator != None && LaserBlast == None && PlayerController(Instigator.Controller) != None)
+	{
+		LaserBlast = Spawn(class'BallisticProV55.GRS9LaserOnFX');
+		class'DGVEmitter'.static.ScaleEmitter(LaserBlast, DrawScale);
+	}
+	if (Instigator != None && bHasLaserSight && AIController(Instigator.Controller) != None)
 		ServerSwitchLaser(FRand() > 0.5);
 
 	if ( ThirdPersonActor != None )
@@ -326,7 +420,10 @@ simulated function SpawnLaserDot(optional vector Loc)
 {
 	if (LaserDot == None)
 	{
-		LaserDot = Spawn(class'M806LaserDot',,,Loc);
+		if (bHasCombatLaser)
+			LaserDot = Spawn(class'BallisticProV55.IE_GRS9LaserHit',,,Loc);
+		else
+			LaserDot = Spawn(class'M806LaserDot',,,Loc);
 		if (LaserDot != None)
 			class'BallisticEmitter'.static.ScaleEmitter(LaserDot, 1.5);
 	}
@@ -338,7 +435,9 @@ simulated function bool PutDown()
 	{
 		KillLaserDot();
 		if (ThirdPersonActor != None)
+		{
 			SARAttachment(ThirdPersonActor).bLaserOn = false;
+		}
 		return true;
 	}
 	return false;
@@ -392,9 +491,25 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		AimDir = GetBoneRotation('tip2');
 		Laser.SetRotation(AimDir);
 	}
+
+	if (LaserBlast != None && bHasCombatLaser)
+	{
+		LaserBlast.SetLocation(Laser.Location);
+		LaserBlast.SetRotation(Laser.Rotation);
+		Canvas.DrawActor(LaserBlast, false, false, DisplayFOV);
+	}
+	
 	Scale3D.X = VSize(HitLocation-Loc)/128;
-	Scale3D.Y = 3;
-	Scale3D.Z = 3;
+	if (bHasCombatLaser)
+	{
+		Scale3D.Y = 3.0 * (1 + 4*FMax(0, LaserAmmo - 0.5));
+		Scale3D.Z = Scale3D.Y;
+	}
+	else
+	{
+		Scale3D.Y = 3;
+		Scale3D.Z = 3;
+	}
 	Laser.SetDrawScale3D(Scale3D);
 	Canvas.DrawActor(Laser, false, false, DisplayFOV);
 }
@@ -511,6 +626,9 @@ simulated function bool ReadyToFire(int Mode)
 
 defaultproperties
 {
+	LaserAmmo=1.000000
+	LaserChargeRate=0.100000
+	
 	bStockExtended=False //Params set this to true for A/T
 	AIRating=0.72
 	CurrentRating=0.72
@@ -530,8 +648,8 @@ defaultproperties
 	ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
 	ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.210000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.208000)
 	MeleeFireClass=Class'BallisticProV55.SARMeleeFire'
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
@@ -556,7 +674,7 @@ defaultproperties
     ParamsClasses(3)=Class'SARWeaponParamsTactical'
 
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
-	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
+	FireModeClass(1)=Class'BallisticProV55.SARSecondaryFire'
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
@@ -581,7 +699,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SAR12'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.SAR12_FPm'
 	DrawScale=0.300000
 	SoundPitch=56
 	SoundRadius=32.000000

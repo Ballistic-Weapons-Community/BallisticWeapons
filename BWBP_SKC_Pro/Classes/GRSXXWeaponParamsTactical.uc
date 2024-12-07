@@ -25,7 +25,7 @@ defaultproperties
         PenetrationEnergy=16
         PenetrateForce=100
         bPenetrate=True
-        MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXFlashEmitter'
         FlashScaleFactor=2.500000
         Recoil=270.000000
         Chaos=0.120000
@@ -77,14 +77,42 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 
-	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams
+	//Laser
+	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
+        RangeAtten=0.5
+		Damage=16
+        HeadMult=2
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DTGRSXXLaser'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTGRSXXLaserHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTGRSXXLaser'
+		PenetrateForce=300
+		bPenetrate=True
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Gold.G-Glk-LaserFire',Volume=1.200000)
+		Recoil=0.0
+		Chaos=0.0
+		BotRefireRate=0.999000
+		WarnTargetPct=0.010000
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		FireInterval=0.080000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Idle"	
+	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams'
+	End Object
+
+	//Amp
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Amp
 		BotRefireRate=0.300000
 	End Object
 	
-	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Amp
+		TargetState="AmpAttach"
 		FireInterval=0.200000
 		AmmoPerFire=0
-		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Amp'
 	End Object
 
 	//=================================================================
@@ -105,7 +133,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
     End Object
 
 	//=================================================================
@@ -128,17 +156,20 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-		bAdjustHands=true
-		RootAdjust=(Yaw=-300,Pitch=3000)
-		WristAdjust=(Yaw=-3000,Pitch=-000)
-        DisplaceDurationMult=0.5
+		//Layout core
+		LayoutName="Hyper Amp"
+		LayoutTags="no_starting_amp,no_combat_laser"
+		Weight=30
+		//ADS
         SightingTime=0.20
         SightMoveSpeedFactor=0.6
+		//Stats
+        DisplaceDurationMult=0.5
         MagAmmo=33
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
-		WeaponModes(3)=(ModeName="Amp: Hypermode",ModeID="WM_FullAuto",RecoilParamsIndex=1,bUnavailable=True)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		WeaponModes(3)=(ModeName="Amp: Hypermode",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=2
         InventorySize=6
 		bDualBlocked=True
@@ -148,64 +179,94 @@ defaultproperties
 		FireParams(1)=FireParams'TacticalPrimaryFireParams'
 		FireParams(2)=FireParams'TacticalPrimaryFireParams'
 		FireParams(3)=FireParams'TacticalPrimaryAmpFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(2)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(3)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Amp'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams_Amp'
+		AltFireParams(2)=FireParams'TacticalSecondaryFireParams_Amp'
+		AltFireParams(3)=FireParams'TacticalSecondaryFireParams_Amp'
     End Object 
+
+    Begin Object Class=WeaponParams Name=TacticalParams_Laser
+		//Layout core
+		LayoutName="Superlaser"
+		LayoutTags="no_amp"
+		Weight=30
+		//ADS
+        SightingTime=0.20
+        SightMoveSpeedFactor=0.6
+		//Stats
+        DisplaceDurationMult=0.5
+        MagAmmo=33
+        InventorySize=6
+		bDualBlocked=True
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Laser'
 	
 	//Camos =====================================
-	Begin Object Class=WeaponCamo Name=Glock_Black
-		Index=0
-		CamoName="Black"
-		Weight=30
-	End Object
-	
-	Begin Object Class=WeaponCamo Name=Glock_Brown
-		Index=1
-		CamoName="Brown"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainDesert",Index=1,AIndex=0,PIndex=0)
-		Weight=10
-	End Object
-	
-	Begin Object Class=WeaponCamo Name=Glock_Green
-		Index=2
-		CamoName="Green"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainTigerShine",Index=1,AIndex=0,PIndex=0)
-		Weight=10
-	End Object
-	
-	Begin Object Class=WeaponCamo Name=Glock_Silver
-		Index=3
-		CamoName="Silver"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.M806-MainBlackShine",Index=1,AIndex=0,PIndex=0)
-		Weight=10
-	End Object
-	
-	Begin Object Class=WeaponCamo Name=Glock_UTC
-		Index=4
-		CamoName="UTC"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.UTCGlockShine",Index=1)
-		Weight=5
-	End Object
-	
 	Begin Object Class=WeaponCamo Name=Glock_Gold
-		Index=5
+		Index=0
 		CamoName="Gold"
+		Weight=60
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Glock_Black
+		Index=1
+		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.Glock_GoldShine",Index=1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.Glock.Glock_Shiny',Index=1,AIndex=0,PIndex=0)
 		Weight=1
 	End Object
 	
-	Camos(0)=WeaponCamo'Glock_Black'
-	Camos(1)=WeaponCamo'Glock_Brown'
-	Camos(2)=WeaponCamo'Glock_Green'
-	Camos(3)=WeaponCamo'Glock_Silver'
-	Camos(4)=WeaponCamo'Glock_UTC'
-	Camos(5)=WeaponCamo'Glock_Gold'
+	Begin Object Class=WeaponCamo Name=Glock_Brown
+		Index=2
+		CamoName="Brown"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRSCamos.GlockFullBrown_Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Glock_Green
+		Index=3
+		CamoName="Green"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRSCamos.GlockGreen_Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Glock_Silver
+		Index=4
+		CamoName="Silver"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.GlockSilver_Shine",Index=1,AIndex=0,PIndex=0)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Glock_UTC
+		Index=5
+		CamoName="UTC"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.UTCGlockShine",Index=1)
+		Weight=1
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Glock_Butter
+		Index=6
+		CamoName="Butter"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.GRS9Camos.Glock_GoldShine",Index=1)
+		Weight=5
+	End Object
+	
+	Camos(0)=WeaponCamo'Glock_Gold'
+	Camos(1)=WeaponCamo'Glock_Black'
+	Camos(2)=WeaponCamo'Glock_Brown'
+	Camos(3)=WeaponCamo'Glock_Green'
+	Camos(4)=WeaponCamo'Glock_Silver'
+	Camos(5)=WeaponCamo'Glock_UTC'
+	Camos(6)=WeaponCamo'Glock_Butter'
 }

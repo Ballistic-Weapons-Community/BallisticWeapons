@@ -48,6 +48,10 @@ event Timer()
 		if(Instigator == None || Instigator.Controller == None)
 			Victim.SetDelayedDamageInstigatorController( InstigatorController );
 		class'BallisticDamageType'.static.GenericHurt(Victim, Damage, Instigator, Location, vect(0,0,0), DamageType);
+		if (Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
+		{
+			class'BCSprintControl'.static.AddSlowTo(Pawn(Victim), 0.6, 1.5);
+		}
 	}
 }
 

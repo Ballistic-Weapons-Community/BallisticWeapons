@@ -7,38 +7,45 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class HMCBeamCannon extends BallisticWeapon
-	transient
-	HideDropDown
-	CacheExempt;
+class HMCBeamCannon extends BallisticWeapon;
 
-var float NextAmmoTickTime;
-var() Material          MatRed;       	// Red skin.
-var bool Overheat;
-var	  byte			    CurrentWeaponMode2;
-var   bool			bLaserOn;
-var   bool			bRedTeam;		//Owned by red team?
-var   bool			bIsCharging;
-var   bool			bGreenLaser;
-var   bool			bOldGreenLaser;
-var   LaserActor	Laser;
-var   Emitter		LaserDot;
-var Actor	Glow1;				// Blue charge effect
-var Actor	Glow2;				// Red charge effect
-var   bool			bBigLaser;
-var() Sound		OverHeatSound;		// Sound to play when it overheats
-var() Sound		FullyChargedSound;
-var bool bTeamSet;
+var() 	bool 			bGravitron; 	//firemodes affect player speed, knockback
+var()   bool			bRedTeam;		//Owned by red team?
+var() 	bool 			bTeamSet;
 
-var()     float Heat;
-var()     float CoolRate;
-var       bool bRunOffsetting;
-var()     rotator RunOffset;
+var()   bool			bIsCharging;
+var() 	Actor			Glow1;				// Blue charge effect
+var() 	Actor			Glow2;				// Red charge effect
+var() 	Sound			FullyChargedSound;
+var() 	Sound			OverHeatSound;		// Sound to play when it overheats
+var()   float 			Heat;
+var()   float 			CoolRate;
+
+var()   bool			bLaserOn;
+var()   bool			bBigLaser;
+var()   bool			bGreenLaser;
+var()   bool			bOldGreenLaser;
+var()   LaserActor		Laser;
+var()   Emitter			LaserDot;
+
+
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientOverCharge, ClientSetHeat, bLaserOn, bGreenLaser, ClientSwitchHMCMode;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bGravitron=false;
+	if (InStr(WeaponParams.LayoutTags, "grav") != -1)
+	{
+		bGravitron=true;
+	}
 }
 
 simulated event PostNetBeginPlay()
@@ -291,7 +298,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		return;
 
 	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
-	Loc = GetBoneCoords('muzzle').Origin;
+	Loc = GetBoneCoords('tip').Origin;
 
 	End = Start + Normal(Vector(AimDir))*3000;
 	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
@@ -359,7 +366,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
 		{
 			bRedTeam = True;
-			Skins[1] = Shader'BWBP_SKC_Tex.BeamCannon.RedCannonSD';
 			BFireMode[0].BallisticFireSound.Sound=HMCPrimaryFire(BFireMode[0]).RTeamFireSound;
      		BFireMode[0].MuzzleFlashClass=Class'BWBP_SKC_Pro.A48FlashEmitter';
 		}
@@ -428,7 +434,7 @@ simulated function AddHeat(float Amount)
 	Heat += Amount;
 	if (Heat > 1.0 && Heat < 1.2)
 	{
-		Heat = 1.2;
+		Heat = 1.4;
 		PlaySound(OverHeatSound,,6.7,,64);
 	}
 }
@@ -440,6 +446,32 @@ simulated function bool MayNeedReload(byte Mode, float Load)
 
 function ServerStartReload (optional byte i);
 
+//Gravity Stuff
+
+simulated function TargetedSlowRadius( float SlowAmount, float SlowDuration, float SlowRadius, vector HitLocation, optional Pawn ExcludedPawn )
+{
+	local Pawn target;
+	local float damageScale, dist;
+	local vector dir;
+
+	if( bHurtEntry ) //not handled well...
+		return;
+
+	bHurtEntry = true;
+	
+	foreach VisibleCollidingActors( class 'Pawn', target, SlowRadius, HitLocation )
+	{
+		if (target != ExcludedPawn)
+		{
+			dir = target.Location - HitLocation;
+			dist = FMax(1,VSize(dir));
+			dir = dir/dist;
+			damageScale = 1 - FMax(0,(dist - target.CollisionRadius)/SlowRadius);
+			class'BCSprintControl'.static.AddSlowTo(target, damageScale * SlowAmount, damageScale * SlowDuration);
+		}
+	}
+	bHurtEntry = false;
+}
 
 // AI Interface =====
 // choose between regular or alt-fire
@@ -497,58 +529,58 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     OverHeatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
-     FullyChargedSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Charge'
-     CoolRate=0.500000
-     RunOffset=(Pitch=-3000,Yaw=-4000)
-     SpecialInfo(0)=(Info="300.0;20.0;1.80;80.0;0.8;0.8;0.1")
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.BigIcon_HMC'
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
-     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Down')
-     WeaponModes(0)=(ModeName="Tractor Beam",ModeID="WM_FullAuto",Value=0.250000)
-     WeaponModes(1)=(ModeName="Repulsor Beam",ModeID="WM_FullAuto",Value=1.000000)
-     WeaponModes(2)=(ModeName="Healing Beam",Value=0.333333)
-     CurrentWeaponMode=0
-     SightDisplayFOV=40.000000
-     bNoMag=True
-     bNonCocking=True
-     bWT_Energy=True
-     MagAmmo=500
-     FireModeClass(0)=Class'BWBP_SKC_Pro.HMCPrimaryFire'
-     FireModeClass(1)=Class'BWBP_SKC_Pro.HMCSecondaryFire'
-	 ParamsClasses(0)=Class'HMCBeamCannonWeaponParamsArena'
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.550000
-     CurrentRating=0.550000
-     bShowChargingBar=True
-     Description="HMC-117 Volatile Photon Cannon||Manufacturer: Nexron Defence|Primary: Charged Photon Blast|Secondary: Sweeping Plasma Beam|Special: None|The HMC-117 Volatile Photon Cannon, often nicknamed 'The Sentinel', was created originally as a tool for testing heat shielding on space craft. It was often used by shuttle crews for zero-G EVA repairs during rough space trips. Due to a couple horrifying accidents and its tendency to melt through bulkheads, the HMC was scrapped in favor of other testing and repair methods. Deemed an overall failure, somehow a variant of this bulky device managed to find its way onto the field and proved to be quite effective at taking out Cryon units. The power and reliability of its industrial grade photon generator was praised by many troopers and not even the strongest of Cryons could withstand a fully charged photon blast. While the original HMC power cells are long gone, Nexron modified HMCs can successfully run on HVPC power cells."
-     Priority=72
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     GroupOffset=4
-     PickupClass=Class'BWBP_SKC_Pro.HMCPickup'
+	OverHeatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
+	FullyChargedSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Charge'
+	CoolRate=0.500000
+	SpecialInfo(0)=(Info="300.0;20.0;1.80;80.0;0.8;0.8;0.1")
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.BigIcon_HMC'
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Down')
+	WeaponModes(0)=(ModeName="Full Power",ModeID="WM_FullAuto",Value=0.250000)
+	WeaponModes(1)=(ModeName="Repulsor Beam",ModeID="WM_FullAuto",Value=1.000000,bUnavailable=true)
+	WeaponModes(2)=(ModeName="Healing Beam",Value=0.333333,bUnavailable=true)
+	CurrentWeaponMode=0
+	SightDisplayFOV=40.000000
+	bNoMag=True
+	bNonCocking=True
+	bWT_Energy=True
+	MagAmmo=500
+	FireModeClass(0)=Class'BWBP_SKC_Pro.HMCPrimaryFire'
+	FireModeClass(1)=Class'BWBP_SKC_Pro.HMCSecondaryFire'
+	MeleeFireClass=Class'BWBP_SKC_Pro.FG50MeleeFire'
+	ParamsClasses(0)=Class'HMCBeamCannonParamsArena'
+	ParamsClasses(1)=Class'HMCBeamCannonParamsClassic'
+	ParamsClasses(2)=Class'HMCBeamCannonParamsRealistic'
+	ParamsClasses(3)=Class'HMCBeamCannonParamsTactical'
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.550000
+	CurrentRating=0.550000
+	bShowChargingBar=True
+	Description="HMC-117 Volatile Photon Cannon||Manufacturer: Nexron Defence|Primary: Charged Photon Blast|Secondary: Sweeping Plasma Beam|Special: None|The HMC-117 Volatile Photon Cannon, often nicknamed 'The Sentinel', was created originally as a tool for testing heat shielding on space craft. It was often used by shuttle crews for zero-G EVA repairs during rough space trips. Due to a couple horrifying accidents and its tendency to melt through bulkheads, the HMC was scrapped in favor of other testing and repair methods. Deemed an overall failure, somehow a variant of this bulky device managed to find its way onto the field and proved to be quite effective at taking out Cryon units. The power and reliability of its industrial grade photon generator was praised by many troopers and not even the strongest of Cryons could withstand a fully charged photon blast. While the original HMC power cells are long gone, Nexron modified HMCs can successfully run on HVPC power cells."
+	Priority=72
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	GroupOffset=4
+	PickupClass=Class'BWBP_SKC_Pro.HMCPickup'
 
-     PlayerViewOffset=(X=5,Y=5,Z=-7)
-     SightOffset=(X=-10.00,Z=12.26)
-	 SightPivot=(Pitch=748)
-	 
-     AttachmentClass=Class'BWBP_SKC_Pro.HMCAttachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.SmallIcon_HMC'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="[B] HMC-117 Photon Cannon"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=64
-     LightSaturation=96
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RX22A'
-     DrawScale=0.300000
-     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	 Skins(1)=Shader'BWBP_SKC_Tex.BeamCannon.BeamCannonSkin_SD'
-	 Skins(2)=FinalBlend'BWBP_SKC_Tex.BeamCannon.BeamCannonShieldFB'
-     bFullVolume=True
-     SoundRadius=512.000000
+	PlayerViewOffset=(X=5,Y=13,Z=-10)
+	SightOffset=(X=10.00,Y=-15.0,Z=20)
+	//SightPivot=(Pitch=748)
+
+	AttachmentClass=Class'BWBP_SKC_Pro.HMCAttachment'
+	IconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.SmallIcon_HMC'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="HMC-117 Photon Cannon"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=64
+	LightSaturation=96
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.HMC117_FPm'
+	DrawScale=0.300000
+	bFullVolume=True
+	SoundRadius=512.000000
 }

@@ -24,15 +24,15 @@ simulated function ExplodeInHand()
 defaultproperties
 {
 	 bCookable=False // detonates when still
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.100000,Radius=24.000000,Pitch=1.000000,bAtten=True)
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.M58.BigIcon_M58'
      BigIconCoords=(Y1=12,Y2=240)
      
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout',Volume=0.112000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway',Volume=0.111000)
      CurrentWeaponMode=0
      FireModeClass(0)=Class'BallisticProV55.M58PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M58SecondaryFire'
@@ -60,7 +60,7 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.M58.SmallIcon_M58'
      IconCoords=(X2=127,Y2=31)
      ItemName="M58 Smoke Grenade"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_FPm'
      DrawScale=0.3
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'

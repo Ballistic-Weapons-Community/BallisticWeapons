@@ -171,7 +171,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(Y=0.000000)
 	ItemName="HAMR Turret"
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMRTurret'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMRTurret_FPm'
 	DrawScale=0.250000
 	PrePivot=(Z=8.000000)
 }

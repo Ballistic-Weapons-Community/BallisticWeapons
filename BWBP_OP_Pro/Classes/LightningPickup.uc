@@ -32,20 +32,20 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.R78.RifleMuzzleFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.R78Clip');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.R78.R78PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.R78.R78PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.LightningGun.LightningGunPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.LightningGun.LightningGunPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.LightningGun.LG_TP'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.LightningGun.LightningGunPickupLo'
      PickupDrawScale=0.150000
      InventoryType=Class'BWBP_OP_Pro.LightningRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the ARC-79 lightning rifle."
      PickupSound=Sound'BW_Core_WeaponSound.R78.R78Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.LightningGun.LG_TP'
+     StaticMesh=StaticMesh'BWBP_OP_Static.LightningGun.LightningGunPickupHi'
      Physics=PHYS_None
-     DrawScale=0.300000
+     DrawScale=0.110000
      CollisionHeight=3.000000
 }

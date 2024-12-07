@@ -8,8 +8,8 @@
 //=============================================================================
 class RGPXFlakGrenade extends BallisticGrenade;
 
-var bool bArmed;
-var float ArmingDelay;
+//var bool bArmed;
+//var float ArmingDelay;
 var RGPXFlakRocket FlakProj[6];
 
 var int	OldMagAmmo;
@@ -100,7 +100,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		{
 			NewNormal = HitNormal;
 			
-			log(HitNormal);
+			//log(HitNormal);
 			
 			NewNormal.X += FRand()*0.4 - 0.2;
 			NewNormal.Y += FRand()*0.4 - 0.2;

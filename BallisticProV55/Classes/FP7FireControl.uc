@@ -255,7 +255,7 @@ defaultproperties
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
      AmbientSound=Sound'BW_Core_WeaponSound.FP7.FP7FireLoop'
-     LifeSpan=16.000000
+     LifeSpan=12.000000
      bFullVolume=True
      SoundVolume=255
      SoundRadius=256.000000

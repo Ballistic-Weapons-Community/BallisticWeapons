@@ -59,8 +59,8 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_SKC_Tex.VSKS.BigIcon_VSK'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Draw')
-     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Holster')
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Draw',Volume=0.200000)
+     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Holster',Volume=0.170000)
      CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Cock',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-ClipOut',Volume=1.500000)
@@ -110,6 +110,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'VSKWeaponParamsClassic'
 	 ParamsClasses(2)=Class'VSKWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'VSKWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_VSKS'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.VSKS_FPm'
      DrawScale=0.700000
 }

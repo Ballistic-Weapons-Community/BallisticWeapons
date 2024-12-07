@@ -41,7 +41,7 @@ defaultproperties
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BallisticProV55.IE_NRP57Explosion'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=Sound'BWBP_CC_Sounds.CruGren.CruGren-Explode'
+     HitSounds(0)=Sound'BWBP_APC_Sounds.CruGren.CruGren-Explode'
      HitSoundVolume=1.000000
      HitSoundRadius=1024.000000
      EffectBackOff=64.000000

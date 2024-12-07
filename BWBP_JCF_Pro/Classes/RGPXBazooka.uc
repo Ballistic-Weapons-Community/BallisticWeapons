@@ -298,12 +298,13 @@ defaultproperties
 	bWT_Splash=True
 	bWT_Projectile=True
 	bWT_Super=True
+	bNoCrosshairInScope=True
 	ManualLines(0)="Fires a rocket. These rockets have an arming delay and will ricochet off surfaces when unarmed."
 	ManualLines(1)="Flak Shot"
 	ManualLines(2)="Regular Laser (Non Guidance)"
 	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.8;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ReloadAnimRate=1.000000
 	ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.RGX.RGX_RocketOut',Volume=2.500000)
@@ -314,7 +315,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightPivot=(Yaw=-512)
     PlayerViewOffset=(X=5.000000,Y=20.000000,Z=-22.000000)
-	SightOffset=(X=-5.000000,Y=-30.000000,Z=24.300000)
+	SightOffset=(X=-5.000000,Y=-26.250000,Z=24.400000)
 	SightingTime=0.350000
 	ParamsClasses(0)=Class'RGPXWeaponParamsArena'
 	ParamsClasses(1)=Class'RGPXWeaponParamsClassic'
@@ -347,6 +348,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_RGP-X350'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.RGPX_FPm'
 	DrawScale=0.600000
 }

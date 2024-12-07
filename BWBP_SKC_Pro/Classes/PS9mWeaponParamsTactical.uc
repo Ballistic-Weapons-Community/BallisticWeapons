@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=3000.000000,Max=3000.000000)
 		Inaccuracy=(X=128,Y=128)
 		Damage=10
-		HeadMult=1.75
+		HeadMult=4.00
 		LimbMult=1
 		DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
@@ -21,7 +21,7 @@ defaultproperties
 		Recoil=96.000000
 		Chaos=0.050000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Fire',Volume=1.00,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -29,6 +29,32 @@ defaultproperties
 		FireAnimRate=3
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	
+	//Neurotoxin
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Tox
+		TraceRange=(Min=3000.000000,Max=3000.000000)
+		Inaccuracy=(X=128,Y=128)
+		Damage=10
+		HeadMult=4.00
+		LimbMult=1
+		DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'
+		PenetrateForce=150
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=0.300000
+		Recoil=96.000000
+		Chaos=0.050000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-FireAlt',Volume=1.4,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Tox
+		FireInterval=0.12
+		FireAnimRate=1.5
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Tox'
 	End Object
 		
     //=================================================================
@@ -49,7 +75,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
 		FireInterval=0.600000
 		AmmoPerFire=0
-		FireAnim="Dart_Fire"	
+		FireAnim="DartFire"	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
 	End Object
 		
@@ -68,7 +94,7 @@ defaultproperties
 		ClimbTime=0.04
 		CrouchMultiplier=1
 		HipMultiplier=1
-		MaxMoveMultiplier=1.5
+		MaxMoveMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -90,11 +116,13 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-		//ViewOffset=(X=3.000000,Y=-3.000000,Z=-8.500000)
-		//SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
+		//Layout
+		LayoutName="Poison Auto"
+		Weight=2
+		//Stats
 		MagAmmo=10
 		InventorySize=2
-        SightingTime=0.20
+        SightingTime=0.15
         SightMoveSpeedFactor=0.6
         DisplaceDurationMult=0.5
 		bDualBlocked=True
@@ -103,7 +131,31 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+    Begin Object Class=WeaponParams Name=TacticalParams_Tox
+		//Layout
+		LayoutName="Neurotoxin"
+		LayoutTags="tox"
+		Weight=10
+		//Stats
+		MagAmmo=10
+		InventorySize=2
+        SightingTime=0.15
+        SightMoveSpeedFactor=0.6
+        DisplaceDurationMult=0.5
+		bDualBlocked=True
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=0
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Tox'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Tox'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=PS_Gray

@@ -16,7 +16,7 @@ defaultproperties
 		DamageRadius=356.000000
 		MomentumTransfer=100000.000000
 		MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
-		FlashScaleFactor=0.250000
+		FlashScaleFactor=0.750000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.RGX.RGX_Fire',Volume=1.500000)
 		Recoil=256.000000
 		RecommendSplashDamage=True
@@ -45,7 +45,7 @@ defaultproperties
 		DamageRadius=520.000000
 		MomentumTransfer=100000.000000
 		MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
-		FlashScaleFactor=0.250000
+		FlashScaleFactor=0.750000
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.RGX.RGX_FireFlak',Volume=1.800000)
 		Recoil=256.000000
 		RecommendSplashDamage=True
@@ -106,8 +106,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="RocketMain",Slot=20,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="RocketBig",Slot=21,Scale=0f)
 		ViewOffset=(X=10.000000,Y=20.000000,Z=-22.000000)
-		SightOffset=(X=-5.000000,Y=-30.000000,Z=24.300000)
-		SightPivot=(Yaw=-512)
+		SightOffset=(X=-5.000000,Y=-26.250000,Z=24.400000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

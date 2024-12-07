@@ -83,10 +83,11 @@ function SetBrightness(int b, bool hit)
 defaultproperties
 {
 	WeaponClass=class'PumaRepeater'
-     MuzzleFlashClass=class'M50M900FlashEmitter'
-	 BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
-     bHeavy=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.PUMA_TPm'
-     DrawScale=0.300000
-     PrePivot=(Z=-5.000000)
+    MuzzleFlashClass=class'M50M900FlashEmitter'
+	BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
+    bHeavy=True
+  	ReloadAnimRate=1.100000
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.PUMA_TPm'
+    DrawScale=0.210000
+    PrePivot=(X=2.000000,Z=-1.000000)
 }

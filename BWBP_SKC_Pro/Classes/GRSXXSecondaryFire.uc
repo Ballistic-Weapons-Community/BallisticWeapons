@@ -82,6 +82,17 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 }
 
+simulated state AmpAttach
+{
+	simulated event ModeDoFire()
+	{
+		if (!Instigator.IsLocallyControlled())
+			return;
+		if (super(BallisticProInstantFire).AllowFire())
+			GRSXXPistol(Weapon).ToggleAmplifier();
+	}
+}
+
 defaultproperties
 {
      FireSoundLoop=Sound'BWBP_SKC_Sounds.Glock_Gold.G-Glk-LaserBurn'    

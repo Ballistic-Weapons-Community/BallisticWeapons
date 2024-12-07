@@ -8,6 +8,14 @@
 //=============================================================================
 class MarlinMeleeFire extends BallisticMeleeFire;
 
+
+function PlayPreFire()
+{
+	super.PlayPreFire();
+
+	MarlinRifle(Weapon).bStriking = true;
+}
+
 defaultproperties
 {
      SwipePoints(0)=(offset=(Pitch=2048,Yaw=2048))

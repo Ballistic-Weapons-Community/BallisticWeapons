@@ -1,6 +1,8 @@
 //=============================================================================
 // TraceEmitter_LS14C. Effects for the laser carberator.
 //
+// LS14 top laser
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================

@@ -31,20 +31,21 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X8.X8Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X8.X8PickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X8.X8PickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X8.X8Proj');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8PickupLo'
      PickupDrawScale=0.270000
      InventoryType=Class'BWBP_SKC_Pro.X8Knife'
      RespawnTime=10.000000
      PickupMessage="You picked up the X8 ballistic knife."
      PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.X8.X8PickupHi'
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.000000

@@ -138,12 +138,12 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
          ColorMultiplierRange=(Y=(Min=0.600000,Max=0.800000),Z=(Min=0.400000,Max=0.600000))
          FadeOutStartTime=0.500000
-         MaxParticles=40
+         MaxParticles=10
          StartLocationRange=(X=(Min=-50.000000,Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=2.000000,Max=3.000000))
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=4.000000,Max=7.000000))
          InitialParticlesPerSecond=60.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlamePartsAlpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          LifetimeRange=(Min=1.000000,Max=1.000000)

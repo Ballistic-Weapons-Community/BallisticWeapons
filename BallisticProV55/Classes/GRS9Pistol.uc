@@ -9,6 +9,11 @@
 //=============================================================================
 class GRS9Pistol extends BallisticHandgun;
 
+var() bool			bHasKnife;
+var() bool			bHasFlash;
+var() bool			bHasCombatLaser;
+
+var() bool			bStriking;
 var   bool			bLaserOn;
 var   LaserActor	Laser;
 var   Emitter		LaserBlast;
@@ -17,6 +22,9 @@ var	  byte			CurrentWeaponMode2;
 var	  Actor			GlowFX;// SightFX;
 var() float			LaserAmmo;
 var   bool			bBigLaser;
+var() Sound			LaserOnSound;
+var() Sound			LaserOffSound;
+var Emitter		TazerEffect;
 
 replication
 {
@@ -25,13 +33,30 @@ replication
 }
 
 
-simulated event PreBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasCombatLaser=true;
+	bHasKnife=false;
+	bHasFlash=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "no_combat_laser") != -1)
 	{
-		FireModeClass[1]=Class'BallisticProV55.GRS9SecondaryFlashFire';
+		bHasCombatLaser=false;
 	}
+	if (InStr(WeaponParams.LayoutTags, "tacknife") != -1)
+	{
+		bHasKnife=true;
+		MeleeFireMode.Damage = 70;
+	}
+	if (InStr(WeaponParams.LayoutTags, "flash") != -1)
+	{
+		bHasFlash=true;
+	}
+	if (bHasCombatLaser || bHasFlash)
+		bShowChargingBar=true;
 }
 
 /*
@@ -49,10 +74,14 @@ simulated function bool CanAlternate(int Mode)
 }
 */
 
+
+//=========================================
+// Laser
+//=========================================
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
-	if (GlowFX != None && !class'BallisticReplicationInfo'.static.IsRealism())
+	if (GlowFX != None && bHasCombatLaser)
 	{
 		GRS9AmbientFX(GlowFX).SetReadyIndicator (FireMode[1]!=None && !FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo > 0);
 		if (FireMode[1]!=None && FireMode[1].IsFiring())
@@ -77,8 +106,11 @@ simulated event WeaponTick(float DT)
 simulated event Tick (float DT)
 {
 	super.Tick(DT);
-	if (LaserAmmo < default.LaserAmmo && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
-		LaserAmmo = FMin(default.LaserAmmo, LaserAmmo + (DT / 6) * (1 + LaserAmmo/default.LaserAmmo) );
+	if (bHasCombatLaser)
+	{
+		if (LaserAmmo < default.LaserAmmo && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
+			LaserAmmo = FMin(default.LaserAmmo, LaserAmmo + (DT / 6) * (1 + LaserAmmo/default.LaserAmmo) );
+	}
 }
 
 simulated function PlayIdle()
@@ -90,6 +122,8 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
@@ -98,10 +132,7 @@ simulated event PostNetReceive()
 		CurrentWeaponMode2 = CurrentWeaponMode;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimComponent.AimAdjustTime *= 1.5;
-		else
-			AimComponent.AimAdjustTime *= 0.667;
+		OnLaserSwitched();
 
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
@@ -117,11 +148,11 @@ function ServerSwitchLaser(bool bNewLaserOn)
 
 	if (ThirdPersonActor != None)
 		GRS9Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-		AimComponent.AimAdjustTime *= 1.5;
-	else
+	
+	OnLaserSwitched();
+	
+	if (!bLaserOn)
 	{
-		AimComponent.AimAdjustTime *= 0.667;
 		bServerReloading = false;
 		bPreventReload=False;
 		ReloadState = RS_None;
@@ -132,8 +163,21 @@ function ServerSwitchLaser(bool bNewLaserOn)
 
 simulated function ClientSwitchLaser()
 {
-	if (!bLaserOn)
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		if (!bHasCombatLaser)
+			PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
 		KillLaserDot();
+		if (!bHasCombatLaser)
+			PlaySound(LaserOffSound,,0.7,,32);
+	}
+	
 	PlayIdle();
 }
 
@@ -146,10 +190,15 @@ simulated function KillLaserDot()
 		LaserDot = None;
 	}
 }
-simulated function SpawnLaserDot(vector Loc)
+simulated function SpawnLaserDot(optional vector Loc)
 {
 	if (LaserDot == None)
-		LaserDot = Spawn(class'IE_GRS9LaserHit',,,Loc);
+	{
+		if (bHasCombatLaser)
+			LaserDot = Spawn(class'BallisticProV55.IE_GRS9LaserHit',,,Loc);
+		else
+			LaserDot = Spawn(class'M806LaserDot',,,Loc);
+	}
 }
 
 simulated function bool PutDown()
@@ -176,6 +225,8 @@ simulated function Destroyed ()
 		Laser.Destroy();
 	if (LaserDot != None)
 		LaserDot.Destroy();
+	if (TazerEffect != None)
+		TazerEffect.Kill();
 	Super.Destroyed();
 }
 
@@ -217,7 +268,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	// Draw dot at end of beam
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.1)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.1)
 		bAimAligned = true;
 
 	if (bAimAligned && Other != None)
@@ -242,7 +293,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		Laser.SetRotation(AimDir);
 	}
 
-	if (LaserBlast != None)
+	if (LaserBlast != None && bHasCombatLaser)
 	{
 		LaserBlast.SetLocation(Laser.Location);
 		LaserBlast.SetRotation(Laser.Rotation);
@@ -269,6 +320,8 @@ simulated event RenderOverlays( Canvas Canvas )
 	local Vector V;
 	local Rotator R;
 	local Coords C;
+	local Vector TazLoc;
+	local Rotator TazRot;
 
 	super.RenderOverlays(Canvas);
 	if (IsInState('Lowered'))
@@ -291,6 +344,18 @@ simulated event RenderOverlays( Canvas Canvas )
 		GlowFX.SetLocation(V);
 		GlowFX.SetRotation(R);
 		Canvas.DrawActor(GlowFX, false, false, DisplayFOV);
+	}
+
+	if (TazerEffect != None)
+	{
+		TazLoc = GetBoneCoords('tip3').Origin;
+		TazRot = GetBoneRotation('tip3');
+		if (TazerEffect != None)
+		{
+			TazerEffect.SetLocation(TazLoc);
+			TazerEffect.SetRotation(TazRot);
+			Canvas.DrawActor(TazerEffect, false, false, DisplayFOV);
+		}
 	}
 }
 
@@ -316,7 +381,14 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Super.BringUp(PrevWeapon);
 
 	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
-		Laser = Spawn(class'LaserActor_GRSNine');
+	{
+		if (bHasCombatLaser)
+			Laser = Spawn(class'LaserActor_GRSNine');
+		else
+			Laser = Spawn(class'LaserActor');
+	}
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
 	if (Instigator != None && LaserBlast == None && PlayerController(Instigator.Controller) != None)
 	{
 		LaserBlast = Spawn(class'GRS9LaserOnFX');
@@ -337,7 +409,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		GlowFX.Destroy();
 	if (SightFX != None)
 		SightFX.Destroy();
-    if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2)
+    if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && bHasCombatLaser)
     {
     	GlowFX = None;
     	SightFX = None;
@@ -361,6 +433,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 //			GRS9SightLEDs(SightFX).InvertZ();
 		}
 	}
+	
+	
+	if (Instigator.IsLocallyControlled() && TazerEffect == None && bHasKnife)
+	{
+		TazerEffect = Spawn(class'MRS138TazerEffect',self,,location);
+		class'BallisticEmitter'.static.ScaleEmitter(TazerEffect, DrawScale);
+		AttachToBone(TazerEffect, 'tip3');
+	}
+	
 }
 
 simulated event Timer()
@@ -380,6 +461,36 @@ simulated event Timer()
 	super.Timer();
 }
 
+//============================
+//Laser Sight
+//============================
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 0.65;
+	AimComponent.AimSpread.Max *= 0.65;
+	AimComponent.AimSpread.Min *= 0.65;
+}
+
+//=========================================
+// Anims/Bones
+//=========================================
+
 simulated event AnimEnd (int Channel)
 {
     local name Anim;
@@ -387,6 +498,9 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, Anim, Frame, Rate);
 
+	if(Anim != 'PrepMelee')
+		bStriking = false;
+	
 	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
@@ -416,9 +530,13 @@ simulated function PlayReload()
 		SetBoneScale (1, 0.0, 'Bullet');
 }
 
+//=========================================
+// Weapon Special
+//=========================================
+
 function ServerWeaponSpecial(optional byte i)
 {
-	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && !class'BallisticReplicationInfo'.static.IsRealism() /* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
+	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && bHasCombatLaser /* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
 	{
 		ClientWeaponSpecial(i);
 		CommonWeaponSpecial(i);
@@ -466,17 +584,17 @@ simulated function CommonWeaponSpecial(optional byte i)
 
 simulated function float ChargeBar()
 {
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+	if (bHasFlash)
 	{
 		if (level.TimeSeconds >= FireMode[1].NextFireTime)
 		{
 			if (FireMode[1].bIsFiring)
 				return FMin(1, FireMode[1].HoldTime / FireMode[1].MaxHoldTime);
-			return FMin(1, AM67SecondaryFire(FireMode[1]).DecayCharge / FireMode[1].MaxHoldTime);
+			return FMin(1, GRS9SecondaryFire(FireMode[1]).DecayCharge / FireMode[1].MaxHoldTime);
 		}
 		return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
 	}
-	else
+	else if (bHasCombatLaser)
 	{
 		return FClamp(LaserAmmo/default.LaserAmmo, 0, 1);
 	}
@@ -494,25 +612,46 @@ function byte BestMode()
 {
 	local Bot B;
 	local float Result, Dist;
-
+	
 	B = Bot(Instigator.Controller);
+	
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
-
-	if (LaserAmmo < 0.3 || level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime < 0.8)
-		return 0;
-
+	
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	if (Dist > 3000)
+		
+	if (bNoaltfire)
 		return 0;
-	Result = FRand()*0.2 + FMin(1.0, LaserAmmo / (default.LaserAmmo/2));
-	if (Dist < 500)
-		Result += 0.5;
-	else if (Dist > 1500)
-		Result -= 0.3;
-	if (Result > 0.5)
-		return 1;
+	else if (bHasKnife)
+	{		
+		if (Dist < 100)
+			return 1;
+	}
+	else if (bHasFlash)
+	{
+		if (level.TimeSeconds >= FireMode[1].NextFireTime && FRand() > 0.6 && Dist < 1200)
+			return 1;
+	}
+	else if (bHasCombatLaser)
+	{
+		if ( (B == None) || (B.Enemy == None) )
+			return 0;
+
+		if (LaserAmmo < 0.3 || level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime < 0.8)
+			return 0;
+
+		if (Dist > 3000)
+			return 0;
+		Result = FRand()*0.2 + FMin(1.0, LaserAmmo / (default.LaserAmmo/2));
+		if (Dist < 500)
+			Result += 0.5;
+		else if (Dist > 1500)
+			Result -= 0.3;
+		if (Result > 0.5)
+			return 1;
+	}
 	return 0;
+	
 }
 
 function float GetAIRating()
@@ -545,8 +684,11 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
+	bNoaltfire=False
 	AIRating=0.6
 	CurrentRating=0.6
+	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	LaserAmmo=3.500000
 	bShouldDualInLoadout=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -558,8 +700,8 @@ defaultproperties
 	ManualLines(1)="Projects a laser beam. Has extremely low DPS, but consistent damage over range and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing good damage. The GRS-9 is effective at close range."
 	SpecialInfo(0)=(Info="120.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Cock',Volume=0.600000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipHit',Volume=0.700000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipOut')
@@ -569,18 +711,19 @@ defaultproperties
 	CurrentWeaponMode=1
 	bNoCrosshairInScope=True
 	ParamsClasses(0)=Class'GRS9WeaponParamsComp'
-	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
-	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
+	ParamsClasses(1)=Class'GRS9WeaponParamsClassic'
+	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic'
     ParamsClasses(3)=Class'GRS9WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
+	MeleeFireClass=Class'BallisticProV55.GRS9MeleeFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize2=256,VSize2=256,Color1=(R=96,A=175),Color2=(B=255),StartSize1=100,StartSize2=110)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
 	
 	SelectAnimRate=1.250000
 	PutDownAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"
-	bShowChargingBar=True
+	bShowChargingBar=false
 	Description="The GRS9 from Drake & Co. is used primarily by inner core planets for law enforcement purposes. The additional laser unit adds an alternative attack to the GRS9. The laser unit can be held down, for up to 3.5 seconds, releasing a searing beam upon enemies. This drains the rechargeable battery however, which must be left to replenish when empty."
 	Priority=9
 	HudColor=(B=25,G=25,R=200)
@@ -604,7 +747,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_GRS9'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_FPm'
 	DrawScale=0.30000
 	bFullVolume=True
 	SoundRadius=128.000000

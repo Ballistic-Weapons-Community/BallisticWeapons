@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class HKMKSpecPistol extends BallisticHandgun;
+class HKMKSpecPistol extends BallisticHandgun
+	transient
+	HideDropDown
+	CacheExempt;
 
 var   bool			bSilenced;				// Silencer on. Silenced
 var() name			SilencerBone;			// Bone to use for hiding silencer
@@ -526,8 +529,8 @@ defaultproperties
 	ManualLines(1)="Alt fire is a potent close range shotgun attachment."
 	ManualLines(2)="Weapon Function attaches a suppressor, reducing the flash and reducing the noise output."
     SpecialInfo(0)=(Info="120.0;12.0;0.6;50.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.145000)
 	PutDownTime=0.500000
 	CockingBringUpTime=0.600000
 	CockAnimRate=1.000000
@@ -570,6 +573,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_HKMKSpec'
+	Mesh=SkeletalMesh'BWBP_JCF_Anims.HKMKSpec_FPm'
 	DrawScale=0.300000
 }

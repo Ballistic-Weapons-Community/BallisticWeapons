@@ -18,7 +18,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
-		PenetrationEnergy=64.000000
+		PenetrationEnergy=150.000000
 		PenetrateForce=600
 		bPenetrate=True
 		PDamageFactor=0.750000
@@ -47,8 +47,8 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.1
 		Damage=55.0
-		HeadMult=2.127272
-		LimbMult=0.654545
+		HeadMult=2.2
+		LimbMult=0.7
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
      	DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';
      	DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off';
@@ -123,7 +123,7 @@ defaultproperties
 		MagAmmo=10
 		bMagPlusOne=True
 		//SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
-		SightingTime=0.3
+		SightingTime=0.35
 		//ViewOffset=(X=1,Y=9,Z=-13)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Gauss: Online",ModeID="WM_SemiAuto",Value=1.000000)

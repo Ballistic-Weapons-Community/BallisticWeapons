@@ -18,6 +18,7 @@ var   bool          bRunOffsetting;
 var   bool          bRunOverride;
 var	bool		  bInUse;
 var() rotator       RunOffset;
+var() bool			bExploded; //you blew it all to hell! don't spawn a pickup
 
 var()     float Heat;
 var()     float CoolRate;
@@ -99,6 +100,17 @@ simulated function WeaponTick(float DT)
 
 }
 
+function DropFrom(vector StartLocation)
+{
+
+	if (bExploded || PickupClass == None)
+	{
+		return;
+	}
+	else
+		super.DropFrom(StartLocation);
+}
+
 
 // AI Interface =====
 function byte BestMode()
@@ -156,8 +168,8 @@ defaultproperties
 	bWT_Projectile=True
 	bWT_Super=True
 	SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Deploy',Volume=1.100000)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy',Volume=1.100000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Deploy',Volume=0.210000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy',Volume=0.210000)
 	MagAmmo=1
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ReloadAnim="ReloadFancy"
@@ -222,6 +234,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SMAT'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.SMAT_FPm'
 	DrawScale=0.300000
 }

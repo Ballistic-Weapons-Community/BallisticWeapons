@@ -31,7 +31,7 @@ defaultproperties
      InventoryType=Class'BWBP_SWC_Pro.Ammo_545mmSTANAG'
      PickupMessage="You picked up two BR1-NK magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SWC_Static.BRINK.BRINK_Mag'
+     StaticMesh=StaticMesh'BWBP_SWC_Static.BRINK.BRINKClip'
      DrawScale=0.100000
      PrePivot=(Z=5.000000)
      CollisionRadius=8.000000

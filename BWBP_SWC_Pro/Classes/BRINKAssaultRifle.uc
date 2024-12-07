@@ -752,8 +752,8 @@ defaultproperties
 	ManualLines(1)="Launches a cryogenic grenade. Upon impact, freezes nearby enemies, slowing their movement. The effect is proportional to their distance from the epicentre. This attack will also extinguish the fires of an FP7 grenade."
 	ManualLines(2)="The Weapon Special key attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible.||Effective at close to medium range."
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.222000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=0.95000
 	CockSound=(Sound=Sound'BWBP_SWC_Sounds.BR1NK.BR1NK-Cock',Volume=1.100000,Radius=32.000000)
@@ -779,7 +779,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.750000
 	CurrentRating=0.750000
-	Description="BR1-NK Combat Assault Rifle||Manufacturer: Black & Wood|Primary: Variable bullets (fully automatic)|Secondary: Launch Grenade|Special: Motion Tracker||The UTC space station 'Argent' was responsible for reverse engineering Skrith technology for use in the war. When Argent was taken by a regiment of Krao, the UTC commissioned Black & Wood to create a new weapon that would allow a small strike team to reclaim the outpost. The BR1-NK was given smaller rounds and a high rate of fire in order to quickly dispatch Krao swarms, as well as piercing rounds that could be shot through the Kraos' newly erected barriers. The high-velocity grenades were intentionally made less potent so as not to damage the facility. The one thing that made the weapon invaluable against the Krao, however, was the advanced motion tracker that the UTC soldiers used to avoid ambushes and any roaming Krao that hid in vents. Thanks to the BR1-NK, the UTC reclaimed the station with minimal damage and zero loss of life."
+	Description="BR1-NK Light Support Weapon||Manufacturer: Black & Wood|Primary: Variable bullets (fully automatic)|Secondary: Launch Grenade|Special: Motion Tracker||The UTC space station 'Argent' was responsible for reverse engineering Skrith technology for use in the war. When Argent was taken by a regiment of Krao, the UTC commissioned Black & Wood to create a new weapon that would allow a small strike team to reclaim the outpost. The BR1-NK was given smaller rounds and a high rate of fire in order to quickly dispatch Krao swarms, as well as piercing rounds that could be shot through the Kraos' newly erected barriers. The high-velocity grenades were intentionally made less potent so as not to damage the facility. The one thing that made the weapon invaluable against the Krao, however, was the advanced motion tracker that the UTC soldiers used to avoid ambushes and any roaming Krao that hid in vents. Thanks to the BR1-NK, the UTC reclaimed the station with minimal damage and zero loss of life."
 	Priority=65
 	HudColor=(B=255,G=175,R=125)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -790,14 +790,14 @@ defaultproperties
 	AttachmentClass=Class'BWBP_SWC_Pro.BRINKAttachment'
 	IconMaterial=Texture'BWBP_SWC_Tex.BR1NK.SmallIcon_BR1NK'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="BR1-NK Mod-2 LMR"
+	ItemName="BR1-NK Mod-2 LSW"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_BR1NK'
+	Mesh=SkeletalMesh'BWBP_SWC_Anims.BRINK_FPm'
 	DrawScale=0.250000
 	RadarScale=0.200000
 	RadarPosX=0.900000

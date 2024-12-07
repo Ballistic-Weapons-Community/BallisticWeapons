@@ -525,8 +525,8 @@ defaultproperties
 	
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout',Volume=0.220000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.222000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
@@ -577,7 +577,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Raygun'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.Raygun_FPm'
 	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.Raygun.raygun_body_SH1'

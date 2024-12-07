@@ -74,20 +74,21 @@ simulated event Destroyed()
 defaultproperties
 {
 	WeaponClass=class'AkeronLauncher'
-     BackBones(0)="backblast"
-     BackBones(1)="backblast2"
-     BackBones(2)="backblast3"
-     FrontBones(0)="tip"
-     FrontBones(1)="tip2"
-     FrontBones(2)="tip3"
-     MuzzleFlashClass=class'G5FlashEmitter'
-     AltMuzzleFlashClass=class'G5BackFlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     FlashScale=0.750000
-     BrassMode=MU_None
-     InstantMode=MU_None
-     Mesh=SkeletalMesh'BWBP_OP_Anim.Akeron_TPm'
-     RelativeLocation=(Z=5.000000)
-     RelativeRotation=(Pitch=-32768)
-     DrawScale=0.280000
+    BackBones(0)="backblast"
+    BackBones(1)="backblast2"
+    BackBones(2)="backblast3"
+    FrontBones(0)="tip"
+    FrontBones(1)="tip2"
+    FrontBones(2)="tip3"
+    MuzzleFlashClass=class'G5FlashEmitter'
+    AltMuzzleFlashClass=class'G5BackFlashEmitter'
+    ImpactManager=class'IM_Bullet'
+    FlashScale=0.750000
+    BrassMode=MU_None
+    InstantMode=MU_None
+	ReloadAnimRate=0.460000
+    Mesh=SkeletalMesh'BWBP_OP_Anim.Akeron_TPm'
+    RelativeLocation=(Z=5.000000)
+    RelativeRotation=(Pitch=-32768)
+    DrawScale=0.280000
 }

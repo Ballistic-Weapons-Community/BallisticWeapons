@@ -1,15 +1,30 @@
 //=============================================================================
-// EKS43Katana.
+// BlackOpsWristBlade.
 //
-// A large sword that takes advantage of a sweeping melee attack. More range
-// than akinfe, but slower and can't be thrown. Can be used to block otehr
-// melee attacks and has a held attack for secondary which sweeps down and is
-// prone to headshots.
+// A large pokey arm thing.
+// If you have one, you can shank people.
+// If you have two, you can double chop people.
+// If you have four....
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BlackOpsWristBlade extends BallisticMeleeWeapon;
+var bool bSingle; //is it lonely?
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bSingle=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "single") != -1) //indicates A3 new model
+	{
+		bSingle=true;
+	}
+}
 
 // AI Interface =====
 function bool CanAttack(Actor Other)
@@ -102,8 +117,8 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.BlkOpsBlade.BigIcon_WristBld'
      SpecialInfo(0)=(Info="360.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout',Volume=0.105000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway',Volume=0.105000)
      MagAmmo=1
      bNoMag=True
      GunLength=0.000000
@@ -134,6 +149,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'BlackOpsWristBladeWeaponParamsClassic'
 	 ParamsClasses(2)=Class'BlackOpsWristBladeWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'BlackOpsWristBladeWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_BOB'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.BOB_FPm'
      DrawScale=1.250000
 }

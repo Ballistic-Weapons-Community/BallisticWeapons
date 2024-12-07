@@ -18,10 +18,8 @@
 //=============================================================================
 class CYLOUAW extends BallisticWeapon;
 
-var() sound			MeleeFireSound;
-
-var	bool			bAltNeedCock;			//Should SG cock after reloading
-var	bool			bReloadingShotgun;	//Used to disable primary fire if reloading the shotgun
+var() bool			bAltNeedCock;				//Should SG cock after reloading
+var() bool			bReloadingShotgun;			//Used to disable primary fire if reloading the shotgun
 var() name			ShotgunLoadAnim, ShotgunEmptyLoadAnim;
 var() name			ShotgunSGAnim;
 var() name			CockSGAnim;
@@ -30,22 +28,96 @@ var() Sound			TubeInSound;
 var() Sound			TubeCloseSound;
 var() int	     	SGShells;
 var byte			OldWeaponMode;
-var() float			GunCockTime;		// Used so players cant interrupt the shotgun.
+var() float			GunCockTime;				// Used so players cant interrupt the shotgun.
+var() bool			bSlugger;					//used to tell attachment not to spawn alt effects		
+var() bool			bOldModel;					// needed to fix an alt reload deadlock on the cheap layout
+
+//Heating
+var() bool			bExplosive;
+var() bool			bExplosiveOnPlayers;
+var() bool			bHeatPowered;				// Heat changes weapon properties, used in Classic
+var() float			HeatLevel;					// Current Heat level, duh...
+var() bool			bCriticalHeat;				// Heat is at critical levels
+var() float 		HeatDeclineDelay;		
+var() Sound			OverHeatSound;				// Sound to play when it overheats
+var() Sound			HighHeatSound;				// Sound to play when heat is dangerous
+var() Sound			MedHeatSound;				// Sound to play when heat is moderate
+var() Actor 		GlowFX;						// Code from the BFG.
+var() float			NextChangeMindTime;			// For AI
+
+var	CYLOFirestormFireControl	FireControl;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-	    SGShells;
+	    SGShells, FireControl;
+	reliable if (ROLE < ROLE_Authority)
+		ServerSetFireRate;
+	reliable if (ROLE==ROLE_Authority)
+		ClientOverCharge, ClientSetHeat, ClientSetFireRate;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bExplosive=false;
+	bExplosiveOnPlayers=false;
+	bHeatPowered=false;
+	bSlugger=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "cheap") != -1)
+	{
+		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
+		bOldModel=true;
+
+	}
+	if (InStr(WeaponParams.LayoutTags, "inc") != -1)
+	{
+		bExplosive=true;
+		CYLOPrimaryFire(FireMode[0]).bRadiusDamage=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "exp") != -1)
+	{
+		bExplosiveOnPlayers=true;
+		CYLOPrimaryFire(FireMode[0]).bPlayerRadiusDamage=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "heat") != -1)
+	{
+		bShowChargingBar=True;
+		CYLOPrimaryFire(FireMode[0]).bCanOverheat=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "charge") != -1)
+	{
+		bHeatPowered=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
+	{
+		bSlugger=true;
+	}
 }
 
 simulated event PostNetBeginPlay()
 {
+	local CYLOFirestormFireControl FC;
+	
 	super.PostNetBeginPlay();
-
-	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
+	
+	if (Role == ROLE_Authority && FireControl == None)
 	{
-		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
+		foreach DynamicActors (class'CYLOFirestormFireControl', FC)
+		{
+			FireControl = FC;
+			return;
+		}
+		FireControl = Spawn(class'CYLOFirestormFireControl', None);
 	}
+}
+
+function CYLOFirestormFireControl GetFireControl()
+{
+	return FireControl;
 }
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
@@ -247,14 +319,6 @@ function bool BotShouldReloadShotgun ()
 	return false;
 }
 
-simulated event WeaponTick(float DT)
-{
-	super.WeaponTick(DT);
-	
-	if (AIController(Instigator.Controller) != None && bAltNeedCock && AmmoAmount(1) > 0 && BotShouldReloadShotgun() && !IsReloadingShotgun())
-		ServerStartReload(1);
-}
-
 simulated event AnimEnd (int Channel)
 {
     local name anim;
@@ -384,10 +448,167 @@ simulated function CommonStartReload (optional byte i)
 
 simulated function PlayReloadAlt()
 {
-	if (SGShells == 0)
+	if (SGShells == 0 && !bOldModel)
 		SafePlayAnim(ShotgunEmptyLoadAnim, 1, , 0, "RELOAD");
 	else
 		SafePlayAnim(ShotgunLoadAnim, 1, , 0, "RELOAD");
+}
+
+//===========================================================================
+// Heat Code
+//
+//===========================================================================
+
+simulated function ClientOverCharge()
+{
+	if (Firemode[0].bIsFiring)
+		StopFire(1);
+}
+
+simulated event WeaponTick(float DT)
+{
+	super.WeaponTick(DT);
+
+	if (HeatLevel >= 7 && Instigator.IsLocallyControlled() && GlowFX == None && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'CYLOFirestormRedGlow', DrawScale, self, 'tip');
+	else if (HeatLevel < 7)
+	{
+		if (GlowFX != None)
+			Emitter(GlowFX).kill();
+	}
+	
+	if (AIController(Instigator.Controller) != None && bAltNeedCock && AmmoAmount(1) > 0 && BotShouldReloadShotgun() && !IsReloadingShotgun())
+		ServerStartReload(1);
+	
+}
+
+simulated function float ChargeBar()
+{
+	return HeatLevel / 12;
+}
+
+simulated event Tick (float DT)
+{
+	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
+		Heatlevel = FMax(HeatLevel - 6 * DT, 0);
+
+	super.Tick(DT);
+}
+
+simulated function AddHeat(float Amount)
+{
+	if (bBerserk)
+		Amount *= 0.75;
+
+	HeatLevel += Amount;
+	
+	if (HeatLevel >= 11.75)
+	{
+		Heatlevel = 12;
+		PlaySound(OverHeatSound,,0.7,,32);
+		if (Instigator.Physics != PHYS_Falling)
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
+		else class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, vect(0,0,0), class'DTCYLOFirestormOverheat');
+		return;
+	}
+	if (bHeatPowered)
+	{
+		if (HeatLevel >= 9.75 && HeatLevel < 10)
+		{
+			Heatlevel = 12;
+			PlaySound(OverHeatSound,,0.7,,32);
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.35;
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 3, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
+		}
+
+		if (HeatLevel >= 9.0)
+		{
+			PlaySound(HighHeatSound,,1.0,,32);
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.25;
+			BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).Params.FireInterval*4;
+			BallisticInstantFire(FireMode[0]).Damage = BallisticInstantFire(FireMode[0]).default.Damage+13;
+			BallisticInstantFire(FireMode[0]).MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter';
+			BallisticInstantFire(FireMode[0]).DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+			BallisticInstantFire(FireMode[0]).DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormHotHead';
+			BallisticInstantFire(FireMode[0]).DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+		}
+		if (HeatLevel >= 6.0)
+		{
+			PlaySound(MedHeatSound,,0.7,,32);
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.1;
+			BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).Params.FireInterval*2;
+			BallisticInstantFire(FireMode[0]).Damage = BallisticInstantFire(FireMode[0]).default.Damage+8;
+			BallisticInstantFire(FireMode[0]).MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter';
+			BallisticInstantFire(FireMode[0]).DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+			BallisticInstantFire(FireMode[0]).DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormHotHead';
+			BallisticInstantFire(FireMode[0]).DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+		}
+		else
+		{
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.002;
+			BallisticInstantFire(FireMode[0]).Damage = BallisticInstantFire(FireMode[0]).default.Damage;
+			BallisticInstantFire(FireMode[0]).MuzzleFlashClass = BallisticInstantFire(FireMode[0]).default.MuzzleFlashClass;
+			BallisticInstantFire(FireMode[0]).FireRate = BallisticInstantFire(FireMode[0]).Params.FireInterval;
+			BallisticInstantFire(FireMode[0]).DamageType = BallisticInstantFire(FireMode[0]).default.DamageType;
+			BallisticInstantFire(FireMode[0]).DamageTypeHead = BallisticInstantFire(FireMode[0]).default.DamageTypeHead;
+			BallisticInstantFire(FireMode[0]).DamageTypeArm = BallisticInstantFire(FireMode[0]).default.DamageTypeArm;
+		}
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	HeatLevel = NewHeat;
+}
+
+simulated event Timer()
+{
+	if (Clientstate == WS_PutDown)
+		class'BUtil'.static.KillEmitterEffect (GlowFX);
+	super.Timer();
+}
+
+simulated event Destroyed()
+{
+	if (GlowFX != None)
+		GlowFX.Destroy();
+	super.Destroyed();
+}
+//Net Stuff =========
+
+simulated function SetFireRate(float NewFireRate)
+{
+	ServerSetFireRate(NewFireRate);
+	BallisticInstantFire(FireMode[0]).FireRate = NewFireRate;
+}
+
+// Cycle through the various weapon modes
+function ServerSetFireRate (byte NewFireRate)
+{
+	BallisticInstantFire(FireMode[0]).FireRate = NewFireRate;
+
+	ClientSetFireRate(NewFireRate);
+	NetUpdateTime = Level.TimeSeconds - 1;
+}
+
+simulated function CommonSwitchFireRate(byte NewFireRate)
+{
+	if (Instigator == None)
+		return;
+
+	BallisticInstantFire(FireMode[0]).FireRate = NewFireRate;
+}
+
+simulated function ClientSetFireRate (byte NewFireRate)
+{
+	if (Level.NetMode != NM_Client)
+		return;
+
+	CommonSwitchFireRate(NewFireRate);
 }
 
 // AI Interface =====
@@ -502,6 +723,11 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
+	HeatDeclineDelay=0.200000
+	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
+	HighHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-HighHeat'
+	MedHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-MedHeat'
+	
 	ShotgunLoadAnim="ReloadSG"
 	ShotgunEmptyLoadAnim="ReloadSGEmpty"
 	CockSGAnim="CockSG"
@@ -522,8 +748,8 @@ defaultproperties
 	ManualLines(2)="Effective at close to medium range."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;85.0;0.1;0.9;0.4")
 	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOMeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
@@ -574,6 +800,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOUAW'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.CYLOUAW_FPm'
 	DrawScale=0.300000
 }

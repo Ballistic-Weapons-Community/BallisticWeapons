@@ -117,24 +117,25 @@ simulated function Vector GetTipLocation()
 defaultproperties
 {
 	WeaponClass=class'AR23HeavyRifle'
-	 FireClass=Class'BWBP_SKC_Pro.AR23SecondaryFire'
-     ScopedTracerOffset=(Y=-14.000000,Z=-2.000000)
-     MuzzleFlashClass=class'M925FlashEmitter'
-     AltMuzzleFlashClass=class'M50M900FlashEmitter'
-     ImpactManager=class'IM_BigBulletHMG'
-     AltFlashBone="tip2"
-     BrassClass=class'Brass_M46AR'
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=class'TraceEmitter_Default'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.AR23_TPm'
-	 FlashScale=0.4
-     DrawScale=1.000000
-	 Skins(0)=Shader'BWBP_SKC_Tex.AR23.AR23-MainShine'
-	 Skins(1)=Shader'BWBP_SKC_Tex.AR23.AR23-MiscShine'
-	 Skins(2)=Shader'BWBP_SKC_Tex.AR23.AR23-HoloShine'
-	 Skins(3)=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View'
+	FireClass=Class'BWBP_SKC_Pro.AR23SecondaryFire'
+    ScopedTracerOffset=(Y=-14.000000,Z=-2.000000)
+    MuzzleFlashClass=class'M925FlashEmitter'
+    AltMuzzleFlashClass=class'M50M900FlashEmitter'
+    ImpactManager=class'IM_BigBulletHMG'
+    AltFlashBone="tip2"
+    BrassClass=class'Brass_M46AR'
+    FlashMode=MU_Both
+    LightMode=MU_Both
+    TracerClass=class'TraceEmitter_Default'
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
+    bRapidFire=True
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.AR23_TPm'
+	FlashScale=0.200000
+    DrawScale=1.000000
+	ReloadAnimRate=0.950000
+	CockAnimRate=0.900000
+	Skins(0)=Shader'BWBP_SKC_Tex.AR23.AR23-MainShine'
+	Skins(1)=Shader'BWBP_SKC_Tex.AR23.AR23-MiscShine'
+	Skins(2)=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View'
 }

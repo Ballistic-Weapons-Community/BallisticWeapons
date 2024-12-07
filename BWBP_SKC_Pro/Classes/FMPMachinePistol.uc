@@ -8,7 +8,8 @@
 //=============================================================================
 class FMPMachinePistol extends BallisticWeapon;
 
-var(FMP)   bool		bAmped;				// AMPED UP!!! YEAH!!! WOOOO!!!! WHITE CLAWW!!!!
+var(FMP)   bool		bHasAmp;				//Do we have an amp?
+var(FMP)   bool		bAmped;					// AMPED UP!!! YEAH!!! WOOOO!!!! WHITE CLAWW!!!!
 var(FMP) name		AmplifierBone;			// Bone to use for hiding cool shit
 var(FMP) name		AmplifierBone2;			// Xav likes to make my life difficult
 var(FMP) name		AmplifierOnAnim;			//
@@ -32,6 +33,20 @@ replication
 		
 }
 
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasAmp=true;
+
+	if (InStr(WeaponParams.LayoutTags, "no_amp") != -1)
+	{
+		bHasAmp=false;
+	}
+}
+
 //==============================================
 // Amp Code
 //==============================================
@@ -39,7 +54,7 @@ replication
 //mount or unmount amp
 exec simulated function ToggleAmplifier(optional byte i)
 {
-	if (ReloadState != RS_None || SightingState != SS_None)
+	if (ReloadState != RS_None || SightingState != SS_None || !bHasAmp)
 		return;
 
 	TemporaryScopeDown(0.5);
@@ -181,7 +196,18 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	super.BringUp(PrevWeapon);
 
 	if (AIController(Instigator.Controller) != None)
+	{
 		bAmped = (FRand() > 0.5);
+		ServerSwitchAmplifier(bAmped);
+		SwitchAmplifier(bAmped);
+		if (bAmped)
+		{
+			AmpCharge=100;
+			DrainRate=0;
+			if (FRand() > 0.5)
+				CommonSwitchWeaponMode(2);
+		}
+	}
 
 	if (bAmped)
 	{
@@ -280,11 +306,6 @@ simulated function float RateSelf()
 // AI Interface =====
 function byte BestMode()	
 {		
-	if (CurrentWeaponMode != 2)
-	{
-		CurrentWeaponMode = 2;
-	}
-
 	return 0;
 }
 
@@ -341,8 +362,8 @@ defaultproperties
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MP40.BigIcon_MP40'
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="240.0;15.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Pullout',Volume=1.400000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Putaway',Volume=1.400000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Pullout',Volume=0.215000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Putaway',Volume=0.217000)
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Cock',Volume=1.400000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagHit',Volume=1.400000)
@@ -387,7 +408,7 @@ defaultproperties
 	ParamsClasses(1)=Class'FMPWeaponParamsClassic'
 	ParamsClasses(2)=Class'FMPWeaponParamsRealistic'
 	ParamsClasses(3)=Class'FMPWeaponParamsTactical'
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MP40'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MP40_FPm'
 	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.MP40.MP40-MainShine'

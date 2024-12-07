@@ -34,7 +34,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
 		FireInterval=2.850000
 		AmmoPerFire=0
-		FireAnim="UseOnSelf"
+		FireAnim="putaway"
 	FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams'
 	End Object
 		

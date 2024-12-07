@@ -54,22 +54,23 @@ function SKASUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int
 
 defaultproperties
 {
-     WeaponClass=Class'BWBP_SKC_Pro.SKASShotgun'
-     MuzzleFlashClass=class'MRT6FlashEmitter'
-     AltMuzzleFlashClass=class'MRT6FlashEmitter'
-     ImpactManager=class'IM_Shell'
-     FlashScale=1.800000
-     BrassClass=class'Brass_MRS138Shotgun'
-     BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=class'TraceEmitter_Shotgun'
-     TracerChance=0.500000
-     ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.950000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.SKAS_TPm'
-     RelativeLocation=(X=-2.000000,Z=7.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.130000
+    WeaponClass=Class'BWBP_SKC_Pro.SKASShotgun'
+    MuzzleFlashClass=class'MRT6FlashEmitter'
+    AltMuzzleFlashClass=class'MRT6FlashEmitter'
+    ImpactManager=class'IM_Shell'
+    FlashScale=1.800000
+    BrassClass=class'Brass_MRS138Shotgun'
+    BrassMode=MU_Both
+    InstantMode=MU_Both
+    FlashMode=MU_Both
+    LightMode=MU_Both
+    TracerClass=class'TraceEmitter_Shotgun'
+    TracerChance=0.500000
+    ReloadAnim="Reload_AR"
+    ReloadAnimRate=0.575000
+	CockAnimRate=0.725000
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.SKAS_TPm'
+    RelativeLocation=(X=-2.000000,Z=7.000000)
+    RelativeRotation=(Pitch=32768)
+    DrawScale=0.130000
 }

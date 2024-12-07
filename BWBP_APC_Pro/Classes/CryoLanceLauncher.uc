@@ -76,7 +76,7 @@ defaultproperties
     bShowChargingBar=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000'
+	BigIconMaterial=Texture'BWBP_APC_Tex.CryoCannon.BigIcon_Freeze'
 	BigIconCoords=(X1=32,Y1=40,X2=475)
 	bWT_Bullet=True
 	ManualLines(0)=""
@@ -113,11 +113,11 @@ defaultproperties
 	HudColor=(B=255,G=175,R=125)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
-	PickupClass=Class'BWBP_SKC_Pro.MARSPickup'
+	PickupClass=Class'BWBP_APC_Pro.CryoLanceLauncherPickup'
 	PlayerViewOffset=(X=-5.500000,Y=12.000000,Z=-18.000000)
 	BobDamping=2.000000
-	AttachmentClass=Class'BWBP_SKC_Pro.MARSAttachment'
-	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000'
+	AttachmentClass=Class'BWBP_APC_Pro.CryoLanceLauncherAttatchment'
+	IconMaterial=Texture'BWBP_APC_Tex.CryoCannon.SmallIcon_Freeze'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="[B] Cryo Lance"
 	LightType=LT_Pulse
@@ -126,7 +126,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_CryoCannon'
+	Mesh=SkeletalMesh'BWBP_APC_Anim.CryoCannon_FPm'
 	DrawScale=0.400000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

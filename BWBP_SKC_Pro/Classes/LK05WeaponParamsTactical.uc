@@ -6,7 +6,36 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//5.56mm
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+        DecayRange=(Min=1575,Max=4725) // 30-90m
+		RangeAtten=0.5
+		Damage=34 // 5.56mm
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
+        PenetrationEnergy=32
+		PenetrateForce=150
+		Inaccuracy=(X=32,Y=32)
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		FlashScaleFactor=1
+		Recoil=190.000000
+		Chaos=0.022000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-RapidFire',Volume=1.200000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+		FireInterval=0.085000
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	
+	//6.8mm
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_68mm
 		TraceRange=(Min=9000.000000,Max=11000.000000)
         DecayRange=(Min=1838,Max=5250) // 35-100m
 		RangeAtten=0.67
@@ -20,17 +49,17 @@ defaultproperties
 		PenetrateForce=150
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-		FlashScaleFactor=1
+		FlashScaleFactor=1.2
 		Recoil=220.000000
 		Chaos=0.028000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-RapidFire',Volume=1.200000)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.500000)
 	End Object
 
-	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_68mm
 		FireInterval=0.095000
 		FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_68mm'
 	End Object
 		
 	//=================================================================
@@ -73,13 +102,33 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
-		Weight=30
-		LayoutName="Holosight"
+		Weight=10
+		LayoutName="5.56mm Holo"
 		SightOffset=(X=1.5,Y=0,Z=2.16)
 		//Attachments
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
+		//Function
+		InventorySize=6
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.32
+		DisplaceDurationMult=1
+		MagAmmo=30
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_68mm
+		//Layout core
+		Weight=30
+		LayoutName="6.8mm Holo"
+		SightOffset=(X=1.5,Y=0,Z=2.16)
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Irons",Slot=57,Scale=-2f)
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.6
@@ -88,32 +137,31 @@ defaultproperties
 		MagAmmo=25
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_68mm'
     End Object 
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Irons
 		//Layout core
 		Weight=10
-		LayoutName="Iron Sights"
+		LayoutName="5.56mm Irons"
 		//Attachments
-		//SightOffset=(X=-0.50,Y=0.00,Z=1.75)
-		//SightPivot=(Pitch=64,Roll=0,Yaw=-16)
 		SightOffset=(X=3,Y=0,Z=1.59)
 		SightPivot=(Pitch=64,Roll=0,Yaw=-16)
-		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="EOTech",Slot=54,Scale=0f)
 		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.35
+		SightingTime=0.32
 		DisplaceDurationMult=1
-		MagAmmo=25
+		MagAmmo=30
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
     End Object 	
+	
     Layouts(0)=WeaponParams'TacticalParams'
-    Layouts(1)=WeaponParams'TacticalParams_Irons'
+    Layouts(1)=WeaponParams'TacticalParams_68mm'
+    Layouts(2)=WeaponParams'TacticalParams_Irons'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=LK05_Tan
@@ -134,8 +182,8 @@ defaultproperties
 		Index=2
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=3)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-MainBlack",Index=3,AIndex=4,PIndex=7)
 		Weight=20
 	End Object
@@ -144,8 +192,8 @@ defaultproperties
 		Index=3
 		CamoName="Jungle"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=3)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecJungle",Index=3,AIndex=4,PIndex=7)
 		Weight=20
 	End Object
@@ -154,8 +202,8 @@ defaultproperties
 		Index=4
 		CamoName="Winter"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=3)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecWinter",Index=3,AIndex=4,PIndex=7)
 		Weight=20
 	End Object
@@ -182,8 +230,8 @@ defaultproperties
 		Index=6
 		CamoName="Meat"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=3)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecMeat",Index=3,AIndex=4,PIndex=7)
 		Weight=3
 	End Object
@@ -192,8 +240,8 @@ defaultproperties
 		Index=7
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1,AIndex=5,PIndex=3)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2,AIndex=7,PIndex=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecGold",Index=3,AIndex=4,PIndex=7)
 		Weight=1
 	End Object

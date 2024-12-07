@@ -91,7 +91,7 @@ defaultproperties
      YInaccuracy=1600.000000
      BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Misc.FLAK-Fire',Volume=1.800000)
      bFireOnRelease=True
-     bModeExclusive=False
+     bModeExclusive=true
      PreFireAnim="GrenadePrep"
      FireAnim="GrenadeFire"
      FireForce="AssaultRifleAltFire"

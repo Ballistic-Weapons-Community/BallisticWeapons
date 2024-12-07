@@ -91,7 +91,7 @@ defaultproperties
         ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
-		//SightOffset=(Y=6.000000,Z=15.000000)
+		SightOffset=(X=12.000000,Y=-1.000000,Z=1.900000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

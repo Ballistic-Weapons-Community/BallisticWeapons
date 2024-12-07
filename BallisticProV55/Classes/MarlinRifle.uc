@@ -10,11 +10,18 @@
 class MarlinRifle extends BallisticWeapon;
 
 //Layouts
+var()	bool		bHasLaser;
 var()   bool		bHasGauss;				// Fancy version
-var	 	float 		GaussLevel, MaxGaussLevel;
+var()	float 		GaussLevel, MaxGaussLevel;
 var() 	Sound		GaussOnSound;
+var() 	Sound			LaserOnSound;
+var() 	Sound			LaserOffSound;
 
-var		Actor		GaussGlow1, GaussGlow2;
+var()	Actor		GaussGlow1, GaussGlow2;
+
+var()   Emitter			LaserDot;
+var()   bool				bLaserOn;
+var()   bool		bStriking;
 
 simulated function OnWeaponParamsChanged()
 {
@@ -22,11 +29,17 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	
-	bHasGauss=False;
+	bHasGauss=false;
+	bHasLaser=false;
 	if (InStr(WeaponParams.LayoutTags, "gauss") != -1)
 	{
-		bHasGauss=True;
-		bShowChargingBar=True;
+		bHasGauss=true;
+		bShowChargingBar=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "laser") != -1)
+	{
+		bHasLaser=true;
+		ServerSwitchLaser(true);
 	}
 	
 }
@@ -51,8 +64,10 @@ simulated function AddGauss(optional float Amount)
 	
 	if (GaussLevel == MaxGaussLevel && CurrentWeaponMode == 0)
 	{			
-		GaussGlow1.bHidden=false;
-		GaussGlow2.bHidden=false;
+		if (GaussGlow1 != None)
+			GaussGlow1.bHidden=false;
+		if (GaussGlow2 != None)
+			GaussGlow2.bHidden=false;
 		PlaySound(GaussOnSound,,1.2,,32);
 		ServerSwitchWeaponMode(1);
 		ClientSwitchWeaponMode(1);
@@ -100,6 +115,9 @@ simulated event Destroyed()
 		
 	if (GaussGlow2 != None)
 		GaussGlow2.Destroy();
+	
+	if (LaserDot != None)
+		LaserDot.Destroy();
 
 	Super.Destroyed();
 }
@@ -108,6 +126,7 @@ simulated function bool PutDown()
 {
 	if (super.PutDown())
 	{
+		KillLaserDot();
 		if (GaussGlow1 != None)	GaussGlow1.Destroy();
 		if (GaussGlow2 != None)	GaussGlow2.Destroy();
 		return true;
@@ -120,7 +139,136 @@ simulated function float ChargeBar()
 	return FMax(0, GaussLevel/MaxGaussLevel);
 }
 
+//============ LASER =============================================
 
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 0.65;
+	AimComponent.AimSpread.Min *= 0.65;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
+simulated event PostNetReceive()
+{
+	if (level.NetMode != NM_Client)
+		return;
+	if (bLaserOn != default.bLaserOn)
+	{
+		OnLaserSwitched();
+
+		default.bLaserOn = bLaserOn;
+		ClientSwitchLaser();
+	}
+	Super.PostNetReceive();
+}
+
+function ServerWeaponSpecial(optional byte i)
+{
+	if (bServerReloading || !bHasLaser)
+		return;
+	ServerSwitchLaser(!bLaserOn);
+}
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	if (!bHasLaser)
+		return;
+	bLaserOn = bNewLaserOn;
+
+	OnLaserSwitched();
+
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+}
+
+simulated function ClientSwitchLaser()
+{
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+		Skins[4]=FinalBlend'BW_Core_WeaponTex.Marlin.Ivory_UT2_beam_FB';
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+		Skins[4]=Texture'BW_Core_WeaponTex.Misc.Invisible';
+	}
+}
+
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'M806LaserDot',,,Loc);
+}
+
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal;
+	local Rotator AimDir;
+	local Actor Other;
+
+	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
+
+	End = Start + Normal(Vector(AimDir))*5000;
+	
+	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+	if (Other == None)
+		HitLocation = End;
+
+	// Draw dot at end of beam
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
+	
+	if (LaserDot != None)
+		LaserDot.SetLocation(HitLocation);
+		
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+}
+
+simulated event RenderOverlays( Canvas Canvas )
+{
+	super.RenderOverlays(Canvas);
+	
+	if (bLaserOn && !IsInState('Lowered'))
+		DrawLaserSight(Canvas);
+}
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	ServerSwitchLaser(!bLaserOn);
+}
 
 //================================================================
 
@@ -130,6 +278,19 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		Momentum *= 0.5;
 	
 	super.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+}
+
+simulated event AnimEnd (int Channel)
+{
+    local name Anim;
+    local float Frame, Rate;
+
+    GetAnimParams(0, Anim, Frame, Rate);
+	
+	if(Anim != 'MeleePrep')
+		bStriking = false;
+
+	Super.AnimEnd(Channel);
 }
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
@@ -341,6 +502,8 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
+	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	GaussOnSound=Sound'BW_Core_WeaponSound.Gauss.Gauss-Charge'
 	MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -352,10 +515,10 @@ defaultproperties
 	ManualLines(2)="As a long-ranged weapon lacking a scope, it has a very quick aiming time. Does not use tracer rounds. Effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.6;50.0;1.0;0.5;-999.0")
 	MeleeFireClass=Class'BallisticProV55.MarlinMeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	PutDownTime=0.4
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Cock',Volume=0.750000)
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Cock',Volume=0.650000)
 	ReloadAnim="ReloadLoop"
 	ClipInSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-ShellIn')
 	ClipInFrame=0.650000
@@ -407,6 +570,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Marlin'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_FPm'
 	DrawScale=0.3
 }

@@ -15,6 +15,15 @@ simulated event ModeDoFire()
 	super.ModeDoFire();
 }
 
+simulated function IgniteActor(Actor A)
+{
+	local PS9mActorPoison PF;
+
+	PF = Spawn(class'PS9mActorPoison');
+	PF.Instigator = Instigator;
+	PF.Initialize(A);
+}
+
 function bool DoTazerBlurEffect(Actor Victim)
 {
 	local int i;
@@ -46,8 +55,12 @@ function bool DoTazerBlurEffect(Actor Victim)
 	return false;
 }
 
-     function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
+	if (xPawn(Victim) !=None && PS9mPistol(BW) != None && PS9mPistol(BW).bToxin)
+	{
+		IgniteActor(Victim);
+	}
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	if (Victim.bCanBeDamaged)
 		DoTazerBlurEffect(Victim);

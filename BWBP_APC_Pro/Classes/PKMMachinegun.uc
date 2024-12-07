@@ -319,8 +319,8 @@ defaultproperties
 	 BoxBone="MagDrum"
      GrenLoadSound=Sound'BWBP_SKC_Sounds.AK47.Knife-Load'
      GrenDropSound=Sound'BWBP_SKC_Sounds.AK47.Knife-Drop'
-	 BoxOnSound=(Sound=Sound'BWBP_CC_Sounds.RPK940.RPK-BoxOn',Volume=1.400000)
-     BoxOffSound=(Sound=Sound'BWBP_CC_Sounds.RPK940.RPK-BoxOff',Volume=1.400000)
+	 BoxOnSound=(Sound=Sound'BWBP_APC_Sounds.RPK940.RPK-BoxOn',Volume=1.400000)
+     BoxOffSound=(Sound=Sound'BWBP_APC_Sounds.RPK940.RPK-BoxOff',Volume=1.400000)
      FlapUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapUp')
      FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapDown')
      PlayerSpeedFactor=0.85000
@@ -328,7 +328,7 @@ defaultproperties
 	 KnifeLoadAnim="KnifeReload"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
-     BigIconMaterial=Texture'BWBP_CC_Tex.PKM.BigIcon_PKMA'
+     BigIconMaterial=Texture'BWBP_APC_Tex.PKM.BigIcon_PKMA'
      BigIconCoords=(Y1=50,Y2=240)
      bWT_Bullet=True
      bWT_Machinegun=True
@@ -336,10 +336,10 @@ defaultproperties
      ManualLines(1)=" If a knife is attached, it will be launched, dealing high damage. This attack is hip-accurate and has no recoil. If no knife is attached, one will be attached if available.||This weapon is effective at medium range."
      ManualLines(2)="Rugged, reliable, no fancy attachments needed.  That's the mantra of ZTV Exports PKMA-420 General Purpose Machine Gun, an old timey design brought back from the glory days of the MSR (Merged States Republic).  A 7.62mm belt-fed machine gun that can get the job done even without the frills of optics and other attachments, however there have been upgrades so that it can mount the infamous X8 seen on the AK-490. The PKMA can fight, no matter how harsh the conditions are or how many Krao come surging, nothing can stop this machine gun from performing above and beyond."
      SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.3;0.4;1.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
+	 BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout',Volume=0.220000)
+	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway',Volume=0.270000)
      CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BWBP_CC_Sounds.RPK940.RPK-Bolt',Volume=1.500000)
+     CockSound=(Sound=Sound'BWBP_APC_Sounds.RPK940.RPK-Bolt',Volume=1.500000)
      ReloadAnim="ReloadStart"
      ReloadAnimRate=1.000000
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
@@ -373,7 +373,7 @@ defaultproperties
 	 SightOffset=(X=5.000000,Y=-1.1150000,Z=14.10000)
 	 SightPivot=(Pitch=-64)
      AttachmentClass=Class'BWBP_APC_Pro.PKMAttachment'
-     IconMaterial=Texture'BWBP_CC_Tex.PKM.SmallIcon_PKMA'
+     IconMaterial=Texture'BWBP_APC_Tex.PKM.SmallIcon_PKMA'
      IconCoords=(X2=127,Y2=31)
      ItemName="PKM-420 GP Machine Gun"
      LightType=LT_Pulse
@@ -386,6 +386,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'PKMMachinegunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'PKMMachinegunWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'PKMMachinegunWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_PKMA'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.PKMA_FPm'
      DrawScale=0.250000
 }

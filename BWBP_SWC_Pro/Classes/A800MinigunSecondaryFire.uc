@@ -214,7 +214,7 @@ simulated event ModeDoFire()
 // Timer modified to handle firing a burst after the trigger is released, consumption delay code removed
 simulated event Timer()
 {
-	log("timer triggered");
+	//log("timer triggered");
 	if (BurstSize > 0)
 		ModeDoFire();
 }
@@ -264,10 +264,14 @@ simulated function ModeTick(float DT)
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
-	Proj.Instigator = Instigator;
-	A800StickyBombProjectile(Proj).Master = A800SkrithMinigun(BW);
-	if (A800SkrithMinigun(BW).Target != None)
-		A800StickyBombProjectile(Proj).SetProjTarget(A800SkrithMinigun(BW).Target);
+	
+	if (Proj != None)
+	{
+		Proj.Instigator = Instigator;
+		A800StickyBombProjectile(Proj).Master = A800SkrithMinigun(BW);
+		if (A800SkrithMinigun(BW) != None && A800SkrithMinigun(BW).Target != None)
+			A800StickyBombProjectile(Proj).SetProjTarget(A800SkrithMinigun(BW).Target);
+	}
 }
 
 

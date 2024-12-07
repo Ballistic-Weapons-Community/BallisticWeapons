@@ -151,9 +151,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=128)
 		RecoilParams(0)=RecoilParams'ArenaBurstRecoilParams'
-		RecoilParams(1)=RecoilParams'ArenaAutoRecoilParams'
+		//RecoilParams(1)=RecoilParams'ArenaAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'
-        FireParams(1)=FireParams'AutoFireParams'
+        //FireParams(1)=FireParams'AutoFireParams'
         AltFireParams(0)=FireParams'MeleeFireParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

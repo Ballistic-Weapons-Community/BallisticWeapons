@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=2.300000)
-		Recoil=640.000000
+		Recoil=1240.000000
 		Chaos=0.050000
 		Inaccuracy=(X=11,Y=11)
 		BotRefireRate=0.300000
@@ -38,6 +38,40 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+
+	//Supp
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Supp
+		TraceRange=(Max=5500.000000)
+		WaterTraceRange=3300.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=32
+		HeadMult=2.65
+		LimbMult=0.375
+		DamageType=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTSX45PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTSX45Pistol'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,bAtten=True) //
+		Recoil=1024.000000 //
+		Chaos=0.10000 //
+		Inaccuracy=(X=11,Y=11)
+		BotRefireRate=0.300000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Supp
+		FireInterval=0.300000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Supp'
 	End Object
 		
 				
@@ -90,7 +124,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 		FlashScaleFactor=5.0
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-RadFire',Volume=1.200000)
-		Recoil=128.000000
+		Recoil=512.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
 	End Object
@@ -102,6 +136,33 @@ defaultproperties
 		FireAnimRate=1	
 	FireEffectParams(0)=InstantEffectParams'ClassicRadPrimaryEffectParams'
 	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================		
+	
+	//Amp
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object		
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -117,7 +178,7 @@ defaultproperties
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=0.200000
-		HipMultiplier=1.000000
+		HipMultiplier=1.500000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
@@ -164,6 +225,7 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicCryoPrimaryFireParams'
 		FireParams(2)=FireParams'ClassicRadPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 		
 	Begin Object Class=WeaponParams Name=ClassicParams_Irons
@@ -173,11 +235,12 @@ defaultproperties
 		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
+		//ADS
 		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
-		//Functions
-		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		//Functions
+		InventorySize=4
 		bNeedCock=True
 		MagAmmo=15
 		ViewOffset=(X=4,Y=6.00,Z=-4.5)
@@ -187,10 +250,37 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicCryoPrimaryFireParams'
 		FireParams(2)=FireParams'ClassicRadPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+		
+	Begin Object Class=WeaponParams Name=ClassicParams_Supp
+		//Layout core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=10
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorOsprey',BoneName="tip",Scale=0.08,AugmentOffset=(X=-2,Y=0.2),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		WeaponMaterialSwaps(0)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,PIndex=2)
+		//ADS
+		SightOffset=(X=-15.00,Y=0.00,Z=2.30)
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		//Functions
+		InventorySize=4
+		bNeedCock=True
+		MagAmmo=15
+		ViewOffset=(X=4,Y=6.00,Z=-4.5)
+		bDualMixing=true
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams_Irons'
 	Layouts(1)=WeaponParams'ClassicParams_RDS'
+	Layouts(2)=WeaponParams'ClassicParams_Supp'
 
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=FNX_Green

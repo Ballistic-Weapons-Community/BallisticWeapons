@@ -15,7 +15,8 @@ class SRS900Rifle extends BallisticWeapon;
 
 var float LastRangeFound, LastStabilityFound, StealthRating, StealthImps, ZRefHeight;
 
-var   bool		bSilenced;
+var() bool		bHasSuppressor;
+var() bool		bSilenced;
 var() name		SilencerBone;
 var() name		SilencerOnAnim;			
 var() name		SilencerOffAnim;
@@ -82,10 +83,22 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 
+	bHasSuppressor=true;
+
 	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
 	{
 		SightAnimScale = 0.75;
 		SightBobScale = 0.1 *class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+	}
+	if (InStr(WeaponParams.LayoutTags, "no_suppress") != -1)
+	{
+		bHasSuppressor=false;
+	}
+	if (InStr(WeaponParams.LayoutTags, "start_suppressed") != -1)
+	{
+		bSilenced=true;
+		ApplySuppressorAim();
+		SightingTime *= 1.25;
 	}
 	
 }
@@ -172,7 +185,7 @@ function ServerSwitchSilencer(bool bDetachSuppressor)
 exec simulated function WeaponSpecial(optional byte i)
 {
     // too strong
-    if (class'BallisticReplicationInfo'.static.IsTactical())
+    if (!bHasSuppressor)
         return;
 
 	if (ReloadState != RS_None || SightingState != SS_None)
@@ -580,6 +593,7 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
+	bHasSuppressor=true
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
@@ -606,8 +620,8 @@ defaultproperties
 	ManualLines(1)="Attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible."
 	ManualLines(2)="Effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	PutDownTime=0.4
 	MagAmmo=20
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Cock',Volume=0.650000)
@@ -664,7 +678,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS900'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.SRS900_FPm'
 	DrawScale=0.300000
 	
 	//Arena Scope Stuff

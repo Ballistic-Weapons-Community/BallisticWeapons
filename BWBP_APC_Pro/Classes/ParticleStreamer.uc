@@ -133,9 +133,9 @@ simulated event WeaponTick(float DT)
 //===========================================================================
 simulated function RenderOverlays (Canvas C)
 {
-	local int i;
+  //local int i;
 	local vector	EndEffect;
-	local float Magnitude;
+  //local float Magnitude;
 	
 	Super.RenderOverlays(C);
 
@@ -356,7 +356,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_ProtonPack'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.ProtonPack_FPm'
      DrawScale=0.600000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_OP_Tex.ProtonPack.proton_gun_SH1'

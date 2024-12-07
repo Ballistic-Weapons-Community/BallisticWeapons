@@ -19,19 +19,11 @@ simulated function SetColorShift(float Alpha)
 	Emitters[0].ColorMultiplierRange.X.Min = Lerp(Alpha, 0.4, 1.0); 	Emitters[0].ColorMultiplierRange.X.Max = Emitters[0].ColorMultiplierRange.X.Min;
 //	Emitters[0].ColorMultiplierRange.Y.Min = Lerp(Alpha, 0.4, 0.4); 	Emitters[0].ColorMultiplierRange.Y.Max = Emitters[0].ColorMultiplierRange.Y.Min;
 	Emitters[0].ColorMultiplierRange.Z.Min = Lerp(Alpha, 0.4, 0.0); 	Emitters[0].ColorMultiplierRange.Z.Max = Emitters[0].ColorMultiplierRange.Z.Min;
-
-//	Emitters[1].ColorMultiplierRange.X.Min = Lerp(Alpha, 1.0, 1.0); 	Emitters[1].ColorMultiplierRange.X.Max = Emitters[1].ColorMultiplierRange.X.Min;
-	Emitters[1].ColorMultiplierRange.Y.Min = Lerp(Alpha, 1.0, 0.8); 	Emitters[1].ColorMultiplierRange.Y.Max = Emitters[1].ColorMultiplierRange.Y.Min;
-	Emitters[1].ColorMultiplierRange.Z.Min = Lerp(Alpha, 1.0, 0.7); 	Emitters[1].ColorMultiplierRange.Z.Max = Emitters[1].ColorMultiplierRange.Z.Min;
-
-	Emitters[2].ColorMultiplierRange.X.Min = Lerp(Alpha, 0.1, 1.0); 	Emitters[2].ColorMultiplierRange.X.Max = Emitters[2].ColorMultiplierRange.X.Min;
-	Emitters[2].ColorMultiplierRange.Y.Min = Lerp(Alpha, 0.2, 0.1); 	Emitters[2].ColorMultiplierRange.Y.Max = Emitters[2].ColorMultiplierRange.Y.Min;
-	Emitters[2].ColorMultiplierRange.Z.Min = Lerp(Alpha, 1.0, 0.1); 	Emitters[2].ColorMultiplierRange.Z.Max = Emitters[2].ColorMultiplierRange.Z.Min;
 }
 
 defaultproperties
 {
-     Begin Object Class=SpriteEmitter Name=SpriteEmitter6
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          UseColorScale=True
          FadeOut=True
          FadeIn=True
@@ -58,6 +50,6 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=60.000000,Max=60.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.HVPCMk66GreenGlow.SpriteEmitter6'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.HVPCMk66GreenGlow.SpriteEmitter0'
 
 }

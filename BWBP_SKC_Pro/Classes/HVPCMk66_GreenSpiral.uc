@@ -9,14 +9,14 @@ class HVPCMk66_GreenSpiral extends BallisticEmitter;
 
 simulated function SetColorShift(float Alpha)
 {
-	Emitters[1].ColorMultiplierRange.X.Min = Lerp(Alpha, 0.1, 1.0); 	Emitters[2].ColorMultiplierRange.X.Max = Emitters[2].ColorMultiplierRange.X.Min;
-	Emitters[1].ColorMultiplierRange.Y.Min = Lerp(Alpha, 0.2, 0.1); 	Emitters[2].ColorMultiplierRange.Y.Max = Emitters[2].ColorMultiplierRange.Y.Min;
-	Emitters[1].ColorMultiplierRange.Z.Min = Lerp(Alpha, 1.0, 0.1); 	Emitters[2].ColorMultiplierRange.Z.Max = Emitters[2].ColorMultiplierRange.Z.Min;
+	Emitters[1].ColorMultiplierRange.X.Min = Lerp(Alpha, 0.1, 1.0); 	
+	Emitters[1].ColorMultiplierRange.Y.Min = Lerp(Alpha, 0.2, 0.1); 	
+	Emitters[1].ColorMultiplierRange.Z.Min = Lerp(Alpha, 1.0, 0.1); 
 }
 
 defaultproperties
 {
-     Begin Object Class=SpriteEmitter Name=SpriteEmitter15
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          UseDirectionAs=PTDU_Forward
          FadeOut=True
          FadeIn=True
@@ -39,9 +39,9 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-50.000000,Max=-50.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.HVPCMk66_GreenSpiral.SpriteEmitter15'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.HVPCMk66_GreenSpiral.SpriteEmitter0'
 
-     Begin Object Class=BeamEmitter Name=BeamEmitter10
+     Begin Object Class=BeamEmitter Name=BeamEmitter1
          BeamDistanceRange=(Min=20.000000,Max=30.000000)
          DetermineEndPointBy=PTEP_Distance
          BeamTextureUScale=2.000000
@@ -62,6 +62,6 @@ defaultproperties
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=-0.200000,Max=0.200000),Y=(Min=-3.000000,Max=1.000000),Z=(Max=3.000000))
      End Object
-     Emitters(1)=BeamEmitter'BWBP_SKC_Pro.HVPCMk66_GreenSpiral.BeamEmitter10'
+     Emitters(1)=BeamEmitter'BWBP_SKC_Pro.HVPCMk66_GreenSpiral.BeamEmitter1'
 
 }

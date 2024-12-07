@@ -18,13 +18,14 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.JWJunkShieldPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.JWJunkShieldPickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.JWJunkShieldPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWJunkShieldPickup'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWJunkShieldPickup'	 
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWJunkShieldPickupLo'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Shields.JWJunkShieldPickupHi'	 
      InventoryType=Class'BWBP_OP_Pro.JWJunkShieldWeapon'
      RespawnTime=10.000000
      PickupMessage="You picked up a junk shield."

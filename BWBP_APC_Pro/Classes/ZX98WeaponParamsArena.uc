@@ -20,11 +20,11 @@ defaultproperties
 			PenetrateForce=180
 			bPenetrate=True
 			MuzzleFlashClass=Class'BWBP_APC_Pro.ZX98FlashEmitter'
-			FlashScaleFactor=0.500000
+			FlashScaleFactor=1.250000
 			Recoil=180.000000
 			Chaos=0.032000
 			WarnTargetPct=0.200000
-			FireSound=(Sound=Sound'BWBP_CC_Sounds.ZX98.ZX98-Fire',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
+			FireSound=(Sound=Sound'BWBP_APC_Sounds.ZX98.ZX98-Fire',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
 		End Object
 
 		Begin Object Class=FireParams Name=ArenaPrimaryFireParams

@@ -206,7 +206,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget)
+	if (Victim != None && Victim.bProjTarget)
 	{
 		if (BallisticShield(Victim) != None)
 			BW.TargetedHurtRadius(Damage, 210, class'DTZ250Bullet', 200, HitLocation, Pawn(Victim));

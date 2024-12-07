@@ -18,6 +18,13 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		return false; // I fucking hate this shit - Azarael
 	}
 	
+	// slow players when spawning during lock
+	if (Other.IsA('BCSprintControl') && Team_GameBase(Level.Game).bLockMovement && Team_GameBase(Level.Game).LockTime > 0)
+	{
+		BCSprintControl(Other).AddSlow(0.01, Team_GameBase(Level.Game).LockTime);
+		Log("Adding " $ Team_GameBase(Level.Game).LockTime $ " second initial slow");
+	}
+	
     return true;
 }
 

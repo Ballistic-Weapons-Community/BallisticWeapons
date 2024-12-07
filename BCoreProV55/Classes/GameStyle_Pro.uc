@@ -44,7 +44,7 @@ defaultproperties
 	PlayerCrouchSpeedFactor=0.45
     PlayerStrafeScale=1
     PlayerBackpedalScale=1
-    PlayerGroundSpeed=270.000000
+    PlayerGroundSpeed=315.000000
 	PlayerAnimationGroundSpeed=340
     PlayerAirSpeed=270.000000
     PlayerAccelRate=2048.000000
@@ -55,7 +55,7 @@ defaultproperties
 	bEnableSprint=true
 	StaminaChargeRate=15
 	StaminaDrainRate=10
-	SprintSpeedFactor=1.5f
+	SprintSpeedFactor=1.4f
 	JumpDrain=5
 
     HealthKillReward=25

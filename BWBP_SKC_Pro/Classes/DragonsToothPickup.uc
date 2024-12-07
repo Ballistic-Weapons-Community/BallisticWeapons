@@ -39,19 +39,20 @@ simulated function UpdatePrecacheMaterials()
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupLo'
      PickupDrawScale=1.000000
      InventoryType=Class'BWBP_SKC_Pro.DragonsToothSword'
      RespawnTime=50.000000
      PickupMessage="You picked up the XM300 Dragon nanoblade."
      PickupSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Pullout'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupHi'
      Physics=PHYS_None
-     DrawScale=0.600000
+     DrawScale=0.400000
      CollisionHeight=4.000000
 }

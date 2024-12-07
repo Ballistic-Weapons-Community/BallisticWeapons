@@ -17,7 +17,7 @@ defaultproperties
      bHeaddie=True
      InvasionDamageScaling=2
      DamageIdent="Shotgun"
-     WeaponClass=Class'BWBP_APC_Pro.FM13Shotgun'
+     WeaponClass=Class'BWBP_APC_Pro.FM14Shotgun'
      DeathString="%k uncorked %o with the FM13."
      FemaleSuicide="%o nailed herself with the FM13."
      MaleSuicide="%o nailed himself with the FM13."

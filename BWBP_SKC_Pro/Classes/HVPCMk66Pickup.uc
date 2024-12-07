@@ -55,7 +55,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPickupHD'
      Physics=PHYS_None
-     DrawScale=0.400000
+     DrawScale=0.300000
      PrePivot=(Z=-3.000000)
      Skins(0)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'
      Skins(1)=FinalBlend'BW_Core_WeaponTex.Lighter.LightGlassFinal'

@@ -109,7 +109,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=2.000000
+		FireInterval=0.500000
 		PreFireAnim="GrenadePrep"
 		FireAnim="GrenadeFire"
 		AimedFireAnim="GrenadeFireAimed"
@@ -327,10 +327,10 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'TacticalParams'
-	Layouts(1)=WeaponParams'TacticalParams_3X'
-	Layouts(2)=WeaponParams'TacticalParams_8X'
-	Layouts(3)=WeaponParams'TacticalParams_Supp'
-	Layouts(4)=WeaponParams'TacticalParams_Irons'
+	//Layouts(1)=WeaponParams'TacticalParams_3X'
+	Layouts(1)=WeaponParams'TacticalParams_8X'
+	Layouts(2)=WeaponParams'TacticalParams_Supp'
+	Layouts(3)=WeaponParams'TacticalParams_Irons'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=AR23_Tan

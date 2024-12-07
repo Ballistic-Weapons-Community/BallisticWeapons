@@ -81,20 +81,84 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout core
+		Weight=30
+		LayoutName="NV Scope"
+		LayoutTags="nv"
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.010000		
+        ZoomType=ZT_Logarithmic
+		//Stats
 		PlayerSpeedFactor=0.85
 		PlayerJumpFactor=0.85
 		InventorySize=12
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.010000		
 		DisplaceDurationMult=1.25
 		MagAmmo=4
-        ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ClassicParams_4XScope
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LensCover1",Slot=51,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="LensCover2",Slot=52,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="RRing",Scale=0.04,AugmentOffset=(x=-0,y=-14.75,z=-70),AugmentRot=(Pitch=16384,Yaw=0,Roll=-16384))
+		//ADS
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		SightingTime=0.010000		
+		SightMoveSpeedFactor=0.8
+		//Function
+		PlayerSpeedFactor=0.85
+		PlayerJumpFactor=0.85
+		InventorySize=12
+		DisplaceDurationMult=1.25
+		MagAmmo=4
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		//Layout core
+		Weight=5
+		LayoutName="Irons"
+		LayoutTags="irons"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LensCover1",Slot=51,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="LensCover2",Slot=52,Scale=0f)
+		//ADS
+        ZoomType=ZT_Irons
+		ScopeViewTex=None
+		SightOffset=(X=3,Y=0,Z=4.43)
+		SightPivot=(Roll=0)
+		SightingTime=0.010000		
+		SightMoveSpeedFactor=0.8
+		//Function
+		PlayerSpeedFactor=0.85
+		PlayerJumpFactor=0.85
+		InventorySize=12
+		DisplaceDurationMult=1.25
+		MagAmmo=4
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_4XScope'
+	Layouts(2)=WeaponParams'ClassicParams_Irons'
 
 	//Camos ===================================
 	Begin Object Class=WeaponCamo Name=X83_Silver

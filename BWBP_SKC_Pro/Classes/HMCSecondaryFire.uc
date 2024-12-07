@@ -1,7 +1,7 @@
 //=============================================================================
-// E23PrimaryFire.
+// HMCSecondaryFire.
 //
-// Multi mode plasma fire for the E23
+// Either is a kill laser or a tractor/repulosr laser
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
@@ -19,13 +19,17 @@ var() bool	bDoOverCharge;
 //var() BUtil.FullSound	FireSoundLoop;
 var() sound		FireSoundLoop;
 var() sound		FireSoundLoopRed;
+var() sound		FireSoundLoopPush;
+var() sound		FireSoundLoopPull;
+var() sound		TractorStartSound;
+var() sound		RepulsorStartSound;
 var   int SoundAdjust;
 var   float		StopFireTime;
 var   Emitter          LaserDot;
 
 var Vector ZForce;
 
-simulated function SwitchWeaponMode (byte NewMode)
+/*simulated function SwitchWeaponMode (byte NewMode)
 {
 	switch(NewMode)
 	{
@@ -34,7 +38,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		case 2: GoToState('HealBeamMode'); break;
 		default: GoToState('');
 	}
-}
+}*/
 
 function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
 {
@@ -75,72 +79,95 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 
 state RepulsorBeamMode
 {
-// This is called to DoDamage to an actor found by this fire.
-// Adjsuts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
-{
-		local float				Dmg;
-		local class<DamageType>	HitDT;
-		local Actor				Victim;
-		local Vector			RelativeVelocity, ForceDir;
+	// This is called to DoDamage to an actor found by this fire.
+	// Adjsuts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
+	function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+	{
+			local float				Dmg;
+			local class<DamageType>	HitDT;
+			local Actor				Victim;
+			local Vector			RelativeVelocity, ForceDir;
 
-		Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
-		if (RangeAtten != 1.0)
-			Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-		//if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-			//Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
-		if (PenetrateCount > 0)
-			Dmg *= PDamageFactor ** PenetrateCount;
-		if (WallCount > 0)
-			Dmg *= WallPDamageFactor ** WallCount;
-		if (bUseRunningDamage)
-		{
-			RelativeVelocity = Instigator.Velocity - Other.Velocity;
-			Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
-		}
-	
-		if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None && Pawn(Victim).bProjTarget && Pawn(Victim).DrivenVehicle == None && (Pawn(Victim).Controller == None || !Pawn(Victim).Controller.SameTeamAs(Instigator.Controller)))
-		{
-			ForceDir = Normal(TraceStart-Other.Location);
-			if(Victim.Physics == PHYS_Falling)
+			Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
+			if (RangeAtten != 1.0)
+				Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
+			//if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
+				//Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
+			if (PenetrateCount > 0)
+				Dmg *= PDamageFactor ** PenetrateCount;
+			if (WallCount > 0)
+				Dmg *= WallPDamageFactor ** WallCount;
+			if (bUseRunningDamage)
 			{
-				ForceDir *= 0.3;
-				Pawn(Victim).AddVelocity((ZForce * 0.25) +Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
+				RelativeVelocity = Instigator.Velocity - Other.Velocity;
+				Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
+			}
+		
+			if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None && Pawn(Victim).bProjTarget && Pawn(Victim).DrivenVehicle == None && (Pawn(Victim).Controller == None || !Pawn(Victim).Controller.SameTeamAs(Instigator.Controller)))
+			{
+				ForceDir = Normal(TraceStart-Other.Location);
+				if(Victim.Physics == PHYS_Falling)
+				{
+					ForceDir *= 0.3;
+					Pawn(Victim).AddVelocity((ZForce * 0.25) +Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
+				}
+
+				else Pawn(Victim).AddVelocity( ZForce +  Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
 			}
 
-			else Pawn(Victim).AddVelocity( ZForce +  Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
-		}
+			class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+		//	Victim.TakeDamage(Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	}
 
-		class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
-	//	Victim.TakeDamage(Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	function DoFireEffect()
+	{
+		HMCBeamCannon(Weapon).ServerSwitchLaser(true);
+		if (!bLaserFiring)
+		{
+			if (HookPullForce < 0)
+				Weapon.PlayOwnedSound(TractorStartSound,BallisticFireSound.Slot,2.0,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+			else
+				Weapon.PlayOwnedSound(RepulsorStartSound,BallisticFireSound.Slot,2.0,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		}
+		bLaserFiring=true;
+		
+		if ( HookPullForce < 0)
+			Instigator.AmbientSound = FireSoundLoopPull;
+		else
+			Instigator.AmbientSound = FireSoundLoopPush;
+		
+		if (level.Netmode == NM_DedicatedServer)
+			HMCBeamCannon(BW).AddHeat(HeatPerShot);
+
+		super.DoFireEffect();
 	}
 }
 
 state HealBeamMode
 {
-// This is called to DoDamage to an actor found by this fire.
-// Adjsuts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
-{
-		local float				Dmg;
-		local class<DamageType>	HitDT;
-		local Actor				Victim;
-		local Pawn 			HealTarget;
+	// This is called to DoDamage to an actor found by this fire.
+	// Adjsuts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
+	function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+	{
+			local float				Dmg;
+			local class<DamageType>	HitDT;
+			local Actor				Victim;
+			local Pawn 			HealTarget;
 
-		Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
+			Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
 
-		HealTarget = Pawn(Other);
-			//bProjTarget is set False when a pawn is frozen in Freon.
-			if ( HealTarget != None && HealTarget.PlayerReplicationInfo != None && HealTarget.PlayerReplicationInfo.Team == Instigator.PlayerReplicationInfo.Team)
-			{
-				if (BallisticPawn(Other) != None)
-					BallisticPawn(HealTarget).GiveAttributedHealth(Dmg/HealReductionMult, HealTarget.SuperHealthMax, Instigator);
-				else HealTarget.GiveHealth(Dmg/HealReductionMult, HealTarget.SuperHealthMax);
-				return;
-			}
+			HealTarget = Pawn(Other);
+				//bProjTarget is set False when a pawn is frozen in Freon.
+				if ( HealTarget != None && HealTarget.PlayerReplicationInfo != None && HealTarget.PlayerReplicationInfo.Team == Instigator.PlayerReplicationInfo.Team)
+				{
+					if (BallisticPawn(Other) != None)
+						BallisticPawn(HealTarget).GiveAttributedHealth(Dmg/HealReductionMult, HealTarget.SuperHealthMax, Instigator);
+					else HealTarget.GiveHealth(Dmg/HealReductionMult, HealTarget.SuperHealthMax);
+					return;
+				}
 
-			class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
-	}
+				class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+		}
 }
 
 function InitEffects()
@@ -203,14 +230,14 @@ function DoFireEffect()
 		Instigator.AmbientSound = FireSoundLoop;
 	
 	if (level.Netmode == NM_DedicatedServer)
-		HMCBeamCannon(BW).AddHeat(0.02);
+		HMCBeamCannon(BW).AddHeat(HeatPerShot);
 
 	super.DoFireEffect();
 }
 
 function PlayFiring()
 {
-	HMCBeamCannon(BW).AddHeat(0.02);
+	HMCBeamCannon(BW).AddHeat(HeatPerShot);
 		
 	ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
@@ -277,7 +304,7 @@ simulated event ModeTick(float DT)
 		return;
 		
 	if (Instigator.PhysicsVolume.bWaterVolume)
-		HMCBeamCannon(Weapon).AddHeat(DT*8);
+		HMCBeamCannon(Weapon).AddHeat(DT*HeatPerShot*10);
 
 }
 
@@ -294,6 +321,10 @@ defaultproperties
      ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Loop'
      FireSoundLoop=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Loop'
      FireSoundLoopRed=Sound'BWBP_SKC_Sounds.BeamCannon.RedBeam-Loop'
+     FireSoundLoopPush=Sound'BWBP_SKC_Sounds.BeamCannon.HMC-RepulsorLoop'
+     FireSoundLoopPull=Sound'BWBP_SKC_Sounds.BeamCannon.HMC-TractorLoop'
+	 RepulsorStartSound=Sound'BWBP_SKC_Sounds.BeamCannon.HMC-RepulsorStart'
+	 TractorStartSound=Sound'BWBP_SKC_Sounds.BeamCannon.HMC-TractorStart'
      ZForce=(Z=225.000000)
      TraceRange=(Min=6000.000000,Max=6000.000000)
      Damage=6.000000

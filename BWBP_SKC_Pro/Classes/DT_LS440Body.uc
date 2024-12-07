@@ -21,7 +21,7 @@ defaultproperties
      MotionBlurDamageRange=20.000000
      MotionBlurFactor=2.000000
      DamageDescription=",Laser,"
-     WeaponClass=Class'BWBP_SKC_Pro.LS440Instagib'
+     WeaponClass=Class'BWBP_SKC_Pro.LS14Carbine'
      DeathString="Red pulses from %k's LS440 reduced %o to ash."
      FemaleSuicide="%o cannot use a carbine effectively."
      MaleSuicide="%o stinks at using laser carbines."

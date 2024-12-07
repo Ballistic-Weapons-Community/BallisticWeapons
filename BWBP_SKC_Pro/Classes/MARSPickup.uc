@@ -32,17 +32,17 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MARS.MARS2_Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MARS.MARS2PickupHi');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS2_Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS2PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the MARS-2 assault rifle."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS2_Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS2PickupHi'
      Physics=PHYS_None
 	 Drawscale=0.15
      CollisionHeight=4.000000

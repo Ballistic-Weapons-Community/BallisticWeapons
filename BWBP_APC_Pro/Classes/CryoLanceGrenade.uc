@@ -191,7 +191,7 @@ defaultproperties
      MomentumTransfer=0.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_MARSGrenadeIceRadius'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BWBP_CC_Static.CryoLance.Proj_IceFlak'
+     StaticMesh=StaticMesh'BWBP_APC_Static.CryoLance.Proj_IceFlak'
 	 DrawScale=0.200000
      bUnlit=False
      bIgnoreTerminalVelocity=True

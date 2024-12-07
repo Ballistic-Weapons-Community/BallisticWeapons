@@ -96,9 +96,9 @@ function Bomb(vector Target)
 	local bool Tractor;
 	local float temp;
 	local vector strace,vtemp;
-	local float TargetDist;
+  //local float TargetDist;
 	local vector normalis,tend;
-	local float vlast,sBombSpeed,coe;
+	local float coe; //vlast,sBombSpeed
 	
 	//here is the first calculation, there is a constance, you probably have to set, if you change the desired horizontal
 	//speed of your bomb
@@ -138,8 +138,8 @@ function Timer()
 {
 	local Controller C;
 	local Projectile myBomb;
-	local Vector NewVelocity,X,Y,Z;
-	local float  temppos,tempspeed,ttime,inaccuracy,vlast;
+  //local Vector NewVelocity,X,Y,Z;
+	local float  temppos,tempspeed,ttime; //inaccuracy,vlast
 
 	if (FRand() < 0.5)
 	{

@@ -151,7 +151,7 @@ simulated function bool HasUDamage()
 
 function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-    local float DriverEyeZ, TurretBottomZ, DriverHeight;
+  //local float DriverEyeZ, TurretBottomZ, DriverHeight;
 
 	Momentum = vect(0,0,0);
 
@@ -283,6 +283,7 @@ function InitTurretWeapon(Weapon Weap)
 	{
 		BallisticWeapon(Weap).MagAmmo = 			MagAmmoAmount;
 		BallisticWeapon(Weap).CurrentWeaponMode =	WeaponMode;
+		BallisticWeapon(Weap).ServerSwitchWeaponMode(WeaponMode);
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitTurretWeapon(self);
@@ -296,9 +297,13 @@ function InitUndeployedWeapon(Weapon Weap)
 	if (BallisticWeapon(Weap) != None)
 	{
 		//turrets now have different firemodes when (un)mounted, so we'll be setting params to the default from now on
-		//BallisticWeapon(Weap).CurrentWeaponMode =		WeaponMode;
-		BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		BallisticWeapon(Weap).MagAmmo =					MagAmmoAmount;
+		if (WeaponMode < BallisticWeapon(Weap).WeaponModes.length && !BallisticWeapon(Weap).WeaponModes[WeaponMode].bUnavailable)
+		{
+			BallisticWeapon(Weap).CurrentWeaponMode =		WeaponMode;
+			BallisticWeapon(Weap).ServerSwitchWeaponMode(WeaponMode);
+		}
+		//BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
@@ -1179,57 +1184,57 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 defaultproperties
 {
 	MinTurretEyeDepth=10
-     GunYawBounds=(Min=-16384.000000,Max=16384.000000)
-     GunPitchBounds=(Min=-8192.000000,Max=11000.000000)
-     CamYawBounds=(Min=-20000.000000,Max=20000.000000)
-     CamPitchBounds=(Min=-10000.000000,Max=14000.000000)
-     YawSpeed=40.000000
-     PitchSpeed=40.000000
-     GunYawSpeed=12000.000000
-     GunPitchSpeed=8192.000000
-     CamTrackYawSpeed=10000.000000
-     CamTrackPitchSpeed=10000.000000
-     CamYawSpeed=32768.000000
-     CamPitchSpeed=32768.000000
-     AbandonedPitch=-5000
-     TurretFOV=80.000000
-     CameraOffset=(X=-30.000000,Z=15.000000)
-     CameraElevation=15.000000
-     GunBone="Gun"
-     PivotBone="Pivot"
-     DriverOffset=(X=-40.000000)
-     DriverBackOff=20.000000
-     RightHandleBone="RightHandle"
-     LeftHandleBone="LeftHandle"
-     bRelativeExitPos=False
-     bDefensive=True
-     bRemoteControlled=True
-     bDesiredBehindView=False
-     DriveAnim="Idle_Rest"
-     VehicleNameString="Ballistic Turret"
-     MaxDesireability=2.000000
-     bIgnoreForces=True
-     bServerMoveSetPawnRot=False
-     bStationary=True
-     bNoTeamBeacon=True
-     BaseEyeHeight=10.000000
-     EyeHeight=10.000000
-     LandMovementState="PlayerTurreting"
-     WaterMovementState="PlayerTurreting"
-     bStasis=False
-     bIgnoreEncroachers=True
-     bReplicateInstigator=True
-     bNetInitialRotation=True
-     NetPriority=3.000000
-     bGameRelevant=True
-     SoundRadius=100.000000
-     TransientSoundVolume=1.000000
-     TransientSoundRadius=5000.000000
-     CollisionRadius=24.000000
-     CollisionHeight=22.000000
-     bCollideWorld=False
-     bBlockActors=False
-     bBlockZeroExtentTraces=False
-     bBlockNonZeroExtentTraces=False
-     bRotateToDesired=False
+	GunYawBounds=(Min=-16384.000000,Max=16384.000000)
+	GunPitchBounds=(Min=-8192.000000,Max=11000.000000)
+	CamYawBounds=(Min=-20000.000000,Max=20000.000000)
+	CamPitchBounds=(Min=-10000.000000,Max=14000.000000)
+	YawSpeed=40.000000
+	PitchSpeed=40.000000
+	GunYawSpeed=12000.000000
+	GunPitchSpeed=8192.000000
+	CamTrackYawSpeed=10000.000000
+	CamTrackPitchSpeed=10000.000000
+	CamYawSpeed=32768.000000
+	CamPitchSpeed=32768.000000
+	AbandonedPitch=-5000
+	TurretFOV=80.000000
+	CameraOffset=(X=-30.000000,Z=15.000000)
+	CameraElevation=15.000000
+	GunBone="Gun"
+	PivotBone="Pivot"
+	DriverOffset=(X=-40.000000)
+	DriverBackOff=20.000000
+	RightHandleBone="RightHandle"
+	LeftHandleBone="LeftHandle"
+	bRelativeExitPos=False
+	bDefensive=True
+	bRemoteControlled=True
+	bDesiredBehindView=False
+	DriveAnim="Idle_Rest"
+	VehicleNameString="Ballistic Turret"
+	MaxDesireability=2.000000
+	bIgnoreForces=True
+	bServerMoveSetPawnRot=False
+	bStationary=True
+	bNoTeamBeacon=True
+	BaseEyeHeight=10.000000
+	EyeHeight=10.000000
+	LandMovementState="PlayerTurreting"
+	WaterMovementState="PlayerTurreting"
+	bStasis=False
+	bIgnoreEncroachers=True
+	bReplicateInstigator=True
+	bNetInitialRotation=True
+	NetPriority=3.000000
+	bGameRelevant=True
+	SoundRadius=100.000000
+	TransientSoundVolume=1.000000
+	TransientSoundRadius=5000.000000
+	CollisionRadius=24.000000
+	CollisionHeight=22.000000
+	bCollideWorld=False
+	bBlockActors=False
+	bBlockZeroExtentTraces=False
+	bBlockNonZeroExtentTraces=False
+	bRotateToDesired=False
 }

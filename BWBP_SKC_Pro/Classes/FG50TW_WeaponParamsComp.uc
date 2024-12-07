@@ -2,6 +2,70 @@ class FG50TW_WeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {
+	//=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPriStandardEffectParams
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		Damage=80
+        HeadMult=1.75
+        LimbMult=0.85
+		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
+		PenetrateForce=150
+		PDamageFactor=0.800000
+		WallPDamageFactor=0.800000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=300.000000
+		Chaos=0.200000
+		WarnTargetPct=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPriStandardFireParams
+		TargetState="HEAmmo"
+		FireInterval=0.230000
+		FireEndAnim=
+		AimedFireAnim="SGCFireAimed"
+		FireAnimRate=2.400000	
+		FireEffectParams(0)=InstantEffectParams'ArenaPriStandardEffectParams'
+	End Object
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPriControlledEffectParams
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		Damage=80
+        HeadMult=1.75
+        LimbMult=0.85
+		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
+		PenetrateForce=150
+		PDamageFactor=0.800000
+		WallPDamageFactor=0.800000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=100.000000
+		Chaos=0.070000
+		WarnTargetPct=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2',Volume=7.100000,Pitch=1.000000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPriControlledFireParams
+		TargetState="HEAmmo"
+		FireInterval=0.600000
+		FireEndAnim=
+		AimedFireAnim="SGCFireAimed"
+		FireAnimRate=2.400000	
+		FireEffectParams(0)=InstantEffectParams'ArenaPriControlledEffectParams'
+	End Object
+		
+	//=================================================================
+	// RECOIL
+	//=================================================================
+	
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.100000
 		XCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=0.130000),(InVal=0.550000,OutVal=0.15000),(InVal=0.700000,OutVal=0.21000),(InVal=1.000000,OutVal=0.225000)))
@@ -13,7 +77,22 @@ defaultproperties
 		DeclineTime=1
 	End Object
 
+
+	//=================================================================
+	// AIM
+	//=================================================================
+	
 	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.7
+		AimSpread=(Min=0,Max=0)
+		AimDamageThreshold=2000.000000
+		ChaosDeclineTime=1.750000
+		ChaosSpeedThreshold=300
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+	End Object 
+	
+	Begin Object Class=AimParams Name=ArenaAimParams_Controlled
 		ADSMultiplier=0.7
 		AimSpread=(Min=0,Max=0)
 		AimDamageThreshold=2000.000000
@@ -54,7 +133,12 @@ defaultproperties
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		FireParams(0)=FireParams'ArenaPriControlledFireParams'
+		FireParams(2)=FireParams'ArenaPriStandardFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(2)=FireParams'ArenaSecondaryFireParams'
 		AimParams(0)=AimParams'ArenaAimParams'
+		AimParams(1)=AimParams'ArenaAimParams_Controlled'
     End Object 
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Bipod
@@ -70,6 +154,9 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Holosight",Slot=51,Scale=0f)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
+		AimParams(1)=AimParams'ArenaAimParams_Controlled'
+		FireParams(0)=FireParams'ArenaPriControlledFireParams'
+		FireParams(2)=FireParams'ArenaPriStandardFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 		AltFireParams(2)=FireParams'ArenaSecondaryFireParams'
     End Object 

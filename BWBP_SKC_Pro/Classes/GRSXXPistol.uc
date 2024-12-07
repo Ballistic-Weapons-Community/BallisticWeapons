@@ -12,6 +12,7 @@
 class GRSXXPistol extends BallisticHandgun;
 
 // Laser Vars
+var(GRSXX)	bool		bHasCombatLaser;
 var(GRSXX)	bool		bLaserOn;
 var(GRSXX)	LaserActor	Laser;
 var(GRSXX)	Emitter		LaserBlast;
@@ -45,24 +46,30 @@ replication
 		bLaserOn, LaserAmmo, bRemovableAmp, ClientSetHeat;
 }
 
-simulated event PreBeginPlay()
+
+simulated function OnWeaponParamsChanged()
 {
-	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasCombatLaser=true;
+	
+	if (InStr(WeaponParams.LayoutTags, "no_combat_laser") != -1)
 	{
-		FireModeClass[1]=Class'BWBP_SKC_Pro.GRSXXSecondaryAmpFire';
+		bHasCombatLaser=false;
+	}
+	if (InStr(WeaponParams.LayoutTags, "no_starting_amp") != -1)
+	{
+		bAmped=false;
+		GRSXXPrimaryFire(FireMode[0]).bAmped = false;
+		bRemovableAmp=true;
+		GRSXXPrimaryFire(FireMode[0]).bRemovableAmp = true;
 		BringUpSound.Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout';
 	}
-}
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+	if (InStr(WeaponParams.LayoutTags, "no_amp") != -1)
 	{
-		bAmped=False;
-		GRSXXPrimaryFire(FireMode[0]).bAmped = False;
-		bRemovableAmp=True;
-		GRSXXPrimaryFire(FireMode[0]).bRemovableAmp = True;
+		bAmped=false;
+		GRSXXPrimaryFire(FireMode[0]).bAmped = false;
 	}
 }
 
@@ -88,7 +95,7 @@ simulated event WeaponTick(float DT)
 	if (AmpCharge > 0)
 		AddHeat(-DrainRate * DT);
 	
-	if (GlowFX != None)
+	if (GlowFX != None && bHasCombatLaser)
 	{
 		GRSXXAmbientFX(GlowFX).SetReadyIndicator (FireMode[1]!=None && !FireMode[1].IsFiring() && level.TimeSeconds - GRSXXSecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo > 0);
 		if (FireMode[1]!=None && FireMode[1].IsFiring())
@@ -675,7 +682,8 @@ function byte BestMode()
 {
 	local Bot B;
 	local float Result, Dist;
-
+	if (!bHasCombatLaser)
+		return 0;
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
@@ -753,8 +761,8 @@ defaultproperties
 	ManualLines(1)="Projects a lethal laser beam. Does major damage and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing high damage. The GRS-XX is effective at close/mid range."
     SpecialInfo(0)=(Info="1200.0;65.0;4.0;150.0;2.0;2.0;1.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Glod.GRSXX-Select')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Glod.GRSXX-Select',Volume=0.219000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Cock',Volume=0.600000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipHit',Volume=0.700000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipOut')
@@ -765,9 +773,10 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 	WeaponModes(3)=(ModeName="Amplified: Hypermode",ModeID="WM_FullAuto",bUnavailable=True)
 	bNoCrosshairInScope=True
-	ParamsClasses(0)=Class'GRSXXPistolWeaponParamsArena'
+	ParamsClasses(0)=Class'GRSXXWeaponParamsArena'
 	ParamsClasses(1)=Class'GRSXXWeaponParamsClassic'
 	ParamsClasses(2)=Class'GRSXXWeaponParamsRealistic'
+	ParamsClasses(3)=Class'GRSXXWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.GRSXXPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.GRSXXSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize2=256,VSize2=256,Color1=(B=12,G=108,R=157,A=163),Color2=(B=255),StartSize1=79,StartSize2=124)
@@ -796,7 +805,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_GRSXX'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.GRSXX_FPm'
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=128.000000

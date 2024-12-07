@@ -27,6 +27,11 @@ simulated function OnWeaponParamsChanged()
 		bShowChargingBar=True;
 	}
 	
+	if (InStr(WeaponParams.LayoutTags, "raffica") != -1)
+	{
+		SupportHandBone = 'l_upperarm';
+	}
+	
 }
 
 // Gauss Stuff ==================================
@@ -198,12 +203,12 @@ defaultproperties
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic pistol fire. Good strength and low recoil."
 	SpecialInfo(0)=(Info="240.0;12.0;1.50;80.0;0.4;0.2;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Cock',Volume=300.500000)
-    ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-SlideBack',Volume=1.500000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-ClipOut',Volume=300.500000)
-    ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-ClipIn',Volume=300.500000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Cock',Volume=0.800000)
+    ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-SlideBack',Volume=0.800000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-ClipOut',Volume=0.800000)
+    ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-ClipIn',Volume=0.800000)
     ClipInFrame=0.650000
     WeaponModes(1)=(ModeName="Burst of Three",bUnavailable=True)
     WeaponModes(2)=(ModeName="Burst of Six",bUnavailable=True,ModeID="WM_BigBurst",Value=6.000000)
@@ -253,6 +258,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_T9CNRC'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.T9CNRC_FPm'
 	DrawScale=0.300000
 }

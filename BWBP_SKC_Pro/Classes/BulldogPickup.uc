@@ -55,6 +55,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.M806.M806Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.BullDogPickupHi'
      Physics=PHYS_None
-     DrawScale=10.000000
+     DrawScale=4.000000
      CollisionHeight=4.000000
 }

@@ -11,7 +11,8 @@ defaultproperties
      DrawType=DT_Mesh
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
-	 RelativeRotation=(Roll=16384)
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FMDLeft_TPm'
-     DrawScale=0.200000
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FMDLeft_TPM'
+     DrawScale=0.250000
+	 RelativeLocation=(X=-1.000000,Y=-2.000000,Z=-1.750000)
+	 RelativeRotation=(Pitch=-1500,Roll=16384,Yaw=-800)	
 }

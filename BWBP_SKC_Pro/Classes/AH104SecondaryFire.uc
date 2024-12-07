@@ -176,7 +176,7 @@ defaultproperties
 	FireChaos=0.050000
 	bPawnRapidFireAnim=True
 	FireRate=0.050000
-	AmmoClass=Class'BallisticProV55.Ammo_FlamerGas'
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_AH104Flamer'
 	AmmoPerFire=0
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.350000)
 	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameDryFire',Volume=1.350000)

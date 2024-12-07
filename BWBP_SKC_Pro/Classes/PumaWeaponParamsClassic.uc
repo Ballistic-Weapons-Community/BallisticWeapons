@@ -173,6 +173,7 @@ defaultproperties
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=6
+		ViewOffset=(X=5,Y=5,Z=-1.5)
 		//ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
 		//SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)

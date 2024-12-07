@@ -671,7 +671,10 @@ state Zap
 					else if (Mover(Other) == None)
 					{
 						bHitWall = true;
+					if (HitMaterial != None)
 						SendFireEffect(Other, HitLocation, HitNormal, HitMaterial.SurfaceType);
+					else
+						SendFireEffect(Other, HitLocation, HitNormal, 6);
 						break;
 					}
 				}

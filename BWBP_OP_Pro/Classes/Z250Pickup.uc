@@ -31,13 +31,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250_static_test_01'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250PickupLo'
      PickupDrawScale=0.800000
      InventoryType=Class'BWBP_OP_Pro.Z250Minigun'
      RespawnTime=20.000000
      PickupMessage="You picked up the Z250 minigun."
      PickupSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250_static_test_01'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.800000

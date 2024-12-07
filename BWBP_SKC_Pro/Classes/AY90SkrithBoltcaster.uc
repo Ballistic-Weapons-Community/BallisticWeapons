@@ -536,10 +536,11 @@ defaultproperties
      bWT_RapidProj=True
      bWT_Energy=True
      SpecialInfo(0)=(Info="300.0;25.0;1.5;85.0;0.6;0.6;0.6")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
+	 BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout',Volume=0.220000) 
+	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.225000)
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
+	 bNoCrosshairInScope=True
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
      ClipInFrame=0.700000
      bNonCocking=True
@@ -586,7 +587,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SkrithCrossbow'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.AY90_FPm'
      DrawScale=0.3000
      bFullVolume=True
      SoundVolume=255

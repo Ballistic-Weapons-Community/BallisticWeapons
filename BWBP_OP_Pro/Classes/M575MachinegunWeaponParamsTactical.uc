@@ -12,6 +12,8 @@ defaultproperties
 		DecayRange=(Min=2625,Max=6300) // 50-120m
 		RangeAtten=0.75
 		Damage=55 // 7.62 NATO
+        HeadMult=3.25
+        LimbMult=0.75
 		DamageType=Class'BWBP_OP_Pro.DTM575MG'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'

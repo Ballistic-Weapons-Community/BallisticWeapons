@@ -762,8 +762,8 @@ defaultproperties
      ManualLines(1)="Engages the chainsaw. This weapon deals high sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
      ManualLines(2)="All of this weapon's modes have the potential to inflict damage to the wielder. Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will consume the user's soul, dealing significant backlash damage.||With full soul power, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soul power will drain over time.||Very effective at close and medium range."
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Pullout',Volume=0.210000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Putaway',Volume=0.207000)
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemOut',Volume=0.700000)
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemIn',Volume=0.700000)
@@ -812,7 +812,7 @@ defaultproperties
      LightSaturation=64
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_DarkStar'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.DarkStar_FPm'
      DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BW_Core_WeaponTex.DarkStar.DarkStar-Shiny'

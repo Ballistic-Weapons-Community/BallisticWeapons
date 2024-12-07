@@ -13,8 +13,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=45.0
-		HeadMult=2.27
-		LimbMult=0.67
+		HeadMult=2.25
+		LimbMult=0.65
 		PenetrationEnergy=18.000000
 		PenetrateForce=55
 		bPenetrate=True
@@ -46,8 +46,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=45.0
-		HeadMult=2.266666
-		LimbMult=0.666666
+		HeadMult=2.25
+		LimbMult=0.65
 		PenetrationEnergy=18.000000
 		PenetrateForce=55
 		bPenetrate=True
@@ -79,10 +79,10 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=145.0 //
-		HeadMult=2.266666
-		LimbMult=0.666666
-		PenetrationEnergy=48.000000 //
-		PenetrateForce=155 //
+		HeadMult=2.25
+		LimbMult=0.65
+		PenetrationEnergy=150.000000 //
+		PenetrateForce=300 //
 		bPenetrate=True
 		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
@@ -177,7 +177,7 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.3
+		SightingTime=0.4
 		MagAmmo=100
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
@@ -198,6 +198,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=33,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-48,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//Stats
 		PlayerSpeedFactor=0.900000
 		InventorySize=8
@@ -206,8 +208,8 @@ defaultproperties
 		MagAmmo=30
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
-		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
-		ZoomType=ZT_Logarithmic
+		SightOffset=(X=-5.000000,Y=0.0000,Z=1.950000)
+		ZoomType=ZT_Irons
 		WeaponName="Mk 88 5.56mm Squad Automatic Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams_AR'
@@ -231,7 +233,7 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.3
+		SightingTime=0.4
 		MagAmmo=30
 		bMagPlusOne=True
 		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)

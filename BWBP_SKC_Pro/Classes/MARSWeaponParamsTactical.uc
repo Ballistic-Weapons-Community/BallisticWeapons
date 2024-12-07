@@ -31,7 +31,7 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.66
-		Recoil=150.000000
+		Recoil=180.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-Fire',Pitch=1.250000,Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -59,10 +59,10 @@ defaultproperties
 		Inaccuracy=(X=32,Y=32)
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.66
-		Recoil=150.000000
+		Recoil=180.000000
 		Chaos=0.02000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-Fire',Pitch=1.250000,Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_CQC
@@ -230,7 +230,7 @@ defaultproperties
 		LayoutName="NV + Smoke"
 		LayoutTags="NV,tracker"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
 		//Function
@@ -238,7 +238,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
-		SightOffset=(X=6.50,Y=0.01,Z=3.8)
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom
@@ -257,13 +257,13 @@ defaultproperties
 		LayoutName="Sensor"
 		LayoutTags="always_track_sensor"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 		//Function
 		InventorySize=6
 		DisplaceDurationMult=1
 		MagAmmo=30
 		// ADS handling
-		SightOffset=(X=6.50,Y=0.01,Z=3.8)
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.4	
 		// Zoom
@@ -281,12 +281,13 @@ defaultproperties
 		Weight=30
 		LayoutName="Holo + Ice"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.6
-		SightingTime=0.35
+		SightingTime=0.32
 		DisplaceDurationMult=1
 		MagAmmo=30
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_CQC'
@@ -295,9 +296,9 @@ defaultproperties
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Ice'
     End Object 	
 
-	Layouts(0)=TacticalParams_Smoker
-	Layouts(1)=TacticalParams_Sensor
-    Layouts(2)=TacticalParams_Holosight
+	//Layouts(0)=TacticalParams_Smoker
+	//Layouts(1)=TacticalParams_Sensor
+    Layouts(0)=TacticalParams_Holosight
 	
 	
 	//Camos =========================================

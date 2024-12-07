@@ -27,7 +27,7 @@ defaultproperties
 		Chaos=0.150000
 		Inaccuracy=(X=256,Y=256)
 		WarnTargetPct=0.200000	
-		Heat=4.5
+		Heat=3.0
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Triple
@@ -59,7 +59,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Fire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=270.000000
 		Chaos=0.150000
-		Inaccuracy=(X=256,Y=256)
+		Inaccuracy=(X=6,Y=6)
 		WarnTargetPct=0.200000	
 		Heat=1.5
 	End Object
@@ -98,6 +98,7 @@ defaultproperties
 		Chaos=0.050000
 		Inaccuracy=(X=12,Y=6)
 		WarnTargetPct=0.200000	
+		Heat=0.3
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -110,7 +111,7 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_Green
-		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk66ProjectileSmall'
+		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk5ProjectileSmall_Green'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 		Speed=200.000000
 		MaxSpeed=2000000.000000
@@ -127,11 +128,12 @@ defaultproperties
 		Recoil=100.000000
 		Chaos=0.050000
 		Inaccuracy=(X=12,Y=6)
-		WarnTargetPct=0.200000	
+		WarnTargetPct=0.200000
+		Heat=0.3	
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Green
-		FireInterval=0.160000
+		FireInterval=0.180000
 		BurstFireRateFactor=1.00
 		FireAnim="Fire"
 		AimedFireAnim="SightFire"
@@ -180,15 +182,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Proto
-		LayoutName="MK1 Unstable"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MainProto",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MiscProto",Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4)
-		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5)
+		//Layout
+		LayoutName="MK1 Testbed"
+		AllowedCamos(0)=0
 		Weight=10
-		
+		//Stats
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
 		InventorySize=11
@@ -203,20 +201,17 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_DX
-		LayoutName="MK3 Mainline"
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-Main",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-Misc",Index=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4)
-		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5)
+		//Layout
+		LayoutName="MK3 Tripleshot"
+		AllowedCamos(0)=1
 		Weight=30
-		
+		//Stats
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.65000
+		SightPivot=(Pitch=256)
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -225,14 +220,17 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout
 		LayoutName="MK5 Focused"
+		AllowedCamos(0)=2
 		Weight=10
-		
+		//Stats
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.65000
+		SightPivot=(Pitch=256)
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -241,20 +239,19 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Military
+		//Layout
 		LayoutName="E55 Plasma Cannon"
+		LayoutTags="milspec"
+		AllowedCamos(0)=3
 		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MainBlack",Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MiscBlack",Index=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4)
-		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5)
-		
-		PlayerSpeedFactor=0.800000
-		PlayerJumpFactor=0.700000
+		//Stats
+		MagAmmo=50 //
+		PlayerSpeedFactor=0.850000 //
+		PlayerJumpFactor=0.850000 //
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.65000
+		SightingTime=0.55000 //
+		SightPivot=(Pitch=256)
 		//SightOffset=(X=-12.000000,Y=-0.200000,Z=17.300000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -266,6 +263,52 @@ defaultproperties
 	Layouts(1)=WeaponParams'ClassicParams_DX' //Mk2 - Green spread shot
 	Layouts(2)=WeaponParams'ClassicParams' //Mk5 - Red single shot
 	Layouts(3)=WeaponParams'ClassicParams_Military' //Military - Black, clip, red single shot
-
-
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=HVPC_Proto
+		Index=0
+		CamoName="Prototype"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.HVPC.HVPC-MainProto",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.HVPC.HVPC-MiscProto",Index=2,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,AIndex=2,PIndex=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4,AIndex=3,PIndex=4)
+		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5,AIndex=-1,PIndex=5)
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=HVPC_DeusEx
+		Index=1
+		CamoName="Green Core"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.HVPC.HVPCCamos.HVPC-Main",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.HVPC.HVPCCamos.HVPC-Misc",Index=2,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=3,AIndex=2,PIndex=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4,AIndex=3,PIndex=4)
+		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5,AIndex=-1,PIndex=5)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=HVPC_Standard
+		Index=2
+		CamoName="Red Core"
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=HVPC_Black
+		Index=3
+		CamoName="Mil-Spec"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.HVPC.HVPC-MainBlack",Index=1,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.HVPC.HVPC-MiscBlack",Index=2,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=3,AIndex=2,PIndex=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4,AIndex=3,PIndex=4)
+		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5,AIndex=-1,PIndex=5)
+		Weight=3
+	End Object
+	
+	Camos(0)=WeaponCamo'HVPC_Proto'
+	Camos(1)=WeaponCamo'HVPC_DeusEx'
+	Camos(2)=WeaponCamo'HVPC_Standard'
+	Camos(3)=WeaponCamo'HVPC_Black'
 }

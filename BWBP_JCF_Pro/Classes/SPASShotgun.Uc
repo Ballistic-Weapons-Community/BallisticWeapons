@@ -9,13 +9,18 @@
 class SPASShotgun extends BallisticProShotgun;
 
 
+var()	bool		bIsSlug;
 
-simulated event PreBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PreBeginPlay();
-	if (!class'BallisticReplicationInfo'.static.IsArena() )
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bIsSlug=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
 	{
-		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
+		bIsSlug=true;
 	}
 }
 
@@ -29,8 +34,8 @@ function byte BestMode()
 	local float Dist;
 	local Vector Dir;
 
-	if (!class'BallisticReplicationInfo'.static.IsArena())
-		return 0;
+	if (bNoaltfire)
+		return 0;	
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
@@ -112,12 +117,12 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_JCF_Tex.SPAS.BigIcon_SPAS'
      bWT_Shotgun=True
      SpecialInfo(0)=(Info="240.0;30.0;1.5;100.0;0.0;2.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
      MagAmmo=10
-     CockSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Cock',Volume=0.800000)
+     CockSound=(Sound=Sound'BWBP_JCF_Sounds.SPAS.SPAS-Cock',Volume=0.800000)
      ReloadAnim="ReloadLoop"
-     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-ShellIn')
+     ClipInSound=(Sound=Sound'BWBP_JCF_Sounds.SPAS.SPAS-Insert')
      ClipInFrame=0.375000
      bCockOnEmpty=True
      bCanSkipReload=True
@@ -134,14 +139,14 @@ defaultproperties
      LongGunPivot=(Pitch=4500,Yaw=-8000)
 	 bNoCrosshairInScope=True
 	 Bobdamping=2.35
-     FireModeClass(0)=Class'BWBP_JCF_Pro.SPASSecondaryFire'
-     FireModeClass(1)=Class'BWBP_JCF_Pro.SPASPrimaryFire'
+     FireModeClass(0)=Class'BWBP_JCF_Pro.SPASPrimaryFire'
+     FireModeClass(1)=Class'BWBP_JCF_Pro.SPASSecondaryFire'
      PutDownTime=0.500000
      AIRating=0.600000
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=121,G=123,R=125,A=177),Color2=(B=21,G=23,R=27,A=255),StartSize1=32,StartSize2=96)
 	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
      CurrentRating=0.600000
-     Description="SPAS-12 Shotgun||Manufacturer: Classic Weapons Industries|Primary: Pump Shot|Secondary: Semi-Auto Shot||The SPAS is another well known firearm brought back to life by Classic Weapons Industries. A highly accurate 12-gauge shotgun, the 8 shell SPAS 12 was originally produced by Franchi in the pre-war period. It was a formidible dual-mode shotgun that could be fired in both semi-automatic and pump-action firemodes. CWI has worked to improve this venerable classic and has overhauled the original pump action firemode for improved accuracy and range. Users have the option of quickly switching between these modes to deal with different tactical situations. Comes with a variety of pre-war attachments for all your shooting needs."
+     Description="SP-12 Shotgun||Manufacturer: Classic Weapons Industries|Primary: Pump Shot|Secondary: Semi-Auto Shot||The SP is  well known firearm brought back to life by Classic Weapons Industries. A highly accurate 12-gauge shotgun, the 8 shell SP 2 was originally produced by Enravion in the pre-war period. It was a formidible dual-mode shotgun that could be fired in both semi-automatic and pump-action firemodes. CWI has worked to improve this venerable classic and has overhauled the original pump action firemode for improved accuracy and range. Users have the option of quickly switching between these modes to deal with different tactical situations. Comes with a variety of pre-war attachments for all your shooting needs."
      Priority=36
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=7
@@ -163,7 +168,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'SPASShotgunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'SPASShotgunWeaponParamsRealistic'
      ParamsClasses(3)=Class'SPASShotgunWeaponParamsTactical'
-	 Mesh=SkeletalMesh'BWBP_JCF_Anims.FPm_Spas'
+	 Mesh=SkeletalMesh'BWBP_JCF_Anims.SPAS_FPm'
      DrawScale=1.000000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

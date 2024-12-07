@@ -167,6 +167,7 @@ defaultproperties
 	WeaponClass=class'AS50Rifle'
      AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
      MuzzleFlashClass=class'M925FlashEmitter'
+	 FlashScale=0.700000
      ImpactManager=Class'IM_IncendiaryBullet'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
      TracerMode=MU_Secondary
@@ -178,15 +179,14 @@ defaultproperties
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
-     ReloadAnimRate=0.700000
-     CockAnimRate=0.700000
+     ReloadAnimRate=0.500000
+     CockAnimRate=0.665000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_TPm'
      RelativeLocation=(X=1.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
      PrePivot=(Z=-1.000000)
      Skins(0)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'
      Skins(1)=Texture'BWBP_SKC_Tex.FSG50.FSG-Scope'
-     Skins(2)=Texture'BW_Core_WeaponTex.A73.A73Energy'
-     Skins(3)=Texture'BWBP_SKC_Tex.FSG50.FSG-Misc'
-     Skins(4)=Texture'BWBP_SKC_Tex.FSG50.FSG-Stock'
+     Skins(2)=Texture'BWBP_SKC_Tex.FSG50.FSG-Misc'
+     Skins(3)=Texture'BWBP_SKC_Tex.FSG50.FSG-Stock'
 }

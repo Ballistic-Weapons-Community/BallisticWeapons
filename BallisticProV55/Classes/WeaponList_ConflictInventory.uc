@@ -16,7 +16,7 @@ defaultproperties
 	PresetName[4]="Sniper"
 	SavedInventory[0]="BallisticProV55.M50AssaultRifle|BallisticProV55.D49Revolver|BallisticProV55.X3Knife|BallisticProV55.NRP57Grenade"
 	SavedInventory[1]="BallisticProV55.XK2Submachinegun|BWBP_SKC_Pro.SK410Shotgun|BallisticProV55.X4Knife|BWBP_SKC_Pro.ICISStimpack"
-	SavedInventory[2]="BallisticProV55.A73SkrithRifle|BWBP_SKC_Pro.A49SkrithBlaster|BallisticProV55.A909SkrithBlades|BWBP_SWC_Pro.A51Grenade"
+	SavedInventory[2]="BallisticProV55.A73SkrithRifle|BWBP_SKC_Pro.A49SkrithBlaster|BallisticProV55.A909SkrithBlades|BallisticProV55.M58Grenade"
 	SavedInventory[3]="BallisticProV55.M353Machinegun|BWBP_OP_Pro.PD97Bloodhound|BallisticProV55.M806Pistol|BWBP_OP_Pro.L8GIAmmoPack"
 	SavedInventory[4]="BallisticProV55.R78Rifle|BallisticProV55.GRS9Pistol|BallisticProV55.X3Knife|BallisticProV55.M58Grenade"
 	SavedCamo[0]="0|0|0|0"

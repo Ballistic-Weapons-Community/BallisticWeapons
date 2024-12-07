@@ -17,7 +17,7 @@ defaultproperties
 	FlashScale=0.100000
 	BrassMode=MU_None
 	ReloadAnim="Reload_MG"
-	ReloadAnimRate=1.50000
+	ReloadAnimRate=1.950000
 	bRapidFire=True
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A73_TPm'
 	DrawScale=1.700000

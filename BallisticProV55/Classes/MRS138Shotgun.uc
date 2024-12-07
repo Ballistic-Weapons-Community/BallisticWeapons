@@ -84,6 +84,19 @@ simulated function KillTazer()
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 {
+	if (Anim == ZoomInAnim)
+	{
+		SightingState = SS_Active;
+		ScopeUpAnimEnd();
+		return;
+	}
+	else if (Anim == ZoomOutAnim)
+	{
+		SightingState = SS_None;
+		ScopeDownAnimEnd();
+		return;
+	}
+	
 	if (anim == FireMode[0].FireAnim || (anim == FireMode[1].FireAnim && !FireMode[1].IsFiring()))
 		bPreventReload=false;
 		
@@ -102,6 +115,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
 	{
 		AnimBlendParams(1, 0);
+		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
@@ -126,6 +140,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
     }
 	// End stuff from Engine.Weapon
 
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
+		return;
+
 	// Start Shovel ended, move on to Shovel loop
 	if (ReloadState == RS_StartShovel)
 	{
@@ -136,7 +154,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= WeaponParams.MagAmmo || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -435,13 +453,13 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
 	ReloadAnim="ReloadLoop"
 	PutDownTime=0.35
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	PutDownAnimRate=1.5
 	Priority=36
 	PlayerViewOffset=(X=10.00,Y=6.00,Z=-7.00)
 	SightOffset=(X=-6,Z=2.1)
 	PickupClass=Class'BallisticProV55.MRS138Pickup'
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRS'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRS138_FPm'
 	MeleeFireClass=Class'BallisticProV55.MRS138MeleeFire'
 	ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. The attack inflicts more damage from behind. Inflicts a medium-duration blind upon enemies when impacting and knocks them away from the user.||Weapon Function engages a flashlight which illuminates dark areas.||This weapon is extremely effective at close range."
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing low sustained damage but slowing the enemy movement."
@@ -481,7 +499,7 @@ defaultproperties
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Cock',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-ShellIn')
 	ClipInFrame=0.375000
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRS138'
 	BigIconCoords=(Y1=36,Y2=230)
 	

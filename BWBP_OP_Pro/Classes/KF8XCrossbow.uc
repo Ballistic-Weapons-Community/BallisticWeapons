@@ -91,6 +91,11 @@ simulated function PlayReload()
 //rotate drum, notify that we've done so
 simulated function RotateClip()
 {
+	if (MagAmmo > 7)
+	{
+		bNeedRotate=false;
+		return;
+	}
 	//65536 = 360 degrees
 	//each cock sets the mag bone rotation by 4 degrees depending on the MagAmmo
 	MagBoneRotation.Roll = -4 * (8-MagAmmo) * (65536/360);
@@ -179,10 +184,10 @@ simulated event WeaponTick(float DT)
 	BestAim = 0.995;
 	Targ = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
 
-    if (!FastTrace(Targ.Location, Instigator.Location))
+    if (Targ != None && !FastTrace(Targ.Location, Instigator.Location))
         Targ = None;
 
-    if (Targ != Target)
+    if (Targ != None && Targ != Target)
     {
         Target = Targ;
         TargetTime = 0;
@@ -516,14 +521,14 @@ defaultproperties
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	BigIconMaterial=Texture'BWBP_OP_Tex.XBow.BigIcon_Crossbow'
 	IdleTweenTime=0.000000
-	
+	bNonCocking=True
 	bWT_Bullet=True
 	ManualLines(0)="Launches a toxic crossbow bolt. This attack has a long fire interval and moderate damage, but is almost invisible and makes no sound. As such, it is very difficult to detect."
 	ManualLines(1)="Raises the scope."
 	ManualLines(2)="Effective at long range. Excels at stealth."
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.220000)
 	CockAnim='CockRotateMag'
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
@@ -552,7 +557,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.800000
 	CurrentRating=0.800000
-	bShowChargingBar=True
+	bShowChargingBar=false
 	Description="Crossbows have long since been phased out in the battlefield; they're reserved only for hunters or specialist groups across the several galaxies. It wasn't until the exploits of one Billy “Hambo” Hale that they began to pick up popularity again. He claimed he managed to take down a group of Skrith when they weren't looking during an expedition of the reclaimed Amazon.  Using only his wits, some tranquilizer bolts and his crossbow, Hambo's tale had created a surge in the crossbow market, with Enravion taking the lead with their KF-8X Crossbow model. A magazine fed crossbow that's pump action, it comes with a modular scope and poison bolts.  Originally it was supposed to have a built-in stealth generator courtesy of XWI, but it was soon removed after reports of several users becoming violently unhinged after prolonged exposure."
 	Priority=24
 	HudColor=(B=150,G=150,R=150)
@@ -570,7 +575,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Crossbow'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.KF8X_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.XBow.XBow_SH1'

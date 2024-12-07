@@ -11,11 +11,12 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//.44 comp
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=9000.000000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
-		RangeAtten=0.67
-		Damage=55 // .44
+		RangeAtten=0.67 //+.17
+		Damage=55
         HeadMult=2.5
         LimbMult=0.75
 		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
@@ -25,10 +26,10 @@ defaultproperties
 		PenetrateForce=200
 		bPenetrate=True
 		PushbackForce=150.000000
-		Inaccuracy=(X=16,Y=16)
+		Inaccuracy=(X=16,Y=16) //+56
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-		FlashScaleFactor=0.5
-		Recoil=1536.000000
+		FlashScaleFactor=0.4
+		Recoil=1436.000000 //-100
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -36,13 +37,14 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.5000
+		FireInterval=0.3000 //.5
 		FireAnimRate=0.9
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 
+	//.44
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_208
 		TraceRange=(Min=7500.000000,Max=7500.000000)
         DecayRange=(Min=1050,Max=3150) // 20-60m
@@ -68,10 +70,42 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_208
-		FireInterval=0.500000
+		FireInterval=0.300000
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_208'
+	End Object
+
+	//.50
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_50
+		TraceRange=(Min=7500.000000,Max=7500.000000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.5
+		Damage=65 //+10
+        HeadMult=3.0
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
+        PenetrationEnergy=48
+		PenetrateForce=200
+		bPenetrate=True
+		PushbackForce=150.000000
+		Inaccuracy=(X=72,Y=72)
+		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
+		FlashScaleFactor=0.5
+		Recoil=1736.000000 //+200
+		Chaos=0.350000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Eagle.Eagle50-Fire',Volume=5.500000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_50
+		FireInterval=0.350000 //+.05
+		FireEndAnim=
+		AimedFireAnim='SightFire'	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_50'
 	End Object
 
 	//=================================================================
@@ -89,7 +123,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
 	End Object
 	
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_208
@@ -105,7 +139,7 @@ defaultproperties
         DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
     End Object
 
 	//=================================================================
@@ -137,14 +171,14 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Scope
 		//Layout core
-		LayoutName="Scoped Marksman"
+		LayoutName=".44 Marksman"
 		Weight=10
 		bDualBlocked=True
 
 		//Function
 		InventorySize=4
 		DisplaceDurationMult=0.75
-		MagAmmo=7
+		MagAmmo=8
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
@@ -169,8 +203,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_RDS
 		//Layout core
-		LayoutName="Red Dot Sight"
-		Weight=30
+		LayoutName=".44 RDS"
+		Weight=10
 		bDualBlocked=True
 		
 		//Attachments
@@ -178,15 +212,19 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+
+		// ADS handling
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.2
+		
+		//Zoom
 		SightOffset=(X=-11,Y=0,Z=2.78)
 		ZoomType=ZT_Irons
 		
 		//Function
 		InventorySize=3
-        SightMoveSpeedFactor=0.6
-		SightingTime=0.25
 		DisplaceDurationMult=0.5
-		MagAmmo=7
+		MagAmmo=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'
         AimParams(0)=AimParams'TacticalAimParams_208'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_208'
@@ -194,7 +232,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Laser
 		//Layout core
-		LayoutName="Laser Sight"
+		LayoutName=".44 Laser"
 		LayoutTags="laser"
 		Weight=30
 		bDualBlocked=True
@@ -204,23 +242,57 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+
+		// ADS handling
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.2
+		
+		//Zoom
 		SightOffset=(X=-11,Y=0,Z=1.39)
 		ZoomType=ZT_Irons
 		
 		//Function
 		InventorySize=3
-        SightMoveSpeedFactor=0.6
-		SightingTime=0.25
 		DisplaceDurationMult=0.5
-		MagAmmo=7
+		MagAmmo=8
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'
 		AimParams(0)=AimParams'TacticalAimParams_208'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_208'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=TacticalParams_50
+		//Layout core
+		LayoutName=".50"
+		Weight=10
+		bDualBlocked=True
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Compensator",Slot=56,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=57,Scale=0f)
+
+		// ADS handling
+        SightMoveSpeedFactor=0.6
+		SightingTime=0.2
+		
+		//Zoom
+		SightOffset=(X=-11,Y=0,Z=1.39)
+		ZoomType=ZT_Irons
+		
+		//Function
+		InventorySize=3
+		DisplaceDurationMult=0.5
+		MagAmmo=7
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_208'
+		AimParams(0)=AimParams'TacticalAimParams_208'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_50'
+	End Object
+	
     Layouts(0)=WeaponParams'TacticalParams_Laser'
     Layouts(1)=WeaponParams'TacticalParams_RDS'
     Layouts(2)=WeaponParams'TacticalParams_Scope'
+    Layouts(3)=WeaponParams'TacticalParams_50'
 	
 	//Camos ====================================
 	Begin Object Class=WeaponCamo Name=Eagle_Silver
@@ -230,7 +302,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc',Index=2,AIndex=2,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope',Index=3,AIndex=3,PIndex=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed',Index=3,AIndex=3,PIndex=2)
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front',Index=4,AIndex=4,PIndex=1)
 		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=5,AIndex=5,PIndex=-1)
 	End Object
@@ -240,10 +312,10 @@ defaultproperties
 		CamoName="Black"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-BlackShine',Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack',Index=2,AIndex=2,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope',Index=3,AIndex=3,PIndex=2)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack',Index=4,AIndex=4,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-BlackShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-MiscBlack",Index=2,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-Scope",Index=3,AIndex=3,PIndex=2)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-FrontBlack",Index=4,AIndex=4,PIndex=1)
 		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5,AIndex=5,PIndex=-1)
 	End Object
 	
@@ -252,10 +324,10 @@ defaultproperties
 		CamoName="Two-Tone"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-TwoToneShine',Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack',Index=2,AIndex=2,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope',Index=3,AIndex=3,PIndex=2)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack',Index=4,AIndex=4,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-TwoToneShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-MiscBlack",Index=2,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-Scope",Index=3,AIndex=3,PIndex=2)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-FrontBlack",Index=4,AIndex=4,PIndex=1)
 		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5,AIndex=5,PIndex=-1)
 	End Object
 	
@@ -264,10 +336,10 @@ defaultproperties
 		CamoName="Chromed"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SilverShine',Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack',Index=2,AIndex=2,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed',Index=3),AIndex=3,PIndex=2)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver',Index=4,AIndex=4,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-SilverShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc',Index=2,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed',Index=3,AIndex=3,PIndex=2)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-FrontSilver",Index=4,AIndex=4,PIndex=1)
 		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5,AIndex=5,PIndex=-1)
 	End Object
 	
@@ -278,7 +350,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-MainGold-Shine",Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-MagGold-Shine",Index=2,AIndex=2,PIndex=-1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed',Index=3,AIndex=3,PIndex=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-ScopeGold",Index=3,AIndex=3,PIndex=2)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.EagleCamos.Eagle-FrontGold-Shine",Index=4,AIndex=4,PIndex=1)
 		WeaponMaterialSwaps(5)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen',Index=5,AIndex=5,PIndex=-1)
 	End Object

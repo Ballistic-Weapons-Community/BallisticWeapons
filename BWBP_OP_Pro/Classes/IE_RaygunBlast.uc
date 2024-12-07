@@ -33,7 +33,7 @@ defaultproperties
          UseColorScale=True
          FadeOut=True
          RespawnDeadParticles=False
-         ZTest=False
+         ZTest=True
          UseSizeScale=True
          UseRegularSizeScale=False
          UniformSize=True
@@ -149,7 +149,7 @@ defaultproperties
          FadeOut=True
          FadeIn=True
          RespawnDeadParticles=False
-         ZTest=False
+         ZTest=True
          UseSizeScale=True
          UseRegularSizeScale=False
          UniformSize=True

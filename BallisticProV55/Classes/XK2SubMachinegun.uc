@@ -13,6 +13,7 @@
 //=============================================================================
 class XK2SubMachinegun extends BallisticHandgun;
 
+var(XK2)	bool	bHasSuppressor;
 var(XK2)   bool		bSilenced;				// Silencer on. Silenced
 var(XK2) name		SilencerBone;			// Bone to use for hiding silencer
 var(XK2) name		SilencerOnAnim;			// Think hard about this one...
@@ -24,6 +25,7 @@ var(XK2) sound		SilencerOffTurnSound;	//
 
 var() array<Material> AmpMaterials; //We're using this for the amp
 
+var(XK2)	bool	bHasAmp;
 var(XK2)   bool		bAmped;				// Amp installed, gun has new effects
 var(XK2) name		AmplifierBone;			// Bone to use for hiding amp
 var(XK2) name		AmplifierOnAnim;			//
@@ -47,6 +49,23 @@ replication
 		ServerSwitchSilencer, ServerSwitchAmplifier;	
 	reliable if (Role == ROLE_Authority)
 		IceCharge, ClientSetHeat;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasSuppressor=true;
+	bHasAmp=true;
+
+	if (InStr(WeaponParams.LayoutTags, "no_muzzle") != -1)
+	{
+		bHasSuppressor=false;
+		bHasAmp=false;
+		bSilenced=false;
+	}
 }
 
 simulated function WeaponTick(float DT)
@@ -110,6 +129,8 @@ exec simulated function WeaponSpecial(optional byte i)
 	}
 	else
 	{
+		if (!bHasSuppressor)
+			return;
 		bSilenced = !bSilenced;
 		ServerSwitchSilencer(bSilenced);
 		SwitchSilencer(bSilenced);
@@ -172,6 +193,8 @@ exec simulated function ToggleAmplifier(optional byte i)
 	}
 	else
 	{
+		if (!bHasAmp)
+			return;
 		bAmped = !bAmped;
 		ServerSwitchAmplifier(bAmped);
 		SwitchAmplifier(bAmped);
@@ -436,8 +459,8 @@ defaultproperties
 	ManualLines(1)="Activates the internal compressor when firing. Rounds will inflict less damage, but will slow the target."
 	ManualLines(2)="The Weapon Function key attaches or removes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range.||Effective from the hip and at close range."
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;60.0;0.3;0.1;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.210000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.208000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Cock')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipIn')
@@ -489,7 +512,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XK2'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XK2_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'

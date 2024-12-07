@@ -118,17 +118,18 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'X82Rifle'
-     MuzzleFlashClass=class'R78FlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
-     BrassClass=Class'BWBP_SKC_Pro.Brass_BMG'
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
-     ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.800000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.X83_TPm'
-     RelativeLocation=(X=-17.000000,Z=-4.000000)
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.250000
+    MuzzleFlashClass=class'R78FlashEmitter'
+    ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
+    BrassClass=Class'BWBP_SKC_Pro.Brass_BMG'
+    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
+    ReloadAnim="Reload_AR"
+	ReloadAnimRate=0.480000
+	CockAnimRate=1.075000
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.X83_TPm'
+    RelativeLocation=(X=-17.000000,Z=-4.000000)
+    RelativeRotation=(Pitch=32768)
+    DrawScale=0.250000
 }

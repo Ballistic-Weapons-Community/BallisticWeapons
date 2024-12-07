@@ -76,7 +76,7 @@ defaultproperties
      InstantMode=MU_None
      FlashMode=MU_Both
 	 ReloadAnim="Reload_MG"
-	 ReloadAnimRate=1.00000
+	 ReloadAnimRate=0.970000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FLASH_TPm'
      DrawScale=0.600000
      PrePivot=(Z=5.000000)

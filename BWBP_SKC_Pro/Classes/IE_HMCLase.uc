@@ -30,7 +30,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=1.000000)
          SizeScale(1)=(RelativeTime=0.250000,RelativeSize=0.500000)
          SizeScale(2)=(RelativeTime=1.000000)
-         StartSizeRange=(X=(Min=18.000000,Max=38.000000),Y=(Min=18.000000,Max=38.000000),Z=(Min=18.000000,Max=38.000000))
+         StartSizeRange=(X=(Min=30.000000,Max=50.000000),Y=(Min=30.000000,Max=50.000000),Z=(Min=30.000000,Max=50.000000))
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.150000)
@@ -49,7 +49,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          SizeScale(0)=(RelativeSize=1.000000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=0.600000)
-         StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
+         StartSizeRange=(X=(Min=20.000000,Max=30.000000),Y=(Min=20.000000,Max=30.000000),Z=(Min=20.000000,Max=30.000000))
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.100000)
@@ -89,7 +89,7 @@ defaultproperties
      Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_HMCLase.SpriteEmitter3'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter3
-         BeamDistanceRange=(Min=2.000000,Max=2.000000)
+         BeamDistanceRange=(Min=6.000000,Max=6.000000)
          DetermineEndPointBy=PTEP_Distance
          HighFrequencyNoiseRange=(X=(Min=-50.000000,Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
          FadeIn=True

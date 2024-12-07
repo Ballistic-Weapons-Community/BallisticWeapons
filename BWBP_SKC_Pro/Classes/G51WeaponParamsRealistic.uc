@@ -8,9 +8,10 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1400.000000,Max=5200.000000) //5.56mm Short Barrel
+		TraceRange=(Min=5200.000000,Max=5200.000000) //5.56mm Short Barrel
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.5
+		DecayRange=(Min=1400.0,Max=5200.0)
 		Damage=43.0
 		HeadMult=2.15
 		LimbMult=0.65
@@ -40,6 +41,41 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=RealisticPrimarySuppressedEffectParams
+		TraceRange=(Min=5200.000000,Max=5200.000000) //5.56mm Short Barrel
+		WaterTraceRange=5000.0
+		RangeAtten=0.5
+		DecayRange=(Min=1400.0,Max=5200.0)
+		Damage=43.0
+		HeadMult=2.15
+		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
+		PenetrationEnergy=18.000000
+		PenetrateForce=50
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
+		FlashScaleFactor=0.050000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=1.500000,Radius=192.000000,bAtten=True)
+		Recoil=650.000000
+		Chaos=0.050000
+		Inaccuracy=(X=12,Y=12)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimarySuppressedFireParams
+		FireInterval=0.063000
+		AimedFireAnim="SightFire"
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimarySuppressedEffectParams'
+	End Object
+	
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
@@ -208,19 +244,20 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Adv Holo + Chaff"
+		WeaponPrice=1200
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="HoloSightLower",Slot=55,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
+
+		// ADS handling
+		SightingTime=0.22
+		SightMoveSpeedFactor=0.5
 		
 		//Function
 		InventorySize=6
-		WeaponPrice=1200
-		SightMoveSpeedFactor=0.500000
-		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
-		//ViewOffset=(X=-9.000000,Y=8.000000,Z=-15.000000)
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -237,6 +274,7 @@ defaultproperties
 		//Layout core
 		Weight=3
 		LayoutName="Adv Holo + Sensor"
+		WeaponPrice=1200
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
@@ -244,13 +282,13 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=1f)
 		SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
+
+		// ADS handling
+		SightingTime=0.22
+		SightMoveSpeedFactor=0.5
 		
 		//Function
 		InventorySize=6
-		WeaponPrice=1200
-		SightMoveSpeedFactor=0.500000
-		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
-		//ViewOffset=(X=-9.000000,Y=8.000000,Z=-15.000000)
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -267,6 +305,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Iron Sights + HE"
+		WeaponPrice=1200
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
@@ -274,13 +313,13 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
 		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
+
+		// ADS handling
+		SightingTime=0.22
+		SightMoveSpeedFactor=0.5
 		
 		//Function
 		InventorySize=6
-		WeaponPrice=1200
-		SightMoveSpeedFactor=0.500000
-		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
-		//ViewOffset=(X=-9.000000,Y=8.000000,Z=-15.000000)
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -297,6 +336,8 @@ defaultproperties
 		//Layout core
 		Weight=5
 		LayoutName="4X Scope"
+		WeaponPrice=1200
+
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
@@ -304,15 +345,17 @@ defaultproperties
 		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ACOG',BoneName="tip",Scale=0.1,AugmentOffset=(x=-25,y=-4.6,z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+
 		// Zoom
 		ZoomType=ZT_Fixed
 		MaxZoom=4
+
 		// ADS handling
-		SightingTime=0.40 //+0.5
+		SightingTime=0.30 //+0.5
 		SightMoveSpeedFactor=0.500000
+
 		//Function
 		InventorySize=6
-		WeaponPrice=1200
 		bMagPlusOne=True
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
@@ -323,12 +366,86 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+		bNoaltfire=True		
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_IRScope
+		//Layout core
+		Weight=5
+		LayoutName="IR Scope"
+		LayoutTags="IR"
+		WeaponPrice=1200
+			
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=3.000000,Y=-0.01000,Z=0.500000)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_IRScope',BoneName="tip",Scale=0.05,AugmentOffset=(x=-27,y=-2.6,z=0),AugmentRot=(Pitch=0,Yaw=0,Roll=-16384))
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-IRScope'
+
+		// Zoom
+		ZoomType=ZT_Fixed
+		MaxZoom=4
+
+		// ADS handling
+		SightingTime=0.35 //+1.0
+		SightMoveSpeedFactor=0.5
+
+		//Function
+		InventorySize=6
+		bMagPlusOne=True
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		WeaponName="G51 5.56mm Carbine (IR)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Suppressed
+		//Layout core
+		Weight=5
+		LayoutName="Suppressed"
+		LayoutTags="silencer"
+		WeaponPrice=1200
+			
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.15,AugmentOffset=(X=0,Y=0,Z=0),AugmentRot=(Pitch=32768,Yaw=,Roll=-16384))
+
+		// ADS handling
+		SightingTime=0.23
+		SightMoveSpeedFactor=0.5
+
+		//Function
+		InventorySize=6
+		bMagPlusOne=True
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		WeaponName="G51 5.56mm Carbine (Sil)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimarySuppressedFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams_Chaff'
 	Layouts(1)=WeaponParams'RealisticParams_Sensor'
 	Layouts(2)=WeaponParams'RealisticParams_HE'
 	Layouts(3)=WeaponParams'RealisticParams_4XScope'
+	Layouts(4)=WeaponParams'RealisticParams_IRScope'
+	Layouts(5)=WeaponParams'RealisticParams_Suppressed'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black

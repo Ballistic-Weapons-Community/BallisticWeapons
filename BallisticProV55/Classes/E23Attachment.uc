@@ -171,14 +171,15 @@ simulated function Timer()
 defaultproperties
 {
 	WeaponClass=class'E23PlasmaRifle'
-     MuzzleFlashClass=class'E23FlashEmitter'
-     AltMuzzleFlashClass=class'E23LaserFlashEmitter'
-     TracerMode=MU_None
-     InstantMode=MU_Secondary
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     ReloadAnim="Reload_AR"
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.VPR_TPm'
-     DrawScale=0.150000
+    MuzzleFlashClass=class'E23FlashEmitter'
+    AltMuzzleFlashClass=class'E23LaserFlashEmitter'
+    TracerMode=MU_None
+    InstantMode=MU_Secondary
+    FlashMode=MU_Both
+    LightMode=MU_Both
+    ReloadAnim="Reload_AR"
+	ReloadAnimRate=0.750000
+    bRapidFire=True
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.VPR_TPm'
+    DrawScale=0.150000
 }

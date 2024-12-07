@@ -18,14 +18,55 @@ var() name		GrenBoneBase;
 var() Sound		GrenSlideSound;		//Sounds for grenade reloading
 var() Sound		ClipInSoundEmpty;		//			
 
-var name			BulletBone;
-var name			BulletBone2;
+var() name			BulletBone;
+var() name			BulletBone2;
 
+// IR Code
+var() bool				bHasIR;
+var()   Texture			ScopeviewTexIR;
+
+var() BUtil.FullSound	ThermalOnSound;	// Sound when activating thermal mode
+var() BUtil.FullSound	ThermalOffSound;// Sound when deactivating thermal mode
+var(IR)   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
+var(IR) material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
+var()   bool				bThermal;		// Is thermal mode active?
+var(IR)   bool				bUpdatePawns;	// Should viewable pawn list be updated
+var(IR)   Pawn				UpdatedPawns[16];// List of pawns to view in thermal scope
+var(IR) material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
+var(IR) float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
+var(IR)   ColorModifier		ColorMod;
+var(IR)   Array<M58Cloud>	SmokeList;		// A list of all the potential pawns to view in thermal mode
+var(IR)   actor			NVLight;
+var   float				NextPawnListUpdateTime;
+var bool			bSilenced;
 
 replication
 {
+	reliable if (Role < ROLE_Authority)
+		ServerAdjustThermal;
 	reliable if (ROLE == ROLE_Authority)
 		bLoaded;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasIR=false;
+	bSilenced=false;
+
+	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
+	{
+		bHasIR=true;
+		bThermal=true;
+		AdjustThermalView(true);
+	}
+
+	if (InStr(WeaponParams.LayoutTags, "silencer") != -1)
+	{
+		bSilenced = true;
+	}
 }
 
 static function class<Pickup> RecommendAmmoPickup(int Mode)
@@ -153,6 +194,20 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		ReloadAnim = 'Reload';
 	}
 	super.BringUp(PrevWeapon);
+
+	if (ColorMod != None)
+		return;
+	ColorMod = ColorModifier(Level.ObjectPool.AllocateObject(class'ColorModifier'));
+	if ( ColorMod != None )
+	{
+		ColorMod.Material = FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal';
+		ColorMod.Color.R = 255;
+		ColorMod.Color.G = 255;
+		ColorMod.Color.B = 255;
+		ColorMod.Color.A = 255;
+		ColorMod.AlphaBlend = false;
+		ColorMod.RenderTwoSided=True;
+	}
 }
 
 simulated function bool PutDown()
@@ -166,11 +221,366 @@ simulated function bool PutDown()
 
 	if (super.PutDown())
 	{
+		AdjustThermalView(false);
 		return true;
 	}
 	return false;
 }
 
+simulated event Destroyed()
+{
+	if (ColorMod != None)
+	{
+		Level.ObjectPool.FreeObject(ColorMod);
+		ColorMod = None;
+	}
+	AdjustThermalView(false);
+
+	if (NVLight != None)
+		NVLight.Destroy();
+		
+
+	super.Destroyed();
+}
+
+//=====================================================
+// IR Scope
+//=====================================================
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ClientState != WS_ReadyToFire || ReloadState != RS_None || !bHasIR)
+		return;
+		
+	bThermal = !bThermal;
+	if (bThermal)
+	{
+    	class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+    	ServerWeaponSpecial(1);
+    }
+	else
+	{
+    	class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+    	ServerWeaponSpecial(0);
+    }
+    
+    AdjustThermalView(bThermal);
+}
+
+function ServerWeaponSpecial(optional byte i)
+{
+	bThermal = bool(i);
+	ServerAdjustThermal(bThermal);
+}
+
+simulated function OnScopeViewChanged()
+{
+	super.OnScopeViewChanged();
+		
+	if (!bScopeView)
+	{
+		if (Level.NetMode == NM_Client)
+			AdjustThermalView(false);
+		else ServerAdjustThermal(false);
+	}
+	else if (bThermal)
+	{
+		if (Level.NetMode == NM_Client)
+			AdjustThermalView(true);
+		else ServerAdjustThermal(true);
+	}	
+}
+
+simulated function SetNVLight(bool bOn)
+{
+	if (!Instigator.IsLocallyControlled())
+		return;
+	if (bOn)
+	{
+		if (NVLight == None)
+		{
+			NVLight = Spawn(class'HKARNVLight',,,Instigator.location);
+			NVLight.SetBase(Instigator);
+		}
+		NVLight.bDynamicLight = true;
+	}
+	else if (NVLight != None)
+		NVLight.bDynamicLight = false;
+}
+
+simulated event WeaponTick(float DT)
+{
+	local actor T;
+
+	local vector HitLoc, HitNorm, Start, End;
+
+	super.WeaponTick(DT);
+
+	if (Level.TimeSeconds >= NextPawnListUpdateTime)
+		UpdatePawnList();
+
+	if (bThermal && bScopeView)
+	{
+		SetNVLight(true);
+
+		Start = Instigator.Location+Instigator.EyePosition();
+		End = Start+vector(Instigator.GetViewRotation())*1500;
+		T = Trace(HitLoc, HitNorm, End, Start, true, vect(16,16,16));
+		if (T==None)
+			HitLoc = End;
+
+		if (VSize(HitLoc-Start) > 400)
+			NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
+		else
+			NVLight.SetLocation(HitLoc + HitNorm*30);
+	}
+	else
+		SetNVLight(false);
+}
+
+// Draw the scope view
+simulated event RenderOverlays (Canvas C)
+{
+	if ( (Instigator == None) || (Instigator.Controller == None))
+		return;
+
+	if (SprintControl != None)
+		SprintControl.RenderOverlays(C);
+
+	if (!bScopeView || ZoomType == ZT_Irons)
+		DrawFPWeapon(C);
+	else
+	{
+		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
+		SetRotation(Instigator.GetViewRotation());
+
+		DrawScopeMuzzleFlash(C);
+		DrawScopeOverlays(C);
+	}
+}
+
+simulated event DrawScopeOverlays(Canvas C)
+{  
+	if (bThermal)
+		DrawThermalMode(C);
+
+	Super.DrawScopeOverlays(C);
+}
+
+simulated function UpdatePawnList()
+{
+	local Pawn P;
+	local int i;
+	local float Dist;
+
+	PawnList.Length=0;
+	ForEach DynamicActors( class 'Pawn', P)
+	{
+		PawnList[PawnList.length] = P;
+		Dist = VSize(P.Location - Instigator.Location);
+		if (Dist <= ThermalRange &&
+			( Normal(P.Location-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 1-((Instigator.Controller.FovAngle*0.9)/180) ) &&
+			((Instigator.LineOfSightTo(P)) || Normal(P.Location - Instigator.Location) Dot Vector(Instigator.GetViewRotation()) > 0.985 + 0.015 * (Dist/ThermalRange)))
+		{
+			if (!Instigator.IsLocallyControlled())
+			{
+				P.NetUpdateTime = Level.TimeSeconds - 1;
+				P.bAlwaysRelevant = true;
+			}
+			UpdatedPawns[i]=P;
+			i++;
+		}
+	}
+}
+
+//Blocks IR
+/*simulated function UpdateSmokeList()
+{
+	local Smoke S;
+	local int i;
+	local float Dist;
+
+	SmokeList.Length=0;
+	ForEach VisibleActors( class 'M58Cloud', S)
+	{
+		SmokeList[SmokeList.length] = S;
+	}
+}*/
+
+// Draws players in bright colors and all the other Thermal Mode stuff
+simulated event DrawThermalMode (Canvas C)
+{
+	local Pawn P;
+	local M58Cloud Other;
+	local int i, j;
+	local float Dist, DotP;//, OtherRatio;
+	local Array<Material>	OldSkins;
+	local int OldSkinCount;
+	local bool bLOS, bFocused;
+	local vector Start;
+	local Array<Material>	AttOldSkins0;
+	local Array<Material>	AttOldSkins1;
+	
+	local Vector					HitLocation, HitNormal;
+
+	C.Style = ERenderStyle.STY_Modulated;
+	
+	// Draw Spinning Sweeper thing
+	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+	C.SetDrawColor(255,255,255,255);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.Attachment.SKAR-IRFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+	// Draw some panning lines 
+	C.SetPos(C.OrgX, C.OrgY);
+	C.DrawTile(FinalBlend'BWBP_SKC_Tex.SKAR.SKAR-StaticFinal', C.SizeX, C.SizeY, 0, 0, 1024, 1024); 
+
+	if (ColorMod == None)
+		return;
+	// Draw the players with an purp effect
+	C.Style = ERenderStyle.STY_Alpha;
+	Start = Instigator.Location + Instigator.EyePosition();
+	for (j=0;j<PawnList.length;j++)
+	{
+		if (PawnList[j] != None && PawnList[j] != Level.GetLocalPlayerController().Pawn)
+		{
+			P = PawnList[j];
+			bFocused=false;
+			bLos=false;
+			ThermalRange = default.ThermalRange + 2000 * FMin(1, VSize(P.Velocity) / 450);
+			Dist = VSize(P.Location - Instigator.Location);
+			if (Dist > ThermalRange)
+				continue;
+			DotP = Normal(P.Location - Start) Dot Vector(Instigator.GetViewRotation());
+			if ( DotP < Cos((Instigator.Controller.FovAngle/1.7) * 0.017453) )
+				continue;
+			// If we have a clear LOS then they can be drawn
+			if (Instigator.LineOfSightTo(P))
+				bLOS=true;
+			//check for smoke (todo: replace this with a more efficient vector check)
+			//ForEach TraceActors(class'M58Cloud', Other, HitLocation, HitNormal, P.Location, Location)
+			//{
+			//	if (Other != None)
+			//		bLOS=false;
+			//}
+			//Other = Trace(HitLocation, HitNormal, P.Location, Location, true, vect(1,1,1));
+			//log("Trace found "$Other);
+			//if (Other != None && M58Cloud(Other) != None)
+			//	bLOS=false;
+			if (bLOS)
+			{
+				DotP = (DotP-0.6) / 0.4;
+
+				DotP = FMax(DotP, 0);
+
+				if (Dist < 500)
+					ColorMod.Color.R = DotP * 255.0;
+				else
+					ColorMod.Color.R = DotP * ( 255 - FClamp((Dist-500)/((ThermalRange-500)*0.8), 0, 1) * 255 );
+				ColorMod.Color.G = DotP * ( 128.0 - (Dist/ThermalRange)*96.0 );
+
+				// Remember old skins, set new skins, turn on unlit...
+				OldSkinCount = P.Skins.length;
+				for (i=0;i<Max(2, OldSkinCount);i++)
+				{	if (OldSkinCount > i) OldSkins[i] = P.Skins[i]; else OldSkins[i]=None;	P.Skins[i] = ColorMod;	}
+				P.bUnlit=true;
+				for (i=0;i<P.Attached.length;i++)
+					if (P.Attached[i] != None)
+					{
+						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						{
+							if (P.Attached[i].Skins.length > 0)
+							{	AttOldSkins0[i] = P.Attached[i].Skins[0];	P.Attached[i].Skins[0] = ColorMod;	}
+							else
+							{	AttOldSkins0[i] = None;	P.Attached[i].Skins[0] = ColorMod;	}
+							if (P.Attached[i].Skins.length > 1)
+							{	AttOldSkins1[i] = P.Attached[i].Skins[1];	P.Attached[i].Skins[1] = ColorMod;	}
+							if (P.Attached[i].Skins.length > 1)
+							{	AttOldSkins1[i] = None;	P.Attached[i].Skins[1] = ColorMod;	}
+						}
+						else
+							P.Attached[i].SetDrawType(DT_None);
+					}
+
+				C.DrawActor(P, false, true);
+
+				// Set old skins back, Unlit off
+				P.Skins.length = OldSkinCount;
+				for (i=0;i<P.Skins.length;i++)
+					P.Skins[i] = OldSkins[i];
+				P.bUnlit=false;
+
+				for (i=0;i<P.Attached.length;i++)
+					if (P.Attached[i] != None)
+					{
+						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						{
+							if (AttOldSkins1[i] == None)
+							{
+								if (AttOldSkins0[i] == None)
+									P.Attached[i].Skins.length = 0;
+								else
+								{
+									P.Attached[i].Skins.length = 1;
+									P.Attached[i].Skins[0] = AttOldSkins0[i];
+								}
+							}
+							else
+							{
+								P.Attached[i].Skins[0] = AttOldSkins0[i];
+								P.Attached[i].Skins[1] = AttOldSkins1[i];
+							}
+						}
+						else
+							P.Attached[i].SetDrawType(P.Attached[i].default.DrawType);
+					}
+				AttOldSkins0.length = 0;
+				AttOldSkins1.length = 0;
+			}
+			else
+				continue;
+		}
+	}
+}
+
+simulated function AdjustThermalView(bool bNewValue)
+{
+	if (AIController(Instigator.Controller) != None)
+		return;
+	if (!bNewValue)
+	{
+		bUpdatePawns = false;
+	}
+	else
+	{
+		bUpdatePawns = true;
+		UpdatePawnList();
+		NextPawnListUpdateTime = Level.TimeSeconds + 1;
+	}
+}
+
+function ServerAdjustThermal(bool bNewValue)
+{
+	local int i;
+	
+	if (bNewValue)
+	{
+		bUpdatePawns = true;
+		UpdatePawnList();
+		NextPawnListUpdateTime = Level.TimeSeconds + 1;
+	}
+	else
+	{
+		bUpdatePawns = false;
+		for (i=0;i<ArrayCount(UpdatedPawns);i++)
+		{
+			if (UpdatedPawns[i] != None)
+				UpdatedPawns[i].bAlwaysRelevant = UpdatedPawns[i].default.bAlwaysRelevant;
+		}
+	}
+}
+
+//======================================================
+// Grenade Stuff
+//======================================================
 
 // Load in a grenade
 simulated function LoadGrenade()
@@ -281,6 +691,9 @@ function byte BestMode()
 {
 	local Bot B;
 
+	if (bHasIR || bSilenced || bNoaltfire)
+		return 0;		
+
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
@@ -324,6 +737,12 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+     ThermalOnSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+     ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+     WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
+     Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
+     ThermalRange=25000.000000
+	 
      GrenadeLoadAnim="LoadGrenade"
      GrenBone="Grenade"
      GrenBoneBase="GrenadeHandle"
@@ -335,8 +754,8 @@ defaultproperties
      AIReloadTime=1.000000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.G51.BigIcon_G51'
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)
-     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=2.200000)
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=0.223000)
+     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=0.270000)
      WeaponModes(0)=(ModeName="Semi-Auto")
      WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
      WeaponModes(2)=(bUnavailable=True)
@@ -349,9 +768,10 @@ defaultproperties
      SightOffset=(X=-0.50,Y=0.00,Z=-0.12)
 	 SightBobScale=0.2
 
-     CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=2.200000)
-     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=2.200000)
-     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagOut',Volume=2.200000)
+     CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=1.800000)
+     //ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=1.800000)
+     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagOut',Volume=1.800000)
+	 ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=1.800000)
      ClipInFrame=0.650000
      LongGunOffset=(X=10.000000)
      bWT_Bullet=True
@@ -382,7 +802,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_G51Carbine'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.G51Carbine_FPm'
 	 ParamsClasses(0)=Class'G51WeaponParamsComp'
      ParamsClasses(1)=Class'G51WeaponParamsClassic'
      ParamsClasses(2)=Class'G51WeaponParamsRealistic'

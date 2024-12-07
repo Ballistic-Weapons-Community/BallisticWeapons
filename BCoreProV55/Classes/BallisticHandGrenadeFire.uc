@@ -93,8 +93,7 @@ function float CalculateDetonateDelay(float DetonateDelay)
 
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
-	local float Speed, DetonateDelay;
-
+  //local float Speed, DetonateDelay;
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;

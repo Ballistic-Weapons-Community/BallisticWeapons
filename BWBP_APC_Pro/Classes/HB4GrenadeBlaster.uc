@@ -101,7 +101,7 @@ defaultproperties
 	AIReloadTime=1.500000
 
 	AttachmentClass=Class'BWBP_APC_Pro.HB4Attachment'
-	BigIconMaterial=Texture'BWBP_CC_Tex.HoloBlaster.BigIcon_HoloBlaster'
+	BigIconMaterial=Texture'BWBP_APC_Tex.HoloBlaster.BigIcon_HoloBlaster'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	BringUpTime=0.900000
 
@@ -120,7 +120,7 @@ defaultproperties
 	GroupOffset=6
 	HudColor=(B=25,G=150,R=50)
 	IconCoords=(X2=127,Y2=31)
-	IconMaterial=Texture'BWBP_CC_Tex.HoloBlaster.SmallIcon_HoloBlaster'
+	IconMaterial=Texture'BWBP_APC_Tex.HoloBlaster.SmallIcon_HoloBlaster'
 	InventoryGroup=8
 	ItemName="HB4 Electro Grenade Blaster"
 
@@ -134,7 +134,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	ManualLines(0)="High-powered Blaster fire. Recoil is high."
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_HoloBlaster'
+	Mesh=SkeletalMesh'BWBP_APC_Anim.HB4_FPm'
 	ParamsClasses(0)=Class'HB4WeaponParams'
 	ParamsClasses(1)=Class'HB4WeaponParamsClassic'
 	ParamsClasses(2)=Class'HB4WeaponParamsRealistic'

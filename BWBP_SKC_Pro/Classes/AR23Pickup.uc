@@ -3,7 +3,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AR23Pickup extends BallisticWeaponPickup
 	placeable;
@@ -35,18 +35,19 @@ simulated function UpdatePrecacheMaterials()
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AR23.AR23_SM_Ammo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AR23.AR23_SM_Main');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AR23.AR23PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AR23.AR23PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AR23.AR23_SM_Main'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AR23.AR23PickupLo'
      PickupDrawScale=0.130000
      InventoryType=Class'BWBP_SKC_Pro.AR23HeavyRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the AR23 'Punisher' Heavy Rifle"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.AR23.AR23_SM_Main'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.AR23.AR23PickupHi'
      Physics=PHYS_None
      DrawScale=0.120000
      CollisionHeight=4.000000

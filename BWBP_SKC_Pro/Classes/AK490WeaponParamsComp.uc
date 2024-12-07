@@ -59,7 +59,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_HB
-		AimedFireAnim="SightFire"
+		AimedFireAnim="Fire"
 		FireInterval=0.12000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_HB'
@@ -88,7 +88,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_S
-		AimedFireAnim="SightFire"
+		AimedFireAnim="Fire"
 		FireInterval=0.12000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_S'
@@ -189,7 +189,7 @@ defaultproperties
 		LayoutName="Suppressed"
 		LayoutTags="no_knife"
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.AKM490_FPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
@@ -215,7 +215,7 @@ defaultproperties
 		LayoutName="3X Scope"
 		LayoutTags="no_knife"
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.AKM490_FPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.07,AugmentOffset=(x=-26,y=-3.6,z=-0.1),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=3.000000,Y=-0.100000,Z=5.000000)
 		ZoomType=ZT_Fixed

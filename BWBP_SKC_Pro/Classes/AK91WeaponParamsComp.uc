@@ -18,7 +18,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		PenetrateForce=0
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
-		FlashScaleFactor=0.200000
+		FlashScaleFactor=0.300000
 		Recoil=128.000000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		WarnTargetPct=0.200000
@@ -163,7 +163,7 @@ defaultproperties
 		Index=2
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=-1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopBlack",Index=2,AIndex=1,PIndex=1)
 		Weight=10
 	End Object
@@ -172,7 +172,7 @@ defaultproperties
 		Index=3
 		CamoName="Desert"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=-1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopDesert",Index=2,AIndex=1,PIndex=1)
 		Weight=10
 	End Object
@@ -181,8 +181,8 @@ defaultproperties
 		Index=4
 		CamoName="Quantum"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopQuantumShine",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=-1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MainQuantumShine",Index=2,AIndex=1,PIndex=1)
 		Weight=3
 	End Object
 	
@@ -190,7 +190,7 @@ defaultproperties
 		Index=5
 		CamoName="Gold"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-MiscRed",Index=1,AIndex=0,PIndex=-1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AK91Camos.AK91-TopGold",Index=2,AIndex=1,PIndex=1)
 		Weight=1
 	End Object
@@ -201,6 +201,4 @@ defaultproperties
 	Camos(3)=WeaponCamo'VK_Desert'
 	Camos(4)=WeaponCamo'VK_Quantum'
 	Camos(5)=WeaponCamo'VK_Gold'
-
-
 }

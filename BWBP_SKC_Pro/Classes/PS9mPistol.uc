@@ -9,11 +9,12 @@
 //=============================================================================
 class PS9mPistol extends BallisticHandGun;
 
+var() bool			bToxin; //Does it proc DoT
+
 var() name			GrenBone;			
 var() name			GrenBoneBase;
 var() name			GrenadeLoadAnim;	//Anim for grenade reload
 var   bool			bLoaded;
-
 
 var() Sound			GrenSlideSound;		//Sounds for grenade reloading
 var() Sound			GrenLoadSound;		//	
@@ -21,6 +22,20 @@ var() Sound			GrenLoadSound;		//
 var() sound			PartialReloadSound;	// Silencer stuck on sound
 var() name			HealAnim;		// Anim for murdering Simon
 var() sound			HealSound;		// The sound of a thousand dying orphans
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bToxin=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "tox") != -1) //indicates reloading version
+	{
+		bToxin=true;
+	}
+}
 
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
@@ -194,7 +209,7 @@ simulated event AnimEnd (int Channel)
     GetAnimParams(0, Anim, Frame, Rate);
 	if (Anim == HealAnim)
 		ReloadState = RS_None;
-	if (Anim == 'FireOpen' || Anim == 'Pullout' || Anim == 'Fire' || Anim == 'Dart_Fire' || Anim == 'Dart_FireOpen' ||Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
+	if (Anim == 'FireOpen' || Anim == 'Pullout' || Anim == 'Fire' || Anim == 'DartFire' || Anim == 'DartFireOpen' ||Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
@@ -346,8 +361,8 @@ defaultproperties
 	bWT_Bullet=True
 	bWT_Heal=True
 	SpecialInfo(0)=(Info="320.0;15.0;1.0;110.0;2.0;0.1;0.1")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Pickup')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Pickup',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock',Radius=32.000000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagInS1',Volume=1.100000,Radius=32.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagOut',Volume=1.100000,Radius=32.000000)
@@ -388,7 +403,8 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PS9M'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.PS9M_FPm'
+	SupportHandBone="l_upperarm"
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.Stealth.Stealth-Main'

@@ -87,17 +87,18 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'M353Machinegun'
-     MuzzleFlashClass=class'M353FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     BrassClass=class'Brass_MG'
-     TracerClass=class'TraceEmitter_Default'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_MG"
-     ReloadAnimRate=1.500000
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M353_TPm'
-     DrawScale=0.340000
+    MuzzleFlashClass=class'M353FlashEmitter'
+    ImpactManager=class'IM_Bullet'
+    BrassClass=class'Brass_MG'
+    TracerClass=class'TraceEmitter_Default'
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    ReloadAnim="Reload_MG"
+	ReloadAnimRate=0.975000
+	CockAnimRate=0.790000
+    bHeavy=True
+    bRapidFire=True
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.M353_TPm'
+    DrawScale=0.340000
 }

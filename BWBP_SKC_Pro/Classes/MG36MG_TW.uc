@@ -34,7 +34,7 @@ simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
 	BFireMode[0].FirePushbackForce = 0;
-	BFireMode[0].BrassOffset = vect(0,0,0);
+	BFireMode[0].BrassOffset = vect(-120,0,0);
 }
 
 simulated function Notify_Undeploy ()
@@ -251,7 +251,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-60.000000)
 	ItemName="Mk.88 Turret"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36_Turret'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36Turret_FPm'
 	DrawScale=0.50000
 	CollisionHeight=24.000000
 }

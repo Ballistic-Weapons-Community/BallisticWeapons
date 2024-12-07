@@ -27,7 +27,7 @@ defaultproperties
 		Chaos=0.100000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=SoundGroup'BWBP_CC_Sounds.GASC.Gaucho-Fire',Volume=1.200000)
+		FireSound=(Sound=SoundGroup'BWBP_APC_Sounds.GASC.Gaucho-Fire',Volume=1.200000)
 		Inaccuracy=(X=256,Y=256)
 	End Object
 

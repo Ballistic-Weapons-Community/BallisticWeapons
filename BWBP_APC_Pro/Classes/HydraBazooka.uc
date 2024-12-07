@@ -540,7 +540,7 @@ defaultproperties
 	LaserAimSpread=(Min=0,Max=256)
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
     LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
-	BigIconMaterial=Texture'BWBP_CC_Tex.RL.BigIcon_CruRL'
+	BigIconMaterial=Texture'BWBP_APC_Tex.RL.BigIcon_CruRL'
 	BigIconCoords=(Y1=36,Y2=230)
 	bWT_Hazardous=True
 	bWT_Splash=True
@@ -552,10 +552,11 @@ defaultproperties
 	ManualLines(1)="Builds up between One and Six rockets to be shot. The beep indicates the addition of a rocket into the charged shot. Upon fired, the rockets will cone around the target in the shape of a hexagon, to ensure the rockets dont colide and enclose the target. These rockets are affected by the guidance laser."
 	ManualLines(2)="Weapon Function Toggles the guidance laser. With the guidance laser active, rockets will fly towards the point indicated by the laser at any given time.|The Robotic Arm enables the weapon to be reloaded while aiming down sights. This reload will be much faster than standard reload and can be used in a defensive position"
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.6;4.0;1.2")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
 	bCanSkipReload=True
 	bShovelLoad=True
+	ClipInSound=(Sound=Sound'BWBP_APC_Sounds.Launcher.Launcher-RelSlideClosed')
 	StartShovelAnim="ReloadPrep"
 	EndShovelAnim="ReloadFinish"
 	ReloadAnim="ReloadLoop"
@@ -566,6 +567,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=False
 	SightingTime=0.500000
+	bnoncocking=True
 	SightOffset=(X=-10.000000,Y=-10.000000,Z=15.000000)
 	ParamsClasses(0)=Class'HydraWeaponParams'
 	ParamsClasses(1)=Class'HydraWeaponParamsClassic'
@@ -595,7 +597,7 @@ defaultproperties
 	PickupClass=Class'BWBP_APC_Pro.HydraPickup'
 	PlayerViewOffset=(X=2.000000,Y=11.000000,Z=-7.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.HydraAttachment'
-	IconMaterial=Texture'BWBP_CC_Tex.RL.SmallIcon_CruRL'
+	IconMaterial=Texture'BWBP_APC_Tex.RL.SmallIcon_CruRL'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M11-X Hydra MRL"
 	LightType=LT_Pulse
@@ -604,6 +606,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_CruRL'
+	Mesh=SkeletalMesh'BWBP_APC_Anim.CruRL_FPm'
 	DrawScale=0.300000
 }

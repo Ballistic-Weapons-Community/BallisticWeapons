@@ -10,7 +10,6 @@ class A49SecondaryFire extends BallisticFire;
 
 var float	ForceMag;
 var float	Damage;
-var float HeatPerShot;
 
 simulated function bool AllowFire()
 {
@@ -90,7 +89,7 @@ defaultproperties
     FirePushbackForce=1500.000000
 	Damage=35.000000
     forceMag=1000.000000
-	HeatPerShot=10
+	HeatPerShot=9
     AmmoClass=Class'BallisticProV55.Ammo_Cells'
     ShakeRotMag=(X=128.000000,Y=64.000000)
     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

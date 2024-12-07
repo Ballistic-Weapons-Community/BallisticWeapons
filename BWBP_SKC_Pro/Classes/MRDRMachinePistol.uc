@@ -199,6 +199,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.MRDR.BigIcon_MRDR'
 	BigIconCoords=(X1=64,Y1=0,Y2=255)
+    SupportHandBone="Root 01"
 	
 	bWT_Bullet=True
 	bWT_Machinegun=True
@@ -206,8 +207,8 @@ defaultproperties
 	ManualLines(1)="Continuous melee attack. Lower DPS than dedicated melee weapons."
 	ManualLines(2)="As a wrist-mounted weapon, it has no iron sights, but possesses superior hip accuracy.||Moderately effective at close range."
 	SpecialInfo(0)=(Info="60.0;3.0;0.1;125.0;0.0;0.2;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Cock',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipOut',Volume=0.700000)
 	ClipOutSound2=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipRel'
@@ -233,7 +234,7 @@ defaultproperties
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=False
-	Description="This bull pup style weapon, made by UTC Defense Tech, features a ring magazine holding 36 rounds of 9mm ammunition that wraps around the forearm and has a spiked steel knuckle on it. Because the bulk of the weight sits on the forearm and not on the wrist, this weapon is very easy to use either single or in pairs. With the unique magazine, some users may find reloading this weapon to be challenging, UTC designed an entirely new feed system for this weapon and as such is still in its experimental stages. This DR88 model uses the same Krome muzzle flash system as the Fifty-9 for massive amounts of style."
+	Description="This bullpup style weapon, made by UTC Defense Tech, features a ring magazine holding 36 rounds of 9mm ammunition that wraps around the forearm and has a spiked steel knuckle on it. Because the bulk of the weight sits on the forearm and not on the wrist, this weapon is very easy to use either single or in pairs. With the unique magazine, some users may find reloading this weapon to be challenging, UTC designed an entirely new feed system for this weapon and as such is still in its experimental stages. This DR88 model uses the same Krome muzzle flash system as the Fifty-9 for massive amounts of style."
 	Priority=143
 	HudColor=(B=150,G=150,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -255,6 +256,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MRDR'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MRDR_FPm'
 	DrawScale=0.300000
 }

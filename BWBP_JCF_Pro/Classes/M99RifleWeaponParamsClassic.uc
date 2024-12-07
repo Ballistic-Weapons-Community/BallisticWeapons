@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=120000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=190.0
-		HeadMult=1.973684
-		LimbMult=0.552631
+		HeadMult=2
+		LimbMult=0.55
 		DamageType=Class'BWBP_JCF_Pro.DTM99Rifle'
 		DamageTypeHead=Class'BWBP_JCF_Pro.DTM99RifleHead'
 		DamageTypeArm=Class'BWBP_JCF_Pro.DTM99Rifle'
@@ -26,6 +26,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-FireOld',Volume=5.500000)
 		Recoil=6972.000000
+		PushbackForce=100.000000
 		Chaos=-1.0
 		BotRefireRate=0.300000
 		WarnTargetPct=0.050000
@@ -82,10 +83,11 @@ defaultproperties
 		SightingTime=0.900000
 		bNeedCock=True
 		MagAmmo=1
-		SightOffset=(X=-10.000000,Y=20.000000,Z=36.000000)
+		SightOffset=(X=5.000000,Y=16.000000,Z=36.000000)
 		SightPivot=(Roll=-1024)
 		//ViewOffset=(X=25.000000,Y=-3.000000,Z=-24.500000)
-		ViewOffset=(X=5.000000,Y=-4.000000,Z=-25.000000)
+		//ViewOffset=(X=5.000000,Y=-4.000000,Z=-25.000000)
+		ViewOffset=(X=12.000000,Y=0.000000,Z=-25.000000)
 		ZoomType=ZT_Smooth
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

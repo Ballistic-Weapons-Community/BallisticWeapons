@@ -75,7 +75,7 @@ defaultproperties
      Damage=44.000000
      MomentumTransfer=75000.000000
      MyDamageType=Class'BWBP_APC_Pro.DTWrenchgunShot'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.WrenchPickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.WrenchPickupLo'
      Physics=PHYS_Falling
      LifeSpan=0.000000
      bIgnoreTerminalVelocity=True

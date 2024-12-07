@@ -48,7 +48,7 @@ defaultproperties
 {
      AltAmmoClass=Class'BWBP_SKC_Pro.ChaffPickup'
      AmmoAmount=60
-     InventoryType=Class'BWBP_SKC_Pro.Ammo_556mmSTANAG'
+     InventoryType=Class'BallisticProV55.Ammo_556mm'
      PickupMessage="You got two 30 round 5.56mm magazines"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.CarbineSM_Ammo'

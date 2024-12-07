@@ -205,8 +205,8 @@ defaultproperties
      ManualLines(1)="Melee attack. Damage improves over hold time, with max bonus reached after 1.5 seconds. Deals increased damage from behind."
 	 ManualLines(2)="Attacking allies with the stimpack will apply its effect to them."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut',Volume=0.112000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway',Volume=0.112000)
      bNoMag=True
      bNonCocking=True
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
@@ -246,7 +246,7 @@ defaultproperties
      IconMaterial=Texture'BWBP_SKC_Tex.Stim.SmallIcon_Stim'
      IconCoords=(X2=128,Y2=32)
      ItemName="FMD ICIS-25 Stimpack"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Stimpack'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.Stimpack_FPm'
      DrawScale=0.300000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	 Skins(1)=Texture'BWBP_SKC_Tex.Stim.Stim-Main'

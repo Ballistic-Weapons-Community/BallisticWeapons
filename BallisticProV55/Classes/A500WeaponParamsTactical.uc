@@ -102,10 +102,6 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=TacticalParams
-        WeaponBoneScales(0)=(BoneName="Diamond",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="SuperCharger",Slot=2,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="Stands",Slot=3,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="Glass",Slot=4,Scale=0f)
         SightMoveSpeedFactor=0.6
         InventorySize=5
 		MagAmmo=8

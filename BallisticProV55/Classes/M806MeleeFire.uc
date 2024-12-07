@@ -19,7 +19,7 @@ function PlayPreFire()
 {
 	super.PlayPreFire();
 
-	MD24Pistol(Weapon).bStriking = true;
+	M806Pistol(Weapon).bStriking = true;
 }
 
 defaultproperties

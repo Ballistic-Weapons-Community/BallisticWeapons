@@ -8,8 +8,8 @@
 //=============================================================================
 class FM14FlakGrenade extends BallisticGrenade;
 
-var bool bArmed;
-var float ArmingDelay;
+//var bool bArmed;
+//var float ArmingDelay;
 
 simulated function PostNetBeginPlay()
 {
@@ -22,6 +22,8 @@ simulated function bool Impact(Actor Other, Vector HitLocation)
 {
 	FlakCount=0;
 	super.Impact(Other, HitLocation);
+
+	return true;
 }
 
 simulated function Timer()

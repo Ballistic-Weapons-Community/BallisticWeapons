@@ -10,8 +10,7 @@ defaultproperties
 		TraceRange=(Min=1500.000000,Max=6000.000000) //.60 armor piercing
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		RangeAtten=0.350000
-		Damage=100
+		Damage=95
 		HeadMult=2.3f
 		LimbMult=0.6f
 		DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
@@ -24,7 +23,7 @@ defaultproperties
 		WallPDamageFactor=0.5
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
 		FlashScaleFactor=1.100000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AH104.AH104-HFire',Volume=7.100000)
 		Recoil=4096.000000
 		Chaos=0.200000
 		Inaccuracy=(X=16,Y=16)
@@ -35,7 +34,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		BurstFireRateFactor=1.00
-		FireInterval=1.1
+		FireInterval=0.5
 		PreFireAnimRate=0.800000	
 		FireEndAnim=
 		AimedFireAnim="SightFire"
@@ -125,7 +124,7 @@ defaultproperties
         InventorySize=5
 		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.21
+		SightingTime=0.22
 		MagAmmo=7
 		bMagPlusOne=True
 		//ViewOffset=(X=8,Y=8,Z=-18)
@@ -144,13 +143,13 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=1f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex',Index=4,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel-MainSpec',Index=4,AIndex=-1,PIndex=-1)
 		SightOffset=(X=-29.500000,Y=-0.020000,Z=5.050000)
 		//Function
         InventorySize=5
 		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.21
+		SightingTime=0.22
 		MagAmmo=7
 		bMagPlusOne=True
 		//ViewOffset=(X=8,Y=8,Z=-18)

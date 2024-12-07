@@ -719,8 +719,8 @@ defaultproperties
      bWT_Energy=True
      bWT_Super=True
      SpecialInfo(0)=(Info="600.0;80.0;1.0;100.0;0.5;0.8;5.0")
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=2.200000)
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=0.225000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.217000)
      bNoMag=True
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
      bNoCrosshairInScope=True
@@ -760,7 +760,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.00
      LightRadius=12.00
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_FPm'
      DrawScale=0.30
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'

@@ -250,7 +250,7 @@ defaultproperties
 	TracerClasses(1)=class'TraceEmitter_AP'
 	ImpactManagers(0)=class'IM_IncendiaryHMGBullet'
 	ImpactManagers(1)=class'IM_BigBulletHMG'
-	FlashScale=1.750000
+	FlashScale=1.050000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
 	InstantMode=MU_Both
 	FlashMode=MU_Both
@@ -261,8 +261,9 @@ defaultproperties
     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.800000)
 	ReloadAnim="Reload_MG"
 	CockingAnim="Cock_RearPull"
-	ReloadAnimRate=1.500000
-	CockAnimRate=0.700000
+	ReloadAnimRate=1.450000
+	CockAnimRate=0.672500
+	MeleeImpactManager=class'IM_GunHit'
 	bRapidFire=True
 	bAltRapidFire=True
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_TPm'

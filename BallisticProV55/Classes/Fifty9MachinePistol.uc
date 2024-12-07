@@ -96,7 +96,12 @@ simulated event RenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 }
 
-exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+//======================================================================
+// Weapon mode behaviour (removed post layouts)
+//
+// Switches mode by animating the stock
+//======================================================================
+/*exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
 	// 59 animates to change weapon mode
 	if (ReloadState != RS_None)
@@ -146,6 +151,21 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	{
 		SwitchStock(false);
 	}
+}*/
+//======================================================================
+// Stock behaviour
+//
+// Increase accuracy by extending stock
+//======================================================================
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ReloadState != RS_None)
+		return;
+	if (Clientstate != WS_ReadyToFire)
+		return;
+
+	SwitchStock(!bStockOpen);
 }
 
 simulated function SwitchStock(bool bNewValue)
@@ -176,7 +196,26 @@ simulated function SwitchStock(bool bNewValue)
 simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
+		ApplyStockAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyStockAim()
+{
+	if (bStockOpen)
 	{
+		AimComponent.CrouchMultiplier 	*= 0.7f;
+		AimComponent.AimAdjustTime 		*= 1.5;
+		AimComponent.AimSpread.Max 		*= 1.2;
+		AimComponent.AimSpread.Min 		*= 1.2;
+		AimComponent.ChaosDeclineTime	*= 1.2;
+		RcComponent.PitchFactor			*= 0.8;
+		RcComponent.YawFactor			*= 0.8;
+		RcComponent.XRandFactor			*= 0.8;
+		RcComponent.YRandFactor			*= 0.8;
+		RcComponent.CrouchMultiplier 	*= 0.8;
+		
 		SightingTime = 0.3f; // awkward to sight
 		SightBobScale = 0.15f * class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
 	}
@@ -311,8 +350,8 @@ defaultproperties
 	ManualLines(1)="Continually slashes with the attached blade. Damage output is modest and range is low."
 	ManualLines(2)="The Fifty-9's stock can be engaged or disengaged with the Weapon Function key. With the stock engaged, the recoil is reduced but the hipfire spread increases. The Fifty-9 is extremely effective at very close range."
 	SpecialInfo(0)=(Info="120.0;10.0;0.8;40.0;0.0;0.4;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.150000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.148000)
 	MagAmmo=25
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Cock',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-ClipOut',Volume=0.700000)
@@ -320,7 +359,7 @@ defaultproperties
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
     WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=5.000000)
-    WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+    WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	
@@ -337,7 +376,7 @@ defaultproperties
 	PutDownTime=0.400000
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
-	bShowChargingBar=True
+	bShowChargingBar=false
 	Description="Krome Firepower is a relatively new arms company created with the aim of producing guns with 'style'. The Fifty-9 is one such weapon. Taking an original small arm, and replacing certain parts, adding new attachments, custom paint jobs, etc. Krome weapons are designed for civilian purposes, self defense, bounty hunters, enthusiasts, and collectors. This particular model comes with attached Krome blades, to add some extra flair to the weapon."
 	Priority=31
 	HudColor=(B=255,G=125,R=75)
@@ -361,6 +400,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Fifty9'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Fifty9_FPm'
 	DrawScale=0.300000
 }

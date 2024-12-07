@@ -17,6 +17,7 @@ function PlayFiring()
 		BW.ReloadAnim = 'OpenReload';
 		AimedFireAnim = 'SightFireOpen';
 		FireAnim = 'OpenFire';
+		M806Pistol(BW).ReloadAltAnim = 'ReloadAltOpen';
 	}
 	else
 	{
@@ -24,6 +25,7 @@ function PlayFiring()
 		BW.ReloadAnim = 'Reload';
 		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
+		M806Pistol(BW).ReloadAltAnim = 'ReloadAlt';
 	}
 	super.PlayFiring();
 }

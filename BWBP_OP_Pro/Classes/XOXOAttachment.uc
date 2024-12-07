@@ -166,7 +166,7 @@ defaultproperties
      BrassMode=MU_None
      InstantMode=MU_Secondary
      ReloadAnim="Reload_MG"
-     ReloadAnimRate=1.700000
+     ReloadAnimRate=2.000000
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.XOXO_TPm'
      DrawScale=0.280000

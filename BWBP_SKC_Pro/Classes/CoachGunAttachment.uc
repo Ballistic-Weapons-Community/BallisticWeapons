@@ -7,12 +7,16 @@ class CoachGunAttachment extends BallisticShotgunAttachment;
 
 const SHOT_AMMO = 0;
 const SLUG_AMMO = 1;
+const ZAP_AMMO = 2;
+const FLAME_AMMO = 3;
+const HE_AMMO = 4;
+const FRAG_AMMO = 5;
 
 var bool						Side;
 var byte						AmmoType;
 
-var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
-var() class<BCTraceEmitter>	    TracerClassAlt;		    //Type of tracer to use for alt fire effects
+var array< class<BCTraceEmitter> >	TracerClasses[6]; //0-shot,1-slug,2-zap,3-flame,4-he
+var array< class<BCImpactManager> >	ImpactManagers[6];
 
 var	Actor	MuzzleFlashRight;
 
@@ -96,10 +100,7 @@ simulated function InstantFireEffects(byte IsDoubleFire)
 		SingleFireAnim		= default.SingleFireAnim;
 	}
 	
-	if (AmmoType == SLUG_AMMO)
-		SlugFireEffects(IsDoubleFire);
-	else 
-		ShotFireEffects(IsDoubleFire);
+	ShotFireEffects(IsDoubleFire);
 }
 
 //======================================================================
@@ -187,102 +188,11 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (ImpactManager != None)
-				ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+			if (ImpactManagers[AmmoType] != None)
+				ImpactManagers[AmmoType].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
 		}
 	}
 }
-
-//======================================================================
-// SlugFireEffects
-//
-// Use alternate impact manager
-//======================================================================
-simulated function SlugFireEffects(byte IsDoubleFire)
-{
-	local Vector HitLocation, Start, End;
-	local Rotator R;
-	local Material HitMat;
-	local int i, j, ShotCount;
-	local float RMin, RMax, Range, fX;
-	
-	ShotCount = IsDoubleFire + 1;
-	
-	if (mHitLocation == vect(0,0,0))
-		return;
-	if (Instigator == none)
-		return;
-	
-	if (Level.NetMode == NM_Client)
-	{	
-		RMin = GetTraceRange(); RMax = GetTraceRange();
-		
-		Start = Instigator.Location + Instigator.EyePosition();
-		
-		for (i=0; i < ShotCount; i++)
-		{
-			mHitActor = None;
-			
-			Range = Lerp(FRand(), RMin, RMax);
-			
-			R = Rotator(mHitLocation);
-			
-			switch (GetSpreadMode())
-			{
-				case FSM_Scatter:
-					fX = frand();
-					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
-					break;
-				case FSM_Circle:
-					fX = frand();
-					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-					break;
-				default:
-					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
-					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
-					break;
-			}
-			
-			End = Start + Vector(R) * Range;
-			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
-
-			if (mHitActor == None)
-			{
-				DoWaterTrace(0, Start, End);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, End);
-					Side = !Side;
-				}
-			}
-			else
-			{
-				DoWaterTrace(0, Start, HitLocation);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, HitLocation);
-					Side = !Side;
-				}
-			}
-
-			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
-				continue;
-
-			if (HitMat == None)
-				mHitSurf = int(mHitActor.SurfaceType);
-			else
-				mHitSurf = int(HitMat.SurfaceType);
-
-			if (ImpactManagerAlt != None)
-				ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
-		}
-	}
-}
-
 
 // Spawn a tracer and water tracer
 simulated function SpawnTracer(byte IsDoubleFire, Vector V)
@@ -298,13 +208,11 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 	Dist = VSize(V - TipLoc);
 
 	// Spawn a tracer for the appropriate mode
-	if (TracerClass != None)
+	if (TracerClasses[AmmoType] != None)
 	{
 		if (Dist > 200)
 		{
-			if (AmmoType == SHOT_AMMO)
-				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
-			else Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
+			Tracer = Spawn(TracerClasses[AmmoType], self, , TipLoc, Rotator(V - TipLoc));
 		}
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
@@ -392,11 +300,21 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
+	TracerClasses(0)=class'TraceEmitter_Shotgun' //shot
+	TracerClasses(1)=class'TraceEmitter_X83AM' //super slug
+	TracerClasses(2)=class'TraceEmitter_Supercharge' //zap
+	TracerClasses(3)=class'TraceEmitter_ShotgunFlame' //flame
+	TracerClasses(4)=class'TraceEmitter_Shotgun' //he
+	TracerClasses(5)=None //frag
+	ImpactManagers(0)=class'IM_Shell' //shot
+	ImpactManagers(1)=class'IM_ExpBullet' //super slug
+	ImpactManagers(2)=class'IM_Shell' //zap
+	ImpactManagers(3)=class'IM_ShellHE' //flame
+	ImpactManagers(4)=class'IM_ShellHE' //he
+	ImpactManagers(5)=None //frag
+	
     TracerClass=class'TraceEmitter_Shotgun'
     ImpactManager=class'IM_Shell'
-
-    TracerClassAlt=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
-    ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_ExpBullet'
 
     MeleeImpactManager=class'IM_GunHit'
 
@@ -416,11 +334,6 @@ defaultproperties
     RelativeLocation=(X=5.000000,Z=4.000000)
     RelativeRotation=(Pitch=32768)
     DrawScale=0.450000
-
-    SingleFireAnim="Reload_BreakOpenFast"
-    SingleAimedFireAnim="Reload_BreakOpenFast"
-    RapidFireAnim="RifleHip_Fire"
-    RapidAimedFireAnim="RifleAimed_Fire"
 
     ReloadAnim="Reload_BreakOpen"
     CockingAnim="Reload_BreakOpen"

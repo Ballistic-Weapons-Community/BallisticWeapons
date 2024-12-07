@@ -39,6 +39,36 @@ defaultproperties
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams_Supp
+		TraceRange=(Min=4096.000000,Max=4096.000000)
+        DecayRange=(Min=788,Max=2363) // 15-45m
+		Inaccuracy=(X=72,Y=72)
+		RangeAtten=0.5
+		Damage=30 // 10mm
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
+		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
+        PenetrationEnergy=16
+		PenetrateForce=175
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.800000
+		Recoil=130.000000 //
+		Chaos=0.035000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Pitch=0.8,Radius=128,bAtten=True) //
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Supp
+		FireInterval=0.1000 //
+		FireEndAnim=
+		AimedFireAnim="AimedFire"	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams_Supp'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -60,6 +90,18 @@ defaultproperties
 		FireAnim="Fire2"	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -78,7 +120,7 @@ defaultproperties
 		DeclineDelay=0.13
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -100,7 +142,14 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="Dart + RDS"
+		//Visual
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
+		SightOffset=(X=1.000000,Y=0.01,Z=1.80000)
+		//Stats
 		DisplaceDurationMult=0.75
         SightMoveSpeedFactor=0.6
 		MagAmmo=32
@@ -111,7 +160,31 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Supp
+		//Layout core
+		Weight=15
+		LayoutName="Suppressed"
+		//Visual
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorSOCOM',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-50,y=0,z=-0),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="Muzzle",Scale=0.025,AugmentOffset=(x=-60,y=-0.3,z=7),AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		SightOffset=(X=1.0,Y=0.01,Z=-0.6)
+		//Stats
+		DisplaceDurationMult=0.75
+        SightMoveSpeedFactor=0.6
+		MagAmmo=32
+		SightingTime=0.25
+        InventorySize=4
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+		AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Supp'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XMK5_Tan
@@ -170,8 +243,8 @@ defaultproperties
 	End Object
 	
 	Camos(0)=WeaponCamo'XMK5_Tan'
-	Camos(1)=WeaponCamo'XMK5_Jungle'
-	Camos(2)=WeaponCamo'XMK5_Desert'
+	Camos(1)=WeaponCamo'XMK5_Desert'
+	Camos(2)=WeaponCamo'XMK5_Jungle'
 	Camos(3)=WeaponCamo'XMK5_Red'
 	Camos(4)=WeaponCamo'XMK5_Blast'
 	Camos(5)=WeaponCamo'XMK5_Gold'

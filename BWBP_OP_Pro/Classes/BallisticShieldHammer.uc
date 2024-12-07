@@ -12,6 +12,6 @@ defaultproperties
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
      Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShieldHammer_TPm'
-	 RelativeRotation=(Pitch=32768)
+	 RelativeRotation=(Roll=-16384,Yaw=-16384)
      DrawScale=0.450000
 }

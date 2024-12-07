@@ -26,6 +26,48 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 	
+	//Stock
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_Stock
+		RangeAtten=0.500000
+		Damage=19
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.T9CNFlashEmitter'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.300000)
+		Recoil=185.000000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Stock
+		FireInterval=0.080000
+		AimedFireAnim="SightFire"	
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Stock'
+	End Object
+	
+	//Robo
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_Gauss
+		RangeAtten=0.500000
+		Damage=19
+		DamageType=Class'BWBP_SKC_Pro.DTT9CN'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.T9CNFlashEmitter'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireRobo',Volume=1.500000)
+		Recoil=205.000000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Gauss
+		FireInterval=0.085000
+		AimedFireAnim="SightFire"	
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Gauss'
+	End Object
+	
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
@@ -37,6 +79,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTT9CNHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTT9CN'
 		PenetrateForce=580
+		PenetrationEnergy=100.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
 		FlashScaleFactor=0.500000
@@ -110,23 +153,24 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.225000
+		SightOffset=(X=0.00,Y=0.00,Z=1.73)
+		SightPivot=(Pitch=128)
 		//Functions
 		DisplaceDurationMult=0.75
 		PlayerSpeedFactor=1.050000
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.250000
         InventorySize=4
 		MagAmmo=18
-		SightPivot=(Pitch=128)
 		ViewOffset=(X=4.00,Y=7.00,Z=-6.00)
-		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
 	End Object
 
-	Begin Object Class=WeaponParams Name=ArenaParams_Burst
+	Begin Object Class=WeaponParams Name=ArenaParams_Gauss
 		//Layout core
 		LayoutName="Gauss Mod"
 		LayoutTags="gauss"
@@ -140,6 +184,11 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-MainShine',Index=1,AIndex=1,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.Ber-SlideShine',Index=3,Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.225000
+		SightOffset=(X=5.00,Y=0.05,Z=1.2)
+		SightPivot=(Pitch=-128)
 		//Functions
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
@@ -147,21 +196,46 @@ defaultproperties
 		InitialWeaponMode=1
 		DisplaceDurationMult=0.75
 		PlayerSpeedFactor=1.050000
-		SightMoveSpeedFactor=0.9
-		SightingTime=0.250000
         InventorySize=4
 		MagAmmo=18
-		SightPivot=(Pitch=128)
 		ViewOffset=(X=4.00,Y=7.00,Z=-6.00)
-		//SightOffset=(X=3.000000,Y=-2.090000,Z=9.35000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Gauss'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 
+	Begin Object Class=WeaponParams Name=ArenaParams_Stock
+		//Layout core
+		LayoutName="Brace"
+		LayoutTags="raffica"
+		Weight=10
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.T9CN_FPm'
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000 //
+		SightOffset=(X=0.00,Y=0.30,Z=1)
+		SightPivot=(Pitch=0)
+		//Functions
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		DisplaceDurationMult=0.75
+		PlayerSpeedFactor=1.0 //
+        InventorySize=4
+		MagAmmo=18
+		ViewOffset=(X=4.00,Y=7.00,Z=-6.00)
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Stock'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
+
 	Layouts(0)=WeaponParams'ArenaParams_Auto'
-	Layouts(1)=WeaponParams'ArenaParams_Burst'
+	Layouts(1)=WeaponParams'ArenaParams_Gauss'
+	Layouts(2)=WeaponParams'ArenaParams_Stock'
 	
 	//Camos =====================================
 	
@@ -175,8 +249,8 @@ defaultproperties
 		Index=1
 		CamoName="Silver"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MainShine',Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-SlideSilverShine',Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-MainShine",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-SlideSilverShine",Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.T9CN.T9CN-MiscSilverShine',Index=4,Index=4,PIndex=-1)
 		Weight=20
 	End Object
@@ -185,8 +259,8 @@ defaultproperties
 		Index=2
 		CamoName="Black"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-MainBlack",Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-SlideBlack",Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineB",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineC",Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-MiscBlack",Index=4,Index=4,PIndex=-1)
 		Weight=20
 	End Object
@@ -205,8 +279,8 @@ defaultproperties
 		Index=4
 		CamoName="Desert"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainE",Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideE",Index=3,Index=2,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineE",Index=1,AIndex=1,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineE",Index=3,Index=2,PIndex=1)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.T9CN-MiscBlack",Index=4,Index=4,PIndex=-1)
 		Weight=10
 	End Object

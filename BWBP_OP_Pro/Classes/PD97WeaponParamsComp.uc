@@ -88,6 +88,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Tazer
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.PD97TazerProj'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
@@ -99,11 +100,31 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-		FireInterval=0.900000
-		AmmoPerFire=0
+		FireInterval=0.300000
+		AmmoPerFire=1
 		PreFireAnim=
 		FireAnim="TazerFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+	End Object
+	
+	//Tracker
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_Tracker
+		ProjectileClass=Class'BWBP_OP_Pro.PD97TrackerProj'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=10240.000000
+		Damage=8
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Tracker
+		TargetState="Tracker"
+		FireInterval=0.100000
+		AmmoPerFire=1
+		PreFireAnim=
+		FireAnim="TazerFire"	
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams_Tracker'
 	End Object
 		
 	//=================================================================
@@ -179,7 +200,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Rocket'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Tracker'
     End Object 
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Dart

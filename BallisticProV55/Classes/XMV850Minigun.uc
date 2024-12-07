@@ -436,8 +436,8 @@ defaultproperties
 	ManualLines(1)="Deploys the minigun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="The XMV-850 is one of the heaviest weapons in the game and halves your movement speed when equipped.||Effective at medium range. Extremely effective from ambush and deployed mode."
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout',Volume=0.212000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway',Volume=0.212000)
 
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
@@ -485,7 +485,7 @@ defaultproperties
 	SightOffset=(X=-6.5,Y=-1,Z=7.5)
 	SightPivot=(Pitch=700,Roll=2048)
 	SightBobScale=0.5f
-
+	bnoncocking=True
 	AttachmentClass=Class'BallisticProV55.XMV850MinigunAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XMV850'
 	IconCoords=(X2=127,Y2=31)
@@ -496,7 +496,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMV850'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_FPm'
 	DrawScale=0.300000
 	SoundRadius=128.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

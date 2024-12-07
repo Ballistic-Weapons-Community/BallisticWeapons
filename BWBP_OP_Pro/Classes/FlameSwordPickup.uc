@@ -34,18 +34,19 @@ simulated function UpdatePrecacheMaterials()
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.FlameSword.Sword_Static');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.FlameSword.FlameSwordPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.FlameSword.FlameSwordPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.FlameSword.Sword_Static'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.FlameSword.FlameSwordPickupLo'
      InventoryType=Class'BWBP_OP_Pro.FlameSword'
      RespawnTime=50.000000
      PickupMessage="You picked up the PSI-56 Fire Sword."
      PickupSound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Equip'
-     StaticMesh=StaticMesh'BWBP_OP_Static.FlameSword.Sword_Static'
+     StaticMesh=StaticMesh'BWBP_OP_Static.FlameSword.FlameSwordPickupHi'
      Physics=PHYS_None
-     DrawScale=1.60000
+     DrawScale=1.000000
      CollisionHeight=3.500000
 }

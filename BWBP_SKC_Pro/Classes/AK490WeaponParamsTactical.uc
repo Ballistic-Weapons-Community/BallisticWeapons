@@ -190,6 +190,16 @@ defaultproperties
 		ChaosSpeedThreshold=300
 	End Object
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSViewBindFactor=1
+		ADSMultiplier=0.7
+		AimAdjustTime=0.6
+		AimSpread=(Min=256,Max=1024)
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		ChaosDeclineTime=1.250000
+		ChaosSpeedThreshold=300
+	End Object
+
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
@@ -221,7 +231,7 @@ defaultproperties
 		LayoutName="Suppressed"
 		LayoutTags="no_knife"
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.AKM490_FPm'
 		WeaponBoneScales(0)=(BoneName="Mount",Slot=50,Scale=0f)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=0.000000,Y=0.00000,Z=2.20000)
@@ -246,7 +256,7 @@ defaultproperties
 		LayoutName="Holosight"
 		LayoutTags="no_knife"
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.AKM490_FPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
 		SightPivot=(Pitch=64)
@@ -270,7 +280,7 @@ defaultproperties
 		LayoutName="3X Scope"
 		LayoutTags="no_knife"
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AKM490'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.AKM490_FPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.07,AugmentOffset=(x=-26,y=-3.6,z=-0.1),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		SightOffset=(X=3.000000,Y=-0.100000,Z=5.000000)
 		SightPivot=(Pitch=64)
@@ -280,14 +290,14 @@ defaultproperties
 		MaxZoom=3
 		// ADS handling
         SightMoveSpeedFactor=0.35
-		SightingTime=0.4 //+.05
+		SightingTime=0.45 //+.1
 		//Function
 		InventorySize=7
 		DisplaceDurationMult=1
 		MagAmmo=25
 		WeaponName="AKM-490 Battle Rifle (3X)"
         RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
-        AimParams(0)=AimParams'TacticalAimParams'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_HB'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
@@ -295,7 +305,7 @@ defaultproperties
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_Supp'
     Layouts(2)=WeaponParams'TacticalParams_Holo'
-    Layouts(3)=WeaponParams'TacticalParams_Scope'
+    //Layouts(3)=WeaponParams'TacticalParams_Scope'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AK_Black

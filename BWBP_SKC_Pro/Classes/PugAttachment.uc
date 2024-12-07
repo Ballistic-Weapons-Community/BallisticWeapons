@@ -34,7 +34,7 @@ defaultproperties
      AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
-	 FlashScale=0.100000
+	FlashScale=0.050000
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge'
      AltFlashBone="ejector"
@@ -45,6 +45,8 @@ defaultproperties
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+  	ReloadAnimRate=1.000000
+	CockAnimRate=0.760000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.Pug_TPm'
      RelativeRotation=(Pitch=32768)
      DrawScale=1.000000

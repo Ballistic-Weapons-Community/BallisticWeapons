@@ -31,7 +31,7 @@ defaultproperties
      MotionBlurDamageRange=20.000000
      bUseMotionBlur=True
      DamageDescription=",Laser,"
-     WeaponClass=Class'BWBP_SKC_Pro.LS440Instagib'
+     WeaponClass=Class'BWBP_SKC_Pro.LS14Carbine'
      DeathString="%o's face was doctored up by %k's lethal LS-440."
      FemaleSuicide="%o blasted her eyes out."
      MaleSuicide="%o blasted himself in the eye."

@@ -441,8 +441,8 @@ defaultproperties
 	ManualLines(1)="Projects a hitscan beam with almost no recoil but low damage output."
 	ManualLines(2)="While scoped, the weapon function toggles the infra-red night vision lamp. The E-23 ViPeR is effective at all ranges, but requires mode switching and uses the same ammo pool for all its modes. It has low recoil but poor hipfire. Its energy projectiles repair nodes and vehicles. Plasma projectiles will penetrate players, but not walls and surfaces."
 	SpecialInfo(0)=(Info="300.0;25.0;0.9;80.0;0.2;0.4;0.1")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout',Volume=0.220000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.222000)
 
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipIn')
@@ -498,7 +498,7 @@ defaultproperties
 	LightSaturation=96
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_VPR'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.VPR_FPm'
 	DrawScale=0.3
 	bFullVolume=True
 	SoundRadius=32.000000

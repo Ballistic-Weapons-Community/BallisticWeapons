@@ -29,18 +29,19 @@ simulated function UpdatePrecacheMaterials()
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Flash.FLASHAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Flash.FLASHPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Flash.FLASHPickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Flash.FLASHPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Flash.FLASHPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Flash.FLASHPickupLo'
      PickupDrawScale=0.600000
      InventoryType=Class'BWBP_SKC_Pro.FLASHLauncher'
      RespawnTime=120.000000
      PickupMessage="You picked up the AT40 'STREAK' incendiary rocket launcher."
      PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Flash.FLASHPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Flash.FLASHPickupHi'
      Physics=PHYS_None
      DrawScale=0.600000
      CollisionHeight=6.000000

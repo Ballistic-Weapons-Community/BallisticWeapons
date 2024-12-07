@@ -14,9 +14,9 @@ defaultproperties
 		MaxSpeed=14000.000000
 		AccelSpeed=100000.000000
 		Damage=30
-		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.100000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SWC_Sounds.A800.A800-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=100.000000
 		Chaos=0.100000
 		WarnTargetPct=0.200000	
@@ -43,7 +43,7 @@ defaultproperties
 		Damage=75
 		DamageRadius=384.000000
 		MomentumTransfer=50000.000000
-		MuzzleFlashClass=Class'BWBP_SWC_Pro.A73FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-AltFire2',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=650.000000
@@ -92,13 +92,18 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		PlayerSpeedFactor=0.780000
-		PlayerJumpFactor=0.750000
+		//Layout core
+		LayoutName="Replacable Cells"
+		Weight=30
+		//ADS
 		SightingTime=0.600000
-        MagAmmo=90
-        InventorySize=7
         SightMoveSpeedFactor=0.75
 		ZoomType=ZT_Logarithmic
+		//Stats
+		PlayerSpeedFactor=0.780000
+		PlayerJumpFactor=0.750000
+        MagAmmo=90
+        InventorySize=7
 		SightOffset=(X=-15.000000,Y=-25.000000,Z=6.500000)
 		SightPivot=(Roll=-1900)
 		ViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
@@ -109,7 +114,34 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_BigBattery
+		//Layout core
+		LayoutName="Integrated Cells"
+		LayoutTags="no_reload"
+		Weight=10
+		//ADS
+		SightingTime=0.600000
+        SightMoveSpeedFactor=0.75
+		ZoomType=ZT_Logarithmic
+		//Stats
+		PlayerSpeedFactor=0.780000
+		PlayerJumpFactor=0.750000
+        MagAmmo=225
+        InventorySize=7
+		SightOffset=(X=-15.000000,Y=-25.000000,Z=6.500000)
+		SightPivot=(Roll=-1900)
+		ViewOffset=(X=30.000000,Y=20.000000,Z=-16.000000)
+		ViewPivot=(Roll=-256)
+		ReloadAnimRate=1.300000
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ArenaParams'
+	Layouts(1)=WeaponParams'ArenaParams_BigBattery'
 
 
 }

@@ -24,7 +24,7 @@ defaultproperties
 		FlashScaleFactor=0.10000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=SoundGroup'BWBP_CC_Sounds.GASC.Gaucho-Fire',Volume=1.200000)
+		FireSound=(Sound=SoundGroup'BWBP_APC_Sounds.GASC.Gaucho-Fire',Volume=1.200000)
 		Recoil=700.000000
 		Chaos=0.060000
 		Inaccuracy=(X=16,Y=16)
@@ -56,7 +56,7 @@ defaultproperties
 		FlashScaleFactor=0.10000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=SoundGroup'BWBP_CC_Sounds.GASC.Gaucho-Fire',Volume=1.200000)
+		FireSound=(Sound=SoundGroup'BWBP_APC_Sounds.GASC.Gaucho-Fire',Volume=1.200000)
 		Recoil=725.000000
 		Chaos=0.120000
 		Inaccuracy=(X=16,Y=16)

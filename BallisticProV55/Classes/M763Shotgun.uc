@@ -11,12 +11,27 @@ class M763Shotgun extends BallisticProShotgun;
 var M763GasControl GC;
 var bool bAltLoaded;
 
+var()	bool		bIsSlug;
+
 var Name SingleLoadAnim;
 
 replication
 {
 	reliable if (Role < ROLE_Authority)
 		ServerLoadShell;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bIsSlug=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
+	{
+		bIsSlug=true;
+	}
 }
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
@@ -61,6 +76,22 @@ simulated function Notify_CockStart()
 
 simulated event AnimEnded (int Channel, name anim, float frame, float rate) 
 {
+	if (Anim == ZoomInAnim)
+	{
+		SightingState = SS_Active;
+		ScopeUpAnimEnd();
+		return;
+	}
+	else if (Anim == ZoomOutAnim)
+	{
+		SightingState = SS_None;
+		ScopeDownAnimEnd();
+		return;
+	}
+
+	if (anim == FireMode[0].FireAnim || (FireMode[1] != None && anim == FireMode[1].FireAnim) )
+		bPreventReload=false;
+	
 	if (MeleeFireMode != None && anim == MeleeFireMode.FireAnim)
 	{
 		if (MeleeState == MS_StrikePending)
@@ -76,6 +107,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
 	{
 		AnimBlendParams(1, 0);
+		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
@@ -85,27 +117,32 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 	// Modified stuff from Engine.Weapon
 	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator.Weapon == self)) && ReloadState == RS_None)
     {
-		if (MeleeState < MS_Held)
+        if (anim == FireMode[0].FireAnim && HasAnim(FireMode[0].FireEndAnim)) // rocket hack
+			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);
+        else if (FireMode[1]!=None && anim== FireMode[1].FireAnim && HasAnim(FireMode[1].FireEndAnim))
+            SafePlayAnim(FireMode[1].FireEndAnim, FireMode[1].FireEndAnimRate, 0.0);
+        else if (MeleeState < MS_Held)
 			bPreventReload=false;
 		if (Channel == 0 && (bNeedReload || ((FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring))) && MeleeState < MS_Held)
 			PlayIdle();
     }
 	// End stuff from Engine.Weapon
 
-	if (ReloadState == RS_None)
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
 		return;
 	
 	// Start Shovel ended, move on to Shovel loop
-	else if (ReloadState == RS_StartShovel)
+	if (ReloadState == RS_StartShovel)
 	{
 		ReloadState = RS_Shovel;
 		PlayShovelLoop();
 		return;
 	}
 	// Shovel loop ended, start it again
-	else if (ReloadState == RS_PostShellIn)
+	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= WeaponParams.MagAmmo || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -116,7 +153,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 		return;
 	}
 	// End of reloading, either cock the gun or go to idle
-	else if (ReloadState == RS_EndShovel)
+	if (ReloadState == RS_PostClipIn || ReloadState == RS_EndShovel)
 	{
 		if (bNeedCock && MagAmmo > 0)
 			CommonCockGun();
@@ -131,7 +168,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 		return;
 	}
 	//Cock anim ended, goto idle
-	else if (ReloadState == RS_Cocking)
+	if (ReloadState == RS_Cocking)
 	{
 		bNeedCock=false;
 		ReloadState = RS_None;
@@ -153,7 +190,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 		AimComponent.ReAim(0.05);
 	}
 	
-	else if (ReloadState == RS_GearSwitch)
+	if (ReloadState == RS_GearSwitch)
 	{
 		if (Role == ROLE_Authority)
 			bServerReloading=false;
@@ -293,10 +330,46 @@ function float SuggestDefenseStyle()
 
 simulated function PlayCocking(optional byte Type)
 {
+	local float Rand;
+	
 	if (Type == 2 && HasAnim(CockAnimPostReload))
 		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
 	else
+	{	
+		Rand = FRand();
+		if (Rand > 0.8)
+			CockAnim = 'Cock';
+		else if (Rand > 0.6)
+			CockAnim = 'Cock2';
+		else if (Rand > 0.4)
+			CockAnim = 'Cock3';
+		else if (Rand > 0.2)
+			CockAnim = 'Cock4';
+		else
+			CockAnim = 'Cock5';
 		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
+	}
+}
+
+simulated function PlayShovelLoop()
+{
+	local float Rand;
+	
+	Rand = FRand();
+	if (Rand > 0.8)
+		ReloadAnim = 'ReloadLoop';
+	else if (Rand > 0.6)
+		ReloadAnim = 'ReloadLoop2';
+	else if (Rand > 0.4)
+		ReloadAnim = 'ReloadLoop3';
+	else if (Rand > 0.2)
+		ReloadAnim = 'ReloadLoop4';
+	else
+		ReloadAnim = 'ReloadLoop5';
+	
+	SafePlayAnim(ReloadAnim, ReloadAnimRate, 0.0, , "RELOAD");
+	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+		Instigator.SetAnimAction('Shovel');
 }
 
 // Animation notify for when cocking action starts. Used to time sounds
@@ -326,8 +399,8 @@ defaultproperties
 	ManualLines(2)="Has a melee attack. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind.||As a shotgun, has poor penetration.||Most effective at medium range."
 	SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.0")
 	MeleeFireClass=Class'BallisticProV55.M763MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Cock1')
@@ -369,8 +442,9 @@ defaultproperties
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
 	PlayerViewOffset=(X=3.00,Y=4.00,Z=-5.00)
-	SightOffset=(X=0,Y=0,Z=2.2)
-	SightPivot=(Pitch=128)
+	SightOffset=(X=0,Y=-.05,Z=1.1)
+	//SightOffset=(X=0,Y=0,Z=2.2)
+	//SightPivot=(Pitch=128)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M763'
 	IconCoords=(X2=127,Y2=31)
@@ -383,6 +457,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M763'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M763_FPm'
 	DrawScale=0.3
 }

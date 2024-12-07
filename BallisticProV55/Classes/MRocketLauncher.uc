@@ -506,8 +506,8 @@ defaultproperties
 	ManualLines(1)="As the primary fire, but the rate of fire is significantly increased. The rockets travel slowly at first, before launching at full speed."
 	ManualLines(2)="Effective against groups and at medium range."
 	SpecialInfo(0)=(Info="480.0;60.0;1.5;100.0;0.8;2.0;1.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
 	ReloadAnim="Reload1"
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
@@ -554,6 +554,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRL'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRL_FPm'
 	DrawScale=0.300000
 }

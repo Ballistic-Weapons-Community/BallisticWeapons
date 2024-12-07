@@ -17,7 +17,7 @@ defaultproperties
 		PenetrateForce=150
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
-		PushbackForce=150.000000
+		PushbackForce=250.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
 		Recoil=768.000000
@@ -239,6 +239,7 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPriControlledFireParams'
 		FireParams(2)=FireParams'ArenaPriStandardFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Mount'
+		AltFireParams(2)=FireParams'ArenaSecondaryFireParams_Mount'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'

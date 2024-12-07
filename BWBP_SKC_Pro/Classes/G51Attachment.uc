@@ -37,6 +37,7 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 }
 
+
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
@@ -57,6 +58,11 @@ function InitFor(Inventory I)
 
 	if (BallisticWeapon(I) != None)
 		myWeap = BallisticWeapon(I);
+   	if (G51Carbine(I) != None && G51Carbine(I).bSilenced)
+    	{
+		ModeInfos[0].TracerChance = 0;
+		ModeInfos[0].TracerMix = 0;
+	}
 }
 
 simulated function Tick(float DT)
@@ -130,7 +136,7 @@ defaultproperties
 	MuzzleFlashClass=class'M50FlashEmitter'
 	AltMuzzleFlashClass=class'M50FlashEmitter'
 	ImpactManager=class'IM_Bullet'
-	FlashScale=0.500000
+	FlashScale=0.200000
 	BrassClass=class'Brass_Rifle'
 	InstantMode=MU_Both
 	FlashMode=MU_Both
@@ -140,6 +146,8 @@ defaultproperties
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	bRapidFire=True
+	ReloadAnimRate=0.900000
+	CockAnimRate=0.775000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.G51Carbine_TPm'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=1.300000

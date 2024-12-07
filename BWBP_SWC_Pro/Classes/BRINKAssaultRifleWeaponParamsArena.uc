@@ -18,7 +18,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SWC_Pro.DTBRINKAssault'
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SWC_Pro.BRINKFlashEmitter'
-		FlashScaleFactor=0.500000
+		FlashScaleFactor=0.750000
 		FireSound=(Sound=Sound'BWBP_SWC_Sounds.BR1NK.BR1NK-Fire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=140.000000
 		Chaos=0.02000

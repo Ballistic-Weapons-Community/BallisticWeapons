@@ -18,13 +18,14 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickup'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickup'	 
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickupLo'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickupHi'	 
      InventoryType=Class'BWBP_OP_Pro.BallisticShieldWeapon'
      RespawnTime=10.000000
      PickupMessage="You picked up a ballistic shield."

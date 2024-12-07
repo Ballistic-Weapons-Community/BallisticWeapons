@@ -16,13 +16,13 @@ defaultproperties
      MeleeImpactManager=class'IM_GunHit'
      FlashScale=0.6
      AltFlashBone="tip2"
-     BrassClass=class'Brass_MRS138Shotgun'
+     BrassClass=class'Brass_Shotgun'
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      TracerChance=0.500000
      ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.900000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.AssaultShotgun_TPm'
-     RelativeRotation=(Pitch=32768,Roll=-16384)
+     ReloadAnimRate=0.690000
+     CockAnimRate=0.650000
+     Mesh=SkeletalMesh'BWBP_OP_Anim.RCS715_TPm'
      DrawScale=0.500000
      RelativeLocation=(X=1.000000,Z=5.000000)
 }

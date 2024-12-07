@@ -17,25 +17,27 @@
 //===========================================================================
 class PD97Bloodhound extends BallisticHandgun;
 
-var PD97TazerEffect TazerEffect;
-var array<PD97DartControl> StruckTargets;
-var bool bShotgunMode; //Am I a shotgun? Are you??
+var(PD97) PD97TazerEffect 		TazerEffect;
+var(PD97) array<PD97DartControl> StruckTargets;
+var(PD97) bool 					bShotgunMode; //Am I a shotgun? Are you??
+var(PD97) name					TazerLoadAnim;	//Anim for grenade reload
+var(PD97) BUtil.FullSound		TazerLoadSound;		//
 
-var rotator DrumRot;
-var byte DrumPos;
-var bool bNeedRotate; //Used to ensure a rotation is called before the next shot
+var(PD97) rotator DrumRot;
+var(PD97) byte DrumPos;
+var(PD97) bool bNeedRotate; //Used to ensure a rotation is called before the next shot
 
-var array<Name> ShellBones[5];
-var array<Name> SpareShellBones[5];
+var(PD97) array<Name> ShellBones[5];
+var(PD97) array<Name> SpareShellBones[5];
 
 //Gyrojet variables
-var   Pawn			LockedTarget;
-var	  bool			bLockedOn;
-var   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can be used as camera or directed with laser
-var array<Actor> ActiveRockets;
-var() sound		LockedOnSound;		// beep!
-var() sound		LockedOffSound;		// lock it off
-var PD97TrackerBeacon ActiveBeacon;
+var(PD97)   Pawn			LockedTarget;
+var(PD97)	  bool			bLockedOn;
+var(PD97)   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can be used as camera or directed with laser
+var(PD97) array<Actor> 		ActiveRockets;
+var(PD97) sound				LockedOnSound;		// beep!
+var(PD97) sound				LockedOffSound;		// lock it off
+var(PD97) PD97TrackerBeacon ActiveBeacon;
 
 
 replication
@@ -65,6 +67,11 @@ simulated function OnWeaponParamsChanged()
 			PD97Attachment(ThirdPersonActor).InstantMode=MU_Primary;
 		}
 	}
+}
+simulated function Notify_TazerReload()	{	
+	class'BUtil'.static.PlayFullSound(self, TazerLoadSound);
+	PD97SecondaryFire(FireMode[1]).bLoaded = true; 
+	FireMode[1].PreFireTime = FireMode[1].default.PreFireTime; 
 }
 
 simulated function Notify_DrumRotate ()
@@ -250,8 +257,6 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 }
 
-
-
 simulated function Notify_DrumDown()
 {
 	local int i, j;
@@ -317,6 +322,71 @@ function LostControl(PD97DartControl DC)
 //===========================================================================
 // Tazer implementation.
 //===========================================================================
+
+// Load in a tazer
+simulated function LoadTazer()
+{
+	if (Ammo[1].AmmoAmount < 1 || PD97SecondaryFire(FireMode[1]).bLoaded)
+		return;
+	if (ReloadState == RS_None)
+	{
+		ReloadState = RS_Cocking;
+		PlayAnim(TazerLoadAnim, 1.0, , 0);
+	}		
+}
+
+simulated function bool IsReloadingTazer()
+{
+    local name anim;
+    local float frame, rate;
+    GetAnimParams(0, anim, frame, rate);
+	if (Anim == TazerLoadAnim)
+ 		return true;
+	return false;
+}
+
+function ServerStartReload (optional byte i)
+{
+	local int channel;
+	local name seq;
+	local float frame, rate;
+
+	if (bPreventReload)
+		return;
+	if (ReloadState != RS_None)
+		return;
+
+	GetAnimParams(channel, seq, frame, rate);
+	
+	if (seq == TazerLoadAnim)
+		return;
+
+	if (i == 1 || (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1))
+	{
+		if (AmmoAmount(1) > 0 && !IsReloadingTazer())
+		{
+			LoadTazer();
+			ClientStartReload(1);
+		}
+		return;
+	}
+	super.ServerStartReload();
+}
+
+simulated function ClientStartReload(optional byte i)
+{
+	if (Level.NetMode == NM_Client)
+	{
+		if (i == 1 || (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1))
+		{
+			if (AmmoAmount(1) > 0 && !IsReloadingTazer())
+				LoadTazer();
+		}
+		else
+			CommonStartReload(i);
+	}
+}
+
 simulated function RenderOverlays (Canvas C)
 {
 	Super.RenderOverlays(C);
@@ -420,8 +490,8 @@ simulated function GotTarget(Pawn A)
 {
 	LockedTarget = A;
 	bLockedOn = true;
-	Log("bLockedOn: "$bLockedOn);
-	Log("LockedTarget:" $LockedTarget);
+	//Log("bLockedOn: "$bLockedOn);
+	//Log("LockedTarget:" $LockedTarget);
     PlaySound(LockedOnSound,,0.7,,16);
 }
 
@@ -511,14 +581,17 @@ defaultproperties
 	BigIconMaterial=Texture'BWBP_OP_Tex.Bloodhound.BigIcon_PD97'
 	IdleTweenTime=0.000000
 	
+	TazerLoadAnim="TazerReload"
+	TazerLoadSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit',Volume=0.500000,Pitch=1.500000)
+	
 	bWT_Bullet=True
 	bWT_Heal=True
 	ManualLines(0)="Fires projectile darts. Upon striking an enemy, these darts release a cloud of pink gas which allows the path of the enemy to be tracked. The darts will also deal damage over time. Upon striking an ally, the darts heal over time instead of dealing damage."
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing paltry DPS but slowing the enemy movement."
 	ManualLines(2)="Primarily a support weapon, the Bloodhound is most effective when used as part of a team. Nevertheless, sufficient dart hits can cause high damage. The Bloodhound has very low recoil."
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
@@ -558,6 +631,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Bloodhound'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.PD97_FPm'
 	DrawScale=0.300000
 }

@@ -58,6 +58,7 @@ enum EZoomType
 //-----------------------------------------------------------------------------
 var() int					Weight;					// How likely it is for this layout to be chosen, higher is more likely
 var() String				LayoutName;				// The layout name in menus
+var() String				LayoutDescription;		// Short description to show in UI.
 var() String				LayoutTags;				// Internal tag used to change gun functionality eg gauss, explosive, suppressed
 //-----------------------------------------------------------------------------
 // Movement speed
@@ -109,6 +110,9 @@ var() Vector                ViewOffset;            // Offset when at rest
 var() Rotator               ViewPivot;            // Pivot when at rest
 var() String				WeaponName;
 var() Mesh					LayoutMesh;
+var() Mesh					AttachmentMesh;
+var() StaticMesh			PickupMesh;
+var() float					PickupDrawScale;	// DrawScale may be weird so it looks good in the menu. Use this for in game pickups
 var() array<GunAugment>		GunAugments;		//The RDS, Suppressor, Bayonet actor. Will look for a socket called "Attach"
 var() array<int>			AllowedCamos;			// Which camos we can use for this layout, leave blank for all
 //-----------------------------------------------------------------------------
@@ -138,6 +142,13 @@ var() editinline array<AimParams>		AimParams;
 var() editinline array<FireParams>    	FireParams;
 var() editinline array<FireParams>     	AltFireParams;
 
+//-----------------------------------------------------------------------------
+// AI
+//-----------------------------------------------------------------------------
+var   bool			bNoaltfire;			//Dissalow a bot to use alt-fire (use this when the alt-fire makes the gun ADS but the gun has multiple layout alt-fires that we want to keep)
+
+//-----------------------------------------------------------------------------
+
 final function FireEffectParams.FireModeStats GetFireStats() 
 {
     local FireEffectParams.FireModeStats FS;
@@ -156,6 +167,19 @@ final function FireEffectParams.FireModeStats GetAltFireStats()
 	    return AltFireParams[0].GetStats();
 
     return FS;
+}
+
+// for short manual displayed on conflict
+final function string BuildShortManualString()
+{
+	local string S;
+
+	S = "Mag Ammo: "$ MagAmmo $ "|";
+	S $= "ADS Speed: "$ SightingTime $ " seconds|";
+	//if (WeaponPrice != 0)
+	//	S $= "Price: "$ WeaponPrice $ " credits|";
+
+	return S;
 }
 
 defaultproperties

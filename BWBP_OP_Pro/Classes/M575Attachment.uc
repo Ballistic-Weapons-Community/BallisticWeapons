@@ -311,30 +311,30 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'M575Machinegun'
-     IceTracerClass=class'TraceEmitter_Freeze'
-     IceImpactManager=Class'BWBP_SKC_Pro.IM_BulletAmpFrostHE'
-	 MuzzleFlashClass=class'Fifty9FlashEmitter'
-	 AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
-     ImpactManager=class'IM_Bullet'
-     BrassClass=class'Brass_MG'
-     TracerClass=class'TraceEmitter_Default'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-	 TracerMode=MU_Both
-	 BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-	 TrackAnimMode=MU_None
-	 FlashScale=0.3
-	 TracerMix=-3
-	 FlashBone="Muzzle"
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_MG"
-	 CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.500000
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.M575_TPm'
-     DrawScale=0.75
-	 RelativeLocation=(X=1,Z=4)
+    IceTracerClass=class'TraceEmitter_Freeze'
+    IceImpactManager=Class'BWBP_SKC_Pro.IM_BulletAmpFrostHE'
+	MuzzleFlashClass=class'Fifty9FlashEmitter'
+	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
+    ImpactManager=class'IM_Bullet'
+    BrassClass=class'Brass_MG'
+    TracerClass=class'TraceEmitter_Default'
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+	TracerMode=MU_Both
+	BrassMode=MU_Both
+    InstantMode=MU_Both
+    FlashMode=MU_Both
+	TrackAnimMode=MU_None
+	FlashScale=0.200000
+	TracerMix=-3
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    ReloadAnim="Reload_MG"
+	CockingAnim="Cock_RearPull"
+	ReloadAnimRate=1.210000
+	CockAnimRate=0.975000
+    bHeavy=True
+    bRapidFire=True
+    Mesh=SkeletalMesh'BWBP_OP_Anim.M575_TPm'
+    DrawScale=0.75
+	RelativeLocation=(X=1,Z=4)
 }

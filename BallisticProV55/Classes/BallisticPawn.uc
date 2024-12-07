@@ -183,7 +183,8 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-    ApplyMovementOverrides();
+	ApplyMovementOverrides();
+	ApplySizeOverrides();
 
 	// replace walk animations if ADS multipliers tend to be high
 	if (class'BallisticGameStyles'.static.GetReplicatedStyle().default.bRunInADS)
@@ -266,7 +267,11 @@ simulated function ApplyMovementOverrides()
 	CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
 	StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
 	BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
-	GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+
+	// prevent fighting with server when using Freon round start locker
+	if (Role == ROLE_Authority )
+		GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+
 	AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
 	LadderSpeed = GroundSpeed * 0.65f;
 	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
@@ -281,6 +286,16 @@ simulated function ApplyMovementOverrides()
 	}
 
 	BindDefaultMovement();
+}
+
+simulated function ApplySizeOverrides()
+{
+	//I should put this in gamestyleconfig but I'm lazy. Arena applies to non BW games that use BPawn
+	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsClassic())
+	{
+		default.BaseEyeHeight=38.000000; //UT38 (BW30)
+		default.CrouchHeight=29.000000; //UT29 (BW32)
+	}
 }
 
 simulated function CreateColorStyle()
@@ -776,8 +791,15 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		CockingAnim = BAtt.CockingAnim;
 		CockAnimRate = BAtt.CockAnimRate;
 		
-		IdleHeavyAnim = BAtt.IdleHeavyAnim;
-		IdleRifleAnim = Batt.IdleRifleAnim;
+		if (HasAnim(BAtt.IdleHeavyAnim))
+			IdleHeavyAnim = BAtt.IdleHeavyAnim;
+		else
+			IdleHeavyAnim = 'Idle_Biggun';
+		
+		if (HasAnim(BAtt.IdleRifleAnim))
+			IdleRifleAnim = Batt.IdleRifleAnim;
+		else
+			IdleHeavyAnim = 'Idle_Rifle';
 		
 		FireHeavyBurstAnim = BAtt.SingleFireAnim;
 		FireHeavyRapidAnim = BAtt.RapidFireAnim;
@@ -827,7 +849,7 @@ simulated event SetAnimAction(name NewAction)
 		// Covers Reload, Cocking, Weapon Raise and Weapon Lower. More to come.
 		if (AnimAction == 'ReloadGun')
 		{
-			if (ReloadAnim != '')
+			if (ReloadAnim != '' && HasAnim(ReloadAnim))
 			{
 				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 				PlayAnim(ReloadAnim, ReloadAnimRate, 0.25, 1);
@@ -837,7 +859,7 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}
-		if (AnimAction == 'MeleeStrike')
+		if (AnimAction == 'MeleeStrike' && HasAnim(MeleeAnim))
 		{
 			AnimBlendParams(1, 1, 0, 0.2, FireRootBone);
 			PlayAnim(MeleeAnim, 1, 0.05, 1);
@@ -845,7 +867,7 @@ simulated event SetAnimAction(name NewAction)
 			bResetAnimationAction=True;
 			return;
 		}
-		if (AnimAction == 'Shovel')
+		if (AnimAction == 'Shovel' && HasAnim('Reload_ShovelBottom'))
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			PlayAnim('Reload_ShovelBottom', 1, 0.25, 1);
@@ -854,7 +876,7 @@ simulated event SetAnimAction(name NewAction)
 			//bResetAnimationAction=True;
 			return;
 		}
-		if (AnimAction == 'CockGun')
+		if (AnimAction == 'CockGun' && HasAnim(CockingAnim))
 		{
 			if (CockingAnim != '')
 			{
@@ -866,7 +888,7 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}
-		if (AnimAction == 'WeaponSpecial')
+		if (AnimAction == 'WeaponSpecial' && HasAnim(WeaponSpecialAnim))
 		{
 			if (ReloadAnim != '')
 			{
@@ -878,7 +900,7 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}		
-		if (AnimAction == 'Stagger')
+		if (AnimAction == 'Stagger' && HasAnim(StaggerAnim))
 		{
 			if (ReloadAnim != '')
 			{
@@ -900,7 +922,7 @@ simulated event SetAnimAction(name NewAction)
 			Instigator.ClientMessage("Blocking");
 			return;
 		}		
-		else */if (AnimAction == 'Raise')
+		else */if (AnimAction == 'Raise' && HasAnim(IdleRifleAnim))
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			if (FireState == FS_None || FireState == FS_Ready)
@@ -909,7 +931,7 @@ simulated event SetAnimAction(name NewAction)
 			FireState = FS_None;
 			return;
 		}
-		else if (AnimAction == 'Lower')
+		else if (AnimAction == 'Lower' && HasAnim(IdleHeavyAnim))
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			if (FireState == FS_None || FireState == FS_Ready)
@@ -966,21 +988,74 @@ simulated function StartFiring(bool bHeavy, bool bRapid)
 {
     local name FireAnim;
 	
+	if ( HasUDamage() && (Level.TimeSeconds - LastUDamageSoundTime > 0.25) )
+	{
+		LastUDamageSoundTime = Level.TimeSeconds;
+		PlaySound(UDamageSound, SLOT_None, 1.5*TransientSoundVolume,,700);
+	}
+
+	if (Physics == PHYS_Swimming)
+		return;
+	
 	if (BallisticMeleeAttachment(WeaponAttachment) == None)
 	{	
-		Super.StartFiring(bHeavy, bRapid);
+
+		if (bHeavy)
+		{
+			if (bRapid)
+			{
+				if (HasAnim(FireHeavyRapidAnim))
+					FireAnim = FireHeavyRapidAnim;
+				else
+					FireAnim = 'Biggun_Burst';
+			}
+			else
+			{
+				if (HasAnim(FireHeavyBurstAnim))
+					FireAnim = FireHeavyBurstAnim;
+				else
+					FireAnim = 'Biggun_Aimed';
+			}
+		}
+		else
+		{
+			if (bRapid)
+			{
+				if (HasAnim(FireRifleRapidAnim))
+					FireAnim = FireRifleRapidAnim;
+				else
+					FireAnim = 'Rifle_Burst';
+			}
+			else
+			{
+				if (HasAnim(FireRifleBurstAnim))
+					FireAnim = FireRifleBurstAnim;
+				else
+					FireAnim = 'Rifle_Aimed';
+			}
+		}
+
+		AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
+
+		if (bRapid)
+		{
+			if (FireState != FS_Looping)
+			{
+				LoopAnim(FireAnim,, 0.0, 1);
+				FireState = FS_Looping;
+			}
+		}
+		else
+		{
+			PlayAnim(FireAnim,, 0.0, 1);
+			FireState = FS_PlayOnce;
+		}
+
+		IdleTime = Level.TimeSeconds;
 		return;
 	}
 
-    if ( HasUDamage() && (Level.TimeSeconds - LastUDamageSoundTime > 0.25) )
-    {
-        LastUDamageSoundTime = Level.TimeSeconds;
-        PlaySound(UDamageSound, SLOT_None, 1.5*TransientSoundVolume,,700);
-    }
-
-    if (Physics == PHYS_Swimming)
-        return;
-
+	//Melee specific
 	if (!bHeavy)
 	{
 		if (MeleeOffhandAnim != '')
@@ -1025,7 +1100,7 @@ simulated function AnimEnd(int Channel)
         }
         else if (FireState == FS_PlayOnce)
         {
-            PlayAnim(IdleWeaponAnim,, 0.2, 1);
+			PlayAnim(IdleWeaponAnim,, 0.2, 1);
             FireState = FS_Ready;
             IdleTime = Level.TimeSeconds;
         }
@@ -2122,7 +2197,7 @@ simulated function StartDeRes()
 	// Wicked new BW DeRes ---------
 	Spawn(class'BWDeresFX',self,, Location);
 	NewDeResDecal = Spawn(class'BWDeResDecal', self, , Location, rot(-16384,0,0));
-	PlaySound(NewDeResSound, SLOT_Interact, 1.0);
+	PlaySound(NewDeResSound, SLOT_Interact, 0.8,, 40);
 
 
 	for (i=0;i<Skins.Length;i++)
@@ -2595,23 +2670,6 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     SetPhysics(PHYS_Falling);
     PlayOwnedSound(GetSound(EST_Dodge), SLOT_Pain, GruntVolume, , GruntRadius);
     return true;
-}
-
-function CalcSpeedUp(float SpeedFactor)
-{
-	local float NewSpeed;
-	
-	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * SpeedFactor;
-
-	if (ComboSpeed(CurrentCombo) != None)
-		NewSpeed *= 1.4;
-
-	if (BallisticWeapon(Weapon) != None && (BallisticWeapon(Weapon).PlayerSpeedFactor <= 1 || SpeedFactor <= 1))
-		NewSpeed *= BallisticWeapon(Weapon).PlayerSpeedFactor;
-
-	GroundSpeed = NewSpeed;
-    
-	Inventory.OwnerEvent('SpeedChange');
 }
 
 //Used by BW's fix of PintSize
@@ -3221,10 +3279,11 @@ defaultproperties
 
 	 BaseEyeHeight=30
 	 CrouchEyeHeight=19
-
-     CollisionRadius=19.000000
-
 	 CrouchHeight=32
+
+     CollisionRadius=22.000000
+     HeadRadius=13.000000
+
 
 
 
@@ -3233,7 +3292,6 @@ defaultproperties
      bCanWalkOffLedges=True
      bSpecialHUD=True
      Visibility=64
-     HeadRadius=13.000000
 	
      TransientSoundVolume=0.300000
 	 

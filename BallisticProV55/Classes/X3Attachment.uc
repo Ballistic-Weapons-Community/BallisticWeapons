@@ -23,4 +23,5 @@ defaultproperties
      bHeavy=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.X3_TPm'
      DrawScale=0.090000
+	 RelativeLocation=(X=-6.000000,Y=-3.000000,Z=-3.500000)
 }

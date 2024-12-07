@@ -139,8 +139,9 @@ simulated function InstantFireEffects(byte Mode)
 	{
 		if (VSize(PreviousHitLoc - mHitLocation) < 2)
 			return;
-		PreviousHitLoc = mHitLocation;
-		ImpactManager = class'IM_GRSXXLaser';
+		//PreviousHitLoc = mHitLocation;
+        ModeInfos[1].ImpactManager = class'IM_GRSXXLaser';
+		//ImpactManager = class'IM_GRSXXLaser';
 	}
 	super.InstantFireEffects(Mode);
 }
@@ -148,20 +149,22 @@ simulated function InstantFireEffects(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'GRSXXPistol'
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXFlashemitter'
-     ImpactManager=class'IM_Bullet'
-     BrassClass=Class'BWBP_SKC_Pro.Brass_GRSXX'
-     InstantMode=MU_Both
-     TracerClass=class'TraceEmitter_Pistol'
-     TracerChance=0.600000
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     FlyByMode=MU_Primary
-     ReloadAnim="Reload_Pistol"
-     CockingAnim="Cock_RearPull"
-     CockAnimRate=0.800000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_TPm'
-     DrawScale=0.070000
-	 Skins(0)=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-MainShine'
+    MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXFlashemitter'
+    ImpactManager=class'IM_Bullet'
+    //AltImpactManager=class'IM_GRSXXLaser'
+    BrassClass=Class'BWBP_SKC_Pro.Brass_GRSXX'
+    InstantMode=MU_Both
+    TracerClass=class'TraceEmitter_Pistol'
+    TracerChance=0.600000
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    FlyByMode=MU_Primary
+    ReloadAnim="Reload_Pistol"
+    CockingAnim="Cock_RearPull"
+	ReloadAnimRate=0.675000
+	CockAnimRate=0.750000
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_TPm'
+    DrawScale=0.070000
+	Skins(0)=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-MainShine'
 }

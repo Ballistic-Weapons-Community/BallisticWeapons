@@ -32,6 +32,13 @@ defaultproperties
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Proto
+		FireInterval=0.13
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
+	End Object
 	
 	//=================================================================
     // SECONDARY FIRE - QUICK CHARGE
@@ -51,6 +58,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+		TargetState="Laser"
 		FireInterval=0.070000
 		PreFireAnim="LoopStart"
 		FireLoopAnim="LoopFire"
@@ -75,12 +83,27 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParamsOvercharge
+		TargetState="Laser"
 		FireInterval=0.07000
 		AmmoPerFire=2
 		PreFireAnim="LoopOpenStart"
 		FireLoopAnim="LoopOpenFire"
 		FireEndAnim="LoopOpenEnd"
 	FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParamsOvercharge'
+	End Object
+	
+	//Shield
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Shield
+
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Shield
+		TargetState="Shield"
+		FireInterval=1.000000
+		AmmoPerFire=0
+		FireAnim="Cock"
+		FireAnimRate=1.00
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Shield'
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams
@@ -110,7 +133,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
 		Weight=30
-		LayoutName="Production"
+		LayoutName="Quick Charge"
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
@@ -129,9 +152,41 @@ defaultproperties
 		MagAmmo=34
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
 		AltFireParams(2)=FireParams'TacticalSecondaryFireParamsOvercharge'
+    End Object 
+	
+	Begin Object Class=WeaponParams Name=TacticalParams_Shield
+		//Layout core
+		Weight=10
+		LayoutName="Shield System"
+		LayoutTags="Shield"
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
+		//Attachments
+		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
+		//ADS
+		ZoomType=ZT_Fixed
+		MaxZoom=4
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.45
+		//Function
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=34
+		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
+		WeaponModes(1)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Shield'
     End Object 
 	
 	Begin Object Class=WeaponParams Name=TacticalParams_Proto
@@ -150,26 +205,30 @@ defaultproperties
 		WeaponMaterialSwaps(5)=(Material=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-WiresProto',Index=5,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(6)=(Material=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader',Index=6,AIndex=-1,PIndex=-1)
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=1f)
+		//ADS
 		ScopeScale=0.6
 		SightOffset=(X=8.00,Y=0.00,Z=3.30)
 		ZoomType=ZT_Fixed
 		MaxZoom=4
 		ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeViewReflex'
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.40 //-0.5 proto
 		//Function
 		InventorySize=6
-		SightMoveSpeedFactor=0.35
-		SightingTime=0.45
 		DisplaceDurationMult=1
-		MagAmmo=34
+		MagAmmo=40 //+6 proto
+		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
+		WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(1)=FireParams'TacticalSecondaryFireParams'
-		AltFireParams(2)=FireParams'TacticalSecondaryFireParamsOvercharge'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Proto'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParamsOvercharge'
     End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'
-    Layouts(1)=WeaponParams'TacticalParams_Proto'
+    Layouts(1)=WeaponParams'TacticalParams_Shield'
+    Layouts(2)=WeaponParams'TacticalParams_Proto'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XM20_Black
@@ -181,7 +240,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20_HexGreen
 		Index=1
 		CamoName="Green Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGreen",Index=2,AIndex=1,PIndex=3)
 		Weight=10
 	End Object
@@ -189,7 +248,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20_HexBlue
 		Index=2
 		CamoName="Blue Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoBlue",Index=2,AIndex=1,PIndex=3)
 		Weight=10
 	End Object
@@ -197,7 +256,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20_HexOrange
 		Index=3
 		CamoName="Yellow Hex"
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoWhite",Index=2,AIndex=1,PIndex=3)
 		Weight=3
 	End Object
@@ -205,7 +264,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20_Gold
 		Index=4
 		CamoName="Gold"
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XM20Camos.XM20-FinalCamoGold",Index=2,AIndex=1,PIndex=3)
 		Weight=1
 	End Object
@@ -219,7 +278,7 @@ defaultproperties
 	Begin Object Class=WeaponCamo Name=XM20P_Yellow
 		Index=6
 		CamoName="Test Bed"
-		WeaponMaterialSwaps(0)=(MaterialName="BW_Core_WeaponTex.Hands.Hands-Shiny",Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainBurnedShine',Index=2,AIndex=1,PIndex=3)
 		Weight=5
 	End Object

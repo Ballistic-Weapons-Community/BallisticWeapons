@@ -84,9 +84,6 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 simulated function PostNetBeginPlay()
 {
 	local int i;
-	//Temporary hide bones
-	SetBoneScale(8, 0.0, SightsBone);
-	SetBoneScale(9, 0.0, SightsBoneHinge);
 	
 	for (i=0; i<=1; i++)
 		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
@@ -712,9 +709,9 @@ defaultproperties
 	ManualLines(1)="Loads an incendiary grenade and fires. Deals good impact damage and minor radius damage, as well as a blast of fire upon impact."
 	ManualLines(2)="This weapon is heavy and has poor shoulder fire properties.||Effective at close range."
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-	CockSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
+	CockSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.150000)
 	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagOut',Volume=1.300000)
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagIn',Volume=1.300000)
@@ -744,7 +741,7 @@ defaultproperties
 	CockingBringUpTime=1.700000
 	AIRating=0.850000
 	CurrentRating=0.850000
-	Description="RCS-715 Tactical Buster||Manufacturer: JAX Industrial Firm|Primary: Automatic Shotgun Blast|Secondary: Incendiary Grenade||While not as prevalent as the Skrith menace, Cryon and Krao are just as deadly if not more in some situations.  The skrith may think they're inferior, but the combined menace has wreaked some damage across the universe, such as the tragedy that was the fall of Neo Cairo. Jaeger Firearms and Axo-tek Industries saw the damage to their home, deciding to team up under a new banner. The newly JAX Industrial Firm combined their forces to create not just a potent anti-krao weapon, but an anti-cryon weapon as well. The result is the RCS-715 Tactical Buster shotgun, a low recoil, high damaging shotgun that can destroy not just the Krao or Cryon, but the Skrith as well.  Though chambered in 12 gauge buckshot, it can also fire FRAG-12 or Inciendary shells without damaging the bolt."
+	Description="RCS-715 Assault Shotgun||Manufacturer: JAX Industrial Firm|Primary: Automatic Shotgun Blast|Secondary: Incendiary Grenade||While not as prevalent as the Skrith menace, Cryon and Krao are just as deadly if not more in some situations.  The skrith may think they're inferior, but the combined menace has wreaked some damage across the universe, such as the tragedy that was the fall of Neo Cairo. Jaeger Firearms and Axo-tek Industries saw the damage to their home, deciding to team up under a new banner. The newly JAX Industrial Firm combined their forces to create not just a potent anti-krao weapon, but an anti-cryon weapon as well. The result is the RCS-715 Tactical Buster shotgun, a low recoil, high damaging shotgun that can destroy not just the Krao or Cryon, but the Skrith as well.  Though chambered in 12 gauge buckshot, it can also fire FRAG-12 or Inciendary shells without damaging the bolt."
 	Priority=245
 	HudColor=(G=25)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -755,13 +752,13 @@ defaultproperties
 	AttachmentClass=Class'BWBP_OP_Pro.RCS715Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.AssaultShotgun.SmallIcon_AssaultShotgun'
 	IconCoords=(X2=125,Y2=32)
-	ItemName="RCS-715 Tactical Buster"
+	ItemName="RCS-715 Assault Shotgun"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=25
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_AssaultShotgun'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.RCS715_FPm'
 	DrawScale=0.300000
 }

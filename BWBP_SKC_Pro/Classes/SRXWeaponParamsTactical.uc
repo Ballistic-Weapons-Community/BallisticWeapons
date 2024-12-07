@@ -129,7 +129,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2.5.5
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalExplosiveRecoilParams
@@ -144,7 +144,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2.5.5
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalAcidRecoilParams
@@ -159,7 +159,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.5
-		MaxMoveMultiplier=2.5.5
+		MaxMoveMultiplier=2.5
 	End Object
 
 	//=================================================================
@@ -191,7 +191,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
 		SightOffset=(X=0,Y=0,Z=2.60)
 		//Function
-        SightingTime=0.40
+        SightingTime=0.35
 		MagAmmo=20
         InventorySize=6
         SightMoveSpeedFactor=0.45
@@ -216,7 +216,7 @@ defaultproperties
 		//SightPivot=(Pitch=-128,Yaw=16)
 		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
 		//Function
-        SightingTime=0.40
+        SightingTime=0.35
 		MagAmmo=20
         InventorySize=6
         SightMoveSpeedFactor=0.45

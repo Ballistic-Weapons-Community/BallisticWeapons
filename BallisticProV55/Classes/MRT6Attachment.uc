@@ -85,8 +85,8 @@ defaultproperties
      TracerChance=0.500000
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
-     ReloadAnimRate=1.500000
-     CockAnimRate=1.400000
+     ReloadAnimRate=0.950000
+     CockAnimRate=1.100000
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRT6_TPm'
      DrawScale=0.250000
 }

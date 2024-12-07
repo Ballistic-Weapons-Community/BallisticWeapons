@@ -3,7 +3,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class ICISPickup extends BallisticWeaponPickup
 	placeable;
@@ -33,19 +33,21 @@ simulated function UpdatePrecacheMaterials()
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Stim.StimpackPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Stim.StimpackPickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Stim.StimpackPickupLo');
+
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Stim.StimpackPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Stim.StimpackPickupLo'
      PickupDrawScale=0.270000
      InventoryType=Class'BWBP_SKC_Pro.ICISStimpack'
      RespawnTime=10.000000
      PickupMessage="You picked up the FMD ICIS-25 Stimulant Autoinjector"
      PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Stim.StimpackPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Stim.StimpackPickupHi'
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.000000

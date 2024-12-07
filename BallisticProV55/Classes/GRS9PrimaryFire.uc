@@ -8,10 +8,26 @@
 //=============================================================================
 class GRS9PrimaryFire extends BallisticProInstantFire;
 
+simulated function OnEffectParamsChanged(int EffectIndex)
+{
+	super.OnEffectParamsChanged(EffectIndex);
+	
+    if (GRS9Pistol(Weapon).bHasKnife)
+        ApplyTacKnifeEffectParams();
+}
+
+simulated function ApplyTacKnifeEffectParams()
+{
+	FireRecoil *= 1.5;
+	FireChaos = 1;
+    XInaccuracy	= 256;
+    YInaccuracy = 256;
+}
+
 //Do the spread on the client side
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 2)
+	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';

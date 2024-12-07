@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//12ga shot
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=6000.000000)
         DecayRange=(Min=788,Max=1838)
@@ -36,6 +37,35 @@ defaultproperties
 		AimedFireAnim="SightFire"
 		FireAnimRate=2.50000	
 		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams'
+	End Object
+	
+	//HE
+	Begin Object Class=GrenadeEffectParams Name=ArenaPrimaryEffectParams_Frag
+		ProjectileClass=Class'BWBP_OP_Pro.RCS715Slug_HE'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=9000.000000
+        MaxSpeed=300000.000000
+        AccelSpeed=150000.000000
+		ImpactDamage=60.0f
+		Damage=60.0f
+		PushbackForce=100.000000
+		DamageRadius=256.000000
+		MomentumTransfer=60000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
+		Recoil=512.000000
+		Chaos=1.000000
+		BotRefireRate=0.5
+		WarnTargetPct=0.75	
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.RCS.RCS-FireFrag')
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Frag
+		TargetState="Projectile"
+		FireInterval=0.200000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=2.50000	
+	FireEffectParams(0)=GrenadeEffectParams'ArenaPrimaryEffectParams_Frag'
 	End Object
 		
     //=================================================================
@@ -105,20 +135,56 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		LayoutName="12ga Shot"
+		Weight=10
+		//Attachments
+        WeaponBoneScales(1)=(BoneName="LadderSightHinge",Slot=8,Scale=0f)
+        WeaponBoneScales(2)=(BoneName="LadderSight",Slot=9,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.550000
+		SightOffset=(X=0,Y=0,Z=1.4)
+		//Stats
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		PlayerSpeedFactor=0.95
 		InventorySize=6
-		SightMoveSpeedFactor=0.8
-		SightingTime=0.550000
 		DisplaceDurationMult=1
 		MagAmmo=15
+		WeaponName="RCS-715 Tactical Buster"
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Frag
+		//Layout core
+		LayoutName="12ga Frag"
+		Weight=10
+		//Attachments
+        WeaponBoneScales(1)=(BoneName="RedDotSight",Slot=8,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.550000
+		SightOffset=(X=0,Y=0,Z=3.4)
+		//Stats
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		PlayerSpeedFactor=0.95
+		InventorySize=6
+		DisplaceDurationMult=1
+		MagAmmo=8
+		WeaponName="RCS-715 Tactical Buster"
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Frag'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Frag'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RCS_Red

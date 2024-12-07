@@ -15,8 +15,6 @@ var	Emitter					Flare;
 var	class<Emitter> 			FlareClass;
 var	bool					bFlareKilled;
 
-var protected const float	ArmingDelay;
-
 simulated function InitEffects ()
 {
 	local Vector X,Y,Z;

@@ -16,6 +16,7 @@ var() name		PreFireAnimCharged;
 var() name		FireLoopAnimCharged;
 var() name		FireEndAnimCharged;
 
+var   bool		bSpinUp;
 var() float	OverChargedFireRate;
 var   int SoundAdjust;
 var()   sound	ChargeSound;
@@ -43,7 +44,15 @@ simulated function ModeTick(float DT)
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || TyphonPDW(BW).LaserCharge < TyphonPDW(BW).MaxCharge || TyphonPDW(BW).bShieldUp)
+	
+	if (!AllowFire())
+		return;
+	if (!bSpinUp && !bPreventFire)
+	{
+		Weapon.PlayOwnedSound(ChargeSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		bSpinUp=true;
+	}
+    if (TyphonPDW(BW).LaserCharge < TyphonPDW(BW).MaxCharge || TyphonPDW(BW).bShieldUp)
         return;
 
 	if (BW != None)
@@ -163,7 +172,7 @@ function StopFiring()
 {
     Instigator.AmbientSound = TyphonPDW(BW).UsedAmbientSound;
     Instigator.SoundVolume = Instigator.Default.SoundVolume;
-
+	bSpinUp=false;
 	StopFireTime = level.TimeSeconds;
 }	
 
@@ -184,7 +193,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-	ChargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
+	ChargeSound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-PowerCharge'
 	TraceCount=1
 	WaterRangeAtten=0.500000
 	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)

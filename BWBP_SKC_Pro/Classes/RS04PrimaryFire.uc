@@ -8,6 +8,23 @@
 //=============================================================================
 class RS04PrimaryFire extends BallisticProInstantFire;
 
+
+simulated function OnEffectParamsChanged(int EffectIndex)
+{
+	super.OnEffectParamsChanged(EffectIndex);
+	
+    if (RS04Pistol(Weapon).bHasKnife)
+        ApplyTacKnifeEffectParams();
+}
+
+simulated function ApplyTacKnifeEffectParams()
+{
+	FireRecoil *= 1.5;
+	FireChaos = 1;
+    XInaccuracy	= 256;
+    YInaccuracy = 256;
+}
+
 simulated function PlayFireAnimations()
 {
 	if (BW.MagAmmo - ConsumedLoad < 1)
@@ -22,7 +39,7 @@ simulated function PlayFireAnimations()
 		}
 		else
 		{
-			AimedFireAnim = 'FireSightsOpen';
+			AimedFireAnim = 'SightFireOpen';
 			FireAnim = 'FireOpen';
 		}
 	}
@@ -39,7 +56,7 @@ simulated function PlayFireAnimations()
 		}
 		else
 		{
-			AimedFireAnim = 'FireSights';
+			AimedFireAnim = 'SightFire';
 			FireAnim = 'Fire';
 		}
 	}
@@ -50,9 +67,9 @@ simulated function PlayFireAnimations()
 defaultproperties
 {
 	TraceRange=(Max=5500.000000)
-	DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-	DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-	DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+	DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
 	KickForce=15000
 	PenetrateForce=150
 	bPenetrate=True

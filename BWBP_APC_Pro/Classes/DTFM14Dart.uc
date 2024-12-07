@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class DTFM14Dart extends DT_BWBlunt;
 
@@ -20,7 +20,7 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
 {
     local int i;
     local FM14DartViewMesser VM;
-	local FM14DartPoisoner DP, DPE;
+	local FM14DartPoisoner DP; //DPE
 
 	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
 		Return;

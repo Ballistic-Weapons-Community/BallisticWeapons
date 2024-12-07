@@ -135,8 +135,8 @@ defaultproperties
      ManualLines(1)="Launches a manually guided rocket. While a rocket is active, the user views through the rocket's nose camera. Rockets are fast and quite manoeuverable, but much as the primary fire, have a directed blast and require the enemy to be struck directly to do much damage."
      ManualLines(2)="The Akeron is effective at close to medium range or in specialist situations where indirect fire is required. As a rocket launcher, it has no recoil, but its size makes it cumbersome to use without stability or aiming."
      SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway',Volume=0.220000)
      CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff')
@@ -188,6 +188,6 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Akeron'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.Akeron_FPm'
      DrawScale=0.300000
 }

@@ -96,11 +96,50 @@ defaultproperties
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ClassicCorrosivePrimaryEffectParams'
 	End Object
+	
+    //=================================================================
+    // PRIMARY FIRE - Suppressed
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Supp
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		WaterTraceRange=7200.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.700000
+		Damage=20
+		HeadMult=3.5
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MP40Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MP40Chest'
+		bPenetrate=True
+		PenetrationEnergy=16.000000
+		PenetrateForce=150
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		HookStopFactor=0.2
+		HookPullForce=-10
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Pitch=1.5,Volume=0.800000,Radius=256.000000,bAtten=True) //
+		Recoil=100.000000
+		Chaos=-1.0
+		Inaccuracy=(X=20,Y=20)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Supp
+		FireInterval=0.1300 //
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Supp'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Amp
 	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
 		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
 		Recoil=0.0
@@ -114,6 +153,18 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL - Automatic
@@ -186,13 +237,17 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=5
+		//Layout Core
+		LayoutName="Amplifier"
+		Weight=10
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		SightPivot=(YAW=10)
+		//Function
+		InventorySize=5
 		bNeedCock=True
 		MagAmmo=28
-		//SightOffset=(X=5.000000,Y=-7.670000,Z=18.900000)
-		SightPivot=(YAW=10)
 		ViewOffset=(X=8.000000,Y=6.000000,Z=-3.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicIncRecoilParams'
@@ -203,7 +258,56 @@ defaultproperties
 		FireParams(2)=FireParams'ClassicCorrosivePrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Supp
+		//Layout Core
+		LayoutName="Suppressed"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="tip",AugmentOffset=(x=0,y=0.0,z=0.1),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		SightPivot=(YAW=10)
+		//Function
+		InventorySize=5
+		bNeedCock=True
+		MagAmmo=28
+		ViewOffset=(X=8.000000,Y=6.000000,Z=-3.500000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Holo
+		//Layout Core
+		LayoutName="Holosight"
+		LayoutTags="no_amp"
+		Weight=5
+		//Visual
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RifleRail',BoneName="tip",AugmentOffset=(x=-25,y=1,z=0),Scale=0.05,AugmentRot=(Pitch=32768,Roll=16384,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexCircle',BoneName="tip",AugmentOffset=(x=-25,y=-1.75,z=-0.15),Scale=0.035,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		SightOffset=(X=-3.5,Y=-0.05,Z=4.45)
+		SightPivot=(YAW=10)
+		//Function
+		InventorySize=5
+		bNeedCock=True
+		MagAmmo=28
+		ViewOffset=(X=8.000000,Y=6.000000,Z=-3.500000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Supp'
+	Layouts(2)=WeaponParams'ClassicParams_Holo'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MP40_Black

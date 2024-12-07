@@ -6,6 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//10ga shot
 	Begin Object Class=ShotgunEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=788,Max=2363) // 15-45m
@@ -33,6 +34,65 @@ defaultproperties
 		FireAnim="FireCombined"
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'TacticalPrimaryEffectParams'
+	End Object
+	
+	//10ga HE
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams_Frag
+		ProjectileClass=Class'BallisticProV55.MRS138Slug_HE'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		//Speed=9000.000000
+		Speed=20000.000000 //for now, needs accel tweaks, phys_fall override
+		AccelSpeed=270000.000000
+		MaxSpeed=270000.000000
+		bCombinedSplashImpact=true
+		Damage=75
+        ImpactDamage=70
+		PushbackForce=100.000000
+		DamageRadius=256.000000
+		MomentumTransfer=60000.000000
+		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
+		Recoil=3072.000000
+		Chaos=1.000000
+		BotRefireRate=0.5
+		WarnTargetPct=0.75	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Fire',Volume=1.500000)	
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Frag
+		TargetState="Projectile"
+		FireInterval=0.550000
+		FireAnim="FireCombined"
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Frag'
+	End Object
+	
+	//10ga Teargas
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams_Gas
+		ProjectileClass=Class'BallisticProV55.MRS138Slug_Gas'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=2700.000000
+		AccelSpeed=230000.000000
+		MaxSpeed=230000.000000
+		bCombinedSplashImpact=true
+		Damage=35
+        ImpactDamage=25
+		PushbackForce=100.000000
+		DamageRadius=256.000000
+		MomentumTransfer=60000.000000
+		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
+		Recoil=3072.000000
+		Chaos=1.000000
+		BotRefireRate=0.5
+		WarnTargetPct=0.75	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.250000)	
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Gas
+		TargetState="Projectile"
+		FireInterval=0.550000
+		FireAnim="FireCombined"
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Gas'
 	End Object
 		
     //=================================================================
@@ -98,6 +158,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout core
+		Weight=30
+		LayoutName="10ga Shot"
+		//Function
 		SightingTime=0.30
         SightMoveSpeedFactor=0.6
 		MagAmmo=6
@@ -107,7 +171,40 @@ defaultproperties
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Frag
+		//Layout core
+		Weight=10
+		LayoutName="10ga HE Slug"
+		//Function
+		SightingTime=0.30
+        SightMoveSpeedFactor=0.6
+		MagAmmo=6
+        InventorySize=6
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Frag'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=TacticalParams_Gas
+		//Layout core
+		Weight=10
+		LayoutName="10ga Teargas Slug"
+		//Function
+		SightingTime=0.30
+        SightMoveSpeedFactor=0.6
+		MagAmmo=6
+        InventorySize=6
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
+        AimParams(0)=AimParams'TacticalAimParams'
+		FireParams(0)=FireParams'TacticalPrimaryFireParams_Gas'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
+    Layouts(1)=WeaponParams'TacticalParams_Frag'
+    Layouts(2)=WeaponParams'TacticalParams_Gas'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MRS_Silver

@@ -96,16 +96,17 @@ simulated function Destroyed()
 
 defaultproperties
 {
-	 WeaponClass=class'RGPXBazooka'
-     RelativeRotation=(Pitch=32768)
-	 MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     FlashScale=1.200000
-     BrassMode=MU_None
-     InstantMode=MU_None
-	 ReloadAnim="Reload_MG"
-	 ReloadAnimRate=1.500000
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_JCF_Anims.RGP-X350_TPm'
-     DrawScale=1.000000
+	WeaponClass=class'RGPXBazooka'
+    RelativeRotation=(Pitch=32768)
+	MuzzleFlashClass=Class'BWBP_JCF_Pro.RGPXFlashEmitter'
+    ImpactManager=Class'BallisticProV55.IM_Bullet'
+    FlashScale=0.250000
+    BrassMode=MU_None
+    InstantMode=MU_None
+	ReloadAnim="Reload_MG"
+	ReloadAnimRate=2.275000
+	CockAnimRate=0.525000
+    bRapidFire=True
+    Mesh=SkeletalMesh'BWBP_JCF_Anims.RGPX_TPm'
+    DrawScale=1.000000
 }

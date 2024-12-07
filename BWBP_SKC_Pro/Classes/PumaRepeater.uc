@@ -703,10 +703,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     local vector HitNormal;
     local float DamageMax;
 
-
-
 	DamageMax = 50.0;
-	//if (CamoIndex == 3)
+	
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
 	else if (class<DT_PumaSelf>(DamageType) != none && bShieldUp &&  ShieldPower > 0) //Shield Jump
@@ -718,42 +716,42 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
         		Momentum *= -2.00;
 		}
 		ShieldPower -= 80;
-    		ClientTakeHit(80);
+    	ClientTakeHit(80);
 		return;
 	}
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
 	{
 //		ShieldPower = -200;
-    		ClientTakeHit(200, 200);
+    	ClientTakeHit(200, 200);
 		return;
 	}
-    	else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
-        	return;
+    else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
+        return;
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
     {
-        Drain = Min( ShieldPower*2, Damage );
-	Drain = Min(Drain,DamageMax);
-	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
-	if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
-	{
-		bPierce=true;
-		Drain+=10;
-	}
-        Damage -= Drain;
-        Momentum *= 1.25;
-        if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
-        {
+		Drain = Min( ShieldPower*2, Damage );
+		Drain = Min(Drain,DamageMax);
+		Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
+		if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
+		{
+			bPierce=true;
+			Drain+=10;
+		}
+		Damage -= Drain;
+		Momentum *= 1.25;
+		if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
+		{
 			Drain = Min(ShieldPower, Drain);
 			ShieldPower -= Drain;
 			DoReflectEffectA(Drain, bPierce);
-	}
-        else
-        {
+		}
+		else
+		{
 			ShieldPower -= Drain/2;
 			DoReflectEffectA(Drain/2, bPierce);
-	}
-	bPierce=false;
+		}
+		bPierce=false;
     }
 }
 
@@ -835,8 +833,8 @@ defaultproperties
      bWT_Machinegun=True
 	 LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
      SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
      MagAmmo=8
 	 bNeedCock=False
 	 bNonCocking=True
@@ -868,7 +866,7 @@ defaultproperties
      PlayerViewOffset=(X=5.00,Y=4.00,Z=-3.50)
      SightOffset=(X=-3.00,Y=0.00,Z=2.00)
 	 SightPivot=(Pitch=150)
-
+	 PlayerViewPivot=(Yaw=-16400)
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)
@@ -883,7 +881,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'PUMAWeaponParamsClassic'
 	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
      ParamsClasses(3)=Class'PUMAWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.PUMA_FPm'
      DrawScale=0.300000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.PUMA.PUMA-MainShine'

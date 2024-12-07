@@ -29,6 +29,8 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
+     FlashF=0.200000
+     FlashV=(X=1500.000000,Y=1500.000000)
      bHeaddie=True
      DeathStrings(0)="%k melted %o's potato head using the power of radiation."
      DeathStrings(1)="%o licked the end of %k's bullet and got mouth cancer from it."

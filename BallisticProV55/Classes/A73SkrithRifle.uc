@@ -13,11 +13,21 @@ var float			HeatLevel;					// Current Heat level, duh...
 var float 			HeatDeclineTime;			// Time until heat can decline
 var() Sound			OverheatSound;				// Sound to play when it overheats
 var Actor 			GlowFX, HeatFX;
+var(A73) 	bool				bDecorativeHeat;	//Heat is harmless, used for C and R
 
 replication
 {
 	reliable if (ROLE==ROLE_Authority)
 		ClientSetHeat;
+}
+
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
+	{
+		bDecorativeHeat=true;
+	}
 }
 
 simulated event WeaponTick(float DT)
@@ -47,10 +57,10 @@ simulated function AddHeat(float Amount, float DeclineTime)
 	SoundPitch = 56 + HeatLevel * 11;
 	HeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, HeatDeclineTime);
 	
-	if (HeatLevel >= 9.75)
+	if (HeatLevel >= 9.75 && !bDecorativeHeat)
 	{
 		HeatLevel = 10;
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA73Overheat');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, vect(0,0,0), class'DTA73Overheat');
 		return;
 	}
 }
@@ -95,15 +105,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		if (LayoutIndex == 1)
 		{
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXBal', DrawScale, self, 'tip');
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXBal', DrawScale, self, 'tip');
 		}
 		else if (LayoutIndex == 2)
 		{
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
 		}
 		else
 		{
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFX', DrawScale, self, 'tip');
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFX', DrawScale, self, 'tip');
 		}
 	}
 }
@@ -292,8 +302,8 @@ defaultproperties
 	ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab.||The A73 is effective at close range and very effective at medium range. It is also capable of healing nodes and vehicles with its plasma attacks. As an energy weapon, the A73 has lower recoil than conventional arms and its projectiles penetrate players but not walls and surfaces."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
 	MeleeFireClass=Class'BallisticProV55.A73MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout',Volume=0.220000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway',Volume=0.225000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
@@ -341,7 +351,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A73'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A73_FPm'
 	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.A73.A73AmmoSkin'

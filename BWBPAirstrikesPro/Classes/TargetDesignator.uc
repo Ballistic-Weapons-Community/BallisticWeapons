@@ -376,7 +376,8 @@ defaultproperties
     //WeaponModes(15)=(ModeName="GBU-43 MOAB",ModeID="WM_FullAuto,bUnavailable=True")
     //WeaponModes(16)=(ModeName="LUU-4 Illumination Flare",ModeID="WM_FullAuto,bUnavailable=True")
     //WeaponModes(17)=(ModeName="W54 Nuclear Warhead",ModeID="WM_FullAuto,bUnavailable=True")
-	
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Pullout',Volume=0.128000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Putaway',Volume=0.110000)
     CurrentWeaponMode=2
     ScopeXScale=1.400000
     ZoomInAnim="Raise"
@@ -418,7 +419,7 @@ defaultproperties
     IconMaterial=Texture'BWBP_OP_Tex.Designator.SmallIcon_Designator'
     IconCoords=(X2=128,Y2=32)
     ItemName="MAU-52 Target Designator"
-    Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Designator'
+    Mesh=SkeletalMesh'BWBP_OP_Anim.Designator_FPm'
     DrawScale=0.600000
     AmbientGlow=64
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

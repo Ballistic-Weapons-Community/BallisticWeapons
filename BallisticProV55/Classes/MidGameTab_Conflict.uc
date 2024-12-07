@@ -439,6 +439,10 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	local byte GameStyleIndex;
 	local int i;
 	local array<int> AllowedCamos;
+	local byte oldCamoIndex; //oldLength
+	
+	oldCamoIndex = CamoIndexList[lb_Weapons.List.Index];
+	
 	//clear old layouts
 	cb_WeapCamoIndex.Clear();
 	
@@ -471,19 +475,22 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
 					cb_WeapCamoIndex.AddItem("None",, "0");
 				else
-					cb_WeapCamoIndex.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+					cb_WeapCamoIndex.AddItem("Camo: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 			}
 			cb_WeapCamoIndex.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 		}
-		cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+		//cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+		cb_WeapCamoIndex.setIndex(oldCamoIndex);
 	}
 	else
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
 			cb_WeapCamoIndex.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
-			if (CamoIndexList[lb_Weapons.List.Index] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
-				cb_WeapCamoIndex.setIndex(i);
+			if (oldCamoIndex == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+				cb_WeapCamoIndex.setIndex(i);			
+			//if (CamoIndexList[lb_Weapons.List.Index] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+			//	cb_WeapCamoIndex.setIndex(i);
 		}
 	}
 	
@@ -914,7 +921,7 @@ function InternalOnChange(GUIComponent Sender)
 				bUpdatingWeapon=true;
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
 				Pic_Weapon.Image = BW.default.BigIconMaterial;
-				tb_Desc.SetContent(BW.static.GetShortManual());
+				tb_Desc.SetContent(BW.static.GetShortManual(LayoutIndexList[lb_Weapons.List.Index]));
 				log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[lb_Weapons.List.Index]); 
 				LoadLIFromBW(BW);
 				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
@@ -978,6 +985,7 @@ function InternalOnChange(GUIComponent Sender)
 			{
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
 				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index]);
+				tb_Desc.SetContent(BW.static.GetShortManual(cb_WeapLayoutIndex.getIndex()));
 			}
 			log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
 
@@ -1382,6 +1390,7 @@ defaultproperties
      l_WeapTitle=GUILabel'BallisticProV55.MidGameTab_Conflict.l_WeapTitlelabel'
 
      Begin Object Class=GUIScrollTextBox Name=WeaponDescription
+		bNoTeletype=true
          CharDelay=0.001500
          EOLDelay=0.250000
          bVisibleWhenEmpty=True

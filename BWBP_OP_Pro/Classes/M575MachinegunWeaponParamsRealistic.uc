@@ -12,8 +12,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=55.0
-		HeadMult=2.127272
-		LimbMult=0.654545
+		HeadMult=2.2
+		LimbMult=0.65
 		DamageType=Class'BWBP_OP_Pro.DTM575MG'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'

@@ -1,7 +1,7 @@
 //=============================================================================
 // CX85Flechette.
 //
-// Rapid spike that deals impact damage and causes bleed.
+// Rapid spike that deals impact damage and causes bleed. Target tracking.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
@@ -11,7 +11,9 @@ class CX85Flechette extends BallisticProjectile;
 var   actor		Target;				// The actor we are trying to anihilate
 var   vector	LastLoc;			// Place where target was last seen, used to guide the rocket
 var() float		TurnRate;			// Rate of rotation towards target. Rotator units per seconds.
+var() float		ArmingDelay;		// Time before we start seeking
 var() bool		bSeeking;			// Seeking mode on. Trying to get to our target point
+var() bool		bArmed;				// seeking time
 var() float		LastSendTargetTime; // Time when a target location has been set, used for difference formula
 
 var() CX85AssaultWeapon  Master;
@@ -19,13 +21,43 @@ var() CX85AssaultWeapon  Master;
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		Target, LastLoc;
+		Target, LastLoc, TurnRate, ArmingDelay;
 
 }
 
 //===========================================================================
 // Tracking Code
 //===========================================================================
+
+simulated function ApplyParams(ProjectileEffectParams params)
+{
+    Super.ApplyParams(params);
+	
+	if (Master != None && Master.StuckDarts.Length != 0) //more trackers improve seeker func
+	{
+		log(Master.StuckDarts.Length);
+		TurnRate *= Master.StuckDarts.Length;
+		ArmingDelay -= Master.StuckDarts.Length*0.025;
+	}
+	
+	if (ArmingDelay > 0)
+	{
+		SetTimer(ArmingDelay, false);
+	}
+	else
+	{
+		bArmed=true;
+	}
+}
+
+simulated event Timer()
+{
+	if (!bArmed)
+	{
+		bArmed=true;
+	}
+}
+
 function SetFlechetteTarget(Actor Targ)
 {
 	local vector HitLoc, HitNorm, Start, End;
@@ -58,7 +90,7 @@ function SetFlechetteDestination()
 
 simulated event Tick(float DT)
 {
-	local vector V, X,Y,Z, ScrewCenter;
+	local vector V, X,Y,Z; //ScrewCenter
 	local Rotator R, AxisDir;
 	local float TurnNeeded;
 	
@@ -69,7 +101,7 @@ simulated event Tick(float DT)
 		SetFlechetteDestination();
 	}
 	
-	if (bSeeking)  // Guide the projectile if the previous call returned a valid lock
+	if (bSeeking && bArmed)  // Guide the projectile if the previous call returned a valid lock
 	{
 		V = LastLoc - Location;
 
@@ -102,25 +134,26 @@ simulated event Landed( vector HitNormal )
 
 defaultproperties
 {
+	ArmingDelay=0.125
+	TurnRate=8192.000000 //mutliple darts improves rate
     WeaponClass=Class'BWBP_OP_Pro.CX85AssaultWeapon'
-     TurnRate=32768.000000
-     ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
-     TrailClass=Class'BallisticProV55.PineappleTrail'
-     //bRandomStartRotaion=False
-     TrailOffset=(X=-4.000000)
-     MyRadiusDamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=10000.000000
-    AccelSpeed=1000.000000
-     MaxSpeed=10000.000000
-     Damage=85.000000
-     DamageRadius=192.000000
-     MomentumTransfer=20000.000000
-     MyDamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
-     AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
-     SoundVolume=64
-     //Physics=PHYS_Falling
-     bFixedRotationDir=True
-     RotationRate=(Roll=32768)
+	ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
+	TrailClass=Class'BallisticProV55.PineappleTrail'
+	//bRandomStartRotaion=False
+	TrailOffset=(X=-4.000000)
+	MyRadiusDamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	Speed=10000.000000
+	AccelSpeed=1000.000000
+	MaxSpeed=10000.000000
+	Damage=85.000000
+	DamageRadius=192.000000
+	MomentumTransfer=20000.000000
+	MyDamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
+	AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
+	SoundVolume=64
+	//Physics=PHYS_Falling
+	bFixedRotationDir=True
+	RotationRate=(Roll=32768)
 }

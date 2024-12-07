@@ -214,8 +214,10 @@ defaultproperties
 		LayoutName="Thermal Marksman"
 		LayoutTags="IRNV, tracker"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS2_FPm'
 		ZoomType=ZT_Logarithmic
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		//Function
@@ -240,11 +242,11 @@ defaultproperties
 		LayoutName="Sensor Suite"
 		LayoutTags="tracker"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 		ZoomType=ZT_Logarithmic
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
-		SightOffset=(X=6.50,Y=0.01,Z=3.8)
+		SightOffset=(X=6.50,Y=0.01,Z=0.8)
 		//Function
 		InventorySize=6
 		WeaponPrice=2800
@@ -255,7 +257,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		WeaponName="MARS-2 5.56mm Bullpup Rifle"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Sensor'
@@ -267,10 +269,11 @@ defaultproperties
 		LayoutName="CQC Holosight"
 		LayoutTags="suppressor"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
+		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.3
+		SightingTime=0.23
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)

@@ -49,8 +49,8 @@ class BallisticInstantFire extends BallisticFire
 const MAX_WALLS = 5;
 
 //const TORSO_RADIUS = 11;
-const HEAD_HEIGHT_HALF = 8;
-const HEAD_RADIUS = 7; // cylinder
+var() int						HeadRadius;						// radius for head
+var() int 						HeadOffset;						// offset for head
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
@@ -280,7 +280,7 @@ final function float GetDamage (Actor Other, vector HitLocation, vector TraceSta
 		// Head shots - check bone
         HeadLocation = Other.GetBoneCoords('head').Origin;
 
-        if (class'BUtil'.static.GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
+        if (class'BUtil'.static.GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HeadRadius)
         {
             Dmg *= HeadMult;
             DT = DamageTypeHead;
@@ -309,32 +309,39 @@ final function float GetDamageForCollision(UnlaggedPawnCollision Other, vector H
 {
 	local float	Dmg;
     local Vector HeadPositionApprox;
-    local Vector HeadTestPoint;
+  //local Vector HeadTestPoint;
 
 	Dmg = Damage;
 	DT = DamageType;
 
     // must be approximated. animation sync online is simply too poor
-    // use cylinder for head
     HeadPositionApprox = Other.Location;
     HeadPositionApprox.Z += Other.CollisionHeight;
-    HeadPositionApprox.Z -= HEAD_HEIGHT_HALF + 2;
+    HeadPositionApprox.Z -= HeadOffset;
 
     // fixme: try doing a crouch check too
 
-    HeadTestPoint = class'BUtil'.static.GetClosestPointTo(HeadPositionApprox, TraceStart, Dir);
+	if (class'BUtil'.static.GetClosestDistanceTo(HeadPositionApprox, TraceStart, Dir) <= HeadRadius)
+    {
+        Dmg *= HeadMult;
+        DT = DamageTypeHead;
+	}
 
-    if (Abs(HeadTestPoint.Z - HeadPositionApprox.Z) <= HEAD_HEIGHT_HALF)
+	/*
+	HeadTestPoint = class'BUtil'.static.GetClosestPointTo(HeadPositionApprox, TraceStart, Dir);
+
+    if (Abs(HeadTestPoint.Z - HeadPositionApprox.Z) <= HeadHeightHalf)
     { 
         HeadTestPoint.Z = HeadPositionApprox.Z;
 
-        if(VSize(HeadTestPoint - HeadPositionApprox) <= HEAD_RADIUS)
+        if(VSize(HeadTestPoint - HeadPositionApprox) <= HeadRadius)
         {
             Dmg *= HeadMult;
             DT = DamageTypeHead;
             return Dmg;
         }
     }
+	*/
 
 	else if (HitLocation.Z <= Other.Location.Z - 5) // && VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
 	{
@@ -483,6 +490,9 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	local float						Dist;
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
+
+	if (Weapon == None || BW == None)
+		return;
 
 	WallPenForce = WallPenetrationForce;
 	BW.UpdatePenetrationStatus(0);
@@ -791,14 +801,17 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 defaultproperties
 {
-     TraceRange=(Min=5000.000000,Max=5000.000000)
-     MaxWaterTraceRange=128 // ~ 3 feet
-     RangeAtten=1.000000
-     WaterRangeAtten=0.000000
-     PDamageFactor=0.700000
-     WallPDamageFactor=0.95
+	TraceRange=(Min=5000.000000,Max=5000.000000)
+	MaxWaterTraceRange=128 // ~ 3 feet
+	RangeAtten=1.000000
+	WaterRangeAtten=0.000000
+	PDamageFactor=0.700000
+	WallPDamageFactor=0.95
 
 	// backup values in case of failure to assign
 	HeadMult=2.0f
 	LimbMult=0.75f
+
+	HeadOffset=12
+	HeadRadius=12
 }

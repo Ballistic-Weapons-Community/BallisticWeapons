@@ -556,8 +556,8 @@ defaultproperties
     bNetNotify=True
     bCockOnEmpty=False
 	SpecialInfo(0)=(Info="240.0;30.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=1.600000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=1.600000)
+    BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=0.223000)
+    PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=0.270000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-Cock',Volume=1.200000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagOut',Volume=1.400000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagIn',Volume=1.400000)
@@ -602,6 +602,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LK05'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.LK05_FPm'
 	DrawScale=0.300000
 }

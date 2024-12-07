@@ -151,7 +151,7 @@ simulated event PostNetReceive()
 defaultproperties
 {
      Damage=5
-     DamageType=Class'BWBP_SKC_Pro.DTPugFRAG'
+     DamageType=Class'BWBP_SKC_Pro.DTPugGas'
      bHidden=True
      bAlwaysRelevant=True
      bReplicateInstigator=True

@@ -10,6 +10,8 @@ class DT_ICISWithdrawal extends DT_BWFire;
 
 defaultproperties
 {
+     FlashF=0.200000
+     FlashV=(X=1500.000000,Y=1500.000000)
      DeathStrings(0)="%k's special stash gave %o a bad trip."
      DeathStrings(1)="%o should have known better than to take drugs from %k."
      FemaleSuicides(0)="%o had a bad trip."

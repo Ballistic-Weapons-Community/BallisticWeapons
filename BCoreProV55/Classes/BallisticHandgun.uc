@@ -405,7 +405,7 @@ exec simulated function Reload (optional byte i)
 			Super.Reload(i);
 		else if (Othergun.ClientState != WS_ReadyToFire)
 			return;
-		else if (CanReload() && (IsSlave() || float(MagAmmo) / default.MagAmmo <= float(OtherGun.MagAmmo) / OtherGun.default.MagAmmo || !OtherGun.CanReload()))
+		else if (CanReload() && (IsSlave() || float(MagAmmo) / WeaponParams.MagAmmo <= float(OtherGun.MagAmmo) / OtherGun.WeaponParams.MagAmmo || !OtherGun.CanReload()))
 		{
 			Super.Reload(i);
 		}

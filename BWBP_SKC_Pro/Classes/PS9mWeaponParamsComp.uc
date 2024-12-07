@@ -29,6 +29,31 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
+	
+	//Neurotoxin
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams_Tox
+		TraceRange=(Min=3000.000000)
+		Damage=12
+        HeadMult=2.00
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_PS9MDart'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_PS9MDartHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_PS9MDart'
+		PenetrateForce=150
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=0.300000
+		Recoil=64.000000
+		Chaos=0.050000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-FireAlt',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Tox
+		FireInterval=0.11
+		FireAnimRate=1.5
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Tox'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -48,7 +73,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
 		FireInterval=0.600000
 		AmmoPerFire=0
-		FireAnim="Dart_Fire"	
+		FireAnim="DartFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
 	End Object
 		
@@ -82,8 +107,10 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-		//ViewOffset=(X=3.000000,Y=-3.000000,Z=-8.500000)
-		//SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
+		//Layout
+		LayoutName="Poison Auto"
+		Weight=10
+		//Stats
 		MagAmmo=10
 		InventorySize=1
         SightingTime=0.200000
@@ -96,7 +123,32 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+    Begin Object Class=WeaponParams Name=ArenaParams_Tox
+		//Layout
+		LayoutName="Neurotoxin"
+		LayoutTags="tox"
+		Weight=2
+		//Stats
+		MagAmmo=10
+		InventorySize=1
+        SightingTime=0.200000
+        SightMoveSpeedFactor=0.9
+        DisplaceDurationMult=0.5
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=0
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Tox'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=PS_Gray

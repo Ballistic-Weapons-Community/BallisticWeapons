@@ -11,19 +11,276 @@
 //=============================================================================
 class M806Pistol extends BallisticHandgun;
 
-var   bool			bLaserOn;
-var   bool			bStriking;
-var   LaserActor	Laser;
+//Laser
+var() bool			bHasLaser;
+var()   bool		bLaserOn;
+var()   bool		bStriking;
+var()   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
-var   Emitter		LaserDot;
+var()   Emitter		LaserDot;
+
+//Shotgun
+var() bool			bHasShotgun;
+var() Name 			ReloadAltAnim;
+var() int 			AltAmmo;
+var() BUtil.FullSound DrumInSound, DrumOutSound;
+
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bLaserOn;
+		bLaserOn, AltAmmo;
 }
 
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasLaser=true;
+	bHasShotgun=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "scope") != -1)
+	{
+		bHasLaser=false;
+	}
+	
+	if (InStr(WeaponParams.LayoutTags, "shotgun") != -1)
+	{
+		bHasShotgun=true;
+		bHasLaser=false;
+		FireMode[1].AmmoClass=class'Ammo_16GaugeleMat';
+		SightFXClass=None;
+	}
+	else
+	{
+		AltAmmo=0;
+	}
+}
+
+// ===============================================
+// Shotgun Code 
+// ===============================================
+
+
+//==================================================================
+// NewDrawWeaponInfo
+//
+// Draws icons for number of darts in mag
+//==================================================================
+simulated function NewDrawWeaponInfo(Canvas C, float YPos)
+{
+	local int i,Count;
+	local float AmmoDimensions;
+
+	local float	ScaleFactor, XL, YL, YL2, SprintFactor;
+	local string	Temp;
+
+	DrawCrosshairs(C);
+
+	ScaleFactor = C.ClipX / 1600;
+	AmmoDimensions = C.ClipY * 0.06;
+	
+	C.Style = ERenderStyle.STY_Alpha;
+	C.DrawColor = class'HUD'.Default.WhiteColor;
+	Count = Min(6,AltAmmo);
+	
+    for( i=0; i < Count; i++ )
+    {
+		C.SetPos(C.ClipX - (0.5*i+1) * AmmoDimensions, C.ClipY * (1 - (0.12 * class'HUD'.default.HUDScale)));
+		C.DrawTile( Texture'BW_Core_WeaponTex.Icons.Hud_SGIcon',AmmoDimensions, AmmoDimensions, 0, 0, 128, 128);
+	}
+	
+	if (bSkipDrawWeaponInfo)
+		return;
+
+	// Draw the spare ammo amount
+	C.Font = GetFontSizeIndex(C, -2 + int(2 * class'HUD'.default.HudScale));
+	C.DrawColor = class'hud'.default.WhiteColor;
+	if (!bNoMag)
+	{
+		Temp = GetHUDAmmoText(0);
+		if (Temp == "0")
+			C.DrawColor = class'hud'.default.RedColor;
+		C.TextSize(Temp, XL, YL);
+		C.CurX = C.ClipX - 20 * ScaleFactor * class'HUD'.default.HudScale - XL;
+		C.CurY = C.ClipY - 120 * ScaleFactor * class'HUD'.default.HudScale - YL;
+		C.DrawText(Temp, false);
+		C.DrawColor = class'hud'.default.WhiteColor;
+	}
+	if (Ammo[1] != None && Ammo[1] != Ammo[0])
+	{
+		Temp = GetHUDAmmoText(1);
+		if (Temp == "0")
+			C.DrawColor = class'hud'.default.RedColor;
+		C.TextSize(Temp, XL, YL);
+		C.CurX = C.ClipX - 160 * ScaleFactor * class'HUD'.default.HudScale - XL;
+		C.CurY = C.ClipY - 120 * ScaleFactor * class'HUD'.default.HudScale - YL;
+		C.DrawText(Temp, false);
+		C.DrawColor = class'hud'.default.WhiteColor;
+	}
+
+	if (CurrentWeaponMode < WeaponModes.length && !WeaponModes[CurrentWeaponMode].bUnavailable && WeaponModes[CurrentWeaponMode].ModeName != "")
+	{
+		C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+		C.TextSize(WeaponModes[CurrentWeaponMode].ModeName, XL, YL2);
+		C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+		C.CurY = C.ClipY - 130 * ScaleFactor * class'HUD'.default.HudScale - YL2 - YL;
+		C.DrawText(WeaponModes[CurrentWeaponMode].ModeName, false);
+	}
+
+	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
+	// Would be nice if someone could have a HUD function called along the inventory chain
+	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
+	{
+		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
+		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
+		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
+		if (SprintFactor < 0.2)
+			C.SetDrawColor(255, 0, 0);
+		else if (SprintFactor < 0.5)
+			C.SetDrawColor(64, 128, 255);
+		else
+			C.SetDrawColor(0, 0, 255);
+		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
+	}
+}
+
+//===========================================================================
+// ServerStartReload
+//
+// Generic code for weapons which have multiple magazines.
+//===========================================================================
+function ServerStartReload (optional byte i)
+{
+	local int m;
+	local array<byte> Loadings[2];
+	
+	if (bPreventReload)
+		return;
+	if (ReloadState != RS_None)
+		return;
+	if (MagAmmo < WeaponParams.MagAmmo && Ammo[0].AmmoAmount > 0)
+		Loadings[0] = 1;
+	if (bHasShotgun && AltAmmo < 6 && Ammo[1].AmmoAmount > 0)
+		Loadings[1] = 1;
+	if (Loadings[0] == 0 && Loadings[1] == 0)
+		return;
+
+	for (m=0; m < NUM_FIRE_MODES; m++)
+		if (FireMode[m] != None && FireMode[m].bIsFiring)
+			StopFire(m);
+
+	bServerReloading = true;
+	
+	if (i == 1)
+		m = 0;
+	else m = 1;
+	
+	if (Loadings[i] == 1)
+	{
+		ClientStartReload(i);
+		CommonStartReload(i);
+	}
+	
+	else if (Loadings[m] == 1)
+	{
+		ClientStartReload(m);
+		CommonStartReload(m);
+	}
+	
+	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+		Instigator.SetAnimAction('ReloadGun');
+}
+
+//==================================================================
+// ClientStartReload
+//
+// Dispatch reload based on desired mag
+//==================================================================
+simulated function ClientStartReload(optional byte i)
+{
+	if (Level.NetMode == NM_Client)
+	{
+		if (i == 1 && bHasShotgun)
+			CommonStartReload(1);
+		else
+			CommonStartReload(0);
+	}
+}
+
+//==================================================================
+// CommonStartReload
+//
+// Handle multiple magazines
+//==================================================================
+simulated function CommonStartReload (optional byte i)
+{
+	local int m;
+
+	if (ClientState == WS_BringUp)
+		ClientState = WS_ReadyToFire;
+
+    switch(i)
+    {
+		case 0:
+			ReloadState = RS_StartShovel;
+			PlayReload();
+			break;
+		case 1:
+			ReloadState = RS_PreClipOut;
+			PlayReloadAlt();
+			break;
+    }
+
+	if (bScopeView && Instigator.IsLocallyControlled())
+		TemporaryScopeDown(Default.SightingTime);
+
+	for (m=0; m < NUM_FIRE_MODES; m++)
+		if (BFireMode[m] != None)
+			BFireMode[m].ReloadingGun(i);
+
+	if (bCockAfterReload)
+		bNeedCock=true;
+	if (bCockOnEmpty && MagAmmo < 1)
+		bNeedCock=true;
+	bNeedReload=false;
+}
+
+simulated function PlayReloadAlt()
+{
+	SafePlayAnim(ReloadAltAnim, 1, , 0, "RELOAD");
+}
+
+simulated function Notify_ReloadAltOut()	
+{	
+	PlayOwnedSound(DrumOutSound.Sound,DrumOutSound.Slot,DrumOutSound.Volume,DrumOutSound.bNoOverride,DrumOutSound.Radius,DrumOutSound.Pitch,DrumOutSound.bAtten);
+	ReloadState = RS_PreClipIn;
+}
+
+simulated function Notify_ReloadAltIn()          
+{   
+	local int AmmoNeeded;
+	
+	PlayOwnedSound(DrumInSound.Sound,DrumInSound.Slot,DrumInSound.Volume,DrumInSound.bNoOverride,DrumInSound.Radius,DrumInSound.Pitch,DrumInSound.bAtten);    
+	ReloadState = RS_PostClipIn; 
+	
+	if (Level.NetMode != NM_Client)
+	{
+		AmmoNeeded = default.AltAmmo - AltAmmo;
+		if (AmmoNeeded > Ammo[1].AmmoAmount)
+			AltAmmo +=Ammo[1].AmmoAmount;
+		else
+			AltAmmo = default.AltAmmo;   
+		Ammo[1].UseAmmo (AmmoNeeded, True);
+	}
+}
+
+// ===============================================
+// Dual Code
+// ===============================================
 simulated function bool SlaveCanUseMode(int Mode)
 {
 	if(M806Pistol(OtherGun) != None)
@@ -50,6 +307,9 @@ simulated function bool CanAlternate(int Mode)
 	return super.CanAlternate(Mode);
 }
 
+// ================================================
+// Laser Code
+// ================================================
 simulated function PlayIdle()
 {
 	super.PlayIdle();
@@ -77,7 +337,8 @@ simulated function OnAimParamsChanged()
 
 simulated function ApplyLaserAim()
 {
-	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimAdjustTime *= 0.65;
+	AimComponent.AimSpread.Min *= 0.65;
 	AimComponent.AimSpread.Max *= 0.65;
 }
 
@@ -97,13 +358,15 @@ simulated event PostNetReceive()
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (bServerReloading)
+	if (bServerReloading || !bHasLaser)
 		return;
 	ServerSwitchLaser(!bLaserOn);
 }
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
+	if (!bHasLaser)
+		return;
 	bLaserOn = bNewLaserOn;
 
 	if (ThirdPersonActor!=None)
@@ -141,18 +404,26 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		Laser = Spawn(class'LaserActor');
 	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
 		SpawnLaserDot();
-	if (Instigator != None && AIController(Instigator.Controller) != None)
+	if (Instigator != None && AIController(Instigator.Controller) != None && bHasLaser)
 		ServerSwitchLaser(FRand() > 0.5);
 
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 	{
 		IdleAnim = 'OpenIdle';
 		ReloadAnim = 'OpenReload';
+		if (AltAmmo < 1)
+			ReloadAltAnim = 'ReloadAltOpen';
+		else
+			ReloadAltAnim = 'ReloadAlt2Open';
 	}
 	else
 	{
 		IdleAnim = 'Idle';
 		ReloadAnim = 'Reload';
+		if (AltAmmo < 1)
+			ReloadAltAnim = 'ReloadAlt';
+		else
+			ReloadAltAnim = 'ReloadAlt2';
 	}
 
 	if ( ThirdPersonActor != None )
@@ -279,11 +550,13 @@ simulated event AnimEnd (int Channel)
 		{
 			IdleAnim = 'OpenIdle';
 			ReloadAnim = 'OpenReload';
+			ReloadAltAnim = 'ReloadAltOpen';
 		}
 		else
 		{
 			IdleAnim = 'Idle';
 			ReloadAnim = 'Reload';
+			ReloadAltAnim = 'ReloadAlt';
 		}
 	}
 	Super.AnimEnd(Channel);
@@ -303,7 +576,35 @@ simulated function bool HasAmmo()
 
 // AI Interface =====
 // choose between regular or alt-fire
-function byte BestMode()	{	return 0;	}
+function byte BestMode()
+{
+	local Bot B;
+	local float Dist, Result;
+
+	if (!bHasShotgun)
+		return 0;
+
+	B = Bot(Instigator.Controller);
+	if ( (B == None) || (B.Enemy == None) )
+		return 0;
+
+	if (AltAmmo < 1)
+		return 0;
+	if (MagAmmo < 1)
+		return 1;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	if (Dist > 1700)
+		return 0;
+
+	Result = FRand()*0.5;
+
+	Result += 1 - Dist / 1700;
+
+	if (Result > 0.5)
+		return 1;
+	return 0;
+}
 
 function float GetAIRating()
 {
@@ -335,6 +636,11 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
+	AltAmmo=6
+	ReloadAltAnim="ReloadAlt"
+	DrumInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.500000,bAtten=True)
+	DrumOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.500000,bAtten=True)
+	
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -345,8 +651,8 @@ defaultproperties
 	bWT_Bullet=True
 	bShouldDualInLoadout=True
 	SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipOut')
@@ -393,6 +699,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M806_FPm'
 	DrawScale=0.300000
 }

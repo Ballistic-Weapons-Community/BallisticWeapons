@@ -50,6 +50,6 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.M353.M353PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.650000
+     DrawScale=0.500000
      CollisionHeight=12.000000
 }

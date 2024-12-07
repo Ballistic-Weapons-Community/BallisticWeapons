@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class GASCAttachment extends HandgunAttachment;
 
@@ -141,9 +141,10 @@ defaultproperties
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	ReloadAnim="Reload_Pistol"
 	CockingAnim="Cock_RearPull"
-	ReloadAnimRate=1.400000
+	ReloadAnimRate=1.075000
 	CockAnimRate=0.800000
 	bRapidFire=True
-	Mesh=SkeletalMesh'BWBP_CC_Anim.GASC_TPm'
+	RelativeLocation=(X=-20.000000,Y=-5.000000,Z=1.000000)
+	Mesh=SkeletalMesh'BWBP_APC_Anim.GASC_TPm'
 	DrawScale=1.000000
 }

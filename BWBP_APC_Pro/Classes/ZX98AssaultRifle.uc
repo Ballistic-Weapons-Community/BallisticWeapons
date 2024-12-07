@@ -254,7 +254,7 @@ defaultproperties
      BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
 	 TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
-     BigIconMaterial=Texture'BWBP_CC_Tex.AR.ARBigIcon'
+     BigIconMaterial=Texture'BWBP_APC_Tex.AR.ARBigIcon'
      BigIconCoords=(X1=16,Y1=30)
      bWT_Bullet=True
      bWT_Machinegun=True
@@ -262,14 +262,14 @@ defaultproperties
      ManualLines(1)="Automatic Gauss fire. High Power, Slower fire rate and Lower recoil."
      ManualLines(2)="Effective at medium range."
      SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
      CockAnimPostReload="Cock"
      CockAnimRate=1.400000
-     CockSound=(Sound=Sound'BWBP_CC_Sounds.ZX98.ZX98-Cock')
-     ClipHitSound=(Sound=Sound'BWBP_CC_Sounds.ZX98.ZX98-ClipHit')
-     ClipOutSound=(Sound=Sound'BWBP_CC_Sounds.ZX98.ZX98-ClipOut')
-     ClipInSound=(Sound=Sound'BWBP_CC_Sounds.ZX98.ZX98-ClipIn')
+     CockSound=(Sound=Sound'BWBP_APC_Sounds.ZX98.ZX98-Cock')
+     ClipHitSound=(Sound=Sound'BWBP_APC_Sounds.ZX98.ZX98-ClipHit')
+     ClipOutSound=(Sound=Sound'BWBP_APC_Sounds.ZX98.ZX98-ClipOut')
+     ClipInSound=(Sound=Sound'BWBP_APC_Sounds.ZX98.ZX98-ClipIn')
      ClipInFrame=0.700000
      bAltTriggerReload=True
 	 bShowChargingBar=True
@@ -291,7 +291,7 @@ defaultproperties
      SightOffset=(X=-10.000000,Y=-0.500000,Z=12.500000)
      GunLength=16.000000
 	 SightFXClass=Class'BWBP_APC_Pro.ZX98SightLEDs'
-	 ScopeViewTex=Texture'BWBP_CC_Tex.AR.M30A1-Scope'
+	 ScopeViewTex=Texture'BWBP_APC_Tex.AR.M30A1-Scope'
      FireModeClass(0)=Class'BWBP_APC_Pro.ZX98PrimaryFire'
      FireModeClass(1)=Class'BWBP_APC_Pro.ZX98SecondaryFire'
      SelectAnimRate=1.000000
@@ -312,7 +312,7 @@ defaultproperties
      PlayerViewOffset=(X=2.000000,Y=5.000000,Z=-10.500000)
      BobDamping=2.250000
      AttachmentClass=Class'BWBP_APC_Pro.ZX98Attachment'
-     IconMaterial=Texture'BWBP_CC_Tex.AR.ARSmallIcon'
+     IconMaterial=Texture'BWBP_APC_Tex.AR.ARSmallIcon'
      IconCoords=(X2=127,Y2=31)
      ItemName="ZX-98 Reaper Gauss Rifle"
      LightType=LT_Pulse
@@ -325,6 +325,6 @@ defaultproperties
 	 ParamsClasses(1)=Class'ZX98WeaponParamsClassic'
 	 ParamsClasses(2)=Class'ZX98WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'ZX98WeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_ZX98'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.ZX98_FPm'
      DrawScale=0.200000
 }

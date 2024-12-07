@@ -13,6 +13,7 @@ class MD24Pistol extends BallisticHandgun;
 
 var   bool			bLaserOn;
 var   bool			bStriking;
+var() bool			bHasKnife;
 var   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
@@ -23,6 +24,21 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
+}
+
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasKnife=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "tacknife") != -1)
+	{
+		bHasKnife=true;
+		MeleeFireMode.Damage = 70;
+	}
 }
 
 // Animation notify for when the clip is stuck in
@@ -253,7 +269,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	// Draw dot at end of beam
-	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2 && Level.TimeSeconds - FireMode[1].NextFireTime > 0.2)
 		SpawnLaserDot(HitLocation);
 	else
 		KillLaserDot();
@@ -264,7 +280,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
 	Laser.SetLocation(Loc);
 	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
-	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2 && Level.TimeSeconds - FireMode[1].NextFireTime > 0.2)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
 	{
@@ -391,9 +407,10 @@ defaultproperties
 	ManualLines(2)="The Weapon Function key toggles a laser sight, which reduces the spread of the weapon's hipfire, but exposes the user's position to the enemy. This laser sight makes the MD24 a strong choice for dual wielding.||Effective at close range."
 	SpecialInfo(0)=(Info="120.0;10.0;-999.0;25.0;0.0;0.0;-999.0")
 	MeleeFireClass=Class'BallisticProV55.MD24MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Cock',Volume=0.675000)
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipHit',Volume=0.800000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipHit',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipOut',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipIn',Volume=0.800000)
@@ -411,7 +428,7 @@ defaultproperties
 	ParamsClasses(2)=Class'MD24WeaponParamsRealistic'
     ParamsClasses(3)=Class'MD24WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
-	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+	FireModeClass(1)=Class'BallisticProV55.MD24SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.600000
 	CurrentRating=0.600000
@@ -434,6 +451,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MD24_FPm'
 	DrawScale=0.3
 }

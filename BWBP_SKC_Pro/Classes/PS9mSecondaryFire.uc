@@ -16,13 +16,13 @@ function PlayFiring()
 	{
 		BW.IdleAnim = 'IdleOpen';
 		BW.ReloadAnim = 'ReloadOpen';
-		FireAnim = 'Dart_FireOpen';
+		FireAnim = 'DartFireOpen';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
-		FireAnim = 'Dart_Fire';
+		FireAnim = 'DartFire';
 	}
 	super.PlayFiring();
 }
@@ -69,7 +69,7 @@ defaultproperties
      bRecommendSplashDamage=True
      bUseWeaponMag=False
      bTossed=True
-     FireAnim="Dart_Fire"
+     FireAnim="DartFire"
      FireForce="AssaultRifleAltFire"
      FireRate=0.600000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_MedDarts'

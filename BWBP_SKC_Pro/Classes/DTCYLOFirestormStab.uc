@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%k's CYLO ripped into defenseless %o."
      DamageIdent="Melee"
      DamageDescription=",Stab,"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOUAW'
      DeathString="%o tripped into %k's CYLO blade."
      FemaleSuicide="%o cut herself on her CYLO."
      MaleSuicide="%o cut himself on his CYLO."

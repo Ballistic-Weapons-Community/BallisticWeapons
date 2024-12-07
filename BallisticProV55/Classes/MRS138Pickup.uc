@@ -43,7 +43,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRS138.MRS138PickupHi'
      Physics=PHYS_None
-     DrawScale=0.250000
+     DrawScale=0.200000
      PrePivot=(Y=-18.000000)
      CollisionHeight=3.000000
 }

@@ -21,7 +21,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=1024.000000
+		Recoil=2048.000000
 		Chaos=0.200000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -50,7 +50,7 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=512.000000
+		Recoil=1536.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2',Volume=7.100000,Pitch=1.000000,Slot=SLOT_Interact,bNoOverride=False)
@@ -81,7 +81,7 @@ defaultproperties
 		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=1280.000000
+		Recoil=2048.000000
 		Chaos=0.200000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
@@ -110,7 +110,7 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=768.000000
+		Recoil=1536.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
@@ -237,7 +237,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalStandardAimParams
 		ADSViewBindFactor=0
-		ADSMultiplier=0.35
+		ADSMultiplier=0.7
 		AimAdjustTime=0.6
 		AimSpread=(Min=512,Max=2560)
 		ChaosDeclineTime=1.750000

@@ -21,7 +21,7 @@ defaultproperties
 		bPenetrate=True
 		PushbackForce=3000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		FlashScaleFactor=1.100000
+		FlashScaleFactor=0.750000
 		Recoil=2560.000000
 		Chaos=1.000000
 		BotRefireRate=0.7

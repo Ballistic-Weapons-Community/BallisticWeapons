@@ -30,7 +30,8 @@ simulated function UpdatePrecacheMaterials()
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.M1014.M1014Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.M1014.M1014PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.M1014.M1014PickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763Flash1');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
@@ -39,13 +40,14 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.M1014.M1014Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.M1014.M1014PickupLo'
      PickupDrawScale=1.000000
      InventoryType=Class'BWBP_SKC_Pro.MK781Shotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the MK781 combat shotgun."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.M1014.M1014Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.M1014.M1014PickupHi'
+	 DrawScale=0.410000
      Physics=PHYS_None
      CollisionHeight=3.000000
 }

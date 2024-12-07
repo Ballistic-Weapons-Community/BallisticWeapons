@@ -11,39 +11,386 @@
 class CoachGunPrimaryFire extends BallisticProShotgunFire;
 
 var() Actor						MuzzleFlash2;		// The muzzleflash actor
-var() sound						SlugFireSound;
-var() class<BCTraceEmitter>		AltTracerClass;	
-var() class<BCImpactManager>	AltImpactManager;	
-var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
+var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim, FireLoadingAnim, AimedFireLoadingAnim;
 var() float						ChargeTime, DecayCharge;
 
-var() int   					SlugDamage, SlugDoubleDamage;
+const SHOT_AMMO = 0;
+const SLUG_AMMO = 1;
+const ZAP_AMMO = 2;
+const FLAME_AMMO = 3;
+const HE_AMMO = 4;
+const FRAG_AMMO = 5;
 
 var bool                        FlashSide;
 
-struct Point2
-{
-	var int X;
-	var int Y;
-};
+// Projectile Vars
+var() Vector			SpawnOffset;		// Projectile spawned at this offset
+var	  Projectile		Proj;				// The projectile actor
 
-var() Point2					SlugInaccuracy, SlugDoubleInaccuracy, ShotInaccuracy, ShotDoubleInaccuracy;
+
+// =============================================================================================================================
+simulated state Projectile
+{
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local GrenadeEffectParams effect_params;
+
+		super(BallisticFire).ApplyFireEffectParams(params);
+
+		effect_params = GrenadeEffectParams(params);
+
+		ProjectileClass =  effect_params.ProjectileClass;
+		SpawnOffset = effect_params.SpawnOffset;    
+		default.ProjectileClass =  effect_params.ProjectileClass;
+		default.SpawnOffset = effect_params.SpawnOffset;
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(FRAG_AMMO);
+	}
+
+	// Copied from Proj Fire
+	function float MaxRange()
+	{
+		if (ProjectileClass.default.MaxSpeed > ProjectileClass.default.Speed)
+		{
+			// We know BW projectiles have AccelSpeed
+			if (class<BallisticProjectile>(ProjectileClass) != None && class<BallisticProjectile>(ProjectileClass).default.AccelSpeed > 0)
+			{
+				if (ProjectileClass.default.LifeSpan <= 0)
+					return FMin(ProjectileClass.default.MaxSpeed, (ProjectileClass.default.Speed + class<BallisticProjectile>(ProjectileClass).default.AccelSpeed * 2) * 2);
+				else
+					return FMin(ProjectileClass.default.MaxSpeed, (ProjectileClass.default.Speed + class<BallisticProjectile>(ProjectileClass).default.AccelSpeed * ProjectileClass.default.LifeSpan) * ProjectileClass.default.LifeSpan);
+			}
+			// For the rest, just use the max speed
+			else
+			{
+				if (ProjectileClass.default.LifeSpan <= 0)
+					return ProjectileClass.default.MaxSpeed * 2;
+				else
+					return ProjectileClass.default.MaxSpeed * ProjectileClass.default.LifeSpan*0.75;
+			}
+		}
+		else // Hopefully this proj doesn't change speed.
+		{
+			if (ProjectileClass.default.LifeSpan <= 0)
+				return ProjectileClass.default.Speed * 2;
+			else
+				return ProjectileClass.default.Speed * ProjectileClass.default.LifeSpan;
+		}
+	}
+
+	// Get aim then spawn projectile
+	// Azarael edit: Wall code
+	function DoFireEffect()
+	{
+		local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace;
+		local Rotator Aim;
+		local actor Other;
+
+		Weapon.GetViewAxes(X,Y,Z);
+		// the to-hit trace always starts right in front of the eye
+		Start = Instigator.Location + Instigator.EyePosition();
+		
+		StartTrace = Start + X*SpawnOffset.X + Z*SpawnOffset.Z;
+		if ( !Weapon.WeaponCentered() )
+			StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
+
+		Aim = GetFireAim(StartTrace);
+		Aim = Rotator(GetFireSpread() >> Aim);
+		
+		//wall check
+		End = Start + (Vector(Aim) * SpawnOffset.X);
+		Other = Weapon.Trace(HitLocation, HitNormal, End, Start, false);
+		if (Other != None)
+			StartTrace = HitLocation;
+		//end wall check
+
+		End = Start + (Vector(Aim)*MaxRange());
+		Other = Trace (HitLocation, HitNormal, End, Start, true);
+
+		if (Other != None)
+			Aim = Rotator(HitLocation-StartTrace);
+		if (Load == 2)
+			SpawnProjectile(Start + X*(SpawnOffset.X+1) + Z*SpawnOffset.Z, Aim);
+		SpawnProjectile(StartTrace, Aim);
+
+		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
+		Super(BallisticFire).DoFireEffect();
+	}
+
+	function SpawnProjectile (Vector Start, Rotator Dir)
+	{
+		Proj = Spawn (ProjectileClass,,, Start, Dir);
+		if (Proj != None)
+			Proj.Instigator = Instigator;
+	}
+}
+
+simulated state ShotgunZap
+{
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+		KickForce=4500;
+		MaxWaterTraceRange=9000;
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(ZAP_AMMO);
+	}
+
+	//======================================================================
+	// Shotgun-DoFireEffect
+	//
+	// Send twice if double shot
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector StartTrace;
+		local Rotator R, Aim;
+		local int i;
+
+		Aim = GetFireAim(StartTrace);
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		for (i=0; i < GetTraceCount(Load); i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+		ApplyHits();
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
+		
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+
+		Super(BallisticFire).DoFireEffect();
+	}
+}
+
+simulated state ShotgunHE
+{
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(HE_AMMO);
+	}
+
+	//======================================================================
+	// Shotgun-DoFireEffect
+	//
+	// Send twice if double shot
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector StartTrace;
+		local Rotator R, Aim;
+		local int i;
+
+		Aim = GetFireAim(StartTrace);
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		for (i=0; i < GetTraceCount(Load); i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
+		
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+
+		Super(BallisticFire).DoFireEffect();
+		
+		//Moving to the end in case we kill ourselves with apply damage
+		ApplyHits();
+	}
+
+
+	//======================================================================
+	// ApplyDamage
+	//
+	// Explosive rounds
+	//======================================================================
+
+	function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+	{
+		super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+		
+		if (Target.bProjTarget)
+			BW.TargetedHurtRadius(Damage, 512, class'DT_CoachGunExplosive', 200, HitLocation, Pawn(Target));
+	}
+}
+
+simulated state ShotgunIncendiary
+{
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ShotgunEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ShotgunEffectParams(params);
+
+		HipSpreadFactor = effect_params.HipSpreadFactor;
+		if (CoachGunAttachment(Weapon.ThirdPersonActor) != None)
+			CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(FLAME_AMMO);
+	}
+
+	function CoachGunFireControl GetFireControl()
+	{
+		return CoachGun(Weapon).GetFireControl();
+	}
+
+	//======================================================================
+	// ShotgunIncendiary-DoFireEffect
+	//
+	// Spawn fire bits
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector Start, Dir, End, HitLocation, HitNormal;
+		local Rotator R, Aim;
+		local actor Other;
+		local float Dist, NodeDist, DR;
+		local int i;
+
+		//============================= Instant Hit Bits ====================
+		Aim = GetFireAim(Start);
+		
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		//Spawn the damage tracers first
+		for (i=0;i<GetTraceCount(Load);i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(Start, R);
+		}
+		
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+		
+		ApplyHits();
+
+		// update client's dispersion values before shot
+		if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
+		{
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).XInaccuracy = GetXInaccuracy();
+			BallisticShotgunAttachment(Weapon.ThirdPersonActor).YInaccuracy = GetYInaccuracy();
+		}
+
+		// argh, no
+		
+		//============================= Flamey Bits ==========================
+		Start = Instigator.Location + Instigator.EyePosition();
+		Aim = GetFireAim(Start);
+		Aim = Rotator(GetFireSpread() >> Aim);
+
+		Dir = Vector(Aim);
+		End = Start + (Dir*MaxRange());
+		Weapon.bTraceWater=true;
+		for (i=0;i<20;i++)
+		{
+			Other = Trace(HitLocation, HitNormal, End, Start, true);
+			if (Other == None || Other.bWorldGeometry || Mover(Other) != none || Vehicle(Other)!=None || FluidSurfaceInfo(Other) != None || (PhysicsVolume(Other) != None && PhysicsVolume(Other).bWaterVolume))
+				break;
+			Start = HitLocation + Dir * FMax(32, (Other.CollisionRadius*2 + 4));
+		}
+		Weapon.bTraceWater=false;
+
+		if (Other == None)
+			HitLocation = End;
+		if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
+			Other = None;
+		
+		//Spawn the tracers but also spawn a bunch of fire projectiles
+		for (i=0;i<GetTraceCount(Load);i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			
+			if (Other != None && (Other.bWorldGeometry || Mover(Other) != none))
+				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, Other, R);
+			else
+				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None, R);
+		}
+
+		Dist = VSize(HitLocation-Start);
+		for (i=0;i<GetFireControl().GasNodes.Length;i++)
+		{
+			if (GetFireControl().GasNodes[i] == None || (RX22AGasCloud(GetFireControl().GasNodes[i]) == None && RX22AGasPatch(GetFireControl().GasNodes[i]) == None && RX22AGasSoak(GetFireControl().GasNodes[i]) == None))
+				continue;
+			NodeDist = VSize(GetFireControl().GasNodes[i].Location-Start);
+			if (NodeDist > Dist)
+				continue;
+			DR = Dir Dot Normal(GetFireControl().GasNodes[i].Location-Start);
+			if (DR < 0.75)
+				continue;
+			NodeDist = VSize(GetFireControl().GasNodes[i].Location - (Start + Dir * (DR * NodeDist)));
+			if (NodeDist < 128)
+				GetFireControl().GasNodes[i].TakeDamage(5, Instigator, GetFireControl().GasNodes[i].Location, vect(0,0,0), class'DTRX22ABurned');
+		}
+
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, Start, 0);
+	
+		Super(BallisticFire).DoFireEffect();
+	}
+
+}
 
 //======================================================================
 // AnimateFiring
 //
-// Select different animation depending on ammo and charge
+// Select different animation depending on ammo and weapon params
 //======================================================================
 function AnimateFiring()
 {
-	if (BW.HasNonMagAmmo(0))
+	if (BW.HasNonMagAmmo(0) && CoachGun(BW).bQuickLoad) //if we have ammo and are a quickloader, play fire reload anim
 	{        
 		if (Load >= BW.MagAmmo)
 		{
-			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+			BW.SafePlayAnim(FireLoadingAnim, FireAnimRate, TweenTime, ,"FIRE");
 			
 			if (BW.BlendFire())
-				BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+				BW.SafePlayAnim(AimedFireLoadingAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
 		}
 		else
 		{
@@ -55,9 +402,20 @@ function AnimateFiring()
 	}
 	else
 	{
-		BW.SafePlayAnim(FireEmptyAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireEmptyAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
+		if (Load >= 2)
+		{
+			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+			
+			if (BW.BlendFire())
+				BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");		
+		}
+		else
+		{
+			BW.SafePlayAnim(FireSingleAnim, FireAnimRate, TweenTime, ,"FIRE");
+			
+			if (BW.BlendFire())
+				BW.SafePlayAnim(AimedFireSingleAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+		}		
 	}
 }
 
@@ -121,15 +479,21 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	if (!Other.bWorldGeometry && Mover(Other) == None && Pawn(Other) == None || level.NetMode == NM_Client)
 		return false;
 
-    if (Vehicle(Other) != None)
-        Surf = 3;
-    else if (HitMat == None)
-        Surf = int(Other.SurfaceType);
-    else
-        Surf = int(HitMat.SurfaceType);
+	if (!Other.bWorldGeometry && Mover(Other) == None && BallisticShield(Other) == None && Other.bProjTarget)
+	{
+		Spawn (class'IE_IncMinigunBulletConcrete', ,, HitLocation,);
+	}
+	else
+	{
+		if (Vehicle(Other) != None)
+			Surf = 3;
+		else if (HitMat == None)
+			Surf = int(Other.SurfaceType);
+		else
+			Surf = int(HitMat.SurfaceType);
 
-    ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
-	
+		ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
+	}
 	if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation()) > 200 && FRand() < TracerChance)
 		Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation()));
 	
@@ -138,72 +502,30 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 simulated function SwitchWeaponMode (byte newMode)
 {
-	if (newMode == 1) //Slug Mode
-	{
-        Damage = SlugDamage;
-        HeadMult=1.5f;
-        LimbMult=0.8f;
-        TraceCount = 1;
 
-        PenetrateForce=500;
-		bPenetrate=True;
-
-        BallisticFireSound.Sound=SlugFireSound;
-		BallisticFireSound.Volume=7.1;
-
-        TracerClass=AltTracerClass;
-		ImpactManager=AltImpactManager;
-
-        DamageType=Class'DTCoachSlug';
-		DamageTypeArm=Class'DTCoachSlug';
-		DamageTypeHead=Class'DTCoachSlug';
-
-        RangeAtten=0.250000;
-
-		TraceRange.Min=9000;
-		TraceRange.Max=9000;
-
-        KickForce = 500;
-		
-     	FlashScaleFactor=3.000000;
-
-		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
-	}
-	else //Shot Mode
-	{
-        Damage = default.Damage;
-        HeadMult= default.HeadMult;
-        LimbMult=default.LimbMult;
-        
-		TraceCount=default.TraceCount;
-
-        PenetrateForce=0;
-		bPenetrate=False;
-	
-		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
-
-        TracerClass=default.TracerClass;
-		ImpactManager=default.ImpactManager;
-
-        DamageType=Class'DTCoachShot';
-		DamageTypeArm=Class'DTCoachShot';
-		DamageTypeHead=Class'DTCoachShot';
-
-		RangeAtten=default.RangeAtten;
-
-		
-		TraceRange.Min=default.TraceRange.Min;
-		TraceRange.Max=default.TraceRange.Max;
-		
-		FlashScaleFactor=default.FlashScaleFactor;		
-		KickForce=default.KickForce;
-		FireRecoil=default.FireRecoil;
-
-		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
-	}
+	CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(newMode);
 
     SwitchShotParams();
+}
+
+//======================================================================
+// Timer
+//
+// Safety for replication timing issue with integrated reload
+//======================================================================
+simulated event Timer()
+{
+	if (Weapon.Role == ROLE_Authority)
+	{
+		if (BW != None)
+			BW.ConsumeMagAmmo(ThisModeNum,ConsumedLoad);
+		else
+			Weapon.ConsumeAmmo(ThisModeNum,ConsumedLoad);
+			
+		if (BW.MagAmmo == 0 && BW.HasNonMagAmmo(0) && CoachGun(BW).bQuickLoad)
+			BW.bServerReloading = true;
+	}
+	ConsumedLoad=0;
 }
 
 simulated function ModeTick(float DeltaTime)
@@ -232,15 +554,16 @@ simulated event ModeDoFire()
 		{
 			Load=1;
 			BW.BFireMode[1].ModeDoFire();
+			return;
 		}
-		else
-		{
-			Load=2;
-			super.ModeDoFire();
-		}
-		return;
+		//else
+		//{
+		//	Load=2;
+		//	super.ModeDoFire();
+		//}
+		//return;
 	//}
-	/*
+	
 	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())
@@ -262,7 +585,7 @@ simulated event ModeDoFire()
 		}
 	}
 
-	if (HoldTime >= ChargeTime && BW.MagAmmo == 2)
+	if (/*HoldTime >= ChargeTime && */BW.MagAmmo >= 2)
 	{
 		Load = 2;
 		SwitchShotParams();
@@ -332,10 +655,18 @@ simulated event ModeDoFire()
 	if (BW != None)
 	{
 		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
+		
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
+			
+		if (CoachGun(BW).bQuickLoad && BW.HasNonMagAmmo(0) && BW.MagAmmo <= ConsumedLoad)
+		{
+			//DebugMessage("EmptyFire reload");
+
+			BW.ReloadState = RS_PreClipOut;
+		}
 	}
-	*/
+	
 }
 
 //======================================================================
@@ -453,38 +784,31 @@ function SwitchShotParams()
 {
 	if (Load == 2)
 	{
-		BallisticFireSound.Volume = 2.0;
+		BallisticFireSound.Volume = default.BallisticFireSound.Volume*2;
 		XInaccuracy = default.XInaccuracy*2.5;
 		YInaccuracy = default.YInaccuracy*1.5;
-		if (BW.CurrentWeaponMode == 1)
-		{
-            Damage = default.Damage*0.9;
-		}
 	}
 	else
 	{
-		BallisticFireSound.Volume = 1.0;
+		BallisticFireSound.Volume = default.BallisticFireSound.Volume;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
-		if (BW.CurrentWeaponMode == 1)
-		{
-            Damage = default.Damage;
-		}
 	}
 }
 
 defaultproperties
 {
-	SlugFireSound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire'
-
-	AimedFireEmptyAnim="Fire"
+	FireLoadingAnim="FireCombined"
+	AimedFireLoadingAnim="SightFireCombined"
+		
 	FireEmptyAnim="Fire"
+	AimedFireEmptyAnim="Fire"
 
-    AimedFireAnim="Fire"
     FireAnim="Fire"
+    AimedFireAnim="Fire"
 
-    AimedFireSingleAnim="SightFire"
     FireSingleAnim="SightFire"
+    AimedFireSingleAnim="SightFire"
 
     ChargeTime=0.35
 	MaxHoldTime=0.0
@@ -493,23 +817,19 @@ defaultproperties
 	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 	ImpactManager=Class'BallisticProV55.IM_Shell'
-	AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
-	AltImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
 
 	TraceRange=(Min=2560.000000,Max=3072.000000)
 
 	WallPenetrationForce=0
 
     MaxHits=14 // inflict maximum of 156 damage to a single target
-    SlugDamage=80
-    SlugDoubleDamage=70
 	RangeAtten=0.250000
     PenetrateForce=0
 	bPenetrate=False
 	bFireOnRelease=False
-	DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
-	DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
-	DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
+	DamageType=Class'BWBP_SKC_Pro.DT_CoachShot'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DT_CoachShot'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DT_CoachShot'
 	KickForce=500
 	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 	FlashScaleFactor=1.500000
@@ -521,12 +841,6 @@ defaultproperties
 
 	XInaccuracy=220.000000
 	YInaccuracy=220.000000
-
-	ShotInaccuracy=(X=220,Y=220)
-	ShotDoubleInaccuracy=(X=512,Y=378)
-
-	SlugInaccuracy=(X=16,Y=0)
-	SlugDoubleInaccuracy=(X=48,Y=0)
 
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
 	FireAnimRate=1.35

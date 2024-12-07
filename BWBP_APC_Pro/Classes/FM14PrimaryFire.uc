@@ -86,8 +86,8 @@ defaultproperties
      HipSpreadFactor=3.000000
 	 DecayRange=(Min=1562,Max=3124)
      TraceCount=1
-     TracerClass=Class'BWBP_APC_Pro.TraceEmitter_ShotgunFlame'
-     ImpactManager=Class'BWBP_APC_Pro.IM_FireShot'
+     TracerClass=Class'BallisticProV55.TraceEmitter_AP'
+	ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
      TraceRange=(Min=3072.000000,Max=3072.000000)
      Damage=80.000000
      RangeAtten=0.15000
@@ -107,7 +107,7 @@ defaultproperties
      FireChaos=0.30000
      XInaccuracy=150.000000
      YInaccuracy=150.000000
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
      FireAnim="FireCombined"
      FireEndAnim=
      FireAnimRate=0.9

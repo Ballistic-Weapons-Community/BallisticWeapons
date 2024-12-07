@@ -25,7 +25,7 @@ defaultproperties
 			Chaos=0.100000
 			BotRefireRate=0.900000
 			WarnTargetPct=0.300000
-			FireSound=(Sound=Sound'BWBP_CC_Sounds.GASC.GASC-Fire',Volume=0.800000)
+			FireSound=(Sound=Sound'BWBP_APC_Sounds.GASC.GASC-Fire',Volume=0.800000)
 		End Object
 
 		Begin Object Class=FireParams Name=ArenaPrimaryFireParams

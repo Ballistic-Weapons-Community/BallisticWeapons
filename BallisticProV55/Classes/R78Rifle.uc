@@ -211,8 +211,8 @@ defaultproperties
      ManualLines(1)="Engages the scope."
      ManualLines(2)="Does not use tracer rounds. Effective at long range and against clustered enemies."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	 PutDownTime=0.5
      CockAnim="Cock"
      //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
@@ -272,6 +272,6 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R78'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.R78_FPm'
      DrawScale=0.3
 }

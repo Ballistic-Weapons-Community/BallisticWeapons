@@ -11,9 +11,10 @@ defaultproperties
 		TraceRange=(Max=6000.000000)
 		WaterTraceRange=3600.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=32.0
-		HeadMult=3.125
-		LimbMult=0.625
+		RangeAtten=0.800000
+		Damage=35.0
+		HeadMult=3.0
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
@@ -25,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Fire',Volume=0.700000)
-		Recoil=3072.000000
+		Recoil=1836.000000
 		Chaos=-1.0
 		Inaccuracy=(X=4,Y=4)
 		BotRefireRate=0.900000
@@ -51,7 +52,8 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-		
+	
+	//Laser
 	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
 		SpreadMode=FSM_Rectangle
 		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
@@ -67,6 +69,50 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 	End Object
+	
+	//Shotgun
+	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams_Shotgun
+		TraceRange=(Min=5000.000000,Max=5000.000000)
+		RangeAtten=0.750000
+		TraceCount=12
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=6
+		DamageType=Class'BallisticProV55.DTM806Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM806ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM806Shotgun'
+		PenetrateForce=100
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		Recoil=512.000000
+		Chaos=0.500000
+		Inaccuracy=(X=400,Y=400)
+		BotRefireRate=0.700000
+		WarnTargetPct=0.500000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Fire',Volume=1.100000,Radius=256.000000)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Shotgun
+		TargetState="Shotgun"
+		FireInterval=0.700000
+		AmmoPerFire=0
+		FireAnim="FireAlt"
+		AimedFireAnim='FireAlt'
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_Shotgun'
+	End Object	
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -82,7 +128,7 @@ defaultproperties
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=0.300000
-		HipMultiplier=1.000000
+		HipMultiplier=1.600000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
@@ -111,20 +157,23 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Iron Sights"
+		//Layout core
+		LayoutName="Laser + Ext Mags"
 		Weight=30
-		
-		PlayerSpeedFactor=1.100000
-		InventorySize=3
+		WeaponPrice=800
+		//ADS
 		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=12
+		SightingTime=0.2250000
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
+		SightOffset=(X=-13.000000,Y=-4.2,Z=37.50000)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=3500)
 		WristAdjust=(Yaw=-3500,Pitch=-000)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		bNeedCock=True
+		MagAmmo=12
 		ViewOffset=(X=3.000000,Y=25.000000,Z=-23.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -134,38 +183,73 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Scope
-		LayoutName="Scoped"
-		Weight=10
-		
+		//Layout core
+		LayoutName="4X Scope"
+		LayoutTags="scope"
+		Weight=5
+		WeaponPrice=800
+		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.M806.M806_Main-SD',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=2)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="ScopeRail",Scale=0.1)
-		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Scope",Scale=0.07)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="Muzzle",Scale=0.35,AugmentOffset=(x=-60,y=0,z=-50),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Muzzle",Scale=0.275000,AugmentOffset=(x=-140.000000,y=0,z=30.000000),AugmentRot=(Pitch=0,Roll=0,Yaw=0))
+		//Zoom
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
-		ZoomType=ZT_Fixed
-		
+		ZoomType=ZT_Fixed	
+		MaxZoom=4	
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.350000
+		SightOffset=(X=0,Y=0,Z=18)
+		SightPivot=(Pitch=0,Roll=0)
+		//Function
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.22500
 		bNeedCock=True
-		MagAmmo=12
-		//SightOffset=(X=-15.000000,Y=-0.350000,Z=8.750000)
-		SightPivot=(Pitch=1024,Roll=-1024)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
+		MagAmmo=8
 		ViewOffset=(X=3.000000,Y=25.000000,Z=-23.000000)
 		bDualMixing=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Shotgun
+		// Layout core
+		LayoutName="Shotgun"
+		LayoutTags="shotgun"
+		Weight=5
+		WeaponPrice=1200
+		// Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M806SG_FPm'
+		// ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		SightPivot=(Pitch=0,Roll=0) 
+		SightOffset=(X=-5.000000,Y=0,Z=4.50000)
+		bAdjustHands=false
+		RootAdjust=(Yaw=0,Pitch=0)
+		WristAdjust=(Yaw=0,Pitch=0)
+		// Stats
+		bDualBlocked=true
+		PlayerSpeedFactor=1.100000
+		InventorySize=3 //4
+		bNeedCock=True
+		MagAmmo=8
+		ViewOffset=(X=-9,Y=17,Z=-12)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Shotgun'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	//Layouts(1)=WeaponParams'ClassicParams_Scope'
+	Layouts(1)=WeaponParams'ClassicParams_Scope'
+	Layouts(2)=WeaponParams'ClassicParams_Shotgun'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M806_Gray

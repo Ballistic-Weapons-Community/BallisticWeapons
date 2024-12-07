@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
 		FlashScaleFactor=0.600000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.SCAR-Fire',Volume=2.600000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.SCAR-Fire',Volume=1.500000,Radius=192.000000,bAtten=True)
 		Recoil=128.000000
 		Chaos=-1.0
 		Inaccuracy=(X=8,Y=8)
@@ -41,6 +41,40 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=ClassicPrimarySuppressedEffectParams
+		TraceRange=(Min=10000.000000,Max=13000.000000)
+		WaterTraceRange=10400.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=24
+		HeadMult=3.125
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_G51Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_G51AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_G51AssaultLimb'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
+		FlashScaleFactor=0.010000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Silenced',Volume=2.600000)
+		Recoil=110.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimarySuppressedFireParams
+		FireInterval=0.075000
+		AimedFireAnim="SightFire"
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimarySuppressedEffectParams'
+	End Object
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -255,13 +289,12 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
-		//SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
-		
-		//Function
-		InventorySize=6
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		SightOffset=(X=-0.500000,Y=0.00000,Z=1.000000)
+		//Function
+		InventorySize=6
 		bNeedCock=True
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
@@ -282,15 +315,49 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
-		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ACOG',BoneName="tip",Scale=0.1,AugmentOffset=(x=-25,y=-4.6,z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))
 		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
 		// Zoom
 		ZoomType=ZT_Fixed
 		MaxZoom=4
 		// ADS handling
-		SightingTime=0.35 //+0.5
+		SightingTime=0.30 //+0.5
+		SightMoveSpeedFactor=0.35
+		SightOffset=(X=-0.500000,Y=-0.01000,Z=3.100000)
+		//Stats
+		InventorySize=6
+		bNeedCock=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		ViewOffset=(X=5.000000,Y=6.000000,Z=-2.500000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+		bNoaltfire=True		
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_IRScope
+		//Layout core
+		Weight=5
+		LayoutName="IR Scope"
+		LayoutTags="IR"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_IRScope',BoneName="tip",Scale=0.05,AugmentOffset=(x=-27,y=-2.6,z=0),AugmentRot=(Pitch=0,Yaw=0,Roll=-16384))
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-IRScope'
+		// Zoom
+		ZoomType=ZT_Fixed
+		MaxZoom=3
+		// ADS handling
+		SightingTime=0.35 //+1.0
 		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=3.000000,Y=-0.01000,Z=0.500000)
 		//Function
 		InventorySize=6
 		bNeedCock=True
@@ -305,11 +372,42 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Suppressed
+		//Layout core
+		Weight=5
+		LayoutName="Suppressed"
+		LayoutTags="silencer"
+		
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.15,AugmentOffset=(X=0,Y=0,Z=0),AugmentRot=(Pitch=32768,Yaw=0,Roll=-16384))	
+		// ADS handling
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		SightOffset=(X=-0.500000,Y=0.00000,Z=0.90)
+		//Function
+		InventorySize=6
+		bNeedCock=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		ViewOffset=(X=5.000000,Y=6.000000,Z=-2.500000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimarySuppressedFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams_HoloChaff'
 	Layouts(1)=WeaponParams'ClassicParams_NoCarrySensor'
 	Layouts(2)=WeaponParams'ClassicParams_IronsHE'
 	Layouts(3)=WeaponParams'ClassicParams_4XScope'
-	
+	Layouts(4)=WeaponParams'ClassicParams_IRScope'
+	Layouts(5)=WeaponParams'ClassicParams_Suppressed'
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=G51_Black
 		Index=0

@@ -74,7 +74,7 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaPickup-HD'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.700000
+     DrawScale=0.550000
      PrePivot=(Z=7.000000)
      CollisionHeight=4.500000
 }

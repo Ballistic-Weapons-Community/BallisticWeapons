@@ -4,6 +4,7 @@ class XOXOLewdness extends BallisticEmitter;
 
 var float	Brakes;
 var float	MaxSpeed;
+var int		HealPower;
 
 var() Sound	CollectSound;
 
@@ -53,9 +54,19 @@ event Touch( Actor Other )
 			if (CollectSound!=None)
 				PlaySound( CollectSound,SLOT_Interact, 1.5 );
 			XOXOStaff(Inv).AddLewd(MySoulPower);
+			if (BallisticPawn(Other) != None)
+				BallisticPawn(Other).GiveAttributedHealth(HealPower, BallisticPawn(Other).SuperHealthMax, Pawn(Other), true);
 			Destroy();
 			return;
 		}
+	}
+	//om nom nom
+	if (BallisticPawn(Other) != None && BallisticPawn(Other).Health > 0)
+	{
+		if (CollectSound!=None)
+			PlaySound( CollectSound,SLOT_Interact, 1.5 );
+		BallisticPawn(Other).GiveAttributedHealth(HealPower, BallisticPawn(Other).SuperHealthMax, Pawn(Other), true);
+		Destroy();
 	}
 }
 
@@ -266,6 +277,7 @@ defaultproperties
 {
      CollectSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Soul'
      MySoulPower=1.000000
+	 HealPower=50
      Begin Object Class=SpriteEmitter Name=LewdGlow
          UseColorScale=True
          FadeOut=True

@@ -25,10 +25,6 @@ simulated function SetColorShift(float Alpha)
 //	Emitters[1].ColorMultiplierRange.X.Min = Lerp(Alpha, 1.0, 1.0); 	Emitters[1].ColorMultiplierRange.X.Max = Emitters[1].ColorMultiplierRange.X.Min;
 	Emitters[1].ColorMultiplierRange.Y.Min = Lerp(Alpha, 1.0, 0.8); 	Emitters[1].ColorMultiplierRange.Y.Max = Emitters[1].ColorMultiplierRange.Y.Min;
 	Emitters[1].ColorMultiplierRange.Z.Min = Lerp(Alpha, 1.0, 0.7); 	Emitters[1].ColorMultiplierRange.Z.Max = Emitters[1].ColorMultiplierRange.Z.Min;
-
-	Emitters[2].ColorMultiplierRange.X.Min = Lerp(Alpha, 0.1, 1.0); 	Emitters[2].ColorMultiplierRange.X.Max = Emitters[2].ColorMultiplierRange.X.Min;
-	Emitters[2].ColorMultiplierRange.Y.Min = Lerp(Alpha, 0.2, 0.1); 	Emitters[2].ColorMultiplierRange.Y.Max = Emitters[2].ColorMultiplierRange.Y.Min;
-	Emitters[2].ColorMultiplierRange.Z.Min = Lerp(Alpha, 1.0, 0.1); 	Emitters[2].ColorMultiplierRange.Z.Max = Emitters[2].ColorMultiplierRange.Z.Min;
 }
 
 defaultproperties

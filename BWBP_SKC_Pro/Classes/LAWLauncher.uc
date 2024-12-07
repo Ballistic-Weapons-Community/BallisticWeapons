@@ -329,9 +329,9 @@ defaultproperties
 	ManualLines(1)="Fires a shockwave rocket in an arc. Upon impact, the rocket generates shockwaves which penetrate walls and deal damage to targets in a very wide radius. Damage is reduced if the target is obscured from the rocket. The rocket can be destroyed by enemy fire whilst so placed."
 	ManualLines(2)="Effective against groups and at controlling areas."
 	SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Draw',Volume=1.100000)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy',Volume=1.100000)
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Draw',Volume=2.100000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy',Volume=2.100000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-UnCock',Volume=2.100000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Cock',Volume=2.100000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-TubeUnlock',Volume=2.100000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.Law-TubeLock',Volume=2.100000)
@@ -391,6 +391,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LAW'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.LAW_FPm'
 	DrawScale=0.300000
 }

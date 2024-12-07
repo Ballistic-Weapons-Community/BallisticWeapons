@@ -8,6 +8,7 @@
 //=============================================================================
 class SX45Pistol extends BallisticHandgun;
 
+var(SX45)	bool		bHasAmp;
 var(SX45)   bool		bAmped;						// ARE YOU AMPED? BECAUSE THIS GUN IS!
 var(SX45) name		AmplifierBone;				// Bone to use for hiding cool shit
 var(SX45) name		AmplifierBone2;				// Xav likes to make my life difficult
@@ -42,6 +43,20 @@ replication
 		ClientSetHeat;
 }
 
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasAmp=true;
+	
+	if (InStr(WeaponParams.LayoutTags, "no_amp") != -1)
+	{
+		bHasAmp=false;
+	}
+}
+
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 
@@ -64,6 +79,8 @@ simulated state PendingSwitchAmplifier extends PendingDualAction
 exec simulated function ToggleAmplifier(optional byte i)
 {
 	if (ReloadState != RS_None || SightingState != SS_None)
+		return;
+	if (!bHasAmp)
 		return;
 	if (Othergun != None)
 	{
@@ -225,7 +242,19 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	if (AIController(Instigator.Controller) != None)
 	{
-		bAmped = (FRand() > 0.5);
+		if (bHasAmp)
+		{
+			bAmped = (FRand() > 0.5);
+			ServerSwitchAmplifier(bAmped);
+			SwitchAmplifier(bAmped);
+			if (bAmped)
+			{
+				AmpCharge=100;
+				DrainRate=0;
+				if (FRand() > 0.5)
+					CommonSwitchWeaponMode(2);
+			}
+		}
 		bLightsOn == (FRand() > 0.5);
 	}
 
@@ -450,7 +479,6 @@ simulated function bool HasAmmo()
 // choose between regular or alt-fire
 function byte BestMode()
 {
-	CurrentWeaponMode=2;
 	return 0;
 }
 function float GetAIRating()
@@ -482,10 +510,10 @@ function float SuggestAttackStyle()	{	return 0.1;	}
 function float SuggestDefenseStyle()	{	return 0.5;	}
 // End AI Stuff =====
 
-static function class<Pickup> RecommendAmmoPickup(int Mode)
+/*static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_SX45Clip';
-}
+}*/
 
 defaultproperties
 {
@@ -518,8 +546,8 @@ defaultproperties
 	ManualLines(1)="Attach/Detach AMP. With a Choice of Radiation Bullets and Cryogenic Bullets"
 	ManualLines(2)="Torch Available on the Weapon Function"	
 	SpecialInfo(0)=(Info="120.0;12.0;-999.0;35.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.147000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.147000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-Cock',Volume=1.6)
 	SelectAnimRate=1.500000
 	BringUpTime=0.700000
@@ -566,7 +594,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FNX'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.SX45_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Texture'BWBP_SKC_Tex.SX45.SX45-Mag'

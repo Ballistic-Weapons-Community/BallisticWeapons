@@ -35,24 +35,25 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 defaultproperties
 {
 	WeaponClass=class'MARSAssaultRifle'
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
-     AltMuzzleFlashClass=class'M806FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     FlashScale=0.250000
-     BrassClass=class'Brass_Rifle'
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=class'TraceEmitter_Default'
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.9000
-	 CockingAnim="Cock_RearPull"
-     bRapidFire=True
-     bAltRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.F2000_TPm'
-	 RelativeLocation=(X=15)
-     DrawScale=1
+    MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
+    AltMuzzleFlashClass=class'M806FlashEmitter'
+    ImpactManager=class'IM_Bullet'
+    FlashScale=0.200000
+    BrassClass=class'Brass_Rifle'
+    InstantMode=MU_Both
+    FlashMode=MU_Both
+    LightMode=MU_Both
+    TracerClass=class'TraceEmitter_Default'
+    WaterTracerClass=class'TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    ReloadAnim="Reload_AR"
+	ReloadAnimRate=0.685000
+	CockAnimRate=1.190000
+	CockingAnim="Cock_RearPull"
+    bRapidFire=True
+    bAltRapidFire=True
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.F2000_TPm'
+	RelativeLocation=(X=15)
+    DrawScale=1.000000
 }

@@ -100,6 +100,7 @@ defaultproperties
 	InstantMode=MU_Both
 	TracerMode=MU_Both
 	MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
+	FlashScale=0.800000
 	ImpactManager=Class'BWBP_OP_Pro.IM_Lightning'
 	BrassClass=class'Brass_Rifle'
 	TracerClass=Class'BWBP_OP_Pro.TraceEmitter_Lightning'
@@ -108,6 +109,5 @@ defaultproperties
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	CockAnimRate=1.400000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_TPm'
-	RelativeRotation=(Pitch=32768,Yaw=2048)
 	DrawScale=0.600000
 }

@@ -25,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=160.000000
 		//Chaos=0.250000
 		//PushbackForce=100.000000
@@ -33,7 +33,7 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.160000
+		FireInterval=0.2
 		BurstFireRateFactor=1.00
 		FireAnimRate=1.550000
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
@@ -57,11 +57,11 @@ defaultproperties
 		Recoil=80.000000
 		//Chaos=0.070000
 		WarnTargetPct=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2',Volume=7.100000,Pitch=1.000000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPriControlledFireParams
-		FireInterval=0.500000
+		FireInterval=0.600000
 		FireEndAnim=
 		AimedFireAnim="SGCFireAimed"
 		FireAnimRate=2.400000	
@@ -166,6 +166,9 @@ defaultproperties
 		SightPivot=(Pitch=32)
 		//ReloadAnimRate=0.900000
 		//CockAnimRate=1.000000
+		WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
+		WeaponModes(1)=(bUnavailable=True)
+		InitialWeaponMode=2
 		WeaponName="Mounted FG-50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

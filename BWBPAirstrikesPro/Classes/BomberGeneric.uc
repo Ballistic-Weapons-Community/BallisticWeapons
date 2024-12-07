@@ -189,7 +189,7 @@ state Attacking
 
 function Tick(float deltaTime)
 {
-	local float TargetDist;
+  //local float TargetDist;
 	
 	if (Level.NetMode != NM_DedicatedServer && !bHidden && !bEntryEffect)
 	{

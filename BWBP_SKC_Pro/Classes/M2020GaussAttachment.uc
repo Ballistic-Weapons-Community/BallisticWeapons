@@ -209,26 +209,27 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'M2020GaussDMR'
-     MuzzleFlashClass=class'BWBP_SKC_Pro.M2020FlashEmitter'
-     AltMuzzleFlashClass=class'M806FlashEmitter'
-     ImpactManager=class'IM_Bullet'
-     ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
-     BrassClass=class'Brass_Rifle'
-     InstantMode=MU_Both
-     FlashMode=MU_Both
-     LightMode=MU_Both
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussSuper'
-     TracerChance=2.000000
-     WaterTracerClass=class'TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
-     SoundVolume=48
-     SoundRadius=128.000000
-     ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.700000
-     bRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.M2020_TPm'
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.350000
+	MuzzleFlashClass=class'BWBP_SKC_Pro.M2020FlashEmitter'
+	AltMuzzleFlashClass=class'M806FlashEmitter'
+	ImpactManager=class'IM_Bullet'
+	ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
+	BrassClass=class'Brass_Rifle'
+	InstantMode=MU_Both
+	FlashMode=MU_Both
+	LightMode=MU_Both
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussSuper'
+	TracerChance=2.000000
+	WaterTracerClass=class'TraceEmitter_WaterBullet'
+	WaterTracerMode=MU_Both
+	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
+	SoundVolume=48
+	SoundRadius=128.000000
+	ReloadAnim="Reload_AR"
+	ReloadAnimRate=0.700000
+	CockAnimRate=0.950000
+	bRapidFire=True
+	RelativeRotation=(Pitch=32768)
+	DrawScale=0.350000
 }

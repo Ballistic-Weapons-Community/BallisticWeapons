@@ -11,9 +11,9 @@ defaultproperties
 		TraceRange=(Max=5500.000000)
 		RangeAtten=0.900000
 		Damage=25
-		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -35,9 +35,9 @@ defaultproperties
 		TraceRange=(Max=5500.000000)
 		RangeAtten=0.900000
 		Damage=25
-		DamageType=Class'BWBP_SKC_Pro.DTM1911Pistol'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTM1911PistolHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTM1911Pistol'
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Pistol'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
@@ -62,6 +62,7 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
+	//Light
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		SpreadMode=None
 		MuzzleFlashClass=None
@@ -76,10 +77,95 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		TargetState="Light"
 		FireInterval=0.200000
 		AmmoPerFire=0
 	FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
 	End Object
+	
+	//Flashbang Light
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Blind
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+		EffectString="Blinding flash"
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Blind
+		TargetState="FlashbangLight"
+		FireInterval=4.000000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="SecFire"
+		FireEndAnim=
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Blind'
+	End Object
+	
+	//Sensor
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_Sensor
+		ProjectileClass=Class'BWBP_SKC_Pro.RS04Projectile_Sensor'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		AccelSpeed=8000.000000
+		Speed=2240.000000
+		MaxSpeed=10000.000000
+		Damage=35
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Sensor
+		TargetState="Projectile"
+		FireInterval=1.000000
+		AmmoPerFire=1
+		PreFireAnim=
+		FireAnim="FlashLightToggle"
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams_Sensor'
+	End Object
+	
+	//Stab
+	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams_TacKnife
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=35.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BWBP_SKC_Pro.DTRS04Stab'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTRS04Stab'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTRS04Stab'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_TacKnife
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Stab"
+		FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams_TacKnife'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -112,25 +198,107 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		Weight=30
-		LayoutName="Default"
-		//Attachments
+		LayoutName="Tac Light"
+		LayoutTags="flash,light"
+		//ADS
+		SightOffset=(X=-3.50,Y=0.2,Z=1.07)
+		SightPivot=(Roll=-256)
+		SightingTime=0.200000
 		//Function
 		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
 		PlayerSpeedFactor=1
 		MagAmmo=10
         InventorySize=3
-		SightingTime=0.200000
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
-		//SightOffset=(X=5.000000,Y=-1.9500000,Z=17.000000)
-		SightPivot=(Roll=-256)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		FireParams(1)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Blind'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_Sensor
+		//Layout core
+		Weight=10
+		LayoutName="Sensor"
+		LayoutTags="sensor"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="LightModule",Slot=4,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Tazer',BoneName="Muzzle",Scale=0.03,AugmentOffset=(x=-2.5,y=1.5,z=0),AugmentRot=(Pitch=0,Roll=-16384,Yaw=0))
+		//ADS
+		SightOffset=(X=-3.50,Y=0.2,Z=1.07)
+		SightPivot=(Roll=-256)
+		SightingTime=0.200000
+		//Function
+		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
+		PlayerSpeedFactor=1
+		MagAmmo=10
+        InventorySize=3
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Sensor'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		LayoutTags="light"
+		Weight=10
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RMR',BoneName="Slide",AugmentOffset=(x=1.4,y=-1,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		//ADS
+		SightOffset=(X=-3.50,Y=0.2,Z=1.9)
+		SightPivot=(Roll=-256)
+		SightingTime=0.200000
+		//Stats
+		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
+		PlayerSpeedFactor=1
+		MagAmmo=10
+        InventorySize=3
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_TacKnife
+		//Layout core
+		Weight=30
+		LayoutName="Tac Knife"
+		LayoutTags="tacknife,light"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.RS04Melee_FPm'
+		//ADS
+		SightOffset=(X=-3.50,Y=-0.03,Z=1.07)
+		SightPivot=(Roll=0)
+		SightingTime=0.200000
+		//Function
+		bDualBlocked=true
+		ViewOffset=(X=0.00,Y=6.00,Z=-6.00)
+		PlayerSpeedFactor=1
+		MagAmmo=10
+        InventorySize=3
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_TacKnife'
+	End Object
+	
 	Layouts(0)=WeaponParams'ArenaParams'
+	Layouts(1)=WeaponParams'ArenaParams_TacKnife'
+	Layouts(2)=WeaponParams'ArenaParams_RDS'
+	Layouts(3)=WeaponParams'ArenaParams_Sensor'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=RS04_Tan

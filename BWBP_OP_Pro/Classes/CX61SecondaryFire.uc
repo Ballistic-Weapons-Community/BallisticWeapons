@@ -12,7 +12,8 @@ class CX61SecondaryFire extends BallisticFire;
 
 var  	Actor						MuzzleFlame;
 var   	bool						bIgnited;
-var 	Sound					FireSoundLoop;
+var 	Sound						FireSoundLoop;
+var BUtil.FullSound 				FlameEndSound;
 const FLAMERINTERVAL = 0.2f;
 
 simulated function bool HasAmmo()
@@ -29,8 +30,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 	}
 	else
 	{
-		BallisticFireSound.Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite';
-		FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop';
+		BallisticFireSound.Sound=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoopStart';
+		FireSoundLoop=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoop';
 	}
 
 	if (Weapon.bBerserk)
@@ -116,7 +117,7 @@ auto simulated state Flamer
 	
 		CX61Attachment(Weapon.ThirdPersonActor).CX61UpdateFlameHit(Other, HitLocation, HitNormal);
 		
-		if (class'BallisticReplicationInfo'.static.IsClassic())
+		if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 			CX61AssaultRifle(Weapon).StoredGas -= 0.08;
 		else
 			CX61AssaultRifle(Weapon).StoredGas -= 0.1;
@@ -251,6 +252,7 @@ simulated function bool AllowFire()
 function StopFiring()
 {
 	bIgnited = false;
+	Weapon.PlayOwnedSound(FlameEndSound.Sound,FlameEndSound.Slot,FlameEndSound.Volume,FlameEndSound.bNoOverride,FlameEndSound.Radius,FlameEndSound.Pitch,FlameEndSound.bAtten);
 	Instigator.AmbientSound = None;
 	NextFireTime = Level.TimeSeconds + FLAMERINTERVAL;
 	if (MuzzleFlame != None)
@@ -269,14 +271,15 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop'
-     FlashBone="'"
-     FireChaos=0.050000
-     BallisticFireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-     bPawnRapidFireAnim=True
-     FireAnim=
-     FireRate=0.090000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_CX61Rounds'
-     AmmoPerFire=0
-     WarnTargetPct=0.200000
+	FlameEndSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoopEnd2',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	FireSoundLoop=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoop'
+	FlashBone="'"
+	FireChaos=0.050000
+	BallisticFireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+	bPawnRapidFireAnim=True
+	FireAnim=
+	FireRate=0.090000
+	AmmoClass=Class'BallisticProV55.Ammo_556mm'
+	AmmoPerFire=0
+	WarnTargetPct=0.200000
 }

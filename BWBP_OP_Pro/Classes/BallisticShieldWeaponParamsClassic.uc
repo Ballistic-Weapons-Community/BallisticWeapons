@@ -98,7 +98,7 @@ defaultproperties
 		LayoutName="Police Shield"
 		Weight=10
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_CivShield'
+		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.CivShield_FPm'
 		//Stats
 		PlayerSpeedFactor=0.9
         MagAmmo=1
@@ -115,7 +115,7 @@ defaultproperties
 		LayoutName="Junk Shield"
 		Weight=10
 		//Visual
-		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_JunkShield'
+		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.JunkShield_FPm'
 		//Stats
 		PlayerSpeedFactor=0.9
         MagAmmo=1

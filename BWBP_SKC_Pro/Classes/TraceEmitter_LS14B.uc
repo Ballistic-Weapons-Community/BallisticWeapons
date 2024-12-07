@@ -1,6 +1,8 @@
 //=============================================================================
 // TraceEmitter_LS14B. Effects for the laser carberator.
 //
+// LS14 bottom laser
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
@@ -11,7 +13,7 @@ simulated function Initialize(float Distance, optional float Power)
 	local float AdjustedPower;
 
 	AdjustedPower = Power/255;
-	AdjustedPower = 1- (0.6 * AdjustedPower);;
+	AdjustedPower = 1- (0.6 * AdjustedPower);
 	BeamEmitter(Emitters[0]).BeamDistanceRange.Min = FMax(0, Distance-100);
 	BeamEmitter(Emitters[0]).BeamDistanceRange.Max = FMax(0, Distance-100);
 	Emitters[0].Opacity = Emitters[0].default.Opacity * AdjustedPower;

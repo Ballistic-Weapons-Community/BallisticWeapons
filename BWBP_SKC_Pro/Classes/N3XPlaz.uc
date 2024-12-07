@@ -385,7 +385,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'NEXWeaponParamsClassic'
 	 ParamsClasses(2)=Class'NEXWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'NEXWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PlasEdgeAxe'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.PlasEdgeAxe_FPm'
      DrawScale=0.400000
      bFullVolume=True
      SoundVolume=64

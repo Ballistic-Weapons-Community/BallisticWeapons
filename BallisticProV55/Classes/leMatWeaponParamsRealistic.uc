@@ -45,6 +45,7 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
+	//Shot
 	Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
@@ -77,6 +78,72 @@ defaultproperties
 		FireAnim="Fire2"
 		FireEndAnim=	
 	FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
+	End Object
+	
+	//Slug
+	Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams_Slug
+		TraceRange=(Min=3150.000000,Max=3150.000000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.5
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=75
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTleMatShotgun'
+		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
+		PenetrateForce=100
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=2.000000
+		Recoil=2036.000000
+		Chaos=0.300000
+		Inaccuracy=(X=64,Y=64)
+		BotRefireRate=0.7
+		WarnTargetPct=0.5	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-SecFireSlug',Volume=1.500000)
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Slug
+		FireInterval=None
+		FireAnim="Fire2"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams_Slug'
+	End Object
+	
+	//Decoy
+	Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams_Decoy
+		TraceRange=(Min=2500.000000,Max=2500.000000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		RangeAtten=0.5
+		TraceCount=1
+		TracerClass=None //
+		ImpactManager=Class'BallisticProV55.IM_Decoy' //
+		Damage=35
+        HeadMult=3.25
+        LimbMult=0.75
+		DamageType=Class'BallisticProV55.DTleMatShotgun'
+		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
+		PenetrateForce=100
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=2.000000
+		Recoil=256.000000
+		Chaos=0.300000
+		Inaccuracy=(X=64,Y=64)
+		BotRefireRate=0.7
+		WarnTargetPct=0.5	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.700000,Radius=48.000000,bAtten=True)
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Decoy
+		FireInterval=None
+		FireAnim="Fire2"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams_Decoy'
 	End Object
 		
 	//=================================================================
@@ -126,27 +193,75 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		LayoutName="20ga Shot"
+		Weight=30
 		PlayerSpeedFactor=1.100000
 		InventorySize=3
 		WeaponPrice=9000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.14
 		MagAmmo=9
-		//ViewOffset=(X=14.000000,Y=8.000000,Z=-8.000000)
 		ViewPivot=(Pitch=512)
-		//SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
-		//SightPivot=(Pitch=95,Roll=-50)
-		//SightPivot=(Pitch=512,Roll=-50)
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+		SightPivot=(Pitch=512,Roll=-50)
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
-		//ReloadAnimRate=1.100000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Slug
+		LayoutName="20ga Slug"
+		LayoutTags="slug"
+		Weight=10
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		WeaponPrice=9000
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.14
+		MagAmmo=9
+		ViewPivot=(Pitch=512)
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+		SightPivot=(Pitch=512,Roll=-50)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-350,Pitch=2500)
+		WristAdjust=(Yaw=-3000,Pitch=-0000)
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Slug'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Decoy
+		LayoutName="Noisemaker"
+		LayoutTags="decoy"
+		Weight=5
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=3
+		WeaponPrice=9000
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.14
+		MagAmmo=9
+		ViewPivot=(Pitch=512)
+		SightOffset=(X=-18,Y=-1.5,Z=15.30000)
+		SightPivot=(Pitch=512,Roll=-50)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-350,Pitch=2500)
+		WristAdjust=(Yaw=-3000,Pitch=-0000)
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Decoy'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Slug'
+	Layouts(2)=WeaponParams'RealisticParams_Decoy'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=LeMat_Engraved

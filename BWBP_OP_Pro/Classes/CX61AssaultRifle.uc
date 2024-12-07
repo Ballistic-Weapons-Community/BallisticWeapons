@@ -268,8 +268,8 @@ defaultproperties
 	ManualLines(1)="Flamethrower mode launches a stream of fire, dealing minor damage to enemies and causing disorientation.|Healing Gas mode sprays G28 gas, granting health to allies."
 	ManualLines(2)="It is recommended to check which mode of the CX is active before engaging the altfire. Burning allies or healing enemies is not conducive to survival.||The CX61 is effective at close to medium range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.210000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.208000)
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Cock')
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagOut')
@@ -316,6 +316,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_CX61'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.CX61_FPm'
 	DrawScale=0.300000
 }

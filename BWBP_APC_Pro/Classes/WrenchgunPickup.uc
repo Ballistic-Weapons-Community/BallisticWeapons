@@ -42,17 +42,18 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Coachgun.DoubleShotgunPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Coachgun.DoubleShotgunPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Coachgun.DoubleShotgunPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Coachgun.DoubleShotgunPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Coachgun.DoubleShotgunPickupLo'
      InventoryType=Class'BWBP_APC_Pro.Wrenchgun'
      RespawnTime=15.000000
      PickupMessage="You picked up the Redwood WrenchGun."
      PickupSound=Sound'BW_Core_WeaponSound.M290.M290Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Coachgun.DoubleShotgunPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Coachgun.DoubleShotgunPickupHi'
      Physics=PHYS_None
      DrawScale=0.650000
      CollisionHeight=3.500000

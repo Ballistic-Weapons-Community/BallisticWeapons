@@ -320,8 +320,8 @@ defaultproperties
 	ManualLines(1)="Creates a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
 	ManualLines(2)="Passively grants immunity to fire damage."
 	SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
-	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Equip',Volume=2.000000)
-	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
+	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Equip',Volume=0.200000)
+	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Unequip',Volume=0.200000)
 	LoopAmbientSound=Sound'BW_Core_WeaponSound.RX22A.RX22A.RX22A-FireLoop'
 	bNoMag=True
 	GunLength=0.000000
@@ -356,7 +356,7 @@ defaultproperties
 	IconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_128'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="PSI-56 Fire Sword"
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_FlameSword'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FlameSword_FPm'
 	DrawScale=0.3
 	SoundRadius=32.000000
 	PlayerViewOffset=(X=5.000000,Y=2.500000,Z=-5.000000)

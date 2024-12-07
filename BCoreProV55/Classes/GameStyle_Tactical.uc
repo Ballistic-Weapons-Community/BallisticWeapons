@@ -11,7 +11,7 @@ defaultproperties
 	Index=GS_Tactical
 	StyleName="Tactical"
 	
-	RecoilScale=0.70
+	RecoilScale=0.50
 	RecoilShotScale=1
 
 	bRunInADS=False
@@ -48,7 +48,7 @@ defaultproperties
 	PlayerGroundSpeed=210
 	PlayerAnimationGroundSpeed=270
 	PlayerAirSpeed=210
-	PlayerAccelRate=1536
+	PlayerAccelRate=2048
 	PlayerJumpZ=294
 	PlayerDodgeSpeedFactor=1.35
 	PlayerDodgeZ=170

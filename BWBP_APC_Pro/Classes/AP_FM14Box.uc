@@ -14,7 +14,7 @@ defaultproperties
      InventoryType=Class'BWBP_APC_Pro.Ammo_FM14SlugGauge'
      PickupMessage="You picked up a box of 12 Slug Shells."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
-     StaticMesh=StaticMesh'BWBP_CC_Static.Pitbull.Pickup_Pitbull2_Ammo'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Pitbull.Pickup_Pitbull2_Ammo'
      DrawScale=0.050000
      CollisionRadius=8.000000
      CollisionHeight=4.500000

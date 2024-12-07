@@ -156,9 +156,10 @@ function Timer()
 	local array<Actor> Served;
 	
 	for(i=0;i<GroundFires.length;i++)
+	{
 		for(j=0;j<GroundFires[i].Touching.length;j++)
 		{
-			if (GroundFires[i].Touching[j] == None || Pawn(GroundFires[i].Touching[j]) == None)
+			if (GroundFires[i].Touching[j] == None || ( Pawn(GroundFires[i].Touching[j]) == None && BW_FuelPatch(GroundFires[i].Touching[j]) == None) )
 				continue;
 			for(k=0;k<Served.length;k++)
 				if (Served[k] == GroundFires[i].Touching[j])
@@ -169,6 +170,7 @@ function Timer()
 				Served[Served.length] = GroundFires[i].Touching[j];	
 			}
 		}
+	}
 }
 
 //EntryFunctions
@@ -276,7 +278,7 @@ simulated function DoFlameHit(FlameHit Hit)
 	local int i;
 	local BW_FuelPatch Other;
 
-	BurnRadius(2, 256, class'DTRX22ABurned', 0, Hit.HitLoc, Hit.Instigator);
+	BurnRadius(4, 256, class'DTRX22ABurned', 0, Hit.HitLoc, Hit.Instigator);
 
 	if (NearFire(Hit.HitLoc, Other))
 		Other.AddFuel(0.5);

@@ -23,8 +23,8 @@ simulated function bool HasAmmo()
 function PlayPreFire()
 {
 	super.PlayPreFire();
-
-	FG50MachineGun(Weapon).bStriking = true;
+	if (FG50MachineGun(BW) != None)
+		FG50MachineGun(BW).bStriking = true;
 }
 
 defaultproperties
@@ -38,9 +38,9 @@ defaultproperties
      SwipePoints(6)=(offset=(Pitch=-3000))
      WallHitPoint=4
      TraceRange=(Min=130.000000,Max=130.000000)     
-     DamageType=Class'BWBP_SKC_Pro.DTFG50Melee'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTFG50Melee'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTFG50Melee'
+     DamageType=Class'BWBP_SKC_Pro.DT_FG50Melee'
+     DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Melee'
+     DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Melee'
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      bIgnoreReload=True

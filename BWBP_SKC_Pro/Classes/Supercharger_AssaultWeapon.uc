@@ -620,8 +620,8 @@ defaultproperties
     bWT_RapidProj=True
     bWT_Projectile=True
     SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.75;2.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-Pullout',Volume=1.050000)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Supercharger.SC-Pullout',Volume=0.220000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.218000)
     MagAmmo=100
     CockAnimPostReload="Idle"
     CockAnim="Idle"
@@ -672,7 +672,7 @@ defaultproperties
     LightSaturation=150
     LightBrightness=150.000000
     LightRadius=4.000000
-    Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.SuperCharger_FPm'
     DrawScale=0.300000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'

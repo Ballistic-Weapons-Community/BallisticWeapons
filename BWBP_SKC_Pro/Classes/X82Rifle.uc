@@ -37,8 +37,8 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
 	{
 		bIsIrons=true;
-		SetBoneRotation('RearSightP', rot(15000,0,0));
-		SetBoneRotation('FrontSight', rot(0,0,16000));
+		SetBoneRotation('RearSight', rot(0,16384,0));
+		SetBoneRotation('FrontSight', rot(0,16384,-32768));
 	}
 }
 
@@ -356,11 +356,11 @@ defaultproperties
 	
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;80.0;10.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn',Volume=0.210000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff',Volume=0.210000)
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Out',Volume=1.500000)
 	ClipInFrame=0.850000
 	bCockOnEmpty=True
@@ -372,7 +372,7 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)
-	
+	ReloadEmptyAnim="ReloadEmptyClosed"
 	bNoCrosshairInScope=True
 	MinZoom=4.000000
 	MaxZoom=32.000000
@@ -384,12 +384,10 @@ defaultproperties
     ParamsClasses(3)=Class'X82WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.X82SecondaryFire'
-	SelectAnim="Takeout"
-	PutDownAnim="PutDown"
 	IdleAnimRate=0.040000
 	SelectAnimRate=0.500000
-	PutDownAnimRate=0.400000
-	PutDownTime=0.400000
+	PutDownAnimRate=0.800000
+	PutDownTime=1.400000
 	BringUpTime=1.200000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.80000
@@ -402,11 +400,10 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
-
-	PlayerViewOffset=(X=5.00,Y=4.50,Z=-5.00)
+	CockingBringUpTime=1.800000
+	PlayerViewOffset=(X=4.00,Y=4.50,Z=-5.00)
 	SightOffset=(X=5.00,Y=-0.50,Z=4.25)
 	SightPivot=(Roll=-1024)
-
 	AttachmentClass=Class'BWBP_SKC_Pro.X82Attachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.X82.SmallIcon_X82'
 	IconCoords=(X2=127,Y2=31)
@@ -417,7 +414,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.X83_FPm'
 	DrawScale=0.30000
 	//Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	//Skins(1)=Shader'BWBP_SKC_Tex.X82.X82SkinShine'

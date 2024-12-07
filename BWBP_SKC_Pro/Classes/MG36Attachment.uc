@@ -14,7 +14,7 @@ var() Material	InvisTex;
 var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for gauss effects
 var() class<BCTraceEmitter>	TracerClassAlt;		//Type of tracer to use for alt fire effects
 
-var() bool		bIsGauss;	//Switch tracers and impacts
+var() bool		bHasGauss;	//Switch tracers and impacts
 var() bool		bIsOldGauss;	//Switch tracers and impacts
 var() bool		bSilenced;
 var() bool		bOldSilenced;
@@ -22,7 +22,7 @@ var() bool		bOldSilenced;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bSilenced, bIsGauss;
+		bSilenced, bHasGauss;
 	//reliable if ( Role==ROLE_Authority )
 		//LaserRot;
 }
@@ -44,10 +44,10 @@ simulated event PostNetReceive()
 		else
 			SetBoneScale (0, 0.0, 'Silencer');
 	}
-	if (bIsGauss != bIsOldGauss)
+	if (bHasGauss != bIsOldGauss)
 	{
-		bIsOldGauss = bIsGauss;
-		if (bIsGauss)
+		bIsOldGauss = bHasGauss;
+		if (bHasGauss)
 			SetBoneScale (1, 1.0, 'Reciever');
 		else
 			SetBoneScale (1, 0.0, 'Reciever');
@@ -76,12 +76,30 @@ function InitFor(Inventory I)
 
 	if (BallisticWeapon(I) != None)
 		myWeap = BallisticWeapon(I);
-	if (MG36Machinegun(I) != None && MG36Machinegun(I).bIsGauss)
+	if (MG36Machinegun(I) != None)
 	{
-		bIsGauss=True;
+		if (MG36Machinegun(I).bHasGauss)
+		{
+			bHasGauss=True;
+			SetBoneScale (1, 1.0, 'Reciever');
+		}
+		else
+			SetBoneScale (1, 0.0, 'Reciever');
+		if (!MG36Machinegun(I).bHasScope)
+		{
+			SetBoneScale (2, 0.0, 'Scope');
+		}
+		if (!MG36Machinegun(I).bHasDrum)
+		{
+			SetBoneScale (3, 0.0, 'MagDrum');
+			SetBoneScale (4, 1.0, 'MagSmall');
+		}
+		else
+		{
+			SetBoneScale (3, 1.0, 'MagDrum');
+			SetBoneScale (4, 0.0, 'MagSmall');
+		}
 	}
-	else
-		SetBoneScale (1, 0.0, 'Reciever');
 }
 
 // Does all the effects for an instant-hit kind of fire.
@@ -133,9 +151,9 @@ simulated function InstantFireEffects(byte Mode)
 		ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-	if (ImpactManager != None && !bIsGauss)
+	if (ImpactManager != None && !bHasGauss)
 		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
-	else if (ImpactManagerAlt != None && bIsGauss)
+	else if (ImpactManagerAlt != None && bHasGauss)
 		ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 // Spawn a tracer and water tracer
@@ -172,7 +190,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	}
 	// Spawn a tracer
 	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
-		bThisShot && (TracerChance >= 1 || FRand() < TracerChance) && !bIsGauss)
+		bThisShot && (TracerChance >= 1 || FRand() < TracerChance) && !bHasGauss)
 	{
 		if (Dist > 200)
 			Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
@@ -180,7 +198,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			Tracer.Initialize(Dist);
 	}
 	// Spawn an alt tracer
-	if (TracerClassAlt != None && TracerMode != MU_None && bIsGauss)
+	if (TracerClassAlt != None && TracerMode != MU_None && bHasGauss)
 	{
 		if (Dist > 200)
 			Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
@@ -210,14 +228,15 @@ defaultproperties
 	InstantMode=MU_Both
 	FlashMode=MU_Both
 	LightMode=MU_Both
-	TracerClass=class'BWBP_SKC_Pro.TraceEmitter_MG36'
+	TracerClass=class'BWBP_SKC_Pro.TraceEmitter_MG36Bullet'
 	TracerClassAlt=class'TraceEmitter_Gauss'
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
 	ReloadAnim="Reload_AR"
-	ReloadAnimRate=1.200000
-	FlashScale=0.500000
+	ReloadAnimRate=0.680000
+	CockAnimRate=0.775000
+	FlashScale=0.250000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36_TPm'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=1.000000

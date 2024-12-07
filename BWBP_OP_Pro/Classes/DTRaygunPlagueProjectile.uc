@@ -2,6 +2,8 @@ class DTRaygunPlagueProjectile extends DT_BWMiscDamage;
 
 defaultproperties
 {
+     FlashF=0.200000
+     FlashV=(X=1500.000000,Y=1500.000000)
      DeathStrings(0)="%o was fatally irradiated by %k's raygun."
      DeathStrings(1)="%k's radiation overdose was too much for %o."
      DeathStrings(2)="%o contracted %k's dreaded lurgie."

@@ -15,10 +15,6 @@ class AH250Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-SightReticleGreen');
 	
 	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
@@ -26,27 +22,25 @@ static function StaticPrecache(LevelInfo L)
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-mAINbLACK');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-SightReticleGreen');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickupLo'
      PickupDrawScale=1.000000
      InventoryType=Class'BWBP_SKC_Pro.AH250Pistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the AH250 'Hawk' scoped pistol."
      PickupSound=Sound'BW_Core_WeaponSound.MRT6.MRT6Pullout'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickupHi'
      Physics=PHYS_None
+     DrawScale=1.400000
      CollisionHeight=4.000000
 }

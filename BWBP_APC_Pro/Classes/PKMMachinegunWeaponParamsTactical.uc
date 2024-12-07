@@ -20,7 +20,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_APC_Pro.PKMFlashEmitter'
 		FlashScaleFactor=1.100000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.RPK940.RPK-Fire',Volume=1.300000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.RPK940.RPK-Fire',Volume=1.300000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=310.000000
 		Chaos=0.080000
 		Inaccuracy=(X=24,Y=24)
@@ -51,7 +51,7 @@ defaultproperties
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_APC_Pro.PKMRocketFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.RPG.Fire',Volume=4.500000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.rpk940.Fire',Volume=4.500000)
 		Recoil=64.000000
 		Chaos=-1.0
 		Inaccuracy=(X=64,Y=64)

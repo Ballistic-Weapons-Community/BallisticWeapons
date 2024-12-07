@@ -424,8 +424,8 @@ defaultproperties
      BulletBone2="Bullet2"
      bWT_Bullet=True
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.6")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
      MagAmmo=30
      CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=1.500000)
@@ -476,7 +476,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AK91'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.AK91_FPm'
      DrawScale=0.30000
      SoundPitch=56
      SoundRadius=32.000000

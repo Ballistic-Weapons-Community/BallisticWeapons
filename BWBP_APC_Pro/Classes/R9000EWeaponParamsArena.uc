@@ -16,11 +16,12 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_APC_Pro.DTR9000ERifle'
 		PDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_APC_Pro.R9000EFlashEmitter'
+		FlashScaleFactor=1.300000
 		Recoil=378.000000
 		Chaos=0.500000
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Fire1',Volume=2.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-Fire1',Volume=2.000000,Radius=1024.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimarySTDFireParams
@@ -48,7 +49,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Fire2',Volume=2.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-Fire2',Volume=2.000000,Radius=1024.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryINCFireParams
@@ -76,7 +77,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.4
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Fire4',Volume=2.000000,Radius=1024.000000)
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-Fire4',Volume=2.000000,Radius=1024.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryRADFireParams

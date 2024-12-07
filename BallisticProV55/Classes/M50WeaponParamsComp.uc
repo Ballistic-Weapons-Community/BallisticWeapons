@@ -168,13 +168,14 @@ defaultproperties
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
-		//Stats
-		CockAnimRate=1.250000
-		ReloadAnimRate=1.250000
+		//ADS
         SightingTime=0.35
 		SightMoveSpeedFactor=0.9
 		SightOffset=(X=-8,Y=0.08,Z=2.7)
 		SightPivot=(Pitch=200)
+		//Stats
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
         MagAmmo=30
         InventorySize=6
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -186,23 +187,24 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams_AdvSupp
 		//Layout core
 		LayoutName="A3 Suppressed"
-		LayoutTags="no_grenade"
-		Weight=10
+		LayoutTags="no_grenade, suppressed"
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		//GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.05)
         WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
+		//ADS
+        SightingTime=0.35
+		SightMoveSpeedFactor=0.9
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.40000)
 		SightPivot=(Pitch=80,Roll=0,Yaw=0)
 		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-        SightingTime=0.35
-		SightMoveSpeedFactor=0.9
         MagAmmo=30
         InventorySize=6
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -214,21 +216,58 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams_AdvHolo
 		//Layout core
 		LayoutName="A3 Holo"
-		LayoutTags="no_grenade"
-		Weight=10
+		LayoutTags="no_grenade, lam"
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		SightOffset=(X=0.000000,Y=0.000000,Z=4.25000)
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-1.4,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.04,AugmentOffset=(x=-20,y=0,z=-1.5),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
+        WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
+		//ADS
+        SightingTime=0.35
+		SightMoveSpeedFactor=0.9
+		SightOffset=(X=0.000000,Y=0.000000,Z=3.35000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
-        SightingTime=0.35
-		SightMoveSpeedFactor=0.9
+        MagAmmo=30
+        InventorySize=6
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_HB'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+    End Object 
+	
+    Begin Object Class=WeaponParams Name=ArenaParams_AdvScope
+		//Layout core
+		LayoutName="A3 Scope"
+		LayoutTags="no_grenade"
+		Weight=5
+		AllowedCamos(0)=4
+		AllowedCamos(1)=5
+		AllowedCamos(2)=6
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-43,y=-1.75,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+        WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=3
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.4
+		SightOffset=(X=0.000000,Y=0.000000,Z=3.50000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		//Function
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
         MagAmmo=30
         InventorySize=6
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -240,6 +279,7 @@ defaultproperties
     Layouts(0)=WeaponParams'ArenaParams'
     Layouts(1)=WeaponParams'ArenaParams_AdvSupp'
     Layouts(2)=WeaponParams'ArenaParams_AdvHolo'
+    Layouts(3)=WeaponParams'ArenaParams_AdvScope'
 	
 	//Camos
 	Begin Object Class=WeaponCamo Name=M50_Silver
@@ -287,10 +327,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinA-D',Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-CoverBlack',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-CoverBlack',Index=3,AIndex=4,PIndex=-1)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=5,PIndex=-1)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=3,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M50A3_Desert
@@ -299,11 +339,11 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinA-D',Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverTan",Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-MainTan",Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverTan",Index=3,AIndex=4,PIndex=-1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-MainTan",Index=4,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=5,PIndex=-1)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=3,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M50A3_Red
@@ -312,11 +352,11 @@ defaultproperties
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinA-D',Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverRed",Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverRed",Index=3,AIndex=4,PIndex=-1)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=5,PIndex=-1)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=3,PIndex=-1)
 	End Object
 	
 	Camos(0)=WeaponCamo'M50_Silver'

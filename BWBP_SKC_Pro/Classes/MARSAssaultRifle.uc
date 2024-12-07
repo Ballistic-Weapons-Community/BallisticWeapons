@@ -76,6 +76,7 @@ simulated function OnWeaponParamsChanged()
 	}
 	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
 	{
+		bThermal=true;
 		bHasThermalSight=True;
 	}
 	if (InStr(WeaponParams.LayoutTags, "NV") != -1)
@@ -84,6 +85,8 @@ simulated function OnWeaponParamsChanged()
 	}
 	if (InStr(WeaponParams.LayoutTags, "tracker") != -1)
 	{
+		if (!bThermal)
+			bMeatVision=true;
 		bHasTrackingSight=True;
 	}
 	if (InStr(WeaponParams.LayoutTags, "always_track_sensor") != -1)
@@ -376,7 +379,8 @@ exec simulated function WeaponSpecial(optional byte i)
 	
 	if (ZoomType != ZT_Irons )
 	{
-		if (!bThermal && !bMeatVision && bHasNightvisionSight) //Nothing on, turn on IRNV if we can!
+		//Nothing on, turn on IRNV if we can!
+		if (!bThermal && !bMeatVision && bHasNightvisionSight) 
 		{
 			bThermal = !bThermal;
 			if (bThermal)
@@ -388,7 +392,8 @@ exec simulated function WeaponSpecial(optional byte i)
 				PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
 			return;
 		}
-		if ((bThermal || !bHasNightvisionSight) && !bMeatVision) //IRNV on or missing! turn it off and turn on targeting!
+		//IRNV on or missing! turn it off and turn on targeting!
+		if ((bThermal || !bHasNightvisionSight) && !bMeatVision) 
 		{
 			if (bHasNightvisionSight)
 			{
@@ -1084,8 +1089,8 @@ defaultproperties
 	ManualLines(1)="Launches a smoke grenade. Upon impact, generates a cloud of smoke and deals minor radius damage. There is a bonus for a direct hit."
 	ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
 	SpecialInfo(0)=(Info="320.0;30.0;1.0;110.0;0.8;0.5;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
 	
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
@@ -1141,7 +1146,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

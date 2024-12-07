@@ -303,6 +303,8 @@ defaultproperties
 	ReloadAnim="Reload_AR"
 	CockingAnim="Cock_RearPull"
 	bRapidFire=True
+	ReloadAnimRate=0.950000
+	CockAnimRate=0.950000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.MP40_TPm'
 	RelativeLocation=(Z=7)
 	RelativeRotation=(Pitch=32768)

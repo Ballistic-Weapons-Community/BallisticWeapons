@@ -115,7 +115,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.5
 		DisplaceDurationMult=1
 		MagAmmo=60
-		ViewOffset=(X=10.000000,Y=4.500000,Z=-11.500000)
+		ViewOffset=(X=8,Y=5.5,Z=-11.5)
 		SightOffset=(X=-20.000000,Y=-0.400000,Z=16.20000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

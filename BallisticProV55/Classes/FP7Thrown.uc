@@ -8,27 +8,34 @@
 //=============================================================================
 class FP7Thrown extends BallisticHandGrenadeProjectile;
 
-var   Emitter PATrail;
+var	    Actor					PATrail;					// The trail Actor
+var() class<Actor>			    PATrailClass;				// Actor to use for trail
 
 simulated function InitEffects ()
 {
-	super.InitEffects();
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
 
-	if (Level.NetMode != NM_DedicatedServer && Speed > 400 && PATrail==None && level.DetailMode == DM_SuperHigh)
+	if (Speed > 400 && PATrailClass != None && PATrail == None && level.DetailMode == DM_SuperHigh)
 	{
-		PATrail = Spawn(class'PineappleTrail', self,, Location);
-		if (PATrail != None)
-			class'BallisticEmitter'.static.ScaleEmitter(PATrail, DrawScale);
+		PATrail = Spawn(PATrailClass, self,, Location);
+		if (Emitter(PATrail) != None)
+			class'BallisticEmitter'.static.ScaleEmitter(Emitter(PATrail), DrawScale);
 		if (PATrail != None)
 			PATrail.SetBase (self);
 	}
 }
 
-simulated function DestroyEffects()
+simulated function Destroyed()
 {
-	super.DestroyEffects();
 	if (PATrail != None)
-		PATrail.Kill();
+	{
+		if (Emitter(PATrail) != None)
+			Emitter(PATrail).Kill();
+		else
+			PATrail.Destroy();
+	}
+	Super.Destroyed();
 }
 
 simulated function Explode(vector HitLocation, vector HitNormal)
@@ -70,6 +77,7 @@ defaultproperties
 	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BallisticProV55.NRP57Trail'
      TrailOffset=(X=1.600000,Z=6.400000)
+	 PATrailClass=Class'BallisticProV55.PineappleTrail'
      MyRadiusDamageType=Class'BallisticProV55.DTFP7Burned'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Damage=0.000000

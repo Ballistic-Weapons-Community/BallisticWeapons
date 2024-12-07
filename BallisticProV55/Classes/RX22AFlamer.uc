@@ -51,8 +51,11 @@ simulated function PostNetBeginPlay()
 	{
 		foreach DynamicActors (class'RX22AFireControl', FC)
 		{
-			FireControl = FC;
-			return;
+			if (FC.class == class'RX22AFireControl')
+			{
+				FireControl = FC;
+				return;
+			}
 		}
 		FireControl = Spawn(class'RX22AFireControl', None);
 	}
@@ -200,7 +203,7 @@ function byte BestMode()
 		return 0;
 
 	//Smart Bot: Try drench enemy, then ignite them when fuel high enough or almost out of ammo or almost dead
-	if (B.Skill > Rand(7))
+	if (B.Skill > Rand(7) && FireControl != None)
 	{
 		for (i=0;i<FireControl.GasNodes.length;i++)
 			if (FireControl.GasNodes[i]!= None && FireControl.GasNodes[i].Base == B.Target)
@@ -287,8 +290,8 @@ defaultproperties
 	ManualLines(1)="Sprays unignited flamer gas. This gas will collect on surfaces or players. When on a surface, it can be ignited later to set a trap for the enemy or to close off areas. When on a player, it increases the damage dealt by the next primary attack."
 	ManualLines(2)="Has a high capacity, but long reload time. Will not function underwater.||Effective at close range. Extremely effective when used defensively."
 	SpecialInfo(0)=(Info="360.0;50.0;0.96;90.0;0.0;0.3;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Pullout',Volume=0.210000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Putaway',Volume=0.210000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PipeOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PipeIn')
 	ClipInFrame=0.700000
@@ -331,7 +334,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RX22A'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.RX22A_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.RX22A.RX22ASkin'

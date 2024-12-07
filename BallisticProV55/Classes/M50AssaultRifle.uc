@@ -26,19 +26,39 @@ var() float					CamUpdateRate;		//Time interval between scripted tex screen upda
 var() bool					bHasGrenadeLauncher;
 var() bool					bHasCamera;
 
+var   actor GLIndicator;
+
 var() Sound					GrenOpenSound;		//Sounds for grenade reloading
 var() Sound					GrenLoadSound;		//
 var() Sound					GrenCloseSound;		//
 var() Sound					BoltReleaseSound;		//
 
-var   actor GLIndicator;
+var() bool					bHasSilencer;
+var() bool					bHasLAM;
+var   byte		GearStatus;
+
+var   bool		    bLaserOn, bOldLaserOn; //todo: have stock laser turn on on burst, semi
+var   LaserActor    Laser;
+var() Sound		    LaserOnSound;
+var() Sound		    LaserOffSound;
+var   Emitter	    LaserDot;
+
+var Projector	    FlashLightProj;
+var Emitter		    FlashLightEmitter;
+var bool		    bLightsOn;
+var bool		    bFirstDraw;
+var vector		    TorchOffset;
+var() Sound		    TorchOnSound;
+var() Sound		    TorchOffSound;
 
 replication
 {
 	unreliable if (Role == Role_Authority)
 		ClientGrenadePickedUp;
+	reliable if (Role < ROLE_Authority)
+		ServerFlashLight, ServerSwitchLaser;
 	reliable if (Role == Role_Authority)
-		ClientCamStart;
+		ClientCamStart, bLaserOn;
 	reliable if (bNetDirty && Role == Role_Authority)
 		Camera;
 }
@@ -51,14 +71,59 @@ simulated function OnWeaponParamsChanged()
 	assert(WeaponParams != None);
 	bHasGrenadeLauncher=true;
 	bHasCamera=true;
+	bHasLAM=false;
+	bHasSilencer=false;
 	
-	if (InStr(WeaponParams.LayoutTags, "no_grenade") != -1)
+	if (InStr(WeaponParams.LayoutTags, "no_grenade") != -1) //indicates A3 new model
 	{
 		bHasGrenadeLauncher=false;
 		bHasCamera=false;
 		bCockOnEmpty=false;
 		MeleeFireClass=None; //todo
+		SightFXClass=None;
 	}
+	
+	if (InStr(WeaponParams.LayoutTags, "lam") != -1)
+	{
+		bHasLAM=true;
+	}
+	
+	if (InStr(WeaponParams.LayoutTags, "suppressed") != -1)
+	{
+		bHasSilencer=true;
+	}
+}
+
+simulated event PostNetReceive()
+{
+	if (level.NetMode != NM_Client)
+		return;
+
+	//Do not use default to save postnetreceived shit
+	if (bLaserOn != bOldLaserOn)
+	{
+		OnLaserSwitched();
+
+		bOldLaserOn = bLaserOn;
+        ClientSwitchLaser();
+	}
+	Super.PostNetReceive();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bHasSilencer)
+		ApplySuppressorAim();
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.2;
+	AimComponent.AimSpread.Max *= 1.2;
 }
 
 simulated function UpdateGLIndicator()
@@ -212,12 +277,45 @@ simulated function bool CheckWeaponMode (int Mode)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (!bHasCamera)
-		return;
-	if (Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera)
-		SwitchView();
-	else
-		ServerWeaponSpecial(i);
+	if (bHasCamera)
+	{
+		if (Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera)
+			SwitchView();
+		else
+			ServerWeaponSpecial(i);
+	}
+	else if (bHasLAM)
+	{
+		GearStatus++;
+		if (GearStatus > 4)
+			GearStatus = 1;
+
+		if (bool(GearStatus & 1))  //Flashlight
+		{
+			bLightsOn = !bLightsOn;
+			ServerFlashLight(bLightsOn);
+			if (bLightsOn)
+			{
+				PlaySound(TorchOnSound,,0.7,,32);
+				if (FlashLightEmitter == None)
+					FlashLightEmitter = Spawn(class'MRS138TorchEffect',self,,location);
+				class'BallisticEmitter'.static.ScaleEmitter(FlashLightEmitter, DrawScale);
+				StartProjector();
+			}
+			else
+			{
+				PlaySound(TorchOffSound,,0.7,,32);
+				if (FlashLightEmitter != None)
+					FlashLightEmitter.Destroy();
+				KillProjector();
+			}
+		}
+		else //Laser
+		{
+			ServerSwitchLaser(!bLaserOn);
+			PlayIdle();
+		}
+	}
 }
 // Weapon special is pressed. Try grabbing the camera, viewing from it or placing a new one...
 function ServerWeaponSpecial(optional byte i)
@@ -373,6 +471,8 @@ simulated function CameraView()
 simulated event RenderOverlays( Canvas Canvas )
 {
 	local Rotator R, VR, OR;
+	local Vector TazLoc;
+	local Rotator TazRot;
 
 	// Do stuff for camera view
 	if ( Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera )
@@ -404,7 +504,22 @@ simulated event RenderOverlays( Canvas Canvas )
 		Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.M50CamView', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 1024, 1024 ); // !! hardcoded size
 	}
     else
+	{
         Super.RenderOverlays(Canvas);
+		if (!IsInState('Lowered'))
+			DrawLaserSight(Canvas);
+		if (bLightsOn)
+		{
+			TazLoc = GetBoneCoords('Laser').Origin;
+			TazRot = GetBoneRotation('Laser');
+			if (FlashLightEmitter != None)
+			{
+				FlashLightEmitter.SetLocation(TazLoc);
+				FlashLightEmitter.SetRotation(TazRot);
+				Canvas.DrawActor(FlashLightEmitter, false, false, DisplayFOV);
+			}
+		}
+	}
 }
 
 simulated event RenderTexture(ScriptedTexture Tex)
@@ -422,6 +537,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	local M50Camera C;
 
 	Super.BringUp(PrevWeapon);
+	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
+		Laser = Spawn(class'LaserActor');
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
+	if (Instigator != None && AIController(Instigator.Controller) != None && bHasLAM)
+	{
+		ServerSwitchLaser(FRand() > 0.5);
+		ServerFlashlight(FRand() > 0.5);
+	}
 
 	switch (class'Mut_Ballistic'.default.CamUpdateRate)
 	{
@@ -467,6 +591,13 @@ simulated function bool PutDown()
 		}
 		if ( Camera != None && PlayerController(Instigator.Controller).ViewTarget == Camera )
 			PlayerView();
+		
+		KillLaserDot();
+		if (ThirdPersonActor != None)
+			M50Attachment(ThirdPersonActor).bLaserOn = false;
+		KillProjector();
+		if (FlashLightEmitter != None)
+			FlashLightEmitter.Destroy();
 		return true;
 	}
 	return false;
@@ -477,6 +608,14 @@ simulated event Destroyed()
 	if (GLIndicator != None)
 		GLIndicator.Destroy();
 	CamTex.Client=None;
+	default.bLaserOn = false;
+	if (Laser != None)
+		Laser.Destroy();
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	if (FlashLightEmitter != None)
+		FlashLightEmitter.Destroy();
+	KillProjector();
 	Super.Destroyed();
 }
 
@@ -535,6 +674,152 @@ simulated function ChangeZoom (float Value)
 	PC.DesiredFOV = FClamp(90.0 - (PC.ZoomLevel * 88.0), 1, 170);
 }
 // End Cam System =============================================
+
+//=================================
+// Flashlight
+//=================================
+function ServerFlashLight (bool bNew)
+{
+	bLightsOn = bNew;
+	M50Attachment(ThirdPersonActor).bLightsOn = bLightsOn;
+}
+
+simulated function StartProjector()
+{
+	if (FlashLightProj == None)
+		FlashLightProj = Spawn(class'MRS138TorchProjector',self,,location);
+	AttachToBone(FlashLightProj, 'Laser');
+	FlashLightProj.SetRelativeLocation(TorchOffset);
+}
+simulated function KillProjector()
+{
+	if (FlashLightProj != None)
+		FlashLightProj.Destroy();
+}
+
+simulated event Tick(float DT)
+{
+	super.Tick(DT);
+
+	if (!bLightsOn || ClientState != WS_ReadyToFire)
+		return;
+	if (!Instigator.IsFirstPerson())
+		KillProjector();
+	else if (FlashLightProj == None)
+		StartProjector();
+}
+
+//=================================
+// Laser
+//=================================
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 0.75;
+	AimComponent.AimSpread.Max *= 0.75;
+	AimComponent.AimSpread.Min *= 0.75;
+}
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	bLaserOn = bNewLaserOn;
+	
+	if (ThirdPersonActor!=None)
+		M50Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+
+	OnLaserSwitched();
+
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+}
+
+simulated function ClientSwitchLaser()
+{
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+	}
+
+	PlayIdle();
+}
+
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'MD24LaserDot',,,Loc);
+}
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+
+// Draw a laser beam and dot to show exact path of bullets before they're fired
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc;
+	local Rotator AimDir;
+	local Actor Other;
+
+	if ((ClientState == WS_Hidden) || (!bLaserOn) || Instigator == None || Instigator.Controller == None || Laser==None)
+		return;
+
+	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
+	Loc = GetBoneCoords('Laser').Origin;
+
+	End = Start + Normal(Vector(AimDir))*5000;
+	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+	if (Other == None)
+		HitLocation = End;
+
+	// Draw dot at end of beam
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
+	if (LaserDot != None)
+		LaserDot.SetLocation(HitLocation);
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+
+	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
+	Laser.SetLocation(Loc);
+	HitLocation = class'BUtil'.static.ConvertFOVs(Instigator.Location + Instigator.EyePosition(), Instigator.GetViewRotation(), End, Instigator.Controller.FovAngle, DisplayFOV, 400);
+
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && 
+	   ((FireMode[0].IsFiring() && Level.TimeSeconds - FireMode[0].NextFireTime > -0.05) || (!FireMode[0].IsFiring() && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)))
+		Laser.SetRotation(Rotator(HitLocation - Loc));
+	else
+	{
+		AimDir = GetBoneRotation('Laser');
+		Laser.SetRotation(AimDir);
+	}
+	Scale3D.X = VSize(HitLocation-Loc)/128;
+	Scale3D.Y = 1;
+	Scale3D.Z = 1;
+	Laser.SetDrawScale3D(Scale3D);
+	Canvas.DrawActor(Laser, false, false, DisplayFOV);
+}
+
 
 function bool BotShouldReloadGrenade ()
 {
@@ -672,6 +957,11 @@ function float SuggestDefenseStyle()	{	return 0.0;	}
 
 defaultproperties
 {
+	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	TorchOffset=(X=-50.000000)
+	TorchOnSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
+	TorchOffSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
 	GrenadeLoadAnim="GrenadeReload"
 	CamTex=ScriptedTexture'BW_Core_WeaponTex.M50.M50LCDTex'
 	CamGrabSound=Sound'BW_Core_WeaponSound.M50.M50CamPlace'
@@ -699,8 +989,8 @@ defaultproperties
 	ManualLines(1)="Launches a grenade from the underslung launcher. This grenade has an arming delay and will ricochet from targets hit during this arming period, dealing minor damage. The arming delay can be used to shoot around corners."
 	ManualLines(2)="A TX409-Tactical Video camera system is also included with this weapon. It allows the user to deploy a tactical camera to any surface using the Weapon Function key. To survey an area from a safe distance using the gun-mounted LCD, press Weapon Function again. Care should always be taken to deploy TX409-TV cameras in a hidden location to prevent them from being destroyed by enemies.||The M50 is effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
@@ -747,7 +1037,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M50'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M50_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.M50.M50Skin1Shiney'

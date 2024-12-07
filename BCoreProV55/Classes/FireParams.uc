@@ -50,7 +50,7 @@ var() editinline array<FireEffectParams>   FireEffectParams;       // subobjects
 
 static simulated final function Initialize(BallisticWeapon BW, int ModeIndex, int AmmoIndex);
 
-// for short manual displayed on fonclit
+// for short manual displayed on conflict
 final function string BuildShortManualString()
 {
 	local FireEffectParams.FireModeStats FS;
@@ -61,9 +61,13 @@ final function string BuildShortManualString()
 	S = "Damage: Body "$ FS.DamageInt $ ", Head "$ int(FS.DamageInt * FS.HeadMult) $ ", Limb " $ int(FS.DamageInt * FS.LimbMult) $"|Fire Rate:  ";
 
 	if (FireInterval < 0.4)
-		S $= String(int((1 / FireInterval) * 60 * DEFAULT_TIME_DILATION))$"RPM";
+		S $= String(int((1 / FireInterval) * 60 * DEFAULT_TIME_DILATION))$"RPM|";
 	else 
-        S $= String((1 / FireInterval) * DEFAULT_TIME_DILATION) @ FS.ShotTypeString $ "/second";
+        S $= String((1 / FireInterval) * DEFAULT_TIME_DILATION) @ FS.ShotTypeString $ "/second|";
+	
+	S $= "Recoil: "$ FS.RPShot $"|";
+	if (Len(FS.RangeMax) != 0)
+		S $= "Range: "$ FS.RangeMax $"|";
 
 	return S;
 }

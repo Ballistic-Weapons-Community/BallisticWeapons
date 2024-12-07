@@ -33,6 +33,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
         TargetState="ClassicRail"
+		AimedFireAnim="SightFire"
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	
@@ -95,7 +96,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
-		LayoutName="M75 Scoped"
+		LayoutName="X-Ray Scope"
 		Weight=70
 		//Visual
 		AllowedCamos(0)=0
@@ -121,7 +122,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Irons
 		//Layout core
-		LayoutName="X75 Prototype"
+		LayoutName="X75 Irons"
 		Weight=5
 		//Visual
 		AllowedCamos(0)=2
@@ -162,9 +163,9 @@ defaultproperties
 		CamoName="Arctic"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Main-S1",Index=3,AIndex=1,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Main-S2",Index=4,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Main2-S1",Index=4,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Clip-D1",Index=2,AIndex=2,PIndex=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Scope-S2",Index=1,AIndex=3,PIndex=1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Scope-S1",Index=1,AIndex=3,PIndex=1)
 		Weight=10
 	End Object
 	
@@ -172,8 +173,8 @@ defaultproperties
 		Index=2
 		CamoName="Prototype"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75_SKPart1_Shine",Index=3,AIndex=1,PIndex=2)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75_SKPart2_Shine",Index=4,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BW_Core_WeaponTex.M75.M75_SKPart1_Shine",Index=3,AIndex=1,PIndex=2)
+		WeaponMaterialSwaps(2)=(MaterialName="BW_Core_WeaponTex.M75.M75_SKPart2_Shine",Index=4,AIndex=0,PIndex=0)
 		Weight=10
 	End Object
 	

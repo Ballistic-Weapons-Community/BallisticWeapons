@@ -150,13 +150,13 @@ defaultproperties
 	CurrentRating=0.6
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_X3'
-     
+     bShowChargingBar=False
      ManualLines(0)="Slashes with the knife. Short range and less damage than other melee weapons."
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
      ManualLines(2)="The Weapon Function key throws a knife, dealing good damage. Thrown knives have a very short range."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut',Volume=0.109000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway',Volume=0.109000)
      bNoMag=True
      GunLength=0.000000
 	 bAimDisabled=True
@@ -182,12 +182,13 @@ defaultproperties
      CenteredRoll=0
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      PickupClass=Class'BallisticProV55.X3Pickup'
-     PlayerViewOffset=(X=5.000000,Y=7.000000,Z=-8.000000)
+     PlayerViewOffset=(X=2.750000,Y=7.000000,Z=-8.000000)
      PlayerViewPivot=(Yaw=32768)
+     SmallViewOffset=(X=2.750000,Y=7.000000,Z=-8.000000)	 
      AttachmentClass=Class'BallisticProV55.X3Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_X3'
      IconCoords=(X2=127,Y2=31)
      ItemName="X3 Knife"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_X3'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.X3_FPm'
      DrawScale=0.300000
 }

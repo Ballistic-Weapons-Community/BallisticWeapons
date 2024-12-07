@@ -8,9 +8,9 @@ class Augment_RDS extends BallisticGunAugment;
 
 defaultproperties
 {
-     DrawType=DT_Mesh
+     DrawType=DT_StaticMesh
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Attach_Reflex1'
-     DrawScale=0.420000
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Attach_RDS'
+     DrawScale=0.040000
 }

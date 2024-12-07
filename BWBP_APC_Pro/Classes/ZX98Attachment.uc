@@ -157,27 +157,29 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-	 WeaponClass=class'ZX98AssaultRifle'
-	 AltTracerClass=Class'BWBP_APC_Pro.TraceEmitter_ZX98Gauss'
-     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_Bullet'
-     ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
-     MeleeImpactManager=Class'BallisticProV55.IM_Knife'
-     BrassClass=Class'BallisticProV55.Brass_SAR'
-     BrassMode=MU_Both
-     FlashMode=MU_Both
-     InstantMode=MU_Both
-	 TracerMode=MU_Both
-	 TracerMix=0
-     TracerClass=Class'BallisticProV55.TraceEmitter_Default'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_AR"
-     bHeavy=True
-     bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_CC_Anim.ZX98_TPm'
-     RelativeLocation=(Z=1.000000)
-     RelativeRotation=(Pitch=32768)
-	 PrePivot=(z=-3)
-     DrawScale=0.200000
+	WeaponClass=class'ZX98AssaultRifle'
+	AltTracerClass=Class'BWBP_APC_Pro.TraceEmitter_ZX98Gauss'
+    MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+    ImpactManager=Class'BallisticProV55.IM_Bullet'
+    ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
+    MeleeImpactManager=Class'BallisticProV55.IM_Knife'
+    BrassClass=Class'BallisticProV55.Brass_SAR'
+    BrassMode=MU_Both
+    FlashMode=MU_Both
+    InstantMode=MU_Both
+	TracerMode=MU_Both
+	TracerMix=0
+    TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+    WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+    FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+    ReloadAnim="Reload_AR"
+    bHeavy=True
+    bRapidFire=True
+	ReloadAnimRate=1.075000
+	CockAnimRate=1.100000
+    Mesh=SkeletalMesh'BWBP_APC_Anim.ZX98_TPm'
+    RelativeLocation=(Z=1.000000)
+    RelativeRotation=(Pitch=32768)
+	PrePivot=(z=-3)
+    DrawScale=0.200000
 }

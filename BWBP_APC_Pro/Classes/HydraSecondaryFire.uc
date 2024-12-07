@@ -80,7 +80,7 @@ simulated function ModeTick(float DeltaTime)
 
 function DoFireEffect()
 {
-    local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace, FireLocation;
+    local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace; //FireLocation
     local Rotator Aim, FireDirection;
 	local actor Other;
 	local int i;
@@ -150,10 +150,11 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
-	 RocketCountSound=Sound'BWBP_CC_Sounds.Launcher.Launcher-Beep'
+	 RocketCountSound=Sound'BWBP_APC_Sounds.Launcher.Launcher-Beep'
 	 MaxChargeOvertime=3.0f
 	 ChargeGainPerSecond=3.6f
 	 ChargeDecayPerSecond=18.0f
+	 ChargeAnim="ChargeUp"
      bFireOnRelease=True
 	 //ChargingSound=Sound'GeneralAmbience.texture22'
 	 SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
@@ -163,7 +164,7 @@ defaultproperties
      FireChaos=0.500000
      XInaccuracy=4.000000
      YInaccuracy=4.000000
-     //BallisticFireSound=(SoundGroup=Sound'BWBP_CC_Sounds.Launcher.Launcher-Fire')
+     //BallisticFireSound=(SoundGroup=Sound'BWBP_APC_Sounds.Launcher.Launcher-Fire')
      FireEndAnim=
      FireRate=1.200000
      AmmoClass=Class'BWBP_APC_Pro.Ammo_HRPG'

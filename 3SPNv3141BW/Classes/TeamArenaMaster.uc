@@ -294,7 +294,7 @@ function PracticeRoundEnded()
 function SetupPlayer(Pawn P)
 {
     local byte difference;
-    local int health;
+  //local int health;
     local int armor;
     local float formula;
 

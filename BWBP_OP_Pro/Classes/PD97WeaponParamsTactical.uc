@@ -65,7 +65,7 @@ defaultproperties
 		AccelSpeed=2000.000000
 		Speed=4500.000000
 		MaxSpeed=10000.000000
-		Damage=40.000000
+		Damage=70.000000
 		DamageRadius=192.000000
 		Recoil=256.000000
 		Chaos=0.150000
@@ -87,22 +87,43 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Tazer
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.PD97TazerProj'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=10240.000000
-		Damage=5
+		Damage=100
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.900000
-		AmmoPerFire=0
+		FireInterval=0.300000
+		AmmoPerFire=1
 		PreFireAnim=
 		FireAnim="TazerFire"	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
+	End Object
+	
+	//Tracker
+	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams_Tracker
+		ProjectileClass=Class'BWBP_OP_Pro.PD97TrackerProj'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=10240.000000
+		Damage=25
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
+	End Object
+
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Tracker
+		TargetState="Tracker"
+		FireInterval=0.100000
+		AmmoPerFire=1
+		PreFireAnim=
+		FireAnim="TazerFire"	
+		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams_Tracker'
 	End Object
 		
 	//=================================================================
@@ -121,7 +142,7 @@ defaultproperties
 		DeclineTime=1.500000
 		CrouchMultiplier=1
 		HipMultiplier=1
-		MaxMoveMultiplier=1.5
+		MaxMoveMultiplier=1.25
 	End Object
 
 	//=================================================================
@@ -182,7 +203,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Rocket'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Tracker'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Dart

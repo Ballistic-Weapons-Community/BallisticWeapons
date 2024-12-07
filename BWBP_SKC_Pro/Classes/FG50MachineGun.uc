@@ -447,7 +447,7 @@ simulated function AddHeat(float Amount)
 		if (!bDecorativeHeat)
 		{
 			PlaySound(OverHeatSound,,3.7,,32);
-			class'BallisticDamageType'.static.GenericHurt (Instigator, 25, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTFG50Overheat');
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 25, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DT_FG50Overheat');
 		}
 		return;
 	}
@@ -656,8 +656,8 @@ defaultproperties
 	ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
 	ManualLines(2)="The FG50 is heavy and restricts movement. However, the weight compensates for a significant amount of recoil. Takes a long time to aim. Effective at medium to long range."
 	SpecialInfo(0)=(Info="320.0;35.0;1.0;100.0;0.8;0.5;0.1")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.222000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
 	MagAmmo=40
 	MeleeFireClass=Class'BWBP_SKC_Pro.FG50MeleeFire'
 	CockAnimPostReload="ReloadEndCock"
@@ -704,7 +704,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FG50'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

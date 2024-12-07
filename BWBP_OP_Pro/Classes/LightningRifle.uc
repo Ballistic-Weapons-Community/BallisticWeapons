@@ -199,8 +199,8 @@ defaultproperties
     ManualLines(1)="Charged lightning bolt. The rifle will fire when the fire key is released, or immediately upon becoming fully charged. Damage improves with charge, and more ammo is consumed."
     ManualLines(2)="Upon releasing a charged lightning bolt, the electricity will arc between nearby players. The number of conducting players, radius and damage dropoff depends on the charge."
     SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
-    BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup')
-    PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
+    BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup',Volume=0.255000)
+    PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect',Volume=0.220000)
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.Law-TubeLock')
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
     ClipInFrame=0.650000
@@ -243,6 +243,6 @@ defaultproperties
     LightSaturation=150
     LightBrightness=150.000000
     LightRadius=5.000000
-    Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_LightningRifle'
+    Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_FPm'
     DrawScale=0.300000
 }

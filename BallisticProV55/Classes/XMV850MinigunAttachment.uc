@@ -331,17 +331,18 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 
 defaultproperties
 {
-	WeaponClass=class'XMV850Minigun'
+	 WeaponClass=class'XMV850Minigun'
      FireClass=class'XMV850MinigunPrimaryFire'
-     MuzzleFlashClass=class'XK2FlashEmitter'
-     AltMuzzleFlashClass=class'XK2FlashEmitter'
+     MuzzleFlashClass=class'XMV850FlashEmitter'
+     AltMuzzleFlashClass=class'XMV850FlashEmitter'
+	 FlashScale=0.600000
      ImpactManager=class'IM_MinigunBullet'
      BrassClass=class'Brass_Minigun'
      TracerClass=class'TraceEmitter_Default'
      TracerChance=0.800000
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
-     ReloadAnimRate=1.500000
+     ReloadAnimRate=1.375000
      bHeavy=True
      bRapidFire=True
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_TPm'

@@ -37,11 +37,11 @@ defaultproperties
          UniformSize=True
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.135714,Color=(R=64,A=255))
-         ColorScale(2)=(RelativeTime=0.260714,Color=(B=192,G=192,R=255,A=255))
-         ColorScale(3)=(RelativeTime=0.385714,Color=(R=64,A=255))
-         ColorScale(4)=(RelativeTime=0.510714,Color=(B=128,G=128,R=255,A=255))
-         ColorScale(5)=(RelativeTime=1.000000,Color=(R=255,A=255))
+         ColorScale(1)=(RelativeTime=0.135714,Color=(G=64,A=255))
+         ColorScale(2)=(RelativeTime=0.260714,Color=(B=192,G=255,R=192,A=255))
+         ColorScale(3)=(RelativeTime=0.385714,Color=(G=64,A=255))
+         ColorScale(4)=(RelativeTime=0.510714,Color=(B=128,G=255,R=128,A=255))
+         ColorScale(5)=(RelativeTime=1.000000,Color=(G=255,A=255))
          FadeOutStartTime=0.224000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -67,8 +67,8 @@ defaultproperties
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.303571,Color=(B=64,G=64,R=255,A=255))
-         ColorScale(2)=(RelativeTime=1.000000,Color=(R=255,A=255))
+         ColorScale(1)=(RelativeTime=0.303571,Color=(B=64,G=255,R=64,A=255))
+         ColorScale(2)=(RelativeTime=1.000000,Color=(G=255,A=255))
          FadeOutStartTime=0.216000
          CoordinateSystem=PTCS_Relative
          MaxParticles=4
@@ -96,8 +96,8 @@ defaultproperties
          UseRandomSubdivision=True
          Acceleration=(Z=-200.000000)
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.328571,Color=(B=64,G=64,R=255,A=255))
-         ColorScale(2)=(RelativeTime=1.000000,Color=(R=255,A=255))
+         ColorScale(1)=(RelativeTime=0.328571,Color=(B=64,G=255,R=64,A=255))
+         ColorScale(2)=(RelativeTime=1.000000,Color=(G=255,A=255))
          FadeOutStartTime=0.082000
          CoordinateSystem=PTCS_Relative
          MaxParticles=28
@@ -128,7 +128,7 @@ defaultproperties
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=0.178571,Color=(B=128,G=128,R=255,A=255))
-         ColorScale(2)=(RelativeTime=1.000000,Color=(R=255,A=255))
+         ColorScale(2)=(RelativeTime=1.000000,Color=(G=255,A=255))
          ColorMultiplierRange=(X=(Min=0.700000,Max=0.700000),Y=(Min=0.700000,Max=0.700000),Z=(Min=0.700000,Max=0.700000))
          FadeOutStartTime=0.024000
          FadeInEndTime=0.024000
@@ -159,6 +159,7 @@ defaultproperties
          MaxCollisions=(Min=1.000000,Max=1.000000)
          ColorScale(0)=(Color=(B=255,G=255,R=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=32,R=32))
+         ColorMultiplierRange=(X=(Min=0.000000,Max=0.200000),Y=(Min=2.000000,Max=0.400000),Z=(Min=0.000000,Max=0.200000))
          MaxParticles=30
          StartSizeRange=(X=(Min=2.000000,Max=3.000000))
          InitialParticlesPerSecond=100.000000
@@ -186,6 +187,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=255))
          ColorScale(1)=(RelativeTime=0.342857,Color=(B=255,G=192,R=192,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=128))
+         ColorMultiplierRange=(X=(Min=0.000000,Max=0.200000),Y=(Min=2.000000,Max=0.400000),Z=(Min=0.000000,Max=0.200000))
          FadeOutStartTime=0.090000
          FadeInEndTime=0.090000
          CoordinateSystem=PTCS_Relative
@@ -222,7 +224,8 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=0.467857,Color=(B=255,G=128,R=128,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=255,A=255))
-         ColorMultiplierRange=(X=(Min=8.000000,Max=0.800000),Y=(Min=2.000000,Max=0.400000),Z=(Min=0.000000,Max=0.200000))
+         //ColorMultiplierRange=(X=(Min=8.000000,Max=0.800000),Y=(Min=2.000000,Max=0.400000),Z=(Min=0.000000,Max=0.200000)) //red
+         ColorMultiplierRange=(X=(Min=0.000000,Max=0.200000),Y=(Min=2.000000,Max=0.400000),Z=(Min=0.000000,Max=0.200000))
          FadeOutStartTime=0.028000
          MaxParticles=24
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))

@@ -296,8 +296,8 @@ defaultproperties
 	ManualLines(1)="A charging hitscan beam whose lethality increases with charge. Both pistols will charge and fire simultaneously if dual wielded."
 	ManualLines(2)="Due to rechargeable batteries, the A42 will regain ammo at a slow rate when not in use. It is moderately effective at close range, with low recoil and good hipfire. A42 plasma will repair nodes and vehicles. The projectile attack will only penetrate players and not the environment."
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout',Volume=0.148500)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway',Volume=0.151000)
 	MagAmmo=18
 	bShouldDualInLoadout=False
 	bNonCocking=True
@@ -307,8 +307,8 @@ defaultproperties
     NDCrosshairChaosFactor=0.700000
 
 	PlayerViewOffset=(X=32,Y=19,Z=-13)
-	SightOffset=(X=-80,Y=-6.7,Z=17.5)
-	SightPivot=(Pitch=1024,Roll=-768)
+	SightOffset=(X=-80.000000,Y=-6.000000,Z=18.250000)
+	SightPivot=(Pitch=1024)
 	SightBobScale=0.35f
 
 	ParamsClasses(0)=Class'A42WeaponParamsComp'
@@ -339,7 +339,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A42'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.A42_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.A42.A42Skin_SD'

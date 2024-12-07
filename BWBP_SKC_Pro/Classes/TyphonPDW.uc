@@ -607,25 +607,24 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	DamageMax = 50.0;
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
-
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
 	{
     	ClientTakeHit(200, 200);
 		return;
 	}
-    	else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
-        	return;
+    else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
+        return;
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
     {
         Drain = Min( ShieldPower*2, Damage );
-	Drain = Min(Drain,DamageMax);
-	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
-	if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
-	{
-		bPierce=true;
-		Drain+=10;
-	}
+		Drain = Min(Drain,DamageMax);
+		Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
+		if (Damage > DamageMax) //Piercing (50+) damage will bleed through and heavily damage shield.
+		{
+			bPierce=true;
+			Drain+=10;
+		}
         Damage -= Drain;
         Momentum *= 1.25;
         if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
@@ -633,12 +632,12 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 			Drain = Min(ShieldPower, Drain);
 			ShieldPower -= Drain;
 			DoReflectEffectA(Drain, bPierce);
-	}
+		}
         else
         {
 			ShieldPower -= Drain/2;
 			DoReflectEffectA(Drain/2, bPierce);
-	}
+		}
 	bPierce=false;
     }
 }
@@ -725,8 +724,8 @@ defaultproperties
      
 	 bWT_Bullet=True
      SpecialInfo(0)=(Info="240.0;15.0;0.4;25.0;0.8;0.0;-999.0")
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw',Volume=0.216000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.220000)
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
      ReloadAnim="Reload"
 	 ReloadEmptyAnim="ReloadEmpty"
@@ -782,7 +781,7 @@ defaultproperties
 	 ParamsClasses(1)=Class'TyphonPDWWeaponParamsClassic'
 	 ParamsClasses(2)=Class'TyphonPDWWeaponParamsRealistic'
      ParamsClasses(3)=Class'TyphonPDWWeaponParamsTactical'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Typhon'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.Typhon_FPm'
      DrawScale=0.30000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_SKC_Tex.Typhon.Typhon-Shine'

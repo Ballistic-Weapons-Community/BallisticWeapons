@@ -10,6 +10,7 @@
 class A49SkrithBlaster extends BallisticWeapon;
 
 var	bool		bVariableHeatProps; //Gun heat changes accuracy and RoF
+var bool		bCharging; 			//lets draw some cool charging effects
 
 var float		HeatLevel;
 var float 		HeatDeclineDelay;		
@@ -22,6 +23,7 @@ var() class<DamageType>	BlastDamageType;
 var actor VentSteam;
 var actor VentSteam2;
 var actor GlowFX;
+var actor Glow1;
 var actor GlowFXDamaged;
 
 replication
@@ -30,13 +32,21 @@ replication
 		ClientSetHeat;
 }
 
-simulated event PostNetBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bVariableHeatProps=false;
+	bCharging=false;
+	if (InStr(WeaponParams.LayoutTags, "mod_rof") != -1)
 	{
-		bVariableHeatProps=True;
-		A49PrimaryFire(FireMode[0]).bVariableHeatProps = True;
+		bVariableHeatProps=true;
+		A49PrimaryFire(FireMode[0]).bVariableHeatProps = true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "charge") != -1)
+	{
+		bCharging=true;
 	}
 }
 
@@ -53,7 +63,7 @@ simulated function AddHeat(float Amount)
 	if (HeatLevel >= 9.75 && !bVariableHeatProps)
 	{
 		Heatlevel = 10;
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
 		return;
 	}
 	else if (HeatLevel >= 10.5)
@@ -96,9 +106,40 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	GunLength = default.GunLength;
 	
 	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A49GlowFX', DrawScale, self, 'tip');
+	{
+		if (LayoutIndex == 1)
+		{
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A49GlowFXRed', DrawScale, self, 'tip');
+		}
+		else if (LayoutIndex == 2)
+		{
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
+		}
+		else
+		{
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A49GlowFX', DrawScale, self, 'tip');
+		}
+	}
+}
 
-	
+simulated function SetGlowSize(float newSize)
+{
+	if (GlowFX != None && A49GlowFXRed(GlowFX) != None)
+		A49GlowFXRed(GlowFX).SetSize(newSize);
+}
+
+simulated event WeaponTick(float DT)
+{
+	super.WeaponTick(DT);
+
+	if (bCharging && Firemode[0].bIsFiring )
+	{
+		class'bUtil'.static.InitMuzzleFlash(Glow1, class'HMCBarrelGlowRed', DrawScale*4, self, 'tip');
+	}
+	else
+	{
+		if (Glow1 != None)	Glow1.Destroy();
+	}
 }
 
 simulated event Timer()
@@ -117,7 +158,8 @@ simulated event Destroyed()
 {
 	if (GlowFX != None)
 		GlowFX.Destroy();
-
+	if (Glow1 != None)	Glow1.Destroy();
+	
 	super.Destroyed();
 }
 
@@ -383,8 +425,8 @@ defaultproperties
 	bWT_RapidProj=True
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="60.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout',Volume=0.145000) 
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway',Volume=0.150000)
 	CockAnim="Overheat"
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
@@ -429,7 +471,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=160,G=44,R=89,A=137),Color2=(B=151,R=0,A=202),StartSize1=84,StartSize2=61)
     NDCrosshairInfo=(SpreadRatios=(X1=0.300000,Y1=0.300000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.700000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_A49'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.A49_FPm'
 	SoundPitch=56
 	SoundRadius=32.000000
 	bShowChargingBar=True

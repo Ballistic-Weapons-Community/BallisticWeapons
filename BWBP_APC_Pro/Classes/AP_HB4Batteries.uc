@@ -15,7 +15,7 @@ defaultproperties
      InventoryType=Class'BWBP_APC_Pro.Ammo_HB4'
      PickupMessage="You got 2 Grenade Batteries."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_CC_Static.HoloBlaster.HoloBlaster_SM_Ammo'
+     StaticMesh=StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterClip'
      DrawScale=0.120000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

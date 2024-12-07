@@ -16,11 +16,11 @@ defaultproperties
      FlashScale=1.800000
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      TracerMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+     TracerClass=Class'BallisticProV55.TraceEmitter_AP'
      TracerChance=0.500000
      MeleeStrikeAnim="Melee_swing"
      SingleFireAnim="RifleHip_FireCock"
      SingleAimedFireAnim="RifleAimed_FireCock"
-     Mesh=SkeletalMesh'BWBP_CC_Anim.Pitbull_TPm'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FM14_TPm'
      DrawScale=0.180000
 }

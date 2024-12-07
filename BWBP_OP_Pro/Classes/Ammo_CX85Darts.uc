@@ -9,7 +9,7 @@
 //=============================================================================
 class Ammo_CX85Darts extends BallisticAmmo;
 
-var Ammo_CX85Bullets Bullets;
+var Ammo_556mm Bullets;
 
 function bool HandlePickupQuery( pickup Item )
 {
@@ -17,10 +17,10 @@ function bool HandlePickupQuery( pickup Item )
 	{
 		if (Bullets==None)
 		{
-			Bullets = Ammo_CX85Bullets(Pawn(Owner).FindInventoryType(class'Ammo_CX85Bullets'));
+			Bullets = Ammo_556mm(Pawn(Owner).FindInventoryType(class'Ammo_556mm'));
 			if (Bullets == None)
 			{
-				Bullets = spawn(class'Ammo_CX85Bullets',Owner,,,rot(0,0,0));
+				Bullets = spawn(class'Ammo_556mm',Owner,,,rot(0,0,0));
 				Bullets.GiveTo( Pawn(Owner), Item );
 			}
 		}

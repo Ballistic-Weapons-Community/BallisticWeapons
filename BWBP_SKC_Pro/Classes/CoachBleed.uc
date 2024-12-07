@@ -69,7 +69,7 @@ simulated event Tick(float DT)
 
 defaultproperties
 {
-     DamageType=Class'BWBP_SKC_Pro.DTCoachBleed'
+     DamageType=Class'BWBP_SKC_Pro.DT_CoachBleed'
      Damage=3
      BleedTime=4.000000
      MaxBleedTime=15.000000

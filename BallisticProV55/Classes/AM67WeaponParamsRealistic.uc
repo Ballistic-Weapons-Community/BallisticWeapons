@@ -8,10 +8,10 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1000.000000,Max=5000.000000) //.50
+		TraceRange=(Min=5000.000000,Max=5000.000000) //.50
 		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=62.0
+		DecayRange=(Min=1000.0,Max=5000.0)
+		Damage=70.0
 		HeadMult=2.3f
 		LimbMult=0.6f
 		DamageType=Class'BallisticProV55.DTAM67Pistol'
@@ -45,7 +45,27 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
+	//Flash
+    Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Flash
+        MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
+        WarnTargetPct=1.000000
+        BotRefireRate=0.3
+        EffectString="Blinding flash"
+    End Object
+
+    Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Flash
+		TargetState="Flash"
+        MaxHoldTime=0.500000
+        FireAnim="Idle"
+        FireEndAnim=
+        FireInterval=10.000000
+        AmmoPerFire=0
+        FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Flash'
+    End Object
+	
+	//Combat Laser
+	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams_CombatLaser
 		TraceRange=(Min=1500.000000,Max=6000.000000)
 		WaterTraceRange=4200.0
 		DecayRange=(Min=0.0,Max=0.0)
@@ -71,12 +91,28 @@ defaultproperties
 		WarnTargetPct=0.010000
 	End Object
 
-	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_CombatLaser
+		TargetState="CombatLaser"
 		FireInterval=0.050000
 		AmmoPerFire=0
 		BurstFireRateFactor=1.00
 		FireAnim="Idle"	
-	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams_CombatLaser'
+	End Object
+	
+	//Laser Sight
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_LaserSight
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_LaserSight
+		TargetState="LaserSight"
+		FireInterval=10.000000
+		AmmoPerFire=0
+		MaxHoldTime=0.500000
+		FireAnim=
+		FireEndAnim=
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_LaserSight'
 	End Object
 		
 	//=================================================================
@@ -125,10 +161,18 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		PlayerSpeedFactor=1.100000
-        InventorySize=3
+		//Layout core
+		LayoutName="Flash Bulb"
+		Weight=7
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.17
+		SightingTime=0.18
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Function
+		PlayerSpeedFactor=1.100000
+        InventorySize=4
 		MagAmmo=9
 		bMagPlusOne=True
 		//ViewOffset=(X=9.000000,Y=7.000000,Z=-7.000000)
@@ -138,49 +182,76 @@ defaultproperties
 		//RootAdjust=(Yaw=-280,Pitch=2500)
 		//WristAdjust=(Yaw=-2500,Pitch=-000)
 		bDualBlocked=True
-		SightOffset=(X=-24,Y=0.06,Z=2.5)
-		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
-		InitialWeaponMode=0
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=true)
 		WeaponModes(2)=(bUnavailable=true)
-		//CockAnimRate=1.300000
+		InitialWeaponMode=0
 		WeaponName="AM67 .50 Assault Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Flash'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_RDS
-		PlayerSpeedFactor=1.100000
-        InventorySize=3
+		//Layout core
+		LayoutName="RDS + Lasersight"
+		Weight=2
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
+		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.17
+		SightingTime=0.18
+		SightOffset=(X=-24,Y=0.06,Z=4.43)
+		//Function
+		PlayerSpeedFactor=1.100000
+        InventorySize=4
 		MagAmmo=9
 		bMagPlusOne=True
-		//ViewOffset=(X=9.000000,Y=7.000000,Z=-7.000000)
-		//SightOffset=(X=-12.000000,Y=-1.1750000,Z=14.150000)
-		//SightPivot=(Pitch=-160,Roll=-465)
-		//bAdjustHands=true
-		//RootAdjust=(Yaw=-280,Pitch=2500)
-		//WristAdjust=(Yaw=-2500,Pitch=-000)
 		bDualBlocked=True
-		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		InitialWeaponMode=0
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=true)
 		WeaponModes(2)=(bUnavailable=true)
-		//CockAnimRate=1.300000
-		WeaponName="AM67 .50 Assault Pistol"
+		WeaponName="AM67 .50 Assault Pistol (RDS)"
+		bNoaltfire=true
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_LaserSight'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_CombatLaser
+		//Layout core
+		LayoutName="Combat Laser"
+		LayoutTags="combat_laser"
+		Weight=2
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		// ADS handling
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.18
+		SightOffset=(X=-24,Y=0.06,Z=2.5)
+		//Stats
+		PlayerSpeedFactor=1.100000
+        InventorySize=4
+		MagAmmo=9
+		bMagPlusOne=True
+		bDualBlocked=True
+		InitialWeaponMode=0
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(bUnavailable=true)
+		WeaponModes(2)=(bUnavailable=true)
+		WeaponName="AM67 .50 Assault Pistol (RDS)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_CombatLaser'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'
 	Layouts(1)=WeaponParams'RealisticParams_RDS'
+	Layouts(2)=WeaponParams'RealisticParams_CombatLaser'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=AM67_Green

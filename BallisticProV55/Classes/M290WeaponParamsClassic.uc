@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Shot
 	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=1500.000000,Max=3500.000000)
 		WaterTraceRange=5000.0
@@ -43,6 +44,47 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	
 		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
+	
+	//Slug
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams_Slug
+		TraceRange=(Min=6000.000000,Max=6000.000000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		WaterTraceRange=5000.0
+		RangeAtten=0.200000
+		TraceCount=2
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+		Damage=110.0
+		HeadMult=1.7
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTM290Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Circle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
+		FlashScaleFactor=1.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Fire',Volume=1.500000)
+		Recoil=768.000000
+		Chaos=-1.0
+		PushbackForce=1000.000000
+		Inaccuracy=(X=32,Y=16)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Slug
+		FireInterval=0.800000
+		AmmoPerFire=2
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams_Slug'
 	End Object
 		
     //=================================================================
@@ -128,8 +170,6 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		InventorySize=7
 		
 		SightMoveSpeedFactor=0.500000

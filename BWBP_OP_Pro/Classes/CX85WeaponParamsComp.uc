@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//556
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=2363,Max=5000)
@@ -35,10 +36,39 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 	
+	//spike shot
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams_Seeker
+		ProjectileClass=Class'BWBP_OP_Pro.CX85Flechette'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=15000.000000
+		MaxSpeed=20000.000000
+		AccelSpeed=1000.000000
+		Damage=40
+		DamageRadius=8.000000
+		MomentumTransfer=20000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=0.700000
+		Recoil=256.000000
+		Chaos=-1.00000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX61.CX61-FireHeavy',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Seeker
+		FireInterval=0.25
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="Fire"
+		FireAnimRate=1.000000	
+		TargetState="SeekerFlechette"
+		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams_Seeker'
+	End Object
+	
 	//=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	//HE tracker dart
 	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=15
@@ -54,6 +84,15 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
 		FireInterval=0.350000
+		AmmoPerFire=0
+		PreFireAnim=
+		FireAnim="FireAlt"	
+	FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
+	End Object
+	
+	//Smart linked tracker dart
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Smart
+		FireInterval=0.850000
 		AmmoPerFire=0
 		PreFireAnim=
 		FireAnim="FireAlt"	
@@ -94,13 +133,17 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		//SightOffset=(X=15.000000,Y=-0.6,Z=34.000000)
+		//Layout core
+		LayoutName="5.56mm Mod"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.45	
+		//Attachments
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		PlayerSpeedFactor=0.95
 		InventorySize=6
-		SightMoveSpeedFactor=0.6
-		SightingTime=0.45	
 		ScopeScale=0.7
 		DisplaceDurationMult=1
 		MagAmmo=50
@@ -112,5 +155,31 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+	
+	Begin Object Class=WeaponParams Name=ArenaParams_Seeker
+		//Layout core
+		LayoutName="Seeker Spikes"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.6
+		SightingTime=0.45	
+		//Attachments
+		ReloadAnimRate=1.00
+		CockAnimRate=1.00
+		PlayerSpeedFactor=0.95
+		InventorySize=6
+		ScopeScale=0.7
+		DisplaceDurationMult=1
+		MagAmmo=24
+		// fixed 4x
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Seeker'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Smart'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Seeker'
 }

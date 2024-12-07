@@ -31,20 +31,21 @@ simulated function UpdatePrecacheMaterials()
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AK490.AK490Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AK490.AK490PickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AK490.AK490PickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.AK490.AK490AmmoPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490PickupLo'
      PickupDrawScale=0.140000
      InventoryType=Class'BWBP_SKC_Pro.AK490BattleRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the AK-490 battle rifle."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490PickupHi'
      Physics=PHYS_None
-     DrawScale=0.250000
+     DrawScale=0.130000
      CollisionHeight=4.000000
 }

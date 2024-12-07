@@ -397,8 +397,8 @@ defaultproperties
 	bWT_Grenade=True
 	bWT_Spam=True
 	SpecialInfo(0)=(Info="240.0;25.0;0.6;50.0;1.0;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PullOut')
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PutAway')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PullOut',Volume=0.218000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PutAway',Volume=0.216000)
 	CockAnim="Cock1"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-CockAlt',Volume=0.950000)
 	ReloadAnim="ReloadSingle"
@@ -452,6 +452,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Longhorn'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.Longhorn_FPm'
 	DrawScale=0.300000
 }

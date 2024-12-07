@@ -16,7 +16,7 @@ defaultproperties
      AimedFireAnim="SightFire"
      FireRecoil=768.000000
      FireChaos=0.650000
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.EP110.EP110-Fire',Volume=9.500000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_APC_Sounds.EP110.EP110-Fire',Volume=9.500000,Slot=SLOT_Interact,bNoOverride=False)
 	 bModeExclusive=False
      FireForce="AssaultRifleAltFire"
      FireRate=0.850000

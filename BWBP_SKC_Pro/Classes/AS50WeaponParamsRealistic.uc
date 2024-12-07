@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000) //50 cal
 		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=135.0
+		Damage=155.0
 		HeadMult=2.0
 		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
@@ -45,7 +45,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=135.0
+		Damage=155.0
 		HeadMult=2.0
 		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
@@ -136,7 +136,7 @@ defaultproperties
 		PlayerSpeedFactor=0.825000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.45
+		SightingTime=0.65
 		MagAmmo=10
 		bMagPlusOne=True
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)

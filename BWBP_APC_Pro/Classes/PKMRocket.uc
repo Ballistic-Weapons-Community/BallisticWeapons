@@ -200,9 +200,9 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=200.000000
 	LightRadius=15.000000
-	StaticMesh=StaticMesh'BWBP_JCF_Static.RPG.Rocket'
+	StaticMesh=StaticMesh'BWBP_APC_Static.PKMA.PKMARocket'
 	bDynamicLight=True
-	AmbientSound=Sound'BWBP_JCF_Sounds.RPG.RPGFly'
+	AmbientSound=Sound'BWBP_APC_Sounds.rpk940.RPGFly'
 	DrawScale=0.500000
 	SoundVolume=192
 	SoundRadius=128.000000

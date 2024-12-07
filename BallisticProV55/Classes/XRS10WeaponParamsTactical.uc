@@ -70,7 +70,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=1
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2
+		MaxMoveMultiplier=1.25
 	End Object
 
     //=================================================================
@@ -94,7 +94,7 @@ defaultproperties
 		bDualBlocked=True
 		DisplaceDurationMult=0.5
 		MagAmmo=25
-		SightingTime=0.20
+		SightingTime=0.17
         SightMoveSpeedFactor=0.6
         InventorySize=3
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'

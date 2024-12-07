@@ -10,7 +10,8 @@
 //=============================================================================
 class Mk781Shotgun extends BallisticProShotgun;
 
-var   bool		bSilenced;				// Silencer on. Silenced
+var()	bool	bHasSuppressor;
+var()   bool	bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer
 var() name		SilencerOnAnim;			// Think hard about this one...
 var() name		SilencerOffAnim;		//
@@ -19,17 +20,36 @@ var() sound		SilencerOffSound;		//
 var() sound		SilencerOnTurnSound;		// Silencer screw on sound
 var() sound		SilencerOffTurnSound;		//
 
+var() bool		bHasAltShells;
 var() Name		SGPrepAnim;			//Anim to use for loading special shells
 var() Name		ReloadAltAnim;			//Anim to use for Reloading special shells
 var() Name		ReloadAnimEmpty;		//Anim to use for Reloading from 0
 
 var() Sound		GrenLoadSound;		//
-var() float       	VisGrenades;		//Rockets currently visible in tube.
-var() int       	Grenades;		//Rockets currently in the gun.
+var() float     VisGrenades;		//Rockets currently visible in tube.
+var() int       Grenades;		//Rockets currently in the gun.
 var() int		StartingGrenades;
 var() byte		PreviousWeaponMode;		//Used to store the last referenced firemode pre Alt
 var() bool		bReady;			//Weapon ready for alt fire
 var   byte				ShellIndex;
+
+var()	bool		bIsSlug;
+
+var()	bool		bHasLAM;
+var()   byte		GearStatus;			//LAM configuration
+var()   bool		bLaserOn, bOldLaserOn;
+var()   LaserActor  Laser;
+var() 	Sound		LaserOnSound;
+var() 	Sound		LaserOffSound;
+var()   Emitter	    LaserDot;
+
+var() Projector	    FlashLightProj;
+var() Emitter		FlashLightEmitter;
+var() bool		    bLightsOn;
+var() bool		    bFirstDraw;
+var() vector		TorchOffset;
+var() Sound		    TorchOnSound;
+var() Sound		    TorchOffSound;
 
 struct RevInfo
 {
@@ -41,19 +61,83 @@ replication
 {
 	// Things the server should send to the client.
 	reliable if(Role==ROLE_Authority)
-		Grenades, bReady;
+		Grenades, bReady, bLaserOn;
 	reliable if (Role < ROLE_Authority)
-		ServerSwitchSilencer;
+		ServerSwitchSilencer, ServerFlashLight, ServerSwitchLaser;
 }
 
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		StartingGrenades = 6;
 	}
 	Grenades = StartingGrenades;
+}
+
+simulated event PostNetReceive()
+{
+	if (level.NetMode != NM_Client)
+		return;
+
+	//Do not use default to save postnetreceived shit
+	if (bLaserOn != bOldLaserOn)
+	{
+		OnLaserSwitched();
+
+		bOldLaserOn = bLaserOn;
+        ClientSwitchLaser();
+	}
+	Super.PostNetReceive();
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasLAM=false;
+	bHasSuppressor=true;
+	bHasAltShells=true;
+	bIsSlug=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
+	{
+		bIsSlug=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "lam") != -1)
+	{
+		bHasLAM=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "no_suppressor") != -1)
+	{
+		bHasSuppressor=false;
+	}
+	if (InStr(WeaponParams.LayoutTags, "no_alt") != -1)
+	{
+		bHasAltShells=false;
+		StartingGrenades = 0;
+	}
+	if (InStr(WeaponParams.LayoutTags, "start_suppressed") != -1)
+	{
+		bSilenced = true;
+		BFireMode[0].bAISilent = true;
+		
+		Mk781PrimaryFire(FireMode[0]).SwitchSilencerMode(true);
+		Mk781SecondaryFire(FireMode[1]).SwitchSilencerMode(true);
+		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
+	}
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bSilenced)
+		ApplySuppressorAim();
+	if (bLaserOn)
+		ApplyLaserAim();
 }
 
 //Now adds initial ammo in all cases
@@ -78,7 +162,10 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 	}
 }
 
-//SPECIAL AMMO CODE -----------------------------------------------------
+//====================
+//SPECIAL AMMO CODE
+//====================
+
 simulated function EmptyAltFire (byte Mode)
 {
 	if (Grenades <= 0 && ClientState == WS_ReadyToFire && FireCount < 1 && Instigator.IsLocallyControlled())
@@ -107,13 +194,15 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	ScaleFactor2 = 99 * C.ClipX/3200;
 	C.Style = ERenderStyle.STY_Alpha;
 	C.DrawColor = class'HUD'.Default.WhiteColor;
-	Count = Min(8,Grenades);
-    for( i=0; i<Count; i++ )
-    {
-		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile( Texture'BWBP_SKC_Tex.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+	if (bHasAltShells)
+	{
+		Count = Min(8,Grenades);
+		for( i=0; i<Count; i++ )
+		{
+			C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
+			C.DrawTile( Texture'BWBP_SKC_Tex.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		}
 	}
-
 	if (bSkipDrawWeaponInfo)
 		return;
 
@@ -346,8 +435,6 @@ simulated function bool IsReloadingGrenade()
 	return false;
 }
 
-//SPECIAL AMMO CODE END ------------------------------------
-
 simulated function UpdateBones()
 {
 	local int i;
@@ -367,6 +454,10 @@ simulated function UpdateBones()
 		SetBoneScale (6, 0.0, SilencerBone);
 }
 
+//=================================
+// Weapon Special: Supp, Light, Laser
+//=================================
+
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None || SightingState != SS_None)
@@ -374,10 +465,50 @@ exec simulated function WeaponSpecial(optional byte i)
 	if (Clientstate != WS_ReadyToFire)
 		return;
 	TemporaryScopeDown(0.5);
-	if (Level.NetMode == NM_Client)
-		ServerSwitchSilencer(!bSilenced);
-	SwitchSilencer(!bSilenced);
+	
+	if (bHasSuppressor)
+	{
+		if (Level.NetMode == NM_Client)
+			ServerSwitchSilencer(!bSilenced);
+		SwitchSilencer(!bSilenced);
+	}
+	if (bHasLAM)
+	{
+		GearStatus++;
+		if (GearStatus > 4)
+			GearStatus = 1;
+
+		if (bool(GearStatus & 1))  //Flashlight
+		{
+			bLightsOn = !bLightsOn;
+			ServerFlashLight(bLightsOn);
+			if (bLightsOn)
+			{
+				PlaySound(TorchOnSound,,0.7,,32);
+				if (FlashLightEmitter == None)
+					FlashLightEmitter = Spawn(class'MRS138TorchEffect',self,,location);
+				class'BallisticEmitter'.static.ScaleEmitter(FlashLightEmitter, DrawScale);
+				StartProjector();
+			}
+			else
+			{
+				PlaySound(TorchOffSound,,0.7,,32);
+				if (FlashLightEmitter != None)
+					FlashLightEmitter.Destroy();
+				KillProjector();
+			}
+		}
+		else //Laser
+		{
+			ServerSwitchLaser(!bLaserOn);
+			PlayIdle();
+		}
+	}
 }
+
+//=================================
+// Suppressor
+//=================================
 
 function ServerSwitchSilencer(bool bNewValue)
 {
@@ -414,24 +545,287 @@ simulated function SwitchSilencer(bool bNewValue)
 	}
 }
 
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.25;
+	AimComponent.AimSpread.Max *= 1.25;
+}
+
 simulated function Notify_SilencerOn()	{	PlaySound(SilencerOnSound,,0.5);	}
 simulated function Notify_SilencerOff()	{	PlaySound(SilencerOffSound,,0.5);	}
 
 simulated function Notify_SilencerShow(){	UpdateBones();	}
 simulated function Notify_SilencerHide(){	UpdateBones();	}
 
+//overidden to ensure suppressor override stays in place
+simulated function CommonSwitchWeaponMode(byte NewMode)
+{
+	local int LastMode;
+
+	if (Instigator == None)
+		return;
+
+	LastMode = CurrentWeaponMode;
+	CurrentWeaponMode = NewMode;
+
+    ParamsClasses[GameStyleIndex].static.SetFireParams(self);
+	
+	//Suppressor override
+	if (bSilenced)
+		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
+	else
+		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,0);
+
+	BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
+	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
+
+	if (WeaponModes[LastMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
+	{
+		ParamsClasses[GameStyleIndex].static.SetRecoilParams(self);
+	}
+
+	if (WeaponModes[LastMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
+	{
+		ParamsClasses[GameStyleIndex].static.SetAimParams(self);
+	}
+
+	CheckBurstMode();
+
+	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled())
+    {
+        default.LastWeaponMode = CurrentWeaponMode;
+    }
+}
+
+//=================================
+// Flashlight
+//=================================
+function ServerFlashLight (bool bNew)
+{
+	bLightsOn = bNew;
+	Mk781Attachment(ThirdPersonActor).bLightsOn = bLightsOn;
+}
+
+simulated function StartProjector()
+{
+	if (FlashLightProj == None)
+		FlashLightProj = Spawn(class'MRS138TorchProjector',self,,location);
+	AttachToBone(FlashLightProj, 'Laser');
+	FlashLightProj.SetRelativeLocation(TorchOffset);
+}
+simulated function KillProjector()
+{
+	if (FlashLightProj != None)
+		FlashLightProj.Destroy();
+}
+
+simulated event Tick(float DT)
+{
+	super.Tick(DT);
+
+	if (!bLightsOn || ClientState != WS_ReadyToFire)
+		return;
+	if (!Instigator.IsFirstPerson())
+		KillProjector();
+	else if (FlashLightProj == None)
+		StartProjector();
+}
+
+
+simulated event RenderOverlays( Canvas Canvas )
+{
+	local Vector TazLoc;
+	local Rotator TazRot;
+	super.RenderOverlays(Canvas);
+	if (!IsInState('Lowered'))
+		DrawLaserSight(Canvas);
+	if (bLightsOn)
+	{
+		TazLoc = GetBoneCoords('Laser').Origin;
+		TazRot = GetBoneRotation('Laser');
+		if (FlashLightEmitter != None)
+		{
+			FlashLightEmitter.SetLocation(TazLoc);
+			FlashLightEmitter.SetRotation(TazRot);
+			Canvas.DrawActor(FlashLightEmitter, false, false, DisplayFOV);
+		}
+	}
+}
+
+//=================================
+// Laser
+//=================================
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 0.75;
+	AimComponent.AimSpread.Max *= 0.75;
+	AimComponent.AimSpread.Min *= 0.75;
+}
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	bLaserOn = bNewLaserOn;
+	
+	if (ThirdPersonActor!=None)
+		Mk781Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+
+	OnLaserSwitched();
+
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+}
+
+simulated function ClientSwitchLaser()
+{
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+	}
+
+	PlayIdle();
+}
+
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'MD24LaserDot',,,Loc);
+}
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+
+// Draw a laser beam and dot to show exact path of bullets before they're fired
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc;
+	local Rotator AimDir;
+	local Actor Other;
+
+	if ((ClientState == WS_Hidden) || (!bLaserOn) || Instigator == None || Instigator.Controller == None || Laser==None)
+		return;
+
+	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
+	Loc = GetBoneCoords('Laser').Origin;
+
+	End = Start + Normal(Vector(AimDir))*5000;
+	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+	if (Other == None)
+		HitLocation = End;
+
+	// Draw dot at end of beam
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
+	if (LaserDot != None)
+		LaserDot.SetLocation(HitLocation);
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+
+	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
+	Laser.SetLocation(Loc);
+	HitLocation = class'BUtil'.static.ConvertFOVs(Instigator.Location + Instigator.EyePosition(), Instigator.GetViewRotation(), End, Instigator.Controller.FovAngle, DisplayFOV, 400);
+
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && 
+	   ((FireMode[0].IsFiring() && Level.TimeSeconds - FireMode[0].NextFireTime > -0.05) || (!FireMode[0].IsFiring() && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)))
+		Laser.SetRotation(Rotator(HitLocation - Loc));
+	else
+	{
+		AimDir = GetBoneRotation('Laser');
+		Laser.SetRotation(AimDir);
+	}
+	Scale3D.X = VSize(HitLocation-Loc)/128;
+	Scale3D.Y = 1;
+	Scale3D.Z = 1;
+	Laser.SetDrawScale3D(Scale3D);
+	Canvas.DrawActor(Laser, false, false, DisplayFOV);
+}
+
+
+//=================================
+// Destroy Cleanup
+//=================================
+simulated function bool PutDown()
+{
+	if (Super.PutDown())
+	{
+		KillLaserDot();
+		if (ThirdPersonActor != None)
+			Mk781Attachment(ThirdPersonActor).bLaserOn = false;
+		KillProjector();
+		if (FlashLightEmitter != None)
+			FlashLightEmitter.Destroy();
+
+		return true;
+	}
+	return false;
+}
+
+simulated function Destroyed ()
+{
+	default.bLaserOn = false;
+	if (Laser != None)
+		Laser.Destroy();
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	if (FlashLightEmitter != None)
+		FlashLightEmitter.Destroy();
+	KillProjector();
+
+	Super.Destroyed();
+}
+// Bone stuff
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	if (bSilenced)
+	{
 		Mk781Attachment(ThirdPersonActor).bSilenced=True;
+		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
+	}
 
 	VisGrenades=Grenades;
 	ShellIndex = FMin(Grenades-1, 5);
 	Super.BringUp(PrevWeapon);
+	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
+		Laser = Spawn(class'LaserActor');
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
+	if (Instigator != None && AIController(Instigator.Controller) != None)
+	{
+		if (bHasLAM)
+		{
+			ServerSwitchLaser(FRand() > 0.5);
+			ServerFlashlight(FRand() > 0.5);
+		}
+		if (bHasSuppressor)
+			bSilenced = (FRand() > 0.5);
+	}
 
-	if (AIController(Instigator.Controller) != None)
-		bSilenced = (FRand() > 0.5);
+	if ( ThirdPersonActor != None )
+		Mk781Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
 	UpdateBones();
 }
@@ -539,6 +933,9 @@ function byte BestMode()
 	local Bot B;
 	local float Dist;
 	local Vector Dir;
+	
+	if (!bHasAltShells)
+		return 0;
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
@@ -624,6 +1021,11 @@ defaultproperties
 	SilencerOffAnim="SilencerOff"
 	SilencerOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
 	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
+	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	TorchOffset=(X=-50.000000)
+	TorchOnSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
+	TorchOffSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
 	SGPrepAnim="LoadSpecial2"
 	ReloadAltAnim="ReloadSpecialFull"
 	ReloadAnimEmpty="ReloadEmpty"
@@ -646,8 +1048,8 @@ defaultproperties
 	ManualLines(1)="Loads an electroshock shell.|Without the suppressor employed, will subsequently generate an electric shot with high power and excellent range.|With the suppressor employed, will generate an arcing bolt with fast travel time and strong impact damage. Deals lesser damage in a radius around the point of impact."
 	ManualLines(2)="The Weapon Function key attaches the suppressor, which removes the flash, reduces recoil, quietens the fire sound of the primary and changes the functionality of the weapon. Due to the suppressor's length, the weapon will offset while jumping if it is attached.||Effective at medium range."
 	SpecialInfo(0)=(Info="300.0;25.0;0.5;60.0;0.6;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
 	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock',Volume=2.300000,Radius=32.000000)
 	ReloadAnim="ReloadLoop"
@@ -696,7 +1098,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MK781'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.MK781_FPm'
 	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.M1014.M1014-Shine'

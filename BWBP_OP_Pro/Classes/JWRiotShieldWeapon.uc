@@ -258,6 +258,6 @@ defaultproperties
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.Icon_JWRiot'
      IconCoords=(X2=256,Y2=31)
      ItemName="Civilian Riot Shield"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_CivShield'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.CivShield_FPm'
      DrawScale=1.250000
 }

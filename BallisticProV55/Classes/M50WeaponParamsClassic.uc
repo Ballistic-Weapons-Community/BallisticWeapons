@@ -198,11 +198,12 @@ defaultproperties
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
-		//Stats
-		InventorySize=7
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-8,Y=0.08,Z=2.7)
 		SightPivot=(Pitch=200)
+		//Stats
+		InventorySize=7
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -218,25 +219,27 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_AdvStealth
 		//Layout core
 		LayoutName="A3 Suppressed"
-		LayoutTags="no_grenade"
-		Weight=10
+		LayoutTags="no_grenade, suppressed"
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.2,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
         WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=0.000000,Y=0.000000,Z=3.40000)
 		SightPivot=(Pitch=80,Roll=0,Yaw=0)
 		//Function
 		InventorySize=7
-		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		bNeedCock=True
+		//bNeedCock=True //Netcode issue, core gun needs fancydraw anim first
 		ViewOffset=(X=9,Y=7.00,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -247,24 +250,28 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_AdvHolo
 		//Layout core
 		LayoutName="A3 Holo"
-		LayoutTags="no_grenade"
-		Weight=10
+		LayoutTags="no_grenade, lam"
+		Weight=5
 		AllowedCamos(0)=4
 		AllowedCamos(1)=5
 		AllowedCamos(2)=6
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_M50A3'
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		SightOffset=(X=0.000000,Y=0.000000,Z=4.25000)
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-39,y=-1.4,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_LAM',BoneName="tip",Scale=0.04,AugmentOffset=(x=-20,y=0,z=-1.5),AugmentRot=(Pitch=0,Roll=32768,Yaw=0))
+        WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=0.000000,Y=0.000000,Z=3.35000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
 		//Function
 		InventorySize=7
-		SightMoveSpeedFactor=0.500000
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		bNeedCock=True
+		//bNeedCock=True //Netcode issue, core gun needs fancydraw anim first
 		ViewOffset=(X=9,Y=7.00,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -272,6 +279,42 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_AdvScope
+		//Layout core
+		LayoutName="A3 4X Scope"
+		LayoutTags="no_grenade"
+		Weight=5
+		AllowedCamos(0)=4
+		AllowedCamos(1)=5
+		AllowedCamos(2)=6
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_TPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-43,y=-1.75,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+        WeaponBoneScales(0)=(BoneName="Irons",Slot=0,Scale=0f)
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.400000
+		SightOffset=(X=0.000000,Y=0.000000,Z=3.50000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		//Function
+		InventorySize=7
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		//bNeedCock=True //Netcode issue, core gun needs fancydraw anim first
+		ViewOffset=(X=9,Y=7.00,Z=-2)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Long'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	/*
 	Begin Object Class=WeaponParams Name=ClassicParams_Stealth
 		LayoutName="Burst Suppressed"
 		Weight=10
@@ -339,11 +382,9 @@ defaultproperties
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2
 		AllowedCamos(3)=3
-		
 		//Attachments
 		ScopeViewTex=Texture'BWBP_SKC_Tex.M30A2.M30A2-Scope'
 		ZoomType=ZT_Logarithmic
-		
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -361,11 +402,12 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
+	End Object*/
 	
 	Layouts(0)=WeaponParams'ClassicParams' //M50 (Silver, GL)
 	Layouts(1)=WeaponParams'ClassicParams_AdvStealth'//M50A3 Stealth (Black, Suppressed, EO Tech)
 	Layouts(2)=WeaponParams'ClassicParams_AdvHolo' //M50A3 Desert (Tan, Irons)
+	Layouts(3)=WeaponParams'ClassicParams_AdvScope' //M50A3 Desert (Tan, Irons)
 	//Layouts(1)=WeaponParams'ClassicParams_Stealth' //M50 (Black, Suppressed, Smoke GL, Burst)
 	//Layouts(4)=WeaponParams'ClassicParams_4XScope' //M50A1 Jungle (Jungle, Scope, GL, Burst)
 	//Layouts(5)=WeaponParams'ClassicParams_ScreenScope' //M50A1 Gauss Prototype (M30A2, Screen Scope, Gauss, Burst)
@@ -416,10 +458,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinA-D',Index=1,AIndex=0,PIndex=0)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=1,PIndex=1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-CoverBlack',Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-CoverBlack',Index=3,AIndex=4,PIndex=-1)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=5,PIndex=-1)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=3,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M50A3_Desert
@@ -428,11 +470,11 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinA-D',Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverTan",Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-MainTan",Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverTan",Index=3,AIndex=4,PIndex=-1)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-MainTan",Index=4,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=5,PIndex=-1)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=3,PIndex=-1)
 	End Object
 	
 	Begin Object Class=WeaponCamo Name=M50A3_Red
@@ -441,11 +483,11 @@ defaultproperties
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinA-D',Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverRed",Index=3,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50SkinB-D',Index=2,AIndex=1,PIndex=-1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50A3.M50A3-CoverRed",Index=3,AIndex=4,PIndex=-1)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4,AIndex=2,PIndex=-1)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=5,AIndex=5,PIndex=-1)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=6,AIndex=3,PIndex=-1)
 	End Object
 	
 	Camos(0)=WeaponCamo'M50_Silver'

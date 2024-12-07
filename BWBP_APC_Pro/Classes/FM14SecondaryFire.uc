@@ -39,12 +39,12 @@ defaultproperties
      AimedFireAnim="SightFire"
      FireRecoil=1280.000000
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Fire',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
      FireAnim="Fire"
      FireEndAnim=
      FireAnimRate=1.100000
      FireRate=0.750000
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_FM13Gas'
+     AmmoClass=Class'BallisticProV55.Ammo_BOGPGrenades'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

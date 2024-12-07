@@ -24,6 +24,7 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.FSG50.FSG-Stock');
 	
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FG50.FG50PickupHi');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FG50.FG50PickupLo');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FG50.FG50AmmoPickup');
 }
 simulated function UpdatePrecacheMaterials()
@@ -37,19 +38,19 @@ simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FG50.FG50PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FG50.FG50PickupLo');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.FG50.FG50AmmoPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.FG50.FG50PickupHi'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.FG50.FG50PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.FG50MachineGun'
      RespawnTime=20.000000
      PickupMessage="You picked up the FG50 machinegun."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.FG50.FG50PickupHi'
      Physics=PHYS_None
-     DrawScale=1.100000
-     PrePivot=(Y=-10.000000)
+     DrawScale=0.750000
      CollisionHeight=4.000000
 }

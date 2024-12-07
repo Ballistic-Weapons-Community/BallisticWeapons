@@ -13,6 +13,16 @@ var   bool			bSecondBarrel;
 var   bool			bIsDouble;
 var		bool		bAnimatedOverheat; //overheat plays special anims
 
+var() sound		FireSoundLoop;
+var() sound		FireSoundLoopRapid;
+var() sound		SpinUpSound;
+var() sound		SpinDownSound;
+var() sound		SpinDownSoundRapid;
+var   float		StopFireTime;
+var   bool		bLaserFiring;
+var   bool		bSpinUp;
+var   bool 		bPreventFire;	//prevent fire/recharging when laser is cooling
+
 var 	float 		SelfHeatPerShot, SelfHeatPerShotDouble, SelfHeatDeclineDelay;
 
 simulated function bool AllowFire()
@@ -42,6 +52,123 @@ function InitEffects()
     if ((MuzzleFlashClass != None) && ((MuzzleFlash2 == None) || MuzzleFlash2.bDeleteMe) )
 		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash2, MuzzleFlashClass, Weapon.DrawScale*FlashScaleFactor, weapon, 'tip2');
 }
+	// Charge Beam Code
+simulated state GatlingLaser
+{
+	//Intent is for the laser to begin firing once it has spooled up
+	simulated event ModeDoFire()
+	{
+		if (!AllowFire())
+			return;
+		if (LS14Carbine(BW).bRapid && !bSpinUp && !bPreventFire)
+		{
+			Weapon.PlayOwnedSound(SpinUpSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+			bSpinUp=true;
+		}
+		if (LS14Carbine(BW).bRapid && LS14Carbine(BW).LaserCharge < LS14Carbine(BW).MaxCharge || bPreventFire)
+			return;
+		super.ModeDoFire();
+	}
+
+	simulated function ModeTick(float DT)
+	{
+		if (BW.MagAmmo == 0 || (BW.bNoMag && BW.AmmoAmount(ThisModeNum) == 0))
+		{
+			StopFiring();
+		}
+		if (LS14Carbine(BW).bRapid)
+		{
+			if (bIsFiring && !bPreventFire && BW.MagAmmo > 0)
+			{
+				LS14Carbine(BW).SetLaserCharge(FMin(LS14Carbine(BW).LaserCharge + LS14Carbine(BW).ChargeRate * DT * (1 + 2*int(BW.bBerserk)), LS14Carbine(BW).MaxCharge));
+			}
+			else if (LS14Carbine(BW).LaserCharge > 0)
+			{
+				if (level.TimeSeconds > StopFireTime ||  BW.MagAmmo == 0 || (BW.bNoMag && BW.AmmoAmount(ThisModeNum) == 0))
+				{
+					StopFiring();
+				}
+				bPreventFire=true;
+				LS14Carbine(BW).SetLaserCharge(FMax(0.0, LS14Carbine(BW).LaserCharge - LS14Carbine(BW).CoolRate * DT * (1 + 2*int(BW.bBerserk))));
+				
+				if (LS14Carbine(BW).LaserCharge <= 0)
+					bPreventFire=false;
+			}
+		}
+		Super.ModeTick(DT);
+	}
+	
+	//Server fire
+	function DoFireEffect()
+	{
+		bLaserFiring=true;
+		super.DoFireEffect();
+	}
+
+	//Client fire
+	function PlayFiring()
+	{
+		super.PlayFiring();
+		if (FireSoundLoopRapid != None && LS14Carbine(BW).bRapid)
+		{
+			Instigator.AmbientSound = FireSoundLoopRapid;
+			Instigator.SoundVolume = 255;
+		}
+		else if (FireSoundLoop != None && !LS14Carbine(BW).bHighPower)
+		{
+			Instigator.AmbientSound = FireSoundLoop;
+			Instigator.SoundVolume = 255;
+		}
+		bLaserFiring=true;
+	}
+
+	//Server fire
+	function ServerPlayFiring()
+	{
+		super.ServerPlayFiring();
+		if (FireSoundLoopRapid != None && LS14Carbine(BW).bRapid)
+		{
+			Instigator.AmbientSound = FireSoundLoopRapid;
+			Instigator.SoundVolume = 255;
+		}
+		else if (FireSoundLoop != None)
+		{
+			Instigator.AmbientSound = FireSoundLoop;
+			Instigator.SoundVolume = 255;
+		}
+		bLaserFiring=true;
+	}
+
+	function StopFiring()
+	{
+		if (bLaserFiring)
+		{
+			if (LS14Carbine(BW).bRapid)
+				Weapon.PlayOwnedSound(SpinDownSoundRapid,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+			else
+				Weapon.PlayOwnedSound(SpinDownSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		}
+		bSpinUp=false;
+		Instigator.AmbientSound = LS14Carbine(BW).UsedAmbientSound;;
+		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+		bLaserFiring=false;
+		StopFireTime = level.TimeSeconds;
+	}	
+	
+	simulated function CheckClipFinished()
+	{
+		if (ClipFinishSound.Sound != None && ( (bUseWeaponMag && BW.MagAmmo - Load < 1) || (BW.bNoMag && BW.AmmoAmount(ThisModenum) - Load < 1) ))
+		{
+			bSpinUp=false;
+			Instigator.AmbientSound = LS14Carbine(BW).UsedAmbientSound;;
+			Instigator.SoundVolume = Instigator.Default.SoundVolume;
+			bLaserFiring=false;
+			Weapon.PlayOwnedSound(ClipFinishSound.Sound,ClipFinishSound.Slot,ClipFinishSound.Volume,ClipFinishSound.bNoOverride,ClipFinishSound.Radius,ClipFinishSound.Pitch,ClipFinishSound.bAtten);
+			BW.StopFire(ThisModeNum);
+		}
+	}
+}
+
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
@@ -111,7 +238,7 @@ simulated event ModeDoFire()
 		super.ModeDoFire();	
 	}
 	
-	if (LS14Carbine(Weapon).bIsReloadingGrenade)
+	if (LS14Carbine(Weapon) != None && LS14Carbine(Weapon).bIsReloadingGrenade)
 		LS14Carbine(Weapon).bWantsToShoot=true;
 }
 
@@ -151,6 +278,11 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
+	FireSoundLoop=Sound'BWBP_SKC_Sounds.LS440.LS440-FireLoop'
+	FireSoundLoopRapid=Sound'BWBP_SKC_Sounds.LS440.LS440-FireLoopRapid'
+	SpinUpSound=Sound'BWBP_SKC_Sounds.LS440.LS440-SpinUp'
+	SpinDownSound=Sound'BWBP_SKC_Sounds.LS440.LS440-SpinDown'
+	SpinDownSoundRapid=Sound'BWBP_SKC_Sounds.LS440.LS440-SpinDownRapid'
 	SelfHeatPerShot=0.600000
 	SelfHeatPerShotDouble=1.500000
 	SelfHeatDeclineDelay=0.5
@@ -171,7 +303,8 @@ defaultproperties
 	FireEndAnim=
 	FireRate=0.150000
 	AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
-
+	AimedFireAnim="SightFire"
+	//PreFireAnim="Fire"
 	ShakeRotMag=(X=48.000000)
 	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000

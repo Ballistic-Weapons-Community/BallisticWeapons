@@ -1,6 +1,8 @@
 //=============================================================================
 // Ammo_42HVG.
 //
+// Gauss ready sabots. Used by the M2020 and gauss MG36
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================

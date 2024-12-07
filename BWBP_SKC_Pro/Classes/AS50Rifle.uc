@@ -711,8 +711,8 @@ defaultproperties
 	ManualLines(1)="Incendiary shot. Deals moderate damage and ignites struck targets, causing them to burn brightly, emit smoke, suffer view flash and take damage over time. Further hits extend the duration of this effect."
 	ManualLines(2)="The Weapon Function key toggles the IR component of the weapon's scope. This is useful for highlighting enemies through environmental features like water or trees, or through smoke.||The FSSG-50 is heavy and burdens the player, reducing movement speed and jump height. It takes time to aim.||The FSSG-50 is effective at long range."
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;90.0;10.0;0.0;0.1")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn',Volume=0.210000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff',Volume=0.215000)
 	MagAmmo=8
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
@@ -765,7 +765,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FSSG-50'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'

@@ -299,7 +299,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=6.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925Turret'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M925Turret_FPm'
 	DrawScale=0.230000
 	CollisionHeight=24.000000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

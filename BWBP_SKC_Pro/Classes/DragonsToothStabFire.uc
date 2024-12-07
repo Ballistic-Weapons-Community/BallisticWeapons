@@ -25,7 +25,7 @@ defaultproperties
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSStabHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSStabChest'
      KickForce=100
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=48.000000,bAtten=True)
      bAISilent=True
 	FireAnim="Stab"
 	FireAnimRate=1

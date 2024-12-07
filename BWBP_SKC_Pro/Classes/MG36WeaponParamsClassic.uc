@@ -84,7 +84,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_MG36Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MG36AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MG36Assault'
-		PenetrationEnergy=64.000000
+		PenetrationEnergy=200.000000
 		PenetrateForce=600
 		bPenetrate=True
 		PDamageFactor=0.750000
@@ -226,6 +226,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="Scope",Slot=33,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-48,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//Stats
 		PlayerSpeedFactor=0.950000
 		InventorySize=9
@@ -234,8 +236,9 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=30
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
+		SightOffset=(X=-5.000000,Y=0.0000,Z=1.950000)
 		ViewOffset=(X=8,Y=8,Z=-4)
-		ZoomType=ZT_Logarithmic
+		ZoomType=ZT_Irons
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_AR'
 		AimParams(0)=AimParams'ClassicAimParams_AR'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_AR'

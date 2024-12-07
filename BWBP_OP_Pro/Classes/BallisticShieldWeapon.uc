@@ -234,8 +234,8 @@ defaultproperties
      ManualLines(1)="Prepared strike with the weapons."
      ManualLines(2)="Hold Weapon Function to block with the shield, which dramatically increases its defensive effectiveness at the cost of your ability to see. The shield is further bolstered in effectiveness if the user is crouching while blocking.||The ballistic shield reduces movement speed whilst active."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout',Volume=0.209000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway',Volume=0.209000)
      bNoMag=True
      GunLength=0.000000
 	 NDCrosshairCfg=(Pic1=None,Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=255),Color2=(B=210,G=255,R=0,A=255),StartSize1=96,StartSize2=96)
@@ -265,6 +265,6 @@ defaultproperties
      IconMaterial=Texture'BWBP_OP_Tex.BallisticShield.Icon_BallisticShield'
      IconCoords=(X2=110,Y2=32)
      ItemName="RSH-1034 Riot Shield"
-     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_BallisticShield'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShield_FPm'
      DrawScale=1.250000
 }

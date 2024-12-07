@@ -295,7 +295,7 @@ defaultproperties
 {
 	SingleLoadAnim="LoadSpecial"
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_CC_Tex.FM14.BigIcon_FM14'
+	BigIconMaterial=Texture'BWBP_OP_Tex.FM14.BigIcon_FM14'
 	BigIconCoords=(Y1=35,Y2=230)
 	bWT_Shotgun=True
 	ManualLines(0)="Long-ranged pump-action shotgun fire. Slug rounds and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
@@ -303,11 +303,11 @@ defaultproperties
 	ManualLines(2)="Has a melee attack. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind.||As a shotgun, has poor penetration.||Most effective at medium range."
 	SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.0")
 	MeleeFireClass=Class'BWBP_APC_Pro.FM14MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
-	CockSound=(Sound=Sound'BWBP_CC_Sounds.FM13.FM13-Cock')
+	CockSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Cock')
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=1.100000
 	BringUpTime=1.400000
@@ -347,7 +347,7 @@ defaultproperties
 	PickupClass=Class'BWBP_APC_Pro.FM14Pickup'
 	PlayerViewOffset=(X=-14.000000,Y=5.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBP_APC_Pro.FM14Attachment'
-	IconMaterial=Texture'BWBP_CC_Tex.FM14.SmallIcon_FM14'
+	IconMaterial=Texture'BWBP_OP_Tex.FM14.SmallIcon_FM14'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="[B] FM14 Pitbull Blunderbuss"
 	bNoCrosshairInScope=True
@@ -357,6 +357,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_Pitbull'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FM14_FPm'
 	DrawScale=0.500000
 }

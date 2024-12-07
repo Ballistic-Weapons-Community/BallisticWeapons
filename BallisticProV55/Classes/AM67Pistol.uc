@@ -11,39 +11,46 @@
 //=============================================================================
 class AM67Pistol extends BallisticHandgun;
 
-// Laser Variant Vars
-var	  bool			bLaserVariant;
-var   bool			bLaserOn;
-var   LaserActor	Laser;
-var   Emitter		LaserBlast;
+
+// Standard Laser
+var()	bool		bHasLaserSight;
+var()   bool			bLaserOn, bOldLaserOn;
+var()   bool			bStriking;
+var()   LaserActor	Laser;
+var() Sound			LaserOnSound;
+var() Sound			LaserOffSound;
 var   Emitter		LaserDot;
+
+// Kill Laser
+var	  bool			bHasCombatLaser;
+var   Emitter		LaserBlast;
 var() float			LaserAmmo;
 var() float			LaserChargeRate;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bLaserVariant, bLaserOn, LaserAmmo;
+		bHasCombatLaser, bLaserOn, LaserAmmo;
 }
 
-simulated event PreBeginPlay()
+simulated function OnWeaponParamsChanged()
 {
-	super.PreBeginPlay();
-    
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bHasCombatLaser=false;
+	bHasLaserSight=false;
+
+	if (InStr(WeaponParams.LayoutTags, "combat_laser") != -1)
 	{
-		bLaserVariant=true;
-		FireModeClass[1]=Class'BallisticProV55.AM67SecondaryLaserFire';
+		bHasCombatLaser=true;
 	}
-}
 
-simulated event PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+	if (InStr(WeaponParams.LayoutTags, "target_laser") != -1)
 	{
-		if (AM67Attachment(ThirdPersonActor) != none)
-			AM67Attachment(ThirdPersonActor).bLaserVariant=True;
+		bHasLaserSight=true;
+		bShowChargingBar=false;
 	}
 }
 
@@ -65,6 +72,14 @@ simulated function bool CanSynch(byte Mode)
 	return super.CanSynch(Mode);
 }
 
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	if (bNeedCock)
@@ -73,8 +88,24 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	BringUpTime = default.BringUpTime;
 	
 	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
-		Laser = Spawn(class'LaserActor_GRSNine');
-	
+	{
+		if (bHasCombatLaser)
+			Laser = Spawn(class'LaserActor_GRSNine');
+		else
+			Laser = Spawn(class'LaserActor');
+	}
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
+	if (Instigator != None && LaserBlast == None && PlayerController(Instigator.Controller) != None)
+	{
+		LaserBlast = Spawn(class'BallisticProV55.GRS9LaserOnFX');
+		class'DGVEmitter'.static.ScaleEmitter(LaserBlast, DrawScale);
+	}
+	if (Instigator != None && bHasLaserSight && AIController(Instigator.Controller) != None)
+		ServerSwitchLaser(FRand() > 0.5);
+
+	if ( ThirdPersonActor != None )
+		AM67Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 }
 
 simulated function PlayCocking(optional byte Type)
@@ -87,7 +118,7 @@ simulated function PlayCocking(optional byte Type)
 
 simulated function float ChargeBar()
 {
-	if (bLaserVariant)
+	if (bHasCombatLaser)
 	{
 		return FClamp(LaserAmmo/default.LaserAmmo, 0, 1);
 	}
@@ -103,18 +134,34 @@ simulated function float ChargeBar()
 	}
 }
 
-// Laser Code
+//=======================================================================
+// Laser handling
+//=======================================================================
 
 simulated event Tick (float DT)
 {
 	super.Tick(DT);
-	if (bLaserVariant)
+	if (bHasCombatLaser)
 	{
 		if (LaserAmmo < default.LaserAmmo && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
 			LaserAmmo = FMin(default.LaserAmmo, LaserAmmo + DT*LaserChargeRate);
 		if (bLaserOn && AM67Attachment(ThirdPersonActor) != none)
 			AM67Attachment(ThirdPersonActor).LaserSizeAdjust = LaserAmmo;
 	}
+}
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 0.65;
+	AimComponent.AimSpread.Max *= 0.65;
+	AimComponent.AimSpread.Min *= 0.65;
 }
 
 simulated function PlayIdle()
@@ -139,29 +186,34 @@ simulated event PostNetReceive()
 }
 function ServerSwitchLaser(bool bNewLaserOn)
 {
-	if (bLaserOn == bNewLaserOn)
-		return;
 	bLaserOn = bNewLaserOn;
 
 	if (ThirdPersonActor != None)
 		AM67Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-		AimComponent.AimAdjustTime *= 1.5;
-	else
-	{
-		AimComponent.AimAdjustTime *= 0.667;
-		bServerReloading = false;
-		bPreventReload=False;
-		ReloadState = RS_None;
-	}
+	
+	OnLaserSwitched();
+
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
 
 simulated function ClientSwitchLaser()
 {
-	if (!bLaserOn)
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		if (!bHasCombatLaser)
+			PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
 		KillLaserDot();
+		if (!bHasCombatLaser)
+			PlaySound(LaserOffSound,,0.7,,32);
+	}
+	
 	PlayIdle();
 }
 
@@ -174,10 +226,17 @@ simulated function KillLaserDot()
 		LaserDot = None;
 	}
 }
-simulated function SpawnLaserDot(vector Loc)
+simulated function SpawnLaserDot(optional vector Loc)
 {
 	if (LaserDot == None)
-		LaserDot = Spawn(class'BallisticProV55.IE_GRS9LaserHit',,,Loc);
+	{
+		if (bHasCombatLaser)
+			LaserDot = Spawn(class'BallisticProV55.IE_GRS9LaserHit',,,Loc);
+		else
+			LaserDot = Spawn(class'M806LaserDot',,,Loc);
+		if (LaserDot != None)
+			class'BallisticEmitter'.static.ScaleEmitter(LaserDot, 1.5);
+	}
 }
 
 
@@ -267,7 +326,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		Laser.SetRotation(AimDir);
 	}
 
-	if (LaserBlast != None)
+	if (LaserBlast != None && bHasCombatLaser)
 	{
 		LaserBlast.SetLocation(Laser.Location);
 		LaserBlast.SetRotation(Laser.Rotation);
@@ -275,8 +334,17 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	}
 
 	Scale3D.X = VSize(HitLocation-Loc)/128;
-	Scale3D.Y = 2.5 * (1 + 4*FMax(0, LaserAmmo - 0.5));
-	Scale3D.Z = Scale3D.Y;
+	if (bHasCombatLaser)
+	{
+		Scale3D.Y = 2.0 * (1 + 4*FMax(0, LaserAmmo - 0.5));
+		Scale3D.Z = Scale3D.Y;
+	}
+	else
+	{
+		Scale3D.Y = 3;
+		Scale3D.Z = 3;
+	}
+	
 	Laser.SetDrawScale3D(Scale3D);
 	Canvas.DrawActor(Laser, false, false, DisplayFOV);
 }
@@ -295,10 +363,43 @@ simulated event RenderOverlays( Canvas Canvas )
 // choose between regular or alt-fire
 function byte BestMode()
 {
-	if (level.TimeSeconds >= FireMode[1].NextFireTime && FRand() > 0.6)
-		return 1;
+	local Bot B;
+	local float Result, Dist;
+	
+	B = Bot(Instigator.Controller);
+	
+	if ( (B == None) || (B.Enemy == None) )
+		return 0;
+	
+	
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+		
+	if (bNoaltfire)
+		return 0;
+	else if (bHasCombatLaser)
+	{
+		if (LaserAmmo < 0.3 || level.TimeSeconds - AM67SecondaryFire(FireMode[1]).StopFireTime < 0.8)
+			return 0;
+
+		if (Dist > 3000)
+			return 0;
+		Result = FRand()*0.2 + FMin(1.0, LaserAmmo / (default.LaserAmmo/2));
+		if (Dist < 500)
+			Result += 0.5;
+		else if (Dist > 1500)
+			Result -= 0.3;
+		if (Result > 0.5)
+			return 1;
+	}
+	else
+	{
+		if (level.TimeSeconds >= FireMode[1].NextFireTime && FRand() > 0.6 && Dist < 1200)
+			return 1;
+	}
 	return 0;
 }
+
+
 
 function float GetAIRating()
 {
@@ -340,7 +441,7 @@ defaultproperties
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
 	
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_AM67'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
 	BringUpTime=0.900000
 
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
@@ -374,7 +475,7 @@ defaultproperties
 	ManualLines(0)="High-powered bullet fire. Recoil is high."
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_AM67'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.AM67_FPm'
 	ParamsClasses(0)=Class'AM67WeaponParamsComp'
 	ParamsClasses(1)=Class'AM67WeaponParamsClassic'
 	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'
@@ -386,7 +487,7 @@ defaultproperties
 	SightBobScale=0.5f 
 	
 	Priority=24
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	PutDownTime=0.600000
 
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(R=0,A=194),Color2=(R=0),StartSize1=80,StartSize2=26)

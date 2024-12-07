@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M99Attachment extends HandgunAttachment;
+class M99Attachment extends BallisticAttachment;
 
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
@@ -124,14 +124,17 @@ simulated function Destroyed()
 
 defaultproperties
 {
-	 WeaponClass=class'M99Rifle'
-     MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-     ImpactManager=Class'BallisticProV55.IM_BigBullet'
-     BrassClass=Class'BWBP_JCF_Pro.Brass_50BMG'
-     TracerClass=Class'BWBP_JCF_Pro.TraceEmitter_M99ECS'
-     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
-     Mesh=SkeletalMesh'BWBP_JCF_Anims.M99_TPm'
-     DrawScale=0.350000
+	WeaponClass=class'M99Rifle'
+    MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+	FlashScale=0.800000
+    ImpactManager=Class'BallisticProV55.IM_BigBullet'
+    BrassClass=Class'BWBP_JCF_Pro.Brass_50BMG'
+    TracerClass=Class'BWBP_JCF_Pro.TraceEmitter_M99ECS'
+    WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+    WaterTracerMode=MU_Both
+    FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-FlyBy',Volume=2.500000)
+	ReloadAnimRate=0.519000
+	CockAnimRate=0.340000
+    Mesh=SkeletalMesh'BWBP_JCF_Anims.M99_TPm'
+    DrawScale=0.350000
 }

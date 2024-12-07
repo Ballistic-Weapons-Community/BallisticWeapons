@@ -10,7 +10,7 @@ class DT_SuperchargeZapped extends DT_BWFire;
 
 defaultproperties
 {
-     DeathStrings(0)="%k stopped %o's heart with %vh Supercharger."
+     DeathStrings(0)="%k stopped %o's heart with %kh Supercharger."
      DeathStrings(1)="%k's Supercharger shorted out %o."
      DeathStrings(2)="%o was electrocuted by %k's Supercharger."
      DeathStrings(3)="%o got a fatal static shock from %k's Supercharger."

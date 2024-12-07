@@ -11,6 +11,7 @@ defaultproperties
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.30000
 		Damage=125.0
 		HeadMult=2.1
 		LimbMult=0.66
@@ -125,8 +126,8 @@ defaultproperties
 		Index=1
 		CamoName="Jungle"
 		Weight=15
-		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainRust",Index=1,AIndex=0,PIndex=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MiscRust",Index=2,AIndex=1,PIndex=1)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.M925Camos.M925-MainJungle",Index=1,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BW_Core_WeaponTex.M925.M925Small",Index=2,AIndex=1,PIndex=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3,AIndex=2,Pindex=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
 		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M925.M925AmmoBox',Index=4,AIndex=3,PIndex=3)

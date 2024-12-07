@@ -35,6 +35,7 @@ defaultproperties
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	
+	//Rapid
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams_Rapid
 		ProjectileClass=Class'BallisticProV55.A73ProjectileBal'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
@@ -177,7 +178,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Elite
-        AmmoPerFire=8
+        AmmoPerFire=10
 	    FireEndAnim=
         AimedFireAnim="Fire"
 	    FireInterval=0.850000

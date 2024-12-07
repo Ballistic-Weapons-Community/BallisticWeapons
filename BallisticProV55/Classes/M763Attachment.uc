@@ -8,8 +8,42 @@
 //=============================================================================
 class M763Attachment extends BallisticShotgunAttachment
 	DependsOn(M763GasControl);
+	
+var byte CurrentTracerMode;
+var array< class<BCTraceEmitter> >	TracerClasses[3];
+var array< class<BCImpactManager> >	ImpactManagers[3];
+var	  BallisticWeapon		myWeap;
 
-var class<BCTraceEmitter> AltTracerClass;
+replication
+{
+	reliable if ( Role==ROLE_Authority )
+		CurrentTracerMode;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	if (M763Shotgun(I) != None && M763Shotgun(I).bIsSlug)
+	{
+		CurrentTracerMode=1;
+	}
+}
+
+simulated function int GetTraceCount()
+{
+	if (WeaponClass != None)
+	{
+		if (CurrentTracerMode == 1)
+			return 1;
+		else
+			return ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+	}
+
+	return 10;
+}
 
 // Do trace to find impact info and then spawn the effect
 // This should be called from sub-classes
@@ -73,13 +107,12 @@ simulated function InstantFireEffects(byte Mode)
 
 			if (HitMat == None)
 				mHitSurf = int(mHitActor.SurfaceType);
-
-
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (ImpactManager != None)
-				ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+			if (ImpactManagers[CurrentTracerMode] != None)
+				ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+			
 		}
 	}
 }
@@ -97,7 +130,6 @@ simulated function GasShotFX()
 }
 
 // Spawn a tracer and water tracer
-
 simulated function SpawnTracer(byte Mode, Vector V)
 {
 	local BCTraceEmitter Tracer;
@@ -107,7 +139,6 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 
 	if (class'BallisticMod'.default.EffectsDetailMode == 0 && Mode == 0)
-
 		return;
 
 	TipLoc = GetModeTipLocation();
@@ -132,21 +163,21 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			bThisShot=true;					}
 	}
 	// Spawn a tracer
-	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
+	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
 		bThisShot && (Mode == 1 || TracerChance >= 1 || FRand() < TracerChance))
 
 	{
 		if (Mode == 0)
 		{
 			if (Dist > 200)
-				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
+				Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
 
 				if (Tracer != None)
 				Tracer.Initialize(Dist);
 		}
 
 		else
-			Tracer = Spawn(AltTracerClass, self, , TipLoc, Rotator(V - TipLoc));
+			Tracer = Spawn(TracerClasses[2], self, , TipLoc, Rotator(V - TipLoc));
 	}
 	// Spawn under water bullet effect
 	if ( Mode == 0 && Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
@@ -162,19 +193,24 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-     AltTracerClass=class'TraceEmitter_M763Gas'
-     WeaponClass=class'M763Shotgun'
-     MuzzleFlashClass=class'M763FlashEmitter'
-     ImpactManager=class'IM_Shell'
-     MeleeImpactManager=class'IM_GunHit'
-     FlashScale=1.800000
-     BrassClass=class'Brass_Shotgun'
-     TracerMode=MU_Both
-     TracerClass=class'TraceEmitter_Shotgun'
-     TracerChance=0.500000
-     MeleeStrikeAnim="Melee_swing"
-     SingleFireAnim="RifleHip_FireCock"
-     SingleAimedFireAnim="RifleAimed_FireCock"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M763_TPm'
-     DrawScale=0.080000
+	WeaponClass=class'M763Shotgun'
+	TracerClasses(0)=class'TraceEmitter_Shotgun' //shot
+	TracerClasses(1)=class'TraceEmitter_Default' //slug
+	TracerClasses(2)=class'TraceEmitter_M763Gas' //gas
+	ImpactManagers(0)=class'IM_Shell'
+	ImpactManagers(1)=class'IM_BigBulletHMG'
+	TracerClass=class'TraceEmitter_Shotgun'
+	MuzzleFlashClass=class'M763FlashEmitter'
+	ImpactManager=class'IM_Shell'
+	MeleeImpactManager=class'IM_GunHit'
+	FlashScale=1.800000
+	BrassClass=class'Brass_Shotgun'
+	TracerMode=MU_Both
+	TracerChance=0.500000
+	MeleeStrikeAnim="Melee_swing"
+	SingleFireAnim="RifleHip_FireCock"
+	SingleAimedFireAnim="RifleAimed_FireCock"
+    CockAnimRate=1.850000
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M763_TPm'
+	DrawScale=0.080000
 }

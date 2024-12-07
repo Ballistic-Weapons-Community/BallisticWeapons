@@ -31,20 +31,21 @@ simulated function UpdatePrecacheMaterials()
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MRDR.MRDR88AmmoPickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MRDR.MRDR88Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MRDR.MRDRPickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MRDR.MRDRPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MRDR.MRDR88Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MRDR.MRDRPickupLo'
      PickupDrawScale=0.250000
      InventoryType=Class'BWBP_SKC_Pro.MRDRMachinePistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the MR-DR88 machine pistol."
      PickupSound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.MRDR.MRDR88Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.MRDR.MRDRPickupHi'
      Physics=PHYS_None
-     DrawScale=0.500000
+     DrawScale=0.420000
      PrePivot=(Y=-16.000000)
      CollisionHeight=4.000000
 }

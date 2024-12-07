@@ -133,7 +133,7 @@ defaultproperties
 		DeclineDelay=0.150000
 		ViewBindFactor=1.0
 		HipMultiplier=1.000000
-		CrouchMultiplier=0.200000
+		CrouchMultiplier=0.400000
 		bViewDecline=True
 	End Object
 
@@ -145,6 +145,7 @@ defaultproperties
 		MaxRecoil=3072.000000
 		DeclineTime=1.20000
 		DeclineDelay=1.000000
+		bViewDecline=True
 	End Object
 
 	Begin Object Class=RecoilParams Name=ClassicRecoilParamsAcid
@@ -155,6 +156,7 @@ defaultproperties
 		MaxRecoil=3072.000000
 		DeclineTime=0.30000
 		DeclineDelay=0.300000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
@@ -199,8 +201,8 @@ defaultproperties
 		//CockAnimRate=1.000000
 		ViewOffset=(X=9,Y=7.00,Z=-4)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicRecoilParamsInc'
-		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAcid'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(2)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsInc'
@@ -229,8 +231,8 @@ defaultproperties
 		//CockAnimRate=1.000000
 		ViewOffset=(X=9,Y=7.00,Z=-4)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicRecoilParamsInc'
-		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAcid'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(2)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsInc'

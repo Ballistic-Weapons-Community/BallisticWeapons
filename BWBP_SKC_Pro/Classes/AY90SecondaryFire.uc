@@ -340,7 +340,8 @@ defaultproperties
      ChargeFireSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-WaveBlast'
      MaxChargeFireSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-WaveBlastMax'
 	 bFireOnRelease=True
-	 ProjectileClass=Class'AY90WaveProjectile'
+	 bReleaseFireOnDie=false
+     ProjectileClass=Class'BWBP_SKC_Pro.AY90WaveProjectile'
      ProjectileCount=5
 	 AmmoPerFire=10
     // FireRate=1.000000

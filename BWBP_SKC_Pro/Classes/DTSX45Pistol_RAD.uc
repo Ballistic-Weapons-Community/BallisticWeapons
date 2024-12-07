@@ -10,6 +10,8 @@ class DTSX45Pistol_RAD extends DT_BWBullet;
 
 defaultproperties
 {
+     FlashF=0.200000
+     FlashV=(X=1500.000000,Y=1500.000000)
      DeathStrings(0)="%k turned %o into a glowstick made out of radiation."
      DeathStrings(1)="%o's veins are glowing green thanks to %k's radioactive handgun."
      DeathStrings(2)="%k turned %o's DNA strands into a soupy mess."

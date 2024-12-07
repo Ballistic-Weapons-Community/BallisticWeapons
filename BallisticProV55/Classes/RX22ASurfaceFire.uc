@@ -58,10 +58,10 @@ simulated function FuelChanged()
 		return;
 	Emitters[0].StartSizeRange = MultiplyRV(default.Emitters[0].StartSizeRange, lerp(Fuel/MaxFuel, 1, 2.5));
 	Emitters[1].StartSizeRange = MultiplyRV(default.Emitters[1].StartSizeRange, lerp(Fuel/MaxFuel, 1, 2.25));
-	if (Fuel/MaxFuel > 0.5)
+	if (Fuel/MaxFuel > 0.4)
 	{
 		Emitters[2].Disabled = false;
-		Emitters[2].StartSizeRange = MultiplyRV(default.Emitters[2].StartSizeRange, lerp((Fuel-5)/(MaxFuel-5), 0.25, 1));
+		Emitters[2].StartSizeRange = MultiplyRV(default.Emitters[2].StartSizeRange, lerp((Fuel-40)/(MaxFuel-40), 1, 1.5));
 	}
 	else
 		Emitters[2].Disabled = true;
@@ -69,10 +69,22 @@ simulated function FuelChanged()
 
 function Timer()
 {
+  //local int i;
+	
 	if (PhysicsVolume.bWaterVolume)
 		return;
 
 	super.Timer();
+	
+	//Toast isn't igniting patches, 
+	/*for (i=0;i<Touching.length;i++)
+	{
+		if (Touching[i] == None)
+			continue;
+		if (Ignitioneer != None && BW_FuelPatch(Touching[i]) != None)
+			class'BallisticDamageType'.static.GenericHurt (Touching[i], 1, Ignitioneer, Touching[i].Location, vect(0,0,0), DamageType);
+	}*/
+	
 }
 
 function Toast(Actor A)
@@ -139,8 +151,8 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTRX22AFireTrap'
      IgniteSound=Sound'BW_Core_WeaponSound.RX22A.RX22A-IgniteFire'
      RepulsionForceMag=275.000000
-     Fuel=8.000000
-     MaxFuel=20.000000
+     Fuel=20.000000
+     MaxFuel=150.000000
      Extent=64
      bCanIgnite=False
      Begin Object Class=SpriteEmitter Name=SpriteEmitter0
@@ -209,7 +221,7 @@ defaultproperties
          FadeInEndTime=0.392000
          MaxParticles=2
          StartLocationRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
-         StartSizeRange=(X=(Max=70.000000),Y=(Max=70.000000),Z=(Max=70.000000))
+         StartSizeRange=(X=(Max=140.000000),Y=(Max=140.000000),Z=(Max=140.000000))
          InitialParticlesPerSecond=5000.000000
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000

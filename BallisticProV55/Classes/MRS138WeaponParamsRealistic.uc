@@ -7,6 +7,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//10ga shot
 	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
@@ -43,6 +44,75 @@ defaultproperties
 		FireEndAnim=
 		FireAnimRate=0.8500000	
 		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//10ga FRAG
+	Begin Object Class=GrenadeEffectParams Name=RealisticPrimaryEffectParams_Frag
+		ProjectileClass=Class'BallisticProV55.MRS138Slug_HE'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=20000.000000
+		MaxSpeed=350000.000000
+		AccelSpeed=350000.000000
+		ImpactDamage=110.000000
+		Damage=150.000000
+		DamageRadius=200.000000 //4 meter dmg radius, approx 2 meter kill radius
+		MomentumTransfer=30000.000000
+		HeadMult=2.0
+		LimbMult=0.5
+		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Fire',Volume=1.500000)
+		Recoil=1792.000000
+		Chaos=0.15
+		SplashDamage=True
+		RecommendSplashDamage=True
+		Inaccuracy=(X=64,Y=64)
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Frag
+		TargetState="Projectile"
+		FireInterval=0.800000
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True
+		FireEndAnim=
+		FireAnimRate=0.8500000	
+	FireEffectParams(0)=GrenadeEffectParams'RealisticPrimaryEffectParams_Frag'
+	End Object
+	
+	//10ga Teargas
+	Begin Object Class=GrenadeEffectParams Name=RealisticPrimaryEffectParams_Gas
+		ProjectileClass=Class'BallisticProV55.MRS138Slug_Gas'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=20000.000000
+		MaxSpeed=350000.000000
+		AccelSpeed=350000.000000
+		ImpactDamage=60.000000
+		Damage=50.000000
+		DamageRadius=200.000000 //4 meter dmg radius
+		bCombinedSplashImpact=true
+		MomentumTransfer=30000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-FireSlug',Volume=1.250000)	
+		Recoil=1792.000000
+		Chaos=0.15
+		SplashDamage=True
+		RecommendSplashDamage=True
+		Inaccuracy=(X=64,Y=64)
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Gas
+		TargetState="Projectile"
+		FireInterval=0.800000
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True
+		FireEndAnim=
+		FireAnimRate=0.8500000	
+	FireEffectParams(0)=GrenadeEffectParams'RealisticPrimaryEffectParams_Gas'
 	End Object
 		
 	//=================================================================
@@ -112,23 +182,62 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout core
+		Weight=30
+		LayoutName="10ga Shot"
+		//Function
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=5
 		bMagPlusOne=True
-		//ViewOffset=(X=-1.000000,Y=8.500000,Z=-16.000000)
-		//SightOffset=(X=-3.000000,Z=17.150000)
 		SightPivot=(Pitch=0,Yaw=0,Roll=0)
-		//ReloadAnimRate=1.250000
-		//CockAnimRate=1.400000
 		WeaponName="MRS138 10ga Riot Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Frag
+		//Layout core
+		Weight=10
+		LayoutName="10ga HE Slug"
+		//Function
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
+		MagAmmo=5
+		bMagPlusOne=True
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		WeaponName="MRS138 10ga Riot Shotgun (Frag)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Frag'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Gas
+		//Layout core
+		Weight=10
+		LayoutName="10ga Teargas Slug"
+		//Function
+		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
+		MagAmmo=5
+		bMagPlusOne=True
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		WeaponName="MRS138 10ga Riot Shotgun (Gas)"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Gas'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(1)=WeaponParams'RealisticParams_Frag'
+	Layouts(2)=WeaponParams'RealisticParams_Gas'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MRS_Silver

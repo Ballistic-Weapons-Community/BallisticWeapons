@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_APC_Pro.SRKSmgFlashEmitter'
 		FlashScaleFactor=0.600000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.SRKS.SRKS-Fire')
+		FireSound=(Sound=Sound'BWBP_APC_Sounds.SRKS.SRKS-Fire')
 		Recoil=120.000000
 		Chaos=0.05
 		Inaccuracy=(X=16,Y=16)

@@ -17,8 +17,8 @@ defaultproperties
 		DamageRadius=72.000000
 		MomentumTransfer=200.000000
 		bLimitMomentumZ=False
-		HeadMult=2.089552
-		LimbMult=0.626865
+		HeadMult=2.0
+		LimbMult=0.65
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.700000
@@ -30,7 +30,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.110000
+		FireInterval=0.120000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.250000	
@@ -48,8 +48,8 @@ defaultproperties
 		DamageRadius=72.000000
 		MomentumTransfer=200.000000
 		bLimitMomentumZ=False
-		HeadMult=2.089552
-		LimbMult=0.626865
+		HeadMult=2.0
+		LimbMult=0.65
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FlashScaleFactor=0.700000
@@ -61,7 +61,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Rapid
-		FireInterval=0.110000
+		FireInterval=0.100000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.000000	
@@ -79,8 +79,8 @@ defaultproperties
 		DamageRadius=72.000000
 		MomentumTransfer=200.000000
 		bLimitMomentumZ=False
-		HeadMult=2.089552
-		LimbMult=0.626865
+		HeadMult=2.0
+		LimbMult=0.65
 		SpreadMode=FSM_Rectangle
 		FlashScaleFactor=0.700000
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'

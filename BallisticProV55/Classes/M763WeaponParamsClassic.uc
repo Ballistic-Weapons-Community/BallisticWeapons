@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Shot
 	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=2000.000000,Max=4000.000000)
 		WaterTraceRange=5000.0
@@ -26,7 +27,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter_C'
-		FlashScaleFactor=2.000000
+		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 		Recoil=512.000000
 		Chaos=-1.0
@@ -44,6 +45,48 @@ defaultproperties
 		bCockAfterFire=True
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
+	
+	//Slug
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams_Slug
+		TraceRange=(Min=6000.000000,Max=6000.000000)
+        DecayRange=(Min=1050,Max=3150) // 20-60m
+		WaterTraceRange=5000.0
+		RangeAtten=0.200000
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+		Damage=110.0
+		HeadMult=1.7
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTM763Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+		PenetrationEnergy=32.000000
+		PenetrateForce=300
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter_C'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire2',Volume=1.600000)
+		Recoil=768.000000 //x1.5
+		Chaos=-1.0
+		Inaccuracy=(X=32,Y=32)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Slug
+		FireInterval=0.800000
+		FireAnim="FireClassic"
+		AimedFireAnim="FireClassic"
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams_Slug'
 	End Object
 		
     //=================================================================
@@ -152,25 +195,37 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		LayoutName="Default"
-		Weight=60
+		LayoutName="Buckshot"
+		Weight=30
 		
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
 		MagAmmo=10
-		//SightOffset=(X=5.000000,Z=18.500000)
-		//SightPivot=(Pitch=512)
-		SightPivot=(Pitch=128)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Spray'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Slug
+		LayoutName="Slug"
+		LayoutTags="slug"
+		Weight=5
+		
+		InventorySize=7
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
+		//SightPivot=(Pitch=128)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Slug'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Slug'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Slug'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=M763_Gray

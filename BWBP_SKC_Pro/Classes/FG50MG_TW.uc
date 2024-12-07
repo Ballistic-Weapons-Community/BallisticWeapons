@@ -53,7 +53,7 @@ simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
 	BFireMode[0].FirePushbackForce = 0;
-	BFireMode[0].BrassOffset = vect(0,0,0);
+	BFireMode[0].BrassOffset = vect(-120,0,0);
 }
 
 simulated function Notify_Undeploy ()
@@ -67,6 +67,7 @@ simulated function Notify_Deploy ();
 simulated function PreDrawFPWeapon()
 {
 	SetRotation(Instigator.Rotation);
+	ScreenStart();
 }
 
 function GiveTo(Pawn Other, optional Pickup Pickup)
@@ -245,6 +246,8 @@ defaultproperties
 	ParamsClasses(1)=Class'FG50TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'FG50TW_WeaponParamsTactical'
+	WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
+	WeaponModes(1)=(bUnavailable=True)
 	SelectAnim="Deploy"
     BringUpTime=1.600000
 	bCanThrow=False
@@ -254,7 +257,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-80.000000)
 	ItemName="FG50 Turret"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FG50_Turret'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50Turret_FPm'
 	DrawScale=0.50000
 	CollisionHeight=24.000000
 }

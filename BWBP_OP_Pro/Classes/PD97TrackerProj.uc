@@ -30,8 +30,8 @@ simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 
 simulated event ProcessTouch(Actor Other, vector HitLocation )
 {
-	Log("Master: "$Master);
-	Log("Actor: "$Other);
+	//Log("Master: "$Master);
+	//Log("Actor: "$Other);
 	if (Other == Instigator && (!bCanHitOwner))
 		return;
 	if (Base != None)
@@ -141,8 +141,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-    WeaponClass=Class'BWBP_OP_Pro.PD97Bloodhound'
-	ModeIndex=1
+     WeaponClass=Class'BWBP_OP_Pro.PD97Bloodhound'
+	 ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      //TrailClass=Class'BWBP_OP_Pro.PD97TrackerTrail'
      TrailClass=Class'BWBP_SKC_Pro.MGLNadeTrail'

@@ -86,8 +86,8 @@ defaultproperties
 	bWT_Hazardous=True
 	bWT_Projectile=True
 	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
 	MagAmmo=5
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Cock')
     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagIn')
@@ -116,7 +116,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8
 	PickupClass=Class'BWBP_SKC_Pro.ThumperPickup'
-
+	bNoCrosshairInScope=True
 	PlayerViewOffset=(X=0.000000,Y=5.000000,Z=-3.000000)
 	PlayerViewPivot=(Pitch=600)
 	SightOffset=(X=10.000000,Y=0.00,Z=0.00)
@@ -132,7 +132,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=150.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Thumper'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.Thumper_FPm'
 	DrawScale=0.600000
 	SoundPitch=56
 	SoundRadius=32.000000

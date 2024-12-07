@@ -7,6 +7,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
+	//12ga shot
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=7500.000000,Max=7500.000000)
 		RangeAtten=0.30000
@@ -23,7 +24,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=0.35
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS',Volume=1.500000)
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-FireOld',Volume=1.300000)
 		Recoil=650.000000
 		Chaos=0.3
 		Inaccuracy=(X=190,Y=270)
@@ -36,6 +37,36 @@ defaultproperties
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams'
+	End Object
+	
+	//12ga slug
+	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams_Slug
+		TraceRange=(Min=6000.000000,Max=6000.000000)
+        DecayRange=(Min=750,Max=3000)
+		RangeAtten=0.15
+		TraceCount=1
+		TracerClass=Class'BallisticProV55.TraceEmitter_Default'
+		ImpactManager=Class'BallisticProV55.IM_BigBulletHMG'
+		Damage=100
+		DamageType=Class'BWBP_JCF_Pro.DTSPASShotgun'
+		DamageTypeHead=Class'BWBP_JCF_Pro.DTSPASShotgunHead'
+		DamageTypeArm=Class'BWBP_JCF_Pro.DTSPASShotgun'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=0.650000
+		Recoil=2048.000000 //x1.5
+		Chaos=0.30000
+		BotRefireRate=0.7
+		WarnTargetPct=0.5
+		Inaccuracy=(X=32,Y=32)
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.SPAS.SPAS-HFire',Volume=1.800000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_Slug
+		FireInterval=0.500000
+		BurstFireRateFactor=1.00
+		AimedFireAnim="SightFire"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams_Slug'
 	End Object
 		
 	//=================================================================
@@ -58,7 +89,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=0.1
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.DE.Fire_SPAS_Cock',Volume=1.500000)
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.SPAS.SPAS-FireDouble',Volume=1.800000)
 		Inaccuracy=(X=190,Y=540)
 		Recoil=900.000000
 		Chaos=0.500000
@@ -74,6 +105,18 @@ defaultproperties
 		AimedFireAnim="SightFireCock"	
 	FireEffectParams(0)=ShotgunEffectParams'ArenaSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -107,10 +150,37 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ArenaParams
-		ReloadAnimRate=1.500000
-		MagAmmo=8
+	Begin Object Class=WeaponParams Name=ArenaParams_Slug
+		//Layout core
+		LayoutName="12 Gauge Slug"
+		LayoutTags="slug"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.9
 		SightingTime=0.35
+		//Stats
+		ReloadAnimRate=1.500000
+		MagAmmo=5
+        InventorySize=4
+		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
+		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
+		bNoaltfire=true
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams_Slug'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		LayoutName="12 Gauge Shot"
+		Weight=30
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.35
+		//Stats
+		ReloadAnimRate=1.500000
+		MagAmmo=5
         InventorySize=4
 		ViewOffset=(X=-1.000000,Y=4.000000,Z=-10.000000)
 		SightOffset=(X=7.000000,Y=-0.050000,Z=10.200000)
@@ -119,7 +189,9 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ArenaParams'
+	
+	Layouts(0)=WeaponParams'ArenaParams_Slug'
+	Layouts(1)=WeaponParams'ArenaParams'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SP_Gray

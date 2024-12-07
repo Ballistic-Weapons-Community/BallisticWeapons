@@ -268,21 +268,21 @@ defaultproperties
 {
 
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_CC_Tex.ElementalSniper.BigIcon_R9000E'
+     BigIconMaterial=Texture'BWBP_APC_Tex.ElementalSniper.BigIcon_R9000E'
      bWT_Bullet=True
      ManualLines(0)="Bolt-action sniper rifle fire with Regular, Incendiary & Radiation rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
      ManualLines(1)="Engages the scope."
      ManualLines(2)="Be wary of tracer rounds due to different variations of ammo. Effective at long range and against clustered enemies."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	 PutDownTime=0.5
      CockAnim="Cock"
-	 CockSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-Cock')
+	 CockSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-Cock')
      ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-ClipHit')
-     ClipOutSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-ClipOut')
-     ClipInSound=(Sound=Sound'BWBP_CC_Sounds.R9000E.R9000E-ClipIn')
+     ClipHitSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-ClipHit')
+     ClipOutSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-ClipOut')
+     ClipInSound=(Sound=Sound'BWBP_APC_Sounds.R9000E.R9000E-ClipIn')
      ClipInFrame=0.650000
      bCockOnEmpty=True
      WeaponModes(0)=(ModeName="Ammo: FMJ")
@@ -290,9 +290,9 @@ defaultproperties
 	 WeaponModes(2)=(ModeName="Ammo: Radiation")
      CurrentWeaponMode=0
 	 BobDamping=2.4
-     ScopeViewTex=Texture'BWBP_CC_Tex.ElementalSniper.ES_ScopeTex'
-     ZoomInSound=(Sound=SoundGroup'BWBP_CC_Sounds.R9000E.R9000E-ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=SoundGroup'BWBP_CC_Sounds.R9000E.R9000E-ZoomOut',Volume=0.500000,Pitch=1.000000)
+     ScopeViewTex=Texture'BWBP_APC_Tex.ElementalSniper.ES_ScopeTex'
+     ZoomInSound=(Sound=SoundGroup'BWBP_APC_Sounds.R9000E.R9000E-ZoomIn',Volume=0.500000,Pitch=1.000000)
+     ZoomOutSound=(Sound=SoundGroup'BWBP_APC_Sounds.R9000E.R9000E-ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
      bNoCrosshairInScope=True
      SightPivot=(Roll=-1024)
@@ -324,7 +324,7 @@ defaultproperties
      PickupClass=Class'BWBP_APC_Pro.R9000EPickup'
      PlayerViewOffset=(X=-3.000000,Y=9.000000,Z=-18.000000)
      AttachmentClass=Class'BWBP_APC_Pro.R9000EAttachment'
-     IconMaterial=Texture'BWBP_CC_Tex.ElementalSniper.SmallIcon_R9000E'
+     IconMaterial=Texture'BWBP_APC_Tex.ElementalSniper.SmallIcon_R9000E'
      IconCoords=(X2=127,Y2=31)
      ItemName="R9000-E Modular Sniper Rifle"
      LightType=LT_Pulse
@@ -333,6 +333,6 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBP_CC_Anim.FPm_R9000E'
+     Mesh=SkeletalMesh'BWBP_APC_Anim.R9000E_FPm'
      DrawScale=0.300000
 }

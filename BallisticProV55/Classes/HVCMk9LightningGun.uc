@@ -828,8 +828,8 @@ defaultproperties
 	ManualLines(1)="Charges up the weapon to unleash a searing bolt of red lightning. Like the primary, has no recoil and perfect hip accuracy."
 	ManualLines(2)="Holding Reload will cool off the weapon, reducing the heat buildup and preventing the threat of overcharge.||Will not function correctly underwater. Causes the user and nearby targets to be electrocuted if so used.||The HVC-Mk9 does not possess any iron sights.||This weapon is effective at all ranges."
 	SpecialInfo(0)=(Info="360.0;60.0;1.0;90.0;0.0;0.5;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.218000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.220000)
 	bNoMag=True
 	WeaponModes(0)=(ModeName="Stream",ModeID="WM_None")
 	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
@@ -848,7 +848,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=61,R=28,A=164),Color2=(G=53,A=224),StartSize1=94,StartSize2=87)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.700000
-	
+	bNonCocking=True
 	PutDownTime=0.500000
 	BringUpTime=1.000000
 	AIRating=0.90000
@@ -875,7 +875,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_FPm'
 	DrawScale=0.3
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	bFullVolume=True

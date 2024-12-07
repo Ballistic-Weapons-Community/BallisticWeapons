@@ -128,6 +128,14 @@ simulated function Notify_ClipOutOfSight()
 	SetBoneScale (2, 1.0, 'Bullet2');
 }
 
+simulated function Notify_HideBullet()
+{
+	if (MagAmmo < 2)
+		SetBoneScale (1, 0.0, 'Bullet2');
+	if (MagAmmo < 1)
+		SetBoneScale (2, 0.0, 'Bullet1');
+}
+
 simulated function PlayReload()
 {
 	super.PlayReload();
@@ -475,8 +483,8 @@ defaultproperties
 	bNoCrosshairInScope=True
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Draw')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Draw',Volume=0.200000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.220000)
 	MagAmmo=7
 	AltMagAmmo=50
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Cock',Volume=0.800000)
@@ -498,8 +506,8 @@ defaultproperties
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AH104PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AH104SecondaryFire'
 	PutDownTime=1.000000
-	BringUpTime=1.300000
-	CockingBringUpTime=2.600000
+	BringUpTime=1.200000
+	CockingBringUpTime=1.500000
 	SelectForce="SwitchToAssaultRifle"
 	Description="AH-104 'Hellfire' Handcannon||Manufacturer: Enravion Combat Solutions|Primary: HEAP Rounds|Secondary: Underbarrel Flamethrower||'The handcannon of the future.' Those were the words of Enravion as they publically released this modified version of the AM67. Nicknamed the 'Pounder' for its potent .600 explosive armor piercing rounds; the AH104 can legally carry the name handcannon. Its immense stopping power and anti-armor capability make this weapon a favorite of military leaders and personnel across the worlds. The full-steel AH104 is known to be absurdly heavy (12 lbs unloaded) in order to compensate for the power of its large rounds and cannot be dual wielded. The new Hellfire variant has a new under barrel flamethrower in lieu of the standard flash bulb from the original AM67 after hearing stories of the Ice Hogs using makeshift flamethrowers taped to the original AH04 to overheat the Cryons on Kalendra."
 	Priority=162
@@ -523,6 +531,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AH104'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.AH104_FPm'
 	DrawScale=0.300000
 }

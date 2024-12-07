@@ -12,8 +12,8 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.600000
 		Damage=17.0
-		HeadMult=3.352941
-		LimbMult=0.411764
+		HeadMult=3.5
+		LimbMult=0.5
 		DamageType=Class'BallisticProV55.DTFifty9SMG'
 		DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
@@ -45,8 +45,8 @@ defaultproperties
 		TraceRange=(Min=96.000000,Max=96.000000)
 		WaterTraceRange=5000.0
 		Damage=35.0
-		HeadMult=2.428571
-		LimbMult=0.571428
+		HeadMult=2.5
+		LimbMult=0.55
 		DamageType=Class'BallisticProV55.DTFifty9Blade'
 		DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
 		DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'

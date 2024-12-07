@@ -68,8 +68,6 @@ simulated event ThirdPersonEffects()
 		FlashWeaponLight(FiringMode);
 		//Play pawn anims
 		PlayPawnFiring(FiringMode);
-		//Eject Brass
-		EjectBrass(FiringMode);
     	}
 
     	Super.ThirdPersonEffects();
@@ -88,7 +86,7 @@ defaultproperties
 	FlashScale=0.1
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.TyphonPDWFlashEmitter'
 	ImpactManager=Class'BWBP_SKC_Pro.IM_LS14Impacted'
-	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse'
+	TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_PulseFast'
 	TracerChance=1.000000
 	TracerMode=MU_Primary
 	InstantMode=MU_Primary
@@ -98,6 +96,8 @@ defaultproperties
 	FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.700000)
 	BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
 	bHeavy=True
+	ReloadAnimRate=0.975000
+	CockAnimRate=0.850000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.Typhon_TPm'
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.550000

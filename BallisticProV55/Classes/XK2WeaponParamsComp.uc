@@ -72,6 +72,18 @@ defaultproperties
 		AmmoPerFire=0
 		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -108,14 +120,20 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout core
+		Weight=30
+		LayoutName="Suppressed"
+		//ADS
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+		SightOffset=(X=6.00,Y=0.02,Z=3.75)
+		SightPivot=(Pitch=64)
+		//Stats
 		bDualBlocked=True
 		DisplaceDurationMult=0.75
-		SightMoveSpeedFactor=0.9
 		ReloadAnimRate=1.250000
 		CockAnimRate=1.250000
 		MagAmmo=30
-		SightingTime=0.250000
-		SightPivot=(Pitch=64)
         InventorySize=4
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
@@ -126,7 +144,39 @@ defaultproperties
 		FireParams(4)=FireParams'ArenaPrimaryIceFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_RDS
+		//Layout core
+		LayoutName="RDS"
+		LayoutTags="no_muzzle"
+		Weight=5
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="Muzzle",Scale=0.15,AugmentOffset=(x=-180,y=0,z=-12),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="Muzzle",Scale=0.09,AugmentOffset=(x=-210,y=0,z=26),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//ADS
+		SightOffset=(X=0.000000,Y=0.080000,Z=10.2000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		SightMoveSpeedFactor=0.9
+		SightingTime=0.250000
+		//Function
+		bDualBlocked=True
+		DisplaceDurationMult=0.75
+		ReloadAnimRate=1.250000
+		CockAnimRate=1.250000
+		MagAmmo=30
+        InventorySize=4
+		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+		AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		FireParams(2)=FireParams'ArenaPrimaryFireParams'
+		FireParams(3)=FireParams'ArenaPrimaryFireParams'
+		FireParams(4)=FireParams'ArenaPrimaryIceFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_RDS'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=XK2_Black

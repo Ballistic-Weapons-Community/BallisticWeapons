@@ -8,7 +8,7 @@ class Augment_Reflex extends BallisticGunAugment;
 
 defaultproperties
 {
-     DrawType=DT_Mesh
+     DrawType=DT_StaticMesh
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Attach_Reflex2'

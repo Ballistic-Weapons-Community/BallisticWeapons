@@ -190,7 +190,7 @@ defaultproperties
 	Damage=65.000000
 	DamageRadius=320.000000
 	MyDamageType=Class'BWBP_APC_Pro.DT_SHADRACHGrenadeRadius'
-	StaticMesh=StaticMesh'BWBP_CC_Static.SPXSmg.SHADRACH_Proj'
+	StaticMesh=StaticMesh'BWBP_APC_Static.SPXSmg.SHADRACH_Proj'
 	DrawScale=0.200000
 	bUnlit=False
 }

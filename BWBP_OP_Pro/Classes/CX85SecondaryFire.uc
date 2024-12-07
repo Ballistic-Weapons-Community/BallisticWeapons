@@ -1,5 +1,7 @@
 class CX85SecondaryFire extends BallisticProInstantFire;
 
+var() BUtil.FullSound			TargetLockSound;		// Sound to play when a dart hits a target
+
 //===========================================================================
 // AllowFire
 //
@@ -37,7 +39,7 @@ function DoFireEffect()
 
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-    local int i;
+  //local int i;
 	local CX85DartDirect Proj, MasterProj;
     local Rotator R;
 	local float             BoneDist;
@@ -82,6 +84,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
         Proj.SetRotation(R);
         Proj.Velocity = vect(0,0,0);    
+		
+		Weapon.PlayOwnedSound(TargetLockSound.Sound,TargetLockSound.Slot,TargetLockSound.Volume,TargetLockSound.bNoOverride,TargetLockSound.Radius,TargetLockSound.Pitch,TargetLockSound.bAtten);
 	}
 }
 
@@ -90,6 +94,7 @@ defaultproperties
     bUseWeaponMag=False
     FlashBone="tip2"
     FireRecoil=256.000000
+    TargetLockSound=(Sound=Sound'AssaultSounds.PD97.TargetCycle01',Volume=1.350000)
 
 	TraceRange=(Min=30000.000000,Max=30000.000000)
     MaxWaterTraceRange=5000

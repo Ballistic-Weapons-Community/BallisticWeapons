@@ -19,6 +19,7 @@ defaultproperties
         PenetrateForce=100
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.500000
         Recoil=450.000000
         Chaos=0.300000
         BotRefireRate=0.800000
@@ -48,6 +49,7 @@ defaultproperties
 		DamageRadius=512.000000
 		MomentumTransfer=60000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FlashScaleFactor=0.900000
 		Recoil=2048.000000
 		Chaos=1.000000
 		BotRefireRate=0.5

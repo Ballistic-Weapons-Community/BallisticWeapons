@@ -235,8 +235,8 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Sandbags.Icon_Sandbags'
 	
 	SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout',Volume=0.105000)
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway',Volume=0.107000)
 	bNoMag=True
 	bUseSights=False
 	WeaponModes(0)=(bUnavailable=True)
@@ -270,7 +270,7 @@ defaultproperties
 	IconMaterial=Texture'BW_Core_WeaponTex.Sandbags.SmallIcon_Sandbags'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Sandbags"
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SandBags'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.SandBags_FPm'
 	DrawScale=0.600000
 	SoundVolume=150
 	TransientSoundRadius=256.000000

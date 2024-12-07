@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%k's laser assault rifle burned %o to the ground."
      DeathStrings(2)="%o was left a smoldering heap thanks to %k's XM-20."
      DeathStrings(3)="%k murdered %o with frickin' lasers."
-     DeathStrings(4)="%o's heart melted when %k gave %vh the gift of AUTOMATIC LASERS."
+     DeathStrings(4)="%o's heart melted when %k gave %vm the gift of AUTOMATIC LASERS."
      SimpleKillString="XM20 Laser Carbine"
      BloodManagerName="BloodMan_HMCLaser"
      ShieldDamage=3

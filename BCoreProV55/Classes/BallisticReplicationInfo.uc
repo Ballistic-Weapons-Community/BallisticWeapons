@@ -411,7 +411,7 @@ defaultproperties
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bNoReloading=False
-	bNoRandomCamo=False
+	bNoRandomCamo=True
 
 	bAlternativePickups=False
 	bUniversalMineLights=True
@@ -429,10 +429,11 @@ defaultproperties
 	PlayerCrouchSpeedFactor=0.45
     PlayerStrafeScale=1
 	PlayerBackpedalScale=1
-	PlayerGroundSpeed=260
-	PlayerAirSpeed=260
+	PlayerAnimationGroundSpeed=440
+	PlayerGroundSpeed=440 //260
+	PlayerAirSpeed=440 //260
 	PlayerAccelRate=2048
-    PlayerJumpZ=294
+    PlayerJumpZ=340
 	PlayerDodgeSpeedFactor=1.5
 	PlayerDodgeZ=210
 }

@@ -14,17 +14,9 @@ var   Actor		Heater;
 
 simulated function bool AllowFire()
 {
-	if ((FG50Machinegun(Weapon).HeatLevel >= 10) || !super.AllowFire())
+	if ((FG50Machinegun(Weapon).HeatLevel >= 10 && !class'BallisticReplicationInfo'.static.IsClassic()) || !super.AllowFire())
 		return false;
 	return true;
-}
-
-simulated function SwitchWeaponMode (byte NewMode)
-{
-	if (Weapon.bBerserk)
-		FireRate *= 0.75;
-	if ( Level.GRI.WeaponBerserk > 1.0 )
-	    FireRate /= Level.GRI.WeaponBerserk;
 }
 
 simulated state HEAmmo //Explodes on human targets

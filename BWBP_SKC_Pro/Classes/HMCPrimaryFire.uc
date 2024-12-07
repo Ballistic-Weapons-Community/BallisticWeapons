@@ -9,21 +9,26 @@
 //=============================================================================
 class HMCPrimaryFire extends BallisticProInstantFire;
 
-var   float RailPower;
-var   float ChargeRate;
-var   float PowerLevel;
-var   int SoundAdjust;
-var   float MaxCharge;
-var   sound	ChargeSound;
-var() sound		LowFireSound;
-var() sound		PowerFireSound;
-var() sound		RTeamFireSound;
+var()	Name		ChargeAnim;		//Animation to use when charging
+var()   float 		ChargeRate;
+var()   float 		RailPower;
+var()   float 		PowerLevel;
+var()   sound		ChargeSound;
+var() 	sound		LowFireSound;
+var() 	sound		PowerFireSound;
+var() 	sound		RTeamFireSound;
 
 simulated function bool AllowFire()
 {
     if (HMCBeamCannon(BW).Heat > 0 || HMCBeamCannon(Weapon).bLaserOn)
         return false;
     return super.AllowFire();
+}
+
+simulated function PlayStartHold()
+{	
+	if (!HMCBeamCannon(BW).bGravitron)
+		BW.SafeLoopAnim(ChargeAnim, 1.0, TweenTime, ,"IDLE");
 }
 
 simulated event ModeHoldFire()
@@ -37,6 +42,7 @@ simulated event ModeHoldFire()
 function StopFiring()
 {
     Instigator.AmbientSound = Instigator.default.AmbientSound;
+	BW.SafeLoopAnim(HMCBeamCannon(BW).IdleAnim, 1.0, TweenTime, ,"IDLE");
     HoldTime = 0;
 }	
 
@@ -45,7 +51,7 @@ simulated event ModeDoFire()
     if (!AllowFire())
         return;
     
-    if (RailPower + 0.01 >= PowerLevel && !HMCBeamCannon(BW).bRunOffsetting)
+    if (RailPower + 0.01 >= PowerLevel)
     {
         HMCBeamCannon(BW).CoolRate = HMCBeamCannon(BW).default.CoolRate;
         super.ModeDoFire();
@@ -137,8 +143,16 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	if (!bHitWall)
 		NoHitEffect(X, InitialStart, LastHitLoc);
 		
-	//Radius damage
-	BallisticWeapon(Weapon).TargetedHurtRadius(50, 128, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
+	//Radius damage or radius slow
+	if (HMCBeamCannon(Weapon) != None && HMCBeamCannon(Weapon).bGravitron)
+	{
+		HMCBeamCannon(Weapon).TargetedSlowRadius(0.3, 8, 512, HitLocation, Pawn(Other));	
+	}
+	else
+	{
+		BallisticWeapon(Weapon).TargetedHurtRadius(90, 200, class'DTHMCBlast', 0, HitLocation, Pawn(Other));	
+	}
+	BallisticWeapon(Weapon).TargetedHurtRadius(30, 512, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
 }
 
 simulated function ModeTick(float DT)
@@ -147,46 +161,50 @@ simulated function ModeTick(float DT)
 	
 	if (HMCBeamCannon(BW).bLaserOn || !bIsFiring || HMCBeamCannon(BW).Heat > 0)
 		return;
- 		
- 	MaxCharge = RailPower;
         
     RailPower = FMin(RailPower + ChargeRate*DT, PowerLevel);
     
     if (RailPower >= PowerLevel)
-		Instigator.AmbientSound = HMCBeamCannon(BW).FullyChargedSound;
+	{
+		if (!HMCBeamCannon(BW).bGravitron) //standard models cant hold the charge
+			Weapon.StopFire(ThisModeNum);
+		else
+			Instigator.AmbientSound = HMCBeamCannon(BW).FullyChargedSound;
+	}
 }
 
 static function int GetDPSec() {return default.Damage / 3;}
 
 defaultproperties
 {
-     ChargeRate=0.500000
-     PowerLevel=1.000000
-     ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
-     LowFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-FireLow'
-     PowerFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Fire'
-     RTeamFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.RedBeam-Fire'
-     TraceRange=(Min=50000.000000,Max=50000.000000)
-     Damage=145.000000
-     WaterRangeAtten=0.600000
-     DamageType=Class'BWBP_SKC_Pro.DTHMCBlast'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTHMCBlastHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTHMCBlast'
-     HookStopFactor=2.500000
-     PenetrateForce=400
-     bPenetrate=True
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
-     FireChaos=0.005000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Fire',Volume=1.700000,Radius=255.000000,Slot=SLOT_Interact,bNoOverride=False)
-     bFireOnRelease=True
-     bWaitForRelease=True
-     bModeExclusive=False
-     FireAnim="FireLoop"
-     FireEndAnim=
-     FireRate=0.080000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
-     AmmoPerFire=40
-     BotRefireRate=0.999000
-     WarnTargetPct=0.010000
-     aimerror=400.000000
+	ChargeRate=0.400000
+	PowerLevel=1.000000
+	ChargeAnim="ChargeAnim"
+	ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
+	LowFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-FireLow'
+	PowerFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Fire'
+	RTeamFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.RedBeam-Fire'
+	TraceRange=(Min=50000.000000,Max=50000.000000)
+	Damage=145.000000
+	WaterRangeAtten=0.600000
+	DamageType=Class'BWBP_SKC_Pro.DTHMCBlast'
+	DamageTypeHead=Class'BWBP_SKC_Pro.DTHMCBlastHead'
+	DamageTypeArm=Class'BWBP_SKC_Pro.DTHMCBlast'
+	HookStopFactor=2.500000
+	PenetrateForce=400
+	bPenetrate=True
+	MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
+	FireChaos=0.005000
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Fire',Volume=1.700000,Radius=255.000000,Slot=SLOT_Interact,bNoOverride=False)
+	bFireOnRelease=True
+	bWaitForRelease=True
+	bModeExclusive=False
+	FireAnim="FireLoop"
+	FireEndAnim=
+	FireRate=0.080000
+	AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
+	AmmoPerFire=40
+	BotRefireRate=0.999000
+	WarnTargetPct=0.010000
+	aimerror=400.000000
 }

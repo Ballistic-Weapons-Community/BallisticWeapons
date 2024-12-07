@@ -35,6 +35,27 @@ const NumShells	= 9;
 var   Emitter		LaserDot;
 var   bool			bLaserOn;
 
+var()	bool	bHasSlug;
+var()	bool	bHasDecoy;
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bHasSlug=false;
+	bHasDecoy=false;
+	
+	if (InStr(WeaponParams.LayoutTags, "slug") != -1)
+	{
+		bHasSlug=true;
+	}
+	if (InStr(WeaponParams.LayoutTags, "decoy") != -1)
+	{
+		bHasDecoy=true;
+	}
+}
+
 simulated state PendingSGReload extends PendingDualAction
 {
 	simulated function BeginState()	{	OtherGun.LowerHandGun();	}
@@ -88,7 +109,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	else if (Anim == FireMode[0].FireAnim || Anim == FireMode[1].FireAnim)
 	{
-		PlayIdle();
+		SafePlayAnim(CockAnim, 1.0, 0.2);
 		bPreventReload=false;
 	}
 	else
@@ -585,8 +606,8 @@ defaultproperties
 	ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
 	ManualLines(2)="Effective at close range."
 	SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-Cock')
 
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-BulletsOut')
@@ -638,7 +659,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Wilson'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_FPm'
 	DrawScale=0.300000
 	SightAnimScale=0.65
 }

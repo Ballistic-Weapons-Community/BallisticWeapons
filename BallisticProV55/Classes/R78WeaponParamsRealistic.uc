@@ -13,8 +13,8 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.1
 		Damage=146.0
-		HeadMult=2.123287
-		LimbMult=0.630136
+		HeadMult=2.2
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTR78Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR78Rifle'

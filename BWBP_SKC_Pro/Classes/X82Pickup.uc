@@ -33,21 +33,21 @@ simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X83.X82A2Mag');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X83.X83A1_ST');
-
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X83.X83PickupHi');
+     Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.X83.X83PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.X83.X83A1_ST'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.X83.X83PickupLo'
      PickupDrawScale=0.400000
      MaxDesireability=0.750000
      InventoryType=Class'BWBP_SKC_Pro.X82Rifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the X-83 A1 sniper rifle."
      PickupSound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.X83.X83A1_ST'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.X83.X83PickupHi'
      Physics=PHYS_None
-     DrawScale=0.400000
+     DrawScale=0.330000
      CollisionHeight=3.000000
 }
