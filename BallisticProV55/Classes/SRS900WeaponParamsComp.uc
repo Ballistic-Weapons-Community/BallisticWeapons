@@ -195,7 +195,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=6.000000,Z=2.03)
+		SightOffset=(X=5.000000,Z=2.03)
 		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
@@ -223,7 +223,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=3.000000,Z=1.30000)
+		SightOffset=(X=0.250000,Z=1.30000)
 		//Function
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000

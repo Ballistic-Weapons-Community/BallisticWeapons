@@ -341,7 +341,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Suppressor",Slot=20,Scale=1f)
 		//ADS
 		SightMoveSpeedFactor=0.500000
-		SightOffset=(X=20.000000,Y=-0.020000,Z=3.650000)
+		SightOffset=(X=12.250000,Y=-0.020000,Z=3.650000)
 		SightPivot=(Pitch=0)
 		//Function
 		InventorySize=7 //todo 8

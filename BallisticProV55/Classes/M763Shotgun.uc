@@ -442,7 +442,7 @@ defaultproperties
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
 	PlayerViewOffset=(X=3.00,Y=4.00,Z=-5.00)
-	SightOffset=(X=0,Y=-.05,Z=1.1)
+	SightOffset=(X=1.100000,Y=-0.040000,Z=1.1)
 	//SightOffset=(X=0,Y=0,Z=2.2)
 	//SightPivot=(Pitch=128)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'

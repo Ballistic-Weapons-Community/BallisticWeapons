@@ -253,7 +253,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.MD24Melee_FPm'
 		WeaponBoneScales(0)=(BoneName="IronSights",Slot=50,Scale=0f)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RMR',BoneName="Slide",AugmentOffset=(x=5,y=0,z=4),Scale=0.05,AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
+		//GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_RMR',BoneName="Slide",AugmentOffset=(x=5,y=0,z=4),Scale=0.05,AugmentRot=(Pitch=0,Roll=0,Yaw=-32768))
 		//ADS
 		SightOffset=(X=-7.00000,Y=-0.01,Z=1.82)
         SightMoveSpeedFactor=0.9

@@ -184,7 +184,7 @@ defaultproperties
      PickupClass=Class'BallisticProV55.X3Pickup'
      PlayerViewOffset=(X=2.750000,Y=7.000000,Z=-8.000000)
      PlayerViewPivot=(Yaw=32768)
-     SmallViewOffset=(X=2.750000,Y=7.000000,Z=-8.000000)	 
+     SmallViewOffset=(X=1.040000,Y=7.000000,Z=-8.000000)	 
      AttachmentClass=Class'BallisticProV55.X3Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_X3'
      IconCoords=(X2=127,Y2=31)

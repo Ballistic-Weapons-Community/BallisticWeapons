@@ -97,7 +97,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Silencer",Slot=78,Scale=0f)
 		ZoomType=ZT_Irons
 		SightPivot=(Pitch=-64)
-		SightOffset=(X=5.00,Y=0.00,Z=1.9)
+		SightOffset=(X=-1.000000,Y=0.00,Z=1.9)
 		SightingTime=0.4
 		SightMoveSpeedFactor=0.6
 		//Function

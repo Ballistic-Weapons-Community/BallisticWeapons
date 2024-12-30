@@ -543,7 +543,7 @@ simulated function PostBeginPlay()
 	// because of the overly aggressive default near clipping plane
 	if (!default.bSetNearClip && Level.GetLocalPlayerController() != None)
 	{
-		Level.GetLocalPlayerController().ConsoleCommand("nearclip 1");
+		Level.GetLocalPlayerController().ConsoleCommand("nearclip 3");
 		default.bSetNearClip=True;
 	}
 

@@ -180,7 +180,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=6.000000,Z=2.03)
+		SightOffset=(X=5.000000,Z=2.03)
 		//Function
 		ZoomType=ZT_Irons
 		InventorySize=8

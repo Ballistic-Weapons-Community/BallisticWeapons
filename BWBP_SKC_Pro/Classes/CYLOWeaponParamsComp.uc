@@ -277,7 +277,8 @@ defaultproperties
 		PickupMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOPickupHi'
 		PickupDrawScale=1.75
 		//ADS
-		SightOffset=(X=0.00000,Y=0.000000,Z=-0.500000)
+		SightOffset=(X=-4.250000,Y=0.000000,Z=0.000000)
+		SightPivot=(Pitch=325)
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.35
 		//Function
