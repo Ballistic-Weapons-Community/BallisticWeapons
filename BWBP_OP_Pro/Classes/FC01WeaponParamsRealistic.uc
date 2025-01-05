@@ -173,13 +173,13 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		MagAmmo=40
-		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
+		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
+		SightOffset=(X=0.00000,Y=-0.95,Z=24.450000)
 		//SightOffset=(X=-10.00000,Z=10.450000)
 		//SightPivot=(Pitch=16)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		FireParams(1)=FireParams'RealisticPhotonPrimaryFireParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Smart'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
@@ -194,12 +194,13 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		MagAmmo=50
-		ViewOffset=(X=20.000000,Y=10.000000,Z=-18.000000)
+		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)
+		SightOffset=(X=0.00000,Y=-0.95,Z=24.450000)
 		//SightOffset=(X=-10.00000,Z=10.450000)
 		//SightPivot=(Pitch=16)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams_Smart'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	

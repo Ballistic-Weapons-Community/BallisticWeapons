@@ -473,6 +473,8 @@ simulated function Destroyed ()
 //place a shield if you're trenched up
 exec simulated function WeaponSpecial(optional byte i)
 {
+	return; //ill fix this later
+	
 	if (bHasShield)
 	{
 		Notify_BarrierDeploy();

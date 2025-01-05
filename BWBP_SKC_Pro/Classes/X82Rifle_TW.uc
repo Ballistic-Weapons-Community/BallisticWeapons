@@ -12,6 +12,22 @@ class X82Rifle_TW extends X82Rifle
 
 var() sound		MountFireSound;
 
+simulated function OnWeaponParamsChanged()
+{
+    super(BallisticWeapon).OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsIrons=false;
+
+	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
+	{
+		bIsIrons=true;
+		SetBoneRotation('RearSightP', rot(16384,0,0));
+		SetBoneRotation('FrontSight', rot(0,0,16384));
+	}
+}
+
 // Rotates the player's view according to Aim
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()

@@ -138,6 +138,18 @@ defaultproperties
 		FireAnim="RLFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -256,7 +268,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Auto'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
     End Object 
 	
 	
@@ -298,7 +310,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams_Gatling'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Gatling'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Scope'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
     Layouts(1)=WeaponParams'ArenaParams_Auto'

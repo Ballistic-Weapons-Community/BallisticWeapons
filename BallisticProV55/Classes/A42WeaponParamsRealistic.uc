@@ -138,7 +138,6 @@ defaultproperties
 		Weight=30
 		//Visual
 		AllowedCamos(0)=0
-		AllowedCamos(1)=2
 		//Stats
 		PlayerSpeedFactor=1.100000
 		InventorySize=3

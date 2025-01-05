@@ -67,7 +67,7 @@ defaultproperties
 		FireAnimRate=1.500000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Auto'
 	End Object
 		
     //=================================================================

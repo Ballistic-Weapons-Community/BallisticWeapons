@@ -179,6 +179,18 @@ defaultproperties
 		FireAnim="RLFire"	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -368,7 +380,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_Gatling'
 		AimParams(0)=AimParams'ClassicAimParams_Gatling'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Auto'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Gatling
@@ -408,7 +420,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_Gatling'
 		AimParams(0)=AimParams'ClassicAimParams_Gatling'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Gatling'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

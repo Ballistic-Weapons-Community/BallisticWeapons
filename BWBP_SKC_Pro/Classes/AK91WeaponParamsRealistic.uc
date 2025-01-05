@@ -174,7 +174,7 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object	
 	
-	Layouts(0)=WeaponParams'RealisticParams'
+	Layouts(0)=WeaponParams'RealisticParams_Irons'
 	Layouts(1)=WeaponParams'RealisticParams_ACOG'
 
 	//Camos ===================================

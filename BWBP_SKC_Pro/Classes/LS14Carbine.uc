@@ -957,7 +957,7 @@ function byte BestMode()
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
-	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded())
+	if (AmmoAmount(1) < 1 || !IsGrenadeLoaded() || bGatling)
 		return 0;
 	else if (MagAmmo < 1)
 		return 1;
