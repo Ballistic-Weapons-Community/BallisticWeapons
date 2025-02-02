@@ -141,7 +141,7 @@ defaultproperties
 		MagAmmo=24
         InventorySize=4
 		SightingTime=0.200000
-		SightOffset=(X=-20.000000,Y=-0.350000,Z=15.800000)
+		SightOffset=(X=-20.000000,Y=-0.345000,Z=15.800000)
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-12.000000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)

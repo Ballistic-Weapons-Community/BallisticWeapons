@@ -159,7 +159,7 @@ defaultproperties
         InventorySize=3
         SightMoveSpeedFactor=0.9
 		SightPivot=(Pitch=256)
-		SightOffset=(X=2.000000,Y=-0.850000,Z=10.850000)
+		SightOffset=(X=2.000000,Y=-0.825000,Z=10.846500)
 		ViewOffset=(X=5.000000,Y=4.000000,Z=-10.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

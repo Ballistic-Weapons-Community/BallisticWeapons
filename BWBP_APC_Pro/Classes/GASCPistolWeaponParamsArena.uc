@@ -79,7 +79,7 @@ defaultproperties
 		DisplaceDurationMult=1
 		MagAmmo=16
 		ViewOffset=(X=6.500000,Y=7.000000,Z=-9.000000)
-		SightOffset=(X=-5.000000,Y=-6.350000,Z=9.700000)
+		SightOffset=(X=-5.000000,Y=-6.323000,Z=9.710000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
