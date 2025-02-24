@@ -142,7 +142,6 @@ defaultproperties
 	bHeavy=True
 	bRapidFire=True
 	Mesh=SkeletalMesh'BWBP_APC_Anim.Wendigo_TPm'
-	RelativeLocation=(Z=1.000000)
-	RelativeRotation=(Pitch=32768)
-	DrawScale=0.300000
+	RelativeRotation=(Yaw=32768)
+	DrawScale=0.800000
 }

@@ -7,22 +7,21 @@ class ScarabPickup extends BallisticWeaponPickup
 static function StaticPrecache(LevelInfo L)
 {
 	L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Grenade.Grenade_Weapon_Tex');
-     L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruGren.CruGrenPickupHi');
+    L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruGren.CruGrenPickupHi');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruGren.CruGrenPickupLo');
-
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-    super.UpdatePrecacheMaterials();
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Grenade.Grenade_Weapon_Tex');
+    Super.UpdatePrecacheMaterials();   
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-    Super.UpdatePrecacheStaticMeshes();
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruGren.CruGrenPickupHi');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruGren.CruGrenPickupLo');
+    Super.UpdatePrecacheStaticMeshes();    
 }
 
 defaultproperties

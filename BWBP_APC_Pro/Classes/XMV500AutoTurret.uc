@@ -8,8 +8,11 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XMV500AutoTurret extends BallisticAutoTurret;
-
+class XMV500AutoTurret extends BallisticAutoTurret
+	transient
+	HideDropDown
+	CacheExempt;
+	
 function SetAbandoned();
 
 function InitAutoTurretWeapon(Weapon Weap)

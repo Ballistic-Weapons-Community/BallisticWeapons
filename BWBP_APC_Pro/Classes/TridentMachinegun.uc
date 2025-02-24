@@ -10,10 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TridentMachinegun extends BallisticMachinegun
-	transient
-	HideDropDown
-	CacheExempt;
+class TridentMachinegun extends BallisticMachinegun;
 
 var   float DesiredSpeed, BarrelSpeed;
 var   int	BarrelTurn;
@@ -344,6 +341,7 @@ defaultproperties
 	ParamsClasses(0)=Class'TridentMachinegunWeaponParamsArena'
 	ParamsClasses(1)=Class'TridentMachinegunWeaponParamsClassic'
 	ParamsClasses(2)=Class'TridentMachinegunWeaponParamsRealistic'
+	ParamsClasses(3)=Class'TridentMachinegunWeaponParamsTactical'	
 	FireModeClass(0)=Class'BWBP_APC_Pro.TridentPrimaryFire'
 	FireModeClass(1)=Class'BWBP_APC_Pro.TridentSecondaryFire'
 	PutDownTime=0.600000

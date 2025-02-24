@@ -569,7 +569,7 @@ defaultproperties
 	SightingTime=0.500000
 	bnoncocking=True
 	SightOffset=(X=-10.000000,Y=-10.000000,Z=15.000000)
-	ParamsClasses(0)=Class'HydraWeaponParams'
+	ParamsClasses(0)=Class'HydraWeaponParamsArena'
 	ParamsClasses(1)=Class'HydraWeaponParamsClassic'
 	ParamsClasses(2)=Class'HydraWeaponParamsRealistic'
 	ParamsClasses(3)=Class'HydraWeaponParamsTactical'

@@ -1,7 +1,7 @@
 //=============================================================================
 // Conqueror ammo type.
 //=============================================================================
-class Ammo_HB4 extends BallisticAmmo;
+class Ammo_HB4Blaster extends BallisticAmmo;
 
 defaultproperties
 {

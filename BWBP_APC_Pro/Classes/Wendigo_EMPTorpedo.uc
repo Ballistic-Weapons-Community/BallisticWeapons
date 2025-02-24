@@ -34,6 +34,7 @@ simulated function InitEffects ()
 
 defaultproperties
 {
+     Weaponclass=WendigoSMG
      ModeIndex=1
 	 ImpactManager=Class'BWBP_SKC_Pro.IM_EMPRocketLarge'
      AccelSpeed=1200.000000

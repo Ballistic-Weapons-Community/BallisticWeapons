@@ -10,21 +10,20 @@ static function StaticPrecache(LevelInfo L)
   	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.AK490.AK490-Misc');   
      L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.PKMA.PKMAPickupHi');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.PKMA.PKMAPickupLo');
-
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-     super.UpdatePrecacheMaterials();
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.PKM.PKM_Main');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.AK490.AK490-Misc');
+     Super.UpdatePrecacheMaterials();    
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-     Super.UpdatePrecacheStaticMeshes();
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.PKMA.PKMAPickupHi');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.PKMA.PKMAPickupLo');
+     Super.UpdatePrecacheStaticMeshes();
 }
 
 defaultproperties

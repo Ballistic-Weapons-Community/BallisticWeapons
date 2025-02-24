@@ -13,6 +13,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.Pitbull.PitbullPickupHi'
      Physics=PHYS_None
-     DrawScale=0.15000
+     DrawScale=0.120000
      CollisionHeight=3.000000
 }

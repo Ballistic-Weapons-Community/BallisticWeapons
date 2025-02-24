@@ -1,4 +1,4 @@
-class CryoLanceWeaponParams extends BallisticWeaponParams;
+class CryoLanceWeaponParamsArena extends BallisticWeaponParams;
 
 defaultproperties
 {

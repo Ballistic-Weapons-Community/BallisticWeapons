@@ -165,7 +165,7 @@ defaultproperties
      //EffectString="Blinding flash"
      bFireOnRelease=True
      bModeExclusive=False
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_HB4'
+     AmmoClass=Class'BWBP_APC_Pro.Ammo_HB4Blaster'
 
 	 // AI
 	 bInstantHit=True

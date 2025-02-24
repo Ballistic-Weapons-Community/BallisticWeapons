@@ -13,22 +13,21 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.CruMG.MGSkullMain');
     L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruMG.CruMGPickupHi');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruMG.CruMGPickupLo');
-
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-    super.UpdatePrecacheMaterials();
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.CruMG.MGMain');
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.CruMG.MGAmmoMain');
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.CruMG.MGSkullMain');
+    Super.UpdatePrecacheMaterials();	
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-    Super.UpdatePrecacheStaticMeshes();
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruMG.CruMGPickupHi');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.CruMG.CruMGPickupLo');
+    Super.UpdatePrecacheStaticMeshes();	
 }
 
 defaultproperties

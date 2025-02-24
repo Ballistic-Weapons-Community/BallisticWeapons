@@ -45,6 +45,7 @@ simulated event Timer()
 
 defaultproperties
 {
+     WeaponClass=class'HB4GrenadeBlaster'     
      ImpactDamage=100
      ImpactManager=Class'BWBP_SKC_Pro.IM_EMPRocketAlt'
      bCheckHitSurface=True

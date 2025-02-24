@@ -20,7 +20,7 @@ defaultproperties
 	 bModeExclusive=False
      FireForce="AssaultRifleAltFire"
      FireRate=0.850000
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_HB4'
+     AmmoClass=Class'BWBP_APC_Pro.Ammo_HB4Blaster'
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-20.000000)
      ShakeOffsetRate=(X=-1000.000000)

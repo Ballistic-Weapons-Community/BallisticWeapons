@@ -98,9 +98,10 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Auto")
 	bNoCrosshairInScope=True
 	SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
-	ParamsClasses(0)=Class'CryoLanceWeaponParams'
+	ParamsClasses(0)=Class'CryoLanceWeaponParamsArena'
 	ParamsClasses(1)=Class'CryoLanceWeaponParamsClassic'
 	ParamsClasses(2)=Class'CryoLanceWeaponParamsRealistic'
+	ParamsClasses(3)=Class'CryoLanceWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_APC_Pro.CryoLancePrimaryFire'
 	FireModeClass(1)=Class'BWBP_APC_Pro.CryoLanceSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=255,R=255,A=134),Color2=(B=0,G=0,R=255,A=255),StartSize1=50,StartSize2=51)
