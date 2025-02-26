@@ -35,6 +35,7 @@ var   int	BarrelTurn;
 var() Sound BarrelSpinSound;
 var() Sound BarrelStopSound;
 var() Sound BarrelStartSound;
+var() Sound NoAmmoSound;
 var() Sound ChargeLoadSound;
 var float NextTickTime;
 var   Pawn				Target;
@@ -135,6 +136,12 @@ simulated event WeaponTick (float DT)
 		if (Glow != None)	Glow.Destroy();
 	}
 
+
+	if ( bNoReload && !HasAmmo() )
+		Instigator.Controller.SwitchToBestWeapon();
+	
+	
+
 	if (Role < ROLE_Authority)
 		return;
 
@@ -204,6 +211,12 @@ simulated event Tick (float DT)
 
 	if (ThirdPersonActor != None)
 		A800MinigunAttachment(ThirdPersonActor).BarrelSpeed = BarrelSpeed;
+
+	if (ClientState == WS_Hidden && bNoReload && MagAmmo == 0)
+	{
+		PickupClass=None;
+		DropFrom(Location);
+	}
 
 }
 
@@ -322,6 +335,7 @@ defaultproperties
 	BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
 	BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
 	ChargeLoadSound=Sound'BWBP_SWC_Sounds.A800.A800-Load2'
+	NoAmmoSound=Sound'BWBP_SWC_Sounds.A800.A800-NoAmmo'
 	PlayerSpeedFactor=0.780000
 	PlayerJumpFactor=0.750000
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

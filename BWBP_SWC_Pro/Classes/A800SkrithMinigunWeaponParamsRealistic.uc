@@ -44,7 +44,7 @@ defaultproperties
 		DamageRadius=384.000000
 		MomentumTransfer=50000.000000
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-		FlashScaleFactor=0.400000
+		FlashScaleFactor=2.000000
 		FireSound=(Sound=Sound'BWBP_SWC_Sounds.A800.A800-AltFire2',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=650.000000
 		Chaos=0.500000
@@ -106,6 +106,7 @@ defaultproperties
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=1.000000
+		ZoomType=ZT_Logarithmic
 		//Stats
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
@@ -130,6 +131,7 @@ defaultproperties
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=1.000000
+		ZoomType=ZT_Logarithmic
 		//Stats
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
