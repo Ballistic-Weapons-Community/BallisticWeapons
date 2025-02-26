@@ -339,7 +339,7 @@ simulated function PlayCocking(optional byte Type)
 		Rand = FRand();
 		if (Rand > 0.8)
 			CockAnim = 'Cock';
-		else if (Rand > 0.6)
+		else if (Rand > 0.6 && SightingState != SS_Active) //This one clips
 			CockAnim = 'Cock2';
 		else if (Rand > 0.4)
 			CockAnim = 'Cock3';

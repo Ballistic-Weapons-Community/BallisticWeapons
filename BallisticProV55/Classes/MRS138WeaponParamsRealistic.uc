@@ -185,13 +185,14 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="10ga Shot"
-		//Function
-		InventorySize=6
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		//Function
+		InventorySize=6
 		MagAmmo=5
 		bMagPlusOne=True
-		SightPivot=(Pitch=0,Yaw=0,Roll=0)
 		WeaponName="MRS138 10ga Riot Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -203,13 +204,16 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="10ga HE Slug"
-		//Function
-		InventorySize=6
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="CombatShotgun",Scale=0.05,AugmentOffset=(x=65,y=0,z=20),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
+		SightOffset=(X=-5.000000,Y=0.200000,Z=3.0000)
+		//Function
+		InventorySize=6
 		MagAmmo=5
 		bMagPlusOne=True
-		SightPivot=(Pitch=0,Yaw=0,Roll=0)
 		WeaponName="MRS138 10ga Riot Shotgun (Frag)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
@@ -221,13 +225,14 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="10ga Teargas Slug"
-		//Function
-		InventorySize=6
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
+		//Function
+		InventorySize=6
 		MagAmmo=5
 		bMagPlusOne=True
-		SightPivot=(Pitch=0,Yaw=0,Roll=0)
 		WeaponName="MRS138 10ga Riot Shotgun (Gas)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

@@ -4870,13 +4870,13 @@ function OwnerEvent(name EventName)
 	
 	if (Instigator.Weapon == Self)
 	{
-		if(EventName == 'Dodged' && !AimComponent.PendingForcedReaim() && Instigator.IsA('BallisticPawn'))
+		if(EventName == 'Dodged' && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && !AimComponent.PendingForcedReaim() && Instigator.IsA('BallisticPawn'))
 		{
 			ClientDodged();
 			AimComponent.OnPlayerJumped();
 
 			if (!class'BallisticReplicationInfo'.static.IsRealism())
-				NextCheckScopeTime = Level.TimeSeconds + 0.5;
+				NextCheckScopeTime = Level.TimeSeconds + 0.75;
 		}
 		else if ((EventName == 'Jumped' || EventName == 'Dodged') && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && !AimComponent.PendingForcedReaim())
 		{
@@ -4901,7 +4901,10 @@ function OwnerEvent(name EventName)
 simulated function PlayerSprint(bool bSprinting)
 {
 	if (!class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting)
+	{
+		AimComponent.OnPlayerSprint(false);
 		return;
+	}
 
 	if (bScopeView && Instigator.IsLocallyControlled())
 		StopScopeView();

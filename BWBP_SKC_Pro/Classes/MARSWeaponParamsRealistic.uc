@@ -215,9 +215,11 @@ defaultproperties
 		LayoutTags="IRNV, tracker"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS2_FPm'
-		ZoomType=ZT_Logarithmic
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.MARS.F2000-LensShineAltGreen',Index=3,PIndex=2,AIndex=3)
+		//ADS
+		ZoomType=ZT_Logarithmic
+		SightOffset=(X=6.50,Y=0.01,Z=3.8)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		//Function
@@ -243,6 +245,7 @@ defaultproperties
 		LayoutTags="tracker"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
+		//ADS
 		ZoomType=ZT_Logarithmic
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
@@ -271,13 +274,14 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4,PIndex=-1,AIndex=-1)
+		//ADS
 		SightOffset=(X=6.50,Y=0.01,Z=3.65)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.23
 		ZoomType=ZT_Irons
 		ScopeViewTex=None
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,PIndex=-1,AIndex=-1)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4,PIndex=-1,AIndex=-1)
 		//Function
 		InventorySize=6
 		WeaponPrice=2800

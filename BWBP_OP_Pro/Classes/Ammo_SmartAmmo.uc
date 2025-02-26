@@ -10,8 +10,8 @@ class Ammo_SmartAmmo extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=150
-     InitialAmount=50
+     MaxAmmo=200
+     InitialAmount=100
      IconFlashMaterial=Shader'BWBP_SKC_Tex.CYLO.AmmoIcon_CYLOFlash'
      PickupClass=Class'BWBP_OP_Pro.AP_SmartAmmo'
      IconMaterial=Texture'BWBP_SKC_Tex.CYLO.AmmoIcon_CYLO'

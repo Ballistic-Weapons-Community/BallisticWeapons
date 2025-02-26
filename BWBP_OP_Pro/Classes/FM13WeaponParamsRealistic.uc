@@ -62,7 +62,7 @@ defaultproperties
 		Recoil=2492.000000
 		PushbackForce=1200.000000
 		Chaos=1.0
-		Inaccuracy=(X=1000,Y=1000)
+		Inaccuracy=(X=800,Y=800)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
@@ -83,6 +83,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Fuel
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.FM13Grenade'
 		Speed=3500.000000
@@ -102,6 +103,28 @@ defaultproperties
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.100000	
 	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
+	End Object
+	
+	//Cluster
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams_Cluster
+		ProjectileClass=Class'BWBP_OP_Pro.FM13FlakGrenade'
+		Speed=3500.000000
+		Damage=30
+		DamageRadius=64.000000
+		FlashScaleFactor=2.000000
+		Recoil=1280.000000
+		Chaos=0.500000
+		BotRefireRate=0.3
+		WarnTargetPct=0.75
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Cluster
+		FireInterval=0.750000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.100000	
+	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams_Cluster'
 	End Object
 		
 	//=================================================================
@@ -170,6 +193,9 @@ defaultproperties
 		LayoutName="8 Gauge Shot"
 		LayoutTags="8Gauge"
 		Weight=30
+		//Model
+		WeaponMaterialSwaps(0)=(Material=Texture'BWBP_OP_Tex.FM13.FM13-ShellHeavy',Index=3,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.FM13.FM13-ShellFlak',Index=4,AIndex=-1)
 		//ADS
 		SightMoveSpeedFactor=0.6
         SightingTime=0.350000
@@ -183,7 +209,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Cluster'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams_Flame'

@@ -8,19 +8,21 @@
 //=============================================================================
 class M2020GaussAttachment extends BallisticAttachment;
 
+var byte CurrentTracerMode;
+var array< class<BCTraceEmitter> >	TracerClasses[4]; //Offline, suppressed, gauss, overcharged
+var array< class<BCImpactManager> >	ImpactManagers[4];
+
 var   bool					bLaserOn;		//Is laser currently active
 var   bool					bOldLaserOn;	//Old bLaserOn
 var   LaserActor			Laser;			//The laser actor
 var   Rotator				LaserRot;
 var	BallisticWeapon	myWeap;
-var 	bool					bNoEffect; 		//unpowered shots do not spawns tracers
+
 var	 Vector				SpawnOffset;
 
 var  byte 				OldBlockEffectCount, BlockEffectCount;
 var  M2020BlockEffect 		M2020BlockEffect;
 
-var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for gauss effects
-var() class<BCTraceEmitter>	    TracerClassAlt;		    //Type of tracer to use for alt fire effects
 
 replication
 {
@@ -30,13 +32,20 @@ replication
 		LaserRot;
 }
 
-
-simulated event PostNetBeginPlay()
+function InitFor(Inventory I)
 {
-	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsRealism())
+	Super.InitFor(I);
+
+	if (BallisticWeapon(I) != None)
+		myWeap = BallisticWeapon(I);
+	
+	if (M2020GaussDMR(I) != None && (M2020GaussDMR(I).CurrentWeaponMode == 2 || M2020GaussDMR(I).CurrentWeaponMode == 3))
 	{
-		TracerClass=Class'BallisticProV55.TraceEmitter_Gauss';
+		CurrentTracerMode=0;
+	}
+	if (M2020GaussDMR(I) != None && M2020GaussDMR(I).bSuppressed)
+	{
+		CurrentTracerMode=1;
 	}
 }
 
@@ -53,8 +62,8 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	if (Instigator == none)
 		return;
-	if (!bNoEffect)
-		SpawnTracer(Mode, mHitLocation);
+	
+	SpawnTracer(Mode, mHitLocation);
 	FlyByEffects(Mode, mHitLocation);
 	// Client, trace for hitnormal, hitmaterial and hitactor
 	if (Level.NetMode == NM_Client)
@@ -90,19 +99,73 @@ simulated function InstantFireEffects(byte Mode)
 		ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-	if (ImpactManagerAlt != None && !bNoEffect)
-		ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
-	if (ImpactManager != None)
-		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	if (ImpactManagers[CurrentTracerMode] != None)
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
-
-function InitFor(Inventory I)
+// Spawn some wall penetration effects...
+simulated function WallPenetrateEffect(byte Mode, vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
 {
-	Super.InitFor(I);
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0 || level.NetMode == NM_DedicatedServer || ImpactManagers[CurrentTracerMode] == None)
+		return;
+	if (bExit && (Level.DetailMode == DM_High || class'BallisticMod'.default.EffectsDetailMode == 1) )
+		return;
+	if (bExit)
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator, 2/*HF_NoSound*/);
+	else
+		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator);
+}
 
-	if (BallisticWeapon(I) != None)
-		myWeap = BallisticWeapon(I);
+// Spawn a tracer and water tracer
+simulated function SpawnTracer(byte Mode, Vector V)
+{
+	local BCTraceEmitter Tracer;
+	local Vector TipLoc, WLoc, WNorm;
+	local float Dist;
+	local bool bThisShot;
+
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
+		return;
+
+	TipLoc = GetTipLocation();
+	Dist = VSize(V - TipLoc);
+
+	// Count shots to determine if it's time to spawn a tracer
+	if (TracerMix == 0)
+		bThisShot=true;
+	else
+	{
+		TracerCounter++;
+		if (TracerMix < 0)
+		{
+			if (TracerCounter >= -TracerMix)	{
+				TracerCounter = 0;
+				bThisShot=false;			}
+			else
+				bThisShot=true;
+		}
+		else if (TracerCounter >= TracerMix)	{
+			TracerCounter = 0;
+			bThisShot=true;					}
+	}
+	// Spawn a tracer
+	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
+		bThisShot && (TracerChance >= 1 || FRand() < TracerChance))
+	{
+		if (Dist > 200)
+			Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(Dist);
+	}
+	// Spawn under water bullet effect
+	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
+		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
+	{
+		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
+			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(VSize(WLoc - TipLoc));
+	}
 }
 
 simulated function Tick(float DT)
@@ -209,11 +272,20 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'M2020GaussDMR'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.M2020_TPm'
+	
+	TracerClasses(0)=class'IM_Bullet'
+	TracerClasses(1)=class'TraceEmitter_AP'
+	TracerClasses(2)=class'TraceEmitter_Gauss'
+	TracerClasses(3)=class'TraceEmitter_GaussSuper'
+	ImpactManagers(0)=class'IM_Bullet'
+	ImpactManagers(1)=class'IM_BulletGauss'
+	ImpactManagers(2)=class'IM_BulletGauss'
+	ImpactManagers(3)=class'IM_BulletGauss'
+	
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.M2020_TPm'
 	MuzzleFlashClass=class'BWBP_SKC_Pro.M2020FlashEmitter'
 	AltMuzzleFlashClass=class'M806FlashEmitter'
 	ImpactManager=class'IM_Bullet'
-	ImpactManagerAlt=Class'BallisticProV55.IM_BulletGauss'
 	BrassClass=class'Brass_Rifle'
 	InstantMode=MU_Both
 	FlashMode=MU_Both

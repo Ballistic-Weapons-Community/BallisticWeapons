@@ -8,12 +8,12 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=800.000000Max=4000.000000)
+		TraceRange=(Min=4000.000000,Max=4000.000000)
 		WaterTraceRange=800.0
-		DecayRange=(Min=0.0,Max=0.0)
+		DecayRange=(Min=800.0,Max=4000.0)
 		Damage=33.0
-		HeadMult=2.181818
-		LimbMult=0.606060
+		HeadMult=2.2
+		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTFifty9SMG'
 		DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
@@ -32,9 +32,49 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+        AimedFireAnim="SightFire"
 		FireInterval=0.080000
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Burst
+        AimedFireAnim="SightFire"
+		FireInterval=0.050000
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//Supp
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_Supp
+		TraceRange=(Min=4000.000000,Max=4000.000000)
+		WaterTraceRange=800.0
+		DecayRange=(Min=800.0,Max=4000.0)
+		Damage=33.0
+		HeadMult=2.2
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTFifty9SMG'
+		DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
+		DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
+		PenetrationEnergy=7.000000
+		PenetrateForce=20
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
+		FlashScaleFactor=0.600000 //
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-FireSil',Volume=0.800000,Radius=48.000000,bAtten=True) //
+		Recoil=550.000000 //
+		Chaos=-1.0
+		Inaccuracy=(X=24,Y=24)
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams_Supp
+        AimedFireAnim="SightFire"
+		FireInterval=0.082500
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Supp'
 	End Object
 		
 	//=================================================================
@@ -68,6 +108,18 @@ defaultproperties
 		FireAnim="Melee1"
 	FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -82,6 +134,7 @@ defaultproperties
 		MaxRecoil=2560.000000
 		DeclineTime=0.600000
 		DeclineDelay=0.125000
+		ClimbTime=0.03
 		ViewBindFactor=0.100000
 		ADSViewBindFactor=0.100000
 		HipMultiplier=1.000000
@@ -112,28 +165,116 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		PlayerSpeedFactor=1.100000
-		InventorySize=4
+		//Layout core
+		Weight=30
+		LayoutName="Bladed"
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.165
+		SightPivot=(Pitch=128)
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=4
 		MagAmmo=36
 		bDualBlocked=True
-		//ViewOffset=(X=11.000000,Y=7.000000,Z=-9.000000)
-		//SightOffset=(X=-10.00000,Z=10.450000)
-		//SightPivot=(Pitch=16)
-		SightPivot=(Pitch=128)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//ReloadAnimRate=0.900000
         WeaponName="Fifty-9 9mm SMG"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Burst
+		//Layout core
+		Weight=10
+		LayoutName="Burst"
+		LayoutTags="laser,lock,open"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.Fifty9Tac_FPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Laser',BoneName="tip",Scale=0.08,AugmentOffset=(x=-40,y=0,z=-10.0),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_RMR',BoneName="tip",Scale=0.085,AugmentOffset=(x=-85,y=0,z=7.0),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+        WeaponBoneScales(0)=(BoneName="Suppressor",Slot=0,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Irons",Slot=1,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.165
+		SightPivot=(Pitch=128)
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=4
+		MagAmmo=36
+		bDualBlocked=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=true)
+		InitialWeaponMode=1
+        WeaponName="Fifty-9 9mm SMG"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Burst'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_Supp
+		//Layout core
+		Weight=10
+		LayoutName="Suppressed"
+		LayoutTags="lock"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.Fifty9Tac_FPm'
+        WeaponBoneScales(0)=(BoneName="StockWire",Slot=2,Scale=0f)
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.17 //
+		SightPivot=(Pitch=128)
+		//Stats
+		PlayerSpeedFactor=1.100000
+		InventorySize=4
+		MagAmmo=36
+		bDualBlocked=True
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+        WeaponName="Fifty-9 9mm SMG"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams_Supp'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	Layouts(1)=WeaponParams'RealisticParams_Burst'
+	Layouts(2)=WeaponParams'RealisticParams_Supp'
+	
+	//Camos =====================================
+	Begin Object Class=WeaponCamo Name=Fifty_Blue
+		Index=0
+		CamoName="Blue"
+		Weight=30
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Fifty_Red
+		Index=1
+		CamoName="Red"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Fifty9Camos.Fifty7Skin",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=Fifty_Orange
+		Index=2
+		CamoName="Orange"
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Fifty9Camos.TigerUziSkin",Index=1,AIndex=0,PIndex=0)
+		Weight=10
+	End Object
+	
+	Camos(0)=WeaponCamo'Fifty_Blue'
+	Camos(1)=WeaponCamo'Fifty_Red'
+	Camos(2)=WeaponCamo'Fifty_Orange'
 }

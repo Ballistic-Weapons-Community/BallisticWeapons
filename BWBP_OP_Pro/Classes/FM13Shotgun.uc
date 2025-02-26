@@ -11,6 +11,7 @@ class FM13Shotgun extends BallisticProShotgun;
 var bool bAltLoaded;
 var bool bLoadsShot;
 var Name SingleLoadAnim;
+var() BUtil.FullSound	BigLoadSound; //Are you ready for a BIG SHOT?
 
 var FM13FireControl FireControl;
 
@@ -33,8 +34,11 @@ simulated function OnWeaponParamsChanged()
 		bLoadsShot=true;
 		CockSound.Sound=Sound'BWBP_OP_Sounds.FM13.FM13-CockHeavyQuick';
 		CockSelectSound.Sound=Sound'BWBP_OP_Sounds.FM13.FM13-CockHeavyQuick';
+		ClipInSound.Sound=BigLoadSound.Sound;
 		CockSound.Volume=1.2;
 		CockSelectSound.Volume=1.2;
+		ClipInSound.Volume=1.5;
+		ClipInSound.Pitch=1.2;
 	}
 }
 
@@ -262,6 +266,7 @@ function FM13FireControl GetFireControl()
 
 defaultproperties
 {
+	BigLoadSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-NadeInsert',Volume=1.000000,Pitch=1.000000)
 	SingleLoadAnim="LoadSpecial"
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.FM13.BigIcon_Pitbull'

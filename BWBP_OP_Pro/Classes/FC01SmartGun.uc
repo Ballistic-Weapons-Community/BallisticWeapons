@@ -45,9 +45,9 @@ var() sound			SilencerOffTurnSound;	//
 
 var rotator ScopeSightPivot;
 var vector ScopeSightOffset;
-
 var rotator IronSightPivot;
 var vector IronSightOffset;
+var() float IronsViewBindFactor;
 
 var Name 			ReloadAltAnim;
 var BUtil.FullSound DrumInSound, DrumHitSound, DrumOutSound;
@@ -75,7 +75,7 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	bADSTrack=false;
-
+	IronsViewBindFactor = RcComponent.Params.ADSViewBindFactor;
 	if (InStr(WeaponParams.LayoutTags, "TargetScope") != -1)
 	{
 		bADSTrack=true;
@@ -402,6 +402,8 @@ function ServerSwitchSilencer(bool bNewValue)
 
 	bSilenced = bNewValue;
 	SwitchSilencer(bSilenced);
+	
+	FC01PrimaryFire(BFireMode[0]).SetSilenced(bNewValue);
 }
 
 exec simulated function WeaponSpecial(optional byte i)
@@ -768,6 +770,7 @@ exec simulated function ScopeView()
 	{
 		if (ZoomType == ZT_Fixed)
 		{
+			RcComponent.Params.ADSViewBindFactor = IronsViewBindFactor;
 			SightPivot = IronSightPivot;
 			SightOffset = IronSightOffset;
 			ZoomType = ZT_Irons;
@@ -797,6 +800,7 @@ simulated function ScopeViewTwo()
 		ScopeViewTex = Texture'BWBP_OP_Tex.ProtoLMG.ProtoScope1';
 		if (ZoomType == ZT_Irons)
 		{
+			RcComponent.Params.ADSViewBindFactor = 1;
 			SightPivot = ScopeSightPivot;
 			SightOffset = ScopeSightOffset;
 			ZoomType = ZT_Fixed;
@@ -818,8 +822,8 @@ simulated function ScopeViewTwoRelease()
 // Swap sighted offset and pivot for left handers
 simulated function SetHand(float InHand)
 {
-	IronSightPivot = default.SightPivot;
-	IronSightOffset = default.SightOffset;
+	IronSightPivot = WeaponParams.SightPivot;
+	IronSightOffset = WeaponParams.SightOffset;
 
 	super.SetHand(InHand);
 	if (Hand < 0)
@@ -1009,7 +1013,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	bShowChargingBar=True
+	bShowChargingBar=false
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FC01_FPm'
 	DrawScale=0.400000
 }

@@ -9,27 +9,122 @@ class Z250Minigun extends BallisticWeapon;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 
-var() name		GrenadeLoadAnim;	//Anim for grenade reload
-var() Sound		GrenOpenSound;		//Sounds for grenade reloading
-var() Sound		GrenLoadSound;		//
-var() Sound		GrenCloseSound;		//
+var(Z250) name		GrenadeLoadAnim;	//Anim for grenade reload
+var(Z250) Sound		GrenOpenSound;		//Sounds for grenade reloading
+var(Z250) Sound		GrenLoadSound;		//
+var(Z250) Sound		GrenCloseSound;		//
 
-var   float DesiredSpeed, BarrelSpeed;
-var   int	BarrelTurn;
-var() Sound BarrelSpinSound;
-var() Sound BarrelStopSound;
-var() Sound BarrelStartSound;
+var(Z250)   float DesiredSpeed, BarrelSpeed;
+var(Z250)   int	BarrelTurn;
+var(Z250) Sound BarrelSpinSound;
+var(Z250) Sound BarrelStopSound;
+var(Z250) Sound BarrelStartSound;
 
-var bool bDampingFireLoop;
+var(Z250) bool bDampingFireLoop;
 
-var Z250FireControl FireControl;
+var(Z250) Z250FireControl FireControl;
 
-var float		RotationSpeeds[5];
+var(Z250) float		RotationSpeeds[5];
+
+var(Z250)	int	            	NumpadYOffset1; //Ammo tens
+var(Z250)	int	            	NumpadYOffset2; //Ammo ones
+var(Z250) 	ScriptedTexture   	WeaponScreen;
+var(Z250) 	int               	ScreenIndex;
+
+var(Z250) 	Material	        Screen;
+var(Z250) 	Material	        ScreenBase;
+var(Z250) 	Material	        Numbers;
+
+var protected const color MyFontColor; //Why do I even need this?
 
 replication
 {
 	reliable if (Role < ROLE_Authority)
 		SetServerTurnVelocity;
+	reliable if (Role == ROLE_Authority)
+		ClientScreenStart;
+}
+
+//========================== AMMO COUNTER NON-STATIC TEXTURE ============
+
+simulated function ClientScreenStart()
+{
+	ScreenStart();
+}
+
+// Called on clients from camera when it gets to postnetbegin
+simulated function ScreenStart()
+{
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Client = self;
+	Skins[ScreenIndex] = Screen; //Set up scripted texture.
+	UpdateScreen();//Give it some numbers n shit
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+}
+
+simulated function Destroyed()
+{
+	if (Instigator != None && AIController(Instigator.Controller) == None)
+		WeaponScreen.client=None;
+	Super.Destroyed();
+}
+
+simulated event RenderTexture( ScriptedTexture Tex )
+{
+	Tex.DrawTile(0,0,256,256,0,0,256,256,ScreenBase, MyFontColor); //Basic screen
+
+	Tex.DrawTile(65,32,70,70,45,NumpadYOffset1,50,50,Numbers, MyFontColor); //Ammo
+	Tex.DrawTile(125,32,70,70,40,NumpadYOffset2,50,50,Numbers, MyFontColor);
+}
+simulated function RenderOverlays (Canvas C)
+{
+	NumpadYOffset1=(5+(MagAmmo/10)*49);
+	NumpadYOffset2=(5+(MagAmmo%10)*49);
+
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+	
+	Super.RenderOverlays(C);
+}
+	
+simulated function UpdateScreen()
+{
+	if (Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
+		return;
+
+	if (Instigator.IsLocallyControlled())
+	{
+			WeaponScreen.Revision++;
+	}
+}
+	
+// Consume ammo from one of the possible sources depending on various factors
+simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
+{
+	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
+	else
+	{
+		if (MagAmmo < Load)
+			MagAmmo = 0;
+		else
+			MagAmmo -= Load;
+	}
+	UpdateScreen();
+	return true;
+}
+
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	{
+		ScreenStart();
+		if (!Instigator.IsLocallyControlled())
+			ClientScreenStart();
+	}
+
+	Super.BringUp(PrevWeapon);
 }
 
 //===========================================================================
@@ -488,12 +583,20 @@ function float SuggestDefenseStyle()	{	return 0.1;	}
 
 defaultproperties
 {
+    ScreenIndex=4
+	WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.FG50.FG50-ScriptLCD'
+	screen=Shader'BWBP_SKC_Tex.FG50.FG50-ScriptLCD-SD'
+	//ScreenBase=Texture'BWBP_OP_Tex.Z250.Z250_display_DS'
+	ScreenBase=Texture'UCGeneric.SolidColours.Black'
+	Numbers=Texture'BWBP_OP_Tex.Z250.Z250-Numbers'
+	MyFontColor=(B=255,G=255,R=255,A=255)
+	
 	GrenadeLoadAnim="GLReload"
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
-	//BarrelSpinSound=Sound'BWBP_OP_Sounds.Z250.Z250-Motor'
+	//BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
+	BarrelSpinSound=Sound'BWBP_OP_Sounds.Z250.Z250-Motor'
 	BarrelStopSound=Sound'BWBP_OP_Sounds.Z250.Z250-SpinDown'
 	BarrelStartSound=Sound'BWBP_OP_Sounds.Z250.Z250-SpinUp'
 	PlayerSpeedFactor=0.900000
@@ -509,13 +612,13 @@ defaultproperties
 	ManualLines(1)="Secondary fire launches a fuel grenade, which spreads fuel on the ground. This fuel can be ignited using the primary fire or other fire-based weapons. Enemies hit by the grenade or who walk into the fuel spilled will be ignited and receive damage, in addition to the damage inflicted by the ground fires."
 	ManualLines(2)="Effective against groups of players and at area denial."
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout',Volume=0.212000)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway',Volume=0.212000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
 	MagAmmo=100
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipIn')
+	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.Z250.Z250-MagOut',Volume=1.212000)
+	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.Z250.Z250-MagIn',Volume=1.212000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 	WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")

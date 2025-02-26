@@ -13,38 +13,39 @@
 //=============================================================================
 class M2020GaussDMR extends BallisticWeapon;
 
-var   Emitter		LaserDot;
-var   bool			bLaserOn;
-var	int				NumpadXOffset;
-var	int				NumpadYOffset;
+var(M2020)   Emitter		LaserDot;
+var(M2020)   bool			bLaserOn;
+var(M2020)	 bool			bSuppressed;
 
-var bool				bOverheat;
-var() Sound		DrawSoundLong;		//For first draw
-var() Sound		VentingSound;		//For DA MAGNETS
-var() Sound		OverHeatSound;		//For vents
-var Sound      	ShieldHitSound;
-var float			HeatLevel;			// Current Heat level, duh...
-var float			MaxHeat;
+var(M2020) bool				bOverheat;
+var(M2020) Sound			DrawSoundLong;		//For first draw
+var(M2020) Sound			VentingSound;		//For DA MAGNETS
+var(M2020) Sound			OverHeatSound;		//For vents
+var(M2020) Sound      		ShieldHitSound;
+var(M2020) float			HeatLevel;			// Current Heat level, duh...
+var(M2020) float			MaxHeat;
 
-var name			BulletBone1;
-var name			BulletBone2;
+var(M2020) name				BulletBone1;
+var(M2020) name				BulletBone2;
 
-var Actor			Arc;				// The top arcs
+var(M2020) Actor			Arc;				// The top arcs
 
-var   float			MagnetSwitchTime, MagnetSwitchFireRate;
-var   name			MagnetOpenAnim;
-var   name			MagnetCloseAnim;
-var   name			MagnetForceCloseAnim;
-var   bool			bMagnetOpen;
-var   byte			PreviousWeaponMode;
+var(M2020)   float			MagnetSwitchTime, MagnetSwitchFireRate;
+var(M2020)   name			MagnetOpenAnim;
+var(M2020)   name			MagnetCloseAnim;
+var(M2020)   name			MagnetForceCloseAnim;
+var(M2020)   bool			bMagnetOpen;
+var(M2020)   byte			PreviousWeaponMode;
 
-var() ScriptedTexture WeaponScreen;
+var(M2020) ScriptedTexture WeaponScreen;
 
-var() Material	Screen; //This is a self-illum Scipted Texture
-var() Material	ScreenBaseX; //This is a texture that can be Base1 or Base2
-var() Material	ScreenBase1; //This is the On Screen background
-var() Material	ScreenBase2; //This is the Off Screen background
-var() Material	Numbers;     //This is the font used by the screen
+var(M2020)	int				NumpadXOffset;
+var(M2020)	int				NumpadYOffset;
+var(M2020) Material	Screen; //This is a self-illum Scipted Texture
+var(M2020) Material	ScreenBaseX; //This is a texture that can be Base1 or Base2
+var(M2020) Material	ScreenBase1; //This is the On Screen background
+var(M2020) Material	ScreenBase2; //This is the Off Screen background
+var(M2020) Material	Numbers;     //This is the font used by the screen
 var protected const color MyFontColor; //Why do I even need this?
 
 
@@ -52,6 +53,19 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientScreenStart, ClientSetHeat;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bSuppressed=false;
+
+	if (InStr(WeaponParams.LayoutTags, "supp") != -1)
+	{
+		bSuppressed=true; 
+	}
 }
 
 //========================== AMMO COUNTER NON-STATIC TEXTURE ============
@@ -486,7 +500,7 @@ simulated function AddHeat(float Amount, bool bReplicate)
 		
 	if (HeatLevel == MaxHeat && bMagnetOpen)
 	{
-		PlaySound(OverHeatSound,,3.7,,32);
+		PlaySound(OverHeatSound,,1.7,,32);
 		Overheat(true);
 	}
 }
@@ -497,7 +511,7 @@ simulated function ClientSetHeat(float NewHeat)
 	
 	if (HeatLevel == MaxHeat && bMagnetOpen)
 	{
-		PlaySound(OverHeatSound,,3.7,,32);
+		PlaySound(OverHeatSound,,1.7,,32);
 		Overheat(true);
 	}
 }

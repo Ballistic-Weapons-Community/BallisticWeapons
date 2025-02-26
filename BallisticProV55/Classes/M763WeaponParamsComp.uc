@@ -135,14 +135,16 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		//Layout
 		LayoutName="12ga Buckshot"
 		Weight=30
-		
+		//ADS
+        SightingTime=0.350000
+		SightMoveSpeedFactor=0.8
+		//Stats
 		CockAnimRate=1.100000
 		ReloadAnimRate=1.100000
 		MagAmmo=6
-        SightingTime=0.350000
-		SightMoveSpeedFactor=0.8
         InventorySize=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
@@ -151,15 +153,20 @@ defaultproperties
     End Object 
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Slug
+		//Layout
 		LayoutName="12ga Slug"
 		LayoutTags="slug"
 		Weight=10
-		
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="M763",Scale=0.045,AugmentOffset=(x=0,y=0.6,z=-0.25),AugmentRot=(Pitch=32800,Roll=0,Yaw=-16400))
+		//ADS
+		SightOffset=(X=0.000000,Y=-0.050000,Z=2.0000)
+        SightingTime=0.350000
+		SightMoveSpeedFactor=0.8
+		//Stats
 		CockAnimRate=1.100000
 		ReloadAnimRate=1.100000
 		MagAmmo=6
-        SightingTime=0.350000
-		SightMoveSpeedFactor=0.8
         InventorySize=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

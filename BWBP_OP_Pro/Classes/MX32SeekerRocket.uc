@@ -100,7 +100,7 @@ defaultproperties
     AccelSpeed=10000.000000
 	Speed=500.000000
     FlightSpeed=10000.000000
-    LifeSpan=0.000000
+    LifeSpan=10.000000
 	bTearOff=False
 	bNetTemporary=False
 	bUpdateSimulatedPosition=True

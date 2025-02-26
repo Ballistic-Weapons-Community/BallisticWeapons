@@ -198,12 +198,14 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		//Layout
 		LayoutName="12ga Shot"
 		Weight=30
-		
-		InventorySize=7
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
+		//Stats
+		InventorySize=7
 		MagAmmo=8
 		bMagPlusOne=True
 		InitialWeaponMode=0
@@ -217,13 +219,18 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Slug
+		//Layout
 		LayoutName="12ga Slug"
 		LayoutTags="slug"
 		Weight=10
-		
-		InventorySize=7
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="M763",Scale=0.045,AugmentOffset=(x=0,y=0.6,z=-0.25),AugmentRot=(Pitch=32800,Roll=0,Yaw=-16400))
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
+		//Stats
+		SightOffset=(X=0.000000,Y=-0.050000,Z=2.0000)
+		InventorySize=7
 		MagAmmo=8
 		bMagPlusOne=True
 		InitialWeaponMode=0

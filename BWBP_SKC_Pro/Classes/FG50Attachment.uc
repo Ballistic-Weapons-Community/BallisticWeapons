@@ -12,7 +12,6 @@ var byte CurrentTracerMode;
 var array< class<BCTraceEmitter> >	TracerClasses[2];
 var array< class<BCImpactManager> >	ImpactManagers[2];
 
-
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
@@ -118,6 +117,7 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	if (Instigator == none)
 		return;
+	
 	SpawnTracer(Mode, mHitLocation);
 	FlyByEffects(Mode, mHitLocation);
 	// Client, trace for hitnormal, hitmaterial and hitactor

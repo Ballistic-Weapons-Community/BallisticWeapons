@@ -50,8 +50,9 @@ simulated function PlayIdle()
 
 simulated function ApplyLaserAim()
 {
-	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimAdjustTime *= 0.75;
 	AimComponent.AimSpread.Max *= 0.65;
+	AimComponent.AimSpread.Min *= 0.65;
 }
 
 simulated event PostNetReceive()

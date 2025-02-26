@@ -199,10 +199,12 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="10ga Shot"
-		//Function
-		InventorySize=6
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
+		SightOffset=(X=-6,Z=2.1)
+		//Function
+		InventorySize=6
 		bNeedCock=True
 		MagAmmo=7
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -214,10 +216,14 @@ defaultproperties
 		//Layout core
 		LayoutName="10ga HE Slug"
 		Weight=10
-		//Function
-		InventorySize=6
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="CombatShotgun",Scale=0.05,AugmentOffset=(x=65,y=0,z=20),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
+		SightOffset=(X=-5.000000,Y=0.200000,Z=3.0000)
+		//Function
+		InventorySize=6
 		bNeedCock=True
 		MagAmmo=7
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -229,10 +235,12 @@ defaultproperties
 		//Layout core
 		LayoutName="10ga Teargas Slug"
 		Weight=10
-		//Function
-		InventorySize=6
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
+		SightOffset=(X=-6,Z=2.1)
+		//Function
+		InventorySize=6
 		bNeedCock=True
 		MagAmmo=7
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

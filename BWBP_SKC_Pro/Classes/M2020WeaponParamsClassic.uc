@@ -34,13 +34,14 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		AimedFireAnim="FireUnpowered"
 		FireInterval=0.850000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 	
 	//Gauss Max Power
-	End Object
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParamsPower
 		TraceRange=(Min=15000.000000,Max=20000.000000)
 		WaterTraceRange=18000.0
@@ -73,7 +74,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireAnim="FirePowered"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParamsPower'
+		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParamsPower'
 	End Object
 	
 	//Gauss Offline
@@ -107,9 +108,45 @@ defaultproperties
 		FireInterval=0.400000
 		BurstFireRateFactor=1.00
 		FireAnim="FireUnPowered"
+		AimedFireAnim="FireUnpowered"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParamsOffline'
+		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParamsOffline'
 	End Object	
+		
+	//Gauss Supp
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Supp
+		TraceRange=(Min=15000.000000,Max=20000.000000)
+		WaterTraceRange=18000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.900000
+		Damage=80
+		HeadMult=1.7
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
+		PenetrationEnergy=200.000000
+		PenetrateForce=600
+		bPenetrate=True
+		PDamageFactor=0.750000
+		WallPDamageFactor=0.750000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=1.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-FireGaussAlt',Volume=1.750000)
+		Recoil=1600.000000
+		Chaos=4.0
+		Inaccuracy=(X=1,Y=1)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Supp
+		AimedFireAnim="FireUnpowered"
+		FireInterval=0.650000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Supp'
+	End Object
 	
 	//=================================================================
 	// RECOIL
@@ -152,20 +189,24 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=8
+		//Layout core
+		Weight=30
+		LayoutName="Overcharger Coil"
+		//Attachments
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.50000
+		ZoomType=ZT_Smooth
+		SightOffset=(X=4.00,Y=0.00,Z=1.93)
+		//Function
+		InventorySize=8
 		bNeedCock=True
 		MagAmmo=10
-		//SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
-		ZoomType=ZT_Smooth
-		WeaponModes(0)=(ModeName="Gauss: Quick Charge",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Gauss: Full Charge",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(0)=(ModeName="Gauss: Std Charge",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Gauss: Overcharge",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
 		InitialWeaponMode=0
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -174,7 +215,74 @@ defaultproperties
 		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Holo
+		//Layout core
+		Weight=10
+		LayoutName="Holosight"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.M2020Tac_FPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-40,y=1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.40000
+		SightOffset=(X=4.00,Y=-0.10,Z=0.75)
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
+		//Function
+		InventorySize=8
+		bNeedCock=True
+		MagAmmo=10
+		WeaponModes(0)=(ModeName="Gauss: Online",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Gauss: Full Charge",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+		InitialWeaponMode=0
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsPower'
+		FireParams(2)=FireParams'ClassicPrimaryFireParamsOffline'
+		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Supp
+		//Layout core
+		Weight=10
+		LayoutName="Suppressor"
+		LayoutTags="supp"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.M2020Tac_FPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexRU',BoneName="tip",Scale=0.08,AugmentOffset=(x=-40,y=-1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorOsprey',BoneName="tip",Scale=0.2,AugmentOffset=(x=-15,y=1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.50000
+		SightOffset=(X=4.00,Y=-0.08,Z=0.55)
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
+		//Function
+		InventorySize=8
+		bNeedCock=True
+		MagAmmo=10
+		WeaponModes(0)=(ModeName="Gauss: Online",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Gauss: Full Charge",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+		InitialWeaponMode=0
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Supp'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams_Supp'
+		FireParams(2)=FireParams'ClassicPrimaryFireParamsOffline'
+		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Holo'
+	Layouts(2)=WeaponParams'ClassicParams_Supp'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=M2020_Black

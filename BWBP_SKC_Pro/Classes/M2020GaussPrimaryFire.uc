@@ -104,7 +104,10 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FirePushbackForce=default.FirePushbackForce;
 		bFlashAlt=false;
 		KickForce = default.KickForce;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
+		if (M2020GaussDMR(Weapon).bSuppressed)
+			M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=1;
+		else
+			M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=2;
 	}
 	
 	else if (NewMode == 1)	//gauss power
@@ -112,14 +115,14 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FirePushbackForce=120.000000;
 		KickForce=1000;
 		bFlashAlt=false;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
+		M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=3;
 	}
 	else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
 	{
 		FirePushbackForce=0.000000;
 		bFlashAlt=true;
 		KickForce = default.KickForce;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
+		M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=0;
 
 	}
 }

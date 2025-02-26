@@ -1,8 +1,8 @@
 //=============================================================================
-
 // MGL870Grenade.
 //
-// Grenade fired by MGL-870 grenade launcher.
+// Impact Grenade fired by MGL-870 grenade launcher.
+// If it impacts before arming, it will start a timer
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

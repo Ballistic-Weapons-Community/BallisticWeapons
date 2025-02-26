@@ -169,7 +169,7 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_SprintAimCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Weapon Jump Offsetting"
+         Caption="Weapon Sprint/Jump Offsetting"
          OnCreateComponent=ch_SprintAimCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Causes weapons to offset when jumping or sprinting."

@@ -146,12 +146,14 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
+		//Layout
 		LayoutName="Buckshot"
 		Weight=30
-		
-		MagAmmo=6
+		//ADS
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
+		//Stats
+		MagAmmo=6
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
@@ -160,13 +162,18 @@ defaultproperties
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Slug
+		//Layout
 		LayoutName="Slug"
 		LayoutTags="slug"
 		Weight=10
-		
-		MagAmmo=6
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="M763",Scale=0.045,AugmentOffset=(x=0,y=0.6,z=-0.25),AugmentRot=(Pitch=32800,Roll=0,Yaw=-16400))
+		//ADS
         SightingTime=0.35
         SightMoveSpeedFactor=0.6
+		//Stats
+		SightOffset=(X=0.000000,Y=-0.050000,Z=2.0000)
+		MagAmmo=6
         InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

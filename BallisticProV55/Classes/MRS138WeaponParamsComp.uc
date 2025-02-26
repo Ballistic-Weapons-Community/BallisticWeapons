@@ -153,13 +153,15 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="10ga Shot"
+		//ADS
+		SightingTime=0.3
+		SightMoveSpeedFactor=0.9
+		SightOffset=(X=-6,Z=2.1)
 		//Function
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.200000
-		SightingTime=0.3
 		MagAmmo=6
         InventorySize=5
-		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
@@ -170,6 +172,12 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="10ga HE Slug"
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="CombatShotgun",Scale=0.05,AugmentOffset=(x=65,y=0,z=20),AugmentRot=(Pitch=0,Roll=0,Yaw=32768))
+		//ADS
+		SightingTime=0.3
+		SightMoveSpeedFactor=0.9
+		SightOffset=(X=-5.000000,Y=0.200000,Z=3.0000)
 		//Function
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.000000
@@ -187,6 +195,10 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="10ga Teargas Slug"
+		//ADS
+		SightingTime=0.3
+		SightMoveSpeedFactor=0.9
+		SightOffset=(X=-6,Z=2.1)
 		//Function
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.000000
