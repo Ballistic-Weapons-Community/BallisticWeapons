@@ -10,6 +10,7 @@ class FM14Attachment extends BallisticShotgunAttachment;
 
 defaultproperties
 {
+     WeaponClass=class'FM14Shotgun'
      MuzzleFlashClass=Class'BWBP_APC_Pro.FM14FlashEmitter'
 	 ImpactManager=Class'BallisticProV55.IM_Shell'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

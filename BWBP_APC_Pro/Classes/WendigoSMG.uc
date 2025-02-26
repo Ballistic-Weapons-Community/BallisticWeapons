@@ -16,10 +16,7 @@
 // by Casey 'Xavious' Johnson, Marc 'Sergeant Kelly' and Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class WendigoSMG extends BallisticWeapon
-	transient
-	HideDropDown
-	CacheExempt;
+class WendigoSMG extends BallisticWeapon;
 
 var() sound			MeleeFireSound;
 
@@ -523,10 +520,12 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=2.000000)
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
-	bNoCrosshairInScope=False
+	bNoCrosshairInScope=True
 	GunLength=16.000000
-	ParamsClasses(0)=Class'WendigoWeaponParams' 
-	ParamsClasses(1)=Class'WendigoWeaponParams' 
+	ParamsClasses(0)=Class'WendigoSMGParamsArena' 
+	ParamsClasses(1)=Class'WendigoSMGParamsClassic'
+	ParamsClasses(2)=Class'WendigoSMGParamsRealistic'
+	ParamsClasses(3)=Class'WendigoSMGParamsTactical'
 	AmmoClass[0]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	AmmoClass[1]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	FireModeClass(0)=Class'BWBP_APC_Pro.WendigoPrimaryFire'
@@ -549,10 +548,8 @@ defaultproperties
 	InventoryGroup=4
 	GroupOffset=10
 	PickupClass=Class'BWBP_APC_Pro.WendigoPickup'
-
-	PlayerViewOffset=(X=8.000000,Y=8.000000,Z=-15.000000)
+	PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-5.000000)
 	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
-
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_APC_Pro.WendigoAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'

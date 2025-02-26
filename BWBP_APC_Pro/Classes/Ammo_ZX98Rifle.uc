@@ -6,7 +6,7 @@
 // by Casey 'Xavious' Johnson
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Ammo_ZX98 extends BallisticAmmo;
+class Ammo_ZX98Rifle extends BallisticAmmo;
 
 defaultproperties
 {

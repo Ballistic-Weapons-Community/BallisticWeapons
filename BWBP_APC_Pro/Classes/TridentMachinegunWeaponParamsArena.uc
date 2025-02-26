@@ -12,9 +12,9 @@ defaultproperties
 		Damage=20
 		HeadMult=2.5f
         LimbMult=0.75f
-		//DamageType=Class'BallisticProV55.DTM353MG'
-		//DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
-		//DamageTypeArm=Class'BallisticProV55.DTM353MG'
+		DamageType=Class'BWBP_APC_Pro.DTTridentMG'
+		DamageTypeHead=Class'BWBP_APC_Pro.DTTridentMGHead'
+		DamageTypeArm=Class'BWBP_APC_Pro.DTTridentMG'
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
@@ -100,7 +100,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(0)=(BoneName="Bullet1",Slot=101,Scale=0f)
-		SightOffset=(X=5.000000,Y=-0.900000,Z=19.30000)
+		SightOffset=(X=5.000000,Y=-0.850000,Z=19.200000)
 		ViewOffset=(X=0.000000,Y=10.000000,Z=-16.000000)
 		PlayerSpeedFactor=0.950000
         PlayerJumpFactor=0.950000

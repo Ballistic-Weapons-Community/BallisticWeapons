@@ -1,4 +1,4 @@
-class WendigoWeaponParams extends BallisticWeaponParams;
+class WendigoSMGParamsTactical extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -100,7 +100,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		SightPivot=(Pitch=0)
-		//SightOffset=(X=-10.000000,Y=-0.310000,Z=20.620000)
+		SightOffset=(X=15.000000,Y=-0.285000,Z=0.040000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12

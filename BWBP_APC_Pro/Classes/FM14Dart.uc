@@ -11,6 +11,7 @@ class FM14Dart extends BallisticProjectile;
 
 defaultproperties
 {
+     WeaponClass=class'FM14Shotgun'
      ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'

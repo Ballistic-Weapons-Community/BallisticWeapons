@@ -157,6 +157,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
+	 WeaponClass=class'TridentMachinegun'
 	 TracerClass=Class'BallisticProV55.TraceEmitter_Default'
 	 AltTracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
@@ -171,8 +172,9 @@ defaultproperties
 	 TracerMix=0
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	 CockAnimRate=0.550000
      ReloadAnim="Reload_MG"
-	 ReloadAnimRate=1.500000
+	 ReloadAnimRate=1.070000
      bHeavy=True
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_APC_Anim.CruMG_TPm'

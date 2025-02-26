@@ -12,7 +12,7 @@ class AP_HB4Batteries extends BallisticAmmoPickup;
 defaultproperties
 {
      AmmoAmount=6
-     InventoryType=Class'BWBP_APC_Pro.Ammo_HB4'
+     InventoryType=Class'BWBP_APC_Pro.Ammo_HB4Blaster'
      PickupMessage="You got 2 Grenade Batteries."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterClip'

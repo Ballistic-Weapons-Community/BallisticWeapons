@@ -1,4 +1,4 @@
-class HydraWeaponParams extends BallisticWeaponParams;
+class HydraWeaponParamsArena extends BallisticWeaponParams;
 
 defaultproperties
 {    
