@@ -44,7 +44,7 @@ defaultproperties
 	YInaccuracy=16.000000
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ55-Fire')
 	bPawnRapidFireAnim=True
-	AmmoClass=Class'BWBP_APC_Pro.Ammo_556mmSTANAG'
+	AmmoClass=Class'BallisticProV55.Ammo_556mm'
 	ShakeRotMag=(X=48.000000)
 	ShakeRotRate=(X=640.000000)
 	ShakeRotTime=2.000000
