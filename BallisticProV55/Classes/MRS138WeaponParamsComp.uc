@@ -181,10 +181,8 @@ defaultproperties
 		//Function
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.000000
-		SightingTime=0.3
 		MagAmmo=6
         InventorySize=5
-		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Frag'
@@ -202,10 +200,8 @@ defaultproperties
 		//Function
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.000000
-		SightingTime=0.3
 		MagAmmo=6
         InventorySize=5
-		SightMoveSpeedFactor=0.9
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Gas'
