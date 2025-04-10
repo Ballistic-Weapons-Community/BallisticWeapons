@@ -6,21 +6,21 @@ class WendigoPickup extends BallisticWeaponPickup
 
 static function StaticPrecache(LevelInfo L)
 {
-	 L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Wendigo.Wendigo_Body_Main');
-	 L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupHi');
-	 L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupLo');
+	L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Wendigo.Wendigo_Body_Main');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupHi');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupLo');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	 Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Wendigo.Wendigo_Body_Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Wendigo.Wendigo_Body_Main');
      Super.UpdatePrecacheMaterials();
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	 Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupHi');
-	 Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupLo');
      Super.UpdatePrecacheStaticMeshes();
 }
 

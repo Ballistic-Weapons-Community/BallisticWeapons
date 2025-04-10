@@ -11,6 +11,7 @@ class FM13FlakProjectile extends BallisticProjectile;
 
 defaultproperties
 {
+	WeaponClass=Class'BWBP_OP_Pro.FM13Shotgun'
 	ModeIndex=1
 	ImpactManager=Class'BWBP_SKC_Pro.IM_LonghornCluster'
 	TrailClass=Class'BallisticProV55.MRLTrailEmitter'

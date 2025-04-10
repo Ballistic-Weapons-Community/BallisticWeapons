@@ -42,5 +42,5 @@ defaultproperties
      Physics=PHYS_None
      DrawScale=0.750000
      CollisionHeight=4.500000
-	 Skins(1)=Shader'BWBP_OP_Tex.ProtonPack.proton_pack_SH_1'
+	Skins(1)=Shader'BWBP_OP_Tex.ProtonPack.proton_pack_SH_1'
 }
