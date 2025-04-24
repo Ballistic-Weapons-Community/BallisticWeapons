@@ -112,6 +112,18 @@ defaultproperties
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
 	End Object
 
+	//Scope
+	Begin Object Class=FireEffectParams Name=TacticalSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams_Scope'
+	End Object	
+
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -120,6 +132,22 @@ defaultproperties
 		ViewBindFactor=0.15
 		ADSViewBindFactor=0.5
 		EscapeMultiplier=1.5
+		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
+		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
+		XRandFactor=0.2
+		YRandFactor=0.2
+		ClimbTime=0.06
+		DeclineDelay=0.29
+		DeclineTime=0.75
+		CrouchMultiplier=0.85
+		HipMultiplier=1.5
+		MaxMoveMultiplier=2.5
+	End Object
+
+	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
+		ViewBindFactor=0.15
+		ADSViewBindFactor=1.0
+		EscapeMultiplier=1.0
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.0),(InVal=0.2,OutVal=0.07),(InVal=0.4,OutVal=0.04),(InVal=0.5,OutVal=0.06),(InVal=0.7,OutVal=-0.01),(InVal=0.85,OutVal=0.04),(InVal=1,OutVal=0.0)))
 		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.3),(InVal=0.4,OutVal=0.38),(InVal=0.5,OutVal=0.55),(InVal=0.7,OutVal=0.75),(InVal=0.85,OutVal=0.85),(InVal=1,OutVal=1)))
 		XRandFactor=0.2
@@ -176,6 +204,16 @@ defaultproperties
         ChaosSpeedThreshold=300
 	End Object
 
+	Begin Object Class=AimParams Name=TacticalAimParams_Scope
+		ADSMultiplier=0.35
+		ADSViewBindFactor=1
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
+		AimSpread=(Min=384,Max=1280)
+		AimAdjustTime=0.600000
+		ChaosDeclineTime=0.75
+        ChaosSpeedThreshold=300
+	End Object
+
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
@@ -189,12 +227,13 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.SRX.SRX-Rifle',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.SRX.SRX-Stock',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
+		//ADS
 		SightOffset=(X=0,Y=0,Z=2.60)
-		//Function
         SightingTime=0.35
+        SightMoveSpeedFactor=0.45
+		//Function
 		MagAmmo=20
         InventorySize=6
-        SightMoveSpeedFactor=0.45
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalExplosiveRecoilParams'
 		RecoilParams(2)=RecoilParams'TacticalAcidRecoilParams'
@@ -213,13 +252,13 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
-		//SightPivot=(Pitch=-128,Yaw=16)
+		//ADS
 		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
-		//Function
         SightingTime=0.35
+        SightMoveSpeedFactor=0.45
+		//Function
 		MagAmmo=20
         InventorySize=6
-        SightMoveSpeedFactor=0.45
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalExplosiveRecoilParams'
 		RecoilParams(2)=RecoilParams'TacticalAcidRecoilParams'
@@ -229,8 +268,63 @@ defaultproperties
 		FireParams(2)=FireParams'TacticalAcidFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
+	
+    Begin Object Class=WeaponParams Name=TacticalParams_ACOG
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		LayoutTags="optic"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-60,y=-1.3,z=-0.125),AugmentRot=(Pitch=0,Roll=-16384,Yaw=0))
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.45
+		SightOffset=(X=0.000000,Y=-0.4,Z=3.9)
+		//Function
+		MagAmmo=20
+        InventorySize=6
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+		AimParams(0)=AimParams'TacticalAimParams_Scope'
+		FireParams(0)=FireParams'TacticalStandardFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
+	
+    Begin Object Class=WeaponParams Name=TacticalParams_IRNV
+		//Layout core
+		Weight=5
+		LayoutName="IRNV Scope"
+		LayoutTags="optic, IR"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_IRScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-60,y=-1.55,z=-0.125),AugmentRot=(Pitch=0,Roll=-16384,Yaw=0))
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-IRScope'
+        ZoomType=ZT_Fixed
+		MaxZoom=2
+		//ADS
+		SightMoveSpeedFactor=0.35
+		SightingTime=0.5
+		SightOffset=(X=0.000000,Y=-0.4,Z=4)
+		//Function
+		MagAmmo=20
+        InventorySize=6
+		RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+		AimParams(0)=AimParams'TacticalAimParams_Scope'
+		FireParams(0)=FireParams'TacticalStandardFireParams'
+		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
+    End Object 
+	
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_RDS'
+    Layouts(2)=WeaponParams'TacticalParams_ACOG'
+    Layouts(3)=WeaponParams'TacticalParams_IRNV'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SRX_Gray

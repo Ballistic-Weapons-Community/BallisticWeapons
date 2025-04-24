@@ -27,7 +27,7 @@ var  M2020BlockEffect 		M2020BlockEffect;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		BlockEffectCount, bLaserOn;
+		BlockEffectCount, bLaserOn, CurrentTracerMode;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
 }
@@ -65,20 +65,23 @@ simulated function InstantFireEffects(byte Mode)
 	
 	SpawnTracer(Mode, mHitLocation);
 	FlyByEffects(Mode, mHitLocation);
+	
 	// Client, trace for hitnormal, hitmaterial and hitactor
 	if (Level.NetMode == NM_Client)
 	{
 		mHitActor = None;
 		Start = Instigator.Location + Instigator.EyePosition();
 
-		if (WallPenetrates != 0)				{
+		if (WallPenetrates != 0)
+		{
 			WallPenetrates = 0;
-			DoWallPenetrate(Mode, Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	
+		}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		// Check for water and spawn splash
-		if (ImpactManager!= None && bDoWaterSplash)
+		if (ImpactManagers[CurrentTracerMode] != None && bDoWaterSplash)
 			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
@@ -130,33 +133,12 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	TipLoc = GetTipLocation();
 	Dist = VSize(V - TipLoc);
 
-	// Count shots to determine if it's time to spawn a tracer
-	if (TracerMix == 0)
-		bThisShot=true;
-	else
-	{
-		TracerCounter++;
-		if (TracerMix < 0)
-		{
-			if (TracerCounter >= -TracerMix)	{
-				TracerCounter = 0;
-				bThisShot=false;			}
-			else
-				bThisShot=true;
-		}
-		else if (TracerCounter >= TracerMix)	{
-			TracerCounter = 0;
-			bThisShot=true;					}
-	}
-	// Spawn a tracer
-	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
-		bThisShot && (TracerChance >= 1 || FRand() < TracerChance))
-	{
+
 		if (Dist > 200)
 			Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
-	}
+		
 	// Spawn under water bullet effect
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
 		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
@@ -273,7 +255,7 @@ defaultproperties
 {
 	WeaponClass=class'M2020GaussDMR'
 	
-	TracerClasses(0)=class'IM_Bullet'
+	TracerClasses(0)=class'TraceEmitter_Default'
 	TracerClasses(1)=class'TraceEmitter_AP'
 	TracerClasses(2)=class'TraceEmitter_Gauss'
 	TracerClasses(3)=class'TraceEmitter_GaussSuper'

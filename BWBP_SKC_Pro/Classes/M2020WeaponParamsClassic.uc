@@ -222,7 +222,7 @@ defaultproperties
 		LayoutName="Holosight"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.M2020Tac_FPm'
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-40,y=1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-40,y=-1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.40000

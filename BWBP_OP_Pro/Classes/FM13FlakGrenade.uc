@@ -92,6 +92,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+	WeaponClass=Class'BWBP_OP_Pro.FM13Shotgun'
     ArmingDelay=0.3
     DetonateOn=DT_Timer
     PlayerImpactType=PIT_Bounce

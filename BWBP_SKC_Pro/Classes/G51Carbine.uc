@@ -9,35 +9,35 @@
 //=============================================================================
 class G51Carbine extends BallisticWeapon;
 
-var() name		GrenadeLoadAnim;	//Anim for grenade reload
-var()   bool		bLoaded;
+var(G51) name					GrenadeLoadAnim;	//Anim for grenade reload
+var(G51)   bool					bLoaded;
 
 
-var() name		GrenBone;			
-var() name		GrenBoneBase;
-var() Sound		GrenSlideSound;		//Sounds for grenade reloading
-var() Sound		ClipInSoundEmpty;		//			
+var(G51) name					GrenBone;			
+var(G51) name					GrenBoneBase;
+var(G51) Sound					GrenSlideSound;		//Sounds for grenade reloading
+var(G51) Sound					ClipInSoundEmpty;		//			
 
-var() name			BulletBone;
-var() name			BulletBone2;
+var(G51) name					BulletBone;
+var(G51) name					BulletBone2;
 
 // IR Code
-var() bool				bHasIR;
-var()   Texture			ScopeviewTexIR;
+var(G51)	bool				bHasIR;
+var(G51)	Texture				ScopeviewTexIR;
 
-var() BUtil.FullSound	ThermalOnSound;	// Sound when activating thermal mode
-var() BUtil.FullSound	ThermalOffSound;// Sound when deactivating thermal mode
-var(IR)   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
-var(IR) material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
-var()   bool				bThermal;		// Is thermal mode active?
-var(IR)   bool				bUpdatePawns;	// Should viewable pawn list be updated
-var(IR)   Pawn				UpdatedPawns[16];// List of pawns to view in thermal scope
-var(IR) material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
-var(IR) float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
-var(IR)   ColorModifier		ColorMod;
-var(IR)   Array<M58Cloud>	SmokeList;		// A list of all the potential pawns to view in thermal mode
-var(IR)   actor			NVLight;
-var   float				NextPawnListUpdateTime;
+var(G51) 	BUtil.FullSound		ThermalOnSound;	// Sound when activating thermal mode
+var(G51)	BUtil.FullSound		ThermalOffSound;// Sound when deactivating thermal mode
+var(G51)	Array<Pawn>			PawnList;		// A list of all the potential pawns to view in thermal mode
+var(G51)	material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
+var(G51)	bool				bThermal;		// Is thermal mode active?
+var(G51)	bool				bUpdatePawns;	// Should viewable pawn list be updated
+var(G51)	Pawn				UpdatedPawns[16];// List of pawns to view in thermal scope
+var(G51)	material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
+var(G51)	float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
+var(G51)	ColorModifier		ColorMod;
+var(G51)	Array<M58Cloud>		SmokeList;		// A list of all the potential pawns to view in thermal mode
+var(G51)	actor				NVLight;
+var(G51)	float				NextPawnListUpdateTime;
 var bool			bSilenced;
 
 replication
