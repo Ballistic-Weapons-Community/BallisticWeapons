@@ -6,7 +6,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=10000.000000,Max=13000.000000)
 		DecayRange=(Min=1575,Max=3675)
 		PenetrationEnergy=32
@@ -25,18 +25,18 @@ defaultproperties
 		WarnTargetPct=0.200000
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.082500
-		FireEndAnim=
+		BurstFireRateFactor=1.000000
 		AimedFireAnim="SightFire"	
-	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
 
-	Begin Object Class=GrenadeEffectParams Name=ArenaSecondaryEffectParams_HE
+	Begin Object Class=GrenadeEffectParams Name=RealisticSecondaryEffectParams_HE
 		ProjectileClass=Class'BWBP_SKC_Pro.G51Grenade_HE'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3750.000000
@@ -52,17 +52,17 @@ defaultproperties
 		WarnTargetPct=0.300000	
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_HE
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_HE
 		FireInterval=0.600000
 		FireAnim="FireGrenade"	
-	FireEffectParams(0)=GrenadeEffectParams'ArenaSecondaryEffectParams_HE'
+	FireEffectParams(0)=GrenadeEffectParams'RealisticSecondaryEffectParams_HE'
 	End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.250000,OutVal=0.060000),(InVal=0.400000,OutVal=-0.020000),(InVal=0.800000,OutVal=0.100),(InVal=1.000000,OutVal=0.00000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.1000
@@ -79,7 +79,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ArenaAimParams
+	Begin Object Class=AimParams Name=RealisticAimParams
 		AimSpread=(Min=64,Max=512)
         ADSMultiplier=0.35
 		SprintOffset=(Pitch=-2048,Yaw=-2048)
@@ -89,58 +89,55 @@ defaultproperties
     
 	//=================================================================
 	// BASIC PARAMS
-	//=================================================================	
-
+	//=================================================================		
 	Begin Object Class=WeaponParams Name=RealisticParams_HE
 		Weight=10
-		LayoutName="Iron Sights + HE"
-		WeaponPrice=1200
+		LayoutName="Irons + HE"
 		SightOffset=(X=25.000000,Y=-6.4500000,Z=20.5000000)
-		SightingTime=0.22
-		SightMoveSpeedFactor=0.5
-		MagAmmo=30
-		InventorySize=6
-		bMagPlusOne=True
-		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		SightingTime=0.350000	
+		SightMoveSpeedFactor=0.8
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=False)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		InitialWeaponMode=1
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		MagAmmo=30
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_HE'
 	End Object
-
+	
 	Begin Object Class=WeaponParams Name=RealisticParams_EOtech
 		Weight=10
 		LayoutName="EOtech + HE"
-		WeaponPrice=1200
 		SightOffset=(X=25.000000,Y=-6.4500000,Z=20.5000000)
-		SightingTime=0.22
-		SightMoveSpeedFactor=0.5
+		SightingTime=0.350000	
+		SightMoveSpeedFactor=0.8
 		LayoutMesh=SkeletalMesh'BWBP_APC_Anim.M4A1Carbine_FPm'
-		MagAmmo=30
-		InventorySize=6
-		bMagPlusOne=True
-		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=False)
+		WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=1
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		MagAmmo=30
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_HE'
 	End Object
-	
+
 	Layouts(0)=WeaponParams'RealisticParams_HE'
 	Layouts(1)=WeaponParams'RealisticParams_EOtech'
-	
+
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=MJ51_Black
 		Index=0
 		CamoName="Black"
 		Weight=30
 	End Object
-		
+	
 	Camos(0)=WeaponCamo'MJ51_Black'
 }
