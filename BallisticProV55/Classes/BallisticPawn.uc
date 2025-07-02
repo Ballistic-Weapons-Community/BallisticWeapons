@@ -167,6 +167,16 @@ var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
 var     bool                bCanDodge;
 
+//Wall running stuff
+var bool bLockedToSurface; // Tracks if the player is locked to a surface
+var vector LockedSurfaceNormal; // Stores the normal of the locked surface
+
+// --- Crouch/Jump Parameters ---
+var float  CrouchEndTime;
+var() float JumpCrouchPenalty;   // Jump height multiplier for crouching
+var() float JumpCrouchTime;
+
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -513,8 +523,10 @@ event HitWall(vector HitNormal, actor Wall)
 {
 	if (Controller != None)
 		Controller.NotifyHitWall(HitNormal, Wall);
+	
 	if (VSize(Velocity) > 900)
 		bPendingNegation=True;
+	
 }
 
 event Landed(vector HitNormal)
@@ -526,10 +538,13 @@ event Landed(vector HitNormal)
 
     MultiJumpRemaining = MaxMultiJump;
 
+	if (Role == ROLE_Authority)
+		Inventory.OwnerEvent('Landed');
+
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
-	
+
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
 
@@ -541,7 +556,7 @@ function PawnCheckBob(float DeltaTime, vector Y)
 {
 	local float Speed2D;
 
-    if(bJustLanded )
+    if(bJustLanded || (Sprinter != None && Sprinter.bIsSliding))
     {
 		BobTime = 0;
 		WalkBob = Vect(0,0,0);
@@ -1597,8 +1612,13 @@ simulated function ReceiveHitInfo(NetHitInfo PHI)
 simulated event Tick(float DT)
 {
 	local int Index, i, Diff;
+	local vector TraceStart, TraceEnd, HitLocation, HitNormal;
+    local Actor HitActor;
+	local Vector X,Y,Z;
 
 	super.Tick(DT);
+
+	GetAxes(Rotation, X, Y, Z);
 	
 	if (bPendingNegation)
 	{
@@ -1639,6 +1659,33 @@ simulated event Tick(float DT)
 				NewDeResFinalBlends[i].AlphaRef = Index;
 		}
 	}
+
+	if (bLockedToSurface)
+	{
+		// Perform a trace to check if the player is still near the wall
+		TraceStart = Location + CollisionHeight * vect(0, 0, 1);
+		TraceEnd = Location - LockedSurfaceNormal * CollisionRadius * 2; // Trace towards the locked surface
+		HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, false, vect(1,1,1));
+		if (HitActor != None && (HitActor.bWorldGeometry || Mover(HitActor) != None) 
+		&& Normal(Velocity) dot X > 0 && LockedSurfaceNormal dot HitNormal > 0.95 && VSize(Velocity) > 50.0)
+		{			
+			// Slow descent
+			Velocity.Z = FMax(Velocity.Z, -100.0); 
+			//AirControl = 0.8; // Higher air control for smoother movement
+			MultiJumpRemaining = MaxMultiJump; // Reset multi-jump count
+		}
+		else
+		{
+			StopWallRun();
+		}
+	}
+}
+
+simulated function StopWallRun()
+{
+	bLockedToSurface = false;
+	LockedSurfaceNormal = vect(0, 0, 0);
+	//AirControl = default.AirControl; // Reset air control
 }
 
 // Return true if the input bone is already dismembered
@@ -2407,7 +2454,9 @@ event StartCrouch(float HeightAdjust)
 {
 	EyeHeight += HeightAdjust;
 	OldZ -= HeightAdjust;
-	BaseEyeHeight = CrouchEyeHeight;
+	BaseEyeheight = CrouchEyeHeight;
+	if (Role == ROLE_Authority)
+		Inventory.OwnerEvent('Crouched');
 }
 
 event EndCrouch(float HeightAdjust)
@@ -2415,7 +2464,16 @@ event EndCrouch(float HeightAdjust)
 	EyeHeight -= HeightAdjust;
 	OldZ += HeightAdjust;
 	BaseEyeHeight = Default.BaseEyeHeight;
+	CrouchEndTime = Level.TimeSeconds;
 }
+
+event Falling()
+{
+    Super.Falling();
+	if (Role == ROLE_Authority)
+		Inventory.OwnerEvent('Falling');
+}
+
 
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
 // It causes BaseEyeHeight to be forced to 38 on the server for non local players (unless the server player is first person spectating that client)
@@ -2439,6 +2497,7 @@ function DoDoubleJump( bool bUpdating )
         SetPhysics(PHYS_Falling);
         if ( !bUpdating )
 			PlayOwnedSound(GetSound(EST_DoubleJump), SLOT_Pain, GruntVolume, , GruntRadius);
+		StopWallRun();
     }
 
 	if (Role == ROLE_Authority)
@@ -2539,6 +2598,10 @@ function bool CanMultiJump()
 
 function bool Dodge(eDoubleClickDir DoubleClickMove)
 {
+    local vector X, Y, Z, TraceStart, TraceEnd, Dir, HitLocation, HitNormal;
+    local Actor HitActor;
+    local rotator TurnRot;
+
 	if (!bCanDodge)
 		return false;
 
@@ -2554,6 +2617,30 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
         return true;
     }
 
+    TurnRot.Yaw = Rotation.Yaw;
+    GetAxes(TurnRot, X, Y, Z);
+
+    if (Physics == PHYS_Falling)
+    {
+        // Determine direction for wall trace based on input
+        if (DoubleClickMove == DCLICK_Left)
+            Dir = -Y; // Left
+        else if (DoubleClickMove == DCLICK_Right)
+            Dir = Y; // Right
+
+        // Perform wall trace
+        TraceStart = Location - CollisionHeight * vect(0, 0, 1);
+        TraceEnd = TraceStart + Dir * CollisionRadius * 2; // Extend trace outward
+        HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, false, vect(1, 1, 1));
+        // Check if wall is valid
+        if (HitActor != None && (HitActor.bWorldGeometry || Mover(HitActor) != None))
+        {
+            // Initiate wall running
+            bLockedToSurface = true;
+            LockedSurfaceNormal = HitNormal;
+        }
+    }
+
     return false;
 }
 
@@ -2562,11 +2649,9 @@ function bool DoJump( bool bUpdating )
 	local float OldJumpZ;
 
 	OldJumpZ = JumpZ;
-
+	
 	if (BallisticWeapon(Weapon) != None)
-    {	
         JumpZ = BallisticWeapon(Weapon).GetModifiedJumpZ(self);
-    }
 
     if ( !bUpdating && CanDoubleJump() && (Abs(Velocity.Z) < 100) && IsLocallyControlled() )
     {
@@ -2578,18 +2663,39 @@ function bool DoJump( bool bUpdating )
         JumpZ = OldJumpZ;
         return true;
     }
+	//Allow crouch jumping
+	if ( ((Physics == PHYS_Walking) || (Physics == PHYS_Ladder) || (Physics == PHYS_Spider)) )
+	{
+		if ( Role == ROLE_Authority )
+		{
+			if ( (Level.Game != None) && (Level.Game.GameDifficulty > 2) )
+				MakeNoise(0.1 * Level.Game.GameDifficulty);
+			if ( bCountJumps && (Inventory != None) )
+				Inventory.OwnerEvent('Jumped');
+		}
+		if ( Physics == PHYS_Spider )
+			Velocity = JumpZ * Floor;
+		else if ( Physics == PHYS_Ladder )
+			Velocity.Z = 0;
+		else if ( bIsWalking )
+			Velocity.Z = Default.JumpZ;
+		else
+			Velocity.Z = JumpZ;
+		if ( (Base != None) && !Base.bWorldGeometry )
+			Velocity += Base.Velocity;
 
-    if ( Super(UnrealPawn).DoJump(bUpdating) )
-    {
+        if( bIsCrouched || bWantsToCrouch || Level.TimeSeconds - CrouchEndTime < JumpCrouchTime )
+            Velocity.Z -= JumpZ * JumpCrouchPenalty;
+	
+		SetPhysics(PHYS_Falling);
 		if ( !bUpdating )
-			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume, , GruntRadius);
-
-        JumpZ = OldJumpZ;   
+			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume,,80);
+		JumpZ = OldJumpZ;
+		StopWallRun();
         return true;
-    }
-
-    // wtb: raii
-    JumpZ = OldJumpZ;
+	}
+	JumpZ = OldJumpZ;
+	//log("2 JumpZ after weapon modification: " @ JumpZ);
     return false;
 }
 
@@ -2634,7 +2740,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
             bWaitForAnim = true;
             AnimAction = Anim;
             
-		TakeFallingDamage();
+		//TakeFallingDamage();
         if (Velocity.Z < -DodgeSpeedZ*0.5)
 			Velocity.Z += DodgeSpeedZ*0.5;
     }
@@ -2648,7 +2754,6 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     {
         DodgeGroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
     }
-
     Velocity = DodgeSpeedFactor * DodgeGroundSpeed * Dir + (Velocity Dot Cross) * Cross;
 
 	// clamp dodge speed in realism and tactical
@@ -3081,7 +3186,7 @@ function ShieldViewFlash(int damage)
 {
     local int rnd;
 
-    if (BallisticPlayer(Controller) == None || damage == 0)
+    if (BallisticPlayer(Controller) == None || damage == 0 || Controller.bGodMode)
         return;
 
     rnd = FClamp(damage / 2, 25, 50);
@@ -3093,7 +3198,7 @@ function DamageViewFlash(int damage)
 {
     local int rnd;
 
-    if (BallisticPlayer(Controller) == None || damage == 0)
+    if (BallisticPlayer(Controller) == None || damage == 0 || Controller.bGodMode)
         return;
 
     rnd = FClamp(damage / 2, 25, 50);
@@ -3135,7 +3240,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.DrawText(T);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
-	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate);
+	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate$ "Ground Speed "$GroundSpeed);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
 
@@ -3217,7 +3322,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	{
 		FSpeed = VSize(Velocity);
 			
-		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00 && Sprinter != None && !Sprinter.bIsSliding) //We don't want this when sliding
 		{
 			Control = FMin(100, FSpeed);
 				
@@ -3310,6 +3415,8 @@ defaultproperties
      //AirSpeed=270.000000
      WalkingPct=0.900000
 	 CrouchedPct=0.350000
+	 JumpCrouchPenalty=0.15
+	 JumpCrouchTime=0.30
      //DodgeSpeedFactor=1.200000
      //DodgeSpeedZ=190.000000
 

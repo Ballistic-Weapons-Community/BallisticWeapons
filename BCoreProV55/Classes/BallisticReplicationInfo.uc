@@ -78,6 +78,7 @@ var float					PlayerDodgeZ;
 var() config bool			bEnableSprint;
 var() config int			StaminaChargeRate;
 var() config int			StaminaDrainRate;
+var() config float			StaminaRechargeDelay;
 var() config float			SprintSpeedFactor;
 var() config float			JumpDrain;
 
@@ -154,6 +155,7 @@ var struct SprintRep
 	var() config bool			bEnableSprint;
 	var() config int			StaminaChargeRate;
 	var() config int			StaminaDrainRate;
+	var() config float 			StaminaRechargeDelay;
 	var() config float			SprintSpeedFactor;
 	var() config float			JumpDrain;
 } SRep;
@@ -212,8 +214,10 @@ final function BindToReplication()
 	SRep.bEnableSprint					= true;
 	SRep.StaminaChargeRate				= StaminaChargeRate;
 	SRep.StaminaDrainRate				= StaminaDrainRate;
+	SRep.StaminaRechargeDelay			= StaminaRechargeDelay;
     SRep.SprintSpeedFactor				= SprintSpeedFactor;
 	SRep.JumpDrain						= JumpDrain;
+
 }
 
 // Set all defaults to match server vars here
@@ -275,6 +279,7 @@ simulated final function BindFromReplication()
 	bEnableSprint					= true;
 	StaminaChargeRate				= SRep.StaminaChargeRate;
 	StaminaDrainRate				= SRep.StaminaDrainRate;
+	StaminaRechargeDelay			= SRep.StaminaRechargeDelay;
     SprintSpeedFactor				= SRep.SprintSpeedFactor;
 	JumpDrain					= SRep.JumpDrain;
 }
@@ -323,6 +328,7 @@ simulated final function BindDefaults()
 	class.default.bEnableSprint					= true;
 	class.default.StaminaChargeRate				= StaminaChargeRate;
 	class.default.StaminaDrainRate				= StaminaDrainRate;
+	class.default.StaminaRechargeDelay			= StaminaRechargeDelay;
     class.default.SprintSpeedFactor				= SprintSpeedFactor;
 	class.default.JumpDrain				= JumpDrain;
 

@@ -1236,6 +1236,27 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
     }
 }
 
+state PlayerWallRunning extends PlayerWalking
+{
+
+}
+
+function AdjustViewForWall(vector WallNormal, float DeltaTime)
+{
+    local rotator ViewRotation;
+    local float DesiredRoll;
+
+    // Calculate roll based on wall normal
+    DesiredRoll = -WallNormal.Y * 300; // Roll based on wall's steepness
+
+    // Smoothly interpolate roll
+    ViewRotation = Rotation;
+    ViewRotation.Roll = Lerp(DeltaTime, ViewRotation.Roll, DesiredRoll);
+
+    // Apply the updated rotation
+    SetRotation(ViewRotation);
+    Pawn.FaceRotation(ViewRotation, DeltaTime);
+}
 // end Titan RPG handling
 
 /*
@@ -1274,6 +1295,9 @@ function ViewFlash(float DeltaTime)
 
 function ClientDmgFlash( float scale, vector fog )
 {
+    if (bGodMode)
+		return;
+
 	DesiredFlashScale = scale;
 	DesiredFlashFog = 0.001 * fog;
 }
@@ -1281,6 +1305,9 @@ function ClientDmgFlash( float scale, vector fog )
 // disallow scaling flash
 function ClientFlash( float scale, vector fog )
 {
+    if (bGodMode)
+		return;
+
     FlashScale = scale * vect(1,1,1);
     flashfog = 0.001 * fog;
 	bOverrideDmgFlash = true;

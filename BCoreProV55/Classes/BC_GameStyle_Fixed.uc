@@ -57,6 +57,7 @@ var() float			PlayerDodgeZ;
 var() bool			bEnableSprint;
 var() int			StaminaChargeRate;
 var() int			StaminaDrainRate;
+var() float			StaminaRechargeDelay;
 var() float			SprintSpeedFactor;
 var() float			JumpDrain;
 
@@ -102,6 +103,7 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.bEnableSprint				= default.bEnableSprint;
 	rep.StaminaChargeRate			= default.StaminaChargeRate;
 	rep.StaminaDrainRate 			= default.StaminaDrainRate;
+	rep.StaminaRechargeDelay 		= default.StaminaRechargeDelay;
 	rep.SprintSpeedFactor 			= default.SprintSpeedFactor;
 	rep.JumpDrain					= default.JumpDrain;
 

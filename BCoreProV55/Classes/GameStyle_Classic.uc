@@ -47,6 +47,7 @@ defaultproperties
 	bEnableSprint=true
 	StaminaChargeRate=20
 	StaminaDrainRate=20
+	StaminaRechargeDelay=1.5
 	SprintSpeedFactor=1.35f
 	JumpDrain=2
 

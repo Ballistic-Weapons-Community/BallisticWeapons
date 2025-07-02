@@ -15,7 +15,8 @@ var automated moCheckBox        cb_bUseSprint;				// Enable Sprint
 var automated moNumericEdit     ne_StaminaDrainRate;		// Stamina Drain Rate
 var automated moNumericEdit     ne_StaminaChargeRate;		// Stamina Charge Rate
 var automated moFloatEdit       fe_InitSpeedFactor;			// Speed During Sprint
-var automated moFloatEdit       fe_JumpDrain;			// Jump Drain Factor
+var automated moFloatEdit       fe_JumpDrain;			    // Jump Drain Factor
+var automated moFloatEdit       fe_StaminaRechargeDelay;	// Stamina Recharge Delay
 
 //==================================================================
 // Settings & Defaults
@@ -42,6 +43,7 @@ function LoadSettings()
     	ne_StaminaChargeRate.SetValue(game_style.default.StaminaChargeRate);
     	fe_InitSpeedFactor.SetValue(game_style.default.SprintSpeedFactor);
     	fe_JumpDrain.SetValue(game_style.default.JumpDrain);
+    	fe_StaminaRechargeDelay.SetValue(game_style.default.StaminaRechargeDelay);
 	}
 }
 
@@ -61,6 +63,7 @@ function DefaultSettings()
     ne_StaminaChargeRate.SetValue(25);
     fe_InitSpeedFactor.SetValue(1.35);
     fe_JumpDrain.SetValue(2);
+    fe_StaminaRechargeDelay.SetValue(1.5);
 }
 
 function SaveSettings()
@@ -86,6 +89,7 @@ function SaveSettings()
 		game_style.default.bEnableSprint 		= cb_bUseSprint.IsChecked();
     	game_style.default.StaminaDrainRate 		= ne_StaminaDrainRate.GetValue();
     	game_style.default.StaminaChargeRate 	= ne_StaminaChargeRate.GetValue();
+        game_style.default.StaminaRechargeDelay 	= fe_StaminaRechargeDelay.GetValue();
     	game_style.default.SprintSpeedFactor 	= fe_InitSpeedFactor.GetValue();
     	game_style.default.JumpDrain 		= fe_JumpDrain.GetValue();
 
@@ -97,12 +101,12 @@ defaultproperties
 {	 
      Begin Object Class=moNumericEdit Name=ne_PlayerGroundSpeedC
          MinValue=160
-         MaxValue=440
+         MaxValue=1000
          Step=20
          ComponentWidth=0.175000
          Caption="Movement Speed"
          OnCreateComponent=ne_PlayerGroundSpeedC.InternalOnCreateComponent
-         Hint="Player ground and air speed. 160 - 440. 440 is UT2004 default."
+         Hint="Player ground and air speed. 160 - 1000. 440 is UT2004 default."
          WinTop=0.10000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -111,12 +115,12 @@ defaultproperties
 
      Begin Object Class=moNumericEdit Name=ne_PlayerAccelRateC
          MinValue=1024
-         MaxValue=2048
+         MaxValue=4096
         Step=256
          ComponentWidth=0.175000
          Caption="Acceleration Rate"
          OnCreateComponent=ne_PlayerAccelRateC.InternalOnCreateComponent
-         Hint="Scales player acceleration. 1024 - 2048. UT2004 is 2048."
+         Hint="Scales player acceleration. 1024 - 4096. UT2004 is 2048."
          WinTop=0.15000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -228,8 +232,8 @@ defaultproperties
      ne_StaminaChargeRate=moNumericEdit'ne_StaminaChargeRateC'
 
      Begin Object Class=moFloatEdit Name=fe_InitSpeedFactorC
-         MinValue=1.250000
-         MaxValue=1.500000
+         MinValue=1.100000
+         MaxValue=2.500000
          Step=0.05
          ComponentWidth=0.175000
          Caption="Sprint Speed Multiplier"
@@ -243,15 +247,29 @@ defaultproperties
 
      Begin Object Class=moFloatEdit Name=fe_JumpDrainC
          MinValue=0.000000
-         MaxValue=2.000000
+         MaxValue=10.000000
          ComponentWidth=0.175000
-         Caption="Jump Drain Factor"
+         Caption="Jump Drain"
          OnCreateComponent=fe_JumpDrainC.InternalOnCreateComponent
-         Hint="The jump drain factor during sprint."
+         Hint="The amount of stamina we lose when we jump."
          WinTop=0.70000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      fe_JumpDrain=moFloatEdit'fe_JumpDrainC'
+
+     Begin Object Class=moFloatEdit Name=fe_StaminaRechargeDelayC
+         MinValue=0.000000
+         MaxValue=5.000000
+         Step=0.1
+         ComponentWidth=0.175000
+         Caption="Stamina Recharge Delay"
+         OnCreateComponent=fe_StaminaRechargeDelayC.InternalOnCreateComponent
+         Hint="The delay before stamina starts to recharge."
+         WinTop=0.750000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     fe_StaminaRechargeDelay=moFloatEdit'fe_StaminaRechargeDelayC'
 
 }
