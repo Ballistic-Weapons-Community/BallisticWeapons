@@ -149,68 +149,7 @@ function InitializeConfigTab()
 
     ch_Independent.MyCheckBox.OnClick = InternalOnClick;
 }
-/* 
-function InitializeConfigTab()
-{
-    local int i, j;
-    local array<CacheManager.WeaponRecord> Recs;
-    local BC_WeaponInfoCache.WeaponInfo WI, TempItemName;
-    local array<String> PresetNames;
-    local array<BC_WeaponInfoCache.WeaponInfo> TempItemNameList;
 
-    // Fill old items list
-    for (i = 0; i < class'Mut_BallisticSwap'.static.GetNumWeapons(); i++)
-        lb_OldWeapons.List.Add(class'Mut_BallisticSwap'.static.GetOldWeaponClass(i).default.ItemName, , string(class'Mut_BallisticSwap'.static.GetOldWeaponClass(i)));
-    lb_OldWeapons.List.OnClick = InternalOnClick;
-
-	// Fill replacement items list in a temporary list
-	class'CacheManager'.static.GetWeaponList(Recs);
-	for (i=0;i<Recs.Length;i++)
-	{
-		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
-			continue;
-		// Tap into the BW weapon cache system to identify BallisticWeapons without loading them
-		WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName, j);
-		if (j == -1)
-			continue;
-        TempItemNameList[i] = WI; // Store them all here
-    }
-
-    // Sort the list alphabetically by ItemName using bubble sort
-    for (i = 0; i < TempItemNameList.Length - 1; i++)
-    {
-        for (j = 0; j < TempItemNameList.Length - i - 1; j++)
-        {
-            if (TempItemNameList[j].ItemName > TempItemNameList[j + 1].ItemName)
-            {
-                // Swap items
-                TempItemName = TempItemNameList[j];
-                TempItemNameList[j] = TempItemNameList[j + 1];
-                TempItemNameList[j + 1] = TempItemName;
-            }
-        }
-    }
-    //Then add the item to the checklist
-    for (i = 0; i < TempItemNameList.Length; i++)
-    {
-        if (TempItemNameList[i].ClassName != "")
-        {
-            lb_NewWeapons.CheckList.AddCheck(TempItemNameList[i].ItemName, , TempItemNameList[i].ClassName);
-        }
-    }
-	class'BC_WeaponInfoCache'.static.EndSession();
-	SaveConfig();
-	lb_NewWeapons.CheckList.OnClick = InternalOnClick;
-
-    PresetNames = GetPerObjectNames("BallisticProV55", "BallisticSwapPreset");
-    for (i = 0; i < PresetNames.Length; i++)
-        cb_Presets.AddItem(PresetNames[i], new(None, PresetNames[i]) class'BallisticSwapPreset',);
-    cb_Presets.SetIndex(0);
-    cb_Presets.SetText("");
-
-    ch_Independent.MyCheckBox.OnClick = InternalOnClick;
-}
-*/
 function InternalOnChange(GUIComponent Sender)
 {
 	if (Sender == cb_Presets && cb_Presets.GetObject() != None)

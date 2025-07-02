@@ -1236,27 +1236,6 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
     }
 }
 
-state PlayerWallRunning extends PlayerWalking
-{
-
-}
-
-function AdjustViewForWall(vector WallNormal, float DeltaTime)
-{
-    local rotator ViewRotation;
-    local float DesiredRoll;
-
-    // Calculate roll based on wall normal
-    DesiredRoll = -WallNormal.Y * 300; // Roll based on wall's steepness
-
-    // Smoothly interpolate roll
-    ViewRotation = Rotation;
-    ViewRotation.Roll = Lerp(DeltaTime, ViewRotation.Roll, DesiredRoll);
-
-    // Apply the updated rotation
-    SetRotation(ViewRotation);
-    Pawn.FaceRotation(ViewRotation, DeltaTime);
-}
 // end Titan RPG handling
 
 /*
