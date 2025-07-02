@@ -528,7 +528,6 @@ function StartSlide()
     {
 		DelayRecharge();
 		StopSprint();
-		//SlideCooldownTime = default.SlideCooldownTime * FClamp(Instigator.GroundSpeed / 440.0, 0.5, 2.0); //Do we need this?
 		SlideVelocity = Instigator.Velocity * 0.5 + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
 		SlideVelocity += Normal(SlideVelocity) * FMax(SlidePower*0.5,SlidePower * (Stamina / MaxStamina));
 		// Clamp slide velocity to max speed

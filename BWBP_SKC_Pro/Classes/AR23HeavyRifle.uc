@@ -98,7 +98,7 @@ simulated function LoadGrenade()
 		return;
 	}
 	if (ReloadState == RS_None)
-		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
 }
 
 function ServerStartReload (optional byte i)

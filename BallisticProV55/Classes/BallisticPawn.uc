@@ -168,8 +168,8 @@ var 	float 				MyFriction, OldMovementSpeed;
 var     bool                bCanDodge;
 
 //Wall running stuff
-var bool bLockedToSurface; // Tracks if the player is locked to a surface
-var vector LockedSurfaceNormal; // Stores the normal of the locked surface
+//var bool bLockedToSurface; // Tracks if the player is locked to a surface
+//var vector LockedSurfaceNormal; // Stores the normal of the locked surface
 
 // --- Crouch/Jump Parameters ---
 var float  CrouchEndTime;
@@ -1612,13 +1612,13 @@ simulated function ReceiveHitInfo(NetHitInfo PHI)
 simulated event Tick(float DT)
 {
 	local int Index, i, Diff;
-	local vector TraceStart, TraceEnd, HitLocation, HitNormal;
-    local Actor HitActor;
-	local Vector X,Y,Z;
+	//local vector TraceStart, TraceEnd, HitLocation, HitNormal;
+    //local Actor HitActor;
+	//local Vector X,Y,Z;
 
 	super.Tick(DT);
 
-	GetAxes(Rotation, X, Y, Z);
+	//GetAxes(Rotation, X, Y, Z);
 	
 	if (bPendingNegation)
 	{
@@ -1659,7 +1659,7 @@ simulated event Tick(float DT)
 				NewDeResFinalBlends[i].AlphaRef = Index;
 		}
 	}
-
+	/* 
 	if (bLockedToSurface)
 	{
 		// Perform a trace to check if the player is still near the wall
@@ -1679,15 +1679,16 @@ simulated event Tick(float DT)
 			StopWallRun();
 		}
 	}
+	*/
 }
-
+/* 
 simulated function StopWallRun()
 {
 	bLockedToSurface = false;
 	LockedSurfaceNormal = vect(0, 0, 0);
 	//AirControl = default.AirControl; // Reset air control
 }
-
+*/
 // Return true if the input bone is already dismembered
 simulated function bool BoneDismembered (name Bone)
 {
@@ -2497,7 +2498,7 @@ function DoDoubleJump( bool bUpdating )
         SetPhysics(PHYS_Falling);
         if ( !bUpdating )
 			PlayOwnedSound(GetSound(EST_DoubleJump), SLOT_Pain, GruntVolume, , GruntRadius);
-		StopWallRun();
+		//StopWallRun();
     }
 
 	if (Role == ROLE_Authority)
@@ -2598,9 +2599,9 @@ function bool CanMultiJump()
 
 function bool Dodge(eDoubleClickDir DoubleClickMove)
 {
-    local vector X, Y, Z, TraceStart, TraceEnd, Dir, HitLocation, HitNormal;
-    local Actor HitActor;
-    local rotator TurnRot;
+    //local vector X, Y, Z, TraceStart, TraceEnd, Dir, HitLocation, HitNormal;
+    //local Actor HitActor;
+    //local rotator TurnRot;
 
 	if (!bCanDodge)
 		return false;
@@ -2617,6 +2618,7 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
         return true;
     }
 
+	/* 
     TurnRot.Yaw = Rotation.Yaw;
     GetAxes(TurnRot, X, Y, Z);
 
@@ -2640,6 +2642,7 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
             LockedSurfaceNormal = HitNormal;
         }
     }
+	*/
 
     return false;
 }
@@ -2691,7 +2694,7 @@ function bool DoJump( bool bUpdating )
 		if ( !bUpdating )
 			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume,,80);
 		JumpZ = OldJumpZ;
-		StopWallRun();
+		//StopWallRun();
         return true;
 	}
 	JumpZ = OldJumpZ;

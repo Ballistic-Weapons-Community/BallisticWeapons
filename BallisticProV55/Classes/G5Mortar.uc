@@ -153,8 +153,8 @@ simulated function Tick(float DT)
 		else			// Head for the target
 		{
 			V = LastLoc - Location;
-			MaxSpeed = default.MaxSpeed * 3.0;
-			AccelSpeed = default.AccelSpeed * 3.0;
+			MaxSpeed = default.MaxSpeed * 2.0;
+			AccelSpeed = default.AccelSpeed * 2.0;
 		}
 
 		// Align velocity towards target, but limit how fast rocket can turn. Use a tricky units per second rate limit.

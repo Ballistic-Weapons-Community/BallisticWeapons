@@ -35,14 +35,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	BringUpTime = default.BringUpTime;
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 simulated function float ChargeBar()
 {
 	if (level.TimeSeconds >= FireMode[1].NextFireTime)

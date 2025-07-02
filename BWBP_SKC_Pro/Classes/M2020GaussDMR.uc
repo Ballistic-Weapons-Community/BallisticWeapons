@@ -552,7 +552,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;1.0;80.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun',Volume=0.182000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.187000)
-	CockAnimPostReload="ReloadEndCock"
+	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-Cock',Volume=1.400000)
 	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-CockOld',Volume=1.400000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagHit',Volume=1.400000)
