@@ -3676,7 +3676,7 @@ function bool CanAttack(Actor Other)
 	}
 
 	// Skilled bots can conserve ammo by not firing when the spread is too high
-	if ((Rand(6) < AIController(Instigator.Controller).Skill) && !RcComponent.BotShouldFire(Dist) )
+	if (AIController(Instigator.Controller) != None && (Rand(6) < AIController(Instigator.Controller).Skill) && !RcComponent.BotShouldFire(Dist) )
 		return false;
 
     for (m = 0; m < NUM_FIRE_MODES; m++)

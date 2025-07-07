@@ -525,10 +525,13 @@ function SwapLockers()
 					for (i=0; i < NumWeapons; i++)
 					{
 						//initial case, replacing default weapons
-						if(L.Weapons[j].WeaponClass == GetInventoryFor(Swaps[i].Old))
+						if(L.Weapons[j].WeaponClass != None && L.Weapons[j].WeaponClass == GetInventoryFor(Swaps[i].Old))
 						{
 							L.Weapons[j].WeaponClass = Swaps[i].NewClasses[Rand(Swaps[i].NewClasses.length)];
-							L.Weapons[j].ExtraAmmo = L.Weapons[j].WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
+							if (L.Weapons[j].WeaponClass != None) // Ensure WeaponClass is valid before accessing its properties
+                        	{
+								L.Weapons[j].ExtraAmmo = L.Weapons[j].WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
+							}
 							break;
 						}
 					}
@@ -538,9 +541,15 @@ function SwapLockers()
 				//thus, will ignore avril, grenade, mines and anything else which shares a slot, using the rocket, flak and bio instead
 				else
 				{
-					k = Max(0, L.Weapons[j].WeaponClass.default.InventoryGroup - 1);
-					L.Weapons[j].WeaponClass = Swaps[k].NewClasses[Rand(Swaps[k].NewClasses.length)];
-					L.Weapons[j].ExtraAmmo = L.Weapons[j].WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
+					if (L.Weapons[j].WeaponClass != None)
+					{
+						k = Max(0, L.Weapons[j].WeaponClass.default.InventoryGroup - 1);
+						L.Weapons[j].WeaponClass = Swaps[k].NewClasses[Rand(Swaps[k].NewClasses.length)];
+						if (L.Weapons[j].WeaponClass != None) // Ensure WeaponClass is valid before accessing its properties
+						{
+							L.Weapons[j].ExtraAmmo = L.Weapons[j].WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
+						}
+					}
 				}
 		}
 		Lockers[Lockers.length] = L;

@@ -176,7 +176,6 @@ var float  CrouchEndTime;
 var() float JumpCrouchPenalty;   // Jump height multiplier for crouching
 var() float JumpCrouchTime;
 
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -538,7 +537,7 @@ event Landed(vector HitNormal)
 
     MultiJumpRemaining = MaxMultiJump;
 
-	if (Role == ROLE_Authority)
+	if (Role == ROLE_Authority && Inventory != None)
 		Inventory.OwnerEvent('Landed');
 
 	// temporary hardcode
@@ -2471,7 +2470,7 @@ event EndCrouch(float HeightAdjust)
 event Falling()
 {
     Super.Falling();
-	if (Role == ROLE_Authority)
+	if (Role == ROLE_Authority && Inventory != None)
 		Inventory.OwnerEvent('Falling');
 }
 
@@ -2692,7 +2691,7 @@ function bool DoJump( bool bUpdating )
 	
 		SetPhysics(PHYS_Falling);
 		if ( !bUpdating )
-			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume,,80);
+			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume,,GruntRadius);
 		JumpZ = OldJumpZ;
 		//StopWallRun();
         return true;

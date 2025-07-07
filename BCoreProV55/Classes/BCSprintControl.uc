@@ -23,6 +23,9 @@ var   	float    	MaxStamina;				// should always be 100
 var() 	float		StaminaDrainRate;		// Amount of stamina lost each second when sprinting
 var() 	float		StaminaChargeRate;		// Amount of stamina gained each second when not sprinting
 var() 	float		StaminaRechargeDelay;	// From RECHARGE_DELAY
+var 	name 		SlideAnims[4]; 
+var 	name 		SlideStartAnims[4]; 
+var 	name 		SlideEndAnims[4]; 
 
 //=============================================================================
 // SPRINT VARIABLES
@@ -520,6 +523,8 @@ function AddNewSlow()
 
 function StartSlide()
 {
+    local name Anim;
+
     if (!bIsSliding 
 	&& Instigator.Controller.bDuck > 0 
 	&& (VSize(LastFallingVelocity) > SlideStartSpeed || VSize(Instigator.Velocity) > SlideStartSpeed || SlopeAngleDeg < 0.0)
@@ -536,11 +541,26 @@ function StartSlide()
 		LastFallingVelocity = vect(0,0,0); 
         bIsSliding = true;
         Instigator.GroundSpeed = MaxSlideSpeed;
+
+        Anim = SlideStartAnims[Instigator.Get4WayDirection()];
+        if ( Instigator.PlayAnim(Anim, 1.0, 0.1) )
+            Instigator.bWaitForAnim = true;
+        Instigator.AnimAction = Anim;
     }
 }
 
 function EndSlide()
 {
+	local name Anim;
+
+	if(!Instigator.bIsCrouched && VSize(Instigator.Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
+	{
+		Anim = SlideEndAnims[Instigator.Get4WayDirection()];
+		if ( Instigator.PlayAnim(Anim, 1.0, 0.1) )
+			Instigator.bWaitForAnim = true;
+		Instigator.AnimAction = Anim;
+	}
+
     bIsSliding = false;
     SlideVelocity = vect(0,0,0);
     LastSlideEndTime = Level.TimeSeconds;
@@ -559,6 +579,7 @@ simulated function TickSlopeCalculation(float DT)
 simulated function HandleSliding(float DT)
 {
 	local float DynamicFriction;
+	local name Anim;
 
 	Instigator.CrouchedPct = 1.0; //Little hack so it doesn't mess with crouch speed/ground speed, etc...
 	GravityAlongSlope = -PhysicsVolume.Gravity.Z * Sin(SlopeAngleRad);
@@ -593,18 +614,21 @@ simulated function HandleSliding(float DT)
 	if (VSize(SlideVelocity) > 0.1)
 		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
 
-	// End slide if crouch released, speed too low, or airborne
-	if (!Instigator.bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Instigator.Physics != PHYS_Walking)
-	{
-		EndSlide();
-	}
-
 	// Apply slide velocity to pawn
 	if (Instigator.Physics == PHYS_Walking)
 	{
 		Instigator.Velocity = Instigator.Velocity * 0.3 + SlideVelocity * 0.7;
 		if (VSize(Instigator.Velocity) > MaxSlideSpeed)
 			Instigator.Velocity = Normal(Instigator.Velocity) * MaxSlideSpeed;
+	}
+
+	Anim = SlideAnims[Instigator.Get4WayDirection()];
+	Instigator.LoopAnim(Anim, 1.0, 0.2);
+
+	// End slide if crouch released, speed too low, or airborne
+	if (!Instigator.bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Instigator.Physics != PHYS_Walking)
+	{
+		EndSlide();
 	}
 }
 
@@ -639,4 +663,16 @@ defaultproperties
 	 SlideFriction=1.100000
      SlideCooldownTime=0.600000
 	 SlidePower=300.000000
+	 SlideAnims(0)="SlideF"
+	 SlideAnims(1)="SlideF"
+	 SlideAnims(2)="SlideL"
+	 SlideAnims(3)="SlideR"
+	 SlideStartAnims(0)="SlideFStart"
+	 SlideStartAnims(1)="SlideFStart"
+	 SlideStartAnims(2)="SlideLStart"
+	 SlideStartAnims(3)="SlideRStart"
+	 SlideEndAnims(0)="SlideFEnd"
+	 SlideEndAnims(1)="SlideFEnd"
+	 SlideEndAnims(2)="SlideLEnd"
+	 SlideEndAnims(3)="SlideRSEnd"
 }

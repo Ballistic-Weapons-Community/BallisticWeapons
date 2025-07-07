@@ -13,7 +13,7 @@ function ScoreKill(Controller Killer, Controller Killed)
 
     super.ScoreKill(Killer, Killed);
 
-    if (Killed == None || Killer == None)
+    if (Killed == None || Killer == None || Killer.Pawn == None)
 		return;
 
 	if (Vehicle(Killer.Pawn) != None)
