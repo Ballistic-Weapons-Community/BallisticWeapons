@@ -250,6 +250,11 @@ function SendWeapons ()
 	local array<string> Weaps;
 	local array<byte>	RedBoxes, BlueBoxes;
 
+	// Resize arrays to accommodate all weapons
+    RedBoxes.Length = Mut.RedLoadoutGroup0.Length + Mut.RedLoadoutGroup1.Length + Mut.RedLoadoutGroup2.Length + Mut.RedLoadoutGroup3.Length + Mut.RedLoadoutGroup4.Length;
+    BlueBoxes.Length = Mut.BlueLoadoutGroup0.Length + Mut.BlueLoadoutGroup1.Length + Mut.BlueLoadoutGroup2.Length + Mut.BlueLoadoutGroup3.Length + Mut.BlueLoadoutGroup4.Length;
+
+
 	//Go through the available loadout weapons, adding them to the Weaps array. Continue if there is no weapon in the slot
 	for (i=0;i<Mut.RedLoadoutGroup0.length;i++)
 	{
