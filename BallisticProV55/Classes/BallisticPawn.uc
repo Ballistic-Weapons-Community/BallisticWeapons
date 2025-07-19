@@ -167,6 +167,33 @@ var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
 var     bool                bCanDodge;
 
+// Sliding Variables
+var() bool bAllowCrouchSliding; // Whether crouch sliding is allowed
+var() float SlideFriction;		 // Friction applied during sliding, affects how quickly the player slows down
+var() float SlideCooldownTime;	// Time before the player can slide again after a slide ends
+var() float SlidePower;			 // Initial burst power when starting a slide, affects how fast the player accelerates at the start of the slide
+var bool bIsSliding;			 // Is the player currently sliding?
+var float LastSlideEndTime;		// Time when the last slide ended
+var float LastLandTime;			// Time when the player last landed
+var vector SlideVelocity;		// Velocity during the slide
+var float SlideStartSpeed;		 // Speed required to start sliding
+var float SlideStopSpeed;		 // Speed below which sliding stops
+var float MaxSlideSpeed;		// Maximum speed during sliding, our groundspeed becomes this in order to move faster
+var float SlideEyeHeight;		 // Eye height during sliding, used to adjust camera position
+
+// Slope/Physics Calculations
+var float SlopeAngleRad;		 // Angle of the slope in radians
+var float SlopeAngleDeg;		 // Angle of the slope in degrees
+var vector DownSlopeVect;		 // Direction vector pointing down the slope
+var vector LastFallingVelocity;	 // Velocity of the player when they last fell, used to determine sliding behavior
+var float GravityAlongSlope;	 // Gravity component acting along the slope, used to calculate acceleration during sliding
+
+// Sliding Animations
+var 	name 		SlideAnims[4]; 
+var 	name 		SlideStartAnims[4]; 
+var 	name 		SlideEndAnims[4]; 
+
+
 //Wall running stuff
 //var bool bLockedToSurface; // Tracks if the player is locked to a surface
 //var vector LockedSurfaceNormal; // Stores the normal of the locked surface
@@ -179,7 +206,8 @@ var() float JumpCrouchTime;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		ClientHits, HitCounter, ClientSetCrouchAbility;
+		ClientHits, HitCounter, ClientSetCrouchAbility,
+		bIsSliding, SlideVelocity, Sprinter;
 }
 
 simulated event PostNetBeginPlay()
@@ -271,6 +299,8 @@ simulated function ApplyMovementOverrides()
     {
         bCanDoubleJump = false;
     }
+
+	bAllowCrouchSliding = class'BallisticReplicationInfo'.default.bAllowCrouchSliding;
 
 	WalkingPct = class'BallisticReplicationInfo'.default.PlayerWalkSpeedFactor;
 	CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
@@ -513,7 +543,10 @@ function bool AddInventory( inventory NewItem )
     ret = Super.AddInventory(NewItem);
 
     if(NewItem != none && BCSprintControl(NewItem) != none)
+	{
         sprinter = BCSprintControl(NewItem);
+		log("BallisticPawn: AddInventory: Added BCSprintControl " @ sprinter);
+	}
 
     return ret;
 }
@@ -537,6 +570,8 @@ event Landed(vector HitNormal)
 
     MultiJumpRemaining = MaxMultiJump;
 
+	LastLandTime = Level.TimeSeconds;
+
 	if (Role == ROLE_Authority && Inventory != None)
 		Inventory.OwnerEvent('Landed');
 
@@ -555,7 +590,7 @@ function PawnCheckBob(float DeltaTime, vector Y)
 {
 	local float Speed2D;
 
-    if(bJustLanded || (Sprinter != None && Sprinter.bIsSliding))
+    if(bJustLanded || bIsSliding)
     {
 		BobTime = 0;
 		WalkBob = Vect(0,0,0);
@@ -933,7 +968,7 @@ simulated event SetAnimAction(name NewAction)
 				PlayAnim(MeleeBlockAnim,, 0.2, 1);
 			IdleWeaponAnim = MeleeBlockAnim;
 			FireState = FS_None;
-			Instigator.ClientMessage("Blocking");
+			ClientMessage("Blocking");
 			return;
 		}		
 		else */if (AnimAction == 'Raise' && HasAnim(IdleRifleAnim))
@@ -1647,6 +1682,10 @@ simulated event Tick(float DT)
 	}
 	// Gore tick
 	TickGore(DT);
+
+	// Slope calculation
+	if(bAllowCrouchSliding) 
+		TickSlopeCalculation(DT);
 
 	// Dissolve DeRes corpses
 	if (bDeRes)
@@ -2455,8 +2494,7 @@ event StartCrouch(float HeightAdjust)
 	EyeHeight += HeightAdjust;
 	OldZ -= HeightAdjust;
 	BaseEyeheight = CrouchEyeHeight;
-	if (Role == ROLE_Authority)
-		Inventory.OwnerEvent('Crouched');
+	TryStartSlide();
 }
 
 event EndCrouch(float HeightAdjust)
@@ -3284,59 +3322,208 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-	if (Physics != PHYS_Walking)
+	if (Physics == PHYS_Falling)
+        LastFallingVelocity = Velocity;
+
+	if (Physics == PHYS_Walking)
+	{
+		// constrains strafe move
+		if (StrafeScale < 1f || BackpedalScale < 1f)
+		{
+			GetAxes(GetViewRotation(),X,Y,Z);
+			MaxStrafeSpeed = GroundSpeed * StrafeScale;
+			MaxBackSpeed = GroundSpeed * BackpedalScale;
+
+			// backwards speed limit
+			XSpeed = Abs(X dot Velocity);
+			
+			if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+			{
+				//limiting backspeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(X dot dir);
+				Velocity = dir * (MaxBackSpeed / CosAngle);
+			}
+			
+			// strafe speed limit
+			YSpeed = Abs(Y dot velocity);
+
+			if (YSpeed > MaxStrafeSpeed)
+			{
+				//limiting strafespeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(Y dot dir);
+				Velocity = dir * (MaxStrafeSpeed / CosAngle);
+			}
+		}
+
+		//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+			
+		// Applies decelerative friction
+		if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
+		{
+			FSpeed = VSize(Velocity);
+				
+			if (VSize(Acceleration) < 1.00 && FSpeed > 1.00 && !bIsSliding) //We don't want this when sliding
+			{
+				Control = FMin(100, FSpeed);
+					
+				Drop = Control * DeltaTime * MyFriction;
+				NewSpeed = FSpeed + drop;
+				NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
+				Velocity *= NewSpeed;
+			}
+		}
+
+		SlideEyeHeight = BaseEyeHeight;
+
+		if (bIsSliding)
+		{
+			HandleSliding(DeltaTime);
+			EyeHeight = SlideEyeHeight * 0.6; // Lower eye height while sliding
+		}
+		else
+		{
+			SlideStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*1.1;
+			SlideStopSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*0.2;
+			MaxSlideSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*2.5;
+			if(Level.TimeSeconds > LastLandTime + 0.1)
+				LastFallingVelocity = vect(0,0,0); 
+			if (bIsCrouched)
+			{
+				CrouchedPct = default.CrouchedPct;
+				EyeHeight = Lerp(DeltaTime * 1.5, EyeHeight, SlideEyeHeight, true);
+			}
+		}
+
+		OldMovementSpeed = VSize(Velocity);
+	}
+	// End slide if crouch released, speed too low, or airborne
+	if (Role == ROLE_Authority)
+	{
+		if (bIsSliding && (!bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Physics != PHYS_Walking))
+		{
+			EndSlide();
+		}
+	}
+}
+
+simulated function TryStartSlide()
+{
+    if (Role < ROLE_Authority)
+        ServerStartSlide();
+    else
+        StartSlide();
+}
+
+function ServerStartSlide()
+{
+    StartSlide();
+}
+
+function StartSlide()
+{
+    local name Anim;
+
+	if (!bAllowCrouchSliding)
 		return;
 
-	// constrains strafe move
-	if (StrafeScale < 1f || BackpedalScale < 1f)
-	{
-		GetAxes(GetViewRotation(),X,Y,Z);
-		MaxStrafeSpeed = GroundSpeed * StrafeScale;
-		MaxBackSpeed = GroundSpeed * BackpedalScale;
-
-		// backwards speed limit
-		XSpeed = Abs(X dot Velocity);
-		
-		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
-		{
-			//limiting backspeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(X dot dir);
-			Velocity = dir * (MaxBackSpeed / CosAngle);
-		}
-		
-		// strafe speed limit
-		YSpeed = Abs(Y dot velocity);
-
-		if (YSpeed > MaxStrafeSpeed)
-		{
-			//limiting strafespeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(Y dot dir);
-			Velocity = dir * (MaxStrafeSpeed / CosAngle);
-		}
-	}
-
-	//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
-		
-	// Applies decelerative friction
-	if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
-	{
-		FSpeed = VSize(Velocity);
-			
-		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00 && Sprinter != None && !Sprinter.bIsSliding) //We don't want this when sliding
-		{
-			Control = FMin(100, FSpeed);
-				
-			Drop = Control * DeltaTime * MyFriction;
-			NewSpeed = FSpeed + drop;
-			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
-			Velocity *= NewSpeed;
-		}
-	}
-
-	OldMovementSpeed = VSize(Velocity);
+    if (!bIsSliding 
+	&& Controller.bDuck > 0 
+	&& (VSize(LastFallingVelocity) > SlideStartSpeed || VSize(Velocity) > SlideStartSpeed || SlopeAngleDeg < 0.0)
+	&& Physics == PHYS_Walking 
+	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime))
+    {
+		Sprinter.DelayRecharge();
+		Sprinter.StopSprint();
+		SlideVelocity = Velocity * 0.5 + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
+		SlideVelocity += Normal(SlideVelocity) * FMax(SlidePower*0.5,SlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
+		// Clamp slide velocity to max speed
+        if (VSize(SlideVelocity) > MaxSlideSpeed)
+            SlideVelocity = Normal(SlideVelocity) * MaxSlideSpeed;
+		LastFallingVelocity = vect(0,0,0); 
+        bIsSliding = true;
+        GroundSpeed = MaxSlideSpeed;
+        Anim = SlideStartAnims[Get4WayDirection()];
+        if ( PlayAnim(Anim, 1.0, 0.1) )
+            bWaitForAnim = true;
+        AnimAction = Anim;
+    }
 }
+
+function EndSlide()
+{
+	local name Anim;
+
+	if(!bIsCrouched && VSize(Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
+	{
+		Anim = SlideEndAnims[Get4WayDirection()];
+		if ( PlayAnim(Anim, 1.0, 0.1) )
+			bWaitForAnim = true;
+		AnimAction = Anim;
+	}
+    bIsSliding = false;
+    SlideVelocity = vect(0,0,0);
+    LastSlideEndTime = Level.TimeSeconds;
+    GroundSpeed = Sprinter.BaseGroundSpeed;
+}
+
+simulated function TickSlopeCalculation(float DT)
+{
+	DownSlopeVect = Normal(vect(0,0,-1) - (Floor dot vect(0,0,-1)) * Floor);
+	SlopeAngleRad = Acos(Floor dot vect(0,0,1));
+	SlopeAngleDeg = SlopeAngleRad * (180.0 / Pi);
+	if (Normal(Velocity) dot DownSlopeVect > 0)
+		SlopeAngleDeg = -SlopeAngleDeg; // Negative when going downhill
+}
+
+simulated function HandleSliding(float DT)
+{
+	local float DynamicFriction;
+	local name Anim;
+
+	CrouchedPct = 1.0; //Little hack so it doesn't mess with crouch speed/ground speed, etc...
+	GravityAlongSlope = -PhysicsVolume.Gravity.Z * Sin(SlopeAngleRad);
+	// Friction increases over time
+	DynamicFriction = SlideFriction;
+	// Reduce friction on steep slopes for more sliding
+	if (SlopeAngleDeg < 0) // Downhill
+		DynamicFriction *= FClamp(1.0 - (Abs(SlopeAngleDeg) / 60.0), 0.2, 1.0);
+	else  // Uphill
+		DynamicFriction *= FClamp(1.0 + (SlopeAngleDeg / 45.0), 1.0, 2.5);
+	//Need to make sure we only apply this when on stairs, DetectStairDirection() might return an angle when on a slope that is not a stair
+	
+	//If we're on stairs, but not on a slope, adjust friction and gravity, hacky but it works!
+	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1)) 
+	{
+		if (PlayerController(Controller).FindStairRotation(DT) < 0) 
+		{
+			DynamicFriction *= 0.5;
+			GravityAlongSlope *= 1.5; 
+		}
+		else
+		{
+			DynamicFriction *= 1.5;
+			GravityAlongSlope *= 0.5; 
+		}
+	}
+	
+	// If going downhill, accelerate; if uphill, decelerate
+	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
+
+	// Friction force
+	if (VSize(SlideVelocity) > 0.1)
+		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
+
+	// Apply slide velocity to pawn, handle this on the pawn instead
+	Velocity = Velocity * 0.3 + SlideVelocity * 0.7;
+	if (VSize(Velocity) > MaxSlideSpeed)
+		Velocity = Normal(Velocity) * MaxSlideSpeed;
+
+	Anim = SlideAnims[Get4WayDirection()];
+	LoopAnim(Anim, 1.0, 0.2);
+}
+
 
 defaultproperties
 {
@@ -3421,6 +3608,22 @@ defaultproperties
 	 JumpCrouchTime=0.30
      //DodgeSpeedFactor=1.200000
      //DodgeSpeedZ=190.000000
+
+	 SlideFriction=1.100000
+     SlideCooldownTime=0.600000
+	 SlidePower=350.000000
+	 SlideAnims(0)="SlideF"
+	 SlideAnims(1)="SlideF"
+	 SlideAnims(2)="SlideL"
+	 SlideAnims(3)="SlideR"
+	 SlideStartAnims(0)="SlideFStart"
+	 SlideStartAnims(1)="SlideFStart"
+	 SlideStartAnims(2)="SlideLStart"
+	 SlideStartAnims(3)="SlideRStart"
+	 SlideEndAnims(0)="SlideFEnd"
+	 SlideEndAnims(1)="SlideFEnd"
+	 SlideEndAnims(2)="SlideLEnd"
+	 SlideEndAnims(3)="SlideRSEnd
 
      Begin Object Class=KarmaParamsSkel Name=PawnKParams
          KConvulseSpacing=(Max=2.200000)

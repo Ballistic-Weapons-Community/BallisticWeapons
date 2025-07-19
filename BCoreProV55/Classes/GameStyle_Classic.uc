@@ -30,6 +30,7 @@ defaultproperties
 	bPlayerDeceleration=False
 	bAllowDodging=True
 	bAllowDoubleJump=True
+	bAllowCrouchSliding=True 
 	// this value is a fallback which is overridden by weapon ADS move factor,
 	// and should be the highest possible ADS movement multiplier for your style
     PlayerWalkSpeedFactor=0.5

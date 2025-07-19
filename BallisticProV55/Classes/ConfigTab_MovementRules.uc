@@ -10,7 +10,7 @@ var automated moFloatEdit       fe_PlayerStrafeScale;		// Strafe Scale
 var automated moFloatEdit       fe_PlayerBackpedalScale;	// Backwards Strafe Scale
 var automated moCheckbox		ch_AllowDodging;			// Enables Dodging
 var automated moCheckbox		ch_AllowDoubleJump;			// Enables Double Jump
-
+var automated moCheckBox        cb_AllowCrouchSliding;				// Enable Sprint
 var automated moCheckBox        cb_bUseSprint;				// Enable Sprint
 var automated moNumericEdit     ne_StaminaDrainRate;		// Stamina Drain Rate
 var automated moNumericEdit     ne_StaminaChargeRate;		// Stamina Charge Rate
@@ -37,7 +37,7 @@ function LoadSettings()
     	fe_PlayerBackpedalScale.SetValue(game_style.default.PlayerBackpedalScale);
 		ch_AllowDodging.Checked(game_style.default.bAllowDodging);
 		ch_AllowDoubleJump.Checked(game_style.default.bAllowDoubleJump);
-
+        cb_AllowCrouchSliding.Checked(game_style.default.bAllowCrouchSliding);
 		cb_bUseSprint.Checked(game_style.default.bEnableSprint);
     	ne_StaminaDrainRate.SetValue(game_style.default.StaminaDrainRate);
     	ne_StaminaChargeRate.SetValue(game_style.default.StaminaChargeRate);
@@ -57,7 +57,7 @@ function DefaultSettings()
     fe_PlayerBackpedalScale.SetValue(1);
 	ch_AllowDodging.Checked(true);
 	ch_AllowDoubleJump.Checked(true);
-
+    cb_AllowCrouchSliding.Checked(true);
 	cb_bUseSprint.Checked(true);
     ne_StaminaDrainRate.SetValue(25);
     ne_StaminaChargeRate.SetValue(25);
@@ -85,7 +85,7 @@ function SaveSettings()
     	game_style.default.PlayerBackpedalScale 	= fe_PlayerBackpedalScale.GetValue();
 		game_style.default.bAllowDodging			= ch_AllowDodging.IsChecked();
 		game_style.default.bAllowDoubleJump 		= ch_AllowDoubleJump.IsChecked();
-
+        game_style.default.bAllowCrouchSliding 	= cb_AllowCrouchSliding.IsChecked();
 		game_style.default.bEnableSprint 		= cb_bUseSprint.IsChecked();
     	game_style.default.StaminaDrainRate 		= ne_StaminaDrainRate.GetValue();
     	game_style.default.StaminaChargeRate 	= ne_StaminaChargeRate.GetValue();
@@ -192,12 +192,23 @@ defaultproperties
      End Object
      ch_AllowDoubleJump=moCheckBox'ch_AllowDoubleJumpCheck'
 
+    Begin Object Class=moCheckBox Name=cb_AllowCrouchSlidingC
+        ComponentWidth=0.175000
+        Caption="Enable Crouch Sliding"
+        OnCreateComponent=cb_AllowCrouchSlidingC.InternalOnCreateComponent
+        Hint="Enables crouch sliding."
+        WinTop=0.500000
+        WinLeft=0.250000
+        WinHeight=0.040000
+    End Object
+    cb_AllowCrouchSliding=moCheckBox'cb_AllowCrouchSlidingC'
+
 	 Begin Object Class=moCheckBox Name=cb_bUseSprintC
          ComponentWidth=0.175000
          Caption="Enable Sprint"
          OnCreateComponent=cb_bUseSprintC.InternalOnCreateComponent
          Hint="Enables sprint."
-         WinTop=0.50000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -211,7 +222,7 @@ defaultproperties
          Caption="Stamina Drain % Per Second"
          OnCreateComponent=ne_StaminaDrainRateC.InternalOnCreateComponent
          Hint="Percentage of stamina to drain every second when sprinting."
-         WinTop=0.550000
+         WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -225,7 +236,7 @@ defaultproperties
          Caption="Stamina Regen % Per Second"
          OnCreateComponent=ne_StaminaChargeRateC.InternalOnCreateComponent
          Hint="Percentage of stamina to regenerate every second when not sprinting."
-         WinTop=0.60000
+         WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -239,7 +250,7 @@ defaultproperties
          Caption="Sprint Speed Multiplier"
          OnCreateComponent=fe_InitSpeedFactorC.InternalOnCreateComponent
          Hint="The speed multiplier during sprint."
-         WinTop=0.650000
+         WinTop=0.700000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -252,7 +263,7 @@ defaultproperties
          Caption="Jump Drain"
          OnCreateComponent=fe_JumpDrainC.InternalOnCreateComponent
          Hint="The amount of stamina we lose when we jump."
-         WinTop=0.70000
+         WinTop=0.750000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -266,7 +277,7 @@ defaultproperties
          Caption="Stamina Recharge Delay"
          OnCreateComponent=fe_StaminaRechargeDelayC.InternalOnCreateComponent
          Hint="The delay before stamina starts to recharge."
-         WinTop=0.750000
+         WinTop=0.800000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

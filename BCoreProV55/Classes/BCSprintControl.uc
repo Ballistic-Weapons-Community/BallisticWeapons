@@ -23,9 +23,6 @@ var   	float    	MaxStamina;				// should always be 100
 var() 	float		StaminaDrainRate;		// Amount of stamina lost each second when sprinting
 var() 	float		StaminaChargeRate;		// Amount of stamina gained each second when not sprinting
 var() 	float		StaminaRechargeDelay;	// From RECHARGE_DELAY
-var 	name 		SlideAnims[4]; 
-var 	name 		SlideStartAnims[4]; 
-var 	name 		SlideEndAnims[4]; 
 
 //=============================================================================
 // SPRINT VARIABLES
@@ -50,33 +47,14 @@ var array<SlowInfo> ActiveSlows;			// Effects which slow movement
 var float SlowFactor; 
 var float NextTimerPop;				// Next time to check for slow expiry
 
-// Sliding Variables
-var bool bIsSliding;			 // Is the player currently sliding?
-var float LastSlideEndTime;		// Time when the last slide ended
-var float LastLandTime;			// Time when the player last landed
-var vector SlideVelocity;		// Velocity during the slide
-var float SlideStartSpeed;		 // Speed required to start sliding
-var float SlideStopSpeed;		 // Speed below which sliding stops
-var float MaxSlideSpeed;		// Maximum speed during sliding, our groundspeed becomes this in order to move faster
-var float BaseGroundSpeed;		 // Base ground speed of the player when not sliding
-var float SlideEyeHeight;		 // Eye height during sliding, used to adjust camera position
-
 // --- Slide/Movement Parameters ---
-var() float SlideFriction;		 // Friction applied during sliding, affects how quickly the player slows down
-var() float SlideCooldownTime;	// Time before the player can slide again after a slide ends
-var() float SlidePower;			 // Initial burst power when starting a slide, affects how fast the player accelerates at the start of the slide
+var float BaseGroundSpeed;		 // Base ground speed of the player when not sliding
 
-// Slope/Physics Calculations
-var float SlopeAngleRad;		 // Angle of the slope in radians
-var float SlopeAngleDeg;		 // Angle of the slope in degrees
-var vector DownSlopeVect;		 // Direction vector pointing down the slope
-var vector LastFallingVelocity;	 // Velocity of the player when they last fell, used to determine sliding behavior
-var float GravityAlongSlope;	 // Gravity component acting along the slope, used to calculate acceleration during sliding
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bSprintActive, bIsSliding, SlideVelocity,
+		bSprintActive,
 		ClientJumped, ClientDelayRecharge;
 }
 
@@ -151,8 +129,6 @@ simulated event Tick(float DT)
 		Destroy();
 
 	TickSprint(DT);
-
-	TickSlopeCalculation(DT);
 }
 
 //=============================================================================
@@ -207,14 +183,6 @@ function OwnerEvent(name EventName)
 		{
 			Jumped();
 			ClientJumped();
-		}
-		if(EventName == 'Crouched')
-		{
-			TryStartSlide();
-		}
-		if(EventName == 'Landed')
-		{
-			DoLand();
 		}
 	}
 }
@@ -298,38 +266,13 @@ simulated function TickSprint(float DT)
 		{
 			if (VSize(Instigator.Velocity) == 0)
 				Stamina += StaminaChargeRate * DT;
-			else if (Instigator.bIsCrouched && !bIsSliding)
+			else if (Instigator.bIsCrouched)
 				Stamina += StaminaChargeRate * DT/2;
 			if (Level.TimeSeconds > SprintRechargeDelay)
 				Stamina += StaminaChargeRate * DT;
 		}
 	}
 	Stamina = FClamp(Stamina, 0, MaxStamina);
-	if (Instigator.Physics == PHYS_Falling)
-    	LastFallingVelocity = Instigator.Velocity;
-	SlideEyeHeight = Instigator.BaseEyeHeight;
-
-	if (bIsSliding)
-    {
-        HandleSliding(DT);
-		Instigator.EyeHeight = SlideEyeHeight * 0.6; // Lower eye height while sliding
-    }
-    else
-    {
-        if (Instigator.Physics == PHYS_Walking)
-        {
-            SlideStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*1.1;
-            SlideStopSpeed = BaseGroundSpeed*0.2;
-            MaxSlideSpeed = BaseGroundSpeed*2.5;
-			if(Level.TimeSeconds > LastLandTime + 0.1)
-				LastFallingVelocity = vect(0,0,0); 
-        }
-		if (Instigator.bIsCrouched)
-		{
-        	Instigator.CrouchedPct = Instigator.default.CrouchedPct;
-			Instigator.EyeHeight = Lerp(DT * 1.5, Instigator.EyeHeight, SlideEyeHeight, true); 
-		}
-    }
 }
 
 simulated event RenderOverlays( canvas C )
@@ -517,139 +460,6 @@ function AddNewSlow()
 	ActiveSlows[ActiveSlows.Length] = S;
 }
 
-//=============================================================================
-// SLIDING
-//=============================================================================
-
-function StartSlide()
-{
-    local name Anim;
-
-    if (!bIsSliding 
-	&& Instigator.Controller.bDuck > 0 
-	&& (VSize(LastFallingVelocity) > SlideStartSpeed || VSize(Instigator.Velocity) > SlideStartSpeed || SlopeAngleDeg < 0.0)
-	&& Instigator.Physics == PHYS_Walking 
-	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime))
-    {
-		DelayRecharge();
-		StopSprint();
-		SlideVelocity = Instigator.Velocity * 0.5 + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
-		SlideVelocity += Normal(SlideVelocity) * FMax(SlidePower*0.5,SlidePower * (Stamina / MaxStamina));
-		// Clamp slide velocity to max speed
-        if (VSize(SlideVelocity) > MaxSlideSpeed)
-            SlideVelocity = Normal(SlideVelocity) * MaxSlideSpeed;
-		LastFallingVelocity = vect(0,0,0); 
-        bIsSliding = true;
-        Instigator.GroundSpeed = MaxSlideSpeed;
-
-        Anim = SlideStartAnims[Instigator.Get4WayDirection()];
-        if ( Instigator.PlayAnim(Anim, 1.0, 0.1) )
-            Instigator.bWaitForAnim = true;
-        Instigator.AnimAction = Anim;
-    }
-}
-
-function EndSlide()
-{
-	local name Anim;
-
-	if(!Instigator.bIsCrouched && VSize(Instigator.Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
-	{
-		Anim = SlideEndAnims[Instigator.Get4WayDirection()];
-		if ( Instigator.PlayAnim(Anim, 1.0, 0.1) )
-			Instigator.bWaitForAnim = true;
-		Instigator.AnimAction = Anim;
-	}
-
-    bIsSliding = false;
-    SlideVelocity = vect(0,0,0);
-    LastSlideEndTime = Level.TimeSeconds;
-    Instigator.GroundSpeed = BaseGroundSpeed;
-}
-
-simulated function TickSlopeCalculation(float DT)
-{
-	DownSlopeVect = Normal(vect(0,0,-1) - (Instigator.Floor dot vect(0,0,-1)) * Instigator.Floor);
-	SlopeAngleRad = Acos(Instigator.Floor dot vect(0,0,1));
-	SlopeAngleDeg = SlopeAngleRad * (180.0 / Pi);
-	if (Normal(Instigator.Velocity) dot DownSlopeVect > 0)
-		SlopeAngleDeg = -SlopeAngleDeg; // Negative when going downhill
-}
-
-simulated function HandleSliding(float DT)
-{
-	local float DynamicFriction;
-	local name Anim;
-
-	Instigator.CrouchedPct = 1.0; //Little hack so it doesn't mess with crouch speed/ground speed, etc...
-	GravityAlongSlope = -PhysicsVolume.Gravity.Z * Sin(SlopeAngleRad);
-	// Friction increases over time
-	DynamicFriction = SlideFriction;
-	// Reduce friction on steep slopes for more sliding
-	if (SlopeAngleDeg < 0) // Downhill
-		DynamicFriction *= FClamp(1.0 - (Abs(SlopeAngleDeg) / 60.0), 0.2, 1.0);
-	else  // Uphill
-		DynamicFriction *= FClamp(1.0 + (SlopeAngleDeg / 45.0), 1.0, 2.5);
-	//Need to make sure we only apply this when on stairs, DetectStairDirection() might return an angle when on a slope that is not a stair
-	
-	//If we're on stairs, but not on a slope, adjust friction and gravity, hacky but it works!
-	if(SlopeAngleDeg == 0.0 && Instigator.Floor != Vect(0,0,1)) 
-	{
-		if (PlayerController(Instigator.Controller).FindStairRotation(DT) < 0) 
-		{
-			DynamicFriction *= 0.5;
-			GravityAlongSlope *= 1.5; 
-		}
-		else
-		{
-			DynamicFriction *= 1.5;
-			GravityAlongSlope *= 0.5; 
-		}
-	}
-	
-	// If going downhill, accelerate; if uphill, decelerate
-	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
-
-	// Friction force
-	if (VSize(SlideVelocity) > 0.1)
-		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
-
-	// Apply slide velocity to pawn
-	if (Instigator.Physics == PHYS_Walking)
-	{
-		Instigator.Velocity = Instigator.Velocity * 0.3 + SlideVelocity * 0.7;
-		if (VSize(Instigator.Velocity) > MaxSlideSpeed)
-			Instigator.Velocity = Normal(Instigator.Velocity) * MaxSlideSpeed;
-	}
-
-	Anim = SlideAnims[Instigator.Get4WayDirection()];
-	Instigator.LoopAnim(Anim, 1.0, 0.2);
-
-	// End slide if crouch released, speed too low, or airborne
-	if (!Instigator.bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Instigator.Physics != PHYS_Walking)
-	{
-		EndSlide();
-	}
-}
-
-simulated function TryStartSlide()
-{
-    if (Role < ROLE_Authority)
-        ServerStartSlide();
-    else
-        StartSlide();
-}
-
-function ServerStartSlide()
-{
-    StartSlide();
-}
-
-simulated function DoLand()
-{
-	LastLandTime = Level.TimeSeconds;
-}
-
 defaultproperties
 {
      Stamina=100.000000
@@ -660,19 +470,4 @@ defaultproperties
      SpeedFactor=1.500000
 	 SlowFactor=1.000000
      bReplicateInstigator=True
-	 SlideFriction=1.100000
-     SlideCooldownTime=0.600000
-	 SlidePower=300.000000
-	 SlideAnims(0)="SlideF"
-	 SlideAnims(1)="SlideF"
-	 SlideAnims(2)="SlideL"
-	 SlideAnims(3)="SlideR"
-	 SlideStartAnims(0)="SlideFStart"
-	 SlideStartAnims(1)="SlideFStart"
-	 SlideStartAnims(2)="SlideLStart"
-	 SlideStartAnims(3)="SlideRStart"
-	 SlideEndAnims(0)="SlideFEnd"
-	 SlideEndAnims(1)="SlideFEnd"
-	 SlideEndAnims(2)="SlideLEnd"
-	 SlideEndAnims(3)="SlideRSEnd"
 }

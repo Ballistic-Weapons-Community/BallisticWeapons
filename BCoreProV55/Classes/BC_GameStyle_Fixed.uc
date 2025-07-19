@@ -42,6 +42,7 @@ var() int			PlayerShieldMax;        // maximum armor the player can have
 var() bool			bPlayerDeceleration;		// Decel mechanics when stopping
 var() bool			bAllowDodging;			    // Disables dodging.
 var() bool			bAllowDoubleJump;	        // Disables double jump.
+var() bool			bAllowCrouchSliding;		// Allows crouch sliding, which is a sprinting mechanic that allows players to slide while crouching.
 var() float			PlayerStrafeScale;
 var() float			PlayerBackpedalScale;
 var() float			PlayerGroundSpeed;
@@ -91,6 +92,7 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.bPlayerDeceleration			= default.bPlayerDeceleration;
 	rep.bAllowDodging				= default.bAllowDodging;
 	rep.bAllowDoubleJump			= default.bAllowDoubleJump;
+	rep.bAllowCrouchSliding			= default.bAllowCrouchSliding;
     rep.PlayerStrafeScale 			= default.PlayerStrafeScale;
 	rep.PlayerBackpedalScale 		= default.PlayerBackpedalScale;
 	rep.PlayerGroundSpeed 			= default.PlayerGroundSpeed;

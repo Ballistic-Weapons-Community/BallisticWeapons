@@ -35,6 +35,7 @@ defaultproperties
 	bPlayerDeceleration=True
 	bAllowDodging=True
 	bAllowDoubleJump=False
+	bAllowCrouchSliding=True 
 	PlayerStrafeScale=1
 	PlayerBackpedalScale=1
 	PlayerGroundSpeed=200

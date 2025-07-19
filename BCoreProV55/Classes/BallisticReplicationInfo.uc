@@ -83,6 +83,11 @@ var() config float			SprintSpeedFactor;
 var() config float			JumpDrain;
 
 //=============================================================================
+// CROUCH SLIDING
+//=============================================================================
+var() config bool					bAllowCrouchSliding;		// Allows crouch sliding, which is a sprinting mechanic that allows players to slide while crouching.
+
+//=============================================================================
 // HEALTH/ARMOR - NO REP
 //=============================================================================
 var bool					bHealthRegeneration;
@@ -137,6 +142,7 @@ var struct MoveRep
 	var bool					bPlayerDeceleration;		// Decel mechanics when stopping
 	var bool					bAllowDodging;				// Enables dodging.
 	var bool					bAllowDoubleJump;			// Enables double jump.
+	var() config bool			bAllowCrouchSliding;		// Allows crouch sliding, which is a sprinting mechanic that allows players to slide while crouching.
 	var float					PlayerWalkSpeedFactor;
 	var float					PlayerCrouchSpeedFactor;
 	var float					PlayerAnimationGroundSpeed;
@@ -199,6 +205,7 @@ final function BindToReplication()
 	MRep.bPlayerDeceleration			= bPlayerDeceleration;
     MRep.bAllowDodging		            = bAllowDodging;
 	MRep.bAllowDoubleJump				= bAllowDoubleJump;
+	MRep.bAllowCrouchSliding			= bAllowCrouchSliding;
     MRep.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
 	MRep.PlayerCrouchSpeedFactor      	= PlayerCrouchSpeedFactor;
 	MRep.PlayerAnimationGroundSpeed		= PlayerAnimationGroundSpeed;
@@ -264,6 +271,7 @@ simulated final function BindFromReplication()
 	bPlayerDeceleration				= MRep.bPlayerDeceleration;
     bAllowDodging		            = MRep.bAllowDodging;
 	bAllowDoubleJump				= MRep.bAllowDoubleJump;
+	bAllowCrouchSliding				= MRep.bAllowCrouchSliding;
     PlayerWalkSpeedFactor      		= MRep.PlayerWalkSpeedFactor;
 	PlayerCrouchSpeedFactor       	= MRep.PlayerCrouchSpeedFactor;
 	PlayerAnimationGroundSpeed		= MRep.PlayerAnimationGroundSpeed;
@@ -313,6 +321,7 @@ simulated final function BindDefaults()
 	class.default.bPlayerDeceleration			= bPlayerDeceleration;
     class.default.bAllowDodging		            = bAllowDodging;
 	class.default.bAllowDoubleJump				= bAllowDoubleJump;
+	class.default.bAllowCrouchSliding			= bAllowCrouchSliding;
     class.default.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
 	class.default.PlayerCrouchSpeedFactor       = PlayerCrouchSpeedFactor;
 	class.default.PlayerAnimationGroundSpeed	= PlayerAnimationGroundSpeed;
