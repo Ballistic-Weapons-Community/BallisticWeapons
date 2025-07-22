@@ -179,7 +179,6 @@ var vector SlideVelocity;		// Velocity during the slide
 var float SlideStartSpeed;		 // Speed required to start sliding
 var float SlideStopSpeed;		 // Speed below which sliding stops
 var float MaxSlideSpeed;		// Maximum speed during sliding, our groundspeed becomes this in order to move faster
-var float SlideEyeHeight;		 // Eye height during sliding, used to adjust camera position
 
 // Slope/Physics Calculations
 var float SlopeAngleRad;		 // Angle of the slope in radians
@@ -3375,15 +3374,14 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			}
 		}
 
-		SlideEyeHeight = BaseEyeHeight;
 
 		if (bIsSliding)
 		{
 			HandleSliding(DeltaTime);
-			EyeHeight = SlideEyeHeight * 0.6; // Lower eye height while sliding
 		}
 		else
 		{
+			// This isn't the best way to do this, but it works for now
 			SlideStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*1.1;
 			SlideStopSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*0.2;
 			MaxSlideSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*2.5;
@@ -3392,19 +3390,15 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			if (bIsCrouched)
 			{
 				CrouchedPct = default.CrouchedPct;
-				EyeHeight = Lerp(DeltaTime * 1.5, EyeHeight, SlideEyeHeight, true);
 			}
 		}
 
 		OldMovementSpeed = VSize(Velocity);
 	}
 	// End slide if crouch released, speed too low, or airborne
-	if (Role == ROLE_Authority)
+	if (bIsSliding && (!bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Physics != PHYS_Walking))
 	{
-		if (bIsSliding && (!bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Physics != PHYS_Walking))
-		{
-			EndSlide();
-		}
+		EndSlide();
 	}
 }
 
@@ -3421,7 +3415,7 @@ function ServerStartSlide()
     StartSlide();
 }
 
-function StartSlide()
+simulated function StartSlide()
 {
     local name Anim;
 
@@ -3451,7 +3445,7 @@ function StartSlide()
     }
 }
 
-function EndSlide()
+simulated function EndSlide()
 {
 	local name Anim;
 
