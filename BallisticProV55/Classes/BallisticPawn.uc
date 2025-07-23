@@ -571,9 +571,6 @@ event Landed(vector HitNormal)
 
 	LastLandTime = Level.TimeSeconds;
 
-	if (Role == ROLE_Authority && Inventory != None)
-		Inventory.OwnerEvent('Landed');
-
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
@@ -621,6 +618,7 @@ function PawnCheckBob(float DeltaTime, vector Y)
 		BobTime = 0;
 		WalkBob = WalkBob * (1 - FMin(1, 8 * deltatime));
 	}
+	log("BallisticPawn: PawnCheckBob: BobTime: "$BobTime$" WalkBob: "$WalkBob$" AppliedBob: "$AppliedBob$ " DeltaTime: "$DeltaTime);
 }
 
 //===========================================================================
@@ -634,7 +632,7 @@ function CheckBob(float DeltaTime, vector Y)
 	local int m,n;
 
     DeltaTime *= GroundSpeed / (class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 1.5);
-
+	log("BallisticPawn: CheckBob: DeltaTime: "$DeltaTime$" GroundSpeed: "$GroundSpeed$" PlayerGroundSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
 	OldBobTime = BobTime;
 
 	PawnCheckBob(DeltaTime,Y);
@@ -2504,14 +2502,6 @@ event EndCrouch(float HeightAdjust)
 	CrouchEndTime = Level.TimeSeconds;
 }
 
-event Falling()
-{
-    Super.Falling();
-	if (Role == ROLE_Authority && Inventory != None)
-		Inventory.OwnerEvent('Falling');
-}
-
-
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
 // It causes BaseEyeHeight to be forced to 38 on the server for non local players (unless the server player is first person spectating that client)
 simulated function vector EyePosition()
@@ -3273,13 +3263,13 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.DrawText("FireState:"@GetEnum(enum'EFireAnimState', FireState));
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
-	T = "Floor "$Floor$" DesiredSpeed "$DesiredSpeed$" Crouched "$bIsCrouched$" Try to uncrouch "$UncrouchTime;
+	T = "Floor "$Floor$" DesiredSpeed "$DesiredSpeed$" Crouched "$bIsCrouched$" Try to uncrouch "$UncrouchTime$ " GroundSpeed "$GroundSpeed$ " WalkBob "$WalkBob;
 	if ( (OnLadder != None) || (Physics == PHYS_Ladder) )
 		T=T$" on ladder "$OnLadder;
 	Canvas.DrawText(T);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
-	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate$ "Ground Speed "$GroundSpeed);
+	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate$ " Sliding "$bIsSliding$" SlideVelocity "$Vsize(SlideVelocity)$" SlideStartSpeed "$SlideStartSpeed$" SlideStopSpeed "$SlideStopSpeed$" MaxSlideSpeed "$MaxSlideSpeed);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
 
@@ -3456,10 +3446,13 @@ simulated function EndSlide()
 			bWaitForAnim = true;
 		AnimAction = Anim;
 	}
-    bIsSliding = false;
-    SlideVelocity = vect(0,0,0);
-    LastSlideEndTime = Level.TimeSeconds;
-    GroundSpeed = Sprinter.BaseGroundSpeed;
+	bIsSliding = false;
+	SlideVelocity = vect(0,0,0);
+	LastSlideEndTime = Level.TimeSeconds;
+	if(Role == ROLE_Authority)
+    {
+        GroundSpeed = Sprinter.BaseGroundSpeed;
+    }
 }
 
 simulated function TickSlopeCalculation(float DT)
@@ -3501,7 +3494,6 @@ simulated function HandleSliding(float DT)
 			GravityAlongSlope *= 0.5; 
 		}
 	}
-	
 	// If going downhill, accelerate; if uphill, decelerate
 	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
 
@@ -3517,7 +3509,6 @@ simulated function HandleSliding(float DT)
 	Anim = SlideAnims[Get4WayDirection()];
 	LoopAnim(Anim, 1.0, 0.2);
 }
-
 
 defaultproperties
 {
