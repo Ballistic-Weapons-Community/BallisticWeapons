@@ -2491,7 +2491,7 @@ event StartCrouch(float HeightAdjust)
 	EyeHeight += HeightAdjust;
 	OldZ -= HeightAdjust;
 	BaseEyeheight = CrouchEyeHeight;
-	TryStartSlide();
+	StartSlide();
 }
 
 event EndCrouch(float HeightAdjust)
@@ -3390,19 +3390,6 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	{
 		EndSlide();
 	}
-}
-
-simulated function TryStartSlide()
-{
-    if (Role < ROLE_Authority)
-        ServerStartSlide();
-    else
-        StartSlide();
-}
-
-function ServerStartSlide()
-{
-    StartSlide();
 }
 
 simulated function StartSlide()
