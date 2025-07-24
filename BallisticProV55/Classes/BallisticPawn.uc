@@ -3373,7 +3373,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		{
 			// This isn't the best way to do this, but it works for now
 			SlideStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*1.1;
-			SlideStopSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*0.2;
+			SlideStopSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*0.1;
 			MaxSlideSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*2.5;
 			if(Level.TimeSeconds > LastLandTime + 0.1)
 				LastFallingVelocity = vect(0,0,0); 
@@ -3407,7 +3407,7 @@ simulated function StartSlide()
     {
 		Sprinter.DelayRecharge();
 		Sprinter.StopSprint();
-		SlideVelocity = Velocity * 0.5 + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
+		SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
 		SlideVelocity += Normal(SlideVelocity) * FMax(SlidePower*0.5,SlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
 		// Clamp slide velocity to max speed
         if (VSize(SlideVelocity) > MaxSlideSpeed)
@@ -3489,7 +3489,8 @@ simulated function HandleSliding(float DT)
 		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
 
 	// Apply slide velocity to pawn, handle this on the pawn instead
-	Velocity = Velocity * 0.3 + SlideVelocity * 0.7;
+	Velocity = SlideVelocity;
+
 	if (VSize(Velocity) > MaxSlideSpeed)
 		Velocity = Normal(Velocity) * MaxSlideSpeed;
 
