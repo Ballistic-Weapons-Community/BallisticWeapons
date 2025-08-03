@@ -33,7 +33,7 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850PickupLD');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850PickupHD');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850backpack');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPiickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPickup');
 }
 
 defaultproperties

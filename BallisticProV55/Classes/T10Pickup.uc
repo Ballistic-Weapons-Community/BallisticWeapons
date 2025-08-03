@@ -32,7 +32,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.T10.T10Pickup'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.T10.T10Pickup_LD'
      PickupDrawScale=0.350000
      bWeaponStay=False
      InventoryType=Class'BallisticProV55.T10Grenade'
