@@ -56,7 +56,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(G=128,R=255))
          FadeOutStartTime=0.300000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=20
+         MaxParticles=10
          DrawStyle=PTDS_Brighten
          Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
@@ -89,5 +89,4 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
      End Object
      Emitters(2)=SpriteEmitter'BWBP_APC_Pro.FM14GrenadeFlashEmitter.SpriteEmitter7'
-
 }

@@ -209,6 +209,9 @@ simulated function bool Impact(Actor Other, Vector HitLocation)
 {
     local float BoneDist;
 
+    if (Other == None) // <-- FIX: Prevents 'Accessed None Other' warning
+        return false;
+
     if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
 	{
 		Explode(HitLocation, Normal(HitLocation-Other.Location));

@@ -34,6 +34,9 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
+    //if (Victim == None)
+    //    return;
+
 	if (Victim.bProjTarget && class'BallisticReplicationInfo'.static.IsArena())
 	{
 		if (BallisticShield(Victim) != None)

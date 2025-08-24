@@ -99,8 +99,9 @@ function Timer()
 		if ( Instigator == None || Instigator.Controller == None )
 			A.SetDelayedDamageInstigatorController( InstigatorController );
 			
-		if (Pawn(A) != None)
-			FireControl.TryDamage(Pawn(A), BURNINTERVAL, DamageType);
+		if (Pawn(A) != None && FireControl != None)
+		FireControl.TryDamage(Pawn(A), BURNINTERVAL, DamageType);
+        
 		else class'BallisticDamageType'.static.GenericHurt (A, Damage, Instigator, A.Location, vect(0,0,0), DamageType);
 	}
 }

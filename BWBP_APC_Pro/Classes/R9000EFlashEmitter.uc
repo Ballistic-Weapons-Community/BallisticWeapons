@@ -87,7 +87,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(G=96,R=192,A=255))
          FadeOutStartTime=0.022500
          CoordinateSystem=PTCS_Relative
-         MaxParticles=20
+         MaxParticles=15
          StartLocationOffset=(X=10.000000)
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          SizeScale(0)=(RelativeSize=0.500000)
@@ -102,5 +102,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=200.000000,Max=1500.000000),Y=(Min=-40.000000,Max=40.000000),Z=(Min=-40.000000,Max=40.000000))
      End Object
      Emitters(2)=SpriteEmitter'BWBP_APC_Pro.R9000EFlashEmitter.SpriteEmitter14'
-
 }

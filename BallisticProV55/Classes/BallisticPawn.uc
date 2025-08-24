@@ -1219,6 +1219,7 @@ function MessageHealBlock()
 	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
 	{
 		NextHealMessageTime = Level.TimeSeconds + 1;
+		if (HealPreventer != None)
 		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 0, HealPreventer.PlayerReplicationInfo);
 	}
 }

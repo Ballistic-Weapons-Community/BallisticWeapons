@@ -116,7 +116,7 @@ defaultproperties
          FadeOutStartTime=1.000000
          FadeInEndTime=1.000000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=50
+         MaxParticles=25
          StartLocationRange=(X=(Max=500.000000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
@@ -127,7 +127,5 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BWBP_APC_Pro.ParticleStreamEffectAlt.Sparks'
 
      Emitters(2)=None
-
      Emitters(3)=None
-
 }

@@ -55,7 +55,10 @@ function TryPlague(xPawn P)
 	{
 		SPE = Spawn(class'SHADRACHPlagueEffect',P,,P.Location);// + vect(0,0,-30));
 		SPE.Initialize(P);
+
+		if (PlagueEffect != None)
 		SPE.Duration = PlagueEffect.Duration;
+		
 		if (Instigator!=None)
 		{
 			SPE.Instigator = Instigator;

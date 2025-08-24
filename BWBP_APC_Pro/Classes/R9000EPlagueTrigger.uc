@@ -55,7 +55,10 @@ function TryPlague(xPawn P)
 	{
 		RPE = Spawn(class'R9000EPlagueEffect',P,,P.Location);// + vect(0,0,-30));
 		RPE.Initialize(P);
+
+		if (PlagueEffect != None)
 		RPE.Duration = PlagueEffect.Duration;
+		
 		if (Instigator!=None)
 		{
 			RPE.Instigator = Instigator;

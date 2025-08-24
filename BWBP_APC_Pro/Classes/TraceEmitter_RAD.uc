@@ -75,5 +75,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=8000.000000,Max=8000.000000))
      End Object
      Emitters(2)=SpriteEmitter'BWBP_APC_Pro.TraceEmitter_RAD.SpriteEmitter1'
-
 }

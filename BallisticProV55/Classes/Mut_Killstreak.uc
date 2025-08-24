@@ -132,6 +132,12 @@ static function KillstreakLRI GetKLRI(PlayerReplicationInfo PRI)
 {
 	local LinkedReplicationInfo lPRI;
 	
+    if (PRI == None)
+    {
+        log("GetKLRI called PRI == None");
+        return None;
+    }
+
 	if(PRI.CustomReplicationInfo == None)
 	{
 		log("No Custom PRI");
