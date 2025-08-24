@@ -264,7 +264,7 @@ function ServerBlowUp()
 
 function BlowUp(vector HitLocation)
 {
-	if (bExploded || Owner != None && PlayerController(Controller).AcknowledgedPawn != self || Role != ROLE_Authority)
+	if (bExploded || Owner != None && PlayerController(Controller) != None && PlayerController(Controller).AcknowledgedPawn != self || Role != ROLE_Authority)
 		return;
 
 	ShakeView();

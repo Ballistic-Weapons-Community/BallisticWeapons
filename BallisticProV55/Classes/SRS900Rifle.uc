@@ -168,15 +168,6 @@ simulated event WeaponTick(float DT)
 	}
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-	StealthImpulse(0.1);
-}
-
 function ServerSwitchSilencer(bool bDetachSuppressor)
 {
 	SwitchSilencer(bSilenced);

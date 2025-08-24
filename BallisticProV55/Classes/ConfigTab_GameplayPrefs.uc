@@ -49,6 +49,7 @@ function SaveSettings()
     class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
+    class'BallisticWeapon'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
 	class'BallisticPlayer'.default.bUseWeaponUI 			= ch_WeaponUI.IsChecked();
 	class'BallisticDamageType'.default.bSimpleDeathMessages	= ch_SimpleDeathMessages.IsChecked();
 	class'BallisticDamageType'.default.bLessDisruptiveFlash	= ch_LessDisruptiveFlash.IsChecked();
@@ -109,7 +110,7 @@ defaultproperties
 
 	 Begin Object Class=moFloatEdit Name=fl_ZoomTimeModFloat
          MinValue=1.000000
-         MaxValue=4.000000
+         MaxValue=5.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
          Caption="Zoom Time Mod"

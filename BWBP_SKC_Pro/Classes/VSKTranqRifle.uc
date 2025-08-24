@@ -61,7 +61,7 @@ defaultproperties
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Draw',Volume=0.200000)
      PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Holster',Volume=0.170000)
-     CockAnimPostReload="ReloadEndCock"
+     //CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Cock',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-ClipOut',Volume=1.500000)
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-ClipIn',Volume=1.500000)

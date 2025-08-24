@@ -310,7 +310,7 @@ simulated function LoadGrenadeLoop()
 		return;
 	if ((ReloadState == RS_None || ReloadState == RS_StartShovel)&& Ammo[1].AmmoAmount >= 1)
 	{
-		PlayAnim(StartShovelAnim, 1.0, , 0);
+		PlayAnim(StartShovelAnim, ReloadAnimRate, , 0);
 		ReloadState = RS_StartShovel;
 	}
 }
