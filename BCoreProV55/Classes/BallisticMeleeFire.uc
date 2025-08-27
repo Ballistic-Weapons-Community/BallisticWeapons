@@ -30,11 +30,9 @@ struct SwipeHit
 	var() Vector	HitDir;		// Direction of the trace
 };
 var()   array<SwipePoint>	SwipePoints;	// The rotational offset points used to determin the path of the swipe
-var()   int					WallHitPoint;	// Which of the points should be used for wall hits
-var()   int					NumSwipePoints;	// Which of the points should be used for wall hits
+var()   int					WallHitPoint;	// Which of the points should be sued for wall hits
+var()   int					NumSwipePoints;	// Which of the points should be sued for wall hits
 var     array<SwipeHit>		SwipeHits;		// Temporary(per fire) record of hits. For comparing multiple hits on same targets
-var() 	Vector				TraceExtent;	// The extent of the trace used to find actors. This is used to determine the size of the trace
-//var()   float				WideDamageMinHitAngle;	// Minimum angle to hit a target with wide damage
 
 var	    float	            HoldStartTime;		//Used if this weapon's mode is 2, which means it's being used for its ModeDoFire function.
 var()   float               MaxBonusHoldTime;	//Max hold time for bonus damage
@@ -144,7 +142,7 @@ function DoFireEffect()
 
     if (Level.NetMode == NM_DedicatedServer)
         BW.RewindCollisions();
- 
+
 	// Do trace for each point
 	for	(i=0; i<NumSwipePoints; i++)
 	{
@@ -154,11 +152,9 @@ function DoFireEffect()
 		MeleeDoTrace(StartTrace, PointAim, i==WallHitPoint, SwipePoints[i].Weight);
 	}
 
-	//MeleeDoTrace(StartTrace, Aim);
-
     if (Level.NetMode == NM_DedicatedServer)
         BW.RestoreCollisions();
- 
+
 	// Do damage for each victim
 	for (i=0; i<SwipeHits.length; i++)
 	{
@@ -177,103 +173,6 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 		BallisticAttachment(Weapon.ThirdPersonActor).MeleeUpdateHit(Other, HitLocation, HitNormal, Surf);
 	else Super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
 }
-/* 
-function MeleeDoTrace(Vector InitialStart, Rotator Dir)
-{
-    local Vector End, X, HitLocation, HitNormal, Start, VictimsDir;
-    local Actor HitActor, LastHitActor;
-    local Material HitMaterial;
-    local Pawn Victims;
-    local float DiffAngle, VictimDist, Dist;
-    local bool bHitWall;
-
-	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
-
-	Start = InitialStart;
-	X = Vector(Dir);
-	End = Start + X * Dist;
-
-    // Handle pawns first (WideDamageMinHitAngle logic)
-    if (WideDamageMinHitAngle > 0)
-    {
-        foreach Weapon.VisibleCollidingActors(class'Pawn', Victims, Dist, Start)
-        {
-            if (Victims.Health <= 0 || Victims == Instigator)
-                continue;
-
-            VictimDist = VSize(Instigator.Location - Victims.Location);
-			Level.Game.Broadcast(Instigator,"VictimDist: "$VictimDist);
-            if (VictimDist > (Dist * 1.1 + Victims.CollisionRadius))
-                continue;
-
-            VictimsDir = Normal(Victims.Location - Instigator.Location);
-			DiffAngle = Acos(X dot VictimsDir) * (180 / Pi); //Convert to degrees
-			Level.Game.Broadcast(Instigator,"DiffAngle: "$DiffAngle);
-            if (DiffAngle <= WideDamageMinHitAngle)
-            {
-				Level.Game.Broadcast(Instigator,"DiffAngle smaller than WideDamageMinHitAngle: "$DiffAngle);
-				HitLocation = Start + (X * VSize(Victims.Location - Start)); //Like trace but without actual trace
-                OnTraceHit(Victims, HitLocation, Start, X, 0, 0, 0);
-            }
-        }
-    }
-
-    // Handle world geometry, vehicles, and other actors
-    while (Dist > 0)
-    {
-        // Perform the trace
-        HitActor = Trace(HitLocation, HitNormal, End, Start, true, , HitMaterial);
-        Dist -= VSize(HitLocation - Start);
-
-        if (HitActor != None)
-        {
-            // Handle water volumes or fluid surfaces
-            if ((FluidSurfaceInfo(HitActor) != None) || ((PhysicsVolume(HitActor) != None) && PhysicsVolume(HitActor).bWaterVolume))
-            {
-                Start = HitLocation;
-                End = Start + X * Dist;
-                continue;
-            }
-
-            // Handle vehicles
-            if (Vehicle(HitActor) != None)
-            {
-                OnTraceHit(HitActor, HitLocation, Start, X, 0, 0, 0);
-                bHitWall = ImpactEffect(HitLocation, HitNormal, HitMaterial, HitActor, vect(0, 0, 0));
-                break;
-            }
-
-            // Handle world geometry
-            if (HitActor.bWorldGeometry || Mover(HitActor) != None)
-            {
-                bHitWall = ImpactEffect(HitLocation, HitNormal, HitMaterial, HitActor, vect(0, 0, 0));
-                break;
-            }
-
-            // Handle other actors
-            if (HitActor.bCanBeDamaged && HitActor != Instigator && HitActor != LastHitActor)
-            {
-                OnTraceHit(HitActor, HitLocation, Start, X, 0, 0, 0);
-                LastHitActor = HitActor;
-            }
-
-            // Update trace start and end points for multi-hit handling
-            Start = HitLocation + (X * HitActor.CollisionRadius * 2);
-            End = Start + X * Dist;
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    // Handle cases where no wall was hit
-    if (!bHitWall)
-    {
-        NoHitEffect(X, Start, End, vect(0, 0, 0));
-    }
-}
-*/
 
 // Do the trace to find out where bullet really goes
 function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int Weight)
@@ -297,7 +196,7 @@ function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int W
 	while (Dist > 0)		// Loop traces in case we need to go through stuff
 	{
 		// Do the trace
-		Other = Trace(HitLocation, HitNormal, End, Start, true, TraceExtent, HitMaterial);
+		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
 		Dist -= VSize(HitLocation - Start);
 		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
 			break;
@@ -561,8 +460,6 @@ defaultproperties
 	SwipePoints(4)=(Weight=2,offset=(Yaw=-2560))
 	WallHitPoint=2
 	NumSwipePoints=5
-	TraceExtent=(X=0.000000,Y=15.000000,Z=15.000000) // The extent of the trace used to find actors
-	//WideDamageMinHitAngle=25.000000 //2560*360/65536 = 14.0625 degrees, let's round up to 15 degrees
 	WallPenetrationForce=0
 
 	MaxBonusHoldTime=1.500000

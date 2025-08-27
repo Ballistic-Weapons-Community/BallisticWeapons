@@ -226,6 +226,14 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
+simulated function PlayCocking(optional byte Type)
+{
+	if (Type == 2)
+		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
+	else
+		PlayAnim(CockAnim, CockAnimRate, 0.2);
+}
+
 function ServerSwitchSilencer(bool bNewValue)
 {
 	bSilenced = bNewValue;

@@ -60,7 +60,6 @@ static function bool FindWeaponInfo(string CN, out WeaponInfo WI, optional out i
 // Fast shotcut to use FindWeaponInfo() and automatically AddWeaponInfoName() if needed
 static function WeaponInfo AutoWeaponInfo(string WeapClassName, optional out int i)
 {
-	Log("AutoWeaponInfo called with ClassStr: " $ WeapClassName);
 	return CurrentCache().static.AutoWeaponInfo(WeapClassName, i);
 }
 

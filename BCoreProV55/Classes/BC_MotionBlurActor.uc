@@ -63,9 +63,6 @@ simulated function StartBlur()
 	if (PC == None)
 		return;
 
-	if(PC.bGodMode)
-		return;
-
 	// To avoid conflict problems, we'll hijack any existing 'MotionBlur' rather than spawning a new one...
 	for (i=0;i<PC.CameraEffects.length;i++)
 		if (MotionBlur(PC.CameraEffects[i]) != None)	{
@@ -87,7 +84,7 @@ simulated function StartBlur()
 
 simulated event Tick(float DT)
 {
-	if (PC == None || PC.bGodMode)
+	if (PC == None)
 	{
 		Destroy();
 		return;

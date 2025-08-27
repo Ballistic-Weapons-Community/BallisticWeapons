@@ -270,7 +270,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.210000) 
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.208000)
-	//CockAnimPostReload="ReloadEndCock"
+	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Cock')
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagOut')
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')

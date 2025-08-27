@@ -290,6 +290,14 @@ simulated function OnScopeViewChanged()
 		SightOffset.Y = default.SightOffset.Y * -1;
 }
 
+simulated function PlayCocking(optional byte Type)
+{
+	if (Type == 2)
+		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
+	else
+		PlayAnim(CockAnim, CockAnimRate, 0.2);
+}
+
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None || SightingState != SS_None)

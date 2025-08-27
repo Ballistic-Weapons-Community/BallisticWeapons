@@ -103,26 +103,6 @@ function ToggleChecked (int i)
 	LastCheckChanged = i;
 }
 
-function bool IsChecked(int Index)
-{
-    if (Index >= 0 && Index < Checks.Length)
-        return bool(Checks[Index]);
-    return false; // Return false if the index is out of bounds
-}
-
-function int FindItem(string ItemName)
-{
-    local int i;
-
-    for (i = 0; i < Elements.Length; i++)
-    {
-        if (Elements[i].Item == ItemName)
-            return i; // Return the index if the item is found
-    }
-
-    return -1; // Return -1 if the item is not found
-}
-
 function bool CursorOverCheck()
 {
 	if (Controller.MouseX <= ClientBounds[0] + ItemHeight)

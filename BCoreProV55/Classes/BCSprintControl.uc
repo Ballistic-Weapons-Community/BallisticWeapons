@@ -9,11 +9,9 @@
 // by Nolan "Dark Carnivour" Richert and Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-// Updates by YoYoBatty:
-// - Added crouch sliding functionality
 class BCSprintControl extends Inventory;
 
-//const RECHARGE_DELAY = 1.5f; //This really should be customizable, but for now it's hardcoded
+const RECHARGE_DELAY = 1.5f;
 
 //=============================================================================
 // STAMINA VARIABLES
@@ -22,7 +20,6 @@ var 	float		Stamina;				// Stamina level of player (percentage). Players can't s
 var   	float    	MaxStamina;				// should always be 100
 var() 	float		StaminaDrainRate;		// Amount of stamina lost each second when sprinting
 var() 	float		StaminaChargeRate;		// Amount of stamina gained each second when not sprinting
-var() 	float		StaminaRechargeDelay;	// From RECHARGE_DELAY
 
 //=============================================================================
 // SPRINT VARIABLES
@@ -47,22 +44,16 @@ var array<SlowInfo> ActiveSlows;			// Effects which slow movement
 var float SlowFactor; 
 var float NextTimerPop;				// Next time to check for slow expiry
 
-// --- Slide/Movement Parameters ---
-var float BaseGroundSpeed;		 // Base ground speed of the player when not sliding
-
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bSprintActive,
-		ClientJumped, ClientDelayRecharge;
+		bSprintActive, ClientJumped, ClientDelayRecharge;
 }
 
 simulated function PostBeginPlay()
 {
 	StaminaChargeRate = class'BallisticReplicationInfo'.default.StaminaChargeRate;
 	StaminaDrainRate = class'BallisticReplicationInfo'.default.StaminaDrainRate;
-	StaminaRechargeDelay = class'BallisticReplicationInfo'.default.StaminaRechargeDelay;
 	SpeedFactor = class'BallisticReplicationInfo'.default.SprintSpeedFactor;
 	JumpDrain = class'BallisticReplicationInfo'.default.JumpDrain;
 }
@@ -119,8 +110,7 @@ function UpdateSpeed()
 	if (Instigator.GroundSpeed != NewSpeed)
 		Instigator.GroundSpeed = NewSpeed;
 
-	BaseGroundSpeed = NewSpeed;
-
+    //log("SC UpdateSpeed: "$NewSpeed);
 }
 
 simulated event Tick(float DT)
@@ -149,8 +139,6 @@ function StartSprint()
 
 	if (Instigator != None)
         UpdateSpeed();
-
-	//Level.Game.Broadcast(self, "Started sprint, ground speed: " $ Instigator.GroundSpeed);
 }
 
 // Sprint Key released. Used on Client and Server
@@ -169,8 +157,6 @@ function StopSprint()
 
     DelayRecharge();
     ClientDelayRecharge();
-
-	//Level.Game.Broadcast(self, "Stopped sprint, ground speed: " $ Instigator.GroundSpeed);
 }
 
 function OwnerEvent(name EventName)
@@ -189,7 +175,7 @@ function OwnerEvent(name EventName)
 
 simulated function DelayRecharge()
 {
-	SprintRechargeDelay = Level.TimeSeconds + StaminaRechargeDelay;
+	SprintRechargeDelay = Level.TimeSeconds + RECHARGE_DELAY;
 }
 
 simulated function Jumped()
@@ -466,7 +452,7 @@ defaultproperties
      MaxStamina=100.000000
      StaminaDrainRate=25.000000
      StaminaChargeRate=25.000000
-	 JumpDrain=10.000000
+	 JumpDrain=10
      SpeedFactor=1.500000
 	 SlowFactor=1.000000
      bReplicateInstigator=True

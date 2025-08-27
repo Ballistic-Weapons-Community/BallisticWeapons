@@ -213,7 +213,7 @@ simulated function Notify_CockAfterReload()
 //	else
 //		PlayAnim('ReloadFinishHandle', ReloadAnimRate, 0.2);
 }
-/* 
+
 simulated function PlayCocking(optional byte Type)
 {
 	if (Type == 2 && HasAnim('Cock'))
@@ -221,7 +221,7 @@ simulated function PlayCocking(optional byte Type)
 	else
 		PlayAnim('Cock', CockAnimRate, 0.2);
 }
-*/
+
 simulated function bool HasAmmo()
 {
 	//First Check the magazine
@@ -250,7 +250,6 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=130,G=135,R=137,A=62),Color2=(B=0,G=172,R=0,A=80),StartSize1=127,StartSize2=96)
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	SelectAnim="Deploy"
-	CockAnimPostReload="Cock"
     BringUpTime=1.000000
 	bCanThrow=False
 	bNoInstagibReplace=True

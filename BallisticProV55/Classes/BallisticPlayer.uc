@@ -1274,9 +1274,6 @@ function ViewFlash(float DeltaTime)
 
 function ClientDmgFlash( float scale, vector fog )
 {
-    if (bGodMode)
-		return;
-
 	DesiredFlashScale = scale;
 	DesiredFlashFog = 0.001 * fog;
 }
@@ -1284,9 +1281,6 @@ function ClientDmgFlash( float scale, vector fog )
 // disallow scaling flash
 function ClientFlash( float scale, vector fog )
 {
-    if (bGodMode)
-		return;
-
     FlashScale = scale * vect(1,1,1);
     flashfog = 0.001 * fog;
 	bOverrideDmgFlash = true;

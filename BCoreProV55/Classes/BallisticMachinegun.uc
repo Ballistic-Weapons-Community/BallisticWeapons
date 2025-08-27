@@ -109,6 +109,13 @@ simulated function SetBeltVisibility(int Amount)
 	else
 		SetBoneScale(0, 1.0, BeltBones[0]);
 }
+simulated function PlayCocking(optional byte Type)
+{
+	if (Type == 2 && HasAnim('ReloadEndCock'))
+		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
+	else
+		PlayAnim(CockAnim, CockAnimRate, 0.2);
+}
 
 // Run to give hand opportinity to go to stand mode handle instead of playing to end of normal reload anim
 simulated function Notify_M353GoToHandle()

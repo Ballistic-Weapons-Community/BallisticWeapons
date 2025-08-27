@@ -42,7 +42,6 @@ var() int			PlayerShieldMax;        // maximum armor the player can have
 var() bool			bPlayerDeceleration;		// Decel mechanics when stopping
 var() bool			bAllowDodging;			    // Disables dodging.
 var() bool			bAllowDoubleJump;	        // Disables double jump.
-var() bool			bAllowCrouchSliding;		// Allows crouch sliding, which is a sprinting mechanic that allows players to slide while crouching.
 var() float			PlayerStrafeScale;
 var() float			PlayerBackpedalScale;
 var() float			PlayerGroundSpeed;
@@ -58,7 +57,6 @@ var() float			PlayerDodgeZ;
 var() bool			bEnableSprint;
 var() int			StaminaChargeRate;
 var() int			StaminaDrainRate;
-var() float			StaminaRechargeDelay;
 var() float			SprintSpeedFactor;
 var() float			JumpDrain;
 
@@ -92,7 +90,6 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.bPlayerDeceleration			= default.bPlayerDeceleration;
 	rep.bAllowDodging				= default.bAllowDodging;
 	rep.bAllowDoubleJump			= default.bAllowDoubleJump;
-	rep.bAllowCrouchSliding			= default.bAllowCrouchSliding;
     rep.PlayerStrafeScale 			= default.PlayerStrafeScale;
 	rep.PlayerBackpedalScale 		= default.PlayerBackpedalScale;
 	rep.PlayerGroundSpeed 			= default.PlayerGroundSpeed;
@@ -105,7 +102,6 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.bEnableSprint				= default.bEnableSprint;
 	rep.StaminaChargeRate			= default.StaminaChargeRate;
 	rep.StaminaDrainRate 			= default.StaminaDrainRate;
-	rep.StaminaRechargeDelay 		= default.StaminaRechargeDelay;
 	rep.SprintSpeedFactor 			= default.SprintSpeedFactor;
 	rep.JumpDrain					= default.JumpDrain;
 

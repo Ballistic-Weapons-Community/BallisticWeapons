@@ -104,45 +104,12 @@ simulated event RenderOverlays(Canvas C)
 		C.DrawActor(GasSpray, false, false, Instigator.Controller.FovAngle);
 	}
 }
-/* 
-// Will work on this a bit later
-simulated function PhysicsVolumeChange(PhysicsVolume NewVolume)
-{
-	local RX22AWaterSplash Splash;
-	super.PhysicsVolumeChange(NewVolume);
-	if (HeatLevel > 0)
-	{
-		if(NewVolume.bWaterVolume)
-		{
-			Splash = Spawn(class'RX22AWaterSplash',,, GetBoneCoords('tip').Origin);
-			AttachToBone(Splash, 'tip');
-		}
-		else 
-		{
-			if(Splash != None)
-			{
-				Splash.Kill();
-				DetachFromBone(Splash);
-			}
-		}
-	}
-}
-*/
-simulated event Tick(float DT)
-{
-    super.Tick(DT);
 
-	if(HeatLevel > 0)
-	{
-		if (PhysicsVolume.bWaterVolume)
-		{
-			HeatLevel = FMax(0, HeatLevel - DT * 5);
-		}
-		else if (LastFireTime < Level.TimeSeconds - 4)
-		{
-			HeatLevel = FMax(0, HeatLevel - DT / 10);
-		}
-	}
+simulated event Tick (float DT)
+{
+	super.Tick(DT);
+	if (HeatLevel > 0 && LastFireTime < level.TimeSeconds - 4)
+		HeatLevel = FMax(0, HeatLevel - DT/10);
 }
 
 simulated function WeaponTick (float DT)

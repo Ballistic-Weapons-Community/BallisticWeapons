@@ -300,6 +300,16 @@ simulated function Destroyed()
 	super.Destroyed();
 }
 
+
+simulated function PlayCocking(optional byte Type)
+{
+	if (Type == 2)
+		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
+	else
+		PlayAnim(CockAnim, CockAnimRate, 0.2);
+}
+
+
 simulated function PlayReload()
 {
     if (MagAmmo < 1)
@@ -417,7 +427,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
      MagAmmo=30
-     //CockAnimPostReload="ReloadEndCock"
+     CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=1.500000)
      ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipHit',Volume=1.500000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipOut',Volume=1.500000)

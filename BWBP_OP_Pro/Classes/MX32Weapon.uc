@@ -596,7 +596,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;2.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.222000)
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
-     //CockAnimPostReload="ReloadEndCock"
+     CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-Cock',Volume=1.350000)
 	 ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagHit',Volume=1.350000)
 	 ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagOut',Volume=1.350000)

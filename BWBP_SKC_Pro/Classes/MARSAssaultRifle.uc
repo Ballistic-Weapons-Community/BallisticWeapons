@@ -156,7 +156,7 @@ simulated function LoadGrenade()
 	if (ReloadState == RS_None)
 	{
 		ReloadState = RS_GearSwitch;
-		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
+		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
 	}
 }
 
@@ -1097,7 +1097,7 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Auto")
 	CurrentWeaponMode=2
 	
-	//CockAnimPostReload="ReloadEndCock"
+	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=24.000000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle',Volume=1.400000,Radius=24.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.400000,Radius=24.000000)

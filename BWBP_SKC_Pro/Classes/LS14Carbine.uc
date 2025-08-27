@@ -758,7 +758,7 @@ simulated function LoadGrenade()
 
 	if (ReloadState == RS_None)
 	{
-		PlayAnim(HatchOpenAnim, HatchOpenAnimRate * class'BallisticReplicationInfo'.default.ReloadScale, , 0);
+		PlayAnim(HatchOpenAnim, HatchOpenAnimRate, , 0);
 		ReloadState = RS_PreClipOut;
 	}
 }
@@ -770,7 +770,7 @@ simulated function LoadGrenadeLoop()
 		return;
 	if (ReloadState == RS_None)
 	{
-		PlayAnim(HatchOpenAnim, HatchOpenAnimRate * class'BallisticReplicationInfo'.default.ReloadScale, , 0);
+		PlayAnim(HatchOpenAnim, HatchOpenAnimRate, , 0);
 		ReloadState = RS_StartShovel;
 	}
 }

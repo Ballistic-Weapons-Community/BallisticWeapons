@@ -210,6 +210,14 @@ simulated function Notify_CockAfterReload()
 		PlayAnim('ReloadFinishHandle', ReloadAnimRate, 0.2);
 }
 
+simulated function PlayCocking(optional byte Type)
+{
+	if (Type == 2 && HasAnim('ReloadEndCock'))
+		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
+	else
+		PlayAnim(CockAnim, CockAnimRate, 0.2);
+}
+
 simulated function PositionSights ()
 {
 	super.PositionSights();

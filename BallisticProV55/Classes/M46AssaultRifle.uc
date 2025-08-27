@@ -122,7 +122,7 @@ simulated function LoadGrenade()
 	if (ReloadState == RS_None)
 	{
 		ReloadState=RS_Cocking;
-		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
+		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
 	}
 }
 
@@ -376,7 +376,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;70.0;0.9;0.2;0.7")
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
-	//CockAnimPostReload="ReloadEndCock"
+	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_Cock',Volume=1.100000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipHit',Volume=1.000000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipOut',Volume=1.000000)

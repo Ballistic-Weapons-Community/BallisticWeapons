@@ -35,7 +35,7 @@ function DrawSplash( canvas C )
 {
 	local float XL, YL;
 
-	if (PC.Level.TimeSeconds - SplashStartTime > 6.4)
+	if (PC.Level.TimeSeconds - SplashStartTime > 7.9)
 	{
 		bShowSplash=false;
 
@@ -55,7 +55,7 @@ function DrawSplash( canvas C )
 	if (PC.Level.TimeSeconds - SplashStartTime < 5)
 		C.SetDrawColor(255,255,255,255);
 	else
-		C.SetDrawColor(255,255,255, FClamp(255 * (1-((PC.Level.TimeSeconds-SplashStartTime-5)/1.5)), 0, 255));
+		C.SetDrawColor(255,255,255, FClamp(255 * (1-((PC.Level.TimeSeconds-SplashStartTime-5)/3.0)), 0, 255));
 
 	C.DrawTile(SplashPic, 600*ScaleFactor, 600*ScaleFactor, 0,0,512,512);
 

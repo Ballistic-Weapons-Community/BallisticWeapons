@@ -319,7 +319,7 @@ simulated function LoadGrenade()
 	if (ReloadState == RS_None)
 	{
 		ReloadState = RS_Cocking;
-		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
+		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
 	}		
 }
 
