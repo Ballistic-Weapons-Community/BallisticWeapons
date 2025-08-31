@@ -87,6 +87,7 @@ defaultproperties
          FadeOutStartTime=0.240000
          FadeInEndTime=0.012000
          CoordinateSystem=PTCS_Relative
+         MaxParticles=5
          SizeScale(0)=(RelativeSize=0.250000)
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=1.500000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.600000)
@@ -99,5 +100,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=150.000000,Max=350.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
      End Object
      Emitters(2)=SpriteEmitter'BWBP_APC_Pro.E5SGFlashEmitter.SpriteEmitter12'
-
 }

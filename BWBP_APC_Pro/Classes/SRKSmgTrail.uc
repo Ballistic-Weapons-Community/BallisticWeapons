@@ -26,7 +26,7 @@ defaultproperties
          Opacity=0.490000
          FadeOutStartTime=0.260000
          FadeInEndTime=0.260000
-         MaxParticles=80
+         MaxParticles=50
          SpinsPerSecondRange=(X=(Max=0.100000))
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.100000)

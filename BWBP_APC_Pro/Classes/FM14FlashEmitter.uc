@@ -37,7 +37,7 @@ defaultproperties
          Opacity=0.510000
          FadeOutStartTime=0.820000
          FadeInEndTime=0.260000
-         MaxParticles=15
+         MaxParticles=10
          StartLocationRange=(X=(Min=-20.000000))
          SpinsPerSecondRange=(X=(Max=0.050000))
          StartSpinRange=(X=(Max=1.000000))
@@ -172,5 +172,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=100.000000,Max=2000.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-200.000000,Max=200.000000))
      End Object
      Emitters(4)=SpriteEmitter'BWBP_APC_Pro.FM14FlashEmitter.SpriteEmitter17'
-
 }

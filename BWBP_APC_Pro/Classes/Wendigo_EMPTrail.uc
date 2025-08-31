@@ -44,7 +44,7 @@ defaultproperties
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.100000),Y=(Min=0.000000,Max=0.500000),Z=(Min=2.000000,Max=4.000000))
          FadeOutStartTime=0.416000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=12
+         MaxParticles=8
          DetailMode=DM_High
          SizeScale(0)=(RelativeSize=1.500000)
          SizeScale(1)=(RelativeTime=0.550000,RelativeSize=2.000000)

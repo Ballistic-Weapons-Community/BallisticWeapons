@@ -23,7 +23,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=128,G=128,R=128,A=128))
          FadeOutStartTime=1.000000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=75
+         MaxParticles=50
          StartLocationOffset=(X=-190.000000,Z=10.000000)
          StartLocationRange=(X=(Max=40.000000))
          SpinsPerSecondRange=(X=(Max=0.500000))
@@ -40,5 +40,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000))
      End Object
      Emitters(0)=SpriteEmitter'BWBP_APC_Pro.HydraHatchEmitter.SpriteEmitter4'
-
 }

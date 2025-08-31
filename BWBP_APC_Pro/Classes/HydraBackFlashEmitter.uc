@@ -8,10 +8,6 @@ class HydraBackFlashEmitter extends DGVEmitter;
 
 defaultproperties
 {
-     bAutoAlignVelocity=True
-     DisableDGV(0)=1
-     DisableDGV(1)=1
-     bAutoInit=False
      Begin Object Class=MeshEmitter Name=MeshEmitter4
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.BazookaBackFlash'
          UseMeshBlendMode=False
@@ -83,8 +79,8 @@ defaultproperties
          Opacity=0.540000
          FadeOutStartTime=0.800000
          FadeInEndTime=0.200000
-         MaxParticles=120
-         StartLocationOffset=(X=-80.000000)
+         MaxParticles=60
+         StartLocationOffset=(X=-20.000000)
          SpinsPerSecondRange=(X=(Max=1.000000))
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.300000)
@@ -100,5 +96,9 @@ defaultproperties
          VelocityLossRange=(X=(Min=0.700000,Max=0.700000),Y=(Min=0.700000,Max=0.700000),Z=(Min=0.700000,Max=0.700000))
      End Object
      Emitters(2)=SpriteEmitter'BWBP_APC_Pro.HydraBackFlashEmitter.SpriteEmitter24'
-
+	 
+     bAutoAlignVelocity=True
+     DisableDGV(0)=1
+     DisableDGV(1)=1
+     bAutoInit=False
 }

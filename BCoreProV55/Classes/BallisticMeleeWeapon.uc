@@ -97,10 +97,13 @@ final function bool CheckBlockArc(Vector HitLocation, Pawn InstigatedBy)
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
 	local class<BallisticDamageType> BDT;
-	
-	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
-		return;
-		
+			
+    if (InstigatedBy == None || InstigatedBy.Controller == None)
+        return;
+        
+    if (InstigatedBy.Controller.SameTeamAs(InstigatorController))
+        return;
+
 	BDT = class<BallisticDamageType>(DamageType);
 	
 	if (VSize(Momentum) < 60)
