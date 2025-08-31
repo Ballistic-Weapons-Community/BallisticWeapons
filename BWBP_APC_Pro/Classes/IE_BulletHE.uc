@@ -12,8 +12,8 @@ simulated event PreBeginPlay()
 	if (Level.DetailMode < DM_High)
 	{
 		Emitters[2].Disabled=true;
-		Emitters[4].Disabled=true;
-		Emitters[5].Disabled=true;
+		Emitters[6].Disabled=true;
+		Emitters[7].Disabled=true;
 	}
 
 	if ( PhysicsVolume.bWaterVolume )
@@ -146,6 +146,32 @@ defaultproperties
      End Object
      Emitters(3)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter14'
 
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter15
+         FadeOut=True
+         RespawnDeadParticles=False
+         SpinParticles=True
+         UseSizeScale=True
+         UseRegularSizeScale=False
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         UseRandomSubdivision=True
+         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         ColorMultiplierRange=(X=(Min=0.800000,Max=0.800000),Y=(Min=0.300000,Max=0.300000),Z=(Min=0.200000,Max=0.200000))
+         FadeOutStartTime=0.200000
+         MaxParticles=1
+         StartSpinRange=(X=(Max=1.000000))
+         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
+         StartSizeRange=(X=(Min=6.500000,Max=6.500000),Y=(Min=6.500000,Max=6.500000),Z=(Min=6.500000,Max=6.500000))
+         InitialParticlesPerSecond=50000.000000
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
+         TextureUSubdivisions=4
+         TextureVSubdivisions=4
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=0.800000,Max=0.800000)
+     End Object
+     Emitters(4)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter15'
+
      Begin Object Class=SpriteEmitter Name=SpriteEmitter16
          UseDirectionAs=PTDU_Up
          UseColorScale=True
@@ -161,7 +187,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(G=55,R=255,A=255))
          ColorMultiplierRange=(Y=(Min=0.800000),Z=(Min=0.700000,Max=0.800000))
          FadeOutStartTime=0.063000
-         MaxParticles=15
+         MaxParticles=40
          DetailMode=DM_High
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=16.000000,Max=32.000000),Y=(Min=16.000000,Max=32.000000),Z=(Min=16.000000,Max=32.000000))
@@ -173,7 +199,7 @@ defaultproperties
          LifetimeRange=(Min=0.150000,Max=0.150000)
          StartVelocityRange=(X=(Max=900.000000),Y=(Min=-750.000000,Max=750.000000),Z=(Min=-700.000000,Max=700.000000))
      End Object
-     Emitters(4)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter16'
+     Emitters(5)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter16'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter17
          FadeOut=True
@@ -201,7 +227,7 @@ defaultproperties
          LifetimeRange=(Min=0.100000,Max=0.500000)
          StartVelocityRadialRange=(Min=-20.000000,Max=1.000000)
      End Object
-     Emitters(5)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter17'
+     Emitters(6)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter17'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter18
          UseDirectionAs=PTDU_Forward
@@ -217,7 +243,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(G=55,R=255,A=255))
          ColorMultiplierRange=(Y=(Min=0.800000),Z=(Min=0.700000,Max=0.800000))
          FadeOutStartTime=0.063000
-         MaxParticles=3
+         MaxParticles=5
          DetailMode=DM_High
          UseRotationFrom=PTRS_Offset
          SpinsPerSecondRange=(X=(Max=2.000000))
@@ -231,7 +257,7 @@ defaultproperties
          LifetimeRange=(Min=0.150000,Max=0.150000)
          StartVelocityRange=(X=(Min=700.000000,Max=900.000000),Y=(Min=-750.000000,Max=750.000000),Z=(Max=700.000000))
      End Object
-     Emitters(6)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter18'
+     Emitters(7)=SpriteEmitter'BWBP_APC_Pro.IE_BulletHE.SpriteEmitter18'
 
      AutoDestroy=True
 }

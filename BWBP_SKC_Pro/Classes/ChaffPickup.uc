@@ -46,7 +46,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MOAC.MOACPickup_LD'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MOAC.MOACPickup'
      PickupDrawScale=0.180000
      bWeaponStay=False
      InventoryType=Class'BWBP_SKC_Pro.ChaffGrenadeWeapon'

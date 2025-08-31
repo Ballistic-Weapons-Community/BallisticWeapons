@@ -43,6 +43,7 @@ defaultproperties
 	bPlayerDeceleration=True
 	bAllowDodging=True
 	bAllowDoubleJump=False
+	bAllowCrouchSliding=True 
 	PlayerStrafeScale=1
 	PlayerBackpedalScale=1
 	PlayerGroundSpeed=210
@@ -59,6 +60,7 @@ defaultproperties
 	bEnableSprint=True
 	StaminaChargeRate=25
 	StaminaDrainRate=20
+	StaminaRechargeDelay=1.0
 	SprintSpeedFactor=1.4f
 	JumpDrain=10
 

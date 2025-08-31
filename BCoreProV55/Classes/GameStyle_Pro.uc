@@ -38,6 +38,7 @@ defaultproperties
 	bPlayerDeceleration=False
 	bAllowDodging=True
 	bAllowDoubleJump=True
+	bAllowCrouchSliding=True 
 	// this value is a fallback which is overridden by weapon ADS move factor,
 	// and should be the highest possible ADS movement multiplier for your style
     PlayerWalkSpeedFactor=0.9
@@ -56,6 +57,7 @@ defaultproperties
 	StaminaChargeRate=15
 	StaminaDrainRate=10
 	SprintSpeedFactor=1.4f
+	StaminaRechargeDelay=1.5
 	JumpDrain=5
 
     HealthKillReward=25

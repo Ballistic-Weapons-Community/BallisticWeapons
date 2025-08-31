@@ -14,7 +14,7 @@ defaultproperties
      InventoryType=Class'BallisticProV55.Ammo_MinigunRounds'
      PickupMessage="You stowed a backpack of minigun rounds."
      PickupSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-AmmoPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPiickup'
      DrawScale=0.350000
      PrePivot=(Z=9.000000)
      CollisionRadius=8.000000

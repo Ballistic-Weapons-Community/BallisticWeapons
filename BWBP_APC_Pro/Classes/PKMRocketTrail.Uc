@@ -6,6 +6,30 @@
 //=============================================================================
 class PKMRocketTrail extends DGVEmitter;
 
+/*     Begin Object Class=TrailEmitter Name=TrailEmitter0
+         TrailShadeType=PTTST_PointLife
+         TrailLocation=PTTL_FollowEmitter
+         MaxPointsPerTrail=100
+         DistanceThreshold=75.000000
+         PointLifeTime=3.500000
+         FadeOut=True
+         UseSizeScale=True
+         UseRegularSizeScale=False
+         UniformSize=True
+         Acceleration=(Z=10.000000)
+         ColorMultiplierRange=(X=(Min=0.800000,Max=0.900000),Y=(Min=0.800000,Max=0.900000),Z=(Min=0.825000,Max=0.950000))
+         FadeOutStartTime=0.100000
+         SizeScale(0)=(RelativeSize=0.500000)
+         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
+         StartSizeRange=(X=(Min=20.000000,Max=25.000000))
+         DrawStyle=PTDS_Brighten
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=3.500000,Max=3.500000)
+     End Object
+     Emitters(4)=TrailEmitter'BallisticProV55.G5RocketTrail.TrailEmitter0'
+*/
+
 defaultproperties
 {
      DisableDGV(0)=1
@@ -48,7 +72,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(G=128,R=255))
          FadeOutFactor=(X=0.500000,Y=0.500000,Z=0.500000)
          FadeOutStartTime=0.300000
-         MaxParticles=50
+         MaxParticles=200
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=-20.000000)
          DrawStyle=PTDS_Brighten
@@ -93,7 +117,7 @@ defaultproperties
          Opacity=0.400000
          FadeOutStartTime=0.990000
          FadeInEndTime=0.660000
-         MaxParticles=350
+         MaxParticles=500
          DetailMode=DM_SuperHigh
          SpinsPerSecondRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.200000)

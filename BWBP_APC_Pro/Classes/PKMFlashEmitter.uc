@@ -15,6 +15,41 @@ simulated event PostBeginPlay()
 	if (WeaponAttachment(Owner) != None)
 		Emitters[2].ZTest = true;
 }
+/*
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter2
+         FadeOut=True
+         FadeIn=True
+         RespawnDeadParticles=False
+         SpinParticles=True
+         UseSizeScale=True
+         UseRegularSizeScale=False
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         TriggerDisabled=False
+         Acceleration=(Z=50.000000)
+         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         ColorMultiplierRange=(X=(Min=0.700000,Max=0.700000),Y=(Min=0.700000,Max=0.700000),Z=(Min=0.700000,Max=0.700000))
+         Opacity=0.200000
+         FadeOutStartTime=0.250000
+         FadeInEndTime=0.250000
+         MaxParticles=1000
+         SpinsPerSecondRange=(X=(Max=0.100000))
+         StartSpinRange=(X=(Max=1.000000))
+         SizeScale(0)=(RelativeSize=0.300000)
+         SizeScale(1)=(RelativeTime=0.310000,RelativeSize=0.500000)
+         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
+         StartSizeRange=(X=(Min=2.000000,Max=3.000000),Y=(Min=2.000000,Max=3.000000),Z=(Min=2.000000,Max=3.000000))
+         DrawStyle=PTDS_AlphaBlend
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=1.000000,Max=1.200000)
+         SpawnOnTriggerRange=(Min=50.000000,Max=70.000000)
+         SpawnOnTriggerPPS=500.000000
+         StartVelocityRange=(X=(Min=-1.000000,Max=1.000000),Y=(Min=-1.000000,Max=1.000000))
+     End Object
+     Emitters(2)=SpriteEmitter'PKMFlashEmitter.SpriteEmitter2'
+*/
 
 defaultproperties
 {
@@ -34,7 +69,7 @@ defaultproperties
          Opacity=0.560000
          FadeOutStartTime=0.580000
          FadeInEndTime=0.240000
-         MaxParticles=15
+         MaxParticles=25
          SpinsPerSecondRange=(X=(Max=0.100000))
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=1.000000)
@@ -110,4 +145,5 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
      End Object
      Emitters(2)=SpriteEmitter'BWBP_APC_Pro.PKMFlashEmitter.SpriteEmitter1'
+
 }

@@ -135,5 +135,4 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36Turret_TPm'
      DrawScale=0.320000
      CollisionHeight=18.000000
-	 Skins(0)=Texture'BWBP_SKC_Tex.MG36.MG36-Main'
 }

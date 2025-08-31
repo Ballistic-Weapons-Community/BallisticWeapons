@@ -36,6 +36,29 @@ defaultproperties
      End Object
      Emitters(0)=MeshEmitter'BWBP_APC_Pro.HydraRocketTrail.MeshEmitter0'
 
+     Begin Object Class=SparkEmitter Name=SparkEmitter0
+         LineSegmentsRange=(Min=1.000000,Max=1.000000)
+         TimeBeforeVisibleRange=(Min=5.000000,Max=5.000000)
+         TimeBetweenSegmentsRange=(Min=0.100000,Max=0.200000)
+         UseColorScale=True
+         FadeOut=True
+         AutomaticInitialSpawning=False
+         Acceleration=(Z=-200.000000)
+         ColorScale(0)=(Color=(B=192,G=255,R=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(G=128,R=255))
+         FadeOutFactor=(X=0.500000,Y=0.500000,Z=0.500000)
+         FadeOutStartTime=0.300000
+         MaxParticles=200
+         DetailMode=DM_SuperHigh
+         StartLocationOffset=(X=-20.000000)
+         DrawStyle=PTDS_Brighten
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=0.500000,Max=1.000000)
+         StartVelocityRange=(X=(Min=-100.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
+     End Object
+     Emitters(1)=SparkEmitter'BWBP_APC_Pro.HydraRocketTrail.SparkEmitter0'
+
      Begin Object Class=SpriteEmitter Name=SpriteEmitter2
          UseColorScale=True
          UniformSize=True
@@ -53,7 +76,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.100000)
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_APC_Pro.HydraRocketTrail.SpriteEmitter2'
+     Emitters(2)=SpriteEmitter'BWBP_APC_Pro.HydraRocketTrail.SpriteEmitter2'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter5
          UseColorScale=True
@@ -69,7 +92,7 @@ defaultproperties
          Opacity=0.400000
          FadeOutStartTime=0.990000
          FadeInEndTime=0.660000
-         MaxParticles=250
+         MaxParticles=500
          DetailMode=DM_SuperHigh
          SpinsPerSecondRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.200000)
@@ -82,7 +105,7 @@ defaultproperties
          LifetimeRange=(Min=1.500000,Max=3.000000)
          StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000))
      End Object
-     Emitters(2)=SpriteEmitter'BWBP_APC_Pro.HydraRocketTrail.SpriteEmitter5'
+     Emitters(3)=SpriteEmitter'BWBP_APC_Pro.HydraRocketTrail.SpriteEmitter5'
 
      Begin Object Class=TrailEmitter Name=TrailEmitter0
          TrailShadeType=PTTST_Linear
@@ -98,7 +121,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object
-     Emitters(3)=TrailEmitter'BWBP_APC_Pro.HydraRocketTrail.TrailEmitter0'
+     Emitters(4)=TrailEmitter'BWBP_APC_Pro.HydraRocketTrail.TrailEmitter0'
 
      Physics=PHYS_Trailer
      bHardAttach=True

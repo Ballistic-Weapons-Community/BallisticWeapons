@@ -34,6 +34,7 @@ simulated function Initialize(Actor V)
 		Emitters[1].Disabled=true;
 		Emitters[2].Disabled=true;
 		Emitters[3].Disabled=true;
+		Emitters[4].Disabled=true;
 	}
 	SetBase(Victim);
 }
@@ -110,7 +111,7 @@ defaultproperties
          FadeOutStartTime=0.504000
          FadeInEndTime=0.216000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=15
+         MaxParticles=30
          StartLocationRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Max=30.000000))
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
@@ -140,7 +141,7 @@ defaultproperties
          FadeOutStartTime=0.504000
          FadeInEndTime=0.208000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=20
+         MaxParticles=40
          StartLocationRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-10.000000,Max=10.000000))
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
@@ -154,6 +155,36 @@ defaultproperties
          LifetimeRange=(Min=0.800000,Max=0.800000)
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.RX22AActorFire.SpriteEmitter0'
+
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter1
+         UseColorScale=True
+         FadeOut=True
+         FadeIn=True
+         SpinParticles=True
+         UniformSize=True
+         UseRandomSubdivision=True
+         Acceleration=(Z=80.000000)
+         ColorScale(0)=(Color=(B=255,G=64,A=255))
+         ColorScale(1)=(RelativeTime=0.400000,Color=(B=255,G=255,R=255,A=255))
+         ColorScale(2)=(RelativeTime=1.000000,Color=(B=64,G=128,R=255,A=255))
+         ColorMultiplierRange=(Y=(Min=0.800000,Max=0.800000),Z=(Min=0.600000,Max=0.600000))
+         FadeOutStartTime=0.504000
+         FadeInEndTime=0.189000
+         CoordinateSystem=PTCS_Relative
+         MaxParticles=50
+         StartLocationOffset=(Z=20.000000)
+         StartLocationRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Max=40.000000))
+         SpinsPerSecondRange=(X=(Max=0.200000))
+         StartSpinRange=(X=(Max=1.000000))
+         StartSizeRange=(X=(Min=1.000000,Max=15.000000),Y=(Min=1.000000,Max=15.000000),Z=(Min=1.000000,Max=15.000000))
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
+         TextureUSubdivisions=4
+         TextureVSubdivisions=4
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=0.700000,Max=0.700000)
+         StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Max=40.000000))
+     End Object
+     Emitters(2)=SpriteEmitter'BallisticProV55.RX22AActorFire.SpriteEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter6
          FadeOut=True
@@ -169,7 +200,7 @@ defaultproperties
          Opacity=0.630000
          FadeOutStartTime=1.530000
          FadeInEndTime=0.300000
-         MaxParticles=20
+         MaxParticles=40
          StartLocationOffset=(Z=110.000000)
          SpinsPerSecondRange=(X=(Max=0.100000))
          StartSpinRange=(X=(Max=1.000000))

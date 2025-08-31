@@ -167,10 +167,51 @@ var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
 var     bool                bCanDodge;
 
+// Sliding Variables
+var() bool bAllowCrouchSliding; // Whether crouch sliding is allowed
+var() float SlideFriction;		 // Friction applied during sliding, affects how quickly the player slows down
+var() float SlideCooldownTime;	// Time before the player can slide again after a slide ends
+var() float SlidePower;			 // Initial burst power when starting a slide, affects how fast the player accelerates at the start of the slide
+var bool bIsSliding;			 // Is the player currently sliding?
+var float LastSlideEndTime;		// Time when the last slide ended
+var float LastLandTime;			// Time when the player last landed
+var vector SlideVelocity;		// Velocity during the slide
+var float SlideStartSpeed;		 // Speed required to start sliding
+var float SlideStopSpeed;		 // Speed below which sliding stops
+var float MaxSlideSpeed;		// Maximum speed during sliding, our groundspeed becomes this in order to move faster
+
+// Slope/Physics Calculations
+var float SlopeAngleRad;		 // Angle of the slope in radians
+var float SlopeAngleDeg;		 // Angle of the slope in degrees
+var vector DownSlopeVect;		 // Direction vector pointing down the slope
+var vector LastFallingVelocity;	 // Velocity of the player when they last fell, used to determine sliding behavior
+var float GravityAlongSlope;	 // Gravity component acting along the slope, used to calculate acceleration during sliding
+
+// Sliding Animations
+var 	name 		SlideAnims[4]; 
+var 	name 		SlideStartAnims[4]; 
+var 	name 		SlideEndAnims[4]; 
+
+
+//Wall running stuff
+//var bool bLockedToSurface; // Tracks if the player is locked to a surface
+//var vector LockedSurfaceNormal; // Stores the normal of the locked surface
+
+// --- Crouch/Jump Parameters ---
+var float  CrouchEndTime;
+var() float JumpCrouchPenalty;   // Jump height multiplier for crouching
+var() float JumpCrouchTime;
+
+// Directional scaling for sliding
+var() float BackSlidePowerScale;      // < 1.0 to weaken backward slides
+var() float BackMaxSlideSpeedScale;   // < 1.0 to cap backward slide speed lower
+var() float BackSlideDotThreshold;    // dot threshold vs forward (negative means backwards)
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		ClientHits, HitCounter, ClientSetCrouchAbility;
+		ClientHits, HitCounter, ClientSetCrouchAbility,
+		bIsSliding, SlideVelocity, Sprinter;
 }
 
 simulated event PostNetBeginPlay()
@@ -262,6 +303,8 @@ simulated function ApplyMovementOverrides()
     {
         bCanDoubleJump = false;
     }
+
+	bAllowCrouchSliding = class'BallisticReplicationInfo'.default.bAllowCrouchSliding;
 
 	WalkingPct = class'BallisticReplicationInfo'.default.PlayerWalkSpeedFactor;
 	CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
@@ -504,7 +547,10 @@ function bool AddInventory( inventory NewItem )
     ret = Super.AddInventory(NewItem);
 
     if(NewItem != none && BCSprintControl(NewItem) != none)
+	{
         sprinter = BCSprintControl(NewItem);
+		log("BallisticPawn: AddInventory: Added BCSprintControl " @ sprinter);
+	}
 
     return ret;
 }
@@ -513,8 +559,10 @@ event HitWall(vector HitNormal, actor Wall)
 {
 	if (Controller != None)
 		Controller.NotifyHitWall(HitNormal, Wall);
+	
 	if (VSize(Velocity) > 900)
 		bPendingNegation=True;
+	
 }
 
 event Landed(vector HitNormal)
@@ -526,10 +574,12 @@ event Landed(vector HitNormal)
 
     MultiJumpRemaining = MaxMultiJump;
 
+	LastLandTime = Level.TimeSeconds;
+
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
-	
+
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
 
@@ -541,7 +591,7 @@ function PawnCheckBob(float DeltaTime, vector Y)
 {
 	local float Speed2D;
 
-    if(bJustLanded )
+    if(bJustLanded || bIsSliding)
     {
 		BobTime = 0;
 		WalkBob = Vect(0,0,0);
@@ -586,7 +636,7 @@ function CheckBob(float DeltaTime, vector Y)
 	local int m,n;
 
     DeltaTime *= GroundSpeed / (class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 1.5);
-
+	log("BallisticPawn: CheckBob: DeltaTime: "$DeltaTime$" GroundSpeed: "$GroundSpeed$" PlayerGroundSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
 	OldBobTime = BobTime;
 
 	PawnCheckBob(DeltaTime,Y);
@@ -919,7 +969,7 @@ simulated event SetAnimAction(name NewAction)
 				PlayAnim(MeleeBlockAnim,, 0.2, 1);
 			IdleWeaponAnim = MeleeBlockAnim;
 			FireState = FS_None;
-			Instigator.ClientMessage("Blocking");
+			ClientMessage("Blocking");
 			return;
 		}		
 		else */if (AnimAction == 'Raise' && HasAnim(IdleRifleAnim))
@@ -1219,7 +1269,6 @@ function MessageHealBlock()
 	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
 	{
 		NextHealMessageTime = Level.TimeSeconds + 1;
-		if (HealPreventer != None)
 		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 0, HealPreventer.PlayerReplicationInfo);
 	}
 }
@@ -1598,8 +1647,13 @@ simulated function ReceiveHitInfo(NetHitInfo PHI)
 simulated event Tick(float DT)
 {
 	local int Index, i, Diff;
+	//local vector TraceStart, TraceEnd, HitLocation, HitNormal;
+    //local Actor HitActor;
+	//local Vector X,Y,Z;
 
 	super.Tick(DT);
+
+	//GetAxes(Rotation, X, Y, Z);
 	
 	if (bPendingNegation)
 	{
@@ -1640,8 +1694,36 @@ simulated event Tick(float DT)
 				NewDeResFinalBlends[i].AlphaRef = Index;
 		}
 	}
+	/* 
+	if (bLockedToSurface)
+	{
+		// Perform a trace to check if the player is still near the wall
+		TraceStart = Location + CollisionHeight * vect(0, 0, 1);
+		TraceEnd = Location - LockedSurfaceNormal * CollisionRadius * 2; // Trace towards the locked surface
+		HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, false, vect(1,1,1));
+		if (HitActor != None && (HitActor.bWorldGeometry || Mover(HitActor) != None) 
+		&& Normal(Velocity) dot X > 0 && LockedSurfaceNormal dot HitNormal > 0.95 && VSize(Velocity) > 50.0)
+		{			
+			// Slow descent
+			Velocity.Z = FMax(Velocity.Z, -100.0); 
+			//AirControl = 0.8; // Higher air control for smoother movement
+			MultiJumpRemaining = MaxMultiJump; // Reset multi-jump count
+		}
+		else
+		{
+			StopWallRun();
+		}
+	}
+	*/
 }
-
+/* 
+simulated function StopWallRun()
+{
+	bLockedToSurface = false;
+	LockedSurfaceNormal = vect(0, 0, 0);
+	//AirControl = default.AirControl; // Reset air control
+}
+*/
 // Return true if the input bone is already dismembered
 simulated function bool BoneDismembered (name Bone)
 {
@@ -2408,7 +2490,8 @@ event StartCrouch(float HeightAdjust)
 {
 	EyeHeight += HeightAdjust;
 	OldZ -= HeightAdjust;
-	BaseEyeHeight = CrouchEyeHeight;
+	BaseEyeheight = CrouchEyeHeight;
+	StartSlide();
 }
 
 event EndCrouch(float HeightAdjust)
@@ -2416,6 +2499,7 @@ event EndCrouch(float HeightAdjust)
 	EyeHeight -= HeightAdjust;
 	OldZ += HeightAdjust;
 	BaseEyeHeight = Default.BaseEyeHeight;
+	CrouchEndTime = Level.TimeSeconds;
 }
 
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
@@ -2440,6 +2524,7 @@ function DoDoubleJump( bool bUpdating )
         SetPhysics(PHYS_Falling);
         if ( !bUpdating )
 			PlayOwnedSound(GetSound(EST_DoubleJump), SLOT_Pain, GruntVolume, , GruntRadius);
+		//StopWallRun();
     }
 
 	if (Role == ROLE_Authority)
@@ -2540,6 +2625,10 @@ function bool CanMultiJump()
 
 function bool Dodge(eDoubleClickDir DoubleClickMove)
 {
+    //local vector X, Y, Z, TraceStart, TraceEnd, Dir, HitLocation, HitNormal;
+    //local Actor HitActor;
+    //local rotator TurnRot;
+
 	if (!bCanDodge)
 		return false;
 
@@ -2555,6 +2644,32 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
         return true;
     }
 
+	/* 
+    TurnRot.Yaw = Rotation.Yaw;
+    GetAxes(TurnRot, X, Y, Z);
+
+    if (Physics == PHYS_Falling)
+    {
+        // Determine direction for wall trace based on input
+        if (DoubleClickMove == DCLICK_Left)
+            Dir = -Y; // Left
+        else if (DoubleClickMove == DCLICK_Right)
+            Dir = Y; // Right
+
+        // Perform wall trace
+        TraceStart = Location - CollisionHeight * vect(0, 0, 1);
+        TraceEnd = TraceStart + Dir * CollisionRadius * 2; // Extend trace outward
+        HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, false, vect(1, 1, 1));
+        // Check if wall is valid
+        if (HitActor != None && (HitActor.bWorldGeometry || Mover(HitActor) != None))
+        {
+            // Initiate wall running
+            bLockedToSurface = true;
+            LockedSurfaceNormal = HitNormal;
+        }
+    }
+	*/
+
     return false;
 }
 
@@ -2563,11 +2678,9 @@ function bool DoJump( bool bUpdating )
 	local float OldJumpZ;
 
 	OldJumpZ = JumpZ;
-
+	
 	if (BallisticWeapon(Weapon) != None)
-    {	
         JumpZ = BallisticWeapon(Weapon).GetModifiedJumpZ(self);
-    }
 
     if ( !bUpdating && CanDoubleJump() && (Abs(Velocity.Z) < 100) && IsLocallyControlled() )
     {
@@ -2579,18 +2692,39 @@ function bool DoJump( bool bUpdating )
         JumpZ = OldJumpZ;
         return true;
     }
+	//Allow crouch jumping
+	if ( ((Physics == PHYS_Walking) || (Physics == PHYS_Ladder) || (Physics == PHYS_Spider)) )
+	{
+		if ( Role == ROLE_Authority )
+		{
+			if ( (Level.Game != None) && (Level.Game.GameDifficulty > 2) )
+				MakeNoise(0.1 * Level.Game.GameDifficulty);
+			if ( bCountJumps && (Inventory != None) )
+				Inventory.OwnerEvent('Jumped');
+		}
+		if ( Physics == PHYS_Spider )
+			Velocity = JumpZ * Floor;
+		else if ( Physics == PHYS_Ladder )
+			Velocity.Z = 0;
+		else if ( bIsWalking )
+			Velocity.Z = Default.JumpZ;
+		else
+			Velocity.Z = JumpZ;
+		if ( (Base != None) && !Base.bWorldGeometry )
+			Velocity += Base.Velocity;
 
-    if ( Super(UnrealPawn).DoJump(bUpdating) )
-    {
+        if( bIsCrouched || bWantsToCrouch || Level.TimeSeconds - CrouchEndTime < JumpCrouchTime )
+            Velocity.Z -= JumpZ * JumpCrouchPenalty;
+	
+		SetPhysics(PHYS_Falling);
 		if ( !bUpdating )
-			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume, , GruntRadius);
-
-        JumpZ = OldJumpZ;   
+			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume,,GruntRadius);
+		JumpZ = OldJumpZ;
+		//StopWallRun();
         return true;
-    }
-
-    // wtb: raii
-    JumpZ = OldJumpZ;
+	}
+	JumpZ = OldJumpZ;
+	//log("2 JumpZ after weapon modification: " @ JumpZ);
     return false;
 }
 
@@ -2635,7 +2769,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
             bWaitForAnim = true;
             AnimAction = Anim;
             
-		TakeFallingDamage();
+		//TakeFallingDamage();
         if (Velocity.Z < -DodgeSpeedZ*0.5)
 			Velocity.Z += DodgeSpeedZ*0.5;
     }
@@ -2649,7 +2783,6 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     {
         DodgeGroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
     }
-
     Velocity = DodgeSpeedFactor * DodgeGroundSpeed * Dir + (Velocity Dot Cross) * Cross;
 
 	// clamp dodge speed in realism and tactical
@@ -3082,7 +3215,7 @@ function ShieldViewFlash(int damage)
 {
     local int rnd;
 
-    if (BallisticPlayer(Controller) == None || damage == 0)
+    if (BallisticPlayer(Controller) == None || damage == 0 || Controller.bGodMode)
         return;
 
     rnd = FClamp(damage / 2, 25, 50);
@@ -3094,7 +3227,7 @@ function DamageViewFlash(int damage)
 {
     local int rnd;
 
-    if (BallisticPlayer(Controller) == None || damage == 0)
+    if (BallisticPlayer(Controller) == None || damage == 0 || Controller.bGodMode)
         return;
 
     rnd = FClamp(damage / 2, 25, 50);
@@ -3130,13 +3263,13 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.DrawText("FireState:"@GetEnum(enum'EFireAnimState', FireState));
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
-	T = "Floor "$Floor$" DesiredSpeed "$DesiredSpeed$" Crouched "$bIsCrouched$" Try to uncrouch "$UncrouchTime;
+	T = "Floor "$Floor$" DesiredSpeed "$DesiredSpeed$" Crouched "$bIsCrouched$" Try to uncrouch "$UncrouchTime$ " GroundSpeed "$GroundSpeed$ " CrouchedPct "$CrouchedPct;
 	if ( (OnLadder != None) || (Physics == PHYS_Ladder) )
 		T=T$" on ladder "$OnLadder;
 	Canvas.DrawText(T);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
-	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate);
+	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate$ " Sliding "$bIsSliding$" SlideVelocity "$Vsize(SlideVelocity)$" SlideStartSpeed "$SlideStartSpeed$" SlideStopSpeed "$SlideStopSpeed$" MaxSlideSpeed "$MaxSlideSpeed);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
 
@@ -3178,155 +3311,322 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-	if (Physics != PHYS_Walking)
+	if (Physics == PHYS_Falling)
+        LastFallingVelocity = Velocity;
+
+	if (Physics == PHYS_Walking)
+	{
+		// constrains strafe move
+		if (StrafeScale < 1f || BackpedalScale < 1f)
+		{
+			GetAxes(GetViewRotation(),X,Y,Z);
+			MaxStrafeSpeed = GroundSpeed * StrafeScale;
+			MaxBackSpeed = GroundSpeed * BackpedalScale;
+
+			// backwards speed limit
+			XSpeed = Abs(X dot Velocity);
+			
+			if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+			{
+				//limiting backspeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(X dot dir);
+				Velocity = dir * (MaxBackSpeed / CosAngle);
+			}
+			
+			// strafe speed limit
+			YSpeed = Abs(Y dot velocity);
+
+			if (YSpeed > MaxStrafeSpeed)
+			{
+				//limiting strafespeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(Y dot dir);
+				Velocity = dir * (MaxStrafeSpeed / CosAngle);
+			}
+		}
+
+		//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+			
+		// Applies decelerative friction
+		if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
+		{
+			FSpeed = VSize(Velocity);
+				
+			if (VSize(Acceleration) < 1.00 && FSpeed > 1.00 && !bIsSliding) //We don't want this when sliding
+			{
+				Control = FMin(100, FSpeed);
+					
+				Drop = Control * DeltaTime * MyFriction;
+				NewSpeed = FSpeed + drop;
+				NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
+				Velocity *= NewSpeed;
+			}
+		}
+
+		if (bIsSliding)
+		{
+			HandleSliding(DeltaTime);
+			TickSlopeCalculation(DeltaTime);
+		}
+		else
+		{
+			// This isn't the best way to do this, but it works for now
+			SlideStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*1.1;
+			SlideStopSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*default.CrouchedPct;
+			MaxSlideSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*2.5;
+			if(Level.TimeSeconds > LastLandTime + 0.1)
+				LastFallingVelocity = vect(0,0,0); 
+			if (bIsCrouched)
+			{
+				// Gradually reduce the ground speed towards the crouch speed
+				if(Physics != PHYS_Falling)
+					CrouchedPct = FClamp(CrouchedPct - DeltaTime * 5.0, default.CrouchedPct, 1.0);
+			}
+			else
+			{
+				CrouchedPct = FClamp(CrouchedPct + (DeltaTime * 100), default.CrouchedPct, 1.0);
+			}
+		}
+
+		OldMovementSpeed = VSize(Velocity);
+	}
+	// End slide if crouch released, speed too low, or airborne
+	if (bIsSliding && (!bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Physics != PHYS_Walking))
+	{
+		EndSlide();
+	}
+}
+
+simulated function StartSlide()
+{
+    local name Anim;
+    local vector X, Y, Z;
+    local float DirDot, EffSlidePower, EffImpulse, EffBackSpeedScale;
+
+	if (!bAllowCrouchSliding)
 		return;
 
-	// constrains strafe move
-	if (StrafeScale < 1f || BackpedalScale < 1f)
+    if (!bIsSliding 
+	&& Controller.bDuck > 0 
+	&& (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
+	&& Physics == PHYS_Walking 
+	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime))
+    {
+		Sprinter.DelayRecharge();
+		Sprinter.StopSprint();
+		SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
+
+        // Determine direction vs forward view
+        GetAxes(GetViewRotation(), X, Y, Z);
+        DirDot = Normal(SlideVelocity) dot X;
+
+        // Effective power and max speed
+        EffSlidePower = SlidePower;
+        EffBackSpeedScale = 1.0;
+
+        // If mostly moving backwards relative to facing, weaken it
+        if (DirDot < BackSlideDotThreshold)
+        {
+            EffSlidePower *= BackSlidePowerScale;
+            EffBackSpeedScale = BackMaxSlideSpeedScale;
+            MaxSlideSpeed *= EffBackSpeedScale;
+        }
+
+        // Apply initial impulse scaled by stamina (same logic, with effective power)
+        EffImpulse = FMax(EffSlidePower * 0.5, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
+        SlideVelocity += Normal(SlideVelocity) * EffImpulse;
+		LastFallingVelocity = vect(0,0,0); 
+        bIsSliding = true;
+        GroundSpeed = MaxSlideSpeed;
+        Anim = SlideStartAnims[Get4WayDirection()];
+        if ( PlayAnim(Anim, 1.0, 0.1) )
+            bWaitForAnim = true;
+        AnimAction = Anim;
+    }
+}
+
+simulated function EndSlide()
+{
+	local name Anim;
+
+	if(!bIsCrouched && VSize(Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
 	{
-		GetAxes(GetViewRotation(),X,Y,Z);
-		MaxStrafeSpeed = GroundSpeed * StrafeScale;
-		MaxBackSpeed = GroundSpeed * BackpedalScale;
+		Anim = SlideEndAnims[Get4WayDirection()];
+		if ( PlayAnim(Anim, 1.0, 0.1) )
+			bWaitForAnim = true;
+		AnimAction = Anim;
+	}
+	bIsSliding = false;
+	SlideVelocity = vect(0,0,0);
+	LastSlideEndTime = Level.TimeSeconds;
+	if(Role == ROLE_Authority)
+    {
+        GroundSpeed = Sprinter.BaseGroundSpeed;
+    }
+}
 
-		// backwards speed limit
-		XSpeed = Abs(X dot Velocity);
-		
-		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+simulated function TickSlopeCalculation(float DT)
+{
+	DownSlopeVect = Normal(vect(0,0,-1) - (Floor dot vect(0,0,-1)) * Floor);
+	SlopeAngleRad = Acos(Floor dot vect(0,0,1));
+	SlopeAngleDeg = SlopeAngleRad * (180.0 / Pi);
+	if (Normal(Velocity) dot DownSlopeVect > 0)
+		SlopeAngleDeg = -SlopeAngleDeg; // Negative when going downhill
+}
+
+simulated function HandleSliding(float DT)
+{
+	local float DynamicFriction;
+	local name Anim;
+
+	CrouchedPct = 1.0; //Little hack so it doesn't mess with crouch speed/ground speed, etc...
+	GravityAlongSlope = -PhysicsVolume.Gravity.Z * Sin(SlopeAngleRad);
+	// Friction increases over time
+	DynamicFriction = SlideFriction;
+	// Reduce friction on steep slopes for more sliding
+	if (SlopeAngleDeg < 0) // Downhill
+		DynamicFriction *= FClamp(1.0 - (Abs(SlopeAngleDeg) / 60.0), 0.2, 1.0);
+	else  // Uphill
+		DynamicFriction *= FClamp(1.0 + (SlopeAngleDeg / 45.0), 1.0, 2.5);
+	//Need to make sure we only apply this when on stairs, DetectStairDirection() might return an angle when on a slope that is not a stair
+	
+	//If we're on stairs, but not on a slope, adjust friction and gravity, hacky but it works!
+	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1)) 
+	{
+		if (PlayerController(Controller).FindStairRotation(DT) < 0) 
 		{
-			//limiting backspeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(X dot dir);
-			Velocity = dir * (MaxBackSpeed / CosAngle);
+			DynamicFriction *= 0.5;
+			GravityAlongSlope *= 1.5; 
 		}
-		
-		// strafe speed limit
-		YSpeed = Abs(Y dot velocity);
-
-		if (YSpeed > MaxStrafeSpeed)
+		else
 		{
-			//limiting strafespeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(Y dot dir);
-			Velocity = dir * (MaxStrafeSpeed / CosAngle);
+			DynamicFriction *= 1.5;
+			GravityAlongSlope *= 0.5; 
 		}
 	}
+	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
+	if (VSize(SlideVelocity) > 0.1)
+		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
+	Velocity = SlideVelocity;
+	if (VSize(Velocity) > MaxSlideSpeed)
+		Velocity = Normal(Velocity) * MaxSlideSpeed;
 
-	//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
-		
-	// Applies decelerative friction
-	if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
-	{
-		FSpeed = VSize(Velocity);
-			
-		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
-		{
-			Control = FMin(100, FSpeed);
-				
-			Drop = Control * DeltaTime * MyFriction;
-			NewSpeed = FSpeed + drop;
-			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
-			Velocity *= NewSpeed;
-		}
-	}
-
-	OldMovementSpeed = VSize(Velocity);
+	Anim = SlideAnims[Get4WayDirection()];
+	LoopAnim(Anim, 1.0, 0.2);
 }
 
 defaultproperties
 {
 	bAlwaysRelevant=True
-    bCanDodge=True
-    bCanDoubleJump=True
-     MoverLeaveGrace=1.000000
-     MinDragDistance=40.000000
-     MaxPoolVelocity=20.000000
-     HighImpactVelocity=1000.000000
-     LowImpactVelocity=500.000000
-     TimeBetweenImpacts=1.000000
-	 //MinTimeBetweenPainSounds=0.600000
-     NewDeResSound=SoundGroup'BW_Core_WeaponSound.Misc.DeRes'
-     MeleeAnim="Melee_Smack"
-     Fades(0)=Texture'BW_Core_WeaponTex.Icons.stealth_8'
-     Fades(1)=Texture'BW_Core_WeaponTex.Icons.stealth_16'
-     Fades(2)=Texture'BW_Core_WeaponTex.Icons.stealth_24'
-     Fades(3)=Texture'BW_Core_WeaponTex.Icons.stealth_32'
-     Fades(4)=Texture'BW_Core_WeaponTex.Icons.stealth_40'
-     Fades(5)=Texture'BW_Core_WeaponTex.Icons.stealth_48'
-     Fades(6)=Texture'BW_Core_WeaponTex.Icons.stealth_56'
-     Fades(7)=Texture'BW_Core_WeaponTex.Icons.stealth_64'
-     Fades(8)=Texture'BW_Core_WeaponTex.Icons.stealth_72'
-     Fades(9)=Texture'BW_Core_WeaponTex.Icons.stealth_80'
-     Fades(10)=Texture'BW_Core_WeaponTex.Icons.stealth_88'
-     Fades(11)=Texture'BW_Core_WeaponTex.Icons.stealth_96'
-     Fades(12)=Texture'BW_Core_WeaponTex.Icons.stealth_104'
-     Fades(13)=Texture'BW_Core_WeaponTex.Icons.stealth_112'
-     Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
-     Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
-     UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
+	bCanDodge=True
+	bCanDoubleJump=True
+	MoverLeaveGrace=1.000000
+	MinDragDistance=40.000000
+	MaxPoolVelocity=20.000000
+	HighImpactVelocity=1000.000000
+	LowImpactVelocity=500.000000
+	TimeBetweenImpacts=1.000000
+	//MinTimeBetweenPainSounds=0.600000
+	NewDeResSound=SoundGroup'BW_Core_WeaponSound.Misc.DeRes'
+	MeleeAnim="Melee_Smack"
+	Fades(0)=Texture'BW_Core_WeaponTex.Icons.stealth_8'
+	Fades(1)=Texture'BW_Core_WeaponTex.Icons.stealth_16'
+	Fades(2)=Texture'BW_Core_WeaponTex.Icons.stealth_24'
+	Fades(3)=Texture'BW_Core_WeaponTex.Icons.stealth_32'
+	Fades(4)=Texture'BW_Core_WeaponTex.Icons.stealth_40'
+	Fades(5)=Texture'BW_Core_WeaponTex.Icons.stealth_48'
+	Fades(6)=Texture'BW_Core_WeaponTex.Icons.stealth_56'
+	Fades(7)=Texture'BW_Core_WeaponTex.Icons.stealth_64'
+	Fades(8)=Texture'BW_Core_WeaponTex.Icons.stealth_72'
+	Fades(9)=Texture'BW_Core_WeaponTex.Icons.stealth_80'
+	Fades(10)=Texture'BW_Core_WeaponTex.Icons.stealth_88'
+	Fades(11)=Texture'BW_Core_WeaponTex.Icons.stealth_96'
+	Fades(12)=Texture'BW_Core_WeaponTex.Icons.stealth_104'
+	Fades(13)=Texture'BW_Core_WeaponTex.Icons.stealth_112'
+	Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
+	Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
+	UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
 
-	 BloodFlashV=(X=1000,Y=250,Z=250)
-     ShieldFlashV=(X=750,Y=500,Z=350)
+	BloodFlashV=(X=1000,Y=250,Z=250)
+	ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.25
-     FootstepRadius=1536.000000
-	 GruntVolume=0.25
-     GruntRadius=28.000000
+	FootstepVolume=0.25
+	FootstepRadius=1536.000000
+	GruntVolume=0.25
+	GruntRadius=28.000000
 
-	 // used to play footsteps at consistent volume regardless of position
-	 // the fine sound controls, like occlusion factors and rolloff curves, are native
-	 // so we're forced into this to get the footstep behaviour we want
-	 // thankfully, it won't affect sounds we play through our weapons or attachments
-	 SoundOcclusion=OCCLUSION_None
+	// used to play footsteps at consistent volume regardless of position
+	// the fine sound controls, like occlusion factors and rolloff curves, are native
+	// so we're forced into this to get the footstep behaviour we want
+	// thankfully, it won't affect sounds we play through our weapons or attachments
+	SoundOcclusion=OCCLUSION_None
 
-	 BaseEyeHeight=30
-	 CrouchEyeHeight=19
-	 CrouchHeight=32
+	BaseEyeHeight=30
+	CrouchEyeHeight=19
+	CrouchHeight=32
 
-     CollisionRadius=22.000000
-     HeadRadius=13.000000
+	CollisionRadius=22.000000
+	HeadRadius=13.000000
 
+	DeResTime=4.000000
+	RagDeathUpKick=0.000000
+	bCanWalkOffLedges=True
+	bSpecialHUD=True
+	Visibility=64
 
-
-
-     DeResTime=4.000000
-     RagDeathUpKick=0.000000
-     bCanWalkOffLedges=True
-     bSpecialHUD=True
-     Visibility=64
+	TransientSoundVolume=0.300000
 	
-     TransientSoundVolume=0.300000
-	 
-	 StrafeScale=1.000000
-     BackpedalScale=1.000000
-     //MyFriction=4.000000
-     RagdollLifeSpan=20.000000
+	StrafeScale=1.000000
+	BackpedalScale=1.000000
+	//MyFriction=4.000000
+	RagdollLifeSpan=20.000000
 
-	// the default value of this variable is used by C++ to work out move animation rates.
-	// do not use or change the default in code - use class'BallisticReplicationInfo'.default.PlayerGroundSpeed instead.
-	// the default value is assigned from game styles as PlayerAnimationGroundSpeed
-     GroundSpeed=360.000000
+// the default value of this variable is used by C++ to work out move animation rates.
+// do not use or change the default in code - use class'BallisticReplicationInfo'.default.PlayerGroundSpeed instead.
+// the default value is assigned from game styles as PlayerAnimationGroundSpeed
+	GroundSpeed=360.000000
 
-	 LadderSpeed=280.000000
-     WaterSpeed=150.000000
-     //AirSpeed=270.000000
-     WalkingPct=0.900000
-	 CrouchedPct=0.350000
-     //DodgeSpeedFactor=1.200000
-     //DodgeSpeedZ=190.000000
+	LadderSpeed=280.000000
+	WaterSpeed=150.000000
+	//AirSpeed=270.000000
+	WalkingPct=0.900000
+	CrouchedPct=0.350000
+	JumpCrouchPenalty=0.15
+	JumpCrouchTime=0.30
+	//DodgeSpeedFactor=1.200000
+	//DodgeSpeedZ=190.000000
 
-     Begin Object Class=KarmaParamsSkel Name=PawnKParams
-         KConvulseSpacing=(Max=2.200000)
-         KLinearDamping=0.150000
-         KAngularDamping=0.050000
-         KBuoyancy=1.000000
-         KStartEnabled=True
-         KVelDropBelowThreshold=-1.000000
-         bHighDetailOnly=False
-         KFriction=0.600000
-         KRestitution=0.300000
-         KImpactThreshold=500.000000
-     End Object
+	SlideFriction=1.100000
+	SlideCooldownTime=0.600000
+	SlidePower=350.000000
+	SlideAnims(0)="SlideF"
+	SlideAnims(1)="SlideF"
+	SlideAnims(2)="SlideL"
+	SlideAnims(3)="SlideR"
+	SlideStartAnims(0)="SlideFStart"
+	SlideStartAnims(1)="SlideFStart"
+	SlideStartAnims(2)="SlideLStart"
+	SlideStartAnims(3)="SlideRStart"
+	SlideEndAnims(0)="SlideFEnd"
+	SlideEndAnims(1)="SlideFEnd"
+	SlideEndAnims(2)="SlideLEnd"
+	SlideEndAnims(3)="SlideRSEnd
+	BackSlidePowerScale=0.60
+	BackMaxSlideSpeedScale=0.75
+	BackSlideDotThreshold=-0.25
 
-     KParams=KarmaParamsSkel'BallisticProV55.BallisticPawn.PawnKParams'
-
+	Begin Object Class=KarmaParamsSkel Name=PawnKParams
+		KConvulseSpacing=(Max=2.200000)
+		KLinearDamping=0.150000
+		KAngularDamping=0.050000
+		KBuoyancy=1.000000
+		KStartEnabled=True
+		KVelDropBelowThreshold=-1.000000
+		bHighDetailOnly=False
+		KFriction=0.600000
+		KRestitution=0.300000
+		KImpactThreshold=500.000000
+	End Object
+	KParams=KarmaParamsSkel'BallisticProV55.BallisticPawn.PawnKParams'
 }

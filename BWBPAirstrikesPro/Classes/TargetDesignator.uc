@@ -384,6 +384,7 @@ defaultproperties
     ZoomOutAnim="Lower"
     ScopeViewTex=Texture'BWBP_OP_Tex.Designator.DesignatorScreen'
     FullZoomFOV=20.000000
+	MaxZoom=4.000000
     bNoCrosshairInScope=True
     bAimDisabled=True
     ParamsClasses(0)=Class'TargetDesignatorWeaponParams'

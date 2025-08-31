@@ -64,4 +64,5 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
      End Object
      Emitters(1)=SpriteEmitter'BWBP_APC_Pro.HydraFlashEmitter.SpriteEmitter3'
+
 }

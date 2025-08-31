@@ -43,7 +43,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=128,G=225,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=128,G=128,R=255,A=255))
          FadeOutStartTime=0.200000
-         MaxParticles=20
+         MaxParticles=30
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=1.000000,Max=5.000000)
          SpinsPerSecondRange=(X=(Max=1.000000))
@@ -128,4 +128,5 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
      Emitters(4)=SpriteEmitter'BWBP_APC_Pro.IE_BulletRadLarge.SpriteEmitter3'
+
 }

@@ -383,7 +383,7 @@ simulated function LoadGrenadeLoop()
 		return;
 	if ((ReloadState == RS_None || ReloadState == RS_StartShovel)&& Ammo[1].AmmoAmount >= 1)
 	{
-		PlayAnim(StartShovelAnim, 1.0, , 0);
+		PlayAnim(StartShovelAnim, StartShovelAnimRate, , 0);
 		ReloadState = RS_StartShovel;
 	}
 }
@@ -468,9 +468,17 @@ simulated function CommonStartReload (optional byte i)
 
 simulated function PlayCocking(optional byte Type)
 {
+	local float AdjustedCockAnimRate;
+
+    // Adjust cock animation rate only during reloading
+    if (ReloadState != RS_None && ReloadState != RS_Cocking)
+        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
+    else
+        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
+
 	if (!bAltNeedCock)
 		SafePlayAnim(CockAnim, 1.75, 0.2, , "RELOAD");
-	else SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
+	else SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
 
 	if (SightingState != SS_None)
 		TemporaryScopeDown(default.SightingTime);

@@ -9,9 +9,6 @@ function ScoreKill(Controller Killer, Controller Killed)
 	local PlayerController PC;
 	local KillstreakLRI KLRI;
 	
-    if (Killer == None)
-        return;
-
 	PC = PlayerController(Killer);
 	
 	KLRI = class'Mut_Killstreak'.static.GetKLRI(Killer.PlayerReplicationInfo);

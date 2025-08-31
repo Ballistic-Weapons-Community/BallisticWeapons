@@ -29,4 +29,5 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
      End Object
      Emitters(0)=SpriteEmitter'BWBP_APC_Pro.ThorLCFlashEmitterBoost.SpriteEmitter5'
+
 }

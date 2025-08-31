@@ -27,4 +27,5 @@ defaultproperties
          StartVelocityRange=(X=(Min=11000.000000,Max=11000.000000))
      End Object
      Emitters(0)=MeshEmitter'BWBP_APC_Pro.TraceEmitter_R9000Incendiary.MeshEmitter0'
+
 }

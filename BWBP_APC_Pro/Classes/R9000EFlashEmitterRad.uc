@@ -63,4 +63,5 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BWBP_APC_Pro.R9000EFlashEmitterRad.SpriteEmitter31'
 
      bNoDelete=False
+
 }

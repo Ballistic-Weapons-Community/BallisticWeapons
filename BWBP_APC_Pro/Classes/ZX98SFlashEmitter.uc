@@ -89,7 +89,7 @@ defaultproperties
          FadeOutStartTime=0.015000
          FadeInEndTime=0.015000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=15
+         MaxParticles=20
          StartLocationOffset=(Z=6.000000)
          StartSpinRange=(X=(Min=0.270000,Max=0.270000))
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
@@ -168,7 +168,7 @@ defaultproperties
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.000000,Max=0.000000))
          FadeOutStartTime=0.320000
          FadeInEndTime=0.192000
-         MaxParticles=6
+         MaxParticles=8
          StartLocationRange=(X=(Min=-25.000000,Max=25.000000),Y=(Min=-25.000000,Max=25.000000),Z=(Min=-25.000000,Max=25.000000))
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
@@ -182,4 +182,29 @@ defaultproperties
          StartVelocityRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-20.000000,Max=20.000000))
      End Object
      Emitters(5)=SpriteEmitter'BWBP_APC_Pro.ZX98SFlashEmitter.SpriteEmitter7'
+
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter15
+         UseDirectionAs=PTDU_Up
+         FadeOut=True
+         RespawnDeadParticles=False
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         TriggerDisabled=False
+         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         ColorMultiplierRange=(X=(Min=0.000000,Max=0.500000),Y=(Min=0.000000,Max=0.500000))
+         FadeOutStartTime=0.260000
+         CoordinateSystem=PTCS_Relative
+         MaxParticles=50
+         StartLocationRange=(X=(Min=-300.000000,Max=-100.000000),Y=(Min=30.000000,Max=30.000000))
+         StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
+         InitialParticlesPerSecond=5000.000000
+         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
+         LifetimeRange=(Min=0.520000,Max=0.520000)
+         SpawnOnTriggerRange=(Min=15.000000,Max=20.000000)
+         SpawnOnTriggerPPS=50000.000000
+         StartVelocityRange=(Y=(Max=5.000000))
+     End Object
+     Emitters(6)=SpriteEmitter'BWBP_APC_Pro.ZX98SFlashEmitter.SpriteEmitter15'
+
 }

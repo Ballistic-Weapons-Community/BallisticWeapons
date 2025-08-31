@@ -93,4 +93,5 @@ defaultproperties
          StartVelocityRange=(X=(Min=150.000000,Max=350.000000))
      End Object
      Emitters(2)=SpriteEmitter'BWBP_APC_Pro.E5LaserFlashEmitter.SpriteEmitter14'
+
 }

@@ -45,16 +45,11 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 	local int Index;
 	local Vector XYVel;
 
-    if (Victim == None)
-        return;
-
 	Index = FindIndex(Victim);
 
 	if (HitPawnData[Index].HitTime + Interval < Level.TimeSeconds || HitPawnData[Index].HitTime == 0 )
 	{
 		HitPawnData[Index].HitTime = Level.TimeSeconds;
-		if (Instigator != None)
-    	{
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
 		if (Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
 		{
@@ -62,7 +57,6 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 			XYVel = -Victim.Velocity;
 			XYVel.Z = 0;
 			Victim.AddVelocity(XYVel + RepulsionForceMag * Normal(Victim.Location - Location) + vect(0,0,20));
-		}
 		}
 	}
 }

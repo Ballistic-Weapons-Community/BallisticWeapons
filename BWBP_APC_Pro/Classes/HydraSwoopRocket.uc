@@ -37,7 +37,7 @@ function SetTargetLocation()
 	if (bHasImpacted)
 		return;
 	
-	if (Role == ROLE_Authority && Weapon != None)
+	if (Role == ROLE_Authority)
 		LastLoc = Weapon.GetSwoopRocketDir(StartLoc, EndLoc, LaunchTime);
 	
 	bSeeking=True;

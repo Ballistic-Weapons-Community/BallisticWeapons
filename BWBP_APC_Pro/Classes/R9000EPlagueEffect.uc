@@ -118,7 +118,7 @@ defaultproperties
         ColorScale(0)=(Color=(B=5,G=54,R=248,A=255))
         ColorScale(1)=(RelativeTime=1.000000,Color=(B=52,G=52,R=139,A=255))
         FadeOutStartTime=0.750000
-        MaxParticles=30
+        MaxParticles=60
         StartLocationShape=PTLS_Sphere
         SphereRadiusRange=(Min=1.000000,Max=5.000000)
         SpinsPerSecondRange=(X=(Max=1.000000))

@@ -257,12 +257,20 @@ simulated function FirePressed(float F)
 //===========================================================================
 simulated function PlayCocking(optional byte Type)
 {
+	local float AdjustedCockAnimRate;
+
+    // Adjust cock animation rate only during reloading
+    if (ReloadState != RS_None && ReloadState != RS_Cocking)
+        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
+    else
+        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
+
 	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, 0.2, , "RELOAD");
 	else if (Type == 5)
-		SafePlayAnim(CockSGAnim, CockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockSGAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
 	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
 
 	if (SightingState != SS_None)
 		TemporaryScopeDown(default.SightingTime);

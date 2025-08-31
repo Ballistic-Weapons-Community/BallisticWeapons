@@ -74,4 +74,5 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BWBP_APC_Pro.HB4FlashEmitter.SpriteEmitter10'
 
      bNoDelete=False
+	 DrawScale=0.2
 }

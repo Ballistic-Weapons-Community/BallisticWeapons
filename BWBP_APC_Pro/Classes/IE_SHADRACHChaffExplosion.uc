@@ -57,7 +57,7 @@ defaultproperties
          ColorScale(4)=(RelativeTime=1.000000,Color=(G=200,R=200,A=255))
          Opacity=0.200000
          FadeOutStartTime=2.120000
-         MaxParticles=15
+         MaxParticles=20
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
          SpinsPerSecondRange=(X=(Max=0.100000))
@@ -72,7 +72,7 @@ defaultproperties
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=6.000000,Max=6.000000)
+         LifetimeRange=(Min=8.000000,Max=8.000000)
          StartVelocityRadialRange=(Min=-500.000000,Max=-300.000000)
          VelocityLossRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=4.000000,Max=4.000000))
          GetVelocityDirectionFrom=PTVD_AddRadial
@@ -139,7 +139,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255))
          FadeOutStartTime=1.120000
-         MaxParticles=50
+         MaxParticles=100
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
          StartSizeRange=(X=(Min=2.500000,Max=5.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
@@ -173,8 +173,6 @@ defaultproperties
          StartSizeRange=(X=(Min=70.000000,Max=70.000000),Y=(Min=70.000000,Max=70.000000),Z=(Min=70.000000,Max=70.000000))
          InitialParticlesPerSecond=50000.000000
          Texture=Texture'XEffects.WispSmoke_t'
-         TextureUSubdivisions=2
-         TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -196,7 +194,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255))
          ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.000000,Max=0.000000))
          FadeOutStartTime=1.120000
-         MaxParticles=50
+         MaxParticles=100
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=100.000000,Max=200.000000)
          StartSpinRange=(X=(Min=-1.000000,Max=1.000000))
@@ -235,7 +233,7 @@ defaultproperties
          ColorScale(4)=(RelativeTime=1.000000,Color=(G=50,R=75,A=255))
          Opacity=0.200000
          FadeOutStartTime=2.120000
-         MaxParticles=30
+         MaxParticles=40
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
          SpinsPerSecondRange=(X=(Max=0.100000))
@@ -258,8 +256,43 @@ defaultproperties
      End Object
      Emitters(6)=SpriteEmitter'BWBP_APC_Pro.IE_SHADRACHChaffExplosion.SpriteEmitter82'
 
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter84
+         UseCollision=True
+         UseMaxCollisions=True
+         FadeOut=True
+         RespawnDeadParticles=False
+         SpinParticles=True
+         UniformSize=True
+         AutomaticInitialSpawning=False
+         Acceleration=(Z=-10.000000)
+         ExtentMultiplier=(X=0.700000,Y=0.700000,Z=0.700000)
+         DampingFactorRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.000000,Max=0.000000),Z=(Min=0.000000,Max=0.000000))
+         MaxCollisions=(Min=1.000000,Max=1.000000)
+         ColorScale(0)=(Color=(B=255,G=255,R=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255))
+         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.000000,Max=0.000000))
+         Opacity=0.500000
+         FadeOutStartTime=1.120000
+         MaxParticles=100
+         StartLocationShape=PTLS_Sphere
+         SphereRadiusRange=(Min=50.000000,Max=100.000000)
+         StartSpinRange=(X=(Min=-1.000000,Max=1.000000))
+         StartSizeRange=(X=(Min=2.500000,Max=5.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
+         InitialParticlesPerSecond=50000.000000
+         DrawStyle=PTDS_Brighten
+         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         TextureUSubdivisions=1
+         TextureVSubdivisions=1
+         SecondsBeforeInactive=0.000000
+         LifetimeRange=(Min=8.000000,Max=8.000000)
+         StartVelocityRange=(X=(Min=-15.000000,Max=15.000000),Y=(Min=-15.000000,Max=15.000000),Z=(Min=-15.000000,Max=15.000000))
+         StartVelocityRadialRange=(Min=-56.000000,Max=-35.000000)
+         GetVelocityDirectionFrom=PTVD_AddRadial
+     End Object
+     Emitters(7)=SpriteEmitter'BWBP_APC_Pro.IE_SHADRACHChaffExplosion.SpriteEmitter84'
+
      AutoDestroy=True
-     LightType=LT_SubtlePulse
+     LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30
      LightSaturation=150

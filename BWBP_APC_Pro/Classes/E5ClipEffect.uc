@@ -33,7 +33,7 @@ defaultproperties
          FadeOutStartTime=0.800000
          FadeInEndTime=0.110000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=10
+         MaxParticles=25
          StartLocationOffset=(Y=-22.000000)
          StartLocationRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.500000,Max=2.500000))
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))

@@ -14,7 +14,7 @@ defaultproperties
 	InventoryType=Class'BWBP_APC_Pro.Ammo_MinigunInc'
 	PickupMessage="You got 400 rounds of 7.62mm incendiary ammo"
 	PickupSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-AmmoPickup'
-	StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPickup'
+	StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPiickup'
 	DrawScale=0.350000
 	PrePivot=(Z=9.000000)
 	// hard reference to assets in an offline package - please fix
