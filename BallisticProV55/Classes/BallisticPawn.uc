@@ -549,7 +549,7 @@ function bool AddInventory( inventory NewItem )
     if(NewItem != none && BCSprintControl(NewItem) != none)
 	{
         sprinter = BCSprintControl(NewItem);
-		log("BallisticPawn: AddInventory: Added BCSprintControl " @ sprinter);
+		//log("BallisticPawn: AddInventory: Added BCSprintControl " @ sprinter);
 	}
 
     return ret;
@@ -636,7 +636,7 @@ function CheckBob(float DeltaTime, vector Y)
 	local int m,n;
 
     DeltaTime *= GroundSpeed / (class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 1.5);
-	log("BallisticPawn: CheckBob: DeltaTime: "$DeltaTime$" GroundSpeed: "$GroundSpeed$" PlayerGroundSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
+	//log("BallisticPawn: CheckBob: DeltaTime: "$DeltaTime$" GroundSpeed: "$GroundSpeed$" PlayerGroundSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
 	OldBobTime = BobTime;
 
 	PawnCheckBob(DeltaTime,Y);
@@ -3514,7 +3514,7 @@ simulated function HandleSliding(float DT)
 		Velocity = Normal(Velocity) * MaxSlideSpeed;
 
 	Anim = SlideAnims[Get4WayDirection()];
-	LoopAnim(Anim, 1.0, 0.2);
+	LoopAnim(Anim, 1.0, 0.2, 1);
 }
 
 defaultproperties
