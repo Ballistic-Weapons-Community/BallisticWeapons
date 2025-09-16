@@ -188,6 +188,7 @@ var vector LastFallingVelocity;	 // Velocity of the player when they last fell, 
 var float GravityAlongSlope;	 // Gravity component acting along the slope, used to calculate acceleration during sliding
 
 // Sliding Animations
+var bool  bSlideWaitingStart;     // waiting for start anim to finish
 var 	name 		SlideAnims[4]; 
 var 	name 		SlideStartAnims[4]; 
 var 	name 		SlideEndAnims[4]; 
@@ -1168,6 +1169,15 @@ simulated function AnimEnd(int Channel)
     }
     else if ( bKeepTaunting && (Channel == 0) )
 		PlayVictoryAnimation();
+
+	// Slide start anim finished?
+    if (bSlideWaitingStart && Channel == 0)
+    {
+        bSlideWaitingStart = false;
+        if (bIsSliding) // still valid
+            LoopSlideAnim();
+    }
+
 }
 
 function HealBlock(Pawn Instigator, class<LocalMessage> BlockMessageClass)
@@ -3367,8 +3377,8 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 		if (bIsSliding)
 		{
-			HandleSliding(DeltaTime);
 			TickSlopeCalculation(DeltaTime);
+			HandleSliding(DeltaTime);
 		}
 		else
 		{
@@ -3437,19 +3447,59 @@ simulated function StartSlide()
         // Apply initial impulse scaled by stamina (same logic, with effective power)
         EffImpulse = FMax(EffSlidePower * 0.5, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
         SlideVelocity += Normal(SlideVelocity) * EffImpulse;
+
 		LastFallingVelocity = vect(0,0,0); 
         bIsSliding = true;
+
         GroundSpeed = MaxSlideSpeed;
+
         Anim = SlideStartAnims[Get4WayDirection()];
-        if ( PlayAnim(Anim, 1.0, 0.1) )
-            bWaitForAnim = true;
+        if (Anim != '')
+        {
+            PlayAnim(Anim, 1.0, 0.10, 0);
+            bSlideWaitingStart = true;
+        }
+        else
+        {
+            bSlideWaitingStart = false;
+            LoopSlideAnim();
+        }
         AnimAction = Anim;
     }
+}
+
+simulated function LoopSlideAnim()
+{
+    local name LoopName, CurAnim;
+    local float Frame, Rate;
+
+    if (!bIsSliding)
+        return;
+
+    LoopName = SlideAnims[Get4WayDirection()];
+    if (LoopName == '')
+        return;
+
+    GetAnimParams(0, CurAnim, Frame, Rate);
+    if (CurAnim != LoopName)
+        LoopAnim(LoopName, 1.0, 0.20, 0);
+}
+
+simulated function RefreshSlideLoop()
+{
+    if (bIsSliding && !bSlideWaitingStart)
+        LoopSlideAnim();
 }
 
 simulated function EndSlide()
 {
 	local name Anim;
+
+    if (!bIsSliding && !bSlideWaitingStart)
+        return;
+
+    // Cancel waiting state
+    bSlideWaitingStart = false;
 
 	if(!bIsCrouched && VSize(Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
 	{
@@ -3461,10 +3511,9 @@ simulated function EndSlide()
 	bIsSliding = false;
 	SlideVelocity = vect(0,0,0);
 	LastSlideEndTime = Level.TimeSeconds;
-	if(Role == ROLE_Authority)
-    {
-        GroundSpeed = Sprinter.BaseGroundSpeed;
-    }
+
+	if (Role == ROLE_Authority && Sprinter != None)
+		GroundSpeed = Sprinter.BaseGroundSpeed;
 }
 
 simulated function TickSlopeCalculation(float DT)
@@ -3509,12 +3558,12 @@ simulated function HandleSliding(float DT)
 	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
 	if (VSize(SlideVelocity) > 0.1)
 		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
-	Velocity = SlideVelocity;
+    if (Role == ROLE_Authority || IsLocallyControlled())
+        Velocity = SlideVelocity;
 	if (VSize(Velocity) > MaxSlideSpeed)
 		Velocity = Normal(Velocity) * MaxSlideSpeed;
 
-	Anim = SlideAnims[Get4WayDirection()];
-	LoopAnim(Anim, 1.0, 0.2, 1);
+	RefreshSlideLoop();
 }
 
 defaultproperties
