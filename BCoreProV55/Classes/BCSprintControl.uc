@@ -116,8 +116,7 @@ function UpdateSpeed(optional bool bSliding)
 
 	if(bSliding)
 	{
-		//log("SC UpdateSpeed: "$NewSpeed$" * 1.0 (sliding)");
-		NewSpeed *= 2.5; //Sliding speed is set in BallisticPawn
+		NewSpeed *= 2.5; //This is a really stupid hack for sliding, lets hope it works
 	}
 
 	NewSpeed *= SlowFactor;
