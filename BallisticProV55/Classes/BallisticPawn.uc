@@ -1042,7 +1042,7 @@ simulated event SetAnimAction(name NewAction)
             {
                 // start segment – short blend, run once
 				AnimBlendToAlpha(1,0.0,0.05);
-                PlayAnim(NewAction, 1.5, 0.10);
+                PlayAnim(NewAction, 2.0);
                 bSlideWaitingStart = true;
                 return;
             }
@@ -1051,14 +1051,14 @@ simulated event SetAnimAction(name NewAction)
                 // loop segment – maintain while sliding
                 bSlideWaitingStart = false;
 				AnimBlendToAlpha(1,0.0,0.05);
-                LoopAnim(NewAction, 1.0, 0.20);
+                LoopAnim(NewAction,, 0.20);
                 return;
             }
             if (NewAction == SlideEndAnims[i] && HasAnim(NewAction))
             {
                 // end segment – short blend, once
                 bSlideWaitingStart = false;
-                if (PlayAnim(NewAction, 1.5, 0.10))
+                if (PlayAnim(NewAction, 2.0))
                     bWaitForAnim = true;
 				AnimBlendToAlpha(1,0.0,0.05);
                 return;
@@ -1201,7 +1201,6 @@ simulated function AnimEnd(int Channel)
     }
     else if (Channel == 0)
     {
-        // Slide start finished or got preempted → ensure loop
         if (bSlideWaitingStart)
         {
             bSlideWaitingStart = false;
@@ -3490,7 +3489,7 @@ simulated function StartSlide()
         Anim = SlideStartAnims[Get4WayDirection()];
         if (Anim != '')
         {
-            PlayAnim(Anim, 1.5, 0.10, 0);
+            PlayAnim(Anim, 2.0);
             bSlideWaitingStart = true;
         }
         else
@@ -3538,7 +3537,7 @@ simulated function EndSlide()
 	if(!bIsCrouched && VSize(Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
 	{
 		Anim = SlideEndAnims[Get4WayDirection()];
-		if ( PlayAnim(Anim, 1.5, 0.1) )
+		if ( PlayAnim(Anim, 2.0) )
 			bWaitForAnim = true;
 		AnimAction = Anim;
 	}
