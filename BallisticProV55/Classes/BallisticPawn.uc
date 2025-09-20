@@ -3485,8 +3485,7 @@ simulated function StartSlide()
 		LastFallingVelocity = vect(0,0,0); 
         bIsSliding = true;
 
-        //GroundSpeed = MaxSlideSpeed;
-		Sprinter.UpdateSpeed(true);
+		Sprinter.UpdateSpeed(2.5);
 
         Anim = SlideStartAnims[Get4WayDirection()];
         if (Anim != '')

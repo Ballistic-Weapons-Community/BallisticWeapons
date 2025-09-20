@@ -90,7 +90,7 @@ function GiveTo( pawn Other, optional Pickup Pickup )
 	UpdateSpeed();
 }
 
-function UpdateSpeed(optional bool bSliding)
+function UpdateSpeed(optional float NewSpeedFactor)
 {
 	local float NewSpeed;
 
@@ -114,15 +114,15 @@ function UpdateSpeed(optional bool bSliding)
         NewSpeed *= SpeedFactor;
     }
 
-	if(bSliding)
-	{
-		NewSpeed *= 2.5; //This is a really stupid hack for sliding, lets hope it works
-	}
-
 	NewSpeed *= SlowFactor;
+
+	if (NewSpeedFactor > 0.0)
+		NewSpeed *= NewSpeedFactor;
 
 	if (Instigator.GroundSpeed != NewSpeed)
 		Instigator.GroundSpeed = NewSpeed;
+
+	//Level.Game.Broadcast(self, "SpeedUpdated:"@Instigator.GroundSpeed@" (Factor:"@SpeedFactor@", Slow:"@SlowFactor@", "@NewSpeedFactor@")");
 
 	BaseGroundSpeed = NewSpeed;
 
