@@ -260,9 +260,9 @@ defaultproperties
          MinValue=0.000000
          MaxValue=10.000000
          ComponentWidth=0.175000
-         Caption="Jump Drain"
+         Caption="Jump/Slide Drain"
          OnCreateComponent=fe_JumpDrainC.InternalOnCreateComponent
-         Hint="The amount of stamina we lose when we jump."
+         Hint="The amount of stamina we lose when we jump or slide."
          WinTop=0.750000
          WinLeft=0.250000
          WinHeight=0.040000

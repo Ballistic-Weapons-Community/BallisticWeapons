@@ -90,7 +90,7 @@ function GiveTo( pawn Other, optional Pickup Pickup )
 	UpdateSpeed();
 }
 
-function UpdateSpeed()
+function UpdateSpeed(optional bool bSliding)
 {
 	local float NewSpeed;
 
@@ -113,6 +113,12 @@ function UpdateSpeed()
         //log("SC UpdateSpeed: "$NewSpeed$" * "$SpeedFactor);
         NewSpeed *= SpeedFactor;
     }
+
+	if(bSliding)
+	{
+		//log("SC UpdateSpeed: "$NewSpeed$" * 1.0 (sliding)");
+		NewSpeed *= 2.5; //Sliding speed is set in BallisticPawn
+	}
 
 	NewSpeed *= SlowFactor;
 

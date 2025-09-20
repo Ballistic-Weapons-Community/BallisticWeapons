@@ -3457,6 +3457,7 @@ simulated function StartSlide()
 	&& Physics == PHYS_Walking 
 	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime))
     {
+		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
 		Sprinter.DelayRecharge();
 		Sprinter.StopSprint();
 		SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
@@ -3484,7 +3485,8 @@ simulated function StartSlide()
 		LastFallingVelocity = vect(0,0,0); 
         bIsSliding = true;
 
-        GroundSpeed = MaxSlideSpeed;
+        //GroundSpeed = MaxSlideSpeed;
+		Sprinter.UpdateSpeed(true);
 
         Anim = SlideStartAnims[Get4WayDirection()];
         if (Anim != '')
@@ -3546,7 +3548,11 @@ simulated function EndSlide()
 	LastSlideEndTime = Level.TimeSeconds;
 
 	if (Role == ROLE_Authority && Sprinter != None)
-		GroundSpeed = Sprinter.BaseGroundSpeed;
+	{
+		//GroundSpeed = Sprinter.BaseGroundSpeed;
+		Sprinter.UpdateSpeed();
+		//Level.Game.Broadcast(self, "SpeedReset:"@GroundSpeed@"Sprinter.BaseGroundSpeed:"@Sprinter.BaseGroundSpeed);
+	}
 }
 
 simulated function TickSlopeCalculation(float DT)
