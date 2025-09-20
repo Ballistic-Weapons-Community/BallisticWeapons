@@ -887,6 +887,7 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 
 simulated event SetAnimAction(name NewAction)
 {
+    local int i;
     if (!bWaitForAnim)
     {
 	    AnimAction = NewAction;
@@ -1032,6 +1033,37 @@ simulated event SetAnimAction(name NewAction)
                 FireState = FS_Ready;
             }
         }
+        // Handle sliding actions on CH0 (replicated via AnimAction)
+        // Matches entries in SlideStartAnims/SlideAnims/SlideEndAnims arrays
+        // so you don't have to hardcode names.
+        for (i = 0; i < 3; ++i)
+        {
+            if (NewAction == SlideStartAnims[i] && HasAnim(NewAction))
+            {
+                // start segment – short blend, run once
+				AnimBlendToAlpha(1,0.0,0.05);
+                PlayAnim(NewAction, 1.5, 0.10);
+                bSlideWaitingStart = true;
+                return;
+            }
+            if (NewAction == SlideAnims[i] && HasAnim(NewAction))
+            {
+                // loop segment – maintain while sliding
+                bSlideWaitingStart = false;
+				AnimBlendToAlpha(1,0.0,0.05);
+                LoopAnim(NewAction, 1.0, 0.20);
+                return;
+            }
+            if (NewAction == SlideEndAnims[i] && HasAnim(NewAction))
+            {
+                // end segment – short blend, once
+                bSlideWaitingStart = false;
+                if (PlayAnim(NewAction, 1.5, 0.10))
+                    bWaitForAnim = true;
+				AnimBlendToAlpha(1,0.0,0.05);
+                return;
+            }
+        }
     }
 }
 
@@ -1167,17 +1199,19 @@ simulated function AnimEnd(int Channel)
 			AnimAction = '';
 		}
     }
-    else if ( bKeepTaunting && (Channel == 0) )
-		PlayVictoryAnimation();
-
-	// Slide start anim finished?
-    if (bSlideWaitingStart && Channel == 0)
+    else if (Channel == 0)
     {
-        bSlideWaitingStart = false;
-        if (bIsSliding) // still valid
-            LoopSlideAnim();
-    }
+        // Slide start finished or got preempted → ensure loop
+        if (bSlideWaitingStart)
+        {
+            bSlideWaitingStart = false;
+            if (bIsSliding)
+                LoopSlideAnim();
+        }
 
+        if ( bKeepTaunting )
+            PlayVictoryAnimation();
+    }
 }
 
 function HealBlock(Pawn Instigator, class<LocalMessage> BlockMessageClass)
@@ -3456,7 +3490,7 @@ simulated function StartSlide()
         Anim = SlideStartAnims[Get4WayDirection()];
         if (Anim != '')
         {
-            PlayAnim(Anim, 1.0, 0.10, 0);
+            PlayAnim(Anim, 1.5, 0.10, 0);
             bSlideWaitingStart = true;
         }
         else
@@ -3482,7 +3516,7 @@ simulated function LoopSlideAnim()
 
     GetAnimParams(0, CurAnim, Frame, Rate);
     if (CurAnim != LoopName)
-        LoopAnim(LoopName, 1.0, 0.20, 0);
+        SetAnimAction(LoopName);
 }
 
 simulated function RefreshSlideLoop()
@@ -3504,7 +3538,7 @@ simulated function EndSlide()
 	if(!bIsCrouched && VSize(Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
 	{
 		Anim = SlideEndAnims[Get4WayDirection()];
-		if ( PlayAnim(Anim, 1.0, 0.1) )
+		if ( PlayAnim(Anim, 1.5, 0.1) )
 			bWaitForAnim = true;
 		AnimAction = Anim;
 	}
@@ -3539,7 +3573,6 @@ simulated function HandleSliding(float DT)
 		DynamicFriction *= FClamp(1.0 - (Abs(SlopeAngleDeg) / 60.0), 0.2, 1.0);
 	else  // Uphill
 		DynamicFriction *= FClamp(1.0 + (SlopeAngleDeg / 45.0), 1.0, 2.5);
-	//Need to make sure we only apply this when on stairs, DetectStairDirection() might return an angle when on a slope that is not a stair
 	
 	//If we're on stairs, but not on a slope, adjust friction and gravity, hacky but it works!
 	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1)) 
