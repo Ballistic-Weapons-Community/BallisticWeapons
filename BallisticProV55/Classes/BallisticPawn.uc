@@ -200,13 +200,13 @@ var 	name 		SlideEndAnims[4];
 
 // --- Crouch/Jump Parameters ---
 var float  CrouchEndTime;
-var() float JumpCrouchPenalty;   // Jump height multiplier for crouching
-var() float JumpCrouchTime;
+var() float JumpCrouchPenalty;   // Jump height penality when crouch jumping
+var() float JumpCrouchTime; 	// Time after we end crouch before jump crouch penalty is removed
 
 // Directional scaling for sliding
 var() float BackSlidePowerScale;      // < 1.0 to weaken backward slides
 var() float BackMaxSlideSpeedScale;   // < 1.0 to cap backward slide speed lower
-var() float BackSlideDotThreshold;    // dot threshold vs forward (negative means backwards)
+var() float BackSlideDotThreshold;    // dot threshold vs forward ( negative means backwards :) )
 
 replication
 {
@@ -599,7 +599,7 @@ function PawnCheckBob(float DeltaTime, vector Y)
         return;
     }
 	Bob = FClamp(Bob, -0.01, 0.01);
-	if (Physics == PHYS_Walking )
+	if ( Physics == PHYS_Walking )
 	{
 		Speed2D = VSize(Velocity);
 		if ( Speed2D < 10 )
@@ -3479,7 +3479,7 @@ simulated function StartSlide()
         }
 
         // Apply initial impulse scaled by stamina (same logic, with effective power)
-        EffImpulse = FMax(EffSlidePower * 0.5, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
+        EffImpulse = FMax(EffSlidePower * 0.25, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
         SlideVelocity += Normal(SlideVelocity) * EffImpulse;
 
 		LastFallingVelocity = vect(0,0,0); 
@@ -3679,14 +3679,17 @@ defaultproperties
 	//AirSpeed=270.000000
 	WalkingPct=0.900000
 	CrouchedPct=0.350000
-	JumpCrouchPenalty=0.15
-	JumpCrouchTime=0.30
+	JumpCrouchPenalty=0.350000 
+	JumpCrouchTime=0.300000 
 	//DodgeSpeedFactor=1.200000
 	//DodgeSpeedZ=190.000000
 
 	SlideFriction=1.100000
 	SlideCooldownTime=0.600000
 	SlidePower=350.000000
+	BackSlidePowerScale=0.60
+	BackMaxSlideSpeedScale=0.75
+	BackSlideDotThreshold=-0.25
 	SlideAnims(0)="SlideF"
 	SlideAnims(1)="SlideF"
 	SlideAnims(2)="SlideL"
@@ -3699,9 +3702,6 @@ defaultproperties
 	SlideEndAnims(1)="SlideFEnd"
 	SlideEndAnims(2)="SlideLEnd"
 	SlideEndAnims(3)="SlideRSEnd
-	BackSlidePowerScale=0.60
-	BackMaxSlideSpeedScale=0.75
-	BackSlideDotThreshold=-0.25
 
 	Begin Object Class=KarmaParamsSkel Name=PawnKParams
 		KConvulseSpacing=(Max=2.200000)
