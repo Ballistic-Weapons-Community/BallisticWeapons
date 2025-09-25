@@ -3513,7 +3513,8 @@ simulated function LoopSlideAnim()
     LoopName = SlideAnims[Get4WayDirection()];
     if (LoopName == '')
         return;
-
+	//if(Level.NetMode != NM_DedicatedServer) //Dedicated servers don't need to play animations
+	//	LoopAnim(LoopName,, 0.20);
     GetAnimParams(0, CurAnim, Frame, Rate);
     if (CurAnim != LoopName)
         SetAnimAction(LoopName);
@@ -3595,10 +3596,12 @@ simulated function HandleSliding(float DT)
 	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
 	if (VSize(SlideVelocity) > 0.1)
 		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
+	else
+		EndSlide();
+	if (VSize(SlideVelocity) > MaxSlideSpeed)
+		SlideVelocity = Normal(SlideVelocity) * MaxSlideSpeed;
     if (Role == ROLE_Authority || IsLocallyControlled())
         Velocity = SlideVelocity;
-	if (VSize(Velocity) > MaxSlideSpeed)
-		Velocity = Normal(Velocity) * MaxSlideSpeed;
 
 	RefreshSlideLoop();
 }
