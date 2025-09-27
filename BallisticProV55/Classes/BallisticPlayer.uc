@@ -57,6 +57,8 @@ var bool								bOverrideDmgFlash;
 // Fractional Parts of Pitch/Yaw Input
 var transient float PitchFraction, YawFraction;
 
+var array<Actor> PendingScreenBlood;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -137,6 +139,42 @@ simulated function RenderOverlays(Canvas C)
 	super.RenderOverlays(C);
 	if (bIsInWeaponUI)
 		DrawWeaponUI(C);
+    DrawPendingScreenBlood(C);
+}
+
+//YoYoBatty:
+//Draw any pending screen blood effects, essentially calls canvas drawactor, the same way inventory/weapons are drawn, so screen blood isn't in front of the weapon...
+simulated function DrawPendingScreenBlood(Canvas C)
+{
+    local int i;
+
+    if (PendingScreenBlood.Length == 0)
+        return;
+
+    for (i = PendingScreenBlood.Length - 1; i >= 0; i--)
+    {
+        if (PendingScreenBlood[i] == None || PendingScreenBlood[i].bDeleteMe)
+        {
+            PendingScreenBlood.Remove(i, 1);
+            continue;
+        }
+        C.DrawActor(PendingScreenBlood[i], false, false);
+    }
+}
+//This is called by BloodMan_Bullet when a hit is detected that should spawn screen blood
+simulated function DrawCanvasScreenBlood(class<Actor> SpawnClass, optional actor SpawnOwner, optional vector SpawnLocation, optional rotator SpawnRotation)
+{
+    local Actor E;
+
+    if (Level.NetMode == NM_DedicatedServer || SpawnClass == None)
+        return;
+
+    E = Spawn(SpawnClass, SpawnOwner, , SpawnLocation, SpawnRotation);
+    if (E != None)
+    {
+        E.bHidden = false;
+        PendingScreenBlood[PendingScreenBlood.Length] = E; // We add the screen blood actor to a list so we can draw it later
+    }
 }
 
 // Draw Weapon selection UI
