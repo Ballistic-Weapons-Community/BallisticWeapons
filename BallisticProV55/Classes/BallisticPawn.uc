@@ -888,6 +888,7 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 simulated event SetAnimAction(name NewAction)
 {
     local int i;
+
     if (!bWaitForAnim)
     {
 	    AnimAction = NewAction;
@@ -1033,34 +1034,26 @@ simulated event SetAnimAction(name NewAction)
                 FireState = FS_Ready;
             }
         }
-        // Handle sliding actions on CH0 (replicated via AnimAction)
-        // Matches entries in SlideStartAnims/SlideAnims/SlideEndAnims arrays
-        // so you don't have to hardcode names.
-        for (i = 0; i < 3; ++i)
+        for (i = 0; i < 4; ++i)
         {
-            if (NewAction == SlideStartAnims[i] && HasAnim(NewAction))
+            if (AnimAction == SlideStartAnims[i])
             {
-                // start segment – short blend, run once
-				AnimBlendToAlpha(1,0.0,0.05);
-                PlayAnim(NewAction, 2.0);
-                bSlideWaitingStart = true;
+                if (PlayAnim(AnimAction, 2.0))
+                	bSlideWaitingStart = true;
+				else bSlideWaitingStart = false;
                 return;
             }
-            if (NewAction == SlideAnims[i] && HasAnim(NewAction))
+            if (AnimAction == SlideAnims[i])
             {
-                // loop segment – maintain while sliding
                 bSlideWaitingStart = false;
-				AnimBlendToAlpha(1,0.0,0.05);
-                LoopAnim(NewAction,, 0.20);
+                LoopAnim(AnimAction,, 0.20);
                 return;
             }
-            if (NewAction == SlideEndAnims[i] && HasAnim(NewAction))
+            if (AnimAction == SlideEndAnims[i])
             {
-                // end segment – short blend, once
                 bSlideWaitingStart = false;
-                if (PlayAnim(NewAction, 2.0))
+                if (PlayAnim(AnimAction, 2.0))
                     bWaitForAnim = true;
-				AnimBlendToAlpha(1,0.0,0.05);
                 return;
             }
         }
@@ -3488,18 +3481,10 @@ simulated function StartSlide()
 		Sprinter.UpdateSpeed(2.5);
 
         Anim = SlideStartAnims[Get4WayDirection()];
-        if (Anim != '')
-        {
-            PlayAnim(Anim, 2.0);
-            bSlideWaitingStart = true;
-        }
-        else
-        {
-            bSlideWaitingStart = false;
-            LoopSlideAnim();
-        }
-        AnimAction = Anim;
-    }
+		if ( PlayAnim(Anim, 2.0) )
+			bWaitForAnim = true;
+		AnimAction = Anim;
+	}
 }
 
 simulated function LoopSlideAnim()
@@ -3513,8 +3498,6 @@ simulated function LoopSlideAnim()
     LoopName = SlideAnims[Get4WayDirection()];
     if (LoopName == '')
         return;
-	//if(Level.NetMode != NM_DedicatedServer) //Dedicated servers don't need to play animations
-	//	LoopAnim(LoopName,, 0.20);
     GetAnimParams(0, CurAnim, Frame, Rate);
     if (CurAnim != LoopName)
         SetAnimAction(LoopName);
@@ -3530,13 +3513,11 @@ simulated function EndSlide()
 {
 	local name Anim;
 
-    if (!bIsSliding && !bSlideWaitingStart)
+    if (!bIsSliding)
         return;
 
-    // Cancel waiting state
     bSlideWaitingStart = false;
-
-	if(!bIsCrouched && VSize(Velocity) < SlideStopSpeed + 50.0) //Play this if not crouched and below certain speed so it looks natural
+	if(!bIsCrouched) //Play this if not crouched and below certain speed so it looks natural
 	{
 		Anim = SlideEndAnims[Get4WayDirection()];
 		if ( PlayAnim(Anim, 2.0) )
@@ -3567,7 +3548,6 @@ simulated function TickSlopeCalculation(float DT)
 simulated function HandleSliding(float DT)
 {
 	local float DynamicFriction;
-	local name Anim;
 
 	CrouchedPct = 1.0; //Little hack so it doesn't mess with crouch speed/ground speed, etc...
 	GravityAlongSlope = -PhysicsVolume.Gravity.Z * Sin(SlopeAngleRad);
