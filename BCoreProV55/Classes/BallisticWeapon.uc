@@ -856,15 +856,15 @@ simulated function OnWeaponParamsChanged()
 		CockSelectAnimRate = 3.0; 
 		CockingBringUpTime = 0.1;
 	}
-	if (PlayerController(Instigator.Controller) != None)
-		bNeedCock						= WeaponParams.bNeedCock;
+	//if (PlayerController(InstigatorController) != None) //This somehow breaks it?
+		bNeedCock = WeaponParams.bNeedCock;
 
-    ZoomType                    = WeaponParams.ZoomType;
+    ZoomType = WeaponParams.ZoomType;
 
-	ScopeScale					= FMin(1f, WeaponParams.ScopeScale);
-	
-	bNoaltfire					= WeaponParams.bNoaltfire;
-	
+	ScopeScale = FMin(1f, WeaponParams.ScopeScale);
+
+	bNoaltfire = WeaponParams.bNoaltfire;
+
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
 			
