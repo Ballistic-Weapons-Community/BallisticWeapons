@@ -369,9 +369,11 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.205000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.205000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Cock')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Cock')
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipIn')
+	CockingBringUpTime=1.500000
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst of Three")

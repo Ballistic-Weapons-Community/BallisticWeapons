@@ -993,6 +993,7 @@ defaultproperties
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
 	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipIn')
@@ -1002,12 +1003,11 @@ defaultproperties
 	MeleeFireClass=Class'BallisticProV55.M50MeleeFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=158),StartSize1=84,StartSize2=82)
 	bNoCrosshairInScope=True
-	
+	CockingBringUpTime=1.200000
 	PlayerViewOffset=(X=6,Y=4.500000,Z=-4.5)
 	SightOffset=(X=-8,Y=0.08,Z=2.7)
 	SightPivot=(Pitch=200)
 	SightAnimScale=0.75
-
 	EffectOffset=(X=100,Z=7)
 	ParamsClasses(0)=Class'M50WeaponParamsComp'
 	ParamsClasses(1)=Class'M50WeaponParamsClassic'

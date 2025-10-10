@@ -31,7 +31,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SWC_Static.MDK.MDKPickupLo'
-     PickupDrawScale=0.100000
+     PickupDrawScale=0.525000
      InventoryType=Class'BWBP_SWC_Pro.MDKSubMachinegun'
      RespawnTime=20.000000
      PickupMessage="You picked up the MDK Modular SubMachine Gun."

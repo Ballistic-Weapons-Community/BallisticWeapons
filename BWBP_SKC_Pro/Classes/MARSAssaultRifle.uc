@@ -1096,9 +1096,10 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
 	WeaponModes(2)=(ModeName="Auto")
 	CurrentWeaponMode=2
-	
+	CockingBringUpTime=1.200000
 	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=24.000000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=24.000000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle',Volume=1.400000,Radius=24.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.400000,Radius=24.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagIn',Volume=1.400000,Radius=24.000000)
@@ -1121,7 +1122,6 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MARSSecondaryFire'
 	PutDownTime=0.700000
 	BringUpTime=0.330000
-	CockingBringUpTime=1.200000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.700000
 	CurrentRating=0.700000

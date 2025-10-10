@@ -403,6 +403,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
 	CockSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99Cock',Volume=1.500000)
+	CockSelectSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99Cock',Volume=1.500000)
 	ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BoltUp',Volume=1.200000)
 	BoltPullSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BoltPull',Volume=1.200000)
 	ClipInSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BulletInsert',Volume=1.500000)
@@ -433,10 +434,8 @@ defaultproperties
 	FireModeClass(0)=Class'BWBP_JCF_Pro.M99PrimaryFire'
 	FireModeClass(1)=Class'BWBP_JCF_Pro.M99DeployFire'
 	BringUpTime=1.000000
-	CockingBringUpTime=3.200000
-	//PutDownTime=2.200000
 	PutDownTime=0.800000
-	CockSelectAnim="PulloutFancy"
+	CockingBringUpTime=2.800000
 	SelectAnim="Pullout"
 	PutDownAnim="Putaway"
 	SelectForce="SwitchToAssaultRifle"

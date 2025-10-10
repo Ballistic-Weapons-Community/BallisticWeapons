@@ -332,6 +332,7 @@ defaultproperties
 	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway',Volume=0.270000)
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BWBP_APC_Sounds.RPK940.RPK-Bolt',Volume=1.500000)
+	 CockSelectSound=(Sound=Sound'BWBP_APC_Sounds.RPK940.RPK-Bolt',Volume=1.500000)
      ReloadAnim="ReloadStart"
      ReloadAnimRate=1.000000
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
@@ -351,7 +352,7 @@ defaultproperties
      SelectAnimRate=1.000000
      PutDownTime=0.550000
      BringUpTime=0.500000
-	 CockingBringUpTime=2.000000
+	 CockingBringUpTime=1.600000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.7500000
      CurrentRating=0.7500000

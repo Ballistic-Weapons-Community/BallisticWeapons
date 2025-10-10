@@ -720,6 +720,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout',Volume=0.215000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway',Volume=0.207000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Cock',Volume=2.000000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Cock',Volume=2.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagOut',Volume=2.400000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagIn',Volume=2.400000)
 	ClipInFrame=0.650000
@@ -747,7 +748,7 @@ defaultproperties
 	PutDownAnimRate=1.000000
 	PutDownTime=0.600000
 	BringUpTime=0.650000
-	CockingBringUpTime=1.300000
+	CockingBringUpTime=1.400000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.70000
 	CurrentRating=0.700000

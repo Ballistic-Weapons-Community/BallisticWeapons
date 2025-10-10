@@ -551,7 +551,6 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.LK05.BigIcon_LK05'
 	BigIconCoords=(Y1=36,Y2=225)
-	
 	bWT_Bullet=True
     bNetNotify=True
     bCockOnEmpty=False
@@ -559,6 +558,7 @@ defaultproperties
     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=0.223000)
     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=0.270000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-Cock',Volume=1.200000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-Cock',Volume=1.200000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagOut',Volume=1.400000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagIn',Volume=1.400000)
 	ClipInFrame=0.650000

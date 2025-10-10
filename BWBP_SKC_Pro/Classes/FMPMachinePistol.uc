@@ -349,9 +349,6 @@ defaultproperties
 	AmplifierBone2="Amplifier2"
 	AmplifierOnAnim="AmplifierOn"
 	AmplifierOffAnim="AmplifierOff"
-	CockSelectAnim="PulloutFancy"
-	CockSelectAnimRate=1.000000
-	CockingBringUpTime=1.500000
 	AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
 	AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
 	AmplifierPowerOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
@@ -366,6 +363,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Putaway',Volume=0.217000)
 	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Cock',Volume=1.400000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Cock',Volume=1.400000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagHit',Volume=1.400000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagOut',Volume=1.400000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagIn',Volume=1.400000)
@@ -375,7 +373,7 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Amplified: Incendiary",ModeID="WM_FullAuto",bUnavailable=True)
 	WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_FullAuto",bUnavailable=True)
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50In',Color1=(A=158),StartSize1=75,StartSize2=72)
-
+	CockingBringUpTime=1.300000
 	AIRating=0.8
 	CurrentRating=0.8
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FMPPrimaryFire'

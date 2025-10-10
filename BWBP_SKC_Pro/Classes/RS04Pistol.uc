@@ -506,6 +506,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.145000)
 	bShouldDualInLoadout=True
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock',Volume=1.100000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock',Volume=0.400000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock',Volume=0.400000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-StockOut',Volume=1.100000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-ClipIn',Volume=1.100000)
@@ -523,9 +524,7 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_SKC_Pro.RS04SecondaryFire'
 	PutDownTime=0.600000
 	BringUpTime=0.800000
-	CockingBringUpTime=1.200000
-	CockSelectAnim="PulloutFancy"
-	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock',Volume=0.400000)
+	CockingBringUpTime=0.900000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.400000
 	Description="RS04 .45 Compact||Manufacturer: Drake & Co Firearms|Primary: .45 Fire|Secondary: Flashlight||A brand new precision handgun designed by Drake & Co firearms, the Redstrom .45 is an advanced composite pistol currently undergoing military trials. Dubbed the RS04, this unique and accurate pistol is still in its prototype stages. The .45 HV rounds used in the RS04 prototype allow for much improved stopping power at the expense of clip capacity and recoil. Current features include a tactical flashlight and a quick loading double shot firemode. Currently undergoing combat testing by private military contractors, the 8-round Redstrom is seen frequently in the battlefields of corporate warfare. The RS04 .45 Compact model is the latest variant."
