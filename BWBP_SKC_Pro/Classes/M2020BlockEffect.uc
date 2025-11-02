@@ -182,6 +182,7 @@ defaultproperties
      Emitters(6)=SpriteEmitter'BWBP_SKC_Pro.M2020BlockEffect.SpriteEmitter2'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter14
+         Disabled=True
          FadeOut=True
          RespawnDeadParticles=False
          SpinParticles=True

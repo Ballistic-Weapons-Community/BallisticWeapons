@@ -70,6 +70,7 @@ defaultproperties
      Emitters(0)=MeshEmitter'BallisticProV55.RX22AFireHit.MeshEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter3
+         Disabled=True
          UseDirectionAs=PTDU_Up
          ProjectionNormal=(X=1.000000,Z=0.000000)
          UseColorScale=True

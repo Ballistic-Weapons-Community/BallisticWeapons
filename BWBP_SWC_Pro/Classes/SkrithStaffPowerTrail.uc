@@ -82,6 +82,7 @@ defaultproperties
      Emitters(4)=SpriteEmitter'BWBP_SWC_Pro.SkrithStaffPowerTrail.SpriteEmitter6'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter8
+         Disabled=True
          UseColorScale=True
          FadeOut=True
          FadeIn=True

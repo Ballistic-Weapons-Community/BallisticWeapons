@@ -154,6 +154,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'SpriteEmitter0'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter1
+         Disabled=True
          UseColorScale=True
          FadeOut=True
          FadeIn=True
