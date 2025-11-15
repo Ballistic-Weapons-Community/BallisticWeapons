@@ -95,6 +95,8 @@ state Hold
 
 simulated event ModeDoFire()
 {
+    if (bChargable && IsInState('Hold')) //Do this otherwise it breaks in MP - yoyobatty
+        GotoState('ChargeFire'); 
 	if (level.Netmode == NM_Standalone && bVariableHeatProps)
 	{
 		if (A49SkrithBlaster(BW).HeatLevel >= 5)
