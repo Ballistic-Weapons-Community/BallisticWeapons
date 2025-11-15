@@ -111,7 +111,6 @@ defaultproperties
          UseRegularSizeScale=False
          UniformSize=True
          UseRandomSubdivision=True
-	 UseColorScale=True
          ColorScale(0)=(Color=(G=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(G=255,A=255))
          ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
@@ -141,7 +140,7 @@ defaultproperties
          UseRegularSizeScale=False
          UniformSize=True
          Acceleration=(Z=-20.000000)
-	 UseColorScale=True
+	     UseColorScale=True
          ColorScale(0)=(Color=(B=34,G=130,R=35,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=34,G=99,R=35,A=255))
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.800000),Y=(Min=0.800000,Max=0.800000),Z=(Min=0.800000,Max=0.800000))
@@ -169,7 +168,7 @@ defaultproperties
          UseRegularSizeScale=False
          UniformSize=True
          Acceleration=(Z=-20.000000)
-	 UseColorScale=True
+	     UseColorScale=True
          ColorScale(0)=(Color=(B=34,G=130,R=35,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=34,G=99,R=35,A=255))
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.800000),Y=(Min=0.800000,Max=0.800000),Z=(Min=0.800000,Max=0.800000))
@@ -254,10 +253,9 @@ defaultproperties
          UseDirectionAs=PTDU_Normal
          ProjectionNormal=(X=-1.000000,Z=0.000000)
          UniformSize=True
-	 UseColorScale=True
          ColorScale(0)=(Color=(B=0,G=0,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=0,G=0,R=255,A=255))
-        // ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.300000,Max=0.300000))
+         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          DetailMode=DM_SuperHigh
@@ -273,10 +271,9 @@ defaultproperties
          UseDirectionAs=PTDU_Normal
          ProjectionNormal=(X=-1.000000,Z=0.000000)
          UniformSize=True
-	 UseColorScale=True
          ColorScale(0)=(Color=(B=0,G=0,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=0,G=0,R=255,A=255))
-         //ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.300000,Max=0.300000))
+         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          DetailMode=DM_SuperHigh
@@ -292,10 +289,9 @@ defaultproperties
          UseDirectionAs=PTDU_Normal
          ProjectionNormal=(X=-1.000000,Z=0.000000)
          UniformSize=True
-	 UseColorScale=True
          ColorScale(0)=(Color=(B=0,G=0,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=0,G=0,R=255,A=255))
-         //ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.300000,Max=0.300000))
+         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          DetailMode=DM_SuperHigh

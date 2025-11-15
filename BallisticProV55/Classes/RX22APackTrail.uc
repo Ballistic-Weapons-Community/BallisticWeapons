@@ -60,6 +60,7 @@ defaultproperties
      Emitters(0)=MeshEmitter'BallisticProV55.RX22APackTrail.MeshEmitter0'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter0
+         Disabled=True
          UseColorScale=True
          FadeOut=True
          FadeIn=True

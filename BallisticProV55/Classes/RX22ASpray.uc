@@ -194,6 +194,7 @@ defaultproperties
      Emitters(3)=SpriteEmitter'BallisticProV55.RX22ASpray.SpriteEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter2
+         Disabled=True
          UseCollision=True
          UseMaxCollisions=True
          UseColorScale=True
