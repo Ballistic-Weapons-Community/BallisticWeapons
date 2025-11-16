@@ -125,7 +125,7 @@ defaultproperties
      sl_Recoil=moSlider'sl_RecoilSlider'
 
      Begin Object Class=moSlider Name=sl_ReloadSlider
-         MaxValue=2.000000
+         MaxValue=3.000000
          MinValue=0.500000
          Caption="Reload Scale"
          OnCreateComponent=sl_RecoilSlider.InternalOnCreateComponent

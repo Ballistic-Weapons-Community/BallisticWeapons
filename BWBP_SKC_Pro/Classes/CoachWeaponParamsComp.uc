@@ -370,6 +370,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		//Function
+		bNeedCock=True
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.500000
 		PlayerJumpFactor=1.000000
@@ -402,6 +403,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		//Function
+		bNeedCock=True
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.500000
 		PlayerJumpFactor=1.000000
@@ -431,6 +433,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		//Function
+		bNeedCock=True
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.500000
 		PlayerJumpFactor=1.000000

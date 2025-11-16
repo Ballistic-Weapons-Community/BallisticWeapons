@@ -32,7 +32,6 @@ simulated function Initialize(Actor V)
 	{
 		Emitters[0].Disabled=true;
 		Emitters[1].Disabled=true;
-		Emitters[2].Disabled=true;
 		Emitters[3].Disabled=true;
 	}
 	SetBase(Victim);

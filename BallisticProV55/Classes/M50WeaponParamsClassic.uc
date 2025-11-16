@@ -239,7 +239,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//bNeedCock=True //Netcode issue, core gun needs fancydraw anim first
+		bNeedCock=True
 		ViewOffset=(X=9,Y=7.00,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -271,7 +271,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
-		//bNeedCock=True //Netcode issue, core gun needs fancydraw anim first
+		bNeedCock=True
 		ViewOffset=(X=9,Y=7.00,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -307,7 +307,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
-		//bNeedCock=True //Netcode issue, core gun needs fancydraw anim first
+		bNeedCock=True
 		ViewOffset=(X=9,Y=7.00,Z=-2)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

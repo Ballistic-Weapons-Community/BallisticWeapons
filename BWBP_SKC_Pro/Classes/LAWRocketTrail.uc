@@ -98,7 +98,7 @@ defaultproperties
          Opacity=0.130000
          FadeOutStartTime=0.990000
          FadeInEndTime=0.660000
-         MaxParticles=500
+         MaxParticles=350
          DetailMode=DM_SuperHigh
          SpinsPerSecondRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.300000)
@@ -127,7 +127,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.500000,Color=(B=120,G=120,R=120,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=100,G=100,R=100))
          Opacity=0.740000
-         MaxParticles=1000
+         MaxParticles=850
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Max=8.000000)
          SpinsPerSecondRange=(X=(Max=0.050000))

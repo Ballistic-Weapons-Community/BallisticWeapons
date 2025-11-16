@@ -228,14 +228,6 @@ function float SuggestDefenseStyle()
 
 // End AI Stuff =====
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
-	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
-}
-
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockAimed()
 {
@@ -286,7 +278,7 @@ defaultproperties
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=1.100000
 	BringUpTime=1.400000
-	CockingBringUpTime=3.000000
+	CockingBringUpTime=2.200000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763LoadShell1')
 	ClipInFrame=0.375000
 	bCockOnEmpty=True

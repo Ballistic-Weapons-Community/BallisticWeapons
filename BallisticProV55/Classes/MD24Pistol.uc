@@ -414,6 +414,7 @@ defaultproperties
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipHit',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipOut',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipIn',Volume=0.800000)
+	CockingBringUpTime=1.000000
 	ClipInFrame=0.580000
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
@@ -421,7 +422,7 @@ defaultproperties
 	//SightFXClass=Class'BallisticProV55.MD24SightLED'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=140),Color2=(G=0,A=162),StartSize1=76,StartSize2=101)
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
-    
+    bCockOnEmpty=True
 	bNoCrosshairInScope=True
 	ParamsClasses(0)=Class'MD24WeaponParamsComp'
 	ParamsClasses(1)=Class'MD24WeaponParamsClassic'

@@ -35,14 +35,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	BringUpTime = default.BringUpTime;
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 simulated function float ChargeBar()
 {
 	if (level.TimeSeconds >= FireMode[1].NextFireTime)
@@ -112,6 +104,8 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
+	CockingBringUpTime=1.200000
 	CurrentWeaponMode=0
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	Description="Maramu Tek might've joined the war against the Skrith late, but their arrival couldn't have come at a better time after the Cryon attack on Neo York.  The situation of having tough armored warriors in an urban situation full of civilians was tough and delicate, if it weren't for Maramu Tek's first offering of the HB4 Grenade Blaster, things would've gone awry very fast. Firing compact stun bolts akin to the Electrobolts that MK781 fires, they disabled the Cyron's intricate wiring systems quickly, and the flash temporarily scrambled their visual processing units, making it handy to have. Neo York was saved while the HB4 went on to perform in situations similar to the Cryon crisis."

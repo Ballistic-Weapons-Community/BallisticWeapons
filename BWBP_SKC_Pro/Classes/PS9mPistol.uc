@@ -151,7 +151,7 @@ simulated function LoadGrenade()
 	if (Ammo[1].AmmoAmount < 1 || bLoaded)
 		return;
 	if (ReloadState == RS_None)
-		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
 	if (Othergun != None)
 	{
 		if (Othergun.Clientstate != WS_ReadyToFire)
@@ -327,16 +327,6 @@ function float SuggestAttackStyle()	{	return 0.8;	}
 function float SuggestDefenseStyle()	{	return -0.8;	}
 // End AI Stuff =================================
 
-
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
-// =============================================
 
 defaultproperties
 {

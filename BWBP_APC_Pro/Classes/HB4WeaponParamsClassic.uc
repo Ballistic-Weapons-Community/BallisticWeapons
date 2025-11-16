@@ -85,6 +85,7 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=12.000000,Z=-10.000000)
 		SightOffset=(X=10.000000,Y=-5.515000,Z=10.420000)
 		DisplaceDurationMult=1
+		bNeedCock=True
 		MagAmmo=3
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'

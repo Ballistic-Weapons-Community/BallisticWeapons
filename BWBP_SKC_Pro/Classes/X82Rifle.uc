@@ -360,6 +360,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff',Volume=0.210000)
 	CockAnimPostReload="Cock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Out',Volume=1.500000)
 	ClipInFrame=0.850000
@@ -387,6 +388,7 @@ defaultproperties
 	IdleAnimRate=0.040000
 	SelectAnimRate=0.500000
 	PutDownAnimRate=0.800000
+	CockingBringUpTime=1.800000
 	PutDownTime=1.400000
 	BringUpTime=1.200000
 	SelectForce="SwitchToAssaultRifle"
@@ -400,7 +402,6 @@ defaultproperties
 	InventoryGroup=9
 	GroupOffset=5
 	PickupClass=Class'BWBP_SKC_Pro.X82Pickup'
-	CockingBringUpTime=1.800000
 	PlayerViewOffset=(X=4.00,Y=4.50,Z=-5.00)
 	SightOffset=(X=5.00,Y=-0.50,Z=4.25)
 	SightPivot=(Roll=-1024)

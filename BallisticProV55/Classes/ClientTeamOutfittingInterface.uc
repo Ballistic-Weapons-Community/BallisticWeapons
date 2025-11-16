@@ -416,7 +416,6 @@ simulated function ReceiveWeapon (string WeaponName, byte RedBoxes, byte BlueBox
 	if (bTerminate)
     {
         SortLists();
-
 		bWeaponsReady = true;
     }
 }
@@ -438,7 +437,6 @@ function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo
 simulated function SortLists()
 {
     local int team, group_index;
-
     for (team = 0; team < 2; ++team)
     {
         for (group_index = 0; group_index < 5; ++group_index)
@@ -502,7 +500,6 @@ simulated function SortList(byte group_index, byte team)
             }
 
 		}
-
         else 
             Log("ClientTeamOutfittingInterface: Failed to load "$ GetGroupItemForTeam(group_index, team, i) $" from cache");
 	}

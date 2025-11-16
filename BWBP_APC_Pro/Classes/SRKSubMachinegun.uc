@@ -142,7 +142,7 @@ simulated function LoadGrenade()
 	if (Ammo[1].AmmoAmount < 1 || bLoaded)
 		return;
 	if (ReloadState == RS_None)
-		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.25, , 0);
 }
 
 // Notifys for greande loading sounds

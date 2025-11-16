@@ -311,6 +311,7 @@ var() float 				ScopeXScale;			// Corrects for legacy scopes made for full-scree
 var() float					ScopeScale;				// General scaler for scope texture draw
 var() name					ZoomInAnim;				// Anim to play for raising weapon to view through Scope or sights
 var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
+var() globalconfig float 	ZoomTimeMod;			// Multiplier for sighting/zooming
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
 var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
 var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view. Default property setting is now ignored.
@@ -557,6 +558,8 @@ simulated function PostBeginPlay()
 	CreateAimComponent();
 
 	OnMeshChanged();
+	
+
 
 	if (bUseBigIcon)
 	{
@@ -668,6 +671,7 @@ simulated function PostNetBeginPlay()
     bDeferInitialSwitch = bServerDeferInitialSwitch;
 
 	SightBobScale *= class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
+
 }
 
 simulated function CheckSetBurstMode()
@@ -817,8 +821,8 @@ simulated function OnWeaponParamsChanged()
 	
     assert(WeaponParams != None);
 
-	SightingTime 				= WeaponParams.SightingTime;
-	//default.SightingTime 		= WeaponParams.SightingTime;
+	SightingTime 				= WeaponParams.SightingTime / ZoomTimeMod;
+	//default.SightingTime 		= WeaponParams.SightingTime / ZoomTimeMod;
 
 	MagAmmo 					= WeaponParams.MagAmmo;
 	default.MagAmmo				= WeaponParams.MagAmmo;
@@ -836,19 +840,31 @@ simulated function OnWeaponParamsChanged()
 	//default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
 	ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 	default.ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
-	
-	CockAnimRate 					= WeaponParams.CockAnimRate;
-	default.CockAnimRate				= WeaponParams.CockAnimRate;
-	
-	if (PlayerController(Instigator.Controller) != None)
-		bNeedCock						= WeaponParams.bNeedCock;
 
-    ZoomType                    = WeaponParams.ZoomType;
+	StartShovelAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
+	EndShovelAnimRate *= class'BallisticReplicationInfo'.default.ReloadScale;
 
-	ScopeScale					= FMin(1f, WeaponParams.ScopeScale);
-	
-	bNoaltfire					= WeaponParams.bNoaltfire;
-	
+	CockAnimRate = WeaponParams.CockAnimRate;
+	default.CockAnimRate = WeaponParams.CockAnimRate;
+
+	if (Level.GRI != None && Level.GRI.bFastWeaponSwitching)
+	{
+		BringUpTime = 0.1;
+		default.BringUpTime = 0.1;
+		PutDownTime = 0.1;
+		default.PutDownTime = 0.1;
+		CockSelectAnimRate = 3.0; 
+		CockingBringUpTime = 0.1;
+	}
+	//if (PlayerController(InstigatorController) != None) //This somehow breaks it?
+		bNeedCock = WeaponParams.bNeedCock;
+
+    ZoomType = WeaponParams.ZoomType;
+
+	ScopeScale = FMin(1f, WeaponParams.ScopeScale);
+
+	bNoaltfire = WeaponParams.bNoaltfire;
+
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
 			
@@ -1194,6 +1210,7 @@ simulated event AnimEnd (int Channel)
 
 simulated function float GetModifiedJumpZ(Pawn P)
 {
+	//log("GetModifiedJumpZ: " $ P.JumpZ * PlayerJumpFactor);
 	return P.JumpZ * PlayerJumpFactor;
 }
 
@@ -1294,8 +1311,13 @@ simulated event WeaponTick(float DT)
 
 	AimComponent.UpdateDisplacements(DT);
 
-	TickSighting(DT);
+	if(AIController(Instigator.Controller) == None)
+		TickSighting(DT);
 	TickFireCounter(DT);
+
+	// Ensure SprintControl is linked
+    if (SprintControl == None)
+        LinkSprintControl();
 	
 	//FIXME. This shouldn't be necessary at all.
 	if (bPreventReload && !IsFiring())
@@ -1556,13 +1578,21 @@ simulated function PlayShovelLoop()
 
 simulated function PlayCocking(optional byte Type)
 {
-	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
-	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
+    local float AdjustedCockAnimRate;
 
-	if (SightingState != SS_None)
-		TemporaryScopeDown(default.SightingTime);
+    // Adjust cock animation rate only during reloading
+    if (ReloadState != RS_None && ReloadState != RS_Cocking)
+        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
+    else
+        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
+
+    if (Type == 2 && HasAnim(CockAnimPostReload))
+        SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, 0.2, , "RELOAD");
+    else
+        SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
+
+    if (SightingState != SS_None)
+        TemporaryScopeDown(default.SightingTime);
 }
 
 //================================================================================
@@ -1925,7 +1955,7 @@ simulated final function StopScopeView(optional bool bNoAnim)
 simulated function PlayScopeDown(optional bool bNoAnim)
 {
 	if (!bNoAnim && HasAnim(ZoomOutAnim))
-	    SafePlayAnim(ZoomOutAnim, 1.0);
+	    SafePlayAnim(ZoomOutAnim, ZoomTimeMod);
 	else if (SightingState == SS_Active || SightingState == SS_Raising)
 		SightingState = SS_Lowering;
 
@@ -1939,7 +1969,7 @@ simulated function PlayScopeDown(optional bool bNoAnim)
 simulated function PlayScopeUp()
 {
 	if (HasAnim(ZoomInAnim))
-	    SafePlayAnim(ZoomInAnim, 1.0);
+	    SafePlayAnim(ZoomInAnim, ZoomTimeMod);
 	else
 		SightingState = SS_Raising;
 	if(ZoomType == ZT_Irons)
@@ -2106,6 +2136,9 @@ simulated function StartScopeZoom()
 
 	if (ZoomInSound.Sound != None)	
 		class'BUtil'.static.PlayFullSound(self, ZoomInSound);
+
+	if(!CanUseSights())
+		return;
 
     PlayerZoom(PC);
 }
@@ -2534,6 +2567,9 @@ simulated function PositionSights()
 
 	//bots can't use sights
 	PC=PlayerController(InstigatorController);
+
+	if (PC == None)
+		return;
 
 	if (SightBone != '')
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
@@ -3331,7 +3367,7 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	local int mode, i;
-	
+
 	// Set ambient sound when gun is held
 	if (UsedAmbientSound != None)
 		AmbientSound = UsedAmbientSound;
@@ -3356,7 +3392,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (PlayerSpeedFactor != default.PlayerSpeedFactor)
 		PlayerSpeedFactor = default.PlayerSpeedFactor;
 
-	LinkSprintControl();
+	//LinkSprintControl();
 
 	AimComponent.OnWeaponSelected();
 
@@ -3425,9 +3461,9 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		BringUpTime = CockingBringUpTime;
 	else BringUpTime = default.BringUpTime;
 	
-    if (!IsInState('PendingClientWeaponSet'))
-    	SetTimer(BringUpTime, false);
-    else bPendingBringupTimer = True;
+	if (!IsInState('PendingClientWeaponSet'))
+		SetTimer(BringUpTime, false);
+	else bPendingBringupTimer = True;
 		
     for (Mode = 0; Mode < NUM_FIRE_MODES; Mode++)
 	{
@@ -3443,6 +3479,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		OldWeapon = PrevWeapon;
 	else
 		OldWeapon = None;
+
 }
 
 //Azarael - Anti TCC compatible weapon zoom.
@@ -3491,8 +3528,8 @@ simulated function bool PutDown()
 			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
 		if (PutDownSound.Sound != None)
 			class'BUtil'.static.PlayFullSound(self, PutDownSound);
-        SetTimer(PutDownTime, false);
-    }
+		SetTimer(PutDownTime, false);
+	}
     for (Mode = 0; Mode < NUM_FIRE_MODES; Mode++)
     {
 		if (FireMode[Mode]==None)
@@ -3506,7 +3543,7 @@ simulated function bool PutDown()
     
     if(PlayerController(Instigator.Controller) != None)
 		PlayerController(Instigator.Controller).bZooming = False;
-		
+
     return true; // return false if preventing weapon switch
 }
 
@@ -3639,7 +3676,7 @@ function bool CanAttack(Actor Other)
 	}
 
 	// Skilled bots can conserve ammo by not firing when the spread is too high
-	if ((Rand(6) < AIController(Instigator.Controller).Skill) && !RcComponent.BotShouldFire(Dist) )
+	if (AIController(Instigator.Controller) != None && (Rand(6) < AIController(Instigator.Controller).Skill) && !RcComponent.BotShouldFire(Dist) )
 		return false;
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
@@ -3984,6 +4021,7 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
             Instigator.Weapon.PutDown();
         }
     }
+
 }
 
 state PendingClientWeaponSet
@@ -5720,6 +5758,7 @@ defaultproperties
 	 MagAmmo=30
 	 
 	 CockAnim="Cock"
+	 CockAnimPostReload="ReloadEndCock"
 	 CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
 	 CockSelectAnimRate=1.000000
@@ -5770,6 +5809,7 @@ defaultproperties
      MaxZoom=2.000000
      ZoomStages=2
 	 SightBobScale=0.15f
+	 ZoomTimeMod=1.000000
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
      MagEmptyColor=(B=50,G=50,R=255,A=150)

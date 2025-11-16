@@ -204,14 +204,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 simulated function PlayIdle()
 {
 	super.PlayIdle();
@@ -488,6 +480,7 @@ defaultproperties
 	MagAmmo=7
 	AltMagAmmo=50
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Cock',Volume=0.800000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Cock',Volume=0.800000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-ClipOut',Volume=0.800000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-ClipIn',Volume=0.800000)

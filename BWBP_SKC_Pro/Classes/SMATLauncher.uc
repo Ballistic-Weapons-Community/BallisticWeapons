@@ -172,6 +172,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy',Volume=0.210000)
 	MagAmmo=1
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ReloadAnim="ReloadFancy"
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Cycle',Volume=1.100000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-RocketIn',Volume=1.600000)
@@ -183,7 +184,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-
+	CockingBringUpTime=2.800000
 	ScopeViewTex=Texture'BWBP_SKC_Tex.SMAA.SMATAAScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

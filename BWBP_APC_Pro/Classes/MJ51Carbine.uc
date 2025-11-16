@@ -177,7 +177,7 @@ simulated function LoadGrenade()
 	if (ReloadState == RS_None)
 	{
 		ReloadState = RS_GearSwitch;
-		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
 	}
 }
 
@@ -346,9 +346,11 @@ defaultproperties
      SightOffset=(X=0.0000000,Y=-6.4500000,Z=20.5000000)
 	 SightBobScale=0.200000
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=1.800000)
+	 CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=1.800000)
      //ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=1.800000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagOut',Volume=1.800000)
 	 ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=1.800000)
+	 CockingBringUpTime=1.200000
      ClipInFrame=0.650000
      LongGunOffset=(X=10.000000)
      bWT_Bullet=True
@@ -359,7 +361,6 @@ defaultproperties
      IdleAnimRate=0.200000
      PutDownTime=0.700000
      BringUpTime=0.900000
-	 CockingBringUpTime=2.000000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000

@@ -99,6 +99,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=False)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		InitialWeaponMode=1
+		bNeedCock=True
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		MagAmmo=30
@@ -119,6 +120,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=False)
 		WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=1
+		bNeedCock=True
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		MagAmmo=30

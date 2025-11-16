@@ -168,6 +168,7 @@ defaultproperties
     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout',Volume=0.220000)
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway',Volume=0.260000)
     CockSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-Cock',Volume=1.400000)
+    CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-Cock',Volume=1.400000)
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagOut',Volume=1.300000)
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagIn',Volume=1.300000)
     WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
@@ -188,7 +189,7 @@ defaultproperties
     PutDownAnimRate=1.600000
     PutDownTime=0.350000
     BringUpTime=0.600000
-	CockingBringUpTime=2.000000
+	CockingBringUpTime=1.800000
     AIRating=0.850000
     CurrentRating=0.850000
     Description="The SK-410 shotgun is a large-bore, compact shotgun based off the popular AK-490 design. While it is illegal on several major planets, this powerful weapon and its signature explosive shotgun shells are almost ubiquitous. A weapon originally designed for breaching use, the SK-410 is now found in the hands of civillians and terrorists throughout the worlds. It had become so prolific with outer colony terrorist groups that the UTC began the SKAS assault weapon program in an effort to find a powerful shotgun of their own."

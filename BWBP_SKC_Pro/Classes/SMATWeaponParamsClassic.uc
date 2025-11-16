@@ -156,7 +156,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_AT
 		LayoutName="HEDP Warhead"
 		Weight=30
-		
+		bNeedCock=True
 		PlayerSpeedFactor=0.800000
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -175,7 +175,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_ICE
 		LayoutName="CRYO Warhead"
 		Weight=10
-		
+		bNeedCock=True
 		PlayerSpeedFactor=0.800000
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000

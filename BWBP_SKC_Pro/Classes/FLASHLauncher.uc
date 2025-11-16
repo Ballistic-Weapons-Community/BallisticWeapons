@@ -175,6 +175,7 @@ defaultproperties
     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=0.223000)
     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=0.270000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Flash.FLASH-PullOut',Volume=1.100000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Flash.FLASH-Insert',Volume=1.100000)
 	bNonCocking=True
@@ -198,6 +199,7 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
     NDCrosshairChaosFactor=0.750000
 	ScopeXScale=1.3333333
+	CockingBringUpTime=2.400000
 	PutDownTime=1.400000
 	BringUpTime=1.500000
 	SelectForce="SwitchToAssaultRifle"

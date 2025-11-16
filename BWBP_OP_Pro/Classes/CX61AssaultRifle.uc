@@ -270,8 +270,9 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.210000) 
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.208000)
-	CockAnimPostReload="ReloadEndCock"
+	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Cock')
+	CockSelectSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Cock')
 	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagOut')
 	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
 	ClipInFrame=0.650000
@@ -296,7 +297,7 @@ defaultproperties
 	PutDownAnimRate=1.800000
 	PutDownTime=0.400000
 	BringUpTime=0.400000
-	CockingBringUpTime=1.100000
+	CockingBringUpTime=1.500000
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="Cimerion Labs' CX61 Tactical Rifle was engineered as a reliable primary weapon for use by medical personnel. Incorporating a nano-forge capable of producing G28 aerosol for projection by the weapon, it is able to choose between projecting healing spray or igniting the G28 gas in order to emit a blast of flame to disorient foes."
