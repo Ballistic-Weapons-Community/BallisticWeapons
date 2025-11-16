@@ -30,7 +30,6 @@ simulated function PostBeginPlay()
 	{
 		Emitters[0].Disabled=true;
 		Emitters[1].Disabled=true;
-		Emitters[2].Disabled=true;
 	}
 }
 

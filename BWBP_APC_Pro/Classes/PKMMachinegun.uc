@@ -110,7 +110,7 @@ simulated function ClientStartReload(optional byte i)
 		}
 		else
 		{
-			log('CommonYes');
+			//log('CommonYes');
 			CommonStartReload(i);
 		}
 	}

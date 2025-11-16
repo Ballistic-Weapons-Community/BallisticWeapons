@@ -36,6 +36,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
 }
+
 simulated function PostBeginPlay()
 {
 	SetBoneRotation('tip', rot(0,0,8192));
@@ -221,7 +222,7 @@ simulated function SwitchStock(bool bNewValue)
 	if (bNewValue == bStockOpen)
 		return;
 
-	Log("Fifty9 SwitchStock: Stock open: "$bStockOpen);
+	//Log("Fifty9 SwitchStock: Stock open: "$bStockOpen);
 	
 	if (Role == ROLE_Authority)
 		bServerReloading = True;

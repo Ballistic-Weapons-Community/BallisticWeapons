@@ -206,7 +206,7 @@ simulated function SwitchStock(bool bNewValue)
 	//if (bNewValue == bStockExtended)
 	//	return;
 
-	Log("SAR SwitchStock: Stock open: "$bStockExtended);
+	//Log("SAR SwitchStock: Stock open: "$bStockExtended);
 	
 	if (Role == ROLE_Authority)
 		bServerReloading = True;
