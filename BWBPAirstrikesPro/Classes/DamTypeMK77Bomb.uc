@@ -1,4 +1,4 @@
-class DamTypeMK77 extends DT_BWFire
+class DamTypeMK77Bomb extends DT_BWFire
 	abstract;
 
 defaultproperties

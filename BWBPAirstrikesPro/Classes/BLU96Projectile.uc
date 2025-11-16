@@ -318,7 +318,7 @@ defaultproperties
      Damage=300.000000
      DamageRadius=4096.000000
      MomentumTransfer=10000.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeW54'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeW54Bomb'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=28

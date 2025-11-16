@@ -393,7 +393,7 @@ defaultproperties
      Damage=200.000000
      DamageRadius=2048.000000
      MomentumTransfer=1.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeGBU38'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeGBU38Bomb'
      ExplosionDecal=Class'BWBPAirstrikesPro.GBU38BlastMark'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

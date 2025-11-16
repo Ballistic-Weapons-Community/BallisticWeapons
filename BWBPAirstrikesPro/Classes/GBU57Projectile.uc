@@ -30,7 +30,6 @@ simulated function Destroyed()
 	if ( SmokeTrail != None )
 		SmokeTrail.Destroy();
 		
-	if (PowerNode != None)
 		PowerNode.PowerCoreDestroyed();
 	Super.Destroyed();
 }
@@ -210,7 +209,7 @@ defaultproperties
      Damage=500.000000
      DamageRadius=1536.000000
      MomentumTransfer=1.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeGBU57'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeGBU57Bomb'
      ExplosionDecal=Class'BWBPAirstrikesPro.GBU57BlastMark'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

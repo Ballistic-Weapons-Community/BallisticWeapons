@@ -1,4 +1,4 @@
-class DamTypeGBU38 extends DT_BWExplode
+class DamTypeGBU38Bomb extends DT_BWExplode
 	abstract;
 
 defaultproperties

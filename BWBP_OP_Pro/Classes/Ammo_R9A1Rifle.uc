@@ -1,4 +1,4 @@
-class Ammo_R9A1 extends BallisticAmmo;
+class Ammo_R9A1Rifle extends BallisticAmmo;
 
 defaultproperties
 {

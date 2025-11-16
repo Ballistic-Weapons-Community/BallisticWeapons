@@ -212,7 +212,7 @@ defaultproperties
      Damage=140.000000
      DamageRadius=300.000000
      MomentumTransfer=50000.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeW54'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeW54Bomb'
      ExplosionDecal=Class'Onslaught.ONSRocketScorch'
      bScriptPostRender=True
      DrawType=DT_StaticMesh

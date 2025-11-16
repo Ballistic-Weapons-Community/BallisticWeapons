@@ -1,4 +1,4 @@
-class DamTypeMC1 extends DT_BWMiscDamage
+class DamTypeMC1Bomb extends DT_BWMiscDamage
 	abstract;
 
 defaultproperties

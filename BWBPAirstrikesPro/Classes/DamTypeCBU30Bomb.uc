@@ -1,4 +1,4 @@
-class DamTypeCBU30 extends DT_BWMiscDamage
+class DamTypeCBU30Bomb extends DT_BWMiscDamage
 	abstract;
 
 defaultproperties

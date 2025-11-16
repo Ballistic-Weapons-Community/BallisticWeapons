@@ -47,9 +47,8 @@ function InitializeConfigTab()
 {
 	local int i, j;
 	local array<CacheManager.WeaponRecord> Recs;
-	local string s;
 	local int Index[12];
-	local bool OtherLoaded, MiscLoaded;
+	local bool MiscLoaded;
     local BC_WeaponInfoCache.WeaponInfo WI, TempItemName;
     local array<String> PresetNames;
     local array<BC_WeaponInfoCache.WeaponInfo> TempItemNameList;
@@ -167,7 +166,7 @@ function InternalOnChange(GUIComponent Sender)
 //===========================================================================
 function SectionCheck (bool bChecked, int Index)
 {
-	local int i, j;
+	local int j;
 	for (j=Index+1;j<lb_NewWeapons.CheckList.Elements.length;j++)
 	{
 		if (lb_NewWeapons.CheckList.Elements[j].bSection)
@@ -185,9 +184,6 @@ function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i;
 	local String s;
-	local int LastCheck;
-	local byte LastColumn;
-
 
 	// Replacement weapons list
 	if (Sender == lb_NewWeapons.CheckList)

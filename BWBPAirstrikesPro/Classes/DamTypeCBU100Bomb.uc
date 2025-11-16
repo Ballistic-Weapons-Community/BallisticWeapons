@@ -1,4 +1,4 @@
-class DamTypeCBU100 extends DT_BWExplode
+class DamTypeCBU100Bomb extends DT_BWExplode
 	abstract;
 
 static function GetHitEffects(out class<xEmitter> HitEffects[4], int VictimHealth )

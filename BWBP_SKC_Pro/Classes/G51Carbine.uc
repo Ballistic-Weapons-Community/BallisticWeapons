@@ -411,7 +411,6 @@ simulated function UpdatePawnList()
 simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
-	local M58Cloud Other;
 	local int i, j;
 	local float Dist, DotP;//, OtherRatio;
 	local Array<Material>	OldSkins;
@@ -421,8 +420,6 @@ simulated event DrawThermalMode (Canvas C)
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
 	
-	local Vector					HitLocation, HitNormal;
-
 	C.Style = ERenderStyle.STY_Modulated;
 	
 	// Draw Spinning Sweeper thing

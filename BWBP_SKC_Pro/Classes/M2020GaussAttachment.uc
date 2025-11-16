@@ -125,7 +125,6 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	local BCTraceEmitter Tracer;
 	local Vector TipLoc, WLoc, WNorm;
 	local float Dist;
-	local bool bThisShot;
 
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;

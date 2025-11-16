@@ -3684,7 +3684,7 @@ defaultproperties
 	SlideEndAnims(0)="SlideFEnd"
 	SlideEndAnims(1)="SlideFEnd"
 	SlideEndAnims(2)="SlideLEnd"
-	SlideEndAnims(3)="SlideRSEnd
+	SlideEndAnims(3)="SlideRSEnd"
 
 	Begin Object Class=KarmaParamsSkel Name=PawnKParams
 		KConvulseSpacing=(Max=2.200000)
