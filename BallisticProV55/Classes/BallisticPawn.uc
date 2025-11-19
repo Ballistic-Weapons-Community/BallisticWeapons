@@ -3674,17 +3674,17 @@ defaultproperties
 	BackMaxSlideSpeedScale=0.75
 	BackSlideDotThreshold=-0.25
 	SlideAnims(0)="SlideF"
-	SlideAnims(1)="SlideF"
-	SlideAnims(2)="SlideL"
-	SlideAnims(3)="SlideR"
+	SlideAnims(1)="SlideL"
+	SlideAnims(2)="SlideR"
+	SlideAnims(3)="SlideB"
 	SlideStartAnims(0)="SlideFStart"
-	SlideStartAnims(1)="SlideFStart"
-	SlideStartAnims(2)="SlideLStart"
-	SlideStartAnims(3)="SlideRStart"
+	SlideStartAnims(1)="SlideLStart"
+	SlideStartAnims(2)="SlideRStart"
+	SlideStartAnims(3)="SlideBStart"
 	SlideEndAnims(0)="SlideFEnd"
-	SlideEndAnims(1)="SlideFEnd"
-	SlideEndAnims(2)="SlideLEnd"
-	SlideEndAnims(3)="SlideRSEnd"
+	SlideEndAnims(1)="SlideLEnd"
+	SlideEndAnims(2)="SlideREnd"
+	SlideEndAnims(3)="SlideBEnd"
 
 	Begin Object Class=KarmaParamsSkel Name=PawnKParams
 		KConvulseSpacing=(Max=2.200000)
