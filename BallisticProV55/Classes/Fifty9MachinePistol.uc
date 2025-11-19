@@ -201,7 +201,7 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 //
 // Increase accuracy by extending stock
 //======================================================================
-
+/* 
 exec simulated function WeaponSpecial(optional byte i)
 {
 
@@ -216,6 +216,14 @@ exec simulated function WeaponSpecial(optional byte i)
 	if (!bStockLocked)
 		SwitchStock(!bStockOpen);
 }
+*/
+function ServerWeaponSpecial(optional byte i)
+{
+	if (!bHasLaser || bServerReloading)
+		return;
+	ServerSwitchLaser(!bLaserOn);
+}
+
 
 simulated function SwitchStock(bool bNewValue)
 {
@@ -265,7 +273,7 @@ simulated function ApplyStockAim()
 		RcComponent.YRandFactor			*= 0.8;
 		RcComponent.CrouchMultiplier 	*= 0.8;
 		
-		SightingTime = 0.3f; // awkward to sight
+		SightingTime = default.SightingTime * 1.5;
 		SightBobScale = 0.15f * class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
 	}
 	else
