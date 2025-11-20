@@ -126,7 +126,13 @@ simulated state Scope
 	{
 		if (BW.bScopeView && BW.ReloadState == RS_Cocking)
 			return true;
-		return super.CheckReloading();
+		if (BW.MeleeState > MS_Pending)
+			return false;
+		if (BW.ReloadState == RS_Cocking && !bIgnoreCocking)
+			return false;
+		if ((BW.ReloadState != RS_None || BW.bServerReloading))
+			return false;		// Is weapon busy reloading
+		return true;
 	}
 
 	// Send sight key release event to weapon

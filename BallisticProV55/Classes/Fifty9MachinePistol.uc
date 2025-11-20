@@ -219,9 +219,14 @@ exec simulated function WeaponSpecial(optional byte i)
 */
 function ServerWeaponSpecial(optional byte i)
 {
-	if (!bHasLaser || bServerReloading)
+	if (bServerReloading)
 		return;
-	ServerSwitchLaser(!bLaserOn);
+		
+	if (bHasLaser)	
+		ServerSwitchLaser(!bLaserOn);
+	
+	if (!bStockLocked)
+		SwitchStock(!bStockOpen);
 }
 
 
