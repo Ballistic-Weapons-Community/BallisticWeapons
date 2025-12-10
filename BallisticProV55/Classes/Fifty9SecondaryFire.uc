@@ -45,6 +45,9 @@ function DoFireEffect()
 
 simulated event ModeDoFire()
 {
+	if (!AllowFire())
+		return;
+
 	FireAnim = SliceAnims[SliceAnim];
 	SliceAnim++;
 	if (SliceAnim >= SliceAnims.Length)
@@ -126,7 +129,13 @@ simulated state Scope
 	{
 		if (BW.bScopeView && BW.ReloadState == RS_Cocking)
 			return true;
-		return super.CheckReloading();
+		if (BW.MeleeState > MS_Pending)
+			return false;
+		if (BW.ReloadState == RS_Cocking && !bIgnoreCocking)
+			return false;
+		if ((BW.ReloadState != RS_None || BW.bServerReloading))
+			return false;		// Is weapon busy reloading
+		return true;
 	}
 
 	// Send sight key release event to weapon

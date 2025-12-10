@@ -324,7 +324,7 @@ simulated function SetScopeProperties()
 	if (bScopeOn)
 	{
 		ZoomType = ZT_Fixed;
-		SightingTime = 0.6;
+		SightingTime = default.SightingTime * 1.33;
 		ScopeViewTex = ScopeScopeViewTex;
 		MaxZoom=2;
 	}

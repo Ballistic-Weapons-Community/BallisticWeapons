@@ -287,7 +287,7 @@ simulated function ScopeViewTwo()
 				SightOffset = ScopeSightOffset;
 				ZoomType = ZT_Fixed;
 				MaxZoom = 4;
-				SightingTime = 0.4;
+				//SightingTime = 0.4;
 			}
 		}
 	}

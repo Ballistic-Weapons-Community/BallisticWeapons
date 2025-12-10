@@ -804,7 +804,7 @@ simulated function ScopeViewTwo()
 			SightPivot = ScopeSightPivot;
 			SightOffset = ScopeSightOffset;
 			ZoomType = ZT_Fixed;
-			SightingTime = 0.4;
+			//SightingTime = 0.4;
 		}
 	}
 	
