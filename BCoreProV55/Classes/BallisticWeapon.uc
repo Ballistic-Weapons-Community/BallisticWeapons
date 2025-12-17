@@ -474,6 +474,7 @@ replication
 
 	// functions on client, called by server
    	reliable if (Role == ROLE_Authority)
+		ClientSetMagAmmo,
 		ClientReloadRelease, ClientStartReload, ClientCockGun, ClientWeaponReloaded, // reload system
 		ReceiveNetAim, ClientDisplaceAim, // aim system
 		ReceiveNetRecoil, // recoil system
@@ -824,7 +825,11 @@ simulated function OnWeaponParamsChanged()
 	SightingTime 				= WeaponParams.SightingTime / ZoomTimeMod;
 	default.SightingTime 		= WeaponParams.SightingTime / ZoomTimeMod;
 
-	MagAmmo 					= WeaponParams.MagAmmo;
+    // Only the SERVER initializes live MagAmmo.
+    // Clients use the replicated value coming from the server.
+
+	MagAmmo = WeaponParams.MagAmmo;
+	//log("OnWeaponParamsChanged MagAmmo set to " $MagAmmo$ " for "$GetHumanReadableName());
 	default.MagAmmo				= WeaponParams.MagAmmo;
 	
 	bMagPlusOne					= WeaponParams.bMagPlusOne;
@@ -3833,6 +3838,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+			//log(GetHumanReadableName()@"gun received with MagAmmo "$MagAmmo);
 		}
 		else
 		{
@@ -3842,9 +3848,9 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+			//log(GetHumanReadableName()@"no pickup gun received with MagAmmo "$MagAmmo);
 		}
     }
- 	
    	else if ( !W.HasAmmo() )
 	    bPossiblySwitch = true;
     if ( Pickup == None )
@@ -3858,7 +3864,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			W.GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
         }
     }
-	
+
 	if (MeleeFireMode != None)
 		MeleeFireMode.Instigator = Instigator;
 
@@ -3867,6 +3873,9 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
+
+	if (Role == ROLE_Authority)
+		ClientSetMagAmmo(MagAmmo);
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
@@ -3898,6 +3907,7 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 		else if (bJustSpawned && (WP==None || !WP.bDropped) && (m == 0 || FireMode[m].AmmoClass != FireMode[0].AmmoClass))
 			Ammo[m].AddAmmo(Ammo[m].InitialAmount);
         Ammo[m].GotoState('');
+		//log(GetHumanReadableName()@" given ammo: mode "$m$" now has "$Ammo[m].AmmoAmount$" ammo.");
 	}
 }
 
@@ -4022,6 +4032,11 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
         }
     }
 
+}
+
+simulated function ClientSetMagAmmo(int NewMag) //Added because picking up a weapon doesn't cause a replication of MagAmmo until a bullet is fired/some other update on the client
+{
+    MagAmmo = NewMag;
 }
 
 state PendingClientWeaponSet
@@ -4243,6 +4258,7 @@ function DropFrom(vector StartLocation)
         if (Instigator.Health > 0)
             WeaponPickup(Pickup).bThrown = true;
     	Pickup.InitDroppedPickupFor(self);
+		//log("Dropped pickup" @ Pickup);
 	    Pickup.Velocity = Velocity;
 		if (Role == ROLE_Authority && BallisticWeaponPickup(Pickup) != None)
 		{
