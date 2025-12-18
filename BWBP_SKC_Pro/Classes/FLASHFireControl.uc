@@ -41,7 +41,7 @@ simulated function PostNetBeginPlay()
 simulated function Initialize()
 {
     local int i;
-	local vector Start, End, HitLoc, HitNorm;
+	local vector Start, End, HitLoc, HitNorm, Dummy;
 	local Actor T;
 	local Actor A;
 	local FLASHGroundFire GF;
@@ -60,10 +60,10 @@ simulated function Initialize()
 	// Immolate nearby players
 	foreach VisibleCollidingActors( class 'Actor', A, DamageRadius+100, Location )
 	{
+		if (xPawn(A) != None && Level.Game.ReduceDamage(Damage, xPawn(A), Instigator, Location, Dummy, class'DT_M202Immolation') > 0)
+			continue;
 		if (xPawn(A)!=None)
-		{
 			IgniteActor(A);
-		}
 		else if (Role == ROLE_Authority && A.bCanBeDamaged)
 		{
 			class'BallisticDamageType'.static.Hurt(A, (1.0-(VSize(A.Location - Location)/DamageRadius))*20.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DT_M202Immolation');

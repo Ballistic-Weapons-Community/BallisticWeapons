@@ -3075,6 +3075,9 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
         local float W;
         local float YawDir;
 		*/
+
+		if( Controller!=None && Controller.bGodMode )
+			return;
 		
 		if ( damagetype == None )
 		{
