@@ -75,7 +75,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	else
 		Destroy();
 
-	if (xPawn(Other) != None && Level.Game.ReduceDamage(Damage, xPawn(Other), Instigator, HitLocation, Dummy, MyDamageType) <= 0)
+	if (xPawn(Other) != None && Level.Game.ReduceDamage(Damage, xPawn(Other), Instigator, HitLocation, Dummy, MyDamageType) > 0)
 		ChargeControl.FireSinge(Pawn(Other), Instigator, 2); //The 2 designates this weapon is an AK91, used for death messages
 }
 

@@ -60,7 +60,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 	local vector dummy;
 	if (xPawn(Victim) !=None && PS9mPistol(BW) != None && PS9mPistol(BW).bToxin)
 	{
-		if (Level.Game.ReduceDamage(Damage, xPawn(Victim), Instigator, HitLocation, dummy, DamageType) <= 0)
+		if (Level.Game.ReduceDamage(Damage, xPawn(Victim), Instigator, HitLocation, dummy, DamageType) > 0)
 			IgniteActor(Victim);
 	}
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);

@@ -194,7 +194,7 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 {
 	local actor Victims;
 	local float damageScale, dist;
-	local vector dir;
+	local vector dir, dummy;
 
 	if( bHurtEntry )
 		return;
@@ -226,7 +226,7 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 				vect(0,0,0),
 				class'DT_AK91Zapped'
 			);
-			if (xPawn(Victims) != None && Level.Game.ReduceDamage(Damage, xPawn(Victims), Instigator, HitLocation, Dummy, class'DT_AK91Zapped') > 0)
+			if (xPawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, xPawn(Victims), Instigator, Victims.Location, Dummy, class'DT_AK91Zapped') <= 0)
 				continue;
 			if (Pawn(Victims) != None)
 			{

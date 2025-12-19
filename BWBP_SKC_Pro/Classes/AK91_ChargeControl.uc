@@ -177,7 +177,7 @@ simulated function BurnRadius( float DamageAmount, float DamageRadius, class<Dam
 {
 	local actor Victims;
 	local float damageScale, dist;
-	local vector dir;
+	local vector dir, dummy;
 
 	if( bHurtEntry )
 		return;
@@ -191,7 +191,7 @@ simulated function BurnRadius( float DamageAmount, float DamageRadius, class<Dam
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
 			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
-			if (xPawn(Victims) != None && Level.Game.ReduceDamage(Damage, xPawn(Victims), InstigatedBy, HitLocation, Dummy, DamageType) > 0)
+			if (xPawn(Victims) != None && Level.Game.ReduceDamage(damageScale * DamageAmount, xPawn(Victims), InstigatedBy, HitLocation, Dummy, DamageType) <= 0)
 				continue;
 			if (Pawn(Victims) != None && FRand()-0.4 < damageScale)
 				FireSinge(Pawn(Victims), InstigatedBy, TriggerType);

@@ -65,7 +65,7 @@ simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 	local Vector Dummy;
     if(Pawn(Other) != None)
 	{
-		if (Level.Game.ReduceDamage(Damage, Pawn(Other), Instigator, HitLocation, Dummy, ImpactDamageType) > 0)
+		if (Level.Game.ReduceDamage(Damage, Pawn(Other), Instigator, HitLocation, Dummy, ImpactDamageType) <= 0)
 			return;
 		IgniteActor(Other);
 		HitActor = Other;
@@ -145,7 +145,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
-			if (xPawn(Victims) != None && Level.Game.ReduceDamage(Damage, xPawn(Victims), Instigator, HitLocation, dummy, DamageType) > 0)
+			if (xPawn(Victims) != None && Level.Game.ReduceDamage(Damage, xPawn(Victims), Instigator, HitLocation, dummy, DamageType) <= 0)
 				continue;
 			if (xPawn(Victims)!=None)
 				IgniteActor(Victims);

@@ -60,7 +60,7 @@ simulated function Initialize()
 	// Immolate nearby players
 	foreach VisibleCollidingActors( class 'Actor', A, DamageRadius+100, Location )
 	{
-		if (xPawn(A) != None && Level.Game.ReduceDamage(Damage, xPawn(A), Instigator, Location, Dummy, class'DT_M202Immolation') > 0)
+		if (xPawn(A) != None && Level.Game.ReduceDamage(Damage, xPawn(A), Instigator, Location, Dummy, class'DT_M202Immolation') <= 0)
 			continue;
 		if (xPawn(A)!=None)
 			IgniteActor(A);

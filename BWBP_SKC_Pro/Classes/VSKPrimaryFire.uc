@@ -58,7 +58,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 	local vector dummy;
 	if (xPawn(Victim) !=None && bDOT)
 	{
-		if (Level.Game.ReduceDamage(Damage, xPawn(Victim), Instigator, HitLocation, dummy, DamageType) <= 0)
+		if (Level.Game.ReduceDamage(Damage, xPawn(Victim), Instigator, HitLocation, dummy, DamageType) > 0)
 			IgniteActor(Victim);
 	}
 	class'BallisticDamageType'.static.GenericHurt(Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
