@@ -22,7 +22,7 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
     local KF8XBoltViewMesser VM;
 	local KF8XBoltPoisoner DP;
 
-	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
+	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0 || Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum())
 		Return;
 
     if (Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)

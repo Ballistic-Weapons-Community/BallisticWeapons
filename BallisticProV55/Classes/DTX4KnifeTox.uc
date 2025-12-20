@@ -27,7 +27,7 @@ static function DoKnifeEffect(Actor Victim, Pawn Instigator)
     local X4KnifeViewMesser VM;
 	local X4KnifePoisoner DP;
 
-	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
+	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0 || Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum())
 		Return;
 
 	if (PlayerController(Pawn(Victim).Owner) != None)
