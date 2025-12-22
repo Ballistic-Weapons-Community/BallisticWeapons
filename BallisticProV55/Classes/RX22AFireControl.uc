@@ -337,11 +337,12 @@ function SprayAir (vector Loc, Pawn InstigatedBy)
 function SpraySoak(Actor Other, Pawn InstigatedBy, optional float FuelAmount)
 {
 	local BW_FuelPatch Patch;
+	local Vector Dummy;
 	if (FuelAmount == 0)
 		FuelAmount =  1;
 	if (HasSoak(Other, Patch))
 		Patch.AddFuel(FuelAmount);
-	else
+	else if (xPawn(Other) != None && Level.Game.ReduceDamage(1, xPawn(Other), Instigator, Other.Location, Dummy, class'DTRX22ABurned') > 0)
 		MakeNewSoaker(Other, InstigatedBy);
 }
 // Purpose: Remove a patch from the main list
