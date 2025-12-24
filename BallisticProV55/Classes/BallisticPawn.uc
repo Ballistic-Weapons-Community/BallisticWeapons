@@ -581,6 +581,10 @@ event Landed(vector HitNormal)
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
 
+	if(Bot(Controller)!=None)
+		if(FRand() < 0.7 && (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed))
+			StartSlide();
+
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
 
@@ -3075,6 +3079,9 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
         local float W;
         local float YawDir;
 		*/
+
+		if( Controller!=None && Controller.bGodMode )
+			return;
 		
 		if ( damagetype == None )
 		{
@@ -3405,6 +3412,13 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		{
 			TickSlopeCalculation(DeltaTime);
 			HandleSliding(DeltaTime);
+			if(Bot(Controller) != None)
+			{
+				if(VSize(SlideVelocity) > SlideStopSpeed * 1.25)
+					bWantsToCrouch = True;
+				else 
+					bWantsToCrouch = False;
+			}
 		}
 		else
 		{
@@ -3429,10 +3443,8 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		OldMovementSpeed = VSize(Velocity);
 	}
 	// End slide if crouch released, speed too low, or airborne
-	if (bIsSliding && (!bIsCrouched || VSize(SlideVelocity) < SlideStopSpeed || Physics != PHYS_Walking))
-	{
+	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) || (Bot(Controller) != None && !bWantsToCrouch)) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
 		EndSlide();
-	}
 }
 
 simulated function StartSlide()
@@ -3444,12 +3456,13 @@ simulated function StartSlide()
 	if (!bAllowCrouchSliding)
 		return;
 
-    if (!bIsSliding 
+    if ( (!bIsSliding 
 	&& Controller.bDuck > 0 
 	&& (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
 	&& Physics == PHYS_Walking 
-	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime))
+	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) || AIController(Controller)!=None )
     {
+		//log("Starting slide for:"@GetHumanReadableName());
 		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
 		Sprinter.DelayRecharge();
 		Sprinter.StopSprint();
@@ -3534,6 +3547,8 @@ simulated function EndSlide()
 		Sprinter.UpdateSpeed();
 		//Level.Game.Broadcast(self, "SpeedReset:"@GroundSpeed@"Sprinter.BaseGroundSpeed:"@Sprinter.BaseGroundSpeed);
 	}
+	if(AIController(Controller) != None)
+		Sprinter.StartSprint();
 }
 
 simulated function TickSlopeCalculation(float DT)
@@ -3580,7 +3595,7 @@ simulated function HandleSliding(float DT)
 		EndSlide();
 	if (VSize(SlideVelocity) > MaxSlideSpeed)
 		SlideVelocity = Normal(SlideVelocity) * MaxSlideSpeed;
-    if (Role == ROLE_Authority || IsLocallyControlled())
+    if (Role == ROLE_Authority)
         Velocity = SlideVelocity;
 
 	RefreshSlideLoop();
@@ -3591,6 +3606,7 @@ defaultproperties
 	bAlwaysRelevant=True
 	bCanDodge=True
 	bCanDoubleJump=True
+	bAllowCrouchSliding=True
 	MoverLeaveGrace=1.000000
 	MinDragDistance=40.000000
 	MaxPoolVelocity=20.000000
@@ -3685,7 +3701,7 @@ defaultproperties
 	SlideEndAnims(1)="SlideLEnd"
 	SlideEndAnims(2)="SlideREnd"
 	SlideEndAnims(3)="SlideBEnd"
-
+	//ControllerClass=Class'BallisticProV55.BallisticBot'
 	Begin Object Class=KarmaParamsSkel Name=PawnKParams
 		KConvulseSpacing=(Max=2.200000)
 		KLinearDamping=0.150000

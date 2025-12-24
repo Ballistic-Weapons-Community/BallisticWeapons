@@ -118,7 +118,17 @@ simulated function PreBeginPlay()
 
 	if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
 		Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
-	
+
+	/* 
+	if(TeamGame(Level.Game) != None) //load team bots
+	{
+		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
+	}
+	else if(Deathmatch(Level.Game) != None)//load Deathmatch  bots
+	{
+		Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
+	}
+	*/
 	LoadItemClasses();
 
 	super.PreBeginPlay();
@@ -246,7 +256,7 @@ function ModifyPlayer(Pawn Other)
     BPawn = BallisticPawn(Other);
 
 	//adds sprint support to mutator
-    if (xPawn(Other) != None && GetSprintControl(PlayerController(Other.Controller)) == None)
+    if (xPawn(Other) != None && GetSprintControl(Other.Controller) == None)
 	{
         CreateSprintControl(xPawn(Other));
 	}
@@ -869,12 +879,12 @@ function CreateSprintControl(xPawn P)
     local BCSprintControl SC;
 
     SC = Spawn(class'BCSprintControl', P);
-
+	//log("Creating Sprint Control for "$P$" : "$SC);
     SC.GiveTo(P);
     Sprinters[Sprinters.length] = SC;
 }
 
-function BCSprintControl GetSprintControl(PlayerController Sender)
+function BCSprintControl GetSprintControl(Controller Sender)
 {
     local int i;
 

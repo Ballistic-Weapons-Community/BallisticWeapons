@@ -9,8 +9,6 @@
 // by Nolan "Dark Carnivour" Richert and Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-// Updates by YoYoBatty:
-// - Added crouch sliding functionality
 class BCSprintControl extends Inventory;
 
 //const RECHARGE_DELAY = 1.5f; //This really should be customizable, but for now it's hardcoded
@@ -144,7 +142,7 @@ simulated event Tick(float DT)
 //return
 function StartSprint()
 {
-	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
+	if (AIController(Instigator.Controller) == None && !class'BallisticReplicationInfo'.default.bEnableSprint)
 		return;
 		
 	if (Stamina <= 0  || Instigator.Physics != PHYS_Walking || Instigator.bIsCrouched || bSprintActive || !CheckDirection())
@@ -154,6 +152,8 @@ function StartSprint()
 
 	if (Instigator != None)
         UpdateSpeed();
+
+	//log("BCSprintControl: Started sprinting for bot " $ Instigator.PlayerReplicationInfo.PlayerName);
 
 	//Level.Game.Broadcast(self, "Started sprint, ground speed: " $ Instigator.GroundSpeed);
 }

@@ -31,7 +31,7 @@ var(G51)	Array<Pawn>			PawnList;		// A list of all the potential pawns to view i
 var(G51)	material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
 var(G51)	bool				bThermal;		// Is thermal mode active?
 var(G51)	bool				bUpdatePawns;	// Should viewable pawn list be updated
-var(G51)	Pawn				UpdatedPawns[16];// List of pawns to view in thermal scope
+var(G51)	Pawn				UpdatedPawns[128];// List of pawns to view in thermal scope
 var(G51)	material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var(G51)	float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
 var(G51)	ColorModifier		ColorMod;
@@ -376,6 +376,8 @@ simulated function UpdatePawnList()
 	PawnList.Length=0;
 	ForEach DynamicActors( class 'Pawn', P)
 	{
+		if (P.PlayerReplicationInfo != None && P.PlayerReplicationInfo.Team != None && P.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex)
+			continue;
 		PawnList[PawnList.length] = P;
 		Dist = VSize(P.Location - Instigator.Location);
 		if (Dist <= ThermalRange &&

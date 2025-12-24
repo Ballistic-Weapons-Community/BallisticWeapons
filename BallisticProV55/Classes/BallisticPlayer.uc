@@ -1529,20 +1529,20 @@ exec function ShowVoteMenu()
 
 defaultproperties
 {
-     WeapUIEnter=Sound'MenuSounds.selectDshort'
-     WeapUIExit=Sound'MenuSounds.selectK'
-     WeapUIFail=Sound'MenuSounds.denied1'
-     WeapUIUse=Sound'MenuSounds.selectJ'
-     WeapUICycle=Sound'MenuSounds.MS_ListChangeDown'
-     WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
-     ZoomTimeMod=1.500000
-     SavedBehindDistFactor=1.000000
-     BehindDistFactor=1.000000
-     WeapUIHelp(0)="Fire to confirm selection."
-     WeapUIHelp(1)="Altfire to exit UI."
-     WeapUIHelp(2)="Next and Previous Weapon to cycle."
-     WeapUIHelp(3)="Weapon Numbers to skip to group."
-     ComboNameList(3)="BallisticProV55.Ballistic_ComboMiniMe"
-     AnnouncerLevel=1
-     PawnClass=Class'BallisticProV55.BallisticPawn'
+    WeapUIEnter=Sound'MenuSounds.selectDshort'
+    WeapUIExit=Sound'MenuSounds.selectK'
+    WeapUIFail=Sound'MenuSounds.denied1'
+    WeapUIUse=Sound'MenuSounds.selectJ'
+    WeapUICycle=Sound'MenuSounds.MS_ListChangeDown'
+    WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
+    ZoomTimeMod=1.500000
+    SavedBehindDistFactor=1.000000
+    BehindDistFactor=1.000000
+    WeapUIHelp(0)="Fire to confirm selection."
+    WeapUIHelp(1)="Altfire to exit UI."
+    WeapUIHelp(2)="Next and Previous Weapon to cycle."
+    WeapUIHelp(3)="Weapon Numbers to skip to group."
+    ComboNameList(3)="BallisticProV55.Ballistic_ComboMiniMe"
+    AnnouncerLevel=1
+    PawnClass=Class'BallisticProV55.BallisticPawn'
 }

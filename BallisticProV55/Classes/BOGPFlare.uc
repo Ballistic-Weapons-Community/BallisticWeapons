@@ -62,8 +62,11 @@ simulated event Tick(float DT)
 
 simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
+	local Vector Dummy;
     if(Pawn(Other) != None)
 	{
+		if (Level.Game.ReduceDamage(Damage, Pawn(Other), Instigator, HitLocation, Dummy, ImpactDamageType) <= 0)
+			return;
 		IgniteActor(Other);
 		HitActor = Other;
 		class'BallisticDamageType'.static.GenericHurt(Other, Max(5,ImpactDamage*(1.0-FallOff)), Instigator, HitLocation, Velocity, ImpactDamageType);
@@ -124,7 +127,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 {
 	local actor Victims;
 	local float damageScale, dist;
-	local vector dir;
+	local vector dir, dummy;
 	local BW_FuelPatch Patch;
 
 	if( bHurtEntry )
@@ -142,7 +145,9 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
-			if(Pawn(Victims) != None && Vehicle(Victims) == None)
+			if (xPawn(Victims) != None && Level.Game.ReduceDamage(Damage, xPawn(Victims), Instigator, HitLocation, dummy, DamageType) <= 0)
+				continue;
+			if (xPawn(Victims)!=None)
 				IgniteActor(Victims);
 			class'BallisticDamageType'.static.GenericHurt
 			(

@@ -194,7 +194,7 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 {
 	local actor Victims;
 	local float damageScale, dist;
-	local vector dir;
+	local vector dir, dummy;
 
 	if( bHurtEntry )
 		return;
@@ -226,7 +226,8 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 				vect(0,0,0),
 				class'DT_AK91Zapped'
 			);
-
+			if (xPawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, xPawn(Victims), Instigator, Victims.Location, Dummy, class'DT_AK91Zapped') <= 0)
+				continue;
 			if (Pawn(Victims) != None)
 			{
 				ChargeControl.FireSinge(Pawn(Victims), Instigator, 2, int(HeatLevel)); //The 2 designates this weapon is an AK91, used for death messages, adds HeatLevel # of zaps

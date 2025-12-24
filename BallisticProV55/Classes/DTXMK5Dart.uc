@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class DTXMK5Dart extends DT_BWBlunt;
 
@@ -22,7 +22,7 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
     local XMK5DartViewMesser VM;
 	local XMK5DartPoisoner DP;
 
-	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
+	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0 || Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum())
 		Return;
 
 	if (PlayerController(Pawn(Victim).Owner) != None)

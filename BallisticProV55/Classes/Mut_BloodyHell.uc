@@ -40,6 +40,16 @@ simulated function PreBeginPlay()
 		if (level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || class'Mut_Ballistic'.default.bForceBallisticPawn)
 			level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticBHPawn";
 	}
+	/* 
+	if(TeamGame(Level.Game) != None) //load team bots
+	{
+		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
+	}
+	else if(Deathmatch(Level.Game) != None)//load Deathmatch  bots
+	{
+		Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
+	}
+	*/
 	super.PreBeginPlay();
 }
 
@@ -57,7 +67,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		PlayerController(Other).PawnClass = class'BallisticBHPawn';
 	else if (Bot(Other) != None && (Controller(Other).PawnClass == None || Controller(Other).PawnClass == class'xPawn'))
 		Bot(Other).PreviousPawnClass = class'BallisticBHPawn';
-
 	return super.CheckReplacement(Other, bSuperRelevant);
 }
 
