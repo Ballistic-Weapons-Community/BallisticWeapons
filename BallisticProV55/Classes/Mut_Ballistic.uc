@@ -119,6 +119,7 @@ simulated function PreBeginPlay()
 	if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
 		Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
 
+	/* 
 	if(TeamGame(Level.Game) != None) //load team bots
 	{
 		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
@@ -127,7 +128,7 @@ simulated function PreBeginPlay()
 	{
 		Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
 	}
-	
+	*/
 	LoadItemClasses();
 
 	super.PreBeginPlay();

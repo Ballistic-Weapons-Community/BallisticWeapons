@@ -40,6 +40,7 @@ simulated function PreBeginPlay()
 		if (level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || class'Mut_Ballistic'.default.bForceBallisticPawn)
 			level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticBHPawn";
 	}
+	/* 
 	if(TeamGame(Level.Game) != None) //load team bots
 	{
 		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
@@ -48,6 +49,7 @@ simulated function PreBeginPlay()
 	{
 		Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
 	}
+	*/
 	super.PreBeginPlay();
 }
 

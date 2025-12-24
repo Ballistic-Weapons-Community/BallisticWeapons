@@ -3453,7 +3453,7 @@ simulated function StartSlide()
     local vector X, Y, Z;
     local float DirDot, EffSlidePower, EffImpulse, EffBackSpeedScale;
 
-	if (AIController(Controller) == None && !bAllowCrouchSliding)
+	if (!bAllowCrouchSliding)
 		return;
 
     if ( (!bIsSliding 
@@ -3462,7 +3462,7 @@ simulated function StartSlide()
 	&& Physics == PHYS_Walking 
 	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) || AIController(Controller)!=None )
     {
-		log("Starting slide for:"@GetHumanReadableName());
+		//log("Starting slide for:"@GetHumanReadableName());
 		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
 		Sprinter.DelayRecharge();
 		Sprinter.StopSprint();
@@ -3548,7 +3548,7 @@ simulated function EndSlide()
 		//Level.Game.Broadcast(self, "SpeedReset:"@GroundSpeed@"Sprinter.BaseGroundSpeed:"@Sprinter.BaseGroundSpeed);
 	}
 	if(AIController(Controller) != None)
-		bWantsToCrouch = false; //AI shouldn't try to crouch after sliding
+		Sprinter.StartSprint();
 }
 
 simulated function TickSlopeCalculation(float DT)
@@ -3589,8 +3589,6 @@ simulated function HandleSliding(float DT)
 		}
 	}
 	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
-	if(AIController(Controller) != None)
-		bWantsToCrouch = true; //AI shouldn't try to crouch after sliding
 	if (VSize(SlideVelocity) > 0.1)
 		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
 	else
@@ -3703,7 +3701,7 @@ defaultproperties
 	SlideEndAnims(1)="SlideLEnd"
 	SlideEndAnims(2)="SlideREnd"
 	SlideEndAnims(3)="SlideBEnd"
-	ControllerClass=Class'BallisticProV55.BallisticBot'
+	//ControllerClass=Class'BallisticProV55.BallisticBot'
 	Begin Object Class=KarmaParamsSkel Name=PawnKParams
 		KConvulseSpacing=(Max=2.200000)
 		KLinearDamping=0.150000
