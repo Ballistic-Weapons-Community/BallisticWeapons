@@ -43,7 +43,6 @@ function Reset()
 function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 {	
 	local int Index;
-	local Vector XYVel;
 
     if (Victim == None)
         return;
@@ -56,13 +55,6 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 		if (Instigator != None)
     	{
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
-		if (Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
-		{
-			//bog down allies attempting to crawl through this fp7's fire
-			XYVel = -Victim.Velocity;
-			XYVel.Z = 0;
-			Victim.AddVelocity(XYVel + RepulsionForceMag * Normal(Victim.Location - Location) + vect(0,0,20));
-		}
 		}
 	}
 }

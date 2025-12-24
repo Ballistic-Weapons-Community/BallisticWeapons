@@ -879,7 +879,7 @@ function CreateSprintControl(xPawn P)
     local BCSprintControl SC;
 
     SC = Spawn(class'BCSprintControl', P);
-	log("Creating Sprint Control for "$P$" : "$SC);
+	//log("Creating Sprint Control for "$P$" : "$SC);
     SC.GiveTo(P);
     Sprinters[Sprinters.length] = SC;
 }
