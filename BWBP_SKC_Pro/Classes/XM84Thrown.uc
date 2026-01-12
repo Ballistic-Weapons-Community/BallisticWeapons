@@ -84,7 +84,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 {
 	local Pawn Victims;
 	local float damageScale, dist;
-	local vector dir;
+	local vector dir, dummy;
 	local XM84ActorCorrupt PF;
 
 	if( bHurtEntry )
@@ -116,7 +116,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				PF.InstigatorController = Instigator.Controller;
 			PF.Initialize(Victims);
 			
-			if (Victims != None)
+			if (Victims != None && Level.Game.ReduceDamage(DamageAmount, Victims, Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Victims, 4);
 		}
 	}
@@ -151,7 +151,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				PF.InstigatorController = Instigator.Controller;
 			PF.Initialize(Victims);
 			
-			if (Victims != None)
+			if (Victims != None && Level.Game.ReduceDamage(DamageAmount, Victims, Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Victims, Damage/4);
 		}
 	}

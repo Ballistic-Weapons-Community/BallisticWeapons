@@ -342,7 +342,7 @@ function SpraySoak(Actor Other, Pawn InstigatedBy, optional float FuelAmount)
 		FuelAmount =  1;
 	if (HasSoak(Other, Patch))
 		Patch.AddFuel(FuelAmount);
-	else if (xPawn(Other) != None && Level.Game.ReduceDamage(1, xPawn(Other), Instigator, Other.Location, Dummy, class'DTRX22ABurned') > 0)
+	else if (xPawn(Other) != None && Level.Game.ReduceDamage(10, xPawn(Other), InstigatedBy, Other.Location, Dummy, class'DTRX22ABurned') > 0)
 		MakeNewSoaker(Other, InstigatedBy);
 }
 // Purpose: Remove a patch from the main list

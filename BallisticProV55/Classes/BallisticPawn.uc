@@ -582,7 +582,7 @@ event Landed(vector HitNormal)
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
 
 	if(Bot(Controller)!=None)
-		if(FRand() < 0.7 && (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed))
+		if(FRand() < 0.65 && (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed))
 			StartSlide();
 
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
@@ -3355,6 +3355,9 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
+	if (Controller == none)
+		return;
+
 	if (Physics == PHYS_Falling)
         LastFallingVelocity = Velocity;
 
@@ -3528,6 +3531,9 @@ simulated function EndSlide()
 
     if (!bIsSliding)
         return;
+
+	if(AIController(Controller) != None)
+		bWantsToCrouch = False;
 
     bSlideWaitingStart = false;
 	if(!bIsCrouched) //Play this if not crouched and below certain speed so it looks natural
