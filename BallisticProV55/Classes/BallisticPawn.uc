@@ -3415,6 +3415,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		{
 			TickSlopeCalculation(DeltaTime);
 			HandleSliding(DeltaTime);
+			/* //Work on this later - yoyobatty
 			if(Bot(Controller) != None)
 			{
 				if(VSize(SlideVelocity) > SlideStopSpeed * 1.25)
@@ -3422,6 +3423,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 				else 
 					bWantsToCrouch = False;
 			}
+			*/
 		}
 		else
 		{
@@ -3446,7 +3448,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		OldMovementSpeed = VSize(Velocity);
 	}
 	// End slide if crouch released, speed too low, or airborne
-	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) || (Bot(Controller) != None && !bWantsToCrouch)) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
+	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) /*|| (Bot(Controller) != None && !bWantsToCrouch)*/) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
 		EndSlide();
 }
 
@@ -3532,8 +3534,8 @@ simulated function EndSlide()
     if (!bIsSliding)
         return;
 
-	if(AIController(Controller) != None)
-		bWantsToCrouch = False;
+	//if(AIController(Controller) != None)
+	//	bWantsToCrouch = False;
 
     bSlideWaitingStart = false;
 	if(!bIsCrouched) //Play this if not crouched and below certain speed so it looks natural
