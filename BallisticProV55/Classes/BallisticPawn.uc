@@ -3583,7 +3583,7 @@ simulated function HandleSliding(float DT)
 		DynamicFriction *= FClamp(1.0 + (SlopeAngleDeg / 45.0), 1.0, 2.5);
 	
 	//If we're on stairs, but not on a slope, adjust friction and gravity, hacky but it works!
-	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1)) 
+	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1) && PlayerController(Controller) != None)
 	{
 		if (PlayerController(Controller).FindStairRotation(DT) < 0) 
 		{
