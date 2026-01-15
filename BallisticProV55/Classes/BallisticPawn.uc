@@ -581,9 +581,11 @@ event Landed(vector HitNormal)
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
 
+	/* 
 	if(Bot(Controller)!=None)
 		if(FRand() < 0.65 && (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed))
 			StartSlide();
+	*/
 
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
@@ -3415,6 +3417,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		{
 			TickSlopeCalculation(DeltaTime);
 			HandleSliding(DeltaTime);
+			/* //Work on this later - yoyobatty
 			if(Bot(Controller) != None)
 			{
 				if(VSize(SlideVelocity) > SlideStopSpeed * 1.25)
@@ -3422,6 +3425,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 				else 
 					bWantsToCrouch = False;
 			}
+			*/
 		}
 		else
 		{
@@ -3446,7 +3450,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		OldMovementSpeed = VSize(Velocity);
 	}
 	// End slide if crouch released, speed too low, or airborne
-	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) || (Bot(Controller) != None && !bWantsToCrouch)) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
+	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) /*|| (Bot(Controller) != None && !bWantsToCrouch)*/) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
 		EndSlide();
 }
 
@@ -3463,7 +3467,7 @@ simulated function StartSlide()
 	&& Controller.bDuck > 0 
 	&& (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
 	&& Physics == PHYS_Walking 
-	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) || AIController(Controller)!=None )
+	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) /*|| AIController(Controller)!=None*/ )
     {
 		//log("Starting slide for:"@GetHumanReadableName());
 		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
@@ -3532,8 +3536,8 @@ simulated function EndSlide()
     if (!bIsSliding)
         return;
 
-	if(AIController(Controller) != None)
-		bWantsToCrouch = False;
+	//if(AIController(Controller) != None)
+	//	bWantsToCrouch = False;
 
     bSlideWaitingStart = false;
 	if(!bIsCrouched) //Play this if not crouched and below certain speed so it looks natural
@@ -3553,8 +3557,8 @@ simulated function EndSlide()
 		Sprinter.UpdateSpeed();
 		//Level.Game.Broadcast(self, "SpeedReset:"@GroundSpeed@"Sprinter.BaseGroundSpeed:"@Sprinter.BaseGroundSpeed);
 	}
-	if(AIController(Controller) != None)
-		Sprinter.StartSprint();
+	//if(AIController(Controller) != None)
+	//	Sprinter.StartSprint();
 }
 
 simulated function TickSlopeCalculation(float DT)
@@ -3581,7 +3585,7 @@ simulated function HandleSliding(float DT)
 		DynamicFriction *= FClamp(1.0 + (SlopeAngleDeg / 45.0), 1.0, 2.5);
 	
 	//If we're on stairs, but not on a slope, adjust friction and gravity, hacky but it works!
-	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1)) 
+	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1) && PlayerController(Controller) != None)
 	{
 		if (PlayerController(Controller).FindStairRotation(DT) < 0) 
 		{
