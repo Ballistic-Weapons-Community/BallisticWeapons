@@ -581,9 +581,11 @@ event Landed(vector HitNormal)
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
 
+	/* 
 	if(Bot(Controller)!=None)
 		if(FRand() < 0.65 && (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed))
 			StartSlide();
+	*/
 
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
@@ -3465,7 +3467,7 @@ simulated function StartSlide()
 	&& Controller.bDuck > 0 
 	&& (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
 	&& Physics == PHYS_Walking 
-	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) || AIController(Controller)!=None )
+	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) /*|| AIController(Controller)!=None*/ )
     {
 		//log("Starting slide for:"@GetHumanReadableName());
 		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
@@ -3555,8 +3557,8 @@ simulated function EndSlide()
 		Sprinter.UpdateSpeed();
 		//Level.Game.Broadcast(self, "SpeedReset:"@GroundSpeed@"Sprinter.BaseGroundSpeed:"@Sprinter.BaseGroundSpeed);
 	}
-	if(AIController(Controller) != None)
-		Sprinter.StartSprint();
+	//if(AIController(Controller) != None)
+	//	Sprinter.StartSprint();
 }
 
 simulated function TickSlopeCalculation(float DT)
