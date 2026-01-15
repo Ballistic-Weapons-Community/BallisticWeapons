@@ -71,7 +71,7 @@ function LoadWeapons(ClientOutfittingInterface COI, int group)
 	{
         if (LoadWIFromCache(COI.GetGroupItem(group, i), WI))
         {
-            Log("Group "$group$", index "$i$" is "$COI.GetGroupItem(group, i));
+            //Log("Group "$group$", index "$i$" is "$COI.GetGroupItem(group, i));
 
             if (WI.InventoryGroup != lastIndex)
             {

@@ -282,7 +282,7 @@ simulated function SortList(byte group_index)
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
 	local int wiGroup, existingGroup;
 
-	log("we sortin");
+	//log("we sortin");
 
 	for (i=0; i < GetGroup(group_index).Length; i++)
 	{

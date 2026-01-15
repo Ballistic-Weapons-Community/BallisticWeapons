@@ -235,8 +235,7 @@ function FillWeapons()
         {
             for (wep_index = 0; wep_index < GroupLengthForTeam(group_index, team); ++wep_index)
             {
-				//Suppress for now
-               	//Log("Group "$group_index$", team "$team$", index "$wep_index$" is "$GetGroupItemForTeam(group_index, team, wep_index));
+               //Log("Group "$group_index$", team "$team$", index "$wep_index$" is "$GetGroupItemForTeam(group_index, team, wep_index));
             }
         }
     }
