@@ -6,7 +6,9 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_RewindCollision extends Mutator;
+class Mut_RewindCollision extends Mutator
+	HideDropDown
+	CacheExempt;
 
 var RewindCollisionManager          RwColMgr;
 
