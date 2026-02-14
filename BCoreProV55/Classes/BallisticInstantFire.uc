@@ -538,7 +538,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		LastHitLoc = HitLocation;
 			
 		// Got something interesting
-		if (Other.bProjTarget && !Other.bWorldGeometry && Other != LastOther)
+		if (!Other.bWorldGeometry && Other != LastOther)
 		{
 			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
 		
