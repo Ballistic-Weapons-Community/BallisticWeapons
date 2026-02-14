@@ -1,5 +1,9 @@
 @echo off
 
+echo This uninstaller will only function when placed inside the UT2004 root folder (so where folders like Textures, Staticmeshes etc are stored)
+
+pause
+
 del Animations\BallisticThird.ukx
 del Animations\BW_Core_WeaponAnim.ukx
 del Animations\BWBP_CC_Anim.ukx
@@ -466,6 +470,30 @@ del System\JunkWarV25.ini
 del System\JunkWarV25.int
 del System\JunkWarV25.u
 del System\JunkWarV25.ucl
+del System\BWBP_APC_Pro.int
+del System\BWBP_APC_Pro.u
+del System\BWBP_APC_Pro.ucl
+del System\BWBP_JCF_Pro.int
+del System\BWBP_JCF_Pro.u
+del System\BWBP_JCF_Pro.ucl
+del System\BWBP_OP_Pro.int
+del System\BWBP_OP_Pro.u
+del System\BWBP_OP_Pro.ucl
+del System\BWBP_SKC_Pro.int
+del System\BWBP_SKC_Pro.u
+del System\BWBP_SKC_Pro.ucl
+del System\BWBP_SWC_Pro.int
+del System\BWBP_SWC_Pro.u
+del System\BWBP_SWC_Pro.ucl
+del System\BWBP_VPC_Pro.int
+del System\BWBP_VPC_Pro.u
+del System\BWBP_VPC_Pro.ucl
+del System\3SPNv3141BW.int
+del System\3SPNv3141BW.u
+del System\3SPNv3141BW.ucl
+del System\GunGameBW.int
+del System\GunGameBW.u
+del System\GunGameBW.ucl
 
 del Textures\BallisticBloodPro.utx
 del Textures\BW_Core_WeaponTex.utx

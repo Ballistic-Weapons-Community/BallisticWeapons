@@ -46,10 +46,10 @@
 //=============================================================================
 class Game_BWConflict extends xTeamGame
 	config(BallisticProV55)
-	DependsOn(Mut_ConflictLoadout);
-//	transient
-//	HideDropDown
-//	CacheExempt;
+	DependsOn(Mut_ConflictLoadout)
+	transient
+	HideDropDown
+	CacheExempt;
 
 var int					RoundCounter, RoundWinner, RoundTime;
 var NavigationPoint		StartA, StartB;
