@@ -28,11 +28,11 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     BaseOffset=(X=2.000000,Z=-18.000000)
-     TakenSound=Sound'GameSounds.CTFAlarm'
-     bHidden=False
-     Mesh=VertMesh'XGame_rc.FlagMesh'
-     DrawScale=1.200000
-     CollisionHeight=80.000000
-     bNetNotify=True
+    TakenSound=Sound'GameSounds.CTFAlarm'
+    bHidden=false
+    bNetNotify=true
+    CollisionHeight=80.00000
+    Mesh=Mesh'XGame_rc.FlagMesh'
+    DrawScale=1.2 
+    BaseOffset=(x=2.0,y=0.0,z=-18.0)   
 }

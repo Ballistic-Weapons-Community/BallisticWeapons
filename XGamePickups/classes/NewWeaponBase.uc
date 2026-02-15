@@ -4,6 +4,7 @@ class NewWeaponBase extends xWeaponBase;
 
 defaultproperties
 {
-     StaticMesh=StaticMesh'2k4ChargerMeshes.ChargerMeshes.WeaponChargerMesh-DS'
-     PrePivot=(Z=3.700000)
+	StaticMesh=2k4chargerMESHES.WeaponChargerMESH-DS
+	PrePivot=(Z=3.7)
+	DrawScale=0.5
 }

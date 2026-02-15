@@ -18,8 +18,8 @@ event PostBeginPlay()
 		Level.Game.AddGameModifier(Spawn(class'UDamageRules'));
 }
 
-defaultproperties
+DefaultProperties
 {
-     FriendlyName="UDamage Reward"
-     Description="Any remaining UDamage powerup is thrown from players when they are fragged."
+	FriendlyName="UDamage Reward"
+	Description="Any remaining UDamage powerup is thrown from players when they are fragged."
 }

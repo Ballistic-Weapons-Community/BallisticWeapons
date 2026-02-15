@@ -7,7 +7,7 @@ class DMRosterTrainingDay extends xDMRoster;
 
 defaultproperties
 {
-     TeamSymbolName="TeamSymbols_UT2003.Sym01"
-     RosterNames(0)="Prism"
-     TeamName="Death Match"
+	TeamName="Death Match"
+	TeamSymbolName="TeamSymbols_UT2003.Sym01"
+	RosterNames(0)="Prism"
 }

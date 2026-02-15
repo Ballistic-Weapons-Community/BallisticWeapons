@@ -52,7 +52,8 @@ simulated function PostTouch( actor Other )
 
 defaultproperties
 {
-     KickedClasses="Pawn"
-     RemoteRole=ROLE_SimulatedProxy
+	 RemoteRole=ROLE_SimulatedProxy
+	 bStatic=false
      bDirectional=True
+	 KickedClasses=Pawn
 }

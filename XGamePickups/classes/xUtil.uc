@@ -1,11 +1,11 @@
 class xUtil extends Object
     native;
 
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
+cpptext
+{
+	static class UDecoText* LoadDecoText( const TCHAR* TextName, INT ColumnCount = DECO_TEXT_MAX_COLUMNS );
+	void GetPlayerList();
+}
 
 var() protected const string SectionName;
 var() protected const string FileExtension;
@@ -494,12 +494,13 @@ simulated static function array<class<Mutator> > GetMutatorClasses(optional arra
 	return Arr;
 }
 
+
 defaultproperties
 {
-     NoPreference="No Weapon Preference"
-     FavoriteWeapon="Favorite Weapon:"
-     AgilityString="Agility:"
-     TacticsString="Team Tactics:"
-     AccuracyString="Accuracy:"
-     AggressivenessString="Aggression:"
+	NoPreference="No Weapon Preference"
+	FavoriteWeapon="Favorite Weapon:"
+	AgilityString="Agility:"
+	TacticsString="Team Tactics:"
+	AccuracyString="Accuracy:"
+	AggressivenessString="Aggression:"
 }

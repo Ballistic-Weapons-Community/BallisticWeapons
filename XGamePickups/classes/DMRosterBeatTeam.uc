@@ -34,9 +34,8 @@ function Initialize(int TeamBots)
 	super.Initialize(TeamBots);
 }
 	
-
 defaultproperties
 {
-     TeamSymbolName="TeamSymbols_UT2003.Sym01"
-     TeamName="Death Match"
+	TeamName="Death Match"
+	TeamSymbolName="TeamSymbols_UT2003.Sym01"
 }

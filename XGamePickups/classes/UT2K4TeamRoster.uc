@@ -62,7 +62,3 @@ function bool AddToTeam(Controller Other)
 	Other.PlayerReplicationInfo.Team = None;
 	return true;
 }
-
-defaultproperties
-{
-}

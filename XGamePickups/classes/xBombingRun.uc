@@ -433,36 +433,47 @@ event SetGrammar()
 
 defaultproperties
 {
-     bBallDrainsTransloc=True
-     BRPropText="Delay ball contact"
-     BRPropText2="BallLauncher drains Translocator"
-     BRDescText="If checked, a player must wait a few seconds after throwing the ball before picking it up again."
-     BRDescText2="If checked, a player must wait a few seconds after throwing the ball before being able to translocate (or until someone else catches or picks up the ball)."
+	bDefaultTranslocator=true
+	bAllowTrans=true
+    bScoreTeamKills=False
+    bWeaponStay=true
+    bSpawnInTeamArea=true
+    BeaconName="BR"
+    GameName="Bombing Run"
+    HUDType="XInterface.HudCBombingRun"
+    GoalScore=15
+    MapPrefix="BR"
+    MapListType="XInterface.MapListBombingRun"
+    ADR_Kill=2.0
+	DefaultEnemyRosterClass="xGame.xTeamRoster"
+	 bMustHaveMultiplePlayers=false
+
+    DeathMessageClass=class'XGame.xDeathMessage'
+    ResetTimeDelay=11
+
+    TeamAIType(0)=class'UnrealGame.BombingRunTeamAI'
+    TeamAIType(1)=class'UnrealGame.BombingRunTeamAI'
+    bTeamScoreRounds=false
+
+    ScreenShotName="UT2004Thumbnails.BRShots"
+    DecoTextName="XGame.BombingRun"
+
+    Acronym="BR"
+
+	OtherMesgGroup="BombingRun"
+
+	BRPropText="Delay ball contact"
+	BRDescText="If checked, a player must wait a few seconds after throwing the ball before picking it up again."
+
+	bBallDrainsTransloc=true
+	BRPropText2="BallLauncher drains Translocator"
+	BRDescText2="If checked, a player must wait a few seconds after throwing the ball before being able to translocate (or until someone else catches or picks up the ball)."
+
+    Description="Each level has a ball that starts in the middle of the playing field.  Your team scores by getting the ball through the enemy team's hoop.  You score 7 points for jumping through the hoop while holding the ball, and 3 points for tossing the ball through the hoop.  The ball can be passed to teammates, and is dropped if the player carrying it is killed."
+
      BRHints(0)="You can use %BASEPATH 0% to see the path to the Red Team base and %BASEPATH 1% to see the path to the Blue Team base."
      BRHints(1)="Firing the translocator sends out your translocator beacon.  Pressing %FIRE% again returns the beacon, while pressing %A:TFIRE% teleports you instantly to the beacon's location (if you fit)."
      BRHints(2)="While carrying the ball, you can target teammates by pressing %ALTFIRE%.  Pressing %FIRE% will pass the ball to the targeted teammate."
      BRHints(3)="Pressing %SWITCHWEAPON 10% after tossing the Translocator allows you to view from its internal camera."
      BRHints(4)="Pressing %FIRE% while your %ALTFIRE% is still held down after teleporting with the translocator will switch you back to your previous weapon."
-     bScoreTeamKills=False
-     bSpawnInTeamArea=True
-     TeamAIType(0)=Class'UnrealGame.BombingRunTeamAI'
-     TeamAIType(1)=Class'UnrealGame.BombingRunTeamAI'
-     bAllowTrans=True
-     bDefaultTranslocator=True
-     bMustHaveMultiplePlayers=False
-     DefaultEnemyRosterClass="xGame.xTeamRoster"
-     ADR_Kill=2.000000
-     HUDType="XInterface.HudCBombingRun"
-     MapListType="XInterface.MapListBombingRun"
-     MapPrefix="BR"
-     BeaconName="BR"
-     ResetTimeDelay=11
-     GoalScore=15
-     DeathMessageClass=Class'XGame.xDeathMessage'
-     OtherMesgGroup="BombingRun"
-     GameName="Bombing Run"
-     Description="Each level has a ball that starts in the middle of the playing field.  Your team scores by getting the ball through the enemy team's hoop.  You score 7 points for jumping through the hoop while holding the ball, and 3 points for tossing the ball through the hoop.  The ball can be passed to teammates, and is dropped if the player carrying it is killed."
-     ScreenShotName="UT2004Thumbnails.BRShots"
-     DecoTextName="XGame.BombingRun"
-     Acronym="BR"
 }

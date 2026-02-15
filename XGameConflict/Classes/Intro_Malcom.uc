@@ -9,5 +9,5 @@ class Intro_Malcom extends xIntroPawn;
 
 defaultproperties
 {
-     MeshNameString="intro_malcom.Malcom"
+	MeshNameString="intro_malcom.Malcom"
 }

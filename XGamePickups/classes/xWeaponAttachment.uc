@@ -102,5 +102,8 @@ simulated function Timer()
 
 defaultproperties
 {
-     DrawScale=0.400000
+    DrawScale=0.4
+    bHeavy=false
+    bRapidFire=false
+    bAltRapidFire=false
 }

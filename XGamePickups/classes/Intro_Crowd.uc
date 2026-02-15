@@ -42,9 +42,9 @@ event Timer()
 	LoopAnim(nextSeq, nextRate, nextTween);
 	if (NextOffset>0)
 		SetAnimFrame( frand()*NextOffset);
-}
+}  
 
 defaultproperties
 {
-     MeshNameString="intro_crowd.crowd_d1_a"
+	MeshNameString="intro_crowd.crowd_d1_a"
 }

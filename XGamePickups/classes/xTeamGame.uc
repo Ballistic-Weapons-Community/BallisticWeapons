@@ -27,12 +27,16 @@ static function PrecacheGameStaticMeshes(LevelInfo myLevel)
 
 defaultproperties
 {
-     DefaultEnemyRosterClass="xGame.xTeamRoster"
-     HUDType="XInterface.HudCTeamDeathMatch"
-     MapListType="XInterface.MapListTeamDeathMatch"
-     DeathMessageClass=Class'XGame.xDeathMessage'
-     GameName="Team DeathMatch"
-     ScreenShotName="UT2004Thumbnails.TDMShots"
-     DecoTextName="XGame.TeamGame"
-     Acronym="TDM"
+    MapListType="XInterface.MapListTeamDeathMatch"
+    HUDType="XInterface.HudCTeamDeathMatch"
+    DeathMessageClass=class'XGame.xDeathMessage'
+	DefaultEnemyRosterClass="xGame.xTeamRoster"
+
+    ScreenShotName="UT2004Thumbnails.TDMShots"
+    DecoTextName="XGame.TeamGame"
+
+    Acronym="TDM"
+    GameName="Team DeathMatch"
+    MapPrefix="DM"
+    Description="Two teams duke it out in a quest for battlefield supremacy.  The team with the most total frags wins."
 }

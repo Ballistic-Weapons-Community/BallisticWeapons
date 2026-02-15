@@ -9,5 +9,5 @@ class Intro_Fan_Gorge extends xIntroPawn;
 
 defaultproperties
 {
-     MeshNameString="intro_gorgefan.intro_gorgefan"
+	MeshNameString="intro_gorgefan.intro_gorgefan"
 }

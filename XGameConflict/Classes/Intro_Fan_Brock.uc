@@ -9,5 +9,5 @@ class Intro_Fan_Brock extends xIntroPawn;
 
 defaultproperties
 {
-     MeshNameString="intro_brockfan.intro_brockfan"
+	MeshNameString="intro_brockfan.intro_brockfan"
 }

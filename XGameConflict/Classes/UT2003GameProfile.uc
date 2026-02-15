@@ -1,3 +1,4 @@
+
 class UT2003GameProfile extends GameProfile;
 
 /*
@@ -39,10 +40,17 @@ function ContinueSinglePlayerGame(LevelInfo level, optional bool bReplace)
 		PC.Player.GUIController.OpenMenu("xInterface.UT2SinglePlayerMain");				
 }
 
-defaultproperties
-{
-     TeamSymbolName="TeamSymbols_UT2003.sym01"
-     SalaryCap=3500
-     ladderrung(0)=1
-     GameLadderName="xGame.UT2003LadderInfo"
+
+defaultproperties {
+	GameLadderName="xGame.UT2003LadderInfo"
+	LadderRung(0)=1			// skips the tutorial and goes straight to trainingday
+	Playerteam(0)=""
+	Playerteam(1)=""
+	Playerteam(2)=""
+	Playerteam(3)=""
+	Playerteam(4)=""
+	Playerteam(5)=""
+	Playerteam(6)=""
+	TeamSymbolName="TeamSymbols_UT2003.sym01"
+	SalaryCap=3500
 }

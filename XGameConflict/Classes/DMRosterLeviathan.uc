@@ -7,8 +7,8 @@ class DMRosterLeviathan extends xDMRoster;
 
 defaultproperties
 {
-     TeamSymbolName="TeamSymbols_UT2003.Sym01"
-     RosterNames(0)="Romulus"
-     RosterNames(1)="Asp"
-     TeamName="Death Match"
+	TeamName="Death Match"
+	TeamSymbolName="TeamSymbols_UT2003.Sym01"
+	RosterNames(0)="Romulus"
+	RosterNames(1)="Asp"
 }

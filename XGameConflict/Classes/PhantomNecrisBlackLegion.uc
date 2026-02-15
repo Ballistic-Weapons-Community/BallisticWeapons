@@ -9,7 +9,8 @@ class PhantomNecrisBlackLegion extends UT2K4PhantomRoster;
 
 defaultproperties
 {
-     TeamDescription="This powerful team of Necris Phayder assassins seeks to dominate the Tournament."
-     TeamLevel=-1
-     TeamName="Necris Black Legion"
+	TeamLevel=-1
+	TeamDescription="This powerful team of Necris Phayder assassins seeks to dominate the Tournament."
+
+	TeamName="Necris Black Legion"
 }

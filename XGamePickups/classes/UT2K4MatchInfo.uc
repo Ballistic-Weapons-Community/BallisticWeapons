@@ -34,4 +34,10 @@ var float TimeLimit;
 
 defaultproperties
 {
+	ThumbnailActive=none
+	ThumbnailInActive=none
+	Priority=0
+	PrizeMoney=0
+	EntryFee=0
+	TimeLimit=0
 }

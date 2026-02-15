@@ -1011,18 +1011,21 @@ exec function check()
 
 defaultproperties
 {
-     curcam=-1
-     MinAdrenalineCost=100.000000
-     ComboNameList(0)="XGame.ComboSpeed"
-     ComboNameList(1)="XGame.ComboBerserk"
-     ComboNameList(2)="XGame.ComboDefensive"
-     ComboNameList(3)="XGame.ComboInvis"
-     bWaitingForPRI=True
-     bWaitingForVRI=True
-     TeamBeaconTexture=Texture'TeamSymbols.TeamBeaconT'
-     LinkBeaconTexture=Texture'TeamSymbols.LinkBeaconT'
-     SpeakingBeaconTexture=Texture'TeamSymbols.soundBeacon_a00'
-     PlayerReplicationInfoClass=Class'XGame.xPlayerReplicationInfo'
-     PawnClass=Class'XGame.xPawn'
-     bNetNotify=True
+	bClassicTrans=false
+	bHighBeaconTrajectory=false
+    bNetNotify=true
+    bWaitingForPRI=True
+    bWaitingForVRI=True
+    TeamBeaconTexture=Texture'TeamSymbols.TeamBeaconT'
+    LinkBeaconTexture=Texture'TeamSymbols.LinkBeaconT'
+	SpeakingBeaconTexture=Texture'TeamSymbols.SoundBeacon_a00'
+    curcam=-1
+    ComboNameList(0)="XGame.ComboSpeed"
+    ComboNameList(1)="XGame.ComboBerserk"
+    ComboNameList(2)="XGame.ComboDefensive"
+    ComboNameList(3)="XGame.ComboInvis"
+    PlayerReplicationInfoClass=Class'xGame.xPlayerReplicationInfo'
+    PawnClass=class'xGame.xPawn'
+    MinAdrenalineCost=100.0
+    bAutoDemoRec=false
 }

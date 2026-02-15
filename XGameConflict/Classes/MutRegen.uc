@@ -28,8 +28,10 @@ function Timer()
 
 defaultproperties
 {
-     RegenPerSecond=5.000000
-     GroupName="Regen"
-     FriendlyName="Regeneration"
-     Description="All players regenerate health."
+    RegenPerSecond=5
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="Regen"
+    FriendlyName="Regeneration"
+    Description="All players regenerate health."
 }

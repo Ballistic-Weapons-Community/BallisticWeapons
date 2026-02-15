@@ -4,7 +4,7 @@ class NewHealthCharger extends HealthCharger;
 
 defaultproperties
 {
-     StaticMesh=StaticMesh'2k4ChargerMeshes.ChargerMeshes.HealthChargerMESH-DS'
-     DrawScale=0.450000
-     PrePivot=(Z=2.500000)
+	StaticMesh=2k4chargerMESHES.HealthChargerMESH-DS
+	PrePivot=(Z=2.5)
+	DrawScale=0.45
 }

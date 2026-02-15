@@ -28,5 +28,5 @@ function GetServerDetails( out GameInfo.ServerResponseLine ServerState )
 
 defaultproperties
 {
-     ConversionRatio=0.500000
+    ConversionRatio=0.5
 }

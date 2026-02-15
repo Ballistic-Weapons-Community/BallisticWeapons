@@ -6,12 +6,15 @@ class xCTFBase extends Decoration
 	notplaceable;
 
 defaultproperties
-{
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_rc.FlagBaseMesh'
-     bStatic=False
-     RemoteRole=ROLE_None
-     DrawScale=0.400000
-     PrePivot=(X=-5.000000)
-     bObsolete=True
+{   
+	bCollideWhenPlacing=false
+	bObsolete=true // temp - shouldn't be placed in levels
+	RemoteRole=ROLE_None
+    StaticMesh=XGame_rc.FlagBaseMesh
+    DrawType=DT_StaticMesh
+    DrawScale=0.400000
+    bCollideWorld=false
+    bCollideActors=false
+    bStatic=false
+    PrePivot=(X=-5.0,Y=0.0,Z=0.0)
 }

@@ -82,7 +82,9 @@ state FallingPickup
 	}
 }
 
-defaultproperties
+DefaultProperties
 {
-     RespawnTime=0.000000
+// This pickup should only be spawned by the UDamageRules class,
+// so let GameInfo know that we don't want any respawning
+	RespawnTime=0.0
 }

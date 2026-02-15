@@ -1,3 +1,4 @@
+
 class ProjectileSpawner extends Actor
     placeable;
 
@@ -57,11 +58,11 @@ function Trigger(Actor Other, Pawn EventInstigator)
 
 defaultproperties
 {
-     SpawnRateMin=1.000000
-     SpawnRateMax=1.000000
-     ProjectileLifeSpan=10.000000
-     bHidden=True
-     RemoteRole=ROLE_None
-     Texture=Texture'Engine.S_Emitter'
-     bDirectional=True
+    RemoteRole=ROLE_None
+    Texture=S_Emitter
+    bHidden=true
+    bDirectional=true
+    ProjectileLifeSpan=10.0
+    SpawnRateMin=1.0
+    SpawnRateMax=1.0
 }

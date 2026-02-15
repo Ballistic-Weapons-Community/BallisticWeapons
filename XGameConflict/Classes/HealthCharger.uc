@@ -13,13 +13,14 @@ function PostBeginPlay()
 
 defaultproperties
 {
-     PowerUp=Class'XPickups.HealthPack'
-     SpawnHeight=45.000000
-     NewStaticMesh=StaticMesh'2k4ChargerMeshes.ChargerMeshes.HealthChargerMESH-DS'
-     NewPrePivot=(Z=2.500000)
-     NewDrawScale=0.450000
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_rc.HealthChargerMesh'
-     Texture=None
-     DrawScale=0.500000
+    DrawScale=0.5
+    DrawType=DT_StaticMesh
+    StaticMesh=XGame_rc.HealthChargerMesh
+    Texture=None
+    PowerUp=HealthPack
+    SpawnHeight=+45.0000
+
+    NewStaticMesh=2k4chargerMESHES.HealthChargerMESH-DS
+    NewPrePivot=(Z=2.5)
+    NewDrawScale=0.45
 }

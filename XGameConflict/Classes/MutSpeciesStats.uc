@@ -27,9 +27,12 @@ function ModifyPlayer(Pawn Other)
     xp.Species.static.ModifyPawn(xp);
 }
 
+
 defaultproperties
 {
-     GroupName="Species"
-     FriendlyName="Species Statistics"
-     Description="Each race has unique combat statistics."
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="Species"
+    FriendlyName="Species Statistics"
+    Description="Each race has unique combat statistics."
 }

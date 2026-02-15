@@ -39,16 +39,19 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     SpiralEmitter=Class'XEffects.Spiral'
-     NewStaticMesh=StaticMesh'2k4ChargerMeshes.ChargerMeshes.WeaponChargerMesh-DS'
-     NewPrePivot=(Z=3.700000)
-     NewDrawScale=0.500000
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_rc.WildcardChargerMesh'
-     Texture=None
-     DrawScale=0.500000
-     Skins(0)=Texture'XGameTextures.WildcardChargerTex'
-     Skins(1)=Texture'XGameTextures.WildcardChargerTex'
-     CollisionRadius=60.000000
-     CollisionHeight=3.000000
+    SpiralEmitter=class'XEffects.Spiral'
+
+    DrawScale=0.5
+    DrawType=DT_StaticMesh
+    StaticMesh=XGame_rc.WildcardChargerMesh
+    Skins(0)=Texture'XGameTextures.WildcardChargerTex'
+    Skins(1)=Texture'XGameTextures.WildcardChargerTex'
+    Texture=None
+
+    CollisionRadius=60.000000
+    CollisionHeight=3.000000
+
+    NewStaticMesh=2k4chargerMESHES.WeaponChargerMESH-DS
+    NewPrePivot=(Z=3.7)
+    NewDrawScale=0.5
 }

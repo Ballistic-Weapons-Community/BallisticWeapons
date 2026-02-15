@@ -13,13 +13,23 @@ static function int ModifyImpartedDamage( int Damage, pawn injured, pawn instiga
 
 defaultproperties
 {
-     MaleVoice="XGame.NightMaleVoice"
-     FemaleVoice="XGame.NightFemaleVoice"
-     MaleSoundGroup="XGame.xNightMaleSoundGroup"
-     FemaleSoundGroup="XGame.xNightFemaleSoundGroup"
-     SpeciesName="Night"
-     RaceNum=5
-     TauntAnims(8)="Gesture_Taunt03"
-     TauntAnims(9)="Idle_Character03"
-     DamageScaling=0.700000
+	SpeciesName="Night"
+	RaceNum=5
+	MaleVoice="XGame.NightMaleVoice"
+	FemaleVoice="XGame.NightFemaleVoice"
+	MaleSoundGroup="XGame.xNightMaleSoundGroup"
+	FemaleSoundGroup="XGame.xNightFemaleSoundGroup"
+	AirControl=+1.0
+	GroundSpeed=+1.0
+	WaterSpeed=+1.0
+	JumpZ=+1.0
+	ReceivedDamageScaling=+1.0
+	DamageScaling=+0.7
+	AccelRate=+1.0
+	WalkingPct=+1.0
+	CrouchedPct=+1.0
+	DodgeSpeedFactor=+1.0
+	DodgeSpeedZ=+1.0
+	TauntAnims(8)=Gesture_Taunt03
+	TauntAnims(9)=Idle_Character03
 }

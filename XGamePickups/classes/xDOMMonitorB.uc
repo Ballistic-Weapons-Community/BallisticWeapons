@@ -4,10 +4,10 @@
 class xDOMMonitorB extends xDOMMonitor;
 
 defaultproperties
-{
-     RedShader=Shader'XGameTextures.SuperPickups.RedScreenBS'
-     BlueShader=Shader'XGameTextures.SuperPickups.BlueScreenBS'
-     ActiveShader=Shader'XGameTextures.SuperPickups.GreyScreenBS'
-     InactiveShader=Shader'XGameTextures.SuperPickups.BlackScreenBS'
-     Tag="'"
+{   
+    Tag='DomChangeB'
+    RedShader=Material'RedScreenBS'
+    BlueShader=Material'BlueScreenBS'
+    ActiveShader=Material'GreyScreenBS'    
+    InactiveShader=Material'BlackScreenBS'    
 }

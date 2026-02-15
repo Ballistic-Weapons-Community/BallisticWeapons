@@ -54,13 +54,15 @@ static event bool AcceptPlayInfoProperty(string PropertyName)
 
 defaultproperties
 {
-     bAllowBoost=True
-     ZoomDisplayText="Allow Zoom"
-     ZoomDescText="Instagib rifles have sniper scopes."
-     bAllowTrans=False
-     bDefaultTranslocator=False
-     MutatorClass="xGame.InstagibMutator"
-     GameName="Instagib CTF"
-     DecoTextName="XGame.InstagibCTF"
-     Acronym="ICTF"
+	bZoomInstagib=false
+	bAllowBoost=true
+	bAllowTrans=false
+	bDefaultTranslocator=false
+    DecoTextName="XGame.InstagibCTF"
+	MutatorClass="xGame.InstagibMutator"
+    GameName="Instagib CTF"
+    Description="Your team must score flag captures by taking the enemy flag from the enemy base and returning it to their own flag.  If the flag carrier is killed, the flag drops to the ground for anyone to pick up.  If your team's flag is taken, it must be returned (by touching it after it is dropped) before your team can score a flag capture."
+    Acronym="ICTF"
+    ZoomDisplayText="Allow Zoom"
+    ZoomDescText="Instagib rifles have sniper scopes."
 }

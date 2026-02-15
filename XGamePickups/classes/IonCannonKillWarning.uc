@@ -26,9 +26,9 @@ static function GetPos(int Switch, out EDrawPivot OutDrawPivot, out EStackMode O
 
 defaultproperties
 {
-     CountDownTrailer="..."
-     WarningString="You have been targeted by an orbital Ion Satellite!"
-     bIsUnique=False
-     bIsPartiallyUnique=True
-     Lifetime=1
+	bIsUnique=false
+	bIsPartiallyUnique=true
+	CountDownTrailer="..."
+	WarningString="You have been targeted by an orbital Ion Satellite!"
+	LifeTime=1.0
 }

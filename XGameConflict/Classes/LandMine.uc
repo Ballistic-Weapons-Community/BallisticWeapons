@@ -37,10 +37,10 @@ function PostTouch(Actor Other)
 
 defaultproperties
 {
-     ChuckVelocity=(Z=1000.000000)
-     DamageType=Class'Engine.DamageType'
-     BlowupEffect=Class'XEffects.LandMineExplosion'
-     BlowupSound=Sound'WeaponSounds.BaseImpactAndExplosions.BExplosion3'
-     CollisionRadius=100.000000
-     CollisionHeight=50.000000
+	CollisionRadius=100.f
+	CollisionHeight=50.f
+	ChuckVelocity=(X=0,Y=0,Z=1000)
+	DamageType=class'DamageType'
+	BlowupEffect=class'XEffects.LandMineExplosion'
+	BlowupSound=sound'WeaponSounds.BExplosion3'
 }

@@ -27,5 +27,5 @@ function Possess(Pawn aPawn)
 
 defaultproperties
 {
-     PlayerReplicationInfoClass=Class'XGame.xPlayerReplicationInfo'
-}
+	 PlayerReplicationInfoClass=Class'xGame.xPlayerReplicationInfo'
+} 

@@ -30,11 +30,11 @@ function StopEffect(xPawn P)
 
 defaultproperties
 {
-     ExecMessage="Speed!"
-     Duration=16.000000
-     ComboAnnouncementName="Speed"
-     keys(0)=1
-     keys(1)=1
-     keys(2)=1
-     keys(3)=1
+	Duration=16
+    ExecMessage="Speed!"
+    ComboAnnouncementName=Speed
+    keys(0)=1
+    keys(1)=1
+    keys(2)=1
+    keys(3)=1
 }

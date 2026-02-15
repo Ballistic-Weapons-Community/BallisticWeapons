@@ -41,16 +41,23 @@ static function string GetString(
 
 defaultproperties
 {
-     YouControlBothPointsString="Your team controls both points!"
-     EnemyControlsBothPointsString="The enemy controls both points!"
-     RedColor=(G=255,R=255,A=255)
-     BlueColor=(G=255,R=255,A=255)
-     bIsUnique=True
-     bIsConsoleMessage=False
-     bFadeMessage=True
-     Lifetime=1
-     DrawColor=(G=160,R=0)
-     StackMode=SM_Down
-     PosY=0.100000
-     FontSize=1
+	YouControlBothPointsString="Your team controls both points!"
+	EnemyControlsBothPointsString="The enemy controls both points!"
+
+	bFadeMessage=True
+	bIsUnique=true
+	bIsConsoleMessage=False
+
+	Lifetime=1
+	
+    //RedColor=(R=255,G=0,B=0,A=255)
+    //BlueColor=(R=0,G=0,B=255,A=255)
+    RedColor=(R=255,G=255,B=0,A=255)	
+	BlueColor=(R=255,G=255,B=0,A=255)
+    
+    DrawColor=(R=0,G=160,B=255,A=255)
+	FontSize=1
+
+	StackMode=SM_Down
+    PosY=0.10
 }

@@ -3,7 +3,3 @@ class DecoText extends Object
 
 var() String TextName;
 var() array<String> Rows;
-
-defaultproperties
-{
-}

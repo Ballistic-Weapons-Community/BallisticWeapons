@@ -515,49 +515,61 @@ state Dropped
 	}
 }
 
+
 defaultproperties
 {
-     BombLauncherClassName="XWeapons.BallLauncher"
-     ThrowSpeed=1300.000000
-     Elasticity=0.400000
-     ImpactSound=Sound'WeaponSounds.Misc.ball_bounce_v3a'
-     ThrowerTouchDelay=1.000000
-     SeekInterval=0.050000
-     TeamShader(0)=Shader'XGameShaders.BRShaders.BombIconRS'
-     TeamShader(1)=Shader'XGameShaders.BRShaders.BombIconBS'
-     TeamHue(1)=170
-     SecondRepSkin=Shader'XGameShaders.BRShaders.BombIconYS'
-     bHome=True
-     GameObjBone="spine"
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=40
-     LightBrightness=255.000000
-     LightRadius=6.000000
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'E_Pickups.BombBall.FullBomb'
-     bStatic=False
-     bDynamicLight=True
-     bStasis=False
-     Physics=PHYS_Rotating
-     NetUpdateFrequency=100.000000
-     NetPriority=3.000000
-     DrawScale=1.500000
-     PrePivot=(X=2.000000,Z=0.500000)
-     Skins(1)=Shader'XGameShaders.BRShaders.BombIconYS'
-     Skins(2)=Shader'XGameShaders.BRShaders.BombIconYS'
-     Style=STY_Masked
-     bUnlit=True
-     SoundRadius=250.000000
-     CollisionRadius=24.000000
-     CollisionHeight=20.000000
-     bCollideActors=True
-     bCollideWorld=True
-     bProjTarget=True
-     bBounce=True
-     bFixedRotationDir=True
-     Buoyancy=20.000000
-     RotationRate=(Yaw=30000)
-     DesiredRotation=(Yaw=30000)
-     MessageClass=Class'XGame.xBombMessage'
+    ThrowerTouchDelay=1.f
+    ImpactSound=Sound'WeaponSounds.ball_bounce_v3a'
+    Elasticity=0.4
+    RemoteRole=ROLE_DumbProxy
+    DrawType=DT_StaticMesh
+    StaticMesh=StaticMesh'E_Pickups.BombBall.FullBomb'
+    DrawScale=1.500000
+    BombLauncherClassName="XWeapons.BallLauncher"
+    NetUpdateFrequency=100
+    MessageClass=class'XGame.xBombMessage'
+    bProjTarget=true
+    bHidden=false
+    bStasis=false
+    bHome=True
+    bStatic=False
+    Style=STY_Masked
+
+    bFixedRotationDir=True
+    RotationRate=(Yaw=30000)
+    DesiredRotation=(Yaw=30000)
+    Physics=PHYS_Rotating
+
+    bDynamicLight=true
+    LightHue=40
+    LightBrightness=255
+    bUnlit=true
+    LightType=LT_Steady
+    LightEffect=LE_QuadraticNonIncidence
+    LightRadius=6
+
+    TeamHue(0)=0
+    TeamHue(1)=170
+	TeamShader(0)=Shader'XGameShaders.BRShaders.BombIconRS'
+	TeamShader(1)=Shader'XGameShaders.BRShaders.BombIconBS'
+	Skins(0)=None
+	Skins(1)=Shader'XGameShaders.BRShaders.BombIconYS'
+	Skins(2)=Shader'XGameShaders.BRShaders.BombIconYS'
+	SecondRepSkin=Shader'XGameShaders.BRShaders.BombIconYS'
+
+    CollisionRadius=24.0
+	CollisionHeight=20.0
+    bCollideActors=True
+    bCollideWorld=True
+    bUseCylinderCollision=true
+    Mass=100.0
+    Buoyancy=20.000000
+    PrePivot=(X=2,Y=0,Z=0.5)
+    NetPriority=+00003.000000
+    SoundRadius=250
+    ThrowSpeed=1300
+    bBounce=true
+    SeekInterval=0.05
+    SeekAccum=0.0
+	GameObjBone=spine
 }

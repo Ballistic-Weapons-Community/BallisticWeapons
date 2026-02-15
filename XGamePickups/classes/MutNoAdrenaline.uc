@@ -17,7 +17,9 @@ function bool IsRelevant(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-     GroupName="Adrenaline"
-     FriendlyName="No Adrenaline"
-     Description="Adrenaline pickups are removed from the map."
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="Adrenaline"
+    FriendlyName="No Adrenaline"
+    Description="Adrenaline pickups are removed from the map."
 }

@@ -38,5 +38,5 @@ event Trigger( Actor Other, Pawn EventInstigator )
 
 defaultproperties
 {
-     bCollideActors=False
+	bCollideActors=false
 }

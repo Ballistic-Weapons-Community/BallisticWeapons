@@ -18,12 +18,16 @@ static function string GetString(
 
 defaultproperties
 {
-     YouWereKilledBy="You were killed by"
-     KilledByTrailer="!"
-     bIsUnique=True
-     bFadeMessage=True
-     Lifetime=6
-     DrawColor=(B=0,G=0)
-     StackMode=SM_Down
-     PosY=0.100000
+	bFadeMessage=True
+	bIsUnique=True
+	Lifetime=6
+
+	DrawColor=(R=255,G=0,B=0,A=255)
+	FontSize=0
+
+	YouWereKilledBy="You were killed by"
+	KilledByTrailer="!"
+
+	StackMode=SM_Down
+    PosY=0.10
 }

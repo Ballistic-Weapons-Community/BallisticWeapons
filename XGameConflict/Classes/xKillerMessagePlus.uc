@@ -21,10 +21,15 @@ static function string GetString(
 
 defaultproperties
 {
-     YouKilled="You killed"
-     bIsUnique=True
-     bFadeMessage=True
-     DrawColor=(G=160,R=0)
-     StackMode=SM_Down
-     PosY=0.100000
+	bFadeMessage=True
+	bIsUnique=True
+
+	DrawColor=(R=0,G=160,B=255,A=255)
+	FontSize=0
+
+	StackMode=SM_Down
+    PosY=0.10
+
+	YouKilled="You killed"
+	YouKilledTrailer=""
 }
