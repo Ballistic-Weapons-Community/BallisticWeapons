@@ -514,7 +514,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		Weapon.bTraceWater=false;
 		Dist -= VSize(HitLocation - Start);
 
-		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry || Other.bBlockActors))
+		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
 			break;
 
 		if (Other == None)
@@ -538,7 +538,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		LastHitLoc = HitLocation;
 			
 		// Got something interesting
-		if (Other.bBlockActors && !Other.bWorldGeometry && Other != LastOther)
+		if (!Other.bWorldGeometry && Other != LastOther)
 		{
 			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
 		
@@ -562,7 +562,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		}
 
 		// Do impact effect
-		if (Other.bBlockActors || Other.bWorldGeometry || Mover(Other) != None)
+		if (Other.bWorldGeometry || Mover(Other) != None)
 		{
 			WallCount++;
 			
