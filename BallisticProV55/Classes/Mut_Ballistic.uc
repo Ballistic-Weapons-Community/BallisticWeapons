@@ -792,6 +792,8 @@ simulated function AdjustLockerWeapons()
 	{
 		for (i=0;i<Replacements.Length;i++)
 		{
+			if (Replacements[i].NewItems.Length == 0)
+				continue;
 			for (j=0;j<L.Emitters.Length;j++)
 			{
 				NP = class<UTWeaponPickup>(GetPickupFor(Replacements[i].NewItems[0]));

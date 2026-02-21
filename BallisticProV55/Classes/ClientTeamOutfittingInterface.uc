@@ -525,13 +525,9 @@ function Initialize(Mut_TeamOutfitting MO, PlayerController P)
 
 	bWeaponsReady=true;
 
-	if (level.NetMode != NM_StandAlone)
-    {   
-        if (Viewport(P.Player) == None)
-		    SendWeapons();
-    }
-
-    else 
+    if (level.NetMode != NM_StandAlone && Viewport(P.Player) == None)
+        SendWeapons();
+    else
     {
         FillWeapons();
         SortLists();

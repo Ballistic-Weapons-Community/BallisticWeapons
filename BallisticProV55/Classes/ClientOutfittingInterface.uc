@@ -251,7 +251,7 @@ simulated function ReceiveWeapon (string WeaponName, byte Boxes, optional bool b
 }
 
 // Get Name, BigIconMaterial and classname of weapon at index? in group?
-function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo WepInfo)
+simulated function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo WepInfo)
 {
 	local int i;
 

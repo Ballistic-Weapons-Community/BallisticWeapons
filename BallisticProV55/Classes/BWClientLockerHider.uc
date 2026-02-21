@@ -38,7 +38,7 @@ simulated function Timer()
             W.bHidden = True;
             W.SetDrawType(DT_None);
             //log("Disabling WeaponLocker: " $ W.GetHumanReadableName());
-            continue;
+            //continue;
         }
     }
     Destroy();
