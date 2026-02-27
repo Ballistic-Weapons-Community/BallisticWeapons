@@ -11,7 +11,7 @@ class ConfigTab_GameplayPrefs extends ConfigTabBase;
 
 var automated moComboBox		co_Crosshairs, co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
-var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
+var automated moCheckbox		ch_Crosshairdot,ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
 
 function LoadSettings()
 {
@@ -20,6 +20,7 @@ function LoadSettings()
 	co_Crosshairs.AddItem("UT2004" ,,string(2));
 	co_Crosshairs.ReadOnly(True);
 	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
+	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
 
     co_ADSHandling.AddItem("Default" ,,string(0));
 	co_ADSHandling.AddItem("Hold" ,,string(1));
@@ -46,6 +47,7 @@ function SaveSettings()
 		return;
 
  	class'BallisticWeapon'.default.CrosshairMode		= ECrosshairMode(co_Crosshairs.GetIndex());
+ 	class'BallisticWeapon'.default.bDrawCrosshairDot	= ch_Crosshairdot.IsChecked();
     class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
@@ -62,6 +64,7 @@ function SaveSettings()
 function DefaultSettings()
 {
 	co_Crosshairs.SetIndex(0);
+	ch_Crosshairdot.Checked(true);
 	co_ADSHandling.SetIndex(0);
 	co_ModeMemory.SetIndex(0);
 	fl_ZoomTimeMod.SetValue(1.5);
@@ -83,6 +86,19 @@ defaultproperties
      End Object
      co_Crosshairs=moComboBox'co_CrosshairCombo'
 
+	 Begin Object Class=moCheckBox Name=ch_CrosshairdotCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Show dot in crosshair"
+         OnCreateComponent=ch_CrosshairdotCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Add a dot to the center of the dynamic crosshair."
+         WinTop=0.15
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_Crosshairdot=moCheckBox'ch_CrosshairdotCheck'     
+
      Begin Object Class=moComboBox Name=co_ADSHandlingCombo
         ComponentJustification=TXTA_Left
         CaptionWidth=0.550000
@@ -90,7 +106,7 @@ defaultproperties
         OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
         IniOption="@Internal"
         Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
-        WinTop=0.15
+        WinTop=0.20
         WinLeft=0.250000
      End Object
      co_ADSHandling=moComboBox'co_ADSHandlingCombo'
@@ -103,7 +119,7 @@ defaultproperties
          IniOption="@Internal"
          IniDefault="High"
          Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
-         WinTop=0.2
+         WinTop=0.25
          WinLeft=0.250000
      End Object
      co_ModeMemory=moComboBox'co_ModeCombo'
@@ -117,7 +133,7 @@ defaultproperties
          OnCreateComponent=fl_ZoomTimeModFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Multiplier for the rate of change of zoom levels. 1 to 4."
-         WinTop=0.25
+         WinTop=0.30
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -130,7 +146,7 @@ defaultproperties
          OnCreateComponent=ch_WeaponUICheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable the selection UI when changing weapons."
-         WinTop=0.3
+         WinTop=0.35
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -143,7 +159,7 @@ defaultproperties
          OnCreateComponent=ch_SimpleDeathMessagesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Renders death messages as Killer [Weapon] Killed"
-         WinTop=0.35
+         WinTop=0.40
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -156,7 +172,7 @@ defaultproperties
          OnCreateComponent=ch_LessDisruptiveFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Changes white blinding flashes to black"
-         WinTop=0.40
+         WinTop=0.45
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

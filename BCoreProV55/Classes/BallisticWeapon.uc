@@ -358,6 +358,7 @@ var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingSt
 // Crosshair Info
 //-----------------------------------------------------------------------------
 var() globalconfig bool		bGlobalCrosshair;			// All Ballistic Weapons use the universal crosshair instead of weapon specific ones
+var() globalconfig bool		bDrawCrosshairDot;			// Add a dot to the center of the dynamic crosshair
 var() config NonDefCrosshairCfg NDCrosshairCfg;			// Configurable crosshair settings
 var() config NonDefCrosshairInfo NDCrosshairInfo;		// Weapon specific Crosshair settings
 var   float					NDCrosshairScale;			// HUD scales crosshair by this
@@ -5243,14 +5244,14 @@ simulated final function DrawSimpleCrosshairBars(Canvas C, int XOffset, int YOff
 	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) + YOffset);
 	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
 
-	/*
+	
 	if (bDrawCrosshairDot)
 	{
 		C.DrawColor.A = SavedDrawColor.A;
 		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
 		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
 	}
-	*/
+	
 
 	C.DrawColor = SavedDrawColor;
 }
@@ -5804,7 +5805,7 @@ defaultproperties
 	 SavedWeaponMode=255
 
      NetInventoryGroup=255
-	 
+	 bDrawCrosshairDot=True
 	 NDCrosshairCfg=(USize1=128,VSize1=128,USize2=128,VSize2=128,Color1=(R=255,A=255),Color2=(G=255,R=255,A=255),StartSize1=96,StartSize2=96)
      NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000)
      NDCrosshairChaosFactor=0.400000
