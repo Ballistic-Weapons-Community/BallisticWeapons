@@ -1,8 +1,8 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
-labels: ''
+title: "(BUG)"
+labels: Bug
 assignees: ''
 
 ---
@@ -10,6 +10,8 @@ assignees: ''
 **Bug description:**
 
 **Commit used:**
+
+**Gamestyle used**
 
 **Online or Offline?**
 
