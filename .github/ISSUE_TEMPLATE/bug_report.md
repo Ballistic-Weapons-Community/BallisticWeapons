@@ -9,7 +9,7 @@ assignees: ''
 
 **Bug description:**
 
-**Commit used:**
+**Version used:**
 
 **Gamestyle used**
 
