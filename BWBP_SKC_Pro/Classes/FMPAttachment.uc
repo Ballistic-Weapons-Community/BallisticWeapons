@@ -309,4 +309,6 @@ defaultproperties
 	RelativeLocation=(Z=7)
 	RelativeRotation=(Pitch=32768)
 	DrawScale=0.35000
+	Skins(0)=Texture'BWBP_SKC_Tex.MP40.MP40-Main'
+	Skins(1)=Texture'BWBP_SKC_Tex.MP40.MP40-Mag'
 }
