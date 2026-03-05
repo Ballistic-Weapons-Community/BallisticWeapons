@@ -49,6 +49,11 @@ function InitFor(Inventory I)
 	}
 }
 
+simulated function SetTracerMode(byte newTracerMode)
+{
+	CurrentTracerMode = newTracerMode;
+}
+
 // Does all the effects for an instant-hit kind of fire.
 // On the client, this uses mHitLocation to find all the other info needed.
 simulated function InstantFireEffects(byte Mode)
@@ -254,6 +259,7 @@ defaultproperties
 {
 	WeaponClass=class'M2020GaussDMR'
 	
+	CurrentTracerMode=3
 	TracerClasses(0)=class'TraceEmitter_Default'
 	TracerClasses(1)=class'TraceEmitter_AP'
 	TracerClasses(2)=class'TraceEmitter_Gauss'

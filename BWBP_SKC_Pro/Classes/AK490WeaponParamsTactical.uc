@@ -257,9 +257,8 @@ defaultproperties
 		LayoutTags="no_knife"
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.AKM490_FPm'
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
-		SightPivot=(Pitch=64)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexRU',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-30,y=-3.8,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		SightOffset=(X=0.000000,Y=-0.270000,Z=5.8000)
 		// ADS handling
         SightMoveSpeedFactor=0.6
 		SightingTime=0.35

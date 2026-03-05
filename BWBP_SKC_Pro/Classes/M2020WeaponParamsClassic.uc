@@ -131,9 +131,9 @@ defaultproperties
 		PDamageFactor=0.750000
 		WallPDamageFactor=0.750000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-		FlashScaleFactor=1.200000
+		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-FireGaussAlt',Volume=1.750000)
-		Recoil=1600.000000
+		Recoil=2000.000000
 		Chaos=4.0
 		Inaccuracy=(X=1,Y=1)
 		BotRefireRate=0.900000
@@ -148,6 +148,42 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Supp'
 	End Object
 	
+	//Gauss Offline Supp
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParamsOffline_Supp
+		TraceRange=(Min=15000.000000,Max=20000.000000)
+		WaterTraceRange=18000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.850000
+		Damage=40
+		HeadMult=2.2
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
+     	DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';
+     	DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off';
+		PenetrationEnergy=64.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.600000
+		WallPDamageFactor=0.400000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=1.600000)
+		Recoil=172.000000
+		Chaos=-1.0
+		Inaccuracy=(X=1,Y=1)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParamsOffline_Supp
+		FireInterval=0.400000
+		BurstFireRateFactor=1.00
+		FireAnim="FireUnPowered"
+		AimedFireAnim="FireUnpowered"
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParamsOffline_Supp'
+	End Object	
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -159,7 +195,8 @@ defaultproperties
 		XRandFactor=1.000000
 		YRandFactor=0.200000
 		MaxRecoil=8096
-		DeclineDelay=0.000000
+		DeclineDelay=0.4
+		DeclineTime=3.0
 		ViewBindFactor=0.400000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
@@ -181,7 +218,9 @@ defaultproperties
 		JumpOffSet=(Pitch=-5000,Yaw=-1000)
 		FallingChaos=0.400000
 		ChaosDeclineTime=2.000000
+		ChaosDeclineDelay=1
 		ChaosSpeedThreshold=475.000000
+		ChaosTurnThreshold=100000.000000
 	End Object
     
 	//=================================================================
@@ -275,8 +314,8 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Supp'
 		FireParams(1)=FireParams'ClassicPrimaryFireParams_Supp'
-		FireParams(2)=FireParams'ClassicPrimaryFireParamsOffline'
-		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline'
+		FireParams(2)=FireParams'ClassicPrimaryFireParamsOffline_Supp'
+		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline_Supp'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	

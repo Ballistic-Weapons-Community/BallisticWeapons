@@ -163,7 +163,7 @@ defaultproperties
 		DeclineTime=0.800000
 		DeclineDelay=0.180000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=1.000000
+		ADSViewBindFactor=1.000000 //
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

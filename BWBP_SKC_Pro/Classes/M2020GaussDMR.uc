@@ -65,6 +65,8 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "supp") != -1)
 	{
 		bSuppressed=true; 
+		if (Role == ROLE_Authority && CurrentWeaponMode != 2 && CurrentWeaponMode != 3)
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(1);
 	}
 }
 
@@ -378,6 +380,23 @@ simulated function CommonStartReload (optional byte i)
 	bNeedReload=false;
 }
 
+
+simulated function CommonSwitchWeaponMode (byte newMode)
+{
+	if (Role == ROLE_Authority)
+	{
+		if (newMode == 2 && newMode == 3)	//gauss is off
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(0);
+		else if (bSuppressed) //suppressed, muted trail
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(1);
+		else if (newMode == 1)	//overcharged trail
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(3);
+		else //standard trail
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(2);
+	}
+	super.CommonSwitchWeaponMode(newMode);
+}
+
 simulated function float RateSelf()
 {
 	if (!HasAmmo())
@@ -552,7 +571,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;1.0;80.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun',Volume=0.182000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.187000)
-	//CockAnimPostReload="ReloadEndCock"
+	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-Cock',Volume=1.400000)
 	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-CockOld',Volume=1.400000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagHit',Volume=1.400000)
@@ -584,7 +603,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=207,G=229,R=231,A=197),Color2=(B=226,G=0,R=0,A=255),StartSize1=77,StartSize2=68)
 	PutDownTime=0.80000
 	BringUpTime=0.80000
-	CockingBringUpTime=2.300000
+	CockingBringUpTime=2.900000
 	SelectAnimRate=1.4
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.800000

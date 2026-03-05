@@ -220,9 +220,9 @@ defaultproperties
 		LayoutTags="no_knife"
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.AKM490_FPm'
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-26,y=-3.6,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexRU',BoneName="Muzzle",Scale=0.05,AugmentOffset=(x=-30,y=-3.8,z=-0.2),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorAK',BoneName="Muzzle",AugmentOffset=(x=0,y=-0.5,z=0),Scale=0.075,AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
-		SightOffset=(X=0.000000,Y=-0.250000,Z=6.505000)
+		SightOffset=(X=0.000000,Y=-0.270000,Z=5.8000)
 		//Function
 		InventorySize=6
 		WeaponPrice=1200
