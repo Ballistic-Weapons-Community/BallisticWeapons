@@ -58,7 +58,7 @@ var float StealthRating, StealthImps;
 replication
 {
 	reliable if(Role==ROLE_Authority)
-		Target, bLockedOn, bLaserOn;
+		Target, bLockedOn, bLaserOn, TargetTime;
 
 	reliable if(Role<ROLE_Authority)
 		ServerSwitchSilencer;
@@ -113,11 +113,15 @@ simulated function WeaponTick(float DT)
 	//if (Instigator != None && Instigator.IsLocallyControlled())
 	//	TickLaser(DT);
 
-	if (!bScopeView || !bADSTrack || Role < ROLE_Authority)
-	{
-		TargetTime = 0;
-		return;
-	}
+    if (!bScopeView || !bADSTrack)
+    {
+        if (Role == ROLE_Authority)
+            TargetTime = 0;
+        return;
+    }
+
+    if (Role < ROLE_Authority)
+        return;
 
 	bWasLockedOn = TargetTime >= LockOnTime;
 

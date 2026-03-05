@@ -108,7 +108,7 @@ defaultproperties
 	//FRAG-10 Auto
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams_Frag
 		ProjectileClass=Class'BWBP_SKC_Pro.SKASRocket'
-		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		SpawnOffset=(X=120.000000,Y=25.000000,Z=-30.000000)
 		Speed=150.000000
 		MaxSpeed=50000.000000
 		AccelSpeed=25000.000000

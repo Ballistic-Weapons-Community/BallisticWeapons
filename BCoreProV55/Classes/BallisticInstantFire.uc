@@ -514,7 +514,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		Weapon.bTraceWater=false;
 		Dist -= VSize(HitLocation - Start);
 
-		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry|| Other.bProjTarget))
+		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
 			break;
 
 		if (Other == None)
@@ -562,7 +562,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		}
 
 		// Do impact effect
-		if (Other.bProjTarget || Other.bWorldGeometry || Mover(Other) != None)
+		if (Other.bWorldGeometry || Mover(Other) != None)
 		{
 			WallCount++;
 			

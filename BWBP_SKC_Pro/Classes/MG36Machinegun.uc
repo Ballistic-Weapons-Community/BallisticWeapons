@@ -51,7 +51,7 @@ var() name		SilencerOffAnim;		//
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		Target, bMeatVision, bLowZoom;
+		Target, bMeatVision, bThermal, bLowZoom;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal;
 }
@@ -153,14 +153,29 @@ simulated function ChangeZoom (float Value)
 	}
 	PC.DesiredZoomLevel = NewZoomLevel;
 }
+
 function ServerWeaponSpecial(optional byte i)
 {
-	bMeatVision = !bMeatVision;
-	if (bMeatVision)
-		class'BUtil'.static.PlayFullSound(self, NVOnSound);
-	else
-		class'BUtil'.static.PlayFullSound(self, NVOffSound);
+    switch (i)
+    {
+        case 0: // Standard 
+            bThermal = false;
+            bMeatVision = false;
+            ServerAdjustThermal(false);
+            break;
+        case 1: // NV
+            bThermal = true;
+            bMeatVision = false;
+            ServerAdjustThermal(true);
+            break;
+        case 2: // IR
+            bThermal = false;
+            bMeatVision = true;
+            ServerAdjustThermal(false);
+            break;
+    }
 }
+
 simulated event WeaponTick(float DT)
 {
 	local actor T;
@@ -397,56 +412,46 @@ function ServerAdjustThermal(bool bNewValue)
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (!bScopeView && bHasSuppressor) //Not in scope, lets play with the suppressor if possible
-	{
-		SwitchSilencer();
-		return;
-	}
-	if (bHasScope)
-	{
-		if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
-		{
-			bThermal = !bThermal;
-			if (bThermal)
-					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-			AdjustThermalView(bThermal);
-			if (!bScopeView)
-				PlayerController(InstigatorController).ClientMessage("Activated 4X nightvision scope.");
-			return;
-		}
-		if (bThermal && !bMeatVision) //IRNV on! turn it off and turn on targeting!
-		{
-			bThermal = !bThermal;
-			if (bThermal)
-					class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-			AdjustThermalView(bThermal);
-			if (!bScopeView)
-				PlayerController(InstigatorController).ClientMessage("Activated 4X infrared targeting scope.");
-			bMeatVision = !bMeatVision;
-			if (bMeatVision)
-					class'BUtil'.static.PlayFullSound(self, NVOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, NVOffSound);
-			return;
-		}
-		if (!bThermal && bMeatVision) //targeting on! turn it off!
-		{
-			bMeatVision = !bMeatVision;
-			if (bMeatVision)
-					class'BUtil'.static.PlayFullSound(self, NVOnSound);
-			else
-					class'BUtil'.static.PlayFullSound(self, NVOffSound);
-			if (!bScopeView)
-				PlayerController(InstigatorController).ClientMessage("Activated 4X standard scope.");
-			return;
-		}
-	}
+    if (!bScopeView && bHasSuppressor)
+    {
+        SwitchSilencer();
+        return;
+    }
+    if (bHasScope)
+    {
+        if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
+        {
+            bThermal = true;
+            class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+            AdjustThermalView(true);
+            if (!bScopeView)
+                PlayerController(InstigatorController).ClientMessage("Activated 4X nightvision scope.");
+            ServerWeaponSpecial(1);
+            return;
+        }
+        if (bThermal && !bMeatVision) //IRNV on! turn it off and turn on targeting!
+        {
+            bThermal = false;
+            class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+            AdjustThermalView(false);
+            if (!bScopeView)
+                PlayerController(InstigatorController).ClientMessage("Activated 4X infrared targeting scope.");
+            bMeatVision = true;
+            class'BUtil'.static.PlayFullSound(self, NVOnSound);
+            ServerWeaponSpecial(2);
+            return;
+        }
+        if (!bThermal && bMeatVision) //targeting on! turn it off!
+        {
+            bMeatVision = false;
+            class'BUtil'.static.PlayFullSound(self, NVOffSound);
+            if (!bScopeView)
+                PlayerController(InstigatorController).ClientMessage("Activated 4X standard scope.");
+            ServerWeaponSpecial(0);
+            return;
+        }
+    }
 }
-
 simulated event Destroyed()
 {
 	AdjustThermalView(false);

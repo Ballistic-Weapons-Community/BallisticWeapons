@@ -720,15 +720,17 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	// No ammo pickups
 	else if (Ammo(Other) != None && IP_AmmoPack(Other) == None)
 	{
-		Pickup(Other).myMarker.bBlocked = True;
-		return false;
+        if (Pickup(Other).myMarker != None)
+            Pickup(Other).myMarker.bBlocked = True;
+        return false;
 	}
 	// Lockers replaced with ammo packs
 	else if (WeaponLocker(Other) != None)
 	{
 		if (!SpawnNewItem(-1, Other, class'IP_AmmoPack'))
 		{
-			WeaponLocker(Other).myMarker.bBlocked = True;
+			if (WeaponLocker(Other).myMarker != None)
+				WeaponLocker(Other).myMarker.bBlocked = True;
 			Other.GotoState('Disabled');
 			return false;
 		}
@@ -757,6 +759,8 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	//Go through replacements list and see if there is a match
 	for (i=0;i<Replacements.Length;i++)
 	{
+        if (Replacements[i].NewItems.Length == 0)
+            continue;
 		// Swap weapons
 		if (Weapon(Other) != None)
 		{
@@ -818,11 +822,12 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-     LoadoutOptionText(0)="Standard"
-     LoadoutOptionText(1)="Evolution"
-	 LoadoutOptionText(2)="Purchasing (NOT IMPLEMENTED)"
-     ConfigMenuClassName="BallisticProV55.ConfigMenu_Inventory"
-     FriendlyName="BallisticPro: Conflict Loadout"
-     Description="Play Ballistic Weapons with an expanded loadout system supporting Evolution configuration and inventory space."
+	bHideLockers=True
+	LoadoutOptionText(0)="Standard"
+	LoadoutOptionText(1)="Evolution"
+	LoadoutOptionText(2)="Purchasing (NOT IMPLEMENTED)"
+	ConfigMenuClassName="BallisticProV55.ConfigMenu_Inventory"
+	FriendlyName="BallisticPro: Conflict Loadout"
+	Description="Play Ballistic Weapons with an expanded loadout system supporting Evolution configuration and inventory space."
 	 
 }
