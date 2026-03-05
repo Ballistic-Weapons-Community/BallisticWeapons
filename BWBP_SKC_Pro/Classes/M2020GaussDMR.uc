@@ -65,7 +65,7 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "supp") != -1)
 	{
 		bSuppressed=true; 
-		if (Role == ROLE_Authority && CurrentWeaponMode != 2 && CurrentWeaponMode != 3)
+		if (Role == ROLE_Authority && CurrentWeaponMode != 2 && CurrentWeaponMode != 3 && ThirdPersonActor != None)		
 			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(1);
 	}
 }
@@ -235,18 +235,12 @@ simulated function AdjustMagnetProperties ()
 			class'bUtil'.static.InitMuzzleFlash(Arc, class'M2020ShieldEffect', DrawScale, self, 'tip');
 
 		IdleAnim='IdleShield';
-		BFireMode[0].FireRecoil = 64;
 		WeaponModes[3].bUnavailable=false;
 		
 		PreviousWeaponMode = CurrentWeaponMode;
 		CurrentWeaponMode = 3;
 		
 		SwitchWeaponMode(CurrentWeaponMode+1);
-		//M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-		
-		WeaponModes[0].bUnavailable=true;
-		WeaponModes[1].bUnavailable=true;
-		WeaponModes[2].bUnavailable=true;
 	}
 	else
 	{
@@ -255,22 +249,21 @@ simulated function AdjustMagnetProperties ()
 
 		IdleAnim='Idle';
 		Instigator.AmbientSound = UsedAmbientSound;
-		BFireMode[0].FireRecoil = BFireMode[0].default.FireRecoil;
 		
-		WeaponModes[0].bUnavailable=false;
-		WeaponModes[1].bUnavailable=false;
-		if (!class'BallisticReplicationInfo'.static.IsRealism())
-		{
-			WeaponModes[2].bUnavailable=false;
-		}
 		CurrentWeaponMode = PreviousWeaponMode;
 		
 		SwitchWeaponMode(CurrentWeaponMode+1);
-		//M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		
 		WeaponModes[3].bUnavailable=true;
 	}
 	UpdateScreen();
+}
+// Cycle through the various weapon modes
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	if (bMagnetOpen && NewMode != 3)
+		return;
+	super.ServerSwitchWeaponMode(NewMode);
 }
 
 simulated event WeaponTick (float DT)
@@ -603,7 +596,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=207,G=229,R=231,A=197),Color2=(B=226,G=0,R=0,A=255),StartSize1=77,StartSize2=68)
 	PutDownTime=0.80000
 	BringUpTime=0.80000
-	CockingBringUpTime=2.900000
+	CockingBringUpTime=2.400000
 	SelectAnimRate=1.4
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.800000
