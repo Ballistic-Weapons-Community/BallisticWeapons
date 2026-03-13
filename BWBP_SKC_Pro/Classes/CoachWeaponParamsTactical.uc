@@ -65,7 +65,7 @@ defaultproperties
 		BotRefireRate=0.60000
 		WarnTargetPct=0.5	
 		Inaccuracy=(X=192,Y=192)
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire',Volume=7.100000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-DoubleFire',Volume=7.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Slug

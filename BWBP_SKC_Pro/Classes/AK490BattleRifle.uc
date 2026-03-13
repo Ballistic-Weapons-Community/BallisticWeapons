@@ -275,14 +275,6 @@ function AttachToPawn(Pawn P)
 		AK490Attachment(ThirdPersonActor).bLoaded = True;
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 // Animation notify for when the clip is stuck in
 simulated function Notify_ClipUp()
 {
@@ -384,9 +376,9 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_SKC_Pro.AK490MeleeFire'
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Draw',Volume=0.230000)
 	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Putaway',Volume=0.240000)
-	CockAnimPostReload="ReloadEndCock"
-	//CockingBringUpTime=1.300000
+	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=3.500000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=3.500000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipHit',Volume=3.500000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipOut',Volume=3.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipIn',Volume=3.500000)
@@ -412,7 +404,7 @@ defaultproperties
 	SelectAnimRate=1.700000
 	PutDownAnimRate=1.750000
 	BringUpTime=0.400000
-	CockingBringUpTime=2.000000
+	CockingBringUpTime=1.600000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.700000
 	CurrentRating=0.700000

@@ -72,12 +72,13 @@ simulated function PlayPreFire()
 
 defaultproperties
 {
+     bModeExclusive=False
      bUseWeaponMag=False
      //EffectString="Scope/Iron Sights"
      bFireOnRelease=True
      FireAnim=
      FireRate=0.020000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_FC01Alt'
+     AmmoClass=Class'BWBP_OP_Pro.Ammo_SmartAmmo'
      AmmoPerFire=0
      BotRefireRate=0.300000
 }

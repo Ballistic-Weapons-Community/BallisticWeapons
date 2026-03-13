@@ -11,22 +11,21 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Ar.ARClipMain');
      L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.ZX98.ZX98PickupHi');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.ZX98.ZX98PickupLo');
-
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-     super.UpdatePrecacheMaterials();
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Ar.ARScopeMain');
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Ar.ARMain');
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.Ar.ARClipMain');
+     Super.UpdatePrecacheMaterials();    
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-     Super.UpdatePrecacheStaticMeshes();
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.ZX98.ZX98PickupHi');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.ZX98.ZX98PickupLo');
+     Super.UpdatePrecacheStaticMeshes();    
 }
 
 defaultproperties

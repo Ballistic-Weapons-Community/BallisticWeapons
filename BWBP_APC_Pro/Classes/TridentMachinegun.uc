@@ -10,10 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TridentMachinegun extends BallisticMachinegun
-	transient
-	HideDropDown
-	CacheExempt;
+class TridentMachinegun extends BallisticMachinegun;
 
 var   float DesiredSpeed, BarrelSpeed;
 var   int	BarrelTurn;
@@ -171,15 +168,6 @@ simulated function Notify_CockAfterReload()
 	else
 		PlayAnim('ReloadFinishHold', ReloadAnimRate, 0.2);
 }
-
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim('ReloadEndCock'))
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 simulated function PositionSights ()
 {
 	super.PositionSights();
@@ -323,10 +311,12 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-Cock')
+	CockSelectSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-Cock')
 	ReloadAnim="ReloadStart"
 	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-BulletsOff')
 	ClipInSound=(Sound=Sound'BWBP_APC_Sounds.CruMG.MG-BulletsOn')
+	CockingBringUpTime=1.600000
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(0)=(ModeName="800 RPM",ModeID="WM_FullAuto")
@@ -344,6 +334,7 @@ defaultproperties
 	ParamsClasses(0)=Class'TridentMachinegunWeaponParamsArena'
 	ParamsClasses(1)=Class'TridentMachinegunWeaponParamsClassic'
 	ParamsClasses(2)=Class'TridentMachinegunWeaponParamsRealistic'
+	ParamsClasses(3)=Class'TridentMachinegunWeaponParamsTactical'	
 	FireModeClass(0)=Class'BWBP_APC_Pro.TridentPrimaryFire'
 	FireModeClass(1)=Class'BWBP_APC_Pro.TridentSecondaryFire'
 	PutDownTime=0.600000

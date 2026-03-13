@@ -654,6 +654,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Volume=0.155000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Volume=0.155000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipIn')
@@ -661,11 +662,10 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-           //Aligned
 	bAdjustHands=true
 	RootAdjust=(Yaw=-375,Pitch=3500)
 	WristAdjust=(Yaw=-3500,Pitch=-000)
-
+	CockingBringUpTime=1.100000
 	ParamsClasses(0)=Class'M806WeaponParamsComp'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'

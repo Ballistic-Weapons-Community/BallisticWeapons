@@ -290,14 +290,6 @@ simulated function OnScopeViewChanged()
 		SightOffset.Y = default.SightOffset.Y * -1;
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None || SightingState != SS_None)
@@ -522,7 +514,7 @@ defaultproperties
 	SilencerOffTurnSound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilencerTurn'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_JCF_Tex.HKMK.BigIcon_HKMK'
+	//BigIconMaterial=Texture'BWBP_JCF_Tex.HKMK.BigIcon_HKMK'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic .45 fire. Moderate damage and fire rate."
@@ -535,10 +527,10 @@ defaultproperties
 	CockingBringUpTime=0.600000
 	CockAnimRate=1.000000
 	ReloadAnimRate=1.000000
-	CockSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.mk23_cock',Volume=2.300000)
+	//CockSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.mk23_cock',Volume=2.300000)
     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit')
-    ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MKClipOut',Volume=1.300000)
-    ClipInSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MKClipIn',Volume=1.300000)
+    //ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MKClipOut',Volume=1.300000)
+    //ClipInSound=(Sound=Sound'BWBP_JCF_Sounds.MK23.MKClipIn',Volume=1.300000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
@@ -564,7 +556,7 @@ defaultproperties
 	SightOffset=(X=0.000000,Y=-4.300000,Z=11.600000)
 	PlayerViewOffset=(X=-7.000000,Y=7.000000,Z=-11.000000)
 	AttachmentClass=Class'BWBP_JCF_Pro.HKMKSpecAttachment'
-	IconMaterial=Texture'BWBP_JCF_Tex.HKMK.SmallIcon_HKMK'
+	//IconMaterial=Texture'BWBP_JCF_Tex.HKMK.SmallIcon_HKMK'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="HKM-26 Assault Pistol"
 	LightType=LT_Pulse
@@ -573,6 +565,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_JCF_Anims.HKMKSpec_FPm'
+	//Mesh=SkeletalMesh'BWBP_JCF_Anims.HKMKSpec_FPm'
 	DrawScale=0.300000
 }

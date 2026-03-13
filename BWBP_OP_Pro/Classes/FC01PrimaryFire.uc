@@ -200,27 +200,7 @@ simulated function SwitchWeaponMode(byte NewMode)
 	}
 }
 
-//Trigger muzzleflash emitter
-function FlashMuzzleFlash()
-{
-    if ( (Level.NetMode == NM_DedicatedServer) || (AIController(Instigator.Controller) != None) )
-		return;
-		
-	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
-		return;
-		
-    if (!FC01SmartGun(Weapon).bSilenced && MuzzleFlash != None && BW.CurrentWeaponMode == 0)
-        MuzzleFlash.Trigger(Weapon, Instigator);
-		
-	if (FC01SmartGun(Weapon).bSilenced && SMuzzleFlash != None && BW.CurrentWeaponMode == 0)
-        SMuzzleFlash.Trigger(Weapon, Instigator);
-		
-	if (PhotonMuzzleFlash != None && BW.CurrentWeaponMode == 1)
-		PhotonMuzzleFlash.Trigger(Weapon,Instigator);
 
-	if (!bBrassOnCock)
-		EjectBrass();
-}
 
 function SetSuppressed(bool bSilenced)
 {
@@ -240,14 +220,66 @@ function SetSuppressed(bool bSilenced)
 	}
 }
 
+
+simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
+{
+	if (BW.CurrentWeaponMode == 1)
+		FC01Attachment(Weapon.ThirdPersonActor).PhotonUpdateHit(Other, HitLocation, HitNormal, Surf, , WaterHitLoc);
+	else
+		BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, FC01SmartGun(Weapon).bSilenced, WaterHitLoc);
+}
+*/
+
+//Trigger muzzleflash emitter
+function FlashMuzzleFlash()
+{
+    if ( (Level.NetMode == NM_DedicatedServer) || (AIController(Instigator.Controller) != None) )
+		return;
+		
+	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
+		return;
+		
+    if (!FC01SmartGun(Weapon).bSilenced && MuzzleFlash != None)
+        MuzzleFlash.Trigger(Weapon, Instigator);
+		
+	if (FC01SmartGun(Weapon).bSilenced && SMuzzleFlash != None)
+        SMuzzleFlash.Trigger(Weapon, Instigator);
+		
+	//if (PhotonMuzzleFlash != None && BW.CurrentWeaponMode == 1)
+	//	PhotonMuzzleFlash.Trigger(Weapon,Instigator);
+
+	if (!bBrassOnCock)
+		EjectBrass();
+}
+
+function SetSilenced(bool bSilenced)
+{
+	bAISilent = bSilenced;
+
+	if (bSilenced)
+	{
+		FireRecoil *= 0.8;
+		RangeAtten *= 1.2;
+		XInaccuracy *= 0.75;
+		YInaccuracy *= 0.75;
+	}
+	else
+	{
+		XInaccuracy = default.XInaccuracy;
+		YInaccuracy = default.YInaccuracy;
+		FireRecoil = default.FireRecoil;
+		RangeAtten = default.RangeAtten;
+	}
+}
+
 function InitEffects()
 {
 	if (AIController(Instigator.Controller) != None)
 		return;
     if ((MuzzleFlashClass != None) && ((MuzzleFlash == None) || MuzzleFlash.bDeleteMe) )
 		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, Weapon.DrawScale*FlashScaleFactor, weapon, FlashBone);
-	if ((PhotonMuzzleFlashClass != None) && ((PhotonMuzzleFlash == None) || PhotonMuzzleFlash.bDeleteMe) )
-		class'BUtil'.static.InitMuzzleFlash (PhotonMuzzleFlash, PhotonMuzzleFlashClass, Weapon.DrawScale*PhotonFlashScaleFactor, weapon, PhotonFlashBone);
+//	if ((PhotonMuzzleFlashClass != None) && ((PhotonMuzzleFlash == None) || PhotonMuzzleFlash.bDeleteMe) )
+//		class'BUtil'.static.InitMuzzleFlash (PhotonMuzzleFlash, PhotonMuzzleFlashClass, Weapon.DrawScale*PhotonFlashScaleFactor, weapon, PhotonFlashBone);
     if ((SMuzzleFlashClass != None) && ((SMuzzleFlash == None) || SMuzzleFlash.bDeleteMe) )
 		class'BUtil'.static.InitMuzzleFlash (SMuzzleFlash, SMuzzleFlashClass, Weapon.DrawScale*SFlashScaleFactor, weapon, SFlashBone);
 }
@@ -259,31 +291,17 @@ simulated function DestroyEffects()
 
 	class'BUtil'.static.KillEmitterEffect (MuzzleFlash);
 	class'BUtil'.static.KillEmitterEffect (SMuzzleFlash);
-	class'BUtil'.static.KillEmitterEffect (PhotonMuzzleFlash);
-}
-
-simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
-{
-	if (BW.CurrentWeaponMode == 1)
-		FC01Attachment(Weapon.ThirdPersonActor).PhotonUpdateHit(Other, HitLocation, HitNormal, Surf, , WaterHitLoc);
-	else
-		BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, FC01SmartGun(Weapon).bSilenced, WaterHitLoc);
+	//class'BUtil'.static.KillEmitterEffect (PhotonMuzzleFlash);
 }
 
 function ServerPlayFiring()
 {
-	if (FC01SmartGun(Weapon) != None && FC01SmartGun(Weapon).bSilenced && SilencedFireSound.Sound != None && BW.CurrentWeaponMode == 0)
+	if (FC01SmartGun(Weapon) != None && FC01SmartGun(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,SilencedFireSound.bNoOverride,SilencedFireSound.Radius,SilencedFireSound.Pitch,SilencedFireSound.bAtten);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
-	// Slightly modified Code from original PlayFiring()
-	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-	else if(!BW.bScopeView || !Weapon.HasAnim(AimedFireAnim))
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	else BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "FIRE");
-	// End code from normal PlayFiring()
+	PlayFireAnimations();
 
 	CheckClipFinished();
 }
@@ -295,24 +313,19 @@ function PlayFiring()
 	else
 		Weapon.SetBoneScale (0, 0.0, FC01SmartGun(Weapon).SilencerBone);
 		
-	// Slightly modified Code from original PlayFiring()
-	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-	else if(!BW.bScopeView || !Weapon.HasAnim(AimedFireAnim))
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	else BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "FIRE");
-	// End code from normal PlayFiring()
+	PlayFireAnimations();
 
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
 
-	if (FC01SmartGun(Weapon) != None && FC01SmartGun(Instigator.Weapon).bSilenced && SilencedFireSound.Sound != None && BW.CurrentWeaponMode == 0)
+	if (FC01SmartGun(Weapon) != None && FC01SmartGun(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 
 	CheckClipFinished();
-}*/
+}
+
 
 defaultproperties
 {
@@ -329,7 +342,7 @@ defaultproperties
 	FlashScaleFactor=0.500000
 	SFlashScaleFactor=1.000000
 	PhotonFlashScaleFactor=0.400000
-	SilencedFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-SmartShot',Pitch=1.4,Volume=2.000000,Radius=192.000000,bAtten=True)
+	SilencedFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-FireSupp',Pitch=1.0,Volume=2.000000,Radius=64.000000,bAtten=True)
 	DecayRange=(Min=1536,Max=3072)
 	TraceRange=(Min=8000.000000,Max=12000.000000)
 	WallPenetrationForce=24.000000

@@ -660,7 +660,7 @@ defaultproperties
     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.222000)
 	MagAmmo=40
 	MeleeFireClass=Class'BWBP_SKC_Pro.FG50MeleeFire'
-	CockAnimPostReload="ReloadEndCock"
+	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-DrumOut',Volume=1.500000,Radius=32.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-DrumIn',Volume=1.500000,Radius=32.000000)

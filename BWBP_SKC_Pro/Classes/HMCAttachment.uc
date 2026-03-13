@@ -1,5 +1,5 @@
 //=============================================================================
-// E23Attachment.
+// HMCAttachment.
 //
 // 3rd person weapon attachment for E23 Plasma Rifle
 //

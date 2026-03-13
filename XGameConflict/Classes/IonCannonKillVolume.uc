@@ -136,10 +136,10 @@ function PlayGlobalSound(sound S)
 
 defaultproperties
 {
-     TargetClass=Class'Engine.Pawn'
-     CountdownTime=10
-     IonEffectClass=Class'XEffects.IonEffect'
-     TransientSoundVolume=1.000000
-     TransientSoundRadius=2000.000000
-     MessageClass=Class'XGame.IonCannonKillWarning'
+	TargetClass=class'Pawn'
+	CountdownTime=10
+	IonEffectClass=class'IonEffect'
+	MessageClass=class'IonCannonKillWarning'
+	TransientSoundVolume=1.0
+	TransientSoundRadius=2000.0
 }

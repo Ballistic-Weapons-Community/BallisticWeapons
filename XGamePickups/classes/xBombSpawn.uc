@@ -50,24 +50,27 @@ function bool BetterObjectiveThan(GameObjective Best, byte DesiredTeamNum, byte 
 
 defaultproperties
 {
-     TakenSound=Sound'GameSounds.CTFAlarm'
-     FlagType=Class'XGame.xBombFlag'
-     DefenderTeamIndex=255
-     ObjectiveName="Bomb Spawn"
-     bNotBased=True
-     LightType=LT_SubtlePulse
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=37
-     LightSaturation=255
-     LightBrightness=128.000000
-     LightRadius=6.000000
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_rc.BallMesh'
-     bAlwaysRelevant=True
-     NetUpdateFrequency=8.000000
-     DrawScale=3.000000
-     bUnlit=True
-     CollisionRadius=60.000000
-     CollisionHeight=60.000000
-     bCollideActors=True
+	ObjectiveName="Bomb Spawn"
+    LightType=LT_SubtlePulse
+	LightEffect=LE_QuadraticNonIncidence
+	LightRadius=6
+    LightBrightness=128	
+    LightHue=37
+    LightSaturation=255	
+    bUnlit=true
+    bNotBased=true
+    TakenSound=Sound'GameSounds.CTFAlarm'
+    bHidden=true
+    DefenderTeamIndex=255    
+    FlagType=class'XGame.xBombFlag'
+    DrawType=DT_StaticMesh
+    StaticMesh=XGame_rc.BallMesh
+    DrawScale=3.000000
+	bStasis=false
+	bAlwaysRelevant=true
+    CollisionRadius=60.000000
+    CollisionHeight=60.000000
+    bCollideActors=True
+    bBlockActors=False
+	NetUpdateFrequency=8
 }

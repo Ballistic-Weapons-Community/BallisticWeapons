@@ -24,8 +24,9 @@ simulated function PostNetBeginPlay()
 
 defaultproperties
 {
-     bStatic=False
-     bNoDelete=True
-     RemoteRole=ROLE_None
-     Mesh=VertMesh'XGame_rc.banner'
+    DrawType=DT_Mesh
+    Mesh=XGame_rc.banner
+    bstatic=False
+    bNoDelete=True
+	RemoteRole=ROLE_None
 }

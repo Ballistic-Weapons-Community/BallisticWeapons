@@ -114,7 +114,7 @@ defaultproperties
          FadeOutStartTime=2.075000
          FadeInEndTime=0.175000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=120
+         MaxParticles=60
          StartLocationRange=(X=(Max=1000.000000))
          StartSizeRange=(X=(Min=3.000000,Max=6.000000),Y=(Min=3.000000,Max=6.000000),Z=(Min=3.000000,Max=6.000000))
          DrawStyle=PTDS_AlphaBlend
@@ -155,5 +155,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
      Emitters(4)=BeamEmitter'BWBP_APC_Pro.TraceEmitter_ZX98Gauss.BeamEmitter4'
-
 }

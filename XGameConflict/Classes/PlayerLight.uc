@@ -9,13 +9,18 @@ singular function BaseChange();
 
 defaultproperties
 {
-     ExtinguishTime=1.500000
-     bStatic=False
-     bStasis=False
-     RemoteRole=ROLE_None
-     DrawScale=0.150000
-     Style=STY_Additive
-     bShouldBaseAtStartup=False
-     bHardAttach=True
-     Mass=0.000000
+	bHardAttach=true
+    bHidden=false
+    DrawType=DT_Sprite
+    Style=STY_Additive
+    bStatic=false
+    DrawScale=0.15
+	RemoteRole=ROLE_None
+
+    bStasis=false
+    bShouldBaseAtStartup=false
+    Mass=0.0
+    bCollideActors=false
+    
+    ExtinguishTime=1.5
 }

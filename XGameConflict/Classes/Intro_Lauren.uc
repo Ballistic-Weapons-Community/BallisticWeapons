@@ -9,5 +9,5 @@ class Intro_Lauren extends xIntroPawn;
 
 defaultproperties
 {
-     MeshNameString="intro_lauren.Lauren"
+	MeshNameString="intro_lauren.Lauren"
 }

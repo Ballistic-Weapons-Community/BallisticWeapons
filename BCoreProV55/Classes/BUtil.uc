@@ -191,7 +191,7 @@ static final function Vector VSmerp(float Alpha, Vector A, Vector B)
 	V.Z = Smerp(Alpha, A.Z, B.Z);
 	return V;
 }
-// Rotator Smerp
+// Rotator Lerp
 static final function Rotator RLerp (float Alpha, Rotator A, Rotator B, optional bool bClampRange)
 {
 	local Rotator R;

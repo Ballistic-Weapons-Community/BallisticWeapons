@@ -174,7 +174,7 @@ defaultproperties
          Opacity=0.500000
          FadeOutStartTime=0.200000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=30
+         MaxParticles=20
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=25.000000,Max=50.000000)
          SpinsPerSecondRange=(X=(Max=1.000000))
@@ -223,7 +223,7 @@ defaultproperties
          Opacity=0.630000
          FadeOutStartTime=0.077500
          FadeInEndTime=0.027500
-         MaxParticles=15
+         MaxParticles=10
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=1.000000,Max=5.000000)
          SizeScale(0)=(RelativeSize=1.000000)

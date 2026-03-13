@@ -93,8 +93,9 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-     GravityZ=-300.000000
-     WeaponName="SuperShockRifle"
-     WeaponString="xWeapons.SuperShockRifle"
-     DefaultWeaponName="xWeapons.SuperShockRifle"
+	WeaponName=SuperShockRifle
+	WeaponString="xWeapons.SuperShockRifle"
+	DefaultWeaponName="xWeapons.SuperShockRifle"
+	GravityZ=-300.0
 }
+

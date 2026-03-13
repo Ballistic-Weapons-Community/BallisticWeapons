@@ -176,5 +176,5 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     MeshNameString="intro_brock.Brock"
+	MeshNameString="intro_brock.Brock"
 }

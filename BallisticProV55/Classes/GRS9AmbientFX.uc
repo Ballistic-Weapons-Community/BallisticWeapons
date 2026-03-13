@@ -266,7 +266,7 @@ defaultproperties
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.700000,Max=0.700000),Z=(Min=0.000000,Max=0.000000))
+         ColorMultiplierRange=(Y=(Min=0.000000,Max=0.000000),Z=(Min=0.000000,Max=0.000000))
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartLocationOffset=(X=-70.000000,Y=-12.000000,Z=6.000000)

@@ -11,7 +11,3 @@ function Initialize(int TeamBots)
 {
 	Error("Tried to use a UT2K4PhantomRoster in game");
 }
-
-defaultproperties
-{
-}

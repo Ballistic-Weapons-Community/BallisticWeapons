@@ -67,7 +67,7 @@ defaultproperties
 		WarnTargetPct=0.500000	
 		Inaccuracy=(X=48,Y=48)
 		HipSpreadFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire',Volume=7.100000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-DoubleFire',Volume=7.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_SuperSlug

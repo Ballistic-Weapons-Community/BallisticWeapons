@@ -20,8 +20,8 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     PointName="A"
-     ControlEvent="xDOMMonitorA"
-     PrimaryTeam=1
-     ObjectiveName="Point A"
+	PrimaryTeam=1
+	ObjectiveName="Point A"
+    PointName="A"
+    ControlEvent=xDomMonitorA
 }

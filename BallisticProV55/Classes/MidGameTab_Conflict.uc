@@ -922,7 +922,7 @@ function InternalOnChange(GUIComponent Sender)
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
 				Pic_Weapon.Image = BW.default.BigIconMaterial;
 				tb_Desc.SetContent(BW.static.GetShortManual(LayoutIndexList[lb_Weapons.List.Index]));
-				log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[lb_Weapons.List.Index]); 
+				//log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[lb_Weapons.List.Index]); 
 				LoadLIFromBW(BW);
 				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
 				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index]);
@@ -987,7 +987,7 @@ function InternalOnChange(GUIComponent Sender)
 				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index]);
 				tb_Desc.SetContent(BW.static.GetShortManual(cb_WeapLayoutIndex.getIndex()));
 			}
-			log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
+			//log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
 
 			UpdateExistingInventory(li_Weapons.Index);
 		}
@@ -997,7 +997,7 @@ function InternalOnChange(GUIComponent Sender)
 		if (li_Weapons.GetObject() != None && class<BallisticWeapon>(li_Weapons.GetObject()) != None && !bUpdatingWeapon)
 		{
 			CamoIndexList[li_Weapons.Index] = int(cb_WeapCamoIndex.getExtra());
-			log("Setting camo index of gun at loc "$li_Weapons.Index$" to "$cb_WeapCamoIndex.getExtra()); 
+			//log("Setting camo index of gun at loc "$li_Weapons.Index$" to "$cb_WeapCamoIndex.getExtra()); 
 
 			UpdateExistingInventory(li_Weapons.Index);
 		}

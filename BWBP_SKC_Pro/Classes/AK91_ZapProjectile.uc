@@ -54,7 +54,7 @@ simulated function Timer()
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
-//    local Vector X;
+    local Vector dummy;
     local int i;
 
 	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
@@ -75,7 +75,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	else
 		Destroy();
 
-	if (Pawn(Other) != None)
+	if (xPawn(Other) != None && Level.Game.ReduceDamage(Damage, xPawn(Other), Instigator, HitLocation, Dummy, MyDamageType) > 0)
 		ChargeControl.FireSinge(Pawn(Other), Instigator, 2); //The 2 designates this weapon is an AK91, used for death messages
 }
 

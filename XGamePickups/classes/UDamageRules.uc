@@ -91,6 +91,3 @@ function vector GetThrowVector( Controller Killer, xPawn Killed )
     return v;
 }
 
-defaultproperties
-{
-}

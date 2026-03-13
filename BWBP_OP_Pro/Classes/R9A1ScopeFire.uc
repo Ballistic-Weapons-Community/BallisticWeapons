@@ -78,7 +78,7 @@ defaultproperties
 	 bModeExclusive=False
      FireAnim=
      FireRate=0.020000
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_R9A1'
+     AmmoClass=Class'BWBP_OP_Pro.Ammo_R9A1Rifle'
      AmmoPerFire=0
      BotRefireRate=0.300000
 }

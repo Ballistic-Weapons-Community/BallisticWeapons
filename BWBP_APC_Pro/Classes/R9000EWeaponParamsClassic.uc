@@ -120,8 +120,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		ReloadAnimRate=1.250000
 		SightingTime=0.550000
-		SightPivot=(Roll=-1024)
-		SightOffset=(Y=-1.600000,Z=22.000000)
+		SightOffset=(Y=-0.540000,Z=22.400000)
 		SightMoveSpeedFactor=0.8
 		//ViewOffset=(X=12.000000,Y=7.000000,Z=-14.000000)
 		bNeedCock=True

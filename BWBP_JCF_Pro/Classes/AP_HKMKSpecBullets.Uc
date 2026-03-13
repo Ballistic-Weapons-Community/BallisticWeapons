@@ -48,7 +48,7 @@ defaultproperties
      InventoryType=Class'BWBP_JCF_Pro.Ammo_HKMKSpecBullets'
      PickupMessage="You got 32 .45 ACP rounds & 12 Buckshot Rounds for the HKM-26 Pistol"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_JCF_Static.HKMKSpec.HKMKSpecClip'
+     //StaticMesh=StaticMesh'BWBP_JCF_Static.HKMKSpec.HKMKSpecClip'
      DrawScale=0.300000
      CollisionRadius=8.000000
      CollisionHeight=16.000000

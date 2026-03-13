@@ -15,6 +15,7 @@ var actor               ReloadSteam2;
 
 var float               LastModeChangeTime;
 
+var() Material          MatRedShell;
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
 var() name				ShellTipBone1;		// Super Slug 1.
@@ -77,6 +78,7 @@ simulated function OnWeaponParamsChanged()
 		AmmoClass[0]=class'Ammo_12Gauge'; //quickload happens to be on the 12g sawn off. move out if needed
 		CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_12Gauge';
 		CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_12Gauge';
+		Skins[3]=MatRedShell;
 	}
 	
 	if (InStr(WeaponParams.LayoutTags, "shield") != -1) //it.. can make shields? with magic?
@@ -142,7 +144,10 @@ simulated function PostBeginPlay()
 		SetBoneScale (3, 0.0, ShellTipBone2);
 		SetBoneScale (4, 0.0, ShellTipBone3);
 		SetBoneScale (5, 0.0, ShellTipBone4);
-		Skins[3]=MatGreenShell;
+		if (bQuickLoad)
+			Skins[3]=MatRedShell;
+		else
+			Skins[3]=MatGreenShell;
 	}
 }
 
@@ -396,12 +401,23 @@ simulated function Notify_CoachShellDown()
 		Start = Instigator.Location + Instigator.EyePosition() + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), vect(5,10,-5));
 		if (MagAmmo == 1)
 		{
-			Spawn(class'Brass_MRS138Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+			if (bQuickLoad)
+				Spawn(class'Brass_Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+			else
+				Spawn(class'Brass_MRS138Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
 		}
 		else
 		{
-			Spawn(class'Brass_MRS138Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
-			Spawn(class'Brass_MRS138Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+			if (bQuickLoad)
+			{
+				Spawn(class'Brass_Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+				Spawn(class'Brass_Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+			}
+			else
+			{
+				Spawn(class'Brass_MRS138Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+				Spawn(class'Brass_MRS138Shotgun', self,, Start, Instigator.GetViewRotation() + rot(8192,0,0));
+			}
 		}
 	}
 	if (CurrentWeaponMode == 1)
@@ -414,7 +430,11 @@ simulated function Notify_CoachShellDown()
 	}
 	else
 	{
-		Skins[3]=MatGreenShell;
+		
+		if (bQuickLoad)
+			Skins[3]=MatRedShell;
+		else
+			Skins[3]=MatGreenShell;
 		SetBoneScale (2, 0.0, ShellTipBone1);
 		SetBoneScale (3, 0.0, ShellTipBone2);
 		SetBoneScale (4, 0.0, ShellTipBone3);
@@ -473,6 +493,8 @@ simulated function Destroyed ()
 //place a shield if you're trenched up
 exec simulated function WeaponSpecial(optional byte i)
 {
+	return; //ill fix this later
+	
 	if (bHasShield)
 	{
 		Notify_BarrierDeploy();
@@ -720,6 +742,7 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
+     MatRedShell=Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscRed'
      MatGreenShell=Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc'
      MatBlackShell=Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscBlack'
      ShellTipBone1="ShellLSuper"
@@ -768,7 +791,7 @@ defaultproperties
      FireModeClass(1)=Class'BWBP_SKC_Pro.CoachGunSecondaryFire'
      SelectAnimRate=2.000000
      PutDownAnimRate=2.000000
-	 SingleReloadAnimRate=1.0
+	 SingleReloadAnimRate=1.000000
      AIRating=0.800000
      CurrentRating=0.800000
      Description="This primitive artifact has managed to survive the passage of time. Behind it trails a brutal story of bloodshed and sacrifice. For every scar, a life taken; every gouge, a life saved."
@@ -779,8 +802,8 @@ defaultproperties
      PickupClass=Class'BWBP_SKC_Pro.CoachGunPickup'
 
      PlayerViewOffset=(X=4.00,Y=4.50,Z=-7.00)
-	 SightOffset=(X=-2.500000,Y=0,Z=1.2)
-
+	 SightOffset=(X=-4.250000,Y=0,Z=1.2)
+	 CockingBringUpTime=0.500000
      AttachmentClass=Class'BWBP_SKC_Pro.CoachGunAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.CoachGun.SmallIcon_Coach'
      IconCoords=(X2=127,Y2=40)

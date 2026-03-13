@@ -173,6 +173,7 @@ defaultproperties
      Emitters(0)=MeshEmitter'BWBP_OP_Pro.CX61FireHit.MeshEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter3
+	 	 Disabled=true
          UseDirectionAs=PTDU_Up
          ProjectionNormal=(X=1.000000,Z=0.000000)
          UseColorScale=True

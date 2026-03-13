@@ -4,7 +4,7 @@
 class xMonitorC extends xMonitor;
 
 defaultproperties
-{
-     StaticMesh=StaticMesh'XGame_StaticMeshes.GameObjects.MonitorC'
-     DrawScale=1.500000
+{   
+    DrawScale=1.50000
+    StaticMesh=StaticMesh'XGame_StaticMeshes.MonitorC'
 }

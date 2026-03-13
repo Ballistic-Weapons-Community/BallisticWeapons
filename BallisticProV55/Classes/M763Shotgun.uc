@@ -331,15 +331,22 @@ function float SuggestDefenseStyle()
 simulated function PlayCocking(optional byte Type)
 {
 	local float Rand;
+	local float AdjustedCockAnimRate;
+
+    // Adjust cock animation rate only during reloading
+    if (ReloadState != RS_None && ReloadState != RS_Cocking)
+        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
+    else
+        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
 	
 	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, 0.2, , "RELOAD");
 	else
 	{	
 		Rand = FRand();
 		if (Rand > 0.8)
 			CockAnim = 'Cock';
-		else if (Rand > 0.6)
+		else if (Rand > 0.6 && SightingState != SS_Active) //This one clips
 			CockAnim = 'Cock2';
 		else if (Rand > 0.4)
 			CockAnim = 'Cock3';
@@ -347,7 +354,7 @@ simulated function PlayCocking(optional byte Type)
 			CockAnim = 'Cock4';
 		else
 			CockAnim = 'Cock5';
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
 	}
 }
 
@@ -442,7 +449,7 @@ defaultproperties
 	GroupOffset=2
 	PickupClass=Class'BallisticProV55.M763Pickup'
 	PlayerViewOffset=(X=3.00,Y=4.00,Z=-5.00)
-	SightOffset=(X=0,Y=-.05,Z=1.1)
+	SightOffset=(X=1.100000,Y=-0.040000,Z=1.1)
 	//SightOffset=(X=0,Y=0,Z=2.2)
 	//SightPivot=(Pitch=128)
 	AttachmentClass=Class'BallisticProV55.M763Attachment'

@@ -7,10 +7,16 @@ function bool MutatorIsAllowed()
 
 defaultproperties
 {
-     WeaponName="ZoomSuperShockRifle"
-     WeaponString="xWeapons.ZoomSuperShockRifle"
-     bAllowTranslocator=True
-     DefaultWeaponName="xWeapons.ZoomSuperShockRifle"
-     FriendlyName="Zoom InstaGib"
-     Description="Instant-kill combat with modified Shock Rifles with sniper zooms."
+	AmmoName=ShockAmmo
+	AmmoString="xWeapons.ShockAmmo"
+	WeaponName=ZoomSuperShockRifle
+	WeaponString="xWeapons.ZoomSuperShockRifle"
+	DefaultWeaponName="xWeapons.ZoomSuperShockRifle"
+	bAllowTranslocator=true
+
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="Arena"
+    FriendlyName="Zoom InstaGib"
+    Description="Instant-kill combat with modified Shock Rifles with sniper zooms."
 }

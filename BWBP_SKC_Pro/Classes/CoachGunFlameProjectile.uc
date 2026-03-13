@@ -69,12 +69,13 @@ simulated function bool CanTouch (Actor Other)
 
 simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
+	local vector Dummy;
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
 	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
 
-    if (Pawn(Other) != None)
+	if (xPawn(Other) != None && Level.Game.ReduceDamage(Damage, xPawn(Other), Instigator, HitLocation, Dummy, MyDamageType) > 0)
 		FireControl.FireSinge(Pawn(Other), Instigator);
 }
 

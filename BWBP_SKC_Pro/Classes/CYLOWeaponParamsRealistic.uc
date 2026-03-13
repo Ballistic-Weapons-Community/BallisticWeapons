@@ -258,7 +258,6 @@ defaultproperties
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.230000
-		SightPivot=(Pitch=450)
 		//Function
 		InventorySize=5
 		WeaponPrice=800

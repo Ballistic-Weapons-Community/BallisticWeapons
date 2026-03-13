@@ -427,37 +427,46 @@ event Destroyed()
 
 defaultproperties
 {
-     TimeToScore=10
-     TimeDisabled=10
-     ScoreCountDown=10
-     ControlSoundNames(0)="red_team_dominating"
-     ControlSoundNames(1)="blue_team_dominating"
-     ScoreSoundNames(0)="Red_Team_Scores"
-     ScoreSoundNames(1)="Blue_Team_Scores"
-     AvertedSoundNames(1)="Narrowly_Averted"
-     AvertedSoundNames(2)="Narrowly_Averted"
-     AvertedSoundNames(3)="Last_Second_Save"
-     DDomPropsDisplayText(0)="Time To Score"
-     DDomPropsDisplayText(1)="Time Disabled"
-     DDomPropDescText(0)="Specifies how long domination points must be held to score a point."
-     DDomPropDescText(1)="Specifies how long domination points are disabled after a point is scored."
-     bScoreTeamKills=False
-     bSpawnInTeamArea=True
-     TeamAIType(0)=Class'UnrealGame.DOMTeamAI'
-     TeamAIType(1)=Class'UnrealGame.DOMTeamAI'
-     bMustHaveMultiplePlayers=False
-     DefaultEnemyRosterClass="xGame.xTeamRoster"
-     ADR_Kill=2.000000
-     HUDType="XInterface.HudCDoubleDomination"
-     MapListType="XInterface.MapListDoubleDomination"
-     MapPrefix="DOM"
-     BeaconName="DOM"
-     GoalScore=3
-     DeathMessageClass=Class'XGame.xDeathMessage'
-     OtherMesgGroup="DoubleDom"
-     GameName="Double Domination"
-     Description="Your team scores by capturing and holding both Control Points for ten seconds.  Control Points are captured by touching them.  After scoring, the Control Points reset to neutral."
-     ScreenShotName="UT2004Thumbnails.DOMShots"
-     DecoTextName="XGame.DoubleDom"
-     Acronym="DOM2"
+	HUDType="XInterface.HudCDoubleDomination"
+    MapListType="XInterface.MapListDoubleDomination"
+    GameName="Double Domination"
+	GoalScore=3
+    ScoreCountDown=10
+    TimeToScore=10
+    TimeDisabled=10
+    MapPrefix="DOM"
+    BeaconName="DOM"
+    bScoreTeamKills=false
+	bSpawnInTeamArea=true
+    bTeamScoreRounds=false
+    ADR_Kill=2.0
+	DefaultEnemyRosterClass="xGame.xTeamRoster"
+	 bMustHaveMultiplePlayers=false
+
+    // sounds for this game type
+	ControlSoundNames(0)=Red_Team_Dominating'
+    ControlSoundNames(1)=Blue_Team_Dominating'
+    ScoreSoundNames(0)=Red_Team_Scores'
+    ScoreSoundNames(1)=Blue_Team_Scores'
+    AvertedSoundNames(1)=Narrowly_Averted
+    AvertedSoundNames(2)=Narrowly_Averted
+    AvertedSoundNames(3)=Last_Second_Save
+    DeathMessageClass=class'XGame.xDeathMessage'
+
+    TeamAIType(0)=class'UnrealGame.DOMTeamAI'
+    TeamAIType(1)=class'UnrealGame.DOMTeamAI'
+
+    ScreenShotName="UT2004Thumbnails.DOMShots"
+    DecoTextName="XGame.DoubleDom"
+
+    Acronym="DOM2"
+	OtherMesgGroup="DoubleDom"
+
+    DDomPropsDisplayText(0)="Time To Score"
+    DDomPropsDisplayText(1)="Time Disabled"
+
+    DDomPropDescText(0)="Specifies how long domination points must be held to score a point."
+    DDomPropDescText(1)="Specifies how long domination points are disabled after a point is scored."
+
+    Description="Your team scores by capturing and holding both Control Points for ten seconds.  Control Points are captured by touching them.  After scoring, the Control Points reset to neutral."
 }

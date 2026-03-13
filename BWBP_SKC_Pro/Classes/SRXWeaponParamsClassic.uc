@@ -118,6 +118,18 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -184,17 +196,18 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Irons
 		//Layout core
 		Weight=30
-		LayoutName="Iron Sight"
+		LayoutName="Iron Sight + Amp"
 		//Attachments
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.SRX.SRX-Rifle',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_Tex.SRX.SRX-Stock',Index=2) //This also sets the tech bits invisible AFTER camo setting in gun class
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=1f)
+		//ADS
 		SightOffset=(X=0,Y=0,Z=2.60)
-		//Function
-		InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		//Function
+		InventorySize=7
 		bNeedCock=True
 		MagAmmo=20
 		//ReloadAnimRate=1.000000
@@ -213,22 +226,19 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
 		//Layout core
 		Weight=30
-		LayoutName="Red Dot Sight"
+		LayoutName="RDS + Amp"
 		LayoutTags="optic"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
-		//SightPivot=(Pitch=-128,Yaw=16)
-		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
-		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
-		//Function
-		InventorySize=7
+		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
+		//Function
+		InventorySize=7
 		bNeedCock=True
 		MagAmmo=20
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		ViewOffset=(X=9,Y=7.00,Z=-4)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParams'
@@ -240,8 +250,66 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_ACOG
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		LayoutTags="optic"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-60,y=-1.3,z=-0.125),AugmentRot=(Pitch=0,Roll=-16384,Yaw=0))
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.350000
+		SightOffset=(X=0.000000,Y=-0.4,Z=3.9)
+		//Function
+		InventorySize=7
+		bNeedCock=True
+		MagAmmo=20
+		ViewOffset=(X=9,Y=7.00,Z=-4)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_IRNV
+		//Layout core
+		Weight=5
+		LayoutName="IRNV Scope"
+		LayoutTags="optic, IR"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_IRScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-60,y=-1.55,z=-0.125),AugmentRot=(Pitch=0,Roll=-16384,Yaw=0))
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-IRScope'
+        ZoomType=ZT_Fixed
+		MaxZoom=2
+		//ADS
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+		SightOffset=(X=0.000000,Y=-0.4,Z=4)
+		//Function
+		InventorySize=7
+		bNeedCock=True
+		MagAmmo=20
+		ViewOffset=(X=9,Y=7.00,Z=-4)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams_Irons'
 	Layouts(1)=WeaponParams'ClassicParams_RDS'
+	Layouts(2)=WeaponParams'ClassicParams_ACOG'
+	Layouts(3)=WeaponParams'ClassicParams_IRNV'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SRX_Gray

@@ -721,16 +721,15 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BWBP_SKC_Tex.Typhon.BigIcon_Typhon'
-     
 	 bWT_Bullet=True
      SpecialInfo(0)=(Info="240.0;15.0;0.4;25.0;0.8;0.0;-999.0")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw',Volume=0.216000)
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.220000)
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
+	 CockingBringUpTime=1.200000
      ReloadAnim="Reload"
 	 ReloadEmptyAnim="ReloadEmpty"
 	 bCockOnEmpty=True
-	 CockSelectAnim="PulloutFancyOld"
 	 CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-BoltSlap',Volume=1.100000)
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
@@ -766,7 +765,6 @@ defaultproperties
 
      PutDownTime=0.800000
      BringUpTime=1.000000
-	 CockingBringUpTime=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.TyphonPDWAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.Typhon.SmallIcon_Typhon'
      IconCoords=(X2=127,Y2=31)

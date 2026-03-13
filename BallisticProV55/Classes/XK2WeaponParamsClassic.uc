@@ -134,7 +134,7 @@ defaultproperties
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
-		SightOffset=(X=6.00,Y=0.02,Z=3.75)
+		SightOffset=(X=7.250000,Y=0.02,Z=3.75)
 		//Stats
 		InventorySize=3
 		bNeedCock=True

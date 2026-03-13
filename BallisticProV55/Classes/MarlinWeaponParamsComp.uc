@@ -279,7 +279,7 @@ defaultproperties
 		//ADS
 		SightingTime=0.4
 		SightMoveSpeedFactor=0.8
-		SightOffset=(X=20.000000,Y=-0.020000,Z=3.650000)
+		SightOffset=(X=12.250000,Y=-0.020000,Z=3.650000)
 		//Function
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(bUnavailable=True)

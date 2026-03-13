@@ -369,37 +369,47 @@ static function int GetOffsetForSequence(name Sequence)
 
 defaultproperties
 {
-     PawnClassName="xGame.xPawn"
-     SpeciesName="Human"
-     TauntAnims(0)="gesture_point"
-     TauntAnims(1)="gesture_beckon"
-     TauntAnims(2)="gesture_halt"
-     TauntAnims(3)="gesture_cheer"
-     TauntAnims(4)="PThrust"
-     TauntAnims(5)="AssSmack"
-     TauntAnims(6)="ThroatCut"
-     TauntAnims(7)="Specific_1"
-     TauntAnims(8)="Gesture_Taunt01"
-     TauntAnims(9)="Idle_Character01"
-     TauntAnimNames(0)="Point"
-     TauntAnimNames(1)="Beckon"
-     TauntAnimNames(2)="Halt"
-     TauntAnimNames(3)="Cheer"
-     TauntAnimNames(4)="Pelvic Thrust"
-     TauntAnimNames(5)="Ass Smack"
-     TauntAnimNames(6)="Throat Cut"
-     TauntAnimNames(7)="Unique"
-     TauntAnimNames(8)="Team Taunt"
-     TauntAnimNames(9)="Team Idle"
-     AirControl=1.000000
-     GroundSpeed=1.000000
-     WaterSpeed=1.000000
-     JumpZ=1.000000
-     ReceivedDamageScaling=1.000000
-     DamageScaling=1.000000
-     AccelRate=1.000000
-     WalkingPct=1.000000
-     CrouchedPct=1.000000
-     DodgeSpeedFactor=1.000000
-     DodgeSpeedZ=1.000000
+	AirControl=+1.0
+	GroundSpeed=+1.0
+	WaterSpeed=+1.0
+	JumpZ=+1.0
+	ReceivedDamageScaling=+1.0
+	DamageScaling=+1.0
+	AccelRate=+1.0
+	WalkingPct=+1.0
+	CrouchedPct=+1.0
+	DodgeSpeedFactor=+1.0
+	DodgeSpeedZ=+1.0
+	PawnClassName="xGame.xPawn"
+	SpeciesName="Human"
+
+	TauntAnims(0)=gesture_point
+	TauntAnimNames(0)="Point"
+
+	TauntAnims(1)=gesture_beckon
+	TauntAnimNames(1)="Beckon"
+
+	TauntAnims(2)=gesture_halt
+	TauntAnimNames(2)="Halt"
+
+	TauntAnims(3)=gesture_cheer
+	TauntAnimNames(3)="Cheer"
+
+	TauntAnims(4)=PThrust
+	TauntAnimNames(4)="Pelvic Thrust"
+
+	TauntAnims(5)=AssSmack
+	TauntAnimNames(5)="Ass Smack"
+
+	TauntAnims(6)=ThroatCut
+	TauntAnimNames(6)="Throat Cut"
+
+	TauntAnims(7)=Specific_1
+	TauntAnimNames(7)="Unique"
+
+	TauntAnims(8)=Gesture_Taunt01
+	TauntAnimNames(8)="Team Taunt"
+
+	TauntAnims(9)=Idle_Character01
+	TauntAnimNames(9)="Team Idle"
 }

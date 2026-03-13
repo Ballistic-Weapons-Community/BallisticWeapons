@@ -86,12 +86,17 @@ function TryJumpScore(Pawn holder)
 
 defaultproperties
 {
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_StaticMeshes.GameObjects.BombGateCol'
-     bStatic=False
-     bHidden=True
-     RemoteRole=ROLE_None
-     CollisionRadius=60.000000
-     CollisionHeight=60.000000
-     bCollideActors=True
+	RemoteRole=ROLE_None
+    bHidden=true
+    bCollideActors=true   
+    bStatic=false
+    bNoDelete=false
+    CollisionRadius=60.000000
+    CollisionHeight=60.000000
+    DrawScale=1.00
+    DrawType=DT_StaticMesh
+    StaticMesh=XGame_StaticMeshes.BombGateCol
+    Style=STY_Normal
+    bUseCylinderCollision=false
+    LightType=LT_None
 }

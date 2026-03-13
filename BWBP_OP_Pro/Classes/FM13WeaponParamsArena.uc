@@ -56,7 +56,7 @@ defaultproperties
 		Chaos=0.400000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
-		Inaccuracy=(X=768,Y=768)
+		Inaccuracy=(X=512,Y=512)
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-FireStrong',Volume=3.300000)
 	End Object
 
@@ -73,6 +73,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Fuel
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.FM13Grenade'
 		Speed=3500.000000
@@ -92,6 +93,28 @@ defaultproperties
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.100000	
 	FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+	End Object
+	
+	//Cluster
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_Cluster
+		ProjectileClass=Class'BWBP_OP_Pro.FM13FlakGrenade'
+		Speed=3500.000000
+		Damage=30
+		DamageRadius=64.000000
+		FlashScaleFactor=2.000000
+		Recoil=1280.000000
+		Chaos=0.500000
+		BotRefireRate=0.3
+		WarnTargetPct=0.75
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.FM13.FM13-Fire',Volume=1.300000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Cluster
+		FireInterval=0.750000
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.100000	
+	FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams_Cluster'
 	End Object
 		
 	//=================================================================
@@ -149,6 +172,9 @@ defaultproperties
 		LayoutName="8 Gauge Shot"
 		LayoutTags="8Gauge"
 		Weight=30
+		//Model
+		WeaponMaterialSwaps(0)=(Material=Texture'BWBP_OP_Tex.FM13.FM13-ShellHeavy',Index=3,AIndex=-1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.FM13.FM13-ShellFlak',Index=4,AIndex=-1)
 		//ADS
 		SightMoveSpeedFactor=0.9
         SightingTime=0.350000
@@ -161,7 +187,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Cluster'
 	End Object
 	
 	Layouts(0)=WeaponParams'ArenaParams_Flame'

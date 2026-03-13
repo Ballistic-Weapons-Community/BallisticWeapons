@@ -66,7 +66,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 {
 	local actor Victims;
 	local float damageScale, dist;
-	local vector dir;
+	local vector dir, dummy;
 	local bool bHitInstigator;
 	local XM84ActorCorrupt PF;
 
@@ -107,7 +107,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 				PF.InstigatorController = Instigator.Controller;
 			PF.Initialize(Victims);
 			
-			if (Victims != None)
+			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, xPawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Pawn(Victims), DamageAmount/4);
 		}
 	}
@@ -136,7 +136,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 				PF.InstigatorController = Instigator.Controller;
 			PF.Initialize(Victims);
 			
-			if (Victims != None)
+			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, xPawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Pawn(Victims), DamageAmount/4);
 	}
 	bHurtEntry = false;

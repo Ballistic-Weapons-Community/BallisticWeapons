@@ -18,7 +18,7 @@ auto state Startup
 
 defaultproperties
 {
-     GroupName="WeapSwitch"
-     FriendlyName="UT2003 Style"
-     Description="UT2003 style fast weapon switching and boost dodging."
+    GroupName="WeapSwitch"
+    FriendlyName="UT2003 Style"
+    Description="UT2003 style fast weapon switching and boost dodging."
 }

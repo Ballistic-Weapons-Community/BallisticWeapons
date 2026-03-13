@@ -117,25 +117,30 @@ static function string GetString(
 
 defaultproperties
 {
-     ReturnBlue="returns the ball!"
-     ReturnRed="returns the ball!"
-     ReturnedBlue="The ball was returned!"
-     ReturnedRed="The ball was returned!"
-     CaptureBlue="scored the goal!"
-     CaptureRed="scored the goal!"
-     DroppedBlue="dropped the ball!"
-     DroppedRed="dropped the ball!"
-     HasBlue="has the ball!"
-     HasRed="has the ball!"
-     Riffs(0)=Sound'GameSounds.Fanfares.UT2K3Fanfare03'
-     Riffs(1)=Sound'GameSounds.Fanfares.UT2K3Fanfare07'
-     Riffs(2)=Sound'GameSounds.Fanfares.UT2K3Fanfare08'
-     ReturnSoundNames(0)="BallReset"
-     ReturnSoundNames(1)="BallReset"
-     DroppedSoundNames(0)="Red_Pass_Fumbled"
-     DroppedSoundNames(1)="Blue_Pass_Fumbled"
-     TakenSoundNames(0)="Red_Team_on_Offence"
-     TakenSoundNames(1)="Blue_Team_on_Offence"
-     StackMode=SM_Down
-     PosY=0.100000
+	ReturnBlue="returns the ball!" 
+	ReturnRed="returns the ball!"
+	ReturnedBlue="The ball was returned!"
+	ReturnedRed="The ball was returned!"
+	CaptureBlue="scored the goal!"
+	CaptureRed="scored the goal!"
+	DroppedBlue="dropped the ball!"
+	DroppedRed="dropped the ball!"
+	HasRed="has the ball!"
+	HasBlue="has the ball!"
+
+    ReturnSoundNames(0)=BallReset
+    ReturnSoundNames(1)=BallReset
+    DroppedSoundNames(0)=Red_Pass_Fumbled
+    DroppedSoundNames(1)=Blue_Pass_Fumbled
+	TakenSoundNames(0)=Red_Team_on_Offence
+	TakenSoundNames(1)=Blue_Team_on_Offence
+
+    Riffs(0)=sound'GameSounds.UT2K3Fanfare03'
+    Riffs(1)=sound'GameSounds.UT2K3Fanfare07'
+    Riffs(2)=sound'GameSounds.UT2K3Fanfare08'
+    
+	bIsUnique=True
+    FontSize=1
+	StackMode=SM_Down
+    PosY=0.10
 }

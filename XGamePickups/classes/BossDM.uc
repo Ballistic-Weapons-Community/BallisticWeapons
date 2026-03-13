@@ -38,10 +38,11 @@ function AdjustSkill(AIController B, PlayerController P, bool bWinner)
     B.Skill = AdjustedDifficulty;
 }
 
+
 defaultproperties
 {
-     bForceRespawn=True
-     bAdjustSkill=True
-     GameName="Championship Match"
-     Acronym=
+	bForceRespawn=true
+	GameName="Championship Match"
+	Acronym=""
+	bAdjustSkill=true
 }

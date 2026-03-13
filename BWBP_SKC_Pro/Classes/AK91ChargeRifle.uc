@@ -194,7 +194,7 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 {
 	local actor Victims;
 	local float damageScale, dist;
-	local vector dir;
+	local vector dir, dummy;
 
 	if( bHurtEntry )
 		return;
@@ -226,7 +226,8 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 				vect(0,0,0),
 				class'DT_AK91Zapped'
 			);
-
+			if (xPawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, xPawn(Victims), Instigator, Victims.Location, Dummy, class'DT_AK91Zapped') <= 0)
+				continue;
 			if (Pawn(Victims) != None)
 			{
 				ChargeControl.FireSinge(Pawn(Victims), Instigator, 2, int(HeatLevel)); //The 2 designates this weapon is an AK91, used for death messages, adds HeatLevel # of zaps
@@ -299,16 +300,6 @@ simulated function Destroyed()
 		GlowFX.Destroy();
 	super.Destroyed();
 }
-
-
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 
 simulated function PlayReload()
 {
@@ -427,8 +418,9 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout',Volume=0.225000)
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway',Volume=0.225000)
      MagAmmo=30
-     CockAnimPostReload="ReloadEndCock"
+     //CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=1.500000)
+	 CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=1.500000)
      ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipHit',Volume=1.500000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipOut',Volume=1.500000)
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipIn',Volume=1.500000)

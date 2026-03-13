@@ -15,5 +15,6 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     Skins(0)=FinalBlend'SC_Volcano_T.Banners.SC_BannerRed_F'
+    Skins(0)=SC_Volcano_T.Banners.SC_BannerRed_F
 }
+

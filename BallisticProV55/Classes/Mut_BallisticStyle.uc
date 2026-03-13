@@ -43,6 +43,16 @@ simulated function PreBeginPlay()
 	{
 		log("Mut_BallisticStyle: No default inventory mode assigned. Applying style override only.");
 	}
+	/* 
+	if(TeamGame(Level.Game) != None) //load team bots
+	{
+		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
+	}
+	else if(Deathmatch(Level.Game) != None)//load Deathmatch  bots
+	{
+		Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
+	}
+	*/
 }
 
 defaultproperties

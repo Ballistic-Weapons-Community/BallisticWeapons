@@ -35,7 +35,7 @@ var()   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in 
 var() material				WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
 var()   bool					bThermal;		// Is thermal mode active?
 var()   bool					bUpdatePawns;	// Should viewable pawn list be updated
-var()   Pawn					UpdatedPawns[16];// List of pawns to view in thermal scope
+var()   Pawn					UpdatedPawns[128];// List of pawns to view in thermal scope
 var() material				Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var() float					ThermalRange;	// Maximum range at which it is possible to see enemies through walls
 var()   ColorModifier		ColorMod;
@@ -156,7 +156,7 @@ simulated function LoadGrenade()
 	if (ReloadState == RS_None)
 	{
 		ReloadState = RS_GearSwitch;
-		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
 	}
 }
 
@@ -602,6 +602,8 @@ simulated function UpdatePawnList()
 	PawnList.Length=0;
 	ForEach DynamicActors( class 'Pawn', P)
 	{
+		if (P.PlayerReplicationInfo != None && P.PlayerReplicationInfo.Team != None && P.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex)
+			continue;
 		PawnList[PawnList.length] = P;
 		Dist = VSize(P.Location - Instigator.Location);
 		if (Dist <= ThermalRange &&
@@ -1096,9 +1098,10 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
 	WeaponModes(2)=(ModeName="Auto")
 	CurrentWeaponMode=2
-	
-	CockAnimPostReload="ReloadEndCock"
+	CockingBringUpTime=1.200000
+	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=24.000000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=24.000000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle',Volume=1.400000,Radius=24.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.400000,Radius=24.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagIn',Volume=1.400000,Radius=24.000000)
@@ -1121,7 +1124,6 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MARSSecondaryFire'
 	PutDownTime=0.700000
 	BringUpTime=0.330000
-	CockingBringUpTime=1.200000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.700000
 	CurrentRating=0.700000

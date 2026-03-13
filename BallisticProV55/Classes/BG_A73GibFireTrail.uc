@@ -52,6 +52,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.BG_A73GibFireTrail.SpriteEmitter29'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter33
+         Disabled=true
          UseColorScale=True
          FadeOut=True
          FadeIn=True

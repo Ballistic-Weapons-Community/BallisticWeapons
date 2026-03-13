@@ -11,6 +11,7 @@ class FM13Shotgun extends BallisticProShotgun;
 var bool bAltLoaded;
 var bool bLoadsShot;
 var Name SingleLoadAnim;
+var() BUtil.FullSound	BigLoadSound; //Are you ready for a BIG SHOT?
 
 var FM13FireControl FireControl;
 
@@ -33,8 +34,11 @@ simulated function OnWeaponParamsChanged()
 		bLoadsShot=true;
 		CockSound.Sound=Sound'BWBP_OP_Sounds.FM13.FM13-CockHeavyQuick';
 		CockSelectSound.Sound=Sound'BWBP_OP_Sounds.FM13.FM13-CockHeavyQuick';
+		ClipInSound.Sound=BigLoadSound.Sound;
 		CockSound.Volume=1.2;
 		CockSelectSound.Volume=1.2;
+		ClipInSound.Volume=1.5;
+		ClipInSound.Pitch=1.2;
 	}
 }
 
@@ -224,14 +228,6 @@ function float SuggestDefenseStyle()
 
 // End AI Stuff =====
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
-	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
-}
-
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockAimed()
 {
@@ -262,6 +258,7 @@ function FM13FireControl GetFireControl()
 
 defaultproperties
 {
+	BigLoadSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-NadeInsert',Volume=1.000000,Pitch=1.000000)
 	SingleLoadAnim="LoadSpecial"
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.FM13.BigIcon_Pitbull'
@@ -281,7 +278,7 @@ defaultproperties
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=1.100000
 	BringUpTime=1.400000
-	CockingBringUpTime=3.000000
+	CockingBringUpTime=2.200000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763LoadShell1')
 	ClipInFrame=0.375000
 	bCockOnEmpty=True

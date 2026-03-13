@@ -23,7 +23,9 @@ function ModifyPlayer(Pawn Other)
 
 defaultproperties
 {
-     GroupName="Jumping"
-     FriendlyName="QuadJump"
-     Description="When double jump just isn't enough."
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="Jumping"
+    FriendlyName="QuadJump"
+    Description="When double jump just isn't enough."
 }

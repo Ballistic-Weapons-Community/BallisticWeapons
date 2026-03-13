@@ -185,6 +185,11 @@ defaultproperties
 		//Layout core
 		LayoutName=".40 Suppressed"
 		Weight=10
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.12
@@ -212,6 +217,11 @@ defaultproperties
 		LayoutName=".40 Tac Knife"
 		LayoutTags="tacknife"
 		Weight=10
+		AllowedCamos(0)=0
+		AllowedCamos(1)=1
+		AllowedCamos(2)=2
+		AllowedCamos(3)=3
+		AllowedCamos(4)=4
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.RS8Melee_FPm'
 		ViewOffset=(X=20.00,Y=10.00,Z=-8.00)

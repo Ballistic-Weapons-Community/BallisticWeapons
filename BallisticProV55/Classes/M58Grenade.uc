@@ -54,7 +54,7 @@ defaultproperties
      InventoryGroup=0
      GroupOffset=7
      PickupClass=Class'BallisticProV55.M58Pickup'
-     PlayerViewOffset=(X=6.000000,Y=7.500000,Z=-9.000000)
+     PlayerViewOffset=(X=0.950000,Y=7.500000,Z=-9.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.M58Attachment'
      IconMaterial=Texture'BW_Core_WeaponTex.M58.SmallIcon_M58'

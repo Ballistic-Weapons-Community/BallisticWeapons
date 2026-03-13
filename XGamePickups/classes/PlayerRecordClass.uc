@@ -43,7 +43,3 @@ simulated static function xUtil.PlayerRecord FillPlayerRecord()
 	PRE.Ragdoll = Default.Ragdoll;
 	return PRE;
 }
-
-defaultproperties
-{
-}

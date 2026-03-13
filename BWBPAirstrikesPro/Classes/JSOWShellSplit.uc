@@ -6,6 +6,7 @@ class JSOWShellSplit extends Emitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
+         Disabled=True
          StaticMesh=StaticMesh'AW-2004Particles.Debris.Veh_Debris2'
          UseMeshBlendMode=False
          UseParticleColor=True
@@ -36,6 +37,7 @@ defaultproperties
      Emitters(0)=MeshEmitter'OnslaughtBP.ONSDualACDeathExp.MeshEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter2
+         Disabled=True
          StaticMesh=StaticMesh'AW-2k4XP.Weapons.ShockShield'
          UseParticleColor=True
          UseColorScale=True

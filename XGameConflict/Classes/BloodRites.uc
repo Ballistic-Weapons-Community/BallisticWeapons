@@ -137,10 +137,10 @@ static function StartChallenge(UT2K4GameProfile GP, LevelInfo myLevel)
 
 defaultproperties
 {
-     UntradeMenu="GUI2K4.UT2K4SP_CGBRUntrade"
-     TradeMenu="GUI2K4.UT2K4SP_CGBRTrade"
-     ChalFeeMultiply=3.000000
-     ChallengeName="Bloodrites"
-     ChallengeDescription="Challenge an enemy team for one for their team mates."
-     ChallengeMenu="GUI2K4.UT2K4SP_CGBloodRites"
+	ChallengeName="Bloodrites"
+	ChallengeDescription="Challenge an enemy team for one for their team mates."
+	ChallengeMenu="GUI2K4.UT2K4SP_CGBloodRites"
+	TradeMenu="GUI2K4.UT2K4SP_CGBRTrade"
+	UntradeMenu="GUI2K4.UT2K4SP_CGBRUntrade"
+	ChalFeeMultiply=3
 }

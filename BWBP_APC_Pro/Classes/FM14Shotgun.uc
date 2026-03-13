@@ -276,14 +276,6 @@ function float SuggestDefenseStyle()
 
 // End AI Stuff =====
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
-	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
-}
-
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockAimed()
 {
@@ -332,6 +324,7 @@ defaultproperties
 	ParamsClasses(0)=Class'FM14ShotgunWeaponParamsArena'
 	ParamsClasses(1)=Class'FM14ShotgunWeaponParamsClassic'
 	ParamsClasses(2)=Class'FM14ShotgunWeaponParamsRealistic'
+	ParamsClasses(3)=Class'FM14ShotgunWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_APC_Pro.FM14PrimaryFire'
 	FireModeClass(1)=Class'BWBP_APC_Pro.FM14SecondaryFire'
 	AIRating=0.750000
@@ -349,7 +342,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_APC_Pro.FM14Attachment'
 	IconMaterial=Texture'BWBP_OP_Tex.FM14.SmallIcon_FM14'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="[B] FM14 Pitbull Blunderbuss"
+	ItemName="FM14 Pitbull Blunderbuss"
 	bNoCrosshairInScope=True
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence

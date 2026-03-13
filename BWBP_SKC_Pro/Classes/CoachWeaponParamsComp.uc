@@ -64,7 +64,7 @@ defaultproperties
 		BotRefireRate=0.60000
 		WarnTargetPct=0.500000	
 		Inaccuracy=(X=16,Y=0)
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire',Volume=7.100000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-DoubleFire',Volume=7.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireSlugParams
@@ -370,6 +370,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		//Function
+		bNeedCock=True
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.500000
 		PlayerJumpFactor=1.000000
@@ -402,6 +403,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		//Function
+		bNeedCock=True
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.500000
 		PlayerJumpFactor=1.000000
@@ -431,6 +433,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		//Function
+		bNeedCock=True
 		CockAnimRate=0.700000
 		ReloadAnimRate=1.500000
 		PlayerJumpFactor=1.000000

@@ -23,7 +23,7 @@ function bool DoTazerBlurEffect(Actor Victim)
 	local int i;
 	local MRS138ViewMesser VM;
 
-	if (Pawn(Victim) == None || Pawn(Victim).Health < 1 || Pawn(Victim).LastPainTime != Victim.level.TimeSeconds)
+	if (Pawn(Victim) == None || Pawn(Victim).Health < 1 || Pawn(Victim).LastPainTime != Victim.level.TimeSeconds || Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum())
 		return false;
 	if (PlayerController(Pawn(Victim).Controller) != None)
 	{

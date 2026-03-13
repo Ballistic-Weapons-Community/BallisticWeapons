@@ -144,7 +144,7 @@ defaultproperties
 	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
 	FireEndAnim=
 	FireRate=0.225000
-	AmmoClass=Class'BWBP_OP_Pro.Ammo_R9A1'
+	AmmoClass=Class'BWBP_OP_Pro.Ammo_R9A1Rifle'
 	
 	ShakeRotMag=(X=48.000000)
 	ShakeRotRate=(X=640.000000)

@@ -5,9 +5,11 @@
 class xBombBase extends Decoration;
 
 defaultproperties
-{
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_rc.BombSpawnMesh'
-     bStatic=False
-     DrawScale=1.500000
+{   
+    DrawScale=1.50000
+    DrawType=DT_StaticMesh
+    StaticMesh=XGame_rc.BombSpawnMesh
+    bCollideWorld=false
+    bCollideActors=false
+    bStatic=false
 }

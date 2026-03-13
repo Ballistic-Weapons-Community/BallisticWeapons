@@ -16,8 +16,9 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     FlagType=Class'XGame.xRedFlag'
-     DefenseScriptTags="DefendRedFlag"
-     ObjectiveName="Red Flag"
-     Skins(0)=FinalBlend'XGameShaders2004.CTFShaders.RedFlagShader_F'
+	DefenseScriptTags=DefendRedFlag
+    DefenderTeamIndex=0    
+    ObjectiveName="Red Flag"
+    FlagType=class'XGame.xRedFlag'
+	Skins(0)=XGameShaders2004.CTFShaders.RedFlagShader_F
 }

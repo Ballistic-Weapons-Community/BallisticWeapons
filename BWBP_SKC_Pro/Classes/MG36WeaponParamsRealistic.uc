@@ -128,6 +128,24 @@ defaultproperties
 		bViewDecline=True
 	End Object
 
+	//
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_Scope
+		XCurve=(Points=(,(InVal=0.300000,OutVal=-0.100000),(InVal=0.600000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
+		YCurve=(Points=(,(InVal=0.500000,OutVal=0.200000),(InVal=0.800000,OutVal=0.500000),(InVal=1.000000,OutVal=0.400000)))
+		PitchFactor=0.250000
+		YawFactor=0.300000
+		XRandFactor=0.250000
+		YRandFactor=0.250000
+		MaxRecoil=3200.000000
+		DeclineTime=0.750000
+		DeclineDelay=0.145000
+		ViewBindFactor=1.000000 //
+		ADSViewBindFactor=0.350000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -184,7 +202,7 @@ defaultproperties
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic
 		WeaponName="Mk 88 5.56mm Squad Automatic Weapon"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
 		AimParams(0)=AimParams'RealisticAimParams_LMG'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams_LMG'
 	End Object
@@ -199,7 +217,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=33,Scale=0f)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-48,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="tip",Scale=0.05,AugmentOffset=(x=-49.5,y=-2.8,z=0.100),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//Stats
 		PlayerSpeedFactor=0.900000
 		InventorySize=8
@@ -207,8 +225,7 @@ defaultproperties
 		SightingTime=0.3
 		MagAmmo=30
 		bMagPlusOne=True
-		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
-		SightOffset=(X=-5.000000,Y=0.0000,Z=1.950000)
+		SightOffset=(X=-3.000000,Y=0.3250,Z=1.430000)
 		ZoomType=ZT_Irons
 		WeaponName="Mk 88 5.56mm Squad Automatic Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
@@ -240,7 +257,7 @@ defaultproperties
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic
 		WeaponName="Mk 88 5.56mm Gauss Rifle"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
 		AimParams(0)=AimParams'RealisticAimParams_LMG'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams_Gauss'
 	End Object

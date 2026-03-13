@@ -98,7 +98,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		CockAnimRate=1.400000
 		ZoomType=ZT_Fixed
-		SightOffset=(X=-10.000000,Y=-0.500000,Z=12.500000)
+		SightOffset=(X=-10.000000,Y=-0.430000,Z=12.375000)
 		ViewOffset=(X=7.000000,Y=5.000000,Z=-10.500000)
 		SightPivot=(Pitch=64)
 		PlayerSpeedFactor=0.95

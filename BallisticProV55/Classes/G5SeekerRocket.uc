@@ -158,4 +158,5 @@ defaultproperties
      Speed=500.000000
      MaxSpeed=6500.000000
      LifeSpan=0.000000
+	 WallPenetrationForce=0 //hack to fix the G5 guided rocket crash TO DO check why turning this to 0 fixes the WallPenetrationUtil None (Function BCoreDE.WallPenetrationUtil.GoThroughWall:0031) Unknown code token 3A crash
 }

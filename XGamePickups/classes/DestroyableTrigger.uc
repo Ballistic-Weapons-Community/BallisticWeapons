@@ -67,14 +67,26 @@ function Reset()
 
 defaultproperties
 {
-     Health=30
-     RemoteRole=ROLE_None
-     NetUpdateFrequency=5.000000
-     bCanBeDamaged=True
-     bCollideActors=True
-     bCollideWorld=True
-     bBlockActors=True
-     bProjTarget=True
-     bBlockKarma=True
-     bNetNotify=True
+    bUnlit=false
+    bHidden=false
+    bStasis=false
+    bStatic=false
+    bCollideActors=true
+    bCollideWorld=true    
+    bNetNotify=true
+    bBlockKarma=true
+    bBlockActors=true
+    bProjTarget=true
+    bBlockZeroExtentTraces=true
+    bBlockNonZeroExtentTraces=true
+    bUseCylinderCollision=false    
+	bCanBeDamaged=true
+
+    bActive=false
+    Health=30
+    Mass=100.000000
+	NetUpdateFrequency=5
+	RemoteRole=ROLE_None
 }
+
+

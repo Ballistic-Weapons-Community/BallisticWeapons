@@ -36,6 +36,6 @@ static function Sound GetSound(ESoundType soundType)
 
 defaultproperties
 {
-     Sounds(0)=SoundGroup'PlayerSounds.Final.Land'
-     Sounds(1)=SoundGroup'PlayerSounds.Final.CorpseLanded'
+    Sounds(0)=Sound'PlayerSounds.Final.Land'
+    Sounds(1)=Sound'PlayerSounds.Final.CorpseLanded'
 }

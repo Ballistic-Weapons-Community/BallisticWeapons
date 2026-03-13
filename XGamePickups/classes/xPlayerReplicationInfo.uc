@@ -39,4 +39,5 @@ simulated function material GetPortrait()
 
 defaultproperties
 {
+	bNetNotify=True
 }

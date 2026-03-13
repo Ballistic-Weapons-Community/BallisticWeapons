@@ -43,20 +43,18 @@ function Reset()
 function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 {	
 	local int Index;
-	local Vector XYVel;
+
+    if (Victim == None)
+        return;
 
 	Index = FindIndex(Victim);
 
 	if (HitPawnData[Index].HitTime + Interval < Level.TimeSeconds || HitPawnData[Index].HitTime == 0 )
 	{
 		HitPawnData[Index].HitTime = Level.TimeSeconds;
+		if (Instigator != None)
+    	{
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
-		if (Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
-		{
-			//bog down allies attempting to crawl through this fp7's fire
-			XYVel = -Victim.Velocity;
-			XYVel.Z = 0;
-			Victim.AddVelocity(XYVel + RepulsionForceMag * Normal(Victim.Location - Location) + vect(0,0,20));
 		}
 	}
 }
@@ -112,7 +110,7 @@ simulated function PostNetBeginPlay()
 simulated function Initialize()
 {
     local int i;
-	local vector Start, End, HitLoc, HitNorm;
+	local vector Start, End, HitLoc, HitNorm, Dummy;
 	local Actor T, A;
 	local FP7GroundFire GF;
 
@@ -127,6 +125,8 @@ simulated function Initialize()
 	// Immolate nearby players
 	foreach VisibleCollidingActors( class 'Actor', A, DamageRadius, Location )
 	{
+		if (xPawn(A) != None && Level.Game.ReduceDamage(Damage, xPawn(A), Instigator, Location, Dummy, class'DTFP7Immolation') <= 0)
+			continue;
 		if (xPawn(A)!=None)
 			IgniteActor(A);
 		class'BallisticDamageType'.static.Hurt(A, (1.0-(VSize(A.Location - Location)/DamageRadius)) * BaseDamage, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTFP7Immolation');

@@ -24,6 +24,24 @@ var(SRX) bool		bShowCharge;				// Hides charge until the amp is on
 var	  Rotator		RearSightBoneRot;
 var(SRX) bool		bHasOptic;
 
+// IR Code
+var(SRX)	bool				bHasIR;
+var(SRX)	Texture				ScopeviewTexIR;
+
+var(SRX) 	BUtil.FullSound		ThermalOnSound;	// Sound when activating thermal mode
+var(SRX)	BUtil.FullSound		ThermalOffSound;// Sound when deactivating thermal mode
+var(SRX)	Array<Pawn>			PawnList;		// A list of all the potential pawns to view in thermal mode
+var(SRX)	material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
+var(SRX)	bool				bThermal;		// Is thermal mode active?
+var(SRX)	bool				bUpdatePawns;	// Should viewable pawn list be updated
+var(SRX)	Pawn				UpdatedPawns[128];// List of pawns to view in thermal scope
+var(SRX)	material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
+var(SRX)	float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
+var(SRX)	ColorModifier		ColorMod;
+var(SRX)	Array<M58Cloud>		SmokeList;		// A list of all the potential pawns to view in thermal mode
+var(SRX)	actor				NVLight;
+var(SRX)	float				NextPawnListUpdateTime;
+
 //Scripted Ammo Screen Texture
 var() ScriptedTexture 	WeaponScreen; //Scripted texture to write on
 var() Material			WeaponScreenShader; //Scripted Texture with self illum applied
@@ -39,7 +57,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		ClientScreenStart, ClientSetHeat;
    	reliable if (Role < ROLE_Authority)
-		ServerSwitchSilencer, ServerSwitchAmplifier;	
+		ServerSwitchSilencer, ServerSwitchAmplifier,ServerAdjustThermal;	
 }
 
 simulated function OnWeaponParamsChanged()
@@ -47,9 +65,16 @@ simulated function OnWeaponParamsChanged()
     super.OnWeaponParamsChanged();
 		
 	assert(WeaponParams != None);
+	bHasIR=false;
 	
 	bHasOptic=false;
 
+	if (InStr(WeaponParams.LayoutTags, "IR") != -1)
+	{
+		bHasIR=true;
+		bThermal=true;
+		AdjustThermalView(true);
+	}
 	if (InStr(WeaponParams.LayoutTags, "optic") != -1)
 	{
 		bHasOptic=true;
@@ -146,10 +171,28 @@ simulated function Notify_ClipIn()
 //mount or unmount silencer, but take off amp where necessary
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (ReloadState != RS_None || SightingState != SS_None)
+	if (ReloadState != RS_None || (SightingState != SS_None && !bHasIR))
 		return;
 		
 	TemporaryScopeDown(0.5);
+	
+	if (bHasIR && bScopeView)
+	{
+		bThermal = !bThermal;
+		if (bThermal)
+		{
+			class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+			ServerWeaponSpecial(1);
+		}
+		else
+		{
+			class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+			ServerWeaponSpecial(0);
+		}
+		
+		AdjustThermalView(bThermal);
+		return;
+	}
 	
 	if (bAmped)	//take off amp
 	{
@@ -164,6 +207,16 @@ exec simulated function WeaponSpecial(optional byte i)
 		SwitchSilencer(bSilenced);
 	}
 }
+
+function ServerWeaponSpecial(optional byte i)
+{
+	if (bHasIR && bScopeView)
+	{
+		bThermal = bool(i);
+		ServerAdjustThermal(bThermal);
+	}
+}
+
 //mount or unmount amp, but take off silencer where necessary
 exec simulated function ToggleAmplifier(optional byte i)
 {
@@ -422,7 +475,322 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		SetBoneScale (0, 1.0, SilencerBone);
 	else
 		SetBoneScale (0, 0.0, SilencerBone);
+	
+	if (ColorMod != None)
+		return;
+	ColorMod = ColorModifier(Level.ObjectPool.AllocateObject(class'ColorModifier'));
+	if ( ColorMod != None )
+	{
+		ColorMod.Material = FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal';
+		ColorMod.Color.R = 255;
+		ColorMod.Color.G = 255;
+		ColorMod.Color.B = 255;
+		ColorMod.Color.A = 255;
+		ColorMod.AlphaBlend = false;
+		ColorMod.RenderTwoSided=True;
+	}
 
+}
+
+simulated function bool PutDown()
+{
+	if (super.PutDown())
+	{
+		AdjustThermalView(false);
+		return true;
+	}
+	return false;
+}
+
+simulated event Destroyed()
+{
+	if (ColorMod != None)
+	{
+		Level.ObjectPool.FreeObject(ColorMod);
+		ColorMod = None;
+	}
+	AdjustThermalView(false);
+
+	if (NVLight != None)
+		NVLight.Destroy();
+		
+
+	super.Destroyed();
+}
+
+//=====================================================
+// IR Scope
+//=====================================================
+
+
+simulated function OnScopeViewChanged()
+{
+	super.OnScopeViewChanged();
+		
+	if (!bScopeView)
+	{
+		if (Level.NetMode == NM_Client)
+			AdjustThermalView(false);
+		else ServerAdjustThermal(false);
+	}
+	else if (bThermal)
+	{
+		if (Level.NetMode == NM_Client)
+			AdjustThermalView(true);
+		else ServerAdjustThermal(true);
+	}	
+}
+
+simulated function SetNVLight(bool bOn)
+{
+	if (!Instigator.IsLocallyControlled())
+		return;
+	if (bOn)
+	{
+		if (NVLight == None)
+		{
+			NVLight = Spawn(class'HKARNVLight',,,Instigator.location);
+			NVLight.SetBase(Instigator);
+		}
+		NVLight.bDynamicLight = true;
+	}
+	else if (NVLight != None)
+		NVLight.bDynamicLight = false;
+}
+
+simulated event WeaponTick(float DT)
+{
+	local actor T;
+
+	local vector HitLoc, HitNorm, Start, End;
+
+	super.WeaponTick(DT);
+
+	if (Level.TimeSeconds >= NextPawnListUpdateTime)
+		UpdatePawnList();
+
+	if (bThermal && bScopeView)
+	{
+		SetNVLight(true);
+
+		Start = Instigator.Location+Instigator.EyePosition();
+		End = Start+vector(Instigator.GetViewRotation())*1500;
+		T = Trace(HitLoc, HitNorm, End, Start, true, vect(16,16,16));
+		if (T==None)
+			HitLoc = End;
+
+		if (VSize(HitLoc-Start) > 400)
+			NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
+		else
+			NVLight.SetLocation(HitLoc + HitNorm*30);
+	}
+	else
+		SetNVLight(false);
+}
+
+simulated event DrawScopeOverlays(Canvas C)
+{  
+	if (bThermal)
+		DrawThermalMode(C);
+
+	Super.DrawScopeOverlays(C);
+}
+
+simulated function UpdatePawnList()
+{
+	local Pawn P;
+	local int i;
+	local float Dist;
+
+	PawnList.Length=0;
+	ForEach DynamicActors( class 'Pawn', P)
+	{
+		if (P.PlayerReplicationInfo != None && P.PlayerReplicationInfo.Team != None && P.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex)
+			continue;
+		PawnList[PawnList.length] = P;
+		Dist = VSize(P.Location - Instigator.Location);
+		if (Dist <= ThermalRange &&
+			( Normal(P.Location-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 1-((Instigator.Controller.FovAngle*0.9)/180) ) &&
+			((Instigator.LineOfSightTo(P)) || Normal(P.Location - Instigator.Location) Dot Vector(Instigator.GetViewRotation()) > 0.985 + 0.015 * (Dist/ThermalRange)))
+		{
+			if (!Instigator.IsLocallyControlled())
+			{
+				P.NetUpdateTime = Level.TimeSeconds - 1;
+				P.bAlwaysRelevant = true;
+			}
+			UpdatedPawns[i]=P;
+			i++;
+		}
+	}
+}
+
+
+// Draws players in bright colors and all the other Thermal Mode stuff
+simulated event DrawThermalMode (Canvas C)
+{
+	local Pawn P;
+	local int i, j;
+	local float Dist, DotP;//, OtherRatio;
+	local Array<Material>	OldSkins;
+	local int OldSkinCount;
+	local bool bLOS, bFocused;
+	local vector Start;
+	local Array<Material>	AttOldSkins0;
+	local Array<Material>	AttOldSkins1;
+	
+	C.Style = ERenderStyle.STY_Modulated;
+	
+	// Draw Spinning Sweeper thing
+	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+	C.SetDrawColor(255,255,255,255);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.Attachment.SKAR-IRFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+	// Draw some panning lines 
+	C.SetPos(C.OrgX, C.OrgY);
+	C.DrawTile(FinalBlend'BWBP_SKC_Tex.SKAR.SKAR-StaticFinal', C.SizeX, C.SizeY, 0, 0, 1024, 1024); 
+
+	if (ColorMod == None)
+		return;
+	// Draw the players with an purp effect
+	C.Style = ERenderStyle.STY_Alpha;
+	Start = Instigator.Location + Instigator.EyePosition();
+	for (j=0;j<PawnList.length;j++)
+	{
+		if (PawnList[j] != None && PawnList[j] != Level.GetLocalPlayerController().Pawn)
+		{
+			P = PawnList[j];
+			bFocused=false;
+			bLos=false;
+			ThermalRange = default.ThermalRange + 2000 * FMin(1, VSize(P.Velocity) / 450);
+			Dist = VSize(P.Location - Instigator.Location);
+			if (Dist > ThermalRange)
+				continue;
+			DotP = Normal(P.Location - Start) Dot Vector(Instigator.GetViewRotation());
+			if ( DotP < Cos((Instigator.Controller.FovAngle/1.7) * 0.017453) )
+				continue;
+			// If we have a clear LOS then they can be drawn
+			if (Instigator.LineOfSightTo(P))
+				bLOS=true;
+			//check for smoke (todo: replace this with a more efficient vector check)
+			//ForEach TraceActors(class'M58Cloud', Other, HitLocation, HitNormal, P.Location, Location)
+			//{
+			//	if (Other != None)
+			//		bLOS=false;
+			//}
+			//Other = Trace(HitLocation, HitNormal, P.Location, Location, true, vect(1,1,1));
+			//log("Trace found "$Other);
+			//if (Other != None && M58Cloud(Other) != None)
+			//	bLOS=false;
+			if (bLOS)
+			{
+				DotP = (DotP-0.6) / 0.4;
+
+				DotP = FMax(DotP, 0);
+
+				if (Dist < 500)
+					ColorMod.Color.R = DotP * 255.0;
+				else
+					ColorMod.Color.R = DotP * ( 255 - FClamp((Dist-500)/((ThermalRange-500)*0.8), 0, 1) * 255 );
+				ColorMod.Color.G = DotP * ( 128.0 - (Dist/ThermalRange)*96.0 );
+
+				// Remember old skins, set new skins, turn on unlit...
+				OldSkinCount = P.Skins.length;
+				for (i=0;i<Max(2, OldSkinCount);i++)
+				{	if (OldSkinCount > i) OldSkins[i] = P.Skins[i]; else OldSkins[i]=None;	P.Skins[i] = ColorMod;	}
+				P.bUnlit=true;
+				for (i=0;i<P.Attached.length;i++)
+					if (P.Attached[i] != None)
+					{
+						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						{
+							if (P.Attached[i].Skins.length > 0)
+							{	AttOldSkins0[i] = P.Attached[i].Skins[0];	P.Attached[i].Skins[0] = ColorMod;	}
+							else
+							{	AttOldSkins0[i] = None;	P.Attached[i].Skins[0] = ColorMod;	}
+							if (P.Attached[i].Skins.length > 1)
+							{	AttOldSkins1[i] = P.Attached[i].Skins[1];	P.Attached[i].Skins[1] = ColorMod;	}
+							if (P.Attached[i].Skins.length > 1)
+							{	AttOldSkins1[i] = None;	P.Attached[i].Skins[1] = ColorMod;	}
+						}
+						else
+							P.Attached[i].SetDrawType(DT_None);
+					}
+
+				C.DrawActor(P, false, true);
+
+				// Set old skins back, Unlit off
+				P.Skins.length = OldSkinCount;
+				for (i=0;i<P.Skins.length;i++)
+					P.Skins[i] = OldSkins[i];
+				P.bUnlit=false;
+
+				for (i=0;i<P.Attached.length;i++)
+					if (P.Attached[i] != None)
+					{
+						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						{
+							if (AttOldSkins1[i] == None)
+							{
+								if (AttOldSkins0[i] == None)
+									P.Attached[i].Skins.length = 0;
+								else
+								{
+									P.Attached[i].Skins.length = 1;
+									P.Attached[i].Skins[0] = AttOldSkins0[i];
+								}
+							}
+							else
+							{
+								P.Attached[i].Skins[0] = AttOldSkins0[i];
+								P.Attached[i].Skins[1] = AttOldSkins1[i];
+							}
+						}
+						else
+							P.Attached[i].SetDrawType(P.Attached[i].default.DrawType);
+					}
+				AttOldSkins0.length = 0;
+				AttOldSkins1.length = 0;
+			}
+			else
+				continue;
+		}
+	}
+}
+
+simulated function AdjustThermalView(bool bNewValue)
+{
+	if (AIController(Instigator.Controller) != None)
+		return;
+	if (!bNewValue)
+	{
+		bUpdatePawns = false;
+	}
+	else
+	{
+		bUpdatePawns = true;
+		UpdatePawnList();
+		NextPawnListUpdateTime = Level.TimeSeconds + 1;
+	}
+}
+
+function ServerAdjustThermal(bool bNewValue)
+{
+	local int i;
+	
+	if (bNewValue)
+	{
+		bUpdatePawns = true;
+		UpdatePawnList();
+		NextPawnListUpdateTime = Level.TimeSeconds + 1;
+	}
+	else
+	{
+		bUpdatePawns = false;
+		for (i=0;i<ArrayCount(UpdatedPawns);i++)
+		{
+			if (UpdatedPawns[i] != None)
+				UpdatedPawns[i].bAlwaysRelevant = UpdatedPawns[i].default.bAlwaysRelevant;
+		}
+	}
 }
 
 simulated function float ChargeBar()
@@ -514,43 +882,49 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
+	ThermalOnSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
+	Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
+	ThermalRange=25000.000000
+
 	DrainRate=0.15
-    bShowChargingBar=True
-	
+	bShowChargingBar=True
+
 	RearSightBoneRot=(Yaw=16384)
-	
+
 	AmpMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
 	AmpMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
 	AmpMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 	AmpMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
-    AmpMaterials[4]=Texture'BW_Core_WeaponTex.Amp.Amp-BaseDepleted'
-    AmpMaterials[5]=Texture'ONSstructureTextures.CoreGroup.Invisible'
-	
+	AmpMaterials[4]=Texture'BW_Core_WeaponTex.Amp.Amp-BaseDepleted'
+	AmpMaterials[5]=Texture'ONSstructureTextures.CoreGroup.Invisible'
+
 	MyFontColor=(R=255,G=255,B=255,A=255)
-    WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.SRX.SRX-ScriptLCD'
-    WeaponScreenShader=Shader'BWBP_SKC_Tex.SRX.SRX-ScriptLCD-SD'
+	WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.SRX.SRX-ScriptLCD'
+	WeaponScreenShader=Shader'BWBP_SKC_Tex.SRX.SRX-ScriptLCD-SD'
 	ScreenBase=Texture'BWBP_SKC_Tex.SRX.SRX-Screen'
 	ScreenAmmoBlue=Texture'BWBP_SKC_Tex.SRX.SRX-Screen'
 	ScreenAmmoRed=FinalBlend'BWBP_SKC_Tex.SRX.SRX-ScreenRed-FB'
-	
+
 	AmplifierBone="Amp"
-    AmplifierOnAnim="AddAMP"
-    AmplifierOffAnim="RemoveAMP"
-    AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
-    AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
-    AmplifierPowerOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
-    AmplifierPowerOffSound=Sound'BW_Core_WeaponSound.AMP.Amp-Depleted'
-	
+	AmplifierOnAnim="AddAMP"
+	AmplifierOffAnim="RemoveAMP"
+	AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
+	AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
+	AmplifierPowerOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+	AmplifierPowerOffSound=Sound'BW_Core_WeaponSound.AMP.Amp-Depleted'
+
 	SilencerBone="Silencer"
 	SilencerOnAnim="AddSilencer"
 	SilencerOffAnim="RemoveSilencer"
 	SilencerOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
 	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
-	
+
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.SRX.BigIcon_SRXRifle'
 	BigIconCoords=(Y2=240)
-	
+
 	bWT_Bullet=True
 	ManualLines(0)="7.62mm Fire"
 	ManualLines(1)="Attach/Detach AMP. Corrosive does extra damage to shield while Explosive damage does radius damage."
@@ -565,7 +939,7 @@ defaultproperties
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=0)
 	WeaponModes(1)=(ModeName="Amplified: Explosive",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True,RecoilParamsIndex=1)
-    WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True,RecoilParamsIndex=2)
+	WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
@@ -578,7 +952,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SRXWeaponParamsComp'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'
 	ParamsClasses(2)=Class'SRXWeaponParamsRealistic'
-    ParamsClasses(3)=Class'SRXWeaponParamsTactical'
+	ParamsClasses(3)=Class'SRXWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.SRXPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.SRXSecondaryFire'
 	SelectAnimRate=1.350000
@@ -588,7 +962,7 @@ defaultproperties
 	AIRating=0.80000
 	CurrentRating=0.80000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross3',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=192),Color2=(B=255,G=255,R=255,A=123),StartSize1=20,StartSize2=57)
-    Description="All weapons evolve over time, adapting to new environments and forms of combat, the SRK-650 Battle Rifle is no exception. NDTR's improvement over the original SRS-900 model, the SRK was created to stand up to the harsh winters of Kalendra with more rugged ergonomics, a holo-sight for closer ranged engagements and a digital ammo counter. But NDTR went one step and beyond by allowing the SRK to not just accept silencers, but also the new elemental AMP tech to counter Cryon armor and Krao hordes with acidic and explosive tech respectively. Slated to join it's longer ranged brother in due time, the SRK will be a blessing for the UTC troops, and a curse for their enemies."
+	Description="All weapons evolve over time, adapting to new environments and forms of combat, the SRK-650 Battle Rifle is no exception. NDTR's improvement over the original SRS-900 model, the SRK was created to stand up to the harsh winters of Kalendra with more rugged ergonomics, a holo-sight for closer ranged engagements and a digital ammo counter. But NDTR went one step and beyond by allowing the SRK to not just accept silencers, but also the new elemental AMP tech to counter Cryon armor and Krao hordes with acidic and explosive tech respectively. Slated to join it's longer ranged brother in due time, the SRK will be a blessing for the UTC troops, and a curse for their enemies."
 	Priority=40
 	HudColor=(B=50,G=50,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -607,19 +981,19 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.SRX_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Texture'BWBP_SKC_Tex.SRX.SRX-RifleDark'
-    Skins(2)=Texture'BWBP_SKC_Tex.SRX.SRX-StockBlack'
-    Skins(3)=Texture'BWBP_SKC_Tex.SRX.SRX-Irons'
-    Skins(4)=Texture'BWBP_SKC_Tex.SRX.SRX-Holo'
-    Skins(5)=Texture'BWBP_SKC_Tex.SRX.SRX-Cable'
-    Skins(6)=Texture'BWBP_SKC_Tex.SRX.SRX-Plating'
-    Skins(7)=Texture'BWBP_SKC_Tex.SRX.SRX-Barrel'
-    Skins(8)=Texture'BWBP_SKC_Tex.SRX.SRX-Misc'
-    Skins(9)=Texture'BWBP_SKC_Tex.SRX.SRX-Muzzle'
-    Skins(10)=Texture'UCGeneric.SolidColours.Black'
-    Skins(11)=Texture'BWBP_SKC_Tex.SRX.SRX-ScreenMask'
-    Skins(12)=Shader'BWBP_SKC_Tex.SRX.SRX-Reticle-S'
-    Skins(13)=Texture'BWBP_SKC_Tex.SRX.SRX-Supp'
-    Skins(14)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalRed'
+	Skins(1)=Texture'BWBP_SKC_Tex.SRX.SRX-RifleDark'
+	Skins(2)=Texture'BWBP_SKC_Tex.SRX.SRX-StockBlack'
+	Skins(3)=Texture'BWBP_SKC_Tex.SRX.SRX-Irons'
+	Skins(4)=Texture'BWBP_SKC_Tex.SRX.SRX-Holo'
+	Skins(5)=Texture'BWBP_SKC_Tex.SRX.SRX-Cable'
+	Skins(6)=Texture'BWBP_SKC_Tex.SRX.SRX-Plating'
+	Skins(7)=Texture'BWBP_SKC_Tex.SRX.SRX-Barrel'
+	Skins(8)=Texture'BWBP_SKC_Tex.SRX.SRX-Misc'
+	Skins(9)=Texture'BWBP_SKC_Tex.SRX.SRX-Muzzle'
+	Skins(10)=Texture'UCGeneric.SolidColours.Black'
+	Skins(11)=Texture'BWBP_SKC_Tex.SRX.SRX-ScreenMask'
+	Skins(12)=Shader'BWBP_SKC_Tex.SRX.SRX-Reticle-S'
+	Skins(13)=Texture'BWBP_SKC_Tex.SRX.SRX-Supp'
+	Skins(14)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalRed'
 	Skins(15)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 }

@@ -31,10 +31,10 @@ function StopEffect(xPawn P)
 
 defaultproperties
 {
-     ExecMessage="Berserk!"
-     ComboAnnouncementName="Berzerk"
-     keys(0)=2
-     keys(1)=2
-     keys(2)=1
-     keys(3)=1
+    ExecMessage="Berserk!"
+	ComboAnnouncementName=Berzerk
+    keys(0)=2
+    keys(1)=2
+    keys(2)=1
+    keys(3)=1
 }

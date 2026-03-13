@@ -12,6 +12,22 @@ class X82Rifle_TW extends X82Rifle
 
 var() sound		MountFireSound;
 
+simulated function OnWeaponParamsChanged()
+{
+    super(BallisticWeapon).OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	
+	bIsIrons=false;
+
+	if (InStr(WeaponParams.LayoutTags, "irons") != -1)
+	{
+		bIsIrons=true;
+		SetBoneRotation('RearSightP', rot(16384,0,0));
+		SetBoneRotation('FrontSight', rot(0,0,16384));
+	}
+}
+
 // Rotates the player's view according to Aim
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
@@ -177,14 +193,6 @@ simulated function Notify_CockAfterReload()
 //		PlayAnim('ReloadFinishHandle', ReloadAnimRate, 0.2);
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim('Cock'))
-		PlayAnim('Cock', CockAnimRate, 0.2);
-	else
-		PlayAnim('Cock', CockAnimRate, 0.2);
-}
-
 defaultproperties
 {
 	MountFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire4'
@@ -200,6 +208,7 @@ defaultproperties
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82TW_PrimaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)
 	SelectAnim="Deploy"
+	CockAnimPostReload="Cock"
 	BringUpTime=1.000000
 	bCanThrow=False
 	bNoInstagibReplace=True

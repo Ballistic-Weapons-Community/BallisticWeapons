@@ -37,7 +37,7 @@ var   Emitter		LaserDot;
 replication
 {
 	reliable if(Role==ROLE_Authority)
-		CurrentRocket, Target, bLockedOn, bLaserOn;
+		CurrentRocket, Target, bLockedOn, bLaserOn, TargetTime;
 
 	reliable if(Role<ROLE_Authority)
 		ServerSetRocketTarget;
@@ -296,8 +296,15 @@ simulated function WeaponTick(float DT)
 	if (Instigator != None && Instigator.IsLocallyControlled())
 		TickLaser(DT);
 
-	if (!bScopeView || CurrentWeaponMode != 1 || Role < ROLE_Authority)
-		return;
+    if (!bScopeView || CurrentWeaponMode != 1)
+    {
+        if (Role == ROLE_Authority)
+            TargetTime = 0;
+        return;
+    }
+
+    if (Role < ROLE_Authority)
+        return;
 
 	bWasLockedOn = TargetTime >= LockOnTime;
 

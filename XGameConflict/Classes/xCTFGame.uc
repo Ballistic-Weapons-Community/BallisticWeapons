@@ -57,13 +57,17 @@ event SetGrammar()
 
 defaultproperties
 {
-     DefaultEnemyRosterClass="xGame.xTeamRoster"
-     HUDType="XInterface.HudCCaptureTheFlag"
-     MapListType="XInterface.MapListCaptureTheFlag"
-     DeathMessageClass=Class'XGame.xDeathMessage'
-     OtherMesgGroup="CTFGame"
-     GameName="Capture the Flag"
-     ScreenShotName="UT2004Thumbnails.CTFShots"
-     DecoTextName="XGame.CTFGame"
-     Acronym="CTF"
+    MapListType="XInterface.MapListCaptureTheFlag"
+    DeathMessageClass=class'XGame.xDeathMessage'
+    HUDType="XInterface.HudCCaptureTheFlag"
+	DefaultEnemyRosterClass="xGame.xTeamRoster"
+
+    ScreenShotName="UT2004Thumbnails.CTFShots"
+    DecoTextName="XGame.CTFGame"
+
+    GameName="Capture the Flag"
+    MapPrefix="CTF"
+    Acronym="CTF"
+	OtherMesgGroup="CTFGame"
+    Description="Your team must score flag captures by taking the enemy flag from the enemy base and returning it to their own flag.  If the flag carrier is killed, the flag drops to the ground for anyone to pick up.  If your team's flag is taken, it must be returned (by touching it after it is dropped) before your team can score a flag capture."
 }

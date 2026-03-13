@@ -53,16 +53,20 @@ function TurnOn()
 
 defaultproperties
 {
-     PickupClasses(0)=Class'XPickups.HealthPack'
-     PickupClasses(1)=Class'XPickups.SuperShieldPack'
-     PickupClasses(2)=Class'XPickups.SuperHealthPack'
-     PickupClasses(3)=Class'XPickups.UDamagePack'
-     SpiralEmitter=Class'XEffects.Spiral'
-     bDelayedSpawn=True
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_rc.AmmoChargerMesh'
-     Texture=None
-     DrawScale=0.800000
-     CollisionRadius=60.000000
-     CollisionHeight=6.000000
+	bDelayedSpawn=true
+	bSequential=false
+    SpiralEmitter=class'XEffects.Spiral'
+    
+    DrawScale=0.8
+    DrawType=DT_StaticMesh
+    StaticMesh=XGame_rc.AmmoChargerMesh
+    Texture=None
+    
+    PickupClasses(0)=class'XPickups.HealthPack'
+    PickupClasses(1)=class'XPickups.SuperShieldPack'
+    PickupClasses(2)=class'XPickups.SuperHealthPack'
+    PickupClasses(3)=class'XPickups.UDamagePack'
+
+    CollisionRadius=60.000000
+    CollisionHeight=6.000000
 }

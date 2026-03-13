@@ -20,11 +20,11 @@ function PostbeginPlay()
 
 defaultproperties
 {
-     PowerUp=Class'XPickups.ShieldPack'
-     SpawnHeight=45.000000
-     bDelayedSpawn=True
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'XGame_rc.ShieldChargerMesh'
-     Texture=None
-     DrawScale=0.700000
+	bDelayedSpawn=true
+    DrawScale=0.7
+    DrawType=DT_StaticMesh
+    StaticMesh=XGame_rc.ShieldChargerMesh
+    Texture=None
+    PowerUp=ShieldPack
+    SpawnHeight=+45.0000
 }

@@ -43,15 +43,18 @@ simulated function PostBeginPlay()
 	}
 }
 
+
 defaultproperties
 {
-     ShadowDirection=(X=1.000000,Y=1.000000,Z=5.000000)
-     ShadowDarkness=192
-     BaseEyeHeight=38.000000
-     EyeHeight=38.000000
-     ControllerClass=None
-     bLightingVisibility=False
-     MaxLights=8
-     CollisionRadius=25.000000
-     CollisionHeight=43.000000
+    BaseEyeHeight=38.0 
+    EyeHeight=38.0    
+    CollisionRadius=25.0
+    CollisionHeight=43.0  
+    ControllerClass=none
+	bAcceptsProjectors=true
+	bCollideActors=true
+    ShadowDirection=(X=1,Y=1,Z=5)
+    ShadowDarkness=192
+    bLightingVisibility=False
+    MaxLights=8
 }

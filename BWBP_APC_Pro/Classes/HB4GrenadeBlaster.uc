@@ -7,10 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class HB4GrenadeBlaster extends BallisticHandgun
-	transient
-	HideDropDown
-	CacheExempt;
+class HB4GrenadeBlaster extends BallisticHandgun;
 
 //simulated function bool SlaveCanUseMode(int Mode) {return (Mode == 0) || Othergun.class==class || ;}
 simulated function bool MasterCanSendMode(int Mode) {return (Mode == 0) || Othergun.class==class || level.TimeSeconds <= FireMode[1].NextFireTime;}
@@ -36,14 +33,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		BringUpTime = 0.4;
 	super.BringUp(PrevWeapon);
 	BringUpTime = default.BringUpTime;
-}
-
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
 }
 
 simulated function float ChargeBar()
@@ -96,21 +85,27 @@ function float SuggestDefenseStyle()	{	return -0.7;	}
 
 defaultproperties
 {
+	bNoCrosshairInScope=True
+	bShouldDualInLoadout=False
+	bShowChargingBar=True
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Projectile=True	
 	AIRating=0.8
 	CurrentRating=0.8
 	AIReloadTime=1.500000
-
 	AttachmentClass=Class'BWBP_APC_Pro.HB4Attachment'
 	BigIconMaterial=Texture'BWBP_APC_Tex.HoloBlaster.BigIcon_HoloBlaster'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	BringUpTime=0.900000
-
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipInFrame=0.650000
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
+	CockingBringUpTime=1.200000
 	CurrentWeaponMode=0
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	Description="Maramu Tek might've joined the war against the Skrith late, but their arrival couldn't have come at a better time after the Cryon attack on Neo York.  The situation of having tough armored warriors in an urban situation full of civilians was tough and delicate, if it weren't for Maramu Tek's first offering of the HB4 Grenade Blaster, things would've gone awry very fast. Firing compact stun bolts akin to the Electrobolts that MK781 fires, they disabled the Cyron's intricate wiring systems quickly, and the flash temporarily scrambled their visual processing units, making it handy to have. Neo York was saved while the HB4 went on to perform in situations similar to the Cryon crisis."
@@ -123,7 +118,6 @@ defaultproperties
 	IconMaterial=Texture'BWBP_APC_Tex.HoloBlaster.SmallIcon_HoloBlaster'
 	InventoryGroup=8
 	ItemName="HB4 Electro Grenade Blaster"
-
 	LightBrightness=150.000000
 	LightEffect=LE_NonIncidence
 	LightHue=30
@@ -135,9 +129,10 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	ManualLines(0)="High-powered Blaster fire. Recoil is high."
 	Mesh=SkeletalMesh'BWBP_APC_Anim.HB4_FPm'
-	ParamsClasses(0)=Class'HB4WeaponParams'
+	ParamsClasses(0)=Class'HB4WeaponParamsArena'
 	ParamsClasses(1)=Class'HB4WeaponParamsClassic'
 	ParamsClasses(2)=Class'HB4WeaponParamsRealistic'
+	ParamsClasses(3)=Class'HB4WeaponParamsTactical'	
 	PickupClass=Class'BWBP_APC_Pro.HB4Pickup'
 	PlayerViewOffset=(X=-5.000000,Y=11.000000,Z=-13.000000)
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=255,A=255),Color2=(B=255,G=255,R=0,A=137),StartSize1=106,StartSize2=47)
@@ -151,8 +146,4 @@ defaultproperties
 	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	bNoCrosshairInScope=True
-	bShouldDualInLoadout=False
-	bShowChargingBar=True
-	bWT_Bullet=True
 }

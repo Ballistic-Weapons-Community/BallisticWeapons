@@ -19,41 +19,6 @@ simulated event PostBeginPlay()
 		Emitters[3].disabled = true;
 	}
 }
-/*
-    Begin Object Class=SpriteEmitter Name=SpriteEmitter15
-         FadeOut=True
-         FadeIn=True
-         RespawnDeadParticles=False
-         SpinParticles=True
-         UseSizeScale=True
-         UseRegularSizeScale=False
-         UniformSize=True
-         AutomaticInitialSpawning=False
-         TriggerDisabled=False
-         Acceleration=(Z=50.000000)
-         ColorScale(0)=(Color=(B=255,G=128,R=128))
-         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255))
-         ColorMultiplierRange=(X=(Min=0.600000,Max=0.600000),Y=(Min=0.600000,Max=0.600000),Z=(Min=0.700000,Max=0.800000))
-         Opacity=0.200000
-         FadeOutStartTime=0.480000
-         FadeInEndTime=0.360000
-         MaxParticles=600
-         DetailMode=DM_SuperHigh
-         SpinsPerSecondRange=(X=(Max=0.100000))
-         StartSpinRange=(X=(Max=1.000000))
-         SizeScale(0)=(RelativeSize=0.500000)
-         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
-         StartSizeRange=(X=(Min=5.000000,Max=6.000000))
-         DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
-         SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=1.000000,Max=1.300000)
-         SpawnOnTriggerRange=(Min=300.000000,Max=600.000000)
-         SpawnOnTriggerPPS=300.000000
-         StartVelocityRange=(X=(Min=-2.000000,Max=2.000000),Y=(Min=-2.000000,Max=2.000000))
-     End Object
-     Emitters(0)=SpriteEmitter'R9000EFlashEmitterInc.SpriteEmitter15'
-*/
 
 defaultproperties
 {
@@ -168,7 +133,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=212,R=212,A=255))
          Opacity=0.600000
          FadeOutStartTime=0.800000
-         MaxParticles=20
+         MaxParticles=15
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=8.000000,Max=10.000000))
@@ -196,7 +161,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=64,G=128,R=255,A=255))
          FadeOutStartTime=0.033000
          CoordinateSystem=PTCS_Relative
-         MaxParticles=20
+         MaxParticles=15
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=30.000000,Max=40.000000),Y=(Min=30.000000,Max=40.000000),Z=(Min=30.000000,Max=40.000000))
          Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
@@ -208,5 +173,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=100.000000,Max=2000.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-200.000000,Max=200.000000))
      End Object
      Emitters(4)=SpriteEmitter'BWBP_APC_Pro.R9000EFlashEmitterInc.SpriteEmitter17'
-
 }

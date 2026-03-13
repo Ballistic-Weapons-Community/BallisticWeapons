@@ -8,27 +8,41 @@ static function string GetRagSkelName(String MeshName)
 
 defaultproperties
 {
-     MaleVoice="XGame.AlienMaleVoice"
-     FemaleVoice="XGame.AlienFemaleVoice"
-     GibGroup="xEffects.xAlienGibGroup"
-     FemaleSkeleton="SkaarjAnims.Skaarj_Skel"
-     MaleSkeleton="SkaarjAnims.Skaarj_Skel"
-     MaleSoundGroup="XGame.xAlienMaleSoundGroup"
-     FemaleSoundGroup="XGame.xAlienFemaleSoundGroup"
-     SpeciesName="Skaarj"
-     DMTeam=1
-     TauntAnims(4)="Gesture_Taunt02"
-     TauntAnims(5)="Gesture_Taunt03"
-     TauntAnims(6)="Idle_Character03"
-     TauntAnims(7)="Gesture_Taunt01"
-     TauntAnims(8)="Idle_Character01"
-     TauntAnims(9)=
-     TauntAnimNames(4)="Hair flip"
-     TauntAnimNames(5)="Slash"
-     TauntAnimNames(6)="Scan"
-     TauntAnimNames(7)="Finger"
-     TauntAnimNames(8)="Idle"
-     AirControl=1.200000
-     JumpZ=1.500000
-     ReceivedDamageScaling=1.300000
+	SpeciesName="Skaarj"
+	MaleVoice="XGame.AlienMaleVoice"
+	FemaleVoice="XGame.AlienFemaleVoice"
+	MaleSoundGroup="XGame.xAlienMaleSoundGroup"
+	FemaleSoundGroup="XGame.xAlienFemaleSoundGroup"
+	MaleSkeleton="SkaarjAnims.Skaarj_Skel"
+	FemaleSkeleton="SkaarjAnims.Skaarj_Skel"
+	GibGroup="xEffects.xAlienGibGroup"
+	AirControl=+1.2
+	GroundSpeed=+1.0
+	WaterSpeed=+1.0
+	JumpZ=+1.5
+	ReceivedDamageScaling=+1.3
+	DamageScaling=+1.0
+	AccelRate=+1.0
+	WalkingPct=+1.0
+	CrouchedPct=+1.0
+	DodgeSpeedFactor=+1.0
+	DodgeSpeedZ=+1.0
+	DMTeam=1
+
+	TauntAnims(4)=Gesture_Taunt02
+	TauntAnimNames(4)="Hair flip"
+	
+	TauntAnims(5)=Gesture_Taunt03
+	TauntAnimNames(5)="Slash"
+	
+	TauntAnims(6)=Idle_Character03
+	TauntAnimNames(6)="Scan"
+
+	TauntAnims(7)=Gesture_Taunt01
+	TauntAnimNames(7)="Finger"
+	
+	TauntAnims(8)=Idle_Character01
+	TauntAnimNames(8)="Idle"
+
+	TauntAnims(9)=
 }

@@ -43,21 +43,28 @@ simulated function PostNetBeginPlay()
 
 defaultproperties
 {
-     RedTeamShader=Shader'XGameTextures.SuperPickups.RedScreenS'
-     BlueTeamShader=Shader'XGameTextures.SuperPickups.BlueScreenS'
-     DrawType=DT_StaticMesh
-     bStatic=False
-     bNoDelete=True
-     bStasis=False
-     bWorldGeometry=True
-     RemoteRole=ROLE_None
-     DrawScale=2.500000
-     CollisionRadius=48.000000
-     CollisionHeight=30.000000
-     bCollideActors=True
-     bCollideWorld=True
-     bBlockActors=True
-     bProjTarget=True
-     bBlockKarma=True
-     bNetNotify=True
+    RemoteRole=ROLE_None
+    bWorldGeometry=true
+	bNoDelete=true
+    bUnlit=false
+    bHidden=false
+    bStasis=false
+    bStatic=false
+    bCollideActors=true
+    bCollideWorld=true    
+    bNetNotify=true
+    bBlockKarma=true
+    bBlockActors=true
+    bProjTarget=true
+    bBlockZeroExtentTraces=true
+    bBlockNonZeroExtentTraces=true
+    bUseCylinderCollision=false    
+    DrawScale=2.50000
+    DrawType=DT_StaticMesh
+    Style=STY_Normal    
+    CollisionRadius=48.000000
+    CollisionHeight=30.000000    
+    Mass=100.000000
+    RedTeamShader=Material'RedScreenS'
+    BlueTeamShader=Material'BlueScreenS'
 }

@@ -84,8 +84,8 @@ simulated function Tick(float DeltaTime)
 
 defaultproperties
 {
-     AdrenalineCost=100.000000
-     Duration=30.000000
-     ActivateSound=Sound'GameSounds.Combo.ComboActivated'
-     ActivationEffectClass=Class'XEffects.ComboActivation'
+	Duration=30
+	AdrenalineCost=100
+    ActivateSound=Sound'GameSounds.ComboActivated'
+    ActivationEffectClass=class'xEffects.ComboActivation'
 }

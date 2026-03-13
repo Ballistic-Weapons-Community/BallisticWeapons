@@ -20,10 +20,11 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     PointName="B"
-     ControlEvent="xDOMMonitorB"
-     DomCombiner(0)=Combiner'XGameShaders.DomShaders.DomBCombiner'
-     DomShader=Shader'XGameShaders.DomShaders.PulseBShader'
-     ObjectiveName="Point B"
-     Skins(1)=Combiner'XGameShaders.DomShaders.DomPointBCombiner'
+	PrimaryTeam=0
+	ObjectiveName="Point B"
+    PointName="B"
+    ControlEvent=xDomMonitorB
+    Skins(1)=Combiner'XGameShaders.DomShaders.DomPointBCombiner'
+    DomCombiner(0)=Combiner'XGameShaders.DomShaders.DomBCombiner'
+    DomShader=Shader'XGameShaders.DomShaders.PulseBShader'
 }

@@ -80,7 +80,7 @@ defaultproperties
      Damage=300.000000
      DamageRadius=500.000000
      MomentumTransfer=125000.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeCBU100'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeCBU100Bomb'
      ExplosionDecal=Class'BWBPAirstrikesPro.ClusterBlastMark'
      DrawType=DT_StaticMesh
      StaticMesh=StaticMesh'WeaponStaticMesh.RocketProj'

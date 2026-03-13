@@ -38,6 +38,3 @@ simulated function LoadClasses()
 //    }
 }
 
-defaultproperties
-{
-}

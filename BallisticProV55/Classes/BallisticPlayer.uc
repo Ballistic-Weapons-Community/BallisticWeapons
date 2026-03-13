@@ -57,6 +57,8 @@ var bool								bOverrideDmgFlash;
 // Fractional Parts of Pitch/Yaw Input
 var transient float PitchFraction, YawFraction;
 
+var array<Actor> PendingScreenBlood;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -137,6 +139,42 @@ simulated function RenderOverlays(Canvas C)
 	super.RenderOverlays(C);
 	if (bIsInWeaponUI)
 		DrawWeaponUI(C);
+    DrawPendingScreenBlood(C);
+}
+
+//YoYoBatty:
+//Draw any pending screen blood effects, essentially calls canvas drawactor, the same way inventory/weapons are drawn, so screen blood isn't in front of the weapon...
+simulated function DrawPendingScreenBlood(Canvas C)
+{
+    local int i;
+
+    if (PendingScreenBlood.Length == 0)
+        return;
+
+    for (i = PendingScreenBlood.Length - 1; i >= 0; i--)
+    {
+        if (PendingScreenBlood[i] == None || PendingScreenBlood[i].bDeleteMe)
+        {
+            PendingScreenBlood.Remove(i, 1);
+            continue;
+        }
+        C.DrawActor(PendingScreenBlood[i], false, false);
+    }
+}
+//This is called by BloodMan_Bullet when a hit is detected that should spawn screen blood
+simulated function DrawCanvasScreenBlood(class<Actor> SpawnClass, optional actor SpawnOwner, optional vector SpawnLocation, optional rotator SpawnRotation)
+{
+    local Actor E;
+
+    if (Level.NetMode == NM_DedicatedServer || SpawnClass == None)
+        return;
+
+    E = Spawn(SpawnClass, SpawnOwner, , SpawnLocation, SpawnRotation);
+    if (E != None)
+    {
+        E.bHidden = false;
+        PendingScreenBlood[PendingScreenBlood.Length] = E; // We add the screen blood actor to a list so we can draw it later
+    }
 }
 
 // Draw Weapon selection UI
@@ -1274,6 +1312,9 @@ function ViewFlash(float DeltaTime)
 
 function ClientDmgFlash( float scale, vector fog )
 {
+    if (bGodMode)
+		return;
+
 	DesiredFlashScale = scale;
 	DesiredFlashFog = 0.001 * fog;
 }
@@ -1281,6 +1322,9 @@ function ClientDmgFlash( float scale, vector fog )
 // disallow scaling flash
 function ClientFlash( float scale, vector fog )
 {
+    if (bGodMode)
+		return;
+
     FlashScale = scale * vect(1,1,1);
     flashfog = 0.001 * fog;
 	bOverrideDmgFlash = true;
@@ -1485,20 +1529,20 @@ exec function ShowVoteMenu()
 
 defaultproperties
 {
-     WeapUIEnter=Sound'MenuSounds.selectDshort'
-     WeapUIExit=Sound'MenuSounds.selectK'
-     WeapUIFail=Sound'MenuSounds.denied1'
-     WeapUIUse=Sound'MenuSounds.selectJ'
-     WeapUICycle=Sound'MenuSounds.MS_ListChangeDown'
-     WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
-     ZoomTimeMod=1.500000
-     SavedBehindDistFactor=1.000000
-     BehindDistFactor=1.000000
-     WeapUIHelp(0)="Fire to confirm selection."
-     WeapUIHelp(1)="Altfire to exit UI."
-     WeapUIHelp(2)="Next and Previous Weapon to cycle."
-     WeapUIHelp(3)="Weapon Numbers to skip to group."
-     ComboNameList(3)="BallisticProV55.Ballistic_ComboMiniMe"
-     AnnouncerLevel=1
-     PawnClass=Class'BallisticProV55.BallisticPawn'
+    WeapUIEnter=Sound'MenuSounds.selectDshort'
+    WeapUIExit=Sound'MenuSounds.selectK'
+    WeapUIFail=Sound'MenuSounds.denied1'
+    WeapUIUse=Sound'MenuSounds.selectJ'
+    WeapUICycle=Sound'MenuSounds.MS_ListChangeDown'
+    WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
+    ZoomTimeMod=1.500000
+    SavedBehindDistFactor=1.000000
+    BehindDistFactor=1.000000
+    WeapUIHelp(0)="Fire to confirm selection."
+    WeapUIHelp(1)="Altfire to exit UI."
+    WeapUIHelp(2)="Next and Previous Weapon to cycle."
+    WeapUIHelp(3)="Weapon Numbers to skip to group."
+    ComboNameList(3)="BallisticProV55.Ballistic_ComboMiniMe"
+    AnnouncerLevel=1
+    PawnClass=Class'BallisticProV55.BallisticPawn'
 }

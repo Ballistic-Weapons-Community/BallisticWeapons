@@ -157,7 +157,7 @@ defaultproperties
      MaxSpeed=300000.000000
      Damage=50.000000
      DamageRadius=500.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeMK77'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeMK77Bomb'
      ExplosionDecal=Class'BWBPAirstrikesPro.ClusterBlastMark'
      DrawType=DT_StaticMesh
      StaticMesh=StaticMesh'WeaponStaticMesh.RocketProj'

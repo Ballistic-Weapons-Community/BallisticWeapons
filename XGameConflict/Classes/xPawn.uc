@@ -2418,173 +2418,223 @@ State Dying
 
 defaultproperties
 {
-     bCanDodgeDoubleJump=True
-     UDamageWeaponMaterial=Shader'XGameShaders.PlayerShaders.WeaponUDamageShader'
-     UDamageSound=Sound'GameSounds.UDamageFire'
-     InvisMaterial=FinalBlend'XEffectMat.Combos.InvisOverlayFB'
-     ShieldStrengthMax=150.000000
-     ShieldHitMat=Shader'XGameShaders.PlayerShaders.PlayerShieldSh'
-     ShieldHitMatTime=1.000000
-     Species=Class'XGame.SPECIES_Merc'
-     GruntVolume=0.180000
-     FootstepVolume=0.150000
-     GibGroupClass=Class'XEffects.xPawnGibGroup'
-     GibCountCalf=4
-     GibCountForearm=2
-     GibCountHead=2
-     GibCountTorso=2
-     GibCountUpperArm=2
-     MinTimeBetweenPainSounds=0.350000
-     SoundFootsteps(0)=SoundGroup'PlayerSounds.Final.FootstepDefault'
-     SoundFootsteps(1)=SoundGroup'PlayerSounds.Final.FootstepRock'
-     SoundFootsteps(2)=SoundGroup'PlayerSounds.Final.FootstepDirt'
-     SoundFootsteps(3)=SoundGroup'PlayerSounds.Final.FootstepMetal'
-     SoundFootsteps(4)=SoundGroup'PlayerSounds.Final.FootstepWood'
-     SoundFootsteps(5)=SoundGroup'PlayerSounds.Final.FootstepPlant'
-     SoundFootsteps(6)=SoundGroup'PlayerSounds.Final.FootstepFlesh'
-     SoundFootsteps(7)=SoundGroup'PlayerSounds.Final.FootstepIce'
-     SoundFootsteps(8)=SoundGroup'PlayerSounds.Final.FootstepSnow'
-     SoundFootsteps(9)=SoundGroup'PlayerSounds.Final.FootstepWater'
-     SoundFootsteps(10)=SoundGroup'PlayerSounds.Final.FootstepGlass'
-     SoundGroupClass=Class'XGame.xMercMaleSoundGroup'
-     TeleportFXClass=Class'XEffects.TransEffect'
-     TransEffects(0)=Class'XEffects.NewTransEffect'
-     TransEffects(1)=Class'XEffects.NewTransEffectBlue'
-     MultiJumpRemaining=1
-     MaxMultiJump=1
-     MultiJumpBoost=25
-     WallDodgeAnims(0)="WallDodgeF"
-     WallDodgeAnims(1)="WallDodgeB"
-     WallDodgeAnims(2)="WallDodgeL"
-     WallDodgeAnims(3)="WallDodgeR"
-     IdleHeavyAnim="Idle_Biggun"
-     IdleRifleAnim="Idle_Rifle"
-     FireHeavyRapidAnim="Biggun_Burst"
-     FireHeavyBurstAnim="Biggun_Aimed"
-     FireRifleRapidAnim="Rifle_Burst"
-     FireRifleBurstAnim="Rifle_Aimed"
-     FireRootBone="bip01 Spine"
-     DeResTime=6.000000
-     DeResMat0=FinalBlend'DeRez.Shaders.DeRezFinalBody'
-     DeResMat1=FinalBlend'DeRez.Shaders.DeRezFinalHead'
-     DeResLiftVel=(Points=(,(InVal=2.500000,OutVal=32.000000),(InVal=100.000000,OutVal=32.000000)))
-     DeResLiftSoftness=(Points=((OutVal=0.300000),(InVal=2.500000,OutVal=0.050000),(InVal=100.000000,OutVal=0.050000)))
-     DeResLateralFriction=0.300000
-     RagdollLifeSpan=13.000000
-     RagInvInertia=4.000000
-     RagDeathVel=200.000000
-     RagShootStrength=8000.000000
-     RagSpinScale=2.500000
-     RagDeathUpKick=150.000000
-     RagGravScale=1.000000
-     RagImpactSounds(0)=Sound'GeneralImpacts.Wet.Breakbone_01'
-     RagImpactSounds(1)=Sound'GeneralImpacts.Wet.Breakbone_02'
-     RagImpactSounds(2)=Sound'GeneralImpacts.Wet.Breakbone_03'
-     RagImpactSoundInterval=0.500000
-     RagImpactVolume=2.500000
-     TransOutEffect(0)=Class'XEffects.NewTransDeresRed'
-     TransOutEffect(1)=Class'XEffects.NewTransDeresBlue'
-     PlacedCharacterName="Jakob"
-     PlacedFemaleCharacterName="Tamika"
-     RequiredEquipment(0)="XWeapons.AssaultRifle"
-     RequiredEquipment(1)="XWeapons.ShieldGun"
-     VoiceType="xGame.MercMaleVoice"
-     bCanWallDodge=True
-     GroundSpeed=440.000000
-     WaterSpeed=220.000000
-     AirSpeed=440.000000
-     JumpZ=340.000000
-     WalkingPct=0.400000
-     CrouchedPct=0.400000
-     BaseEyeHeight=38.000000
-     EyeHeight=38.000000
-     CrouchHeight=29.000000
-     CrouchRadius=25.000000
-     ControllerClass=Class'XGame.xBot'
-     bPhysicsAnimUpdate=True
-     bDoTorsoTwist=True
-     MovementAnims(0)="RunF"
-     MovementAnims(1)="RunB"
-     MovementAnims(2)="RunL"
-     MovementAnims(3)="RunR"
-     TurnLeftAnim="TurnL"
-     TurnRightAnim="TurnR"
-     DodgeSpeedFactor=1.500000
-     DodgeSpeedZ=210.000000
-     SwimAnims(0)="SwimF"
-     SwimAnims(1)="SwimB"
-     SwimAnims(2)="SwimL"
-     SwimAnims(3)="SwimR"
-     CrouchAnims(0)="CrouchF"
-     CrouchAnims(1)="CrouchB"
-     CrouchAnims(2)="CrouchL"
-     CrouchAnims(3)="CrouchR"
-     WalkAnims(0)="WalkF"
-     WalkAnims(1)="WalkB"
-     WalkAnims(2)="WalkL"
-     WalkAnims(3)="WalkR"
-     AirAnims(0)="JumpF_Mid"
-     AirAnims(1)="JumpB_Mid"
-     AirAnims(2)="JumpL_Mid"
-     AirAnims(3)="JumpR_Mid"
-     TakeoffAnims(0)="JumpF_Takeoff"
-     TakeoffAnims(1)="JumpB_Takeoff"
-     TakeoffAnims(2)="JumpL_Takeoff"
-     TakeoffAnims(3)="JumpR_Takeoff"
-     LandAnims(0)="JumpF_Land"
-     LandAnims(1)="JumpB_Land"
-     LandAnims(2)="JumpL_Land"
-     LandAnims(3)="JumpR_Land"
-     DoubleJumpAnims(0)="DoubleJumpF"
-     DoubleJumpAnims(1)="DoubleJumpB"
-     DoubleJumpAnims(2)="DoubleJumpL"
-     DoubleJumpAnims(3)="DoubleJumpR"
-     DodgeAnims(0)="DodgeF"
-     DodgeAnims(1)="DodgeB"
-     DodgeAnims(2)="DodgeL"
-     DodgeAnims(3)="DodgeR"
-     AirStillAnim="Jump_Mid"
-     TakeoffStillAnim="Jump_Takeoff"
-     CrouchTurnRightAnim="Crouch_TurnR"
-     CrouchTurnLeftAnim="Crouch_TurnL"
-     IdleCrouchAnim="Crouch"
-     IdleSwimAnim="Swim_Tread"
-     IdleWeaponAnim="Idle_Rifle"
-     IdleRestAnim="Idle_Rest"
-     IdleChatAnim="idle_chat"
-     RootBone="Bip01"
-     HeadBone="Bip01 Head"
-     SpineBone1="Bip01 Spine1"
-     SpineBone2="bip01 Spine2"
-     LightHue=204
-     LightSaturation=0
-     LightBrightness=255.000000
-     LightRadius=3.000000
-     bActorShadows=True
-     bDramaticLighting=True
-     Mesh=SkeletalMesh'ThunderCrash.JakobM'
-     LODBias=1.800000
-     Texture=Texture'XEffects.RedMarker_t'
-     PrePivot=(Z=-5.000000)
-     Skins(0)=Texture'DemoPlayerSkins.Jakob_Body'
-     Skins(1)=Texture'DemoPlayerSkins.Jakob_NewHead'
-     MaxLights=8
-     CollisionRadius=25.000000
-     CollisionHeight=44.000000
-     bNetNotify=True
-     RotationRate=(Pitch=3072)
-     Begin Object Class=KarmaParamsSkel Name=PawnKParams
-         KConvulseSpacing=(Max=2.200000)
-         KLinearDamping=0.150000
-         KAngularDamping=0.050000
-         KBuoyancy=1.000000
-         KStartEnabled=True
-         KVelDropBelowThreshold=50.000000
-         bHighDetailOnly=False
-         KFriction=0.600000
-         KRestitution=0.300000
-         KImpactThreshold=500.000000
-     End Object
-     KParams=KarmaParamsSkel'XGame.xPawn.PawnKParams'
+    bNetNotify=true
 
+    // default everything to ThunderCrash.Jakob
+    Mesh=Mesh'ThunderCrash.JakobM'
+    Skins(0)=Texture'DemoPlayerSkins.Jakob_Body'
+    Skins(1)=Texture'DemoPlayerSkins.Jakob_NewHead'
+    Species=class'SPECIES_Merc'
+    SoundGroupClass=class'xMercMaleSoundGroup'
+    GibGroupClass=class'xPawnGibGroup'
+
+    bStatic=False
+    DrawScale=1.0
+
+    Buoyancy=+00099.000000
+    UnderWaterTime=+00020.000000
+    bCanStrafe=True
+    DrawType=DT_Mesh
+    Style=STY_Normal
+    LightBrightness=255
+    LightHue=204
+    LightSaturation=0
+    LightRadius=3
+    RotationRate=(Pitch=3072,Yaw=20000,Roll=2048)
+
+    BloodEffect=class'BloodJet'
+    LowGoreBlood=class'AlienSmallHit'
+    AirControl=+0.35
+    bStasis=false
+    bCanCrouch=true
+    bCanClimbLadders=True
+    bCanPickupInventory=True
+    WalkingPct=+0.4
+    CrouchedPct=+0.4
+
+    BaseEyeHeight=38.0
+    EyeHeight=38.0
+    CollisionRadius=25.0
+    CollisionHeight=44.0
+    GroundSpeed=440.0
+    AirSpeed=440.0
+    WaterSpeed=220.0
+    DodgeSpeedFactor=1.5
+    DodgeSpeedZ=210.0
+    AccelRate=2048.0
+    JumpZ=340.0
+    CrouchHeight=29.0
+    CrouchRadius=25.0
+
+    LODBias=1.8
+
+    ShieldStrengthMax=150.0
+
+	PrePivot=(X=0.0,Y=0.0,Z=-5.0);
+    ControllerClass=class'XGame.xBot'
+
+    SoundFootsteps(0)=Sound'PlayerSounds.Final.FootstepDefault'
+    SoundFootsteps(1)=Sound'PlayerSounds.Final.FootstepRock'
+    SoundFootsteps(2)=Sound'PlayerSounds.Final.FootstepDirt'
+    SoundFootsteps(3)=Sound'PlayerSounds.Final.FootStepMetal'
+    SoundFootsteps(4)=Sound'PlayerSounds.Final.FootstepWood'
+    SoundFootsteps(5)=Sound'PlayerSounds.Final.FootstepPlant'
+    SoundFootsteps(6)=Sound'PlayerSounds.Final.FootstepFlesh'
+    SoundFootsteps(7)=Sound'PlayerSounds.Final.FootstepIce'
+    SoundFootsteps(8)=Sound'PlayerSounds.Final.FootstepSnow'
+    SoundFootsteps(9)=Sound'PlayerSounds.Final.FootstepWater'
+    SoundFootsteps(10)=Sound'PlayerSounds.Final.FootstepGlass'
+
+   RequiredEquipment(0)="XWeapons.AssaultRifle"
+   RequiredEquipment(1)="XWeapons.ShieldGun"
+
+    MinTimeBetweenPainSounds=0.35
+    ScaleGlow=1.0
+    AmbientGlow=40
+
+    TeleportFXClass=class'TransEffect'
+
+    GibCountCalf=4
+    GibCountForearm=2
+    GibCountHead=2
+    GibCountTorso=2
+    GibCountUpperArm=2
+
+    bDoTorsoTwist=true
+
+    bActorShadows=true
+    bPlayerShadows=true
+    ShieldHitMat=Material'XGameShaders.PlayerShaders.PlayerShieldSh'
+    ShieldHitMatTime=1.0
+    UDamageWeaponMaterial=Material'XGameShaders.PlayerShaders.WeaponUDamageShader'
+    InvisMaterial=FinalBlend'XEffectMat.InvisOverlayFB'
+
+    bPhysicsAnimUpdate=true
+    MovementAnims(0)=RunF
+    MovementAnims(1)=RunB
+    MovementAnims(2)=RunL
+    MovementAnims(3)=RunR
+    SwimAnims(0)=SwimF
+    SwimAnims(1)=SwimB
+    SwimAnims(2)=SwimL
+    SwimAnims(3)=SwimR
+    CrouchAnims(0)=CrouchF
+    CrouchAnims(1)=CrouchB
+    CrouchAnims(2)=CrouchL
+    CrouchAnims(3)=CrouchR
+    WalkAnims(0)=WalkF
+    WalkAnims(1)=WalkB
+    WalkAnims(2)=WalkL
+    WalkAnims(3)=WalkR
+    AirStillAnim=Jump_Mid
+    AirAnims(0)=JumpF_Mid
+    AirAnims(1)=JumpB_Mid
+    AirAnims(2)=JumpL_Mid
+    AirAnims(3)=JumpR_Mid
+    TakeoffStillAnim=Jump_Takeoff
+    TakeoffAnims(0)=JumpF_Takeoff
+    TakeoffAnims(1)=JumpB_Takeoff
+    TakeoffAnims(2)=JumpL_Takeoff
+    TakeoffAnims(3)=JumpR_Takeoff
+    LandAnims(0)=JumpF_Land
+    LandAnims(1)=JumpB_Land
+    LandAnims(2)=JumpL_Land
+    LandAnims(3)=JumpR_Land
+    DoubleJumpAnims(0)=DoubleJumpF
+    DoubleJumpAnims(1)=DoubleJumpB
+    DoubleJumpAnims(2)=DoubleJumpL
+    DoubleJumpAnims(3)=DoubleJumpR
+    DodgeAnims(0)=DodgeF
+    DodgeAnims(1)=DodgeB
+    DodgeAnims(2)=DodgeL
+    DodgeAnims(3)=DodgeR
+    WallDodgeAnims(0)=WallDodgeF
+    WallDodgeAnims(1)=WallDodgeB
+    WallDodgeAnims(2)=WallDodgeL
+    WallDodgeAnims(3)=WallDodgeR
+
+    TurnRightAnim=TurnR
+    TurnLeftAnim=TurnL
+    CrouchTurnRightAnim=Crouch_TurnR
+    CrouchTurnLeftAnim=Crouch_TurnL
+    IdleRestAnim=Idle_Rest
+    IdleCrouchAnim=Crouch
+    IdleSwimAnim=Swim_Tread
+    IdleWeaponAnim=Idle_Rifle
+    IdleHeavyAnim=Idle_Biggun
+    IdleRifleAnim=Idle_Rifle
+    IdleChatAnim=Idle_Chat
+    FireHeavyRapidAnim=Biggun_Burst
+    FireHeavyBurstAnim=Biggun_Aimed
+    FireRifleRapidAnim=Rifle_Burst
+    FireRifleBurstAnim=Rifle_Aimed
+
+    MaxMultiJump=1
+    MultiJumpRemaining=1
+    MultiJumpBoost=25
+
+    RagdollLifeSpan=13
+	RagDeathVel=200
+	RagInvInertia=4
+	RagShootStrength=8000
+	RagSpinScale=2.5
+	RagDeathUpKick=150
+	RagGravScale=1.0
+
+  	Begin Object Class=KarmaParamsSkel Name=PawnKParams
+		KFriction=0.6
+		KRestitution=0.3
+		KAngularDamping=0.05
+		KLinearDamping=0.15
+		KBuoyancy=1
+		KStartEnabled=True
+		KImpactThreshold=500
+		KVelDropBelowThreshold=50
+		KConvulseSpacing=(Min=0.5,Max=2.2)
+		bHighDetailOnly=False
+        Name="PawnKParams"
+    End Object
+    KParams=KarmaParams'PawnKParams'
+
+	RagImpactSounds(0)=sound'GeneralImpacts.Breakbone_01'
+	RagImpactSounds(1)=sound'GeneralImpacts.Breakbone_02'
+	RagImpactSounds(2)=sound'GeneralImpacts.Breakbone_03'
+
+	RagImpactVolume=2.5
+	RagImpactSoundInterval=0.5
+
+    VoiceType="xGame.MercMaleVoice"
+
+    RootBone="Bip01"
+    HeadBone="Bip01 Head"
+    SpineBone1="Bip01 Spine1"
+    SpineBone2="Bip01 Spine2"
+    FireRootBone="Bip01 Spine"
+
+    UDamageSound=Sound'GameSounds.UDamageFire'
+
+    GruntVolume=0.18
+    FootstepVolume=0.15
+
+    DeResTime=6.0
+	DeResMat0=FinalBlend'DeRez.DeRezFinalBody'
+	DeResMat1=FinalBlend'DeRez.DeRezFinalHead'
+	DeResLiftVel=(Points=((InVal=0,OutVal=0),(InVal=2.5,OutVal=32),(InVal=100,OutVal=32)))
+	DeResLiftSoftness=(Points=((InVal=0,OutVal=0.3),(InVal=2.5,OutVal=0.05),(InVal=100,OutVal=0.05)))
+    DeResGravScale=0.0
+    DeResLateralFriction=0.3
+    TransOutEffect(0)=class'NewTransDeResRed'
+    TransOutEffect(1)=class'NewTransDeResBlue'
+	TransEffects(0)=class'NewTransEffect'
+	TransEffects(1)=class'NewTransEffectBlue'
+	PlacedCharacterName="Jakob"
+	PlacedFemaleCharacterName="Tamika"
+
+	MaxLights=8
+	bDramaticLighting=true
+
+	bCanDodgeDoubleJump=true
+	bCanWallDodge=true
+	bNoCoronas=false
+	Texture=Texture'RedMarker_t'
 }

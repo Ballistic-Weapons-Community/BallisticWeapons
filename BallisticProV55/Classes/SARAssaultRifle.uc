@@ -206,7 +206,7 @@ simulated function SwitchStock(bool bNewValue)
 	//if (bNewValue == bStockExtended)
 	//	return;
 
-	Log("SAR SwitchStock: Stock open: "$bStockExtended);
+	//Log("SAR SwitchStock: Stock open: "$bStockExtended);
 	
 	if (Role == ROLE_Authority)
 		bServerReloading = True;
@@ -651,7 +651,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.210000) 
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.208000)
 	MeleeFireClass=Class'BallisticProV55.SARMeleeFire'
-	CockAnimPostReload="ReloadEndCock"
+	//CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')

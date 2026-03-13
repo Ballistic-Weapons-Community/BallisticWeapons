@@ -13,38 +13,39 @@
 //=============================================================================
 class M2020GaussDMR extends BallisticWeapon;
 
-var   Emitter		LaserDot;
-var   bool			bLaserOn;
-var	int				NumpadXOffset;
-var	int				NumpadYOffset;
+var(M2020)   Emitter		LaserDot;
+var(M2020)   bool			bLaserOn;
+var(M2020)	 bool			bSuppressed;
 
-var bool				bOverheat;
-var() Sound		DrawSoundLong;		//For first draw
-var() Sound		VentingSound;		//For DA MAGNETS
-var() Sound		OverHeatSound;		//For vents
-var Sound      	ShieldHitSound;
-var float			HeatLevel;			// Current Heat level, duh...
-var float			MaxHeat;
+var(M2020) bool				bOverheat;
+var(M2020) Sound			DrawSoundLong;		//For first draw
+var(M2020) Sound			VentingSound;		//For DA MAGNETS
+var(M2020) Sound			OverHeatSound;		//For vents
+var(M2020) Sound      		ShieldHitSound;
+var(M2020) float			HeatLevel;			// Current Heat level, duh...
+var(M2020) float			MaxHeat;
 
-var name			BulletBone1;
-var name			BulletBone2;
+var(M2020) name				BulletBone1;
+var(M2020) name				BulletBone2;
 
-var Actor			Arc;				// The top arcs
+var(M2020) Actor			Arc;				// The top arcs
 
-var   float			MagnetSwitchTime, MagnetSwitchFireRate;
-var   name			MagnetOpenAnim;
-var   name			MagnetCloseAnim;
-var   name			MagnetForceCloseAnim;
-var   bool			bMagnetOpen;
-var   byte			PreviousWeaponMode;
+var(M2020)   float			MagnetSwitchTime, MagnetSwitchFireRate;
+var(M2020)   name			MagnetOpenAnim;
+var(M2020)   name			MagnetCloseAnim;
+var(M2020)   name			MagnetForceCloseAnim;
+var(M2020)   bool			bMagnetOpen;
+var(M2020)   byte			PreviousWeaponMode;
 
-var() ScriptedTexture WeaponScreen;
+var(M2020) ScriptedTexture WeaponScreen;
 
-var() Material	Screen; //This is a self-illum Scipted Texture
-var() Material	ScreenBaseX; //This is a texture that can be Base1 or Base2
-var() Material	ScreenBase1; //This is the On Screen background
-var() Material	ScreenBase2; //This is the Off Screen background
-var() Material	Numbers;     //This is the font used by the screen
+var(M2020)	int				NumpadXOffset;
+var(M2020)	int				NumpadYOffset;
+var(M2020) Material	Screen; //This is a self-illum Scipted Texture
+var(M2020) Material	ScreenBaseX; //This is a texture that can be Base1 or Base2
+var(M2020) Material	ScreenBase1; //This is the On Screen background
+var(M2020) Material	ScreenBase2; //This is the Off Screen background
+var(M2020) Material	Numbers;     //This is the font used by the screen
 var protected const color MyFontColor; //Why do I even need this?
 
 
@@ -52,6 +53,21 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientScreenStart, ClientSetHeat;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
+	bSuppressed=false;
+
+	if (InStr(WeaponParams.LayoutTags, "supp") != -1)
+	{
+		bSuppressed=true; 
+		if (Role == ROLE_Authority && CurrentWeaponMode != 2 && CurrentWeaponMode != 3 && ThirdPersonActor != None)		
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(1);
+	}
 }
 
 //========================== AMMO COUNTER NON-STATIC TEXTURE ============
@@ -219,18 +235,12 @@ simulated function AdjustMagnetProperties ()
 			class'bUtil'.static.InitMuzzleFlash(Arc, class'M2020ShieldEffect', DrawScale, self, 'tip');
 
 		IdleAnim='IdleShield';
-		BFireMode[0].FireRecoil = 64;
 		WeaponModes[3].bUnavailable=false;
 		
 		PreviousWeaponMode = CurrentWeaponMode;
 		CurrentWeaponMode = 3;
 		
 		SwitchWeaponMode(CurrentWeaponMode+1);
-		//M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-		
-		WeaponModes[0].bUnavailable=true;
-		WeaponModes[1].bUnavailable=true;
-		WeaponModes[2].bUnavailable=true;
 	}
 	else
 	{
@@ -239,22 +249,21 @@ simulated function AdjustMagnetProperties ()
 
 		IdleAnim='Idle';
 		Instigator.AmbientSound = UsedAmbientSound;
-		BFireMode[0].FireRecoil = BFireMode[0].default.FireRecoil;
 		
-		WeaponModes[0].bUnavailable=false;
-		WeaponModes[1].bUnavailable=false;
-		if (!class'BallisticReplicationInfo'.static.IsRealism())
-		{
-			WeaponModes[2].bUnavailable=false;
-		}
 		CurrentWeaponMode = PreviousWeaponMode;
 		
 		SwitchWeaponMode(CurrentWeaponMode+1);
-		//M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		
 		WeaponModes[3].bUnavailable=true;
 	}
 	UpdateScreen();
+}
+// Cycle through the various weapon modes
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	if (bMagnetOpen && NewMode != 3)
+		return;
+	super.ServerSwitchWeaponMode(NewMode);
 }
 
 simulated event WeaponTick (float DT)
@@ -362,6 +371,23 @@ simulated function CommonStartReload (optional byte i)
 	if (bCockOnEmpty && MagAmmo < 1)
 		bNeedCock=true;
 	bNeedReload=false;
+}
+
+
+simulated function CommonSwitchWeaponMode (byte newMode)
+{
+	if (Role == ROLE_Authority)
+	{
+		if (newMode == 2 && newMode == 3)	//gauss is off
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(0);
+		else if (bSuppressed) //suppressed, muted trail
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(1);
+		else if (newMode == 1)	//overcharged trail
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(3);
+		else //standard trail
+			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(2);
+	}
+	super.CommonSwitchWeaponMode(newMode);
 }
 
 simulated function float RateSelf()
@@ -486,7 +512,7 @@ simulated function AddHeat(float Amount, bool bReplicate)
 		
 	if (HeatLevel == MaxHeat && bMagnetOpen)
 	{
-		PlaySound(OverHeatSound,,3.7,,32);
+		PlaySound(OverHeatSound,,1.7,,32);
 		Overheat(true);
 	}
 }
@@ -497,7 +523,7 @@ simulated function ClientSetHeat(float NewHeat)
 	
 	if (HeatLevel == MaxHeat && bMagnetOpen)
 	{
-		PlaySound(OverHeatSound,,3.7,,32);
+		PlaySound(OverHeatSound,,1.7,,32);
 		Overheat(true);
 	}
 }
@@ -570,7 +596,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=207,G=229,R=231,A=197),Color2=(B=226,G=0,R=0,A=255),StartSize1=77,StartSize2=68)
 	PutDownTime=0.80000
 	BringUpTime=0.80000
-	CockingBringUpTime=2.900000
+	CockingBringUpTime=2.400000
 	SelectAnimRate=1.4
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.800000

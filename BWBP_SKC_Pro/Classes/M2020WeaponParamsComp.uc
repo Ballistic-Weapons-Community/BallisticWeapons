@@ -34,6 +34,40 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaRechargeEffectParams'
 	End Object
+	
+    //=================================================================
+    // PRIMARY FIRE - Recharge (Supp)
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaRechargeEffectParams_Supp
+		TraceRange=(Min=30000.000000,Max=30000.000000)
+		Damage=65
+        HeadMult=1.75
+        LimbMult=0.85
+		PenetrationEnergy=100
+		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
+		PenetrateForce=600
+		bPenetrate=True
+		PDamageFactor=0.750000
+		WallPDamageFactor=0.750000
+		PushbackForce=120.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
+		FlashScaleFactor=0.500000
+		Recoil=380.000000 //
+		Chaos=1.200000 //
+		BotRefireRate=0.500000
+		WarnTargetPct=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-FireGaussAlt',Volume=1.350000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaRechargeFireParams_Supp
+		AimedFireAnim="FireUnpowered"
+		FireInterval=0.375000
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaRechargeEffectParams_Supp'
+	End Object
 
 	//=================================================================
     // PRIMARY FIRE - Power
@@ -77,9 +111,9 @@ defaultproperties
 		Damage=40
         HeadMult=2.00
         LimbMult=0.75
-		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadPwr'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020LimbPwr'
+		DamageType=Class'BWBP_SKC_Pro.DT_M2020Off'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off'
 		PenetrateForce=600
 		PenetrationEnergy=48
 		bPenetrate=True
@@ -99,6 +133,39 @@ defaultproperties
 		FireInterval=0.200000
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaOfflineEffectParams'
+	End Object
+
+	//=================================================================
+    // PRIMARY FIRE - Offline (Supp)
+    //=================================================================	
+
+	Begin Object Class=InstantEffectParams Name=ArenaOfflineEffectParams_Supp
+		TraceRange=(Min=30000.000000,Max=30000.000000)
+		Damage=40
+        HeadMult=2.00
+        LimbMult=0.75
+		DamageType=Class'BWBP_SKC_Pro.DT_M2020Off'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off'
+		PenetrateForce=600
+		PenetrationEnergy=48
+		bPenetrate=True
+		PDamageFactor=0.750000
+		WallPDamageFactor=0.750000
+		Recoil=140.000000
+		Chaos=0.150000
+		BotRefireRate=0.500000
+		WarnTargetPct=0.400000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=1.600000,Radius=192.000000,bAtten=True) //
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash' //
+		FlashScaleFactor=1.000000 //
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaOfflineFireParams_Supp
+		FireAnim="FireUnPowered"
+		FireInterval=0.200000
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaOfflineEffectParams_Supp'
 	End Object
 
 	//=================================================================
@@ -162,15 +229,21 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		//SightOffset=(X=26,Y=-2.500000,Z=18.000000)
-		PlayerSpeedFactor=0.95
-		InventorySize=7
+		//Layout core
+		Weight=30
+		LayoutName="Overcharger Coil"
+		//Attachments
+		//ADS
 		SightMoveSpeedFactor=0.6
 		SightingTime=0.45	
 		ScopeScale=0.75	
+        ZoomType=ZT_Logarithmic
+		SightOffset=(X=4.00,Y=0.00,Z=1.93)
+		//Function
+		PlayerSpeedFactor=0.95
+		InventorySize=7
 		DisplaceDurationMult=1
 		MagAmmo=10
-        ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25
 		RecoilParams(0)=RecoilParams'ArenaRechargeRecoilParams'
@@ -183,7 +256,84 @@ defaultproperties
 		FireParams(2)=FireParams'ArenaOfflineFireParams'
 		FireParams(3)=FireParams'ArenaOfflineFireParams'
     End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Holo
+		//Layout core
+		Weight=10
+		LayoutName="Holosight"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.M2020Tac_FPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-40,y=-1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.40000
+		SightOffset=(X=4.00,Y=-0.10,Z=0.75)
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
+		//Function
+		PlayerSpeedFactor=0.95
+		InventorySize=7
+		DisplaceDurationMult=1
+		MagAmmo=10
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		WeaponModes(0)=(ModeName="Gauss: Recharge",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=0)
+		WeaponModes(1)=(ModeName="Gauss: Power",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=1,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
+		WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
+		InitialWeaponMode=0
+		RecoilParams(0)=RecoilParams'ArenaRechargeRecoilParams'
+		RecoilParams(1)=RecoilParams'ArenaRechargeRecoilParams'
+		RecoilParams(2)=RecoilParams'ArenaOfflineRecoilParams'
+		RecoilParams(3)=RecoilParams'ArenaOfflineRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaRechargeFireParams'
+		FireParams(1)=FireParams'ArenaRechargeFireParams'
+		FireParams(2)=FireParams'ArenaOfflineFireParams'
+		FireParams(3)=FireParams'ArenaOfflineFireParams'
+    End Object 
+
+	Begin Object Class=WeaponParams Name=ArenaParams_Supp
+		//Layout core
+		Weight=10
+		LayoutName="Suppressor"
+		LayoutTags="supp"
+		//Attachments
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.M2020Tac_FPm'
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_ReflexRU',BoneName="tip",Scale=0.08,AugmentOffset=(x=-40,y=-1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_SuppressorOsprey',BoneName="tip",Scale=0.2,AugmentOffset=(x=-15,y=1,z=0.0),AugmentRot=(Pitch=0,Roll=16384,Yaw=32768))
+		//ADS
+		SightMoveSpeedFactor=0.8
+		SightingTime=0.45000
+		SightOffset=(X=4.00,Y=-0.08,Z=0.55)
+		ZoomType=ZT_Irons
+		ScopeViewTex=None
+		//Function
+		PlayerSpeedFactor=0.95
+		InventorySize=7
+		DisplaceDurationMult=1
+		MagAmmo=10
+		ReloadAnimRate=1.25
+		CockAnimRate=1.25
+		WeaponModes(0)=(ModeName="Gauss: Recharge",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=0)
+		WeaponModes(1)=(ModeName="Gauss: Power",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=1,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
+		WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
+		InitialWeaponMode=0
+		RecoilParams(0)=RecoilParams'ArenaRechargeRecoilParams'
+		RecoilParams(1)=RecoilParams'ArenaPowerRecoilParams'
+		RecoilParams(2)=RecoilParams'ArenaOfflineRecoilParams'
+		RecoilParams(3)=RecoilParams'ArenaOfflineRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaRechargeFireParams_Supp'
+		FireParams(1)=FireParams'ArenaRechargeFireParams_Supp'
+		FireParams(2)=FireParams'ArenaOfflineFireParams_Supp'
+		FireParams(3)=FireParams'ArenaOfflineFireParams_Supp'
+    End Object 
+	
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaParams_Holo'
+    Layouts(2)=WeaponParams'ArenaParams_Supp'
 	
 	//Camos ==========================================
 	Begin Object Class=WeaponCamo Name=M2020_Black

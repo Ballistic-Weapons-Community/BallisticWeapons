@@ -1664,61 +1664,81 @@ function UpgradeGP()
 
 defaultproperties
 {
-     Revision=5
-     LadderProgress(0)=1
-     LadderProgress(1)=-1
-     LadderProgress(2)=-1
-     LadderProgress(3)=-1
-     LadderProgress(4)=-1
-     LadderProgress(5)=-1
-     LadderProgress(6)=-1
-     MaxTeamSize=5
-     Balance=250
-     MinBalance=75
-     TeamPercentage=0.250000
-     MatchBonus=0.050000
-     LoserFee=0.100000
-     FeeIncrease=0.020000
-     InjuryChance=0.300000
-     LastInjured=-1
-     InjuryTreatment=0.750000
-     ChallengeChance=0.300000
-     ChallengeInfo=UT2K4MatchInfo'XGame.UT2K4GameProfile.GPCHALINFO'
-     LoginMenuClass="GUI2K4.UT2K4SinglePlayerLoginMenu"
-     LogPrefix="SinglePlayer"
-     SpreeBonus(0)=20
-     SpreeBonus(1)=60
-     SpreeBonus(2)=120
-     SpreeBonus(3)=200
-     SpreeBonus(4)=300
-     SpreeBonus(5)=420
-     MultiKillBonus(0)=10
-     MultiKillBonus(1)=30
-     MultiKillBonus(2)=60
-     MultiKillBonus(3)=100
-     MultiKillBonus(4)=150
-     MultiKillBonus(5)=210
-     MultiKillBonus(6)=280
-     msgSpecialAward(0)="Flak Monkey"
-     msgSpecialAward(1)="Combo Whore"
-     msgSpecialAward(2)="Head Hunter"
-     msgSpecialAward(3)="Road Rampage"
-     msgSpecialAward(4)="Hat Trick"
-     msgSpecialAward(5)="Untouchable"
-     sae_flackmonkey=15
-     sae_combowhore=15
-     sae_headhunter=15
-     sae_roadrampage=10
-     sae_hattrick=3
-     msgCheater="CHEATER!!!"
-     msgCredits="credits"
-     msgCredit="credit"
-     MapChallengeCost=0.100000
-     msgChallengeGame="Challenge game"
-     msgAdditionalLadder="Additional ladder game"
-     msgMatch="match"
-     msgLadderGame="Ladder game"
-     msgChampionship="Championship"
-     bShowDetails=True
-     GameLadderName="xGame.UT2K4LadderInfo"
+	GameLadderName="xGame.UT2K4LadderInfo"
+
+	LadderProgress(0)=1		// DM - skip tutorial
+	LadderProgress(1)=-1	// TDM
+	LadderProgress(2)=-1	// CTF
+	LadderProgress(3)=-1	// BR
+	LadderProgress(4)=-1	// DDOM
+	LadderProgress(5)=-1	// AS
+	LadderProgress(6)=-1	// CHAMP
+
+	// to override the init in UT2003GameInfo
+	Playerteam(0)=""
+	Playerteam(1)=""
+	Playerteam(2)=""
+	Playerteam(3)=""
+	Playerteam(4)=""
+
+	MaxTeamSize=5
+	Balance=250			//default balance
+	MinBalance=75
+	TeamPercentage=0.25
+	MatchBonus=0.05
+	LoserFee=0.1
+	FeeIncrease=0.02
+	InjuryChance=0.30
+	LastInjured=-1
+	bCompleted=false
+	ChallengeChance=0.30
+	MapChallengeCost=0.1
+	InjuryTreatment=0.75
+	bCheater=false
+	LoginMenuClass="GUI2K4.UT2K4SinglePlayerLoginMenu"
+	LogPrefix="SinglePlayer"
+	bShowDetails=true
+
+	SpreeBonus[0]=20
+	SpreeBonus[1]=60
+	SpreeBonus[2]=120
+	SpreeBonus[3]=200
+	SpreeBonus[4]=300
+	SpreeBonus[5]=420
+	MultiKillBonus[0]=10
+	MultiKillBonus[1]=30
+	MultiKillBonus[2]=60
+	MultiKillBonus[3]=100
+	MultiKillBonus[4]=150
+	MultiKillBonus[5]=210
+	MultiKillBonus[6]=280
+
+	msgSpecialAward[0]="Flak Monkey"
+	msgSpecialAward[1]="Combo Whore"
+	msgSpecialAward[2]="Head Hunter"
+	msgSpecialAward[3]="Road Rampage"
+	msgSpecialAward[4]="Hat Trick"
+	msgSpecialAward[5]="Untouchable"
+	sae_flackmonkey=15
+	sae_combowhore=15
+	sae_headhunter=15
+	sae_roadrampage=10
+	sae_hattrick=3
+	sae_untouchable=0
+
+	msgCheater="CHEATER!!!"
+	msgChallengeGame="Challenge game"
+	msgAdditionalLadder="Additional ladder game"
+	msgMatch="match"
+	msgLadderGame="Ladder game"
+	msgChampionship="Championship"
+	msgCredits="credits"
+	msgCredit="credit"
+
+	revision=5
+	bDebug=false
+
+	Begin Object Class=UT2K4MatchInfo Name=GPCHALINFO
+	End Object
+	ChallengeInfo=GPCHALINFO
 }

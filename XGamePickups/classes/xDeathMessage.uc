@@ -114,9 +114,10 @@ static function ClientReceive(
 
 defaultproperties
 {
-     KilledString="was killed by"
-     SomeoneString="someone"
-     bIsSpecial=False
-     ChildMessage=Class'XGame.xKillerMessagePlus'
-     DrawColor=(B=0,G=0)
+	bNoConsoleDeathMessages=false
+	ChildMessage=class'xKillerMessagePlus'
+	DrawColor=(R=255,G=0,B=0,A=255)
+	KilledString="was killed by"
+	SomeoneString="someone"
+    bIsSpecial=false
 }

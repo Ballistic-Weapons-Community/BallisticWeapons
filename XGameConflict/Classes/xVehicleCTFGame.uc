@@ -28,16 +28,17 @@ static function array<string> GetAllLoadHints(optional bool bThisClassOnly)
 
 defaultproperties
 {
-     VCTFHints(0)="You can't carry the flag in a Manta or a Raptor."
-     bAllowTrans=False
-     bDefaultTranslocator=False
-     bAllowVehicles=True
-     MapListType="XInterface.MapListVehicleCTF"
-     MapPrefix="VCTF"
-     BeaconName="VCTF"
-     GameName="Vehicle CTF"
-     Description="Like traditional Capture The Flag, only adding vehicles into the mix! Only ground-based vehicles can carry the flag."
-     ScreenShotName="UT2004Thumbnails.VCTFShots"
-     DecoTextName="XGame.xVehicleCTFGame"
-     Acronym="VCTF"
+	MapListType="XInterface.MapListVehicleCTF"
+	GameName="Vehicle CTF"
+	DecoTextName="XGame.xVehicleCTFGame"
+	ScreenShotName="UT2004Thumbnails.VCTFShots"
+	bAllowTrans=false
+	bDefaultTranslocator=false
+	BeaconName="VCTF"
+	MapPrefix="VCTF"
+	Acronym="VCTF"
+	Description="Like traditional Capture The Flag, only adding vehicles into the mix! Only ground-based vehicles can carry the flag."
+	bAllowVehicles=true
+
+    VCTFHints(0)="You can't carry the flag in a Manta or a Raptor."
 }

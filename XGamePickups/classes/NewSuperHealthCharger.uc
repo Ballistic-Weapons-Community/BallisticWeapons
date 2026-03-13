@@ -4,4 +4,7 @@ class NewSuperHealthCharger extends SuperHealthCharger;
 
 defaultproperties
 {
+	NewStaticMesh=2k4chargerMESHES.HealthChargerMESH-DS
+	NewPrePivot=(Z=2.75)
+	NewDrawScale=0.7
 }

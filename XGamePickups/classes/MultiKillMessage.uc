@@ -46,24 +46,30 @@ static function int GetFontSize( int Switch, PlayerReplicationInfo RelatedPRI1, 
 
 defaultproperties
 {
-     KillString(0)="Double Kill!"
-     KillString(1)="Multi Kill!"
-     KillString(2)="Mega Kill!!"
-     KillString(3)="ULTRA KILL!!"
-     KillString(4)="M O N S T E R  K I L L !!!"
-     KillString(5)="L U D I C R O U S !!!"
-     KillString(6)="H O L Y  S H I T !"
-     KillSoundName(0)="Double_Kill"
-     KillSoundName(1)="MultiKill"
-     KillSoundName(2)="MegaKill"
-     KillSoundName(3)="UltraKill"
-     KillSoundName(4)="MonsterKill_F"
-     KillSoundName(5)="LudicrousKill_F"
-     KillSoundName(6)="HolyShit_F"
-     bIsUnique=True
-     bFadeMessage=True
-     DrawColor=(B=0,G=0)
-     StackMode=SM_Down
-     PosY=0.242000
-     FontSize=1
+	KillString(0)="Double Kill!"
+	KillString(1)="Multi Kill!"
+	KillString(2)="Mega Kill!!"
+	KillString(3)="ULTRA KILL!!"
+	KillString(4)="M O N S T E R  K I L L !!!"
+	KillString(5)="L U D I C R O U S !!!"
+	KillString(6)="H O L Y  S H I T !"
+	KillSoundName(0)=Double_Kill
+	KillSoundName(1)=MultiKill
+	KillSoundName(2)=MegaKill
+	KillSoundName(3)=UltraKill
+	KillSoundName(4)=MonsterKill_F
+	KillSoundName(5)=LudicrousKill_F
+	KillSoundName(6)=HolyShit_F
+	bFadeMessage=True
+	bIsSpecial=True
+	bIsUnique=True
+	Lifetime=3
+	bBeep=False
+
+	DrawColor=(R=255,G=0,B=0)
+	FontSize=1
+
+	StackMode=SM_Down
+    PosY=0.242
+
 }

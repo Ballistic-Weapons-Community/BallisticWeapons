@@ -222,15 +222,14 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="MagDrum",Slot=31,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="Reciever",Slot=32,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="Scope",Slot=33,Scale=0f)
-		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="tip",Scale=0.06,AugmentOffset=(x=-48,y=-2,z=-0.125),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="tip",Scale=0.05,AugmentOffset=(x=-49.5,y=-2.8,z=0.100),AugmentRot=(Pitch=32768,Roll=-16384,Yaw=0))
 		//Stats
 		PlayerSpeedFactor=1.000000
 		InventorySize=6
 		SightMoveSpeedFactor=0.35
 		SightingTime=0.40
 		MagAmmo=30
-		//ViewOffset=(X=5.000000,Y=4.000000,Z=-12.000000)
-		SightOffset=(X=-5.000000,Y=0.0000,Z=1.950000)
+		SightOffset=(X=-3.000000,Y=0.3250,Z=1.430000)
 		ZoomType=ZT_Irons
 		WeaponName="Mk 88 Assault Rifle"
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams_AR'

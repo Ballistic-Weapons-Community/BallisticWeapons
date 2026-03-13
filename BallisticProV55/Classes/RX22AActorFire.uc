@@ -271,6 +271,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BallisticProV55.RX22AActorFire.SpriteEmitter0'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter1
+         Disabled=true
          UseColorScale=True
          FadeOut=True
          FadeIn=True

@@ -138,7 +138,7 @@ defaultproperties
      MaxSpeed=21000.000000
      DamageRadius=0.000000
      MomentumTransfer=575000.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeCBU72'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeCBU72Bomb'
      ExplosionDecal=Class'XEffects.ShockAltDecal'
      DrawType=DT_StaticMesh
      StaticMesh=StaticMesh'ONS-BPJW1.Meshes.LargeShell'

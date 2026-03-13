@@ -36,5 +36,5 @@ static function AddHistoryRecord(UT2K4GameProfile GP, int offset, GameInfo Game,
 
 defaultproperties
 {
-     LadderName="Custom Ladder"
+	LadderName="Custom Ladder"
 }

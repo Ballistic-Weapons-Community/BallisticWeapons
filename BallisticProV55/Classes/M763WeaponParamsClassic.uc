@@ -195,11 +195,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		//Layout
 		LayoutName="Buckshot"
 		Weight=30
-		
-		InventorySize=7
+		//ADS
 		SightMoveSpeedFactor=0.500000
+		//Stats
+		InventorySize=7
 		bNeedCock=True
 		MagAmmo=10
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -209,15 +211,19 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Slug
+		//Layout
 		LayoutName="Slug"
 		LayoutTags="slug"
 		Weight=5
-		
-		InventorySize=7
+		//Attachments
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="M763",Scale=0.045,AugmentOffset=(x=0,y=0.6,z=-0.25),AugmentRot=(Pitch=32800,Roll=0,Yaw=-16400))
+		//ADS
+		SightOffset=(X=0.000000,Y=-0.050000,Z=2.0000)
 		SightMoveSpeedFactor=0.500000
+		//Stats
+		InventorySize=7
 		bNeedCock=True
 		MagAmmo=10
-		//SightPivot=(Pitch=128)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Slug'

@@ -16,9 +16,12 @@ function PostBeginPlay()
 	Destroy();
 }
 
+
 defaultproperties
 {
-     GroupName="Vampire"
-     FriendlyName="Vampire"
-     Description="Damaging your opponents will heal you."
-}
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="Vampire"
+    FriendlyName="Vampire"
+    Description="Damaging your opponents will heal you."
+}	

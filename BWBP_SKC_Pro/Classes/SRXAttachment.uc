@@ -345,4 +345,17 @@ defaultproperties
 	ReloadAnimRate=0.925000
 	CockAnimRate=0.950000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.SRX_TPm'
+	Skins(0)=Texture'BWBP_SKC_Tex.SRX.SRX-Rifle'
+	Skins(1)=Texture'BWBP_SKC_Tex.SRX.SRX-StockBlack'
+	Skins(2)=Texture'BWBP_SKC_Tex.SRX.SRX-Irons'
+	Skins(3)=Texture'BWBP_SKC_Tex.SRX.SRX-Holo'
+	Skins(4)=Texture'BWBP_SKC_Tex.SRX.SRX-Cable'
+	Skins(5)=Texture'BWBP_SKC_Tex.SRX.SRX-Plating'
+	Skins(6)=Texture'BWBP_SKC_Tex.SRX.SRX-Barrel'
+	Skins(7)=Texture'BWBP_SKC_Tex.SRX.SRX-Misc'
+	Skins(8)=Texture'BWBP_SKC_Tex.SRX.SRX-Muzzle'
+	Skins(9)=Texture'UCGeneric.SolidColours.Black'
+	Skins(12)=Texture'BWBP_SKC_Tex.SRX.SRX-Supp'
+	Skins(13)=Texture'BW_Core_WeaponTex.AMP.Amp-BaseRed'
+	Skins(14)=Texture'BW_Core_WeaponTex.AMP.Amp-GlowRed'
 }

@@ -115,7 +115,7 @@ function DoFireEffect()
 
 	for (C=Level.ControllerList;C!=None;C=C.NextController)
 	{
-		if (C.Pawn == None || C.Pawn.Health <= 0)
+		if (C.Pawn == None || C.Pawn.Health <= 0 || C.GetTeamNum() == Instigator.GetTeamNum())
 			continue;
 		EnemyEye = C.Pawn.EyePosition() + C.Pawn.Location;
 		Dist = VSize(EnemyEye - StartTrace);
@@ -165,7 +165,7 @@ defaultproperties
      //EffectString="Blinding flash"
      bFireOnRelease=True
      bModeExclusive=False
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_HB4'
+     AmmoClass=Class'BWBP_APC_Pro.Ammo_HB4Blaster'
 
 	 // AI
 	 bInstantHit=True

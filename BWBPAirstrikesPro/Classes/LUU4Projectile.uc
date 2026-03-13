@@ -390,7 +390,7 @@ defaultproperties
      MaxSpeed=150.000000
      DamageRadius=5.000000
      MomentumTransfer=1.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeW54'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeW54Bomb'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=28

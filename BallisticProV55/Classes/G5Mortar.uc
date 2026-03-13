@@ -151,7 +151,11 @@ simulated function Tick(float DT)
 		if (bPeaking)	// Head for the peak
 			V = Peak - Location;
 		else			// Head for the target
+		{
 			V = LastLoc - Location;
+			MaxSpeed = default.MaxSpeed * 2.0;
+			AccelSpeed = default.AccelSpeed * 2.0;
+		}
 
 		// Align velocity towards target, but limit how fast rocket can turn. Use a tricky units per second rate limit.
 		X = Normal(Velocity);
@@ -250,10 +254,10 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 defaultproperties
 {
      TurnRate=49152.000000
-     AccelSpeed=750.000000
+     AccelSpeed=850.000000
      MyRadiusDamageType=Class'BallisticProV55.DTG5MortarRadius'
-     Speed=3500.000000
-     MaxSpeed=5000.000000
+     Speed=4000.000000
+     MaxSpeed=6000.000000
      DamageRadius=378.000000
      MyDamageType=Class'BallisticProV55.DTG5Mortar'
      LifeSpan=0.000000

@@ -11,22 +11,21 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.ElementalSniper.ESScopeMain');
      L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.R9000E.R9000EPickupHi');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.R9000E.R9000EPickupLo');
-
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-     super.UpdatePrecacheMaterials();
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.ElementalSniper.ESMain');
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.ElementalSniper.ESAmmoMain');
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.ElementalSniper.ESScopeMain');
+     Super.UpdatePrecacheMaterials();    
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-     Super.UpdatePrecacheStaticMeshes();
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.R9000E.R9000EPickupHi');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.R9000E.R9000EPickupLo');
+     Super.UpdatePrecacheStaticMeshes();    
 }
 
 defaultproperties

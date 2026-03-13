@@ -7,4 +7,5 @@ var() float DownwardBias;
 
 defaultproperties
 {
+    RemoteRole=ROLE_DumbProxy
 }

@@ -2,7 +2,8 @@
 // Dual wielded Assault Rifle for GunGame usage
 //=============================================================================
 class GGDualAR extends AssaultRifle
-          config(GunGameBW);
+          config(GunGameBW)
+          CacheExempt;
 
 defaultproperties
 {

@@ -228,7 +228,7 @@ defaultproperties
          UseRandomSubdivision=True
          ColorScale(0)=(Color=(G=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(G=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
+         ColorMultiplierRange=(Y=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
          FadeOutStartTime=0.800000
          FadeInEndTime=0.056000
          CoordinateSystem=PTCS_Relative
@@ -258,7 +258,7 @@ defaultproperties
          UseRandomSubdivision=True
          ColorScale(0)=(Color=(G=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(G=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
+         ColorMultiplierRange=(Y=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
          FadeOutStartTime=0.800000
          FadeInEndTime=0.056000
          CoordinateSystem=PTCS_Relative
@@ -288,7 +288,7 @@ defaultproperties
          UseRandomSubdivision=True
          ColorScale(0)=(Color=(G=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(G=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
+         ColorMultiplierRange=(Y=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
          FadeOutStartTime=0.800000
          FadeInEndTime=0.056000
          CoordinateSystem=PTCS_Relative
@@ -318,7 +318,7 @@ defaultproperties
          UseRandomSubdivision=True
          ColorScale(0)=(Color=(G=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(G=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
+         ColorMultiplierRange=(Y=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
          FadeOutStartTime=0.800000
          FadeInEndTime=0.056000
          CoordinateSystem=PTCS_Relative

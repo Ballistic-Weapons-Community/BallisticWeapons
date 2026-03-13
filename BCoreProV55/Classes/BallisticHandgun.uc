@@ -1434,6 +1434,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+			//log(GetHumanReadableName()@"gun received with MagAmmo "$MagAmmo$ " from pickup: "$Pickup.GetHumanReadableName()$ " with ammo: "$BallisticWeaponPickup(Pickup).MagAmmo);
 		}
 		else
 		{
@@ -1441,7 +1442,8 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			GenerateCamo(255);
 			if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
-			ParamsClasses[GameStyleIndex].static.Initialize(self);
+			MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
+			//log(GetHumanReadableName()@"no pickup gun received with MagAmmo "$MagAmmo);
 		}
 	}
   	else if ( !W.HasAmmo() )
@@ -1457,13 +1459,16 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
             FireMode[m].Instigator = Instigator;
             GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
         }
-    }
+	}
 
 	if ( (Instigator.Weapon != None) && Instigator.Weapon.IsFiring() )
 		bPossiblySwitch = false;
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
+
+	if (Role == ROLE_Authority)
+		ClientSetMagAmmo(MagAmmo);
 
     if ( !bJustSpawned )
 	{

@@ -216,10 +216,11 @@ defaultproperties
 		WeaponPrice=3000
 		Weight=30
 		//Attachments
-		WeaponBoneScales(0)=(BoneName="RDS",Slot=14,Scale=1f)
-		WeaponBoneScales(1)=(BoneName="Scope",Slot=16,Scale=0f)
+		WeaponBoneScales(0)=(BoneName="RDS",Slot=14,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Scope",Slot=16,Scale=1f)
+		ScopeViewTex=Texture'BWBP_SKC_Tex.MG36.G36ScopeViewDot'
 		//ADS
-		SightOffset=(X=-3.00,Y=-0.44,Z=10.70)
+		SightOffset=(X=0.000000,Y=-0.45000,Z=11.300000)
 		SightingTime=0.4
 		SightMoveSpeedFactor=0.35
 		MaxZoom=3

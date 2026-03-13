@@ -18,13 +18,16 @@ var() Sound				LaserOffSound;
 var   Emitter			LaserDot;
 var() name		    	BulletBone;		
 
+var() BUtil.FullSound		BoltPullSound;		
+var() BUtil.FullSound		BoltDownSound;			
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
 }
 
-simulated event PostNetBeginPlay()
+/*simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	if (class'BallisticReplicationInfo'.static.IsClassic())
@@ -32,10 +35,10 @@ simulated event PostNetBeginPlay()
 		BringUpTime=3.200000;
 		PutDownTime=2.200000;
 		CockSelectAnim='PulloutFancy';
-		SelectAnim='PulloutFancy';
-		PutDownAnim='PutawayFancy';
+		//SelectAnim='PulloutFancy';
+		//PutDownAnim='PutawayFancy';
 	}
-}
+}*/
 
 simulated function Notify_ShowBullet()
 {
@@ -44,7 +47,15 @@ simulated function Notify_ShowBullet()
 
 simulated function Notify_HideBullet()
 {
+	class'BUtil'.static.PlayFullSound(self, BoltDownSound, true);
 	SetBoneScale (0, 0.0, BulletBone);
+}
+
+// Animation notify for ejecting a cartridge
+simulated function Notify_BrassOut()
+{
+	class'BUtil'.static.PlayFullSound(self, BoltPullSound, true);
+	super.Notify_BrassOut();
 }
 
 exec simulated function WeaponSpecial(optional byte i)
@@ -245,10 +256,18 @@ function InitLaser(optional byte i)
 
 simulated function PlayCocking(optional byte Type)
 {
-	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
-	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
+    local float AdjustedCockAnimRate;
+
+    // Adjust cock animation rate only during reloading
+    if (ReloadState != RS_None && ReloadState != RS_Cocking)
+        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
+    else
+        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
+
+    if (Type == 2 && HasAnim(CockAnimPostReload))
+        SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, 0.2, , "RELOAD");
+    else
+        SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
 
 	if (SightingState != SS_None && Type != 1)
 		TemporaryScopeDown(0.5);
@@ -383,10 +402,13 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;35.0;2.0;120.0;10.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout',Volume=0.220000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway',Volume=0.220000)
-	CockSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99Cock',Volume=100.500000)
-	ClipHitSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99BoltClose',Volume=100.500000)
-	ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99OpenBolt',Volume=100.500000)
-	ClipInSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99Cartridge',Volume=100.500000)
+	CockSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99Cock',Volume=1.500000)
+	CockSelectSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99Cock',Volume=1.500000)
+	ClipOutSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BoltUp',Volume=1.200000)
+	BoltPullSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BoltPull',Volume=1.200000)
+	ClipInSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BulletInsert',Volume=1.500000)
+	ClipHitSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BoltPush',Volume=1.200000)
+	BoltDownSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-BoltDown',Volume=1.200000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Bolt-Action")
 	WeaponModes(1)=(bUnavailable=True)
@@ -412,10 +434,8 @@ defaultproperties
 	FireModeClass(0)=Class'BWBP_JCF_Pro.M99PrimaryFire'
 	FireModeClass(1)=Class'BWBP_JCF_Pro.M99DeployFire'
 	BringUpTime=1.000000
-	CockingBringUpTime=3.200000
-	//PutDownTime=2.200000
 	PutDownTime=0.800000
-	CockSelectAnim="PulloutFancy"
+	CockingBringUpTime=2.800000
 	SelectAnim="Pullout"
 	PutDownAnim="Putaway"
 	SelectForce="SwitchToAssaultRifle"

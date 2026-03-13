@@ -29,10 +29,10 @@ function StopEffect(xPawn P)
 
 defaultproperties
 {
-     ExecMessage="Booster!"
-     ComboAnnouncementName="Booster"
-     keys(0)=2
-     keys(1)=2
-     keys(2)=2
-     keys(3)=2
+    ExecMessage="Booster!"
+    ComboAnnouncementName=Booster
+    keys(0)=2
+    keys(1)=2
+    keys(2)=2
+    keys(3)=2
 }

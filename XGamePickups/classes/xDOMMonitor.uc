@@ -58,11 +58,11 @@ simulated function Trigger( actor Other, pawn EventInstigator )
 }
 
 defaultproperties
-{
-     ActiveTeamShader=Shader'XGameTextures.SuperPickups.GreyScreenS'
-     InactiveTeamShader=Shader'XGameTextures.SuperPickups.BlackScreenS'
-     NewTeam=255
-     Team=255
-     StaticMesh=StaticMesh'XGame_StaticMeshes.GameObjects.DOMMonitor'
-     DrawScale=0.500000
+{   
+	Team=255
+	NewTeam=255
+    DrawScale=0.50000
+    StaticMesh=StaticMesh'XGame_StaticMeshes.DOMMonitor'
+    ActiveTeamShader=Material'GreyScreenS'
+    InactiveTeamShader=Material'BlackScreenS'
 }

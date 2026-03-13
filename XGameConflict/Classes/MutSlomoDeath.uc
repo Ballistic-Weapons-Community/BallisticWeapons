@@ -25,7 +25,9 @@ function ModifyPlayer(Pawn Other)
 
 defaultproperties
 {
-     GroupName="CorpseTimeScale"
-     FriendlyName="Slow Motion Corpses"
-     Description="Death should not be rushed."
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="CorpseTimeScale"
+    FriendlyName="Slow Motion Corpses"
+    Description="Death should not be rushed."
 }

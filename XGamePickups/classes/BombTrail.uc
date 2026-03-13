@@ -22,10 +22,11 @@ simulated event PostNetReceive()
 	}	
 }
 
-defaultproperties
+
+DefaultProperties
 {
-     mDirDev=(X=0.000000,Y=0.000000,Z=0.000000)
-     mPosDev=(X=0.000000,Y=0.000000,Z=0.000000)
-     bHardAttach=True
-     bNetNotify=True
+	bHardAttach=true
+	bNetNotify=true
+    mPosDev=(X=0.0,Y=0.0,Z=0.0)
+    mDirDev=(X=0.0,Y=0.0,Z=0.0)
 }

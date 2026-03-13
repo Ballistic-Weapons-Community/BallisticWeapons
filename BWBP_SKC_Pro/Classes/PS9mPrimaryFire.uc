@@ -29,7 +29,7 @@ function bool DoTazerBlurEffect(Actor Victim)
 	local int i;
 	local MRS138ViewMesser VM;
 
-	if (Pawn(Victim) == None || Pawn(Victim).Health < 1 || Pawn(Victim).LastPainTime != Victim.level.TimeSeconds)
+	if (Pawn(Victim) == None || Pawn(Victim).Health < 1 || Pawn(Victim).LastPainTime != Victim.level.TimeSeconds || Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum())
 		return false;
 	if (PlayerController(Pawn(Victim).Controller) != None)
 	{
@@ -57,9 +57,11 @@ function bool DoTazerBlurEffect(Actor Victim)
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
+	local vector dummy;
 	if (xPawn(Victim) !=None && PS9mPistol(BW) != None && PS9mPistol(BW).bToxin)
 	{
-		IgniteActor(Victim);
+		if (Level.Game.ReduceDamage(Damage, xPawn(Victim), Instigator, HitLocation, dummy, DamageType) > 0)
+			IgniteActor(Victim);
 	}
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	if (Victim.bCanBeDamaged)

@@ -11,7 +11,7 @@
 //=============================================================================
 class BCSprintControl extends Inventory;
 
-const RECHARGE_DELAY = 1.5f;
+//const RECHARGE_DELAY = 1.5f; //This really should be customizable, but for now it's hardcoded
 
 //=============================================================================
 // STAMINA VARIABLES
@@ -20,6 +20,7 @@ var 	float		Stamina;				// Stamina level of player (percentage). Players can't s
 var   	float    	MaxStamina;				// should always be 100
 var() 	float		StaminaDrainRate;		// Amount of stamina lost each second when sprinting
 var() 	float		StaminaChargeRate;		// Amount of stamina gained each second when not sprinting
+var() 	float		StaminaRechargeDelay;	// From RECHARGE_DELAY
 
 //=============================================================================
 // SPRINT VARIABLES
@@ -44,16 +45,22 @@ var array<SlowInfo> ActiveSlows;			// Effects which slow movement
 var float SlowFactor; 
 var float NextTimerPop;				// Next time to check for slow expiry
 
+// --- Slide/Movement Parameters ---
+var float BaseGroundSpeed;		 // Base ground speed of the player when not sliding
+
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		bSprintActive, ClientJumped, ClientDelayRecharge;
+		bSprintActive,
+		ClientJumped, ClientDelayRecharge;
 }
 
 simulated function PostBeginPlay()
 {
 	StaminaChargeRate = class'BallisticReplicationInfo'.default.StaminaChargeRate;
 	StaminaDrainRate = class'BallisticReplicationInfo'.default.StaminaDrainRate;
+	StaminaRechargeDelay = class'BallisticReplicationInfo'.default.StaminaRechargeDelay;
 	SpeedFactor = class'BallisticReplicationInfo'.default.SprintSpeedFactor;
 	JumpDrain = class'BallisticReplicationInfo'.default.JumpDrain;
 }
@@ -81,7 +88,7 @@ function GiveTo( pawn Other, optional Pickup Pickup )
 	UpdateSpeed();
 }
 
-function UpdateSpeed()
+function UpdateSpeed(optional float NewSpeedFactor)
 {
 	local float NewSpeed;
 
@@ -107,10 +114,16 @@ function UpdateSpeed()
 
 	NewSpeed *= SlowFactor;
 
+	if (NewSpeedFactor > 0.0)
+		NewSpeed *= NewSpeedFactor;
+
 	if (Instigator.GroundSpeed != NewSpeed)
 		Instigator.GroundSpeed = NewSpeed;
 
-    //log("SC UpdateSpeed: "$NewSpeed);
+	//Level.Game.Broadcast(self, "SpeedUpdated:"@Instigator.GroundSpeed@" (Factor:"@SpeedFactor@", Slow:"@SlowFactor@", "@NewSpeedFactor@")");
+
+	BaseGroundSpeed = NewSpeed;
+
 }
 
 simulated event Tick(float DT)
@@ -129,7 +142,7 @@ simulated event Tick(float DT)
 //return
 function StartSprint()
 {
-	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
+	if (AIController(Instigator.Controller) == None && !class'BallisticReplicationInfo'.default.bEnableSprint)
 		return;
 		
 	if (Stamina <= 0  || Instigator.Physics != PHYS_Walking || Instigator.bIsCrouched || bSprintActive || !CheckDirection())
@@ -139,6 +152,10 @@ function StartSprint()
 
 	if (Instigator != None)
         UpdateSpeed();
+
+	//log("BCSprintControl: Started sprinting for bot " $ Instigator.PlayerReplicationInfo.PlayerName);
+
+	//Level.Game.Broadcast(self, "Started sprint, ground speed: " $ Instigator.GroundSpeed);
 }
 
 // Sprint Key released. Used on Client and Server
@@ -157,6 +174,8 @@ function StopSprint()
 
     DelayRecharge();
     ClientDelayRecharge();
+
+	//Level.Game.Broadcast(self, "Stopped sprint, ground speed: " $ Instigator.GroundSpeed);
 }
 
 function OwnerEvent(name EventName)
@@ -175,7 +194,7 @@ function OwnerEvent(name EventName)
 
 simulated function DelayRecharge()
 {
-	SprintRechargeDelay = Level.TimeSeconds + RECHARGE_DELAY;
+	SprintRechargeDelay = Level.TimeSeconds + StaminaRechargeDelay;
 }
 
 simulated function Jumped()
@@ -452,7 +471,7 @@ defaultproperties
      MaxStamina=100.000000
      StaminaDrainRate=25.000000
      StaminaChargeRate=25.000000
-	 JumpDrain=10
+	 JumpDrain=10.000000
      SpeedFactor=1.500000
 	 SlowFactor=1.000000
      bReplicateInstigator=True

@@ -75,7 +75,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+        ViewOffset=(X=2.000000,Y=10.000000,Z=-12.000000)
 		ViewPivot=(Pitch=1024,Yaw=-1024)
 		PlayerSpeedFactor=1.000000
 

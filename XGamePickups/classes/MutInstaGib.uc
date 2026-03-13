@@ -120,19 +120,23 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-     WeaponName="SuperShockRifle"
-     AmmoName="ShockAmmo"
-     WeaponString="xWeapons.SuperShockRifle"
-     AmmoString="xWeapons.ShockAmmo"
-     TranslocDisplayText="Allow Translocator"
-     BoostDisplayText="Allow Teammate boosting"
-     TranslocDescText="Players get a Translocator in their inventory."
-     BoostDescText="Teammates get a big boost when shot by the instagib rifle."
-     DefaultWeaponName="xWeapons.SuperShockRifle"
-     GroupName="Arena"
-     FriendlyName="InstaGib"
-     Description="Instant-kill combat with modified Shock Rifles."
-     bNetTemporary=True
-     bAlwaysRelevant=True
-     RemoteRole=ROLE_SimulatedProxy
+	TranslocDisplayText="Allow Translocator"
+	BoostDisplayText="Allow Teammate boosting"
+	TranslocDescText="Players get a Translocator in their inventory."
+	BoostDescText="Teammates get a big boost when shot by the instagib rifle."
+	AmmoName=ShockAmmo
+	AmmoString="xWeapons.ShockAmmo"
+	WeaponName=SuperShockRifle
+	WeaponString="xWeapons.SuperShockRifle"
+	DefaultWeaponName="xWeapons.SuperShockRifle"
+
+    IconMaterialName="MutatorArt.nosym"
+    ConfigMenuClassName=""
+    GroupName="Arena"
+    FriendlyName="InstaGib"
+    Description="Instant-kill combat with modified Shock Rifles."
+
+    bAlwaysRelevant=true
+    RemoteRole=ROLE_SimulatedProxy
+    bNetTemporary=true
 }

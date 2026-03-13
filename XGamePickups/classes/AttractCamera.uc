@@ -12,8 +12,8 @@ var() float MaxZoomDist;
 
 defaultproperties
 {
-     ViewAngle=100.000000
-     MinZoomDist=600.000000
-     MaxZoomDist=1200.000000
-     bStasis=True
+	bStasis=true
+    ViewAngle=100
+    MinZoomDist=600
+    MaxZoomDist=1200
 }

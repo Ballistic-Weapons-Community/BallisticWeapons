@@ -85,7 +85,7 @@ simulated function PostNetBeginPlay()
 	if ( Role < ROLE_Authority )
 	{
 		T = Trace (HitLocation, HitNorm, Location - Vector(Rotation)*5, Location, false, , HitMat);
-		if (T.bWorldGeometry)
+		if (T.bWorldGeometry && T.bProjTarget)
 			Initialize(HitMat.SurfaceType, HitNorm);
 	}
 }

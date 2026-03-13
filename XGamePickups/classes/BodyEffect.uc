@@ -47,9 +47,14 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     DrawType=DT_Mesh
-     LifeSpan=0.650000
-     Skins(0)=Shader'XGameShaders.PlayerShaders.LinkHit'
-     Skins(1)=Shader'XGameShaders.PlayerShaders.LinkHit'
-     Skins(2)=Shader'XGameShaders.PlayerShaders.LinkHit'
+	RemoteRole==ROLE_None
+	Physics=PHYS_None
+	ScaleGlow=+1.0
+	bCollideActors=false
+	bCollideWorld=false
+	DrawType=DT_Mesh
+	LifeSpan=0.65
+	Skins(0)=Material'XGameShaders.PlayerShaders.LinkHit'
+	Skins(1)=Material'XGameShaders.PlayerShaders.LinkHit'
+	Skins(2)=Material'XGameShaders.PlayerShaders.LinkHit'
 }

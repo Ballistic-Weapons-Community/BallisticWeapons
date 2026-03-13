@@ -120,6 +120,18 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
 	End Object
+
+	//Scope
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Scope
+		TargetState="Scope"
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams_Scope'
+	End Object	
 		
 	//=================================================================
 	// RECOIL
@@ -136,6 +148,22 @@ defaultproperties
 		DeclineDelay=0.180000
 		ViewBindFactor=0.500000
 		ADSViewBindFactor=0.500000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_Scope
+		XCurve=(Points=(,(InVal=0.400000,OutVal=-0.100000),(InVal=0.70000,OutVal=0.300000),(InVal=1.000000,OutVal=0.000000)))
+		YCurve=(Points=(,(InVal=0.400000,OutVal=0.300000),(InVal=0.70000,OutVal=0.500000),(InVal=1.000000,OutVal=0.400000)))
+		YawFactor=0.200000
+		XRandFactor=0.165000
+		YRandFactor=0.165000
+		MaxRecoil=4000
+		DeclineTime=0.800000
+		DeclineDelay=0.180000
+		ViewBindFactor=0.500000
+		ADSViewBindFactor=1.000000 //
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -232,10 +260,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
-		//SightPivot=(Pitch=-128,Yaw=16)
 		SightOffset=(X=0.000000,Y=0.06,Z=2.7)
-		//SightOffset=(X=15.000000,Y=-0.750000,Z=28.200000)
-		//SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		//Function
 		InventorySize=7
 		WeaponPrice=1400
@@ -243,9 +268,6 @@ defaultproperties
 		SightingTime=0.25
 		MagAmmo=20
 		bMagPlusOne=True
-		//ViewOffset=(X=-2,Y=8,Z=-25)
-		//ReloadAnimRate=1.000000
-		//CockAnimRate=1.000000
 		WeaponName="SRK-650 7.62mm Marksman Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticRecoilParamsInc'
@@ -257,8 +279,68 @@ defaultproperties
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=RealisticParams_ACOG
+		//Layout core
+		Weight=10
+		LayoutName="4X Scope"
+		LayoutTags="optic"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-60,y=-1.3,z=-0.125),AugmentRot=(Pitch=0,Roll=-16384,Yaw=0))
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-Scope'
+        ZoomType=ZT_Fixed
+		MaxZoom=4
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.3
+		SightOffset=(X=0.000000,Y=-0.4,Z=3.9)
+		//Function
+		InventorySize=7
+		WeaponPrice=1400
+		MagAmmo=20
+		bMagPlusOne=True
+		WeaponName="SRK-650 7.62mm Marksman Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=RealisticParams_IRNV
+		//Layout core
+		Weight=5
+		LayoutName="IRNV Scope"
+		LayoutTags="optic, IR"
+		//Attachments
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="SightBase",Slot=54,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_IRScope',BoneName="tip",Scale=0.065,AugmentOffset=(x=-60,y=-1.55,z=-0.125),AugmentRot=(Pitch=0,Roll=-16384,Yaw=0))
+		//Zoom
+		ScopeViewTex=Texture'BW_Core_WeaponTex.Attachment.SKAR-IRScope'
+        ZoomType=ZT_Fixed
+		MaxZoom=2
+		//ADS
+		SightMoveSpeedFactor=0.5
+		SightingTime=0.35
+		SightOffset=(X=0.000000,Y=-0.4,Z=4)
+		//Function
+		InventorySize=7
+		WeaponPrice=1400
+		MagAmmo=20
+		bMagPlusOne=True
+		WeaponName="SRK-650 7.62mm Marksman Rifle"
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
+	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
 	Layouts(1)=WeaponParams'RealisticParams_RDS'
+	Layouts(2)=WeaponParams'RealisticParams_ACOG'
+	Layouts(3)=WeaponParams'RealisticParams_IRNV'
 	
 	//Camos =====================================
 	Begin Object Class=WeaponCamo Name=SRX_Gray

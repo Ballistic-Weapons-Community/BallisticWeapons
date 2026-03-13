@@ -51,6 +51,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BallisticProV55.RSDarkFireBombTrail.SpriteEmitter6'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter8
+         Disabled=True
          UseColorScale=True
          FadeOut=True
          FadeIn=True
@@ -126,6 +127,7 @@ defaultproperties
      Emitters(4)=TrailEmitter'BallisticProV55.RSDarkFireBombTrail.TrailEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter2
+         Disabled=True
          UseColorScale=True
          FadeOut=True
          FadeIn=True

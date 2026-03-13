@@ -3,6 +3,7 @@
 //
 // Grenade fired by MGL-870 grenade launcher.
 // If it hits a wall or player too early it will disarm
+// Currently unused
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

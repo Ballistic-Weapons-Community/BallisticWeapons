@@ -291,7 +291,7 @@ defaultproperties
     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipHit')
     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipOut')
     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipIn')
-    bCockOnEmpty=True
+	CockingBringUpTime=1.000000
     bAltTriggerReload=True
     WeaponModes(0)=(ModeName="Single Fire")
     WeaponModes(1)=(bUnavailable=True)

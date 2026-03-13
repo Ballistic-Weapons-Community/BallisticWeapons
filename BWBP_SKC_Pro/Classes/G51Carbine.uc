@@ -9,35 +9,35 @@
 //=============================================================================
 class G51Carbine extends BallisticWeapon;
 
-var() name		GrenadeLoadAnim;	//Anim for grenade reload
-var()   bool		bLoaded;
+var(G51) name					GrenadeLoadAnim;	//Anim for grenade reload
+var(G51)   bool					bLoaded;
 
 
-var() name		GrenBone;			
-var() name		GrenBoneBase;
-var() Sound		GrenSlideSound;		//Sounds for grenade reloading
-var() Sound		ClipInSoundEmpty;		//			
+var(G51) name					GrenBone;			
+var(G51) name					GrenBoneBase;
+var(G51) Sound					GrenSlideSound;		//Sounds for grenade reloading
+var(G51) Sound					ClipInSoundEmpty;		//			
 
-var() name			BulletBone;
-var() name			BulletBone2;
+var(G51) name					BulletBone;
+var(G51) name					BulletBone2;
 
 // IR Code
-var() bool				bHasIR;
-var()   Texture			ScopeviewTexIR;
+var(G51)	bool				bHasIR;
+var(G51)	Texture				ScopeviewTexIR;
 
-var() BUtil.FullSound	ThermalOnSound;	// Sound when activating thermal mode
-var() BUtil.FullSound	ThermalOffSound;// Sound when deactivating thermal mode
-var(IR)   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
-var(IR) material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
-var()   bool				bThermal;		// Is thermal mode active?
-var(IR)   bool				bUpdatePawns;	// Should viewable pawn list be updated
-var(IR)   Pawn				UpdatedPawns[16];// List of pawns to view in thermal scope
-var(IR) material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
-var(IR) float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
-var(IR)   ColorModifier		ColorMod;
-var(IR)   Array<M58Cloud>	SmokeList;		// A list of all the potential pawns to view in thermal mode
-var(IR)   actor			NVLight;
-var   float				NextPawnListUpdateTime;
+var(G51) 	BUtil.FullSound		ThermalOnSound;	// Sound when activating thermal mode
+var(G51)	BUtil.FullSound		ThermalOffSound;// Sound when deactivating thermal mode
+var(G51)	Array<Pawn>			PawnList;		// A list of all the potential pawns to view in thermal mode
+var(G51)	material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
+var(G51)	bool				bThermal;		// Is thermal mode active?
+var(G51)	bool				bUpdatePawns;	// Should viewable pawn list be updated
+var(G51)	Pawn				UpdatedPawns[128];// List of pawns to view in thermal scope
+var(G51)	material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
+var(G51)	float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
+var(G51)	ColorModifier		ColorMod;
+var(G51)	Array<M58Cloud>		SmokeList;		// A list of all the potential pawns to view in thermal mode
+var(G51)	actor				NVLight;
+var(G51)	float				NextPawnListUpdateTime;
 var bool			bSilenced;
 
 replication
@@ -376,6 +376,8 @@ simulated function UpdatePawnList()
 	PawnList.Length=0;
 	ForEach DynamicActors( class 'Pawn', P)
 	{
+		if (P.PlayerReplicationInfo != None && P.PlayerReplicationInfo.Team != None && P.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex)
+			continue;
 		PawnList[PawnList.length] = P;
 		Dist = VSize(P.Location - Instigator.Location);
 		if (Dist <= ThermalRange &&
@@ -411,7 +413,6 @@ simulated function UpdatePawnList()
 simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
-	local M58Cloud Other;
 	local int i, j;
 	local float Dist, DotP;//, OtherRatio;
 	local Array<Material>	OldSkins;
@@ -421,8 +422,6 @@ simulated event DrawThermalMode (Canvas C)
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
 	
-	local Vector					HitLocation, HitNormal;
-
 	C.Style = ERenderStyle.STY_Modulated;
 	
 	// Draw Spinning Sweeper thing
@@ -590,7 +589,7 @@ simulated function LoadGrenade()
 	if (ReloadState == RS_None)
 	{
 		ReloadState = RS_GearSwitch;
-		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
 	}
 }
 
@@ -769,6 +768,7 @@ defaultproperties
 	 SightBobScale=0.2
 
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=1.800000)
+	 CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=1.800000)
      //ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=1.800000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagOut',Volume=1.800000)
 	 ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty',Volume=1.800000)
@@ -782,7 +782,7 @@ defaultproperties
      IdleAnimRate=0.200000
      PutDownTime=0.700000
      BringUpTime=0.900000
-	 CockingBringUpTime=2.000000
+	 CockingBringUpTime=1.400000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000

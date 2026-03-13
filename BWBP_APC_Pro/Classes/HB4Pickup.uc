@@ -9,20 +9,19 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.HoloBlaster.HoloBlaster_Main_Tex');
      L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterPickupHi');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterPickupLo');
-
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-     super.UpdatePrecacheMaterials();
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.HoloBlaster.HoloBlaster_Main_Tex');
+     Super.UpdatePrecacheMaterials();
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-     Super.UpdatePrecacheStaticMeshes();
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterPickupHi');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterPickupLo');
+     Super.UpdatePrecacheStaticMeshes();
 }
 
 defaultproperties

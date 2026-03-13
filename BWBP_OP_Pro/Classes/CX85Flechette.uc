@@ -35,7 +35,7 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	
 	if (Master != None && Master.StuckDarts.Length != 0) //more trackers improve seeker func
 	{
-		log(Master.StuckDarts.Length);
+		//log(Master.StuckDarts.Length);
 		TurnRate *= Master.StuckDarts.Length;
 		ArmingDelay -= Master.StuckDarts.Length*0.025;
 	}

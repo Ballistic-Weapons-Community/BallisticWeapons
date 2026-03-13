@@ -9,7 +9,8 @@ class PhantomDarkPhalanx extends UT2K4PhantomRoster;
 
 defaultproperties
 {
-     TeamDescription="The Dark Phalanx are an honorable collection of military specialists. All have proven themselves in the Human/Skaarj war and now seek glory in the ranks of the Tournament."
-     TeamLevel=-1
-     TeamName="Dark Phalanx"
+	TeamLevel=-1
+	TeamDescription="The Dark Phalanx are an honorable collection of military specialists. All have proven themselves in the Human/Skaarj war and now seek glory in the ranks of the Tournament."
+
+	TeamName="Dark Phalanx"
 }

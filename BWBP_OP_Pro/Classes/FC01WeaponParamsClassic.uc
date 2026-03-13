@@ -141,6 +141,7 @@ defaultproperties
 		//ADS
 		SightMoveSpeedFactor=0.5
 		SightingTime=0.25
+		SightOffset=(X=0.00000,Y=-0.95,Z=24.450000)
 		//Stats
 		InventorySize=5
 		MagAmmo=40
@@ -157,6 +158,8 @@ defaultproperties
 		//ADS
 		SightMoveSpeedFactor=0.5
 		SightingTime=0.25
+		//SightOffset=(X=5.00000,Y=-1.00000,Z=24.450000)
+		SightOffset=(X=0.00000,Y=-0.95,Z=24.450000)
 		//Stats
 		InventorySize=5
 		MagAmmo=50

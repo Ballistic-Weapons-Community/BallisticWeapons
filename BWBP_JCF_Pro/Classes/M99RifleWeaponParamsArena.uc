@@ -22,7 +22,7 @@ defaultproperties
 		WallPDamageFactor=0.900000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=3.000000
-		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99FireNew',Volume=10.00000)
+		FireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99-FireOld',Volume=5.500000)
 		Recoil=7000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.050000
@@ -86,21 +86,81 @@ defaultproperties
 	Layouts(0)=WeaponParams'ArenaParams'
 	
 	//Camos ==========================================
-	Begin Object Class=WeaponCamo Name=M99_Gray
+	Begin Object Class=WeaponCamo Name=M99_Desert
 		Index=0
-		CamoName="Gray"
-		Weight=30
+		CamoName="Desert"
+		Weight=10
 	End Object
 	
-	Begin Object Class=WeaponCamo Name=M99_Digital
+	Begin Object Class=WeaponCamo Name=M99_Jungle
 		Index=1
-		CamoName="Digital"
+		CamoName="Jungle"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MainJungle",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MiscJungle",Index=3,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M99_Winter
+		Index=2
+		CamoName="Winter"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MainWinter",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MiscGray",Index=3,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M99_Gray
+		Index=3
+		CamoName="Gray"
 		Weight=15
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99BShine",Index=1,AIndex=1,PIndex=0)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99AShine",Index=2,AIndex=0,PIndex=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MainGray",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MiscGray",Index=3,AIndex=1,PIndex=1)
 	End Object
 	
-	Camos(0)=WeaponCamo'M99_Gray'
-	Camos(1)=WeaponCamo'M99_Digital'
+	Begin Object Class=WeaponCamo Name=M99_UTC
+		Index=4
+		CamoName="UTC"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99AShine",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99BShine",Index=3,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M99_Hex
+		Index=5
+		CamoName="Blue Hex"
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MainHex",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MiscGray",Index=3,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M99_Molten
+		Index=6
+		CamoName="Molten"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MainMolten",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MiscGray",Index=3,AIndex=1,PIndex=1)
+	End Object
+	
+	Begin Object Class=WeaponCamo Name=M99_Gold
+		Index=7
+		CamoName="Gold"
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MainGold",Index=2,AIndex=0,PIndex=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M99Camos.M99_MiscGray",Index=3,AIndex=1,PIndex=1)
+	End Object
+	
+	Camos(0)=WeaponCamo'M99_Desert'
+	Camos(1)=WeaponCamo'M99_Jungle'
+	Camos(2)=WeaponCamo'M99_Winter'
+	Camos(3)=WeaponCamo'M99_Gray'
+	Camos(4)=WeaponCamo'M99_UTC'
+	Camos(5)=WeaponCamo'M99_Hex'
+	Camos(6)=WeaponCamo'M99_Molten'
+	Camos(7)=WeaponCamo'M99_Gold'
 }

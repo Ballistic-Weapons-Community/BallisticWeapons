@@ -12,10 +12,10 @@ function StopEffect(xPawn P)
 
 defaultproperties
 {
-     ExecMessage="Invisible!"
-     ComboAnnouncementName="Invisible"
-     keys(0)=8
-     keys(1)=8
-     keys(2)=4
-     keys(3)=4
+    ExecMessage="Invisible!"
+    ComboAnnouncementName=Invisible
+    keys(0)=8
+    keys(1)=8
+    keys(2)=4
+    keys(3)=4
 }

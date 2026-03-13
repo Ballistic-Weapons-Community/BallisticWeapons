@@ -9,6 +9,6 @@ class xBombHUDMessage extends CTFHUDMessage;
 
 defaultproperties
 {
-     YouHaveFlagString="You have the ball, deliver it to enemy base!"
-     EnemyHasFlagString="The enemy has the ball, recover it!"
+	YouHaveFlagString="You have the ball, deliver it to enemy base!"
+	EnemyHasFlagString="The enemy has the ball, recover it!"
 }

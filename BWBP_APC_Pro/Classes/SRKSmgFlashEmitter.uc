@@ -73,32 +73,6 @@ defaultproperties
      End Object
      Emitters(1)=SpriteEmitter'BWBP_APC_Pro.SRKSmgFlashEmitter.SpriteEmitter0'
 
-     Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.FBlast'
-         UseMeshBlendMode=False
-         RenderTwoSided=True
-         UseParticleColor=True
-         UseColorScale=True
-         RespawnDeadParticles=False
-         UseSizeScale=True
-         UseRegularSizeScale=False
-         AutomaticInitialSpawning=False
-         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
-         ColorScale(2)=(RelativeTime=0.200000,Color=(A=255))
-         ColorScale(3)=(RelativeTime=1.000000,Color=(A=255))
-         Opacity=0.440000
-         CoordinateSystem=PTCS_Relative
-         MaxParticles=1
-         StartLocationOffset=(X=10.000000)
-         SizeScale(0)=(RelativeSize=0.700000)
-         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
-         StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=0.300000,Max=0.300000),Z=(Min=0.300000,Max=0.300000))
-         SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.300000,Max=0.300000)
-     End Object
-     Emitters(2)=MeshEmitter'BWBP_APC_Pro.SRKSmgFlashEmitter.MeshEmitter1'
-
      Begin Object Class=SpriteEmitter Name=SpriteEmitter26
          UseColorScale=True
          FadeOut=True
@@ -135,35 +109,5 @@ defaultproperties
          SpawnOnTriggerPPS=20.000000
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=50.000000,Max=65.000000))
      End Object
-     Emitters(3)=SpriteEmitter'BWBP_APC_Pro.SRKSmgFlashEmitter.SpriteEmitter26'
-
-     Begin Object Class=SpriteEmitter Name=SpriteEmitter5
-         FadeOut=True
-         RespawnDeadParticles=False
-         SpinParticles=True
-         UniformSize=True
-         AutomaticInitialSpawning=False
-         TriggerDisabled=False
-         ColorScale(0)=(Color=(B=192,G=212,R=255))
-         ColorScale(1)=(RelativeTime=0.125000,Color=(B=64,G=192,R=255,A=255))
-         ColorScale(2)=(RelativeTime=0.275000,Color=(B=32,G=96,R=192,A=255))
-         ColorScale(3)=(RelativeTime=1.000000)
-         Opacity=0.310000
-         FadeOutStartTime=0.039000
-         MaxParticles=1
-         StartLocationOffset=(X=14.000000)
-         SpinCCWorCW=(X=0.200000)
-         SpinsPerSecondRange=(X=(Max=0.100000))
-         StartSpinRange=(X=(Min=-1.000000,Max=1.000000))
-         StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
-         DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1g'
-         SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.900000,Max=0.900000)
-         SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
-         SpawnOnTriggerPPS=500000.000000
-         StartVelocityRange=(X=(Max=2.000000),Y=(Max=2.000000),Z=(Max=10.000000))
-     End Object
-     Emitters(4)=SpriteEmitter'BWBP_APC_Pro.SRKSmgFlashEmitter.SpriteEmitter5'
-
+     Emitters(2)=SpriteEmitter'BWBP_APC_Pro.SRKSmgFlashEmitter.SpriteEmitter26'
 }

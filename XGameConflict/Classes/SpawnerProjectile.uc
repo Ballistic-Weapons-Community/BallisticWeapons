@@ -1,3 +1,4 @@
+
 class SpawnerProjectile extends Projectile;
 
 var xEmitter Trail;
@@ -99,7 +100,7 @@ simulated function Landed( vector HitNormal )
 }
 
 defaultproperties
-{
-     DrawType=DT_None
-     LifeSpan=30.000000
+{ 
+    DrawType=DT_None;
+    LifeSpan=30.0;
 }

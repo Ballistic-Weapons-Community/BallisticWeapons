@@ -46,17 +46,20 @@ function AddPlayerFromList()
 
 defaultproperties
 {
-     BotList(0)="Avalanche"
-     BotList(1)="Sorrow"
-     BotList(2)="Perdition"
-     BotList(3)="Vengeance"
-     BotList(4)="Stargazer"
-     BotList(5)="Phantom"
-     BotList(6)="Kain"
-     BotList(7)="Silhouette"
-     BotList(8)="Sphinx"
-     BotList(9)="Natron"
-     BotList(10)="Nafiret"
-     BotList(11)="Tranquility"
-     TeamName="Death Match"
+	TeamName="Death Match"
+	// Juggs
+	BotList(0)="Avalanche"
+	BotList(1)="Sorrow"
+	BotList(2)="Perdition"
+	BotList(3)="Vengeance"
+	// Mercs
+	BotList(4)="Stargazer"
+	BotList(5)="Phantom"
+	BotList(6)="Kain"
+	BotList(7)="Silhouette"
+	// Egypt
+	BotList(8)="Sphinx"
+	BotList(9)="Natron"
+	BotList(10)="Nafiret"
+	BotList(11)="Tranquility"
 }

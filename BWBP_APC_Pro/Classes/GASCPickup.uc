@@ -3,7 +3,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright� 2011 RuneStorm. All Rights Reserved.
+// Copyright 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class GASCPickup extends BallisticHandgunPickup
 	placeable;
@@ -14,21 +14,20 @@ static function StaticPrecache(LevelInfo L)
 	L.AddPrecacheMaterial(Texture'BWBP_APC_Tex.GASC.GASCMagMain');
      L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.GASC.GASCPickupHi');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.GASC.GASCPickupLo');
-
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-     super.UpdatePrecacheMaterials();
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.GASC.GASCMain');
 	Level.AddPrecacheMaterial(Texture'BWBP_APC_Tex.GASC.GASCMagMain');
+     super.UpdatePrecacheMaterials();   
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-     Super.UpdatePrecacheStaticMeshes();
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.GASC.GASCPickupHi');
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_APC_Static.GASC.GASCPickupLo');
+     Super.UpdatePrecacheStaticMeshes();     
 }
 
 defaultproperties

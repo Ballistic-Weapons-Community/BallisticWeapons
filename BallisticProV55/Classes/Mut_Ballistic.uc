@@ -118,7 +118,17 @@ simulated function PreBeginPlay()
 
 	if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
 		Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
-	
+
+	/* 
+	if(TeamGame(Level.Game) != None) //load team bots
+	{
+		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
+	}
+	else if(Deathmatch(Level.Game) != None)//load Deathmatch  bots
+	{
+		Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
+	}
+	*/
 	LoadItemClasses();
 
 	super.PreBeginPlay();
@@ -127,43 +137,18 @@ simulated function PreBeginPlay()
 //simulated function PostNetBeginPlay()
 simulated function BeginPlay()
 {
-	local xPickupBase PB;
 	local WeaponLocker W;
 	local int i, j;
 
-	if (Level.NetMode == NM_Client)
+	foreach AllActors(class'WeaponLocker', W)
 	{
-		// Remove all pads...
-	    foreach AllActors(class'xPickupBase', PB)
+		for (i=0;i<Replacements.Length;i++)
 		{
-			// Why the hell are these things so tough?
-		    PB.bHidden=true;
-			PB.SetDrawType(DT_None);
-			if (PB.myEmitter != None)
-				PB.myEmitter.Destroy();
-		}
-
-	    foreach AllActors(class'WeaponLocker', W)
-		{
-			if (bHideLockers)
-			{
-				W.GotoState('Disabled');
-				continue;
-			}
-
-			for (i=0;i<Replacements.Length;i++)
-			{
-				for (j=0;j<W.Weapons.Length;j++)
-					if (W.Weapons[j].WeaponClass == GetInventoryFor(Replacements[i].OldItem))
-					{
-//							W.Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(GetNewItem(i, true)));
-						W.Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(Replacements[i].NewItems[0]));
-					}
-			}
+			for (j=0;j<W.Weapons.Length;j++)
+				if (W.Weapons[j].WeaponClass == GetInventoryFor(Replacements[i].OldItem))
+					W.Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(Replacements[i].NewItems[0]));
 		}
 	}
-
-	// Stuff won't be ready now, do it after its had a chance to init...
 	SetTimer(0.05, false);
 	
 	Super.BeginPlay();
@@ -172,7 +157,6 @@ simulated function BeginPlay()
 function PostBeginPlay()
 {
 	super.PostBeginPlay();
-
 	// Use Itemizer to spawn extra Ballistic Pickups
 	if (bUseItemizer && Role == ROLE_Authority)
 		bDoItemize=true;
@@ -246,7 +230,7 @@ function ModifyPlayer(Pawn Other)
     BPawn = BallisticPawn(Other);
 
 	//adds sprint support to mutator
-    if (xPawn(Other) != None && GetSprintControl(PlayerController(Other.Controller)) == None)
+    if (xPawn(Other) != None && GetSprintControl(Other.Controller) == None)
 	{
         CreateSprintControl(xPawn(Other));
 	}
@@ -500,7 +484,7 @@ function ItemChange(Pickup Other)
 simulated event Timer()
 {
 	local int i;
-	
+
 	if (!bLWsInitialized)
 		AdjustLockerWeapons();
  	if (Role < ROLE_Authority)
@@ -762,6 +746,7 @@ simulated event Tick(float DT)
 	if (level.NetMode != NM_DedicatedServer && !bSpawnedIA && level.GetLocalPlayerController() != None)
 	{
 		class'BallisticInteraction'.static.Launch (level.GetLocalPlayerController());
+		Spawn(class'BWClientLockerHider').bHideLockers = bHideLockers;
 		bSpawnedIA=true;
 	}
 }
@@ -807,6 +792,8 @@ simulated function AdjustLockerWeapons()
 	{
 		for (i=0;i<Replacements.Length;i++)
 		{
+			if (Replacements[i].NewItems.Length == 0)
+				continue;
 			for (j=0;j<L.Emitters.Length;j++)
 			{
 				NP = class<UTWeaponPickup>(GetPickupFor(Replacements[i].NewItems[0]));
@@ -869,12 +856,12 @@ function CreateSprintControl(xPawn P)
     local BCSprintControl SC;
 
     SC = Spawn(class'BCSprintControl', P);
-
+	//log("Creating Sprint Control for "$P$" : "$SC);
     SC.GiveTo(P);
     Sprinters[Sprinters.length] = SC;
 }
 
-function BCSprintControl GetSprintControl(PlayerController Sender)
+function BCSprintControl GetSprintControl(Controller Sender)
 {
     local int i;
 

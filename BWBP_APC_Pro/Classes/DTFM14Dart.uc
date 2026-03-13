@@ -22,7 +22,7 @@ static function DoDartEffect(Actor Victim, Pawn Instigator)
     local FM14DartViewMesser VM;
 	local FM14DartPoisoner DP; //DPE
 
-	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0)
+	if(Pawn(Victim) == None || Vehicle(Victim) != None || Pawn(Victim).Health <= 0 || Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum())
 		Return;
 
 	if (PlayerController(Pawn(Victim).Owner) != None)

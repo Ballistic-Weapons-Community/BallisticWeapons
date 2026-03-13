@@ -53,6 +53,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.BG_A73BGibFireTrail.SpriteEmitter29'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter33
+         Disabled=true
          UseColorScale=True
          FadeOut=True
          FadeIn=True

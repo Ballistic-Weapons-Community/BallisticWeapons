@@ -2,15 +2,17 @@ class LavaVolume extends PhysicsVolume;
 
 defaultproperties
 {
-     DamagePerSec=40.000000
-     DamageType=Class'Engine.FellLava'
-     FluidFriction=4.000000
-     ViewFog=(X=0.585938,Y=0.195313,Z=0.078125)
-     bPainCausing=True
-     bDestructive=True
-     bNoInventory=True
-     KExtraLinearDamping=0.800000
-     KExtraAngularDamping=0.100000
-     LocationName="in lava"
-     RemoteRole=ROLE_None
+	DamagePerSec=40
+	DamageType=class'FellLava'
+	bPainCausing=True
+	bWaterVolume=false
+	bDestructive=True
+	bNoInventory=true
+    ViewFog=(X=0.5859375,Y=0.1953125,Z=0.078125)
+    FluidFriction=+00004.000000
+	LocationName="in lava"
+	KExtraLinearDamping=0.8
+	KExtraAngularDamping=0.1
+	RemoteRole=ROLE_None
+	bNoDelete=true
 }

@@ -14,21 +14,23 @@ static function class<BallisticBloodSet> GetBloodSet(Pawn Victim)
 
 static function BloodHitScreenFX(class<BallisticBloodSet> BS, Pawn Victim, name Bone, vector HitLoc, vector HitRay, int Damage)
 {
-	local PlayerController PC;
-	local Actor A, E;
-	local Vector CamLoc;
-	local Rotator CamRot;
+    local PlayerController PC;
+    local Actor A;
+    local Vector CamLoc;
+    local Rotator CamRot;
+    local class<Actor> FXClass;
 
-	PC = Victim.level.GetLocalPlayerController();
-	if (PC != None)
-	{
-		PC.PlayerCalcView(A, CamLoc, CamRot);
-		if (VSize(HitLoc - CamLoc) < 200 && vector(CamRot) dot normal(HitLoc-CamLoc) > 0.7)
-		{
-			if (GetScreenEffect(BS) != None)
-				E = PC.Spawn(GetScreenEffect(BS),PC, , CamLoc + Vector(CamRot)*16, CamRot);
-		}
-	}
+    PC = Victim.level.GetLocalPlayerController();
+    if (PC != None)
+    {
+        PC.PlayerCalcView(A, CamLoc, CamRot);
+        if (VSize(HitLoc - CamLoc) < 200 && vector(CamRot) dot normal(HitLoc-CamLoc) > 0.7)
+        {
+            FXClass = GetScreenEffect(BS);
+            if (FXClass != None && BallisticPlayer(PC) != None)
+                BallisticPlayer(PC).DrawCanvasScreenBlood(FXClass, PC, CamLoc + Vector(CamRot)*16, CamRot); // Draw screen blood effect, behind the weapon/inventory
+        }
+    }
 }
 
 static function ExtraBloodHitFX(class<BallisticBloodSet> BS, Pawn Victim, name Bone, vector HitLoc, vector HitRay, int Damage)

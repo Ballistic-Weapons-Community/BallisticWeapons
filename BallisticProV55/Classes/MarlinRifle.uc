@@ -419,17 +419,6 @@ simulated function WeaponTick (float DT)
 	super.WeaponTick(DT);
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
-	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
-
-	//if (SightingState != SS_None)
-	//	TemporaryScopeDown(Default.SightingTime*Default.SightingTimeScale);
-}
-
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockAimed()
 {

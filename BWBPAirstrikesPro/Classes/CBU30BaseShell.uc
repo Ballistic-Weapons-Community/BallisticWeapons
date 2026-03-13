@@ -139,7 +139,7 @@ defaultproperties
      Damage=30.000000
      DamageRadius=1024.000000
      MomentumTransfer=575000.000000
-     MyDamageType=Class'BWBPAirstrikesPro.DamTypeCBU30'
+     MyDamageType=Class'BWBPAirstrikesPro.DamTypeCBU30Bomb'
      ExplosionDecal=Class'XEffects.ShockAltDecal'
      DrawType=DT_StaticMesh
      StaticMesh=StaticMesh'ONS-BPJW1.Meshes.LargeShell'

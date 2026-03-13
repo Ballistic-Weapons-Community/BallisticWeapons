@@ -16,9 +16,9 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     TeamNum=1
-     LightHue=130
-     Mesh=VertMesh'XGame_rc.FlagMesh'
-     DrawScale=0.900000
-     Skins(0)=FinalBlend'XGameShaders2004.CTFShaders.BlueFlagShader_F'
+    Mesh=Mesh'XGame_rc.FlagMesh'
+    Skins(0)=XGameShaders2004.CTFShaders.BlueFlagShader_F
+    DrawScale=0.9
+    LightHue=130
+    TeamNum=1
 }

@@ -5,6 +5,6 @@ var array<PlayerRecord> Records;
 
 defaultproperties
 {
-     SectionName="Public"
-     FileExtension="upl"
+	SectionName="Public"
+	FileExtension="upl"
 }

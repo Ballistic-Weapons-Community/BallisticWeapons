@@ -278,14 +278,6 @@ simulated function OnScopeViewChanged()
 		SightOffset.Y = default.SightOffset.Y * -1;
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 function ServerSwitchSilencer(bool bNewValue)
 {
 	bSilenced = bNewValue;
@@ -520,7 +512,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RS8'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
-	
+	CockingBringUpTime=0.800000
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic 10mm fire. Moderate damage and fire rate. Has the option of burst fire."
 	ManualLines(1)="Attaches a suppressor, reducing the effective range but removing the flash and reducing the noise output."
@@ -529,6 +521,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout',Volume=0.145000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway',Volume=0.145000)
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Cock')
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipIn')
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipIn')
 	ClipInFrame=0.650000

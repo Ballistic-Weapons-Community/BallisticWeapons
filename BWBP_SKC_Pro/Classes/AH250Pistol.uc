@@ -291,14 +291,6 @@ simulated event AnimEnd (int Channel)
 	Super.AnimEnd(Channel);
 }
 
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2)
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
-}
-
 // Secondary fire doesn't count for this weapon
 simulated function bool HasAmmo()
 {
@@ -368,6 +360,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout',Pitch=0.9,Volume=0.170000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway',Pitch=0.9,Volume=0.175000)
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Cock',Volume=5.100000,Radius=48.000000)
+	CockSelectSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=48.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=48.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipIn',Volume=2.500000,Radius=48.000000)
@@ -396,7 +389,7 @@ defaultproperties
 	PutDownAnimRate=1.600000
 	PutDownTime=0.500000
 	BringUpTime=0.600000
-	CockingBringUpTime=1.400000
+	CockingBringUpTime=1.300000
 	SelectForce="SwitchToAssaultRifle"
 	Description="AH-250 'Hawk' Assault Pistol||Manufacturer: Enravion Combat Solutions|Primary: Magnum Rounds|Secondary: Scope||Built as a more affordable alternative to the AH-104, the AH-250 is an alternate design chambered for .44 magnum rounds instead of the usual $100 .600 HEAP ones. It is less accurate than the AH-104 and D49, but its 8 round magazine and faster reload times let it put more rounds down range than both. Its significant weight and recoil means it requires both hands to shoot and is harder to control than its revolver and hand cannon siblings, a fact that comes into play where range is a concern. An updated version known as the AH-250M2 'Hawk' is also available, complete with a compensator, match-grade internals, and a 6x precision scope to make aiming easier. Military adoption remains low due to the heavy recoil and impracticality of carrying around such a large sidearm, yet big game hunters have taken a liking to it, plus it remains a popular weapon in every outer planet action flick."
 	Priority=96

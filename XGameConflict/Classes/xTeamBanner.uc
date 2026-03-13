@@ -62,18 +62,22 @@ simulated function Trigger( actor Other, pawn EventInstigator )
 
 defaultproperties
 {
-     bStatic=False
-     bNoDelete=True
-     bStasis=False
-     RemoteRole=ROLE_None
-     Mesh=VertMesh'XGame_rc.TeamBannerMesh'
-     Tag="'"
-     DrawScale=1.700000
-     Skins(0)=Shader'XGameShaders.TeamBannerShader'
-     bUnlit=True
-     CollisionRadius=48.000000
-     CollisionHeight=90.000000
-     bCollideActors=True
-     bCollideWorld=True
-     bNetNotify=True
+	RemoteRole=Role_None
+	bNoDelete=true
+    bHidden=false
+    bUnlit=true
+    bStasis=false
+    bStatic=false
+    bCollideActors=true
+    bCollideWorld=true
+    bNetNotify=true
+    DrawScale=1.70000
+    DrawType=DT_Mesh
+    Style=STY_Normal
+    Mesh=Mesh'TeamBannerMesh'
+    Skins(0)=Shader'XGameShaders.TeamBannerShader'
+    CollisionRadius=48.000000
+    CollisionHeight=90.000000
+    Mass=100.000000
+    Tag='DominationChange'
 }

@@ -93,7 +93,7 @@ static function bool injureTeamMate(UT2K4GameProfile GP)
 
 defaultproperties
 {
-     msgGotChallenged="We got challenged"
-     msgWeChallenged="We challenged"
-     msgFor="for"
+	msgGotChallenged="We got challenged"
+	msgWeChallenged="We challenged"
+	msgFor="for"
 }
