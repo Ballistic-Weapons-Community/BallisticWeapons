@@ -37,7 +37,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.A909.A909Lo'
-     PickupDrawScale=0.300000
+     PickupDrawScale=0.225000
      InventoryType=Class'BallisticProV55.A909SkrithBlades'
      RespawnTime=10.000000
      PickupMessage="You picked up the A909 Skrith wrist blades."
@@ -45,6 +45,6 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.A909.A909Hi'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=0.350000
+     DrawScale=0.325000
      CollisionHeight=4.000000
 }
