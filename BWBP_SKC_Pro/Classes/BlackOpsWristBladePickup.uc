@@ -1,11 +1,10 @@
 //=============================================================================
-// EKS43Pickup.
+// BlackOpsWristBladePickup
 //=============================================================================
 class BlackOpsWristBladePickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_SKC_Static.usx
 
 simulated function UpdatePrecacheMaterials()
@@ -23,7 +22,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.X5W.X5WPickupLo'
-     PickupDrawScale=0.500000
+     PickupDrawScale=0.400000
      InventoryType=Class'BWBP_SKC_Pro.BlackOpsWristBlade'
      RespawnTime=10.000000
      PickupMessage="You picked up the X5W Black Ops Blade"

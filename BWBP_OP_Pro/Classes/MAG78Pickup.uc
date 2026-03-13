@@ -1,20 +1,12 @@
 //=============================================================================
-// EKS43Pickup.
+// MAG78Pickup
 //=============================================================================
 class MAG78Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_OP_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_OP_Static.usx
 
-//===========================================================================
-// StaticPrecache
-//
-// Explicitly called by some gametypes upon the pickup class to preload it.
-// Gametypes needing to do this don't use pickups. Don't preload them here.
-//===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
 	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.Longsword.ChainsawLongswordShiny');
@@ -30,6 +22,7 @@ simulated function UpdatePrecacheMaterials()
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
 }
+
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupHi');
@@ -38,13 +31,15 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
+     bOnSide=True
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupLo'
      InventoryType=Class'BWBP_OP_Pro.MAG78Longsword'
      RespawnTime=10.000000
+	 PickupDrawScale=0.225000
      PickupMessage="You picked up the MAG-SAW longsword."
      PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.MAGsawPickupHi'
      Physics=PHYS_None
-     DrawScale=0.700000
+     DrawScale=0.120000
      CollisionHeight=3.500000
 }

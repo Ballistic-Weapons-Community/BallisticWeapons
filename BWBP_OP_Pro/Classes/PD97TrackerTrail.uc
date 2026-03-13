@@ -11,6 +11,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=128,G=48))
          ColorScale(1)=(RelativeTime=0.428571,Color=(B=150,G=64))
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=128,G=48,A=255))
+         StartLocationOffset=(X=13.000000)
          Opacity=0.400000
          FadeOutStartTime=0.300000
          FadeInEndTime=0.100000
@@ -35,6 +36,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
          ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.500000,Max=0.500000))
+         StartLocationOffset=(X=13.000000)
          FadeOutStartTime=0.040000
          CoordinateSystem=PTCS_Relative
          ParticlesPerSecond=5.000000

@@ -47,8 +47,9 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
+	 bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Wrench.WrenchPickupLo'
-     PickupDrawScale=0.750000
+     PickupDrawScale=0.800000
      InventoryType=Class'BWBP_OP_Pro.WrenchWarpDevice'
      RespawnTime=10.000000
      PickupMessage="You picked up the NFUD Combat Wrench."

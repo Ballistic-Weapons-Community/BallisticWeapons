@@ -5,14 +5,8 @@ class DragonsToothPickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_SKC_Static.usx
-//===========================================================================
-// StaticPrecache
-//
-// Explicitly called by some gametypes upon the pickup class to preload it.
-// A gametype needing to do this won't spawn any pickups. Don't preload them or their assets here.
-//===========================================================================
+
 static function StaticPrecache(LevelInfo L)
 {
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonTooth-Main');
@@ -46,13 +40,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupLo'
-     PickupDrawScale=1.000000
+     PickupDrawScale=0.325000
      InventoryType=Class'BWBP_SKC_Pro.DragonsToothSword'
      RespawnTime=50.000000
      PickupMessage="You picked up the XM300 Dragon nanoblade."
      PickupSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Pullout'
      StaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupHi'
      Physics=PHYS_None
-     DrawScale=0.400000
+     DrawScale=0.140000
      CollisionHeight=4.000000
 }

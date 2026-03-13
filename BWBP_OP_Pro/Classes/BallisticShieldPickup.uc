@@ -1,12 +1,10 @@
 //=============================================================================
-// EKS43Pickup.
+// BallisticShieldPickup
 //=============================================================================
 class BallisticShieldPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_OP_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_OP_Static.usx
 
 simulated function UpdatePrecacheMaterials()
@@ -24,6 +22,7 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
+     PickupDrawScale=1.500000
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickupLo'
      StaticMesh=StaticMesh'BWBP_OP_Static.Shields.BallisticShieldPickupHi'	 
      InventoryType=Class'BWBP_OP_Pro.BallisticShieldWeapon'
@@ -33,5 +32,5 @@ defaultproperties
      Physics=PHYS_None
      DrawScale=1.00000
      CollisionHeight=3.500000
-	 bOnSide=False	 
+	bOnSide=False	 
 }

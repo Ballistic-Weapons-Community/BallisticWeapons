@@ -5,15 +5,8 @@ class X3Pickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
-//===========================================================================
-// StaticPrecache
-//
-// Explicitly called by some gametypes upon the pickup class to preload it.
-// Gametypes needing to do this don't use pickups. Don't preload them here.
-//===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
 	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.X3.KnifeA1');
@@ -27,6 +20,7 @@ simulated function UpdatePrecacheMaterials()
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
 }
+
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.X3.X3PickupHi');
@@ -36,7 +30,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.X3.X3PickupLo'
-     PickupDrawScale=0.250000
+     PickupDrawScale=0.200000
      InventoryType=Class'BallisticProV55.X3Knife'
      RespawnTime=10.000000
      PickupMessage="You picked up the X3 combat knife."
