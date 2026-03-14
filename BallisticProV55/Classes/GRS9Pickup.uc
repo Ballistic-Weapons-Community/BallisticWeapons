@@ -41,6 +41,6 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Glock.Glock-HD'
      Physics=PHYS_None
      DrawScale=0.340000
-     PrePivot=(Y=-40.000000)
+     PrePivot=(Y=-10.000000)
      CollisionHeight=4.000000
 }

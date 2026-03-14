@@ -1,5 +1,5 @@
 //=============================================================================
-// CYLOAttachment.
+// ZX98Attachment
 //
 // 3rd person weapon attachment for the Crucible ZX98, M30A2's younger bro
 //
@@ -180,6 +180,5 @@ defaultproperties
     Mesh=SkeletalMesh'BWBP_APC_Anim.ZX98_TPm'
     RelativeLocation=(Z=1.000000)
     RelativeRotation=(Pitch=32768)
-	PrePivot=(z=-3)
-    DrawScale=0.200000
+    DrawScale=0.180000
 }

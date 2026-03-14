@@ -22,13 +22,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.X5W.X5WPickupLo'
-     PickupDrawScale=0.400000
+     PickupDrawScale=0.350000
      InventoryType=Class'BWBP_SKC_Pro.BlackOpsWristBlade'
      RespawnTime=10.000000
      PickupMessage="You picked up the X5W Black Ops Blade"
      PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.X5W.X5WPickupHi'
      Physics=PHYS_None
-     DrawScale=0.600000
+     DrawScale=0.450000
      CollisionHeight=4.000000
 }

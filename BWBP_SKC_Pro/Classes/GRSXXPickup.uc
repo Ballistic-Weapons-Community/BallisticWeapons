@@ -1,5 +1,5 @@
 //=============================================================================
-// GRS9Pickup.
+// GRSXXPickup
 //=============================================================================
 class GRSXXPickup extends BallisticHandgunPickup
 	placeable;
@@ -15,7 +15,7 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Glock.Glock-HD'
      Physics=PHYS_None
      DrawScale=0.340000
-     PrePivot=(Y=-40.000000)
+     PrePivot=(Y=-10.000000)
      CollisionHeight=4.000000
-	 Skins(0)=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-MainShine'
+	Skins(0)=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-MainShine'
 }
