@@ -8,7 +8,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.M575.M575PickupLo'
-     PickupDrawScale=0.10000
+     PickupDrawScale=0.085000
      StandUp=(Y=0.800000)
      InventoryType=Class'BWBP_OP_Pro.M575Machinegun'
      RespawnTime=20.000000

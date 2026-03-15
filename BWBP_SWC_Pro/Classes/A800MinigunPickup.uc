@@ -1,5 +1,5 @@
 //=============================================================================
-// XMV850Pickup.
+// A800MinigunPickup
 //=============================================================================
 class A800MinigunPickup extends BallisticWeaponPickup
 	placeable;
@@ -44,6 +44,5 @@ defaultproperties
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.300000
-     PrePivot=(Z=35.000000)
      CollisionHeight=8.000000
 }

@@ -28,7 +28,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_JCF_Static.SPAS.SPASPickupLo'
-     PickupDrawScale=0.100000
+     PickupDrawScale=0.150000
      InventoryType=Class'BWBP_JCF_Pro.SPASShotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the SP-12 Compact Shotgun"

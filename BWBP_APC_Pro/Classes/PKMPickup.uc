@@ -30,7 +30,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.PKMA.PKMAPickupLo'
-     PickupDrawScale=0.750000
+     PickupDrawScale=0.550000
      InventoryType=Class'BWBP_APC_Pro.PKMMachinegun'
      RespawnTime=20.000000
      PickupMessage="You picked up the PKMA machinegun."
