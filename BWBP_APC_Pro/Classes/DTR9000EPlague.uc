@@ -8,7 +8,7 @@ defaultproperties
      DeathStrings(3)="%k watched as %o perished from terminal radiation poisoning."
 	 DeathStrings(4)="%o's corpse is a reminder that %k's Chimera can kill even beyond the grave."
 	 DeathStrings(5)="%k might've grazed %o with a radioactive bullet, but it's all it takes to kill someone."
-     SimpleKillString="Raygun Irradiation"
+     SimpleKillString="R9000 Irradiation"
      BloodManagerName="BallisticProV55.BloodMan_DarkSlow"
      DamageIdent="Energy"
      DamageDescription=",Plasma,"

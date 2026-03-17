@@ -3,8 +3,9 @@ class SandbagPickup extends BallisticWeaponPickup
 
 defaultproperties
 {
+     bOnSide=False
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.Sandbags.Sandbag_LD'
-     PickupDrawScale=0.450000
+     PickupDrawScale=0.500000
      InventoryType=Class'BallisticProV55.SandbagLayer'
      RespawnTime=10.000000
      PickupMessage="You picked up sandbags."
