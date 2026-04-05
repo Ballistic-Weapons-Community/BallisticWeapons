@@ -347,11 +347,8 @@ function Initialize(Mut_Outfitting MO, PlayerController P)
 	PC = P;
 
 	bWeaponsReady=true;
-	if (level.NetMode != NM_StandAlone)
-	{
-        if (Viewport(P.Player) == None)
-		    SendWeapons();
-	}
+    if (level.NetMode != NM_StandAlone && Viewport(P.Player) == None)
+        SendWeapons();
     else 
     {
         FillWeapons();
