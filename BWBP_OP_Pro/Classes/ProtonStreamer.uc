@@ -18,6 +18,7 @@ var	float							LastShieldTick;
 var	Pawn							DrainTarget, BoostTarget;
 var ProtonGameRules					myRules;
 var	bool							bAlternateCheck;
+var class<DamageType>				ShieldDamageType;
 
 replication
 {
@@ -37,7 +38,7 @@ simulated function PostBeginPlay()
 	{
 		for (G = Level.Game.GameRulesModifiers; G != None && G.class != class'ProtonGameRules'; G = G.NextGameRules);
 		
-		if (G.class != class'ProtonGameRules')
+		if (G == None)
 		{
 			G = spawn(class'ProtonGameRules');
 			Level.Game.AddGameModifier(G);
@@ -87,7 +88,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 		
 	Super.ServerSwitchWeaponMode(NewMode);
 	
-	ProtonStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
+	if (ThirdPersonActor != None)
+		ProtonStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
 }
 
 simulated function ClientSwitchWeaponMode (byte newMode)
@@ -97,7 +99,8 @@ simulated function ClientSwitchWeaponMode (byte newMode)
 		
 	Super.ClientSwitchWeaponMode(NewMode);
 	
-	ProtonStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
+	if (ThirdPersonActor != None)
+		ProtonStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
 }
 
 simulated event WeaponTick(float DT)
@@ -311,15 +314,19 @@ function DisableShield()
 	bShieldOn = False;
 	PlaySound(ShieldOffSound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
 	SetOverlayMaterial ( None, 0, true );
-	ThirdPersonActor.SetOverlayMaterial( None, 0, true );
-	xPawn(Instigator).SetOverlayMaterial ( None, 0, true );
+	if (ThirdPersonActor != None)
+		ThirdPersonActor.SetOverlayMaterial( None, 0, true );
+	if (xPawn(Instigator) != None)
+		xPawn(Instigator).SetOverlayMaterial ( None, 0, true );
 }
 
 // Aim goes bad when player takes damage
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-	if (bShieldOn && !DamageType.default.bLocationalHit)
+	if (bShieldOn && DamageType != None && !DamageType.default.bLocationalHit)
 	{
+		if (InstigatedBy != None && InstigatedBy != Instigator && ShieldDamageType != None)
+			class'BallisticDamageType'.static.GenericHurt(InstigatedBy, Damage * 0.25, Instigator, InstigatedBy.Location, vect(0,0,0), ShieldDamageType);
 		Damage *= 0.25;
 		Momentum *= 0.25;
 		return;
@@ -355,6 +362,7 @@ function float GetAIRating()
 
 defaultproperties
 {
+	ShieldDamageType=Class'BWBP_OP_Pro.DTProtonShield'
 	ShieldOnSound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Putaway'
     ShieldOffSound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Pullout'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')

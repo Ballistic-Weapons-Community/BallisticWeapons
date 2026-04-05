@@ -1887,6 +1887,8 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 simulated function MeleeHoldImpl()
 {
+	if (OtherGun != None)
+		return;
 	super.MeleeHoldImpl();
 	
 	if (IsMaster())

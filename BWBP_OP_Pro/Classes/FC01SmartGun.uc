@@ -75,7 +75,8 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	bADSTrack=false;
-	IronsViewBindFactor = RcComponent.Params.ADSViewBindFactor;
+	if (RcComponent != None && RcComponent.Params != None)
+		IronsViewBindFactor = RcComponent.Params.ADSViewBindFactor;
 	if (InStr(WeaponParams.LayoutTags, "TargetScope") != -1)
 	{
 		bADSTrack=true;

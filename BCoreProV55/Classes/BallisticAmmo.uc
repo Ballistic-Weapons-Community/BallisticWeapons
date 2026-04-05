@@ -35,6 +35,12 @@ function bool AddAmmo(int AmmoToAdd)
 	return super.AddAmmo(AmmoToAdd);
 }
 
+simulated function CheckOutOfAmmo()
+{
+	if (AmmoAmount <= 0 && Pawn(Owner) != None && Pawn(Owner).Weapon != None)
+		Pawn(Owner).Weapon.OutOfAmmo();
+}
+
 defaultproperties
 {
 	MaxAmmo=180

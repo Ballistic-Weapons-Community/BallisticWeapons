@@ -39,9 +39,12 @@ function RecoverController()
 {
 	if ( InstigatorController == None || InstigatorController.Pawn == Instigator)
 		return;
-		
-	InstigatorController.SetRotation(ActiveWarhead.InitialControllerRotation);
-	ClientSetViewRotation(ActiveWarhead.InitialControllerRotation);
+
+	if (ActiveWarhead != None)
+	{
+		InstigatorController.SetRotation(ActiveWarhead.InitialControllerRotation);
+		ClientSetViewRotation(ActiveWarhead.InitialControllerRotation);
+	}
 	
 	InstigatorController.UnPossess();
 	
@@ -62,7 +65,7 @@ function RecoverController()
 		}
 	}
 
-	if (!ActiveWarhead.bExploded)
+	if (ActiveWarhead != None && !ActiveWarhead.bExploded)
 		ActiveWarhead.BlowUp(ActiveWarhead.Location);
 	ActiveWarhead = None;
 }
@@ -119,6 +122,13 @@ function float GetAIRating()
 function float SuggestAttackStyle()	{	return -0.5;	}
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()	{	return 0.5;	}
+
+simulated event Destroyed()
+{
+	if (ActiveWarhead != None)
+		RecoverController();
+	super.Destroyed();
+}
 
 defaultproperties
 {

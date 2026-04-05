@@ -175,7 +175,8 @@ function ServerWeaponSpecial(optional byte i)
 			if (Level.TimeSeconds < Mines[j].TriggerStartTime - 1 || Mines[j].TriggerStartTime == 0)
 				break;
 			Mines[j].Explode(Mines[j].Location, Vector(Mines[j].Rotation));
-			Mines.Remove(j, 1);
+			if (j < Mines.Length && Mines[j] != None)
+				Mines.Remove(j, 1);
 			break;
 		}
 	}

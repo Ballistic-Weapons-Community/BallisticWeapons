@@ -20,17 +20,21 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 
 	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
 
+	if (Pawn(Victim) == None || Instigator == None)
+		return;
+
 	// Do additional damage to armor..
-	if(Pawn(Victim) != None && Pawn(Victim).Inventory != None)
+	if(Pawn(Victim).Inventory != None)
 	{
-		if (Instigator.Controller != None && Pawn(Victim).Controller != Instigator.Controller && Instigator.Controller.SameTeamAs(Pawn(Victim).Controller))
+		if (Instigator.Controller != None && Pawn(Victim).Controller != None && Pawn(Victim).Controller != Instigator.Controller && Instigator.Controller.SameTeamAs(Pawn(Victim).Controller))
 			return; //Yeah no melting teammate armor. that's mean
 		
 		BestArmor = Pawn(Victim).Inventory.PrioritizeArmor(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 		if(BestArmor != None)
 		{
 			Victim.TakeDamage(Damage*Default.ArmorDrain, Instigator, HitLocation, Momentum, DT);
-			BestArmor.ArmorAbsorbDamage(Damage*Default.ArmorDrain,Default.Class,HitLocation);
+			if (BestArmor != None)
+				BestArmor.ArmorAbsorbDamage(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 		}
 	}
 }

@@ -96,6 +96,10 @@ function SpawnProjectile (Vector Start, Rotator Dir)
   //local float Speed, DetonateDelay;
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
+
+	if (Proj == None)
+		return;
+
 	Proj.Instigator = Instigator;
 
 	if (BallisticHandGrenadeProjectile(Proj) == None)

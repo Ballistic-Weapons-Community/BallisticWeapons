@@ -4266,7 +4266,7 @@ function DropFrom(vector StartLocation)
 			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
 			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
 			//Change mesh if layout dictates it
-			if (WeaponParams.PickupMesh != None)
+			if (WeaponParams != None && WeaponParams.PickupMesh != None)
 			{
 				BallisticWeaponPickup(Pickup).SetStaticMesh(WeaponParams.PickupMesh);
 				BallisticWeaponPickup(Pickup).NewStaticMesh = WeaponParams.PickupMesh;

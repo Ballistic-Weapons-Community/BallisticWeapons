@@ -25,7 +25,9 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.050000	
+		FireInterval=0.050000
+		FireAnim=Idle
+		FireLoopAnim=Idle
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		

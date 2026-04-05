@@ -447,7 +447,10 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		SetBoneScale (0, 0.0, SilencerBone);
 
 	if ( ThirdPersonActor != None )
+	{
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+		LK05Attachment(ThirdPersonActor).bSilenced = bSilenced;
+	}
 
 
 	Instigator.AmbientSound = UsedAmbientSound;

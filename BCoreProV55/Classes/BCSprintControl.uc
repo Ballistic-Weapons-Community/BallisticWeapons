@@ -88,7 +88,7 @@ function GiveTo( pawn Other, optional Pickup Pickup )
 	UpdateSpeed();
 }
 
-function UpdateSpeed(optional float NewSpeedFactor)
+simulated function UpdateSpeed(optional float NewSpeedFactor)
 {
 	local float NewSpeed;
 

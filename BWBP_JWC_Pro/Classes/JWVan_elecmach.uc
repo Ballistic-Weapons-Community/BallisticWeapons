@@ -34,7 +34,7 @@ function bool SendDamageEffect(WeaponFire Fire, JunkFireInfo FI, int OldHealth, 
 	local int i;
 	local JunkViewMesser VM;
 
-	if (Pawn(Victim) == None || Pawn(Victim).Health < 1 || Pawn(Victim).LastPainTime != Victim.level.TimeSeconds || Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum())
+	if (Pawn(Victim) == None || Pawn(Victim).Health < 1 || Pawn(Victim).LastPainTime != Victim.level.TimeSeconds || (Instigator.GetTeamNum() != 255 && Pawn(Victim).GetTeamNum() == Instigator.GetTeamNum()))
 		return false;
 	if (PlayerController(Pawn(Victim).Controller) != None)
 	{

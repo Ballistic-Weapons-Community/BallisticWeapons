@@ -293,6 +293,8 @@ function inventory SpawnCopy( pawn Other )
 
 simulated function GetAmmoAmount (int m, Weapon W)
 {
+	if (W.GetAmmoClass(m) == None)
+		return;
 	if (bThrown)
 	{
 		if (BallisticWeapon(W)!=None && BallisticWeapon(W).bNoMag==false)

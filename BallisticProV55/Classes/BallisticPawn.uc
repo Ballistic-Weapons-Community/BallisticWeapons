@@ -173,6 +173,7 @@ var() float SlideFriction;		 // Friction applied during sliding, affects how qui
 var() float SlideCooldownTime;	// Time before the player can slide again after a slide ends
 var() float SlidePower;			 // Initial burst power when starting a slide, affects how fast the player accelerates at the start of the slide
 var bool bIsSliding;			 // Is the player currently sliding?
+var bool bSlideOnLand;			 // Player held duck while airborne — bypass speed threshold on next StartSlide
 var float LastSlideEndTime;		// Time when the last slide ended
 var float LastLandTime;			// Time when the player last landed
 var vector SlideVelocity;		// Velocity during the slide
@@ -212,7 +213,7 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility,
-		bIsSliding, SlideVelocity, Sprinter;
+		bIsSliding, Sprinter;
 }
 
 simulated event PostNetBeginPlay()
@@ -576,6 +577,21 @@ event Landed(vector HitNormal)
     MultiJumpRemaining = MaxMultiJump;
 
 	LastLandTime = Level.TimeSeconds;
+
+	// ProcessMove skips crouch input during PHYS_Falling, so bWantsToCrouch
+	// is never set while airborne (dodge requires crouch=false to initiate).
+	// Force crouch intent here so the native Crouch() fires next tick.
+	// Also snapshot the landing velocity into LastFallingVelocity so StartSlide
+	// (called from StartCrouch on the next performPhysics tick) can use it
+	// for the speed threshold check before the 0.1s grace window expires.
+	if (Controller != None && Controller.bDuck > 0 && bCanCrouch)
+	{
+		bWantsToCrouch = true;
+		// LastFallingVelocity already holds the peak horizontal velocity from
+		// ModifyVelocity during the fall — don't clobber it with the dampened
+		// landing-subtick value.
+		bSlideOnLand = true;
+	}
 
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
@@ -3361,7 +3377,12 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		return;
 
 	if (Physics == PHYS_Falling)
-        LastFallingVelocity = Velocity;
+	{
+		// Keep the peak horizontal speed seen during this fall so dodge-slide
+		// uses the launch velocity, not the decayed landing-subtick velocity.
+		if (VSize(Velocity * vect(1,1,0)) > VSize(LastFallingVelocity * vect(1,1,0)))
+			LastFallingVelocity = Velocity;
+	}
 
 	if (Physics == PHYS_Walking)
 	{
@@ -3459,21 +3480,42 @@ simulated function StartSlide()
     local name Anim;
     local vector X, Y, Z;
     local float DirDot, EffSlidePower, EffImpulse, EffBackSpeedScale;
+    local bool bLandSlide;
 
 	if (!bAllowCrouchSliding)
 		return;
 
+	if (Controller == None)
+		return;
+
     if ( (!bIsSliding 
 	&& Controller.bDuck > 0 
-	&& (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
-	&& Physics == PHYS_Walking 
+	&& (bSlideOnLand || VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
+	&& Physics == PHYS_Walking
 	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) /*|| AIController(Controller)!=None*/ )
     {
+		bLandSlide = bSlideOnLand;
+		bSlideOnLand = false;
 		//log("Starting slide for:"@GetHumanReadableName());
-		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
-		Sprinter.DelayRecharge();
-		Sprinter.StopSprint();
-		SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
+		if (Role == ROLE_Authority)
+		{
+			Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
+			Sprinter.DelayRecharge();
+			Sprinter.StopSprint();
+		}
+		// When bSlideOnLand is set, Velocity has been dampened to walking speed by
+		// physWalking (~119) since StartSlide runs one tick after landing.
+		// Use the full landing velocity we snapshot in Landed() as the base instead.
+		if (bLandSlide)
+		{
+			// Use the peak falling velocity (captured in ModifyVelocity during the
+			// fall) as the slide base.  This preserves the full dodge/jump launch
+			// speed rather than the dampened post-landing walking speed.
+			SlideVelocity = LastFallingVelocity;
+			SlideVelocity.Z = 0;
+		}
+		else
+			SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
 
         // Determine direction vs forward view
         GetAxes(GetViewRotation(), X, Y, Z);
@@ -3488,7 +3530,6 @@ simulated function StartSlide()
         {
             EffSlidePower *= BackSlidePowerScale;
             EffBackSpeedScale = BackMaxSlideSpeedScale;
-            MaxSlideSpeed *= EffBackSpeedScale;
         }
 
         // Apply initial impulse scaled by stamina (same logic, with effective power)
@@ -3498,13 +3539,22 @@ simulated function StartSlide()
 		LastFallingVelocity = vect(0,0,0); 
         bIsSliding = true;
 
-		Sprinter.UpdateSpeed(2.5);
+		// Prime Velocity so the native calcVelocity captures it as OldVelocity
+		// on this same tick. Without this, OldVelocity is the low pre-slide
+		// walking speed, and the EndSlide check (OldVelocity + 100 < SlideStopSpeed)
+		// kills the slide immediately.
+		Velocity = SlideVelocity;
+
+		// Set GroundSpeed so native calcVelocity clamp allows slide speed on both client and server
+		GroundSpeed = MaxSlideSpeed * EffBackSpeedScale;
 
         Anim = SlideStartAnims[Get4WayDirection()];
 		if ( PlayAnim(Anim, 2.0) )
 			bWaitForAnim = true;
 		AnimAction = Anim;
 	}
+	else
+		bSlideOnLand = false;
 }
 
 simulated function LoopSlideAnim()
@@ -3551,12 +3601,11 @@ simulated function EndSlide()
 	SlideVelocity = vect(0,0,0);
 	LastSlideEndTime = Level.TimeSeconds;
 
-	if (Role == ROLE_Authority && Sprinter != None)
-	{
-		//GroundSpeed = Sprinter.BaseGroundSpeed;
+	// Restore GroundSpeed on all roles so client prediction stays in sync
+	if (Sprinter != None)
 		Sprinter.UpdateSpeed();
-		//Level.Game.Broadcast(self, "SpeedReset:"@GroundSpeed@"Sprinter.BaseGroundSpeed:"@Sprinter.BaseGroundSpeed);
-	}
+	else
+		GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 	//if(AIController(Controller) != None)
 	//	Sprinter.StartSprint();
 }
@@ -3605,8 +3654,10 @@ simulated function HandleSliding(float DT)
 		EndSlide();
 	if (VSize(SlideVelocity) > MaxSlideSpeed)
 		SlideVelocity = Normal(SlideVelocity) * MaxSlideSpeed;
-    if (Role == ROLE_Authority)
-        Velocity = SlideVelocity;
+
+	// Set on all roles so client predicts the same movement as server
+	GroundSpeed = MaxSlideSpeed;
+	Velocity = SlideVelocity;
 
 	RefreshSlideLoop();
 }

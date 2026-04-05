@@ -475,6 +475,12 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		SetBoneScale (0, 1.0, SilencerBone);
 	else
 		SetBoneScale (0, 0.0, SilencerBone);
+
+	if (ThirdPersonActor != None)
+	{
+		SRXAttachment(ThirdPersonActor).bSilenced = bSilenced;
+		SRXAttachment(ThirdPersonActor).bAmped = bAmped;
+	}
 	
 	if (ColorMod != None)
 		return;

@@ -116,10 +116,12 @@ state GiveAmmoSelf
 
 simulated function Notify_HealOther()
 {
-	//log("In HealOther");
 	PlaySound(HealSound, SLOT_Interact );
 	if (Role == ROLE_Authority)
-		L8GISecondaryFire(BFireMode[1]).NotifiedDoFireEffect();
+	{
+		xPawn(Owner).GiveHealth(HealAmount,xPawn(Owner).SuperHealthMax);
+		GotoState('GiveAmmoSelf');
+	}
 	Ammo[0].UseAmmo (1, True);
 }
 

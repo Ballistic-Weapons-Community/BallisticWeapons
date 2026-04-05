@@ -26,6 +26,13 @@ simulated function OnWeaponParamsChanged()
 	}
 }
 
+simulated function PreDrawFPWeapon()
+{
+	super.PreDrawFPWeapon();
+	if (bSingle)
+		SetDrawScale(5.000000);
+}
+
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {

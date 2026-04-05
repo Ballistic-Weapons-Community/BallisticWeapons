@@ -425,9 +425,11 @@ simulated function Notify_GrenadeClipOff ()
 // Charging bar shows throw strength
 simulated function float ChargeBar()
 {
-	if (FireMode[1].bIsFiring)
+	if (FireMode[1] != None && FireMode[1].bIsFiring)
 		return BallisticHandGrenadeFire(FireMode[1]).CalculateThrowPower();
-	return BallisticHandGrenadeFire(FireMode[0]).CalculateThrowPower();
+	if (FireMode[0] != None)
+		return BallisticHandGrenadeFire(FireMode[0]).CalculateThrowPower();
+	return 0;
 }
 
 function DropFrom(vector StartLocation)

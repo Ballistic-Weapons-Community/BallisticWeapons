@@ -3,7 +3,7 @@ class ProtonStreamEffectAlt extends ProtonStreamEffect;
 simulated function SetAltColor(bool bColorAlt)
 {
 	bAltColor = bColorAlt;
-	if(bAltColor)
+	if(bAltColor && Emitters.Length >= 2)
 	{
 		BeamEmitter(Emitters[1]).ColorScale[0].Color.B	= 255;
 		BeamEmitter(Emitters[1]).ColorScale[0].Color.G	= 64;

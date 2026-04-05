@@ -105,7 +105,7 @@ simulated event Timer()
 
 	for (i=0;i<Touching.length;i++)
 	{
-		if (Touching[i] == None || !Touching[i].bCanBeDamaged || Pawn(Touching[i]).GetTeamNum() == Instigator.GetTeamNum())
+		if (Touching[i] == None || !Touching[i].bCanBeDamaged || (Pawn(Touching[i]) != None && Instigator.GetTeamNum() != 255 && Pawn(Touching[i]).GetTeamNum() == Instigator.GetTeamNum()))
 			continue;
 		if (Projectile(Touching[i])!=None)
 		{

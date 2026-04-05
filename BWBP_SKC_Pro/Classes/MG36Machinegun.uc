@@ -72,8 +72,10 @@ simulated function OnWeaponParamsChanged()
 		bHasGauss=true;
 		bHasDrum=false;
 		AmmoClass[0]=class'Ammo_42HVG';
-		CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_42HVG';
-		CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_42HVG';
+		if (FireMode[0] != None)
+			CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_42HVG';
+		if (FireMode[1] != None)
+			CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_42HVG';
 		if ( ThirdPersonActor != None )
 		{
 			MG36Attachment(ThirdPersonActor).bHasGauss=true;
@@ -455,6 +457,8 @@ exec simulated function WeaponSpecial(optional byte i)
 simulated event Destroyed()
 {
 	AdjustThermalView(false);
+	if (NVLight != None)
+		NVLight.Destroy();
 	super.Destroyed();
 }
 

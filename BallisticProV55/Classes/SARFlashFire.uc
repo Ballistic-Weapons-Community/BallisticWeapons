@@ -116,7 +116,7 @@ function DoFireEffect()
 
 	for (C=Level.ControllerList;C!=None;C=C.NextController)
 	{
-		if (C.Pawn == None || C.Pawn.Health <= 0 || C.GetTeamNum() == Instigator.GetTeamNum())
+		if (C.Pawn == None || C.Pawn.Health <= 0 || (Instigator.GetTeamNum() != 255 && C.GetTeamNum() == Instigator.GetTeamNum()))
 			continue;
 		EnemyEye = C.Pawn.EyePosition() + C.Pawn.Location;
 		Dist = VSize(EnemyEye - StartTrace);

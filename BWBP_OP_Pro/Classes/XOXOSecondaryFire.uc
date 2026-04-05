@@ -46,7 +46,7 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	local class<DamageType> HitDT;
 	local Vector ClosestLocation, BoneTestLocation;
 	
-	if ( (Pawn(Other) != None && Pawn(Other).Controller != None && Pawn(Other).Controller.SameTeamAs(Instigator.Controller) ) 
+	if ( (Pawn(Other) != None && Pawn(Other).Health > 0 && Pawn(Other).Controller != None && Pawn(Other).Controller.SameTeamAs(Instigator.Controller) ) 
 		|| (DestroyableObjective(Other) != None && DestroyableObjective(Other).DefenderTeamIndex == Instigator.GetTeamNum()) ) 
 	{
 		if (Instigator.Controller.bFire == 0)
@@ -114,7 +114,7 @@ function bool MaintainConnection(vector AimVec)
 	if (XOXOStaff(BW).bLoveMode)
 		HealAmount *= 2;
 		
-	if (Instigator.Controller.bFire == 1 || AimVec dot Normal(LockedTarget.Location - Instigator.Location) < 0.9 || !Weapon.FastTrace(LockedTarget.Location, Instigator.Location))
+	if (Instigator.Controller.bFire == 1 || (Pawn(LockedTarget) != None && Pawn(LockedTarget).Health <= 0) || AimVec dot Normal(LockedTarget.Location - Instigator.Location) < 0.9 || !Weapon.FastTrace(LockedTarget.Location, Instigator.Location))
 	{
 		LockedTarget = None;
 		XOXOAttachment(Weapon.ThirdPersonActor).SetLockedTarget(None);
