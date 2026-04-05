@@ -55,7 +55,7 @@ simulated event ModeDoFire()
 	// Reset idle anim after firing - dart doesn't stay deployed like the tazer
 	if (PD97Bloodhound(BW) != None)
 	{
-		if (BW.MagAmmo - BFireMode[0].ConsumedLoad < 1)
+		if (BW.MagAmmo - ConsumedLoad < 1)
 			PD97Bloodhound(BW).IdleAnim = 'OpenIdle';
 		else
 			PD97Bloodhound(BW).IdleAnim = 'Idle';
