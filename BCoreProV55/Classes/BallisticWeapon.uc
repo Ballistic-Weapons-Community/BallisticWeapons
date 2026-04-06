@@ -828,9 +828,8 @@ simulated function OnWeaponParamsChanged()
 
     // Only the SERVER initializes live MagAmmo.
     // Clients use the replicated value coming from the server via ClientSetMagAmmo.
-    // Without this guard, client PostNetBeginPlay -> Initialize resets MagAmmo to full,
+    // Without this guard, client PostNetBeginPlay.Initialize resets MagAmmo to full,
     // overwriting the replicated value from a dropped weapon pickup.
-
 	if (Role == ROLE_Authority)
 		MagAmmo = WeaponParams.MagAmmo;
 	//log("OnWeaponParamsChanged MagAmmo set to " $MagAmmo$ " for "$GetHumanReadableName());
