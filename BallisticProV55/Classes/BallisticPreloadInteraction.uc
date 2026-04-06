@@ -153,6 +153,7 @@ simulated function PostRender(Canvas Canvas)
 			else
 			{
 				// Preload camo skins
+				if (MyRI.bEnableCamoLoading)
 				for (j = 0; j < ParamsClass.default.Camos.Length; j++)
 				{
 					if (ParamsClass.default.Camos[j] != None)

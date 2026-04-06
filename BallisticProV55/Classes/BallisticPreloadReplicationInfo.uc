@@ -4,11 +4,12 @@ var() string CurrentName[255];
 var() string MeshList[255];
 var() int PreloadNum;
 var bool bAddedInteraction;
+var bool bEnableCamoLoading;
 
 replication
 {
     reliable if(Role == ROLE_Authority)
-        CurrentName, PreloadNum;
+        CurrentName, PreloadNum, bEnableCamoLoading;
    	reliable if(Role == ROLE_Authority)
    		MeshList;
 }

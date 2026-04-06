@@ -10,6 +10,7 @@ var() int WeaponsToLoad;
 var() string WeaponName;
 
 var globalconfig bool bEnablePreloading;
+var globalconfig bool bEnableCamoLoading;
 
 replication
 {
@@ -20,37 +21,107 @@ replication
 event PostBeginPlay()
 {
 	local BallisticPreloadReplicationInfo MyRI;
-	local int i;
+	local int i, j;
 	local class<Weapon> WeaponClass;
 	local int SuccessCount;
+	local array<string> PreloadList;
 
 	if (bEnablePreloading)
 	{
-		MyRI = Spawn(class'BallisticProV55.BallisticPreloadReplicationInfo');
+		BuildWeaponList(PreloadList);
 
-		WeaponsToLoad = WeaponClassNames.Length;
+		MyRI = Spawn(class'BallisticProV55.BallisticPreloadReplicationInfo');
+		MyRI.bEnableCamoLoading = bEnableCamoLoading;
+
+		WeaponsToLoad = PreloadList.Length;
 		MyRI.PreloadNum = WeaponsToLoad;
 
 		for (i = 0; i < WeaponsToLoad; i++)
 		{
-			WeaponClass = class<Weapon>(DynamicLoadObject(WeaponClassNames[i],class'Class',True));
-			
+			WeaponClass = class<Weapon>(DynamicLoadObject(PreloadList[i], class'Class', True));
+
 			if (WeaponClass != None)
 			{
-				MyRI.CurrentName[i] = WeaponClassNames[i];
+				MyRI.CurrentName[i] = PreloadList[i];
 				MyRI.MeshList[i] = string(WeaponClass.default.Mesh);
 				SuccessCount++;
 			}
 			else
-				Log("Mut_BallisticPreLoad: Failed to load"@WeaponClassNames[i], 'Warning');
+				Log("Mut_BallisticPreLoad: Failed to load"@PreloadList[i], 'Warning');
 		}
 
 		Log("Mut_BallisticPreLoad: Preloaded"@SuccessCount$"/"$WeaponsToLoad@"weapons");
 	}
-	
+
 	SaveConfig();
 
 	Super.PostBeginPlay();
+}
+
+// Build weapon list dynamically from active BW mutators, falling back to config
+function BuildWeaponList(out array<string> OutList)
+{
+	local Mut_Outfitting OutfitMut;
+	local Mut_Loadout LoadoutMut;
+	local array<string> GroupWeapons;
+	local int i;
+
+	// Try Outfitting mutator first (loadout groups 0-6)
+	foreach DynamicActors(class'Mut_Outfitting', OutfitMut)
+		break;
+
+	if (OutfitMut != None)
+	{
+		for (i = 0; i < 7; i++)
+		{
+			GroupWeapons = OutfitMut.GetGroup(i);
+			for (j = 0; j < GroupWeapons.Length; j++)
+			{
+				if (GroupWeapons[j] != "" && !(Right(GroupWeapons[j], 5) ~= "Dummy"))
+					AddUniqueString(OutList, GroupWeapons[j]);
+			}
+		}
+
+		if (OutList.Length > 0)
+		{
+			Log("Mut_BallisticPreLoad: Built weapon list from Outfitting ("$OutList.Length@"weapons)");
+			return;
+		}
+	}
+
+	// Try Loadout mutator (evolution system)
+	foreach DynamicActors(class'Mut_Loadout', LoadoutMut)
+		break;
+
+	if (LoadoutMut != None)
+	{
+		for (i = 0; i < LoadoutMut.Items.Length; i++)
+		{
+			if (LoadoutMut.Items[i].ItemName != "")
+				AddUniqueString(OutList, LoadoutMut.Items[i].ItemName);
+		}
+
+		if (OutList.Length > 0)
+		{
+			Log("Mut_BallisticPreLoad: Built weapon list from Loadout ("$OutList.Length@"weapons)");
+			return;
+		}
+	}
+
+	// Fall back to hardcoded config list
+	OutList = WeaponClassNames;
+	Log("Mut_BallisticPreLoad: Using config weapon list ("$OutList.Length@"weapons)");
+}
+
+function AddUniqueString(out array<string> Arr, string Value)
+{
+	local int i;
+
+	for (i = 0; i < Arr.Length; i++)
+		if (Arr[i] ~= Value)
+			return;
+
+	Arr[Arr.Length] = Value;
 }
 
 simulated function Tick(float DeltaTime)
@@ -77,6 +148,7 @@ function ModifyPlayer(Pawn Other)
 defaultproperties
 {
 	bEnablePreloading=True
+	bEnableCamoLoading=False
     bAddToServerPackages=True
     GroupName="BallisticPro: Resource Preload"
     FriendlyName="BallisticPro: Resource Preload"
