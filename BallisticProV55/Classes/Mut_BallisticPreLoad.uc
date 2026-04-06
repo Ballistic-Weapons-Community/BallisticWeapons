@@ -21,7 +21,7 @@ replication
 event PostBeginPlay()
 {
 	local BallisticPreloadReplicationInfo MyRI;
-	local int i, j;
+	local int i;
 	local class<Weapon> WeaponClass;
 	local int SuccessCount;
 	local array<string> PreloadList;
