@@ -44,7 +44,10 @@ simulated function PostRender(Canvas Canvas)
 	local vector X,Y,Z, FinalLoc;
 	local Mesh WeaponMesh;
 	local class<Weapon> WeaponClass;
-	local int j;
+	local class<BallisticWeapon> BWClass;
+	local class<BallisticWeaponParams> ParamsClass;
+	local Material LoadedMat;
+	local int j, k;
 	local string DisplayName;
 
 	C = Canvas;
@@ -118,12 +121,37 @@ simulated function PostRender(Canvas Canvas)
 	{
 		WeaponClass = class<Weapon>(DynamicLoadObject(MyRI.CurrentName[WeaponNumber], class'Class', True));
 
-		if (WeaponClass != None)
+		BWClass = class<BallisticWeapon>(WeaponClass);
+
+		// Only load materials on the first frame for each weapon
+		if (BWClass != None && Pause == 1)
 		{
-			for (j = 0; j < WeaponClass.default.Skins.Length; j++)
+			ParamsClass = BWClass.static.GetParams();
+			if (ParamsClass == None)
 			{
-				if (WeaponClass.default.Skins[j] != None)
-					ViewportOwner.Actor.Level.AddPrecacheMaterial(WeaponClass.default.Skins[j]);
+				Log("BW Preload: GetParams() returned None for" @ MyRI.CurrentName[WeaponNumber] @ "- GameStyle:" @ class'BallisticReplicationInfo'.default.GameStyle);
+			}
+			else
+			{
+				// Preload camo skins
+				for (j = 0; j < ParamsClass.default.Camos.Length; j++)
+				{
+					if (ParamsClass.default.Camos[j] != None)
+					{
+						for (k = 0; k < ParamsClass.default.Camos[j].WeaponMaterialSwaps.Length; k++)
+						{
+							if (ParamsClass.default.Camos[j].WeaponMaterialSwaps[k].MaterialName != "")
+							{
+								LoadedMat = Material(DynamicLoadObject(ParamsClass.default.Camos[j].WeaponMaterialSwaps[k].MaterialName, class'Material', True));
+								if (LoadedMat != None)
+								{
+									C.SetPos(0, 0);
+									C.DrawTile(LoadedMat, 32, 32, 0, 0, 32, 32);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 
