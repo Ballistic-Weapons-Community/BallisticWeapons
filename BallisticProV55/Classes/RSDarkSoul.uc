@@ -484,6 +484,7 @@ defaultproperties
      bCollideActors=True
      bCollideWorld=True
      bUseCylinderCollision=True
+	 bIgnoreEncroachers=True
      bNetNotify=True
      bNotOnDedServer=False
 }
