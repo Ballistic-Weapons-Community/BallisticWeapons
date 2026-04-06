@@ -28,7 +28,12 @@ event Initialized()
 {
 	Pause = 0;
 	WeaponNumber = 0;
-	PreloadMeshActor = ViewportOwner.Actor.Spawn(class'BallisticPreloadMesh',ViewportOwner.Actor.Pawn);
+}
+
+simulated function SpawnPreloadMeshActor()
+{
+	if (PreloadMeshActor == None && ViewportOwner.Actor.Pawn != None)
+		PreloadMeshActor = ViewportOwner.Actor.Spawn(class'BallisticPreloadMesh', ViewportOwner.Actor.Pawn);
 }
 
 //0 =STY_None 1 = STY_Normal 2 = STY_Masked 3 = STY_Translucent 4 = STY_Modulated 5 = STY_Alpha 6 = STY_Additive 7 = STY_Subtractive 8 = STY_Particle 9 = STY_AlphaZ
@@ -38,75 +43,101 @@ simulated function PostRender(Canvas Canvas)
 	local BallisticPreloadReplicationInfo RI;
 	local vector X,Y,Z, FinalLoc;
 	local Mesh WeaponMesh;
-
-	PreloadMeshActor.bHidden = true;	//comment this line to show the weapon meshes load in front of you
+	local class<Weapon> WeaponClass;
+	local int j;
+	local string DisplayName;
 
 	C = Canvas;
-	if(ViewportOwner.Actor.Pawn != None)
+
+	// Find the replication info as soon as it's available - doesn't need a Pawn
+	if (MyRI == None)
 	{
-		if(MyRI != None)
+		foreach ViewportOwner.Actor.DynamicActors(class'BallisticPreloadReplicationInfo', RI)
 		{
-			Pause++;
-			if(Pause == 15)
-			{
-				Pause = 0;
-				WeaponNumber++;
-			}
+			if (RI != None)
+				MyRI = RI;
+		}
+		return;
+	}
 
-			if (WeaponNumber > MyRI.PreloadNum)
-			{
-				if(PreloadMeshActor != None)
-				{
-					PreloadMeshActor.Destroy();
-				}
+	// Wait for replicated data to arrive before starting
+	if (MyRI.PreloadNum == 0)
+		return;
 
-				Master.RemoveInteraction(Self);
-				return;
-			}
+	Pause++;
+	if (Pause == 15)
+	{
+		Pause = 0;
+		WeaponNumber++;
+	}
 
-			if (bDisplayDebugText)
-			{
-				C.Font = MessagesFont;
-				C.FontScaleX = FontScaleX;
-				C.FontScaleY = FontScaleY;
-				C.Style = 5;
-				C.DrawColor.R = 255;
-				C.DrawColor.G = 255;
-				C.DrawColor.B = 0;
-				C.SetPos(C.ClipX * TextOnePosX , C.ClipY * TextOnePosY);
-				
-				if (MyRI.CurrentName[WeaponNumber] != "")
-					C.DrawTextClipped("Preloading Weapon: " @ MyRI.CurrentName[WeaponNumber]);
-				else
-					C.DrawTextClipped("Preloading Weapon ");
+	if (WeaponNumber > MyRI.PreloadNum)
+	{
+		if (PreloadMeshActor != None)
+			PreloadMeshActor.Destroy();
 
-				C.Font = MessagesFont;
-				C.FontScaleX = FontScaleX;
-				C.FontScaleY = FontScaleY;
-				C.Style = 5;
-				C.DrawColor.R = 255;
-				C.DrawColor.G = 150;
-				C.DrawColor.B = 0;
-				C.SetPos(C.ClipX * TextTwoPosX , C.ClipY * TextTwoPosY);
-				C.DrawTextClipped("You may experience some lag");
-				C.Reset();
-			}
-			
-			if (PreloadMeshActor != None && MyRI.MeshList[WeaponNumber] != "")
-			{
-				WeaponMesh = Mesh(DynamicLoadObject(MyRI.MeshList[WeaponNumber],class'Mesh',True));
-				ViewportOwner.Actor.Pawn.GetAxes(ViewportOwner.Actor.Pawn.Rotation,X,Y,Z);
-				FinalLoc = ViewportOwner.Actor.Pawn.Location + (LocOffSetX * X) + (LocOffSetZ * Z);
-				PreloadMeshActor.SetLocation(FinalLoc);
-				PreloadMeshActor.LinkMesh(WeaponMesh,false);
-			}		
+		Master.RemoveInteraction(Self);
+		return;
+	}
+
+	if (bDisplayDebugText)
+	{
+		C.Font = MessagesFont;
+		C.FontScaleX = FontScaleX;
+		C.FontScaleY = FontScaleY;
+		C.Style = 5;
+		C.DrawColor.R = 255;
+		C.DrawColor.G = 255;
+		C.DrawColor.B = 0;
+		C.SetPos(C.ClipX * TextOnePosX , C.ClipY * TextOnePosY);
+
+		if (MyRI.CurrentName[WeaponNumber] != "")
+		{
+			DisplayName = MyRI.CurrentName[WeaponNumber];
+			j = InStr(DisplayName, ".");
+			if (j != -1)
+				DisplayName = Mid(DisplayName, j + 1);
+			C.DrawTextClipped("Preloading Weapon: " @ DisplayName);
 		}
 		else
+			C.DrawTextClipped("Preloading Weapon ");
+
+		C.Font = MessagesFont;
+		C.FontScaleX = FontScaleX;
+		C.FontScaleY = FontScaleY;
+		C.Style = 5;
+		C.DrawColor.R = 255;
+		C.DrawColor.G = 150;
+		C.DrawColor.B = 0;
+		C.SetPos(C.ClipX * TextTwoPosX , C.ClipY * TextTwoPosY);
+		C.DrawTextClipped("You may experience some lag");
+		C.Reset();
+	}
+
+	if (MyRI.CurrentName[WeaponNumber] != "")
+	{
+		WeaponClass = class<Weapon>(DynamicLoadObject(MyRI.CurrentName[WeaponNumber], class'Class', True));
+
+		if (WeaponClass != None)
 		{
-			foreach ViewportOwner.Actor.DynamicActors(class'BallisticPreloadReplicationInfo', RI)
+			for (j = 0; j < WeaponClass.default.Skins.Length; j++)
 			{
-				if(RI != None)
-					MyRI = RI;
+				if (WeaponClass.default.Skins[j] != None)
+					ViewportOwner.Actor.Level.AddPrecacheMaterial(WeaponClass.default.Skins[j]);
+			}
+		}
+
+		if (MyRI.MeshList[WeaponNumber] != "")
+		{
+			WeaponMesh = Mesh(DynamicLoadObject(MyRI.MeshList[WeaponNumber], class'Mesh', True));
+			SpawnPreloadMeshActor();
+			if (PreloadMeshActor != None && ViewportOwner.Actor.Pawn != None)
+			{
+				PreloadMeshActor.bHidden = true;
+				ViewportOwner.Actor.Pawn.GetAxes(ViewportOwner.Actor.Pawn.Rotation, X, Y, Z);
+				FinalLoc = ViewportOwner.Actor.Pawn.Location + (LocOffSetX * X) + (LocOffSetZ * Z);
+				PreloadMeshActor.SetLocation(FinalLoc);
+				PreloadMeshActor.LinkMesh(WeaponMesh, false);
 			}
 		}
 	}

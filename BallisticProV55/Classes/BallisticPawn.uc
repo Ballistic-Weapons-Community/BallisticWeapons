@@ -1543,11 +1543,66 @@ function CalcHitLoc( Vector hitLoc, Vector hitRay, out Name boneName, out float 
 
 State Dying
 {
+	//Allows gibbable corpses
 	simulated function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType)
 	{
-		if (level.Timeseconds == LastPainTime)
-			PlayHit(Damage, InstigatedBy, Hitlocation, damageType, Momentum);
-		super.TakeDamage( Damage, InstigatedBy, Hitlocation, Momentum, damageType);
+		local Vector shotDir, PushLinVel, PushAngVel;
+
+		if (bFrozenBody || bRubbery)
+			return;
+
+		if (Physics == PHYS_KarmaRagdoll)
+		{
+			if (bDeRes)
+				return;
+
+			// Accumulate corpse damage and gib when threshold exceeded
+			Health -= Damage;
+			if (Health < -200 || (DamageType != None && DamageType.default.bAlwaysGibs))
+			{
+				SpawnGibs(Rotation, DamageType.default.GibPerterbation);
+				ChunkUp(Rotation, DamageType.default.GibPerterbation);
+				return;
+			}
+
+			// Apply ragdoll physics
+			if (DamageType != None && DamageType.Default.bThrowRagdoll)
+			{
+				shotDir = Normal(Momentum);
+				PushLinVel = (RagDeathVel * shotDir) + vect(0, 0, 250);
+				PushAngVel = Normal(shotDir Cross vect(0, 0, 1)) * -18000;
+				KSetSkelVel(PushLinVel, PushAngVel);
+			}
+			else if (DamageType != None && DamageType.Default.bRagdollBullet)
+			{
+				if (Momentum == vect(0,0,0) && InstigatedBy != None)
+					Momentum = HitLocation - InstigatedBy.Location;
+				if (FRand() < 0.65)
+				{
+					if (Velocity.Z <= 0)
+						PushLinVel = vect(0,0,40);
+					PushAngVel = Normal(Normal(Momentum) Cross vect(0, 0, 1)) * -8000;
+					PushAngVel.X *= 0.5;
+					PushAngVel.Y *= 0.5;
+					PushAngVel.Z *= 4;
+					KSetSkelVel(PushLinVel, PushAngVel);
+				}
+				PushLinVel = RagShootStrength * Normal(Momentum);
+				KAddImpulse(PushLinVel, HitLocation);
+				if ((LifeSpan > 0) && (LifeSpan < DeResTime + 2))
+					LifeSpan += 0.2;
+			}
+			else
+			{
+				PushLinVel = RagShootStrength * Normal(Momentum);
+				KAddImpulse(PushLinVel, HitLocation);
+			}
+		}
+
+		PlayHit(Damage, InstigatedBy, Hitlocation, damageType, Momentum);
+
+		if (DamageType != None && DamageType.default.DamageOverlayMaterial != None && Level.DetailMode != DM_Low && !Level.bDropDetail)
+			SetOverlayMaterial(DamageType.default.DamageOverlayMaterial, DamageType.default.DamageOverlayTime, true);
 	}
 
     simulated function Timer()

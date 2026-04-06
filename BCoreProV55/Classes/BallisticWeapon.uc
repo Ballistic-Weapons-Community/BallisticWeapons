@@ -827,9 +827,12 @@ simulated function OnWeaponParamsChanged()
 	default.SightingTime 		= WeaponParams.SightingTime / ZoomTimeMod;
 
     // Only the SERVER initializes live MagAmmo.
-    // Clients use the replicated value coming from the server.
+    // Clients use the replicated value coming from the server via ClientSetMagAmmo.
+    // Without this guard, client PostNetBeginPlay -> Initialize resets MagAmmo to full,
+    // overwriting the replicated value from a dropped weapon pickup.
 
-	MagAmmo = WeaponParams.MagAmmo;
+	if (Role == ROLE_Authority)
+		MagAmmo = WeaponParams.MagAmmo;
 	//log("OnWeaponParamsChanged MagAmmo set to " $MagAmmo$ " for "$GetHumanReadableName());
 	default.MagAmmo				= WeaponParams.MagAmmo;
 	
