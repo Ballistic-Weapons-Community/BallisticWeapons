@@ -21,6 +21,7 @@ var() Font MessagesFont;
 var() Color BGMatColour;
 var() BallisticPreloadReplicationInfo MyRI;
 var() Actor PreloadMeshActor;
+var array<Actor> PreloadAuxActors;
 
 var bool bDisplayDebugText;
 
@@ -49,6 +50,8 @@ simulated function PostRender(Canvas Canvas)
 	local Material LoadedMat;
 	local int j, k;
 	local string DisplayName;
+	local StaticMesh AugSM;
+	local Actor AuxActor;
 
 	C = Canvas;
 
@@ -72,12 +75,20 @@ simulated function PostRender(Canvas Canvas)
 	{
 		Pause = 0;
 		WeaponNumber++;
+		for (j = 0; j < PreloadAuxActors.Length; j++)
+			if (PreloadAuxActors[j] != None)
+				PreloadAuxActors[j].Destroy();
+		PreloadAuxActors.Length = 0;
 	}
 
 	if (WeaponNumber > MyRI.PreloadNum)
 	{
 		if (PreloadMeshActor != None)
 			PreloadMeshActor.Destroy();
+		for (j = 0; j < PreloadAuxActors.Length; j++)
+			if (PreloadAuxActors[j] != None)
+				PreloadAuxActors[j].Destroy();
+		PreloadAuxActors.Length = 0;
 
 		Master.RemoveInteraction(Self);
 		return;
@@ -126,7 +137,15 @@ simulated function PostRender(Canvas Canvas)
 		// Only load materials on the first frame for each weapon
 		if (BWClass != None && Pause == 1)
 		{
-			ParamsClass = BWClass.static.GetParams();
+			// Preload attachment class
+			if (BWClass.default.AttachmentClass != None)
+				DynamicLoadObject(string(BWClass.default.AttachmentClass), class'Class', True);
+
+			if (BWClass.default.ParamsClasses.Length > class'BallisticReplicationInfo'.default.GameStyle)
+				ParamsClass = BWClass.static.GetParams();
+			else
+				ParamsClass = None;
+
 			if (ParamsClass == None)
 			{
 				Log("BW Preload: GetParams() returned None for" @ MyRI.CurrentName[WeaponNumber] @ "- GameStyle:" @ class'BallisticReplicationInfo'.default.GameStyle);
@@ -152,7 +171,67 @@ simulated function PostRender(Canvas Canvas)
 						}
 					}
 				}
+
+				// Preload gun augments and layout-specific attachment assets
+				for (j = 0; j < ParamsClass.default.Layouts.Length; j++)
+				{
+					// Load augment classes and spawn preload actors for their static meshes
+					for (k = 0; k < ParamsClass.default.Layouts[j].GunAugments.Length; k++)
+					{
+						if (ParamsClass.default.Layouts[j].GunAugments[k].GunAugmentClass != None)
+						{
+							DynamicLoadObject(string(ParamsClass.default.Layouts[j].GunAugments[k].GunAugmentClass), class'Class', True);
+							AugSM = ParamsClass.default.Layouts[j].GunAugments[k].GunAugmentClass.default.StaticMesh;
+							if (AugSM != None && ViewportOwner.Actor.Pawn != None)
+							{
+								AuxActor = ViewportOwner.Actor.Spawn(class'BallisticPreloadStaticMesh', ViewportOwner.Actor.Pawn);
+								if (AuxActor != None)
+								{
+									AuxActor.SetStaticMesh(AugSM);
+									PreloadAuxActors[PreloadAuxActors.Length] = AuxActor;
+								}
+							}
+						}
+					}
+
+					// Spawn preload actor for layout-specific attachment mesh
+					if (ParamsClass.default.Layouts[j].AttachmentMesh != None)
+					{
+						DynamicLoadObject(string(ParamsClass.default.Layouts[j].AttachmentMesh), class'Mesh', True);
+						if (ViewportOwner.Actor.Pawn != None)
+						{
+							AuxActor = ViewportOwner.Actor.Spawn(class'BallisticPreloadMesh', ViewportOwner.Actor.Pawn);
+							if (AuxActor != None)
+							{
+								AuxActor.bHidden = true;
+								AuxActor.LinkMesh(ParamsClass.default.Layouts[j].AttachmentMesh, false);
+								PreloadAuxActors[PreloadAuxActors.Length] = AuxActor;
+							}
+						}
+					}
+
+					// Load attachment material swaps
+					for (k = 0; k < ParamsClass.default.Layouts[j].AttachmentMaterialSwaps.Length; k++)
+					{
+						if (ParamsClass.default.Layouts[j].AttachmentMaterialSwaps[k].MaterialName != "")
+						{
+							LoadedMat = Material(DynamicLoadObject(ParamsClass.default.Layouts[j].AttachmentMaterialSwaps[k].MaterialName, class'Material', True));
+							if (LoadedMat != None)
+							{
+								C.SetPos(0, 0);
+								C.DrawTile(LoadedMat, 32, 32, 0, 0, 32, 32);
+							}
+						}
+					}
+				}
 			}
+		}
+
+		// Compute preload location
+		if (ViewportOwner.Actor.Pawn != None)
+		{
+			ViewportOwner.Actor.Pawn.GetAxes(ViewportOwner.Actor.Pawn.Rotation, X, Y, Z);
+			FinalLoc = ViewportOwner.Actor.Pawn.Location + (LocOffSetX * X) + (LocOffSetZ * Z);
 		}
 
 		if (MyRI.MeshList[WeaponNumber] != "")
@@ -162,12 +241,15 @@ simulated function PostRender(Canvas Canvas)
 			if (PreloadMeshActor != None && ViewportOwner.Actor.Pawn != None)
 			{
 				PreloadMeshActor.bHidden = true;
-				ViewportOwner.Actor.Pawn.GetAxes(ViewportOwner.Actor.Pawn.Rotation, X, Y, Z);
-				FinalLoc = ViewportOwner.Actor.Pawn.Location + (LocOffSetX * X) + (LocOffSetZ * Z);
 				PreloadMeshActor.SetLocation(FinalLoc);
 				PreloadMeshActor.LinkMesh(WeaponMesh, false);
 			}
 		}
+
+		// Position auxiliary preload actors (attachments, augments)
+		for (j = 0; j < PreloadAuxActors.Length; j++)
+			if (PreloadAuxActors[j] != None)
+				PreloadAuxActors[j].SetLocation(FinalLoc);
 	}
 }
 
