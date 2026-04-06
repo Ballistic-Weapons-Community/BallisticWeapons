@@ -450,6 +450,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 		LK05Attachment(ThirdPersonActor).bSilenced = bSilenced;
+		LK05Attachment(ThirdPersonActor).IAOverride(bSilenced);
 	}
 
 

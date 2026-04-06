@@ -36,9 +36,9 @@ simulated event PostNetReceive()
 	{
 		bOldSilenced = bSilenced;
 		if (bSilenced)
-			SetBoneScale (0, 1.0, 'SantasFrozenSphinctre');
+			SetBoneScale (0, 1.0, 'Silencer');
 		else
-			SetBoneScale (0, 0.0, 'SantasFrozenSphinctre');
+			SetBoneScale (0, 0.0, 'Silencer');
 	}
 	Super.PostNetReceive();
 }
@@ -47,15 +47,15 @@ simulated event PostNetReceive()
 function IAOverride(bool bSilenced)
 {
 	if (bSilenced)
-		SetBoneScale (0, 1.0, 'SantasFrozenSphinctre');
+		SetBoneScale (0, 1.0, 'Silencer');
 	else
-		SetBoneScale (0, 0.0, 'SantasFrozenSphinctre');
+		SetBoneScale (0, 0.0, 'Silencer');
 }
 
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
-	SetBoneScale (0, 0.0, 'SantasFrozenSphinctre');
+	SetBoneScale (0, 0.0, 'Silencer');
 }
 
 simulated function Hide(bool NewbHidden)
