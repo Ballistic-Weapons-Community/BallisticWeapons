@@ -64,7 +64,7 @@ function BuildWeaponList(out array<string> OutList)
 	local Mut_Outfitting OutfitMut;
 	local Mut_Loadout LoadoutMut;
 	local array<string> GroupWeapons;
-	local int i;
+	local int i, j;
 
 	// Try Outfitting mutator first (loadout groups 0-6)
 	foreach DynamicActors(class'Mut_Outfitting', OutfitMut)
