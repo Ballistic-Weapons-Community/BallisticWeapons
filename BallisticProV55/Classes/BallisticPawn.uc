@@ -174,6 +174,7 @@ var() float SlideCooldownTime;	// Time before the player can slide again after a
 var() float SlidePower;			 // Initial burst power when starting a slide, affects how fast the player accelerates at the start of the slide
 var bool bIsSliding;			 // Is the player currently sliding?
 var bool bSlideOnLand;			 // Player held duck while airborne — bypass speed threshold on next StartSlide
+var bool bSlideCorrected;		 // True after adopting a server correction into SlideVelocity during replay
 var float LastSlideEndTime;		// Time when the last slide ended
 var float LastLandTime;			// Time when the player last landed
 var vector SlideVelocity;		// Velocity during the slide
@@ -208,6 +209,8 @@ var() float JumpCrouchTime; 	// Time after we end crouch before jump crouch pena
 var() float BackSlidePowerScale;      // < 1.0 to weaken backward slides
 var() float BackMaxSlideSpeedScale;   // < 1.0 to cap backward slide speed lower
 var() float BackSlideDotThreshold;    // dot threshold vs forward ( negative means backwards :) )
+
+var bool bRagdollSetup;               // True while PlayDyingAnimation is initializing karma ragdoll
 
 replication
 {
@@ -1551,6 +1554,13 @@ State Dying
 		if (bFrozenBody || bRubbery)
 			return;
 
+		// KInitSkeletonKarma triggers SetCollision which can fire touch events
+		// before the ragdoll is fully registered.  Destroying the pawn now
+		// would call KTermSkeletonKarma on an incomplete entry, crashing in
+		// RemoveFromRagdollList.  Defer all damage until init finishes.
+		if (bRagdollSetup)
+			return;
+
 		if (Physics == PHYS_KarmaRagdoll)
 		{
 			if (bDeRes)
@@ -2291,6 +2301,16 @@ simulated function SpawnGibs(Rotator HitRotation, float ChunkPerterbation)
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'rfarm', HitRay, ChunkPerterbation, 100);
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'righthand', HitRay, ChunkPerterbation, 100);
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'head', HitRay, ChunkPerterbation, 100);
+}
+
+// Guard ragdoll init so re-entrant touch events during KInitSkeletonKarma
+// (triggered by SetCollision inside SetPhysics) cannot destroy the pawn
+// before it is fully registered in the ragdoll list.
+function PlayDyingAnimation(class<DamageType> DamageType, vector HitLoc)
+{
+	bRagdollSetup = true;
+	Super.PlayDyingAnimation(DamageType, HitLoc);
+	bRagdollSetup = false;
 }
 
 function PlayDyingSound()
@@ -3491,6 +3511,27 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 		if (bIsSliding)
 		{
+			// Accept server velocity corrections into SlideVelocity.
+			// SlideVelocity isn't replicated, so HandleSliding would overwrite
+			// the corrected Velocity with stale client data during saved-move
+			// replay, causing repeated desync and camera twitching.
+			// OldVelocity == Velocity captured before calcVelocity acceleration,
+			// i.e. the server's SlideVelocity at the correction point.
+			if (Role < ROLE_Authority && PlayerController(Controller) != None)
+			{
+				if (PlayerController(Controller).bUpdating)
+				{
+					if (!bSlideCorrected)
+					{
+						SlideVelocity = OldVelocity;
+						SlideVelocity.Z = 0;
+						bSlideCorrected = true;
+					}
+				}
+				else
+					bSlideCorrected = false;
+			}
+
 			TickSlopeCalculation(DeltaTime);
 			HandleSliding(DeltaTime);
 			/* //Work on this later - yoyobatty
