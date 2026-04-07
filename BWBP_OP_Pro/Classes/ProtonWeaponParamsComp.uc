@@ -6,6 +6,7 @@ defaultproperties
 		Damage=6
 		DamageType=Class'BWBP_OP_Pro.DTProtonStreamer'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTProtonStreamer'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTProtonStreamer'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.ProtonFlashEmitter'
 	End Object
 
@@ -23,6 +24,7 @@ defaultproperties
 		Damage=2
 		DamageType=Class'BWBP_OP_Pro.DTProtonStreamer'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTProtonStreamer'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTProtonStreamer'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.ProtonFlashEmitterAlt'
 	End Object
 

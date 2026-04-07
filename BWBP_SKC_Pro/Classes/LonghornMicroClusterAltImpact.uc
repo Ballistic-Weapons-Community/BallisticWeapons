@@ -82,8 +82,8 @@ defaultproperties
 	bNoInitialSpin=False
 	Damage=25.000000
 	DamageRadius=250.000000
-	DampenFactor=0.05
-	DampenFactorParallel=0.600000
+	DampenFactor=0.35
+	DampenFactorParallel=0.250000
 	DetonateDelay=1.250000
 	ArmedDetonateOn=DT_ImpactTimed
 	DrawScale=0.500000

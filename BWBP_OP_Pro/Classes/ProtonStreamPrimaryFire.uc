@@ -244,6 +244,7 @@ defaultproperties
 {
      Damage=6.000000
      DamageType=Class'BWBP_OP_Pro.DTProtonStreamer'
+     DamageTypeArm=Class'BWBP_OP_Pro.DTProtonStreamer'
      MuzzleFlashClass=Class'BWBP_OP_Pro.ProtonFlashEmitter'
      MaxWaterTraceRange=5000
      FireRecoil=1.000000

@@ -362,5 +362,8 @@ defaultproperties
      Skins(1)=Shader'BWBP_OP_Tex.ProtonPack.proton_gun_SH1'
      SoundPitch=56
 	 ParamsClasses(0)=Class'ParticleStreamerWeaponParams'
+	 ParamsClasses(1)=Class'ParticleStreamerWeaponParams'
+	 ParamsClasses(2)=Class'ParticleStreamerWeaponParams'
+	 ParamsClasses(3)=Class'ParticleStreamerWeaponParams'
      SoundRadius=32.000000
 }
