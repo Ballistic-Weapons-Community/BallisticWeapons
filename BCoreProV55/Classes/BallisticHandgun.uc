@@ -1192,7 +1192,7 @@ simulated function DoQuickDraw()
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
     	{		
-    		if ( Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun') )
+    		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing )
 	    	{
     			if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
     			{
@@ -1396,6 +1396,32 @@ function AttachToPawn(Pawn P)
 	}
 	else
 		P.AttachToBone(ThirdPersonActor,BoneName);
+}
+
+function bool HandlePickupQuery( pickup Item )
+{
+	local Inventory Inv;
+	local int Count;
+
+	// Allow picking up a second handgun of the same type for dual wielding
+	if (class == Item.InventoryType && !bDualBlocked)
+	{
+		for (Inv = Instigator.Inventory; Inv != None; Inv = Inv.Inventory)
+		{
+			if (Inv.class == class)
+				Count++;
+			if (Count >= 2)
+				break;
+		}
+		if (Count < 2)
+		{
+			if ( Inventory == None )
+				return false;
+			return Inventory.HandlePickupQuery(Item);
+		}
+	}
+
+	return Super.HandlePickupQuery(Item);
 }
 
 function GiveTo(Pawn Other, optional Pickup Pickup)
