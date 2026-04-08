@@ -11,7 +11,7 @@ class Ammo_MinigunRounds extends BallisticAmmo;
 defaultproperties
 {
      MaxAmmo=300
-     InitialAmount=0
+     InitialAmount=300
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_MinigunFlash'
      PickupClass=Class'BallisticProV55.AP_XMV850Ammo'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIcon_MinigunBelt'
