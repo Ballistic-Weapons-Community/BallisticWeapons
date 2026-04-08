@@ -435,7 +435,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (Instigator != None && AIController(Instigator.Controller) != None)
 	{
 		ServerSwitchLaser(FRand() > 0.5);
-		ServerFlashlight(FRand() > 0.5);
+		ServerFlashlight(FRand() > 0.7);
 	}
 
 	if (AIController(Instigator.Controller) != None)
