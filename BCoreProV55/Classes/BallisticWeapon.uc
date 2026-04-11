@@ -2187,6 +2187,7 @@ simulated final function PlayerZoom(PlayerController PC)
 simulated final function EndScopeZoom()
 {	
 	local PlayerController PC;
+	local float RestoreFOV;
 
 	PC = PlayerController(InstigatorController);
 
@@ -2195,7 +2196,13 @@ simulated final function EndScopeZoom()
 	
 	OldZoomFOV = PC.FovAngle;
 
-	PC.SetFOV(PC.DefaultFOV);
+	// On turrets, restore to TurretFOV instead of DefaultFOV
+	if (BallisticTurret(Instigator) != None && BallisticTurret(Instigator).TurretFOV > 0)
+		RestoreFOV = BallisticTurret(Instigator).TurretFOV;
+	else
+		RestoreFOV = PC.DefaultFOV;
+
+	PC.SetFOV(RestoreFOV);
 	PC.bZooming = False;
 }
 
@@ -2572,12 +2579,19 @@ simulated function PositionSights()
 {
 	local Vector SightPos, Offset, NewLoc, OldLoc;//, X,Y,Z;
 	local PlayerController PC;
+	local float BaseFOV;
 
 	//bots can't use sights
 	PC=PlayerController(InstigatorController);
 
 	if (PC == None)
 		return;
+
+	// On turrets, use TurretFOV as the base instead of DefaultFOV
+	if (BallisticTurret(Instigator) != None && BallisticTurret(Instigator).TurretFOV > 0)
+		BaseFOV = BallisticTurret(Instigator).TurretFOV;
+	else
+		BaseFOV = PC.DefaultFOV;
 
 	if (SightBone != '')
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
@@ -2602,7 +2616,7 @@ simulated function PositionSights()
 		}
 
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, SightZoomFactor); // FIXME: don't want to do tan/arctan on every tick
+			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(BaseFOV, SightZoomFactor); // FIXME: don't want to do tan/arctan on every tick
 	}
 	
 	else if (SightingPhase <= 0.0)
@@ -2620,9 +2634,9 @@ simulated function PositionSights()
 
 		if(ZoomType == ZT_Irons)
 		{
-	        PC.DesiredFOV = PC.DefaultFOV;
-			PlayerController(InstigatorController).SetFOV(PlayerController(InstigatorController).DefaultFOV);
-			PlayerController(InstigatorController).bZooming = False;
+	        PC.DesiredFOV = BaseFOV;
+			PC.SetFOV(BaseFOV);
+			PC.bZooming = False;
 		}
 	}
 	else
@@ -2635,7 +2649,7 @@ simulated function PositionSights()
 		RcComponent.UpdateADSTransition(SightingPhase);
 
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, Lerp(SightingPhase, 1, SightZoomFactor));
+	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(BaseFOV, Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 }
 
@@ -2890,11 +2904,15 @@ function UpdateSpeed()
 		return;
 	}
 
+	// Turret weapons have no Instigator when deployed
+	if (Instigator == None)
+		return;
+
 	// fallback if sprint control isn't in use
 	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
     //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+	if (xPawn(Instigator) != None && ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
     {
         //log("BW UpdateSpeed: "$NewSpeed$" * 1.4");
 		NewSpeed *= 1.4;

@@ -169,7 +169,10 @@ function DoFireEffect()
 
 simulated function bool AllowFire()
 {
-	if (BallisticTurret(Instigator) == None && Instigator.HeadVolume.bWaterVolume)
+	// Always allow undeploy when on a turret — no ammo check needed (#209)
+	if (BallisticTurret(Instigator) != None)
+		return true;
+	if (Instigator.HeadVolume.bWaterVolume)
 		return false;
 	return super.AllowFire();
 }

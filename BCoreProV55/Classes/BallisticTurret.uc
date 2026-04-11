@@ -688,7 +688,7 @@ function UndeployTurret ()
 	 	W = Weapon(OldDriver.FindInventoryType(WC));
 		if (W != None)
 		{
-			W.AddAmmo(MagAmmoAmount, 0);
+			InitUndeployedWeapon(W);
 			Destroy();
 			return;
 		}
@@ -883,7 +883,7 @@ simulated function ClientKDriverLeave(PlayerController PC)
 	{
 		if(BallisticWeapon(Weapon).bScopeView)
 		{
-			PC.EndZoom();
+			BallisticWeapon(Weapon).StopScopeView(true);
 		}
 	}
 
@@ -994,6 +994,11 @@ event bool KDriverLeave( bool bForceLeave )
 		C.RouteGoal = None;
 	if (C.MoveTarget == self)
 		C.MoveTarget = None;
+
+	// Clean up scope state while controller is still valid
+	if (BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
+		BallisticWeapon(Weapon).StopScopeView(true);
+
 	C.bVehicleTransition = true;
 	Controller.UnPossess();
 
@@ -1022,14 +1027,6 @@ event bool KDriverLeave( bool bForceLeave )
 	//SaveTurretWeaponInfo();
 	
 	Driver.bNoWeaponFiring = false;
-	
-	if (BallisticWeapon(Weapon) != None)
-	{				
-		if(BallisticWeapon(Weapon).bScopeView)
-		{
-			PC.EndZoom();
-		}
-	}
 	
 	Level.Game.DriverLeftVehicle(self, Driver);
 

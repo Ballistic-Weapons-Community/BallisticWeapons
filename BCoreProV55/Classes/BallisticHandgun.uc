@@ -1252,14 +1252,10 @@ simulated function BallisticWeapon FindQuickDraw(BallisticWeapon CurrentChoice, 
 
 simulated function bool AllowWeapPrevUI()
 {
-	if (OtherGun != None)
-		return false;
 	return Super.AllowWeapPrevUI();
 }
 simulated function bool AllowWeapNextUI()
 {
-	if (OtherGun != None)
-		return false;
 	return Super.AllowWeapNextUI();
 }
 
@@ -1691,13 +1687,27 @@ simulated function HandgunRaised (BallisticHandgun Other)
 {
 	if (Other == self)
 	{
-		if (Role == ROLE_Authority && !bNeedReload && bNeedCock)
-
-			ServerCockGun();
+		if (!bNeedReload && bNeedCock)
+		{
+			if (Role == ROLE_Authority)
+				ServerCockGun();
+			else
+				CommonCockGun();
+		}
 	}
 }
 
-simulated function LowerHandGun ()	{	GotoState('Lowering');	}
+simulated function LowerHandGun ()
+{
+	// Clean up interrupted reload state so ServerCockGun won't reject cocking when raised
+	if (ReloadState != RS_None)
+	{
+		ReloadState = RS_None;
+		if (Role == ROLE_Authority)
+			bServerReloading = false;
+	}
+	GotoState('Lowering');
+}
 simulated function RaiseHandGun ()	{	GotoState('Raising');	}
 // Special States for gun that is lowered while other is busy
 simulated state DualAction

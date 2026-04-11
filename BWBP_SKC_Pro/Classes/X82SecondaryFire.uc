@@ -1,5 +1,13 @@
 class X82SecondaryFire extends M353SecondaryFire;
 
+// Allow undeploy even when out of ammo (#209)
+simulated function bool AllowFire()
+{
+	if (BallisticTurret(Instigator) != None)
+		return true;
+	return super.AllowFire();
+}
+
 function DoFireEffect()
 {
 	if (BallisticTurret(Instigator) != None)

@@ -92,6 +92,18 @@ simulated event PostBeginPlay()
     LastKillTime = -5.0;
 }
 
+// Clear lingering screen effects (flash, fog) on respawn (#134)
+function ClientRestart(Pawn NewPawn)
+{
+	FlashScale = default.FlashScale;
+	FlashFog = vect(0,0,0);
+	DesiredFlashScale = 0;
+	DesiredFlashFog = vect(0,0,0);
+	bOverrideDmgFlash = false;
+
+	Super.ClientRestart(NewPawn);
+}
+
 exec simulated function ChangeCamDist(float F)
 {
 	SavedBehindDistFactor = F;

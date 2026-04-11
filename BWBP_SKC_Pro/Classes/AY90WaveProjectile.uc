@@ -34,7 +34,8 @@ simulated function Tick(float DT)
 		DS.X = 1;
 		bScaleDone=true;
 	}
-	SetDrawScale3D(DS);
+	if (DS != DrawScale3D)
+		SetDrawScale3D(DS);
 }
 
 // A73 heals vehicles and PowerCores

@@ -136,12 +136,13 @@ function bool InternalOnDragDrop(GUIComponent Sender)
 function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 {
 	local GUIList L;
+	local array<GUIListElem> PendingElems;
 
 	L = lb_UnusedWeapons.List;
 
 	if (bAccepted && Accepting != None)
 	{
-		L.GetPendingElements();
+		PendingElems = L.GetPendingElements();
 		L.bRepeatClick = False;
 	}
 

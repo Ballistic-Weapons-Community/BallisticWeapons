@@ -25,7 +25,10 @@ simulated function Tick(float DT)
 	local vector DS;
 
 	if (bScaleDone)
+	{
 		Disable('Tick');
+		return;
+	}
 
 	DS.X = VSize(Location-StartLocation)/(384*DrawScale);
 	DS.Y = 0.5;
@@ -35,7 +38,8 @@ simulated function Tick(float DT)
 		DS = vect(1,0.5,0.5);
 		bScaleDone=true;
 	}
-	SetDrawScale3D(DS);
+	if (DS != DrawScale3D)
+		SetDrawScale3D(DS);
 }
 
 // A73 heals vehicles and PowerCores

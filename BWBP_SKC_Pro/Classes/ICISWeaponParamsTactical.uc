@@ -17,6 +17,7 @@ defaultproperties
 		PreFireTime=0.65
 		FireEndAnimRate=1.5
         PreFireAnim="PrepHealLoop"
+        FireAnim="HealLoopA"
         FireLoopAnim="HealLoopA"
         FireEndAnim="HealLoopEnd"
         FireEffectParams(0)=FireEffectParams'TacticalPrimaryEffectParams'

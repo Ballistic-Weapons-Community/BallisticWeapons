@@ -49,16 +49,16 @@ function TryDamage (Pawn Victim, float Interval, float Damage, class<DamageType>
 	local int Index;
 	local Vector XYVel;
 
-	Index = FindIndex(Victim);
-
 	if (Victim == None)
 		return;
+
+	Index = FindIndex(Victim);
 
 	if (HitPawnData[Index].HitTime + Interval < Level.TimeSeconds || HitPawnData[Index].HitTime == 0 )
 	{
 		HitPawnData[Index].HitTime = Level.TimeSeconds;
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
-		if (Instigator != None && Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
+		if (Instigator != None && Victim != None && Victim.Controller != None && Instigator.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
 		{
 			//bog down allies attempting to crawl through acid
 			XYVel = -Victim.Velocity;

@@ -126,12 +126,13 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 {
 	local int i;
 	local GUIList L;
+	local array<GUIListElem> PendingElems;
 
 	L = lb_UnusedWeapons.List;
 
 	if (bAccepted && Accepting != None)
 	{
-		L.GetPendingElements();
+		PendingElems = L.GetPendingElements();
 		if ( Accepting != Self )
 		{
 			for ( i = 0; i < L.SelectedElements.Length; i++ )

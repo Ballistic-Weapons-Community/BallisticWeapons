@@ -128,6 +128,29 @@ simulated function Notify_HealOther()
 simulated function ClientStartReload(optional byte i)
 {
 }
+
+// L8GI alt-fire is BallisticMeleeFire, not BallisticHandGrenadeFire.
+// Override ChargeBar to prevent invalid cast crash from parent class.
+simulated function float ChargeBar()
+{
+	local BallisticHandGrenadeFire GF;
+
+	if (FireMode[1] != None && FireMode[1].bIsFiring)
+	{
+		GF = BallisticHandGrenadeFire(FireMode[1]);
+		if (GF != None)
+			return GF.CalculateThrowPower();
+		return 0;
+	}
+	if (FireMode[0] != None)
+	{
+		GF = BallisticHandGrenadeFire(FireMode[0]);
+		if (GF != None)
+			return GF.CalculateThrowPower();
+	}
+	return 0;
+}
+
 // Reload releases clip
 function ServerStartReload (optional byte i)
 {

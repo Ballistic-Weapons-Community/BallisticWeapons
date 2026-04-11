@@ -83,6 +83,8 @@ simulated event ModeTick(float DT)
 	super.ModeTick(DT);
 	if (!bIsFiring)
 		return;
+	if (Weapon == None || Instigator == None)
+		return;
 	if (Instigator.PhysicsVolume.bWaterVolume)
 		HVCMk9LightningGun(Weapon).AddHeat(DT*3);
 	else
