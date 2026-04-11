@@ -17,7 +17,7 @@ defaultproperties
          ColorMultiplierRange=(Y=(Min=0.800000,Max=0.800000),Z=(Min=0.700000,Max=0.700000))
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         StartLocationOffset=(X=-54.000000,Y=-0.850000,Z=11.600000)
+         StartLocationOffset=(X=-31.000000,Y=-0.850000,Z=11.600000)
          StartSizeRange=(X=(Min=0.450000,Max=0.450000),Y=(Min=0.450000,Max=0.450000),Z=(Min=0.450000,Max=0.450000))
          InitialParticlesPerSecond=5000.000000
          Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
@@ -35,7 +35,7 @@ defaultproperties
          ColorMultiplierRange=(Y=(Min=0.800000,Max=0.800000),Z=(Min=0.700000,Max=0.700000))
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         StartLocationOffset=(X=-54.000000,Y=0.850000,Z=11.600000)
+         StartLocationOffset=(X=-31.000000,Y=0.850000,Z=11.600000)
          StartSizeRange=(X=(Min=0.450000,Max=0.450000),Y=(Min=0.450000,Max=0.450000),Z=(Min=0.450000,Max=0.450000))
          InitialParticlesPerSecond=5000.000000
          Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
@@ -45,5 +45,4 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BallisticProV55.Fifty9SightLEDs.SpriteEmitter1'
 
      bHidden=True
-     RelativeRotation=(Roll=8192)
 }

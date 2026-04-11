@@ -186,6 +186,11 @@ simulated function PlayScopeUp()
 //===========================================================================
 simulated function TickSighting (float DT)
 {
+	// In 3rd person, RenderOverlays is not called so PositionSights
+	// must run here to manage ZT_Irons FOV changes (#230).
+	if (!Instigator.IsFirstPerson() && SightingState != SS_None)
+		PositionSights();
+
 	if (SightingState == SS_None || SightingState == SS_Active)
 		return;
 

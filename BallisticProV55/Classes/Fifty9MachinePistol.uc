@@ -82,21 +82,6 @@ simulated function float ChargeBar()
 	return MeleeFatigue;
 }
 
-simulated function RenderSightFX(Canvas Canvas)
-{
-	local coords C;
-
-	if (SightFX != None)
-	{
-		C = GetBoneCoords(SightFXBone);
-		SightFX.SetLocation(C.Origin);
-		if (RenderedHand < 0)
-			SightFX.SetRotation( OrthoRotation(C.XAxis, -C.YAxis, C.ZAxis) - rot(0,0,8192) );
-		else
-			SightFX.SetRotation( OrthoRotation(C.XAxis, C.YAxis, C.ZAxis)  + rot(0,0,8192) );
-		Canvas.DrawActor(SightFX, false, false, DisplayFOV);
-	}
-}
 
 simulated function bool HasAmmoLoaded(byte Mode)
 {
