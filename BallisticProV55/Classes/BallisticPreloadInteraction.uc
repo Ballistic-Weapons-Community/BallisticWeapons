@@ -68,7 +68,16 @@ simulated function PostRender(Canvas Canvas)
 
 	// Wait for replicated data to arrive before starting
 	if (MyRI.PreloadNum == 0)
+	{
+		// If confirmed no weapons to preload (RI has been received but list is empty), clean up
+		if (MyRI.MeshList[0] == "" && MyRI.CurrentName[0] == "")
+		{
+			if (PreloadMeshActor != None)
+				PreloadMeshActor.Destroy();
+			Master.RemoveInteraction(Self);
+		}
 		return;
+	}
 
 	Pause++;
 	if (Pause == 15)

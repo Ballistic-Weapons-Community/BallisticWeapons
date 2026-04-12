@@ -50,7 +50,7 @@ var() globalconfig bool		bUseStumps;					// Toggles stumps for severed limbs
 var() globalconfig bool		bUseChunks;					// Toggles gibs and chunky bits
 var() globalconfig bool		bUseBloodEffects;			// Toggels blood effect emitters
 var() globalconfig bool		bUseScreenFX;				// Toggles blood splatter that stick to the camera... sick!
-
+var() globalconfig bool		bGibbableCorpses;			// Toggles whether corpses can be gibbed by further damage :D
 var() globalconfig int		GibMultiplier;				// For extra gibs
 
 replication
@@ -222,6 +222,7 @@ defaultproperties
      bUseChunks=True
      bUseBloodEffects=True
      bUseScreenFX=True
+     bGibbableCorpses=True
      GibMultiplier=1
      DrawType=DT_None
      RemoteRole=ROLE_SimulatedProxy

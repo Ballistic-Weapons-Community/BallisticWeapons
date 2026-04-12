@@ -640,6 +640,8 @@ simulated event ModeDoFire()
 
 	if (Load == 2)
 	{    
+		if (BW.bNoMag)
+			NextFireTime += 0.7;
 		Load = AmmoPerFire;
 		SwitchShotParams();
 	}

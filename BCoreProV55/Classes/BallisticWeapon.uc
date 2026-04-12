@@ -2851,7 +2851,7 @@ exec simulated function MeleeHold()
 
 simulated function MeleeHoldImpl()
 {
-	if (MeleeFireMode == None || (ClientState != WS_ReadyToFire && ClientState != WS_Bringup) || (MeleeState != MS_None && MeleeState != MS_Strike))
+	if (MeleeFireMode == None || !HasAnim(MeleeFireMode.FireAnim) || (ClientState != WS_ReadyToFire && ClientState != WS_Bringup) || (MeleeState != MS_None && MeleeState != MS_Strike))
 		return;
 		
 	if (MeleeState == MS_Strike)
@@ -2926,6 +2926,8 @@ function UpdateSpeed()
 
 function ServerMeleeHold()
 {
+	if (MeleeFireMode == None || !HasAnim(MeleeFireMode.FireAnim))
+		return;
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeHold");
 	MeleeState = MS_Held;
 	ReloadState = RS_None;
