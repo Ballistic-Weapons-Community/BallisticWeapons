@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class DTGASCMelee extends DT_BWBlunt;
 
@@ -19,7 +19,7 @@ defaultproperties
      DeathString="%o was beaten like an egg by %k's GASC."
      FemaleSuicide="%o beat herself up with an GASC."
      MaleSuicide="%o beat himself up with an GASC."
-     bArmorStops=False
+     bArmorStops=True
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.300000
 }

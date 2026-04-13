@@ -18,7 +18,7 @@ defaultproperties
      DeathString="%k rammed the blades of an Elite AY90 into %o's head."
      FemaleSuicide="%o sliced her own head in half with the Elite AY90."
      MaleSuicide="%o sliced his own head in half with the Elite AY90."
-     bArmorStops=False
+     bArmorStops=True
      bAlwaysSevers=True
      bSpecial=True
      PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'

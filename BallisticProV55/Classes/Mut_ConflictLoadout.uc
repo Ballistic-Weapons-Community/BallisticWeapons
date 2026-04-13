@@ -825,7 +825,7 @@ defaultproperties
 	bHideLockers=True
 	LoadoutOptionText(0)="Standard"
 	LoadoutOptionText(1)="Evolution"
-	LoadoutOptionText(2)="Purchasing (NOT IMPLEMENTED)"
+	//LoadoutOptionText(2)="Purchasing (NOT IMPLEMENTED)"
 	ConfigMenuClassName="BallisticProV55.ConfigMenu_Inventory"
 	FriendlyName="BallisticPro: Conflict Loadout"
 	Description="Play Ballistic Weapons with an expanded loadout system supporting Evolution configuration and inventory space."

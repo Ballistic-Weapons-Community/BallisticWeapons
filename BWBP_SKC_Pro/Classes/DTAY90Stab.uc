@@ -18,7 +18,7 @@ defaultproperties
      DeathString="%o was impaled on the blades of %k's Elite AY90."
      FemaleSuicide="%o cut herself on her Elite AY90."
      MaleSuicide="%o cut himself on his Elite AY90."
-     bArmorStops=False
+     bArmorStops=True
      bNeverSevers=True
      PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'
      KDamageImpulse=2000.000000

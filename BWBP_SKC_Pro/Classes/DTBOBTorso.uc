@@ -19,7 +19,7 @@ defaultproperties
      DeathString="%k cut open %o with his black ops blade."
      FemaleSuicide="%o cut her own heart out."
      MaleSuicide="%o cut his own heart out."
-     bArmorStops=False
+     bArmorStops=True
      bNeverSevers=True
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.500000

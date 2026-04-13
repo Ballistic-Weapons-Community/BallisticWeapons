@@ -18,7 +18,7 @@ defaultproperties
      DeathString="%k's X5W cut some pieces out of %o's head."
      FemaleSuicide="%o licked her X5W blade."
      MaleSuicide="%o licked his X5W blade. OM NOM NOM."
-     bArmorStops=False
+     bArmorStops=True
      bAlwaysSevers=True
      bSpecial=True
      KDamageImpulse=1000.000000

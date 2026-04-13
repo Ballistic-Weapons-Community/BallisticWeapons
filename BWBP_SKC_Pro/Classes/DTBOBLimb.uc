@@ -18,6 +18,6 @@ defaultproperties
      DeathString="%k hacked off %o's arm with %kh X5W."
      FemaleSuicide="%o held her black ops blade the wrong way."
      MaleSuicide="%o held his X5W by the wrong handle."
-     bArmorStops=False
+     bArmorStops=True
      KDamageImpulse=1000.000000
 }
