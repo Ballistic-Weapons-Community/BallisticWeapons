@@ -83,12 +83,12 @@ function SaveSettings()
         return;
 
     class'Mut_BallisticSwap'.default.NadeReplacePercent 	= fl_NadePct.GetValue();
+    class'Mut_BallisticSwap'.static.StaticSaveConfig();
 	class'Mut_Ballistic'.default.bBrightPickups		 		= ch_BrightPickups.IsChecked();
 	class'Mut_Ballistic'.default.bPickupsChange 			= ch_PickupsChange.IsChecked();
 	class'Mut_Ballistic'.default.bSpawnUniqueItems 			= ch_SpawnUnique.IsChecked();
 	class'Mut_Ballistic'.default.bKillRogueWeaponPickups	= ch_KillRogueWPs.IsChecked();
 	class'Mut_Ballistic'.default.bLeaveSuper 				= ch_LeaveSuper.IsChecked();
-	class'Mut_BallisticSwap'.static.StaticSaveConfig();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
 
 	class'BallisticProV55.Mut_Pickups'.default.bRemoveAmmoPacks = chk_bRemoveAmmoPacks.IsChecked();
