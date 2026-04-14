@@ -3593,7 +3593,7 @@ simulated function StartSlide()
 		bLandSlide = bSlideOnLand;
 		bSlideOnLand = false;
 		//log("Starting slide for:"@GetHumanReadableName());
-		if (Role == ROLE_Authority)
+		if (Role == ROLE_Authority && Sprinter != None)
 		{
 			Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
 			Sprinter.DelayRecharge();
@@ -3629,7 +3629,10 @@ simulated function StartSlide()
         }
 
         // Apply initial impulse scaled by stamina (same logic, with effective power)
-        EffImpulse = FMax(EffSlidePower * 0.25, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
+        if (Sprinter != None)
+            EffImpulse = FMax(EffSlidePower * 0.25, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
+        else
+            EffImpulse = EffSlidePower;
         SlideVelocity += Normal(SlideVelocity) * EffImpulse;
 
 		LastFallingVelocity = vect(0,0,0); 
