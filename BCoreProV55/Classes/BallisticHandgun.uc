@@ -1812,7 +1812,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		C.CurY = C.ClipY - 196 * ScaleFactor * class'HUD'.default.HudScale - YL;
 		C.DrawText(Temp, false);
 	}
-	// Draw weapon fireing mode
+	// Draw weapon firing mode
 	if (CurrentWeaponMode < WeaponModes.length && !WeaponModes[CurrentWeaponMode].bUnavailable && WeaponModes[CurrentWeaponMode].ModeName != "")
 	{
 		C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
