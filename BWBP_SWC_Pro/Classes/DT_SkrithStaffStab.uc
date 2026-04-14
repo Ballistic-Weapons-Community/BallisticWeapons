@@ -18,7 +18,7 @@ defaultproperties
      DeathString="%o was impaled on the blades of %k's Shillelagh."
      FemaleSuicide="%o cut herself on her Shillelagh."
      MaleSuicide="%o cut himself on his Shillelagh."
-     bArmorStops=False
+     bArmorStops=True
      bNeverSevers=True
      PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'
      KDamageImpulse=2000.000000

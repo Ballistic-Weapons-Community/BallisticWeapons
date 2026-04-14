@@ -20,7 +20,7 @@ defaultproperties
      DeathString="%k's knife defied all odds to enter %o's vodka-blurred eye."
      FemaleSuicide="%o's PKM bayonet gave her a surprise."
      MaleSuicide="%o's PKM bayonet gave him a surprise."
-     bArmorStops=False
+     bArmorStops=True
      bNeverSevers=True
      KDamageImpulse=1000.000000
 }

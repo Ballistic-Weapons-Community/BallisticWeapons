@@ -28,6 +28,7 @@ defaultproperties
      PickupMessage="You picked up the X5W Black Ops Blade"
      PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.X5W.X5WPickupHi'
+     BonSide=False
      Physics=PHYS_None
      DrawScale=0.450000
      CollisionHeight=4.000000

@@ -26,7 +26,7 @@ defaultproperties
      DeathString="%o's chest now has glowing lacerations by %k."
      FemaleSuicide="%o tripped and died a flamey, burney death."
      MaleSuicide="%o tripped and died a flamey, burney death."
-     bArmorStops=False
+     bArmorStops=True
      GibModifier=4.000000
      PawnDamageSounds(0)=SoundGroup'BWBP_SKC_Sounds.NEX.Nex-HitBod'
      GibPerterbation=0.200000

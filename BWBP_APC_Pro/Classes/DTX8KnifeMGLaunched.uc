@@ -19,7 +19,7 @@ defaultproperties
      DeathString="%k showed %o how in %kh country, KNIFE SHOOTS YOU."
      FemaleSuicide="%o played Russian roulette with her knife launcher."
      MaleSuicide="%o played Russian roulette with his knife launcher."
-     bArmorStops=False
+     bArmorStops=True
      bNeverSevers=True
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.100000

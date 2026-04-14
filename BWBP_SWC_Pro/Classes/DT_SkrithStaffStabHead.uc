@@ -18,7 +18,7 @@ defaultproperties
      DeathString="%k rammed the blades of an Shillelagh into %o's head."
      FemaleSuicide="%o sliced her own head in half with the Shillelagh."
      MaleSuicide="%o sliced his own head in half with the Shillelagh."
-     bArmorStops=False
+     bArmorStops=True
      bAlwaysSevers=True
      bSpecial=True
      PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'
