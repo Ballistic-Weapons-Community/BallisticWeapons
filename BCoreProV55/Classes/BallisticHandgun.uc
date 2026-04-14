@@ -1168,7 +1168,7 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked)
     	//if ( Inv != self && Inv.Class == Class) //ClassIsChildOf(Inv.class, class'BallisticHandgun') )
     	{
-    		if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
+    		if (Inv.class == class)
     		{
    				Best = BallisticHandgun(Inv);
     			break;
@@ -1194,7 +1194,7 @@ simulated function DoQuickDraw()
     	{		
     		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing )
 	    	{
-    			if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
+    			if (Inv.class == class)
     			{
    					Best = BallisticHandgun(Inv);
     				break;
