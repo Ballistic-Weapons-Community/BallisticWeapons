@@ -140,6 +140,9 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 
 	Super.NewDrawWeaponInfo(C, YPos);
 
+	if (bSkipDrawWeaponInfo)
+		return;
+
 	ScaleFactor = C.ClipX / 1600;
 	ScaleFactor2 = 45 * ScaleFactor;
 	

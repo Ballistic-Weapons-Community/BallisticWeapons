@@ -472,11 +472,14 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	local float ScaleFactor, ScaleFactor2;
 
 	Super.NewDrawWeaponInfo (C, YPos);
+
+	if (bSkipDrawWeaponInfo)
+		return;
 	
 	//Draw grenades, they're not accounted for in alternative HUD
 	ScaleFactor = C.ClipX / 1600;
 	ScaleFactor2 = 99 * C.ClipX/3200;
-	
+
 	C.Style = ERenderStyle.STY_Alpha;
 	C.DrawColor = class'HUD'.Default.WhiteColor;
 	Count = Min(8,Grenades);

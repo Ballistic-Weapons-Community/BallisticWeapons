@@ -42,6 +42,9 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 
 	Super.NewDrawWeaponInfo(C, YPos);
 
+	if (bSkipDrawWeaponInfo)
+		return;
+
 	AmmoDimensions = C.ClipY * 0.06;
 	
 	C.Style = ERenderStyle.STY_Alpha;

@@ -184,6 +184,9 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	local float ScaleFactor, ScaleFactor2;
 
 	Super.NewDrawWeaponInfo (C, YPos);
+
+	if (bSkipDrawWeaponInfo)
+		return;
 	
 	//Draw grenades, they're not accounted for in alternative HUD
 	ScaleFactor = C.ClipX / 1600;
