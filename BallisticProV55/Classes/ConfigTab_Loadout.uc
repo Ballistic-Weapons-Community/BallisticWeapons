@@ -456,7 +456,7 @@ function bool InternalOnClick(GUIComponent Sender)
 				}
 			}
 		}
-		if (!lb_NewWeapons.CheckList.IsSection())
+		else
 			DisplayWeapon();
 	}
 	else if (Sender == BAddAll)				// FILL
