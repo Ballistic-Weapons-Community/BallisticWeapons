@@ -2389,6 +2389,16 @@ simulated function DrawFPWeapon( Canvas Canvas )
 		if ( Hand != 0 )
 			newScale3D.Y *= Hand;
 		SetDrawScale3D(newScale3D);
+		for (m = 0; m < GunAugments.Length; m++)
+		{
+			if (GunAugments[m] != None)
+			{
+				NewScale3D = GunAugments[m].Default.DrawScale3D;
+				if (Hand < 0)
+					NewScale3D.Y *= -1;
+				GunAugments[m].SetDrawScale3D(NewScale3D);
+			}
+		}
 		SetDrawScale(Default.DrawScale);
 		CenteredRoll = Default.CenteredRoll;
 		CenteredYaw = Default.CenteredYaw;
