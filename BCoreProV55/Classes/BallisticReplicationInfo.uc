@@ -426,7 +426,7 @@ defaultproperties
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bNoReloading=False
-	bNoRandomCamo=True
+	bNoRandomCamo=False
 
 	bAlternativePickups=False
 	bUniversalMineLights=True
