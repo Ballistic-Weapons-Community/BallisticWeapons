@@ -80,4 +80,5 @@ defaultproperties
      End Object
      Emitters(2)=SpriteEmitter'BWBP_OP_Pro.IE_XOXOShockwave.IE_XOXOShockwaveEmitter2'
 
+     AutoDestroy=True
 }

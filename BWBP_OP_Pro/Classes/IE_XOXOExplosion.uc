@@ -222,4 +222,5 @@ defaultproperties
      End Object
      Emitters(7)=SparkEmitter'BWBP_OP_Pro.IE_XOXOExplosion.XOXOExplodeBangSparks'
 
+     AutoDestroy=True
 }

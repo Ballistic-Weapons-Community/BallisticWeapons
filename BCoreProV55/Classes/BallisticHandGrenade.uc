@@ -409,6 +409,13 @@ simulated function KillSmoke()
     	GrenadeSmoke.Kill();
 	GrenadeSmoke = None;
 }
+
+simulated function Destroyed()
+{
+	KillSmoke();
+	Super.Destroyed();
+}
+
 // Anim Notify for pin pull
 simulated function Notify_GrenadePinPull ()
 {

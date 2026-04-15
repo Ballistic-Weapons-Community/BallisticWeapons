@@ -564,4 +564,5 @@ defaultproperties
      DrawScale3D=(X=2.000000,Y=2.000000,Z=2.000000)
      Skins(0)=Shader'BWBP_OP_Tex.XOXO.xenonshad'
      bUnlit=False
+     AutoDestroy=True
 }

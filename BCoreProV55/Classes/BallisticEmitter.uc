@@ -143,8 +143,10 @@ static function ResumeParticles (Emitter TheOne)
 {
 	local int i;
 
+	TheOne.AutoDestroy = TheOne.default.AutoDestroy;
 	for (i=0; i<TheOne.Emitters.Length; i++)
 	{
+		TheOne.Emitters[i].AutoDestroy					= TheOne.Emitters[i].default.AutoDestroy;
 		TheOne.Emitters[i].AutomaticInitialSpawning		= TheOne.Emitters[i].default.AutomaticInitialSpawning;
 		TheOne.Emitters[i].RespawnDeadParticles			= TheOne.Emitters[i].default.RespawnDeadParticles;
 		TheOne.Emitters[i].InitialParticlesPerSecond	= TheOne.Emitters[i].default.InitialParticlesPerSecond;

@@ -123,4 +123,5 @@ simulated function InitHitForce(vector HitRay, float GibPerterbation)
 
 defaultproperties
 {
+     AutoDestroy=True
 }

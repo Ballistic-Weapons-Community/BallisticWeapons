@@ -107,4 +107,5 @@ defaultproperties
      End Object
      Emitters(3)=SpriteEmitter'BWBP_OP_Pro.IE_FM13GasExplode.SpriteEmitter0'
 
+     AutoDestroy=True
 }

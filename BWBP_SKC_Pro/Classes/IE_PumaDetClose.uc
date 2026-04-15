@@ -259,4 +259,5 @@ defaultproperties
      LightPeriod=3
      bNoDelete=False
      bUnlit=False
+     AutoDestroy=True
 }

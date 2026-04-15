@@ -77,4 +77,5 @@ defaultproperties
      End Object
      Emitters(2)=SpriteEmitter'BWBP_OP_Pro.IE_RaygunProjectile.SpriteEmitter31'
 
+     AutoDestroy=True
 }

@@ -129,4 +129,5 @@ defaultproperties
      End Object
      Emitters(4)=SpriteEmitter'BWBP_SKC_Pro.IE_BulletRadLarge.SpriteEmitter3'
 
+     AutoDestroy=True
 }
