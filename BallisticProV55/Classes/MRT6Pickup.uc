@@ -1,7 +1,7 @@
 //=============================================================================
 // MRT6Pickup.
 //=============================================================================
-class MRT6Pickup extends BallisticHandgunPickup
+class MRT6Pickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
