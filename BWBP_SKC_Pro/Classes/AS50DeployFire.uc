@@ -5,7 +5,7 @@ function DoFireEffect()
 	if (BallisticTurret(Instigator) != None)
 		FireAnim='Undeploy';
 	else
-		AS50Rifle(Weapon).Notify_Deploy();
+		super.DoFireEffect();
 }
 
 defaultproperties

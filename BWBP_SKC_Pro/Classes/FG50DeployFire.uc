@@ -5,7 +5,7 @@ function DoFireEffect()
 	if (BallisticTurret(Instigator) != None)
 		FireAnim='Undeploy';
 	else
-		FG50Machinegun(Weapon).Notify_Deploy();
+		super.DoFireEffect();
 }
 
 defaultproperties

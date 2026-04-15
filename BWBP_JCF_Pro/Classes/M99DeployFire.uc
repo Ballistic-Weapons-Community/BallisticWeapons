@@ -5,7 +5,7 @@ function DoFireEffect()
 	if (BallisticTurret(Instigator) != None)
 		FireAnim='Undeploy';
 	else
-		M99Rifle(Weapon).Notify_Deploy();
+		super.DoFireEffect();
 }
 
 defaultproperties

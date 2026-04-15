@@ -293,12 +293,18 @@ simulated state Mount
 		{
 			super(BallisticFire).PlayFiring();
 		}
+		else if (BW != None)
+		{
+			BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
+		}
 	}
 
 	function ServerPlayFiring()
 	{
 		if (BallisticTurret(Instigator) != None)
 			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		else if (BW != None)
+			BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
 	}
 
 
@@ -357,7 +363,7 @@ simulated state Mount
 		if (Weapon.Role == ROLE_Authority)
 		{
 			DoFireEffect();
-			if ( (BallisticTurret(Instigator) == None) || (Instigator.Controller == None) )
+			if (Instigator.Controller == None)
 				return;
 			if ( AIController(Instigator.Controller) != None )
 				AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
@@ -417,7 +423,10 @@ simulated state Mount
 	function DoFireEffect()
 	{
 		if (BallisticTurret(Instigator) == None)
-			FG50Machinegun(Weapon).Notify_Deploy();
+		{
+			if (!Weapon.HasAnim('Deploy'))
+				BW.Notify_Deploy();
+		}
 	}
 
 	simulated function bool AllowFire()
@@ -425,14 +434,14 @@ simulated state Mount
 		local name Anim;
 		local float Frame, Rate;
 
+		Weapon.GetAnimParams(0, Anim, Frame, Rate);
+		if (Anim == 'Deploy' || Anim == 'Undeploy')
+			return false;
 		if (BallisticTurret(Instigator) != None)
-		{
-			Weapon.GetAnimParams(0, Anim, Frame, Rate);
-			if (Anim == 'Undeploy')
-				return false;
-			return Level.TimeSeconds - BallisticTurret(Instigator).DriverEnterTime >= 0.5;
-		}
+			return Level.TimeSeconds - BallisticTurret(Instigator).DriverEnterTime >= 0.3;
 		if (Instigator.HeadVolume.bWaterVolume)
+			return false;
+		if (BW != None && BW.LastTurretDeployTime > 0 && Level.TimeSeconds - BW.LastTurretDeployTime < 0.3)
 			return false;
 		return super(BallisticFire).AllowFire();
 	}

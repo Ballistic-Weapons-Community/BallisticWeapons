@@ -202,6 +202,7 @@ var		BallisticFire   			BFireMode[NUM_FIRE_MODES];		// BallisticFire FireModes. 
 var		byte 						PendingMode;
 var		int							FireCount;						// How many shots have been fired since trigger was pulled
 var     float						LastFireTime;					// Time of last fire
+var     float						LastTurretDeployTime;			// Time when weapon was given back from turret undeploy
 //-----------------------------------------------------------------------------
 // Sights
 //-----------------------------------------------------------------------------
@@ -1107,6 +1108,13 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	{
 		SightingState = SS_None;
 		ScopeDownAnimEnd();
+		return;
+	}
+
+	if (anim == 'Deploy')
+	{
+		if (Role == ROLE_Authority)
+			Notify_Deploy();
 		return;
 	}
 
@@ -5094,8 +5102,14 @@ simulated function OnRecoilParamsChanged()
 
 // These can be called when a turret undeploys and gives this weapon. Override in sub-classes to add some functionality
 // Used to set weapon modes in case the turret had different modes
+
+
+function Notify_Deploy() {}
+
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
+	LastTurretDeployTime = Level.TimeSeconds;
+
 	while (CurrentWeaponMode >= WeaponModes.length || WeaponModes[CurrentWeaponMode].bUnavailable )
 	{
 		if (CurrentWeaponMode >= WeaponModes.length)
@@ -5115,7 +5129,10 @@ function InitWeaponFromTurret(BallisticTurret Turret)
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret);
 function InitTurretWeapon(BallisticTurret Turret);
 //same for automated turrets
-function InitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
+function InitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret)
+{
+	LastTurretDeployTime = Level.TimeSeconds;
+}
 simulated function ClientInitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
 function InitAutoTurretWeapon(BallisticAutoTurret AutoTurret);
 

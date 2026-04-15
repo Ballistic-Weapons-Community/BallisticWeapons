@@ -8,7 +8,7 @@ function DoFireEffect()
 		X82Rifle_TW(Weapon).Notify_Undeploy();
 	}
 	else
-		X82Rifle(Weapon).Notify_Deploy();
+		super.DoFireEffect();
 }
 
 defaultproperties

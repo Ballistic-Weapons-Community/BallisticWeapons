@@ -8,7 +8,7 @@ function DoFireEffect()
 		MG36MG_TW(Weapon).Notify_Undeploy();
 	}
 	else
-		MG36Machinegun(Weapon).Notify_Deploy();
+		super.DoFireEffect();
 }
 
 defaultproperties
