@@ -422,7 +422,17 @@ simulated state Mount
 
 	simulated function bool AllowFire()
 	{
-		if (BallisticTurret(Instigator) == None && Instigator.HeadVolume.bWaterVolume)
+		local name Anim;
+		local float Frame, Rate;
+
+		if (BallisticTurret(Instigator) != None)
+		{
+			Weapon.GetAnimParams(0, Anim, Frame, Rate);
+			if (Anim == 'Undeploy')
+				return false;
+			return Level.TimeSeconds - BallisticTurret(Instigator).DriverEnterTime >= 0.5;
+		}
+		if (Instigator.HeadVolume.bWaterVolume)
 			return false;
 		return super(BallisticFire).AllowFire();
 	}

@@ -171,9 +171,16 @@ function DoFireEffect()
 
 simulated function bool AllowFire()
 {
-	// Always allow undeploy when on a turret — no ammo check needed (#209)
+	local name Anim;
+	local float Frame, Rate;
+
 	if (BallisticTurret(Instigator) != None)
-		return true;
+	{
+		Weapon.GetAnimParams(0, Anim, Frame, Rate);
+		if (Anim == 'Undeploy')
+			return false;
+		return Level.TimeSeconds - BallisticTurret(Instigator).DriverEnterTime >= 0.5;
+	}
 	if (Instigator.HeadVolume.bWaterVolume)
 		return false;
 	return super.AllowFire();
