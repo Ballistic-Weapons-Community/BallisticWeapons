@@ -117,6 +117,7 @@ var() bool		bIgnoreTurretLimit;		// This is a special turret (probably placed in
 // Internal
 var   Triggers	MyUseTrigger;			// The trigger spawned to make it easier for players to 'use' this turret
 var   Pawn		OldDriver;				// Guy who was driving this turret
+var   float		DriverEnterTime;		// Time when driver entered, used to prevent accidental undeploy
 var   bool		bDriverOutOfRange;		// The driver has moved too far to ratate the gun properly
 var   byte		GunRotationYaw,			// GunRotation form sent to non-owning clients
 				GunRotationPitch;
@@ -636,6 +637,10 @@ function UndeployTurret ()
 	if (bNoUndeploy)
 		return;
 
+	// Prevent accidental undeploy from held alt-fire carrying over from deploy
+	if (Level.TimeSeconds - DriverEnterTime < 0.5)
+		return;
+
 	OldDriver = Driver;
 	if (!KDriverLeave(false))
 		return;
@@ -844,6 +849,8 @@ simulated function ClientKDriverLeave(PlayerController PC)
 function KDriverEnter(Pawn P)
 {
 	local Controller C;
+
+	DriverEnterTime = Level.TimeSeconds;
 
 	bDriving = True;
 	StuckCount = 0;
