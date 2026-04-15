@@ -679,10 +679,6 @@ function UndeployTurret ()
 	if (bNoUndeploy)
 		return;
 
-	// Prevent accidental undeploy from held alt-fire carrying over from deploy
-	if (Level.TimeSeconds - DriverEnterTime < 0.5)
-		return;
-
 	OldDriver = Driver;
 	if (!KDriverLeave(false))
 		return;
@@ -849,6 +845,8 @@ simulated event DrivingStatusChanged()
 
 simulated function ClientKDriverEnter(PlayerController PC)
 {
+	DriverEnterTime = Level.TimeSeconds;
+
 	PC.bFreeCamera = true;
 
 	if (Driver != None)
