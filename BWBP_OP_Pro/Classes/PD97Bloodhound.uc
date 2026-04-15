@@ -413,7 +413,7 @@ simulated function WeaponTick (float DT)
 	{
 		ServerSetRocketTarget(LockedTarget.Location);
 	}
-	else if (LockedTarget == None && bLockedOn)
+	else if ((LockedTarget == None || LockedTarget.Health <= 0) && bLockedOn)
 	{
 		BreakLock();
 	}

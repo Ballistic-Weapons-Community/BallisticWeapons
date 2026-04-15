@@ -6,7 +6,7 @@ var Actor StuckActor;
 
 function DoDamage(Actor Other, vector HitLocation)
 {
-	if (Pawn(Other) != None && Master != None && Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime)
+	if (Pawn(Other) != None && Pawn(Other).Health > 0 && Master != None && Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime)
 	{
 		Master.GotTarget(Pawn(Other));
 		//if (Pawn(Other).Controller != None && InstigatorController != None && !Pawn(Other).Controller.SameTeamAs(InstigatorController))
@@ -43,7 +43,7 @@ simulated event ProcessTouch(Actor Other, vector HitLocation )
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
 		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-		if (Pawn(Other) != None && Master != None && Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime)
+		if (Pawn(Other) != None && Pawn(Other).Health > 0 && Master != None && Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime)
 		{
 			Master.GotTarget(Pawn(Other));
 			//if (Pawn(Other).Controller != None && InstigatorController != None && !Pawn(Other).Controller.SameTeamAs(InstigatorController))
