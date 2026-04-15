@@ -307,9 +307,9 @@ function InitUndeployedWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
+
+		BallisticWeapon(Weap).SetAmmoTo(AmmoAmount[0], 0); // Stops the infinite ammo exploit when you undeploy 
 	}
-//	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
-//	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);
 }
 // Turret is being abandoned and weapon destroyed. Chance to save important info about the weapon.
 function SaveTurretWeaponInfo()

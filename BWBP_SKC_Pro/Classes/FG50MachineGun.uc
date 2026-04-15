@@ -468,7 +468,6 @@ simulated function float ChargeBar()
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;
-	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
 	if (!Instigator.IsLocallyControlled())
 		ClientInitWeaponFromTurret(Turret);
 }
