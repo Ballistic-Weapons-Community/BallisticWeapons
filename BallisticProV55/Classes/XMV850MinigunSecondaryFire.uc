@@ -117,7 +117,8 @@ simulated event ModeDoFire()
         Instigator.DeactivateSpawnProtection();
     }
 	
-	BW.LastFireTime = Level.TimeSeconds;
+	if (BW != None)
+		BW.LastFireTime = Level.TimeSeconds;
 
 
     // client
