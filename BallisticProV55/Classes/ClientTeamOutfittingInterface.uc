@@ -539,7 +539,7 @@ function Initialize(Mut_TeamOutfitting MO, PlayerController P)
 
 simulated function ClientOpenLoadoutMenu()
 {
-	if (PC ==None || PC.Player == None)
+	if (PC ==None || PC.Player == None || PC.IsSpectating())
 		return;
 	PC.ClientOpenMenu ("BallisticProV55.BallisticTeamOutfittingMenu");
 	if (PC.Player.GUIController != None)

@@ -123,6 +123,8 @@ simulated function PreBeginPlay()
 				AmmoSwaps[i].NewClasses.Length = Swaps[j].NewClasses.Length;
 				for (k=0;k<Swaps[j].NewClasses.length;k++)
 				{
+					if (Swaps[j].NewClasses[k] == None)
+						continue;
 					if (class<BallisticWeapon>(Swaps[j].NewClasses[k]) != None && class<BallisticWeapon>(Swaps[j].NewClasses[k]).static.RecommendAmmoPickup(-1) != None)
 						AmmoSwaps[i].NewClasses[k] = class<BallisticWeapon>(Swaps[j].NewClasses[k]).static.RecommendAmmoPickup(-1);
 					else
