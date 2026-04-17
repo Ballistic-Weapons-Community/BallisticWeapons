@@ -291,6 +291,8 @@ simulated state Mount
 	{
 		if (BallisticTurret(Instigator) != None)
 		{
+			if(!BW.HasAnim('Undeploy'))
+				BW.Notify_Undeploy();
 			super(BallisticFire).PlayFiring();
 		}
 		else if (BW != None)
@@ -363,18 +365,19 @@ simulated state Mount
 		if (Weapon.Role == ROLE_Authority)
 		{
 			DoFireEffect();
-			if (Instigator.Controller == None)
+			if (Instigator == None || Instigator.Controller == None)
 				return;
 			if ( AIController(Instigator.Controller) != None )
 				AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
 			Instigator.DeactivateSpawnProtection();
 		}
 		
-		BW.LastFireTime = Level.TimeSeconds;
+		if (BW != None)
+			BW.LastFireTime = Level.TimeSeconds;
 
 
 		// client
-		if (Instigator.IsLocallyControlled())
+		if (Instigator != None && Instigator.IsLocallyControlled())
 		{
 			ShakeView();
 			PlayFiring();
@@ -405,7 +408,7 @@ simulated state Mount
 		Load = AmmoPerFire;
 		HoldTime = 0;
 
-		if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
+		if (Instigator != None && Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
 		{
 			bIsFiring = false;
 			Weapon.PutDown();

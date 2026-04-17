@@ -856,6 +856,8 @@ simulated function OnWeaponParamsChanged()
 	CockAnimRate = WeaponParams.CockAnimRate;
 	default.CockAnimRate = WeaponParams.CockAnimRate;
 
+	default.MaxInventoryCapacity = class'BallisticReplicationInfo'.default.MaxInventoryCapacity;
+
 	if (Level.GRI != None && Level.GRI.bFastWeaponSwitching)
 	{
 		BringUpTime = 0.1;
@@ -1115,6 +1117,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	{
 		if (Role == ROLE_Authority)
 			Notify_Deploy();
+		PlayIdle();
 		return;
 	}
 
@@ -4109,6 +4112,8 @@ function bool HandlePickupQuery( pickup Item )
 {
     local WeaponPickup wpu;
 	local BallisticWeaponPickup BWP;
+	local Inventory Inv;
+	local int TotalSize;
 
 	if (class == Item.InventoryType)
     {
@@ -4122,7 +4127,7 @@ function bool HandlePickupQuery( pickup Item )
 	// prevent pickup of a weapon if we don't have enough space for it
 	if (
             default.MaxInventoryCapacity > 0 && 
-            AIController(InstigatorController) == None && 
+            //AIController(InstigatorController) == None && 
             class<BallisticWeapon>(Item.InventoryType) != None && 
             (!bWT_Super && !class<BallisticWeapon>(Item.InventoryType).default.bWT_Super)
         )
@@ -4138,6 +4143,20 @@ function bool HandlePickupQuery( pickup Item )
 				BWP.DetectedInventorySize = 0;
 				return true;
 			}
+		}
+		else if (Instigator != None)
+		{
+			//For weapon lockers
+			TotalSize = class<BallisticWeapon>(Item.InventoryType).static.GetInventorySize();
+
+			for (Inv = Instigator.Inventory; Inv != None; Inv = Inv.Inventory)
+			{
+				if (BallisticWeapon(Inv) != None && !BallisticWeapon(Inv).bWT_Super)
+					TotalSize += BallisticWeapon(Inv).ParamsClasses[BallisticWeapon(Inv).GameStyleIndex].default.Layouts[0].InventorySize;
+			}
+
+			if (TotalSize >= default.MaxInventoryCapacity)
+				return true;
 		}
 	}
 
@@ -5105,6 +5124,8 @@ simulated function OnRecoilParamsChanged()
 
 
 function Notify_Deploy() {}
+
+function Notify_Undeploy() {}
 
 function InitWeaponFromTurret(BallisticTurret Turret)
 {

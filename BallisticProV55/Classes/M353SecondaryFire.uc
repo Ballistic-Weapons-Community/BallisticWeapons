@@ -4,6 +4,8 @@ function PlayFiring()
 {
 	if (BallisticTurret(Instigator) != None)
 	{
+		if(!BW.HasAnim('Undeploy'))
+			BW.Notify_Undeploy();
 		super.PlayFiring();
 	}
 	else if (BW != None)
