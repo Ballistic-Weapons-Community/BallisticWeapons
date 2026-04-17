@@ -40,7 +40,7 @@ defaultproperties
          ColorScale(3)=(RelativeTime=0.114286,Color=(B=128,G=128,R=128,A=255))
          ColorScale(4)=(RelativeTime=1.000000,Color=(B=128,G=128,R=128,A=255))
          Opacity=1.000000
-         FadeOutStartTime=10.000000
+         FadeOutStartTime=8.500000
          MaxParticles=35
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
