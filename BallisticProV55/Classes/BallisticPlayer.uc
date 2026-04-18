@@ -1415,6 +1415,8 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 {
 	Super.DisplayDebug(Canvas, YL, YPos);
 
+    if(Pawn == None)
+        return;
 	Canvas.SetDrawColor(255, 255, 255);
 	Canvas.DrawText("Rotation:"@Rotation@"Pawn Rotation:"@Pawn.Rotation@"Smooth View Yaw:"@Pawn.SmoothViewYaw@"Aim rotator:"@BehindViewAimRotator);
 	YPos += YL;
