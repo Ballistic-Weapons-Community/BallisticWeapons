@@ -14,5 +14,6 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_SKC_Static.MG36.MG36PickupHi'
      Physics=PHYS_None
      CollisionHeight=4.000000
+     PickupDrawScale=0.092500
 	DrawScale=0.050000
 }

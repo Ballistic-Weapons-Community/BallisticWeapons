@@ -143,7 +143,6 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
 		MagAmmo=100
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic
@@ -166,7 +165,6 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
 		MagAmmo=30
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Irons
@@ -190,7 +188,6 @@ defaultproperties
 		PlayerSpeedFactor=0.900000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
 		MagAmmo=20
 		//SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
 		ZoomType=ZT_Logarithmic
