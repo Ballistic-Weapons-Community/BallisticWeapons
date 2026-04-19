@@ -11,25 +11,27 @@ class DTSRXRifleHead_Corrosive extends DT_BWBullet;
 var() float ArmorDrain;
 
 // Call this to do damage to something. This lets the damagetype modify the things if it needs to
-// todo: core-ify this function to apply to all weapons
 static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
 	local Armor BestArmor;
 
 	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
 
-	//Don't damage teammates' armor
-	if (Instigator.Controller != None && Pawn(Victim).Controller != Instigator.Controller && Instigator.Controller.SameTeamAs(Pawn(Victim).Controller))
+	if (Pawn(Victim) == None || Instigator == None)
 		return;
 
 	// Do additional damage to armor..
-	if(Pawn(Victim) != None && Pawn(Victim).Inventory != None)
+	if(Pawn(Victim).Inventory != None)
 	{
+		if (Instigator.Controller != None && Pawn(Victim).Controller != None && Pawn(Victim).Controller != Instigator.Controller && Instigator.Controller.SameTeamAs(Pawn(Victim).Controller))
+			return; //Yeah no melting teammate armor. that's mean
+		
 		BestArmor = Pawn(Victim).Inventory.PrioritizeArmor(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 		if(BestArmor != None)
 		{
 			Victim.TakeDamage(Damage*Default.ArmorDrain, Instigator, HitLocation, Momentum, DT);
-			BestArmor.ArmorAbsorbDamage(Damage*Default.ArmorDrain,Default.Class,HitLocation);
+			if (BestArmor != None)
+				BestArmor.ArmorAbsorbDamage(Damage*Default.ArmorDrain,Default.Class,HitLocation);
 		}
 	}
 }
