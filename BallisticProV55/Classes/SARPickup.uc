@@ -31,7 +31,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.SAR.SARPickup-Lo'
-     PickupDrawScale=0.140000
+     PickupDrawScale=0.200000
      InventoryType=Class'BallisticProV55.SARAssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the Sub-Assault Rifle 12."
