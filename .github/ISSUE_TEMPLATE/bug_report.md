@@ -11,8 +11,8 @@ assignees: ''
 
 **Version used:**
 
-**Gamestyle used**
+**Gamestyle used:**
 
-**Online or Offline?**
+**Online or Offline:**
 
 **Steps to replicate:**
