@@ -10,9 +10,12 @@ value of this path to take a quick detour (usually 0, used when on route to dist
 */
 function float DetourWeight(Pawn Other,float PathWeight)
 {
-	if ( !Other.Controller.NeedsAdrenaline() )
+	if ( (PathWeight > 500) || !Other.Controller.NeedsAdrenaline() )
 		return 0;
-	return MaxDesireability;
+	if ( (Other.Controller.Enemy != None) && (Level.TimeSeconds - Other.Controller.LastSeenTime < 1) )
+		return 0;
+	
+	return 0.15/PathWeight;
 }
 
 event float BotDesireability(Pawn Bot)
@@ -48,19 +51,20 @@ function AnnouncePickup( Pawn Receiver )
 
 defaultproperties
 {
-     AdrenalineAmount=3.000000
-     MaxDesireability=0.300000
-     bAmbientGlow=False
-     RespawnTime=30.000000
-     PickupMessage="Adrenaline +3"
-     PickupSound=Sound'BW_Core_WeaponSound.Health.AdrenalinPickup'
-     PickupForce="AdrenelinPickup"
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Health.A-Pod'
-     DrawScale=0.150000
-     TransientSoundRadius=64.000000
-     CollisionRadius=8.000000
-     CollisionHeight=8.500000
-     Mass=10.000000
-     MessageClass=Class'BCoreProV55.BallisticPickupMessage'
+    AdrenalineAmount=3.000000
+    MaxDesireability=0.300000
+    bAmbientGlow=False
+    RespawnTime=30.000000
+    PickupMessage="Adrenaline +3"
+    PickupSound=Sound'BW_Core_WeaponSound.Health.AdrenalinPickup'
+    PickupForce="AdrenelinPickup"
+    DrawType=DT_StaticMesh
+    StaticMesh=StaticMesh'BW_Core_WeaponStatic.Health.A-Pod'
+    DrawScale=0.150000
+    TransientSoundRadius=64.000000
+    PrePivot=(Z=24.500000)
+    CollisionRadius=10.000000
+    CollisionHeight=24.000000
+    Mass=10.000000
+    MessageClass=Class'BCoreProV55.BallisticPickupMessage'
 }

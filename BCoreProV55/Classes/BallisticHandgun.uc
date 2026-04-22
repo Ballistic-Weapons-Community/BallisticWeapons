@@ -776,6 +776,30 @@ function float GetAIRating()
 	return Super.GetAIRating();
 }
 
+simulated function float RateSelf()
+{
+	// Don't use HasAmmo()!!! If the weapon has a melee fire it will think it always has ammo, 
+	// it doesn't matter if the weapon can still technically attack, 
+	// it's basically useless for bots, melee is only for backup situations - yoyo
+    if ( !HasMagAmmo(255) && !HasNonMagAmmo(255) )
+        CurrentRating = -2;
+	else if ( Instigator.Controller == None )
+		return 0;
+	else
+	{
+		CurrentRating = Instigator.Controller.RateWeapon(self);
+		if (!bNoMag){
+			if(!HasNonMagAmmo(255) && MagAmmo < WeaponParams.MagAmmo / 4)
+				CurrentRating /= (1+AIReloadTime);
+//				CurrentRating = CurrentRating * 0.25;
+			else if (MagAmmo <= 0)
+				CurrentRating /= (2+AIReloadTime);
+//				CurrentRating = FClamp(CurrentRating / (1+AIReloadTime), 2, CurrentRating);
+		}
+	}
+	return CurrentRating;
+}
+
 simulated event Timer()
 {
 	local int Mode;

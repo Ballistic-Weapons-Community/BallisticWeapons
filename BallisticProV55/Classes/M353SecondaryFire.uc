@@ -5,7 +5,10 @@ function PlayFiring()
 	if (BallisticTurret(Instigator) != None)
 	{
 		if(!BW.HasAnim('Undeploy'))
+		{
 			BW.Notify_Undeploy();
+			return;
+		}
 		super.PlayFiring();
 	}
 	else if (BW != None)
@@ -94,6 +97,8 @@ simulated event ModeDoFire()
     {
         ShakeView();
         PlayFiring();
+        if (Weapon == None)
+            return;
         FlashMuzzleFlash();
         StartMuzzleSmoke();
     }

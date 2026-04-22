@@ -30,20 +30,21 @@ function AnnouncePickup( Pawn Receiver )
 
 defaultproperties
 {
-     MaxDesireability=2.000000
-     bAmbientGlow=False
-     bPredictRespawns=True
-     RespawnTime=90.000000
-     PickupMessage="You got the Damage Amplifier."
-     PickupSound=Sound'BW_Core_WeaponSound.Udamage.UDamagePickup'
-     PickupForce="UDamagePickup"
-     DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Misc.U-Damage'
-     DrawScale=0.600000
-     TransientSoundVolume=0.600000
-     TransientSoundRadius=128.000000
-     CollisionRadius=16.000000
-     CollisionHeight=28.000000
-     Mass=10.000000
-     MessageClass=Class'BCoreProV55.BallisticPickupMessage'
+    MaxDesireability=2.000000
+    bAmbientGlow=False
+    bPredictRespawns=True
+    RespawnTime=90.000000
+    PickupMessage="You got the Damage Amplifier."
+    PickupSound=Sound'BW_Core_WeaponSound.Udamage.UDamagePickup'
+    PickupForce="UDamagePickup"
+    DrawType=DT_StaticMesh
+    StaticMesh=StaticMesh'BW_Core_WeaponStatic.Misc.U-Damage'
+    DrawScale=0.600000
+    TransientSoundVolume=0.600000
+    TransientSoundRadius=128.000000
+    PrePivot=(Z=34.000000)
+    CollisionRadius=18.000000
+    CollisionHeight=34.000000
+    Mass=10.000000
+    MessageClass=Class'BCoreProV55.BallisticPickupMessage'
 }
