@@ -16,7 +16,7 @@ function ScoreKill(Controller Killer, Controller Killed)
 	
 	KLRI = class'Mut_Killstreak'.static.GetKLRI(Killer.PlayerReplicationInfo);
 		
-	if (PC != None && Killer != Killed && PC.Pawn != None)
+	if (KLRI != None && PC != None && Killer != Killed && PC.Pawn != None)
 	{
 		for(i=0; i < 2; i++)
 		{
@@ -32,7 +32,7 @@ function ScoreKill(Controller Killer, Controller Killed)
 	if (PlayerController(Killed) != None && BallisticPawn(Killed.Pawn) != None)
 	{
 		KLRI = class'Mut_Killstreak'.static.GetKLRI(Killed.PlayerReplicationInfo);
-		if (KLRI.ActiveStreak > 0)
+		if (KLRI != None && KLRI.ActiveStreak > 0)
 			Mut.ResetActiveStreaks(PlayerController(Killed));
 	}
 	

@@ -26,6 +26,7 @@ function PostBeginPlay()
 
 	Super.PostBeginPlay();
 
+
 	G = spawn(class'Rules_BloodyHell');
 	if ( Level.Game.GameRulesModifiers == None )
 		Level.Game.GameRulesModifiers = G;
@@ -35,12 +36,13 @@ function PostBeginPlay()
 
 simulated function PreBeginPlay()
 {
+	 
 	if (level.Game != None)
 	{
 		if (level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || class'Mut_Ballistic'.default.bForceBallisticPawn)
 			level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticBHPawn";
 	}
-	/* 
+	/*
 	if(TeamGame(Level.Game) != None) //load team bots
 	{
 		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
