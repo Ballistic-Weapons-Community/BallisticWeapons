@@ -7,7 +7,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A51GroundAcid extends BallisticEmitter
 	placeable;
@@ -64,8 +64,15 @@ function HitWall (vector HitNormal, actor Wall)
 	SetRotation(rot(32768,0,0));
 	SetCollision(true, false, false);
 	SetCollisionSize( 108, 128 );
-	Fear = Spawn(class'AvoidMarker');
+	Fear = Spawn(class'BallisticAvoidMarker');
 	Fear.SetCollisionSize(120, 120);
+	if (Instigator != None)
+	{
+		BallisticAvoidMarker(Fear).OwnerController = Instigator.Controller;
+		if (TeamGame(Level.Game) != None && TeamGame(Level.Game).FriendlyFireScale <= 0
+			&& Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
+			Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
+	}
     Fear.StartleBots();
 	P = Spawn(Class'AD_A500BlastSplat', Self,, Location, Rotator(-HitNormal));
 	if (BallisticDecal(P) != None && BallisticDecal(P).bWaitForInit)
