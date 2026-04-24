@@ -12,35 +12,49 @@ var() class<Actor>	HatchSmokeClass;
 var   Actor			HatchSmoke;
 var() Sound			SteamSound;
 
-
-	function SpawnProjectile (Vector Start, Rotator Dir)
-	{
-		local int i, j;
-		local rotator R;
-
-		j = Min(4, BW.MagAmmo);
-		ConsumedLoad += j-1;
-		for (i=0;i<j;i++)
-		{
-			R.Roll = (65536.0 / j) * i;
-
-			Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(400,400,0)) >> R) >> Dir) );
-			Proj.Instigator = Instigator;
-		}
-	}
-
-// Used to delay ammo consumtion
-simulated event Timer()
+simulated event ModeDoFire()
 {
-	super.Timer();
-	if (Weapon.Role == ROLE_Authority && ConsumedLoad > 0)
+	local int Avail, PriCL, AltCL, Inv;
+
+	if (BW != None)
 	{
-		if (BW != None)
-			BW.ConsumeMagAmmo(ThisModeNum,ConsumedLoad);
+		if (BW.BFireMode[0] != None) PriCL = BW.BFireMode[0].ConsumedLoad;
+		if (BW.BFireMode[1] != None) AltCL = BW.BFireMode[1].ConsumedLoad;
+		Inv = Weapon.AmmoAmount(ThisModeNum);
+
+		if (BW.bNoMag || !bUseWeaponMag)
+		{
+			Avail = Inv - PriCL - AltCL;
+		}
 		else
-			Weapon.ConsumeAmmo(ThisModeNum,ConsumedLoad);
+		{
+			Avail = BW.MagAmmo - PriCL - AltCL;
+		}
+
+		Load = Max(1, Min(4, Avail));
 	}
-	ConsumedLoad=0;
+	else
+		Load = 1;
+
+	super.ModeDoFire();
+}
+
+function SpawnProjectile (Vector Start, Rotator Dir)
+{
+	local int i, j;
+	local rotator R;
+
+	j = Load;
+	if (j < 1)
+		j = 1;
+	for (i=0;i<j;i++)
+	{
+		R.Roll = (65536.0 / j) * i;
+
+		Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(400,400,0)) >> R) >> Dir) );
+		if (Proj != None)
+			Proj.Instigator = Instigator;
+	}
 }
 
 defaultproperties

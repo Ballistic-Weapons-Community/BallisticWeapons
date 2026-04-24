@@ -21,6 +21,16 @@ var() array<GibInfo>	Gibs;
 
 //simulated function InitHitForce(vector HitRay);
 
+simulated event PhysicsVolumeChange(PhysicsVolume NewVolume)
+{
+    Super.PhysicsVolumeChange(NewVolume);
+    if (NewVolume != None && VSize(NewVolume.ZoneVelocity) > 0) //Allow gib emitters to be affected by volumes
+    {
+        SetPhysics(PHYS_Falling);
+        Velocity = NewVolume.ZoneVelocity;
+    }
+}
+
 // Calculate the StartVelocityRange according to rotation
 simulated function AlignVelocity ()
 {

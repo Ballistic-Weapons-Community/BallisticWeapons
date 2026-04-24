@@ -71,6 +71,16 @@ simulated function Landed (Vector HitNormal)
     HitWall (HitNormal, None);
 }
 
+simulated event PhysicsVolumeChange(PhysicsVolume NewVolume)
+{
+    Super.PhysicsVolumeChange(NewVolume);
+    if (NewVolume != None && VSize(NewVolume.ZoneVelocity) > 0) //Allow gibs to be affected by volumes
+    {
+        SetPhysics(PHYS_Falling);
+        Velocity = NewVolume.ZoneVelocity;
+    }
+}
+
 // Play sounds, check speed and so on
 simulated function HitWall (Vector HitNormal, Actor Wall)
 {
