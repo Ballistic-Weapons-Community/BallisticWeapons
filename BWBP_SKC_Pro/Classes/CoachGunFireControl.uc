@@ -24,8 +24,13 @@ function Timer()
 	local array<Actor> Served;
 	
 	for(i=0;i<GroundFires.length;i++)
-		for(j=0;j<GroundFires[i].Touching.length;j++)
+	{
+		if (GroundFires[i] == None)
+			continue;
+		for(j=GroundFires[i].Touching.length-1;j>=0;j--)
 		{
+			if (j >= GroundFires[i].Touching.length)
+				continue;
 			if (GroundFires[i].Touching[j] == None || Pawn(GroundFires[i].Touching[j]) == None)
 				continue;
 			for(k=0;k<Served.length;k++)
@@ -33,10 +38,11 @@ function Timer()
 					break;
 			if (k >= Served.length)	
 			{
+				Served[Served.length] = GroundFires[i].Touching[j];
 				GroundFires[i].Toast(GroundFires[i].Touching[j]);
-				Served[Served.length] = GroundFires[i].Touching[j];	
 			}
 		}
+	}
 }
 
 // Purpose: Cause sprayed flame interaction, taking shotgun spread into consideration, has a rotator

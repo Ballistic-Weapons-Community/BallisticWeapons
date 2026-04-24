@@ -37,8 +37,13 @@ function ServeCustomers()
 
 
 	for(i=0;i<Clouds.length;i++)
-		for(j=0;j<Clouds[i].Touching.length;j++)
+	{
+		if (Clouds[i] == None)
+			continue;
+		for(j=Clouds[i].Touching.length-1;j>=0;j--)
 		{
+			if (j >= Clouds[i].Touching.length)
+				continue;
 			if (Clouds[i].Touching[j] == None || Pawn(Clouds[i].Touching[j]) == None)
 				continue;
 			for(k=0;k<Served.length;k++)
@@ -48,6 +53,7 @@ function ServeCustomers()
 			{
 				if(Clouds[i].Touching[j].bProjTarget || Pawn(Clouds[i].Touching[j]) == Instigator || (Instigator.Controller != None && Pawn(Clouds[i].Touching[j]).Controller.SameTeamAs(Instigator.Controller)))
 				{
+					Served[Served.length] = Clouds[i].Touching[j];
 					if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 						HealthCap = Pawn(Clouds[i].Touching[j]).HealthMax;
 					else 
@@ -57,11 +63,10 @@ function ServeCustomers()
 						BallisticPawn(Clouds[i].Touching[j]).GiveAttributedHealth(Damage, HealthCap, Instigator);
 					else 
 						Pawn(Clouds[i].Touching[j]).GiveHealth(Damage, HealthCap);
-
-					Served[Served.length] = Clouds[i].Touching[j];	
 				}
 			}
 		}
+	}
 }
 
 simulated function Tick(float DT)

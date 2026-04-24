@@ -38,8 +38,12 @@ function ServeCustomers()
 	
 	for(i=0;i<Clouds.length;i++)
 	{
-		for(j=0;j<Clouds[i].Touching.length;j++)
+		if (Clouds[i] == None)
+			continue;
+		for(j=Clouds[i].Touching.length-1;j>=0;j--)
 		{
+			if (j >= Clouds[i].Touching.length)
+				continue;
 			if (Clouds[i].Touching[j] == None || Pawn(Clouds[i].Touching[j]) == None)
 				continue;
 			
@@ -49,11 +53,11 @@ function ServeCustomers()
 			
 			if (k >= Served.length)	
 			{
+				Served[Served.length] = Clouds[i].Touching[j];
 				if ( Instigator == None || Instigator.Controller == None )
 					Clouds[i].Touching[j].SetDelayedDamageInstigatorController( InstigatorController );
 					
 				class'BallisticDamageType'.static.GenericHurt(Clouds[i].Touching[j], Clouds[i].Density*Damage, Instigator, Clouds[i].Touching[j].Location, vect(0,0,0), DamageType);
-				Served[Served.length] = Clouds[i].Touching[j];	
 			}
 		}
 	}

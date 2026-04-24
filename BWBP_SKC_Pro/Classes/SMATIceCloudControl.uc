@@ -34,19 +34,25 @@ function ServeCustomers()
 	local array<Actor> Served;
 	
 	for(i=0;i<Clouds.length;i++)
-		for(j=0;j<Clouds[i].Touching.length;j++)
+	{
+		if (Clouds[i] == None)
+			continue;
+		for(j=Clouds[i].Touching.length-1;j>=0;j--)
 		{
+			if (j >= Clouds[i].Touching.length)
+				continue;
 			if (Clouds[i].Touching[j] == None || Pawn(Clouds[i].Touching[j]) == None)
 				continue;
 			for(k=0;k<Served.length;k++)
 				if (Served[k] == Clouds[i].Touching[j])
 					break;
 			if (k >= Served.length)	{
+				Served[Served.length] = Clouds[i].Touching[j];
 				class'BallisticDamageType'.static.GenericHurt(Clouds[i].Touching[j], Clouds[i].Density*Damage, Instigator, Clouds[i].Touching[j].Location, vect(0,0,0), DamageType);
 				if (Pawn(Clouds[i].Touching[j]) != None)
-					class'BCSprintControl'.static.AddSlowTo(Pawn(Clouds[i].Touching[j]), 0.7, 0.1);
-				Served[Served.length] = Clouds[i].Touching[j];	}
+					class'BCSprintControl'.static.AddSlowTo(Pawn(Clouds[i].Touching[j]), 0.7, 0.1);	}
 		}
+	}
 }
 
 simulated function Tick(float DT)
