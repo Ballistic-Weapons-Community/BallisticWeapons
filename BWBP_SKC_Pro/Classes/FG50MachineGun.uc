@@ -668,7 +668,8 @@ defaultproperties
 	ClipInFrame=0.650000
 	bShowChargingBar=True
 	WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
-	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
+	WeaponModes(2)=(bUnavailable=True)
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	ParamsClasses(0)=Class'FG50WeaponParamsComp'

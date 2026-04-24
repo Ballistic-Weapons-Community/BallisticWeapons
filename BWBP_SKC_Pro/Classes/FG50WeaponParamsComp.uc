@@ -207,9 +207,9 @@ defaultproperties
 		AimParams(0)=AimParams'ArenaStandardAimParams'
 		AimParams(1)=AimParams'ArenaControlledAimParams'
 		FireParams(0)=FireParams'ArenaPriControlledFireParams'
-		FireParams(2)=FireParams'ArenaPriStandardFireParams'
+		FireParams(1)=FireParams'ArenaPriStandardFireParams'
 		AltFireParams(0)=FireParams'ArenaSecControlledFireParams'
-		AltFireParams(2)=FireParams'ArenaSecStandardFireParams'
+		AltFireParams(1)=FireParams'ArenaSecStandardFireParams'
     End Object 
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Bipod
@@ -237,9 +237,9 @@ defaultproperties
 		AimParams(0)=AimParams'ArenaStandardAimParams'
 		AimParams(1)=AimParams'ArenaControlledAimParams'
 		FireParams(0)=FireParams'ArenaPriControlledFireParams'
-		FireParams(2)=FireParams'ArenaPriStandardFireParams'
+		FireParams(1)=FireParams'ArenaPriStandardFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_Mount'
-		AltFireParams(2)=FireParams'ArenaSecondaryFireParams_Mount'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireParams_Mount'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'

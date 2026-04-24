@@ -183,7 +183,7 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'
 		FireParams(0)=FireParams'RealisticPriControlledFireParams'
-		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Scope'
 	End Object
 	
@@ -213,7 +213,7 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'
 		FireParams(0)=FireParams'RealisticPriControlledFireParams'
-		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Mount'
 	End Object
 	

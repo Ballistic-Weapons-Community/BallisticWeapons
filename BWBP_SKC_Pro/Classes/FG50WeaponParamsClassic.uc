@@ -240,6 +240,7 @@ defaultproperties
 		InventorySize=10
 		bNeedCock=True
 		MagAmmo=40
+		InitialWeaponMode=0
 		WeaponName="FG-50 .50 Heavy Machinegun"
 		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -273,7 +274,7 @@ defaultproperties
 		WeaponName="FG-50 .50 Heavy Machinegun"
 		//WeaponModes(0)=(ModeName="Controlled",ModeID="WM_FullAuto")
 		//WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
-		//InitialWeaponMode=0
+		InitialWeaponMode=0
 		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicControlledAimParams'

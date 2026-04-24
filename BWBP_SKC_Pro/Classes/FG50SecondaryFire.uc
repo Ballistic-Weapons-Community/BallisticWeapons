@@ -292,7 +292,10 @@ simulated state Mount
 		if (BallisticTurret(Instigator) != None)
 		{
 			if(!BW.HasAnim('Undeploy'))
+			{
 				BW.Notify_Undeploy();
+				return;
+			}
 			super(BallisticFire).PlayFiring();
 		}
 		else if (BW != None)

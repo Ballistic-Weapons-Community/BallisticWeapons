@@ -250,7 +250,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 {
 	local class<BallisticDamageType> BDT;
 
-    if (Instigator != InstigatedBy && class<BallisticDamageType>(DamageType) != None)
+    if (class<BallisticDamageType>(DamageType) != None)
     {
         BDT = class<BallisticDamageType>(DamageType);
 
@@ -258,7 +258,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
         {
             Damage = 0;
             PlaySound(ShieldHitSound, SLOT_None);
-			Momentum = vect(0,0,0);    
+			Momentum = vect(0,0,0);
         }
     }
 
