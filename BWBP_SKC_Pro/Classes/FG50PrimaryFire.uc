@@ -134,7 +134,10 @@ simulated state HEAmmo //Explodes on human targets
 	function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 	{
 		super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
-		
+
+		if (Victim == None)
+			return;
+
 		if (Victim.bProjTarget)
 		{
 			if (BallisticShield(Victim) != None)

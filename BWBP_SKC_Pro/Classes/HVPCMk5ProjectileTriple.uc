@@ -53,15 +53,19 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
+	local vector OtherLoc;
+
 	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSDarkProjectile(Other)!=None || RSDarkFastProjectile(Other)!=None)
 		return;
+
+	OtherLoc = Other.Location; //Do damage might gib victim, so save location before 
 
 	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
 		DoDamage(Other, HitLocation);
 	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+		PenetrateManager.static.StartSpawn(HitLocation, OtherLoc-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	else
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+		PenetrateManager.static.StartSpawn(HitLocation, OtherLoc-HitLocation, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	ImpactManager = None;
 	HitActor = Other;
 	Explode(HitLocation, vect(0,0,1));

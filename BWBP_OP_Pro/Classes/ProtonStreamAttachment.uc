@@ -138,7 +138,8 @@ function EndStream()
 function SetLockedTarget(Actor NewTarget)
 {
 	LockedTarget = NewTarget;
-	StreamEffect.Target = NewTarget;
+	if (StreamEffect != None)
+		StreamEffect.Target = NewTarget;
 }
 
 simulated function Destroyed()

@@ -57,7 +57,8 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	bHitPlayer = true;
 
 	SetLocation(HitLocation);
-	Velocity = Normal(HitLocation-Other.Location)*100;
+	if (Other != None)
+		Velocity = Normal(HitLocation-Other.Location)*100;
 }
 
 function TakeBack(Pawn Other)

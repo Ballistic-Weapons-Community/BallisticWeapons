@@ -24,7 +24,8 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	bHitPlayer = true;
 	SetPhysics(PHYS_Falling);
 	SetLocation(HitLocation);
-	Velocity = Normal(HitLocation-Other.Location)*100;
+	if (Other != None)
+		Velocity = Normal(HitLocation-Other.Location)*100;
 }
 
 simulated event Landed( vector HitNormal )

@@ -1991,7 +1991,11 @@ simulated function PlayScopeUp()
 	    SafePlayAnim(ZoomInAnim, ZoomTimeMod);
 	else
 		SightingState = SS_Raising;
-	if(ZoomType == ZT_Irons)
+
+	if (InstigatorController == None)
+		return;
+
+	if(ZoomType == ZT_Irons && PlayerController(InstigatorController) != None)
 		PlayerController(InstigatorController).bZooming = True;
 
 	InstigatorController.bRun = 1;

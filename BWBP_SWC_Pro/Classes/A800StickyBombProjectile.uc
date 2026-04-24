@@ -132,6 +132,10 @@ simulated event Tick(float DT)
 
 simulated event ProcessTouch(Actor Other, vector HitLocation )
 {
+	local vector OtherLoc;
+
+	if (Other == None)
+		return;
 	if (Other == Instigator && (!bCanHitOwner))
 		return;
 	if (Base != None)
@@ -141,8 +145,9 @@ simulated event ProcessTouch(Actor Other, vector HitLocation )
 	{
 		StuckActor = Other;
 		HitActor = Other;
+		OtherLoc = Other.Location;
 		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
+		Explode(HitLocation, Normal(HitLocation-OtherLoc));
 	}
 	else
 		Super.ProcessTouch(Other,HitLocation);

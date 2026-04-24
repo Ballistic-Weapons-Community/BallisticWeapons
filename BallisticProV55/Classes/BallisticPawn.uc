@@ -1337,13 +1337,20 @@ function MessageHealBlock()
 
 function MessageAttributedHealBlock(Pawn Healer)
 {
+	local PlayerReplicationInfo PreventerPRI;
+
+	// Issue #258: HealPreventer can be cleared (or never set) between the time
+	// the block was triggered and this message runs. Fall back gracefully.
+	if (HealPreventer != None)
+		PreventerPRI = HealPreventer.PlayerReplicationInfo;
+
 	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
 	{
 		NextHealMessageTime = Level.TimeSeconds + 1;
-		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 1, HealPreventer.PlayerReplicationInfo, Healer.PlayerReplicationInfo);
+		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 1, PreventerPRI, Healer.PlayerReplicationInfo);
 
 		if (PlayerController(Healer.Controller) != None)
-			PlayerController(Healer.Controller).ReceiveLocalizedMessage(HealBlockMessage, 2, HealPreventer.PlayerReplicationInfo, PlayerReplicationInfo);
+			PlayerController(Healer.Controller).ReceiveLocalizedMessage(HealBlockMessage, 2, PreventerPRI, PlayerReplicationInfo);
 	}
 }
 
