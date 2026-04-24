@@ -589,8 +589,10 @@ static function Weapon SpawnWeaponLayout(class<weapon> newClass, Pawn P, int Lay
 		}
 		else //we already have this gun
 		{
-			newWeapon.AddAmmo(newClass.default.AmmoClass[0].default.InitialAmount, 0);
-			newWeapon.AddAmmo(newClass.default.AmmoClass[1].default.InitialAmount, 1);
+			if (newClass.default.AmmoClass[0] != None)
+				newWeapon.AddAmmo(newClass.default.AmmoClass[0].default.InitialAmount, 0);
+			if (newClass.default.AmmoClass[1] != None)
+				newWeapon.AddAmmo(newClass.default.AmmoClass[1].default.InitialAmount, 1);
 			if (BallisticWeapon(newWeapon) != None)
 			{
 				BallisticWeapon(newWeapon).MagAmmo = BallisticWeapon(newWeapon).default.MagAmmo;
