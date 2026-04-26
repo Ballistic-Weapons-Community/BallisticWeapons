@@ -1575,7 +1575,7 @@ State Dying
 
 			// Accumulate corpse damage and gib when threshold exceeded
 			Health -= Damage;
-			if (class'BloodManager'.default.bGibbableCorpses && (Health < -200 && (DamageType != None && DamageType.default.bAlwaysGibs)))
+			if (class'BloodManager'.default.bGibbableCorpses && (Health < -200 && (DamageType != None && (DamageType.default.bAlwaysGibs || ClassIsChildOf(DamageType, class'DT_BWExplode')))))
 			{
 				SpawnGibs(Rotation, DamageType.default.GibPerterbation);
 				ChunkUp(Rotation, DamageType.default.GibPerterbation);

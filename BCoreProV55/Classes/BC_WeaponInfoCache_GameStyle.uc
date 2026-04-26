@@ -83,6 +83,12 @@ static function BC_WeaponInfoCache.WeaponInfo AutoWeaponInfo(string WeapClassNam
 	CheckRevision();
 
 	// Tap into the BW weapon cache system to identify BallisticWeapons without loading them
+	if (WeapClassName == "")
+	{
+		i = -1;
+		return WI;
+	}
+
 	if (FindWeaponInfo(WeapClassName, WI, i))
 		return WI;
 
@@ -94,9 +100,14 @@ static function BC_WeaponInfoCache.WeaponInfo AddWeaponInfoName(string WeapClass
 {
 	local class<BallisticWeapon> Weap;
 	local BC_WeaponInfoCache.WeaponInfo WI;
+	if (WeapClassName == "")
+	{
+		i = -1;
+		return WI;
+	}
 
 	Weap = class<BallisticWeapon>(DynamicLoadObject(WeapClassName, class'Class'));
-	
+
 	if (Weap != None)
 		WI = AddWeaponInfo(Weap, i);
 	else

@@ -65,14 +65,27 @@ simulated function array<string> GetGroup(byte GroupNum)
 //Returns the weapon at the specific index.
 simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 {
+	// Return empty string if requested index is out of range to avoid OOB
 	switch (GroupNum)
 	{
-		case	0:	return Group0[ItemNum];
-		case	1:	return Group1[ItemNum];
-		case	2:	return Group2[ItemNum];
-		case	3:	return Group3[ItemNum];
-		case	4:	return Group4[ItemNum];
+		case 0:
+			if (ItemNum >= 0 && ItemNum < Group0.Length) return Group0[ItemNum];
+			break;
+		case 1:
+			if (ItemNum >= 0 && ItemNum < Group1.Length) return Group1[ItemNum];
+			break;
+		case 2:
+			if (ItemNum >= 0 && ItemNum < Group2.Length) return Group2[ItemNum];
+			break;
+		case 3:
+			if (ItemNum >= 0 && ItemNum < Group3.Length) return Group3[ItemNum];
+			break;
+		case 4:
+			if (ItemNum >= 0 && ItemNum < Group4.Length) return Group4[ItemNum];
+			break;
 	}
+
+	return "";
 }
 
 //Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
@@ -138,17 +151,20 @@ simulated function PushWeaponFromMutator(string str, byte GroupNum)
 function FillWeapons()
 {
     local int group_index, wep_index;
+	local string candidate;
 
 	for (group_index = 0; group_index < 5; ++group_index)
 	{
 		for (wep_index = 0; wep_index < Mut.GetGroup(group_index).Length; ++wep_index)
 		{
-			PushWeaponFromMutator(Mut.GetGroupItem(group_index, wep_index), group_index);
+			candidate = Mut.GetGroupItem(group_index, wep_index);
+			if (candidate == "")
+				continue;
+			PushWeaponFromMutator(candidate, group_index);
 		}
 	}
 }
 
-//Goes through the available loadout weapons, adding them to the array and continuing if the loaded weapon is invalid.
 //Boxes indicate which group the weapon is in.
 //Uses bitwise operations on Boxes to handle weapons which exist in multiple groups at once.
 function SendWeapons ()
@@ -221,6 +237,9 @@ function SendWeapons ()
 		}
 	}
 	
+	if (Weaps.length == 0)
+		return;
+
 	for (i=0;i<Weaps.length-1;i++)
 		ReceiveWeapon(Weaps[i], Boxes[i]);
 	//Last weapon, terminate
@@ -255,12 +274,12 @@ simulated function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.
 {
 	local int i;
 
+	if (ClassStr == "")
+		return false;
+
 	WepInfo = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ClassStr, i);
 	if (i==-1)
-	{
-		log("Error loading item for Conflict: "$ClassStr, 'Warning');
 		return false;
-	}
 	return true;
 }
 
@@ -330,9 +349,8 @@ simulated function SortList(byte group_index)
             }
 
 		}
-
-        else 
-            Log("ClientOutfittingInterface: Failed to load "$ GetGroupItem(group_index, i) $" from cache");
+        //else 
+        //    Log("ClientOutfittingInterface: Failed to load "$ GetGroupItem(group_index, i) $" from cache");
 	}
 	
 	for (i = 0; i < SortedWIs.Length; ++i)
