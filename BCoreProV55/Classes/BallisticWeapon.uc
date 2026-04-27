@@ -3341,9 +3341,9 @@ simulated function bool HasMagAmmo(byte Mode)
 	if (!bNoMag)
 	{
 		// AmmoPerFire > 0 check stops bots from continuing to use up empty guns
-		if ((Mode == 255 || Mode == 0) && BFireMode[0] != None && BFireMode[0].bUseWeaponMag && FireMode[0].AmmoPerFire > 0 && MagAmmo >= FireMode[0].AmmoPerFire)
+		if ((Mode == 255 || Mode == 0) && BFireMode[0] != None && BFireMode[0].bUseWeaponMag && (FireMode[0].AmmoPerFire == 0 || MagAmmo >= FireMode[0].AmmoPerFire))
 			return true;
-		if ((Mode == 255 || Mode == 1) && BFireMode[1] != None && BFireMode[1].bUseWeaponMag && FireMode[1].AmmoPerFire > 0 && MagAmmo >= FireMode[1].AmmoPerFire)
+		if ((Mode == 255 || Mode == 1) && BFireMode[1] != None && BFireMode[1].bUseWeaponMag && (FireMode[1].AmmoPerFire == 0 || MagAmmo >= FireMode[1].AmmoPerFire))
 			return true;
 	}
 	return false;
@@ -3352,9 +3352,9 @@ simulated function bool HasMagAmmo(byte Mode)
 simulated function bool HasNonMagAmmo(byte Mode)
 {
 	// AmmoPerFire > 0 check stops bots from continuing to use up empty guns
-	if ((Mode == 255 || Mode == 0) && Ammo[0] != None && FireMode[0] != None && FireMode[0].AmmoPerFire > 0 && Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire)
+	if ((Mode == 255 || Mode == 0) && Ammo[0] != None && FireMode[0] != None && (FireMode[0].AmmoPerFire == 0 || Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire))
 		return true;
-	if ((Mode == 255 || Mode == 1) && Ammo[1] != None && FireMode[1] != None && FireMode[1].AmmoPerFire > 0 && Ammo[1].AmmoAmount >= FireMode[1].AmmoPerFire)
+	if ((Mode == 255 || Mode == 1) && Ammo[1] != None && FireMode[1] != None && (FireMode[1].AmmoPerFire == 0 || Ammo[1].AmmoAmount >= FireMode[1].AmmoPerFire))
 		return true;
 	return false;
 }
