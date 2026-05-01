@@ -206,6 +206,10 @@ function ServerWeaponSpecial(optional byte i)
 {
 	if (bServerReloading)
 		return;
+	if (ReloadState != RS_None)
+		return;
+	if (Clientstate != WS_ReadyToFire)
+		return;
 		
 	if (bHasLaser)	
 		ServerSwitchLaser(!bLaserOn);
