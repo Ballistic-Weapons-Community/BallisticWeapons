@@ -247,7 +247,12 @@ simulated function bool CanAlternate(int Mode)
 	if (M806Pistol(OtherGun) == None && Mode != 0)
 		return false;
 	else if(M806Pistol(OtherGun) != None)
+	{
+		// Don't alternate in burst modes
+		if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_BigBurst")
+			return false;
 		return true;
+	}
 
 	return super.CanAlternate(Mode);
 }
@@ -515,7 +520,7 @@ simulated function bool HasAmmo()
 		return true;
 	//If it is a non-mag or the magazine is empty
 	if (Ammo[0] != None && FireMode[0] != None && Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire)
-			return true;
+		return true;
 	return false;	//This weapon is empty
 }
 
