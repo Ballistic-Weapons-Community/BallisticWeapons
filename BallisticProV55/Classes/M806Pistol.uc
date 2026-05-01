@@ -257,6 +257,13 @@ simulated function bool CanAlternate(int Mode)
 	return super.CanAlternate(Mode);
 }
 
+simulated function MeleeHoldImpl()
+{
+	if (bHasShotgun)
+		return;
+	super.MeleeHoldImpl();
+}
+
 // ================================================
 // Laser Code
 // ================================================

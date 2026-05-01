@@ -380,7 +380,7 @@ function Initialize(Mut_Outfitting MO, PlayerController P)
 
 simulated function ClientOpenLoadoutMenu()
 {
-	if (PC ==None || PC.Player == None || PC.IsSpectating())
+	if (PC ==None || PC.Player == None || (PC.IsSpectating() && !PC.IsInState('PlayerWaiting')))
 		return;
 	PC.ClientOpenMenu ("BallisticProV55.BallisticOutfittingMenu");
 	if (PC.Player.GUIController != None)
