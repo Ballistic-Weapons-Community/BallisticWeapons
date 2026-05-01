@@ -157,7 +157,7 @@ simulated function PostBeginPlay()
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (ReloadState != RS_None || !HasAmmo())
+	if (ReloadState != RS_None || ClientState != WS_ReadyToFire || !HasAmmo())
 		return;
 	Super.ServerSwitchWeaponMode(NewMode);
 	ServerStartReload(2);
