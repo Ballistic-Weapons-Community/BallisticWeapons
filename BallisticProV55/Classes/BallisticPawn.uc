@@ -1575,7 +1575,22 @@ State Dying
 
 			// Accumulate corpse damage and gib when threshold exceeded
 			Health -= Damage;
-			if (class'BloodManager'.default.bGibbableCorpses && (Health < -200 && (DamageType != None && (DamageType.default.bAlwaysGibs || ClassIsChildOf(DamageType, class'DT_BWExplode')))))
+			if (class'BloodManager'.default.bGibbableCorpses && (Health < -200 && (DamageType != None && DamageType.default.bCausesBlood && 
+			(DamageType.default.bAlwaysGibs || 
+			ClassIsChildOf(DamageType, class'DT_BWExplode') ||
+			ClassIsChildOf(DamageType, class'Gibbed') ||
+			ClassIsChildOf(DamageType, class'DamTypeRocket') ||
+			ClassIsChildOf(DamageType, class'DamTypeFlakShell') ||
+			ClassIsChildOf(DamageType, class'DamTypeSuperShockBeam') ||
+			ClassIsChildOf(DamageType, class'DamTypeRedeemer') ||
+			ClassIsChildOf(DamageType, class'DamTypeTankShell') ||
+			ClassIsChildOf(DamageType, class'DamTypeAttackCraftMissle') ||
+			ClassIsChildOf(DamageType, class'DamTypeShockCombo') ||
+			ClassIsChildOf(DamageType, class'DamTypeMASCannon') ||
+			ClassIsChildOf(DamageType, class'DamTypeTeleFrag') ||
+			ClassIsChildOf(DamageType, class'DamTypeIonBlast') ||
+			ClassIsChildOf(DamageType, class'DamTypeTeleFragged') ||
+			ClassIsChildOf(DamageType, class'DamTypeIonCannonBlast') ))))
 			{
 				SpawnGibs(Rotation, DamageType.default.GibPerterbation);
 				ChunkUp(Rotation, DamageType.default.GibPerterbation);
