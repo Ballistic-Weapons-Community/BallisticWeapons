@@ -42,17 +42,13 @@ simulated state SpinUpFire
 			}
 		}
 
-		OldFireRate = FireRate;
-
 		if (MainGun.BarrelSpeed <= 0)
 		{
 			FireRate = 0.66;
 		}
 		else
 		{
-			FireRate = default.FireRate / (1 + 0.25*int(BW.bBerserk));
-			FireRate = FMin(0.66, FireRate / MainGun.BarrelSpeed);
-			NextFireTime += FireRate - OldFireRate;
+			FireRate = FMin(0.66, (Params.FireInterval / (1 + 0.25*int(BW.bBerserk))) / MainGun.BarrelSpeed);
 		}
 
 		super.ModeTick(DT);
