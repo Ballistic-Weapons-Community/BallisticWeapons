@@ -242,6 +242,8 @@ simulated final function BindFromReplication()
 {
 	Log("BallisticReplicationInfo: BindFromReplication");
 
+	Level.MaxRagdolls 				= 100;
+
 	GameStyle 						= GRep.GameStyle;
 
 	AccuracyScale			    	= GRep.AccuracyScale;

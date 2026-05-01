@@ -175,6 +175,7 @@ var() float SlidePower;			 // Initial burst power when starting a slide, affects
 var bool bIsSliding;			 // Is the player currently sliding?
 var bool bSlideOnLand;			 // Player held duck while airborne — bypass speed threshold on next StartSlide
 var bool bSlideCorrected;		 // True after adopting a server correction into SlideVelocity during replay
+var bool bBotSlideRequest;		 // TODO: work on this
 var float LastSlideEndTime;		// Time when the last slide ended
 var float LastLandTime;			// Time when the player last landed
 var vector SlideVelocity;		// Velocity during the slide
@@ -195,6 +196,8 @@ var 	name 		SlideAnims[4];
 var 	name 		SlideStartAnims[4]; 
 var 	name 		SlideEndAnims[4]; 
 
+var() bool  bBotAutoSprint;		 // Pawn auto-manages sprint for bot controllers based on movement context
+var() float BotSprintEnemyRange; // Enemy closer than this distance stops auto sprint
 
 //Wall running stuff
 //var bool bLockedToSurface; // Tracks if the player is locked to a surface
@@ -3556,15 +3559,6 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 			TickSlopeCalculation(DeltaTime);
 			HandleSliding(DeltaTime);
-			/* //Work on this later - yoyobatty
-			if(Bot(Controller) != None)
-			{
-				if(VSize(SlideVelocity) > SlideStopSpeed * 1.25)
-					bWantsToCrouch = True;
-				else 
-					bWantsToCrouch = False;
-			}
-			*/
 		}
 		else
 		{
@@ -3588,9 +3582,37 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 		OldMovementSpeed = VSize(Velocity);
 	}
-	// End slide if crouch released, speed too low, or airborne
-	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) /*|| (Bot(Controller) != None && !bWantsToCrouch)*/) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
+	// End slide if crouch released (player), bWantsToCrouch cleared (bot), speed too low, or airborne
+	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) || (Bot(Controller) != None && !bWantsToCrouch)) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
 		EndSlide();
+
+	if (Bot(Controller) != None)
+		BotAutoManageSprint();
+}
+
+function BotAutoManageSprint()
+{
+	local Bot B;
+
+	if (!bBotAutoSprint || Sprinter == None)
+		return;
+
+	B = Bot(Controller);
+	if (B == None)
+		return;
+
+	if (bIsSliding || bIsCrouched
+		|| B.MoveTarget == None
+		|| Physics != PHYS_Walking
+		|| (B.Enemy != None && VSize(B.Enemy.Location - Location) <= BotSprintEnemyRange))
+	{
+		if (Sprinter.bSprintActive)
+			Sprinter.StopSprint();
+	}
+	else
+	{
+		Sprinter.StartSprint();
+	}
 }
 
 simulated function StartSlide()
@@ -3606,8 +3628,8 @@ simulated function StartSlide()
 	if (Controller == None)
 		return;
 
-    if ( (!bIsSliding 
-	&& Controller.bDuck > 0 
+    if ( (!bIsSliding
+	&& (Controller.bDuck > 0 || bBotSlideRequest)
 	&& (bSlideOnLand || VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
 	&& Physics == PHYS_Walking
 	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) /*|| AIController(Controller)!=None*/ )
@@ -3621,14 +3643,8 @@ simulated function StartSlide()
 			Sprinter.DelayRecharge();
 			Sprinter.StopSprint();
 		}
-		// When bSlideOnLand is set, Velocity has been dampened to walking speed by
-		// physWalking (~119) since StartSlide runs one tick after landing.
-		// Use the full landing velocity we snapshot in Landed() as the base instead.
 		if (bLandSlide)
 		{
-			// Use the peak falling velocity (captured in ModifyVelocity during the
-			// fall) as the slide base.  This preserves the full dodge/jump launch
-			// speed rather than the dampened post-landing walking speed.
 			SlideVelocity = LastFallingVelocity;
 			SlideVelocity.Z = 0;
 		}
@@ -3660,10 +3676,6 @@ simulated function StartSlide()
 		LastFallingVelocity = vect(0,0,0); 
         bIsSliding = true;
 
-		// Prime Velocity so the native calcVelocity captures it as OldVelocity
-		// on this same tick. Without this, OldVelocity is the low pre-slide
-		// walking speed, and the EndSlide check (OldVelocity + 100 < SlideStopSpeed)
-		// kills the slide immediately.
 		Velocity = SlideVelocity;
 
 		// Set GroundSpeed so native calcVelocity clamp allows slide speed on both client and server
@@ -3707,8 +3719,11 @@ simulated function EndSlide()
     if (!bIsSliding)
         return;
 
-	//if(AIController(Controller) != None)
-	//	bWantsToCrouch = False;
+	if (Bot(Controller) != None)
+	{
+		bBotSlideRequest = false;
+		bWantsToCrouch = false;
+	}
 
     bSlideWaitingStart = false;
 	if(!bIsCrouched) //Play this if not crouched and below certain speed so it looks natural
@@ -3789,6 +3804,8 @@ defaultproperties
 	bCanDodge=True
 	bCanDoubleJump=True
 	bAllowCrouchSliding=True
+	bBotAutoSprint=True
+	BotSprintEnemyRange=600.0
 	MoverLeaveGrace=1.000000
 	MinDragDistance=40.000000
 	MaxPoolVelocity=20.000000
