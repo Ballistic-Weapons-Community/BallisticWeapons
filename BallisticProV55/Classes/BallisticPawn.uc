@@ -213,7 +213,7 @@ var() float BackSlidePowerScale;      // < 1.0 to weaken backward slides
 var() float BackMaxSlideSpeedScale;   // < 1.0 to cap backward slide speed lower
 var() float BackSlideDotThreshold;    // dot threshold vs forward ( negative means backwards :) )
 
-var bool bRagdollSetup;               // True while PlayDyingAnimation is initializing karma ragdoll
+var bool bRagdollSetup;
 var bool bPendingGibFromImpact;
 
 replication
@@ -1601,10 +1601,6 @@ State Dying
 		if (bFrozenBody || bRubbery)
 			return;
 
-		// KInitSkeletonKarma triggers SetCollision which can fire touch events
-		// before the ragdoll is fully registered.  Destroying the pawn now
-		// would call KTermSkeletonKarma on an incomplete entry, crashing in
-		// RemoveFromRagdollList.  Defer all damage until init finishes.
 		if (bRagdollSetup)
 			return;
 
@@ -2378,9 +2374,6 @@ simulated function SpawnGibs(Rotator HitRotation, float ChunkPerterbation)
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'head', HitRay, ChunkPerterbation, 100);
 }
 
-// Guard ragdoll init so re-entrant touch events during KInitSkeletonKarma
-// (triggered by SetCollision inside SetPhysics) cannot destroy the pawn
-// before it is fully registered in the ragdoll list.
 function PlayDyingAnimation(class<DamageType> DamageType, vector HitLoc)
 {
 	bRagdollSetup = true;

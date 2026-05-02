@@ -13,6 +13,7 @@ var	  bool		bStockLocked;
 var   name		StockOpenAnim;
 var   name		StockCloseAnim;
 var   bool		bStockOpen, bStockOpenRotated;
+var   bool		bPendingStockOpen;    // Set on slave when master has started stock-open; slave switches after being raised
 var   int 		StockChaosAimSpread;
 
 var   bool			bStriking;
@@ -210,12 +211,51 @@ function ServerWeaponSpecial(optional byte i)
 		return;
 	if (Clientstate != WS_ReadyToFire)
 		return;
+	if (IsInState('DualAction') || IsInState('PendingDualAction'))
+		return;
 		
 	if (bHasLaser)	
 		ServerSwitchLaser(!bLaserOn);
 	
-	if (!bStockLocked)
-		SwitchStock(!bStockOpen);
+	//Close both together, open 1 at a time
+	if (!bStockLocked && (!IsSlave() || bStockOpen))
+	{
+		if (!bStockOpen && OtherGun != None
+			&& !OtherGun.IsInState('DualAction') && !OtherGun.IsInState('PendingDualAction'))
+			GotoState('PendingStockSwitch');
+		else
+			SwitchStock(!bStockOpen);
+	}
+}
+
+simulated state PendingStockSwitch extends PendingDualAction
+{
+	simulated function BeginState()  { OtherGun.LowerHandGun(); }
+	simulated function HandgunLowered(BallisticHandgun Other)
+	{
+		global.HandgunLowered(Other);
+		if (Other == OtherGun)
+			SwitchStock(!bStockOpen);
+	}
+	simulated event AnimEnd(int Channel)
+	{
+		if (bStockOpen && Fifty9MachinePistol(OtherGun) != None
+			&& !Fifty9MachinePistol(OtherGun).bStockLocked && !Fifty9MachinePistol(OtherGun).bStockOpen)
+			Fifty9MachinePistol(OtherGun).bPendingStockOpen = true;
+		OtherGun.RaiseHandGun();
+		global.AnimEnd(Channel);
+	}
+	function ServerStartReload(optional byte i) {}
+}
+
+simulated function HandgunRaised(BallisticHandgun Other)
+{
+	Super.HandgunRaised(Other);
+	if (Other == self && bPendingStockOpen && !bStockLocked)
+	{
+		bPendingStockOpen = false;
+		GotoState('PendingStockSwitch');
+	}
 }
 
 
@@ -293,6 +333,8 @@ simulated function SetStockRotation()
 
 simulated function PlayIdle()
 {
+	if (ReloadState == RS_GearSwitch)
+		return;
 	if (bStockOpen && !bStockOpenRotated)
 	{
 		SetStockRotation();
