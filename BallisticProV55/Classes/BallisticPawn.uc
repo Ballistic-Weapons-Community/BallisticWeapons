@@ -630,7 +630,7 @@ function TakeFallingDamage()
 				if ( EffectiveSpeed < -1 * MaxFallSpeed )
 				{
 					TakeDamage(-100 * (EffectiveSpeed + MaxFallSpeed)/MaxFallSpeed, None, Location, vect(0,0,0), class'Fell');
-					if (Health <= 0 && -EffectiveSpeed >= PhysicsVolume.TerminalVelocity - 50.f && class'BloodManager'.default.bGibbableCorpses)
+					if (Health <= 0 && -EffectiveSpeed >= PhysicsVolume.TerminalVelocity - 50.f && class'BloodManager'.default.bGibbableCorpses && !bDeRes)
 						bPendingGibFromImpact = true;
 				}
 		    }
@@ -1459,7 +1459,8 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 			}
 			class<BallisticDecal>(BloodSet.default.HighImpactDecal).default.bWaitForInit = false;
 			// Destroy body on next tick to prevent karma crashes 
-			if (Role == ROLE_Authority && Health <= 0 && VSize(impactVel) >= PhysicsVolume.TerminalVelocity - 50.f && class'BloodManager'.default.bGibbableCorpses)
+			if (Role == ROLE_Authority && ImpactNorm.Z > 0.7 && Health <= 0 && VSize(impactVel) >= PhysicsVolume.TerminalVelocity - 50.f 
+			&& class'BloodManager'.default.bGibbableCorpses && !bDeRes)
 				bPendingGibFromImpact = true;
 		}
 		else
@@ -1632,7 +1633,7 @@ State Dying
 			ClassIsChildOf(DamageType, class'DamTypeTeleFragged') ||
 			ClassIsChildOf(DamageType, class'DamTypeIonCannonBlast') ))))
 			{
-				SpawnGibs(Rotation, DamageType.default.GibPerterbation);
+				//SpawnGibs(Rotation, DamageType.default.GibPerterbation);
 				ChunkUp(Rotation, DamageType.default.GibPerterbation);
 				return;
 			}
@@ -1872,9 +1873,14 @@ simulated event Tick(float DT)
 
 	if (bPendingGibFromImpact && Role == ROLE_Authority)
 	{
-		bPendingGibFromImpact = false;
-		SpawnGibs(Rotation, 0.25);
-		ChunkUp(Rotation, 0.25);
+		if (bDeRes)
+			bPendingGibFromImpact = false;
+		else
+		{
+			bPendingGibFromImpact = false;
+			//SpawnGibs(Rotation, 0.25);
+			ChunkUp(Rotation, 0.25);
+		}
 	}
 
 	// Dissolve DeRes corpses
