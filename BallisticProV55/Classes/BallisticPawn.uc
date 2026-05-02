@@ -214,6 +214,7 @@ var() float BackMaxSlideSpeedScale;   // < 1.0 to cap backward slide speed lower
 var() float BackSlideDotThreshold;    // dot threshold vs forward ( negative means backwards :) )
 
 var bool bRagdollSetup;               // True while PlayDyingAnimation is initializing karma ragdoll
+var bool bPendingGibFromImpact;
 
 replication
 {
@@ -610,6 +611,38 @@ event Landed(vector HitNormal)
 	*/
 
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
+}
+
+function TakeFallingDamage()
+{
+	local float Shake, EffectiveSpeed;
+
+	if (Velocity.Z < -0.5 * MaxFallSpeed)
+	{
+		if ( Role == ROLE_Authority )
+		{
+		    MakeNoise(1.0);
+		    if (Velocity.Z < -1 * MaxFallSpeed)
+		    {
+				EffectiveSpeed = Velocity.Z;
+				if ( TouchingWaterVolume() )
+					EffectiveSpeed = FMin(0, EffectiveSpeed + 100);
+				if ( EffectiveSpeed < -1 * MaxFallSpeed )
+				{
+					TakeDamage(-100 * (EffectiveSpeed + MaxFallSpeed)/MaxFallSpeed, None, Location, vect(0,0,0), class'Fell');
+					if (Health <= 0 && -EffectiveSpeed >= PhysicsVolume.TerminalVelocity - 50.f && class'BloodManager'.default.bGibbableCorpses)
+						bPendingGibFromImpact = true;
+				}
+		    }
+		}
+		if ( Controller != None )
+		{
+			Shake = FMin(1, -1 * Velocity.Z/MaxFallSpeed);
+            Controller.DamageShake(Shake);
+		}
+	}
+	else if (Velocity.Z < -1.4 * JumpZ)
+		MakeNoise(0.5);
 }
 
 //===========================================================================
@@ -1425,6 +1458,9 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 				D.InitDecal();
 			}
 			class<BallisticDecal>(BloodSet.default.HighImpactDecal).default.bWaitForInit = false;
+			// Destroy body on next tick to prevent karma crashes 
+			if (Role == ROLE_Authority && Health <= 0 && VSize(impactVel) >= PhysicsVolume.TerminalVelocity - 50.f && class'BloodManager'.default.bGibbableCorpses)
+				bPendingGibFromImpact = true;
 		}
 		else
 		{
@@ -1582,6 +1618,7 @@ State Dying
 			(DamageType.default.bAlwaysGibs || 
 			ClassIsChildOf(DamageType, class'DT_BWExplode') ||
 			ClassIsChildOf(DamageType, class'Gibbed') ||
+			ClassIsChildOf(DamageType, class'Fell') ||
 			ClassIsChildOf(DamageType, class'DamTypeRocket') ||
 			ClassIsChildOf(DamageType, class'DamTypeFlakShell') ||
 			ClassIsChildOf(DamageType, class'DamTypeSuperShockBeam') ||
@@ -1832,6 +1869,13 @@ simulated event Tick(float DT)
 	}
 	// Gore tick
 	TickGore(DT);
+
+	if (bPendingGibFromImpact && Role == ROLE_Authority)
+	{
+		bPendingGibFromImpact = false;
+		SpawnGibs(Rotation, 0.25);
+		ChunkUp(Rotation, 0.25);
+	}
 
 	// Dissolve DeRes corpses
 	if (bDeRes)

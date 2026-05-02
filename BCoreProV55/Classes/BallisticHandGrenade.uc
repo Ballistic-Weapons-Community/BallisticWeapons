@@ -501,16 +501,16 @@ function float GetAIRating()
 	Rating = Super.GetAIRating();
 
 	if (B.Enemy == None)
-		return Rating;
+		return Rating * 0.5;
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	HeightFactor = 1 + 0.3 * FClamp((B.Enemy.Location.Z - Instigator.Location.Z)/-500, -2, 1); 
+	HeightFactor = 1 + 0.2 * FClamp((B.Enemy.Location.Z - Instigator.Location.Z)/-500, -3, 1); 
 	
 	if (Dist < 512)
-		return 0.5 * HeightFactor; // discourage close-range grenade
+		return 0.4 * HeightFactor; // discourage close-range grenade
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 1536, 2048) * HeightFactor; 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.3, Dist, 1024, 1536) * HeightFactor; 
 }
 
 // tells bot whether to charge or back off while using this weapon
