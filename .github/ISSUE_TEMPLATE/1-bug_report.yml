@@ -24,14 +24,14 @@ body:
     validations:
       required: true
   - type: input
-    id: version
+    id: bw-version
     attributes:
-      label: UT2004 Version
+      label: Ballistic Weapons Version
       description: On which version of Ballistic Weapons did the bug appear on?
     validations:
       required: true
   - type: input
-    id: version
+    id: ut2004-version
     attributes:
       label: UT2004 Version
       description: On which version of Ballistic Weapons did the bug appear on?
