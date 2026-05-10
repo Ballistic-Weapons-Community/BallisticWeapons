@@ -1,3 +1,5 @@
+name: Bug report
+description: Something did not work or crashed the game.
 body:
   - type: textarea
     id: actions
