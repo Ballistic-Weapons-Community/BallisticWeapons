@@ -1,7 +1,8 @@
 name: Bug report
 description: Something did not work or crashed the game.
+labels: [Bug]
 body:
-  - type: textarea
+    type: textarea
     id: actions
     attributes:
       label: Description of the bug
