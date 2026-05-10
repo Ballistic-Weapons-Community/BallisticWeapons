@@ -23,7 +23,7 @@ body:
       placeholder: (Required)
     validations:
       required: true
-   - type: input
+  - type: input
     id: version
     attributes:
       label: UT2004 Version
