@@ -3,7 +3,7 @@ description: Something did not work or crashed the game.
 labels: [Bug]
 body:
   - type: textarea
-    id: actions
+    id: description
     attributes:
       label: Description of the bug
       description: |
