@@ -128,6 +128,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Prototype
 		//Layout core
 		LayoutName="X75 Prototype"
+		LayoutTags="irons"
 		Weight=5
 		//Visual
 		AllowedCamos(0)=2

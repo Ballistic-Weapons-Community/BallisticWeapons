@@ -20,6 +20,13 @@ simulated function bool HasAmmo()
 	return true;
 }
 
+function PlayPreFire()
+{
+	super.PlayPreFire();
+
+	AH250Pistol(Weapon).bStriking = true;
+}
+
 //Do the spread on the client side
 function PlayFiring()
 {

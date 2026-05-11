@@ -139,10 +139,10 @@ defaultproperties
 		PlayerSpeedFactor=0.825000
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=50
 		//WeaponModes(0)=(ModeName="Controlled",ModeID="WM_None",Value=0,AimParamsIndex=1,RecoilParamsIndex=0,bUnavailable=False)
 		//WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto",Value=0,AimParamsIndex=0,RecoilParamsIndex=0,bUnavailable=False)
 		//WeaponModes(2)=(ModeName="N/A",ModeID="WM_None",Value=0,bUnavailable=True)
+		MagAmmo=40
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
@@ -163,7 +163,7 @@ defaultproperties
 		PlayerSpeedFactor=0.825000
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=50
+		MagAmmo=40
 		WeaponBoneScales(0)=(BoneName="Holosight",Slot=51,Scale=0f)
 		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)

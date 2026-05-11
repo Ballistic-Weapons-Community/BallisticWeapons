@@ -215,11 +215,14 @@ simulated function bool HasAmmo()
 
 function ServerWeaponSpecial(optional byte i)
 {
-		bMeatVision = !bMeatVision;
-		if (bMeatVision)
-    			class'BUtil'.static.PlayFullSound(self, NVOnSound);
-		else
-    			class'BUtil'.static.PlayFullSound(self, NVOffSound);
+	if (bIsIrons)
+		return;
+	
+	bMeatVision = !bMeatVision;
+	if (bMeatVision)
+    		class'BUtil'.static.PlayFullSound(self, NVOnSound);
+	else
+    		class'BUtil'.static.PlayFullSound(self, NVOffSound);
 }
 
 simulated event WeaponTick(float DT)

@@ -270,7 +270,9 @@ simulated event AnimEnd (int Channel)
     local float Frame, Rate;
 
     GetAnimParams(0, Anim, Frame, Rate);
-
+	
+	if(Anim != 'PrepMelee')
+		bStriking = false;
 	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == 'OpenFire' || Anim == 'OpenSightFire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)

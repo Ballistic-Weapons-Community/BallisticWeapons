@@ -123,6 +123,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Irons
 		//Layout core
 		LayoutName="X75 Irons"
+		LayoutTags="irons"
 		Weight=5
 		//Visual
 		AllowedCamos(0)=2
