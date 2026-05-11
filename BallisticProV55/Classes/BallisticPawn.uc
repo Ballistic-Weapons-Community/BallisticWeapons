@@ -1460,7 +1460,7 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 			class<BallisticDecal>(BloodSet.default.HighImpactDecal).default.bWaitForInit = false;
 			// Destroy body on next tick to prevent karma crashes 
 			if (Role == ROLE_Authority && ImpactNorm.Z > 0.7 && Health <= 0 && VSize(impactVel) >= PhysicsVolume.TerminalVelocity - 50.f 
-			&& class'BloodManager'.default.bGibbableCorpses && !bDeRes)
+				&& class'BloodManager'.default.bGibbableCorpses && !bDeRes && !bSkeletized)
 				bPendingGibFromImpact = true;
 		}
 		else
@@ -1611,7 +1611,7 @@ State Dying
 
 			// Accumulate corpse damage and gib when threshold exceeded
 			Health -= Damage;
-			if (class'BloodManager'.default.bGibbableCorpses && (Health < -200 && (DamageType != None && DamageType.default.bCausesBlood && 
+			if (class'BloodManager'.default.bGibbableCorpses && !bSkeletized && (Health < -200 && (DamageType != None && DamageType.default.bCausesBlood && 
 			(DamageType.default.bAlwaysGibs || 
 			ClassIsChildOf(DamageType, class'DT_BWExplode') ||
 			ClassIsChildOf(DamageType, class'Gibbed') ||
@@ -1630,10 +1630,9 @@ State Dying
 			ClassIsChildOf(DamageType, class'DamTypeIonCannonBlast') ))))
 			{
 				//SpawnGibs(Rotation, DamageType.default.GibPerterbation);
-				ChunkUp(Rotation, DamageType.default.GibPerterbation);
+				ChunkUp(Rotator(Momentum), DamageType.default.GibPerterbation);
 				return;
 			}
-
 			// Apply ragdoll physics
 			if (DamageType != None && DamageType.Default.bThrowRagdoll)
 			{
@@ -1869,13 +1868,13 @@ simulated event Tick(float DT)
 
 	if (bPendingGibFromImpact && Role == ROLE_Authority)
 	{
-		if (bDeRes)
+		if (bDeRes || bSkeletized)
 			bPendingGibFromImpact = false;
 		else
 		{
 			bPendingGibFromImpact = false;
 			//SpawnGibs(Rotation, 0.25);
-			ChunkUp(Rotation, 0.25);
+			ChunkUp(Rotator(-Velocity), 0.25);
 		}
 	}
 
