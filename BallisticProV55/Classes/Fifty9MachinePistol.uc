@@ -56,7 +56,20 @@ simulated function OnWeaponParamsChanged()
 	if (InStr(WeaponParams.LayoutTags, "laser") != -1)
 	{
 		bHasLaser=true;
+		SightFxClass=None;
 	}
+
+	if (bHasLaser)
+	{
+		if (Laser == None && Instigator != None && PlayerController(Instigator.Controller) != None)
+			Laser = Spawn(class'LaserActor');
+	}
+	else if (Laser != None)
+	{
+		Laser.Destroy();
+		Laser = None;
+	}
+
 	if (InStr(WeaponParams.LayoutTags, "lock") != -1)
 	{
 		bStockLocked=true;
@@ -68,6 +81,13 @@ simulated function OnWeaponParamsChanged()
 		bStockOpenRotated = true;
 		AdjustStockProperties();
 	}
+}
+
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	Super.BringUp(PrevWeapon);
+	if (bHasLaser && Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
+		Laser = Spawn(class'LaserActor');
 }
 
 simulated event WeaponTick (Float DT)
@@ -488,7 +508,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		return;
 
 	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
-	Loc = GetBoneCoords('tip2').Origin;
+	Loc = GetBoneCoords('tip').Origin;
 
 	End = Start + Normal(Vector(AimDir))*5000;
 	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
@@ -511,7 +531,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
 	{
-		AimDir = GetBoneRotation('tip2');
+		AimDir = GetBoneRotation('tip');
 		Laser.SetRotation(AimDir);
 	}
 	Scale3D.X = VSize(HitLocation-Loc)/128;
