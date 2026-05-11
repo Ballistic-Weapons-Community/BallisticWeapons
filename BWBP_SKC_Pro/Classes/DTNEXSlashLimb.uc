@@ -23,7 +23,7 @@ defaultproperties
      DeathString="%o is now legless due to %k and the Plas-Edge."
      FemaleSuicide="%o is not very good with fiery swords."
      MaleSuicide="%o is not very good with fiery swords."
-     bArmorStops=False
+     bArmorStops=True
      bAlwaysSevers=True
      GibModifier=1.500000
      PawnDamageSounds(0)=SoundGroup'BWBP_SKC_Sounds.NEX.Nex-HitBod'

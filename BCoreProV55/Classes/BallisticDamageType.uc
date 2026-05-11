@@ -364,6 +364,11 @@ static function class<BloodManager> GetBloodManager ()
 {
 	if (default.BloodManager == None)
 	{
+		if (default.BloodManagerName == "")
+		{
+			default.bCantLoadBlood = true;
+			return None;
+		}
 		default.BloodManager = class<BloodManager>(DynamicLoadObject(default.BloodManagerName,class'class',true));
 		if (default.BloodManager == None)
 			default.bCantLoadBlood = true;

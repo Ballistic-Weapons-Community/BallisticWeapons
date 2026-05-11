@@ -220,12 +220,12 @@ defaultproperties
 	ClipInFrame=0.325000
 	StartShovelAnim="ReloadStart"
 	EndShovelAnim="ReloadEnd"
-	WeaponModes(0)=(ModeName="Timed",bUnavailable=True,ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="Impact",ModeID="WM_FullAuto")
+	WeaponModes(0)=(ModeName="Impact",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Timed",bUnavailable=True,ModeID="WM_FullAuto")
 	WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=127),Color2=(B=0,G=255,R=255,A=192),StartSize1=113,StartSize2=244)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
-	CurrentWeaponMode=1
+	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MGLWeaponParamsComp'

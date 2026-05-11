@@ -144,7 +144,10 @@ simulated function InitProjectile ()
 	if (bDeployed && bLaserMode)
 		SetTimer(2.0, false);
 	else if (!bDeployed)
+	{
+		Velocity = Speed * Vector(Rotation);
 		super.InitProjectile();
+	}
 }
 
 simulated event Timer()

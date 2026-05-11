@@ -370,6 +370,8 @@ event ModeDoFire()
 			FireAnim='SightFire';
 			AimedFireAnim='SightFire';
 		}
+		if (BW.bNoMag)
+			NextFireTime += 0.7;
 	}
 	super.ModeDoFire();
 }

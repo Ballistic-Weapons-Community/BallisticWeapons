@@ -320,6 +320,13 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox,
 	local byte GameStyleIndex;
 	local int i;
 	local class<BallisticWeapon> BW;
+
+    // validate COI and index to avoid calling DynamicLoadObject with empty name
+    if (COI == None || Index < 0 || Index >= COI.GroupLength(GroupIndex) || COI.GetGroupItem(GroupIndex, Index) == "")
+    {
+        log("LoadLayouts: invalid group item - Group=" $ string(GroupIndex) $ " Index=" $ string(Index), 'Warning');
+        return false;
+    }
 		
 	//clear old layouts
 	LayoutComboBox.Clear();
@@ -372,6 +379,11 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	
 	//clear old camos
 	CamoComboBox.Clear();
+    if (COI == None || Index < 0 || Index >= COI.GroupLength(GroupIndex) || COI.GetGroupItem(GroupIndex, Index) == "")
+    {
+        //log("LoadCamos: invalid group item - Group=" $ string(GroupIndex) $ " Index=" $ string(Index), 'Warning');
+        return false;
+    }
 	
 	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	
@@ -517,6 +529,8 @@ function WeaponSelectClosed( optional bool bCancelled )
 		return;
 
 	str = Controller.ActivePage.GetDataString();
+    if(str == "")
+        return;
 	Split(str, "|", loadoutData);
 
     switch (ActiveIndex)

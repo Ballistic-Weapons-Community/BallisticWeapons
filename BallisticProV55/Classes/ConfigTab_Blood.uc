@@ -8,7 +8,7 @@
 //=============================================================================
 class ConfigTab_Blood extends ConfigTabBase;
 
-var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX;
+var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX, ch_GibbableCorpses;
 var automated moFloatEdit	fl_BloodTimeScale;
 var automated moSlider		sl_GibMulti;
 
@@ -24,7 +24,8 @@ function LoadSettings()
 	ch_Stmups.Checked(class'BloodManager'.default.bUseStumps);
 	ch_Chunks.Checked(class'BloodManager'.default.bUseChunks);
 	ch_ScreenFX.Checked(class'BloodManager'.default.bUseScreenFX);
-	sl_GibMulti.SetValue(class'BloodManager'.default.GibMultiplier);	
+	sl_GibMulti.SetValue(class'BloodManager'.default.GibMultiplier);
+	ch_GibbableCorpses.Checked(class'BloodManager'.default.bGibbableCorpses);
 	
 }
 
@@ -44,6 +45,7 @@ function SaveSettings()
 	class'BloodManager'.default.bUseChunks			= ch_Chunks.IsChecked();
 	class'BloodManager'.default.bUseScreenFX		= ch_ScreenFX.IsChecked();	
 	class'BloodManager'.default.GibMultiplier		= sl_GibMulti.GetValue();
+	class'BloodManager'.default.bGibbableCorpses	= ch_GibbableCorpses.IsChecked();
 
 	class'BWBloodControl'.static.StaticSaveConfig();
 	class'BloodManager'.static.StaticSaveConfig();
@@ -66,6 +68,7 @@ function DefaultSettings()
 	ch_Chunks.Checked(true);
 	ch_ScreenFX.Checked(false);
 	sl_GibMulti.SetValue(1);
+	ch_GibbableCorpses.Checked(true);
 }
 
 defaultproperties
@@ -202,6 +205,19 @@ defaultproperties
      End Object
      fl_BloodTimeScale=moFloatEdit'BallisticProV55.ConfigTab_Blood.fl_BloodTimeScaleFloat'
 
+     Begin Object Class=moCheckBox Name=ch_GibbableCorpsesCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Gibbable Corpses"
+         OnCreateComponent=ch_GibbableCorpsesCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Toggles whether corpses can be gibbed."
+         WinTop=0.65000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_GibbableCorpses=moCheckBox'BallisticProV55.ConfigTab_Blood.ch_GibbableCorpsesCheck'
+
      Begin Object Class=moSlider Name=sl_GibMultiSlider
          MaxValue=20.000000
          bIntSlider=True
@@ -213,5 +229,4 @@ defaultproperties
          WinHeight=0.040000
      End Object
      sl_GibMulti=moSlider'BallisticProV55.ConfigTab_Blood.sl_GibMultiSlider'
-
 }

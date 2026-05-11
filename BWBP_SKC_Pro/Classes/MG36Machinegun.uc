@@ -72,8 +72,10 @@ simulated function OnWeaponParamsChanged()
 		bHasGauss=true;
 		bHasDrum=false;
 		AmmoClass[0]=class'Ammo_42HVG';
-		CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_42HVG';
-		CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_42HVG';
+		if (FireMode[0] != None)
+			MG36PrimaryFire(FireMode[0]).AmmoClass=class'Ammo_42HVG';
+		if (FireMode[1] != None)
+			MG36SecondaryFire(FireMode[1]).AmmoClass=class'Ammo_42HVG';
 		if ( ThirdPersonActor != None )
 		{
 			MG36Attachment(ThirdPersonActor).bHasGauss=true;
@@ -455,6 +457,8 @@ exec simulated function WeaponSpecial(optional byte i)
 simulated event Destroyed()
 {
 	AdjustThermalView(false);
+	if (NVLight != None)
+		NVLight.Destroy();
 	super.Destroyed();
 }
 
@@ -555,7 +559,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;
-	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
 	if (!Instigator.IsLocallyControlled())
 		ClientInitWeaponFromTurret(Turret);
 }
@@ -587,7 +590,11 @@ function Notify_Deploy()
 		End = Start + vector(Instigator.Rotation) * Forward;
 		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
 		if (T != None && VSize(HitLoc - Start) < 30)
+		{
+			if (PlayerController(Instigator.Controller) != None)
+				PlayerController(Instigator.Controller).ClientMessage("Too close to deploy!");
 			return;
+		}
 		if (T == None)
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
@@ -595,7 +602,11 @@ function Notify_Deploy()
 		if (T != None && HitLoc.Z <= Start.Z - class'BallisticTurret'.default.MinTurretEyeDepth - 4 && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
+		{
+			if (PlayerController(Instigator.Controller) != None)
+				PlayerController(Instigator.Controller).ClientMessage("No suitable surface to deploy on!");
 			return;
+		}
 	}
 
 	FireMode[1].bIsFiring = false;

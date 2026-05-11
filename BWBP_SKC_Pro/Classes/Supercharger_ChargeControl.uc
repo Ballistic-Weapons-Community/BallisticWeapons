@@ -188,6 +188,8 @@ simulated function BurnRadius( float DamageAmount, float DamageRadius, class<Dam
 	bHurtEntry = true;
 	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
 	{
+		if (Victims == None)
+			continue;
 		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim)
 		{
 			dir = Victims.Location - HitLocation;

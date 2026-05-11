@@ -21,8 +21,15 @@ simulated function PostBeginPlay()
 	
 	if (Level.NetMode != NM_Client)
 	{
-		Fear = Spawn(class'AvoidMarker'); // XAV SEZ: do we want cancer smoke to be a fear spot? I kept it as such.
+		Fear = Spawn(class'BallisticAvoidMarker'); // XAV SEZ: do we want cancer smoke to be a fear spot? I kept it as such.
 		Fear.SetCollisionSize(200, 200);
+		if (Instigator != None)
+		{
+			BallisticAvoidMarker(Fear).OwnerController = Instigator.Controller;
+			if (TeamGame(Level.Game) != None && TeamGame(Level.Game).FriendlyFireScale <= 0
+				&& Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
+				Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
+		}
 	    Fear.StartleBots();
 		if (Level.NetMode == NM_DedicatedServer)
 		{

@@ -148,4 +148,5 @@ defaultproperties
      End Object
      Emitters(2)=SpriteEmitter'BallisticProV55.BG_StumpSpurter.SpriteEmitter23'
 
+     AutoDestroy=True
 }

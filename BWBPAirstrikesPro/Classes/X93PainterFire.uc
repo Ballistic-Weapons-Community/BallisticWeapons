@@ -208,10 +208,15 @@ state Paint
             {
 			    if ( X93IonCannon.Fear == None )
 			    {
-				    X93IonCannon.Fear = Weapon.Spawn(class'AvoidMarker',,,MarkLocation);
+				    X93IonCannon.Fear = Weapon.Spawn(class'BallisticAvoidMarker',,,MarkLocation);
 				    X93IonCannon.Fear.SetCollisionSize(0.4 * X93IonCannon.DamageRadius,100);
-					if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) )
-						X93IonCannon.Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
+					if (Instigator != None)
+					{
+						BallisticAvoidMarker(X93IonCannon.Fear).OwnerController = Instigator.Controller;
+						if (TeamGame(Level.Game) != None && TeamGame(Level.Game).FriendlyFireScale <= 0
+							&& Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
+							X93IonCannon.Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
+					}
 				    X93IonCannon.Fear.StartleBots();
 			    }
 		    }

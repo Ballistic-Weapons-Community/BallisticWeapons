@@ -44,6 +44,7 @@ static function DoSeverEffects(Pawn Victim, name Bone, vector HitRay, float GibP
 	local BW_HitGoreEmitter GoreEffect;
 	local class<Emitter> FXClass;
 	local class<BallisticBloodSet> BS;
+	local array<actor> Gibs;
 
 	BS = GetBloodSet(Victim);
 	if (BS == None)
@@ -59,7 +60,7 @@ static function DoSeverEffects(Pawn Victim, name Bone, vector HitRay, float GibP
 				GoreEffect.InitHitForce(HitRay, GibPerterbation);	}
 	}
 	if (default.bUseChunks && !class'GameInfo'.static.UseLowGore())
-		BS.static.MakeGibsFor(Victim, Bone, HitRay, GibPerterbation, FMin(Damage / 40, 4), BS.static.GetGibInfoFor(Bone));
+		Gibs = BS.static.MakeGibsFor(Victim, Bone, HitRay, GibPerterbation, FMin(Damage / 40, 4), BS.static.GetGibInfoFor(Bone));
 }
 
 static function DoSeverStump(Pawn Victim, name Bone, vector HitRay, float Damage)

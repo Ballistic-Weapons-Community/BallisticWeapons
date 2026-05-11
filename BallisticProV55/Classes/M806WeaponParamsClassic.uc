@@ -209,7 +209,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=8
 		ViewOffset=(X=3.000000,Y=25.000000,Z=-23.000000)
-		bDualMixing=true
+		bDualBlocked=true
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

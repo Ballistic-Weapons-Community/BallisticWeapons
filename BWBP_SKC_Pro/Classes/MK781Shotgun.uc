@@ -181,13 +181,12 @@ simulated function DrawWeaponInfo(Canvas Canvas)
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
 	local int i,Count;
-	local float ScaleFactor2;
+	local float ScaleFactor, ScaleFactor2;
 
-	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
-	local string	Temp;
-	local int	TempNum;
+	Super.NewDrawWeaponInfo (C, YPos);
 
-	DrawCrosshairs(C);
+	if (bSkipDrawWeaponInfo)
+		return;
 	
 	//Draw grenades, they're not accounted for in alternative HUD
 	ScaleFactor = C.ClipX / 1600;
@@ -202,54 +201,6 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 			C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
 			C.DrawTile( Texture'BWBP_SKC_Tex.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 		}
-	}
-	if (bSkipDrawWeaponInfo)
-		return;
-
-	// Draw the spare ammo amount
-	C.Font = GetFontSizeIndex(C, -2 + int(2 * class'HUD'.default.HudScale));
-	C.DrawColor = class'hud'.default.WhiteColor;
-	if (!bNoMag)
-	{
-		Temp = GetHUDAmmoText(0);
-		C.TextSize(Temp, XL, YL);
-		C.CurX = C.ClipX - 20 * ScaleFactor * class'HUD'.default.HudScale - XL;
-		C.CurY = C.ClipY - 140 * ScaleFactor * class'HUD'.default.HudScale - YL;
-		C.DrawText(Temp, false);
-	}
-	if (Ammo[1] != None && Ammo[1] != Ammo[0])
-	{
-		
-		TempNum = Ammo[1].AmmoAmount;
-		C.TextSize(TempNum, XL, YL);
-		C.CurX = C.ClipX - 160 * ScaleFactor * class'HUD'.default.HudScale - XL;
-		C.CurY = C.ClipY - 140 * ScaleFactor * class'HUD'.default.HudScale - YL;
-		C.DrawText(TempNum, false);
-	}
-
-	if (CurrentWeaponMode < WeaponModes.length && !WeaponModes[CurrentWeaponMode].bUnavailable && WeaponModes[CurrentWeaponMode].ModeName != "")
-	{
-		C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
-		C.TextSize(WeaponModes[CurrentWeaponMode].ModeName, XL, YL2);
-		C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
-		C.CurY = C.ClipY - 150 * ScaleFactor * class'HUD'.default.HudScale - YL2 - YL;
-		C.DrawText(WeaponModes[CurrentWeaponMode].ModeName, false);
-	}
-
-	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
-	// Would be nice if someone could have a HUD function called along the inventory chain
-	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
-	{
-		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
-		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
-		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
-		if (SprintFactor < 0.2)
-			C.SetDrawColor(255, 0, 0);
-		else if (SprintFactor < 0.5)
-			C.SetDrawColor(64, 128, 255);
-		else
-			C.SetDrawColor(0, 0, 255);
-		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
 	}
 }
 

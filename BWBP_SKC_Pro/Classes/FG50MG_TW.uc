@@ -12,10 +12,32 @@ class FG50MG_TW extends FG50Machinegun
 
 var() sound		MountFireSound;
 
+function GiveTo(Pawn Other, optional Pickup Pickup)
+{
+    local int m;
+    local weapon w;
+    local bool bPossiblySwitch, bJustSpawned;
+
+    Instigator = Other;
+
+	bJustSpawned = true;
+    Super(BallisticWeapon).GiveTo(Other);
+    bPossiblySwitch = true;
+    W = self;
+
+    for (m = 0; m < NUM_FIRE_MODES; m++)
+    {
+        if ( FireMode[m] != None )
+        {
+            FireMode[m].Instigator = Instigator;
+            W.GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
+        }
+    }
+}
+
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;
-	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
 	if (!Instigator.IsLocallyControlled())
 		ClientInitWeaponFromTurret(Turret);
 }
@@ -24,7 +46,24 @@ simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock=false;
 }
+/* 
+// Annoying hack fix for weaponmodes becoming unavailable for ONLY this shitty gun in classic 
+simulated function OnWeaponParamsChanged()
+{
+	Super.OnWeaponParamsChanged();
 
+	if (WeaponModes.Length >= 2 && (WeaponModes[1].bUnavailable || WeaponModes[1].ModeID == ""))
+	{
+		WeaponModes[1].ModeName = "Auto";
+		WeaponModes[1].ModeID = "WM_FullAuto";
+		WeaponModes[1].bUnavailable = False;
+		WeaponModes[1].Value = 0;
+		WeaponModes[1].RecoilParamsIndex = 0;
+		WeaponModes[1].AimParamsIndex = 0;
+		log(GetHumanReadableName() $" Repaired WeaponModes[1] after params load");
+	}
+}
+*/
 // Rotates the player's view according to Aim
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
@@ -70,11 +109,6 @@ simulated function PreDrawFPWeapon()
 	ScreenStart();
 }
 
-function GiveTo(Pawn Other, optional Pickup Pickup)
-{
-	Super(BallisticWeapon).GiveTo(Other, Pickup);
-}
-
 //attachment fix for deployed
 simulated event Timer()
 {
@@ -103,7 +137,7 @@ simulated event Timer()
 		//without this tracers will not appear in 1st when 
 		//wep is first deployed
 		if (Role < ROLE_Authority)
-		return;
+			return;
 		
 		if (ThirdPersonActor != None )
 		{
@@ -239,7 +273,8 @@ defaultproperties
 	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'FG50TW_WeaponParamsTactical'
 	WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
-	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
+	WeaponModes(2)=(bUnavailable=True)
 	SelectAnim="Deploy"
     BringUpTime=1.600000
 	bCanThrow=False

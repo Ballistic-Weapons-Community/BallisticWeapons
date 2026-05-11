@@ -107,4 +107,5 @@ defaultproperties
      End Object
      Emitters(3)=SpriteEmitter'BWBP_OP_Pro.IE_Z250GasExplode.SpriteEmitter0'
 
+     AutoDestroy=True
 }

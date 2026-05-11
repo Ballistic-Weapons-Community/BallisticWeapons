@@ -138,8 +138,12 @@ function Timer()
 	
 	for(i=0;i<Fires.length;i++)
 	{
-		for(j=0;j<Fires[i].Touching.length;j++)
+		if (Fires[i] == None)
+			continue;
+		for(j=Fires[i].Touching.length-1;j>=0;j--)
 		{
+			if (j >= Fires[i].Touching.length)
+				continue;
 			if (Fires[i].Touching[j] == None || Pawn(Fires[i].Touching[j]) == None)
 				continue;
 				
@@ -151,8 +155,10 @@ function Timer()
 			{
 				bDamage = True;
 				Vic = Fires[i].Touching[j];
-				for(m=0; m<Vic.Touching.Length;m++)
+				for(m=Vic.Touching.Length-1; m>=0; m--)
 				{
+					if (m >= Vic.Touching.Length)
+						continue;
 					if (FLASHGroundFire(Vic.Touching[m]) == None)
 						continue;
 					if (FLASHGroundFire(Vic.Touching[m]).FireControl != self)
@@ -166,11 +172,11 @@ function Timer()
 				
 				if (bDamage)
 				{
+					Served[Served.length] = Fires[i].Touching[j];
 					if ( Instigator == None || Instigator.Controller == None )
 						Fires[i].Touching[j].SetDelayedDamageInstigatorController( InstigatorController );
 						
 					class'BallisticDamageType'.static.GenericHurt(Fires[i].Touching[j], Damage, Instigator, Fires[i].Touching[j].Location, vect(0,0,0), DamageType);
-					Served[Served.length] = Fires[i].Touching[j];	
 				}
 			}
 		}

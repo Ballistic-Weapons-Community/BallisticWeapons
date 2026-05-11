@@ -675,6 +675,9 @@ function bool CanAttack(Actor Other)
     if ( (Instigator == None) || (Instigator.Controller == None) )
         return false;
 
+    if (Pawn(Other) != None && Pawn(Other).Health <= 0)
+        return false;
+
     // check that target is within range
     Dist = VSize(Instigator.Location - Other.Location);
     if (Dist > FireMode[1].MaxRange())
@@ -704,6 +707,8 @@ function bool CanAttack(Actor Other)
 			{
 				if (Pawn(Victims) != None)
 				{
+					if (Pawn(Victims).Health <= 0)
+				        continue;
 					Dist = VSize(Victims.location - Instigator.location);
 					if (Dist > 1900)
 						continue;
@@ -747,6 +752,9 @@ function byte BestMode()
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
+		return Rand(2);
+
+	if (B.Enemy.Health <= 0)
 		return Rand(2);
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);

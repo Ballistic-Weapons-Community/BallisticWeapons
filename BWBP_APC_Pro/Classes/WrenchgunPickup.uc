@@ -1,4 +1,4 @@
-class WrenchgunPickup extends BallisticHandGunPickup
+class WrenchgunPickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx

@@ -128,4 +128,6 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
      Emitters(4)=SpriteEmitter'BWBP_APC_Pro.IE_BulletRadLarge.SpriteEmitter3'
+
+     AutoDestroy=True
 }

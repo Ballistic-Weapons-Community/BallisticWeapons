@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class L8GIThrown extends BallisticGrenade;
+class L8GIThrown extends BallisticHandGrenadeProjectile;
 
 var() int HealingAmount;
 var() bool bSuperHeal;

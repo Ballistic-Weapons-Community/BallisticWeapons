@@ -26,6 +26,16 @@ simulated function OnWeaponParamsChanged()
 	}
 }
 
+simulated function PreDrawFPWeapon()
+{
+	super.PreDrawFPWeapon();
+	if (bSingle)
+	{
+		SetDrawScale(6.000000);
+		SetLocation(Location + ViewAlignedOffset(vect(-40.0, 35.5, 20.5)));
+	}
+}
+
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {

@@ -302,8 +302,11 @@ simulated function ShotgunFired()
 
 simulated function RevolverFired()
 {
-	SetBoneScale(ShellIndex, 0.0, Shells[ShellIndex].BulletName);
-	ShellIndex++;
+	if(ShellIndex < NumShells)
+	{
+		SetBoneScale(ShellIndex, 0.0, Shells[ShellIndex].BulletName);
+		ShellIndex++;
+	}
 
 	CylinderRotation.Roll+=7282;
 	SetBoneRotation('Revolver', CylinderRotation,0,1.0);

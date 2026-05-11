@@ -34,7 +34,7 @@ defaultproperties
      DeathString="%k lopped %o's head with a clean sweep of the NEX."
      FemaleSuicide="%o burnt her head off..."
      MaleSuicide="%o burnt his head off..."
-     bArmorStops=False
+     bArmorStops=True
      bAlwaysSevers=True
      GibModifier=3.000000
      PawnDamageSounds(0)=SoundGroup'BWBP_SKC_Sounds.NEX.Nex-HitBod'

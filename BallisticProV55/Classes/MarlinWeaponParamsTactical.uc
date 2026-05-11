@@ -156,8 +156,8 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
 		ViewBindFactor=0.3
-		ADSViewBindFactor=1 //
-		EscapeMultiplier=1.0 //
+		ADSViewBindFactor=1.0
+		EscapeMultiplier=1.0
 		XCurve=(Points=(,(InVal=1.000000,OutVal=0.12)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.5),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
 		MaxRecoil=8192
@@ -174,7 +174,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		ADSViewBindFactor=0
+		ADSViewBindFactor=1
 		ADSMultiplier=0.35
 		AimAdjustTime=0.6
 		AimSpread=(Min=256,Max=1024)
@@ -185,7 +185,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=TacticalAimParams_Scope
-		ADSViewBindFactor=1 //
+		ADSViewBindFactor=0
 		ADSMultiplier=0.35
 		AimAdjustTime=0.6
 		AimSpread=(Min=256,Max=1024)

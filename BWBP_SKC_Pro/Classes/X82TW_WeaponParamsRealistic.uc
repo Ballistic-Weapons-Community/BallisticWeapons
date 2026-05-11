@@ -48,6 +48,8 @@ defaultproperties
 	
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=1.000000
+		AmmoPerFire=0
+		FireAnim="Undeploy"
 		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		

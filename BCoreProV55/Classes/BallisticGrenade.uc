@@ -293,7 +293,7 @@ simulated function HitWall(vector HitNormal, actor Wall)
 	{
 		if (ImpactSound != None)
 			PlaySound(ImpactSound, SLOT_Misc, 1.5 );
-		if (ReflectImpactManager != None)
+		if (ReflectImpactManager != None && Wall != None)
 		{
 			if (Instigator == None)
 				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Level.GetLocalPlayerController()/*.Pawn*/);

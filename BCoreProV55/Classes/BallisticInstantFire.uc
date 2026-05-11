@@ -508,6 +508,9 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 
 	while (Dist > 0)		// Loop traces in case we need to go through stuff
 	{
+		if (Weapon == None || BW == None) //Check every loop for safety 
+			return;
+
 		BW.UpdatePenetrationStatus(PenCount + WallCount);
 		
 		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);

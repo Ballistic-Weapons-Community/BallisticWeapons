@@ -77,8 +77,8 @@ defaultproperties
      WeaponClassName="BWBP_JCF_Pro.M99_TW"
      GunYawBounds=(Min=-12000.000000,Max=12000.000000)
      GunPitchBounds=(Min=-2000.000000,Max=2000.000000)
-     CamYawBounds=(Min=-12000.000000,Max=12000.000000)
-     CamPitchBounds=(Min=-2000.000000,Max=2000.000000)
+     CamYawBounds=(Min=-16000.000000,Max=16000.000000)
+     CamPitchBounds=(Min=-5000.000000,Max=5000.000000)
      GunYawSpeed=24000.000000
      GunPitchSpeed=32768.000000
      CamTrackYawSpeed=32768.000000

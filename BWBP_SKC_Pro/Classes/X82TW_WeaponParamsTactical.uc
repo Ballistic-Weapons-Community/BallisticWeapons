@@ -47,6 +47,8 @@ defaultproperties
 	
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
 		FireInterval=1.000000
+		AmmoPerFire=0
+		FireAnim="Undeploy"
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
 	End Object
 		

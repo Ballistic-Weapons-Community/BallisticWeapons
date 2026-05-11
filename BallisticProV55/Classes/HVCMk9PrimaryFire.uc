@@ -593,7 +593,7 @@ simulated state BranchingFire
 		{
 			for (i=0;i<OldTargets.length;i++)
 			{
-				if (OldTargets[i].Vic != None && OldTargets[i].Zaps > TotalWallZaps / 4 &&
+				if (OldTargets[i].Vic != None && OldTargets[i].Vic.Health > 0 && OldTargets[i].Zaps > TotalWallZaps / 4 &&
 					!OldTargets[i].Vic.HeadVolume.bWaterVolume &&
 					Normal(OldTargets[i].Vic.Location - Instigator.Location) Dot AimDir > 0.75)
 				{
@@ -612,7 +612,8 @@ simulated state BranchingFire
 			// Find all possible victims
 			foreach Instigator.VisibleCollidingActors( class 'Actor', Victims, 950, Instigator.Location )
 			{
-				if ( Victims != Instigator && Victims.Role == ROLE_Authority && !Victims.IsA('FluidSurfaceInfo') && !Victims.bWorldGeometry && Victims.bProjTarget && !Victims.bStatic && Projectile(Victims)==None && /*Victims.bCanBeDamaged &&*/
+				if ( Victims != Instigator && Victims.Role == ROLE_Authority && !Victims.IsA('FluidSurfaceInfo') && !Victims.bWorldGeometry && Victims.bProjTarget && !Victims.bStatic && Projectile(Victims)==None &&
+					(Pawn(Victims) == None || Pawn(Victims).Health > 0) &&
 					(!Victims.PhysicsVolume.bWaterVolume || (Pawn(Victims)!=None && !Pawn(Victims).HeadVolume.bWaterVolume)) )
 				{
 					Dir = Normal(Victims.Location - Instigator.Location);

@@ -59,6 +59,7 @@ static function DoBloodHit(Pawn Victim, name Bone, vector HitLoc, vector HitRay,
 static function DoSeverEffects(Pawn Victim, name Bone, vector HitRay, float GibPerterbation, float Damage)
 {
 	local class<BallisticBloodSet> BS;
+	local array<actor> Gibs;
 
 	BS = GetBloodSet(Victim);
 	if (BS == None)
@@ -66,7 +67,7 @@ static function DoSeverEffects(Pawn Victim, name Bone, vector HitRay, float GibP
 
 	if (!default.bUseChunks || class'GameInfo'.static.UseLowGore())
  		return;
-	BS.static.MakeGibsFor(Victim, Bone, HitRay, GibPerterbation, FMin(Damage / 40, 4), BS.static.GetGibInfoFor(Bone), true);
+	Gibs = BS.static.MakeGibsFor(Victim, Bone, HitRay, GibPerterbation, FMin(Damage / 40, 4), BS.static.GetGibInfoFor(Bone), true);
 }
 
 static function DoSeverStump(Pawn Victim, name Bone, vector HitRay, float Damage)

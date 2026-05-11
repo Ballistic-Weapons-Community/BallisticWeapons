@@ -284,9 +284,9 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalStandardAimParams'
 		AimParams(1)=AimParams'TacticalControlledAimParams'
 		FireParams(0)=FireParams'TacticalPriControlledFireParams'
-		FireParams(2)=FireParams'TacticalPriStandardFireParams'
+		FireParams(1)=FireParams'TacticalPriStandardFireParams'
 		AltFireParams(0)=FireParams'TacticalSecControlledFireParams'
-		AltFireParams(2)=FireParams'TacticalSecStandardFireParams'
+		AltFireParams(1)=FireParams'TacticalSecStandardFireParams'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Mount
@@ -312,7 +312,7 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalStandardAimParams'
 		AimParams(1)=AimParams'TacticalControlledAimParams'
 		FireParams(0)=FireParams'TacticalPriControlledFireParams'
-		FireParams(2)=FireParams'TacticalPriStandardFireParams'
+		FireParams(1)=FireParams'TacticalPriStandardFireParams'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Mount'
     End Object 
 
@@ -340,9 +340,9 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalStandardAimParams'
 		AimParams(1)=AimParams'TacticalControlledAimParams'
 		FireParams(0)=FireParams'TacticalPriControlledFireParams_AP'
-		FireParams(2)=FireParams'TacticalPriStandardFireParams_AP'
+		FireParams(1)=FireParams'TacticalPriStandardFireParams_AP'
 		AltFireParams(0)=FireParams'TacticalSecondaryFireParams_Scope'
-		AltFireParams(2)=FireParams'TacticalSecondaryFireParams_Scope'
+		AltFireParams(1)=FireParams'TacticalSecondaryFireParams_Scope'
     End Object 
 	
     Layouts(0)=WeaponParams'TacticalParams'

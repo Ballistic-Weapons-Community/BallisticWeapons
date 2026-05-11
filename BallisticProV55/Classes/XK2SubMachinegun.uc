@@ -68,6 +68,17 @@ simulated function OnWeaponParamsChanged()
 	}
 }
 
+simulated state PendingSwitchSilencer extends PendingDualAction
+{
+	simulated function BeginState()	{	OtherGun.LowerHandGun();	}
+	simulated function HandgunLowered (BallisticHandgun Other)	{ global.HandgunLowered(Other); if (Other == Othergun) WeaponSpecial();	}
+	simulated event AnimEnd(int Channel)
+	{
+		Othergun.RaiseHandGun();
+		global.AnimEnd(Channel);
+	}
+}
+
 simulated function WeaponTick(float DT)
 {
 	Super.WeaponTick(DT);
@@ -123,6 +134,18 @@ exec simulated function WeaponSpecial(optional byte i)
 	{
 		if (!bHasSuppressor)
 			return;
+		if (Othergun != None)
+		{
+			if (Othergun.Clientstate != WS_ReadyToFire)
+				return;
+			if (IsinState('DualAction'))
+				return;
+			if (!Othergun.IsinState('Lowered'))
+			{
+				GotoState('PendingSwitchSilencer');
+				return;
+			}
+		}
 		bSilenced = !bSilenced;
 		ServerSwitchSilencer(bSilenced);
 		SwitchSilencer(bSilenced);
@@ -132,6 +155,10 @@ exec simulated function WeaponSpecial(optional byte i)
 
 simulated function SwitchSilencer(bool bNewValue)
 {
+	if (Role == ROLE_Authority)
+		bServerReloading = True;
+	ReloadState = RS_GearSwitch;
+
 	if (bNewValue)
 		PlayAnim(SilencerOnAnim);
 	else

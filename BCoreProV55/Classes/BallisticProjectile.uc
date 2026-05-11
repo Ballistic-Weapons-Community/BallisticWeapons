@@ -282,6 +282,8 @@ simulated function PostNetBeginPlay()
 //===================================================================
 simulated function InitParams()
 {    
+    if (WeaponClass == None || WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle] == None)
+        return;
     WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetProjectileParams(self);
 }
 
@@ -292,7 +294,7 @@ simulated function InitParams()
 //===================================================================
 simulated function ApplyParams(ProjectileEffectParams params)
 {
-	if (!bApplyParams)
+	if (!bApplyParams || params == None)
 		return;
 	
     Speed = params.Speed;
@@ -718,9 +720,13 @@ simulated function bool CanTouch(Actor Other)
 simulated function Penetrate(Actor Other, Vector HitLocation)
 {
     local Vector X;
+    local bool bOldCollideActors;
 
     X = Normal(Velocity);
+    bOldCollideActors = bCollideActors;
+    SetCollision(false, false, false);
     SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
+    SetCollision(bOldCollideActors, default.bBlockActors, default.bBlockPlayers);
     if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
          PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, Other.SurfaceType, Owner, 4/*HF_NoDecals*/);
 }

@@ -19,7 +19,7 @@ defaultproperties
      DeathString="%k RAGED LIKE BEAR and put knives in %o's head."
      FemaleSuicide="%o got too personal with her vodka soaked blade."
      MaleSuicide="%o had a horrible shaving accident with his AK490 bayonet."
-     bArmorStops=False
+     bArmorStops=True
      bAlwaysSevers=True
      bSpecial=True
      PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'

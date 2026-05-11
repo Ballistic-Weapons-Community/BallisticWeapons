@@ -117,8 +117,13 @@ simulated event Tick(float DT)
 function float BotDesireability(Pawn Bot)
 {
 	local Weapon AlreadyHas;
+	local class<BallisticWeapon> BW;
 	local class<Pickup> AmmoPickupClass;
 	local float desire;
+
+	BW = class<BallisticWeapon>(InventoryType);
+	if (BW.default.MaxInventoryCapacity > 0 && DetectedInventorySize >= BW.default.MaxInventoryCapacity)
+		return 0;
 
 	// bots adjust their desire for their favorite weapons
 	desire = MaxDesireability + Bot.Controller.AdjustDesireFor(self);
@@ -293,6 +298,8 @@ function inventory SpawnCopy( pawn Other )
 
 simulated function GetAmmoAmount (int m, Weapon W)
 {
+	if (W.GetAmmoClass(m) == None)
+		return;
 	if (bThrown)
 	{
 		if (BallisticWeapon(W)!=None && BallisticWeapon(W).bNoMag==false)

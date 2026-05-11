@@ -16,7 +16,6 @@ class M925Machinegun extends BallisticMachinegun;
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;
-	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
 	if (!Instigator.IsLocallyControlled())
 		ClientInitWeaponFromTurret(Turret);
 }
@@ -50,7 +49,11 @@ function Notify_Deploy()
 		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
 
 		if (T != None && VSize(HitLoc - Start) < 30)
+		{
+			if (PlayerController(Instigator.Controller) != None)
+				PlayerController(Instigator.Controller).ClientMessage("Too close to deploy!");
 			return;
+		}
 
 		if (T == None)
 			HitLoc = End;
@@ -63,7 +66,11 @@ function Notify_Deploy()
 			break;
 
 		if (Forward <= 45)
+		{
+			if (PlayerController(Instigator.Controller) != None)
+				PlayerController(Instigator.Controller).ClientMessage("No suitable surface to deploy on!");
 			return;
+		}
 	}
 
 	FireMode[1].bIsFiring = false;

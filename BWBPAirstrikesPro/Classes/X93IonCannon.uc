@@ -174,10 +174,15 @@ state FireSequence
 
 Begin:
     if ( Fear == None )
-		Fear = Spawn(class'AvoidMarker',,,MarkLocation);
+		Fear = Spawn(class'BallisticAvoidMarker',,,MarkLocation);
     Fear.SetCollisionSize(DamageRadius,200); 
-	if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) )
-		Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
+	if (Instigator != None)
+	{
+		BallisticAvoidMarker(Fear).OwnerController = Instigator.Controller;
+		if (TeamGame(Level.Game) != None && TeamGame(Level.Game).FriendlyFireScale <= 0
+			&& Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
+			Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
+	}
     Fear.StartleBots();
     Sleep(0.5);
     SpawnEffect();

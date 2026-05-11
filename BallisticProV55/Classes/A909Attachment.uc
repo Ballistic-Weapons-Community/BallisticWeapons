@@ -21,6 +21,19 @@ simulated function PostNetBeginPlay()
 	}
 }
 
+simulated function ApplyCamo()
+{
+	local int i;
+
+	super.ApplyCamo();
+
+	if (LeftOne != None)
+	{
+		for (i = 0; i < Skins.Length; i++)
+			LeftOne.Skins[i] = Skins[i];
+	}
+}
+
 simulated function Destroyed()
 {
 	if (LeftOne != None)

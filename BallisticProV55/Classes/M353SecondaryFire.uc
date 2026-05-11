@@ -4,7 +4,16 @@ function PlayFiring()
 {
 	if (BallisticTurret(Instigator) != None)
 	{
+		if(!BW.HasAnim('Undeploy'))
+		{
+			BW.Notify_Undeploy();
+			return;
+		}
 		super.PlayFiring();
+	}
+	else if (BW != None)
+	{
+		BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
 	}
 }
 
@@ -12,6 +21,8 @@ function ServerPlayFiring()
 {
 	if (BallisticTurret(Instigator) != None)
 		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	else if (BW != None)
+		BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
 }
 
 
@@ -70,21 +81,24 @@ simulated event ModeDoFire()
     if (Weapon.Role == ROLE_Authority)
     {
         DoFireEffect();
-        if ( (BallisticTurret(Instigator) == None) || (Instigator.Controller == None) )
+        if (Instigator == None || Instigator.Controller == None)
 			return;
         if ( AIController(Instigator.Controller) != None )
             AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         Instigator.DeactivateSpawnProtection();
     }
 	
-	BW.LastFireTime = Level.TimeSeconds;
+	if (BW != None)
+		BW.LastFireTime = Level.TimeSeconds;
 
 
     // client
-    if (Instigator.IsLocallyControlled())
+    if (Instigator != None && Instigator.IsLocallyControlled())
     {
         ShakeView();
         PlayFiring();
+        if (Weapon == None)
+            return;
         FlashMuzzleFlash();
         StartMuzzleSmoke();
     }
@@ -112,7 +126,7 @@ simulated event ModeDoFire()
     Load = AmmoPerFire;
     HoldTime = 0;
 
-    if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
+    if (Instigator != None && Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
     {
         bIsFiring = false;
         Weapon.PutDown();
@@ -130,24 +144,38 @@ simulated event ModeDoFire()
 function DoFireEffect()
 {
 	if (BallisticTurret(Instigator) == None)
-		M353Machinegun(Weapon).Notify_Deploy();
+	{
+		if (!Weapon.HasAnim('Deploy'))
+			BW.Notify_Deploy();
+	}
 }
 
 simulated function bool AllowFire()
 {
-	if (BallisticTurret(Instigator) == None && Instigator.HeadVolume.bWaterVolume)
+	local name Anim;
+	local float Frame, Rate;
+
+	Weapon.GetAnimParams(0, Anim, Frame, Rate);
+	if (Anim == 'Deploy' || Anim == 'Undeploy')
+		return false;
+
+	if (BallisticTurret(Instigator) != None)
+		return Level.TimeSeconds - BallisticTurret(Instigator).DriverEnterTime >= 0.3;
+	if (Instigator.HeadVolume.bWaterVolume)
+		return false;
+	if (BW != None && BW.LastTurretDeployTime > 0 && Level.TimeSeconds - BW.LastTurretDeployTime < 0.3)
 		return false;
 	return super.AllowFire();
 }
 
 defaultproperties
 {
-     bUseWeaponMag=False
-     bWaitForRelease=True
-     bModeExclusive=False
-     FireAnim="Undeploy"
-     FireRate=0.700000
-     AmmoClass=Class'BallisticProV55.Ammo_556mmBelt'
-     AmmoPerFire=0
-     BotRefireRate=0.300000
+	bUseWeaponMag=False
+	bWaitForRelease=True
+	bModeExclusive=False
+	FireAnim="Undeploy"
+	FireRate=0.700000
+	AmmoClass=Class'BallisticProV55.Ammo_556mmBelt'
+	AmmoPerFire=0
+	BotRefireRate=0.300000
 }

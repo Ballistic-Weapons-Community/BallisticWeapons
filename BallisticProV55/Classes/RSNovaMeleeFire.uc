@@ -74,7 +74,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (bWasAlive && Pawn(Victim).health <= 0)
+	if (bWasAlive && Pawn(Victim) != None && Pawn(Victim).health <= 0)
 		class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victim), Weapon);
 
 	if (Pawn(Victim) != None && Pawn(Victim).Health > 0)

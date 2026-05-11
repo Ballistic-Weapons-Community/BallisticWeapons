@@ -49,6 +49,13 @@ simulated event Timer()
 	}
 	if (Victim != None && Level.NetMode != NM_Client && BurnTime > 1)
 	{
+		// Stop damaging dead pawns — prevents flash refresh during death cam
+		if (Pawn(Victim) != None && Pawn(Victim).Health <= 0)
+		{
+			Kill();
+			BurnTime = -1;
+			return;
+		}
 		if ( Instigator == None || Instigator.Controller == None )
 			Victim.SetDelayedDamageInstigatorController( InstigatorController );
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Location, vect(0,0,0), DamageType);

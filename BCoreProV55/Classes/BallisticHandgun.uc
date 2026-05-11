@@ -776,6 +776,30 @@ function float GetAIRating()
 	return Super.GetAIRating();
 }
 
+simulated function float RateSelf()
+{
+	// Don't use HasAmmo()!!! If the weapon has a melee fire it will think it always has ammo, 
+	// it doesn't matter if the weapon can still technically attack, 
+	// it's basically useless for bots, melee is only for backup situations - yoyo
+    if ( !HasMagAmmo(255) && !HasNonMagAmmo(255) )
+        CurrentRating = -2;
+	else if ( Instigator.Controller == None )
+		return 0;
+	else
+	{
+		CurrentRating = Instigator.Controller.RateWeapon(self);
+		if (!bNoMag){
+			if(!HasNonMagAmmo(255) && MagAmmo < WeaponParams.MagAmmo / 4)
+				CurrentRating /= (1+AIReloadTime);
+//				CurrentRating = CurrentRating * 0.25;
+			else if (MagAmmo <= 0)
+				CurrentRating /= (2+AIReloadTime);
+//				CurrentRating = FClamp(CurrentRating / (1+AIReloadTime), 2, CurrentRating);
+		}
+	}
+	return CurrentRating;
+}
+
 simulated event Timer()
 {
 	local int Mode;
@@ -1168,7 +1192,7 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked)
     	//if ( Inv != self && Inv.Class == Class) //ClassIsChildOf(Inv.class, class'BallisticHandgun') )
     	{
-    		if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
+    		if (Inv.class == class)
     		{
    				Best = BallisticHandgun(Inv);
     			break;
@@ -1192,9 +1216,9 @@ simulated function DoQuickDraw()
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
     	{		
-    		if ( Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun') )
+    		if ( Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing )
 	    	{
-    			if (Inv.class == class && BallisticHandgun(Inv).HasAmmoLoaded(255))
+    			if (Inv.class == class)
     			{
    					Best = BallisticHandgun(Inv);
     				break;
@@ -1252,14 +1276,10 @@ simulated function BallisticWeapon FindQuickDraw(BallisticWeapon CurrentChoice, 
 
 simulated function bool AllowWeapPrevUI()
 {
-	if (OtherGun != None)
-		return false;
 	return Super.AllowWeapPrevUI();
 }
 simulated function bool AllowWeapNextUI()
 {
-	if (OtherGun != None)
-		return false;
 	return Super.AllowWeapNextUI();
 }
 
@@ -1396,6 +1416,32 @@ function AttachToPawn(Pawn P)
 	}
 	else
 		P.AttachToBone(ThirdPersonActor,BoneName);
+}
+
+function bool HandlePickupQuery( pickup Item )
+{
+	local Inventory Inv;
+	local int Count;
+
+	// Allow picking up a second handgun of the same type for dual wielding
+	if (class == Item.InventoryType && !bDualBlocked)
+	{
+		for (Inv = Instigator.Inventory; Inv != None; Inv = Inv.Inventory)
+		{
+			if (Inv.class == class)
+				Count++;
+			if (Count >= 2)
+				break;
+		}
+		if (Count < 2)
+		{
+			if ( Inventory == None )
+				return false;
+			return Inventory.HandlePickupQuery(Item);
+		}
+	}
+
+	return Super.HandlePickupQuery(Item);
 }
 
 function GiveTo(Pawn Other, optional Pickup Pickup)
@@ -1665,13 +1711,27 @@ simulated function HandgunRaised (BallisticHandgun Other)
 {
 	if (Other == self)
 	{
-		if (Role == ROLE_Authority && !bNeedReload && bNeedCock)
-
-			ServerCockGun();
+		if (!bNeedReload && bNeedCock)
+		{
+			if (Role == ROLE_Authority)
+				ServerCockGun();
+			else
+				CommonCockGun();
+		}
 	}
 }
 
-simulated function LowerHandGun ()	{	GotoState('Lowering');	}
+simulated function LowerHandGun ()
+{
+	// Clean up interrupted reload state so ServerCockGun won't reject cocking when raised
+	if (ReloadState != RS_None)
+	{
+		ReloadState = RS_None;
+		if (Role == ROLE_Authority)
+			bServerReloading = false;
+	}
+	GotoState('Lowering');
+}
 simulated function RaiseHandGun ()	{	GotoState('Raising');	}
 // Special States for gun that is lowered while other is busy
 simulated state DualAction
@@ -1776,7 +1836,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		C.CurY = C.ClipY - 196 * ScaleFactor * class'HUD'.default.HudScale - YL;
 		C.DrawText(Temp, false);
 	}
-	// Draw weapon fireing mode
+	// Draw weapon firing mode
 	if (CurrentWeaponMode < WeaponModes.length && !WeaponModes[CurrentWeaponMode].bUnavailable && WeaponModes[CurrentWeaponMode].ModeName != "")
 	{
 		C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
@@ -1887,6 +1947,8 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 simulated function MeleeHoldImpl()
 {
+	if (OtherGun != None)
+		return;
 	super.MeleeHoldImpl();
 	
 	if (IsMaster())

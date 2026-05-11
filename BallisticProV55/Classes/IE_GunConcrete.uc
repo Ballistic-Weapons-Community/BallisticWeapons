@@ -71,4 +71,5 @@ defaultproperties
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.IE_GunConcrete.SpriteEmitter14'
 
+     AutoDestroy=True
 }

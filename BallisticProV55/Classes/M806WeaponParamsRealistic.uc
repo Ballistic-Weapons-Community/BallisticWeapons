@@ -220,6 +220,7 @@ defaultproperties
 		MagAmmo=8
 		bMagPlusOne=True
 		ViewOffset=(X=0.00,Y=20.00,Z=-20.00)
+		bDualBlocked=true
 		WeaponName="M806 .45 Handgun (4X)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Scope'
 		AimParams(0)=AimParams'RealisticAimParams'

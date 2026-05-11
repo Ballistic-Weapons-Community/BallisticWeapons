@@ -59,12 +59,15 @@ var transient float PitchFraction, YawFraction;
 
 var array<Actor> PendingScreenBlood;
 
+var() float FlySpeedMulti;
+var bool bWantsSprint;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
 		LastLoadoutClasses;
 	reliable if (Role < ROLE_Authority)
-		ServerCamDist, ServerReloaded;
+		ServerCamDist, ServerReloaded, ServerSetSprint;
     unreliable if( Role==ROLE_Authority )
         ClientDmgFlash;
 }
@@ -90,6 +93,18 @@ simulated event PostBeginPlay()
     }
     FillCameraList();
     LastKillTime = -5.0;
+}
+
+// Clear lingering screen effects (flash, fog) on respawn (#134)
+function ClientRestart(Pawn NewPawn)
+{
+	FlashScale = default.FlashScale;
+	FlashFog = vect(0,0,0);
+	DesiredFlashScale = 0;
+	DesiredFlashFog = vect(0,0,0);
+	bOverrideDmgFlash = false;
+
+	Super.ClientRestart(NewPawn);
 }
 
 exec simulated function ChangeCamDist(float F)
@@ -799,6 +814,16 @@ final function ServerReloaded(optional int Group)
 			Weapon(Inv).SuperMaxOutAmmo();
 }
 
+simulated event PlayerCalcView(out actor ViewActor, out vector CameraLocation, out rotator CameraRotation)
+{
+    local Pawn DeadTarget;
+
+    DeadTarget = Pawn(ViewTarget);
+    if (Pawn == None && DeadTarget != None && !DeadTarget.bDeleteMe && DeadTarget.Health <= 0)
+        SetLocation(DeadTarget.Location);
+
+    Super.PlayerCalcView(ViewActor, CameraLocation, CameraRotation);
+}
 
 //===========================================================================
 // Behind View support
@@ -1030,6 +1055,38 @@ function bool AutoTaunt()
 	return false;
 }
 
+exec function Mutate(string MutateString)
+{
+    if (MutateString ~= "BStartSprint")
+    {
+        bWantsSprint = true;
+        ServerSetSprint(true);
+    }
+    else if (MutateString ~= "BStopSprint")
+    {
+        bWantsSprint = false;
+        ServerSetSprint(false);
+    }
+    Super.Mutate(MutateString);
+}
+
+function ServerSetSprint(bool bSprint)
+{
+    bWantsSprint = bSprint;
+    if (bSprint)
+    {
+        if (Pawn != None)
+            Pawn.AirSpeed = Pawn.default.AirSpeed * FlySpeedMulti;
+        SetSpectateSpeed(default.SpectateSpeed * FlySpeedMulti);
+    }
+    else
+    {
+        if (Pawn != None)
+            Pawn.AirSpeed = Pawn.default.AirSpeed;
+        SetSpectateSpeed(default.SpectateSpeed);
+    }
+}
+
 //Prevent rolling view bug caused by taking massive damage.
 function DamageShake(int damage)
 {
@@ -1164,6 +1221,9 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
 		
         if ( VSize(NewAccel) < 1.0 )
             NewAccel = vect(0,0,0);
+		if ( bCheatFlying && (Pawn.Acceleration == vect(0,0,0)) )
+            Pawn.Velocity = vect(0,0,0);
+		Pawn.AccelRate = 4096.0;
 
         // Update rotation.
         oldRotation = Rotation;
@@ -1173,6 +1233,40 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
             ReplicateMove(DeltaTime, NewAccel, DCLICK_None, OldRotation - Rotation);
         else
             ProcessMove(DeltaTime, NewAccel, DCLICK_None, OldRotation - Rotation);
+    }
+}
+
+//Allows fast moving in sprint
+state Spectating
+{
+	ignores SwitchWeapon, RestartLevel, ClientRestart, Suicide,
+	ThrowWeapon, NotifyPhysicsVolumeChange, NotifyHeadVolumeChange;
+
+    function PlayerMove(float DeltaTime)
+    {
+        local vector X,Y,Z, NewAccel;
+
+		if ( (Pawn(ViewTarget) != None) && (Level.NetMode == NM_Client) )
+		{
+			if ( Pawn(ViewTarget).bSimulateGravity )
+				TargetViewRotation.Roll = 0;
+			BlendedTargetViewRotation.Pitch = BlendRot(DeltaTime, BlendedTargetViewRotation.Pitch, TargetViewRotation.Pitch & 65535);
+			BlendedTargetViewRotation.Yaw = BlendRot(DeltaTime, BlendedTargetViewRotation.Yaw, TargetViewRotation.Yaw & 65535);
+			BlendedTargetViewRotation.Roll = BlendRot(DeltaTime, BlendedTargetViewRotation.Roll, TargetViewRotation.Roll & 65535);
+		}
+        GetAxes(Rotation,X,Y,Z);
+
+        NewAccel = aForward*X + aStrafe*Y + aUp*vect(0,0,1);
+		
+        if ( VSize(NewAccel) < 1.0 )
+            NewAccel = vect(0,0,0); 
+
+        UpdateRotation(DeltaTime, 1);
+
+        if ( Role < ROLE_Authority ) // then save this move and replicate it
+            ReplicateMove(DeltaTime, NewAccel, DCLICK_None, rot(0,0,0));
+        else
+            ProcessMove(DeltaTime, NewAccel, DCLICK_None, rot(0,0,0));
     }
 }
 
@@ -1403,6 +1497,8 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 {
 	Super.DisplayDebug(Canvas, YL, YPos);
 
+    if(Pawn == None)
+        return;
 	Canvas.SetDrawColor(255, 255, 255);
 	Canvas.DrawText("Rotation:"@Rotation@"Pawn Rotation:"@Pawn.Rotation@"Smooth View Yaw:"@Pawn.SmoothViewYaw@"Aim rotator:"@BehindViewAimRotator);
 	YPos += YL;
@@ -1545,4 +1641,5 @@ defaultproperties
     ComboNameList(3)="BallisticProV55.Ballistic_ComboMiniMe"
     AnnouncerLevel=1
     PawnClass=Class'BallisticProV55.BallisticPawn'
+    FlySpeedMulti=3.000000
 }

@@ -435,7 +435,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (Instigator != None && AIController(Instigator.Controller) != None)
 	{
 		ServerSwitchLaser(FRand() > 0.5);
-		ServerFlashlight(FRand() > 0.5);
+		ServerFlashlight(FRand() > 0.7);
 	}
 
 	if (AIController(Instigator.Controller) != None)
@@ -447,7 +447,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		SetBoneScale (0, 0.0, SilencerBone);
 
 	if ( ThirdPersonActor != None )
+	{
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+		LK05Attachment(ThirdPersonActor).bSilenced = bSilenced;
+		LK05Attachment(ThirdPersonActor).IAOverride(bSilenced);
+	}
 
 
 	Instigator.AmbientSound = UsedAmbientSound;

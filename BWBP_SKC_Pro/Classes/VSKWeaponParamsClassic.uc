@@ -103,6 +103,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="8x Scope"
 		Weight=30
 		InventorySize=7
 		bNeedCock=True
@@ -122,6 +123,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		LayoutName="Iron Sights"
 		Weight=30
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000

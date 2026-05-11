@@ -71,28 +71,31 @@ simulated function array<string> GetGroup(byte GroupNum)
 //Returns the weapon at the specific index.
 simulated function string GetGroupItemForTeam(byte GroupNum, byte TeamNum, int ItemNum)
 {
-	if(TeamNum == 1)
-	{
-		switch (GroupNum)
-		{
-		case	0:	return BlueGroup0[ItemNum];
-		case	1:	return BlueGroup1[ItemNum];
-		case	2:	return BlueGroup2[ItemNum];
-		case	3:	return BlueGroup3[ItemNum];
-		case	4:	return BlueGroup4[ItemNum];
-		}
-	}
-    else 
+    // Safely return empty string if index is out of bounds
+    if (TeamNum == 1)
     {
         switch (GroupNum)
         {
-        case	0:	return RedGroup0[ItemNum];
-        case	1:	return RedGroup1[ItemNum];
-        case	2:	return RedGroup2[ItemNum];
-        case	3:	return RedGroup3[ItemNum];
-        case	4:	return RedGroup4[ItemNum];
+            case 0: if (ItemNum >= 0 && ItemNum < BlueGroup0.Length) return BlueGroup0[ItemNum]; break;
+            case 1: if (ItemNum >= 0 && ItemNum < BlueGroup1.Length) return BlueGroup1[ItemNum]; break;
+            case 2: if (ItemNum >= 0 && ItemNum < BlueGroup2.Length) return BlueGroup2[ItemNum]; break;
+            case 3: if (ItemNum >= 0 && ItemNum < BlueGroup3.Length) return BlueGroup3[ItemNum]; break;
+            case 4: if (ItemNum >= 0 && ItemNum < BlueGroup4.Length) return BlueGroup4[ItemNum]; break;
         }
     }
+    else
+    {
+        switch (GroupNum)
+        {
+            case 0: if (ItemNum >= 0 && ItemNum < RedGroup0.Length) return RedGroup0[ItemNum]; break;
+            case 1: if (ItemNum >= 0 && ItemNum < RedGroup1.Length) return RedGroup1[ItemNum]; break;
+            case 2: if (ItemNum >= 0 && ItemNum < RedGroup2.Length) return RedGroup2[ItemNum]; break;
+            case 3: if (ItemNum >= 0 && ItemNum < RedGroup3.Length) return RedGroup3[ItemNum]; break;
+            case 4: if (ItemNum >= 0 && ItemNum < RedGroup4.Length) return RedGroup4[ItemNum]; break;
+        }
+    }
+
+    return "";
 }
 
 //Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
@@ -217,6 +220,7 @@ function bool IsInList (out array<string> List, string Test, optional out int In
 function FillWeapons()
 {
     local int team, group_index, wep_index;
+    local string candidate;
 
     for (team = 0; team < 2; ++team)
     {
@@ -224,9 +228,12 @@ function FillWeapons()
         {
             for (wep_index = 0; wep_index < Mut.GetGroup(group_index, team).Length; ++wep_index)
             {
-                PushWeaponFromMutator(Mut.GetGroupItem(group_index, wep_index, team), group_index, team);
+                candidate = Mut.GetGroupItem(group_index, wep_index, team);
+                if (candidate == "")
+                    continue;
+                PushWeaponFromMutator(candidate, group_index, team);
             }
-        }
+        } 
     }
 
     for (team = 0; team < 2; ++team)
@@ -385,7 +392,10 @@ function SendWeapons ()
             Redboxes[Redboxes.length] = 0;
         }
     }
-    
+
+    if (Weaps.length == 0)
+        return;
+
     for (i=0;i<Weaps.length-1;i++)
         ReceiveWeapon(Weaps[i], RedBoxes[i], BlueBoxes[i]);
     //Last weapon, terminate
@@ -433,12 +443,12 @@ simulated function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.
 {
 	local int i;
 
+	if (ClassStr == "")
+		return false;
+
 	WepInfo = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ClassStr, i);
 	if (i==-1)
-	{
-		log("Error loading item for Conflict: "$ClassStr, 'Warning');
 		return false;
-	}
 	return true;
 }
 
@@ -508,8 +518,8 @@ simulated function SortList(byte group_index, byte team)
             }
 
 		}
-        else 
-            Log("ClientTeamOutfittingInterface: Failed to load "$ GetGroupItemForTeam(group_index, team, i) $" from cache");
+        //else 
+        //    Log("ClientTeamOutfittingInterface: Failed to load "$ GetGroupItemForTeam(group_index, team, i) $" from cache");
 	}
 	
 	for (i = 0; i < SortedWIs.Length; ++i)
@@ -524,7 +534,6 @@ function Initialize(Mut_TeamOutfitting MO, PlayerController P)
 	PC = P;
 
 	bWeaponsReady=true;
-
     if (level.NetMode != NM_StandAlone && Viewport(P.Player) == None)
         SendWeapons();
     else
@@ -540,7 +549,7 @@ function Initialize(Mut_TeamOutfitting MO, PlayerController P)
 
 simulated function ClientOpenLoadoutMenu()
 {
-	if (PC ==None || PC.Player == None)
+	if (PC ==None || PC.Player == None || (PC.IsSpectating() && !PC.IsInState('PlayerWaiting')))
 		return;
 	PC.ClientOpenMenu ("BallisticProV55.BallisticTeamOutfittingMenu");
 	if (PC.Player.GUIController != None)

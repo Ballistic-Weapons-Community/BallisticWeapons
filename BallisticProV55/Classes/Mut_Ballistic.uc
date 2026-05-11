@@ -91,45 +91,45 @@ simulated function PreBeginPlay()
 	{
 		BallisticRep = Spawn(class'BallisticReplicationInfo');
 		class'BallisticGameStyles'.static.GetLocalStyle().static.InitializeReplicationInfo(BallisticRep);
+
+		if (class'BallisticReplicationInfo'.default.bHealthRegeneration)
+			Level.Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
+		
+		if (class'BallisticReplicationInfo'.default.bShieldRegeneration)
+			Level.Game.AddMutator("BallisticProV55.Mut_ShieldRegeneration", false);
+
+		if (bPreloadMeshes)
+			Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
+
+		if (class'BallisticReplicationInfo'.default.bKillStreaks)
+			Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
+
+		if (class'BallisticReplicationInfo'.default.HealthKillReward > 0 || class'BallisticReplicationInfo'.default.ShieldKillReward > 0)
+			Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
+
+		if (Invasion(Level.Game) != None)
+			Level.Game.AddGameModifier(spawn(class'Rules_Invasion'));
+		else 
+			Level.Game.AddGameModifier(spawn(class'Rules_Ballistic'));
+				
+		if (Level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
+			Level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
+
+		if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
+			Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
+
+		/* 
+		if(TeamGame(Level.Game) != None) //load team bots
+		{
+			TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
+		}
+		else if(Deathmatch(Level.Game) != None)//load Deathmatch  bots
+		{
+			Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
+		}
+		*/
+		LoadItemClasses();
 	}
-	
-	if (BallisticRep.default.bHealthRegeneration)
-		Level.Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
-	
-	if (BallisticRep.default.bShieldRegeneration)
-		Level.Game.AddMutator("BallisticProV55.Mut_ShieldRegeneration", false);
-
-	if (bPreloadMeshes)
-		Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
-
-	if (BallisticRep.default.bKillStreaks)
-		Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
-
-	if (BallisticRep.default.HealthKillReward > 0 || BallisticRep.default.ShieldKillReward > 0)
-		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
-
-	if (Invasion(Level.Game) != None)
-		Level.Game.AddGameModifier(spawn(class'Rules_Invasion'));
-	else 
-		Level.Game.AddGameModifier(spawn(class'Rules_Ballistic'));
-			
-	if (Level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
-		Level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
-
-	if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
-		Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
-
-	/* 
-	if(TeamGame(Level.Game) != None) //load team bots
-	{
-		TeamGame(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticTeamRoster";
-	}
-	else if(Deathmatch(Level.Game) != None)//load Deathmatch  bots
-	{
-		Deathmatch(Level.Game).DefaultEnemyRosterClass = "BallisticProV55.BallisticRoster";
-	}
-	*/
-	LoadItemClasses();
 
 	super.PreBeginPlay();
 }

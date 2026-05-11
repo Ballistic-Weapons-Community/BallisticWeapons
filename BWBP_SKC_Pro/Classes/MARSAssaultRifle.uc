@@ -329,7 +329,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
 
-	if (AIController(Instigator.Controller) != None)
+	if (AIController(Instigator.Controller) != None && bHasSuppressor)
 		bSilenced = (FRand() > 0.5);
 
 	if (bSilenced)

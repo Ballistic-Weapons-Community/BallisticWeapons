@@ -58,8 +58,13 @@ function ServeCustomers()
 	local array<Actor> Served;
 		
 	for(i=0;i<Clouds.length;i++)
-		for(j=0;j<Clouds[i].Touching.length;j++)
+	{
+		if (Clouds[i] == None)
+			continue;
+		for(j=Clouds[i].Touching.length-1;j>=0;j--)
 		{
+			if (j >= Clouds[i].Touching.length)
+				continue;
 			if (Clouds[i].Touching[j] == None || Pawn(Clouds[i].Touching[j]) == None)
 				continue;
 			for(k=0;k<Served.length;k++)
@@ -67,6 +72,7 @@ function ServeCustomers()
 					break;
 			if (k >= Served.length)	
 			{
+				Served[Served.length] = Clouds[i].Touching[j];
 				if ( Instigator == None || Instigator.Controller == None )
 					Clouds[i].Touching[j].SetDelayedDamageInstigatorController( InstigatorController );
 					
@@ -75,9 +81,9 @@ function ServeCustomers()
 				{
 					class'BCSprintControl'.static.AddSlowTo(Pawn(Clouds[i].Touching[j]), 0.8, 0.2);
 				}
-				Served[Served.length] = Clouds[i].Touching[j];	
 			}
 		}
+	}
 }
 
 function Timer()

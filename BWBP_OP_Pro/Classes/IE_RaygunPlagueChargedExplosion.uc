@@ -122,4 +122,5 @@ defaultproperties
      End Object
      Emitters(4)=SpriteEmitter'BWBP_OP_Pro.IE_RaygunPlagueChargedExplosion.SpriteEmitter3'
 
+     AutoDestroy=True
 }

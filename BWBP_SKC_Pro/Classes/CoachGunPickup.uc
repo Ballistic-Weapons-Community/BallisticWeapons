@@ -1,4 +1,4 @@
-class CoachGunPickup extends BallisticHandGunPickup
+class CoachGunPickup extends BallisticHandgunPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx

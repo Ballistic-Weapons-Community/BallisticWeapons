@@ -113,7 +113,9 @@ var() bool		bIgnoreTurretLimit;		// This is a special turret (probably placed in
 // Internal
 var   Triggers	MyUseTrigger;			// The trigger spawned to make it easier for players to 'use' this turret
 var   Pawn		OldDriver;				// Guy who was driving this turret
+var   float		DriverEnterTime;		// Time when driver entered, used to prevent accidental undeploy
 var   bool		bDriverOutOfRange;		// The driver has moved too far to ratate the gun properly
+var   bool		bPendingDeploy;			// Set by InitDeployedTurretFor - skips spatial checks in TryToDrive since deploy already validated placement
 var   byte		GunRotationYaw,			// GunRotation form sent to non-owning clients
 				GunRotationPitch;
 // -------
@@ -245,6 +247,8 @@ function InitDeployedTurretFor(Weapon Weap)
 	local int i;
 	local WeaponCamo WC;
 	local Material M;
+
+	bPendingDeploy = true;
 	
 	if (BallisticWeapon(Weap) != None)
 	{
@@ -307,9 +311,9 @@ function InitUndeployedWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
+
+		BallisticWeapon(Weap).SetAmmoTo(AmmoAmount[0], 0); // Stops the infinite ammo exploit when you undeploy 
 	}
-//	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
-//	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);
 }
 // Turret is being abandoned and weapon destroyed. Chance to save important info about the weapon.
 function SaveTurretWeaponInfo()
@@ -577,7 +581,10 @@ simulated event Tick(float DT)
 		DriverPos = DriverPosition();
 		DriverXYDistance = VSize((Driver.Location - DriverPos) * vect(1,1,0));
 		DriverZDistance = Driver.Location.Z - Location.Z;
-		if (Role == ROLE_Authority && (DriverXYDistance > 120 || DriverZDistance > 60 || DriverZDistance < -60))
+		// Grace period after entry: bRemoteControlled driver isn't repositioned by StartDriving,
+		// so the first few ticks the driver is still walking from their deploy position to the turret.
+		// Without this, deploying on slopes/stairs triggers immediate forced ejection.
+		if (Role == ROLE_Authority && Level.TimeSeconds - DriverEnterTime > 1.0 && (DriverXYDistance > 120 || DriverZDistance > 60 || DriverZDistance < -60))
 		{
 			KDriverLeave(true);
 			return;
@@ -688,7 +695,7 @@ function UndeployTurret ()
 	 	W = Weapon(OldDriver.FindInventoryType(WC));
 		if (W != None)
 		{
-			W.AddAmmo(MagAmmoAmount, 0);
+			InitUndeployedWeapon(W);
 			Destroy();
 			return;
 		}
@@ -844,6 +851,8 @@ simulated event DrivingStatusChanged()
 
 simulated function ClientKDriverEnter(PlayerController PC)
 {
+	DriverEnterTime = Level.TimeSeconds;
+
 	PC.bFreeCamera = true;
 
 	if (Driver != None)
@@ -883,7 +892,7 @@ simulated function ClientKDriverLeave(PlayerController PC)
 	{
 		if(BallisticWeapon(Weapon).bScopeView)
 		{
-			PC.EndZoom();
+			BallisticWeapon(Weapon).StopScopeView(true);
 		}
 	}
 
@@ -893,6 +902,8 @@ simulated function ClientKDriverLeave(PlayerController PC)
 function KDriverEnter(Pawn P)
 {
 	local Controller C;
+
+	DriverEnterTime = Level.TimeSeconds;
 
 	bDriving = True;
 	StuckCount = 0;
@@ -994,6 +1005,11 @@ event bool KDriverLeave( bool bForceLeave )
 		C.RouteGoal = None;
 	if (C.MoveTarget == self)
 		C.MoveTarget = None;
+
+	// Clean up scope state while controller is still valid
+	if (BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
+		BallisticWeapon(Weapon).StopScopeView(true);
+
 	C.bVehicleTransition = true;
 	Controller.UnPossess();
 
@@ -1023,14 +1039,6 @@ event bool KDriverLeave( bool bForceLeave )
 	
 	Driver.bNoWeaponFiring = false;
 	
-	if (BallisticWeapon(Weapon) != None)
-	{				
-		if(BallisticWeapon(Weapon).bScopeView)
-		{
-			PC.EndZoom();
-		}
-	}
-	
 	Level.Game.DriverLeftVehicle(self, Driver);
 
 	// Car now has no driver
@@ -1059,32 +1067,65 @@ simulated function SetAbandoned()
 
 function bool TryToDrive(Pawn P)
 {
-	if (bNonHumanControl || (PlayerController(P.Controller) == None) || (Driver != None) || (P.DrivenVehicle != None) || !P.Controller.bIsPlayer
+	local PlayerController PC;
+
+	PC = PlayerController(P.Controller);
+
+	if (bNonHumanControl || (PC == None) || (Driver != None) || (P.DrivenVehicle != None) || !P.Controller.bIsPlayer
 	     || P.IsA('Vehicle') || Health <= 0)
-		return false;
-
-	// check on ground
-	if (P.Physics != PHYS_Walking)
-		return false;
-		
-	// check not too high
-	if (MyUseTrigger.Location.Z - CollisionHeight > P.Location.Z + P.EyePosition().Z - MinTurretEyeDepth)
-		return false;
-	
-	// check not too low
-	if (MyUseTrigger.Location.Z < P.Location.Z - P.CollisionHeight)
-		return false;
-
-	if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 40)
 	{
-		if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 120)
-			return false;
-		if (vector(Rotation) Dot Normal(Location - P.Location) < 0.2)
-			return false;
-	}
-	
-	if (vector(P.GetViewRotation()) Dot Normal(Location - P.Location) < 0.5)
+		if (PC != None && Driver != None)
+			PC.ClientMessage("Turret is already occupied!");
 		return false;
+	}
+
+	// Skip spatial checks when entering from deploy - placement was already validated by the weapon's trace logic.
+	// MyUseTrigger.Location.Z has a pitch-dependent offset that causes false rejections on slopes.
+	if (!bPendingDeploy)
+	{
+		// check on ground
+		if (P.Physics != PHYS_Walking)
+		{
+			PC.ClientMessage("Must be on the ground to use turret!");
+			return false;
+		}
+		
+		// check not too high
+		if (MyUseTrigger.Location.Z - CollisionHeight > P.Location.Z + P.EyePosition().Z - MinTurretEyeDepth)
+		{
+			PC.ClientMessage("Turret is too high to reach!");
+			return false;
+		}
+	
+		// check not too low
+		if (MyUseTrigger.Location.Z < P.Location.Z - P.CollisionHeight)
+		{
+			PC.ClientMessage("Turret is too low to reach!");
+			return false;
+		}
+
+		if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 40)
+		{
+			if (VSize((P.Location - MyUseTrigger.Location) * vect(1,1,0)) > 120)
+			{
+				PC.ClientMessage("Too far from turret!");
+				return false;
+			}
+			if (vector(Rotation) Dot Normal(Location - P.Location) < 0.2)
+			{
+				PC.ClientMessage("Must approach turret from the front!");
+				return false;
+			}
+		}
+	
+		if (vector(P.GetViewRotation()) Dot Normal(Location - P.Location) < 0.5)
+		{
+			PC.ClientMessage("Must be facing the turret!");
+			return false;
+		}
+	}
+
+	bPendingDeploy = false;
 
 	if( !Level.Game.CanEnterVehicle(self, P) )
 		return false;
@@ -1095,8 +1136,8 @@ function bool TryToDrive(Pawn P)
 		if ( bEnterringUnlocks && bTeamLocked )
 			bTeamLocked = false;
 
-		PlayerController(P.Controller).DesiredFOV = PlayerController(P.Controller).DefaultFOV;
-		PlayerController(P.Controller).bZooming = False;
+		PC.DesiredFOV = PC.DefaultFOV;
+		PC.bZooming = False;
 		KDriverEnter( P );
 		return true;
 	}

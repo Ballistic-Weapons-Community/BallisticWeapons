@@ -49,23 +49,17 @@ simulated event ModeDoFire()
 			PD97Bloodhound(BW).ActiveBeacon.Destroy();
 		}
 	}
-	
-	if (PD97Bloodhound(BW) != None)
-	{
-		if (FireAnim == 'OpenTazerFire')
-		{
-			PD97Bloodhound(BW).IdleAnim = 'OpenIdle';
-			PD97Bloodhound(BW).PlayAnim('OpenTazerEnd');
-		}
-		else
-		{
-			PD97Bloodhound(BW).IdleAnim = 'Idle';
-			PD97Bloodhound(BW).PlayAnim('TazerEnd');
-		}
-	}
 
 	super.ModeDoFire();
-	
+
+	// Reset idle anim after firing - dart doesn't stay deployed like the tazer
+	if (PD97Bloodhound(BW) != None)
+	{
+		if (BW.MagAmmo - ConsumedLoad < 1)
+			PD97Bloodhound(BW).IdleAnim = 'OpenIdle';
+		else
+			PD97Bloodhound(BW).IdleAnim = 'Idle';
+	}
 }
 
 defaultproperties

@@ -34,13 +34,16 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 //resets arc colours, play fire anim and sound
 function PlayFiring()
 {
+	if (Weapon == None)
+		return;
 	HVCMk9LightningGun(Weapon).ResetArcs();
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	if (BW != None)
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
 
-	if (BallisticFireSound.Sound != None)
+	if (BallisticFireSound.Sound != None && Weapon != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 }
 
@@ -83,6 +86,11 @@ simulated event ModeTick(float DT)
 	super.ModeTick(DT);
 	if (!bIsFiring)
 		return;
+	if (Weapon == None || Instigator == None)
+	{
+		bIsFiring = false;
+		return;
+	}
 	if (Instigator.PhysicsVolume.bWaterVolume)
 		HVCMk9LightningGun(Weapon).AddHeat(DT*3);
 	else
@@ -99,6 +107,8 @@ simulated event ModeTick(float DT)
 //fire held - Go to charging state, manage sound volume
 simulated function ModeHoldFire()
 {
+	if (Instigator == None)
+		return;
 	Instigator.AmbientSound = ChargeSound;
 	Instigator.SoundVolume = 255;
 	Instigator.SoundPitch = 56;
@@ -282,7 +292,8 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
-	HVCMk9Attachment(Weapon.ThirdPersonActor).ChargePower = 255*ChargePower;
+	if (Weapon != None && Weapon.ThirdPersonActor != None)
+		HVCMk9Attachment(Weapon.ThirdPersonActor).ChargePower = 255*ChargePower;
 	super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
 }
 

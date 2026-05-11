@@ -20,8 +20,15 @@ simulated function PostBeginPlay()
 	MyControl = M763CloudControl(Owner);
 	if (level.NetMode != NM_Client)
 	{
-		Fear = Spawn(class'AvoidMarker');
+		Fear = Spawn(class'BallisticAvoidMarker');
 		Fear.SetCollisionSize(200, 200);
+		if (Instigator != None)
+		{
+			BallisticAvoidMarker(Fear).OwnerController = Instigator.Controller;
+			if (TeamGame(Level.Game) != None && TeamGame(Level.Game).FriendlyFireScale <= 0
+				&& Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
+				Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
+		}
 	    Fear.StartleBots();
 		if (level.netMode == NM_DedicatedServer)
 		{

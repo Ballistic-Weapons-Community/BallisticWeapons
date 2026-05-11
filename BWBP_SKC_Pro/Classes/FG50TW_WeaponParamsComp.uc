@@ -134,9 +134,9 @@ defaultproperties
 		CockAnimRate=1.25
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		FireParams(0)=FireParams'ArenaPriControlledFireParams'
-		FireParams(2)=FireParams'ArenaPriStandardFireParams'
+		FireParams(1)=FireParams'ArenaPriStandardFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
-		AltFireParams(2)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		AimParams(1)=AimParams'ArenaAimParams_Controlled'
     End Object 
@@ -156,9 +156,9 @@ defaultproperties
 		AimParams(0)=AimParams'ArenaAimParams'
 		AimParams(1)=AimParams'ArenaAimParams_Controlled'
 		FireParams(0)=FireParams'ArenaPriControlledFireParams'
-		FireParams(2)=FireParams'ArenaPriStandardFireParams'
+		FireParams(1)=FireParams'ArenaPriStandardFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
-		AltFireParams(2)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
     Layouts(1)=WeaponParams'ArenaParams_Bipod'

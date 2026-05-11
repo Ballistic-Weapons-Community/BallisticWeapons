@@ -312,7 +312,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (bWasAlive)
+	if (bWasAlive && Pawn(Victim) != None)
 	{
 		if (Pawn(Victim).Health <= 0)
 			class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victim), Weapon);
@@ -324,7 +324,8 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 		HookTime = level.TimeSeconds;
 	}
 
-	RSDarkStar(Weapon).bLatchedOn=true;
+	if (RSDarkStar(Weapon) != None)
+		RSDarkStar(Weapon).bLatchedOn=true;
 }
 
 defaultproperties

@@ -69,6 +69,7 @@ defaultproperties
     bAISilent=True
     PreFireTime=0.65
     PreFireAnim="PrepHealLoop"
+    FireAnim="HealLoopA"
     FireLoopAnim="HealLoopA"
     FireEndAnim="HealLoopEnd"
     FireRate=0.5

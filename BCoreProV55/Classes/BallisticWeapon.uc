@@ -202,6 +202,7 @@ var		BallisticFire   			BFireMode[NUM_FIRE_MODES];		// BallisticFire FireModes. 
 var		byte 						PendingMode;
 var		int							FireCount;						// How many shots have been fired since trigger was pulled
 var     float						LastFireTime;					// Time of last fire
+var     float						LastTurretDeployTime;			// Time when weapon was given back from turret undeploy
 //-----------------------------------------------------------------------------
 // Sights
 //-----------------------------------------------------------------------------
@@ -827,9 +828,11 @@ simulated function OnWeaponParamsChanged()
 	default.SightingTime 		= WeaponParams.SightingTime / ZoomTimeMod;
 
     // Only the SERVER initializes live MagAmmo.
-    // Clients use the replicated value coming from the server.
-
-	MagAmmo = WeaponParams.MagAmmo;
+    // Clients use the replicated value coming from the server via ClientSetMagAmmo.
+    // Without this guard, client PostNetBeginPlay.Initialize resets MagAmmo to full,
+    // overwriting the replicated value from a dropped weapon pickup.
+	if (Role == ROLE_Authority)
+		MagAmmo = WeaponParams.MagAmmo;
 	//log("OnWeaponParamsChanged MagAmmo set to " $MagAmmo$ " for "$GetHumanReadableName());
 	default.MagAmmo				= WeaponParams.MagAmmo;
 	
@@ -852,6 +855,8 @@ simulated function OnWeaponParamsChanged()
 
 	CockAnimRate = WeaponParams.CockAnimRate;
 	default.CockAnimRate = WeaponParams.CockAnimRate;
+
+	default.MaxInventoryCapacity = class'BallisticReplicationInfo'.default.MaxInventoryCapacity;
 
 	if (Level.GRI != None && Level.GRI.bFastWeaponSwitching)
 	{
@@ -1105,6 +1110,14 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	{
 		SightingState = SS_None;
 		ScopeDownAnimEnd();
+		return;
+	}
+
+	if (anim == 'Deploy')
+	{
+		if (Role == ROLE_Authority)
+			Notify_Deploy();
+		PlayIdle();
 		return;
 	}
 
@@ -1978,7 +1991,11 @@ simulated function PlayScopeUp()
 	    SafePlayAnim(ZoomInAnim, ZoomTimeMod);
 	else
 		SightingState = SS_Raising;
-	if(ZoomType == ZT_Irons)
+
+	if (InstigatorController == None)
+		return;
+
+	if(ZoomType == ZT_Irons && PlayerController(InstigatorController) != None)
 		PlayerController(InstigatorController).bZooming = True;
 
 	InstigatorController.bRun = 1;
@@ -2185,6 +2202,7 @@ simulated final function PlayerZoom(PlayerController PC)
 simulated final function EndScopeZoom()
 {	
 	local PlayerController PC;
+	local float RestoreFOV;
 
 	PC = PlayerController(InstigatorController);
 
@@ -2193,7 +2211,13 @@ simulated final function EndScopeZoom()
 	
 	OldZoomFOV = PC.FovAngle;
 
-	PC.SetFOV(PC.DefaultFOV);
+	// On turrets, restore to TurretFOV instead of DefaultFOV
+	if (BallisticTurret(Instigator) != None && BallisticTurret(Instigator).TurretFOV > 0)
+		RestoreFOV = BallisticTurret(Instigator).TurretFOV;
+	else
+		RestoreFOV = PC.DefaultFOV;
+
+	PC.SetFOV(RestoreFOV);
 	PC.bZooming = False;
 }
 
@@ -2380,6 +2404,16 @@ simulated function DrawFPWeapon( Canvas Canvas )
 		if ( Hand != 0 )
 			newScale3D.Y *= Hand;
 		SetDrawScale3D(newScale3D);
+		for (m = 0; m < GunAugments.Length; m++)
+		{
+			if (GunAugments[m] != None)
+			{
+				NewScale3D = GunAugments[m].Default.DrawScale3D;
+				if (Hand < 0)
+					NewScale3D.Y *= -1;
+				GunAugments[m].SetDrawScale3D(NewScale3D);
+			}
+		}
 		SetDrawScale(Default.DrawScale);
 		CenteredRoll = Default.CenteredRoll;
 		CenteredYaw = Default.CenteredYaw;
@@ -2570,12 +2604,19 @@ simulated function PositionSights()
 {
 	local Vector SightPos, Offset, NewLoc, OldLoc;//, X,Y,Z;
 	local PlayerController PC;
+	local float BaseFOV;
 
 	//bots can't use sights
 	PC=PlayerController(InstigatorController);
 
 	if (PC == None)
 		return;
+
+	// On turrets, use TurretFOV as the base instead of DefaultFOV
+	if (BallisticTurret(Instigator) != None && BallisticTurret(Instigator).TurretFOV > 0)
+		BaseFOV = BallisticTurret(Instigator).TurretFOV;
+	else
+		BaseFOV = PC.DefaultFOV;
 
 	if (SightBone != '')
 		SightPos = GetBoneCoords(SightBone).Origin - Location;
@@ -2600,7 +2641,7 @@ simulated function PositionSights()
 		}
 
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, SightZoomFactor); // FIXME: don't want to do tan/arctan on every tick
+			PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(BaseFOV, SightZoomFactor); // FIXME: don't want to do tan/arctan on every tick
 	}
 	
 	else if (SightingPhase <= 0.0)
@@ -2618,9 +2659,9 @@ simulated function PositionSights()
 
 		if(ZoomType == ZT_Irons)
 		{
-	        PC.DesiredFOV = PC.DefaultFOV;
-			PlayerController(InstigatorController).SetFOV(PlayerController(InstigatorController).DefaultFOV);
-			PlayerController(InstigatorController).bZooming = False;
+	        PC.DesiredFOV = BaseFOV;
+			PC.SetFOV(BaseFOV);
+			PC.bZooming = False;
 		}
 	}
 	else
@@ -2633,7 +2674,7 @@ simulated function PositionSights()
 		RcComponent.UpdateADSTransition(SightingPhase);
 
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(PC.DefaultFOV, Lerp(SightingPhase, 1, SightZoomFactor));
+	        PC.DesiredFOV = class'BUtil'.static.CalcZoomFOV(BaseFOV, Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 }
 
@@ -2835,7 +2876,7 @@ exec simulated function MeleeHold()
 
 simulated function MeleeHoldImpl()
 {
-	if (MeleeFireMode == None || (ClientState != WS_ReadyToFire && ClientState != WS_Bringup) || (MeleeState != MS_None && MeleeState != MS_Strike))
+	if (MeleeFireMode == None || !HasAnim(MeleeFireMode.FireAnim) || (ClientState != WS_ReadyToFire && ClientState != WS_Bringup) || (MeleeState != MS_None && MeleeState != MS_Strike))
 		return;
 		
 	if (MeleeState == MS_Strike)
@@ -2888,11 +2929,15 @@ function UpdateSpeed()
 		return;
 	}
 
+	// Turret weapons have no Instigator when deployed
+	if (Instigator == None)
+		return;
+
 	// fallback if sprint control isn't in use
 	NewSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * PlayerSpeedFactor;
     //log("BW UpdateSpeed: "$class'BallisticReplicationInfo'.default.PlayerGroundSpeed$" * "$PlayerSpeedFactor);
 
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+	if (xPawn(Instigator) != None && ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
     {
         //log("BW UpdateSpeed: "$NewSpeed$" * 1.4");
 		NewSpeed *= 1.4;
@@ -2906,6 +2951,8 @@ function UpdateSpeed()
 
 function ServerMeleeHold()
 {
+	if (MeleeFireMode == None || !HasAnim(MeleeFireMode.FireAnim))
+		return;
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeHold");
 	MeleeState = MS_Held;
 	ReloadState = RS_None;
@@ -3293,9 +3340,10 @@ simulated function bool HasMagAmmo(byte Mode)
 {
 	if (!bNoMag)
 	{
-		if ((Mode == 255 || Mode == 0) && BFireMode[0] != None && BFireMode[0].bUseWeaponMag && MagAmmo >= FireMode[0].AmmoPerFire)
+		// AmmoPerFire > 0 check stops bots from continuing to use up empty guns
+		if ((Mode == 255 || Mode == 0) && BFireMode[0] != None && BFireMode[0].bUseWeaponMag && (FireMode[0].AmmoPerFire == 0 || MagAmmo >= FireMode[0].AmmoPerFire))
 			return true;
-		if ((Mode == 255 || Mode == 1) && BFireMode[1] != None && BFireMode[1].bUseWeaponMag && MagAmmo >= FireMode[1].AmmoPerFire)
+		if ((Mode == 255 || Mode == 1) && BFireMode[1] != None && BFireMode[1].bUseWeaponMag && (FireMode[1].AmmoPerFire == 0 || MagAmmo >= FireMode[1].AmmoPerFire))
 			return true;
 	}
 	return false;
@@ -3303,9 +3351,10 @@ simulated function bool HasMagAmmo(byte Mode)
 
 simulated function bool HasNonMagAmmo(byte Mode)
 {
-	if ((Mode == 255 || Mode == 0) && Ammo[0] != None && FireMode[0] != None && Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire)
+	// AmmoPerFire > 0 check stops bots from continuing to use up empty guns
+	if ((Mode == 255 || Mode == 0) && Ammo[0] != None && FireMode[0] != None && (FireMode[0].AmmoPerFire == 0 || Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire))
 		return true;
-	if ((Mode == 255 || Mode == 1) && Ammo[1] != None && FireMode[1] != None && Ammo[1].AmmoAmount >= FireMode[1].AmmoPerFire)
+	if ((Mode == 255 || Mode == 1) && Ammo[1] != None && FireMode[1] != None && (FireMode[1].AmmoPerFire == 0 || Ammo[1].AmmoAmount >= FireMode[1].AmmoPerFire))
 		return true;
 	return false;
 }
@@ -3597,6 +3646,8 @@ simulated function float RateSelf()
 				CurrentRating /= (2+AIReloadTime);
 //				CurrentRating = FClamp(CurrentRating / (1+AIReloadTime), 2, CurrentRating);
 		}
+		else if (!HasNonMagAmmo(255))
+			CurrentRating /= (2+AIReloadTime);
 	}
 	return CurrentRating;
 }
@@ -3608,6 +3659,28 @@ function float GetAIRating()
 	if (DiscourageReload())
 		return AIRating * 0.25;
 	return AIRating;
+}
+
+simulated function float DesireAmmo(class<Inventory> NewAmmoClass, bool bDetour)
+{
+	local int i;
+	local float curr, max , result;
+
+	for ( i=0; i<2; i++ )
+	{
+		if ( NewAmmoClass == AmmoClass[i] )
+		{
+			if ( AmmoMaxed(i) )
+				return -100;
+			curr = AmmoAmount(i);
+			if ( curr == 0 )
+				return 1;
+			max = MaxAmmo(i);
+			result = 2.0 * (max - curr) / max;
+			return result; //Thanks Epic for breaking this function in the first place
+		}
+	}
+	return 0;
 }
 
 function bool DiscourageReload()
@@ -4069,6 +4142,8 @@ function bool HandlePickupQuery( pickup Item )
 {
     local WeaponPickup wpu;
 	local BallisticWeaponPickup BWP;
+	local Inventory Inv;
+	local int TotalSize;
 
 	if (class == Item.InventoryType)
     {
@@ -4082,7 +4157,7 @@ function bool HandlePickupQuery( pickup Item )
 	// prevent pickup of a weapon if we don't have enough space for it
 	if (
             default.MaxInventoryCapacity > 0 && 
-            AIController(InstigatorController) == None && 
+            //AIController(InstigatorController) == None && 
             class<BallisticWeapon>(Item.InventoryType) != None && 
             (!bWT_Super && !class<BallisticWeapon>(Item.InventoryType).default.bWT_Super)
         )
@@ -4098,6 +4173,20 @@ function bool HandlePickupQuery( pickup Item )
 				BWP.DetectedInventorySize = 0;
 				return true;
 			}
+		}
+		else if (Instigator != None)
+		{
+			//For weapon lockers
+			TotalSize = class<BallisticWeapon>(Item.InventoryType).static.GetInventorySize();
+
+			for (Inv = Instigator.Inventory; Inv != None; Inv = Inv.Inventory)
+			{
+				if (BallisticWeapon(Inv) != None && !BallisticWeapon(Inv).bWT_Super)
+					TotalSize += BallisticWeapon(Inv).ParamsClasses[BallisticWeapon(Inv).GameStyleIndex].default.Layouts[0].InventorySize;
+			}
+
+			if (TotalSize >= default.MaxInventoryCapacity)
+				return true;
 		}
 	}
 
@@ -4266,7 +4355,7 @@ function DropFrom(vector StartLocation)
 			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
 			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
 			//Change mesh if layout dictates it
-			if (WeaponParams.PickupMesh != None)
+			if (WeaponParams != None && WeaponParams.PickupMesh != None)
 			{
 				BallisticWeaponPickup(Pickup).SetStaticMesh(WeaponParams.PickupMesh);
 				BallisticWeaponPickup(Pickup).NewStaticMesh = WeaponParams.PickupMesh;
@@ -5062,8 +5151,16 @@ simulated function OnRecoilParamsChanged()
 
 // These can be called when a turret undeploys and gives this weapon. Override in sub-classes to add some functionality
 // Used to set weapon modes in case the turret had different modes
+
+
+function Notify_Deploy() {}
+
+function Notify_Undeploy() {}
+
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
+	LastTurretDeployTime = Level.TimeSeconds;
+
 	while (CurrentWeaponMode >= WeaponModes.length || WeaponModes[CurrentWeaponMode].bUnavailable )
 	{
 		if (CurrentWeaponMode >= WeaponModes.length)
@@ -5083,7 +5180,10 @@ function InitWeaponFromTurret(BallisticTurret Turret)
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret);
 function InitTurretWeapon(BallisticTurret Turret);
 //same for automated turrets
-function InitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
+function InitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret)
+{
+	LastTurretDeployTime = Level.TimeSeconds;
+}
 simulated function ClientInitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
 function InitAutoTurretWeapon(BallisticAutoTurret AutoTurret);
 

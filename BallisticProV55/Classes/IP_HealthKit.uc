@@ -27,7 +27,8 @@ defaultproperties
      ScaleGlow=0.600000
      TransientSoundVolume=0.700000
      TransientSoundRadius=64.000000
-     CollisionRadius=16.000000
-     CollisionHeight=6.000000
+     PrePivot=(Z=20.000000)
+     CollisionRadius=18.000000
+     CollisionHeight=20.000000
      MessageClass=Class'BCoreProV55.BallisticPickupMessage'
 }

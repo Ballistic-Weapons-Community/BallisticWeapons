@@ -237,6 +237,17 @@ function ServerSwitchSilencer(bool bNewValue)
 }
 
 
+simulated state PendingSwitchSilencer extends PendingDualAction
+{
+	simulated function BeginState()  { OtherGun.LowerHandGun(); }
+	simulated function HandgunLowered(BallisticHandgun Other)  { global.HandgunLowered(Other); if (Other == OtherGun) WeaponSpecial(); }
+	simulated event AnimEnd(int Channel)
+	{
+		OtherGun.RaiseHandGun();
+		global.AnimEnd(Channel);
+	}
+}
+
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
@@ -245,6 +256,18 @@ exec simulated function WeaponSpecial(optional byte i)
 		return;
 	if (Clientstate != WS_ReadyToFire)
 		return;
+	if (OtherGun != None)
+	{
+		if (OtherGun.ClientState != WS_ReadyToFire)
+			return;
+		if (IsInState('DualAction'))
+			return;
+		if (!OtherGun.IsInState('Lowered'))
+		{
+			GotoState('PendingSwitchSilencer');
+			return;
+		}
+	}
 	TemporaryScopeDown(0.5);
 	bSilenced = !bSilenced;
 	ServerSwitchSilencer(bSilenced);

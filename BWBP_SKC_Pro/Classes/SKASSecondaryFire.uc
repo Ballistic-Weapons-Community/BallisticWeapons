@@ -116,6 +116,12 @@ simulated state Scope
 				BW.TweenAnim(BW.IdleAnim, BW.SightingTime);
 		}
 	}
+
+	// Skip charging logic when in scope mode
+	simulated function ModeTick(float DT)
+	{
+		Super.ModeTick(DT);
+	}
 }
 
 simulated event ModeDoFire()

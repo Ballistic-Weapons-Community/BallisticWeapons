@@ -27,6 +27,7 @@ defaultproperties
      WallPenetrationForce=64
      MyDamageType=Class'BallisticProV55.DTM46GrenadeRadius'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_Grenade'
+     SurfaceType=EST_Metal
      CullDistance=2500.000000
      bNetTemporary=False
      Physics=PHYS_None

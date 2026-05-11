@@ -149,7 +149,12 @@ function ModifyPlayer(Pawn Other)
 	if (Other.Controller != None && Bot(Other.Controller) != None)
 	{
 		for (i=0; i < NUM_GROUPS; i++)
-			Stuff[i] = GetGroup(i)[Rand(GetGroup(i).length)];
+		{
+			if (GetGroup(i).length > 0)
+				Stuff[i] = GetGroup(i)[Rand(GetGroup(i).length)];
+			else
+				Stuff[i] = "";
+		}
 		ChangeLoadout(Other, Stuff);		
 		for (i=2;i<NUM_GROUPS;i+=0)
 		{
@@ -164,7 +169,12 @@ function ModifyPlayer(Pawn Other)
 				continue;
 			}
 			if (Right(Stuff[i], 5) ~= "Dummy")
-				Stuff[i] = GetGroup(i)[0];
+		{
+				if (GetGroup(i).length > 0)
+					Stuff[i] = GetGroup(i)[0];
+				else
+					Stuff[i] = "";
+		}
 			W = class<weapon>(DynamicLoadObject(Stuff[i],class'Class'));
 			if (W == None)
 			{
@@ -420,6 +430,12 @@ function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldS
 	// Make sure everything is legit
 	for (i=0;i<NUM_GROUPS;i++)
 	{
+		if (GetGroup(i).length == 0)
+		{
+			Stuff[i] = "";
+			continue;
+		}
+
 		// Random weapon handling
 		// Tries ten times to pick a weapon which isn't a dummy
 		// (i.e. itself) and doesn't match any previous weapon
@@ -573,8 +589,10 @@ static function Weapon SpawnWeaponLayout(class<weapon> newClass, Pawn P, int Lay
 		}
 		else //we already have this gun
 		{
-			newWeapon.AddAmmo(newClass.default.AmmoClass[0].default.InitialAmount, 0);
-			newWeapon.AddAmmo(newClass.default.AmmoClass[1].default.InitialAmount, 1);
+			if (newClass.default.AmmoClass[0] != None)
+				newWeapon.AddAmmo(newClass.default.AmmoClass[0].default.InitialAmount, 0);
+			if (newClass.default.AmmoClass[1] != None)
+				newWeapon.AddAmmo(newClass.default.AmmoClass[1].default.InitialAmount, 1);
 			if (BallisticWeapon(newWeapon) != None)
 			{
 				BallisticWeapon(newWeapon).MagAmmo = BallisticWeapon(newWeapon).default.MagAmmo;

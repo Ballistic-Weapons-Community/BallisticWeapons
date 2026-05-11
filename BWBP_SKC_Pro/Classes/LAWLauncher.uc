@@ -67,6 +67,11 @@ simulated function OutOfAmmo()
 	
 	if (bPreventReload)
 		return;
+
+	// In unlimited ammo modes (GunGame, Arena), don't auto-switch;
+	// the game mode timer will replenish ammo shortly
+	if (class'BallisticReplicationInfo'.default.bNoReloading)
+		return;
 	
     DoAutoSwitch();
 }

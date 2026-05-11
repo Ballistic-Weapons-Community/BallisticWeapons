@@ -435,7 +435,7 @@ defaultproperties
 		//Function
 		bNeedCock=True
 		CockAnimRate=0.700000
-		ReloadAnimRate=1.500000
+		ReloadAnimRate=1.000000
 		PlayerJumpFactor=1.000000
 		InventorySize=5
 		DisplaceDurationMult=1

@@ -76,8 +76,10 @@ simulated function OnWeaponParamsChanged()
 	{
 		bQuickLoad=true;
 		AmmoClass[0]=class'Ammo_12Gauge'; //quickload happens to be on the 12g sawn off. move out if needed
-		CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_12Gauge';
-		CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_12Gauge';
+		if (FireMode[0] != None)
+			CoachGunPrimaryFire(FireMode[0]).AmmoClass=class'Ammo_12Gauge';
+		if (FireMode[1] != None)
+			CoachGunSecondaryFire(FireMode[1]).AmmoClass=class'Ammo_12Gauge';
 		Skins[3]=MatRedShell;
 	}
 	
@@ -155,7 +157,7 @@ simulated function PostBeginPlay()
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (ReloadState != RS_None || !HasAmmo())
+	if (ReloadState != RS_None || ClientState != WS_ReadyToFire || !HasAmmo())
 		return;
 	Super.ServerSwitchWeaponMode(NewMode);
 	ServerStartReload(2);
@@ -183,6 +185,10 @@ function ServerStartReload (optional byte i)
     AnimBlendParams(1, 0);
 
 	bServerReloading = true;
+
+	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+		Instigator.SetAnimAction('ReloadGun');
+
 	CommonStartReload(i);	//Server animation
 	ClientStartReload(i);	//Client animation
 }

@@ -97,6 +97,8 @@ state SpawnIn
 		local WrenchDeployable W;
 
 		W = WrenchDeployable(Spawn(myDeployable, Instigator, , GroundPoint, Rotation));
+		if (W == None)
+			return;
 		W.Health = Health;
 	}
 	

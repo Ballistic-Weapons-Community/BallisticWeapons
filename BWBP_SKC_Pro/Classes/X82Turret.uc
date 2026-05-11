@@ -8,33 +8,6 @@
 //=============================================================================
 class X82Turret extends BallisticTurret;
 
-function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
-{
-	if ( InGodMode() )
- 		Damage = 0;
-
-	/*
-	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
- 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp(((Driver.Location.Z + Driver.EyePosition().Z) - Location.Z)/(2 * Driver.CollisionHeight), 0, 1);
-	*/
-	
-	Momentum = vect(0,0,0);
-}
-
-function Fire( optional float F )
-{
-	super.Fire();
-	if (Weapon!=None)
-		Weapon.Fire(F);
-}
-
-function AltFire( optional float F )
-{
-	super.AltFire();
-	if (Weapon!=None)
-		Weapon.AltFire(F);
-}
-
 function InitTurretWeapon(Weapon Weap)
 {
 	local Ammunition A;
@@ -91,22 +64,6 @@ function float BotDesireability(Actor S, int TeamIndex, Actor Objective)
 		return 100;
 
 	return MaxDesireability * 0.5 + (MaxDesireability * 0.5) * (MagAmmoAmount / 50.0);
-}
-
-simulated function NextWeapon()
-{
-	if (Weapon != None && BallisticWeapon(Weapon) != None)
-		super(Pawn).NextWeapon();
-	else
-		super.NextWeapon();
-}
-
-simulated function PrevWeapon()
-{
-	if (Weapon != None && BallisticWeapon(Weapon) != None)
-		super(Pawn).PrevWeapon();
-	else
-		super.PrevWeapon();
 }
 
 defaultproperties

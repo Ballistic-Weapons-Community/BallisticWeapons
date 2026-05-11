@@ -103,9 +103,11 @@ simulated event Timer()
 	if (Role < ROLE_Authority)
 		return;
 
-	for (i=0;i<Touching.length;i++)
+	for (i=Touching.length-1;i>=0;i--)
 	{
-		if (Touching[i] == None || !Touching[i].bCanBeDamaged || Pawn(Touching[i]).GetTeamNum() == Instigator.GetTeamNum())
+		if (i >= Touching.length)
+			continue;
+		if (Touching[i] == None || !Touching[i].bCanBeDamaged || (Pawn(Touching[i]) != None && Instigator.GetTeamNum() != 255 && Pawn(Touching[i]).GetTeamNum() == Instigator.GetTeamNum()))
 			continue;
 		if (Projectile(Touching[i])!=None)
 		{

@@ -173,6 +173,9 @@ var() float SlideFriction;		 // Friction applied during sliding, affects how qui
 var() float SlideCooldownTime;	// Time before the player can slide again after a slide ends
 var() float SlidePower;			 // Initial burst power when starting a slide, affects how fast the player accelerates at the start of the slide
 var bool bIsSliding;			 // Is the player currently sliding?
+var bool bSlideOnLand;			 // Player held duck while airborne — bypass speed threshold on next StartSlide
+var bool bSlideCorrected;		 // True after adopting a server correction into SlideVelocity during replay
+var bool bBotSlideRequest;		 // TODO: work on this
 var float LastSlideEndTime;		// Time when the last slide ended
 var float LastLandTime;			// Time when the player last landed
 var vector SlideVelocity;		// Velocity during the slide
@@ -193,6 +196,8 @@ var 	name 		SlideAnims[4];
 var 	name 		SlideStartAnims[4]; 
 var 	name 		SlideEndAnims[4]; 
 
+var() bool  bBotAutoSprint;		 // Pawn auto-manages sprint for bot controllers based on movement context
+var() float BotSprintEnemyRange; // Enemy closer than this distance stops auto sprint
 
 //Wall running stuff
 //var bool bLockedToSurface; // Tracks if the player is locked to a surface
@@ -208,11 +213,14 @@ var() float BackSlidePowerScale;      // < 1.0 to weaken backward slides
 var() float BackMaxSlideSpeedScale;   // < 1.0 to cap backward slide speed lower
 var() float BackSlideDotThreshold;    // dot threshold vs forward ( negative means backwards :) )
 
+var bool bRagdollSetup;
+var bool bPendingGibFromImpact;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility,
-		bIsSliding, SlideVelocity, Sprinter;
+		bIsSliding, Sprinter;
 }
 
 simulated event PostNetBeginPlay()
@@ -577,6 +585,21 @@ event Landed(vector HitNormal)
 
 	LastLandTime = Level.TimeSeconds;
 
+	// ProcessMove skips crouch input during PHYS_Falling, so bWantsToCrouch
+	// is never set while airborne (dodge requires crouch=false to initiate).
+	// Force crouch intent here so the native Crouch() fires next tick.
+	// Also snapshot the landing velocity into LastFallingVelocity so StartSlide
+	// (called from StartCrouch on the next performPhysics tick) can use it
+	// for the speed threshold check before the 0.1s grace window expires.
+	if (Controller != None && Controller.bDuck > 0 && bCanCrouch)
+	{
+		bWantsToCrouch = true;
+		// LastFallingVelocity already holds the peak horizontal velocity from
+		// ModifyVelocity during the fall — don't clobber it with the dampened
+		// landing-subtick value.
+		bSlideOnLand = true;
+	}
+
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
@@ -588,6 +611,38 @@ event Landed(vector HitNormal)
 	*/
 
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
+}
+
+function TakeFallingDamage()
+{
+	local float Shake, EffectiveSpeed;
+
+	if (Velocity.Z < -0.5 * MaxFallSpeed)
+	{
+		if ( Role == ROLE_Authority )
+		{
+		    MakeNoise(1.0);
+		    if (Velocity.Z < -1 * MaxFallSpeed)
+		    {
+				EffectiveSpeed = Velocity.Z;
+				if ( TouchingWaterVolume() )
+					EffectiveSpeed = FMin(0, EffectiveSpeed + 100);
+				if ( EffectiveSpeed < -1 * MaxFallSpeed )
+				{
+					TakeDamage(-100 * (EffectiveSpeed + MaxFallSpeed)/MaxFallSpeed, None, Location, vect(0,0,0), class'Fell');
+					if (Health <= 0 && -EffectiveSpeed >= PhysicsVolume.TerminalVelocity - 50.f && class'BloodManager'.default.bGibbableCorpses && !bDeRes)
+						bPendingGibFromImpact = true;
+				}
+		    }
+		}
+		if ( Controller != None )
+		{
+			Shake = FMin(1, -1 * Velocity.Z/MaxFallSpeed);
+            Controller.DamageShake(Shake);
+		}
+	}
+	else if (Velocity.Z < -1.4 * JumpZ)
+		MakeNoise(0.5);
 }
 
 //===========================================================================
@@ -1318,13 +1373,20 @@ function MessageHealBlock()
 
 function MessageAttributedHealBlock(Pawn Healer)
 {
+	local PlayerReplicationInfo PreventerPRI;
+
+	// Issue #258: HealPreventer can be cleared (or never set) between the time
+	// the block was triggered and this message runs. Fall back gracefully.
+	if (HealPreventer != None)
+		PreventerPRI = HealPreventer.PlayerReplicationInfo;
+
 	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
 	{
 		NextHealMessageTime = Level.TimeSeconds + 1;
-		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 1, HealPreventer.PlayerReplicationInfo, Healer.PlayerReplicationInfo);
+		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 1, PreventerPRI, Healer.PlayerReplicationInfo);
 
 		if (PlayerController(Healer.Controller) != None)
-			PlayerController(Healer.Controller).ReceiveLocalizedMessage(HealBlockMessage, 2, HealPreventer.PlayerReplicationInfo, PlayerReplicationInfo);
+			PlayerController(Healer.Controller).ReceiveLocalizedMessage(HealBlockMessage, 2, PreventerPRI, PlayerReplicationInfo);
 	}
 }
 
@@ -1396,6 +1458,10 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 				D.InitDecal();
 			}
 			class<BallisticDecal>(BloodSet.default.HighImpactDecal).default.bWaitForInit = false;
+			// Destroy body on next tick to prevent karma crashes 
+			if (Role == ROLE_Authority && ImpactNorm.Z > 0.7 && Health <= 0 && VSize(impactVel) >= PhysicsVolume.TerminalVelocity - 50.f 
+				&& class'BloodManager'.default.bGibbableCorpses && !bDeRes && !bSkeletized)
+				bPendingGibFromImpact = true;
 		}
 		else
 		{
@@ -1527,11 +1593,84 @@ function CalcHitLoc( Vector hitLoc, Vector hitRay, out Name boneName, out float 
 
 State Dying
 {
+	//Allows gibbable corpses
 	simulated function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType)
 	{
-		if (level.Timeseconds == LastPainTime)
-			PlayHit(Damage, InstigatedBy, Hitlocation, damageType, Momentum);
-		super.TakeDamage( Damage, InstigatedBy, Hitlocation, Momentum, damageType);
+		local Vector shotDir, PushLinVel, PushAngVel;
+
+		if (bFrozenBody || bRubbery)
+			return;
+
+		if (bRagdollSetup)
+			return;
+
+		if (Physics == PHYS_KarmaRagdoll)
+		{
+			if (bDeRes)
+				return;
+
+			// Accumulate corpse damage and gib when threshold exceeded
+			Health -= Damage;
+			if (class'BloodManager'.default.bGibbableCorpses && !bSkeletized && (Health < -200 && (DamageType != None && DamageType.default.bCausesBlood && 
+			(DamageType.default.bAlwaysGibs || 
+			ClassIsChildOf(DamageType, class'DT_BWExplode') ||
+			ClassIsChildOf(DamageType, class'Gibbed') ||
+			ClassIsChildOf(DamageType, class'Fell') ||
+			ClassIsChildOf(DamageType, class'DamTypeRocket') ||
+			ClassIsChildOf(DamageType, class'DamTypeFlakShell') ||
+			ClassIsChildOf(DamageType, class'DamTypeSuperShockBeam') ||
+			ClassIsChildOf(DamageType, class'DamTypeRedeemer') ||
+			ClassIsChildOf(DamageType, class'DamTypeTankShell') ||
+			ClassIsChildOf(DamageType, class'DamTypeAttackCraftMissle') ||
+			ClassIsChildOf(DamageType, class'DamTypeShockCombo') ||
+			ClassIsChildOf(DamageType, class'DamTypeMASCannon') ||
+			ClassIsChildOf(DamageType, class'DamTypeTeleFrag') ||
+			ClassIsChildOf(DamageType, class'DamTypeIonBlast') ||
+			ClassIsChildOf(DamageType, class'DamTypeTeleFragged') ||
+			ClassIsChildOf(DamageType, class'DamTypeIonCannonBlast') ))))
+			{
+				//SpawnGibs(Rotation, DamageType.default.GibPerterbation);
+				ChunkUp(Rotator(Momentum), DamageType.default.GibPerterbation);
+				return;
+			}
+			// Apply ragdoll physics
+			if (DamageType != None && DamageType.Default.bThrowRagdoll)
+			{
+				shotDir = Normal(Momentum);
+				PushLinVel = (RagDeathVel * shotDir) + vect(0, 0, 250);
+				PushAngVel = Normal(shotDir Cross vect(0, 0, 1)) * -18000;
+				KSetSkelVel(PushLinVel, PushAngVel);
+			}
+			else if (DamageType != None && DamageType.Default.bRagdollBullet)
+			{
+				if (Momentum == vect(0,0,0) && InstigatedBy != None)
+					Momentum = HitLocation - InstigatedBy.Location;
+				if (FRand() < 0.65)
+				{
+					if (Velocity.Z <= 0)
+						PushLinVel = vect(0,0,40);
+					PushAngVel = Normal(Normal(Momentum) Cross vect(0, 0, 1)) * -8000;
+					PushAngVel.X *= 0.5;
+					PushAngVel.Y *= 0.5;
+					PushAngVel.Z *= 4;
+					KSetSkelVel(PushLinVel, PushAngVel);
+				}
+				PushLinVel = RagShootStrength * Normal(Momentum);
+				KAddImpulse(PushLinVel, HitLocation);
+				if ((LifeSpan > 0) && (LifeSpan < DeResTime + 2))
+					LifeSpan += 0.2;
+			}
+			else
+			{
+				PushLinVel = RagShootStrength * Normal(Momentum);
+				KAddImpulse(PushLinVel, HitLocation);
+			}
+		}
+
+		PlayHit(Damage, InstigatedBy, Hitlocation, damageType, Momentum);
+
+		if (DamageType != None && DamageType.default.DamageOverlayMaterial != None && Level.DetailMode != DM_Low && !Level.bDropDetail)
+			SetOverlayMaterial(DamageType.default.DamageOverlayMaterial, DamageType.default.DamageOverlayTime, true);
 	}
 
     simulated function Timer()
@@ -1726,6 +1865,18 @@ simulated event Tick(float DT)
 	}
 	// Gore tick
 	TickGore(DT);
+
+	if (bPendingGibFromImpact && Role == ROLE_Authority)
+	{
+		if (bDeRes || bSkeletized)
+			bPendingGibFromImpact = false;
+		else
+		{
+			bPendingGibFromImpact = false;
+			//SpawnGibs(Rotation, 0.25);
+			ChunkUp(Rotator(-Velocity), 0.25);
+		}
+	}
 
 	// Dissolve DeRes corpses
 	if (bDeRes)
@@ -2220,6 +2371,13 @@ simulated function SpawnGibs(Rotator HitRotation, float ChunkPerterbation)
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'rfarm', HitRay, ChunkPerterbation, 100);
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'righthand', HitRay, ChunkPerterbation, 100);
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'head', HitRay, ChunkPerterbation, 100);
+}
+
+function PlayDyingAnimation(class<DamageType> DamageType, vector HitLoc)
+{
+	bRagdollSetup = true;
+	Super.PlayDyingAnimation(DamageType, HitLoc);
+	bRagdollSetup = false;
 }
 
 function PlayDyingSound()
@@ -3361,7 +3519,12 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		return;
 
 	if (Physics == PHYS_Falling)
-        LastFallingVelocity = Velocity;
+	{
+		// Keep the peak horizontal speed seen during this fall so dodge-slide
+		// uses the launch velocity, not the decayed landing-subtick velocity.
+		if (VSize(Velocity * vect(1,1,0)) > VSize(LastFallingVelocity * vect(1,1,0)))
+			LastFallingVelocity = Velocity;
+	}
 
 	if (Physics == PHYS_Walking)
 	{
@@ -3415,17 +3578,29 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 		if (bIsSliding)
 		{
+			// Accept server velocity corrections into SlideVelocity.
+			// SlideVelocity isn't replicated, so HandleSliding would overwrite
+			// the corrected Velocity with stale client data during saved-move
+			// replay, causing repeated desync and camera twitching.
+			// OldVelocity == Velocity captured before calcVelocity acceleration,
+			// i.e. the server's SlideVelocity at the correction point.
+			if (Role < ROLE_Authority && PlayerController(Controller) != None)
+			{
+				if (PlayerController(Controller).bUpdating)
+				{
+					if (!bSlideCorrected)
+					{
+						SlideVelocity = OldVelocity;
+						SlideVelocity.Z = 0;
+						bSlideCorrected = true;
+					}
+				}
+				else
+					bSlideCorrected = false;
+			}
+
 			TickSlopeCalculation(DeltaTime);
 			HandleSliding(DeltaTime);
-			/* //Work on this later - yoyobatty
-			if(Bot(Controller) != None)
-			{
-				if(VSize(SlideVelocity) > SlideStopSpeed * 1.25)
-					bWantsToCrouch = True;
-				else 
-					bWantsToCrouch = False;
-			}
-			*/
 		}
 		else
 		{
@@ -3449,9 +3624,37 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 		OldMovementSpeed = VSize(Velocity);
 	}
-	// End slide if crouch released, speed too low, or airborne
-	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) /*|| (Bot(Controller) != None && !bWantsToCrouch)*/) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
+	// End slide if crouch released (player), bWantsToCrouch cleared (bot), speed too low, or airborne
+	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) || (Bot(Controller) != None && !bWantsToCrouch)) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
 		EndSlide();
+
+	if (Bot(Controller) != None)
+		BotAutoManageSprint();
+}
+
+function BotAutoManageSprint()
+{
+	local Bot B;
+
+	if (!bBotAutoSprint || Sprinter == None)
+		return;
+
+	B = Bot(Controller);
+	if (B == None)
+		return;
+
+	if (bIsSliding || bIsCrouched
+		|| B.MoveTarget == None
+		|| Physics != PHYS_Walking
+		|| (B.Enemy != None && VSize(B.Enemy.Location - Location) <= BotSprintEnemyRange))
+	{
+		if (Sprinter.bSprintActive)
+			Sprinter.StopSprint();
+	}
+	else
+	{
+		Sprinter.StartSprint();
+	}
 }
 
 simulated function StartSlide()
@@ -3459,21 +3662,36 @@ simulated function StartSlide()
     local name Anim;
     local vector X, Y, Z;
     local float DirDot, EffSlidePower, EffImpulse, EffBackSpeedScale;
+    local bool bLandSlide;
 
 	if (!bAllowCrouchSliding)
 		return;
 
-    if ( (!bIsSliding 
-	&& Controller.bDuck > 0 
-	&& (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
-	&& Physics == PHYS_Walking 
+	if (Controller == None)
+		return;
+
+    if ( (!bIsSliding
+	&& (Controller.bDuck > 0 || bBotSlideRequest)
+	&& (bSlideOnLand || VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
+	&& Physics == PHYS_Walking
 	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) /*|| AIController(Controller)!=None*/ )
     {
+		bLandSlide = bSlideOnLand;
+		bSlideOnLand = false;
 		//log("Starting slide for:"@GetHumanReadableName());
-		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
-		Sprinter.DelayRecharge();
-		Sprinter.StopSprint();
-		SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
+		if (Role == ROLE_Authority && Sprinter != None)
+		{
+			Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
+			Sprinter.DelayRecharge();
+			Sprinter.StopSprint();
+		}
+		if (bLandSlide)
+		{
+			SlideVelocity = LastFallingVelocity;
+			SlideVelocity.Z = 0;
+		}
+		else
+			SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
 
         // Determine direction vs forward view
         GetAxes(GetViewRotation(), X, Y, Z);
@@ -3488,23 +3706,30 @@ simulated function StartSlide()
         {
             EffSlidePower *= BackSlidePowerScale;
             EffBackSpeedScale = BackMaxSlideSpeedScale;
-            MaxSlideSpeed *= EffBackSpeedScale;
         }
 
         // Apply initial impulse scaled by stamina (same logic, with effective power)
-        EffImpulse = FMax(EffSlidePower * 0.25, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
+        if (Sprinter != None)
+            EffImpulse = FMax(EffSlidePower * 0.25, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
+        else
+            EffImpulse = EffSlidePower;
         SlideVelocity += Normal(SlideVelocity) * EffImpulse;
 
 		LastFallingVelocity = vect(0,0,0); 
         bIsSliding = true;
 
-		Sprinter.UpdateSpeed(2.5);
+		Velocity = SlideVelocity;
+
+		// Set GroundSpeed so native calcVelocity clamp allows slide speed on both client and server
+		GroundSpeed = MaxSlideSpeed * EffBackSpeedScale;
 
         Anim = SlideStartAnims[Get4WayDirection()];
 		if ( PlayAnim(Anim, 2.0) )
 			bWaitForAnim = true;
 		AnimAction = Anim;
 	}
+	else
+		bSlideOnLand = false;
 }
 
 simulated function LoopSlideAnim()
@@ -3536,8 +3761,11 @@ simulated function EndSlide()
     if (!bIsSliding)
         return;
 
-	//if(AIController(Controller) != None)
-	//	bWantsToCrouch = False;
+	if (Bot(Controller) != None)
+	{
+		bBotSlideRequest = false;
+		bWantsToCrouch = false;
+	}
 
     bSlideWaitingStart = false;
 	if(!bIsCrouched) //Play this if not crouched and below certain speed so it looks natural
@@ -3551,12 +3779,11 @@ simulated function EndSlide()
 	SlideVelocity = vect(0,0,0);
 	LastSlideEndTime = Level.TimeSeconds;
 
-	if (Role == ROLE_Authority && Sprinter != None)
-	{
-		//GroundSpeed = Sprinter.BaseGroundSpeed;
+	// Restore GroundSpeed on all roles so client prediction stays in sync
+	if (Sprinter != None)
 		Sprinter.UpdateSpeed();
-		//Level.Game.Broadcast(self, "SpeedReset:"@GroundSpeed@"Sprinter.BaseGroundSpeed:"@Sprinter.BaseGroundSpeed);
-	}
+	else
+		GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 	//if(AIController(Controller) != None)
 	//	Sprinter.StartSprint();
 }
@@ -3605,8 +3832,10 @@ simulated function HandleSliding(float DT)
 		EndSlide();
 	if (VSize(SlideVelocity) > MaxSlideSpeed)
 		SlideVelocity = Normal(SlideVelocity) * MaxSlideSpeed;
-    if (Role == ROLE_Authority)
-        Velocity = SlideVelocity;
+
+	// Set on all roles so client predicts the same movement as server
+	GroundSpeed = MaxSlideSpeed;
+	Velocity = SlideVelocity;
 
 	RefreshSlideLoop();
 }
@@ -3617,6 +3846,8 @@ defaultproperties
 	bCanDodge=True
 	bCanDoubleJump=True
 	bAllowCrouchSliding=True
+	bBotAutoSprint=True
+	BotSprintEnemyRange=600.0
 	MoverLeaveGrace=1.000000
 	MinDragDistance=40.000000
 	MaxPoolVelocity=20.000000

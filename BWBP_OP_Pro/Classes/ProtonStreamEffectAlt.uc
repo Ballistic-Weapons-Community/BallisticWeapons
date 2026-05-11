@@ -5,16 +5,16 @@ simulated function SetAltColor(bool bColorAlt)
 	bAltColor = bColorAlt;
 	if(bAltColor)
 	{
-		BeamEmitter(Emitters[1]).ColorScale[0].Color.B	= 255;
-		BeamEmitter(Emitters[1]).ColorScale[0].Color.G	= 64;
-		BeamEmitter(Emitters[1]).ColorScale[0].Color.R	= 0;	
+		SpriteEmitter(Emitters[1]).ColorScale[0].Color.B	= 255;
+		SpriteEmitter(Emitters[1]).ColorScale[0].Color.G	= 64;
+		SpriteEmitter(Emitters[1]).ColorScale[0].Color.R	= 0;	
 		BeamEmitter(Emitters[0]).ColorScale[0].Color.B	= 255;
 		BeamEmitter(Emitters[0]).ColorScale[0].Color.G	= 64;
 		BeamEmitter(Emitters[0]).ColorScale[0].Color.R	= 0;		
 
-		BeamEmitter(Emitters[1]).ColorScale[1].Color.B	= 255;
-		BeamEmitter(Emitters[1]).ColorScale[1].Color.G	= 64;
-		BeamEmitter(Emitters[1]).ColorScale[1].Color.R	= 0;	
+		SpriteEmitter(Emitters[1]).ColorScale[1].Color.B	= 255;
+		SpriteEmitter(Emitters[1]).ColorScale[1].Color.G	= 64;
+		SpriteEmitter(Emitters[1]).ColorScale[1].Color.R	= 0;	
 		BeamEmitter(Emitters[0]).ColorScale[1].Color.B	= 255;
 		BeamEmitter(Emitters[0]).ColorScale[1].Color.G	= 64;
 		BeamEmitter(Emitters[0]).ColorScale[1].Color.R	= 0;			

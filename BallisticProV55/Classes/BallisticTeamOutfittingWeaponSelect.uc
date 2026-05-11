@@ -339,6 +339,8 @@ function bool InternalOnClick(GUIComponent Sender)
 function string GetDataString()
 {
 	local String ls;
+	if(lb_Weapons.List.Index == -1)
+		return "";
 	ls = lb_Weapons.List.GetExtra() $ "|" $ LayoutIndexList[lb_Weapons.List.Index] $ "|" $ CamoIndexList[lb_Weapons.List.Index]; //ew
 	return ls;
 }

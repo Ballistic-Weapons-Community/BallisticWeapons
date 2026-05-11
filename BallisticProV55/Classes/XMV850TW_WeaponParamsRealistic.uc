@@ -34,8 +34,10 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.050000
-		BurstFireRateFactor=1.00	
-	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+		BurstFireRateFactor=1.00
+		FireAnim=Idle
+		FireLoopAnim=Idle
+		FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
     //=================================================================

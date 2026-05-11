@@ -150,9 +150,9 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'
 		FireParams(0)=FireParams'RealisticPriControlledFireParams'
-		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
-		AltFireParams(2)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(1)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Bipod
@@ -171,9 +171,9 @@ defaultproperties
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'
 		FireParams(0)=FireParams'RealisticPriControlledFireParams'
-		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
-		AltFireParams(2)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(1)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'

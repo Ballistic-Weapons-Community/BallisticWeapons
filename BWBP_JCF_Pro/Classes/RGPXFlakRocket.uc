@@ -84,6 +84,7 @@ defaultproperties
 	WallPenetrationForce=384
 	MomentumTransfer=15000.000000
 	MyDamageType=Class'BWBP_JCF_Pro.DTRGPXBazooka'
+	ImpactDamageType=Class'BWBP_JCF_Pro.DTRGPXBazooka'
 	StaticMesh=StaticMesh'BWBP_JCF_Static.RGP-X350.RGP-X350_ProjMini'
 	bDynamicLight=True
 	bNetTemporary=False

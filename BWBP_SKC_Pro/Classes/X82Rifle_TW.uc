@@ -71,6 +71,25 @@ simulated function Notify_Undeploy ()
 
 simulated function Notify_Deploy ();
 
+// Turret mesh has no Idle sequence — guard to prevent infinite AnimEnd loop (#208)
+simulated function PlayIdle()
+{
+	if (HasAnim(IdleAnim))
+		super.PlayIdle();
+}
+
+simulated function OnMeshChanged()
+{
+	AnimBlendParams(1,0);
+	AnimBlendParams(2,0);
+
+	if (HasAnim(IdleAnim))
+	{
+		SafePlayAnim(IdleAnim, 1.0, 0, 2);
+		FreezeAnimAt(0, 2);
+	}
+}
+
 simulated function PreDrawFPWeapon()
 {
 	SetRotation(Instigator.Rotation);

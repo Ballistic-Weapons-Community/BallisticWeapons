@@ -85,7 +85,7 @@ var() config float			JumpDrain;
 //=============================================================================
 // CROUCH SLIDING
 //=============================================================================
-var() config bool					bAllowCrouchSliding;		// Allows crouch sliding, which is a sprinting mechanic that allows players to slide while crouching.
+var() config bool					bAllowCrouchSliding;		// Allows crouch sliding, pretty self explainatory 
 
 //=============================================================================
 // HEALTH/ARMOR - NO REP
@@ -241,6 +241,8 @@ simulated function PostNetBeginPlay()
 simulated final function BindFromReplication()
 {
 	Log("BallisticReplicationInfo: BindFromReplication");
+
+	Level.MaxRagdolls 				= 100;
 
 	GameStyle 						= GRep.GameStyle;
 

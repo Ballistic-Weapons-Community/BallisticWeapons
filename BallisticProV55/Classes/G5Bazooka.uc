@@ -678,7 +678,7 @@ simulated function CameraView()
 simulated event RenderOverlays( Canvas Canvas )
 {
 	// Do stuff for camera view
-	if ( CurrentRocket != None && PlayerController(Instigator.Controller).ViewTarget == CurrentRocket )
+	if ( CurrentRocket != None && PlayerController(Instigator.Controller) !=None && PlayerController(Instigator.Controller).ViewTarget == CurrentRocket )
     {
 		Instigator.SetViewRotation(CurrentRocket.Rotation);
 		// Noise
