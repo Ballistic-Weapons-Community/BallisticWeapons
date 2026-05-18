@@ -24,6 +24,13 @@ body:
     validations:
       required: true
   - type: input
+    id: gamestyle
+    attributes:
+      label: gamestyle used
+      description: On which gamestyle did the bug appear on?
+    validations:
+      required: true
+  - type: input
     id: bw-version
     attributes:
       label: Ballistic Weapons Version
