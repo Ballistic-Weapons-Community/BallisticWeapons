@@ -104,7 +104,7 @@ defaultproperties
 		Weight=60
 		
 		SightPivot=(Pitch=450)
-		//SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
+		SightOffset=(X=-20.000000,Y=-10.000000,Z=-0.500000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
 		InventorySize=14

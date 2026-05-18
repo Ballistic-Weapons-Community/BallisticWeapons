@@ -89,7 +89,7 @@ defaultproperties
 		//SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
 		//ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Semi-Auto",bUnavailable=True)
 		WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True)

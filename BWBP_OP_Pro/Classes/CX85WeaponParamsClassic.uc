@@ -28,7 +28,6 @@ defaultproperties
 		FireInterval=0.150000
 		FireAnim="Fire"
 		FireEndAnim=
-		AimedFireAnim="SightFire"
 		FireAnimRate=1.000000	
 		TargetState="SeekerFlechette"
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
@@ -65,7 +64,6 @@ defaultproperties
 		FireInterval=0.08000
 		FireAnim="Fire"
 		FireEndAnim=
-		AimedFireAnim="SightFire"
 		FireAnimRate=1.200000
 		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_556mm'
 	End Object

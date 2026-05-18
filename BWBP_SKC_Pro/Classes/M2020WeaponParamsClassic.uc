@@ -235,7 +235,7 @@ defaultproperties
 		//ADS
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.50000
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
 		SightOffset=(X=4.00,Y=0.00,Z=1.93)
 		//Function
 		InventorySize=8

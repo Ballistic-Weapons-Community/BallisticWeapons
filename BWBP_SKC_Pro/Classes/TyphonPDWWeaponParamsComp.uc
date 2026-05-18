@@ -30,6 +30,7 @@ defaultproperties
 		
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.125000
+		FireAnim="SightFire"
 		AimedFireAnim="SightFire"
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object

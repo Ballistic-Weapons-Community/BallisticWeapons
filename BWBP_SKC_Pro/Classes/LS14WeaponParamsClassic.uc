@@ -104,7 +104,6 @@ defaultproperties
 		TargetState="GatlingLaser"
 		FireInterval=0.120000
 		BurstFireRateFactor=1.00
-		AimedFireAnim="SightFire"
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Auto'
 	End Object
@@ -139,7 +138,6 @@ defaultproperties
 		TargetState="GatlingLaser"
 		FireInterval=0.040000
 		BurstFireRateFactor=1.00
-		AimedFireAnim="SightFire"
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Gatling'
 	End Object

@@ -183,7 +183,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35000
 		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
 		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
@@ -218,7 +218,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35000
 		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
+
 		//Function
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000

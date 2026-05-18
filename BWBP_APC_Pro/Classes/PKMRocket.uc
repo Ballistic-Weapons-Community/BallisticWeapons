@@ -182,7 +182,7 @@ defaultproperties
 	AccelSpeed=18000.000000
 	TrailClass=Class'BWBP_APC_Pro.PKMRocketTrail'
 	TrailOffset=(X=-14.000000)
-	MyRadiusDamageType=Class'BWBP_APC_Pro.DTE5Plasma'
+	MyRadiusDamageType=Class'BWBP_APC_Pro.DTPKMRPG'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	MotionBlurRadius=1024.000000
 	ShakeRotMag=(X=512.000000,Y=400.000000)
@@ -193,7 +193,7 @@ defaultproperties
 	Damage=30.000000
 	DamageRadius=500.000000
 	MomentumTransfer=100000.000000
-	MyDamageType=Class'BWBP_APC_Pro.DTE5Plasma'
+	MyDamageType=Class'BWBP_APC_Pro.DTPKMRPG'
 	LightType=LT_Steady
 	LightEffect=LE_QuadraticNonIncidence
 	LightHue=25

@@ -556,7 +556,7 @@ defaultproperties
      ClipInFrame=0.650000
      bCockOnEmpty=True
      WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="Burst of Three")
+     WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
      WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 	 WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)

@@ -105,7 +105,7 @@ defaultproperties
 		Weight=30
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=6,Scale=1f)
-        ZoomType=ZT_Smooth
+        ZoomType=ZT_Logarithmic
      	SightOffset=(X=-1.500000,Y=-0.5,Z=5.30000)
 		//Function
 		InventorySize=7

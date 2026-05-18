@@ -213,7 +213,7 @@ defaultproperties
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
 		//Function
 		MagAmmo=10
 		bMagPlusOne=True

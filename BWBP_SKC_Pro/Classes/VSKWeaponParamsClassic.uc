@@ -115,7 +115,7 @@ defaultproperties
 		SightingTime=0.450000
 		//Function
 		SightPivot=(Pitch=0,Roll=0)
-		ZoomType=ZT_Smooth
+		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireHeavyParams'
