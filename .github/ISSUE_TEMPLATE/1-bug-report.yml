@@ -38,7 +38,7 @@ body:
     validations:
       required: true
   - type: input
-    id: off/online
+    id: environment
     attributes:
       label: Offline or Online?
       description: Did the bug appear in a offline or online environment?
