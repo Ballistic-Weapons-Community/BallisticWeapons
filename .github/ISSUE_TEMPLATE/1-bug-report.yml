@@ -36,6 +36,13 @@ body:
       label: Gamestyle used
       description: On which gamestyle did the bug appear on?
     validations:
+      required: true
+  - type: input
+    id: off/online
+    attributes:
+      label: Offline or Online?
+      description: Did the bug appear in a offline or online environment?
+    validations:
       required: true    
   - type: input
     id: ut2004-version
