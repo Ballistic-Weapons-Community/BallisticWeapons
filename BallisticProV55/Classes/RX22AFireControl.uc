@@ -154,6 +154,7 @@ function Timer()
 {
 	local int i,j,k;
 	local array<Actor> Served;
+	local Actor T;
 	
 	for(i=0;i<GroundFires.length;i++)
 	{
@@ -163,15 +164,16 @@ function Timer()
 		{
 			if (j >= GroundFires[i].Touching.length)
 				continue;
-			if (GroundFires[i].Touching[j] == None || ( Pawn(GroundFires[i].Touching[j]) == None && BW_FuelPatch(GroundFires[i].Touching[j]) == None) )
+			T = GroundFires[i].Touching[j];
+			if (T == None || ( Pawn(T) == None && BW_FuelPatch(T) == None) )
 				continue;
 			for(k=0;k<Served.length;k++)
-				if (Served[k] == GroundFires[i].Touching[j])
+				if (Served[k] == T)
 					break;
 			if (k >= Served.length)	
 			{
-				GroundFires[i].Toast(GroundFires[i].Touching[j]);
-				Served[Served.length] = GroundFires[i].Touching[j];	
+				GroundFires[i].Toast(T);
+				Served[Served.length] = T;	
 			}
 		}
 	}
