@@ -32,6 +32,7 @@ function ServeCustomers()
 {
 	local int i,j,k;
 	local array<Actor> Served;
+	local Pawn T;
 	
 	for(i=0;i<Clouds.length;i++)
 	{
@@ -41,16 +42,17 @@ function ServeCustomers()
 		{
 			if (j >= Clouds[i].Touching.length)
 				continue;
-			if (Clouds[i].Touching[j] == None || Pawn(Clouds[i].Touching[j]) == None)
+			T = Pawn(Clouds[i].Touching[j]);
+			if (T == None)
 				continue;
 			for(k=0;k<Served.length;k++)
-				if (Served[k] == Clouds[i].Touching[j])
+				if (Served[k] == T)
 					break;
 			if (k >= Served.length)	{
-				Served[Served.length] = Clouds[i].Touching[j];
-				class'BallisticDamageType'.static.GenericHurt(Clouds[i].Touching[j], Clouds[i].Density*Damage, Instigator, Clouds[i].Touching[j].Location, vect(0,0,0), DamageType);
-				if (Pawn(Clouds[i].Touching[j]) != None)
-					class'BCSprintControl'.static.AddSlowTo(Pawn(Clouds[i].Touching[j]), 0.7, 0.1);	}
+				Served[Served.length] = T;
+				class'BallisticDamageType'.static.GenericHurt(T, Clouds[i].Density*Damage, Instigator, T.Location, vect(0,0,0), DamageType);
+				if (T.Health > 0)
+					class'BCSprintControl'.static.AddSlowTo(T, 0.7, 0.1);	}
 		}
 	}
 }
