@@ -109,6 +109,9 @@ static simulated final function SetProjectileParams(BallisticProjectile proj)
 	if (!proj.bApplyParams)
 		return;
 
+	if (proj.LayoutIndex >= default.Layouts.Length)
+		return;
+
     if (proj.ModeIndex == 0)
     {
         if (default.Layouts[proj.LayoutIndex].FireParams.Length > 0)

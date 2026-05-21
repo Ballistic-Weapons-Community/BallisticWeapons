@@ -538,9 +538,10 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	
 	if (LaserDot != None && !bLaserTarget)
 		LaserDot.SetLocation(HitLocation);
-	else
+	else if (LaserDot != None)
 		LaserDot.SetLocation(TargetLocation);
-	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+	if (LaserDot != None)
+		Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
 	
 	if (ReloadState == RS_None && ClientState == WS_ReadyToFire /* && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2*/)
 		Laser.SetRotation(Rotator(HitLocation - Loc));

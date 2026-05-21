@@ -84,7 +84,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 {
 	local Pawn Victims;
 	local float damageScale, dist;
-	local vector dir, dummy;
+	local vector dir, dummy, VictimsLoc;
 	local XM84ActorCorrupt PF;
 
 	if( bHurtEntry )
@@ -97,6 +97,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 	{
 		if (Victims != Victim && Victims.bCanBeDamaged)
 		{
+			VictimsLoc = Victims.Location;
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
 			class'BallisticDamageType'.static.GenericHurt
@@ -104,17 +105,20 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				Victims,
 				Damage/10,
 				Instigator,
-				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				VictimsLoc - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
 				DamageType
 			);
 			
-			PF = Spawn(class'XM84ActorCorrupt',self, ,Victims.Location);
-			PF.Instigator = Instigator;
+			PF = Spawn(class'XM84ActorCorrupt',self, ,VictimsLoc);
+			if (PF != None)
+			{
+				PF.Instigator = Instigator;
 
-			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
-				PF.InstigatorController = Instigator.Controller;
-			PF.Initialize(Victims);
+				if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
+					PF.InstigatorController = Instigator.Controller;
+				PF.Initialize(Victims);
+			}
 			
 			if (Victims != None && Level.Game.ReduceDamage(DamageAmount, Victims, Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Victims, 4);
@@ -132,6 +136,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
 			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			VictimsLoc = Victims.Location;
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
 			class'BallisticDamageType'.static.GenericHurt
@@ -139,17 +144,20 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				Victims,
 				damageScale * DamageAmount,
 				Instigator,
-				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				VictimsLoc - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
 				DamageType
 			);
 
-			PF = Spawn(class'XM84ActorCorrupt',self, ,Victims.Location);
-			PF.Instigator = Instigator;
+			PF = Spawn(class'XM84ActorCorrupt',self, ,VictimsLoc);
+			if (PF != None)
+			{
+				PF.Instigator = Instigator;
 
-			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
-				PF.InstigatorController = Instigator.Controller;
-			PF.Initialize(Victims);
+				if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
+					PF.InstigatorController = Instigator.Controller;
+				PF.Initialize(Victims);
+			}
 			
 			if (Victims != None && Level.Game.ReduceDamage(DamageAmount, Victims, Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Victims, Damage/4);

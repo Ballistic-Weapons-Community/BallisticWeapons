@@ -253,7 +253,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
             )
 				BallisticPawn(Instigator).GiveAttributedHealth(damageScale * DamageAmount * 0.6f, Instigator.SuperHealthMax, Instigator, True);
                 
-			if (bWasAlive && Pawn(Victims).Health <= 0)
+			if (bWasAlive && Victims != None && Pawn(Victims).Health <= 0)
 				class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);
 		}
 	}

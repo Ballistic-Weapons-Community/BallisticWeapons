@@ -329,6 +329,8 @@ static function bool IsDamage(string TypeString)
 // Call this to do damage to something. This lets the damagetype modify the things if it needs to
 static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
+	if (Victim == None)
+		return;
 	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
 
 	if (default.TagDuration > 0 && class'BallisticReplicationInfo'.static.IsTactical() && Pawn(Victim) != None)

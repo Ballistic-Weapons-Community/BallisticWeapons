@@ -61,6 +61,8 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	local bool bWasAlive;
 	
 	Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
+	if (HitDT == None)
+		HitDT = DamageType;
 	
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0 && Pawn(Victim).bProjTarget)
 	{
