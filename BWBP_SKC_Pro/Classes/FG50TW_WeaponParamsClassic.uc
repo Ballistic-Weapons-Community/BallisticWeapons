@@ -77,10 +77,10 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		TargetState="Scope"
-		FireInterval=0.200000
+		TargetState="Mount"
+		FireInterval=0.700000
 		AmmoPerFire=0
-		FireAnim=
+		FireAnim="Undeploy"
 		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 	End Object
 		
@@ -109,7 +109,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=398,Max=3072)
+		AimSpread=(Min=8,Max=2048)
 		CrouchMultiplier=1.000000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.000000
@@ -120,7 +120,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=ClassicControlledAimParams
-		AimSpread=(Min=256,Max=3072)
+		AimSpread=(Min=8,Max=2048)
 		CrouchMultiplier=1.000000
 		ADSMultiplier=0.4
 		ViewBindFactor=0.000000
@@ -139,15 +139,8 @@ defaultproperties
 		PlayerSpeedFactor=0.825000
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
-		//WeaponModes(0)=(ModeName="Controlled",ModeID="WM_None",Value=0,AimParamsIndex=1,RecoilParamsIndex=0,bUnavailable=False)
-		//WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto",Value=0,AimParamsIndex=0,RecoilParamsIndex=0,bUnavailable=False)
-		//WeaponModes(2)=(ModeName="N/A",ModeID="WM_None",Value=0,bUnavailable=True)
 		MagAmmo=40
-		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
-		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
-		//ReloadAnimRate=0.900000
-		//CockAnimRate=1.000000
 		WeaponName="Mounted FG-50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -156,7 +149,6 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 		AltFireParams(1)=FireParams'ClassicSecondaryFireParams'
-		//AltFireParams(2)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Bipod
@@ -165,15 +157,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		WeaponBoneScales(0)=(BoneName="Holosight",Slot=51,Scale=0f)
-		//ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
-		//SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
-		//ReloadAnimRate=0.900000
-		//CockAnimRate=1.000000
-		WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
-		WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
-		WeaponModes(2)=(bUnavailable=True)
-		InitialWeaponMode=1
 		WeaponName="Mounted FG-50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -182,7 +166,6 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 		AltFireParams(1)=FireParams'ClassicSecondaryFireParams'
-		//AltFireParams(2)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams_Holo'
