@@ -161,6 +161,8 @@ function Timer()
 			continue;
 		for(j=GroundFires[i].Touching.length-1;j>=0;j--)
 		{
+			if (j >= GroundFires[i].Touching.length)
+				continue;
 			if (GroundFires[i].Touching[j] == None || ( Pawn(GroundFires[i].Touching[j]) == None && BW_FuelPatch(GroundFires[i].Touching[j]) == None) )
 				continue;
 			for(k=0;k<Served.length;k++)

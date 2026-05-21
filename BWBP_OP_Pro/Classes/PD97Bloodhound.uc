@@ -409,11 +409,11 @@ simulated function WeaponTick (float DT)
 		TazerEffect.SetLocation(BallisticAttachment(ThirdPersonActor).GetModeTipLocation());
 	}
 	
-	if (LockedTarget != None )
+	if (LockedTarget != None && LockedTarget.Health > 0)
 	{
 		ServerSetRocketTarget(LockedTarget.Location);
 	}
-	else if ((LockedTarget == None || LockedTarget.Health <= 0) && bLockedOn)
+	else if (bLockedOn)
 	{
 		BreakLock();
 	}

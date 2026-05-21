@@ -3646,7 +3646,8 @@ function BotAutoManageSprint()
 	if (bIsSliding || bIsCrouched
 		|| B.MoveTarget == None
 		|| Physics != PHYS_Walking
-		|| (B.Enemy != None && VSize(B.Enemy.Location - Location) <= BotSprintEnemyRange))
+		|| (B.Enemy != None && VSize(B.Enemy.Location - Location) <= BotSprintEnemyRange)
+		|| Controller.bFire > 0 || Controller.bAltFire > 0)
 	{
 		if (Sprinter.bSprintActive)
 			Sprinter.StopSprint();
