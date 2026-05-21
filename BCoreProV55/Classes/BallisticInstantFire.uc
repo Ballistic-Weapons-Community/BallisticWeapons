@@ -544,7 +544,10 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		if (!Other.bWorldGeometry && Other != LastOther)
 		{
 			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
-		
+
+			if (Weapon == None || BW == None)
+				return;
+
 			LastOther = Other;
 
 			if (CanPenetrate(Other, HitLocation, X, PenCount))
