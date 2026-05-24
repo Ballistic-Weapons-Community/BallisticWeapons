@@ -45,7 +45,10 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	local bool bWasAlive;
 	local class<DamageType> HitDT;
 	local Vector ClosestLocation, BoneTestLocation;
-	
+
+	if (Pawn(Other) != None && (Pawn(Other).Health <= 0 || Pawn(Other).bDeleteMe))
+		return;
+
 	if ( (Pawn(Other) != None && Pawn(Other).Health > 0 && Pawn(Other).Controller != None && Pawn(Other).Controller.SameTeamAs(Instigator.Controller) ) 
 		|| (DestroyableObjective(Other) != None && DestroyableObjective(Other).DefenderTeamIndex == Instigator.GetTeamNum()) ) 
 	{

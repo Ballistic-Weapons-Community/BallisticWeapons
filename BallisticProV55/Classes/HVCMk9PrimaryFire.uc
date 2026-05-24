@@ -705,7 +705,7 @@ simulated state BranchingFire
 
 				class'BallisticDamageType'.static.GenericHurt (Targets[i], Dmg, Instigator, Targets[i].Location + Dir*-24, 40000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), DT);
 
-				if (Targets[i].RemoteRole == ROLE_None)
+				if (Targets[i].RemoteRole == ROLE_None || (Pawn(Targets[i]) != None && Pawn(Targets[i]).Health <= 0))
 				{
 					Targets.Remove(i,1);
 					TargIndexes.Remove(i,1);
