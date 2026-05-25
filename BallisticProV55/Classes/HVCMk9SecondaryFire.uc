@@ -167,7 +167,7 @@ function DoTrace (Vector Start, Rotator Dir)
 //	f = FMin(1.0,HoldTime/4);
 	f = ChargePower;
 	foreach Instigator.VisibleCollidingActors( class 'Actor', Victims, 192, Start + X * 64 )
-		if(!Victims.IsA('FluidSurfaceInfo') && !Victims.bWorldGeometry && Victims.bCanBeDamaged)
+		if(!Victims.IsA('FluidSurfaceInfo') && !Victims.bWorldGeometry && Victims.bCanBeDamaged && (Pawn(Victims) == None || Pawn(Victims).Health > 0))
 		{
 			if (Victims == Instigator)
 			{

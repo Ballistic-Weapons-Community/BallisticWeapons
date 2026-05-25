@@ -18,6 +18,12 @@ simulated function bool AllowFire()
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool StreamAllowFire()
 {
+	local AIController AI;
+
+	AI = AIController(Instigator.Controller);
+	if (AI != None && LockedTarget == None && (AI.Enemy == None || AI.Enemy.Health <= 0))
+		return false;
+		
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 

@@ -158,7 +158,7 @@ simulated event Tick (float DT)
 		{
 			for(i=0;i<HVCMk9PrimaryFire(FireMode[0]).OldTargets.length;i++)
 			{
-				if (HVCMk9PrimaryFire(FireMode[0]).OldTargets[i].Vic == None)
+				if (HVCMk9PrimaryFire(FireMode[0]).OldTargets[i].Vic == None || HVCMk9PrimaryFire(FireMode[0]).OldTargets[i].Vic.Health <= 0)
 				{
 					HVCMk9PrimaryFire(FireMode[0]).OldTargets.Remove(i, 1);
 					i--;

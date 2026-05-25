@@ -129,7 +129,7 @@ simulated state DirectFire
 		SendFireEffect(level, Start+X*64, -X, 0);
 		
 		foreach Instigator.VisibleCollidingActors( class 'Actor', Victims, 192, Start + X * 64 )
-			if(!Victims.IsA('FluidSurfaceInfo') && !Victims.bWorldGeometry && Victims.bCanBeDamaged)
+			if(!Victims.IsA('FluidSurfaceInfo') && !Victims.bWorldGeometry && Victims.bCanBeDamaged && (Pawn(Victims) == None || Pawn(Victims).Health > 0))
 			{
 				if (Victims == Instigator)
 				{
