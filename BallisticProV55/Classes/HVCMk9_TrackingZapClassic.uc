@@ -69,6 +69,16 @@ simulated function UpdateTargets()
 		return;
 	for (i=0;i<Targets.length;i++)
 	{
+		if (Targets[i].Vic != None && Pawn(Targets[i].Vic) != None && Pawn(Targets[i].Vic).Health <= 0)
+		{
+			if (Targets[i].Flash != None)
+			{
+				Targets[i].Flash.StopSound();
+				Targets[i].Flash.Kill();
+				Targets[i].Flash = None;
+			}
+			Targets[i].Vic = None;
+		}
 		if (Targets[i].Vic == None)
 		{
 			if (Targets[i].Lure == vect(0,0,0))
