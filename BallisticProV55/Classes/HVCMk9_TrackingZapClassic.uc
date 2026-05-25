@@ -82,7 +82,11 @@ simulated function UpdateTargets()
 		if (Targets[i].Vic == None)
 		{
 			if (Targets[i].Lure == vect(0,0,0))
+			{
+				BeamEmitter(Emitters[0]).BeamEndPoints[i].Weight = 0;
+				BeamEmitter(Emitters[1]).BeamEndPoints[i].Weight = 0;
 				continue;
+			}
 
 			Dir = Normal(Targets[i].Lure - Location) * 300;
 			BeamEmitter(Emitters[0]).BeamEndPoints[i].Offset = class'BallisticEmitter'.static.VtoRV(Targets[i].Lure, Targets[i].Lure);
