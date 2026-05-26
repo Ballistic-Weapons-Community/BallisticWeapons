@@ -32,12 +32,13 @@ simulated function SetTargets(array<actor> Ts, array<vector> Vs)
 	BeamEmitter(Emitters[1]).BeamEndPoints.length = Targets.length;
 	for(i=0;i<Ts.length;i++)
 	{
-		if (Ts[i] == None)
+		if (Ts[i] == None || (Pawn(Ts[i]) != None && Pawn(Ts[i]).Health <= 0))
 		{
 			Targets[i].Vic = None;
 			if (Targets[i].Flash != None)
 			{	Targets[i].Flash.StopSound();
 				Targets[i].Flash.Kill();
+				Targets[i].Flash = None;
 			}
 			continue;
 		}
