@@ -1720,10 +1720,10 @@ function PlayHit(float Damage, Pawn InstigatedBy, vector HitLocation, class<Dama
     local HitInfo H;
     local int i;
 
-	Super(UnrealPawn).PlayHit(Damage,InstigatedBy,HitLocation,DamageType,Momentum);
-
     if ( Damage <= 0 )
 		return;
+
+	Super(UnrealPawn).PlayHit(Damage,InstigatedBy,HitLocation,DamageType,Momentum);
 	// Try figure out the hitray after bExtraMomentumZ fked up the momentum
 	if (DamageType.default.bExtraMomentumZ && HitLocation != Location)
 	{
