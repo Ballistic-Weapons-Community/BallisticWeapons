@@ -744,6 +744,9 @@ event ServerStartFire(byte Mode)
 		return;
 	}
 
+	if (!FireMode[Mode].bIsFiring)
+		FireCount = 0;
+
     if ( (FireMode[Mode].NextFireTime <= Level.TimeSeconds + FireMode[Mode].PreFireTime)
 		&& StartFire(Mode) )
     {

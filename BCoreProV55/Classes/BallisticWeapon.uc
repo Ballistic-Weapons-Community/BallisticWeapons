@@ -1381,6 +1381,35 @@ simulated function TickFireCounter (float DT)
 //
 // Rewind functions
 //================================================================================
+
+event ServerStartFire(byte Mode)
+{
+	if ( (Instigator != None) && (Instigator.Weapon != self) )
+	{
+		if ( Instigator.Weapon == None )
+			Instigator.ServerChangedWeapon(None, self);
+		else
+			Instigator.Weapon.SynchronizeWeapon(self);
+		return;
+	}
+
+	if (!FireMode[Mode].bIsFiring)
+		FireCount = 0;
+
+	if ( (FireMode[Mode].NextFireTime <= Level.TimeSeconds + FireMode[Mode].PreFireTime)
+		&& StartFire(Mode) )
+	{
+		FireMode[Mode].ServerStartFireTime = Level.TimeSeconds;
+		FireMode[Mode].bServerDelayStartFire = false;
+	}
+	else if ( FireMode[Mode].AllowFire() )
+	{
+		FireMode[Mode].bServerDelayStartFire = true;
+	}
+	else
+		ClientForceAmmoUpdate(Mode, AmmoAmount(Mode));
+}
+
 final function RewindCollisions()
 {
     local PlayerController PC;

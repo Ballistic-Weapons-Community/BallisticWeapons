@@ -38,7 +38,6 @@ simulated function SetTargets(array<actor> Ts, array<vector> Vs)
 			if (Targets[i].Flash != None)
 			{	Targets[i].Flash.StopSound();
 				Targets[i].Flash.Kill();
-				Targets[i].Flash = None;
 			}
 			continue;
 		}
