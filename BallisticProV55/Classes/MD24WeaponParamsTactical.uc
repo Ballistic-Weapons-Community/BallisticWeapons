@@ -162,9 +162,9 @@ defaultproperties
 		Damage=80.0
 		HeadMult=2.5
 		LimbMult=0.6
-		DamageType=Class'BallisticProV55.DTMD24Melee'
-		DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
-		DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
+		DamageType=Class'BallisticProV55.DTMD24Stab'
+		DamageTypeHead=Class'BallisticProV55.DTMD24Stab'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Stab'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000

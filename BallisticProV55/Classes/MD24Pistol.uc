@@ -38,6 +38,12 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasKnife=true;
 		MeleeFireMode.Damage = 70;
+		MD24MeleeFire(MeleeFireMode).SwitchBladeMode(true);
+	}
+	else
+	{
+		MeleeFireMode.Damage = default.MeleeFireMode.Damage;
+		MD24MeleeFire(MeleeFireMode).SwitchBladeMode(false);
 	}
 }
 

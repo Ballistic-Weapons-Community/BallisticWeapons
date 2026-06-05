@@ -45,6 +45,10 @@ simulated function bool HasAmmo()
 
 function PlayPreFire()
 {
+	if (BW.MagAmmo == 0)
+		PreFireAnim = 'MeleePrepOpen';
+	else
+		PreFireAnim = 'MeleePrep';
 	super.PlayPreFire();
 
 	RS04Pistol(Weapon).bStriking = true;

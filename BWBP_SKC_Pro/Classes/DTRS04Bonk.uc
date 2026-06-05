@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTRS04Bonk extends DT_BWBlade;
+class DTRS04Bonk extends DT_BWBlunt;
 
 defaultproperties
 {

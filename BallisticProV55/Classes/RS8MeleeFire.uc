@@ -15,6 +15,22 @@ simulated function bool HasAmmo()
 	return true;
 }
 
+simulated function SwitchBladeMode(bool bBlade)
+{
+	if (bBlade)
+	{
+		DamageType = Class'BallisticProV55.DTRS8Stab';
+		DamageTypeHead = Class'BallisticProV55.DTRS8Stab';
+		DamageTypeArm = Class'BallisticProV55.DTRS8Stab';
+	}
+	else
+	{
+		DamageType = default.DamageType;
+		DamageTypeHead = default.DamageTypeHead;
+		DamageTypeArm = default.DamageTypeArm;
+	}
+}
+
 function PlayPreFire()
 {
 	super.PlayPreFire();

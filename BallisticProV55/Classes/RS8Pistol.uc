@@ -48,8 +48,14 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasKnife=true;
 		MeleeFireMode.Damage = 70;
+		RS8MeleeFire(MeleeFireMode).SwitchBladeMode(true);
 	}
-	
+	else
+	{
+		MeleeFireMode.Damage = default.MeleeFireMode.Damage;
+		RS8MeleeFire(MeleeFireMode).SwitchBladeMode(false);
+	}
+
 	if (InStr(WeaponParams.LayoutTags, "comp") != -1)
 	{
 		bCompensated=true;
