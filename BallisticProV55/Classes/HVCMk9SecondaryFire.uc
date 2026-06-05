@@ -52,6 +52,8 @@ simulated event ModeDoFire()
 {
 	local float f;
 
+	if (Weapon == None)
+		return;
 	f = ChargePower;
 	FirePushbackForce = default.FirePushbackForce * f;
 	HVCMk9LightningGun(Weapon).AddHeat(1.2);

@@ -2334,13 +2334,15 @@ simulated final function ScopeRestoreCrosshair()
 		if (CrosshairMode == CHM_Unreal)
 		{
 			bStandardCrosshairOff = False;
-			PlayerController(InstigatorController).myHud.bCrosshairShow = True;	
+			if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
+				PlayerController(InstigatorController).myHud.bCrosshairShow = True;
 		}
 	}
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
 	else if (CrosshairMode != CHM_Unreal)
 	{
-		PlayerController(InstigatorController).myHud.bCrosshairShow = False;
+		if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
+			PlayerController(InstigatorController).myHud.bCrosshairShow = False;
 	}
 }
 
@@ -3480,7 +3482,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
-	Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
+	if (WeaponParams != None)
+		Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
 
 	if (Role == ROLE_Authority)
 	{

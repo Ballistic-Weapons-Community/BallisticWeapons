@@ -60,12 +60,16 @@ simulated function InstantFireEffects(byte Mode)
 
 simulated function int GetTraceCount()
 {
+	local ShotgunEffectParams SEP;
 	if (CurrentTracerMode == 1 || CurrentTracerMode == 2)
 		return 1;
 	else if (WeaponClass != None)
-		return ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
-	else
-		return 10;
+	{
+		SEP = ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]);
+		if (SEP != None)
+			return SEP.TraceCount;
+	}
+	return 10;
 }
 
 // Do trace to find impact info and then spawn the effect

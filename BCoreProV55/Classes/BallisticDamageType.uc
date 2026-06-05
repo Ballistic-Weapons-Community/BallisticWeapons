@@ -341,6 +341,8 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 // Use like this: class'BallisticDamageType'.static.GenericHurt (..., QuestionableDamagetype);
 static function GenericHurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
+	if (Victim == None)
+		return;
 	if (class<BallisticDamageType>(DT) != None)
 		class<BallisticDamageType>(DT).static.Hurt (Victim, Damage, Instigator, HitLocation, Momentum, DT);
 	else

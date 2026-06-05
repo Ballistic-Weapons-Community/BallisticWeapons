@@ -498,8 +498,11 @@ simulated function ResetArcs()
 {
 	if (level.DetailMode>DM_Low)
 	{
-		Emitter(Spiral).kill();
-		Spiral = None;
+		if (Spiral != None)
+		{
+			Emitter(Spiral).kill();
+			Spiral = None;
+		}
 		if (Arc1==None && bArcOOA)
 			return;
 		InitArcs();

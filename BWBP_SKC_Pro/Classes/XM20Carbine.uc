@@ -246,7 +246,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (!Instigator.IsLocallyControlled())
 			ClientScreenStart();
 	}
-	if (bShieldEquipped && XM20ShieldEffect == None)
+	if (bShieldEquipped && XM20ShieldEffect == None && Level.Game != None)
 	{
 		XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
 		if (Level.Game.bTeamGame && Instigator.GetTeamNum() == 0)

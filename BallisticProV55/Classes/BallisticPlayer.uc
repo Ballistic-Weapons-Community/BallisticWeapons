@@ -937,6 +937,8 @@ function rotator AdjustAim(FireProperties FiredAmmunition, vector projStart, int
     }
     else
     {
+        if (Level.Game == None)
+            return GetViewRotation();
         // adjust aim based on FOV
         bestAim = 0.90;
         if ( (Level.NetMode == NM_Standalone) && bAimingHelp )

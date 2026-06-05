@@ -63,6 +63,8 @@ simulated event PostNetReceive()
 function SwitchMedicLaser(bool bGreen)
 {
 	bGreenLaser = bGreen;
+	if (Laser == None)
+		return;
 	if(bGreenLaser)
 		Laser.Skins[0] = TexPanner'BWBP_SKC_Tex.BeamCannon.LaserPannerGreen';
 	else Laser.Skins[0] = Laser.default.Skins[0];
@@ -229,7 +231,7 @@ simulated function PostNetBeginPlay()
      	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HMCRedEmitter';
      }
 	
-	if (HMCBeamCannon(Instigator.Weapon).CurrentWeaponMode == 2)
+	if (Instigator.Weapon != None && HMCBeamCannon(Instigator.Weapon).CurrentWeaponMode == 2)
 		bGreenLaser=True;
 }
 

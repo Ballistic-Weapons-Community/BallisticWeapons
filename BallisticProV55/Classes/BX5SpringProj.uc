@@ -56,7 +56,7 @@ simulated event PostNetReceive()
 		if (TeamLightColor == Level.GetLocalPlayerController().GetTeamNum() || Level.GetLocalPlayerController().GetTeamNum() == 255 || class'BallisticReplicationInfo'.default.bUniversalMineLights)
 		{
 			TeamLight = Spawn(class'BX5TeamLight',self,,Location,Rotation);
-			if (Instigator.Controller == Level.GetLocalPlayerController())
+			if (Instigator != None && Instigator.Controller == Level.GetLocalPlayerController())
 				TeamLight.SetTeamColor(2);
 			else if (Level.GetLocalPlayerController().GetTeamNum() != 255 || class'BallisticReplicationInfo'.default.bUniversalMineLights)
 				TeamLight.SetTeamColor(TeamLightColor);

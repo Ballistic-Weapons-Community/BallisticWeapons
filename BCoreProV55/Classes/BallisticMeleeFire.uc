@@ -299,7 +299,7 @@ function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int W
 		// Do the trace
 		Other = Trace(HitLocation, HitNormal, End, Start, true, TraceExtent, HitMaterial);
 		Dist -= VSize(HitLocation - Start);
-		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
+		if (Level.NetMode == NM_Client && (Other == None || Other.Role != Role_Authority || Other.bWorldGeometry))
 			break;
 		if (Other != None)
 		{
