@@ -890,8 +890,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		}
 	}
 	
-	
-	if (PendingHandgun != None)
+	if (PendingHandgun != None && OtherGun == None)
 	{
 		bIsMaster = true;
 		OtherGun = PendingHandgun;
@@ -906,6 +905,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	else
 	{
+		PendingHandgun = None;
 		bIsMaster = false;
 		if (OtherGun != None && !OtherGun.bIsMaster)
 			OtherGun = None;
@@ -1144,6 +1144,7 @@ simulated function CommonDualSelect(BallisticHandgun NewSlave)
 	OtherGun = NewSlave;
 	OtherGun.OtherGun = self;
 	OtherGun.bIsMaster = false;
+	OtherGun.PendingHandgun = None;
 	if (Role == ROLE_Authority)
 		OtherGun.AttachToPawn(Instigator);
 	OtherGun.BringUp();
