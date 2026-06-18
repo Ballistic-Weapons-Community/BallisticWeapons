@@ -19,7 +19,8 @@ defaultproperties
      PickupMessage="You picked up an FC01 Power Pack."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM_Ammo'
-     DrawScale=0.10000
-     CollisionRadius=8.000000
+     DrawScale=0.100000
+     PrePivot=(Z=41.000000)
+     CollisionRadius=15.500000
      CollisionHeight=5.200000
 }

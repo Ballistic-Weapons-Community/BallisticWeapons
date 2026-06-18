@@ -16,6 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.A73CellPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.VPR.VPR-Ammo'
      DrawScale=0.300000
-     CollisionRadius=8.000000
+     PrePivot=(Z=-8.000000)
+     CollisionRadius=9.200000
      CollisionHeight=4.800000
 }

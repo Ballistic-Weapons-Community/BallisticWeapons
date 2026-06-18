@@ -15,8 +15,8 @@ defaultproperties
      PickupMessage="You picked up ARC-79 Lightning Rifle cylinders."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.LightningGun.LG_Mag'
-     DrawScale=0.500000
-	 PrePivot=(Z=30.000000)
-     CollisionRadius=8.000000
+     DrawScale=0.250000
+	PrePivot=(Z=51.000000)
+     CollisionRadius=12.500000
      CollisionHeight=14.000000
 }

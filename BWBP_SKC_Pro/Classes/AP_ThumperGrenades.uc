@@ -15,6 +15,7 @@ defaultproperties
      PickupMessage="You got ten 35mm caseless grenades"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LS14AmmoPickup'
+     PrePivot=(Z=2.700000)
      CollisionRadius=8.000000
      CollisionHeight=14.000000
 }

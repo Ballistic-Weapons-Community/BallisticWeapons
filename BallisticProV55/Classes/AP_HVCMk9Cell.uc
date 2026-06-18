@@ -16,6 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.LightningGun.LG-AmmoPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterAmmo'
      DrawScale=0.250000
-     CollisionRadius=8.000000
+     PrePivot=(Z=-10.000000)
+     CollisionRadius=14.000000
      CollisionHeight=4.800000
 }

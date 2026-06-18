@@ -15,7 +15,9 @@ defaultproperties
      PickupMessage="You picked up a belt of M575 bullets."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.MGBoxPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.M575.Pickup_M575_Magazine'
-     CollisionRadius=8.000000
+     DrawScale=0.100000
+     PrePivot=(Z=58.000000)
+     CollisionRadius=7.000000
      CollisionHeight=5.500000
-	 DrawScale=0.1
+	
 }

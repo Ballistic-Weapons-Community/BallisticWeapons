@@ -15,7 +15,8 @@ defaultproperties
      PickupMessage="You picked up ZX98 rounds."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_APC_Static.AR.ZX98Clip'
-     DrawScale=0.100000
-     CollisionRadius=8.000000
+     DrawScale=0.250000
+     PrePivot=(Z=17.000000)
+     CollisionRadius=14.000000
      CollisionHeight=5.200000
 }

@@ -13,8 +13,8 @@ defaultproperties
      PickupMessage="You picked up a tank of flamethrower gas."
      PickupSound=Sound'BW_Core_WeaponSound.RX22A.RX22A-AmmoPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.RX22A.FlamerAmmo'
-     DrawScale=0.300000
-     PrePivot=(Z=4.000000)
-     CollisionRadius=8.000000
+     DrawScale=1.000000
+     PrePivot=(Z=-9.000000)
+     CollisionRadius=26.000000
      CollisionHeight=5.000000
 }

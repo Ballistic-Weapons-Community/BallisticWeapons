@@ -15,6 +15,7 @@ defaultproperties
      PickupMessage="You picked up a belt of PKM bullets."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.MGBoxPickup'
      StaticMesh=StaticMesh'BWBP_APC_Static.PKMA.PKMAAmmoBox'
-     CollisionRadius=8.000000
+     PrePivot=(Z=-3.200000)
+     CollisionRadius=14.000000
      CollisionHeight=5.500000
 }

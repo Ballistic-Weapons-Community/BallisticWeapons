@@ -26,6 +26,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.A73CellPickup'
      StaticMesh=StaticMesh'BWBP_SWC_Static.SkrithHyperBlaster.SkrithHyperBlasterCell'
      DrawScale=0.300000
-     CollisionRadius=8.000000
+     CollisionRadius=11.000000
      CollisionHeight=4.800000
 }

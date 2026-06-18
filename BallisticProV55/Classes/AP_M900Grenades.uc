@@ -16,6 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.GrenadePickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M900Grenades'
      DrawScale=0.500000
-     CollisionRadius=8.000000
+     PrePivot=(Z=-9.500000)
+     CollisionRadius=14.000000
      CollisionHeight=10.000000
 }

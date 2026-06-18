@@ -15,7 +15,8 @@ defaultproperties
      PickupMessage="You picked up a Thorb."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.A73CellPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.A73Clip'
-	 DrawScale=0.300000
-     CollisionRadius=8.000000
+	DrawScale=0.300000
+     PrePivot=(Z=2.500000)
+     CollisionRadius=12.000000
      CollisionHeight=5.500000
 }

@@ -52,8 +52,8 @@ defaultproperties
      PickupMessage="You got two 30 round 5.56mm magazines"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.CarbineSM_Ammo'
-     DrawScale=0.175000
-     PrePivot=(Z=5.000000)
-     CollisionRadius=8.000000
+     DrawScale=0.150000
+     PrePivot=(Z=30.000000)
+     CollisionRadius=23.000000
      CollisionHeight=5.200000
 }

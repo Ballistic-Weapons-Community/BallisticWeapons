@@ -51,6 +51,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.BullDogAmmo'
      DrawScale=0.700000
-     CollisionRadius=8.000000
+	 PrePivot=(Z=19.000000)
+     CollisionRadius=17.000000
      CollisionHeight=18.000000
 }

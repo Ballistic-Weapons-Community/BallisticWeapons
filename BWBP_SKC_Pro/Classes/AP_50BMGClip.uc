@@ -15,7 +15,7 @@ defaultproperties
      PickupMessage="You got two X83 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.X83.X82A2Mag'
-     PrePivot=(Z=13.000000)
+     PrePivot=(Z=10.000000)
      CollisionRadius=8.000000
      CollisionHeight=10.000000
 }

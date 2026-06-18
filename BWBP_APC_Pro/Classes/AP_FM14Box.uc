@@ -16,6 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.Pitbull.Pickup_Pitbull2_Ammo'
      DrawScale=0.050000
-     CollisionRadius=8.000000
+     PrePivot=(Z=3.500000)
+     CollisionRadius=19.000000
      CollisionHeight=4.500000
 }
