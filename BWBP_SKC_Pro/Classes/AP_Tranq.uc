@@ -15,8 +15,8 @@ defaultproperties
      PickupMessage="You got 30 tranquilizer darts"
      PickupSound=Sound'BWBP_SKC_Sounds.VSK.VSK-Holster'
      StaticMesh=StaticMesh'BWBP_SKC_Static.PS9M.PS9MAmmo'
-     DrawScale=0.200000
-     PrePivot=(Z=-20.000000)
-     CollisionRadius=12.000000
+     DrawScale=0.150000
+     PrePivot=(Z=-10.000000)
+     CollisionRadius=15.000000
      CollisionHeight=5.200000
 }

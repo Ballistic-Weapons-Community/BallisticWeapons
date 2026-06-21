@@ -31,8 +31,8 @@ defaultproperties
      PickupMessage="You picked up three AR23 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.AR23.AR23_SM_Ammo'
-     DrawScale=0.130000
-	 PrePivot=(Z=31.000000)
-     CollisionRadius=13.500000
+     DrawScale=0.080000
+	 PrePivot=(Z=65.500000)
+     CollisionRadius=8.500000
      CollisionHeight=5.200000
 }

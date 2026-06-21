@@ -50,8 +50,8 @@ defaultproperties
      PickupMessage="You picked up two AK-490 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490AmmoPickup'
-     DrawScale=0.600000
-     PrePivot=(Z=1.500000)
-     CollisionRadius=20.000000
+     DrawScale=0.400000
+     PrePivot=(Z=6.000000)
+     CollisionRadius=15.000000
      CollisionHeight=5.200000
 }

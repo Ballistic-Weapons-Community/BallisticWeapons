@@ -25,7 +25,8 @@ defaultproperties
      PickupMessage="You picked up a Skrith energy cell"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.A73CellPickup'
      StaticMesh=StaticMesh'BWBP_SWC_Static.SkrithHyperBlaster.SkrithHyperBlasterCell'
-     DrawScale=0.300000
-     CollisionRadius=11.000000
+     DrawScale=0.200000
+     PrePivot=(Z=8.500000)
+     CollisionRadius=7.000000
      CollisionHeight=4.800000
 }

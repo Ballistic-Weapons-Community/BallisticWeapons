@@ -15,8 +15,8 @@ defaultproperties
      PickupMessage="You picked up a box of 12 Slug Shells."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.Pitbull.Pickup_Pitbull2_Ammo'
-     DrawScale=0.050000
-     PrePivot=(Z=3.500000)
-     CollisionRadius=19.000000
+     DrawScale=0.030000
+     PrePivot=(Z=76.000000)
+     CollisionRadius=9.000000
      CollisionHeight=4.500000
 }

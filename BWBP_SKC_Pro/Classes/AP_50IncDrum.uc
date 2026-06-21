@@ -15,8 +15,8 @@ defaultproperties
      PickupMessage="You picked up an FG50 drum."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.MGBoxPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.FG50.FG50AmmoPickup'
-     DrawScale=0.500000
-     PrePivot=(Z=2.000000)
-     CollisionRadius=15.000000
+     DrawScale=0.400000
+     PrePivot=(Z=4.500000)
+     CollisionRadius=13.000000
      CollisionHeight=5.500000
 }

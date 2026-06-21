@@ -16,6 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.R78Clip'
      DrawScale=0.300000
-     CollisionRadius=8.000000
+     PrePivot=(Z=-10.000000)
+     CollisionRadius=14.000000
      CollisionHeight=14.000000
 }
