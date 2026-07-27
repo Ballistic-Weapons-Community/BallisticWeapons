@@ -32,7 +32,7 @@ defaultproperties
 {
      NoClipPreFireAnim="PrepThrowAlt"
      SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)
      PreFireAnim="PrepThrow"
      FireAnim="Throw"
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_G28Grenades'

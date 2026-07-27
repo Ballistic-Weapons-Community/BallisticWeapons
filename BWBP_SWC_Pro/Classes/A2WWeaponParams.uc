@@ -47,7 +47,7 @@ defaultproperties
 		Damage=150
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,batten=false)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

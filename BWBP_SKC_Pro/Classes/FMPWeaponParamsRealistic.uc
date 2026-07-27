@@ -59,7 +59,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=0.900000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Pitch=1.5,Volume=0.800000,Radius=256.000000,bAtten=True) //
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Pitch=1.5,Volume=0.800000,Radius=256.000000,batten=false) //
 		Recoil=70.000000 //
 		Chaos=0.08 //
 		Inaccuracy=(X=24,Y=24) //

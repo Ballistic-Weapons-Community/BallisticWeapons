@@ -89,7 +89,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkPickup-LD'
-     PickupDrawScale=0.700000
+     PickupDrawScale=0.680000
      InventoryType=Class'BallisticProV55.RSDarkStar'
      RespawnTime=20.000000
      PickupMessage="You picked up the Dark Star."

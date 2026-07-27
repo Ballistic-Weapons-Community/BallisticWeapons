@@ -17,7 +17,7 @@ defaultproperties
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
 		RadiusFallOffType=RFO_Linear
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		WarnTargetPct=0.500000	
@@ -45,7 +45,7 @@ defaultproperties
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
 		RadiusFallOffType=RFO_Linear
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		WarnTargetPct=0.500000	

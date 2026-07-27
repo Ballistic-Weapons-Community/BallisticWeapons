@@ -293,7 +293,7 @@ defaultproperties
 	DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
 	PenetrateForce=500
 	bPenetrate=True
-	ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
+	ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,batten=false)
 	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
 	FlashScaleFactor=0.400000

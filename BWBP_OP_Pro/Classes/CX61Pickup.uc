@@ -38,7 +38,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.CX61.CX61PickupLo'
-     PickupDrawScale=0.550000
+     PickupDrawScale=0.570000
      InventoryType=Class'BWBP_OP_Pro.CX61AssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the CX61 tactical rifle."

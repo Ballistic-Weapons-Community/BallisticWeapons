@@ -58,7 +58,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.SK410.SK410PickupLo'
-     PickupDrawScale=0.400000
+     PickupDrawScale=0.420000
      InventoryType=Class'BWBP_SKC_Pro.SK410Shotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the SK-410 assault shotgun."

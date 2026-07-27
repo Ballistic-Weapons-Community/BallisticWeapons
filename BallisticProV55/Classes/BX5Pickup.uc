@@ -55,7 +55,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MinePickupLo'
-     PickupDrawScale=0.300000
+     PickupDrawScale=0.310000
      bWeaponStay=False
      InventoryType=Class'BallisticProV55.BX5Mine'
      RespawnTime=20.000000

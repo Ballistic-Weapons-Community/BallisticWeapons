@@ -39,11 +39,12 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS2PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.MARSAssaultRifle'
+	 PickupDrawScale=0.130000
      RespawnTime=20.000000
      PickupMessage="You picked up the MARS-2 assault rifle."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS2PickupHi'
      Physics=PHYS_None
-	 Drawscale=0.15
+	 Drawscale=0.150000
      CollisionHeight=4.000000
 }

@@ -59,7 +59,7 @@ defaultproperties
 		Inaccuracy=(X=90,Y=90) //
 		FlashScaleFactor=0.9
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,bAtten=True) //
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,batten=false) //
 		Recoil=400.000000 //
 		Chaos=0.3 //
 		BotRefireRate=0.750000

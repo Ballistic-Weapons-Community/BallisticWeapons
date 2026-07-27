@@ -27,7 +27,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.RL.CruRLPickupLo'
-     PickupDrawScale=0.400000
+     PickupDrawScale=0.380000
      InventoryType=Class'BWBP_APC_Pro.HydraBazooka'
      RespawnTime=60.000000
      PickupMessage="You picked up the Hydra missile launcher."

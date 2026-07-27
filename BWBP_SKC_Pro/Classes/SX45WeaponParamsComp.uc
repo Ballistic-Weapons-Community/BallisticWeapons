@@ -50,7 +50,7 @@ defaultproperties
 		bPenetrate=True
 		FlashScaleFactor=0.9
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,bAtten=True) //
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FireSupp',Volume=2.300000,Radius=64.000000,batten=false) //
 		Recoil=200.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000

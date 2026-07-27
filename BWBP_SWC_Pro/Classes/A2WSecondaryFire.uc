@@ -13,7 +13,7 @@ defaultproperties
      SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
      BrassBone="tip"
      BrassOffset=(X=-20.000000,Z=-2.000000)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,batten=false)
      PreFireAnim="ThrowPrep"
      FireAnim="Throw"
      AmmoClass=Class'BWBP_OP_Pro.Ammo_L8GI'

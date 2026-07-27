@@ -22,7 +22,7 @@ defaultproperties
 		LimbMult=1
         BotRefireRate=0.4
         WarnTargetPct=0.75	
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,batten=false)
     End Object
 
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -45,7 +45,7 @@ defaultproperties
 		HeadMult=1
 		LimbMult=1
 		WarnTargetPct=0.5
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,batten=false)
     End Object
     
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams

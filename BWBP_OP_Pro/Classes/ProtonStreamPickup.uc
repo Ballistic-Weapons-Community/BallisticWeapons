@@ -19,8 +19,8 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      bOnSide=False
-	 LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupLo'
-     PickupDrawScale=0.750000
+	LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupLo'
+     PickupDrawScale=0.650000
      InventoryType=Class'BWBP_OP_Pro.ProtonStreamer'
      RespawnTime=20.000000
      PickupMessage="You picked up the E90-N particle accelerator."

@@ -88,7 +88,7 @@ defaultproperties
 		WallPDamageFactor=0.600000
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Volume=1.500000,Radius=768.000000,bAtten=True) //
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Volume=1.500000,Radius=768.000000,batten=false) //
 		Recoil=405.000000 //700 hip
 		Chaos=0.2 //
 		Inaccuracy=(X=10,Y=10)

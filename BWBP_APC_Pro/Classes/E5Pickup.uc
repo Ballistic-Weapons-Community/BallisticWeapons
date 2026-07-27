@@ -34,7 +34,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.MVPR.MVPRPickupLo'
-     PickupDrawScale=0.080000
+     PickupDrawScale=0.110000
      InventoryType=Class'BWBP_APC_Pro.E5PlasmaRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the E-5 'ViPeR'."

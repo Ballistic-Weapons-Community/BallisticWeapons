@@ -66,7 +66,7 @@ defaultproperties
      HeldRadius=250
      HeldMomentum=55000
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,batten=false)
      PinPullSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50CamDie')
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      //BigIconMaterial=Texture'BWBP_SWC_Tex.NTOV.BigIcon_NTOV'

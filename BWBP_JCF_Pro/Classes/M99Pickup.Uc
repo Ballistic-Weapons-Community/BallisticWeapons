@@ -30,7 +30,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_JCF_Static.M99.M99PickupLo'
-     PickupDrawScale=0.500000
+     PickupDrawScale=0.480000
      InventoryType=Class'BWBP_JCF_Pro.M99Rifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the M99-ECS Anti Material Rifle"

@@ -52,7 +52,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5PickupLo'
-     PickupDrawScale=0.500000
+     PickupDrawScale=0.480000
      InventoryType=Class'BallisticProV55.G5Bazooka'
      RespawnTime=60.000000
      PickupMessage="You picked up the G5 missile launcher."

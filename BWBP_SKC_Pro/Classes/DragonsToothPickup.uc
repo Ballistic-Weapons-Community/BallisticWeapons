@@ -40,7 +40,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickupLo'
-     PickupDrawScale=0.325000
+     PickupDrawScale=0.320000
      InventoryType=Class'BWBP_SKC_Pro.DragonsToothSword'
      RespawnTime=50.000000
      PickupMessage="You picked up the XM300 Dragon nanoblade."

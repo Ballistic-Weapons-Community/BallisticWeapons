@@ -15,7 +15,7 @@ defaultproperties
      BrassClass=Class'BWBP_SKC_Pro.Brass_XClip'
      BrassBone="tip"
      BrassOffset=(X=10.000000)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)
      PreFireAnim="PrepThrow"
      FireAnim="Throw"
      FireRate=2.000000

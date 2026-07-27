@@ -15,7 +15,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTShockN3X'
         BotRefireRate=0.99
         WarnTargetPct=0.3
-        FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.NEX.NEX-SlashAttack',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.NEX.NEX-SlashAttack',Radius=32.000000,batten=false)
     End Object
     
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams
@@ -39,7 +39,7 @@ defaultproperties
         HookPullForce=100.000000
         BotRefireRate=0.99
         WarnTargetPct=0.5
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,batten=false)
     End Object
     
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams

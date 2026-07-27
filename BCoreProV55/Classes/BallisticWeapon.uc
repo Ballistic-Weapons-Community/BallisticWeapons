@@ -5902,8 +5902,8 @@ defaultproperties
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
 	 
-     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
 	 
 	 MagAmmo=30
 	 
@@ -5912,8 +5912,8 @@ defaultproperties
 	 CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
 	 CockSelectAnimRate=1.000000
-     CockSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-	 CockSelectSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     CockSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+	 CockSelectSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
 	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
@@ -5922,9 +5922,9 @@ defaultproperties
 	 StartShovelAnimRate=1.000000
 	 EndShovelAnimRate=1.000000
 	 
-     ClipHitSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     ClipOutSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     ClipInSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipHitSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+     ClipOutSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+     ClipInSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
      ClipInFrame=0.900000
      ShovelIncrement=1
      bPlayThirdPersonReload=True

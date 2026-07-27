@@ -58,7 +58,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.M75.M75Lo'
-     PickupDrawScale=0.300000
+     PickupDrawScale=0.280000
      StandUp=(Y=0.800000)
      InventoryType=Class'BallisticProV55.M75Railgun'
      RespawnTime=20.000000

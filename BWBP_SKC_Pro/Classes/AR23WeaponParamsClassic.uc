@@ -60,7 +60,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-Sil',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-Sil',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 		Recoil=512.000000
 		Chaos=0.1
 		Inaccuracy=(X=1,Y=1)

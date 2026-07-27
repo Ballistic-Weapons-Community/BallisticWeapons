@@ -17,7 +17,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		RadiusFallOffType=RFO_Linear
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		WarnTargetPct=0.500000	
@@ -46,7 +46,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTChaffSmack'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,Pitch=0.800000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,Pitch=0.800000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.900000

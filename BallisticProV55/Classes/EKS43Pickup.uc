@@ -36,7 +36,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.EKS43.KatanaPickupLo'
-     PickupDrawScale=0.200000
+     PickupDrawScale=0.185000
      InventoryType=Class'BallisticProV55.EKS43Katana'
      RespawnTime=10.000000
      PickupMessage="You picked up the EKS-43 katana."

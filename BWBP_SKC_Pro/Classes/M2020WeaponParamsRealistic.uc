@@ -130,7 +130,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=0.800000,Radius=192.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=0.800000,Radius=192.000000,batten=false)
 		Recoil=570.000000
 		Chaos=-1.0
 		Inaccuracy=(X=1,Y=1)

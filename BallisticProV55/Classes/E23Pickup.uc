@@ -74,7 +74,7 @@ event Landed(Vector HitNormal)
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.VPR.VPRPickup-LD'
-     PickupDrawScale=0.200000
+     PickupDrawScale=0.220000
      InventoryType=Class'BallisticProV55.E23PlasmaRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the E-23 'ViPeR'."

@@ -41,7 +41,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.FG50.FG50PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.FG50MachineGun'
      RespawnTime=20.000000
-	 PickupDrawScale=1.200000
+	 PickupDrawScale=1.100000
      PickupMessage="You picked up the FG50 machinegun."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.FG50.FG50PickupHi'

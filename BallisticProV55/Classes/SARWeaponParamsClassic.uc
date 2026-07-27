@@ -95,7 +95,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.400000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50FireSil',Volume=1.200000,Pitch=1.1,Radius=192.000000,bAtten=True) //
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50FireSil',Volume=1.200000,Pitch=1.1,Radius=192.000000,batten=false) //
 		Recoil=96.000000
 		Chaos=0.040000
 		Inaccuracy=(X=128,Y=128)

@@ -57,7 +57,7 @@ defaultproperties
 		PenetrationEnergy=16.000000
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=1.45,Radius=256.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=1.45,Radius=256.000000,batten=false)
 		Recoil=512.000000
 		Inaccuracy=(X=128,Y=128)
 		BotRefireRate=0.800000
@@ -126,7 +126,7 @@ defaultproperties
 		PenetrateForce=200
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=2.05,Radius=386.000000,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-FireSil',Volume=2.05,Radius=386.000000,batten=false)
 		Recoil=1800.000000 //
 		Inaccuracy=(X=32,Y=32)
 		HipSpreadFactor=1.000000

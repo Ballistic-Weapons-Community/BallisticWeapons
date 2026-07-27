@@ -15,7 +15,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_OP_Pro.DT_MAGSAWStab'
         BotRefireRate=0.800000
         WarnTargetPct=0.100000
-        FireSound=(Sound=Sound'BWBP_OP_Sounds.LongSword.SawSwing',Radius=378.000000,bAtten=True,bNoOverride=False)
+        FireSound=(Sound=Sound'BWBP_OP_Sounds.LongSword.SawSwing',Radius=378.000000,batten=false,bNoOverride=False)
     End Object
     
     Begin Object Class=FireParams Name=TacticalPrimaryFireParams

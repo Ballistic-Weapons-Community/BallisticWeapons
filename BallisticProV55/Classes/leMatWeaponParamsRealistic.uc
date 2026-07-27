@@ -136,7 +136,7 @@ defaultproperties
 		Inaccuracy=(X=64,Y=64)
 		BotRefireRate=0.7
 		WarnTargetPct=0.5	
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.700000,Radius=48.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.700000,Radius=48.000000,batten=false)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Decoy

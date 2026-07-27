@@ -46,6 +46,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.M763.M763PickupLo'
      InventoryType=Class'BallisticProV55.M763Shotgun'
+	 PickupDrawScale=0.140000
      RespawnTime=20.000000
      PickupMessage="You picked up the M763 shotgun."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'

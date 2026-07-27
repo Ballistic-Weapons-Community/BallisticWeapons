@@ -77,7 +77,7 @@ defaultproperties
 	BrassClass=Class'BallisticProV55.Brass_Pistol'
 	BrassOffset=(X=-25.000000)
 	FireRecoil=215.000000
-	//SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-FireSil',Volume=0.800000,Radius=24.000000,bAtten=True)
+	//SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-FireSil',Volume=0.800000,Radius=24.000000,batten=false)
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire',Volume=1.200000)
 	bModeExclusive=False
 	FireEndAnim=
