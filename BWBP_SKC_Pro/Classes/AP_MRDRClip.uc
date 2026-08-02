@@ -15,7 +15,8 @@ defaultproperties
      PickupMessage="You picked up a MR-DR magazine."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MRDR.MRDR88AmmoPickup'
-     DrawScale=1.250000
-     CollisionRadius=8.000000
+     DrawScale=0.800000
+     PrePivot=(Z=6.500000)
+     CollisionRadius=12.000000
      CollisionHeight=5.200000
 }

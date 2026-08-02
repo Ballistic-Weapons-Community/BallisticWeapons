@@ -50,7 +50,8 @@ defaultproperties
      PickupMessage="You picked up Bulldog BOLT slugs."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.BullDogAmmo'
-     DrawScale=0.700000
-     CollisionRadius=8.000000
+     DrawScale=0.500000
+	 PrePivot=(Z=29.500000)
+     CollisionRadius=11.500000
      CollisionHeight=18.000000
 }

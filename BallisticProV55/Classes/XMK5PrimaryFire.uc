@@ -17,7 +17,7 @@ defaultproperties
 	DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
 	PenetrateForce=175
 	bPenetrate=True
-	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,batten=false)
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
 	bCockAfterEmpty=True
 	MuzzleFlashClass=Class'BallisticProV55.XMk5FlashEmitter'

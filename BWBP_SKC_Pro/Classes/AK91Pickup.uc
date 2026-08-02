@@ -35,6 +35,6 @@ defaultproperties
      StaticMesh=StaticMesh'BWBP_SKC_Static.AK91.AK91PickupHi'
      Physics=PHYS_None
      DrawScale=0.250000
-     PickupDrawScale=0.250000
+     PickupDrawScale=0.240000
      CollisionHeight=4.000000
 }

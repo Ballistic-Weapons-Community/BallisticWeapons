@@ -112,8 +112,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			Dir.Pitch 	= -12386 - 2000;
 		
 			FlakProj[i] = RGPXFlakRocket(Spawn(FlakClass,,, Start, Dir));
-			FlakProj[i].Instigator = Instigator;
-			FlakProj[i].InitFlak(500);
+			if (FlakProj[i] != None)
+			{
+				FlakProj[i].Instigator = Instigator;
+				FlakProj[i].InitFlak(500);
+			}
 		}
 	}
 	super.Explode(HitLocation, HitNormal);

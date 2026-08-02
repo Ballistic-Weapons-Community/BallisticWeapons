@@ -25,7 +25,7 @@ defaultproperties
 		Recoil=600.000000
 		Chaos=0.100000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire3',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire3',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalStandardFireParams
@@ -55,7 +55,7 @@ defaultproperties
 		Recoil=800.000000
 		Chaos=0.450000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-LoudFire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-LoudFire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalExplosiveFireParams
@@ -85,7 +85,7 @@ defaultproperties
 		Recoil=300.000000
 		Chaos=0.150000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-SpecialFire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-SpecialFire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalAcidFireParams

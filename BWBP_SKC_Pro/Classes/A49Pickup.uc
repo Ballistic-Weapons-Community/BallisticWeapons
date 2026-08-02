@@ -57,7 +57,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.A49.A49PickupLo'
-     PickupDrawScale=0.187000
+     PickupDrawScale=0.200000
      InventoryType=Class'BWBP_SKC_Pro.A49SkrithBlaster'
      RespawnTime=20.000000
      PickupMessage="You picked up the A49 Skrith blaster."

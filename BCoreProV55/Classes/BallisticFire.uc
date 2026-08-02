@@ -810,7 +810,7 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0.000000,OutVal=1.000000),(InVal=1.000000,OutVal=1.000000)))
      FireSpreadMode=FSM_Circle
      UnjamMethod=UJM_Cock
-     JamSound=(Volume=0.800000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     JamSound=(Volume=0.800000,Radius=24.000000,Pitch=1.000000,batten=false)
      bJamWastesAmmo=True
      SilencedFireSound=(Volume=0.7,Radius=48.000000,Pitch=1.000000,bNoOverride=True)
      BallisticFireSound=(Volume=1.000000,Radius=512.000000,Pitch=1.000000,bNoOverride=True)

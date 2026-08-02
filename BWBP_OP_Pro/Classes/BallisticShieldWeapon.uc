@@ -79,7 +79,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
 	BDT = class<BallisticDamageType>(DamageType);
 	
-	if (BDT != None && CheckReflect(InstigatedBy.Location, HitNormal, 0.2))
+	if (BDT != None && InstigatedBy != None && CheckReflect(InstigatedBy.Location, HitNormal, 0.2))
 	{
 		if (bBlocked)
 		{

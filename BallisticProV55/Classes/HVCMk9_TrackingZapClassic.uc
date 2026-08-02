@@ -32,7 +32,7 @@ simulated function SetTargets(array<actor> Ts, array<vector> Vs)
 	BeamEmitter(Emitters[1]).BeamEndPoints.length = Targets.length;
 	for(i=0;i<Ts.length;i++)
 	{
-		if (Ts[i] == None)
+		if (Ts[i] == None || (Pawn(Ts[i]) != None && Pawn(Ts[i]).Health <= 0))
 		{
 			Targets[i].Vic = None;
 			if (Targets[i].Flash != None)
@@ -69,10 +69,24 @@ simulated function UpdateTargets()
 		return;
 	for (i=0;i<Targets.length;i++)
 	{
+		if (Targets[i].Vic != None && Pawn(Targets[i].Vic) != None && Pawn(Targets[i].Vic).Health <= 0)
+		{
+			if (Targets[i].Flash != None)
+			{
+				Targets[i].Flash.StopSound();
+				Targets[i].Flash.Kill();
+				Targets[i].Flash = None;
+			}
+			Targets[i].Vic = None;
+		}
 		if (Targets[i].Vic == None)
 		{
 			if (Targets[i].Lure == vect(0,0,0))
+			{
+				BeamEmitter(Emitters[0]).BeamEndPoints[i].Weight = 0;
+				BeamEmitter(Emitters[1]).BeamEndPoints[i].Weight = 0;
 				continue;
+			}
 
 			Dir = Normal(Targets[i].Lure - Location) * 300;
 			BeamEmitter(Emitters[0]).BeamEndPoints[i].Offset = class'BallisticEmitter'.static.VtoRV(Targets[i].Lure, Targets[i].Lure);

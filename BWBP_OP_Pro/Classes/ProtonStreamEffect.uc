@@ -112,7 +112,7 @@ simulated function Tick(float dt)
 	if (Target != None)
 		EndPoint = Target.Location;
 
-	else 
+	else if (Instigator.Weapon.ThirdPersonActor != None)
 		EndPoint = xWeaponAttachment(Instigator.Weapon.ThirdPersonActor).mHitLocation;
 		
 	UpdateEndpoint();

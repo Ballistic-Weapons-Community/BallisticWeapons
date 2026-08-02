@@ -20,7 +20,7 @@ defaultproperties
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.300000
 		HookPullForce=100.000000
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000
@@ -46,7 +46,7 @@ defaultproperties
 		HeadMult=1.375
 		LimbMult=0.75
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		WarnTargetPct=0.500000	

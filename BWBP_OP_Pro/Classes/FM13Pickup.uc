@@ -28,11 +28,12 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Dragon.DragonPickupLo'
      InventoryType=Class'BWBP_OP_Pro.FM13Shotgun'
+     PickupDrawScale=0.130000
      RespawnTime=20.000000
      PickupMessage="You picked up the FM13 Dragon shotgun."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
      StaticMesh=StaticMesh'BWBP_OP_Static.Dragon.DragonPickupHi'
      Physics=PHYS_None
-     DrawScale=0.15000
+     DrawScale=0.150000
      CollisionHeight=3.000000
 }

@@ -28,7 +28,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_JCF_Static.RGP-X350.RGP-X350PickupLo'
-     PickupDrawScale=0.300000
+     PickupDrawScale=0.320000
      InventoryType=Class'BWBP_JCF_Pro.RGPXBazooka'
      RespawnTime=60.000000
      PickupMessage="You picked up the RGK-350 H-V Flak Bazooka."

@@ -124,7 +124,7 @@ defaultproperties
 		WarnTargetPct=0.5
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=0.800000 //
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-SFire',Volume=1.100000,Radius=192.000000,bAtten=True) //
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-SFire',Volume=1.100000,Radius=192.000000,batten=false) //
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Supp

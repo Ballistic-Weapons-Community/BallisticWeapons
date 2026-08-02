@@ -51,6 +51,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.M50.M50PickupLo'
      InventoryType=Class'BallisticProV55.M50AssaultRifle'
      RespawnTime=20.000000
+	 PickupDrawScale=0.320000
      PickupMessage="You picked up the M50 assault rifle."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.M50.M50PickupHi'

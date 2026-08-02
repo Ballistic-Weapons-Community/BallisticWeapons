@@ -57,7 +57,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWPickupLo'
-     PickupDrawScale=0.700000
+     PickupDrawScale=0.680000
      InventoryType=Class'BWBP_SKC_Pro.LAWLauncher'
      RespawnTime=120.000000
      PickupMessage="You picked up the FGM-70 'Shockwave' LAW."

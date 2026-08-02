@@ -26,7 +26,7 @@ defaultproperties
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Melee',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Melee',Radius=32.000000,batten=false)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepWrench"

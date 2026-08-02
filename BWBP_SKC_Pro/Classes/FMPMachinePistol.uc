@@ -163,13 +163,15 @@ simulated function CommonSwitchWeaponMode (byte newMode)
 	FMPPrimaryFire(FireMode[0]).SwitchWeaponMode(newMode);
 	if (newMode == 1 && AmpCharge > 0)
 	{
-		FMPAttachment(ThirdPersonActor).SetAmpColour(true, false);
+		if (ThirdPersonActor != None)
+			FMPAttachment(ThirdPersonActor).SetAmpColour(true, false);
 		Skins[3]=AmpMaterials[1];
 		Skins[4]=AmpMaterials[2];
 	}
 	else if (newMode == 2 && AmpCharge > 0)
 	{
-		FMPAttachment(ThirdPersonActor).SetAmpColour(false, true);
+		if (ThirdPersonActor != None)
+			FMPAttachment(ThirdPersonActor).SetAmpColour(false, true);
 		Skins[3]=AmpMaterials[0];
 		Skins[4]=AmpMaterials[3];
 	}

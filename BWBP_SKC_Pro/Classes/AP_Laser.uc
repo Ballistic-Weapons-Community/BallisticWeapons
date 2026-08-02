@@ -15,6 +15,7 @@ defaultproperties
      PickupMessage="You got 40 LS-14 energy cells."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LS14AmmoPickup'
-     CollisionRadius=8.000000
+     PrePivot=(Z=2.500000)
+     CollisionRadius=12.000000
      CollisionHeight=14.000000
 }

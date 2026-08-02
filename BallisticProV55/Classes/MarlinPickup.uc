@@ -32,7 +32,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.Marlin.Marlin-PickupLo'
-     PickupDrawScale=0.210000
+     PickupDrawScale=0.230000
      InventoryType=Class'BallisticProV55.MarlinRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the Redwood 6000 'DeerMaster'."

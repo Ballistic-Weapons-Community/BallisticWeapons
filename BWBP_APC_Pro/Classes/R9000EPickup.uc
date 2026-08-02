@@ -31,7 +31,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.R9000E.R9000EPickupLo'
-     PickupDrawScale=0.500000
+     PickupDrawScale=0.480000
      InventoryType=Class'BWBP_APC_Pro.R9000ERifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the R9000E modular sniper rifle."

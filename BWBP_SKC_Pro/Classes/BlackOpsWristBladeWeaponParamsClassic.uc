@@ -15,7 +15,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTBOBTorso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTBOBHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBOBLimb'
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=2.100000,Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=2.100000,Radius=32.000000,batten=false)
 		BotRefireRate=0.800000
 		WarnTargetPct=0.100000
 	End Object
@@ -41,7 +41,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBOBTorsoLunge'
 		HookStopFactor=1.700000
 		HookPullForce=100.000000
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=2.500000,Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=2.500000,Radius=32.000000,batten=false)
 		BotRefireRate=0.800000
 		WarnTargetPct=0.050000
 	End Object

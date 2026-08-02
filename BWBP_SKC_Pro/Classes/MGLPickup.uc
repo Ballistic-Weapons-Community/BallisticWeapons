@@ -39,6 +39,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MGL.MGLPickupLow'
      InventoryType=Class'BWBP_SKC_Pro.MGLauncher'
+	 PickupDrawScale=0.850000
      RespawnTime=120.000000
      PickupMessage="You picked up the Conqueror multiple grenade launcher."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'

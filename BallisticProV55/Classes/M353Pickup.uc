@@ -41,7 +41,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.M353.M353PickupLo'
-     PickupDrawScale=0.750000
+     PickupDrawScale=0.730000
      StandUp=(Y=0.800000)
      InventoryType=Class'BallisticProV55.M353Machinegun'
      RespawnTime=20.000000

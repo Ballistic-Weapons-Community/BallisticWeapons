@@ -300,9 +300,11 @@ simulated function SetNVLight(bool bOn)
 		if (NVLight == None)
 		{
 			NVLight = Spawn(class'HKARNVLight',,,Instigator.location);
-			NVLight.SetBase(Instigator);
+			if (NVLight != None)
+				NVLight.SetBase(Instigator);
 		}
-		NVLight.bDynamicLight = true;
+		if (NVLight != None)
+			NVLight.bDynamicLight = true;
 	}
 	else if (NVLight != None)
 		NVLight.bDynamicLight = false;
@@ -329,10 +331,13 @@ simulated event WeaponTick(float DT)
 		if (T==None)
 			HitLoc = End;
 
-		if (VSize(HitLoc-Start) > 400)
-			NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
-		else
-			NVLight.SetLocation(HitLoc + HitNorm*30);
+		if (NVLight != None)
+		{
+			if (VSize(HitLoc-Start) > 400)
+				NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
+			else
+				NVLight.SetLocation(HitLoc + HitNorm*30);
+		}
 	}
 	else
 		SetNVLight(false);

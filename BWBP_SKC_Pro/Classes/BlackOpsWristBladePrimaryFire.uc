@@ -40,7 +40,7 @@ defaultproperties
      DamageTypeHead=Class'BWBP_SKC_Pro.DTBOBHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTBOBLimb'
      KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=2.100000,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=2.100000,Radius=32.000000,batten=false)
      bAISilent=True
      FireAnim="Slash1"
      FireAnimRate=0.900000

@@ -30,7 +30,7 @@ simulated function Tick(float DT)
 		return;
 	}
 
-	DS.X = VSize(Location-StartLocation)/(384*DrawScale);
+	DS.X = FMax(VSize(Location-StartLocation)/(384*DrawScale), 0.001);
 	DS.Y = 0.5;
 	DS.Z = 0.5;
 	if (DS.X >= 1)
@@ -173,6 +173,7 @@ defaultproperties
     Style=STY_Additive
     SoundVolume=255
     SoundRadius=75.000000
+    DrawScale3D=(X=0.001000,Y=0.500000,Z=0.500000)
     CollisionRadius=1.000000
     CollisionHeight=1.000000
     bFixedRotationDir=True

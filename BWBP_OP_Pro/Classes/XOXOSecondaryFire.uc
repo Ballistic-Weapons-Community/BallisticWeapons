@@ -18,6 +18,12 @@ simulated function bool AllowFire()
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool StreamAllowFire()
 {
+	local AIController AI;
+
+	AI = AIController(Instigator.Controller);
+	if (AI != None && LockedTarget == None && (AI.Enemy == None || AI.Enemy.Health <= 0))
+		return false;
+		
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 
@@ -45,7 +51,10 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	local bool bWasAlive;
 	local class<DamageType> HitDT;
 	local Vector ClosestLocation, BoneTestLocation;
-	
+
+	if (Pawn(Other) != None && (Pawn(Other).Health <= 0 || Pawn(Other).bDeleteMe))
+		return;
+
 	if ( (Pawn(Other) != None && Pawn(Other).Health > 0 && Pawn(Other).Controller != None && Pawn(Other).Controller.SameTeamAs(Instigator.Controller) ) 
 		|| (DestroyableObjective(Other) != None && DestroyableObjective(Other).DefenderTeamIndex == Instigator.GetTeamNum()) ) 
 	{

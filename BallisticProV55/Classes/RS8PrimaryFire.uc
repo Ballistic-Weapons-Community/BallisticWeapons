@@ -148,7 +148,7 @@ defaultproperties
 	FireChaos=0.250000
 	XInaccuracy=96.000000
 	YInaccuracy=96.000000
-	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilenceFire',Volume=0.700000,Radius=48.000000,bAtten=True)
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilenceFire',Volume=0.700000,Radius=48.000000,batten=false)
 	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
 	bPawnRapidFireAnim=True
 	FireEndAnim=

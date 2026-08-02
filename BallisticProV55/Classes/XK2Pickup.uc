@@ -33,7 +33,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.XK2.XK2PickupLo'
-     PickupDrawScale=0.250000
+     PickupDrawScale=0.230000
      InventoryType=Class'BallisticProV55.XK2SubMachinegun'
      RespawnTime=20.000000
      PickupMessage="You picked up the XK2 submachine gun."

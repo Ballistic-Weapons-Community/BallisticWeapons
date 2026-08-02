@@ -58,14 +58,15 @@ event Touch(actor Other)
 		Weapon(Inv).FillToInitialAmmo();
 	}
 	
-	Owner.PlaySound(Sound'BW_Core_WeaponSound.Ammo.AmmoPackPickup');
+	if (Owner != None)
+		Owner.PlaySound(Sound'BW_Core_WeaponSound.Ammo.AmmoPackPickup');
 	
 	if (PlayerController(Toucher.Controller) != None)
 		PlayerController(Toucher.Controller).ReceiveLocalizedMessage(class'AmmoCrateLocalMessage');
 		
 	++Uses;
 	
-	if (Uses >= MaxUses)
+	if (Uses >= MaxUses && Owner != None)
 	{
 		WrenchAmmoCrate(Owner).bWarpOut=True;
 		Owner.GoToState('Destroying');

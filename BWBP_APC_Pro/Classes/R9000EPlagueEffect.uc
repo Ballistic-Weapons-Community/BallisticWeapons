@@ -97,7 +97,8 @@ simulated function Destroyed()
 		BallisticPawn(Victim).bPreventHealing = False;
 	Super.Destroyed();
 	
-	PlagueTrigger.Destroy();
+	if (PlagueTrigger != None)
+		PlagueTrigger.Destroy();
 }
 
 

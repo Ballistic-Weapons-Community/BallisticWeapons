@@ -71,7 +71,7 @@ defaultproperties
         Inaccuracy=(X=72,Y=72)
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.600000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-FireSil',Volume=0.800000,Radius=48.000000,bAtten=True) //
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-FireSil',Volume=0.800000,Radius=48.000000,batten=false) //
 	    SplashDamage=False
 	    RecommendSplashDamage=False
 	    BotRefireRate=0.99
@@ -108,7 +108,7 @@ defaultproperties
         DamageType=Class'BallisticProV55.DTFifty9Blade'
         DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
-        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=12.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=12.000000,batten=false)
         SplashDamage=False
         RecommendSplashDamage=False
         BotRefireRate=0.99

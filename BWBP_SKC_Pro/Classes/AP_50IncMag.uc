@@ -15,7 +15,8 @@ defaultproperties
      PickupMessage="You picked up two FSSG-50 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.MGBoxPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.FSSG50.FSSG50AmmoPickup'
-     DrawScale=0.700000
-     CollisionRadius=8.000000
+     DrawScale=0.550000
+     PrePivot=(Z=5.500000)
+     CollisionRadius=12.500000
      CollisionHeight=5.500000
 }

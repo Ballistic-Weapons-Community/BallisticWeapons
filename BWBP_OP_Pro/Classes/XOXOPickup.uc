@@ -61,7 +61,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.XOXO.XOXOPickupLo'
-     PickupDrawScale=1.450000
+     PickupDrawScale=1.500000
      InventoryType=Class'BWBP_OP_Pro.XOXOStaff'
      RespawnTime=20.000000
      PickupMessage="You picked up le big XOXO."

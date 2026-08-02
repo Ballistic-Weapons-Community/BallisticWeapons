@@ -39,7 +39,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.LightningGun.LightningGunPickupLo'
-     PickupDrawScale=0.150000
+     PickupDrawScale=0.130000
      InventoryType=Class'BWBP_OP_Pro.LightningRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the ARC-79 lightning rifle."

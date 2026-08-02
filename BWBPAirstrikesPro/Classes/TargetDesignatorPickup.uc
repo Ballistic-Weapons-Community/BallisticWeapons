@@ -27,7 +27,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Designator.DesignatorPickupLo'
-     PickupDrawScale=1.250000
+     PickupDrawScale=1.500000
      InventoryType=Class'BWBPAirstrikesPro.TargetDesignator'
      RespawnTime=120.000000
      PickupMessage="You picked up the MAU-52 Target Designator."

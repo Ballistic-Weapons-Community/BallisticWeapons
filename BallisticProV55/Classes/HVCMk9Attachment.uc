@@ -125,7 +125,7 @@ simulated function ClientReceiveTargets()
 	local array<vector> Vs;
 
 	for (i=0;i<6;i++)
-		if (ZapTargets[i] != None)
+		if (ZapTargets[i] != None && (Pawn(ZapTargets[i]) == None || Pawn(ZapTargets[i]).Health > 0))
 			Ts[Ts.length] = ZapTargets[i];
 	for (i=0;i<3;i++)
 		if (ZapLures[i] != vect(0,0,0))

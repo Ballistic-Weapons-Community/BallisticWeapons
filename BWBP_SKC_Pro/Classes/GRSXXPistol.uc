@@ -274,6 +274,8 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	}
 
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
+	if (Laser == None)
+		return;
 	Laser.SetLocation(Loc);
 	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
 	if (bAimAligned)

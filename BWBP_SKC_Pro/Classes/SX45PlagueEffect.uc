@@ -100,7 +100,8 @@ simulated function Destroyed()
 
 	Super.Destroyed();
 	
-	PlagueTrigger.Destroy();
+	if (PlagueTrigger != None)
+		PlagueTrigger.Destroy();
 }
 
 defaultproperties

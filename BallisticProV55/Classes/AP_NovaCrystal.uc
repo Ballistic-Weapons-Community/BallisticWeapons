@@ -129,6 +129,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AmmoPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.Nova-Ammo'
      DrawScale=2.500000
+	 PrePivot=(Z=-2.250000)
      CollisionRadius=8.000000
      CollisionHeight=14.200000
 }

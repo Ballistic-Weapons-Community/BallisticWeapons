@@ -48,7 +48,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.Reptile.Reptile_PickupLo'
-     PickupDrawScale=0.250000
+     PickupDrawScale=0.270000
      InventoryType=Class'BallisticProV55.A500Reptile'
      RespawnTime=20.000000
      PickupMessage="You picked up the A500 'Reptile' acid gun."

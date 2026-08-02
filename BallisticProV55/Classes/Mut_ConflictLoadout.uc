@@ -284,6 +284,9 @@ static function int GetSectionIndex(class<Inventory> Item)
 	if (class'BallisticGameStyles'.static.GetReplicatedStyle() == class'GameStyle_Classic')
 		return MAIN_SECTION_INDEX;
 
+    if (class<BallisticWeapon>(Item).default.bWT_Super)
+        return MAIN_SECTION_INDEX;
+
     switch (class<BallisticWeapon>(Item).default.InventoryGroup)
     {
         case 0:

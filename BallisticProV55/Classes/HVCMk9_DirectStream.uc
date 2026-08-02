@@ -77,6 +77,8 @@ simulated function Tick(float dt)
 			Destroy();
 			return;
 		}
+		if (Pawn(Target) != None && Pawn(Target).Health <= 0)
+			Target = None;
 		StartPoint = Instigator.Location + Instigator.EyePosition();
 		if (Target != None)
 			EndPoint = Target.Location;

@@ -151,7 +151,7 @@ defaultproperties
 		HookStopFactor=1.000000
 		HookPullForce=100.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=0.0
 		BotRefireRate=0.800000

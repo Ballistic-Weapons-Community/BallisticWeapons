@@ -16,6 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.TacticalBuster.AA12AmmoPickup'
      DrawScale=0.100000
-     CollisionRadius=8.000000
+     PrePivot=(Z=45.000000)
+     CollisionRadius=12.000000
      CollisionHeight=4.500000
 }

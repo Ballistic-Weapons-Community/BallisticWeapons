@@ -46,6 +46,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73PickupLo'
      InventoryType=Class'BallisticProV55.A73SkrithRifle'
+	 PickupDrawScale=0.170000
      RespawnTime=20.000000
      PickupMessage="You picked up the A73 Skrith rifle."
      PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'

@@ -33,7 +33,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.ProtonPackPickupLo'
-     PickupDrawScale=0.750000
+     PickupDrawScale=0.650000
      InventoryType=Class'BWBP_APC_Pro.ParticleStreamer'
      RespawnTime=20.000000
      PickupMessage="You picked up the mk.II E90-N particle accelerator."

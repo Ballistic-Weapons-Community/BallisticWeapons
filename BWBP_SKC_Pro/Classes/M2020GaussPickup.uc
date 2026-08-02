@@ -49,6 +49,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.M2020.M2020PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.M2020GaussDMR'
+	 PickupDrawScale=0.570000
      RespawnTime=20.000000
      PickupMessage="You picked up the M2020 Gauss rifle."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

@@ -744,6 +744,9 @@ event ServerStartFire(byte Mode)
 		return;
 	}
 
+	if (!FireMode[Mode].bIsFiring)
+		FireCount = 0;
+
     if ( (FireMode[Mode].NextFireTime <= Level.TimeSeconds + FireMode[Mode].PreFireTime)
 		&& StartFire(Mode) )
     {
@@ -887,8 +890,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		}
 	}
 	
-	
-	if (PendingHandgun != None)
+	if (PendingHandgun != None && OtherGun == None)
 	{
 		bIsMaster = true;
 		OtherGun = PendingHandgun;
@@ -903,6 +905,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	else
 	{
+		PendingHandgun = None;
 		bIsMaster = false;
 		if (OtherGun != None && !OtherGun.bIsMaster)
 			OtherGun = None;
@@ -1141,6 +1144,7 @@ simulated function CommonDualSelect(BallisticHandgun NewSlave)
 	OtherGun = NewSlave;
 	OtherGun.OtherGun = self;
 	OtherGun.bIsMaster = false;
+	OtherGun.PendingHandgun = None;
 	if (Role == ROLE_Authority)
 		OtherGun.AttachToPawn(Instigator);
 	OtherGun.BringUp();
@@ -1347,7 +1351,7 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 			return None;
 	    for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
     	{
-    		if (Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
+    		if (Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing)
 	    	{
 	    		if (bFoundOtherOne)
 	    		{

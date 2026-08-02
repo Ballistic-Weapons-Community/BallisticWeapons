@@ -28,7 +28,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.Wendigo.WendigoPickupLo'
      InventoryType=Class'BWBP_APC_Pro.WendigoSMG'
-     PickupDrawScale=1.600000
+     PickupDrawScale=1.700000
      RespawnTime=20.000000
      PickupMessage="You picked up the Wendigo SMG."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

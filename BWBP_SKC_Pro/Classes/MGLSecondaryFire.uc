@@ -55,6 +55,8 @@ simulated function bool AllowFire()
 // Detonates mines if one is out
 simulated event ModeDoFire()
 {
+	if (BW == None)
+		return;
 	if (MGLauncher(BW).bRemoteGrenadeOut)
 	{
 		if (Weapon.Role == ROLE_Authority)

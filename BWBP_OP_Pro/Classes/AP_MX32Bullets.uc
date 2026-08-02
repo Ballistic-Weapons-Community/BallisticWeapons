@@ -50,7 +50,8 @@ defaultproperties
      PickupMessage="You got two MX-32 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.MX32.MX32-AmmoStatic'
-     DrawScale=0.100000
-     CollisionRadius=8.000000
+     DrawScale=0.080000
+	 PrePivot=(Z=58.000000)
+     CollisionRadius=10.000000
      CollisionHeight=5.200000
 }

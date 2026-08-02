@@ -753,7 +753,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	if (bSilenced)
 	{
-		Mk781Attachment(ThirdPersonActor).bSilenced=True;
+		if (ThirdPersonActor != None)
+			Mk781Attachment(ThirdPersonActor).bSilenced=True;
 		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
 	}
 

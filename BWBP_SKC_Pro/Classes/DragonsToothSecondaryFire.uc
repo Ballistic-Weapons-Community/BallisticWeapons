@@ -83,7 +83,7 @@ function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int W
 		// Do the trace
 		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
 		Dist -= VSize(HitLocation - Start);
-		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
+		if (Level.NetMode == NM_Client && (Other == None || Other.Role != Role_Authority || Other.bWorldGeometry))
 			break;
 		if (Other != None)
 		{
@@ -174,7 +174,7 @@ defaultproperties
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSLimb'
      KickForce=200
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=48.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=48.000000,batten=false)
      bAISilent=True
      FireAnim="Melee3"
      FireAnimRate=0.850000

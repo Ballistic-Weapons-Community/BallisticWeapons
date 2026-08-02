@@ -40,7 +40,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_PickupLo'
-     PickupDrawScale=0.400000
+     PickupDrawScale=0.500000
      InventoryType=Class'BallisticProV55.M46AssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the M46A1 scoped combat rifle."

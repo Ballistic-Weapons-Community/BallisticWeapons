@@ -31,6 +31,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.CX85.CX85PickupLo'
      InventoryType=Class'BWBP_OP_Pro.CX85AssaultWeapon'
+	 PickupDrawScale=2.200000
      RespawnTime=20.000000
      PickupMessage="You picked up the CX85 assault weapon."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

@@ -1381,6 +1381,35 @@ simulated function TickFireCounter (float DT)
 //
 // Rewind functions
 //================================================================================
+
+event ServerStartFire(byte Mode)
+{
+	if ( (Instigator != None) && (Instigator.Weapon != self) )
+	{
+		if ( Instigator.Weapon == None )
+			Instigator.ServerChangedWeapon(None, self);
+		else
+			Instigator.Weapon.SynchronizeWeapon(self);
+		return;
+	}
+
+	if (!FireMode[Mode].bIsFiring)
+		FireCount = 0;
+
+	if ( (FireMode[Mode].NextFireTime <= Level.TimeSeconds + FireMode[Mode].PreFireTime)
+		&& StartFire(Mode) )
+	{
+		FireMode[Mode].ServerStartFireTime = Level.TimeSeconds;
+		FireMode[Mode].bServerDelayStartFire = false;
+	}
+	else if ( FireMode[Mode].AllowFire() )
+	{
+		FireMode[Mode].bServerDelayStartFire = true;
+	}
+	else
+		ClientForceAmmoUpdate(Mode, AmmoAmount(Mode));
+}
+
 final function RewindCollisions()
 {
     local PlayerController PC;
@@ -2305,13 +2334,15 @@ simulated final function ScopeRestoreCrosshair()
 		if (CrosshairMode == CHM_Unreal)
 		{
 			bStandardCrosshairOff = False;
-			PlayerController(InstigatorController).myHud.bCrosshairShow = True;	
+			if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
+				PlayerController(InstigatorController).myHud.bCrosshairShow = True;
 		}
 	}
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
 	else if (CrosshairMode != CHM_Unreal)
 	{
-		PlayerController(InstigatorController).myHud.bCrosshairShow = False;
+		if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
+			PlayerController(InstigatorController).myHud.bCrosshairShow = False;
 	}
 }
 
@@ -3451,7 +3482,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
-	Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
+	if (WeaponParams != None)
+		Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
 
 	if (Role == ROLE_Authority)
 	{
@@ -5835,7 +5867,8 @@ static function String GetShortManual(optional int layoutIndex)
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Basic Stats"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
 
 	// iterate and calculate damage and basic fire rate
-	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].FireParams[0].BuildShortManualString();
+	if (default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].FireParams.Length > 0)
+		S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].FireParams[0].BuildShortManualString();
 	// iterate and get basic gun stats
 	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].BuildShortManualString();
 
@@ -5869,8 +5902,8 @@ defaultproperties
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
 	 
-     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     BringUpSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+     PutDownSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
 	 
 	 MagAmmo=30
 	 
@@ -5879,8 +5912,8 @@ defaultproperties
 	 CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
 	 CockSelectAnimRate=1.000000
-     CockSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-	 CockSelectSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     CockSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+	 CockSelectSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
 	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
@@ -5889,9 +5922,9 @@ defaultproperties
 	 StartShovelAnimRate=1.000000
 	 EndShovelAnimRate=1.000000
 	 
-     ClipHitSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     ClipOutSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     ClipInSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+     ClipHitSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+     ClipOutSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+     ClipInSound=(Volume=0.500000,Radius=24.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
      ClipInFrame=0.900000
      ShovelIncrement=1
      bPlayThirdPersonReload=True

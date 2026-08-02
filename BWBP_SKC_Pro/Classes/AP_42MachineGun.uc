@@ -15,8 +15,9 @@ defaultproperties
      PickupMessage="You got two gauss rifle magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M50Magazine'
-     DrawScale=0.400000
+     DrawScale=0.300000
+     PrePivot=(Z=-5.500000)
      Skins(0)=Texture'BWBP_SKC_Tex.M30A2.M30A2-SB'
-     CollisionRadius=8.000000
+     CollisionRadius=10.000000
      CollisionHeight=5.200000
 }

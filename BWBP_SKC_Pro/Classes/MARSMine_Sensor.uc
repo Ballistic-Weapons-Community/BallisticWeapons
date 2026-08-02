@@ -6,7 +6,7 @@
 //
 // by SK and Aza
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MARSMine_Sensor extends BallisticProjectile;
 
@@ -54,7 +54,8 @@ simulated function PostBeginPlay()
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		}
-		TeamLight.SetBase(self);	
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}
 }
 
@@ -66,7 +67,8 @@ simulated event PostNetReceive()
 		if (TeamLightColor == 0)
 			TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		else TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
-		TeamLight.SetBase(self);
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}	
 	if (bPulse != bOldPulse)
 	{

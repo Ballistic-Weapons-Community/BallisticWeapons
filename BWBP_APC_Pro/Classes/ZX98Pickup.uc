@@ -32,6 +32,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.ZX98.ZX98PickupLo'
      InventoryType=Class'BWBP_APC_Pro.ZX98AssaultRifle'
+     PickupDrawScale=0.270000
      RespawnTime=20.000000
      PickupMessage="You picked up the ZX98 Reaper Gauss Minigun."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

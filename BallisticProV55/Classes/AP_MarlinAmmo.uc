@@ -15,7 +15,7 @@ defaultproperties
      PickupMessage="You picked up DeerMaster rounds."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Marlin.Marlin-AmmoBox'
-     PrePivot=(Z=9.000000)
+     PrePivot=(Z=6.300000)
      CollisionRadius=8.000000
      CollisionHeight=14.000000
 }

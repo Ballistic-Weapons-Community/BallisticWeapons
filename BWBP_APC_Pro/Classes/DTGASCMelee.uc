@@ -7,7 +7,7 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTGASCMelee extends DT_BWBlunt;
+class DTGASCMelee extends DT_BWBlade;
 
 defaultproperties
 {

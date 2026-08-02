@@ -25,7 +25,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_T10Clip'
      BrassBone="tip"
      BrassOffset=(X=-20.000000,Z=-2.000000)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=12.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=12.000000,batten=false)
      PreFireAnim="PrepThrow"
      FireAnim="Throw"
      AmmoClass=Class'BallisticProV55.Ammo_T10Grenades'

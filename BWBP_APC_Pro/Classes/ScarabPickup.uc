@@ -28,7 +28,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.CruGren.CruGrenPickupLo'
-     PickupDrawScale=0.200000
+     PickupDrawScale=0.210000
      bWeaponStay=False
      InventoryType=Class'BWBP_APC_Pro.ScarabGrenade'
      RespawnTime=20.000000

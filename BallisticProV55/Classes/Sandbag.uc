@@ -48,8 +48,11 @@ simulated function Destroyed()
 	if (Role == ROLE_Authority	 && BagList != None)
 		BagList.RemoveBag(self);
 		
-	SBC.RemoveCoverAnchors();
-	SBC.Destroy();
+	if (SBC != None)
+	{
+		SBC.RemoveCoverAnchors();
+		SBC.Destroy();
+	}
 	
 	Super.Destroyed();
 }

@@ -15,6 +15,22 @@ simulated function bool HasAmmo()
 	return true;
 }
 
+simulated function SwitchBladeMode(bool bBlade)
+{
+	if (bBlade)
+	{
+		DamageType = Class'BallisticProV55.DTMD24Stab';
+		DamageTypeHead = Class'BallisticProV55.DTMD24Stab';
+		DamageTypeArm = Class'BallisticProV55.DTMD24Stab';
+	}
+	else
+	{
+		DamageType = default.DamageType;
+		DamageTypeHead = default.DamageTypeHead;
+		DamageTypeArm = default.DamageTypeArm;
+	}
+}
+
 function PlayPreFire()
 {
 	super.PlayPreFire();
@@ -58,7 +74,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=0.5,Radius=12.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=0.5,Radius=12.000000,batten=false)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepMelee"

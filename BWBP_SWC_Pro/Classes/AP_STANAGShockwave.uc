@@ -32,8 +32,8 @@ defaultproperties
      PickupMessage="You picked up two BR1-NK magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SWC_Static.BRINK.BRINKClip'
-     DrawScale=0.100000
-     PrePivot=(Z=5.000000)
-     CollisionRadius=8.000000
+     DrawScale=0.300000
+     PrePivot=(Z=-5.000000)
+     CollisionRadius=14.000000
      CollisionHeight=5.200000
 }

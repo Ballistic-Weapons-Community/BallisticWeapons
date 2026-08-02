@@ -342,7 +342,7 @@ defaultproperties
 	FlashScaleFactor=0.500000
 	SFlashScaleFactor=1.000000
 	PhotonFlashScaleFactor=0.400000
-	SilencedFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-FireSupp',Pitch=1.0,Volume=2.000000,Radius=64.000000,bAtten=True)
+	SilencedFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.FC01.FC01-FireSupp',Pitch=1.0,Volume=2.000000,Radius=64.000000,batten=false)
 	DecayRange=(Min=1536,Max=3072)
 	TraceRange=(Min=8000.000000,Max=12000.000000)
 	WallPenetrationForce=24.000000
@@ -357,7 +357,7 @@ defaultproperties
 	PenetrateForce=180
 	bPenetrate=True
 	RunningSpeedThresh=1000.000000
-	//ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.800000,Radius=48.000000,bAtten=True)
+	//ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.800000,Radius=48.000000,batten=false)
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
 	bCockAfterEmpty=True
 	FireRecoil=220.000000

@@ -15,7 +15,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		RadiusFallOffType=RFO_Linear
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)
 		Speed=1400.000000
 		MaxSpeed=1500.000000
 		Recoil=0.0
@@ -41,7 +41,7 @@ defaultproperties
         Damage=45
         DamageRadius=768.000000
 		RadiusFallOffType=RFO_Linear
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)
 		Speed=1400.000000
         MaxSpeed=1500.000000
 		HeadMult=1.0

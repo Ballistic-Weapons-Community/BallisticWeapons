@@ -145,7 +145,7 @@ defaultproperties
 	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 	SFlashBone="tip2"
 	SFlashScaleFactor=0.750000
-	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilenceFire',Pitch=0.85,Volume=1.000000,Radius=1536.000000,bAtten=True)
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilenceFire',Pitch=0.85,Volume=1.000000,Radius=1536.000000,batten=false)
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	DamageType=Class'BallisticProV55.DTR78Rifle'
 	DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'

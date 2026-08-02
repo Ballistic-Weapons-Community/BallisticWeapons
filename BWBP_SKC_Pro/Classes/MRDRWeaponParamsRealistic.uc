@@ -54,7 +54,7 @@ defaultproperties
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000
 		HookPullForce=100.000000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000

@@ -48,6 +48,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOUAWLow'
      InventoryType=Class'BWBP_SKC_Pro.CYLOUAW'
+     PickupDrawScale=1.100000
      RespawnTime=20.000000
      PickupMessage="You picked up the CYLO urban assault weapon."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

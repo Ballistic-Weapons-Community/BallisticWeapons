@@ -14,7 +14,7 @@ simulated function SwitchWeaponMode(byte NewMode)
 simulated function StopFiring()
 {
 	Super.StopFiring();
-	if (Instigator.Role == ROLE_Authority)
+	if (Instigator.Role == ROLE_Authority && Weapon != None && Weapon.ThirdPersonActor != None)
 		ProtonStreamAttachment(Weapon.ThirdPersonActor).EndStream();
 }
 	
@@ -22,7 +22,7 @@ simulated function bool AllowFire()
 {
 	if (!StreamAllowFire())
 	{
-		if (Instigator.Role == ROLE_Authority && ProtonStreamAttachment(Weapon.ThirdPersonActor).bStreamOn)
+		if (Instigator.Role == ROLE_Authority && Weapon != None && Weapon.ThirdPersonActor != None && ProtonStreamAttachment(Weapon.ThirdPersonActor) != None && ProtonStreamAttachment(Weapon.ThirdPersonActor).bStreamOn)
 			ProtonStreamAttachment(Weapon.ThirdPersonActor).EndStream();
 		return false;
 	}
@@ -61,6 +61,8 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	local bool bWasAlive;
 	
 	Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
+	if (HitDT == None)
+		HitDT = DamageType;
 	
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0 && Pawn(Victim).bProjTarget)
 	{
@@ -74,23 +76,29 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 		class'BallisticDamageType'.static.GenericHurt (Victim, Min(Dmg + SuccessiveHits, 12), Instigator, HitLocation, vect(0,0,0), HitDT);
 	else class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, vect(0,0,0), HitDT);
 	if (bWasAlive && (Pawn(Victim).Controller == None || !Pawn(Victim).Controller.SameTeamAs(Instigator.Controller)))
-		ProtonStreamer(BW).BonusAmmo(1);
+		if (BW != None)
+			ProtonStreamer(BW).BonusAmmo(1);
 }
 
 function DoFireEffect()
 {
 	local Vector StartTrace;
 	local Rotator Aim;
+	local ProtonStreamAttachment PSA;
 
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
-	
+
 	DoTrace(StartTrace, Aim);
-	
-	if (ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
+
+	if (Weapon != None && Weapon.ThirdPersonActor != None)
 	{
-		ProtonStreamAttachment(Weapon.ThirdPersonActor).bUseAlt=False;	
-		ProtonStreamAttachment(Weapon.ThirdPersonActor).StartStream();
+		PSA = ProtonStreamAttachment(Weapon.ThirdPersonActor);
+		if (PSA != None && PSA.StreamEffect == None)
+		{
+			PSA.bUseAlt=False;
+			PSA.StartStream();
+		}
 	}
 	ApplyRecoil();
 }

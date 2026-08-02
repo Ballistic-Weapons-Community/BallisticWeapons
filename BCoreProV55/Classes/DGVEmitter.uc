@@ -17,7 +17,7 @@ class DGVEmitter extends BallisticEmitter
 
 var() bool				bAutoAlignVelocity;		//If true, StartVelocityRange is automatically realigned when emitter rotates
 var	  Rotator			OldRotation;			//Last different rotation. Used to check if emitter rotated
-var	  Range				SVX[8], SVY[8], SVZ[8];	//Arrays used to store initial StartVelocityRange values
+var	  Range				SVX[16], SVY[16], SVZ[16];	//Arrays used to store initial StartVelocityRange values
 var() Array<int>		DisableDGV;				//Disable DVG for individual emitter by entering a value
 var() bool				bAutoInit;				//Disable to prevent InitDGV from being run from PostBeginPlay()
 var() bool				bAlignOnTrigger;		//Align velocity when triggered

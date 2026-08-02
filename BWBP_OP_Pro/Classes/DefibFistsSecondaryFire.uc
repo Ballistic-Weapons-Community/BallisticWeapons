@@ -216,7 +216,7 @@ function PlayFiring()
 
 defaultproperties
 {
-	 DischargedFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
+	 DischargedFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,batten=false)
 	 RequiredBonusCharge=33
 	 RequiredShockwaveCharge=75
 	 ElectroDamageBonus=50
@@ -229,7 +229,7 @@ defaultproperties
      DamageTypeArm=Class'BWBP_OP_Pro.DTShockGauntletAlt'
      KickForce=2500
      bUseWeaponMag=False
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,batten=false)
      bAISilent=True
      PreFireAnim="UppercutPrep"
      FireAnim="Uppercut"
