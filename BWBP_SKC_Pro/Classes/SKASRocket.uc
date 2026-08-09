@@ -15,13 +15,13 @@ defaultproperties
 	ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFRAG'
 	AccelSpeed=50000.000000
 	TrailClass=Class'BWBP_SKC_Pro.TraceEmitter_Incendiary'
-	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTTAC30FRAGRadius'
+	MyRadiusDamageType=Class'BWBP_SKC_Pro.DTSKASFRAGRadius'
 	MotionBlurRadius=130.000000
 	Speed=8000.000000
 	MaxSpeed=10000.000000
 	Damage=110.000000
 	DamageRadius=180.000000
 	MomentumTransfer=30000.000000
-	MyDamageType=Class'BWBP_SKC_Pro.DTTAC30FRAG'
+	MyDamageType=Class'BWBP_SKC_Pro.DTSKASFRAG'
 	StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.BulldogFRAG'
 }

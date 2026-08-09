@@ -136,7 +136,7 @@ function PlayFiring()
 	if (LK05Carbine(Weapon) != None && LK05Carbine(Weapon).bSilenced && SilencedFireSound.Sound != None)
 	{
 		if (LK05Carbine(Weapon).CurrentWeaponMode == 0 || LK05Carbine(Weapon).CurrentWeaponMode == 1)
-			Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
+			Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,SilencedFireSound.bAtten);
 	}
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
