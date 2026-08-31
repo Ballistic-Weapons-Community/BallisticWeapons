@@ -20,6 +20,7 @@ defaultproperties
          Opacity=3.250000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+         StartLocationOffset=(X=115.000000)
          SpinsPerSecondRange=(Z=(Min=2.000000,Max=4.000000))
          StartSizeRange=(X=(Min=0.700000),Y=(Min=0.300000,Max=0.450000),Z=(Min=0.300000,Max=0.450000))
          InitialParticlesPerSecond=50000.000000

@@ -123,7 +123,7 @@ function PlayFiring()
 	// End code from normal PlayFiring()
 	
 	if (RS8Pistol(Weapon) != None && RS8Pistol(Weapon).bSilenced && SilencedFireSound.Sound != None)
-		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
+		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,false);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 

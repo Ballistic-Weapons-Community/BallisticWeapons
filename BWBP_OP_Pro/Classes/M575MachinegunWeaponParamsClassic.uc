@@ -24,7 +24,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter_C'
+		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
 		FlashScaleFactor=0.700000
 		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.M575.M575-Fire',Volume=1.400000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=80.000000

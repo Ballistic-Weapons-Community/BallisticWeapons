@@ -189,8 +189,9 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			bThisShot=true;					}
 	}
 	// Spawn a tracer
-	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
-		bThisShot && (TracerChance >= 1 || FRand() < TracerChance) && !bHasGauss)
+	if (TracerClass != None && TracerMode != MU_None &&
+		(TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
+		bThisShot && (TracerChance >= 1 || FRand() < TracerChance) && !bHasGauss && !bSilenced)
 	{
 		if (Dist > 200)
 			Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
@@ -198,7 +199,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			Tracer.Initialize(Dist);
 	}
 	// Spawn an alt tracer
-	if (TracerClassAlt != None && TracerMode != MU_None && bHasGauss)
+	if (TracerClassAlt != None && TracerMode != MU_None && bHasGauss && !bSilenced)
 	{
 		if (Dist > 200)
 			Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
@@ -228,6 +229,7 @@ defaultproperties
 	InstantMode=MU_Both
 	FlashMode=MU_Both
 	LightMode=MU_Both
+	TracerMode=MU_Both
 	TracerClass=class'BWBP_SKC_Pro.TraceEmitter_MG36Bullet'
 	TracerClassAlt=class'TraceEmitter_Gauss'
 	WaterTracerClass=class'TraceEmitter_WaterBullet'

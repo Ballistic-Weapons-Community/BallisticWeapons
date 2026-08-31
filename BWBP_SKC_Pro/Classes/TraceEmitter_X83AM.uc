@@ -31,7 +31,6 @@ defaultproperties
          Opacity=0.800000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         StartLocationOffset=(X=-30.000000)
          SizeScale(0)=(RelativeSize=0.100000)
          SizeScale(1)=(RelativeTime=0.410000,RelativeSize=0.400000)
          SizeScale(2)=(RelativeTime=0.640000,RelativeSize=1.000000)

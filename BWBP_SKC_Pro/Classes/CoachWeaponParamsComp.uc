@@ -351,6 +351,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffset=(Pitch=-2048,Yaw=-2048)
 	End Object
 
 	//=================================================================

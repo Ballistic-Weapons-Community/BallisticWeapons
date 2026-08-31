@@ -41,9 +41,7 @@ defaultproperties
         FadeOutStartTime=0.025000
         CoordinateSystem=PTCS_Relative
         MaxParticles=1
-      
         DetailMode=DM_SuperHigh
-        StartLocationOffset=(X=700.000000)
         SizeScale(1)=(RelativeTime=0.680000,RelativeSize=0.300000)
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
@@ -72,8 +70,6 @@ defaultproperties
         FadeOutStartTime=0.192000
         CoordinateSystem=PTCS_Relative
         MaxParticles=1
-      
-    	StartLocationOffset=(X=-30.000000)
         SizeScale(0)=(RelativeSize=0.200000)
         SizeScale(1)=(RelativeTime=0.280000,RelativeSize=0.800000)
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
@@ -103,9 +99,7 @@ defaultproperties
         FadeOutStartTime=1.034000
         FadeInEndTime=0.396000
         CoordinateSystem=PTCS_Relative
-        MaxParticles=3
-
-    	StartLocationOffset=(X=-30.000000)      
+        MaxParticles=3   
         DetailMode=DM_High
         StartLocationRange=(X=(Min=-15.000000,Max=10.000000))
         StartSpinRange=(X=(Max=1.000000))
@@ -137,8 +131,6 @@ defaultproperties
         FadeOutStartTime=0.025000
         CoordinateSystem=PTCS_Relative
         MaxParticles=1
-    	StartLocationOffset=(X=-30.000000)
-      
         DetailMode=DM_SuperHigh
         SizeScale(1)=(RelativeTime=0.680000,RelativeSize=0.300000)
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
@@ -169,9 +161,7 @@ defaultproperties
         ColorMultiplierRange=(X=(Min=0.800000,Max=0.900000),Y=(Min=0.900000))
         FadeOutStartTime=0.180000
         CoordinateSystem=PTCS_Relative
-        MaxParticles=1
-    	StartLocationOffset=(X=-30.000000)
-      
+        MaxParticles=1      
         SizeScale(0)=(RelativeSize=0.300000)
         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
@@ -195,9 +185,7 @@ defaultproperties
         Opacity=0.730000
         FadeOutStartTime=0.525000
         CoordinateSystem=PTCS_Relative
-        MaxParticles=2
-    	StartLocationOffset=(X=-30.000000)
-      
+        MaxParticles=2      
         SpinsPerSecondRange=(X=(Max=4.000000))
         StartSpinRange=(X=(Max=1.000000))
         StartSizeRange=(X=(Min=1.000000,Max=1.500000),Y=(Min=1.000000,Max=1.500000),Z=(Min=1.000000,Max=1.500000))
