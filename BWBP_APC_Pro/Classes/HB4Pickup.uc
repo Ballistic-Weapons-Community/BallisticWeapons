@@ -28,6 +28,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterPickupLo'
      InventoryType=Class'BWBP_APC_Pro.HB4GrenadeBlaster'
+     PickupDrawScale=0.700000
      RespawnTime=120.000000
      PickupMessage="You picked up the HB4 Electro Grenade Blaster."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'

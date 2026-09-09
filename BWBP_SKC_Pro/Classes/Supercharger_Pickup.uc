@@ -33,7 +33,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Supercharger.SuperchargerPickupLo'
      InventoryType=Class'BWBP_SKC_Pro.Supercharger_AssaultWeapon'
      RespawnTime=20.000000
-     PickupDrawScale=0.125000
+     PickupDrawScale=0.110000
      PickupMessage="You picked up the Van Holt 500KW Supercharger"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Supercharger.SuperchargerPickupHi'

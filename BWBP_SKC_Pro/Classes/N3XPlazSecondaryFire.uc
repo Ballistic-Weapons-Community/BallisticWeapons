@@ -26,7 +26,7 @@ defaultproperties
      KickForce=500
      bUseWeaponMag=False
 	 bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,batten=false)
      bAISilent=True
      bFireOnRelease=True
 	 PreFireAnim="PrepHack"

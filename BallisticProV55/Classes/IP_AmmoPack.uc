@@ -170,7 +170,7 @@ defaultproperties
 	PickupForce="HealthPack"
 	StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.AmmoPackHi'
 	DrawScale=0.350000
-	PrePivot=(Z=24.000000)
+	PrePivot=(Z=10.000000)
 	CollisionRadius=18.000000
 	CollisionHeight=24.000000
 }

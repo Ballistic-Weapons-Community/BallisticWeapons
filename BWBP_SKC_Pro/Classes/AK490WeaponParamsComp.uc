@@ -81,7 +81,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=0.800000 //
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Volume=1.500000,Radius=768.000000,bAtten=True) //
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AK47.AK490-SilFire',Volume=1.500000,Radius=768.000000,batten=false) //
 		Recoil=210.000000 //
 		Chaos=0.08000 //
 		WarnTargetPct=0.200000
@@ -106,7 +106,7 @@ defaultproperties
 		Damage=90
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.5,Radius=16,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=0.5,Radius=16,batten=false)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

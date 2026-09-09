@@ -37,7 +37,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.LonghornPickupLo'
-     PickupDrawScale=0.090000
+     PickupDrawScale=0.110000
      InventoryType=Class'BWBP_SKC_Pro.LonghornLauncher'
      RespawnTime=10.000000
      PickupMessage="You picked up the Longhorn repeater."

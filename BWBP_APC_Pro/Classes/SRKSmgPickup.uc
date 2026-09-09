@@ -46,6 +46,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_APC_Static.SPXSmg.SPXSmgPickupLo'
      InventoryType=Class'BWBP_APC_Pro.SRKSubMachinegun'
+     PickupDrawScale=0.120000
      RespawnTime=20.000000
      PickupMessage="You picked up the SRK-205 Sub-Machine Gun"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

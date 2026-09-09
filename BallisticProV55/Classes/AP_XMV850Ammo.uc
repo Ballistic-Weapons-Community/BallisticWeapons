@@ -16,7 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-AmmoPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPickup'
      DrawScale=0.350000
-     PrePivot=(Z=9.000000)
-     CollisionRadius=8.000000
-     CollisionHeight=5.500000
+     PrePivot=(Z=-2.000000)
+	CollisionRadius=24.000000
+	CollisionHeight=5.500000
 }

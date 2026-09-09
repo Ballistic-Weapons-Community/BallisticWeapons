@@ -97,7 +97,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=0.300000 //
-		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.P90.P90SilFire',Radius=64.000000,bAtten=True,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_JCF_Sounds.P90.P90SilFire',Radius=64.000000,batten=false,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=70.000000 //
 		Chaos=0.080000 //
 		Inaccuracy=(X=128,Y=128)

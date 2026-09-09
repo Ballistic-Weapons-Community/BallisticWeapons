@@ -237,7 +237,7 @@ defaultproperties
 	BotFireSound=Sound'BWBP_SKC_Sounds.Supercharger.SC-FireSingle'
 	bPawnRapidFireAnim=True
 	bPenetrate=False
-	//ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=1.000000,Radius=48.000000,bAtten=True)
+	//ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=1.000000,Radius=48.000000,batten=false)
 	DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 	DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 	DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'

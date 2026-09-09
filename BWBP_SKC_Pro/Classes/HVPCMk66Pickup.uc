@@ -48,7 +48,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPickupLD'
-     PickupDrawScale=0.250000
+     PickupDrawScale=0.270000
      InventoryType=Class'BWBP_SKC_Pro.HVPCMk66PlasmaCannon'
      RespawnTime=180.000000
      PickupMessage="You got the Extreme-Voltage Hyper Plasma Cannon 9000."

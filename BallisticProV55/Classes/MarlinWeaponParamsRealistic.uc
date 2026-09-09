@@ -143,7 +143,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=0.800000 //
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-SFire',Volume=1.100000,Radius=192.000000,bAtten=True) //
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-SFire',Volume=1.100000,Radius=192.000000,batten=false) //
 		Recoil=1336.000000 //
 		Chaos=-1.0
 		Inaccuracy=(X=8,Y=8) //
@@ -177,7 +177,7 @@ defaultproperties
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Melee',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Melee',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.900000

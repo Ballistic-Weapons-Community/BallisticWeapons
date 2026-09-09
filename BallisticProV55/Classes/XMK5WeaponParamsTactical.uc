@@ -60,7 +60,7 @@ defaultproperties
 		Recoil=130.000000 //
 		Chaos=0.035000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Pitch=0.8,Radius=128,bAtten=True) //
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Pitch=0.8,Radius=128,batten=false) //
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams_Supp

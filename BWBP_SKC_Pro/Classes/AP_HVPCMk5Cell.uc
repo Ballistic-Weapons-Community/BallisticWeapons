@@ -15,9 +15,10 @@ defaultproperties
      PickupMessage="You got an E-115 Plasma Cell"
      PickupSound=Sound'BW_Core_WeaponSound.LightningGun.LG-AmmoPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterAmmo'
-     DrawScale=0.250000
      Skins(0)=Texture'BWBP_SKC_Tex.XavPlasCannon.XavPackSkin'
      Skins(1)=Texture'BWBP_SKC_Tex.XavPlasCannon.XavAmmoSkin'
-     CollisionRadius=8.000000
+     DrawScale=0.250000
+     PrePivot=(Z=-10.000000)
+     CollisionRadius=14.000000
      CollisionHeight=4.800000
 }

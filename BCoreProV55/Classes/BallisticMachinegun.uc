@@ -214,9 +214,9 @@ defaultproperties
      BeltBones(9)="Bullet10"
      BeltLength=11
      BoxBone="AmmoBox"
-     BoxOnSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,bAtten=True)
-     BoxOffSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,bAtten=True)
-     FlapUpSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,bAtten=True)
-     FlapDownSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,bAtten=True)
+     BoxOnSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,batten=false)
+     BoxOffSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,batten=false)
+     FlapUpSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,batten=false)
+     FlapDownSound=(Volume=0.500000,Radius=24.000000,Pitch=1.000000,batten=false)
      IdleTweenTime=0.000000
 }

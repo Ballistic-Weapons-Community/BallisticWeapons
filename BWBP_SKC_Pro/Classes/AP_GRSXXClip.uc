@@ -15,7 +15,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Glock.Glock-Ammo'
      DrawScale=0.160000
-     PrePivot=(Z=50.000000)
-     CollisionRadius=8.000000
+     PrePivot=(Z=35.000000)
+     CollisionRadius=12.000000
      CollisionHeight=16.000000
 }

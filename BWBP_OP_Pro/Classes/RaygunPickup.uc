@@ -19,6 +19,7 @@ defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Raygun.RaygunPickupLo'
      InventoryType=Class'BWBP_OP_Pro.Raygun'
+     PickupDrawScale=2.300000
      RespawnTime=20.000000
      PickupMessage="You picked up the E58 Raygun."
      PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'

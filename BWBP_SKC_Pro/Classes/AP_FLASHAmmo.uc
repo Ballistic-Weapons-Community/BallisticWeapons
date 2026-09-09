@@ -15,7 +15,8 @@ defaultproperties
      PickupMessage="You picked up 4 Incinerator Rockets"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Flash.FLASHAmmo'
-     DrawScale=0.750000
-     CollisionRadius=8.000000
+     DrawScale=0.400000
+     PrePivot=(Z=12.500000)
+     CollisionRadius=7.000000
      CollisionHeight=5.000000
 }

@@ -48,7 +48,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.BullDogPickupLow'
-     PickupDrawScale=5.000000
+     PickupDrawScale=4.800000
      InventoryType=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
      RespawnTime=10.000000
      PickupMessage="You picked up the Bulldog autocannon."

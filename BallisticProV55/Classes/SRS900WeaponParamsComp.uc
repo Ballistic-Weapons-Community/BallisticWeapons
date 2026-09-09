@@ -21,7 +21,7 @@ defaultproperties
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 		FlashScaleFactor=0.500000
 		Recoil=600.000000
 		Chaos=0.070000
@@ -55,7 +55,7 @@ defaultproperties
 		Recoil=600.000000
 		Chaos=0.065000 //
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams_600

@@ -28,6 +28,6 @@ defaultproperties
      DrawScale=0.300000
      Skins(0)=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BAmmoSkin'
      Skins(1)=Texture'BW_Core_WeaponTex.A73OrangeLayout.A73BAmmoSkin'
-     CollisionRadius=8.000000
+     CollisionRadius=12.000000
      CollisionHeight=4.800000
 }

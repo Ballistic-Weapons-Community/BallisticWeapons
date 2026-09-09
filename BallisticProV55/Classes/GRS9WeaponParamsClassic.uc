@@ -166,7 +166,7 @@ defaultproperties
 		HookStopFactor=1.700000
 		HookPullForce=100.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=64.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=64.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000

@@ -463,8 +463,8 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-	DrumInSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameMagIn',Volume=1.100000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-	DrumOutSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameMagOut',Volume=1.100000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	DrumInSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameMagIn',Volume=1.100000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
+	DrumOutSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameMagOut',Volume=1.100000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
 	ReloadAltAnim="ReloadAlt"
 	LaserOnSound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn'
 	LaserOffSound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff'

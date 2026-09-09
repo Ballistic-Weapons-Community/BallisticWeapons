@@ -7,7 +7,7 @@ class GRSXXPickup extends BallisticHandgunPickup
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.Glock.Glock-LD'
-     PickupDrawScale=0.160000
+     PickupDrawScale=0.180000
      InventoryType=Class'BWBP_SKC_Pro.GRSXXPistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the GRS-XX pistol."

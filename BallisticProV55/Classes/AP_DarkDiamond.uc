@@ -129,7 +129,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.DarkStar.Dark-AmmoPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkStarAmmo'
      DrawScale=0.800000
-     PrePivot=(Z=10.000000)
+     PrePivot=(Z=3.300000)
      CollisionRadius=8.000000
      CollisionHeight=14.200000
 }

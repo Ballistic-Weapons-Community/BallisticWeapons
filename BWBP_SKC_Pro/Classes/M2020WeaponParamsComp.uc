@@ -156,7 +156,7 @@ defaultproperties
 		Chaos=0.150000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=1.600000,Radius=192.000000,bAtten=True) //
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Mk781.Mk781-FireSupp',Volume=1.600000,Radius=192.000000,batten=false) //
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash' //
 		FlashScaleFactor=1.000000 //
 	End Object

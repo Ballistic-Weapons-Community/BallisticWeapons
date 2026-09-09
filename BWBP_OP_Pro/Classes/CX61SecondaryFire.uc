@@ -271,7 +271,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-	FlameEndSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoopEnd2',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	FlameEndSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoopEnd2',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
 	FireSoundLoop=Sound'BWBP_OP_Sounds.CX61.CX61-FlameLoop'
 	FlashBone="'"
 	FireChaos=0.050000

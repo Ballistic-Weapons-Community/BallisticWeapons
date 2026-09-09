@@ -14,7 +14,7 @@ defaultproperties
 		MaxSpeed=600.000000
 		Damage=0
 		DamageRadius=250.000000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,batten=false)	
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams

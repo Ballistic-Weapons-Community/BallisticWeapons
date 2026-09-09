@@ -25,7 +25,7 @@ defaultproperties
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 		FlashScaleFactor=0.5
 		Recoil=600.000000
 		Chaos=0.070000
@@ -54,7 +54,7 @@ defaultproperties
 		bPenetrate=True
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 		FlashScaleFactor=0.5
 		Recoil=600.000000
 		Chaos=0.065000
@@ -84,7 +84,7 @@ defaultproperties
 		bPenetrate=True
 		Inaccuracy=(X=16,Y=16)
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-        FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire3',Volume=1.500000,Pitch=0.900000,Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire3',Volume=1.500000,Pitch=0.900000,Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,batten=false)
 		FlashScaleFactor=0.5
 		Recoil=550.000000
 		Chaos=0.065000

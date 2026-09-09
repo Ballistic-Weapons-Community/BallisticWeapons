@@ -42,7 +42,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AR23.AR23PickupLo'
-     PickupDrawScale=0.130000
+     PickupDrawScale=0.110000
      InventoryType=Class'BWBP_SKC_Pro.AR23HeavyRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the AR23 'Punisher' Heavy Rifle"

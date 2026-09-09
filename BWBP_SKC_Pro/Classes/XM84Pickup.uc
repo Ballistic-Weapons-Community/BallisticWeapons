@@ -44,7 +44,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84PickupLo'
-     PickupDrawScale=1.000000
+     PickupDrawScale=1.100000
      bWeaponStay=False
      InventoryType=Class'BWBP_SKC_Pro.XM84Flashbang'
      RespawnTime=20.000000

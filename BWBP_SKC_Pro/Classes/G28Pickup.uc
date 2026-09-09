@@ -34,13 +34,14 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28PickupLo'
-     PickupDrawScale=0.350000
+     PickupDrawScale=0.250000
      bWeaponStay=False
      InventoryType=Class'BWBP_SKC_Pro.G28Grenade'
      RespawnTime=20.000000
      PickupMessage="You picked up G28 medicinal aerosol."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.GrenadePickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28PickupHi'
+     PrePivot=(Z=-20.000000)
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.400000

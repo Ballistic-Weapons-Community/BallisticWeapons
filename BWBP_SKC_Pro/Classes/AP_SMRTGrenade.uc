@@ -16,6 +16,7 @@ defaultproperties
      PickupSound=Sound'BWBP_SKC_Sounds.LAW.Law-TubeLock'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.LonghornAmmo'
      DrawScale=0.400000
-     CollisionRadius=8.000000
+     PrePivot=(Z=1.000000)
+     CollisionRadius=14.000000
      CollisionHeight=4.500000
 }

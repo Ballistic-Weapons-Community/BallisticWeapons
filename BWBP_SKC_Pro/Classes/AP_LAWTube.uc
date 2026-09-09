@@ -15,7 +15,8 @@ defaultproperties
      PickupMessage="You picked up 1 LAW T70B1 rocket"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWAmmo'
-     DrawScale=0.750000
-     CollisionRadius=8.000000
+     DrawScale=0.550000
+     PrePivot=(Z=9.500000)
+     CollisionRadius=15.000000
      CollisionHeight=5.000000
 }

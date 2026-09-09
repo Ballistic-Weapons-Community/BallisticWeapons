@@ -43,7 +43,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.NRP57.NRP57PickupLo'
-     PickupDrawScale=0.200000
+     PickupDrawScale=0.210000
      bWeaponStay=False
      InventoryType=Class'BallisticProV55.NRP57Grenade'
      RespawnTime=20.000000

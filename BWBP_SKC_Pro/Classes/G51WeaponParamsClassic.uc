@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
 		FlashScaleFactor=0.600000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.SCAR-Fire',Volume=1.500000,Radius=192.000000,bAtten=True)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.SCAR-Fire',Volume=1.500000,Radius=192.000000,batten=false)
 		Recoil=128.000000
 		Chaos=-1.0
 		Inaccuracy=(X=8,Y=8)

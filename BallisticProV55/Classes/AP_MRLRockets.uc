@@ -16,7 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.JL21-Ammo'
      DrawScale=0.400000
-     PrePivot=(Z=-10.000000)
-     CollisionRadius=8.000000
+     PrePivot=(Z=-19.000000)
+     CollisionRadius=20.000000
      CollisionHeight=5.000000
 }

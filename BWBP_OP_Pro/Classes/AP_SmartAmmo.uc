@@ -49,7 +49,8 @@ defaultproperties
      PickupMessage="You picked up Smart PDW rounds."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.ProtoLMG.ProtoLMG_SM_Ammo'
-     DrawScale=0.100000
-     CollisionRadius=8.000000
+     DrawScale=0.080000
+	 PrePivot=(Z=54.000000)
+     CollisionRadius=12.000000
      CollisionHeight=5.200000
 }

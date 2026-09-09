@@ -337,7 +337,7 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	 ToggleSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Close',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	 ToggleSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Close',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,batten=false)
 	 OverheatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
 	 VentingSound=Sound'BWBP_SKC_Sounds.M2020.M2020-IdleShield'
 	 ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'

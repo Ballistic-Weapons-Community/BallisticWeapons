@@ -10,6 +10,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.Akeron.AkeronAmmo'
      DrawScale=0.800000
-     CollisionRadius=8.000000
+	PrePivot=(Z=6.530000)
+     CollisionRadius=9.250000
      CollisionHeight=5.200000
 }

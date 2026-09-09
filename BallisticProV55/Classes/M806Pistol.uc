@@ -595,8 +595,8 @@ defaultproperties
 {
 	AltAmmo=6
 	ReloadAltAnim="ReloadAlt"
-	DrumInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.500000,bAtten=True)
-	DrumOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.500000,bAtten=True)
+	DrumInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.500000,batten=false)
+	DrumOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.500000,batten=false)
 	
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'

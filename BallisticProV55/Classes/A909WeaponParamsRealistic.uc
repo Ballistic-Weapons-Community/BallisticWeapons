@@ -20,7 +20,7 @@ defaultproperties
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.200000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000
@@ -53,7 +53,7 @@ defaultproperties
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.800000

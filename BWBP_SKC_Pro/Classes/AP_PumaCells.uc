@@ -15,7 +15,8 @@ defaultproperties
      PickupMessage="You picked up 16 PUMA power cells"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.PUMA.PUMA_SM_Ammo'
-     DrawScale=0.300000
-     CollisionRadius=8.000000
+     DrawScale=0.120000
+     PrePivot=(Z=35.000000)
+     CollisionRadius=12.000000
      CollisionHeight=4.500000
 }

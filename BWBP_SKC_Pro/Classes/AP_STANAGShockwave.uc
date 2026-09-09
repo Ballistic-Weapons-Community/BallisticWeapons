@@ -32,8 +32,9 @@ defaultproperties
      PickupMessage="You picked up two MARS magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARSAmmo'
-     DrawScale=0.550000
-     PrePivot=(Z=5.000000)
-     CollisionRadius=8.000000
+     DrawScale=0.300000
+     PrePivot=(Z=-5.000000)
+     CollisionRadius=14.000000
      CollisionHeight=5.200000
 }
+

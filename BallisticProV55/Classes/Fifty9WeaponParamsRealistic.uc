@@ -64,7 +64,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash' //
 		FlashScaleFactor=0.600000 //
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-FireSil',Volume=0.800000,Radius=48.000000,bAtten=True) //
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-FireSil',Volume=0.800000,Radius=48.000000,batten=false) //
 		Recoil=550.000000 //
 		Chaos=-1.0
 		Inaccuracy=(X=24,Y=24)
@@ -94,7 +94,7 @@ defaultproperties
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.000000
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Radius=32.000000,bAtten=True)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Radius=32.000000,batten=false)
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.750000

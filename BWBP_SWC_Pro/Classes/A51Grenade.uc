@@ -55,7 +55,7 @@ defaultproperties
      HeldMomentum=55000
      HeldDamageType=Class'BWBP_SWC_Pro.DTA51Held'
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806LSight',Volume=1.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806LSight',Volume=1.500000,Radius=48.000000,Pitch=1.000000,batten=false)
      PinPullSound=(Sound=Sound'2K4MenuSounds.Generic.msfxDrag',Volume=5.000000)
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      //BigIconMaterial=Texture'BWBP_SWC_Tex.Main.BigIcon_SkrithGrenade'

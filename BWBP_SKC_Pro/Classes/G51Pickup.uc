@@ -9,6 +9,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.MJ51PickupLo'
      InventoryType=Class'BWBP_SKC_Pro.G51Carbine'
      RespawnTime=20.000000
+     PickupDrawScale=0.140000
      PickupMessage="You picked up the G51 carbine."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.MJ51PickupHi'

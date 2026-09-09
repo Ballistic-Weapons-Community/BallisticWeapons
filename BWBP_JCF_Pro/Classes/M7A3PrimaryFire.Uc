@@ -20,7 +20,7 @@ defaultproperties
 	KickForce=10000
 	PenetrateForce=450
 	bPenetrate=True
-	//ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
+	//ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,batten=false)
 	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-DryFire',Volume=1.000000)
 	bCockAfterEmpty=True
 	MuzzleFlashClass=Class'BWBP_JCF_Pro.M7A3FlashEmitter'

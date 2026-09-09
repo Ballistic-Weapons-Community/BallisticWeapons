@@ -16,7 +16,8 @@ defaultproperties
      PickupMessage="You got 2 Grenade Batteries."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_APC_Static.HoloBlaster.HoloBlasterClip'
-     DrawScale=0.120000
+     DrawScale=0.650000
+     PrePivot=(Z=8.000000)
      CollisionRadius=8.000000
      CollisionHeight=5.200000
 }

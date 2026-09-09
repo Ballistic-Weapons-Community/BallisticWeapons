@@ -15,8 +15,8 @@ defaultproperties
      PickupMessage="You picked up 2 SMAT artillery shells"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.SMAT.SMATAmmo'
-     DrawScale=0.750000
-     //Skins(0)=Texture'BWBP_SKC_Tex.SMAA.SMAARocket'
-     CollisionRadius=8.000000
+     DrawScale=0.600000
+     PrePivot=(Z=5.000000)
+     CollisionRadius=14.000000
      CollisionHeight=5.000000
 }

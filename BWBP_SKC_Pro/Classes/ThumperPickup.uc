@@ -7,7 +7,7 @@ class ThumperPickup extends BallisticWeaponPickup
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Thumper.ThumperPickupLo'
-     PickupDrawScale=0.100000
+     PickupDrawScale=0.120000
      InventoryType=Class'BWBP_SKC_Pro.ThumperGrenadeLauncher'
      RespawnTime=20.000000
      PickupMessage="You picked up the LRGh-90 Grenade Launcher."

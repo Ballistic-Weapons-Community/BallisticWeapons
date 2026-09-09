@@ -47,7 +47,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MOAC.MOACPickup_LD'
-     PickupDrawScale=0.180000
+     PickupDrawScale=0.160000
      bWeaponStay=False
      InventoryType=Class'BWBP_SKC_Pro.ChaffGrenadeWeapon'
      RespawnTime=20.000000

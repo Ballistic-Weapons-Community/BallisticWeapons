@@ -22,7 +22,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.M806PickupLo'
-     PickupDrawScale=0.070000
+     PickupDrawScale=0.075000
      InventoryType=Class'BallisticProV55.M806Pistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the M806A2 pistol."

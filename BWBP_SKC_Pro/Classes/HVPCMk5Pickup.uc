@@ -22,7 +22,7 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.HVPC.HVPCPickupLo'
-     PickupDrawScale=0.100000
+     PickupDrawScale=0.120000
      InventoryType=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
      RespawnTime=20.000000
      PickupMessage="You got the High-Voltage Plasma Cannon Mk5"

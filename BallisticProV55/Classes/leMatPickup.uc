@@ -37,7 +37,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.leMat.leMatPickupLo'
-     PickupDrawScale=0.270000
+     PickupDrawScale=0.260000
      InventoryType=Class'BallisticProV55.leMatRevolver'
      RespawnTime=10.000000
      PickupMessage="You picked up the Wilson 41 revolver."

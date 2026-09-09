@@ -7,7 +7,7 @@ class SX45Pickup extends BallisticHandgunPickup
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.SX45.SX45PickupLo'
-     PickupDrawScale=0.10000
+     PickupDrawScale=0.110000
      InventoryType=Class'BWBP_SKC_Pro.SX45Pistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the SX45 pistol."

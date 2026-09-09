@@ -140,7 +140,7 @@ defaultproperties
 		SpreadMode=FSM_Circle
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=2.000000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.700000,Radius=48.000000,bAtten=True)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=0.700000,Radius=48.000000,batten=false)
 		Recoil=256.000000 //
 		Chaos=-1.0
 		Inaccuracy=(X=32,Y=32)

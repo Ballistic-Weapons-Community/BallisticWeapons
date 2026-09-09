@@ -16,7 +16,8 @@ defaultproperties
      PickupMessage="You got three BORT-85 grenades."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_AmmoPickup'
-     DrawScale=0.500000
-     CollisionRadius=8.000000
+     DrawScale=0.400000
+     PrePivot=(Z=13.000000)
+     CollisionRadius=8.500000
      CollisionHeight=5.200000
 }

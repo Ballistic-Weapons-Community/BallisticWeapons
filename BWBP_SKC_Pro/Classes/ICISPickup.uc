@@ -42,12 +42,13 @@ defaultproperties
 {
      bOnSide=False
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Stim.StimpackPickupLo'
-     PickupDrawScale=0.270000
+     PickupDrawScale=0.250000
      InventoryType=Class'BWBP_SKC_Pro.ICISStimpack'
      RespawnTime=10.000000
      PickupMessage="You picked up the FMD ICIS-25 Stimulant Autoinjector"
      PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.Stim.StimpackPickupHi'
+     PrePivot=(Z=20.000000)  
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.000000
