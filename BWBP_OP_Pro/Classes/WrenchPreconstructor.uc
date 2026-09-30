@@ -126,7 +126,12 @@ state SpawnIn
 
 		W = WrenchDeployable(Spawn(myDeployable, Instigator, , GroundPoint, Rotation));
 		if (W == None)
+		{
+			// Deployables reject placement near another one, which happens before they get a Master - free the slot here
+			if (Wrench != None)
+				Wrench.LostDeployable(DeployableIndex);
 			return;
+		}
         W.Health = Health;
         W.Master = Wrench;
 		W.Initialize(DeployableIndex);

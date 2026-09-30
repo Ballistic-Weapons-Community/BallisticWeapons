@@ -10,21 +10,26 @@ function PostBeginPlay()
 	local GameObjective GO;
 	
 	Super.PostBeginPlay();
-	
+
+	// Placement was rejected, don't leave an invisible teleporter trigger behind
+	if (bDeleteMe)
+		return;
+
 	foreach RadiusActors(class'Teleporter', T, 256)
 	{
-		Destroy();
+		RejectPlacement();
 		return;
 	}
-	
+
 	foreach RadiusActors(class'GameObjective', GO, 512)
 	{
-		Destroy();
+		RejectPlacement();
 		return;
 	}
 
 	WTN=Spawn(class'WrenchTeleporterTrigger', self,,Location + vect(0,0,64), Rotation + rot(0,32768,0));
-	WTN.Team = Team;
+	if (WTN != None)
+		WTN.Team = Team;
 }
 
 simulated function PostNetBeginPlay()
