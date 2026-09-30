@@ -298,7 +298,7 @@ simulated state Mount
 			}
 			super(BallisticFire).PlayFiring();
 		}
-		else if (BW != None)
+		else if (BW != None && BW.HasAnim('Deploy'))
 		{
 			BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
 		}
@@ -307,8 +307,14 @@ simulated state Mount
 	function ServerPlayFiring()
 	{
 		if (BallisticTurret(Instigator) != None)
-			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		else if (BW != None)
+		{
+			// Turret meshes without an undeploy anim never get the AnimEnd that undeploys them, so do it here
+			if (!BW.HasAnim('Undeploy'))
+				BW.Notify_Undeploy();
+			else
+				BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		}
+		else if (BW != None && BW.HasAnim('Deploy'))
 			BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
 	}
 
