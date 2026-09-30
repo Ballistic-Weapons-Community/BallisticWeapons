@@ -142,7 +142,7 @@ simulated event Destroyed()
 //===========================================================================
 simulated function float RateSelf()
 {
-	if (HeatLevel > 11)
+	if (!bDecorativeHeat && HeatLevel >= 9.75)
 		CurrentRating = Super.RateSelf() * 0.2;
 	else if (PlayerController(Instigator.Controller) != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
 		CurrentRating = Super.RateSelf() * 0.2;
@@ -152,10 +152,11 @@ simulated function float RateSelf()
 	return CurrentRating;
 }
 
-// avoid bot suicides
+// avoid bot suicides: heat caps at 10 and blocks firing, and each shot that overheats hurts the holder,
+// so stop before the next shot would overheat and let it cool. Heat is harmless in Classic/Realistic.
 function bool CanAttack(Actor Other)
 {
-	if (HeatLevel > 11)
+	if (!bDecorativeHeat && BFireMode[0] != None && HeatLevel + BFireMode[0].HeatPerShot >= 9.75)
 		return false;
 
 	return super.CanAttack(Other);

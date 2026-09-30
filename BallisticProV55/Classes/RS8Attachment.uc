@@ -7,6 +7,7 @@
 class RS8Attachment extends HandgunAttachment;
 
 var   bool					bHasKnife;	//shank?
+var   bool					bSilenced;	//Suppressor on - primary shots use the suppressed flash and no tracers
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
@@ -16,7 +17,7 @@ var	  BallisticWeapon		myWeap;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn, bHasKnife;
+		bLaserOn, bHasKnife, bSilenced;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
 }
@@ -31,6 +32,23 @@ function InitFor(Inventory I)
 	{
 		bHasKnife=true;
 	}
+	if (RS8Pistol(I) != None)
+		bSilenced = RS8Pistol(I).bSilenced;
+}
+
+simulated function FlashMuzzleFlash(byte Mode)
+{
+	// Mode 1 holds the suppressed flash
+	if (Mode == 0 && bSilenced)
+		Mode = 1;
+	super.FlashMuzzleFlash(Mode);
+}
+
+simulated function SpawnTracer(byte Mode, Vector V)
+{
+	if (Mode == 0 && bSilenced)
+		return;
+	super.SpawnTracer(Mode, V);
 }
 
 simulated function Tick(float DT)

@@ -287,6 +287,8 @@ simulated function OnScopeViewChanged()
 function ServerSwitchSilencer(bool bNewValue)
 {
 	bSilenced = bNewValue;
+	if (RS8Attachment(ThirdPersonActor) != None)
+		RS8Attachment(ThirdPersonActor).bSilenced = bSilenced;
 	BFireMode[0].bAISilent = bSilenced;
 	SwitchSilencer(bSilenced);
 	if (bSilenced)

@@ -71,9 +71,11 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 		return Super.ResolveDamageFactors(Other, TraceStart, HitLocation, Penetratecount, WallCount, WallPenForce, WaterHitLocation);
 }
 
+// Always a primary hit - reporting suppressed shots as alt fire played the melee anim in third person.
+// RS8Attachment uses its own bSilenced for the suppressed flash instead.
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
-	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, RS8Pistol(Weapon).bSilenced, WaterHitLoc);
+	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, false, WaterHitLoc);
 }
 
 function ServerPlayFiring()
