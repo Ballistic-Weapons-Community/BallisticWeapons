@@ -66,6 +66,9 @@ simulated event ModeDoFire()
 			if(LastGrenade == None || LastGrenade.IsInState('NetTrapped'))
 				MGLauncher(BW).UpdateGrenadeStatus(false); //Alert gun we've detonated grenade
 		}
+		// Predict the detonation, so a quick follow-up click fires like it will on the server instead of detonating nothing
+		else
+			MGLauncher(BW).ClientUpdateGrenadeStatus(false);
 			
 		BW.LastFireTime = Level.TimeSeconds;
 		NextFireTime += FMax(0.1, FireRate - (Level.TimeSeconds - BW.LastFireTime));
@@ -144,6 +147,10 @@ simulated event ModeDoFire()
 			PlayFiring();
 			FlashMuzzleFlash();
 			StartMuzzleSmoke();
+			// Predict the grenade being out until the server confirms, so a quick follow-up click detonates like it will on
+			// the server, instead of playing a shot the server never fires
+			if (Weapon.Role < ROLE_Authority)
+				MGLauncher(BW).ClientUpdateGrenadeStatus(true);
 		}
 		else // server
 		{

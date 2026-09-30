@@ -16,7 +16,7 @@ var IP_L8GIAmmoPack AmmoPack1;
 replication
 {
 	reliable if (Role==ROLE_Authority)
-		SpawnPack, AmmoPack1;
+		AmmoPack1;
 }
 
 simulated event Timer()
@@ -52,14 +52,16 @@ simulated event Timer()
 }
 
 
+// Server only - the pickup replicates to clients. Spawning it on clients too (or basing it on this projectile,
+// which is destroyed straight after) left a client-side pack stuck where it hit, above the real one.
 function SpawnPack()
 {
 	if (AmmoPack1 == None)
 	{
 		AmmoPack1 = Spawn(class'IP_L8GIAmmoPack',,,Self.Location, Self.Rotation);
+		if (AmmoPack1 == None)
+			return;
 		AmmoPack1.SetPhysics(PHYS_Falling);
-		if (AmmoPack1 != None)
-			AmmoPack1.SetBase (self);
 		AmmoPack1.bDropped = true;
 		AmmoPack1.LifeSpan = 32;
 		//log("AmmoPick is: "$AmmoPack1);
@@ -68,7 +70,8 @@ function SpawnPack()
 
 simulated event HitWall(vector HitNormal, actor Wall)
 {
-	SpawnPack();
+	if (Role == ROLE_Authority)
+		SpawnPack();
 	
 	super.HitWall(HitNormal, Wall);
 	
@@ -101,7 +104,8 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 	{
 		HitWall (Normal(HitLocation - Other.Location), Other);
 		//log("HitPawn health before: "$HitPawn.Health);
-		if (Instigator.GetTeamNum() == HitPawn.GetTeamNum() && level.Game.bTeamGame)
+		// Level.Game only exists on the server
+		if (Level.Game != None && Level.Game.bTeamGame && HitPawn != None && Instigator != None && Instigator.GetTeamNum() == HitPawn.GetTeamNum())
 		{
 
 			GiveAmmo(HitPawn);

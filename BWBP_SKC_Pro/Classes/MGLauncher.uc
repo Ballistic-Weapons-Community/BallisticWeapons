@@ -16,7 +16,8 @@ var bool bRemoteGrenadeOut;
 
 replication
 {
-	unreliable if (Role == ROLE_Authority)
+	// Reliable: the fire mode decides between firing and detonating based on this, so a lost update desyncs client and server
+	reliable if (Role == ROLE_Authority)
 		ClientUpdateGrenadeStatus;
 }
 
