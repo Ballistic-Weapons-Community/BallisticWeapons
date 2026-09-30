@@ -231,8 +231,8 @@ simulated function GenerateModeInfo()
 
 	// give params opportunity to modify attachment (for tactical tracers)
 	// fixme: do all init from fire effect params.
-	if (WeaponClass != None)
-		WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetAttachmentParams(self);
+	if (WeaponClass != None && WeaponClass.static.GetParams() != None)
+		WeaponClass.static.GetParams().static.SetAttachmentParams(self);
 }
 
 //==========================================================

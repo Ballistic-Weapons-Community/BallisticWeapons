@@ -65,7 +65,7 @@ simulated function int GetTraceCount()
 		return 1;
 	else if (WeaponClass != None)
 	{
-		SEP = ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]);
+		SEP = ShotgunEffectParams(WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0]);
 		if (SEP != None)
 			return SEP.TraceCount;
 	}
