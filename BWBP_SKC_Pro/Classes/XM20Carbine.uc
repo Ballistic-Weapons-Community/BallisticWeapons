@@ -246,10 +246,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (!Instigator.IsLocallyControlled())
 			ClientScreenStart();
 	}
-	if (bShieldEquipped && XM20ShieldEffect == None && Level.Game != None)
+	// First person shield effect, drawn in RenderOverlays - needed on the owning client, which has no Level.Game online
+	if (bShieldEquipped && XM20ShieldEffect == None && Level.NetMode != NM_DedicatedServer && Instigator != None && Instigator.IsLocallyControlled())
 	{
 		XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
-		if (Level.Game.bTeamGame && Instigator.GetTeamNum() == 0)
+		if (XM20ShieldEffect != None && Level.GRI != None && Level.GRI.bTeamGame && Instigator.GetTeamNum() == 0)
 		    XM20ShieldEffect.SetRedSkin();
 	}
 
