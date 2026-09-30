@@ -158,7 +158,8 @@ function PlayFiring()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-	if (Level.NetMode == NM_DedicatedServer)
+	// Only drain while amped, like the client does - AddHeat resets the fire mode once the amp charge hits 0
+	if (Level.NetMode == NM_DedicatedServer && bAmped && FMPMachinePistol(BW) != None)
 		FMPMachinePistol(BW).AddHeat(AmpDrainPerShot);
 }
 
