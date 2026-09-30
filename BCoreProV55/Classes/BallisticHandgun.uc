@@ -1305,7 +1305,7 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 			return None;
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
 		{
-    		if (Inv != self && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing && ClassIsChildOf(Inv.class, class'BallisticHandgun'))
+    		if (Inv != self && ClassIsChildOf(Inv.class, class'BallisticHandgun') && !BallisticHandgun(Inv).bDualBlocked && BallisticHandgun(Inv).bDualMixing)
     		{
     			if (Inv == OtherGun)
 				{

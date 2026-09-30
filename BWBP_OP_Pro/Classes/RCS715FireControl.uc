@@ -44,13 +44,17 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 	local int Index;
 	local Vector XYVel;
 
+	if (Victim == None)
+		return;
+
 	Index = FindIndex(Victim);
 
 	if (HitPawnData[Index].HitTime + Interval < Level.TimeSeconds || HitPawnData[Index].HitTime == 0 )
 	{
 		HitPawnData[Index].HitTime = Level.TimeSeconds;
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
-		if ( /*Instigator != Victim &&*/ Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
+		// The victim may have been destroyed by the damage, and the instigator may have left or been destroyed
+		if ( /*Instigator != Victim &&*/ Victim != None && Instigator != None && Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
 		{
 			//bog down allies attempting to crawl through this fp7's fire
 			XYVel = -Victim.Velocity;

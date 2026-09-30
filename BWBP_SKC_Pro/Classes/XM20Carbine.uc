@@ -274,8 +274,9 @@ simulated function bool PutDown()
 			bShieldUp = false;
 			AdjustShieldProperties();
 		}
-		if (ShieldTipFX != None)	
+		if (ShieldTipFX != None)
 			ShieldTipFX.Destroy();
+		return true;
 	}
 	return false;
 }
@@ -389,23 +390,31 @@ simulated function AdjustShieldProperties()
 {
     local ShieldAttachment Attachment;
 
+	// Can be called from PostNetReceive before the Instigator has been replicated
 	if (bShieldUp)
 	{
-		Instigator.AmbientSound = ChargingSound;
-		Instigator.SoundVolume = ShieldSoundVolume;
+		if (Instigator != None)
+		{
+			Instigator.AmbientSound = ChargingSound;
+			Instigator.SoundVolume = ShieldSoundVolume;
+		}
 		if( Attachment != None && Attachment.ShieldEffect3rd != None )
 			Attachment.ShieldEffect3rd.bHidden = false;
 
 		if (ShieldTipFX == None)
 			class'bUtil'.static.InitMuzzleFlash(ShieldTipFX, class'M2020ShieldEffect', DrawScale, self, 'tip');
-        XM20ShieldEffect.Flash(0, ShieldPower);
+		if (XM20ShieldEffect != None)
+			XM20ShieldEffect.Flash(0, ShieldPower);
 	}
 	else
 	{
     	Attachment = ShieldAttachment(ThirdPersonActor);
-		Instigator.AmbientSound = None;
-    	Instigator.SoundVolume = Instigator.Default.SoundVolume;
-    
+		if (Instigator != None)
+		{
+			Instigator.AmbientSound = None;
+			Instigator.SoundVolume = Instigator.Default.SoundVolume;
+		}
+
 		if( Attachment != None && Attachment.ShieldEffect3rd != None )
 		{
 			Attachment.ShieldEffect3rd.bHidden = true;

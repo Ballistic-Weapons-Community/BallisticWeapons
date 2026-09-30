@@ -2778,6 +2778,8 @@ simulated function bool WeaponCentered()
 simulated function SetHand(float InHand)
 {
 	super.SetHand(InHand);
+	if (WeaponParams == None)
+		return;
 	if (Hand < 0)
 	{
 		SightOffset.Y = WeaponParams.SightOffset.Y * -1;
@@ -4039,6 +4041,15 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
         GotoState('PendingClientWeaponSet');
         return;
     }
+
+	// Clients only get their params in PostNetBeginPlay, which can run after this call arrives
+	// (e.g. reclaimed sandbags or an undeployed turret weapon whose ammo already exists on the client).
+	// Wait for them, or BringUp/SetHand run without params and the client never gets the right WalkingPct.
+	if (WeaponParams == None && Level.NetMode == NM_Client && ParamsClasses[GameStyleIndex] != None)
+	{
+		GotoState('PendingClientWeaponSet');
+		return;
+	}
 
     for( Mode = 0; Mode < NUM_FIRE_MODES; Mode++ )
     {

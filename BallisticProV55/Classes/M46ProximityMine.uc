@@ -44,12 +44,15 @@ simulated function PostBeginPlay()
 			if (TeamLightColor == Level.GetLocalPlayerController().GetTeamNum())
 			{
 				TeamLight = SpawnTeamLight();
-				if (Instigator.Controller == Level.GetLocalPlayerController())
-					TeamLight.SetTeamColor(2);
-				else TeamLight.SetTeamColor(TeamLightColor);
-				TeamLight.SetBase(self);
+				if (TeamLight != None)
+				{
+					if (Instigator.Controller == Level.GetLocalPlayerController())
+						TeamLight.SetTeamColor(2);
+					else TeamLight.SetTeamColor(TeamLightColor);
+					TeamLight.SetBase(self);
+				}
 			}
-		}		
+		}
 	}
 }
 
@@ -82,17 +85,21 @@ simulated function BX5TeamLight SpawnTeamLight()
 
 simulated event PostNetReceive()
 {
-	if (TeamLightColor != default.TeamLightColor)
+	// PostNetReceive runs on every replicated update, so only spawn the light once
+	if (TeamLightColor != default.TeamLightColor && TeamLight == None)
 	{
 		if (TeamLightColor == Level.GetLocalPlayerController().GetTeamNum() || class'BallisticReplicationInfo'.default.bUniversalMineLights)
 		{
 			TeamLight = SpawnTeamLight();
-			if (Instigator.Controller == Level.GetLocalPlayerController())
+			if (TeamLight == None)
+				return;
+			// Instigator may not be relevant on this client
+			if (Instigator != None && Instigator.Controller == Level.GetLocalPlayerController())
 				TeamLight.SetTeamColor(2);
 			else TeamLight.SetTeamColor(TeamLightColor);
 			TeamLight.SetBase(self);
 		}
-	}	
+	}
 }
 
 function SteppedOn (Actor Other)

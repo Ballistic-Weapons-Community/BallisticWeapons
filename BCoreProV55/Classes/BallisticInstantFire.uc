@@ -209,7 +209,8 @@ function DoFireEffect()
 
 	DoTrace(StartTrace, Aim);
 
-    if (Level.NetMode == NM_DedicatedServer)
+	// The trace can kill the shooter and destroy the weapon, which restores collisions itself
+    if (Level.NetMode == NM_DedicatedServer && BW != None)
         BW.RestoreCollisions();
 
 	Super.DoFireEffect();
