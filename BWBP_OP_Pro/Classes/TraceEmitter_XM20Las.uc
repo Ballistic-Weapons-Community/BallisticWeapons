@@ -46,7 +46,6 @@ defaultproperties
          MaxParticles=1
          Opacity=0.75
          DetailMode=DM_SuperHigh
-         StartLocationOffset=(X=100.000000)
          SizeScale(1)=(RelativeTime=0.680000,RelativeSize=0.300000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=25.000000,Max=25.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))

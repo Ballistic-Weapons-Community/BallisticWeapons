@@ -38,12 +38,6 @@ replication
 		bLaserOn;
 }
 
-simulated function PostBeginPlay()
-{
-	SetBoneRotation('tip', rot(0,0,8192));
-	super.PostbeginPlay();
-}
-
 simulated function OnWeaponParamsChanged()
 {
     super.OnWeaponParamsChanged();
@@ -57,6 +51,14 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasLaser=true;
 		SightFxClass=None;
+	}
+	else if (WeaponParams.LayoutName ~= "Bladed")
+	{
+		SightFxClass=Class'BallisticProV55.Fifty9SightLEDs_B';
+	}
+	else
+	{
+		SightFxClass=Class'BallisticProV55.Fifty9SightLEDs';
 	}
 
 	if (bHasLaser)

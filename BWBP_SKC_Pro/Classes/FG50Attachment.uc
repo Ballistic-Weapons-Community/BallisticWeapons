@@ -214,7 +214,8 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			bThisShot=true;					}
 	}
 	// Spawn a tracer
-	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both && Mode == 0) &&
+	if (TracerClasses[CurrentTracerMode] != None && TracerMode != MU_None &&
+		(TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
 		bThisShot && (TracerChance >= 1 || FRand() < TracerChance))
 	{
 		if (Dist > 200)
@@ -255,6 +256,7 @@ defaultproperties
 	InstantMode=MU_Both
 	FlashMode=MU_Both
 	LightMode=MU_Both
+	TracerMode=MU_Both
 	TracerChance=2.000000
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Both

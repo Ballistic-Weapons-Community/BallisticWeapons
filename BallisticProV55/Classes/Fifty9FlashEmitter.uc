@@ -21,7 +21,6 @@ defaultproperties
          RenderTwoSided=True
          UseParticleColor=True
          UseColorScale=True
-		 SpinParticles=True
          FadeOut=True
          RespawnDeadParticles=False
          UseSizeScale=True
@@ -36,13 +35,11 @@ defaultproperties
          FadeOutStartTime=0.048000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-		 Opacity=0.5
          StartLocationOffset=(X=2.000000)
          SizeScale(0)=(RelativeSize=0.600000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          SecondsBeforeInactive=0.000000
-		 StartSpinRange=(Z=(Min=0.125,Max=0.125))
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000

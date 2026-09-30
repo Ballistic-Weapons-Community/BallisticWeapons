@@ -31,7 +31,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Akeron.AkeronPickupLo'
-     PickupDrawScale=1.550000
+     PickupDrawScale=1.650000
      InventoryType=Class'BWBP_OP_Pro.AkeronLauncher'
      RespawnTime=20.000000
      PickupMessage="You picked up the AN-56 Akeron launcher."

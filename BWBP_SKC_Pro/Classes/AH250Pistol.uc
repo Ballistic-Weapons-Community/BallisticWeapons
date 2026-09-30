@@ -271,7 +271,7 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, Anim, Frame, Rate);
 	
-	if(Anim != 'PrepMelee')
+	if (Anim != 'PrepPistolWhip' && Anim != 'OpenPrepPistolWhip')
 		bStriking = false;
 	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == 'OpenFire' || Anim == 'OpenSightFire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{

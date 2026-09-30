@@ -39,7 +39,6 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          DetailMode=DM_SuperHigh
-         StartLocationOffset=(X=100.000000)
          SizeScale(1)=(RelativeTime=0.680000,RelativeSize=0.800000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
