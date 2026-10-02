@@ -190,6 +190,10 @@ var vector DownSlopeVect;		 // Direction vector pointing down the slope
 var vector LastFallingVelocity;	 // Velocity of the player when they last fell, used to determine sliding behavior
 var float GravityAlongSlope;	 // Gravity component acting along the slope, used to calculate acceleration during sliding
 
+// Server settings
+var byte SettingsChecksLeft;	// Client: this pawn arrived before the BallisticReplicationInfo carrying the server's settings. Times left to look for it
+var float NextSettingsCheckTime;
+
 // Sliding Animations
 var bool  bSlideWaitingStart;     // waiting for start anim to finish
 var 	name 		SlideAnims[4]; 
@@ -227,6 +231,27 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 
+	ApplyServerSettings();
+
+	// A client can receive this pawn before the BallisticReplicationInfo that carries the server's settings.
+	// Apply them again once it turns up, or the pawn keeps predicting with the wrong ones.
+	if (Role < ROLE_Authority && class'BallisticReplicationInfo'.static.GetInstance(self) == None)
+		SettingsChecksLeft = 20;
+
+	// FIXME: why is this here? this function is the definition of net init
+	if(!pawnNetInit)
+    {
+        pawnNetInit = true;
+
+        if (Controller != None)
+        {
+            BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
+        }
+    }
+}
+
+simulated function ApplyServerSettings()
+{
 	if (!class'BallisticReplicationInfo'.default.bBrightPlayers)
 	{
 		bDramaticLighting=False;
@@ -244,17 +269,6 @@ simulated event PostNetBeginPlay()
 		WalkAnims[2]='RunL';
 		WalkAnims[3]='RunR';
 	}
-
-	// FIXME: why is this here? this function is the definition of net init
-	if(!pawnNetInit)
-    {
-        pawnNetInit = true;
-
-        if (Controller != None)
-        {
-            BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
-        }
-    }
 }
 
 simulated function vector CalcDrawOffset(inventory Inv)
@@ -1834,6 +1848,17 @@ simulated event Tick(float DT)
 	//local Vector X,Y,Z;
 
 	super.Tick(DT);
+
+	if (SettingsChecksLeft > 0 && Level.TimeSeconds >= NextSettingsCheckTime)
+	{
+		NextSettingsCheckTime = Level.TimeSeconds + 0.25;
+		SettingsChecksLeft--;
+		if (class'BallisticReplicationInfo'.static.GetInstance(self) != None)
+		{
+			SettingsChecksLeft = 0;
+			ApplyServerSettings();
+		}
+	}
 
 	//GetAxes(Rotation, X, Y, Z);
 	

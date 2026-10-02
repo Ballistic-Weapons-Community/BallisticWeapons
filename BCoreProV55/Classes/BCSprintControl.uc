@@ -48,6 +48,9 @@ var float NextTimerPop;				// Next time to check for slow expiry
 // --- Slide/Movement Parameters ---
 var float BaseGroundSpeed;		 // Base ground speed of the player when not sliding
 
+var byte	SettingsChecksLeft;			// Client: spawned before the BallisticReplicationInfo carrying the server's settings arrived. Times left to look for it
+var float	NextSettingsCheckTime;
+
 
 replication
 {
@@ -57,6 +60,15 @@ replication
 }
 
 simulated function PostBeginPlay()
+{
+	ApplyServerSettings();
+
+	// A client can receive this before the BallisticReplicationInfo. Apply the settings again once it turns up
+	if (Role < ROLE_Authority && class'BallisticReplicationInfo'.static.GetInstance(self) == None)
+		SettingsChecksLeft = 20;
+}
+
+simulated function ApplyServerSettings()
 {
 	StaminaChargeRate = class'BallisticReplicationInfo'.default.StaminaChargeRate;
 	StaminaDrainRate = class'BallisticReplicationInfo'.default.StaminaDrainRate;
@@ -130,6 +142,17 @@ simulated event Tick(float DT)
 {
 	if (Instigator == None)
 		Destroy();
+
+	if (SettingsChecksLeft > 0 && Level.TimeSeconds >= NextSettingsCheckTime)
+	{
+		NextSettingsCheckTime = Level.TimeSeconds + 0.25;
+		SettingsChecksLeft--;
+		if (class'BallisticReplicationInfo'.static.GetInstance(self) != None)
+		{
+			SettingsChecksLeft = 0;
+			ApplyServerSettings();
+		}
+	}
 
 	TickSprint(DT);
 }
