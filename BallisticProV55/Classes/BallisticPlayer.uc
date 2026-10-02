@@ -1081,6 +1081,50 @@ function PredictSprint(bool bSprint)
         BallisticPawn(Pawn).Sprinter.PredictSprint(bSprint);
 }
 
+// Two of the client's moves in one call, which is how most of them arrive at high frame rates.
+// The client adds its last jump or dodge move once more, as OldTimeDelta and OldAccel, in case the
+// packet that carried it was lost or overtaken. ServerMove runs that move first if it never saw it.
+// The engine only hands it to the second of the two moves, and by then the first has taken the
+// server past the lost move's time, so the jump or dodge was dropped and the client pulled back.
+function DualServerMove
+(
+	float TimeStamp0,
+	vector InAccel0,
+	byte PendingCompress,
+	eDoubleClickDir DoubleClickMove0,
+	int View0,
+	float TimeStamp,
+	vector InAccel,
+	vector ClientLoc,
+	eDoubleClickDir DoubleClickMove,
+	byte ClientRoll,
+	int View,
+	optional byte OldTimeDelta,
+	optional int OldAccel
+)
+{
+	local int OldTimeDelta0;
+
+	// OldTimeDelta counts back from the second move in steps of 2 ms. Count from the first instead
+	if (OldTimeDelta != 0)
+		OldTimeDelta0 = Clamp(OldTimeDelta - int((TimeStamp - TimeStamp0) * 500.0), 0, 255);
+
+	// Not when it is the first move itself that is being sent again
+	if (OldTimeDelta0 == 0)
+	{
+		Super.DualServerMove(TimeStamp0, InAccel0, PendingCompress, DoubleClickMove0, View0,
+			TimeStamp, InAccel, ClientLoc, DoubleClickMove, ClientRoll, View, OldTimeDelta, OldAccel);
+		return;
+	}
+
+	ServerMove(TimeStamp0, InAccel0, vect(0,0,0), (PendingCompress & 1) != 0, (PendingCompress & 2) != 0, (PendingCompress & 4) != 0,
+		(PendingCompress & 8) != 0, DoubleClickMove0, ClientRoll, View0, OldTimeDelta0, OldAccel);
+	if (ClientLoc == vect(0,0,0))
+		ClientLoc = vect(0.1,0,0);
+	ServerMove(TimeStamp, InAccel, ClientLoc, (PendingCompress & 16) != 0, (PendingCompress & 32) != 0, (PendingCompress & 64) != 0,
+		(PendingCompress & 128) != 0, DoubleClickMove, ClientRoll, View);
+}
+
 function ServerSetSprint(bool bSprint)
 {
     bWantsSprint = bSprint;
