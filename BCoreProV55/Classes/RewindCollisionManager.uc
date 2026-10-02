@@ -47,6 +47,9 @@ final function UnregisterPawn(xPawn pawn) // might not work due to parameter pas
         if (StackCount > 0)
             Collisions[index].DisableUnlag();
 
+        // nothing else holds it: without this every pawn that ever lived on the map left an actor ticking behind
+        Collisions[index].UnlaggedPawn = None;
+        Collisions[index].Destroy();
         Collisions.Remove(index, 1);
     }
 }

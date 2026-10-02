@@ -24,6 +24,8 @@ class UnlaggedPawnCollision extends Actor
     notplaceable;
 
 const LADDER_SANITY_DIST = 128;
+const HISTORY_GAP = 0.25;       // Seconds without a sample after which the history is out of date (the pawn's physics wasn't tracked)
+const TELEPORT_DIST = 400;      // A pawn that moved further than this between two samples was teleported
 
 struct SavedRotation
 {
@@ -61,6 +63,8 @@ final function bool HasCompatiblePhysics(xPawn P)
 {
     return P.Physics == PHYS_Walking ||
         P.Physics == PHYS_Falling ||
+        P.Physics == PHYS_Swimming ||
+        P.Physics == PHYS_Spider ||
         P.Physics == PHYS_Ladder ||
         P.Physics == PHYS_Flying;
 }
@@ -74,6 +78,14 @@ final function UpdateUnlagLocation()
 
     if (LastLocationUpdateTime == Level.TimeSeconds || !UnlaggedPawn.bCollideActors || !HasCompatiblePhysics(UnlaggedPawn))
         return;
+
+    // Never interpolate across a teleport, or across a stretch of time the pawn wasn't tracked for: start the history again
+    i = LocX.Points.Length - 1;
+    if (i >= 0 && (Level.TimeSeconds - LastLocationUpdateTime > HISTORY_GAP
+        || Abs(UnlaggedPawn.Location.X - LocX.Points[i].OutVal) > TELEPORT_DIST
+        || Abs(UnlaggedPawn.Location.Y - LocY.Points[i].OutVal) > TELEPORT_DIST
+        || Abs(UnlaggedPawn.Location.Z - LocZ.Points[i].OutVal) > TELEPORT_DIST))
+        ClearHistory();
 
     LastLocationUpdateTime = Level.TimeSeconds;
 
@@ -121,6 +133,16 @@ final function UpdateUnlagLocation()
     Rotations[i].time = LastLocationUpdateTime;
 }
 
+final function ClearHistory()
+{
+    LocX.Points.Length = 0;
+    LocY.Points.Length = 0;
+    LocZ.Points.Length = 0;
+    CollRadius.Points.Length = 0;
+    CollHeight.Points.Length = 0;
+    Rotations.Length = 0;
+}
+
 /**
 Enable the unlagged collision cylinder.
 */
@@ -136,7 +158,11 @@ final function EnableUnlag(float PingTime)
         return;
 
     UpdateUnlagLocation();
-    
+
+    // No history for where the pawn is now (its physics isn't tracked, e.g. a ragdoll): leave it its own collision
+    if (LocX.Points.Length == 0 || Level.TimeSeconds - LastLocationUpdateTime > HISTORY_GAP)
+        return;
+
     InterpCurveGetInputDomain(LocX, UnlagTimeRange.Min, UnlagTimeRange.Max);
     //log(Name @ "Unlagging:" @ PingTime @ UnlagTimeRange.Min @ UnlagTimeRange.Max);
     UnlagTime = FClamp(Level.TimeSeconds - PingTime, Level.TimeSeconds - MaxUnlagTime, UnlagTimeRange.Max);
@@ -173,7 +199,8 @@ final function EnableUnlag(float PingTime)
     UnlaggedPawn.bBlockZeroExtentTraces=False;
     UnlaggedPawn.bBlockNonZeroExtentTraces=False;
 
-    for (i = 0; i < Rotations.Length - 1 && Rotations[i].time >= UnlagTime; ++i);
+    // first rotation saved at or after the rewound time
+    for (i = 0; i < Rotations.Length - 1 && Rotations[i].time < UnlagTime; ++i);
 
     SetRotation(Rotations[i].Rotation);
 
