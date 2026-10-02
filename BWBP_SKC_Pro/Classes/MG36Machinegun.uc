@@ -53,7 +53,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		Target, bMeatVision, bThermal, bLowZoom;
 	reliable if (Role < ROLE_Authority)
-		ServerAdjustThermal;
+		ServerAdjustThermal, ServerSwitchSilencer;
 }
 
 simulated function OnWeaponParamsChanged()

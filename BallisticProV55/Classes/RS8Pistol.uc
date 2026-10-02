@@ -32,7 +32,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
 	reliable if (Role < ROLE_Authority)
-		ServerSwitchSilencer;
+		ServerSwitchSilencer, ServerSwitchLaser;
 }
 
 

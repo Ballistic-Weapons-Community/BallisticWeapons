@@ -41,7 +41,7 @@ const ChargeInterval = 0.5;
 replication
 {
 	reliable if (Role < ROLE_Authority)
-		ServerSwitchAmplifier;	
+		ServerSwitchAmplifier, ServerSwitchScopeType;	
 	reliable if (Role == ROLE_Authority)
 		IceCharge, ClientSetHeat;
 }
