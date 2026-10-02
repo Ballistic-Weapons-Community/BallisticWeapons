@@ -216,6 +216,11 @@ function ServerSwitchWeaponMode (byte NewMode)
 
 simulated function ClientSaveLastWeaponMode(byte NewMode)
 {
+	// ServerSwitchWeaponMode doesn't go through ClientSwitchWeaponMode here, so this is also how a client gets the new mode.
+	// Without it the client stayed in the first mode: wrong mode on the HUD and the barrel and fire effects at the wrong speed
+	if (Level.NetMode == NM_Client)
+		CurrentWeaponMode = NewMode;
+
 	if (ModeHandling == MR_Last && Instigator != None && Instigator.IsLocallyControlled())
 		default.LastWeaponMode = NewMode;
 }
