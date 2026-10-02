@@ -149,7 +149,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 		FireInterval=0.200000
 		AmmoPerFire=0
-		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 	End Object		
 	
 	//Scope
