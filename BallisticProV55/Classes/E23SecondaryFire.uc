@@ -69,7 +69,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 	HealVehicle = Vehicle(Target);
 
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealVehicle.HealDamage(AdjustedDamage, Instigator.Controller, DamageType);
 		return;

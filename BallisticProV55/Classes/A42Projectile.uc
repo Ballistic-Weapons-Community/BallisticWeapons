@@ -33,7 +33,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		return;
 	}
 	HealVehicle = Vehicle(Other);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealVehicle.HealDamage(AdjustedDamage, InstigatorController, myDamageType);
 		return;
