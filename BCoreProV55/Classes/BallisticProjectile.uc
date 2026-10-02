@@ -801,6 +801,14 @@ simulated function ApplyImpactEffect(Actor Other, vector HitLocation)
     DoDamage(Other, HitLocation);
 }
 
+// On clients the stock Touch pushes a torn off corpse around with MyDamageType. Projectiles that do their damage
+// through another damage type (the M46, MARS and G51 grenades, the LAW's) have none, and the pawn's hit code needs one
+simulated function ClientSideTouch(Actor Other, Vector HitLocation)
+{
+	if (MyDamageType != None)
+		super.ClientSideTouch(Other, HitLocation);
+}
+
 simulated function DoDamage(Actor Other, vector HitLocation)
 {
 	local class<DamageType> DT;

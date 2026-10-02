@@ -461,7 +461,7 @@ simulated function AddHeat(float Amount)
 		WeaponModes[4].bUnavailable=true;
 		CurrentWeaponMode=3;
 		ServerSwitchWeaponMode(3);
-		if (Role == ROLE_Authority)
+		if (Role == ROLE_Authority && ThirdPersonActor != None)
 			M575Attachment(ThirdPersonActor).SetAmped(false);
 	}
 }

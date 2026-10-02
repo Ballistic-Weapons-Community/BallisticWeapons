@@ -469,7 +469,8 @@ final simulated function Rotator CalcNewAimOffset()
     if (bSprintOffset)
 	{
 		R.Pitch += Params.SprintOffset.Pitch;
-		if (BW.Instigator.Controller.Handedness < 0)
+		// no controller while the holder drives a vehicle
+		if (BW.Instigator.Controller != None && BW.Instigator.Controller.Handedness < 0)
 			R.Yaw -= Params.SprintOffset.Yaw;
 		else R.Yaw += Params.SprintOffset.Yaw;
 	}

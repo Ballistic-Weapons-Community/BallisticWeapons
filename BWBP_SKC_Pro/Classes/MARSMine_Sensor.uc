@@ -176,7 +176,7 @@ function Ping(vector HitLocation)
 	
 	foreach CollidingActors( class 'Actor', A, SensorRadius, Location )
 	{
-		if (A.bCanBeDamaged && A.bProjTarget && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
+		if (A != None && A.bCanBeDamaged && A.bProjTarget && A != self && (A != Instigator && A != Owner) && !(Level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(A).Controller)))
 		{
 			if (FastTrace(A.Location, Location))
 			{
