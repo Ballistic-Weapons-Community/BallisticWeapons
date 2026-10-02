@@ -4849,7 +4849,9 @@ simulated final function bool IsDisplaced()
 
 simulated final function OnDisplaceStart()
 {
-	if (bScopeView)
+	// As in TickSighting: the owner's machine runs the same check and reports its sights to the server. The server's own
+	// check can differ at the edge of the gun's length, and it would lower the sights with nobody to raise them again
+	if (bScopeView && Instigator.IsLocallyControlled())
 		TemporaryScopeDown();
 }
 
