@@ -34,7 +34,7 @@ simulated function Tick(float DT)
 {
 	super.Tick(DT);
 
-	if (!IsFiring() && Level.TimeSeconds >= LastRegenTick)
+	if (Ammo[0] != None && !IsFiring() && Level.TimeSeconds >= LastRegenTick)
     {
         Ammo[0].AddAmmo(1);
         LastRegenTick = level.TimeSeconds + 1;

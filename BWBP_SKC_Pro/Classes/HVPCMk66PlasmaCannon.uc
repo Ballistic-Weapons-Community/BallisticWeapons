@@ -514,7 +514,7 @@ simulated function Destroyed()
 		GlowFX.Destroy();
 	if (Spiral != None)
 		Spiral.Destroy();
-	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound || Instigator.AmbientSound == WarningSound)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound || Instigator.AmbientSound == WarningSound))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;

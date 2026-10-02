@@ -585,10 +585,14 @@ simulated event WeaponTick(float DT)
 		if (T==None)
 			HitLoc = End;
 
-		if (VSize(HitLoc-Start) > 400)
-			NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
-		else
-			NVLight.SetLocation(HitLoc + HitNorm*30);
+		// The light only exists for the player using the scope, not on the server
+		if (NVLight != None)
+		{
+			if (VSize(HitLoc-Start) > 400)
+				NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
+			else
+				NVLight.SetLocation(HitLoc + HitNorm*30);
+		}
 	}
 	else
 		SetNVLight(false);
@@ -764,7 +768,7 @@ simulated event DrawThermalMode (Canvas C)
 
 simulated function AdjustThermalView(bool bNewValue)
 {
-	if (AIController(Instigator.Controller) != None)
+	if (Instigator != None && AIController(Instigator.Controller) != None)
 		return;
 	if (!bNewValue)
 	{

@@ -153,7 +153,7 @@ simulated event Destroyed()
 
 simulated function AdjustThermalView(bool bNewValue)
 {
-	if (AIController(Instigator.Controller) != None)
+	if (Instigator != None && AIController(Instigator.Controller) != None)
 		return;
 	if (!bNewValue)
 	{

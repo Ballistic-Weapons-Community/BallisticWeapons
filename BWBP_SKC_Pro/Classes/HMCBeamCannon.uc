@@ -262,7 +262,7 @@ simulated function Destroyed ()
 
 	if (Glow1 != None)	Glow1.Destroy();
 	if (Glow2 != None)	Glow2.Destroy();
-	if (Instigator.AmbientSound == UsedAmbientSound)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;

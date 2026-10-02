@@ -565,7 +565,7 @@ simulated function Destroyed()
  	if (ChainsawPanner!=None)
  		level.ObjectPool.FreeObject(ChainsawPanner);
 
-	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == RSDarkPrimaryFire(FireMode[0]).FireSoundLoop)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == RSDarkPrimaryFire(FireMode[0]).FireSoundLoop))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;

@@ -528,7 +528,7 @@ simulated function Destroyed()
 {
 	if (FreeZap != None)
 		FreeZap.Destroy();
-	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == RSNovaPrimaryFire(FireMode[0]).FireSoundLoop)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == RSNovaPrimaryFire(FireMode[0]).FireSoundLoop))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;

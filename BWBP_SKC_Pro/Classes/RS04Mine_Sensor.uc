@@ -124,7 +124,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 {
 	if (class<BallisticDamageType>(DamageType) != None && !class<BallisticDamageType>(DamageType).default.bDetonatesBombs)
 		return;
-	if (EventInstigator != Instigator && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(InstigatorController))
+	if (EventInstigator != None && EventInstigator != Instigator && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(InstigatorController))
 		return;
 	if (StartDelay > 0)
 		return;
@@ -175,7 +175,7 @@ function Ping(vector HitLocation)
 
 	foreach CollidingActors( class'xPawn', P, SensorRadius, Location )
 	{
-		if (P.Controller != None && P.bCanBeDamaged && P.bProjTarget  && P != Instigator && (!Level.Game.bTeamGame || !Instigator.Controller.SameTeamAs(P.Controller)))
+		if (P.Controller != None && P.bCanBeDamaged && P.bProjTarget  && P != Instigator && (!Level.Game.bTeamGame || Instigator == None || Instigator.Controller == None || !Instigator.Controller.SameTeamAs(P.Controller)))
 		{
 			if (FastTrace(P.Location, Location))
 			{

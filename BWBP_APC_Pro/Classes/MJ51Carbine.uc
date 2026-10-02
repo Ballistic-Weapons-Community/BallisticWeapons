@@ -104,8 +104,12 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 		if( W != None)
 		{
 			W.GiveTo(Instigator);
-			W.ConsumeAmmo(0, 9999, true);
-			W.ConsumeAmmo(1, 9999, true);
+			// GiveTo destroys the new one when the pawn already has this weapon
+			if (W != None)
+			{
+				W.ConsumeAmmo(0, 9999, true);
+				W.ConsumeAmmo(1, 9999, true);
+			}
 		}
 	}
 }

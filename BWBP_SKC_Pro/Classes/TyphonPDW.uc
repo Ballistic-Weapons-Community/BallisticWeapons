@@ -153,7 +153,7 @@ simulated event Destroyed()
 		Arc.Destroy();
 	if (GlowFX != None)
 		GlowFX.Destroy();
-	if (Instigator.AmbientSound != None)
+	if (Instigator != None && (Instigator.AmbientSound != None))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;

@@ -447,7 +447,7 @@ simulated function Destroyed()
 		WeaponScreen.client=None;
 	if (ClawSpark1 != None)
 		ClawSpark1.Destroy();
-	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;
