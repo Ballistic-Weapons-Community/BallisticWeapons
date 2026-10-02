@@ -159,7 +159,9 @@ simulated function Notify_GrenLoaded()
 	SRKSmgAttachment(ThirdPersonActor).bGrenadier=true;	
 	SRKSmgAttachment(ThirdPersonActor).IAOverride(True);
 
-	Ammo[1].UseAmmo (1, True);
+	// Server only: the count is replicated, and a client that also took one off counted the grenade twice
+	if (Role == ROLE_Authority)
+		Ammo[1].UseAmmo (1, True);
 	if (Ammo[1].AmmoAmount == 0)
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )

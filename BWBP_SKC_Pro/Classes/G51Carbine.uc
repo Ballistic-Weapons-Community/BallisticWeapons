@@ -639,7 +639,9 @@ simulated function Notify_GrenLoaded()
 	G51Attachment(ThirdPersonActor).bGrenadier=true;	
 	G51Attachment(ThirdPersonActor).IAOverride(True);
 
-	Ammo[1].UseAmmo (1, True);
+	// Server only: the count is replicated, and a client that also took one off counted the grenade twice
+	if (Role == ROLE_Authority)
+		Ammo[1].UseAmmo (1, True);
 	bLoaded = true;
 	if (Ammo[1].AmmoAmount == 0)
 	{
