@@ -490,12 +490,13 @@ replication
 //The Core -------------------------------------------------------------------------------------------------------------
 
 // These functions can be used to safely play anims and avoid disrupting anims that are essential to timing or reload state
+// A sequence the mesh doesn't have is skipped (turret meshes have no Idle, for example), instead of logging a warning every time
 simulated final function bool SafePlayAnim (name Sequence, optional float Rate, optional float TweenTime, optional int Channel, optional string AnimID)
-{ if (!CanPlayAnim(Sequence, Channel, AnimID)) return false; return PlayAnim (Sequence, Rate, TweenTime, Channel); }
+{ if (!HasAnim(Sequence) || !CanPlayAnim(Sequence, Channel, AnimID)) return false; return PlayAnim (Sequence, Rate, TweenTime, Channel); }
 simulated final function bool SafeLoopAnim (name Sequence, optional float Rate, optional float TweenTime, optional int Channel, optional string AnimID)
-{ if (!CanPlayAnim(Sequence, Channel, AnimID)) return false; return LoopAnim (Sequence, Rate, TweenTime, Channel); }
+{ if (!HasAnim(Sequence) || !CanPlayAnim(Sequence, Channel, AnimID)) return false; return LoopAnim (Sequence, Rate, TweenTime, Channel); }
 simulated final function bool SafeTweenAnim (name Sequence, float Time, optional int Channel, optional string AnimID)
-{ if (!CanPlayAnim(Sequence, Channel, AnimID)) return false; return TweenAnim (Sequence, Time, Channel); }
+{ if (!HasAnim(Sequence) || !CanPlayAnim(Sequence, Channel, AnimID)) return false; return TweenAnim (Sequence, Time, Channel); }
 
 // This should be expanded in subclasses if needed
 simulated function bool CanPlayAnim (name Sequence, optional int Channel, optional string AnimID)
