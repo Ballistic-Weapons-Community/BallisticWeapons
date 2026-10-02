@@ -3654,7 +3654,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	if (Controller == none)
 		return;
 
-	SyncSlidePrediction(DeltaTime);
+	SyncSlidePrediction(DeltaTime, OldVelocity);
 
 	if (Physics == PHYS_Walking)
 	{
@@ -3839,7 +3839,7 @@ simulated final function RestoreSlideState()
 //   from the Location and Velocity the held back move started with.
 // - When the server corrects the client, it puts the pawn back where the server had it
 //   and replays the moves made since.
-simulated function SyncSlidePrediction(float DeltaTime)
+simulated function SyncSlidePrediction(float DeltaTime, vector OldVelocity)
 {
 	local PlayerController PC;
 
@@ -3859,7 +3859,7 @@ simulated function SyncSlidePrediction(float DeltaTime)
 		ReplayMoveTime = PC.CurrentTimeStamp;
 		// The controller has dropped the moves the server has seen, so the list starts with this one
 		ReplayMove = PC.SavedMoves;
-		AdoptSlideStateAt(PC.CurrentTimeStamp);
+		AdoptSlideStateAt(PC.CurrentTimeStamp, OldVelocity);
 		AdvanceReplayTime(DeltaTime);
 	}
 
@@ -3978,15 +3978,30 @@ simulated function bool SlideStateAt(float TimeStamp, bool bServer, out float Ch
 	return Next >= 0 && !SlideLog[Next].bSliding;
 }
 
-// Client: start a replay with the slide state of the move the server corrected
-simulated function AdoptSlideStateAt(float TimeStamp)
+// Client: start a replay with the slide state of the move the server corrected.
+// ServerVel is the velocity the server ended that move with.
+simulated function AdoptSlideStateAt(float TimeStamp, vector ServerVel)
 {
+	local PlayerController PC;
 	local int i;
-	local float ServerStamp, ClientStamp;
+	local float ServerStamp, ClientStamp, LastChange;
 	local bool bServerSliding, bClientSliding, bSlidesLater;
+	local vector PredictedVel;
 
 	bServerSliding = SlideStateAt(TimeStamp, true, ServerStamp);
 	bClientSliding = SlideStateAt(TimeStamp, false, ClientStamp);
+	LastChange = FMax(ServerStamp, ClientStamp);
+	ServerVel.Z = 0;
+
+	// The speed and the landing remembered from moves after this one belong to what the server
+	// has just corrected. The replay runs those moves again and remembers its own.
+	if (SlideMomentumEnd - SlideMomentumTime > TimeStamp + 0.001)
+	{
+		SlideMomentum = ServerVel;
+		SlideMomentumEnd = TimeStamp + SlideMomentumTime;
+	}
+	if (SlideLandGraceEnd - SlideLandGraceTime > TimeStamp + 0.001)
+		SlideLandGraceEnd = 0;
 
 	// The server has the last word. But when the latest change was predicted here, the server's
 	// report of it may still be on its way, and if it was wrong the slide ends itself anyway.
@@ -3995,9 +4010,29 @@ simulated function AdoptSlideStateAt(float TimeStamp)
 	else
 		bIsSliding = bClientSliding || bServerSliding;
 
+	// A predicted slide start without the server's report, and the server ended this move a lot
+	// slower than it was predicted to: it hasn't started that slide. The server starts a slide
+	// late when the move it was predicted in got lost. The replay may start the slide again.
+	PC = PlayerController(Controller);
+	if (bIsSliding && !bServerSliding && PC != None && PC.SavedMoves != None)
+	{
+		// The first move of the replay started with the velocity that was predicted for the corrected move
+		PredictedVel = PC.SavedMoves.StartVelocity;
+		PredictedVel.Z = 0;
+		if (VSize(PredictedVel) - VSize(ServerVel) > SlidePower * 0.125)
+		{
+			bIsSliding = false;
+			bSlidesLater = true;
+			LastChange = ServerStamp;
+			for (i = 0; i < ArrayCount(SlideLog); i++)
+				if (!SlideLog[i].bServer && SlideLog[i].Stamp == ClientStamp)
+					SlideLog[i].Stamp = 0;
+		}
+	}
+
 	SlideCooldownEnd = 0;
-	if (!bIsSliding && FMax(ServerStamp, ClientStamp) > 0)
-		SlideCooldownEnd = FMax(ServerStamp, ClientStamp) + SlideCooldownTime;
+	if (!bIsSliding && LastChange > 0)
+		SlideCooldownEnd = LastChange + SlideCooldownTime;
 
 	// The replay predicts everything after this move again
 	for (i = 0; i < ArrayCount(SlideLog); i++)

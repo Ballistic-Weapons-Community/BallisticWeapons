@@ -205,6 +205,13 @@ simulated event Tick(float DT)
 		ClientUpdateSpeed();
 	}
 
+	// The server never paid the costs it hasn't echoed by now, so they were predicted wrongly
+	if (JumpEchoes > 0 && Level.TimeSeconds >= JumpEchoTime)
+	{
+		Stamina = FMin(MaxStamina, Stamina + JumpDrain * JumpEchoes);
+		JumpEchoes = 0;
+	}
+
 	TickSprint(DT);
 }
 
@@ -221,6 +228,8 @@ simulated function bool IsSprintActive()
 	return bSprintActive;
 }
 
+// How long the client waits for the server's word on something it predicted. An answer that got lost
+// and was sent again takes about three round trips.
 simulated function float PredictionWindow()
 {
 	local PlayerController PC;
@@ -229,7 +238,7 @@ simulated function float PredictionWindow()
 		PC = PlayerController(Instigator.Controller);
 	if (PC == None)
 		return 0.5;
-	return FClamp(2.0 * PC.ExactPing + 0.25, 0.3, 1.5);
+	return FClamp(3.0 * PC.ExactPing + 0.25, 0.3, 1.5);
 }
 
 // Client: whether the server's GroundSpeed can be worked out from BaseGroundSpeed. Something else than
