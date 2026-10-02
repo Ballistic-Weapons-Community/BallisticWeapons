@@ -603,9 +603,13 @@ function SwapLockers()
 	}
 }
 
-event Tick (float DT)
+// Simulated, or clients never run Mut_Ballistic's Tick, which is what hides the pickup bases and lockers for them
+simulated event Tick (float DT)
 {
 	super.Tick(DT);
+
+	if (Role < ROLE_Authority)
+		return;
 
 	if (bPickupsChange && level.TimeSeconds >= PickupChangeTime)
 	{
