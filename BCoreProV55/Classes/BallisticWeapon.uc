@@ -1148,7 +1148,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 
 	// Modified stuff from Engine.Weapon
-	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator.Weapon == self)) && ReloadState == RS_None)
+	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator != None && Instigator.Weapon == self)) && ReloadState == RS_None)
     {
         if (anim == FireMode[0].FireAnim && HasAnim(FireMode[0].FireEndAnim)) // rocket hack
 			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);

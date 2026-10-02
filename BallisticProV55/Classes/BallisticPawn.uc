@@ -1026,6 +1026,12 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}
+		// Still here with one of these: the pawn's mesh doesn't have the animation. Don't fall through to playing the action's own name
+		if (AnimAction == 'MeleeStrike' || AnimAction == 'Shovel' || AnimAction == 'CockGun' || AnimAction == 'WeaponSpecial' || AnimAction == 'Stagger')
+		{
+			AnimAction = '';
+			return;
+		}
 		/*if (AnimAction == 'Blocking')
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
