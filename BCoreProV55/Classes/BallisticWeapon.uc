@@ -2716,7 +2716,10 @@ simulated function PositionSights()
 // Interpolate our generated 'sighting anims' (the gun's movement to and from the sight view position)
 simulated function TickSighting (float DT)
 {
-	if (bScopeView)
+	// The owner's machine decides when the sights have to come down and tells the server (SetScopeView).
+	// The server used to check for network clients as well and could leave the sights without the client knowing,
+	// e.g. a hit lifting the player off the ground for a moment in Realism. It then stayed out until the client lowered them
+	if (bScopeView && Instigator.IsLocallyControlled())
 		CheckScope();
 
 	if (!Instigator.IsFirstPerson() && SightingState != SS_None)
