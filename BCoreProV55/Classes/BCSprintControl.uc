@@ -179,8 +179,12 @@ simulated function ClientUpdateSpeed()
 
 simulated event Tick(float DT)
 {
+	// A client can't destroy it (it also has the one of a player it spectates, without an Instigator), so stop here
 	if (Instigator == None)
+	{
 		Destroy();
+		return;
+	}
 
 	if (SettingsChecksLeft > 0 && Level.TimeSeconds >= NextSettingsCheckTime)
 	{
