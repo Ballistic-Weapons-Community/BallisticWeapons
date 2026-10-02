@@ -20,9 +20,9 @@ defaultproperties
      SwipePoints(7)=(Weight=2,offset=(Yaw=-3840))
      SwipePoints(8)=(Weight=1,offset=(Yaw=-5120))
 	 
-	 //DamageType=Class'BallisticProV55.DTM763Hit'
-     //DamageTypeHead=Class'BallisticProV55.DTM763HitHead'
-     //DamageTypeArm=Class'BallisticProV55.DTM763Hit'
+     DamageType=Class'BallisticProV55.DTM50Melee'
+     DamageTypeHead=Class'BallisticProV55.DTM50Melee'
+     DamageTypeArm=Class'BallisticProV55.DTM50Melee'
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      bIgnoreReload=True
