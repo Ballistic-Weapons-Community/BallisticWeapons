@@ -1063,13 +1063,22 @@ exec function Mutate(string MutateString)
     {
         bWantsSprint = true;
         ServerSetSprint(true);
+        PredictSprint(true);
     }
     else if (MutateString ~= "BStopSprint")
     {
         bWantsSprint = false;
         ServerSetSprint(false);
+        PredictSprint(false);
     }
     Super.Mutate(MutateString);
+}
+
+// Sprint on this client right away instead of when the server's answer to the Mutate gets here
+function PredictSprint(bool bSprint)
+{
+    if (Level.NetMode == NM_Client && BallisticPawn(Pawn) != None && BallisticPawn(Pawn).Sprinter != None)
+        BallisticPawn(Pawn).Sprinter.PredictSprint(bSprint);
 }
 
 function ServerSetSprint(bool bSprint)

@@ -2734,6 +2734,10 @@ function ShouldCrouch(bool Crouch)
 	{
 		bSlideMoveStart = true;
 		bSlideMovePending = PlayerController(Controller).PendingMove != None;
+
+		// A late GroundSpeed from the server mustn't get into a move while a sprint change is being predicted
+		if (Sprinter != None && Sprinter.PredictEndTime > 0)
+			Sprinter.ClientUpdateSpeed();
 	}
 }
 
@@ -3757,6 +3761,9 @@ simulated function SyncSlidePrediction(float DeltaTime)
 	{
 		// Pawns stand up at the end of a move, so this one may have stood up since
 		bSlideRerunCrouched = SavedSlide.bCrouched && !bIsCrouched;
+		// It gets to start its slide again, at the same stamina and for the same cost
+		if (bIsSliding && !SavedSlide.bSliding)
+			UndoSlideStart();
 		RestoreSlideState();
 	}
 	else
@@ -3776,14 +3783,38 @@ simulated function ClientSlideState(bool bSliding, float TimeStamp)
 simulated function NotifySlideChanged()
 {
 	if (Role == ROLE_AutonomousProxy)
-		LogSlideChange(bIsSliding, MoveTime(), false);
+	{
+		// The slide's stamina cost is paid once, when the start is first predicted
+		if (LogSlideChange(bIsSliding, MoveTime(), false) && bIsSliding && !IsReplayingMoves() && Sprinter != None)
+			Sprinter.PredictJumped();
+	}
 	else if (Role == ROLE_Authority && PlayerController(Controller) != None && !IsLocallyControlled())
 		ClientSlideState(bIsSliding, MoveTime());
 }
 
-simulated function LogSlideChange(bool bSliding, float TimeStamp, bool bServer)
+// Client: takes back what predicting the latest slide start has done outside of the slide state
+simulated function UndoSlideStart()
+{
+	local int i, Newest;
+
+	Newest = -1;
+	for (i = 0; i < ArrayCount(SlideLog); i++)
+		if (SlideLog[i].Stamp > 0 && !SlideLog[i].bServer && (Newest < 0 || SlideLog[i].Stamp > SlideLog[Newest].Stamp))
+			Newest = i;
+
+	if (Newest < 0 || !SlideLog[Newest].bSliding)
+		return;
+
+	SlideLog[Newest].Stamp = 0;
+	if (Sprinter != None)
+		Sprinter.UnpredictJumped();
+}
+
+// Returns false for a change that was already in the log
+simulated function bool LogSlideChange(bool bSliding, float TimeStamp, bool bServer)
 {
 	local int i, Oldest, Newest;
+	local bool bNew;
 
 	Newest = -1;
 	for (i = 0; i < ArrayCount(SlideLog); i++)
@@ -3795,12 +3826,14 @@ simulated function LogSlideChange(bool bSliding, float TimeStamp, bool bServer)
 	}
 
 	// A move that is run again as part of the next one predicts the same change twice
-	if (!bServer && Newest >= 0 && SlideLog[Newest].bSliding == bSliding)
+	bNew = bServer || Newest < 0 || SlideLog[Newest].bSliding != bSliding;
+	if (!bNew)
 		Oldest = Newest;
 
 	SlideLog[Oldest].Stamp = TimeStamp;
 	SlideLog[Oldest].bSliding = bSliding;
 	SlideLog[Oldest].bServer = bServer;
+	return bNew;
 }
 
 // Client: bIsSliding after the move with this timestamp, according to the server or to this client's own prediction
@@ -4020,11 +4053,16 @@ simulated function BeginSlide(out vector SlideVel)
 	// before this move has to be able to start the slide again.
 	bIsSliding = true;
 
-	if (Role == ROLE_Authority && Sprinter != None)
+	if (Sprinter != None)
 	{
-		Sprinter.Jumped();
-		Sprinter.ClientJumped();
-		Sprinter.StopSprint();
+		if (Role == ROLE_Authority)
+		{
+			Sprinter.Jumped();
+			Sprinter.ClientJumped();
+			Sprinter.StopSprint();
+		}
+		else
+			Sprinter.PredictStopSprint();
 	}
 
 	NotifySlideChanged();
