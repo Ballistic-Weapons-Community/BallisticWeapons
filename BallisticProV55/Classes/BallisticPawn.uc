@@ -204,6 +204,7 @@ var bool bSlideMovePending;		// Client: the controller was holding back the prev
 var bool bSlideRerunCrouched;	// Client: the move being run again was first run crouched, and the pawn has stood up since
 var bool bSlideReplaying;		// Client: saved moves are being replayed after a server correction
 var float ReplayMoveTime;		// Client: MoveTime of the move being replayed
+var SavedMove ReplayMove;		// Client: the saved move being replayed, or the next one that will be
 struct SlideChange				// A change of bIsSliding and the MoveTime of the move it happened in
 {
 	var float	Stamp;
@@ -3798,6 +3799,19 @@ simulated function float MoveTime()
 	return Level.TimeSeconds;
 }
 
+// Client: moves the replay's clock on by the part of a move that is being run.
+// Added up, the durations of the moves drift away from their timestamps by rounding. Everything
+// timed was timed with those timestamps, so a move that is done gets its own.
+simulated final function AdvanceReplayTime(float DeltaTime)
+{
+	ReplayMoveTime += DeltaTime;
+
+	while (ReplayMove != None && ReplayMove.TimeStamp < ReplayMoveTime - 0.0005)
+		ReplayMove = ReplayMove.NextMove;
+	if (ReplayMove != None && ReplayMove.TimeStamp < ReplayMoveTime + 0.0005)
+		ReplayMoveTime = ReplayMove.TimeStamp;
+}
+
 simulated final function SaveSlideState()
 {
 	SavedSlide.bSliding = bIsSliding;
@@ -3838,13 +3852,15 @@ simulated function SyncSlidePrediction(float DeltaTime)
 	if (!PC.bUpdating)
 		bSlideReplaying = false;
 	else if (bSlideReplaying)
-		ReplayMoveTime += DeltaTime;
+		AdvanceReplayTime(DeltaTime);
 	else
 	{
 		bSlideReplaying = true;
 		ReplayMoveTime = PC.CurrentTimeStamp;
+		// The controller has dropped the moves the server has seen, so the list starts with this one
+		ReplayMove = PC.SavedMoves;
 		AdoptSlideStateAt(PC.CurrentTimeStamp);
-		ReplayMoveTime += DeltaTime;
+		AdvanceReplayTime(DeltaTime);
 	}
 
 	if (!bSlideMoveStart)
