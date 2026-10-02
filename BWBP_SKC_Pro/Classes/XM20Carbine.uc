@@ -350,6 +350,18 @@ simulated function ClientSwitchLaserMode (byte newMode)
 	UpdateScreen();
 }
 
+// ClientSwitchLaserMode is not replicated and only runs on the server, so the owning client sets its beam size here
+simulated function ClientSwitchWeaponMode (byte NewMode)
+{
+	super.ClientSwitchWeaponMode(NewMode);
+
+	if (Level.NetMode == NM_Client)
+	{
+		bBigLaser = (NewMode == 2);
+		UpdateScreen();
+	}
+}
+
 //=====================================================
 //			SHIELD CODE
 //=====================================================
