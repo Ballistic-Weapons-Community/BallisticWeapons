@@ -190,7 +190,9 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 		lb_NewWeapons.CheckList.InternalOnClick(Sender);
 
-		ChangeSwapListEntry(lb_OldWeapons.List.Index, lb_NewWeapons.List.GetExtraAtIndex(lb_NewWeapons.CheckList.LastCheckChanged), lb_NewWeapons.CheckList.Checks[lb_NewWeapons.CheckList.LastCheckChanged] > 0);
+		// Section headings are no weapons and must not end up in the swap list
+		if (!lb_NewWeapons.CheckList.Elements[lb_NewWeapons.CheckList.LastCheckChanged].bSection)
+			ChangeSwapListEntry(lb_OldWeapons.List.Index, lb_NewWeapons.List.GetExtraAtIndex(lb_NewWeapons.CheckList.LastCheckChanged), lb_NewWeapons.CheckList.Checks[lb_NewWeapons.CheckList.LastCheckChanged] > 0);
 		if (lb_NewWeapons.CheckList.LastClickWasCheck)
 		{
 			if (lb_NewWeapons.CheckList.Elements[lb_NewWeapons.CheckList.LastCheckChanged].bSection)
@@ -210,7 +212,8 @@ function bool InternalOnClick(GUIComponent Sender)
 		Swaps[lb_OldWeapons.List.Index].NIs.length = 0;
 		for (i=0;i<lb_NewWeapons.List.Elements.Length;i++)
 		{
-			Swaps[lb_OldWeapons.List.Index].NIs[i] = lb_NewWeapons.List.GetExtraAtIndex(i);
+			if (!lb_NewWeapons.CheckList.Elements[i].bSection)
+				Swaps[lb_OldWeapons.List.Index].NIs[Swaps[lb_OldWeapons.List.Index].NIs.length] = lb_NewWeapons.List.GetExtraAtIndex(i);
 			lb_NewWeapons.CheckList.SetChecked(i, true);
 		}
 	}
@@ -333,8 +336,10 @@ function SaveSettings()
 	for (i=0;i<class'Mut_BallisticSwap'.static.GetNumWeapons();i++)
 	{
 		NewWeaps.length = 0;
+		// Section headings that older versions saved into the list (or a preset) are dropped here
 		for (j=0;j<Swaps[i].NIs.length;j++)
-			NewWeaps[j] = Swaps[i].NIs[j];
+			if (InStr(Swaps[i].NIs[j], ".") != -1)
+				NewWeaps[NewWeaps.length] = Swaps[i].NIs[j];
 		class'Mut_BallisticSwap'.static.SetNewWeapons(i, NewWeaps, Swaps[i].R);
 		class'Mut_BallisticSwap'.static.StaticSaveConfig();
 	}
