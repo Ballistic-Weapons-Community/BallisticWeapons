@@ -55,6 +55,10 @@ simulated function bool PutDown()
 	{
 		if (bMagnetOpen)
 		{
+			// The server doesn't run PutDown for a network client's weapon, so the client has to tell it.
+			// Otherwise the magnet stays open there, with the weapon in its charged mode
+			if (Level.NetMode == NM_Client)
+				ServerWeaponSpecial(0);
 			bMagnetOpen=false;
 			AdjustMagnetProperties();
 		}

@@ -264,6 +264,9 @@ simulated function bool PutDown()
 {
 	if (super.PutDown())
 	{
+		// The server doesn't run PutDown for a network client's weapon, so the client has to tell it to drop the shield
+		if (Level.NetMode == NM_Client && bShieldUp)
+			ServerSwitchShield(false);
 		KillLaserDot();
 		if (ThirdPersonActor != None)
 			XM20Attachment(ThirdPersonActor).bLaserOn = false;

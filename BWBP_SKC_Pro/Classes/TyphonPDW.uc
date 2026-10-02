@@ -245,6 +245,9 @@ simulated function bool PutDown()
 	{
 		bShieldUp=false;
 		AdjustShieldProperties();
+		// The server doesn't run PutDown for a network client's weapon, so the client has to tell it to drop the shield
+		if (Level.NetMode == NM_Client)
+			ServerSwitchShield(false);
 	}
 	if (super.PutDown())
 	{
