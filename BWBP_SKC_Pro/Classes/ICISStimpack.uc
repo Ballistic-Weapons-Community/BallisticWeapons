@@ -100,6 +100,7 @@ simulated function CheckNoGrenades()
         		GW.MyWeaponClass = class;
 				GW.GiveTo(Instigator);
 			}
+			class'NullGun'.static.GiveToUnarmedBot(Instigator, self);
 		}
 
 		if (Instigator != None)
