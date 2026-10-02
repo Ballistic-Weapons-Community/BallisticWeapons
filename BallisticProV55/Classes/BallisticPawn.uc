@@ -213,6 +213,7 @@ struct SlideChange				// A change of bIsSliding and the MoveTime of the move it 
 var SlideChange SlideLog[8];	// Client: the latest changes, to tell what the slide state was at an earlier move
 
 // Server settings
+var bool bGroundSpeedUnsent;	// Client: GroundSpeed is still what this pawn spawned with, so the server may never have sent it
 var byte SettingsChecksLeft;	// Client: this pawn arrived before the BallisticReplicationInfo carrying the server's settings. Times left to look for it
 var float NextSettingsCheckTime;
 
@@ -256,6 +257,10 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
+
+	// The server only replicates GroundSpeed when it differs from this class's default over there, which
+	// BindDefaultMovement has set to the animation speed. The default of a client's first pawn is another.
+	bGroundSpeedUnsent = Role < ROLE_Authority && GroundSpeed == default.GroundSpeed;
 
 	ApplyServerSettings();
 
@@ -1845,6 +1850,13 @@ simulated event Tick(float DT)
 	super.Tick(DT);
 
 	TickSlideAnim();
+
+	// The sprint control knows the speed the server has set, and only reaches the pawn's owner
+	if (bGroundSpeedUnsent && Sprinter != None && Sprinter.BaseGroundSpeed > 0)
+	{
+		bGroundSpeedUnsent = false;
+		GroundSpeed = Sprinter.SprintGroundSpeed(Sprinter.bSprintActive);
+	}
 
 	if (SettingsChecksLeft > 0 && Level.TimeSeconds >= NextSettingsCheckTime)
 	{
