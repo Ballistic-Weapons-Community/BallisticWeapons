@@ -10,6 +10,7 @@ var(SRX) sound		SilencerOffSound;		//
 var() array<Material> AmpMaterials; //We're using this for the amp
 
 var(SRX)   bool		bAmped;				// Amp installed, gun has new effects
+var(SRX)   bool		bHasAmp;			// This layout can mount the amp
 var(SRX) name		AmplifierBone;			// Bone to use for hiding amp
 var(SRX) name		AmplifierOnAnim;			//
 var(SRX) name		AmplifierOffAnim;		//
@@ -66,6 +67,8 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	bHasIR=false;
+	// The scope layouts are not made for the amp: they have no recoil params for the two amplified modes
+	bHasAmp = WeaponParams.RecoilParams.Length > 2;
 	
 	bHasOptic=false;
 
@@ -222,6 +225,8 @@ exec simulated function ToggleAmplifier(optional byte i)
 {
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
+	if (!bHasAmp && !bAmped && !bSilenced)
+		return;
 
 	TemporaryScopeDown(0.5);
 
@@ -245,6 +250,9 @@ exec simulated function ToggleAmplifier(optional byte i)
 
 function ServerSwitchAmplifier(bool bNewValue)
 {
+	if (bNewValue && !bHasAmp)
+		return;
+
 	bAmped = bNewValue;
 
 	SwitchAmplifier(bAmped);
