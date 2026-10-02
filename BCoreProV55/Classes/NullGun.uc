@@ -42,8 +42,21 @@ function bool CanAttack(Actor Other)
 	return false;
 }
 
+// The stock PutDown asks the mesh for the put down animation, and this has no mesh
+simulated function bool PutDown()
+{
+	if (ClientState == WS_BringUp || ClientState == WS_ReadyToFire)
+	{
+		ClientState = WS_PutDown;
+		SetTimer(PutDownTime, false);
+	}
+	return true;
+}
+
 defaultproperties
 {
+     FireModeClass(0)=Class'BCoreProV55.NullFire'
+     FireModeClass(1)=Class'BCoreProV55.NullFire'
      AIRating=-99.000000
      CurrentRating=-99.000000
      bCanThrow=False
