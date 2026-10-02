@@ -179,6 +179,14 @@ var Object.Color  					CrosshairColor;			//used by Simple XHairs
 var     RewindCollisionManager      RwColMgr;                       // Used for rewind-based instant fire tracing
 var     bool                        RewindActive;                   // True if currently in rewind mode (for cleanup)
 const   REWIND_TRIM                 = 0.025;                        // Game seconds the connection's round trip runs longer than a shot's view of the past (see GetRewindLatency)
+var     float                       RewindLatency, RewindLatencyTime; // GetRewindLatency's last answer and when it was worked out
+
+struct FireRotSample
+{
+	var float	Time;
+	var Rotator	Rot;
+};
+var     array<FireRotSample>        FireRotHistory;                 // Server: the weapon's offset over the last second, while a remote player holds it (see GetFireDir)
 
 //=============================================================================
 // WEAPON STATE VARIABLES
@@ -1331,6 +1339,9 @@ simulated event WeaponTick(float DT)
 
 	AimComponent.UpdateDisplacements(DT);
 
+	if (Role == ROLE_Authority)
+		SaveFireRot();
+
 	if(AIController(Instigator.Controller) == None)
 		TickSighting(DT);
 	TickFireCounter(DT);
@@ -1467,10 +1478,80 @@ final function RewindCollisions()
 final function float GetRewindLatency(PlayerController PC)
 {
     // a listen server's own player has no connection
-    if (Viewport(PC.Player) != None)
+    if (PC == None || Viewport(PC.Player) != None)
         return 0;
 
-    return FMax(0, float(PC.ConsoleCommand("GETPING")) * 0.001f * Level.TimeDilation - REWIND_TRIM);
+    // once per tick is plenty
+    if (RewindLatencyTime != Level.TimeSeconds)
+    {
+        RewindLatencyTime = Level.TimeSeconds;
+        RewindLatency = FMax(0, float(PC.ConsoleCommand("GETPING")) * 0.001f * Level.TimeDilation - REWIND_TRIM);
+    }
+    return RewindLatency;
+}
+
+//================================================================================
+// SaveFireRot, GetPastFireRot
+//
+// The server decides the weapon's aim sway and recoil and sends them to its
+// owner, whose screen shows them a round trip after the server had them. A
+// shot from a remote player is aimed with the offset that player saw, so the
+// server keeps the offset of the last second and looks it up as far back as
+// collisions are rewound. With the current offset, shots went where the gun
+// pointed a ping later: with quickly resetting recoil, tens of units off at
+// range even at a standing target.
+//================================================================================
+final function SaveFireRot()
+{
+	local int i;
+
+	if (Instigator == None || Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None)
+	{
+		FireRotHistory.Length = 0;
+		return;
+	}
+
+	// a gap means the weapon wasn't held in between: start again
+	if (FireRotHistory.Length > 0 && Level.TimeSeconds - FireRotHistory[FireRotHistory.Length - 1].Time > 0.25)
+		FireRotHistory.Length = 0;
+
+	// keep one sample from before the furthest a shot looks back
+	while (FireRotHistory.Length > 1 && FireRotHistory[1].Time < Level.TimeSeconds - class'UnlaggedPawnCollision'.default.MaxUnlagTime)
+		FireRotHistory.Remove(0, 1);
+
+	i = FireRotHistory.Length;
+	if (i > 0 && FireRotHistory[i - 1].Time == Level.TimeSeconds)
+		i--;
+	FireRotHistory.Length = i + 1;
+	FireRotHistory[i].Time = Level.TimeSeconds;
+	FireRotHistory[i].Rot = GetFireRot();
+}
+
+final function Rotator GetPastFireRot()
+{
+	local float T, Latency, Alpha;
+	local int i;
+	local Rotator A, B;
+
+	Latency = GetRewindLatency(PlayerController(InstigatorController));
+	if (Latency <= 0 || FireRotHistory.Length == 0)
+		return GetFireRot();
+
+	T = Level.TimeSeconds - Latency;
+
+	// newest sample at or before that time
+	for (i = FireRotHistory.Length - 1; i > 0 && FireRotHistory[i].Time > T; i--);
+
+	A = FireRotHistory[i].Rot;
+	if (i == FireRotHistory.Length - 1 || FireRotHistory[i].Time >= T)
+		return A;
+
+	B = FireRotHistory[i + 1].Rot;
+	Alpha = (T - FireRotHistory[i].Time) / (FireRotHistory[i + 1].Time - FireRotHistory[i].Time);
+	// small offsets from the view, nothing wraps
+	A.Pitch += int((B.Pitch - A.Pitch) * Alpha);
+	A.Yaw += int((B.Yaw - A.Yaw) * Alpha);
+	return A;
 }
 
 final function RestoreCollisions()
@@ -4946,6 +5027,9 @@ simulated final function Rotator GetFireRot()
 
 simulated final function Vector GetFireDir()
 {
+	// a remote player's shot goes where that player saw the gun pointing (see SaveFireRot)
+	if (Role == ROLE_Authority && FireRotHistory.Length > 0)
+		return Vector(GetPastFireRot());
 	return Vector(GetFireRot());
 }
 
