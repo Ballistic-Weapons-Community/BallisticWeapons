@@ -178,6 +178,7 @@ var Object.Color  					CrosshairColor;			//used by Simple XHairs
 //=============================================================================
 var     RewindCollisionManager      RwColMgr;                       // Used for rewind-based instant fire tracing
 var     bool                        RewindActive;                   // True if currently in rewind mode (for cleanup)
+const   REWIND_TRIM                 = 0.025;                        // Game seconds the connection's round trip runs longer than a shot's view of the past (see GetRewindLatency)
 
 //=============================================================================
 // WEAPON STATE VARIABLES
@@ -1413,6 +1414,7 @@ event ServerStartFire(byte Mode)
 final function RewindCollisions()
 {
     local PlayerController PC;
+    local float Latency;
 
     if (RwColMgr == None)
     {
@@ -1428,11 +1430,47 @@ final function RewindCollisions()
         return;
     }
 
-    //Log("BallisticWeapon::RewindCollisions: Rewinding: Ping:" $ PC.PlayerReplicationInfo.Ping * 0.004f);
-        
+    Latency = GetRewindLatency(PC);
+
+    // a listen server's own player sees everyone where they are
+    if (Latency <= 0)
+        return;
+
+    //Log("BallisticWeapon::RewindCollisions: Rewinding: Latency:" $ Latency);
+
     RewindActive = True;
 
-    RwColMgr.RewindCollisions(Instigator, PC.PlayerReplicationInfo.Ping * 0.004f);    
+    RwColMgr.RewindCollisions(Instigator, Latency);
+}
+
+//================================================================================
+// GetRewindLatency
+//
+// How far back in game time the holder's machine showed the other players, when
+// it fired the shot the server is tracing now.
+//
+// This is the round trip of the holder's connection, which the engine measures
+// from packet acknowledgements. It used to be PlayerReplicationInfo.Ping, which
+// doesn't fit:
+// - the client sends that value itself (ServerUpdatePing), so a modified client
+//   could have every shot rewound by a whole second
+// - it starts out at the hitch of loading the map and only comes down by 1% per
+//   position update, so for the first minute or so after joining shots were
+//   rewound too far, up to twice the real ping
+// - once settled it reads 80% of the round trip on purpose (the engine's
+//   "placebo effect"), so from then on shots were rewound too little
+//
+// The round trip comes in real milliseconds and the rewind works in game time.
+// Measured against what clients drew when they fired, it runs REWIND_TRIM long
+// (servers at 30 and 60 Hz, clients at 60 to 250 fps, pings up to 300 ms).
+//================================================================================
+final function float GetRewindLatency(PlayerController PC)
+{
+    // a listen server's own player has no connection
+    if (Viewport(PC.Player) != None)
+        return 0;
+
+    return FMax(0, float(PC.ConsoleCommand("GETPING")) * 0.001f * Level.TimeDilation - REWIND_TRIM);
 }
 
 final function RestoreCollisions()
