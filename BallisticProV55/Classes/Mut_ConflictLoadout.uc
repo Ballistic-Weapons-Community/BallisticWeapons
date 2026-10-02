@@ -470,7 +470,7 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_invento
 	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	newWeapon = Weapon(Other.FindInventoryType(WepClass));
 
-	if (newWeapon == None || (BallisticHandgun(newWeapon) != None && !BallisticHandgun(newWeapon).default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].bDualBlocked))/* && BallisticHandgun(newWeapon).bShouldDualInLoadout))*/
+	if (newWeapon == None || (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).WeaponParams != None && !BallisticHandgun(newWeapon).WeaponParams.bDualBlocked))/* && BallisticHandgun(newWeapon).bShouldDualInLoadout))*/
 	{
 		newWeapon = Other.Spawn(WepClass,,,Other.Location);
 	
@@ -497,8 +497,10 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_invento
 
 	else 
 	{
-		newWeapon.AddAmmo(WepClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount, 0);
-		newWeapon.AddAmmo(WepClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount, 1);
+		if (WepClass.default.FireModeClass[0] != None && WepClass.default.FireModeClass[0].default.AmmoClass != None)
+			newWeapon.AddAmmo(WepClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount, 0);
+		if (WepClass.default.FireModeClass[1] != None && WepClass.default.FireModeClass[1].default.AmmoClass != None)
+			newWeapon.AddAmmo(WepClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount, 1);
 	}
 }
 	

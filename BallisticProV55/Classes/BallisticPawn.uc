@@ -3118,7 +3118,9 @@ function IncrementBWDeathsWith()
 		WepGroup = 1;
 	else WepGroup = Weapon.InventoryGroup;
 	
-	BWPRI.Hitstats[WepGroup].DeathsWith++;
+	// Weapons from outside BW can be in groups the stats have no slot for
+	if (WepGroup < 10)
+		BWPRI.Hitstats[WepGroup].DeathsWith++;
 }
 	
 
