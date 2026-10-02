@@ -17,6 +17,7 @@ var LevelInfo                       Level;
 var array<UnlaggedPawnCollision>    Collisions;
 
 var int                             StackCount;
+var float                           RewindTime;     // Level.TimeSeconds of the current rewind
 
 // Functions called from BallisticPawn
 final function RegisterPawn(xPawn pawn) // might not work due to parameter pass bug?
@@ -58,8 +59,19 @@ final function RewindCollisions(Actor requester, float latency)
     if (Level.NetMode != NM_DedicatedServer && Level.NetMode != NM_ListenServer)
         return;
 
+    // A rewind only lasts for one shot. One still held from an earlier tick was never restored by the weapon that made it:
+    // drop it, or every later shot would be traced against where everyone stood back then
+    if (StackCount > 0 && RewindTime != Level.TimeSeconds)
+    {
+        for (i = 0; i < Collisions.Length; ++i)
+            Collisions[i].DisableUnlag();
+        StackCount = 0;
+    }
+
     if (StackCount == 0)
     {
+        RewindTime = Level.TimeSeconds;
+
         for (i = 0; i < Collisions.Length; ++i)
         {
             if (Collisions[i].UnlaggedPawn != requester)

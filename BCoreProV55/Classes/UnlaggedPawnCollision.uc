@@ -41,12 +41,18 @@ var float           LastLocationUpdateTime;
 var InterpCurve     LocX, LocY, LocZ, CollRadius, CollHeight;   // Interpolation curves for determining location, collision radius and collision height for any given period in time
 var array<SavedRotation>  Rotations;
 
+var float           EnabledTime;                            // Level.TimeSeconds when the collision was last rewound
+
 var bool            PawnCollideActors, PawnBlockActors, PawnBlockPlayers;
 /**
 Update the pawn location for this tick.
 */
 function Tick(float DeltaTime)
 {
+    // A rewind lasts for one shot. One left over from an earlier tick was never restored: stop hiding the pawn from traces
+    if (bUnlagged && EnabledTime != Level.TimeSeconds)
+        DisableUnlag();
+
     if (UnlaggedPawn != None)
         UpdateUnlagLocation();
 }
@@ -175,6 +181,7 @@ final function EnableUnlag(float PingTime)
     //log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z  $ " Rot:" $ Rotation $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);
     
     bUnlagged = True;
+    EnabledTime = Level.TimeSeconds;
 }
 
 /*
@@ -207,8 +214,11 @@ final function DisableUnlag()
     }    
 */
 
-    UnlaggedPawn.bBlockZeroExtentTraces=True;
-    UnlaggedPawn.bBlockNonZeroExtentTraces=True;
+    if (UnlaggedPawn != None)
+    {
+        UnlaggedPawn.bBlockZeroExtentTraces=True;
+        UnlaggedPawn.bBlockNonZeroExtentTraces=True;
+    }
 
     SetCollision(false, false, false);
     bUnlagged = False;
