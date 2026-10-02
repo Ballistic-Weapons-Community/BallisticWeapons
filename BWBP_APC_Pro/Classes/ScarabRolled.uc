@@ -21,6 +21,7 @@ simulated event PostBeginPlay ()
 
 defaultproperties
 {
+     ModeIndex=1
      FireModeNum=1
      ImpactDamage=10
 }

@@ -143,6 +143,9 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	}
 	else if (HydraSeekerRocket(Proj) != None)
 	{
+		// The seeker rocket is shared with the primary fire, so tell it to read the alt fire's params
+		HydraSeekerRocket(Proj).ModeIndex = 1;
+		HydraSeekerRocket(Proj).InitParams();
 		HydraSeekerRocket(Proj).Weapon = HydraBazooka(BW);
 		HydraSeekerRocket(Proj).LastLoc = HydraBazooka(BW).GetRocketDir();
 	}
