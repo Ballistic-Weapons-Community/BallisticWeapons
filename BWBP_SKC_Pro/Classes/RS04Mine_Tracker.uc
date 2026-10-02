@@ -55,7 +55,8 @@ simulated function PostBeginPlay()
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		}
-		TeamLight.SetBase(self);	
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}
 }
 
@@ -68,7 +69,8 @@ simulated event PostNetReceive()
 		if (TeamLightColor == 0)
 			TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		else TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
-		TeamLight.SetBase(self);
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}
 }
 

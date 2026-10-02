@@ -59,7 +59,8 @@ simulated function PostBeginPlay()
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
 		}
-		TeamLight.SetBase(self);	
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}
 }
 
@@ -71,7 +72,8 @@ simulated event PostNetReceive()
 		if (TeamLightColor == 0)
 			TeamLight = Spawn(class'LAWSparkEmitterRed',self,,Location, Rotation);
 		else TeamLight = Spawn(class'LAWSparkEmitter',self,,Location, Rotation);
-		TeamLight.SetBase(self);
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}	
 	if (bShot || bDetonated)
 		Explode(Location, vector(Rotation));
