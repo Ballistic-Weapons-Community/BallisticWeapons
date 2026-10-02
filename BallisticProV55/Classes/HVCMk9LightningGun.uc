@@ -719,7 +719,7 @@ function bool CanAttack(Actor Other)
 					Dist = VSize(Victims.location - Instigator.location);
 					if (Dist > 1900)
 						continue;
-					if (level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(HitActor).Controller))
+					if (level.Game.bTeamGame && Instigator.Controller.SameTeamAs(Pawn(Victims).Controller))
 					{
 						if (B.Skill >= Rand(4) && TeamGame(level.Game) != None && TeamGame(level.Game).FriendlyFireScale > 0.1)
 							return false;

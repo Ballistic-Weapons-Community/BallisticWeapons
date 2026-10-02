@@ -132,6 +132,10 @@ static function KillstreakLRI GetKLRI(PlayerReplicationInfo PRI)
 {
 	local LinkedReplicationInfo lPRI;
 	
+	// e.g. a kill by an Assault sentinel, which has no PRI
+	if (PRI == None)
+		return None;
+
 	if(PRI.CustomReplicationInfo == None)
 	{
 		log("No Custom PRI");
