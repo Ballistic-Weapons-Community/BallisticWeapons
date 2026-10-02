@@ -212,6 +212,20 @@ struct SlideChange				// A change of bIsSliding and the MoveTime of the move it 
 };
 var SlideChange SlideLog[8];	// Client: the latest changes, to tell what the slide state was at an earlier move
 
+// Ground speed of past moves
+struct SpeedChange				// A change of GroundSpeed between two of the client's moves
+{
+	var float	Stamp;			// MoveTime of the last move made at OldSpeed
+	var float	OldSpeed;
+	var float	NewSpeed;
+};
+var SpeedChange SpeedLog[8];	// Client: the latest changes, to replay moves at the GroundSpeed they were made with
+var float LastMoveStamp;		// Client: MoveTime of the latest walking move
+var float LastMoveSpeed;		// Client: GroundSpeed it was made with
+var float PresentSpeed;			// Client: GroundSpeed from before a replay
+var float ReplaySpeed;			// Client: GroundSpeed the replay has set
+var bool bReplaySpeedSet;		// Client: GroundSpeed has to go back from ReplaySpeed to PresentSpeed
+
 // Server settings
 var bool bGroundSpeedUnsent;	// Client: GroundSpeed is still what this pawn spawned with, so the server may never have sent it
 var byte SettingsChecksLeft;	// Client: this pawn arrived before the BallisticReplicationInfo carrying the server's settings. Times left to look for it
@@ -2740,17 +2754,86 @@ event EndCrouch(float HeightAdjust)
 // before it decides whether to combine the move with the one it was holding back.
 function ShouldCrouch(bool Crouch)
 {
+	local PlayerController PC;
+
 	Super.ShouldCrouch(Crouch);
 
-	if (Role == ROLE_AutonomousProxy && PlayerController(Controller) != None)
-	{
-		bSlideMoveStart = true;
-		bSlideMovePending = PlayerController(Controller).PendingMove != None;
+	PC = PlayerController(Controller);
+	if (Role != ROLE_AutonomousProxy || PC == None)
+		return;
 
-		// A late GroundSpeed from the server mustn't get into a move while a sprint change is being predicted
-		if (Sprinter != None && Sprinter.PredictEndTime > 0)
-			Sprinter.ClientUpdateSpeed();
+	bSlideMoveStart = true;
+	bSlideMovePending = PC.PendingMove != None;
+
+	// The controller replays moves at whatever GroundSpeed there is now. A replay that goes back
+	// past a sprint change would run the moves from before it at the wrong speed.
+	if (PC.bUpdating)
+	{
+		if (!bReplaySpeedSet)
+		{
+			bReplaySpeedSet = true;
+			PresentSpeed = GroundSpeed;
+		}
+		ReplaySpeed = GroundSpeedAfter(MoveTime());
+		GroundSpeed = ReplaySpeed;
+		return;
 	}
+
+	if (bReplaySpeedSet)
+	{
+		bReplaySpeedSet = false;
+		if (GroundSpeed == ReplaySpeed)
+			GroundSpeed = PresentSpeed;
+	}
+
+	// A late GroundSpeed from the server mustn't get into a move while a sprint change is being predicted
+	if (Sprinter != None && Sprinter.PredictEndTime > 0)
+		Sprinter.ClientUpdateSpeed();
+
+	if (GroundSpeed != LastMoveSpeed && LastMoveSpeed > 0)
+		LogSpeedChange(LastMoveStamp, LastMoveSpeed, GroundSpeed);
+	LastMoveStamp = Level.TimeSeconds;
+	LastMoveSpeed = GroundSpeed;
+}
+
+function LogSpeedChange(float TimeStamp, float OldSpeed, float NewSpeed)
+{
+	local int i, Oldest;
+
+	for (i = 1; i < ArrayCount(SpeedLog); i++)
+		if (SpeedLog[i].Stamp < SpeedLog[Oldest].Stamp)
+			Oldest = i;
+
+	SpeedLog[Oldest].Stamp = TimeStamp;
+	SpeedLog[Oldest].OldSpeed = OldSpeed;
+	SpeedLog[Oldest].NewSpeed = NewSpeed;
+}
+
+// Client: the GroundSpeed of the move that was made after the one with this MoveTime
+function float GroundSpeedAfter(float TimeStamp)
+{
+	local int i, Last, Next;
+
+	Last = -1;
+	Next = -1;
+	for (i = 0; i < ArrayCount(SpeedLog); i++)
+	{
+		if (SpeedLog[i].Stamp <= 0)
+			continue;
+		if (SpeedLog[i].Stamp <= TimeStamp)
+		{
+			if (Last < 0 || SpeedLog[i].Stamp > SpeedLog[Last].Stamp)
+				Last = i;
+		}
+		else if (Next < 0 || SpeedLog[i].Stamp < SpeedLog[Next].Stamp)
+			Next = i;
+	}
+
+	if (Last >= 0)
+		return SpeedLog[Last].NewSpeed;
+	if (Next >= 0)
+		return SpeedLog[Next].OldSpeed;
+	return PresentSpeed;
 }
 
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
