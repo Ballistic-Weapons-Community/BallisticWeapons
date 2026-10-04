@@ -235,8 +235,10 @@ function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5]
 	}
 }
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
-function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
+function OutfitPlayer(Pawn Other, out string Stuff[5], optional string OldStuff[5])
 {
+	local string Granted[5];
+	local int g;
 	local int i;
 	local class<weapon> W;
 
@@ -246,6 +248,9 @@ function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
 	for (i=0;i<5;i++)
 		if (!ValidateWeapon(Stuff[i], i, Other.PlayerReplicationInfo))
 			Stuff[i] = GetValidWeapon(i, Other.PlayerReplicationInfo);
+	// What the player gets. The caller wants it back: ChangeLoadout blanks the entries of weapons that stay.
+	for (g=0;g<5;g++)
+		Granted[g] = Stuff[g];
 	// Clean out other weapons...
 	ChangeLoadout(Other, Stuff, OldStuff);
 	// Now spawn it all
@@ -282,6 +287,8 @@ function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
 		else
 			i--;
 	}
+	for (g=0;g<5;g++)
+		Stuff[g] = Granted[g];
 }
 static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 {
