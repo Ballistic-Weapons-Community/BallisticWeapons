@@ -278,8 +278,8 @@ final function float GetDamage (Actor Other, vector HitLocation, vector TraceSta
     // Pawn target - check for locational damage
     if (Pawn(Other) != None)
     {
-		// Head shots - check bone
-        HeadLocation = Other.GetBoneCoords('head').Origin;
+		// Head shots
+        HeadLocation = GetHeadLocation(Other);
 
         if (class'BUtil'.static.GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HeadRadius)
         {
@@ -296,6 +296,21 @@ final function float GetDamage (Actor Other, vector HitLocation, vector TraceSta
     }
 
 	return Dmg;
+}
+
+// A dedicated server doesn't animate pawns the way their clients draw them, so its head bone can be well off the head a
+// client aimed at: on a crouched player it sits above the collision, 15 units from the head the client sees. There the
+// head goes where GetDamageForCollision puts it for the rewound collisions
+final function Vector GetHeadLocation(Actor Other)
+{
+    local Vector HeadLocation;
+
+    if (Level.NetMode != NM_DedicatedServer)
+        return Other.GetBoneCoords('head').Origin;
+
+    HeadLocation = Other.Location;
+    HeadLocation.Z += Other.CollisionHeight - HeadOffset;
+    return HeadLocation;
 }
 
 /*
