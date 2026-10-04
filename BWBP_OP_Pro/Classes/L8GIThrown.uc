@@ -62,6 +62,12 @@ function SpawnPack()
 		if (AmmoPack1 == None)
 			return;
 		AmmoPack1.SetPhysics(PHYS_Falling);
+		// As for any dropped pickup (Pickup.InitDroppedPickupFor): a pickup only tells clients where it is when it
+		// spawns. This one then falls, and clients kept seeing it where it hit the wall or player, above the real one.
+		AmmoPack1.bOnlyReplicateHidden = false;
+		AmmoPack1.bUpdateSimulatedPosition = true;
+		AmmoPack1.bIgnoreEncroachers = false;
+		AmmoPack1.NetUpdateFrequency = 8;
 		AmmoPack1.bDropped = true;
 		AmmoPack1.LifeSpan = 32;
 		//log("AmmoPick is: "$AmmoPack1);
