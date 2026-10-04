@@ -968,7 +968,7 @@ simulated function bool PutDown()
 	else
 	{
 		if (CrosshairMode != CHM_Unreal && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
-			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
+			HideStockCrosshair(false);
 	}
 	if (IsMaster())
 	{
@@ -1104,7 +1104,7 @@ simulated function StopScopeView(optional bool bNoAnim)
 	if (CrosshairMode == CHM_Unreal && bNoCrosshairInScope && bStandardCrosshairOff)
 	{
 		bStandardCrosshairOff = False;
-		PlayerController(Instigator.Controller).myHud.bCrosshairShow = True;
+		HideStockCrosshair(false);
 	}
 	if (ZoomOutSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
 	PlayScopeDown(bNoAnim);
@@ -1659,8 +1659,8 @@ simulated function Destroyed()
 			if (PlayerController(Instigator.Controller).MyHud != None)
 			{
 				if (bStandardCrosshairOff)
-					PlayerController(Instigator.Controller).MyHud.bCrosshairShow = True;
-				else PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
+					HideStockCrosshair(false);
+				else HideStockCrosshair(false);
 				Instigator.Controller.bRun = 0;
 			}
 		}

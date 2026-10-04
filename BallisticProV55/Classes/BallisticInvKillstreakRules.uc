@@ -29,7 +29,8 @@ function ScoreKill(Controller Killer, Controller Killed)
 			{
 				if (OldScore >= InvSpreeThresholds[i])
 					continue;
-				if (KLRI.InvKillScore >= InvSpreeThresholds[i] && bool(Mut.GetStreakLevel(PC) & (2 ** i)))
+				// "not already flagged": without the ! no streak was ever awarded in Invasion
+				if (KLRI.InvKillScore >= InvSpreeThresholds[i] && !bool(Mut.GetStreakLevel(PC) & (i+1)))
 				{
 					Mut.FlagStreak(PC, i+1);
 					PC.ReceiveLocalizedMessage( class'BallisticKillstreakMessage', i+1);

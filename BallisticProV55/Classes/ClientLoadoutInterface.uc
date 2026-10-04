@@ -123,9 +123,10 @@ function OpenLoadoutMenu()
 	}
 	else
 	{
-		MyLoadoutInfo.SniperEff =	Mut.LoadoutRules.GetSniperEff(PC.PlayerReplicationInfo.PlayerID) / PC.PlayerReplicationInfo.Deaths;
-		MyLoadoutInfo.ShotgunEff =	Mut.LoadoutRules.GetShotgunEff(PC.PlayerReplicationInfo.PlayerID) / PC.PlayerReplicationInfo.Deaths;
-		MyLoadoutInfo.HazardEff =	Mut.LoadoutRules.GetHazardEff(PC.PlayerReplicationInfo.PlayerID) / PC.PlayerReplicationInfo.Deaths;
+		// The same sums as Mut_Loadout.WeaponRequirementsOk, or the menu offers what the server refuses and hides what it would give
+		MyLoadoutInfo.SniperEff =	Mut.LoadoutRules.GetSniperEff(PC.PlayerReplicationInfo.PlayerID)  / ((Mut.LoadoutRules.GetDeathsHoldingSniper(PC.PlayerReplicationInfo.PlayerID)+1)/1.3  + PC.PlayerReplicationInfo.Deaths/4.0);
+		MyLoadoutInfo.ShotgunEff =	Mut.LoadoutRules.GetShotgunEff(PC.PlayerReplicationInfo.PlayerID) / ((Mut.LoadoutRules.GetDeathsHoldingShotgun(PC.PlayerReplicationInfo.PlayerID)+1)/1.3 + PC.PlayerReplicationInfo.Deaths/4.0);
+		MyLoadoutInfo.HazardEff =	Mut.LoadoutRules.GetHazardEff(PC.PlayerReplicationInfo.PlayerID)  / ((Mut.LoadoutRules.GetDeathsHoldingHazard(PC.PlayerReplicationInfo.PlayerID)+1)/1.3  + PC.PlayerReplicationInfo.Deaths/4.0);
 	}
 
 //	PC.ClientMessage("TotalDamage: "$float(Mut.LoadoutRules.GetPlayerDamage(PC.PlayerReplicationInfo.PlayerID))$", MyDamageRate: "$MyDamageRate);
@@ -213,19 +214,24 @@ simulated function ClientStartLoadout()
 function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
 {
 	local string Stuff[5];
+	local int i;
+
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
 	Stuff[2] = Stuff2;
 	Stuff[3] = Stuff3;
 	Stuff[4] = Stuff4;
+	// Stuff comes back as what was handed out, which is what has to go next time
 	if (PC.Pawn != None)
 		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout);
 
-	LastLoadout[0] = Stuff[0];
-	LastLoadout[1] = Stuff[1];
-	LastLoadout[2] = Stuff[2];
-	LastLoadout[3] = Stuff[3];
-	LastLoadout[4] = Stuff[4];
+	for (i=0;i<5;i++)
+	{
+		LastLoadout[i] = Stuff[i];
+		// for the loadout slot and main weapon toggle keys
+		if (BallisticPlayer(PC) != None)
+			BallisticPlayer(PC).LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+	}
 }
 
 defaultproperties

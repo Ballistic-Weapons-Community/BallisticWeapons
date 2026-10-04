@@ -123,7 +123,7 @@ simulated event Timer()
         PlayIdle();
         ClientState = WS_ReadyToFire;
 		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
-			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
+			HideStockCrosshair(true);
 
 		if (bNeedCock)
 		{

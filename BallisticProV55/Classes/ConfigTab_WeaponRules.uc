@@ -89,14 +89,16 @@ function DefaultSettings()
 {
 	sl_Sway.SetValue(1.0);
 	sl_Recoil.SetValue(1.0);
+	sl_Reload.SetValue(1.0);
 	fl_Damage.SetValue(1.0);
 	fl_VDamage.SetValue(1.0);
-	ch_WeaponJumpOffsetting.Checked(false);
-	ch_LongWeaponOffsetting.Checked(false);
+	ch_WeaponJumpOffsetting.Checked(true);
+	ch_LongWeaponOffsetting.Checked(true);
 	ch_NoReloading.Checked(false);
+	ch_NoRandomCamo.Checked(false);
 	int_MaxInventoryCapacity.SetValue(0);
 
-	ch_UseItemizer.Checked(true);
+	ch_UseItemizer.Checked(false);
 	eb_ItemGroup.SetText("Ballistic");
 }
 

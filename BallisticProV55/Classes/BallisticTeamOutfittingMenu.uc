@@ -22,6 +22,7 @@ var automated moComboBox		cb_Presets;
 var automated GUILabel	        l_Receiving;
 var int                         ActiveIndex;
 var bool                        bWeaponsLoaded;
+var int                         SelectedPreset;		// Slot of the preset last picked in the box
 
 // select menu
 //var automated GUIListBox	    lb_Melee, lb_SideArm, lb_Primary, lb_Secondary, lb_Grenade;
@@ -61,9 +62,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	{
 		for(i = 0 ; i < 5; i++)
 		{
-			SavedLoadouts[0].Weapons[i] = class'Mut_Outfitting'.default.LoadOut[i];
-			SavedLoadouts[0].Layouts[i] = class'Mut_Outfitting'.default.Layout[i];
-			SavedLoadouts[0].Camos[i] = class'Mut_Outfitting'.default.Camo[i];
+			SavedLoadouts[0].Weapons[i] = class'Mut_TeamOutfitting'.default.LoadOut[i];
+			SavedLoadouts[0].Layouts[i] = class'Mut_TeamOutfitting'.default.Layout[i];
+			SavedLoadouts[0].Camos[i] = class'Mut_TeamOutfitting'.default.Camo[i];
 		}
 		bInitialized=True;
 		SaveConfig();
@@ -271,7 +272,8 @@ function LoadWeapons()
 	for(i=0;i<5;i++) //fixme
 	    cb_Presets.AddItem(SavedLoadouts[i].PresetName ,,string(i));
 	
-	cb_Presets.SetIndex(CurrentIndex);
+	SelectedPreset = Clamp(CurrentIndex, 0, 4);
+	cb_Presets.SetIndex(SelectedPreset);
 	
 	class'BC_WeaponInfoCache'.static.EndSession();
 	l_Receiving.Caption = "";
@@ -445,39 +447,55 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 // =========================================================================
 // 						Save Data
 // =========================================================================
+// The slot the preset box stands for. The box drops its selection when a name is typed into it
+// (index -1, which as an array index lands on the first preset), so the last slot that was picked is kept.
+function int PresetSlot()
+{
+	local int i;
+
+	i = cb_Presets.GetIndex();
+	if (i >= 0 && i < 5)
+		SelectedPreset = i;
+	return SelectedPreset;
+}
+
 function SaveSettings()
 {
-    SavedLoadouts[cb_Presets.GetIndex()].PresetName = cb_Presets.GetText();
+	// Nothing to save before the lists are in: the boxes are still empty
+	if (!bWeaponsLoaded)
+		return;
+
+    SavedLoadouts[PresetSlot()].PresetName = cb_Presets.GetText();
 			
 		if (Item_Melee.Items.length > Item_Melee.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[0] = cb_Melee_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = int(cb_Melee_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[0] = cb_Melee_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[0] = int(cb_Melee_CI.getExtra());
 		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[1] = cb_SideArm_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = int(cb_SideArm_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[1] = cb_SideArm_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[1] = int(cb_SideArm_CI.getExtra());
 		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[2] = cb_Primary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = int(cb_Primary_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[2] = cb_Primary_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[2] = int(cb_Primary_CI.getExtra());
 		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[3] = cb_Secondary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = int(cb_Secondary_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[3] = cb_Secondary_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[3] = int(cb_Secondary_CI.getExtra());
 		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[4] = cb_Grenade_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = int(cb_Grenade_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[4] = cb_Grenade_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[4] = int(cb_Grenade_CI.getExtra());
 		}
 
 		if (Item_Melee.Items.length > Item_Melee.Index)
@@ -511,8 +529,7 @@ function SaveSettings()
 			class'Mut_TeamOutfitting'.default.Camo[4] = int(cb_Grenade_CI.getExtra());
 		}
     
-    if (cb_Presets.GetIndex() >= 0)
-        CurrentIndex=cb_Presets.GetIndex();
+    CurrentIndex = PresetSlot();
     
     SaveConfig();
     class'Mut_TeamOutfitting'.static.StaticSaveConfig();
@@ -570,25 +587,25 @@ function InternalOnChange(GUIComponent Sender)
 		
     if (Sender == cb_Presets && cb_Presets.GetExtra() != "") //Grab the preset data
 	{
-		Item_Melee.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[0]);
-		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI, SavedLoadOuts[cb_Presets.GetIndex()].Layouts[0]);
-		LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI, SavedLoadOuts[cb_Presets.GetIndex()].Camos[0]);
+		Item_Melee.SetItem(SavedLoadouts[PresetSlot()].Weapons[0]);
+		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI, SavedLoadouts[PresetSlot()].Layouts[0]);
+		LoadCamos(0, cb_Melee_LI.getIndex(), Item_Melee.Index, cb_Melee_CI, SavedLoadouts[PresetSlot()].Camos[0]);
 		
-		Item_SideArm.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[1]);
-		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI, SavedLoadOuts[cb_Presets.GetIndex()].Layouts[1]);
-		LoadCamos(1, cb_SideArm_LI.getIndex(), Item_SideArm.Index, cb_SideArm_CI, SavedLoadOuts[cb_Presets.GetIndex()].Camos[1]);
+		Item_SideArm.SetItem(SavedLoadouts[PresetSlot()].Weapons[1]);
+		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI, SavedLoadouts[PresetSlot()].Layouts[1]);
+		LoadCamos(1, cb_SideArm_LI.getIndex(), Item_SideArm.Index, cb_SideArm_CI, SavedLoadouts[PresetSlot()].Camos[1]);
 		
-		Item_Primary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[2]);
-		LoadLayouts(2, Item_Primary.Index, cb_Primary_LI, SavedLoadOuts[cb_Presets.GetIndex()].Layouts[2]);
-		LoadCamos(2, cb_Primary_LI.getIndex(), Item_Primary.Index, cb_Primary_CI, SavedLoadOuts[cb_Presets.GetIndex()].Camos[2]);
+		Item_Primary.SetItem(SavedLoadouts[PresetSlot()].Weapons[2]);
+		LoadLayouts(2, Item_Primary.Index, cb_Primary_LI, SavedLoadouts[PresetSlot()].Layouts[2]);
+		LoadCamos(2, cb_Primary_LI.getIndex(), Item_Primary.Index, cb_Primary_CI, SavedLoadouts[PresetSlot()].Camos[2]);
 		
-		Item_Secondary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[3]);
-		LoadLayouts(3, Item_Secondary.Index, cb_Secondary_LI, SavedLoadOuts[cb_Presets.GetIndex()].Layouts[3]);
-		LoadCamos(3, cb_Secondary_LI.getIndex(), Item_Secondary.Index, cb_Secondary_CI, SavedLoadOuts[cb_Presets.GetIndex()].Camos[3]);
+		Item_Secondary.SetItem(SavedLoadouts[PresetSlot()].Weapons[3]);
+		LoadLayouts(3, Item_Secondary.Index, cb_Secondary_LI, SavedLoadouts[PresetSlot()].Layouts[3]);
+		LoadCamos(3, cb_Secondary_LI.getIndex(), Item_Secondary.Index, cb_Secondary_CI, SavedLoadouts[PresetSlot()].Camos[3]);
 		
-		Item_Grenade.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[4]);
-		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI, SavedLoadOuts[cb_Presets.GetIndex()].Layouts[4]);
-		LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Grenade.Index, cb_Grenade_CI, SavedLoadOuts[cb_Presets.GetIndex()].Camos[4]);
+		Item_Grenade.SetItem(SavedLoadouts[PresetSlot()].Weapons[4]);
+		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI, SavedLoadouts[PresetSlot()].Layouts[4]);
+		LoadCamos(4, cb_Grenade_LI.getIndex(), Item_Grenade.Index, cb_Grenade_CI, SavedLoadouts[PresetSlot()].Camos[4]);
 	}
 	else if (Sender == cb_Melee_LI )
 	{
@@ -695,39 +712,44 @@ function bool InternalOnClick(GUIComponent Sender)
 
     if (Sender==BSavePreset) //SAVE PRESET
 	{
-		SavedLoadouts[cb_Presets.GetIndex()].PresetName = cb_Presets.GetText();
+		if (!bWeaponsLoaded)
+			return true;
+		SavedLoadouts[PresetSlot()].PresetName = cb_Presets.GetText();
 
 		if (Item_Melee.Items.length > Item_Melee.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[0] = cb_Melee_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[0] = int(cb_Melee_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[0] = Item_Melee.Items[Item_Melee.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[0] = cb_Melee_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[0] = int(cb_Melee_CI.getExtra());
 		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[1] = cb_SideArm_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[1] = int(cb_SideArm_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[1] = cb_SideArm_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[1] = int(cb_SideArm_CI.getExtra());
 		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[2] = cb_Primary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[2] = int(cb_Primary_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[2] = Item_Primary.Items[Item_Primary.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[2] = cb_Primary_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[2] = int(cb_Primary_CI.getExtra());
 		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[3] = cb_Secondary_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[3] = int(cb_Secondary_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[3] = cb_Secondary_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[3] = int(cb_Secondary_CI.getExtra());
 		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
 		{
-			SavedLoadouts[cb_Presets.GetIndex()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
-			SavedLoadouts[cb_Presets.GetIndex()].Layouts[4] = cb_Grenade_LI.getIndex();
-			SavedLoadouts[cb_Presets.GetIndex()].Camos[4] = int(cb_Grenade_CI.getExtra());
+			SavedLoadouts[PresetSlot()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
+			SavedLoadouts[PresetSlot()].Layouts[4] = cb_Grenade_LI.getIndex();
+			SavedLoadouts[PresetSlot()].Camos[4] = int(cb_Grenade_CI.getExtra());
 		}
-		SaveConfig();	
+		SaveConfig();
+		// The list in the box still has the old name of this slot
+		cb_Presets.MyComboBox.List.SetItemAtIndex(SelectedPreset, SavedLoadouts[SelectedPreset].PresetName);
+		cb_Presets.MyComboBox.List.SilentSetIndex(SelectedPreset);	
         return true;
 	}
 	if (Sender==BCancel) // CANCEL
@@ -738,8 +760,13 @@ function bool InternalOnClick(GUIComponent Sender)
 
 	if (Sender==BDone) // DONE
 	{
-		SaveSettings();
-		COI.LoadoutChanged(class'Mut_TeamOutfitting'.default.LoadOut);
+		// DONE and Enter work while the menu is still receiving its lists: then there is nothing to save or send
+		if (bWeaponsLoaded)
+		{
+			SaveSettings();
+			if (COI != None)
+				COI.LoadoutChanged(class'Mut_TeamOutfitting'.default.LoadOut);
+		}
 		Controller.CloseMenu();
         return true;
 	}
@@ -1096,7 +1123,7 @@ defaultproperties
          Caption="Presets"
          OnCreateComponent=co_PresetsCB.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Choose a preset replacements configuration, or type a new preset name here and click 'Save' to make the current configuration a new preset."
+         Hint="Choose one of the five presets. To change one, pick it, set up the weapons, type a new name here if you like and click 'Save'."
          WinTop=0.66500
          WinLeft=0.600000
          WinWidth=0.200000

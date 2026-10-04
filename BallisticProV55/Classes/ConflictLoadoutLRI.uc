@@ -231,11 +231,17 @@ final private simulated function ModifyMenu()
    local UT2K4PlayerLoginMenu Menu;
    local GUITabPanel Panel;
    
-	if (AIController(myController) != None)
+	local PlayerController PC;
+
+	// Bots have no menu, and neither do the other players as a listen server host sees them
+	PC = PlayerController(myController);
+	if (PC == None || (PC.Player != None && Viewport(PC.Player) == None))
 	{
 		Disable('Tick');
 		return;
 	}
+	if (PC.Player == None || PC.Player.GUIController == None)
+		return;
    
    Menu = UT2K4PlayerLoginMenu(GUIController(PlayerController(myController).Player.GUIController).FindPersistentMenuByName( UnrealPlayer(myController).LoginMenuClass ));
    
@@ -590,6 +596,11 @@ simulated function Validate(out array<string> ClassNames, out array<string> Layo
 			ClassNames.remove(i,1);
 			LayoutIndices.remove(i,1);
 			CamoIndices.remove(i,1);
+			// InitialWeaponIndex is a position in this list
+			if (i < InitialWeaponIndex)
+				InitialWeaponIndex--;
+			else if (i == InitialWeaponIndex)
+				InitialWeaponIndex = 0;
 			i--;
 		}
 	}
@@ -621,7 +632,13 @@ simulated function bool ValidateWeapon (string WeaponName)
 		for (i = 0; i < FullInventoryList.Length; i++)
         {
 			if (FullInventoryList[i].ClassName ~= WeaponName)
+			{
+				// same as TeamAllowed on the server
+				if (!CanUseWeaponAtIndex(i))
+					return false;
+
 				return WeaponRequirementsOk(RequirementsList[i]);
+			}
         }
 	}
 	return false;

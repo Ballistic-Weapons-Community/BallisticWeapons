@@ -400,12 +400,54 @@ function SaveSettings()
 	SaveConfig();
 }
 
+// RESET: back to the saved list. The first time through, InitComponent has just filled the lists.
 function LoadSettings()
 {
+	local class<BC_GameStyle> game_style;
+	local WeaponList_ConflictLoadout ConfigList;
+
+	if (!bInitialized)
+		return;
+	game_style = BaseMenu.GetGameStyle();
+	if (game_style == None)
+		return;
+	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictLoadout';
+	UseList(ConfigList.ConflictWeapons, ConfigList.LoadoutOption);
 }
 
+// DEFAULTS: the list the mod came with
 function DefaultSettings()
 {
+	if (BaseMenu.GetGameStyle() == None)
+		return;
+	UseList(class'WeaponList_ConflictLoadout'.default.ConflictWeapons, class'WeaponList_ConflictLoadout'.default.LoadoutOption);
+}
+
+// Fills the red and blue lists from a weapon list
+function UseList(array<WeaponList_ConflictLoadout.Entry> Weapons, byte Option)
+{
+	local int i, j;
+
+	lb_UsedRedWeapons.List.Clear();
+	lb_UsedBlueWeapons.List.Clear();
+
+	for (i=0;i<lb_UnusedWeapons.List.Elements.length;i++)
+	{
+		if (lb_UnusedWeapons.List.Elements[i].bSection)
+			continue;
+		for (j=0;j<Weapons.length;j++)
+		{
+			if (Weapons[j].ClassName ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
+			{
+				if (Weapons[j].bRed)
+					lb_UsedRedWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(i), lb_UnusedWeapons.List.GetObjectAtIndex(i), lb_UnusedWeapons.List.GetExtraAtIndex(i));
+				if (Weapons[j].bBlue)
+					lb_UsedBlueWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(i), lb_UnusedWeapons.List.GetObjectAtIndex(i), lb_UnusedWeapons.List.GetExtraAtIndex(i));
+				break;
+			}
+		}
+	}
+	co_LoadOpt.SetIndex(Option);
 }
 
 defaultproperties

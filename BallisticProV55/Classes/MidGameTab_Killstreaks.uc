@@ -32,6 +32,7 @@ var() localized string 			QuickListText;
 var localized string 			ReceivingText[2];
 
 var KillstreakLRI 				KLRI;
+var bool						bLoadingCamos;		// LoadCamos is filling a camo box: its changes are not the player's
 
 function InitPanel()
 {
@@ -153,7 +154,7 @@ function LoadWeapons()
 	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
 	LoadLayouts(1, Item_Streak2.Index, cb_Streak2_LI);
 	cb_Streak2_LI.setIndex(class'KillstreakConfig'.default.Layouts[1]);
-	LoadCamos(1, cb_Streak1_LI.getIndex(), Item_Streak2.Index, cb_Streak2_CI);
+	LoadCamos(1, cb_Streak2_LI.getIndex(), Item_Streak2.Index, cb_Streak2_CI);
 	
 	class'BC_WeaponInfoCache'.static.EndSession();
 	
@@ -241,10 +242,15 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	local int i;
 	local array<int> AllowedCamos;
 	local class<BallisticWeapon> BW;
-	
+	local int WantedCamo;
+
 	if (LayoutIndex == -1) //layout box isn't even loaded yet
 		return false;
-	
+
+	// Emptying and filling the box fires its OnChange, which saved camo 0 before the saved camo was looked at below
+	WantedCamo = class'KillstreakConfig'.default.Camos[GroupIndex];
+	bLoadingCamos = true;
+
 	//clear old camos
 	CamoComboBox.Clear();
 	
@@ -254,6 +260,7 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	if (BW == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
+		bLoadingCamos = false;
 		return false;
 	}
 
@@ -261,6 +268,7 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	if (BW.default.ParamsClasses.length < GameStyleIndex)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
+		bLoadingCamos = false;
 		return false;
 	}
 
@@ -279,14 +287,14 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 			}
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
 		}
-		CamoComboBox.setIndex(class'KillstreakConfig'.default.Camos[GroupIndex]);
+		CamoComboBox.setIndex(WantedCamo);
 	}
 	else
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
 			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
-			if (class'KillstreakConfig'.default.Camos[GroupIndex] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+			if (WantedCamo == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
 				CamoComboBox.setIndex(i);
 		}
 	}
@@ -297,10 +305,11 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	if (CamoComboBox.ItemCount() > 1 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
 	{
 		CamoComboBox.AddItem("Random",, "255");
-		if (class'KillstreakConfig'.default.Camos[GroupIndex] == 255) //these damn boxes changing sizes
+		if (WantedCamo == 255) //these damn boxes changing sizes
 			CamoComboBox.setIndex(CamoComboBox.ItemCount()-1);
 	}
-	
+
+	bLoadingCamos = false;
 	return true;
 }
 
@@ -377,11 +386,13 @@ function InternalOnChange(GUIComponent Sender)
 	}	
 	else if (Sender == cb_Streak1_CI )
 	{
-		SaveStreaks();
-	}	
+		if (!bLoadingCamos)
+			SaveStreaks();
+	}
 	else if (Sender == cb_Streak2_CI )
 	{
-		SaveStreaks();
+		if (!bLoadingCamos)
+			SaveStreaks();
 	}
 }
 

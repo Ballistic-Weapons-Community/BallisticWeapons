@@ -23,13 +23,17 @@ function LoadSettings()
 {
 	local class<BC_GameStyle> game_style;
 
-	co_InventoryMode.AddItem("Inventory" ,,string(0));
-	co_InventoryMode.AddItem("Loadout" ,,string(1));
-	co_InventoryMode.AddItem("Evolution Loadout",,string(2));
-	co_InventoryMode.AddItem("Pickups" ,,string(3));
-	co_InventoryMode.AddItem("Arena" ,,string(4));
-	co_InventoryMode.AddItem("Melee" ,,string(5));
-	co_InventoryMode.ReadOnly(True);
+	// RESET comes through here again
+	if (co_InventoryMode.ItemCount() == 0)
+	{
+		co_InventoryMode.AddItem("Inventory" ,,string(0));
+		co_InventoryMode.AddItem("Loadout" ,,string(1));
+		co_InventoryMode.AddItem("Evolution Loadout",,string(2));
+		co_InventoryMode.AddItem("Pickups" ,,string(3));
+		co_InventoryMode.AddItem("Arena" ,,string(4));
+		co_InventoryMode.AddItem("Melee" ,,string(5));
+		co_InventoryMode.ReadOnly(True);
+	}
 
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
@@ -77,11 +81,16 @@ function SaveSettings()
 
 function DefaultSettings()
 {
+	local class<BC_GameStyle> game_style;
+
+	game_style = BaseMenu.GetGameStyle();
+
 	co_InventoryMode.SetIndex(0);
-	ch_BrightPlayers.Checked(false);
+	// Pro and Tactical come with bright players
+	ch_BrightPlayers.Checked(game_style == class'GameStyle_Pro' || game_style == class'GameStyle_Tactical');
 	ch_ForceBWPawn.Checked(false);
 	ch_PreCacheWeapons.Checked(true);
-	ch_KillStreaks.Checked(false);
+	ch_KillStreaks.Checked(true);
 }
 
 function bool InternalOnClick(GUIComponent Sender)

@@ -47,15 +47,27 @@ function LoadSettings()
 
 function DefaultSettings()
 {
+	local bool bRealism;
+
+	bRealism = BaseMenu.GetGameStyle() == class'GameStyle_Realism';
+
 	ne_StartingHealth.SetValue(100);
     ne_PlayerHealthMax.SetValue(100);
-    ne_PlayerSuperHealthMax.SetValue(199);
+    ne_PlayerSuperHealthMax.SetValue(200);
 	ch_HealthRegen.Checked(false);
 	ne_HeathKillReward.SetValue(0);
     ne_KillRewardHealthMax.SetValue(0);
 
-    ne_StartingShield.SetValue(0);
-    ne_PlayerShieldMax.SetValue(150);
+	if (bRealism)
+	{
+		ne_StartingShield.SetValue(50);
+		ne_PlayerShieldMax.SetValue(100);
+	}
+	else
+	{
+		ne_StartingShield.SetValue(0);
+		ne_PlayerShieldMax.SetValue(200);
+	}
 	ch_ShieldRegen.Checked(false);
     ne_ShieldKillReward.SetValue(0);
     ne_KillRewardShieldMax.SetValue(0);

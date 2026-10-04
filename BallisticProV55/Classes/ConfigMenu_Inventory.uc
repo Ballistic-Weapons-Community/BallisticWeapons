@@ -37,7 +37,7 @@ defaultproperties
 	GameTabHint="Adjust rules and settings that affect the behaviour of the game."
 	
 	ArenaTabLabel="Arena"
-	ArenaTabHint"Change which weapons are used by the 'Ballistic Arena' Mutator."
+	ArenaTabHint="Change which weapons are used by the 'Ballistic Arena' Mutator."
 	ConflictTabLabel="Inventory"
 	ConflictTabHint="Change which weapons are used by the 'Ballistic Conflict' Mutator."
 	SwapTabLabel="Pickup Swap"

@@ -117,6 +117,17 @@ function ClientRestart(Pawn NewPawn)
 	DesiredFlashFog = vect(0,0,0);
 	bOverrideDmgFlash = false;
 
+	// The weapon selector does not outlive the pawn it was opened for: it came back with the respawn and took the first shot
+	bIsInWeaponUI = false;
+
+	// ChangeCamDist saves the distance, but nothing put it to use again on the next map
+	if (SavedBehindDistFactor > 0 && BehindDistFactor != SavedBehindDistFactor)
+	{
+		BehindDistFactor = SavedBehindDistFactor;
+		if (Role < ROLE_Authority)
+			ServerCamDist(SavedBehindDistFactor);
+	}
+
 	Super.ClientRestart(NewPawn);
 }
 
@@ -174,6 +185,9 @@ simulated function RenderOverlays(Canvas C)
 	if (bIsInWeaponUI)
 		DrawWeaponUI(C);
     DrawPendingScreenBlood(C);
+
+	// The HUD has drawn: give it its crosshair setting back, see BallisticWeapon.HideStockCrosshair
+	class'BallisticWeapon'.static.RestoreStockCrosshair(MyHud);
 }
 
 //YoYoBatty:
@@ -378,7 +392,7 @@ simulated function DrawWeaponUI(Canvas C)
         }
         else if (Weapon(WeaponGroups[WGroup].Items[WItem]) != None)
         {
-            ammoTxt = "Total: "$ BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).AmmoAmount(0);
+            ammoTxt = "Total: "$ Weapon(WeaponGroups[WGroup].Items[WItem]).AmmoAmount(0);
 
             C.Font = Class'BallisticWeapon'.static.GetFontSizeIndex(C, -3 + int(2 * Class'HUD'.default.HudScale));
             C.Strlen(ammoTxt,XL,YL);
