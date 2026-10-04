@@ -15,23 +15,27 @@ var automated moCheckbox		ch_Crosshairdot,ch_WeaponUI, ch_SimpleDeathMessages, c
 
 function LoadSettings()
 {
-	co_Crosshairs.AddItem("Simple" ,,string(0));
-	co_Crosshairs.AddItem("Graphical" ,,string(1));
-	co_Crosshairs.AddItem("UT2004" ,,string(2));
-	co_Crosshairs.ReadOnly(True);
+	// RESET comes through here again
+	if (co_Crosshairs.ItemCount() == 0)
+	{
+		co_Crosshairs.AddItem("Simple" ,,string(0));
+		co_Crosshairs.AddItem("Graphical" ,,string(1));
+		co_Crosshairs.AddItem("UT2004" ,,string(2));
+		co_Crosshairs.ReadOnly(True);
+
+		co_ADSHandling.AddItem("Default" ,,string(0));
+		co_ADSHandling.AddItem("Hold" ,,string(1));
+		co_ADSHandling.AddItem("Toggle" ,,string(2));
+		co_ADSHandling.ReadOnly(True);
+
+		co_ModeMemory.AddItem("None" ,,string(0));
+		co_ModeMemory.AddItem("Last Mode" ,,string(1));
+		co_ModeMemory.AddItem("Saved Mode" ,,string(2));
+		co_ModeMemory.ReadOnly(True);
+	}
 	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
 	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
-
-    co_ADSHandling.AddItem("Default" ,,string(0));
-	co_ADSHandling.AddItem("Hold" ,,string(1));
-	co_ADSHandling.AddItem("Toggle" ,,string(2));
-	co_ADSHandling.ReadOnly(True);
 	co_ADSHandling.SetIndex(class'BallisticWeapon'.default.ScopeHandling);
-
-	co_ModeMemory.AddItem("None" ,,string(0));
-	co_ModeMemory.AddItem("Last Mode" ,,string(1));
-	co_ModeMemory.AddItem("Saved Mode" ,,string(2));
-	co_ModeMemory.ReadOnly(True);
 	co_ModeMemory.SetIndex(class'BallisticWeapon'.default.ModeHandling);
 
 	fl_ZoomTimeMod.SetValue(class'BallisticPlayer'.default.ZoomTimeMod);
