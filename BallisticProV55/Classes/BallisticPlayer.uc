@@ -166,6 +166,9 @@ simulated function DrawPendingScreenBlood(Canvas C)
     if (PendingScreenBlood.Length == 0)
         return;
 
+
+	// The HUD has drawn: give it its crosshair setting back, see BallisticWeapon.HideStockCrosshair
+	class'BallisticWeapon'.static.RestoreStockCrosshair(MyHud);
     for (i = PendingScreenBlood.Length - 1; i >= 0; i--)
     {
         if (PendingScreenBlood[i] == None || PendingScreenBlood[i].bDeleteMe)

@@ -1191,7 +1191,7 @@ simulated function Destroyed()
 	}
 
 	if (Instigator != None && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
-		PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
+		HideStockCrosshair(false);
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
     {
