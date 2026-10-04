@@ -3654,11 +3654,10 @@ function BotAutoManageSprint()
 		|| B.MoveTarget == None
 		|| Physics != PHYS_Walking
 		|| (B.Enemy != None && VSize(B.Enemy.Location - Location) <= BotSprintEnemyRange)
-	|| Controller.bFire > 0 || Controller.bAltFire > 0)
+		|| Controller.bFire > 0 || Controller.bAltFire > 0)
 	{
-		Sprinter.StopSprint();
-		if (BallisticWeapon(Weapon) != None)
-			BallisticWeapon(Weapon).PlayerSprint(false); //Hopefully clears that up
+		if (Sprinter.bSprintActive)
+			Sprinter.StopSprint();
 	}
 	else
 	{

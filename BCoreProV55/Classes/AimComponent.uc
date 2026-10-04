@@ -392,6 +392,9 @@ final simulated function UpdateAim(float DT)
 	if (BW.bAimDisabled)
 	{
 		Aim = rot(0,0,0);
+		// Nothing below runs, so an offset would never be eased back out: there must not be one
+		AimOffset = rot(0,0,0);
+		NewAimOffset = rot(0,0,0);
 		return;
 	}
 	
@@ -462,6 +465,17 @@ final simulated function Rotator CalcNewAimOffset()
 	local Rotator R;
 
     R = rot(0,0,0);
+
+	// With the aim system off (most weapons in a bot's hands, and weapons that have it off) UpdateAim never moves
+	// AimOffset. A sprint offset set when the weapon came up while its holder was sprinting stayed for as long as the
+	// weapon was held, and the shots went that far off the mark.
+	if (BW.bAimDisabled)
+		return R;
+
+	// Bots get no sprint offset at all, also with the weapons that leave their aim system on (handguns): they sprint
+	// between fights and would fire their first shots through the offset easing out.
+	if (BW.Instigator != None && AIController(BW.Instigator.Controller) != None)
+		return R;
     
     if (BW.IsHoldingMelee())
         return R;
@@ -673,7 +687,9 @@ private final simulated function TickDisplacement(float DT)
 	{
         DisplaceFactor = FMax(DisplaceFactor-DT/0.35, 0);
         
-		if (BW.bServerReloading)
+		// A bot keeps its trigger down through all of this and fires as soon as it is let go, through what is left of
+		// the pivot: a rocket went off some 20 degrees to the side and down. A bot is let go when the gun is back on line.
+		if (BW.bServerReloading && (DisplaceFactor <= 0 || BW.Instigator == None || AIController(BW.Instigator.Controller) == None))
             BW.bServerReloading=False;
 	}
 }
