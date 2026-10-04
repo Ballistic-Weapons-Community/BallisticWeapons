@@ -59,16 +59,16 @@ simulated event ModeDoFire()
 		return;
 	if (MGLauncher(BW).bRemoteGrenadeOut)
 	{
+		// A click with a grenade out always ends with no grenade out, on the server and in the client's prediction.
+		// Fire and detonate then alternate click by click on both, whatever the timing between them.
 		if (Weapon.Role == ROLE_Authority)
 		{
 			if(LastGrenade != None)
 				LastGrenade.RemoteDetonate();
-			if(LastGrenade == None || LastGrenade.IsInState('NetTrapped'))
-				MGLauncher(BW).UpdateGrenadeStatus(false); //Alert gun we've detonated grenade
+			MGLauncher(BW).UpdateGrenadeStatus(false); //Alert gun we've detonated grenade
 		}
-		// Predict the detonation, so a quick follow-up click fires like it will on the server instead of detonating nothing
 		else
-			MGLauncher(BW).ClientUpdateGrenadeStatus(false);
+			MGLauncher(BW).PredictGrenadeStatus(false);
 			
 		BW.LastFireTime = Level.TimeSeconds;
 		NextFireTime += FMax(0.1, FireRate - (Level.TimeSeconds - BW.LastFireTime));
@@ -150,7 +150,7 @@ simulated event ModeDoFire()
 			// Predict the grenade being out until the server confirms, so a quick follow-up click detonates like it will on
 			// the server, instead of playing a shot the server never fires
 			if (Weapon.Role < ROLE_Authority)
-				MGLauncher(BW).ClientUpdateGrenadeStatus(true);
+				MGLauncher(BW).PredictGrenadeStatus(true);
 		}
 		else // server
 		{
@@ -167,7 +167,10 @@ simulated event ModeDoFire()
 		}
 		else
 		{
-			NextFireTime += DetonationInterval;
+			// No next click before the grenade can be detonated. A click that came earlier did nothing on the server
+			// but locked the mode for a full fire interval, and client and server no longer agreed on what the
+			// clicks after it did.
+			NextFireTime += GetDetonationInterval();
 			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
 		}
 		
@@ -187,6 +190,14 @@ simulated event ModeDoFire()
 				BW.bNeedCock=true;
 		}
 	}
+}
+
+// Time from firing until the trigger works again: not before the grenade is ready to be detonated
+simulated function float GetDetonationInterval()
+{
+	if (class<MGLGrenadeRemote>(ProjectileClass) != None)
+		return FMax(DetonationInterval, class<MGLGrenadeRemote>(ProjectileClass).default.DetonateDelay);
+	return DetonationInterval;
 }
 
 function SpawnProjectile (Vector Start, Rotator Dir)

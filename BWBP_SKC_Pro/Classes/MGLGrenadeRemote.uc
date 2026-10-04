@@ -10,6 +10,7 @@
 class MGLGrenadeRemote extends BallisticGrenade;
 
 var	bool	bReady;
+var	bool	bDetonateWhenReady;		// Told to go off before it was ready
 
 simulated event Timer() //Timer will handle remote det lock
 {
@@ -29,6 +30,8 @@ simulated event Timer() //Timer will handle remote det lock
 		class'BallisticDamageType'.static.GenericHurt (HitActor, Damage, Instigator, Location, MomentumTransfer * (HitActor.Location - Location), MyDamageType);
 	}
 	bReady=true;
+	if (bDetonateWhenReady && Role == ROLE_Authority)
+		Explode(Location, vect(0,0,1));
 }
 
 simulated function InitProjectile ()
@@ -39,10 +42,15 @@ simulated function InitProjectile ()
 	SetTimer(DetonateDelay, false);
 }
 
+// The launcher holds the trigger back until the grenade is ready, so this comes early by a tick or two at most.
+// Going off as soon as it is ready keeps the outcome of the click the same for server and client; doing nothing here
+// while the client took the grenade for detonated is what made the next shots blanks.
 function RemoteDetonate()
 {
 	if (bReady)
 		Explode(Location, vect(0,0,1));
+	else
+		bDetonateWhenReady = true;
 }
 
 defaultproperties
