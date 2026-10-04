@@ -97,7 +97,8 @@ state ClientNotInitialized
 
 function AddFireStat(int load, int InventoryGroup)
 {
-	HitStats[InventoryGroup].Fired += Load;
+	if (InventoryGroup >= 0 && InventoryGroup < ArrayCount(HitStats))
+		HitStats[InventoryGroup].Fired += Load;
 }
 
 function ProcessHitStats()

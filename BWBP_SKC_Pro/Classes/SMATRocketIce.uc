@@ -72,7 +72,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				(damageScale * Momentum * dir),
 				DamageType
 			);
-			if (Pawn(Victims) != None && Level.Game.ReduceDamage(Damage, xPawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
+			if (Pawn(Victims) != None && Level.Game.ReduceDamage(Damage, Pawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Pawn(Victims), Damage/6);
 		 }
 		 

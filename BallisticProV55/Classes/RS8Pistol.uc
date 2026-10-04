@@ -32,7 +32,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
 	reliable if (Role < ROLE_Authority)
-		ServerSwitchSilencer;
+		ServerSwitchSilencer, ServerSwitchLaser;
 }
 
 
@@ -52,7 +52,8 @@ simulated function OnWeaponParamsChanged()
 	}
 	else
 	{
-		MeleeFireMode.Damage = default.MeleeFireMode.Damage;
+		// MeleeFireMode is created at runtime, so default.MeleeFireMode is always None - use the class default
+		MeleeFireMode.Damage = MeleeFireClass.default.Damage;
 		RS8MeleeFire(MeleeFireMode).SwitchBladeMode(false);
 	}
 

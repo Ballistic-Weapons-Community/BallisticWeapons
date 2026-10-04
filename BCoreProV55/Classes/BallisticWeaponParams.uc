@@ -93,13 +93,15 @@ static simulated final function SetFireParams(BallisticWeapon BW)
 
 static simulated final function SetRecoilParams(BallisticWeapon BW)
 {
-    BW.RcComponent.Params = default.Layouts[BW.LayoutIndex].RecoilParams[BW.GetRecoilParamsIndex()];
+    // A weapon mode can name recoil params the layout doesn't have (the SRX's amp modes on its scope layouts did).
+    // The component asserts on missing params, which closes the game, so use the last ones the layout does have
+    BW.RcComponent.Params = default.Layouts[BW.LayoutIndex].RecoilParams[Min(BW.GetRecoilParamsIndex(), default.Layouts[BW.LayoutIndex].RecoilParams.Length - 1)];
 	BW.RcComponent.Recalculate();
 }
 
 static simulated final function SetAimParams(BallisticWeapon BW)
 {
-    BW.AimComponent.Params = default.Layouts[BW.LayoutIndex].AimParams[BW.GetAimParamsIndex()];
+    BW.AimComponent.Params = default.Layouts[BW.LayoutIndex].AimParams[Min(BW.GetAimParamsIndex(), default.Layouts[BW.LayoutIndex].AimParams.Length - 1)];
     BW.AimComponent.DisplaceDurationMult = default.Layouts[BW.LayoutIndex].DisplaceDurationMult;
 	BW.AimComponent.Recalculate();
 }

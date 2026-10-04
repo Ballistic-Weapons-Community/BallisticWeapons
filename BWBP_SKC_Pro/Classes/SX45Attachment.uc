@@ -328,7 +328,8 @@ simulated function SwitchFlashLight ()
 	}
 	else
 	{
-		FlashLightEmitter.Destroy();
+		if (FlashLightEmitter != None)
+			FlashLightEmitter.Destroy();
 		KillProjector();
 	}
 }

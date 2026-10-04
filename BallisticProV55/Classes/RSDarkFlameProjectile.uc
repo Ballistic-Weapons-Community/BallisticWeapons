@@ -150,7 +150,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 		else
 		{
 			HealVehicle = Vehicle(Other);
-			if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+			if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 			{
 				AdjustedDamage = Damage * Instigator.DamageScaling * 4;
 				if (Instigator.HasUDamage())

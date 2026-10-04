@@ -528,7 +528,7 @@ simulated function Destroyed()
 {
 	if (FreeZap != None)
 		FreeZap.Destroy();
-	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == RSNovaPrimaryFire(FireMode[0]).FireSoundLoop)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == RSNovaPrimaryFire(FireMode[0]).FireSoundLoop))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;
@@ -571,7 +571,7 @@ simulated function FirePressed(float F)
 
 simulated function float RateSelf()
 {
-	if (PlayerController(Instigator.Controller) != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
+	if (PlayerController(Instigator.Controller) != None && Ammo[0] != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
 		CurrentRating = Super.RateSelf() * 0.2;
 	else
 		return Super.RateSelf();

@@ -490,12 +490,13 @@ replication
 //The Core -------------------------------------------------------------------------------------------------------------
 
 // These functions can be used to safely play anims and avoid disrupting anims that are essential to timing or reload state
+// A sequence the mesh doesn't have is skipped (turret meshes have no Idle, for example), instead of logging a warning every time
 simulated final function bool SafePlayAnim (name Sequence, optional float Rate, optional float TweenTime, optional int Channel, optional string AnimID)
-{ if (!CanPlayAnim(Sequence, Channel, AnimID)) return false; return PlayAnim (Sequence, Rate, TweenTime, Channel); }
+{ if (!HasAnim(Sequence) || !CanPlayAnim(Sequence, Channel, AnimID)) return false; return PlayAnim (Sequence, Rate, TweenTime, Channel); }
 simulated final function bool SafeLoopAnim (name Sequence, optional float Rate, optional float TweenTime, optional int Channel, optional string AnimID)
-{ if (!CanPlayAnim(Sequence, Channel, AnimID)) return false; return LoopAnim (Sequence, Rate, TweenTime, Channel); }
+{ if (!HasAnim(Sequence) || !CanPlayAnim(Sequence, Channel, AnimID)) return false; return LoopAnim (Sequence, Rate, TweenTime, Channel); }
 simulated final function bool SafeTweenAnim (name Sequence, float Time, optional int Channel, optional string AnimID)
-{ if (!CanPlayAnim(Sequence, Channel, AnimID)) return false; return TweenAnim (Sequence, Time, Channel); }
+{ if (!HasAnim(Sequence) || !CanPlayAnim(Sequence, Channel, AnimID)) return false; return TweenAnim (Sequence, Time, Channel); }
 
 // This should be expanded in subclasses if needed
 simulated function bool CanPlayAnim (name Sequence, optional int Channel, optional string AnimID)
@@ -1155,7 +1156,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 
 	// Modified stuff from Engine.Weapon
-	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator.Weapon == self)) && ReloadState == RS_None)
+	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator != None && Instigator.Weapon == self)) && ReloadState == RS_None)
     {
         if (anim == FireMode[0].FireAnim && HasAnim(FireMode[0].FireEndAnim)) // rocket hack
 			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);
@@ -2723,7 +2724,10 @@ simulated function PositionSights()
 // Interpolate our generated 'sighting anims' (the gun's movement to and from the sight view position)
 simulated function TickSighting (float DT)
 {
-	if (bScopeView)
+	// The owner's machine decides when the sights have to come down and tells the server (SetScopeView).
+	// The server used to check for network clients as well and could leave the sights without the client knowing,
+	// e.g. a hit lifting the player off the ground for a moment in Realism. It then stayed out until the client lowered them
+	if (bScopeView && Instigator.IsLocallyControlled())
 		CheckScope();
 
 	if (!Instigator.IsFirstPerson() && SightingState != SS_None)
@@ -4864,7 +4868,9 @@ simulated final function bool IsDisplaced()
 
 simulated final function OnDisplaceStart()
 {
-	if (bScopeView)
+	// As in TickSighting: the owner's machine runs the same check and reports its sights to the server. The server's own
+	// check can differ at the edge of the gun's length, and it would lower the sights with nobody to raise them again
+	if (bScopeView && Instigator.IsLocallyControlled())
 		TemporaryScopeDown();
 }
 

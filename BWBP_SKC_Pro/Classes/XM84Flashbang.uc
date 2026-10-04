@@ -50,6 +50,7 @@ simulated function CheckNoGrenades()
         		GW.MyWeaponClass = class;
 				GW.GiveTo(Instigator);
 			}
+			class'NullGun'.static.GiveToUnarmedBot(Instigator, self);
 		}
 
 		if (Instigator!=None && Instigator.Controller!=None)
@@ -107,7 +108,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 				PF.InstigatorController = Instigator.Controller;
 			PF.Initialize(Victims);
 			
-			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, xPawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
+			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, Pawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Pawn(Victims), DamageAmount/4);
 		}
 	}
@@ -136,7 +137,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 				PF.InstigatorController = Instigator.Controller;
 			PF.Initialize(Victims);
 			
-			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, xPawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
+			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, Pawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
 				ApplySlowdown(Pawn(Victims), DamageAmount/4);
 	}
 	bHurtEntry = false;

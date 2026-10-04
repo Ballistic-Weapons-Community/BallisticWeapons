@@ -199,7 +199,7 @@ function DoFireEffect()
 		}
 
 		HealVehicle = Vehicle(Target);
-		if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+		if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 		{
 			AdjustedDamage = Damage * Instigator.DamageScaling * 4;
 			if (Instigator.HasUDamage())

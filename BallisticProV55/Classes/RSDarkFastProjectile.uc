@@ -94,7 +94,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		return;
 	}
 	HealVehicle = Vehicle(Other);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealVehicle.HealDamage(AdjustedDamage, InstigatorController, myDamageType);
 		return;
@@ -144,7 +144,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	local int AdjustedDamage;
 
 	HealVehicle = Vehicle(Wall);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		AdjustedDamage = default.Damage * Instigator.DamageScaling * MyDamageType.default.VehicleDamageScaling;
 		if (Instigator.HasUDamage())
