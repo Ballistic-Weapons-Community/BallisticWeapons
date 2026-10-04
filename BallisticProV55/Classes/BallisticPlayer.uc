@@ -54,6 +54,19 @@ var float                               DesiredFlashScale;
 var Vector                              DesiredFlashFog;
 var bool								bOverrideDmgFlash;
 
+// Screen flash, see PublishFlash
+const FLASH_FADE_Z = 0.3;	// FlashFog.Z runs down by 0.6 a second: a flash fades out over its last half second
+var vector								HiddenFlashScale, HiddenFlashFog;	// The flash as ViewFlash keeps it, while FlashScale and FlashFog hold what the engine gets
+var vector								ShownFlashScale, ShownFlashFog;		// The flash as it is shown
+var Pawn								HiddenFlashPawn;					// The pawn it was put away for
+var bool								bFlashHidden;
+var bool								bOwnFlash;							// DrawScreenFlash draws it, not the engine
+var bool								bFlashDrawn;						// DrawScreenFlash has run this frame
+var bool								bScreenFlashesChecked, bScreenFlashesOff;
+var vector								FlashColor;							// Colour a ClientFlash started with
+var float								FlashGoalZ;							// Where FlashFog.Z is heading (the view volume's fog)
+var bool								bFlashFades;						// This ClientFlash runs long enough to hold its colour and fade out
+
 // Fractional Parts of Pitch/Yaw Input
 var transient float PitchFraction, YawFraction;
 
@@ -151,6 +164,12 @@ simulated function bool CheckInventoryChange()
 
 simulated function RenderOverlays(Canvas C)
 {
+	// The pawn draws the screen flash right after the weapon. If it did not get to (a HUD or pawn that skips DrawHUD),
+	// draw it here, over the HUD as well, rather than not at all.
+	if (bFlashHidden && bOwnFlash && !bFlashDrawn)
+		DrawScreenFlash(C);
+	bFlashDrawn = false;
+
 	super.RenderOverlays(C);
 	if (bIsInWeaponUI)
 		DrawWeaponUI(C);
@@ -1421,9 +1440,145 @@ function ClientFlash( float scale, vector fog )
     if (bGodMode)
 		return;
 
+	UnhideFlash();
     FlashScale = scale * vect(1,1,1);
     flashfog = 0.001 * fog;
 	bOverrideDmgFlash = true;
+
+	// see GetFlashDisplay
+	FlashColor.X = FClamp(FlashFog.X, 0, 1);
+	FlashColor.Y = FClamp(FlashFog.Y, 0, 1);
+	FlashColor.Z = FClamp(FlashFog.Z, 0, 1);
+	bFlashFades = FlashFog.Z - FlashGoalZ >= FLASH_FADE_Z;
+
+	PublishFlash();
+}
+
+//===========================================================================
+// How the screen flash gets on screen
+//
+// ViewFlash and ClientFlash work on FlashScale and FlashFog as before. When they are done PublishFlash puts that state
+// away and leaves in FlashScale and FlashFog what the engine is to draw; UnhideFlash brings the state back before the
+// next change. Two things are done in between.
+//
+// 1. Over the first person weapon. The engine draws the flash over the world and only then has the HUD draw the first
+//    person weapon, so the weapon and its scope stayed in plain view through a flashbang. While the player looks through
+//    the eyes of his own BallisticPawn the engine gets "no flash" and DrawScreenFlash draws it instead, called by the
+//    pawn from DrawHUD: after the weapon, before the HUD. In any other view the engine draws it.
+//
+// 2. Fading out. See GetFlashDisplay.
+//===========================================================================
+final function bool IsLocalViewer()
+{
+	return Level.NetMode != NM_DedicatedServer && Viewport(Player) != None;
+}
+
+final function bool ShouldDrawOwnFlash()
+{
+	if (MyHud == None || bBehindView || Pawn == None || ViewTarget != Pawn || BallisticPawn(Pawn) == None || !Pawn.bSpecialHUD)
+		return false;
+	// Whoever has the engine's screen flashes switched off does not get them from here either
+	if (!bScreenFlashesChecked)
+	{
+		bScreenFlashesChecked = true;
+		bScreenFlashesOff = ConsoleCommand("get ini:Engine.Engine.ViewportManager ScreenFlashes") ~= "False";
+	}
+	return !bScreenFlashesOff;
+}
+
+// What is shown for the current state.
+// The engine shows FlashFog as the colour and 1 - FlashScale as how solid it is. A flash from ClientFlash lasts until
+// FlashFog.Z has run down, and a strong one (the flashbang: scale -5, fog 2.5) is fully solid all that time while its
+// colour runs down with it: it went white, then grey, then black, and then was gone at once. Such a flash now keeps the
+// colour it started with and fades out over its last half second instead.
+final function GetFlashDisplay(out vector Scale, out vector Fog)
+{
+	local float Alpha;
+
+	Scale = FlashScale;
+	Fog = FlashFog;
+	if (bOverrideDmgFlash && bFlashFades)
+	{
+		Alpha = (1.0 - FClamp(FlashScale.X, 0, 1)) * FClamp((FlashFog.Z - FlashGoalZ) / FLASH_FADE_Z, 0, 1);
+		Scale = (1.0 - Alpha) * vect(1,1,1);
+		Fog = FlashColor;
+	}
+}
+
+final function PublishFlash()
+{
+	if (bFlashHidden || !IsLocalViewer())
+		return;
+	HiddenFlashScale = FlashScale;
+	HiddenFlashFog = FlashFog;
+	HiddenFlashPawn = Pawn;
+	GetFlashDisplay(ShownFlashScale, ShownFlashFog);
+	bOwnFlash = ShouldDrawOwnFlash();
+	if (bOwnFlash)
+	{
+		FlashScale = vect(1,1,1);
+		FlashFog = vect(0,0,0);
+	}
+	else
+	{
+		FlashScale = ShownFlashScale;
+		FlashFog = ShownFlashFog;
+	}
+	bFlashHidden = true;
+}
+
+final function UnhideFlash()
+{
+	if (!bFlashHidden)
+		return;
+	bFlashHidden = false;
+	// A new pawn: ClientRestart has cleared the flash, and what was put away belongs to the old one
+	if (Pawn != None && Pawn != HiddenFlashPawn)
+		return;
+	FlashScale = HiddenFlashScale;
+	FlashFog = HiddenFlashFog;
+}
+
+// Draws the flash the way the engine does: the fog as the colour, 1 - scale as how solid it is
+final function DrawScreenFlash(Canvas C)
+{
+	local float Alpha, OldOrgX, OldOrgY, OldClipX, OldClipY;
+	local plane OldModulate;
+	local color OldColor;
+	local byte OldStyle;
+
+	bFlashDrawn = true;
+	if (!bFlashHidden || !bOwnFlash)
+		return;
+	Alpha = 1.0 - FClamp(ShownFlashScale.X, 0, 1);
+	if (Alpha <= 0)
+		return;
+
+	OldModulate = C.ColorModulate;
+	OldColor = C.DrawColor;
+	OldStyle = C.Style;
+	OldOrgX = C.OrgX;
+	OldOrgY = C.OrgY;
+	OldClipX = C.ClipX;
+	OldClipY = C.ClipY;
+
+	// the HUD's opacity setting is in ColorModulate at this point
+	C.ColorModulate.X = 1;
+	C.ColorModulate.Y = 1;
+	C.ColorModulate.Z = 1;
+	C.ColorModulate.W = 1;
+	C.SetOrigin(0, 0);
+	C.SetClip(C.SizeX, C.SizeY);
+	C.Style = ERenderStyle.STY_Alpha;
+	C.SetDrawColor(255 * FClamp(ShownFlashFog.X, 0, 1), 255 * FClamp(ShownFlashFog.Y, 0, 1), 255 * FClamp(ShownFlashFog.Z, 0, 1), 255 * Alpha);
+	C.SetPos(0, 0);
+	C.DrawTile(Texture'Engine.WhiteTexture', C.SizeX, C.SizeY, 0, 0, 1, 1);
+
+	C.SetOrigin(OldOrgX, OldOrgY);
+	C.SetClip(OldClipX, OldClipY);
+	C.ColorModulate = OldModulate;
+	C.DrawColor = OldColor;
+	C.Style = OldStyle;
 }
 
 function ViewFlash(float DeltaTime)
@@ -1431,6 +1586,8 @@ function ViewFlash(float DeltaTime)
 	local vector goalFog;
 	local float goalScale, delta, Step;
     local PhysicsVolume ViewVolume;
+
+	UnhideFlash();
 
     if ( Pawn != None )
     {
@@ -1451,7 +1608,8 @@ function ViewFlash(float DeltaTime)
     		goalScale += ViewVolume.ViewFlash.X;
 			goalFog += ViewVolume.ViewFog;
 		}
-			
+		FlashGoalZ = goalFog.Z;
+
 		Step = 0.6 * delta;
 		FlashScale.X = UpdateFlashComponent(FlashScale.X,step,goalScale);
 		FlashScale = FlashScale.X * vect(1,1,1);
@@ -1459,10 +1617,23 @@ function ViewFlash(float DeltaTime)
 		FlashFog.X = UpdateFlashComponent(FlashFog.X,step,goalFog.X);
 		FlashFog.Y = UpdateFlashComponent(FlashFog.Y,step,goalFog.Y);
 		FlashFog.Z = UpdateFlashComponent(FlashFog.Z,step,goalFog.Z);
-		if ( FlashFog.Z < 0.003 )
+
+		// The damage flash below does not run while this one does. Let it run down all the same, or the red of the hit
+		// that came with a flashbang shows up when the flashbang is over.
+		DesiredFlashScale -= DesiredFlashScale * 2 * delta;
+		DesiredFlashFog -= DesiredFlashFog * 2 * delta;
+
+		// done when the fog is back at what the view volume asks for (in fogged water that is not 0)
+		if ( FlashFog.Z - goalFog.Z < 0.003 )
 		{
-			FlashFog.Z = 0;
+			FlashFog.Z = goalFog.Z;
 			bOverrideDmgFlash=false;
+			// It has faded out by now. Left at a scale below 0 it showed as a black blink until the code below had caught up.
+			if (bFlashFades)
+			{
+				FlashScale = goalScale * vect(1,1,1);
+				FlashFog = goalFog;
+			}
 		}
 	}
 	else //UT99 Style
@@ -1471,11 +1642,14 @@ function ViewFlash(float DeltaTime)
 		goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
 		goalFog = DesiredFlashFog + ConstantGlowFog;
 
-		if (ViewVolume != None ) 
+		if (ViewVolume != None )
 		{
 			goalScale += ViewVolume.ViewFlash.X;
 			goalFog += ViewVolume.ViewFog;
+			FlashGoalZ = ViewVolume.ViewFog.Z;
 		}
+		else
+			FlashGoalZ = 0;
 
 		DesiredFlashScale -= DesiredFlashScale * 2 * delta;
 		DesiredFlashFog -= DesiredFlashFog * 2 * delta;
@@ -1493,6 +1667,8 @@ function ViewFlash(float DeltaTime)
 		if ( FlashFog.Z < 0.003 )
 			FlashFog.Z = 0;
 	}
+
+	PublishFlash();
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)

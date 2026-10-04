@@ -2405,6 +2405,13 @@ function PlayDyingSound()
 	PlaySound(SoundGroupClass.static.GetDeathSound(), SLOT_Pain,2.5*TransientSoundVolume, true,500);
 }
 
+// Called by the HUD right after it has drawn the first person weapon and before it draws itself (bSpecialHUD)
+simulated function DrawHUD(Canvas C)
+{
+	if (BallisticPlayer(Controller) != None)
+		BallisticPlayer(Controller).DrawScreenFlash(C);
+}
+
 simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 {
 	//Exclude Matrix because it's cheap. Treat incoming Jakobs as the default character.
