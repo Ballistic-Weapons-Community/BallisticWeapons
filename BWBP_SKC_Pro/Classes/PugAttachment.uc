@@ -1,12 +1,15 @@
 //=============================================================================
-// BulldogAttachment.
+// PugAttachment.
 //
-// 3rd person weapon attachment for the Suzuki XL7
+// 3rd person weapon attachment for the PUG-M2 Riot Cannon
+//
+// A shotgun attachment: the primary fire is a shotgun fire, which sends the attachment its aim and not a hit location.
+// As a plain attachment it took that aim for a point in the world and shot a tracer off towards it.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class PugAttachment extends BallisticAttachment;
+class PugAttachment extends BallisticShotgunAttachment;
 var() class<actor>			AltBrassClass1;			//Alternate Fire's brass
 var() class<actor>			AltBrassClass2;			//Alternate Fire's brass (whole FRAG-12)
 
@@ -36,15 +39,19 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
 	FlashScale=0.050000
      AltMuzzleFlashClass=Class'BWBP_SKC_Pro.AH104FlashEmitter'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge'
+     ImpactManager=Class'BallisticProV55.IM_Shell'
      AltFlashBone="ejector"
      BrassClass=Class'BWBP_SKC_Pro.Brass_BOLT'
      BrassMode=MU_Both
      FlashMode=MU_Both
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
+     TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+     TracerChance=0.500000
+     InstantMode=MU_Primary
      WaterTracerClass=class'TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	ReloadAnim="Reload_AR"
+	CockingAnim="Cock_RearPull"
   	ReloadAnimRate=1.000000
 	CockAnimRate=0.760000
      Mesh=SkeletalMesh'BWBP_SKC_Anim.Pug_TPm'
