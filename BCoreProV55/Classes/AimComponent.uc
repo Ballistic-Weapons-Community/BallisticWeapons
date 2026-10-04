@@ -295,7 +295,7 @@ final simulated function OnWeaponSelected()
 {
 	OldLookDir = BW.GetPlayerAim();
 
-	bSprintOffset = (BW.SprintControl != None && BW.SprintControl.bSprintActive && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting);
+	bSprintOffset = (BW.SprintControl != None && BW.SprintControl.IsSprintActive() && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting);
 
 	AimOffset = CalcNewAimOffset();
 	NewAimOffset = AimOffset;
