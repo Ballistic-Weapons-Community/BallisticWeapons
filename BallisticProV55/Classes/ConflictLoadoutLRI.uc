@@ -596,6 +596,11 @@ simulated function Validate(out array<string> ClassNames, out array<string> Layo
 			ClassNames.remove(i,1);
 			LayoutIndices.remove(i,1);
 			CamoIndices.remove(i,1);
+			// InitialWeaponIndex is a position in this list
+			if (i < InitialWeaponIndex)
+				InitialWeaponIndex--;
+			else if (i == InitialWeaponIndex)
+				InitialWeaponIndex = 0;
 			i--;
 		}
 	}
@@ -627,7 +632,13 @@ simulated function bool ValidateWeapon (string WeaponName)
 		for (i = 0; i < FullInventoryList.Length; i++)
         {
 			if (FullInventoryList[i].ClassName ~= WeaponName)
+			{
+				// same as TeamAllowed on the server
+				if (!CanUseWeaponAtIndex(i))
+					return false;
+
 				return WeaponRequirementsOk(RequirementsList[i]);
+			}
         }
 	}
 	return false;
