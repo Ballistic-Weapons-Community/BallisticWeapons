@@ -231,11 +231,17 @@ final private simulated function ModifyMenu()
    local UT2K4PlayerLoginMenu Menu;
    local GUITabPanel Panel;
    
-	if (AIController(myController) != None)
+	local PlayerController PC;
+
+	// Bots have no menu, and neither do the other players as a listen server host sees them
+	PC = PlayerController(myController);
+	if (PC == None || (PC.Player != None && Viewport(PC.Player) == None))
 	{
 		Disable('Tick');
 		return;
 	}
+	if (PC.Player == None || PC.Player.GUIController == None)
+		return;
    
    Menu = UT2K4PlayerLoginMenu(GUIController(PlayerController(myController).Player.GUIController).FindPersistentMenuByName( UnrealPlayer(myController).LoginMenuClass ));
    
