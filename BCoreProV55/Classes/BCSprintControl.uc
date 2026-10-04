@@ -142,7 +142,8 @@ simulated event Tick(float DT)
 //return
 function StartSprint()
 {
-	if (AIController(Instigator.Controller) == None && !class'BallisticReplicationInfo'.default.bEnableSprint)
+	// goes for bots as well
+	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
 		return;
 		
 	if (Stamina <= 0  || Instigator.Physics != PHYS_Walking || Instigator.bIsCrouched || bSprintActive || !CheckDirection())
@@ -161,9 +162,7 @@ function StartSprint()
 // Sprint Key released. Used on Client and Server
 function StopSprint()
 {
-	if (!class'BallisticReplicationInfo'.default.bEnableSprint)
-		return;
-
+	// No check of bEnableSprint here: whatever got a sprint going has to be able to stop it
 	if (!bSprintActive)
 		return;
 
