@@ -32,6 +32,7 @@ struct ArenaPreset
 	var() config array<string>	WeaponClassNames;
 };
 var() config Array<ArenaPreset>		Presets;
+var bool							bIgnorePresetChange;	// The preset box is being changed by code
 
 var() localized string Headings[3];
 
@@ -217,9 +218,47 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 function bool InternalOnClick(GUIComponent Sender)
 {
-	local int i;
+	local int i, j;
+	local string S;
 
-	if (Sender==BAddAll) // ADD ALL
+	if (Sender==BSave) // Save Preset
+	{
+		S = cb_Presets.GetText();
+		if (S == "")
+			return true;
+		// A name that is in use saves over that preset
+		i = FindPreset(S);
+		if (i < 0)
+		{
+			i = Presets.length;
+			Presets.length = i + 1;
+			Presets[i].PresetName = S;
+			bIgnorePresetChange = true;
+			cb_Presets.AddItem(S,,string(i));
+			bIgnorePresetChange = false;
+		}
+		Presets[i].WeaponClassNames.length = lb_UsedWeapons.List.Elements.length;
+		for(j=0;j<lb_UsedWeapons.List.Elements.length;j++)
+			Presets[i].WeaponClassNames[j] = lb_UsedWeapons.List.GetExtraAtIndex(j);
+		SaveConfig();
+	}
+	else if (Sender==BDelete) // Delete Preset
+	{
+		i = FindPreset(cb_Presets.GetText());
+		if (i >= 0)
+		{
+			Presets.Remove(i,1);
+			// Taking the item out selects its neighbour, which is not to be loaded
+			bIgnorePresetChange = true;
+			j = cb_Presets.FindIndex(cb_Presets.GetText());
+			if (j >= 0)
+				cb_Presets.RemoveItem(j);
+			cb_Presets.SetText("");
+			bIgnorePresetChange = false;
+			SaveConfig();
+		}
+	}
+	else if (Sender==BAddAll) // ADD ALL
 	{
 		for (i=lb_UnusedWeapons.List.Elements.Length-1;i>-1;i--)
 			if (!lb_UnusedWeapons.List.Elements[i].bSection)
@@ -264,25 +303,47 @@ function bool InternalOnDblClick(GUIComponent Sender)
 
 function InternalOnChange(GUIComponent Sender)
 {
+	local int i;
+
+	// GetExtra is empty while a name is being typed
+	if (Sender == cb_Presets && !bIgnorePresetChange && cb_Presets.GetExtra() != "")
+	{
+		// by name: the numbers stored with the items go stale when a preset is deleted
+		i = FindPreset(cb_Presets.GetText());
+		if (i >= 0)
+			UseWeapons(Presets[i].WeaponClassNames);
+	}
+}
+
+function int FindPreset(string PresetName)
+{
+	local int i;
+
+	for (i=0;i<Presets.length;i++)
+		if (Presets[i].PresetName ~= PresetName)
+			return i;
+	return -1;
+}
+
+// Puts these weapons, and only these, in the list of weapons in use
+function UseWeapons(array<string> Names)
+{
 	local int i, j;
 
-	if (Sender == cb_Presets && cb_Presets.GetExtra() != "")
+	while(lb_UsedWeapons.List.Elements.Length > 0)
 	{
-		while(lb_UsedWeapons.List.Elements.Length > 0)
+		lb_UnusedWeapons.List.Add(lb_UsedWeapons.List.GetItemAtIndex(0), , lb_UsedWeapons.List.GetExtraAtIndex(0));
+		lb_UsedWeapons.List.Remove(0);
+	}
+	for (i=0;i<Names.Length;i++)
+	{
+		for (j=0;j<lb_UnusedWeapons.List.Elements.length;j++)
 		{
-			lb_UnusedWeapons.List.Add(lb_UsedWeapons.List.GetItemAtIndex(0), , lb_UsedWeapons.List.GetExtraAtIndex(0));
-			lb_UsedWeapons.List.Remove(0);
-		}
-		for (i=0;i<Presets[int(cb_Presets.GetExtra())].WeaponClassNames.Length;i++)
-		{
-			for (j=0;j<lb_UnusedWeapons.List.Elements.length;j++)
+			if (lb_UnusedWeapons.List.GetExtraAtIndex(j) ~= Names[i])
 			{
-				if (lb_UnusedWeapons.List.GetExtraAtIndex(j) ~= Presets[int(cb_Presets.GetExtra())].WeaponClassNames[i])
-				{
-					lb_UsedWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(j),, lb_UnusedWeapons.List.GetExtraAtIndex(j));
-					lb_UnusedWeapons.List.Remove(j);
-					break;
-				}
+				lb_UsedWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(j),, lb_UnusedWeapons.List.GetExtraAtIndex(j));
+				lb_UnusedWeapons.List.Remove(j);
+				break;
 			}
 		}
 	}
@@ -305,12 +366,19 @@ function LoadSettings()
 {
     ch_Random.Checked(class'Mut_BallisticArena'.default.bRandomPickOne);
 	ch_PerSpawn.Checked(class'Mut_BallisticArena'.default.bRandomPerSpawn);
+	// RESET: back to the saved list
+	if (bInitialized)
+		UseWeapons(class'Mut_BallisticArena'.default.WeaponClassNames);
 }
 
 function DefaultSettings()
 {
-    ch_Random.Checked(false);
-    ch_PerSpawn.Checked(false);
+	local array<string> Names;
+
+    ch_Random.Checked(true);
+    ch_PerSpawn.Checked(true);
+	Names[0] = "BallisticProV55.D49Revolver";
+	UseWeapons(Names);
 }
 
 function SaveSettings()
