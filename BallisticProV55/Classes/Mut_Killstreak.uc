@@ -268,13 +268,22 @@ function Mutate(string MutateString, PlayerController Sender)
 	local KillstreakLRI KLRI;
 	local int count;
 	local array<String> split_string;
+	local Pawn P;
 	
 	if (MutateString ~= "Killstreak" && Sender != None)
 	{
 		KLRI = GetKLRI(Sender.PlayerReplicationInfo);
 		
 		if (KLRI != None && KLRI.RewardLevel > 0)
-			GrantKillstreakReward(Sender.Pawn, KLRI);
+		{
+			// The reward goes to the player on foot, not to the vehicle. Dead, there is nobody to give it to:
+			// it stays to be claimed after the respawn.
+			P = Sender.Pawn;
+			if (Vehicle(P) != None)
+				P = Vehicle(P).Driver;
+			if (P != None && P.Health > 0)
+				GrantKillstreakReward(P, KLRI);
+		}
 	}
 
 	else
@@ -338,19 +347,30 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 	
 	weapons[weapons.Length] = split_string[2];
 	
-	switch(loadout_group)
+	SetGroup(loadout_group, weapons);
+
+	Sender.ClientMessage("Mutate AddKillstreakWeapon: Success - added"@WI.ClassName@"to loadout group"@loadout_group);
+}
+
+// Puts a changed list to use and saves it where the lists are loaded from: the WeaponList_Killstreak of the style in play.
+// Players who are already in the game keep the list they were sent until the next map.
+function SetGroup(byte GroupNum, array<string> Weapons)
+{
+	local WeaponList_Killstreak streaks;
+
+	streaks = new(None, class'BallisticGameStyles'.static.GetReplicatedStyle().default.StyleName) class'WeaponList_Killstreak';
+
+	if (GroupNum == 0)
 	{
-	case 0:
-		class'Mut_Killstreak'.default.Streak1s = weapons;
-		break;
-	case 1:
-		class'Mut_Killstreak'.default.Streak2s = weapons;
-		break;
-	}	
-	
-	Sender.ClientMessage("Mutate AddKillstreakWeapon: Success - added"@WI.ClassName@"to loadout group"@loadout_group); 
-	
-	class'Mut_Killstreak'.static.StaticSaveConfig();
+		Streak1s = Weapons;
+		streaks.Streak1s = Weapons;
+	}
+	else
+	{
+		Streak2s = Weapons;
+		streaks.Streak2s = Weapons;
+	}
+	streaks.SaveConfig();
 }
 
 function RemoveWeapon(PlayerController Sender, array<String> split_string)
@@ -395,18 +415,8 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 	
 	if (success)
 	{
-		switch(loadout_group)
-		{
-		case 0:
-			class'Mut_Killstreak'.default.Streak1s = weapons;
-			break;
-		case 1:
-			class'Mut_Killstreak'.default.Streak2s = weapons;
-			break;
-		}	
-		
-		class'Mut_Killstreak'.static.StaticSaveConfig();
-		
+		SetGroup(loadout_group, weapons);
+
 		Sender.ClientMessage("Mutate RemoveKillstreakWeapon: Success - removed"@split_string[2]@"from loadout group"@loadout_group); 
 	}
 	
