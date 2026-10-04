@@ -339,7 +339,8 @@ function bool InternalOnClick(GUIComponent Sender)
 function string GetDataString()
 {
 	local String ls;
-	if(lb_Weapons.List.Index == -1)
+	// A heading is no weapon. The list starts out on one.
+	if(lb_Weapons.List.Index == -1 || lb_Weapons.List.IsSection())
 		return "";
 	ls = lb_Weapons.List.GetExtra() $ "|" $ LayoutIndexList[lb_Weapons.List.Index] $ "|" $ CamoIndexList[lb_Weapons.List.Index]; //ew
 	return ls;
