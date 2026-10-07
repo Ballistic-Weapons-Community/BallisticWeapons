@@ -87,6 +87,13 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasShield=true;
 	}
+
+	// The sawn off mesh has the long gun's skeleton, muzzle bones included. Bring them back to where its barrels end
+	if (WeaponParams.LayoutMesh == SkeletalMesh'BWBP_SKC_Anim.SawnOff_FPm')
+	{
+		SetBoneLocation('tip', vect(-24,0,0), 1.0);
+		SetBoneLocation('tip2', vect(-24,0,0), 1.0);
+	}
 }
 
 simulated function PostNetBeginPlay()
