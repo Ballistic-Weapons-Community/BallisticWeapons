@@ -112,9 +112,7 @@ defaultproperties
 	RelativeLocation=(Z=6.000000)
 	DrawScale=0.175000
 	Skins(0)=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine'
-	Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine'
-	Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
-	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed'
-	Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front'
-	Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
+	Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
+	Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed'
+	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front'
 }
