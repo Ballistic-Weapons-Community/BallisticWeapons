@@ -1653,7 +1653,8 @@ simulated function Destroyed()
 
 	if (!IsSlave())
 	{
-		if(Instigator != None && Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
+		// not while another weapon is in hand, see BallisticWeapon.Destroyed
+		if(Instigator != None && (Instigator.Weapon == self || Instigator.Weapon == None) && Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
 		{
 			PlayerController(Instigator.Controller).bZooming = False;
 			PlayerController(Instigator.Controller).DesiredZoomLevel=0.0;

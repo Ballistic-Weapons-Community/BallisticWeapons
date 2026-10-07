@@ -4272,7 +4272,9 @@ simulated function Destroyed()
 			PlayerSpeedUp=false;
 		}
 		
-		if(Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
+		// Not while another weapon is in hand: its zoom and crosshair are not this one's to reset. A copy that is picked up
+		// and merged into the one already carried is destroyed too, and put the UT2004 crosshair under that weapon's own
+		if((Instigator.Weapon == self || Instigator.Weapon == None) && Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
 		{
 			PlayerController(Instigator.Controller).bZooming = False;
 			PlayerController(Instigator.Controller).DesiredZoomLevel=0.0;
