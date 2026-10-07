@@ -234,15 +234,24 @@ simulated function ApplySuppressorAim()
 simulated function Notify_SilencerOn()	{	PlaySound(SilencerOnSound,,0.5);	}
 simulated function Notify_SilencerOff()	{	PlaySound(SilencerOffSound,,0.5);	}
 
-simulated function Notify_SilencerShow(){	SetBoneScale (0, 1.0, SilencerBone);	bSilenced=True; SRS900PrimaryFire(BFireMode[0]).SetSilenced(true);}
-simulated function Notify_SilencerHide(){	SetBoneScale (0, 0.0, SilencerBone);	bSilenced=False; SRS900PrimaryFire(BFireMode[0]).SetSilenced(false);}
+simulated function Notify_SilencerShow(){	SetBoneScale (0, 1.0, SilencerBone);	bSilenced=True; SRS900PrimaryFire(BFireMode[0]).SetSilenced(true); UpdateAttachmentSilencer();}
+simulated function Notify_SilencerHide(){	SetBoneScale (0, 0.0, SilencerBone);	bSilenced=False; SRS900PrimaryFire(BFireMode[0]).SetSilenced(false); UpdateAttachmentSilencer();}
+
+simulated function UpdateAttachmentSilencer()
+{
+	if (Role == ROLE_Authority && SRS900Attachment(ThirdPersonActor) != None)
+		SRS900Attachment(ThirdPersonActor).SetSilenced(bSilenced);
+}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
 
 	if (AIController(Instigator.Controller) != None)
+	{
 		bSilenced = (FRand() > 0.5);
+		UpdateAttachmentSilencer();
+	}
 
 	if (bSilenced)
 		SetBoneScale (0, 1.0, SilencerBone);
