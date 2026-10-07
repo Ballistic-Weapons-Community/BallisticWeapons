@@ -323,7 +323,8 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 		
 	//Phase out Channel 1 if a sight fire animation has just ended.
-	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
+	// SightFire by name as well: the gauss charge filling up changes the fire params while it is still playing
+	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim || anim == 'SightFire')
 	{
 		AnimBlendParams(1, 0);
 		//Cut the basic fire anim if it's too long.
