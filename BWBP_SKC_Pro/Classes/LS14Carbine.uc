@@ -347,6 +347,9 @@ simulated event Tick (float DT)
 			//AmbientSound = BarrelSpinSound;
 			//SoundPitch = 32 + 96 * BarrelSpeed;
 		}
+
+		if (LS14Attachment(ThirdPersonActor) != None)
+			LS14Attachment(ThirdPersonActor).BarrelSpeed = BarrelSpeed;
 	}
 	
 	if (SelfHeatLevel > 0 && Level.TimeSeconds > SelfHeatDeclineTime)
