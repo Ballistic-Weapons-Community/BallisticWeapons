@@ -30,6 +30,19 @@ simulated function PostNetBeginPlay()
 	}
 }
 
+simulated function OnWeaponParamsChanged()
+{
+	super.OnWeaponParamsChanged();
+
+	// The light of its fire has the colour of the layout
+	if (LayoutIndex == 1)
+		LightHue = 210;
+	else if (LayoutIndex == 2)
+		LightHue = 10;
+	else
+		LightHue = default.LightHue;
+}
+
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
