@@ -143,7 +143,7 @@ function PlayFiring()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-	if (Level.NetMode == NM_DedicatedServer)
+	if (Level.NetMode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 	{
 		if (bVariableHeatProps && A49SkrithBlaster(BW).HeatLevel < 5)
 		{

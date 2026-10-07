@@ -39,7 +39,7 @@ function DoFireEffect()
 	
 	A49SkrithBlaster(BW).ConicalBlast(Damage, 512, Vector(Aim));
 	
-	if (Level.NetMode == NM_DedicatedServer)
+	if (Level.NetMode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 		A49SkrithBlaster(BW).AddHeat(HeatPerShot);
 }
 

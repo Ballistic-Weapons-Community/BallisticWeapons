@@ -33,7 +33,7 @@ function DoFireEffect()
 	local actor Other;
     local int SpawnCount;
     
-    if (level.Netmode == NM_DedicatedServer)
+    if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
     	 HVPCmk66PlasmaCannon(BW).AddHeat(0.25);
      
 	 if (Instigator == None || Weapon == None || Instigator.Health < 1)
