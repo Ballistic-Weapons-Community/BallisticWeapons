@@ -4321,6 +4321,9 @@ simulated function Destroyed()
     }
     
 	Super(Inventory).Destroyed();
+
+	if (Role == ROLE_Authority && Instigator != None)
+		class'NullGun'.static.RearmBot(Instigator, self);
 }
 
 function HolderDied()
