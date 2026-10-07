@@ -49,7 +49,10 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 			return Instigator.Weapon.GetEffectStart();
 	}
 	
-	return GetBoneCoords('tip').Origin;
+	// Not drawn lately: the bones are still where the pawn was last seen
+	if (Instigator == None || (Level.TimeSeconds - LastRenderTime) < 1)
+		return GetBoneCoords('tip').Origin;
+	return Instigator.Location;
 }
 
 simulated function Destroyed()
