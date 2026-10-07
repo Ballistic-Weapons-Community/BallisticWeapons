@@ -275,12 +275,34 @@ function MeleeDoTrace(Vector InitialStart, Rotator Dir)
 }
 */
 
+// The trace has an extent, so it is stopped with the middle of its box short of the surface: by up to the size of the box,
+// and the box may have run into something with one of its sides only. This finds the surface it ran into, straight on from the
+// middle of the box first, then from its sides and corners
+function bool GetTraceSurface (vector HitLocation, vector HitNormal, out vector SurfaceLoc, out vector SurfaceNormal, out Material SurfaceMat)
+{
+	local Vector	Offset;
+	local float		Reach;
+	local int		i;
+
+	// From the middle of the box to the surface, and a bit: the box is stopped a little before it touches
+	Reach = Abs(HitNormal.X) * TraceExtent.X + Abs(HitNormal.Y) * TraceExtent.Y + Abs(HitNormal.Z) * TraceExtent.Z + 8;
+	for (i=0; i<9; i++)
+	{
+		// 0, 1, -1 on each axis (the box is flat along X)
+		Offset.Y = TraceExtent.Y * ((i % 3 + 1) % 3 - 1);
+		Offset.Z = TraceExtent.Z * ((i / 3 + 1) % 3 - 1);
+		if (Trace(SurfaceLoc, SurfaceNormal, HitLocation + Offset - HitNormal * (Reach + (Offset Dot HitNormal)), HitLocation + Offset, false, , SurfaceMat) != None)
+			return true;
+	}
+	return false;
+}
+
 // Do the trace to find out where bullet really goes
 function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int Weight)
 {
 	local int							i;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLocation;
-	local Material					HitMaterial;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLocation, SurfaceLoc, SurfaceNormal;
+	local Material					HitMaterial, SurfaceMat;
 	local float						Dist;
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
@@ -374,7 +396,13 @@ function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int W
 					}
 				}
 				if (bWallHitter)
-					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+				{
+					// The attachments look for the surface close around the point they are sent
+					if (GetTraceSurface(HitLocation, HitNormal, SurfaceLoc, SurfaceNormal, SurfaceMat))
+						bHitWall = ImpactEffect (SurfaceLoc, SurfaceNormal, SurfaceMat, Other, WaterHitLoc);
+					else
+						bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+				}
 				break;
 			}
 			// Still in the same guy
