@@ -540,6 +540,9 @@ simulated event ModeDoFire()
 }
 
 //// server propagation of firing ////
+// A gun's melee attack (mode 2) is one strike with FireAnim, never a loop: its FireCount is not reset between attacks, and the
+// weapon waits for the end of FireAnim. A mesh with a sequence of the default loop name (the gun's own firing loop) would play
+// that for every melee attack after the first, and the weapon stayed in its strike for good
 function ServerPlayFiring()
 {
 	if (BallisticFireSound.Sound != None)
@@ -547,7 +550,7 @@ function ServerPlayFiring()
 
 	CheckClipFinished();
 
-	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+	if (FireCount > 0 && ThisModeNum != 2 && Weapon.HasAnim(FireLoopAnim))
 		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate / (1 + BW.MeleeFatigue * 0.75), 0.0, ,"FIRE");
 	else BW.SafePlayAnim(FireAnim, FireAnimRate / (1 + BW.MeleeFatigue * 0.75), TweenTime, ,"FIRE");
 }
@@ -558,7 +561,7 @@ function PlayFiring()
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
 		
-	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+	if (FireCount > 0 && ThisModeNum != 2 && Weapon.HasAnim(FireLoopAnim))
 		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate / (1 + BW.MeleeFatigue * 0.75), 0.0, ,"FIRE");
 	else BW.SafePlayAnim(FireAnim, FireAnimRate / (1 + BW.MeleeFatigue * 0.75), TweenTime, ,"FIRE");
 	
