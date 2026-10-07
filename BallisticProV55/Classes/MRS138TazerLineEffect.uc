@@ -27,12 +27,26 @@ simulated function SetTarget(Pawn Targ)
 		SetTimer(EffectInterval, True);
 
 		class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval * 1.5);
+		TazeOverlay();
 	}
 		
 	// don't spawn this shit for the player who has been hit
 	// it's blinding
 	if (!Target.IsLocallyControlled() && Flash == None)
 		Flash = spawn(class'MRS138TazerPlayerEffect',Targ);
+}
+
+// The electric effect on the target's body is the damage overlay of the tazer's damage type. A pawn only shows it
+// for hits that take health, so armor that takes all the damage stops it, while the target is tazed all the same.
+// Set it here unless the hit has just done so: set twice in a tick its timer ends up as it was, and clients, who
+// are told to start it again by a change of that timer, would let it run out
+function TazeOverlay()
+{
+	local Material M;
+
+	M = class'DTMRS138TazerLine'.default.DamageOverlayMaterial;
+	if (Target.OverlayMaterial != M || Target.ClientOverlayCounter < Target.OverlayTimer)
+		Target.SetOverlayMaterial(M, class'DTMRS138TazerLine'.default.DamageOverlayTime, false);
 }
 
 function Timer()
@@ -55,6 +69,8 @@ function Timer()
 	class'BallisticDamageType'.static.GenericHurt (Target, 7, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTMRS138TazerLine');
 	
 	class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval);
+	if (Target.Health > 0)
+		TazeOverlay();
 }
 
 simulated function UpdateTargets()
