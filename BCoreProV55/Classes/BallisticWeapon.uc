@@ -5217,6 +5217,10 @@ function InitWeaponFromTurret(BallisticTurret Turret)
 }
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret);
 function InitTurretWeapon(BallisticTurret Turret);
+// Whatever else a weapon keeps when it is deployed and when it is picked up again (a silencer...): the turret holds on to
+// what GetTurretData gives and hands it to SetTurretData of its turret weapon and of the weapon it gives back
+function int GetTurretData()	{	return 0;	}
+function SetTurretData(int Data);
 //same for automated turrets
 function InitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret)
 {

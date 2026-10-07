@@ -13,6 +13,7 @@ var byte LayoutIndex;
 var byte CamoIndex;
 var int TurretAmmoAmount;
 var int WeaponMode;
+var int WeaponData;
 
 replication
 {
@@ -63,6 +64,7 @@ simulated function Timer()
 					BW.MagAmmo = MagAmmo;
 					BW.SetAmmoTo(TurretAmmoAmount, 0);
 					BW.CurrentWeaponMode = WeaponMode;
+					BW.SetTurretData(WeaponData);
 				}
 			}
 			

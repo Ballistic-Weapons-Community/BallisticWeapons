@@ -62,6 +62,7 @@ var() const int MinTurretEyeDepth;
 var() int		AmmoAmount[2];
 var() int		MagAmmoAmount;
 var() byte		WeaponMode;
+var   int		WeaponData;				// BallisticWeapon.GetTurretData of the weapon
 var   bool		bWeaponDeployed;		// Used by weapons so they don't need to play deploy when already deployed turret is grabbed on the fly
 // ----------
 
@@ -254,6 +255,7 @@ function InitDeployedTurretFor(Weapon Weap)
 	{
 		MagAmmoAmount = BallisticWeapon(Weap).MagAmmo;
 		WeaponMode = 	BallisticWeapon(Weap).CurrentWeaponMode;
+		WeaponData =	BallisticWeapon(Weap).GetTurretData();
 		CamoIndex = BallisticWeapon(Weap).CamoIndex;
 		LayoutIndex = BallisticWeapon(Weap).LayoutIndex;
 		if (BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).WeaponCamo != None)
@@ -291,6 +293,7 @@ function InitTurretWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitTurretWeapon(self);
+		BallisticWeapon(Weap).SetTurretData(WeaponData);
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
 //	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);
@@ -318,6 +321,7 @@ function InitUndeployedWeapon(Weapon Weap)
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
 		if (bCockingPullout)
 			BallisticWeapon(Weap).bNeedCock = true;
+		BallisticWeapon(Weap).SetTurretData(WeaponData);
 
 		BallisticWeapon(Weap).SetAmmoTo(AmmoAmount[0], 0); // Stops the infinite ammo exploit when you undeploy 
 	}
@@ -734,6 +738,7 @@ function UndeployTurret ()
 			BTI.CamoIndex = CamoIndex;
 			BTI.TurretAmmoAmount = AmmoAmount[0];
 			BTI.WeaponMode = WeaponMode;
+			BTI.WeaponData = WeaponData;
 			if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
 				GotoState('NetTrapped');
 			else
