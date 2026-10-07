@@ -539,7 +539,7 @@ function bool CanAttack(Actor Other)
         return false;
 	}
 
-	if (HeatLevel >= 10 && !IsGoingToVent())
+	if (HeatLevel >= 9.5 && !IsGoingToVent())
 	{
 		BotReload();
         return false;

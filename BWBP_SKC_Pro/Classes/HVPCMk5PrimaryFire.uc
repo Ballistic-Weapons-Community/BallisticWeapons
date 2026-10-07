@@ -21,6 +21,9 @@ simulated function float GetCrosshairInaccAngle()
 
 simulated function bool AllowFire()
 {
+	// A bot holds the shot that would blow the cannon up
+	if (!HVPCMk5PlasmaCannon(BW).bMilSpec && AIController(Instigator.Controller) != None && HVPCMk5PlasmaCannon(BW).HeatLevel >= 9.5)
+		return false;
 	if ((HVPCMk5PlasmaCannon(BW).HeatLevel >= 11.5) || HVPCMk5PlasmaCannon(BW).bIsVenting || !super.AllowFire())
 		return false;
 	return true;

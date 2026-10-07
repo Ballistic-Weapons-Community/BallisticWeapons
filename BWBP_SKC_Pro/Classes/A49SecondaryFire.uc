@@ -13,6 +13,9 @@ var float	Damage;
 
 simulated function bool AllowFire()
 {
+	// A bot holds the shot that would burn it
+	if (!A49SkrithBlaster(Weapon).bVariableHeatProps && AIController(Instigator.Controller) != None && A49SkrithBlaster(Weapon).HeatLevel + HeatPerShot >= 9.75)
+		return false;
 	if ((A49SkrithBlaster(Weapon).HeatLevel >= 12) || !super.AllowFire())
 		return false;
 	return true;

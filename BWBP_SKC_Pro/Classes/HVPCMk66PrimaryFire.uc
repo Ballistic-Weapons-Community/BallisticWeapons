@@ -10,6 +10,9 @@ var() Sound			FailSound;
 
 simulated function bool AllowFire()
 {
+	// A bot holds the shot that would blow the cannon up
+	if (AIController(Instigator.Controller) != None && HVPCMk66PlasmaCannon(Weapon).HeatLevel + 5 > 10)
+		return false;
 	if ((HVPCMk66PlasmaCannon(Weapon).HeatLevel >= 9.5) || HVPCMk66PlasmaCannon(Weapon).bIsVenting || !super.AllowFire())
 		return false;
 	return true;
