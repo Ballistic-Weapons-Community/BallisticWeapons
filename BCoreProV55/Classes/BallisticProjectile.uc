@@ -723,10 +723,16 @@ simulated function Penetrate(Actor Other, Vector HitLocation)
     local bool bOldCollideActors;
 
     X = Normal(Velocity);
-    bOldCollideActors = bCollideActors;
-    SetCollision(false, false, false);
-    SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
-    SetCollision(bOldCollideActors, default.bBlockActors, default.bBlockPlayers);
+    // A projectile spawned inside its target is touched while it is still being spawned. It has no velocity yet, so
+    // there is nowhere to move it to, and switching its collision off and on at that point puts it in the collision
+    // octree a second time ("Octree Warning (AddActor): ... Already In Octree")
+    if (X != vect(0,0,0))
+    {
+        bOldCollideActors = bCollideActors;
+        SetCollision(false, false, false);
+        SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
+        SetCollision(bOldCollideActors, default.bBlockActors, default.bBlockPlayers);
+    }
     if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
          PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, Other.SurfaceType, Owner, 4/*HF_NoDecals*/);
 }
