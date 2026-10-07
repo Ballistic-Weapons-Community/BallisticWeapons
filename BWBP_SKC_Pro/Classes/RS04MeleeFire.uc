@@ -49,6 +49,14 @@ function PlayPreFire()
 		PreFireAnim = 'MeleePrepOpen';
 	else
 		PreFireAnim = 'MeleePrep';
+	// The mesh with the knife has them under other names
+	if (!Weapon.HasAnim(PreFireAnim))
+	{
+		if (BW.MagAmmo == 0)
+			PreFireAnim = 'PrepMeleeOpen';
+		else
+			PreFireAnim = 'PrepMelee';
+	}
 	super.PlayPreFire();
 
 	RS04Pistol(Weapon).bStriking = true;
