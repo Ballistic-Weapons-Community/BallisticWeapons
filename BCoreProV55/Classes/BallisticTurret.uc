@@ -298,6 +298,8 @@ function InitTurretWeapon(Weapon Weap)
 // A weapon is given to a player when this turret is undeployed. Chance to send some info to that weapon.
 function InitUndeployedWeapon(Weapon Weap)
 {
+	local bool bCockingPullout;
+
 	if (BallisticWeapon(Weap) != None)
 	{
 		//turrets now have different firemodes when (un)mounted, so we'll be setting params to the default from now on
@@ -310,7 +312,12 @@ function InitUndeployedWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
+		// Offline the weapon is being brought up by now, with its cocking pullout if it needed cocking. Weapons clear bNeedCock in
+		// InitWeaponFromTurret, and the pullout then went on without its cocking sound. Let it finish as the cocking it is
+		bCockingPullout = Weap.ClientState == WS_BringUp && BallisticWeapon(Weap).bNeedCock && BallisticWeapon(Weap).BringUpTime == BallisticWeapon(Weap).CockingBringUpTime;
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
+		if (bCockingPullout)
+			BallisticWeapon(Weap).bNeedCock = true;
 
 		BallisticWeapon(Weap).SetAmmoTo(AmmoAmount[0], 0); // Stops the infinite ammo exploit when you undeploy 
 	}
