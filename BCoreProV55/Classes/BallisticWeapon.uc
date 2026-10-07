@@ -6017,6 +6017,7 @@ defaultproperties
      ItemName="BallisticWeapon"
      LightPeriod=3
      AmbientGlow=12
+     bAcceptsProjectors=False
      TransientSoundVolume=0.500000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }
