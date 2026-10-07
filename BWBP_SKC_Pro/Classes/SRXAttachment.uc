@@ -25,9 +25,25 @@ replication
 //Do your camo changes here
 simulated function PostNetBeginPlay()
 {
-	SetBoneScale (0, 0.0, 'Silencer');
-	SetBoneScale (1, 0.0, 'AMP');
+	SetSilenced(bSilenced);
+	SetAmped(bAmped);
 	Super.PostNetBeginPlay();
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	// A rifle that is drawn again still has its suppressor or amp
+	if (SRXRifle(I) != None)
+	{
+		SetSilenced(SRXRifle(I).bSilenced);
+		if (SRXRifle(I).bAmped && SRXRifle(I).AmpCharge > 0)
+		{
+			SetAmped(true);
+			SetAmpColour(SRXRifle(I).CurrentWeaponMode == 1, SRXRifle(I).CurrentWeaponMode == 2);
+		}
+	}
 }
 
 simulated event PostNetReceive()
@@ -107,7 +123,7 @@ simulated event ThirdPersonEffects()
 		else
 		{
 			SetBoneScale (0, 0.0, 'Silencer');
-			SetBoneScale (0, 0.0, 'AMP');			
+			SetBoneScale (1, 0.0, 'AMP');			
 		}
     }
 	super.ThirdPersonEffects();
