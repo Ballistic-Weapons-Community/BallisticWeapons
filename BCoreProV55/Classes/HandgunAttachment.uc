@@ -78,6 +78,10 @@ simulated function FlashWeaponLight(byte Mode)
 	}
 	if (HandGun != None)
 		LightWeapon = HandGun;
+	// Clients don't have HandGun for the master. For the local player use the gun in hand, like other weapons do:
+	// in first person this attachment is not where the player is
+	else if (!bIsSlave && Instigator.Weapon != None)
+		LightWeapon = Instigator.Weapon;
 	else
 		LightWeapon = self;
 

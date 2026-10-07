@@ -522,6 +522,12 @@ simulated event WeaponTick(float DT)
 
 	else if (IsSlave())
 	{	
+		// The engine keeps Pawn.Weapon at the pawn when it isn't drawn in first person, but not the slave:
+		// its sounds and weapon light stayed where it was last drawn
+		if (!Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None
+			|| PlayerController(Instigator.Controller).ViewTarget != Instigator || PlayerController(Instigator.Controller).bBehindView)
+			SetLocation(Instigator.Location);
+
 		// Timers and ModeDoFire need to be called manually for slave...
 		for (m=0;m<NUM_FIRE_MODES;m++)
 		{
