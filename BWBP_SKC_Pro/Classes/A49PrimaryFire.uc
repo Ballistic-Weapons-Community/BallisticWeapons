@@ -99,10 +99,11 @@ simulated event ModeDoFire()
         GotoState('ChargeFire'); 
 	if (level.Netmode == NM_Standalone && bVariableHeatProps)
 	{
+		// from this gun's own interval: default.FireRate is whatever the last A49 to set its fire mode up left there, any layout's
 		if (A49SkrithBlaster(BW).HeatLevel >= 5)
-			FireRate = default.FireRate - FRand()/20 - (0.1/A49SkrithBlaster(BW).HeatLevel);
+			FireRate = Params.FireInterval - FRand()/20 - (0.1/A49SkrithBlaster(BW).HeatLevel);
 		else
-			FireRate = default.FireRate - FRand()/8 + (A49SkrithBlaster(BW).HeatLevel/25);
+			FireRate = Params.FireInterval - FRand()/8 + (A49SkrithBlaster(BW).HeatLevel/25);
 	}
 	Super.ModeDoFire();
 
