@@ -109,6 +109,17 @@ simulated function Tick(float DT)
 	}
 }
 
+// Put the slave in the left hand: SlavePivot and SlaveOffset, with the turn and shift the gun's mesh needs in the right
+// hand (its default RelativeRotation and RelativeLocation) kept on top
+simulated function PlaceSlave()
+{
+	local vector X, Y, Z;
+
+	GetAxes(default.RelativeRotation, X, Y, Z);
+	SetRelativeRotation(OrthoRotation(X >> SlavePivot, Y >> SlavePivot, Z >> SlavePivot));
+	SetRelativeLocation(SlaveOffset + (default.RelativeLocation >> SlavePivot));
+}
+
 simulated function PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
@@ -116,8 +127,7 @@ simulated function PostNetBeginPlay()
 	{
 		if (Instigator!= None && Instigator.Weapon != None && BallisticHandgun(Instigator.Weapon) != None && BallisticHandgun(Instigator.Weapon).OtherGun != None)
 			Handgun = BallisticHandgun(Instigator.Weapon).OtherGun;
-		SetRelativeRotation(SlavePivot);
-		SetRelativeLocation(SlaveOffset);
+		PlaceSlave();
 	}
 }
 
@@ -131,8 +141,7 @@ function InitFor(Inventory I)
 		if (Handgun.IsSlave())
 		{
 			bIsSlave = true;
-			SetRelativeRotation(SlavePivot);
-			SetRelativeLocation(SlaveOffset);
+			PlaceSlave();
 		}
 		else
 		{

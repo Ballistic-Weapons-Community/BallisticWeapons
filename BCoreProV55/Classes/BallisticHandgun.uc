@@ -1401,7 +1401,9 @@ function AttachToPawn(Pawn P)
 	if (IsSlave())
 	{
 		BoneName = P.GetOffHandBoneFor(self);
-		ThirdPersonActor.SetRelativeRotation(rot(0,32768,0));
+		// a HandgunAttachment has placed itself in InitFor
+		if (HandgunAttachment(ThirdPersonActor) == None)
+			ThirdPersonActor.SetRelativeRotation(rot(0,32768,0));
 	}
 	else
 		BoneName = P.GetWeaponBoneFor(self);

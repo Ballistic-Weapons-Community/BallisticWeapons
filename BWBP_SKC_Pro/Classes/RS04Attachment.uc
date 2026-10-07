@@ -218,7 +218,6 @@ simulated function FlashMuzzleFlash(byte Mode)
 defaultproperties
 {
 	WeaponClass=class'RS04Pistol'
-	SlavePivot=(Roll=32768)
 	MuzzleFlashClass=class'XK2FlashEmitter'
     AltMuzzleFlashClass=class'AM67FlashEmitter'
 	ImpactManager=class'IM_Bullet'
