@@ -94,6 +94,21 @@ simulated function OnWeaponParamsChanged()
 		SetBoneLocation('tip', vect(-24,0,0), 1.0);
 		SetBoneLocation('tip2', vect(-24,0,0), 1.0);
 	}
+
+	// The trench gun's mesh has its melee attack under other names. The melee fire mode comes from the object pool, so set it either way
+	if (MeleeFireMode != None)
+	{
+		if (HasAnim(MeleeFireClass.default.FireAnim))
+		{
+			MeleeFireMode.PreFireAnim = MeleeFireClass.default.PreFireAnim;
+			MeleeFireMode.FireAnim = MeleeFireClass.default.FireAnim;
+		}
+		else
+		{
+			MeleeFireMode.PreFireAnim = 'PrepWrench';
+			MeleeFireMode.FireAnim = 'Wrench';
+		}
+	}
 }
 
 simulated function PostNetBeginPlay()
