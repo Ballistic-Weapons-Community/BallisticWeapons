@@ -2390,6 +2390,29 @@ simulated function RenderSightFX(Canvas Canvas)
 	}
 }
 
+// The engine turns an actor on a bone by reading a rotation off the bone's axes. On the mirrored left hand mesh those
+// axes are mirrored too, and what it reads is rolled the wrong way round. Roll each augment by as much as that is off.
+simulated function MirrorGunAugments()
+{
+	local int i;
+	local coords C;
+	local vector X, Y, Z;
+	local rotator R;
+
+	for (i = 0; i < GunAugments.Length && i < WeaponParams.GunAugments.Length; i++)
+	{
+		if (GunAugments[i] == None)
+			continue;
+		R = WeaponParams.GunAugments[i].AugmentRot;
+		C = GetBoneCoords(WeaponParams.GunAugments[i].BoneName);
+		GetAxes(R, X, Y, Z);
+		// the roll the engine reads for the augment as its layout turns it
+		R.Roll += 32768 - 2 * OrthoRotation(C.XAxis * X.X + C.YAxis * X.Y + C.ZAxis * X.Z,
+			C.XAxis * Y.X + C.YAxis * Y.Y + C.ZAxis * Y.Z, C.XAxis * Z.X + C.YAxis * Z.Y + C.ZAxis * Z.Z).Roll;
+		GunAugments[i].SetRelativeRotation(R);
+	}
+}
+
 simulated function DrawFPWeapon( Canvas Canvas )
 {
     local int m;
@@ -2442,6 +2465,8 @@ simulated function DrawFPWeapon( Canvas Canvas )
 				NewScale3D = GunAugments[m].Default.DrawScale3D;
 				if (Hand < 0)
 					NewScale3D.Y *= -1;
+				else if (m < WeaponParams.GunAugments.Length)
+					GunAugments[m].SetRelativeRotation(WeaponParams.GunAugments[m].AugmentRot);
 				GunAugments[m].SetDrawScale3D(NewScale3D);
 			}
 		}
@@ -2513,6 +2538,8 @@ simulated function DrawFPWeapon( Canvas Canvas )
 	PreDrawFPWeapon();	// Laurent -- Hook to override things before render (like rotation if using a staticmesh)
 
     bDrawingFirstPerson = true;
+	if (RenderedHand < 0)
+		MirrorGunAugments();
     Canvas.DrawActor(self, false, false, DisplayFOV);
     bDrawingFirstPerson = false;
 	if ( Hand == 0 )
