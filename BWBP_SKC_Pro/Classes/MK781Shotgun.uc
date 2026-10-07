@@ -784,7 +784,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			ServerFlashlight(FRand() > 0.5);
 		}
 		if (bHasSuppressor)
+		{
 			bSilenced = (FRand() > 0.5);
+			if (Mk781Attachment(ThirdPersonActor) != None)
+				Mk781Attachment(ThirdPersonActor).SetSilenced(bSilenced);
+		}
 	}
 
 	if ( ThirdPersonActor != None )
