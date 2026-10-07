@@ -8,13 +8,56 @@
 //=============================================================================
 class DragonsToothAttachment extends BallisticMeleeAttachment;
 
-var   bool					bRedTeam;	//Owned by red team?
 var   bool					bNoGlow;	//The layout's blade does not glow
+var   Shader				BladeShader;	//The camo's skin, blended in for this mesh
 
-replication
+// The camos' skins are the first person ones. On that mesh the glass of the blade is a material of its own and the main skin
+// leaves the blade out; this mesh has the one material, and only the cracks were left of the nanoblack and royal blades.
+// So the skin is blended in here, the way the mesh's own DTS-Shine3rd is.
+simulated function ApplyCamo()
 {
-	reliable if ( Role==ROLE_Authority )
-		bRedTeam;
+	local Shader CamoShader;
+
+	Super.ApplyCamo();
+
+	if (Level.NetMode == NM_DedicatedServer || Skins.Length == 0)
+		return;
+
+	CamoShader = Shader(Skins[0]);
+	if (CamoShader == None || CamoShader == BladeShader || CamoShader.OutputBlending != OB_Masked)
+		return;
+
+	if (BladeShader == None)
+		BladeShader = Shader(Level.ObjectPool.AllocateObject(class'DTSBladeShader'));
+	if (BladeShader == None)
+		return;
+
+	BladeShader.Diffuse = CamoShader.Diffuse;
+	BladeShader.Opacity = CamoShader.Opacity;
+	BladeShader.Specular = CamoShader.Specular;
+	BladeShader.SpecularityMask = CamoShader.SpecularityMask;
+	BladeShader.SelfIllumination = CamoShader.SelfIllumination;
+	BladeShader.SelfIlluminationMask = CamoShader.SelfIlluminationMask;
+	BladeShader.Detail = CamoShader.Detail;
+	BladeShader.DetailScale = CamoShader.DetailScale;
+	BladeShader.TwoSided = CamoShader.TwoSided;
+	BladeShader.Wireframe = CamoShader.Wireframe;
+	BladeShader.PerformLightingOnSpecularPass = CamoShader.PerformLightingOnSpecularPass;
+	BladeShader.ModulateSpecular2X = CamoShader.ModulateSpecular2X;
+	BladeShader.FallbackMaterial = CamoShader.FallbackMaterial;
+	BladeShader.OutputBlending = OB_Normal;
+	Skins[0] = BladeShader;
+}
+
+simulated function Destroyed()
+{
+	if (BladeShader != None)
+	{
+		Level.ObjectPool.FreeObject(BladeShader);
+		BladeShader = None;
+	}
+
+	Super.Destroyed();
 }
 
 simulated function ApplyModel()
@@ -47,25 +90,6 @@ simulated event Tick(float DT)
 		LightType = LT_None;
 	else
 		LightType = LT_Steady;
-}
-
-simulated function PostNetBeginPlay()
-{
-     Super.PostNetBeginPlay();
-     
-	if (Instigator != None)
-	{
-		if ((Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) || bRedTeam )
-		{
-			if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 || bRedTeam )
-			{
-				Skins[0] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red3rd';
-				LightHue=5;
-			}			
-			else if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 1 )
-				Skins[0] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Shine3rd';
-		}
-	}
 }
 
 defaultproperties

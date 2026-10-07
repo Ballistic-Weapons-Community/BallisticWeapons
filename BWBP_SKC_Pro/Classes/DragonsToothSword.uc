@@ -61,16 +61,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
 
-	if ((Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) )
-	{
-		if ( bIsRed /*Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame */)
-		{
-			//Skins[1] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red';
-			if (ThirdPersonActor != None)
-				DragonsToothAttachment(ThirdPersonActor).bRedTeam=true;	
-		}
-	}
-
 	Instigator.AmbientSound = LoopAmbientSound;
 	Instigator.SoundVolume = 255;
 	Instigator.SoundPitch = 48;
