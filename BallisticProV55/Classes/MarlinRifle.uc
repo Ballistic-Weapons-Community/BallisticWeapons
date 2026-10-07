@@ -330,6 +330,13 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
 		bPreventReload=False;
+		// SightFire leaves the lever alone and has no notify to work it afterwards, as Fire has
+		if (anim != BFireMode[0].FireAnim && bNeedCock && ReloadState == RS_None && MagAmmo > 0)
+		{
+			CommonCockGun(1);
+			if (ReloadState == RS_Cocking)
+				return;
+		}
 	}
 
 	// Modified stuff from Engine.Weapon

@@ -31,6 +31,7 @@ defaultproperties
 		FireInterval=1
 		bCockAfterFire=True
 		FireEndAnim=
+		AimedFireAnim="SightFire"
 		FireAnimRate=1.150000	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
