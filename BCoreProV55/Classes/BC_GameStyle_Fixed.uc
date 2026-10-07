@@ -113,8 +113,6 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.KillRewardHealthMax			= default.KillRewardHealthMax;
 	rep.ShieldKillReward			= default.ShieldKillReward;
 	rep.KillRewardShieldMax			= default.KillRewardShieldMax;
-
-	rep.bNoRandomCamo				= false;
 }
 
 defaultproperties
