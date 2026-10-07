@@ -363,6 +363,9 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		SelectAnim = 'Pullout';
 		PutDownAnim = 'Putaway';
 	}
+	// The mesh has no PulloutOpen: with no select anim to play, the empty gun just appears
+	if (!HasAnim(SelectAnim))
+		SelectAnim = 'Pullout';
 	Super.BringUp(PrevWeapon);
 }
 
@@ -401,6 +404,8 @@ simulated event AnimEnd (int Channel)
 			FlashlightAnim = 'FlashLightToggle';
 			SensorLoadAnim = 'ReloadLauncher';
 		}
+		if (!HasAnim(SelectAnim))
+			SelectAnim = 'Pullout';
 	}
 	Super.AnimEnd(Channel);
 }
