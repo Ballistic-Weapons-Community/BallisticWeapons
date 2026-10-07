@@ -154,10 +154,21 @@ simulated function PostBeginPlay()
 }
 
 
+// Not while the gun is still coming up or going down. Only the owner's side knows that
+exec simulated function SwitchWeaponMode (optional byte ModeNum)
+{
+	if (ClientState != WS_ReadyToFire)
+		return;
+	Super.SwitchWeaponMode(ModeNum);
+}
+
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (ReloadState != RS_None || ClientState != WS_ReadyToFire || !HasAmmo())
+	if (ReloadState != RS_None || !HasAmmo())
+		return;
+	// ClientState stays WS_None on the server when the owner is a remote client
+	if (ClientState != WS_ReadyToFire && (ClientState != WS_None || Instigator.Weapon != self))
 		return;
 	Super.ServerSwitchWeaponMode(NewMode);
 	ServerStartReload(2);
