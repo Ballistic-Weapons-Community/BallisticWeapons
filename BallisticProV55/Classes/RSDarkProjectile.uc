@@ -142,12 +142,15 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		if (i>=Other.Attached.length)
 		{
 			PB = Spawn(class'RSDarkPlasmaBurner',Other,,Other.Location);
-			PB.Initialize(Other);
-			PB.AddPower(8);
-			if (Instigator!=None)
+			if (PB != None)
 			{
-				PB.Instigator = Instigator;
-				PB.InstigatorController = Instigator.Controller;
+				PB.Initialize(Other);
+				PB.AddPower(8);
+				if (Instigator!=None)
+				{
+					PB.Instigator = Instigator;
+					PB.InstigatorController = Instigator.Controller;
+				}
 			}
 		}
 	}
