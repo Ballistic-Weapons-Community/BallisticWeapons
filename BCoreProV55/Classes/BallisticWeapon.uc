@@ -4697,7 +4697,8 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
     	//First Weapon
         if ( (CurrentChoice == None) )
         {
-            if ( CurrentWeapon != self )
+			// not a second gun of the weapon in hand: nothing replaces a choice that sorts the same as the weapon in hand
+            if ( CurrentWeapon != self && Class != CurrentWeapon.Class )
                 CurrentChoice = self;
 			if ( Inventory == None )
 				return CurrentChoice;
@@ -4772,7 +4773,8 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
     	// - First Weapon Selected
         if ( (CurrentChoice == None) )
         {
-            if ( CurrentWeapon != self )
+			// not a second gun of the weapon in hand: nothing replaces a choice that sorts the same as the weapon in hand
+            if ( CurrentWeapon != self && Class != CurrentWeapon.Class )
                 CurrentChoice = self;
 			if ( Inventory == None )
 				return CurrentChoice;
