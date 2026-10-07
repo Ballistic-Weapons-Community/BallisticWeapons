@@ -1747,7 +1747,8 @@ Begin:
 	OtherGun.SetBoneScale(8, 0.0, OtherGun.SupportHandBone);
 	SafePlayAnim(SelectAnim, 2, 0.1);
 	FinishAnim();
-	OtherGun.HandgunRaised(self);
+	if (OtherGun != None)
+		OtherGun.HandgunRaised(self);
 	HandgunRaised(self);
 	if (ClientState == WS_ReadyToFire)
 		PlayIdle();
