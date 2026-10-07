@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XK2Attachment extends BallisticAttachment;
+class XK2Attachment extends HandgunAttachment;
 
 var int IceFireCount, OldIceFireCount;
 var() class<BCTraceEmitter>	IceTracerClass;	//Emitter to sue for under water tracer
@@ -229,6 +229,12 @@ defaultproperties
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Primary
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	IdleHeavyAnim="RifleHip_Idle"
+	IdleRifleAnim="RifleAimed_Idle"
+	SingleFireAnim="RifleHip_Fire"
+	SingleAimedFireAnim="RifleAimed_Fire"
+	RapidFireAnim="RifleHip_Burst"
+	RapidAimedFireAnim="RifleAimed_Burst"
 	ReloadAnim="Reload_AR"
 	CockingAnim="Cock_RearPull"
 	ReloadAnimRate=0.975000
