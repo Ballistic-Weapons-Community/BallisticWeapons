@@ -113,6 +113,25 @@ simulated function Destroyed()
 	super.Destroyed();
 }
 
+// The glow hangs on the first person blade and stays where that was last drawn: in behind view and with bots its light was left
+// standing there. Then the third person blade has the light.
+simulated event WeaponTick(float DT)
+{
+	local PlayerController PC;
+
+	Super.WeaponTick(DT);
+
+	if (BladeGlow != None)
+	{
+		// whoever is watching through this pawn's eyes, its own player or a spectator
+		PC = Level.GetLocalPlayerController();
+		if (Instigator != None && PC != None && PC.ViewTarget == Instigator && !PC.bBehindView)
+			BladeGlow.LightType = BladeGlow.default.LightType;
+		else
+			BladeGlow.LightType = LT_None;
+	}
+}
+
 
 simulated function BladeEffectStart()
 {
