@@ -10,7 +10,8 @@ class A42Attachment extends HandgunAttachment;
 
 var Actor GlowFX;
 
-// The glow, muzzle flashes and beam have the colour of the layout. The layout is known here, not yet in PostBeginPlay
+// The glow, muzzle flashes, beam and the beam's impact have the colour of the layout. The layout is known here, not yet
+// in PostBeginPlay
 simulated function ApplyModel()
 {
 	local class<Actor> GlowClass;
@@ -23,6 +24,9 @@ simulated function ApplyModel()
 		ModeInfos[0].MuzzleFlashClass = class'A42FlashEmitterBal';
 		ModeInfos[1].MuzzleFlashClass = class'A42FlashEmitterBal';
 		TracerClass = class'TraceEmitter_A42BeamRed';
+		// mode 0 as well: clients do the beam's direct hits with it
+		ModeInfos[0].ImpactManager = class'IM_A42ProjectileBal';
+		ModeInfos[1].ImpactManager = class'IM_A42ProjectileBal';
 	}
 	else if (LayoutIndex == 2)
 		GlowClass = class'A42AmbientFXGreen';
