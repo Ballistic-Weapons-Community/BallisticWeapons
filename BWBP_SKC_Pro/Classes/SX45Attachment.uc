@@ -80,7 +80,7 @@ simulated event PostNetReceive()
 	if (bAmp2 != bOldAmp2)	//RAD
 	{
 		bOldAmp2 = bAmp2;
-		if (bAmped && bAmp1)
+		if (bAmped && bAmp2)
 		{
 			Skins[5]=AmpMaterials[0];
 			Skins[6]=AmpMaterials[3];
