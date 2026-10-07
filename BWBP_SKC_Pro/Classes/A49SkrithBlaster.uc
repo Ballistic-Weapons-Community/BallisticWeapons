@@ -48,6 +48,12 @@ simulated function OnWeaponParamsChanged()
 	{
 		bCharging=true;
 	}
+
+	// The light of its fire has the colour of the layout
+	if (LayoutIndex == 1)
+		LightHue = 0;
+	else
+		LightHue = default.LightHue;
 }
 
 simulated function float ChargeBar()

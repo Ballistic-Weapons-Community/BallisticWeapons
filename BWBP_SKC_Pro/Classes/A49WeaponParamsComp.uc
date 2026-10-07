@@ -108,6 +108,25 @@ defaultproperties
 		FireEffectParams(0)=FireEffectParams'ArenaAltEffectParams'
 	End Object
 
+	//Red shockwave for the Elite layout
+	Begin Object Class=FireEffectParams Name=ArenaAltEffectParams_Red
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.A49FlashEmitterRed'
+		FlashScaleFactor=0.500000
+     	Recoil=512.000000
+     	Chaos=0.500000
+		PushbackForce=1500.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
+     	WarnTargetPct=0.100000
+		BotRefireRate=0.900000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaAltFireParams_Red
+		FireAnim="AltFire"
+		FireInterval=1.25
+     	AmmoPerFire=8
+		FireEffectParams(0)=FireEffectParams'ArenaAltEffectParams_Red'
+	End Object
+
     //=================================================================
     // RECOIL
     //=================================================================
@@ -184,7 +203,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_ChargeBomb'
-        AltFireParams(0)=FireParams'ArenaAltFireParams'
+        AltFireParams(0)=FireParams'ArenaAltFireParams_Red'
     End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams_Pink

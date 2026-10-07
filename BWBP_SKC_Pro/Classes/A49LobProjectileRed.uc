@@ -45,8 +45,8 @@ defaultproperties
 	MotionBlurFactor=2.000000
 	MotionBlurTime=2.000000
 	MyDamageType=Class'BWBP_SKC_Pro.DTA49Skrith'
-	LightHue=150
-	LightSaturation=0
+	LightHue=15
+	LightSaturation=40
 	LightBrightness=225.000000
 	LightRadius=18.000000
 	StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
