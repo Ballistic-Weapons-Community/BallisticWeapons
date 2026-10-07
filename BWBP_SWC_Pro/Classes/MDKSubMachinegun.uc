@@ -86,6 +86,8 @@ simulated function SwitchScopeType(bool bNewScope)
 	
 	bScopeAnimEnded = False;
 	bScopeOn = bNewScope;
+	if (Role == ROLE_Authority && MDKAttachment(ThirdPersonActor) != None)
+		MDKAttachment(ThirdPersonActor).SetScope(bScopeOn);
 	
 	SetBoneScale(2, 1.0, ScopeBone);
 	

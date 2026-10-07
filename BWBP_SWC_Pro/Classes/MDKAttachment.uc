@@ -10,11 +10,13 @@ class MDKAttachment extends BallisticAttachment;
 
 var   bool		bSilenced;		//Suppressor is on the barrel
 var   bool		bOldSilenced;
+var   bool		bScopeOn;		//Scope is on the rail
+var   bool		bOldScopeOn;
 
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bSilenced;
+		bSilenced, bScopeOn;
 }
 
 function InitFor(Inventory I)
@@ -22,7 +24,26 @@ function InitFor(Inventory I)
 	Super.InitFor(I);
 
 	if (MDKSubMachinegun(I) != None)
+	{
 		SetSilenced(MDKSubMachinegun(I).bSilenced);
+		SetScope(MDKSubMachinegun(I).bScopeOn);
+	}
+}
+
+function SetScope(bool bIsScopeOn)
+{
+	bScopeOn = bIsScopeOn;
+	UpdateScope();
+}
+
+// As with the suppressor: the scope is not on the Scope bone, but it has its own skin
+simulated function UpdateScope()
+{
+	bOldScopeOn = bScopeOn;
+	if (bScopeOn)
+		Skins[1] = None;
+	else
+		Skins[1] = Texture'BW_Core_WeaponTex.Misc.Invisible';
 }
 
 function SetSilenced(bool bIsSilenced)
@@ -45,6 +66,8 @@ simulated event PostNetReceive()
 {
 	if (bSilenced != bOldSilenced)
 		UpdateSilencer();
+	if (bScopeOn != bOldScopeOn)
+		UpdateScope();
 	Super.PostNetReceive();
 }
 
@@ -72,6 +95,7 @@ simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
 	UpdateSilencer();
+	UpdateScope();
 }
 
 simulated function FlashMuzzleFlash(byte Mode)
