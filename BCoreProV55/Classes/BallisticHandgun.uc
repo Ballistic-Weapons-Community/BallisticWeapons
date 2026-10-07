@@ -865,39 +865,11 @@ simulated event Timer()
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	local Inventory Inv;
-	
 	Super.BringUp(PrevWeapon);
 	GotoState('');
 	SetBoneScale(8, 1.0, SupportHandBone);
 	bSlavePutDown=false;
 	bIsPendingHandGun = false;
-	
-	
-	//in arena, we immediately pair matching pistols if the player has two
-	if (Level.TimeSeconds > CreationTime + 1)
-	{
-		if (OtherGun == None && PendingHandgun == None && !bDualBlocked && class'BallisticReplicationInfo'.static.IsArena())
-		{
-			if (LastSlave != None)
-				PendingHandgun = LastSlave;
-			else
-			{
-				for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
-				{
-				
-					if ( Inv != self && Inv.class == class && !BallisticHandgun(Inv).bDualBlocked )
-					{
-						if (Level.TimeSeconds > BallisticHandgun(Inv).CreationTime + 1)
-						{
-							PendingHandgun = BallisticHandgun(Inv);
-							break;
-						}
-					}
-				}
-			}
-		}
-	}
 	
 	if (PendingHandgun != None && OtherGun == None)
 	{
