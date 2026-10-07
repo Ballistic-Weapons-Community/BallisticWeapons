@@ -92,6 +92,32 @@ defaultproperties
         FireEffectParams(0)=InstantEffectParams'ArenaBeamEffectParams'
     End Object
 
+	//Red beam for the Elite layout
+    Begin Object Class=InstantEffectParams Name=ArenaBeamEffectParams_Tri
+    	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitterBal'
+    	TraceRange=(Min=8000.000000,Max=8000.000000)
+        PenetrateForce=150
+        Damage=65.000000
+        DamageType=Class'BallisticProV55.DTA42SkrithBeam'
+        DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
+        DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-SecFire',Volume=0.800000)
+        Recoil=512.000000
+	    Inaccuracy=(X=128,Y=128)
+        MomentumTransfer=80000
+        SplashDamage=False
+        RecommendSplashDamage=False
+        WarnTargetPct=0.500000
+        BotRefireRate=0.7
+    End Object
+
+    Begin Object Class=FireParams Name=ArenaBeamFireParams_Tri
+        AmmoPerFire=7
+        FireAnim="SecFire"
+	    FireInterval=0.300000
+        FireEffectParams(0)=InstantEffectParams'ArenaBeamEffectParams_Tri'
+    End Object
+
     //=================================================================
 	// RECOIL
 	//=================================================================
@@ -162,7 +188,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams_Tri' //
-        AltFireParams(0)=FireParams'ArenaBeamFireParams'
+        AltFireParams(0)=FireParams'ArenaBeamFireParams_Tri'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams'

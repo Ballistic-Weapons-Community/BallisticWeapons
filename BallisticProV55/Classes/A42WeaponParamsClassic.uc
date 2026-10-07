@@ -127,8 +127,40 @@ defaultproperties
 		FireInterval=0.100000
 		AmmoPerFire=8
 		BurstFireRateFactor=1.00
-		FireAnim="SecFire"	
+		FireAnim="SecFire"
 	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+	End Object
+
+	//Red beam for the Elite layout
+	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams-Red
+		TraceRange=(Min=8000.000000,Max=8000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=65.0
+		HeadMult=1.6
+		LimbMult=0.4
+		DamageType=Class'BallisticProV55.DTA42SkrithBeam'
+		DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
+		DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitterBal'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-SecFire',Volume=0.800000)
+		Recoil=96.000000
+		Chaos=-1.0
+		Inaccuracy=(X=2,Y=2)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams-Red
+		FireInterval=0.100000
+		AmmoPerFire=8
+		BurstFireRateFactor=1.00
+		FireAnim="SecFire"
+	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams-Red'
 	End Object
 		
 	//=================================================================
@@ -223,7 +255,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams-Red'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams-Red'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_G //The Green One
