@@ -135,6 +135,7 @@ simulated function BurnRadius( float DamageAmount, float DamageRadius, class<Dam
 simulated event Tick(float DT)
 {
 	Super.Tick(DT);
+	FadeForVictimView(Victim);
 	if (Victim == None || Victim.bDeleteMe)
 	{
 		Emitters[0].SkeletalMeshActor = None;
