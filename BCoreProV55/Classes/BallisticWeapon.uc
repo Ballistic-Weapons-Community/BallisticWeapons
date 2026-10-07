@@ -2919,7 +2919,9 @@ simulated function CommonCockGun(optional byte Type)
 //---------------------------------------------------------------------------
 final simulated function SetMeleeGunLength()
 {
-	AimComponent.GunLength = 1;
+	// A weapon without a gun length stays without one. Giving it one for the hold switched the wall check on,
+	// and the offset the check found then stayed when the length went back to 0 and the check stopped
+	AimComponent.GunLength = FMin(1, default.GunLength);
 }
 
 final simulated function SetDefaultGunLength()
