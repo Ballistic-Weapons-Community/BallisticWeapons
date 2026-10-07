@@ -484,6 +484,8 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_invento
 				BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
             }
 			newWeapon.GiveTo(Other);
+			if (newWeapon == None)
+				return;
 			newWeapon.PickupFunction(Other);
 				
 			//Hack for bots - stops them complaining
