@@ -412,6 +412,9 @@ simulated function PlayIdle()
 //=====================================================================
 function ServerSwitchSilencer(bool bNewValue)
 {
+	if (FC01Attachment(ThirdPersonActor) != None)
+		FC01Attachment(ThirdPersonActor).SetSilenced(bNewValue);
+
 	if (bSilenced == bNewValue)
 		return;
 
@@ -550,7 +553,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		FC01Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
 	if (AIController(Instigator.Controller) != None)
+	{
 		bSilenced = (FRand() > 0.5);
+		if (FC01Attachment(ThirdPersonActor) != None)
+			FC01Attachment(ThirdPersonActor).SetSilenced(bSilenced);
+	}
 
 	if (bSilenced)
 		SetBoneScale (0, 1.0, SilencerBone);
