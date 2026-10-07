@@ -137,7 +137,7 @@ function DoFireEffect()
 {
 	Super.DoFireEffect();
 	// Only drain while amped, like the client does - AddHeat resets the fire mode once the amp charge hits 0
-	if (Level.NetMode == NM_DedicatedServer && bAmped && SRXRifle(BW) != None)
+	if (Level.NetMode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && bAmped && SRXRifle(BW) != None)
 		SRXRifle(BW).AddHeat(AmpDrainPerShot);
 }
 

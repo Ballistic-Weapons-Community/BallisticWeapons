@@ -112,7 +112,7 @@ function DoFireEffect()
 {
 	Super.DoFireEffect();
 	// Only drain while amped, like the client does - AddHeat resets the fire mode (to full auto) once the amp charge hits 0
-	if (Level.NetMode == NM_DedicatedServer && bAmped && M575Machinegun(BW) != None)
+	if (Level.NetMode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && bAmped && M575Machinegun(BW) != None)
 		M575Machinegun(BW).AddHeat(AmpDrainPerShot);
 }
 
