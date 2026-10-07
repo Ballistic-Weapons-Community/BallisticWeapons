@@ -198,7 +198,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=5.000000,Z=2.03)
+		SightOffset=(X=1.500000,Z=2.03)
         ZoomType=ZT_Irons
 		//Function
 		InventorySize=7
@@ -232,7 +232,7 @@ defaultproperties
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
-		SightOffset=(X=1.000000,Z=1.30000)
+		SightOffset=(X=-0.250000,Z=1.30000)
         ZoomType=ZT_Irons
 		//Function
 		InventorySize=7
@@ -260,7 +260,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.SR18_FPm'
 		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.SR18_TPm'
-		SightOffset=(X=1.000000,Z=0.85000)
+		SightOffset=(X=-1.000000,Z=0.85000)
 		//Function
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
