@@ -40,6 +40,20 @@ replication
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
+	// The mesh comes with the amp on it
+	SetAmped(bAmped);
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	// A pistol that is drawn again still has its amp
+	if (SX45Pistol(I) != None && SX45Pistol(I).bAmped && SX45Pistol(I).AmpCharge > 0)
+	{
+		SetAmped(true);
+		SetAmpColour(SX45Pistol(I).CurrentWeaponMode == 1, SX45Pistol(I).CurrentWeaponMode == 2);
+	}
 }
 
 // ============ Amplifier ========================
