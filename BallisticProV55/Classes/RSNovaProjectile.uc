@@ -248,7 +248,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 			
 			if 
             (
-                BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != Instigator && Victims.bProjTarget && 
+                BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != None && Victims != Instigator && Victims.bProjTarget &&
                 xPawn(Victims) != None && (Pawn(Victims).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255)
             )
 				BallisticPawn(Instigator).GiveAttributedHealth(damageScale * DamageAmount * 0.6f, Instigator.SuperHealthMax, Instigator, True);
