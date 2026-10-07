@@ -288,7 +288,7 @@ function ServerSwitchSilencer(bool bNewValue)
 {
 	bSilenced = bNewValue;
 	if (RS8Attachment(ThirdPersonActor) != None)
-		RS8Attachment(ThirdPersonActor).bSilenced = bSilenced;
+		RS8Attachment(ThirdPersonActor).SetSilenced(bSilenced);
 	BFireMode[0].bAISilent = bSilenced;
 	SwitchSilencer(bSilenced);
 	if (bSilenced)
@@ -396,7 +396,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 
 	if (!bCompensated && AIController(Instigator.Controller) != None)
+	{
 		bSilenced = (FRand() > 0.5);
+		if (RS8Attachment(ThirdPersonActor) != None)
+			RS8Attachment(ThirdPersonActor).SetSilenced(bSilenced);
+	}
 
 	if (bSilenced || bCompensated)
 		SetBoneScale (0, 1.0, SilencerBone);
