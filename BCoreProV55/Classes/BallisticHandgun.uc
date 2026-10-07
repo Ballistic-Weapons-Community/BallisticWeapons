@@ -830,8 +830,11 @@ simulated event Timer()
 	else if (ClientState == WS_PutDown && IsMaster())
 	{
 	    SetDualMode(false);
-	    if (AIController(Instigator.Controller) != None)
-			Super.Timer();
+		// The slave went down with this gun. Its timer may come after this one, so finish it here: the weapon change
+		// used to wait until the engine saw that no timer was running, with the slave gone and this gun still there
+		if (OtherGun.ClientState == WS_PutDown && OtherGun.bSlavePutDown)
+			OtherGun.Timer();
+		Super.Timer();
 //		bIsMaster = false;
 //		OtherGun = None;
 	}
