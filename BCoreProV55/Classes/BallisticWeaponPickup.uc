@@ -117,12 +117,10 @@ simulated event Tick(float DT)
 function float BotDesireability(Pawn Bot)
 {
 	local Weapon AlreadyHas;
-	local class<BallisticWeapon> BW;
 	local class<Pickup> AmmoPickupClass;
 	local float desire;
 
-	BW = class<BallisticWeapon>(InventoryType);
-	if (BW.default.MaxInventoryCapacity > 0 && DetectedInventorySize >= BW.default.MaxInventoryCapacity)
+	if (!HasRoomFor(Bot))
 		return 0;
 
 	// bots adjust their desire for their favorite weapons
@@ -211,6 +209,29 @@ auto state Pickup
 			PlayerController(Pawn(Other).Controller).ReceiveLocalizedMessage(class'BallisticWeaponPickupMessage', ,,, self);
 		return false;
 	}
+}
+
+// False when the capacity rule in BallisticWeapon.HandlePickupQuery would turn this pawn away.
+function bool HasRoomFor(Pawn P)
+{
+	local class<BallisticWeapon> BW;
+	local Inventory Inv;
+	local int TotalSize, Count;
+
+	BW = class<BallisticWeapon>(InventoryType);
+	if (BW == None || BW.default.bWT_Super || class'BallisticReplicationInfo'.default.MaxInventoryCapacity <= 0)
+		return true;
+	if (P.FindInventoryType(InventoryType) != None)
+		return true;
+
+	TotalSize = BW.static.GetInventorySize();
+	for (Inv = P.Inventory; Inv != None && Count < 1000; Inv = Inv.Inventory)
+	{
+		Count++;
+		if (BallisticWeapon(Inv) != None && !BallisticWeapon(Inv).bWT_Super)
+			TotalSize += BallisticWeapon(Inv).ParamsClasses[BallisticWeapon(Inv).GameStyleIndex].default.Layouts[0].InventorySize;
+	}
+	return TotalSize < class'BallisticReplicationInfo'.default.MaxInventoryCapacity;
 }
 
 //Returns true if the particular weapon slot is full at the moment.

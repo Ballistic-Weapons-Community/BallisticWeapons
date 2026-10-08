@@ -51,7 +51,7 @@ var() name		SilencerOffAnim;		//
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		Target, bMeatVision, bThermal, bLowZoom;
+		Target, bMeatVision, bThermal, bLowZoom, ClientSetSilencer;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal, ServerSwitchSilencer;
 }
@@ -557,9 +557,47 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		SetBoneScale (0, 0.0, SilencerBone);
 }
 
+// Puts the silencer on or takes it off, without the animation
+simulated function SetSilencer(bool bNewValue)
+{
+	bSilenced = bNewValue;
+	MG36PrimaryFire(FireMode[0]).SwitchSilencerMode(bSilenced);
+	BFireMode[0].bAISilent = bSilenced;
+	if (Role == ROLE_Authority && MG36Attachment(ThirdPersonActor) != None)
+	{
+		MG36Attachment(ThirdPersonActor).bSilenced = bSilenced;
+		MG36Attachment(ThirdPersonActor).IAOverride(bSilenced);
+	}
+	if (bSilenced)
+		SetBoneScale (0, 1.0, SilencerBone);
+	else
+		SetBoneScale (0, 0.0, SilencerBone);
+}
+
+simulated function ClientSetSilencer(bool bNewValue)
+{
+	if (bSilenced != bNewValue)
+		SetSilencer(bNewValue);
+}
+
 //=================================
 //Mount Code
 //=================================
+// The silencer stays on the gun when it is deployed and when it is picked up again
+function int GetTurretData()
+{
+	return int(bSilenced);
+}
+
+function SetTurretData(int Data)
+{
+	if (!bHasSuppressor || bSilenced == (Data != 0))
+		return;
+	SetSilencer(Data != 0);
+	if (!Instigator.IsLocallyControlled())
+		ClientSetSilencer(bSilenced);
+}
+
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;

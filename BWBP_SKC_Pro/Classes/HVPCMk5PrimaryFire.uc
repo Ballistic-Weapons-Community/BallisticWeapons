@@ -21,6 +21,9 @@ simulated function float GetCrosshairInaccAngle()
 
 simulated function bool AllowFire()
 {
+	// A bot holds the shot that would blow the cannon up
+	if (!HVPCMk5PlasmaCannon(BW).bMilSpec && AIController(Instigator.Controller) != None && HVPCMk5PlasmaCannon(BW).HeatLevel >= 9.5)
+		return false;
 	if ((HVPCMk5PlasmaCannon(BW).HeatLevel >= 11.5) || HVPCMk5PlasmaCannon(BW).bIsVenting || !super.AllowFire())
 		return false;
 	return true;
@@ -47,7 +50,7 @@ simulated state SingleShot
 	function DoFireEffect()
 	{
 		Super.DoFireEffect();
-		if (level.Netmode == NM_DedicatedServer && !HVPCMk5PlasmaCannon(BW).bMilSpec)
+		if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
 			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 	}
 }
@@ -85,7 +88,7 @@ simulated state SpreadShot
 
 		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
 		Super(BallisticFire).DoFireEffect();
-		if (level.Netmode == NM_DedicatedServer && !HVPCMk5PlasmaCannon(BW).bMilSpec)
+		if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
 			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 	}
 

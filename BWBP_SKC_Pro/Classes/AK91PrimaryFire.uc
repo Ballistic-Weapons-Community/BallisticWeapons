@@ -80,7 +80,7 @@ function DoFireEffect()
 
 	Super(BallisticFire).DoFireEffect();
 	
-	if (level.Netmode == NM_DedicatedServer)
+	if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 	{
 		AK91ChargeRifle(Weapon).AddHeat(HeatPerShot);
 	}

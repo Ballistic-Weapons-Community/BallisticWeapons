@@ -62,6 +62,7 @@ var() const int MinTurretEyeDepth;
 var() int		AmmoAmount[2];
 var() int		MagAmmoAmount;
 var() byte		WeaponMode;
+var   int		WeaponData;				// BallisticWeapon.GetTurretData of the weapon
 var   bool		bWeaponDeployed;		// Used by weapons so they don't need to play deploy when already deployed turret is grabbed on the fly
 // ----------
 
@@ -254,6 +255,7 @@ function InitDeployedTurretFor(Weapon Weap)
 	{
 		MagAmmoAmount = BallisticWeapon(Weap).MagAmmo;
 		WeaponMode = 	BallisticWeapon(Weap).CurrentWeaponMode;
+		WeaponData =	BallisticWeapon(Weap).GetTurretData();
 		CamoIndex = BallisticWeapon(Weap).CamoIndex;
 		LayoutIndex = BallisticWeapon(Weap).LayoutIndex;
 		if (BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).WeaponCamo != None)
@@ -291,6 +293,7 @@ function InitTurretWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
 		BallisticWeapon(Weap).InitTurretWeapon(self);
+		BallisticWeapon(Weap).SetTurretData(WeaponData);
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
 //	Weap.AddAmmo(AmmoAmount[1]-Weap.AmmoAmount(1), 1);
@@ -298,6 +301,8 @@ function InitTurretWeapon(Weapon Weap)
 // A weapon is given to a player when this turret is undeployed. Chance to send some info to that weapon.
 function InitUndeployedWeapon(Weapon Weap)
 {
+	local bool bCockingPullout;
+
 	if (BallisticWeapon(Weap) != None)
 	{
 		//turrets now have different firemodes when (un)mounted, so we'll be setting params to the default from now on
@@ -310,7 +315,13 @@ function InitUndeployedWeapon(Weapon Weap)
 		//BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		//BallisticWeapon(Weap).GenerateLayout(LayoutIndex);
 		//BallisticWeapon(Weap).GenerateCamo(CamoIndex);
+		// Offline the weapon is being brought up by now, with its cocking pullout if it needed cocking. Weapons clear bNeedCock in
+		// InitWeaponFromTurret, and the pullout then went on without its cocking sound. Let it finish as the cocking it is
+		bCockingPullout = Weap.ClientState == WS_BringUp && BallisticWeapon(Weap).bNeedCock && BallisticWeapon(Weap).BringUpTime == BallisticWeapon(Weap).CockingBringUpTime;
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
+		if (bCockingPullout)
+			BallisticWeapon(Weap).bNeedCock = true;
+		BallisticWeapon(Weap).SetTurretData(WeaponData);
 
 		BallisticWeapon(Weap).SetAmmoTo(AmmoAmount[0], 0); // Stops the infinite ammo exploit when you undeploy 
 	}
@@ -755,6 +766,7 @@ function UndeployTurret ()
 			BTI.CamoIndex = CamoIndex;
 			BTI.TurretAmmoAmount = AmmoAmount[0];
 			BTI.WeaponMode = WeaponMode;
+			BTI.WeaponData = WeaponData;
 			if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
 				GotoState('NetTrapped');
 			else

@@ -229,6 +229,8 @@ simulated function IgniteActor(Actor A)
 	local FP7ActorBurner PF;
 
 	PF = Spawn(class'FP7ActorBurner',self, ,A.Location);
+	if (PF == None)
+		return;
 	PF.Instigator = Instigator;
 
     if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )

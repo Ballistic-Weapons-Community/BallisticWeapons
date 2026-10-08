@@ -329,7 +329,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 
 simulated function LoadGrenadeLoop()
 {
-	if (Ammo[1].AmmoAmount < 1 && Grenades > 6)
+	if (Ammo[1].AmmoAmount < 1 || Grenades >= 6)
 		return;
 	if ((ReloadState == RS_None || ReloadState == RS_StartShovel)&& Ammo[1].AmmoAmount >= 1)
 	{
@@ -487,7 +487,7 @@ simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
 
-	if (AIController(Instigator.Controller) != None && bAltNeedCock && AmmoAmount(1) > 0 && BotShouldReloadGrenade() && ReloadState == RS_None)
+	if (AIController(Instigator.Controller) != None && bAltNeedCock && Grenades < 6 && AmmoAmount(1) > 0 && BotShouldReloadGrenade() && ReloadState == RS_None)
 		LoadGrenadeLoop();
 }
 
@@ -531,10 +531,11 @@ function byte BestMode()
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
 
-	if (AmmoAmount(1) < 1 || bAltNeedCock)
-		return 0;
-	else if (MagAmmo < 1)
+	// A chambered FRAG-12 blocks the primary until it is fired
+	if (!bAltNeedCock)
 		return 1;
+	if (Grenades < 1 || ReloadState != RS_None)
+		return 0;
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	Height = B.Enemy.Location.Z - Instigator.Location.Z;
@@ -564,8 +565,9 @@ function byte BestMode()
 	if (Height < -100)
 		Result += Abs((Height/2) / Dist);
 
+	// Chamber one now, it goes out with the next shot
 	if (Result > 0.5)
-		return 1;
+		CommonLoadFrag();
 	return 0;
 }
 
@@ -578,7 +580,7 @@ function bool CanAttack(Actor Other)
 			if ((Level.TimeSeconds - Instigator.LastPainTime > 1.0))
 				return false;
 		}
-		else if (AmmoAmount(1) > 0 && BotShouldReloadGrenade())
+		else if (Grenades < 6 && AmmoAmount(1) > 0 && BotShouldReloadGrenade())
 		{
 			LoadGrenadeLoop();
 			return false;
