@@ -17,10 +17,13 @@ var array<DeployableInfo> 	Deployables;
 var int			  			DeployableCount[7];
 
 var DeployableInfo AltDeployable;
+var string BarrierName;		// The alt fire's deployable has no weapon mode to take a name from
 
 var WrenchTeleporter Teleporters[2];
 
 var bool bRemove;
+
+var float LastRefusedTime[2];	// When each fire mode last would not start for want of charge
 
 const DeployRange = 512;
 
@@ -288,6 +291,42 @@ simulated function float AmmoStatus(optional int Mode)
 }
 
 //===========================================================================
+// StartFire
+//
+// Both fire modes run on charge, and without enough of it a press did nothing
+// at all, as if the wrench were broken. The barrier is the easy one to run
+// into: it wants more charge than a sandbag stack does.
+// The engine tries again on every tick the button is held, so this only
+// speaks up when the tries begin.
+//===========================================================================
+simulated function bool StartFire(int Mode)
+{
+	local PlayerController PC;
+
+	if (Super.StartFire(Mode))
+		return true;
+
+	if (Mode > 1 || FireMode[Mode] == None || Instigator == None || !Instigator.IsLocallyControlled())
+		return false;
+
+	PC = PlayerController(Instigator.Controller);
+	if (PC == None || AmmoAmount(Mode) >= FireMode[Mode].AmmoPerFire)
+		return false;
+
+	if (Level.TimeSeconds - LastRefusedTime[Mode] > 0.3)
+	{
+		if (Mode == 0)
+			PC.ClientMessage("Not enough charge to warp in"@WeaponModes[CurrentWeaponMode].ModeName$".");
+		else
+			PC.ClientMessage("Not enough charge to warp in"@BarrierName@"("$FireMode[Mode].AmmoPerFire$").");
+		PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+	}
+	LastRefusedTime[Mode] = Level.TimeSeconds;
+
+	return false;
+}
+
+//===========================================================================
 // Weapon Special act as dedicated removal.
 //===========================================================================
 exec simulated function WeaponSpecial(optional byte i)
@@ -524,7 +563,7 @@ function Notify_BarrierDeploy()
 	//Safety for mode switch during attack
 	if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
 	{
-		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[0].ModeName$".");
+		Instigator.ClientMessage("Not enough charge to warp in"@BarrierName$".");
 		if (PC != None)
 			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
@@ -688,6 +727,7 @@ defaultproperties
      Deployables(4)=(dClass=Class'WrenchAmmoCrate',SpawnOffset=16,WarpInTime=3.000000,AmmoReq=30,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
      Deployables(5)=(dClass=Class'WrenchMinigunTurret',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=100,Limit=1,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks. Only one may be placed.")
      AltDeployable=(dClass=Class'WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A three-second barrier of infinite durability.")
+     BarrierName="Energy Barrier"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_OP_Tex.Wrench.BigIcon_Wrench'
      BigIconCoords=(Y2=240)
