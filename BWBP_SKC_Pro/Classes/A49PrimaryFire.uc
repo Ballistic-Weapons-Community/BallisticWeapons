@@ -14,7 +14,7 @@ var() float	ChargeRadiusBonus;
 var()   sound	ChargeSound;
 var()   sound	ChargeLoopSound;
 
-var	bool  	bVariableHeatProps; //Gun heat changes accuracy and RoF
+var	bool  	bVariableHeatProps; //Gun heat changes accuracy
 var float 	StopFireTime;
 
 simulated function bool AllowFire()
@@ -97,14 +97,6 @@ simulated event ModeDoFire()
 {
     if (bChargable && IsInState('Hold')) //Do this otherwise it breaks in MP - yoyobatty
         GotoState('ChargeFire'); 
-	if (level.Netmode == NM_Standalone && bVariableHeatProps)
-	{
-		// from this gun's own interval: default.FireRate is whatever the last A49 to set its fire mode up left there, any layout's
-		if (A49SkrithBlaster(BW).HeatLevel >= 5)
-			FireRate = Params.FireInterval - FRand()/20 - (0.1/A49SkrithBlaster(BW).HeatLevel);
-		else
-			FireRate = Params.FireInterval - FRand()/8 + (A49SkrithBlaster(BW).HeatLevel/25);
-	}
 	Super.ModeDoFire();
 
 }
