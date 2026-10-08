@@ -22,13 +22,21 @@ replication
 		LaserRot;
 }
 
-/*simulated function PostBeginPlay()
+// The sights, laser and compensator are all on this mesh, on the bones the first person one has them on: show what the layout has
+simulated function ApplyModel()
 {
-	Super.PostBeginPlay();
-	
-	SetBoneScale (0, 0.0, 'RedDotSight');
-	SetBoneScale (1, 0.0, 'LAM');
-}*/
+	local WeaponParams WP;
+	local int i;
+
+	Super.ApplyModel();
+
+	if (LayoutIndex >= WeaponClass.static.GetParams().default.Layouts.Length)
+		return;
+
+	WP = WeaponClass.static.GetParams().default.Layouts[LayoutIndex];
+	for (i = 0; i < WP.WeaponBoneScales.Length; ++i)
+		SetBoneScale(WP.WeaponBoneScales[i].Slot, WP.WeaponBoneScales[i].Scale, WP.WeaponBoneScales[i].BoneName);
+}
 
 simulated function Tick(float DT)
 {
@@ -100,7 +108,7 @@ defaultproperties
 	MeleeImpactManager=class'IM_GunHit'
 	FlashScale=0.250000
 	BrassClass=class'Brass_Pistol'
-	BrassBone="Scope"
+	BrassBone="ejector"
 	TracerClass=class'TraceEmitter_Pistol'
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
@@ -112,9 +120,7 @@ defaultproperties
 	RelativeLocation=(Z=6.000000)
 	DrawScale=0.175000
 	Skins(0)=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine'
-	Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-MainShine'
-	Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
-	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed'
-	Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front'
-	Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
+	Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
+	Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed'
+	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front'
 }

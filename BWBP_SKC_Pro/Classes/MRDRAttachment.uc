@@ -15,6 +15,14 @@ simulated function InstantFireEffects(byte Mode)
 	else
 		Super.InstantFireEffects(FiringMode);
 }
+// The secondary fire is a melee attack: the pawn plays its melee strike, as for the melee attacks of other guns
+simulated function PlayPawnFiring(byte Mode)
+{
+	if (Mode != 0)
+		PlayMeleeFiring();
+	else
+		Super.PlayPawnFiring(Mode);
+}
 // Do trace to find impact info and then spawn the effect
 simulated function MeleeFireEffects()
 {

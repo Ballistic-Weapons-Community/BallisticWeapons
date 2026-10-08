@@ -14,7 +14,7 @@ var() class<BCImpactManager>	IceImpactManager;
 
 var() array<Material> AmpMaterials; //We're using this for the amp
 
-var bool		bAmped;
+var bool		bAmped, bOldAmped;
 
 replication
 {
@@ -39,11 +39,21 @@ simulated event PostBeginPlay()
 simulated function SetAmped(bool bIsAmped)
 {
 	bAmped = bIsAmped;
+	bOldAmped = bAmped;
 	
 	if (bAmped)
 		SetBoneScale (3, 1.0, 'AMP');
 	else
 		SetBoneScale (3, 0.0, 'AMP');
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	// A gun that is drawn again still has its amp
+	if (M575Machinegun(I) != None && M575Machinegun(I).bAmped && M575Machinegun(I).AmpCharge > 0)
+		SetAmped(true);
 }
 
 function IceUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int HitSurf, optional bool bIsAlt, optional vector WaterHitLoc)
@@ -63,6 +73,8 @@ simulated Event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
+	if (bAmped != bOldAmped)
+		SetAmped(bAmped);
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
 		DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);

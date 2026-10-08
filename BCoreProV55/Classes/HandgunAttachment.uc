@@ -49,7 +49,10 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 			return Instigator.Weapon.GetEffectStart();
 	}
 	
-	return GetBoneCoords('tip').Origin;
+	// Not drawn lately: the bones are still where the pawn was last seen
+	if (Instigator == None || (Level.TimeSeconds - LastRenderTime) < 1)
+		return GetBoneCoords('tip').Origin;
+	return Instigator.Location;
 }
 
 simulated function Destroyed()
@@ -78,6 +81,10 @@ simulated function FlashWeaponLight(byte Mode)
 	}
 	if (HandGun != None)
 		LightWeapon = HandGun;
+	// Clients don't have HandGun for the master. For the local player use the gun in hand, like other weapons do:
+	// in first person this attachment is not where the player is
+	else if (!bIsSlave && Instigator.Weapon != None)
+		LightWeapon = Instigator.Weapon;
 	else
 		LightWeapon = self;
 
@@ -109,6 +116,17 @@ simulated function Tick(float DT)
 	}
 }
 
+// Put the slave in the left hand: SlavePivot and SlaveOffset, with the turn and shift the gun's mesh needs in the right
+// hand (its default RelativeRotation and RelativeLocation) kept on top
+simulated function PlaceSlave()
+{
+	local vector X, Y, Z;
+
+	GetAxes(default.RelativeRotation, X, Y, Z);
+	SetRelativeRotation(OrthoRotation(X >> SlavePivot, Y >> SlavePivot, Z >> SlavePivot));
+	SetRelativeLocation(SlaveOffset + (default.RelativeLocation >> SlavePivot));
+}
+
 simulated function PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
@@ -116,8 +134,7 @@ simulated function PostNetBeginPlay()
 	{
 		if (Instigator!= None && Instigator.Weapon != None && BallisticHandgun(Instigator.Weapon) != None && BallisticHandgun(Instigator.Weapon).OtherGun != None)
 			Handgun = BallisticHandgun(Instigator.Weapon).OtherGun;
-		SetRelativeRotation(SlavePivot);
-		SetRelativeLocation(SlaveOffset);
+		PlaceSlave();
 	}
 }
 
@@ -131,8 +148,7 @@ function InitFor(Inventory I)
 		if (Handgun.IsSlave())
 		{
 			bIsSlave = true;
-			SetRelativeRotation(SlavePivot);
-			SetRelativeLocation(SlaveOffset);
+			PlaceSlave();
 		}
 		else
 		{

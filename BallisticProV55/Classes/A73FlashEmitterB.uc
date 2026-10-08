@@ -102,4 +102,7 @@ defaultproperties
      End Object
      Emitters(2)=SpriteEmitter'BallisticProV55.A73FlashEmitterB.SpriteEmitter9'
 
+     // A mesh emitter draws its mesh with the skins of this actor, its own Texture is not used
+     Skins(0)=Texture'BW_Core_WeaponTex.A73RedLayout.A73BMuzzleFlash'
+
 }

@@ -58,6 +58,12 @@ function InitFor(Inventory I)
 
 	if (BallisticWeapon(I) != None)
 		myWeap = BallisticWeapon(I);
+	// A grenade that was loaded earlier is still on the gun
+	if (MJ51Carbine(I) != None && MJ51Carbine(I).bLoaded)
+	{
+		bGrenadier = true;
+		IAOverride(true);
+	}
 }
 
 simulated function Tick(float DT)

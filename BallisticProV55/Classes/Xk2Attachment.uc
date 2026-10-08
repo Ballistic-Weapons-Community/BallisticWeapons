@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XK2Attachment extends BallisticAttachment;
+class XK2Attachment extends HandgunAttachment;
 
 var int IceFireCount, OldIceFireCount;
 var() class<BCTraceEmitter>	IceTracerClass;	//Emitter to sue for under water tracer
@@ -15,12 +15,43 @@ var() class<BCImpactManager>	IceImpactManager;
 var() array<Material> AmpMaterials; //We're using this for the amp
 
 var bool		bAmped;
+var bool		bSilenced, bOldSilenced;	//Suppressor is on the barrel
 
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		IceFireCount, bAmped;
+		IceFireCount, bAmped, bSilenced;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (XK2SubMachinegun(I) != None)
+		SetSilenced(XK2SubMachinegun(I).bSilenced);
+}
+
+function SetSilenced(bool bIsSilenced)
+{
+	bSilenced = bIsSilenced;
+	UpdateSilencer();
+}
+
+// The suppressor is on the model for as long as it is on the gun, not from one shot to the next
+simulated function UpdateSilencer()
+{
+	bOldSilenced = bSilenced;
+	if (bSilenced)
+		SetBoneScale (0, 1.0, 'Silencer');
+	else
+		SetBoneScale (0, 0.0, 'Silencer');
+}
+
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	UpdateSilencer();
 }
 
 simulated function SetAmped(bool bIsAmped)
@@ -51,6 +82,8 @@ simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
+	if (bSilenced != bOldSilenced)
+		UpdateSilencer();
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
 		DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
@@ -84,11 +117,6 @@ simulated event ThirdPersonEffects()
 {
     if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
 	{
-		if (FiringMode == 1)
-			SetBoneScale (0, 1.0, 'Silencer');
-		else
-			SetBoneScale (0, 0.0, 'Silencer');
-		
 		if (FiringMode == 1 && bAmped)
 			SetBoneScale (1, 1.0, 'AMP');
 		else
@@ -229,6 +257,12 @@ defaultproperties
 	WaterTracerClass=class'TraceEmitter_WaterBullet'
 	WaterTracerMode=MU_Primary
 	FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+	IdleHeavyAnim="RifleHip_Idle"
+	IdleRifleAnim="RifleAimed_Idle"
+	SingleFireAnim="RifleHip_Fire"
+	SingleAimedFireAnim="RifleAimed_Fire"
+	RapidFireAnim="RifleHip_Burst"
+	RapidAimedFireAnim="RifleAimed_Burst"
 	ReloadAnim="Reload_AR"
 	CockingAnim="Cock_RearPull"
 	ReloadAnimRate=0.975000

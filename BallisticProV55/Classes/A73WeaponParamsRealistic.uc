@@ -51,7 +51,7 @@ defaultproperties
 		HeadMult=2.0
 		LimbMult=0.65
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterBal'
 		FlashScaleFactor=0.700000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Pitch=1.1,Volume=1.300000,Slot=SLOT_Interact,bNoOverride=false)
 		Recoil=000.000000

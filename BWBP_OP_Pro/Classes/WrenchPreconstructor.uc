@@ -115,9 +115,15 @@ state SpawnIn
 	{
 		local Vehicle newVehicle;
 		
-		newVehicle = Spawn(myVehicle, Wrench, , GroundPoint + vect(0,0,1), Rotation);
+		// Not owned by the wrench: the wrench belongs to the player, whose own view leaves out pawns he owns (bOwnerNoSee)
+		newVehicle = Spawn(myVehicle, , , GroundPoint + vect(0,0,1), Rotation);
 		newVehicle.Health = Health;
         newVehicle.bTeamLocked = False;
+		if (WrenchMinigunTurret(newVehicle) != None)
+		{
+			WrenchMinigunTurret(newVehicle).Master = Wrench;
+			WrenchMinigunTurret(newVehicle).MasterDeployableIndex = DeployableIndex;
+		}
 	}
 	
 	function SpawnDeployable()

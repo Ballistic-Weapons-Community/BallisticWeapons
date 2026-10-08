@@ -10,6 +10,28 @@ class A49Attachment extends HandgunAttachment;
 
 #EXEC OBJ LOAD FILE=BWBP_SKC_Anim.ukx
 
+// The layout's skin and its colour of muzzle flash for the third person model
+simulated function ApplyModel()
+{
+	local WeaponParams WP;
+	local int i;
+
+	super.ApplyModel();
+
+	if (LayoutIndex >= WeaponClass.static.GetParams().default.Layouts.Length)
+		return;
+
+	WP = WeaponClass.static.GetParams().default.Layouts[LayoutIndex];
+	for (i = 0; i < WP.WeaponMaterialSwaps.Length; ++i)
+	{
+		if (WP.WeaponMaterialSwaps[i].AIndex != -1 && WP.WeaponMaterialSwaps[i].Material != None)
+			Skins[WP.WeaponMaterialSwaps[i].AIndex] = WP.WeaponMaterialSwaps[i].Material;
+	}
+
+	if (LayoutIndex == 1)
+		ModeInfos[0].MuzzleFlashClass = class'A73FlashEmitterB';
+}
+
 defaultproperties
 {
 	WeaponClass=class'A49SkrithBlaster'

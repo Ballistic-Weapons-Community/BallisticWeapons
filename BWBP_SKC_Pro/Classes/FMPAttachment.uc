@@ -32,8 +32,20 @@ replication
 //Do your camo changes here
 simulated function PostNetBeginPlay()
 {
-	SetBoneScale (0, 0.0, AmpBone);
+	SetAmped(bAmped);
 	Super.PostNetBeginPlay();
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	// A gun that is drawn again still has its amp
+	if (FMPMachinePistol(I) != None && FMPMachinePistol(I).bAmped && FMPMachinePistol(I).AmpCharge > 0)
+	{
+		SetAmped(true);
+		SetAmpColour(FMPMachinePistol(I).CurrentWeaponMode == 1, FMPMachinePistol(I).CurrentWeaponMode == 2);
+	}
 }
 
 simulated event PostNetReceive()
@@ -276,7 +288,7 @@ defaultproperties
 	CamoMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
 	CamoMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 	CamoMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
-	AmpBone="SatansCrustyButthole"
+	AmpBone="AMP"
 	AltFlashBone="tip2"
 	MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 	ImpactManager=class'IM_Bullet'

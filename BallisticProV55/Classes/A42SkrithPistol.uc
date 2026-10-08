@@ -30,6 +30,17 @@ simulated function bool CanAlternate(int Mode)
 	return super.CanAlternate(Mode);
 }
 
+simulated function OnWeaponParamsChanged()
+{
+	super.OnWeaponParamsChanged();
+
+	// The light of its fire has the colour of the layout
+	if (LayoutIndex == 1)
+		LightHue = 0;
+	else
+		LightHue = default.LightHue;
+}
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);

@@ -202,6 +202,20 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 	bHurtEntry = false;
 }
 
+// The last grenade's ammo is used up a moment after it leaves the hand, with the throw still playing. Switching away
+// there cut the throw off, and put the weapon away inside its own fire mode tick: "ClientState was WRONG".
+// CheckNoGrenades switches away when the throw is over.
+simulated function OutOfAmmo()
+{
+	local name Anim;
+	local float Frame, Rate;
+
+	GetAnimParams(0, Anim, Frame, Rate);
+	if (IsAnimating(0) && (Anim == FireMode[0].FireAnim || Anim == FireMode[1].FireAnim))
+		return;
+	Super.OutOfAmmo();
+}
+
 //FIXME: There's no NullGun support in the base class?
 simulated function CheckNoGrenades()
 {

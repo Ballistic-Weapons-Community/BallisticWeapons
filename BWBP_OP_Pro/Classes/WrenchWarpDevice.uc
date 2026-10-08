@@ -416,13 +416,6 @@ function Notify_WrenchDeploy()
 	ConsumeAmmo(0, Deployables[CurrentWeaponMode].AmmoReq, true);
 }
 
-// fucking evil hack for minigun turrets
-function LostChild(Actor lost)
-{
-	if (ASTurret_Minigun(lost) != None)
-		--DeployableCount[5];
-}
-
 //===========================================================================
 // LostDeployable
 //

@@ -2563,6 +2563,29 @@ simulated function RenderSightFX(Canvas Canvas)
 	}
 }
 
+// The engine turns an actor on a bone by reading a rotation off the bone's axes. On the mirrored left hand mesh those
+// axes are mirrored too, and what it reads is rolled the wrong way round. Roll each augment by as much as that is off.
+simulated function MirrorGunAugments()
+{
+	local int i;
+	local coords C;
+	local vector X, Y, Z;
+	local rotator R;
+
+	for (i = 0; i < GunAugments.Length && i < WeaponParams.GunAugments.Length; i++)
+	{
+		if (GunAugments[i] == None)
+			continue;
+		R = WeaponParams.GunAugments[i].AugmentRot;
+		C = GetBoneCoords(WeaponParams.GunAugments[i].BoneName);
+		GetAxes(R, X, Y, Z);
+		// the roll the engine reads for the augment as its layout turns it
+		R.Roll += 32768 - 2 * OrthoRotation(C.XAxis * X.X + C.YAxis * X.Y + C.ZAxis * X.Z,
+			C.XAxis * Y.X + C.YAxis * Y.Y + C.ZAxis * Y.Z, C.XAxis * Z.X + C.YAxis * Z.Y + C.ZAxis * Z.Z).Roll;
+		GunAugments[i].SetRelativeRotation(R);
+	}
+}
+
 simulated function DrawFPWeapon( Canvas Canvas )
 {
     local int m;
@@ -2615,6 +2638,8 @@ simulated function DrawFPWeapon( Canvas Canvas )
 				NewScale3D = GunAugments[m].Default.DrawScale3D;
 				if (Hand < 0)
 					NewScale3D.Y *= -1;
+				else if (m < WeaponParams.GunAugments.Length)
+					GunAugments[m].SetRelativeRotation(WeaponParams.GunAugments[m].AugmentRot);
 				GunAugments[m].SetDrawScale3D(NewScale3D);
 			}
 		}
@@ -2686,6 +2711,8 @@ simulated function DrawFPWeapon( Canvas Canvas )
 	PreDrawFPWeapon();	// Laurent -- Hook to override things before render (like rotation if using a staticmesh)
 
     bDrawingFirstPerson = true;
+	if (RenderedHand < 0)
+		MirrorGunAugments();
     Canvas.DrawActor(self, false, false, DisplayFOV);
     bDrawingFirstPerson = false;
 	if ( Hand == 0 )
@@ -3078,7 +3105,9 @@ simulated function CommonCockGun(optional byte Type)
 //---------------------------------------------------------------------------
 final simulated function SetMeleeGunLength()
 {
-	AimComponent.GunLength = 1;
+	// A weapon without a gun length stays without one. Giving it one for the hold switched the wall check on,
+	// and the offset the check found then stayed when the length went back to 0 and the check stopped
+	AimComponent.GunLength = FMin(1, default.GunLength);
 }
 
 final simulated function SetDefaultGunLength()
@@ -4440,7 +4469,9 @@ simulated function Destroyed()
 			PlayerSpeedUp=false;
 		}
 		
-		if(Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
+		// Not while another weapon is in hand: its zoom and crosshair are not this one's to reset. A copy that is picked up
+		// and merged into the one already carried is destroyed too, and put the UT2004 crosshair under that weapon's own
+		if((Instigator.Weapon == self || Instigator.Weapon == None) && Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
 		{
 			PlayerController(Instigator.Controller).bZooming = False;
 			PlayerController(Instigator.Controller).DesiredZoomLevel=0.0;
@@ -4866,7 +4897,8 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
     	//First Weapon
         if ( (CurrentChoice == None) )
         {
-            if ( CurrentWeapon != self )
+			// not a second gun of the weapon in hand: nothing replaces a choice that sorts the same as the weapon in hand
+            if ( CurrentWeapon != self && Class != CurrentWeapon.Class )
                 CurrentChoice = self;
 			if ( Inventory == None )
 				return CurrentChoice;
@@ -4941,7 +4973,8 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
     	// - First Weapon Selected
         if ( (CurrentChoice == None) )
         {
-            if ( CurrentWeapon != self )
+			// not a second gun of the weapon in hand: nothing replaces a choice that sorts the same as the weapon in hand
+            if ( CurrentWeapon != self && Class != CurrentWeapon.Class )
                 CurrentChoice = self;
 			if ( Inventory == None )
 				return CurrentChoice;
@@ -6194,6 +6227,7 @@ defaultproperties
      ItemName="BallisticWeapon"
      LightPeriod=3
      AmbientGlow=12
+     bAcceptsProjectors=False
      TransientSoundVolume=0.500000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

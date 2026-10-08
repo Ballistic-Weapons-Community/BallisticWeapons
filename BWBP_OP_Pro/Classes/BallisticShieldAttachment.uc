@@ -18,7 +18,27 @@ simulated function PostNetBeginPlay()
 	{
 		ShieldWeapon = Spawn(class'BallisticShieldHammer');
 		Instigator.AttachToBone(ShieldWeapon,'righthand');
+		SetShieldWeaponMesh();
 	}
+}
+
+simulated function ApplyModel()
+{
+	Super.ApplyModel();
+
+	SetShieldWeaponMesh();
+}
+
+// The police shield comes with a truncheon and the junk shield with a club
+simulated function SetShieldWeaponMesh()
+{
+	if (ShieldWeapon == None)
+		return;
+
+	if (Mesh == class'JWRiotShieldAttachment'.default.Mesh)
+		ShieldWeapon.LinkMesh(class'JWRiotShieldTruncheon'.default.Mesh);
+	else if (Mesh == class'JWJunkShieldAttachment'.default.Mesh)
+		ShieldWeapon.LinkMesh(class'JWJunkShieldBoard'.default.Mesh);
 }
 
 simulated function Destroyed()

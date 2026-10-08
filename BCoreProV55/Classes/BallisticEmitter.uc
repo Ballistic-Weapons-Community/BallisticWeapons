@@ -24,6 +24,8 @@ enum EZTestMode		// ZTest switch settings...
 	ZM_OffWhenVisible	// Set ZTest off if this emitter is visible
 };
 var() array<EZTestMode>	EmitterZTestSwitches;		// Swithes to change ZTest of each emitter depending on LOS
+var() float				VictimViewOpacity;			// Opacity scale for the player this effect sits on. See FadeForVictimView
+var   bool				bVictimViewFaded;
 
 simulated event PostBeginPlay()
 {
@@ -49,6 +51,33 @@ simulated event PostBeginPlay()
 			else
 				Emitters[i].ZTest = EmitterZTestSwitches[i] == ZM_OffWhenVisible;
 		}
+	}
+}
+
+// For effects that sit on a player, like fire. The player they are on looks out from inside them: the sprites are
+// right at the camera and fill the whole view. Draws the effect fainter for that player while in first person.
+// Call it from Tick with the actor the effect is on.
+simulated final function FadeForVictimView(Actor Victim)
+{
+	local PlayerController PC;
+	local bool bInside;
+	local int i;
+
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+
+	PC = Level.GetLocalPlayerController();
+	bInside = Victim != None && PC != None && PC.ViewTarget == Victim && !PC.bBehindView;
+	if (bInside == bVictimViewFaded)
+		return;
+	bVictimViewFaded = bInside;
+
+	for (i=0;i<Emitters.length;i++)
+	{
+		if (bInside)
+			Emitters[i].Opacity *= VictimViewOpacity;
+		else
+			Emitters[i].Opacity /= VictimViewOpacity;
 	}
 }
 
@@ -157,6 +186,7 @@ static function ResumeParticles (Emitter TheOne)
 
 defaultproperties
 {
+     VictimViewOpacity=0.300000
      bNoDelete=False
      bGameRelevant=True
 }
