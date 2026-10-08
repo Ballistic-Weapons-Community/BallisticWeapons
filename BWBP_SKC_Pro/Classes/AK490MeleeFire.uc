@@ -27,8 +27,14 @@ simulated function SwitchBladeMode (bool bLoaded)
 		BallisticFireSound.Sound=default.BallisticFireSound.sound;
 		PreFireAnim='PrepBash';
 		FireAnim='Bash';
+		// The mesh of the layouts without a bayonet has the stock bash under another name
+		if (!Weapon.HasAnim(FireAnim))
+		{
+			PreFireAnim='PrepSmack';
+			FireAnim='Smack';
+		}
 		FireAnimRate=default.FireAnimRate;
-		Damage *= 0.8;
+		Damage = default.Damage * 0.8;
 		DamageType=default.DamageType;
 		DamageTypeHead=default.DamageTypeHead;
 		DamageTypeArm=default.DamageTypeArm;
