@@ -196,7 +196,6 @@ function bool GetItemInfo(int Group, int Index, out string ItemCap, out Material
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
 function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 {
-	local byte GameStyleIndex;
 	local int i;
 	local class<BallisticWeapon> BW;
 		
@@ -210,24 +209,23 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 		return false;
 	}
 	
-	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
-	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	if (BW.static.GetParams() == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		return false;
 	}
 	
-	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
+	for (i=0; i < BW.static.GetParams().default.Layouts.length; i++)
 	{
-		if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName == "")
+		if (BW.static.GetParams().default.Layouts[i].LayoutName == "")
 		{
-			if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length == 1)
+			if (BW.static.GetParams().default.Layouts.length == 1)
 				LayoutComboBox.AddItem("Default");
 			else
 				LayoutComboBox.AddItem("Layout: "$string(i));
 		}
 		else
-			LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+			LayoutComboBox.AddItem(BW.static.GetParams().default.Layouts[i].LayoutName);
 	}
 	
 	return true;
@@ -238,7 +236,6 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 //This is required due to the allowed camos changing for various layouts
 function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
 {
-	local byte GameStyleIndex;
 	local int i;
 	local array<int> AllowedCamos;
 	local class<BallisticWeapon> BW;
@@ -254,7 +251,6 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	//clear old camos
 	CamoComboBox.Clear();
 	
-	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	
 	BW = class<BallisticWeapon>(DynamicLoadObject(KLRI.GetGroupItem(GroupIndex, Index), class'Class'));
 	if (BW == None)
@@ -265,27 +261,27 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	}
 
 	// weapon has no parameters for this index
-	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	if (BW.static.GetParams() == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		bLoadingCamos = false;
 		return false;
 	}
 
-	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	AllowedCamos = BW.static.GetParams().default.Layouts[LayoutIndex].AllowedCamos;
 
 	if (AllowedCamos.Length == 0 )
 	{
-		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
+		for (i=0; i < BW.static.GetParams().default.Camos.length; i++)
 		{
-			if (BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName == "")
+			if (BW.static.GetParams().default.Camos[i].CamoName == "")
 			{
-				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
+				if (BW.static.GetParams().default.Camos.length == 1)
 					CamoComboBox.AddItem("None",, "0");
 				else
-					CamoComboBox.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+					CamoComboBox.AddItem("Layout: "$string(i),, String(BW.static.GetParams().default.Camos[i].Index));
 			}
-			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+			CamoComboBox.AddItem(BW.static.GetParams().default.Camos[i].CamoName,, String(BW.static.GetParams().default.Camos[i].Index));
 		}
 		CamoComboBox.setIndex(WantedCamo);
 	}
@@ -293,8 +289,8 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
-			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
-			if (WantedCamo == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+			CamoComboBox.AddItem(BW.static.GetParams().default.Camos[AllowedCamos[i]].CamoName,, String(BW.static.GetParams().default.Camos[AllowedCamos[i]].Index));
+			if (WantedCamo == BW.static.GetParams().default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
 				CamoComboBox.setIndex(i);
 		}
 	}

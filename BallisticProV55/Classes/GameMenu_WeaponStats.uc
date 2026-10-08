@@ -44,12 +44,9 @@ var() localized string Headings[10];
 function InitBaselineParams()
 {
     local class<BallisticWeaponParams> params;
-    local int GameStyleIndex;
     local FireEffectParams.FireModeStats fire_stats;
 
-    GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
-
-    params = BaselineClass.default.ParamsClasses[GameStyleIndex];
+    params = BaselineClass.static.GetParams();
 
     fire_stats = params.static.GetFireStats();
     
@@ -305,15 +302,11 @@ function UpdateInfo()
 
 	local FireEffectParams.FireModeStats FS, AFS;
 
-    local int GameStyleIndex;
-
-    GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
-	
 	//FIXME DynamicLoadObject
 	BW = class<BallisticWeapon>(DynamicLoadObject(lb_Weapons.List.GetExtra(), class'Class', True));
 
 	if (BW != None)
-        params = BW.default.ParamsClasses[GameStyleIndex];
+        params = BW.static.GetParams();
 
     if (params != None)
 	{
