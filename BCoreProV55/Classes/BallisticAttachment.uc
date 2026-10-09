@@ -346,6 +346,7 @@ simulated event PostNetReceive()
 	{
 		FiringMode = 255;
 		MeleeFireEffects();
+		HitCorpsesMelee();
 		PlayPawnFiring(FiringMode);
 		OldMeleeFireCount = MeleeFireCount;
 	}
@@ -402,7 +403,7 @@ simulated function InstantEffectParams GetInstantParams(byte Mode)
 simulated function HitCorpses(byte Mode)
 {
 	local InstantEffectParams P;
-	local vector Extent;
+	local class<BallisticMeleeFire> MeleeClass;
 
 	Mode = Min(Mode, 1);
 
@@ -413,41 +414,119 @@ simulated function HitCorpses(byte Mode)
 	if (P == None)
 		return;
 
-	// A shot is a line. A swing is a box swept along it on the server (BallisticMeleeFire.TraceExtent), and where
-	// it ended is where that box touched something: a line to there stops short of a body lying on the floor
-	if (MeleeEffectParams(P) != None)
-		Extent = vect(0,15,15);
+	MeleeClass = class<BallisticMeleeFire>(WeaponClass.default.FireModeClass[Mode]);
+	if (MeleeClass != None)
+		HitCorpsesOnSwing(MeleeClass, P.TraceRange.Max, P.Damage, P.DamageType);
+	else
+		HitCorpsesOnLine(Instigator.Location + Instigator.EyePosition(), mHitLocation, P.Damage, P.MomentumTransfer, P.DamageType, P.bPenetrate);
+}
 
-	HitCorpsesOnLine(P, Instigator.Location + Instigator.EyePosition(), mHitLocation, Extent);
+// The same for the melee attack that guns have. That one has no params: what it does is in the weapon's melee fire class
+simulated function HitCorpsesMelee()
+{
+	local class<BallisticMeleeFire> MeleeClass;
+
+	if (Instigator == None || WeaponClass == None || mHitLocation == vect(0,0,0) || !class'BloodManager'.default.bGibbableCorpses)
+		return;
+
+	MeleeClass = WeaponClass.default.MeleeFireClass;
+	if (MeleeClass != None)
+		HitCorpsesOnSwing(MeleeClass, MeleeClass.default.TraceRange.Max, MeleeClass.default.Damage, MeleeClass.default.DamageType);
 }
 
 // End is where the server's shot ended up, so it went past everything on the way there
-simulated function HitCorpsesOnLine(InstantEffectParams P, vector Start, vector End, optional vector Extent)
+simulated function HitCorpsesOnLine(vector Start, vector End, float Damage, float Momentum, class<DamageType> DamageType, bool bPenetrate)
 {
 	local Pawn Body;
 	local vector HitLoc, HitNorm, Dir;
 
-	if (P.DamageType == None)
-		return;
+	// The server's hit goes out with none as well, and a pawn takes that as this
+	if (DamageType == None)
+		DamageType = class'DamageType';
 
 	Dir = Normal(End - Start);
-	foreach TraceActors(class'Pawn', Body, HitLoc, HitNorm, End, Start, Extent)
+	foreach TraceActors(class'Pawn', Body, HitLoc, HitNorm, End, Start)
 	{
 		if (!IsLocalCorpse(Body))
 			continue;
-		Body.TakeDamage(P.Damage, Instigator, HitLoc, Dir * FMax(1, P.MomentumTransfer), P.DamageType);
-		if (!P.bPenetrate)
+		Body.TakeDamage(Damage, Instigator, HitLoc, Dir * FMax(1, Momentum), DamageType);
+		if (!bPenetrate)
 			break;
 	}
 }
 
+// A swing is not a line. The server sweeps a box along several lines fanned out from the aim (the fire class's
+// SwipePoints), hurts everything they find once, and only says where one of those lines ended. So the client works
+// the aim out from that one and sweeps the same lines
+simulated function HitCorpsesOnSwing(class<BallisticMeleeFire> FireClass, float Range, float Damage, class<DamageType> DamageType)
+{
+	local vector Start, End, HitLoc, HitNorm, X;
+	local rotator Aim;
+	local array<Pawn> Bodies;
+	local Pawn Body;
+	local int i, j;
+
+	i = FireClass.default.WallHitPoint;
+	if (i < 0 || i >= FireClass.default.SwipePoints.Length)
+		return;
+
+	// Some of the guns' melee attacks have none
+	if (DamageType == None)
+		DamageType = class'DamageType';
+
+	Start = Instigator.Location + Instigator.EyePosition();
+	Aim = GetSwingAim(Normal(mHitLocation - Start), FireClass.default.SwipePoints[i].Offset);
+
+	for (i = 0; i < FireClass.default.NumSwipePoints && i < FireClass.default.SwipePoints.Length; i++)
+	{
+		if (FireClass.default.SwipePoints[i].Weight < 0)
+			continue;
+		X = vector(FireClass.default.SwipePoints[i].Offset) >> Aim;
+		End = Start + X * Range;
+		if (Trace(HitLoc, HitNorm, End, Start, false, FireClass.default.TraceExtent) != None)
+			End = HitLoc;
+		Body = TraceCorpse(Start, End, HitLoc, FireClass.default.TraceExtent);
+		if (Body == None)
+			continue;
+		for (j = 0; j < Bodies.Length; j++)
+			if (Bodies[j] == Body)
+				break;
+		if (j < Bodies.Length)
+			continue;
+		Bodies[j] = Body;
+		Body.TakeDamage(Damage, Instigator, HitLoc, X, DamageType);
+	}
+}
+
+// The aim a swing had, from the direction that its line with the offset Offset went: vector(Offset) >> Aim == Dir.
+// (An offset that points up or down leaves two answers when the aim is almost straight up or down. This is one of them)
+simulated function rotator GetSwingAim(vector Dir, rotator Offset)
+{
+	local vector V;
+	local float H, Pitch, Yaw;
+	local rotator Aim;
+
+	V = vector(Offset);
+	H = Sqrt(V.X * V.X + V.Z * V.Z);
+	if (H < 0.01)
+		return rotator(Dir);
+
+	// Up:      V.X * sin(Pitch) + V.Z * cos(Pitch) = Dir.Z
+	// Around:  the rest of V, turned by the yaw, is the rest of Dir
+	Pitch = Asin(FClamp(Dir.Z / H, -1, 1)) - Atan(V.Z, V.X);
+	Yaw = Atan(Dir.Y, Dir.X) - Atan(V.Y, V.X * Cos(Pitch) - V.Z * Sin(Pitch));
+	Aim.Pitch = Pitch * 32768 / Pi;
+	Aim.Yaw = Yaw * 32768 / Pi;
+	return Aim;
+}
+
 // The first of this machine's bodies on a line
-simulated function Pawn TraceCorpse(vector Start, vector End, out vector HitLoc)
+simulated function Pawn TraceCorpse(vector Start, vector End, out vector HitLoc, optional vector Extent)
 {
 	local Pawn Body;
 	local vector HitNorm;
 
-	foreach TraceActors(class'Pawn', Body, HitLoc, HitNorm, End, Start)
+	foreach TraceActors(class'Pawn', Body, HitLoc, HitNorm, End, Start, Extent)
 		if (IsLocalCorpse(Body))
 			return Body;
 
