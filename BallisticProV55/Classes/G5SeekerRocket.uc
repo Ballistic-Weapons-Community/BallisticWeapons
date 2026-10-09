@@ -20,7 +20,8 @@ replication
 		LastLoc, bSeeking;
 }
 
-// WallPenetrationUtil will conflict with this change causing a crash. "it's rare to be able to get unrealscript to foul up that badly"
+// This hull is where the "Unknown code token" crash in WallPenetrationUtil came from: the rocket's own blast hit it and
+// set the rocket off a second time. Explode sees to that now
 simulated function InitProjectile ()
 {
 	super.InitProjectile();
@@ -161,5 +162,4 @@ defaultproperties
      Speed=500.000000
      MaxSpeed=6500.000000
      LifeSpan=0.000000
-	 WallPenetrationForce=0 // Was set to get around the "Unknown code token 3A" crash in WallPenetrationUtil.GoThroughWall. That is fixed where it happened (GoThroughWall, and Explode going off twice); left at 0 so that the guided rocket's blast keeps stopping at walls
 }
