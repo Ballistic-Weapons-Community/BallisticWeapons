@@ -46,7 +46,7 @@ function int WeaponRank(string PackageName, optional string ClassName, optional 
 	if (PackageName ~= "XWeapons" || PackageName ~= "UTClassic")
 		return 51;
 	if (InStr(PackageName, "Onslaught") != -1)
-		return 55;
+		return 51;
 	if (PackageName == "O")
 		return 100;
 	if (El.ExtraData == self)
@@ -168,6 +168,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_UnusedWeapons.List.Add(Headings[2],,"O",true);
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	
 	for (i=0;i<Recs.Length;i++)
 	{
@@ -494,6 +495,7 @@ defaultproperties
 
      Begin Object Class=GUIListBox Name=UsedWeaponList
          bVisibleWhenEmpty=True
+         bSorted=True
          OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Used Weapons. Drag, Double click or use Remove button to take them out the match."

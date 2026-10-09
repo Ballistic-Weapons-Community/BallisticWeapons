@@ -89,7 +89,7 @@ function InitializeConfigTab()
     {
         for (j = 0; j < TempItemNameList.Length - i - 1; j++)
         {
-            if (TempItemNameList[j].ItemName > TempItemNameList[j + 1].ItemName)
+            if (StrCmp(TempItemNameList[j].ItemName, TempItemNameList[j + 1].ItemName) > 0)
             {
                 // Swap items
                 TempItemName = TempItemNameList[j];

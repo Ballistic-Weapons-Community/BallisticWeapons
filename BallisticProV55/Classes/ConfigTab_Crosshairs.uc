@@ -40,6 +40,7 @@ function InitializeConfigTab()
 		return;
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
 		Weap = None;

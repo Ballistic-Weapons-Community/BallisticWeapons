@@ -502,7 +502,7 @@ simulated function SortList(byte group_index, byte team)
                     
                     if (wiGroup == existingGroup)
                     {
-                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
+                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName) <= 0)
                         {	
                             SortedWIs.Insert(j, 1);
                             SortedWIs[j] = WI;

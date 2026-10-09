@@ -200,6 +200,7 @@ function LoadList()
 		Index[j] = j+1;
 
 	class'BC_WeaponInfoCache'.static.GetBWWeps(WIRecs);
+	class'BC_WeaponInfoCache'.static.SortWeaponInfos(WIRecs);
 	
 	for(i=0;i<WIRecs.length;i++)
 	{

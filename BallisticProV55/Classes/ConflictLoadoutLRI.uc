@@ -451,7 +451,7 @@ simulated function SortList()
                 continue;
 
             // same inventory size - check string ordering
-            if (StrCmp(Current.ItemName, Sorted[j].ItemName, 6, True) <= 0)
+            if (StrCmp(Current.ItemName, Sorted[j].ItemName) <= 0)
                 break;
         }
 

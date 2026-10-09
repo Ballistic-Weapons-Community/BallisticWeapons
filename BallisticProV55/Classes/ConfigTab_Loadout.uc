@@ -99,6 +99,7 @@ function LoadList()
 	WeaponInfo.length = 0;
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
 		j = InStr(Recs[i].ClassName, ".");
