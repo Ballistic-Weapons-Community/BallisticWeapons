@@ -58,31 +58,50 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 
 simulated function PostBeginPlay()
 {
-	local WrenchTeleporter T;
-	
 	Super(BallisticWeapon).PostBeginPlay();
 	
 	if (Role == ROLE_Authority && !Level.Game.bAllowVehicles)
 		Level.Game.bAllowVehicles = True;
 
 	MeleeSpreadAngle = MeleeFireMode.GetCrosshairInaccAngle();
-	
+}
+
+// The teleporters this player still has out from an earlier wrench belong to this one now: they pair up with the
+// next one it places and count towards its limit. Looked for here and not in PostBeginPlay, where a wrench has no
+// Instigator yet unless the pawn itself spawned it, and never has one on a client
+function GiveTo(Pawn Other, optional Pickup Pickup)
+{
+	local WrenchTeleporter T;
+	local Controller C;
+	local int i;
+
+	Super.GiveTo(Other, Pickup);
+
+	if (bDeleteMe)
+		return;
+
+	// A loadout changed from a vehicle's seat goes to the driver, whose controller is with the vehicle
+	C = Other.Controller;
+	if (C == None && Other.DrivenVehicle != None)
+		C = Other.DrivenVehicle.Controller;
+	if (C == None)
+		return;
+
 	foreach DynamicActors(class'WrenchTeleporter', T)
 	{
-		if (T.OwningController == Instigator.Controller)
-		{
-			if (Teleporters[0] == None)
-			{
-				Teleporters[0] = T;
-				continue;
-			}
-			else if (Teleporters[1] == None)
-			{
-				Teleporters[1] = T;
-				continue;
-			}
+		if (T.OwningController != C || T.Master == self)
+			continue;
+
+		if (Teleporters[0] == None)
+			i = 0;
+		else if (Teleporters[1] == None)
+			i = 1;
+		else
 			break;
-		}
+
+		Teleporters[i] = T;
+		T.Master = self;
+		++DeployableCount[T.MasterDeployableIndex];
 	}
 }
 
