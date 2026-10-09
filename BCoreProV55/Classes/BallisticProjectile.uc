@@ -621,6 +621,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		SetCollision(false,false,false);
 		TearOffHitNormal = HitNormal;
 		bTearOff = true;
+		// bTearOff is one of the actor's own properties. A projectile that skips those after it has spawned (the Dark
+		// Star's and Nova Staff's, the torpedoes) never told its clients, and they never saw it go off
+		bSkipActorPropertyReplication = false;
 		GoToState('NetTrapped');
 	}
 	
