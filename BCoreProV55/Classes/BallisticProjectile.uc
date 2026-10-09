@@ -598,6 +598,10 @@ simulated function Explode(vector HitLocation, vector HitNormal)
     
     if (bExploded)
 		return;
+
+	// Set before the blast, not after it. The blast can lead back here: a projectile that can be shot down is
+	// damaged by its own blast (the G5's mortar and seeker rockets through their damage hull) and exploded twice
+	bExploded = True;
 		
 	if (ShakeRadius > 0 || MotionBlurRadius > 0)
 		ShakeView(HitLocation);
@@ -613,7 +617,6 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	}
 	
 	BlowUp(HitLocation);
-	bExploded = True;
 	
 	if (!bNetTemporary && bTearOnExplode && (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer))
 	{

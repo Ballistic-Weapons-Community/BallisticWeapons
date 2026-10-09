@@ -115,7 +115,10 @@ simulated function Tick(float DT)
 	local float TurnNeeded;
 
 	if (bExploded)
+	{
 		Destroy();
+		return;
+	}
 
 	if (Speed < MaxSpeed)
 		Speed = FMin(MaxSpeed, Speed + AccelSpeed * DT);
@@ -158,5 +161,5 @@ defaultproperties
      Speed=500.000000
      MaxSpeed=6500.000000
      LifeSpan=0.000000
-	 WallPenetrationForce=0 //hack to fix the G5 guided rocket crash TO DO check why turning this to 0 fixes the WallPenetrationUtil None (Function BCoreDE.WallPenetrationUtil.GoThroughWall:0031) Unknown code token 3A crash
+	 WallPenetrationForce=0 // Was set to get around the "Unknown code token 3A" crash in WallPenetrationUtil.GoThroughWall. That is fixed where it happened (GoThroughWall, and Explode going off twice); left at 0 so that the guided rocket's blast keeps stopping at walls
 }
