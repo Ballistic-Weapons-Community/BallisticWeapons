@@ -368,7 +368,7 @@ static final function InventoryEntry GenerateFromWeaponInfo(BC_WeaponInfoCache.W
 
 //=======================================================================
 // SortList
-// Sorts weapons by inventory group, inventory size and name.
+// Sorts weapons by inventory group and name.
 // Can't use cache here - InventorySize may change often.
 // Forced to DynamicLoadObject
 //
@@ -441,16 +441,7 @@ simulated function SortList()
             if (CurrentGroup > SortedGroup)
                 continue;
 
-            // same inventory group - check relative inventory size
-
-            // valid insertion if inventory size is less
-            if (Current.InventorySize < Sorted[j].InventorySize)
-                break;
-
-            if (Current.InventorySize > Sorted[j].InventorySize)
-                continue;
-
-            // same inventory size - check string ordering
+            // same inventory group - check string ordering
             if (StrCmp(Current.ItemName, Sorted[j].ItemName) <= 0)
                 break;
         }
