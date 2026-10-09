@@ -357,6 +357,9 @@ simulated event ThirdPersonEffects()
 	{
 		//Spawn impacts, streaks, etc
 		InstantFireEffects(FiringMode);
+		//Hit this machine's copies of dead bodies
+		if (Level.NetMode == NM_Client)
+			HitCorpses(FiringMode);
 		//Flash muzzle flash
 		FlashMuzzleFlash (FiringMode);
 		//Weapon light
@@ -367,6 +370,94 @@ simulated event ThirdPersonEffects()
 		if (Level.DetailMode == DM_SuperHigh)
 			EjectBrass(FiringMode);
     }
+}
+
+// The weapon's instant hit params for a fire mode. None if the mode fires something else
+simulated function InstantEffectParams GetInstantParams(byte Mode)
+{
+	local class<BallisticWeaponParams> ParamsClass;
+	local WeaponParams Layout;
+	local FireParams FP;
+
+	if (WeaponClass == None)
+		return None;
+	ParamsClass = WeaponClass.static.GetParams();
+	if (ParamsClass == None || ParamsClass.default.Layouts.Length == 0)
+		return None;
+	Layout = ParamsClass.default.Layouts[Clamp(LayoutIndex, 0, ParamsClass.default.Layouts.Length - 1)];
+
+	if (Mode == 0 && Layout.FireParams.Length > 0)
+		FP = Layout.FireParams[0];
+	else if (Mode != 0 && Layout.AltFireParams.Length > 0)
+		FP = Layout.AltFireParams[0];
+	if (FP == None || FP.FireEffectParams.Length == 0)
+		return None;
+
+	return InstantEffectParams(FP.FireEffectParams[0]);
+}
+
+// A dead body is the machine's it is on: every client has its own copy, lying wherever that client's ragdoll came to
+// rest, and the server (which has none after a second) cannot hit it. So a client lets the shots it shows hit the
+// bodies it has, and they bleed and come apart online as they do offline.
+simulated function HitCorpses(byte Mode)
+{
+	local InstantEffectParams P;
+	local vector Extent;
+
+	Mode = Min(Mode, 1);
+
+	if (!ModeInfos[Mode].bInstant || mHitLocation == vect(0,0,0) || !class'BloodManager'.default.bGibbableCorpses)
+		return;
+
+	P = GetInstantParams(Mode);
+	if (P == None)
+		return;
+
+	// A shot is a line. A swing is a box swept along it on the server (BallisticMeleeFire.TraceExtent), and where
+	// it ended is where that box touched something: a line to there stops short of a body lying on the floor
+	if (MeleeEffectParams(P) != None)
+		Extent = vect(0,15,15);
+
+	HitCorpsesOnLine(P, Instigator.Location + Instigator.EyePosition(), mHitLocation, Extent);
+}
+
+// End is where the server's shot ended up, so it went past everything on the way there
+simulated function HitCorpsesOnLine(InstantEffectParams P, vector Start, vector End, optional vector Extent)
+{
+	local Pawn Body;
+	local vector HitLoc, HitNorm, Dir;
+
+	if (P.DamageType == None)
+		return;
+
+	Dir = Normal(End - Start);
+	foreach TraceActors(class'Pawn', Body, HitLoc, HitNorm, End, Start, Extent)
+	{
+		if (!IsLocalCorpse(Body))
+			continue;
+		Body.TakeDamage(P.Damage, Instigator, HitLoc, Dir * FMax(1, P.MomentumTransfer), P.DamageType);
+		if (!P.bPenetrate)
+			break;
+	}
+}
+
+// The first of this machine's bodies on a line
+simulated function Pawn TraceCorpse(vector Start, vector End, out vector HitLoc)
+{
+	local Pawn Body;
+	local vector HitNorm;
+
+	foreach TraceActors(class'Pawn', Body, HitLoc, HitNorm, End, Start)
+		if (IsLocalCorpse(Body))
+			return Body;
+
+	return None;
+}
+
+// A dead pawn the server has let go of: from then on it is this machine's own
+simulated function bool IsLocalCorpse(Pawn P)
+{
+	return P.Role == ROLE_Authority && P.bTearOff && P.Health <= 0;
 }
 
 simulated function Vector GetTipLocation()
