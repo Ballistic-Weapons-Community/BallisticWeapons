@@ -242,8 +242,6 @@ simulated final function BindFromReplication()
 {
 	Log("BallisticReplicationInfo: BindFromReplication");
 
-	Level.MaxRagdolls 				= 100;
-
 	GameStyle 						= GRep.GameStyle;
 
 	AccuracyScale			    	= GRep.AccuracyScale;
@@ -296,6 +294,10 @@ simulated final function BindFromReplication()
 
 simulated final function BindDefaults()
 {
+	// Bodies stay ragdolls for as long as they lie there, and only a ragdoll takes hits. The stock limit of four
+	// is soon used up. This runs on every machine: a server's own game and an offline one need it as clients do
+	Level.MaxRagdolls 							= 100;
+
 	class.default.GameStyle 					= GameStyle;
 
 	class.default.AccuracyScale			        = AccuracyScale;

@@ -8,19 +8,36 @@
 //=============================================================================
 class DT_BWBullet extends BallisticDamageType;
 
-static function PlayHitSound (Pawn Victim)
+static function Sound GetHitSound (Pawn Victim)
 {
 	local class<BallisticBloodSet> BS;
 
 	BS = class'BWBloodSetHunter'.static.GetBloodSetFor(Victim);
 
-	if (BS != None)
-	{
-		if (default.bHeaddie && BS.default.BulletHitHeadSound != None)
-			Victim.PlaySound(BS.default.BulletHitHeadSound,,default.TransientSoundVolume,,default.TransientSoundRadius);
-		else if (BS.default.BulletHitSound != None)
-			Victim.PlaySound(BS.default.BulletHitSound,,default.TransientSoundVolume,,default.TransientSoundRadius);
-	}
+	if (BS == None)
+		return None;
+	if (default.bHeaddie && BS.default.BulletHitHeadSound != None)
+		return BS.default.BulletHitHeadSound;
+	return BS.default.BulletHitSound;
+}
+
+static function PlayHitSound (Pawn Victim)
+{
+	local Sound S;
+
+	S = GetHitSound(Victim);
+	if (S != None)
+		Victim.PlaySound(S,,default.TransientSoundVolume,,default.TransientSoundRadius);
+}
+
+// A Ballistic pawn's blood comes with the hit itself, so for a body this is the sound
+simulated static function CorpseDamageEffect( vector HitLocation, float Damage, vector Momentum, Pawn Victim, bool bLowDetail )
+{
+	local Sound S;
+
+	S = GetHitSound(Victim);
+	if (S != None)
+		Victim.PlaySound(S,,default.TransientSoundVolume,,default.TransientSoundRadius);
 }
 
 static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Damage, vector Momentum, Pawn Victim, bool bLowDetail )

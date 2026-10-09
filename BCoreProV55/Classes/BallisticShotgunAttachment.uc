@@ -50,6 +50,82 @@ simulated final function FireEffectParams.FireSpreadMode GetSpreadMode()
 	return FSM_Circle;
 }
 
+// The direction of one pellet: mHitLocation holds the direction the gun was aimed in, the spread is made up here
+simulated function Rotator GetPelletRotation()
+{
+	local Rotator R;
+	local float fX;
+
+	R = Rotator(mHitLocation);
+
+	switch (GetSpreadMode())
+	{
+		case FSM_Scatter:
+			fX = frand();
+			R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
+			R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
+			break;
+		case FSM_Circle:
+			fX = frand();
+			R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+			R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+			break;
+		default:
+			R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
+			R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
+			break;
+	}
+
+	return R;
+}
+
+// Every pellet can hit a body, and as on the server a body takes the pellets that hit it as one blow.
+// These are not the pellets the tracers are drawn for, but nobody can tell
+simulated function HitCorpses(byte Mode)
+{
+	local InstantEffectParams P;
+	local Vector Start, End, HitLoc, HitNorm;
+	local array<Pawn> Bodies;
+	local array<int> Pellets;
+	local array<Vector> HitLocs;
+	local Pawn Body;
+	local int i, j, Range;
+
+	Mode = Min(Mode, 1);
+
+	if (!ModeInfos[Mode].bInstant || mHitLocation == vect(0,0,0) || !class'BloodManager'.default.bGibbableCorpses)
+		return;
+
+	P = GetInstantParams(Mode);
+	if (P == None || P.DamageType == None)
+		return;
+
+	Start = Instigator.Location + Instigator.EyePosition();
+	Range = GetTraceRange();
+	for (i=0; i < GetTraceCount(); i++)
+	{
+		End = Start + Vector(GetPelletRotation()) * Range;
+		if (Trace(HitLoc, HitNorm, End, Start, false) != None)
+			End = HitLoc;
+		Body = TraceCorpse(Start, End, HitLoc);
+		if (Body == None)
+			continue;
+		for (j=0; j < Bodies.Length; j++)
+			if (Bodies[j] == Body)
+				break;
+		if (j == Bodies.Length)
+		{
+			Bodies[j] = Body;
+			Pellets[j] = 0;
+		}
+		Pellets[j]++;
+		HitLocs[j] = HitLoc;
+	}
+
+	for (j=0; j < Bodies.Length; j++)
+		Bodies[j].TakeDamage(P.Damage * Pellets[j], Instigator, HitLocs[j], Normal(HitLocs[j] - Start) * FMax(1, P.MomentumTransfer), P.DamageType);
+}
+
 // Do trace to find impact info and then spawn the effect
 // This should be called from sub-classes
 simulated function InstantFireEffects(byte Mode)
@@ -58,7 +134,7 @@ simulated function InstantFireEffects(byte Mode)
 	local Rotator R;
 	local Material HitMat;
 	local int i;
-	local float RMin, RMax, Range, fX;
+	local float RMin, RMax, Range;
 	
 	if (InstantMode == MU_None || (InstantMode == MU_Secondary && Mode != 1) || (InstantMode == MU_Primary && Mode != 0))
 		return;
@@ -84,25 +160,7 @@ simulated function InstantFireEffects(byte Mode)
 			
 			Range = Lerp(FRand(), RMin, RMax);
 			
-			R = Rotator(mHitLocation);
-
-			switch (GetSpreadMode())
-			{
-				case FSM_Scatter:
-					fX = frand();
-					R.Yaw +=   XInaccuracy * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YInaccuracy * (frand()*2-1) * cos(fX*1.5707963267948966);
-					break;
-				case FSM_Circle:
-					fX = frand();
-					R.Yaw +=   XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-					break;
-				default:
-					R.Yaw += ((FRand()*XInaccuracy*2)-XInaccuracy);
-					R.Pitch += ((FRand()*YInaccuracy*2)-YInaccuracy);
-					break;
-			}
+			R = GetPelletRotation();
 			
 			End = Start + Vector(R) * Range;
 			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
