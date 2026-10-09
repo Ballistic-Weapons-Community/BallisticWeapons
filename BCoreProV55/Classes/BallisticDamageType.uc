@@ -404,6 +404,17 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 	return super.GetPawnDamageEffect(HitLocation, Damage, Momentum, Victim, bLowDetail);
 }
 
+// GetPawnDamageEffect() for a dead body on a listen server. A sound that a function which is not simulated has an
+// actor play goes from a server to every client, and each client plays its own for the hits on its own copy of the
+// body. Played from here it stays on the machine
+simulated static function CorpseDamageEffect( vector HitLocation, float Damage, vector Momentum, Pawn Victim, bool bLowDetail )
+{
+	if (default.PawnDamageSounds.Length > 0)
+		Victim.PlaySound(default.PawnDamageSounds[Rand(default.PawnDamageSounds.Length)],,default.TransientSoundVolume,,default.TransientSoundRadius);
+	if (default.EffectChance > 0 && default.EffectChance > FRand())
+		DoBloodEffects(HitLocation, Damage, Momentum, Victim, bLowDetail);
+}
+
 // Pawn gives damage type a chance to modify hit properties. Called from PlayHit, so changes affect only effects, TakeDamage will be done already.
 static function ModifyHit (Pawn Victim, out float Damage, vector Momentum, out vector HitLocation, out vector HitRay, out name HitBone);
 

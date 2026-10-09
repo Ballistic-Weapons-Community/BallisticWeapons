@@ -1855,9 +1855,12 @@ simulated function PlayCorpseHit(float Damage, Pawn InstigatedBy, vector HitLoca
 	if (Damage <= 0 || bSkeletized || Level.NetMode == NM_DedicatedServer)
 		return;
 
-	// The damage type's own effect, the sound of the hit mostly. A server would play that to every client
+	// The damage type's own effect, the sound of the hit mostly. A server would play that to every client, so a
+	// host gets it from a function that keeps it on the machine
 	if (Level.NetMode != NM_ListenServer)
 		Super(UnrealPawn).PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum);
+	else if (class<BallisticDamageType>(DamageType) != None && Damage > DamageType.default.DamageThreshold && EffectIsRelevant(Location, true))
+		class<BallisticDamageType>(DamageType).static.CorpseDamageEffect(HitLocation, Damage, Momentum, self, Level.bDropDetail || Level.DetailMode == DM_Low);
 
 	HitRayAndBone(InstigatedBy, DamageType, Damage, Momentum, HitLocation, HitRay, HitBone);
 	DoHit(HitBone, DamageType, HitRay, HitLocation, Damage);
