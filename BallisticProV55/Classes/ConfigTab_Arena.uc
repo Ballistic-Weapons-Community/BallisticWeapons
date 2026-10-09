@@ -157,8 +157,7 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
-	local array<CacheManager.WeaponRecord> Recs;
-	local int i, j;
+	local int i;
 
 	Super.InitComponent(MyController, MyOwner);
 
@@ -167,6 +166,13 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	cb_Presets.SetText("");
 
 	lb_UnusedWeapons.List.CompareItem = MyCompareItem;
+}
+
+// The lists are filled when the tab is first shown. Going through every weapon of the game is too much for opening the menu.
+function InitializeConfigTab()
+{
+	local array<CacheManager.WeaponRecord> Recs;
+	local int i, j;
 
 	lb_UnusedWeapons.List.Add(Headings[0],,"BW",true);
 	lb_UnusedWeapons.List.Add(Headings[1],,"UT",true);
