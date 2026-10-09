@@ -73,7 +73,7 @@ function InitializeConfigTab()
 
 function LoadList()
 {
-	local int i, j, k;
+	local int i, j;
 //	local class<Weapon> Weap;
 	local array<CacheManager.WeaponRecord> Recs;
 	local string s;
