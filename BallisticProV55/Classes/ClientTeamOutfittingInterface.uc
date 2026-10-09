@@ -705,9 +705,14 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 		LastLoadout[i] = Stuff[i];
 		LastLayout[i] = Layout[i];
 		LastCamo[i] = Camo[i];
-		// for the loadout slot and main weapon toggle keys
+		// for the loadout slot and main weapon toggle keys. A slot that was left empty has no class to load
 		if (BallisticPlayer(PC) != None)
-			BallisticPlayer(PC).LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		{
+			if (Stuff[i] != "")
+				BallisticPlayer(PC).LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+			else
+				BallisticPlayer(PC).LastLoadoutClasses[i] = None;
+		}
 	}
 }
 
