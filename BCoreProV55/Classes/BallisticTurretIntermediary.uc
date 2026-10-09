@@ -13,6 +13,7 @@ var byte LayoutIndex;
 var byte CamoIndex;
 var int TurretAmmoAmount;
 var int WeaponMode;
+var int WeaponData;
 
 replication
 {
@@ -57,9 +58,14 @@ simulated function Timer()
 				BW.GenerateLayout(LayoutIndex);
 				BW.GenerateCamo(CamoIndex);
 				BW.GiveTo(myPawn);
-				BW.MagAmmo = MagAmmo;
-				BW.SetAmmoTo(TurretAmmoAmount, 0);
-				BW.CurrentWeaponMode = WeaponMode;
+				// GiveTo destroys the new weapon if the pawn has picked up one of this type in the meantime
+				if (BW != None)
+				{
+					BW.MagAmmo = MagAmmo;
+					BW.SetAmmoTo(TurretAmmoAmount, 0);
+					BW.CurrentWeaponMode = WeaponMode;
+					BW.SetTurretData(WeaponData);
+				}
 			}
 			
 			ClientConfirmWeaponReceived();

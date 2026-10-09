@@ -166,6 +166,8 @@ function DoFireEffect()
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	if (Weapon == None)
+		return;
 	
 	if (Victim.bProjTarget && BallisticShield(Victim) == None && FMPMachinePistol(Weapon).CurrentWeaponMode == 1)
 		BW.TargetedHurtRadius(Damage, 256, class'DT_MP40_Incendiary', 200, HitLocation, Pawn(Victim));

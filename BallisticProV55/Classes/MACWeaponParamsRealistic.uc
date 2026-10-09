@@ -38,6 +38,26 @@ defaultproperties
 	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================
+
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		SpreadMode=FSM_Rectangle
+		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=1.000000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Deploy"
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	End Object
+
 	//=================================================================
 	// RECOIL
 	//=================================================================

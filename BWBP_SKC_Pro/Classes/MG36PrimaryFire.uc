@@ -114,6 +114,16 @@ function PlayFireEnd()
     super.PlayFireEnd();
 }
 
+// The fire params are the values without the silencer: with it on, they need its changes again whenever they are applied
+// (a weapon mode switch, or the params of a weapon that has just got its silencer state from a turret)
+simulated function ApplyFireEffectParams(FireEffectParams params)
+{
+	super.ApplyFireEffectParams(params);
+
+	if (MG36Machinegun(Weapon) != None && MG36Machinegun(Weapon).bSilenced)
+		SwitchSilencerMode(true);
+}
+
 simulated function SwitchSilencerMode (bool bNewMode)
 {
 	if (bNewMode)

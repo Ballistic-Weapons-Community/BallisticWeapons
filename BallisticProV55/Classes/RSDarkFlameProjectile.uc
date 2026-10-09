@@ -150,7 +150,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 		else
 		{
 			HealVehicle = Vehicle(Other);
-			if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+			if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 			{
 				AdjustedDamage = Damage * Instigator.DamageScaling * 4;
 				if (Instigator.HasUDamage())
@@ -189,11 +189,14 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 					if (i>=Other.Attached.length)
 					{
 						PB = Spawn(class'RSDarkPlasmaBurner',Other,,Other.Location);
-						PB.Initialize(Other);
-						if (Instigator!=None)
+						if (PB != None)
 						{
-							PB.Instigator = Instigator;
-							PB.InstigatorController = Instigator.Controller;
+							PB.Initialize(Other);
+							if (Instigator!=None)
+							{
+								PB.Instigator = Instigator;
+								PB.InstigatorController = Instigator.Controller;
+							}
 						}
 					}
 				}

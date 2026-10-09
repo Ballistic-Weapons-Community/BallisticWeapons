@@ -90,6 +90,7 @@ static function SetNewWeapons(int i, array<string> NewWeaps, optional bool bRand
 simulated function PreBeginPlay()
 {
 	local int i, j, k;
+	local class<Weapon> NewClass;
 	super.PreBeginPlay();
 
 	if (Role < ROLE_Authority)
@@ -100,17 +101,27 @@ simulated function PreBeginPlay()
 	// Load new weapon classes
 	for(i=0;i<NumWeapons;i++)
 	{
-		Swaps[i].CurrentIndex = Rand(Swaps[i].NewClassNames.length);
-		Swaps[i].NewClasses.Length = Swaps[i].NewClassNames.Length;
+		// Leave out entries that are no weapon class: a pickup that is told to change into one of them is destroyed without a replacement.
+		// The config menu used to save its section headings (e.g. "HEAVY") into these lists, and a listed weapon may not be installed.
 		for (j=0;j<Swaps[i].NewClassNames.length;j++)
 		{
-			if (Swaps[i].NewClassNames[j] != "")
+			NewClass = None;
+			if (InStr(Swaps[i].NewClassNames[j], ".") != -1)
 			{
-				Swaps[i].NewClasses[j] = class<Weapon>(DynamicLoadObject( Swaps[i].NewClassNames[j], class'class' ));
-				if (Swaps[i].NewClasses[j] == None)
-                    log("Error: Failed to load weapon class for " $ Swaps[i].NewClassNames[j]);
+				NewClass = class<Weapon>(DynamicLoadObject( Swaps[i].NewClassNames[j], class'class', true ));
+				if (NewClass == None)
+					log("Error: Failed to load weapon class for " $ Swaps[i].NewClassNames[j]);
 			}
+			if (NewClass == None)
+			{
+				Swaps[i].NewClassNames.Remove(j, 1);
+				j--;
+			}
+			else
+				Swaps[i].NewClasses[j] = NewClass;
 		}
+		Swaps[i].NewClasses.Length = Swaps[i].NewClassNames.Length;
+		Swaps[i].CurrentIndex = Rand(Swaps[i].NewClassNames.length);
 	}
 	// Generate ammo swap lists.
 	// If weapon fire mode class matches ammo, pass over some data.

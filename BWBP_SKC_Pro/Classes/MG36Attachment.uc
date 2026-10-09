@@ -78,6 +78,12 @@ function InitFor(Inventory I)
 		myWeap = BallisticWeapon(I);
 	if (MG36Machinegun(I) != None)
 	{
+		// A new attachment of a gun that has its silencer on: after a weapon switch, or when it comes back from its turret
+		if (MG36Machinegun(I).bSilenced)
+		{
+			bSilenced=True;
+			SetBoneScale (0, 1.0, 'Silencer');
+		}
 		if (MG36Machinegun(I).bHasGauss)
 		{
 			bHasGauss=True;

@@ -27,16 +27,21 @@ simulated state ClassicRail
 
 		RailPower = 0.0;
 		
-		Weapon.ThirdPersonActor.SoundPitch =  32;
-		Weapon.ThirdPersonActor.SoundVolume =  64;
-		Weapon.ThirdPersonActor.SoundRadius = 128;
+		// The attachment only exists on the server
+		if (Weapon.ThirdPersonActor != None)
+		{
+			Weapon.ThirdPersonActor.SoundPitch =  32;
+			Weapon.ThirdPersonActor.SoundVolume =  64;
+			Weapon.ThirdPersonActor.SoundRadius = 128;
+		}
 	}
 
 	simulated function ModeTick(float DT)
 	{
 		Super.ModeTick(DT);
 
-		Weapon.ThirdPersonActor.SoundPitch = 32 + RailPower * 12;
+		if (Weapon.ThirdPersonActor != None)
+			Weapon.ThirdPersonActor.SoundPitch = 32 + RailPower * 12;
 		RailPower = FMin(1.0, RailPower + 0.1666*DT);
 	}
 	simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
@@ -119,7 +124,8 @@ simulated state FullChargedRail
 		}
 
 		RailPower = 0;
-		Weapon.ThirdPersonActor.SoundPitch =  32 + RailPower * 12;
+		if (Weapon.ThirdPersonActor != None)
+			Weapon.ThirdPersonActor.SoundPitch =  32 + RailPower * 12;
 	}
 
 	simulated function ModeTick(float DeltaTime)
@@ -137,7 +143,7 @@ simulated state FullChargedRail
 			
 		Super.ModeTick(DeltaTime);
 		
-		if (RailPower > 0 && RailPower <= 1.0f)
+		if (RailPower > 0 && RailPower <= 1.0f && Weapon.ThirdPersonActor != None)
 		{
 			Weapon.ThirdPersonActor.SoundPitch =  32 + RailPower * 12;
 			//Weapon.SoundPitch = 32 + RailPower * 12;

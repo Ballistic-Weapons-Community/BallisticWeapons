@@ -10,6 +10,9 @@ class HVPCMk66SecondaryFire extends BallisticProProjectileFire;
 
 simulated function bool AllowFire()
 {
+	// A bot holds the shot that would blow the cannon up
+	if (AIController(Instigator.Controller) != None && HVPCMk66PlasmaCannon(Weapon).HeatLevel + 0.25 > 10)
+		return false;
 	if ((HVPCMk66PlasmaCannon(Weapon).HeatLevel >= 10.50) || HVPCMk66PlasmaCannon(Weapon).bIsVenting || !super.AllowFire())
 		return false;
 	return true;
@@ -30,7 +33,7 @@ function DoFireEffect()
 	local actor Other;
     local int SpawnCount;
     
-    if (level.Netmode == NM_DedicatedServer)
+    if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
     	 HVPCmk66PlasmaCannon(BW).AddHeat(0.25);
      
 	 if (Instigator == None || Weapon == None || Instigator.Health < 1)

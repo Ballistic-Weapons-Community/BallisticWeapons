@@ -66,6 +66,12 @@ static function bool GoThroughWall(Actor source, Actor Instigator, vector EntryL
 	if (MaxWallDepth <= 0)
 		return false;
 
+	// The tracer can be gone by the time we get here: a projectile destroyed by something in its own blast, a
+	// weapon whose owner the shot killed. The iterator below must not be run on an actor that is gone: the script
+	// VM skips the call but then runs the loop's end offset as code ("Unknown code token").
+	if (source == None)
+		return false;
+
 	// First, try shortcut method...
 	foreach source.CollidingActors(class'Pawn', A, MaxWallDepth, EntryLocation)
 	{

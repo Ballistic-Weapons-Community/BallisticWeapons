@@ -88,7 +88,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		return;
 	}
 	HealVehicle = Vehicle(Other);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealVehicle.HealDamage(AdjustedDamage, InstigatorController, myDamageType);
 		return;
@@ -142,12 +142,15 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		if (i>=Other.Attached.length)
 		{
 			PB = Spawn(class'RSDarkPlasmaBurner',Other,,Other.Location);
-			PB.Initialize(Other);
-			PB.AddPower(8);
-			if (Instigator!=None)
+			if (PB != None)
 			{
-				PB.Instigator = Instigator;
-				PB.InstigatorController = Instigator.Controller;
+				PB.Initialize(Other);
+				PB.AddPower(8);
+				if (Instigator!=None)
+				{
+					PB.Instigator = Instigator;
+					PB.InstigatorController = Instigator.Controller;
+				}
 			}
 		}
 	}
@@ -185,7 +188,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	local int AdjustedDamage;
 
 	HealVehicle = Vehicle(Wall);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		AdjustedDamage = default.Damage * Instigator.DamageScaling * MyDamageType.default.VehicleDamageScaling;
 		if (Instigator.HasUDamage())

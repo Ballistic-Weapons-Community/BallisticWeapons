@@ -136,6 +136,8 @@ function DoFireEffect()
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {	
     super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	if (Weapon == None)
+		return;
 	
     if (Pawn(Target) != None && Pawn(Target).Health > 0 && Vehicle(Target) == None && SX45Pistol(Weapon).CurrentWeaponMode == 1)
     {

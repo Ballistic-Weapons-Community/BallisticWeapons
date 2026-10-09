@@ -26,7 +26,7 @@ defaultproperties
 		SightingTime=0.20
 		DisplaceDurationMult=1
 		MagAmmo=100
-        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(0)=RecoilParams'ProtonRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
     End Object 
     Layouts(0)=WeaponParams'ClassicParams'

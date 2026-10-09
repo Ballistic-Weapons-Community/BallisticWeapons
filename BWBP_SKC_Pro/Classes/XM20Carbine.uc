@@ -264,6 +264,9 @@ simulated function bool PutDown()
 {
 	if (super.PutDown())
 	{
+		// The server doesn't run PutDown for a network client's weapon, so the client has to tell it to drop the shield
+		if (Level.NetMode == NM_Client && bShieldUp)
+			ServerSwitchShield(false);
 		KillLaserDot();
 		if (ThirdPersonActor != None)
 			XM20Attachment(ThirdPersonActor).bLaserOn = false;
@@ -345,6 +348,18 @@ simulated function ClientSwitchLaserMode (byte newMode)
 			XM20Attachment(ThirdPersonActor).bBigLaser=false;
 	}	
 	UpdateScreen();
+}
+
+// ClientSwitchLaserMode is not replicated and only runs on the server, so the owning client sets its beam size here
+simulated function ClientSwitchWeaponMode (byte NewMode)
+{
+	super.ClientSwitchWeaponMode(NewMode);
+
+	if (Level.NetMode == NM_Client)
+	{
+		bBigLaser = (NewMode == 2);
+		UpdateScreen();
+	}
 }
 
 //=====================================================

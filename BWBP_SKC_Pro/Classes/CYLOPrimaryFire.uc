@@ -33,7 +33,8 @@ function PlayFiring()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-	if (Level.Netmode == NM_DedicatedServer && bCanOverheat)
+	// The explosive rounds can kill the shooter, which destroys the weapon
+	if (Level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && bCanOverheat && BW != None)
 		CYLOUAW(BW).AddHeat(HeatPerShot);
 }
 

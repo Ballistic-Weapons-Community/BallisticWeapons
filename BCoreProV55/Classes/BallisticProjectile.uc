@@ -598,6 +598,10 @@ simulated function Explode(vector HitLocation, vector HitNormal)
     
     if (bExploded)
 		return;
+
+	// Set before the blast, not after it. The blast can lead back here: a projectile that can be shot down is
+	// damaged by its own blast (the G5's mortar and seeker rockets through their damage hull) and exploded twice
+	bExploded = True;
 		
 	if (ShakeRadius > 0 || MotionBlurRadius > 0)
 		ShakeView(HitLocation);
@@ -613,7 +617,6 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	}
 	
 	BlowUp(HitLocation);
-	bExploded = True;
 	
 	if (!bNetTemporary && bTearOnExplode && (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer))
 	{
@@ -799,6 +802,14 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 simulated function ApplyImpactEffect(Actor Other, vector HitLocation)
 {
     DoDamage(Other, HitLocation);
+}
+
+// On clients the stock Touch pushes a torn off corpse around with MyDamageType. Projectiles that do their damage
+// through another damage type (the M46, MARS and G51 grenades, the LAW's) have none, and the pawn's hit code needs one
+simulated function ClientSideTouch(Actor Other, Vector HitLocation)
+{
+	if (MyDamageType != None)
+		super.ClientSideTouch(Other, HitLocation);
 }
 
 simulated function DoDamage(Actor Other, vector HitLocation)
@@ -995,7 +1006,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
             }
             else 
             {
-                damageScale = GetPenetrationDamageScale(dir, dist);
+                damageScale = GetPenetrationDamageScale(dir, dist, Victims);
 
                 if (damageScale < 0.01f)
                     continue;
@@ -1023,9 +1034,11 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 // Trace to find out how far towards the target we can get
 // n.b. this code does not work correctly for grenades on the ground
-function float GetPenetrationDamageScale(Vector dir, float dist)
+// Target is who this is worked out for. Without it the first actor on the way is taken to be him
+function float GetPenetrationDamageScale(Vector dir, float dist, optional Actor Target)
 {
 	local int						WallCount, WallPenForce, WallPenDelta;
+	local float						Skip;
 	local Vector					End, X, HitLocation, HitNormal, Start, LastHitLoc, ExitNormal;
 	local Material					HitMaterial, ExitMaterial;
 	local float						pwr;
@@ -1116,6 +1129,19 @@ function float GetPenetrationDamageScale(Vector dir, float dist)
 		{
 			Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
 			End = Start + X * Dist;
+			bTraceWater=true;
+			continue;
+		}
+
+		// Somebody or something else that stands between the blast and the target. That is no cover, and getting as
+		// far as that is not getting to the target: the walls behind it still count. Go on from its far side
+		if (Target != None && Other != Target)
+		{
+			Skip = FMax(32, Other.CollisionRadius * 2);
+			Start = HitLocation + X * Skip;
+			dist -= Skip;
+			pwr -= Skip;
+			End = Start + X * dist;
 			bTraceWater=true;
 			continue;
 		}

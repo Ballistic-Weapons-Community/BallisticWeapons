@@ -51,7 +51,11 @@ simulated function TryAddInteraction()
 		PC.Player.InteractionMaster.AddInteraction("BallisticProV55.BallisticPreloadInteraction", PC.Player);
 		bAddedInteraction = true;
 		SetTimer(0.0, false);
-		Log("BallisticPreloadRI: Added preload interaction for"@PC.PlayerReplicationInfo.PlayerName);
+		// The PRI may not have arrived on the client yet
+		if (PC.PlayerReplicationInfo != None)
+			Log("BallisticPreloadRI: Added preload interaction for"@PC.PlayerReplicationInfo.PlayerName);
+		else
+			Log("BallisticPreloadRI: Added preload interaction for"@PC);
 	}
 }
 

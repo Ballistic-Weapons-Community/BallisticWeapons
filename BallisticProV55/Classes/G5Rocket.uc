@@ -44,6 +44,9 @@ simulated function Timer()
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
+	if (bExploded)
+		return;
+
 	OnDie(self);
 	Damage *= 1 + FClamp(default.LifeSpan  - (LifeSpan + ArmingDelay), 0, 0.5);
 	Super.Explode(HitLocation, HitNormal);

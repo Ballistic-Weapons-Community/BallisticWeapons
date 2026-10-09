@@ -23,6 +23,15 @@ var()   Emitter			LaserDot;
 var()   bool				bLaserOn;
 var()   bool		bStriking;
 
+replication
+{
+	reliable if (Role == ROLE_Authority)
+		bLaserOn;
+	// Called from the weapon special key on the client
+	reliable if (Role < ROLE_Authority)
+		ServerSwitchLaser;
+}
+
 simulated function OnWeaponParamsChanged()
 {
     super.OnWeaponParamsChanged();

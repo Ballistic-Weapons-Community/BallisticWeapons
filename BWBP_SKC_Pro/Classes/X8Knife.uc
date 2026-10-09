@@ -104,6 +104,7 @@ simulated function CheckNoGrenades()
         		GW.MyWeaponClass = class;
 				GW.GiveTo(Instigator);
 			}
+			class'NullGun'.static.GiveToUnarmedBot(Instigator, self);
 		}
 
 		if (Instigator != None)
@@ -164,7 +165,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
 		return;
 		
-	if (VSize(Instigator.Location - InstigatedBy.Location) < 512 && VSize(Momentum) < 60)
+	if (InstigatedBy != None && VSize(Instigator.Location - InstigatedBy.Location) < 512 && VSize(Momentum) < 60)
 		Momentum = vect(0,0,0);
 	else Momentum *= 0.5;
 		

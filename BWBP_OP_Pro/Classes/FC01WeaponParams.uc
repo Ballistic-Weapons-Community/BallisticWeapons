@@ -144,7 +144,6 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams_Smart'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
 
 	Begin Object Class=WeaponParams Name=ArenaParams
@@ -168,7 +167,6 @@ defaultproperties
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		FireParams(1)=FireParams'ArenaPhotonPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
 	
     Layouts(0)=WeaponParams'ArenaParams_Smart'

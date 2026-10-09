@@ -124,7 +124,10 @@ simulated function Tick(float DT)
 	local float TurnNeeded;
 
 	if (bExploded)
+	{
 		Destroy();
+		return;
+	}
 
 	if (Speed < MaxSpeed)
 		Speed = FMin(MaxSpeed, Speed + AccelSpeed * DT);

@@ -137,7 +137,7 @@ simulated event Destroyed()
 		Arc.Destroy();
 	if (GlowFX != None)
 		GlowFX.Destroy();
-	if (Instigator.AmbientSound != None)
+	if (Instigator != None && (Instigator.AmbientSound != None))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;
@@ -281,6 +281,9 @@ simulated function bool PutDown()
 	{
 		bShieldUp=false;
 		AdjustShieldProperties();
+		// The server doesn't run PutDown for a network client's weapon, so the client has to tell it to drop the shield
+		if (Level.NetMode == NM_Client)
+			ServerSwitchShield(false);
 	}
 	if (super.PutDown())
 	{
@@ -378,11 +381,15 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 {
     local ShieldAttachment Attachment;
 
+	// Can be called from PostNetReceive before the Instigator has been replicated
 	if (bShieldUp && !bDepleted && !bBroken)
 	{
 		//ParamsClasses[GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),3);
-		Instigator.AmbientSound = ChargingSound;
-		Instigator.SoundVolume = ShieldSoundVolume;
+		if (Instigator != None)
+		{
+			Instigator.AmbientSound = ChargingSound;
+			Instigator.SoundVolume = ShieldSoundVolume;
+		}
 		if( Attachment != None && Attachment.ShieldEffect3rd != None )
 			Attachment.ShieldEffect3rd.bHidden = false;
 
@@ -390,14 +397,18 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 
 		if (Arc == None)
 			class'bUtil'.static.InitMuzzleFlash(Arc, class'M2020ShieldEffect', DrawScale, self, 'tip');
-        	PumaShieldEffect.Flash(0, ShieldPower);
+		if (PumaShieldEffect != None)
+			PumaShieldEffect.Flash(0, ShieldPower);
 	}
 	else
 	{
 		//ParamsClasses[GameStyleIndex].static.OverrideFireParams(PumaRepeater(BW),CurrentWeaponMode);
 		Attachment = ShieldAttachment(ThirdPersonActor);
-		Instigator.AmbientSound = None;
-		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+		if (Instigator != None)
+		{
+			Instigator.AmbientSound = None;
+			Instigator.SoundVolume = Instigator.Default.SoundVolume;
+		}
 
 		if( Attachment != None && Attachment.ShieldEffect3rd != None )
 		{

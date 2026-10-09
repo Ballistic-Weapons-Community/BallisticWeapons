@@ -76,6 +76,10 @@ simulated function bool AllowFire()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
+
+	// The rocket can kill the shooter, which destroys the weapon
+	if (MRL == None)
+		return;
 	
     if(InStr(Level.Game.GameName, "Freon") != -1 && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 		class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, 1);

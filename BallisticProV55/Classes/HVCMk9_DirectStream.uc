@@ -41,7 +41,9 @@ simulated function UpdateEndpoint()
 		if (!Instigator.IsFirstPerson())
 		{
 			bHidden = False;
-			SetLocation(GunAttachment.GetModeTipLocation());
+			// The attachment may not have been replicated yet
+			if (GunAttachment != None)
+				SetLocation(GunAttachment.GetModeTipLocation());
 		}
 	}
 	else
@@ -82,7 +84,8 @@ simulated function Tick(float dt)
 		StartPoint = Instigator.Location + Instigator.EyePosition();
 		if (Target != None)
 			EndPoint = Target.Location;
-		else EndPoint = GunAttachment.mHitLocation;
+		else if (GunAttachment != None)
+			EndPoint = GunAttachment.mHitLocation;
 	}
 	UpdateEndpoint();
 }

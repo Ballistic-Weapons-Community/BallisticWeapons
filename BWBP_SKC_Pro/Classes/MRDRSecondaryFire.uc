@@ -36,6 +36,8 @@ function PlayFiring()
 
 function NotifiedDoFireEffect()
 {
+	if (Weapon.ThirdPersonActor == None)
+		return;
 	Super.DoFireEffect();
 }
 

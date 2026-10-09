@@ -52,7 +52,8 @@ simulated function PostBeginPlay()
 			if (Level.NetMode != NM_DedicatedServer)
 				TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
 		}
-		TeamLight.SetBase(self);	
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}
 }
 
@@ -64,7 +65,8 @@ simulated event PostNetReceive()
 		if (TeamLightColor == 1)
 			TeamLight = Spawn(class'MARSSparkEmitterRed',self,,Location, Rotation);
 		else TeamLight = Spawn(class'MARSSparkEmitter',self,,Location, Rotation);
-		TeamLight.SetBase(self);
+		if (TeamLight != None)
+			TeamLight.SetBase(self);
 	}	
 	if (bPulse != bOldPulse)
 	{
@@ -117,7 +119,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 {
 	if (class<BallisticDamageType>(DamageType) != None && !class<BallisticDamageType>(DamageType).default.bDetonatesBombs)
 		return;
-	if (EventInstigator != Instigator && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(InstigatorController))
+	if (EventInstigator != None && EventInstigator != Instigator && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(InstigatorController))
 		return;
 	if (StartDelay > 0)
 		return;

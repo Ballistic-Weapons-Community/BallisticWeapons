@@ -27,7 +27,8 @@ simulated function SpawnEffects ()
 	local Actor T;
 	local vector HitLoc, HitNorm, End;
 
-	if (Level.NetMode == NM_DedicatedServer || !CanSpawnStuff())
+	// a client can get here without a blood set (seen with Invasion monsters)
+	if (Level.NetMode == NM_DedicatedServer || BloodSet == None || !CanSpawnStuff())
 		return;
 
 	End = Location + Vector(Rotation)*default.SplatRange;

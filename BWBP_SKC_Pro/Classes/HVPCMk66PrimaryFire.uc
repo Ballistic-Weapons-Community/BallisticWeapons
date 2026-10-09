@@ -10,6 +10,9 @@ var() Sound			FailSound;
 
 simulated function bool AllowFire()
 {
+	// A bot holds the shot that would blow the cannon up
+	if (AIController(Instigator.Controller) != None && HVPCMk66PlasmaCannon(Weapon).HeatLevel + 5 > 10)
+		return false;
 	if ((HVPCMk66PlasmaCannon(Weapon).HeatLevel >= 9.5) || HVPCMk66PlasmaCannon(Weapon).bIsVenting || !super.AllowFire())
 		return false;
 	return true;
@@ -70,7 +73,7 @@ function DoFireEffect()
 		class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(1, 1);
 
 	SendFireEffect(none, vect(0,0,0), StartTrace, 0);
-	if (level.Netmode == NM_DedicatedServer)
+	if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 		HVPCMk66PlasmaCannon(BW).AddHeat(5.00);
 }
 
