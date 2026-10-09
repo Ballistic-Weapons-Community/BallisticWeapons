@@ -32,6 +32,7 @@ var() localized string 			QuickListText;
 var localized string 			ReceivingText[2];
 
 var KillstreakLRI 				KLRI;
+var bool						bLoadingCamos;		// LoadCamos is filling a camo box: its changes are not the player's
 
 function InitPanel()
 {
@@ -153,7 +154,7 @@ function LoadWeapons()
 	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
 	LoadLayouts(1, Item_Streak2.Index, cb_Streak2_LI);
 	cb_Streak2_LI.setIndex(class'KillstreakConfig'.default.Layouts[1]);
-	LoadCamos(1, cb_Streak1_LI.getIndex(), Item_Streak2.Index, cb_Streak2_CI);
+	LoadCamos(1, cb_Streak2_LI.getIndex(), Item_Streak2.Index, cb_Streak2_CI);
 	
 	class'BC_WeaponInfoCache'.static.EndSession();
 	
@@ -195,7 +196,6 @@ function bool GetItemInfo(int Group, int Index, out string ItemCap, out Material
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
 function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 {
-	local byte GameStyleIndex;
 	local int i;
 	local class<BallisticWeapon> BW;
 		
@@ -209,24 +209,23 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 		return false;
 	}
 	
-	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
-	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	if (BW.static.GetParams() == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		return false;
 	}
 	
-	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
+	for (i=0; i < BW.static.GetParams().default.Layouts.length; i++)
 	{
-		if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName == "")
+		if (BW.static.GetParams().default.Layouts[i].LayoutName == "")
 		{
-			if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length == 1)
+			if (BW.static.GetParams().default.Layouts.length == 1)
 				LayoutComboBox.AddItem("Default");
 			else
 				LayoutComboBox.AddItem("Layout: "$string(i));
 		}
 		else
-			LayoutComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+			LayoutComboBox.AddItem(BW.static.GetParams().default.Layouts[i].LayoutName);
 	}
 	
 	return true;
@@ -237,56 +236,61 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 //This is required due to the allowed camos changing for various layouts
 function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox CamoComboBox)
 {
-	local byte GameStyleIndex;
 	local int i;
 	local array<int> AllowedCamos;
 	local class<BallisticWeapon> BW;
-	
+	local int WantedCamo;
+
 	if (LayoutIndex == -1) //layout box isn't even loaded yet
 		return false;
-	
+
+	// Emptying and filling the box fires its OnChange, which saved camo 0 before the saved camo was looked at below
+	WantedCamo = class'KillstreakConfig'.default.Camos[GroupIndex];
+	bLoadingCamos = true;
+
 	//clear old camos
 	CamoComboBox.Clear();
 	
-	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	
 	BW = class<BallisticWeapon>(DynamicLoadObject(KLRI.GetGroupItem(GroupIndex, Index), class'Class'));
 	if (BW == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
+		bLoadingCamos = false;
 		return false;
 	}
 
 	// weapon has no parameters for this index
-	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	if (BW.static.GetParams() == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
+		bLoadingCamos = false;
 		return false;
 	}
 
-	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	AllowedCamos = BW.static.GetParams().default.Layouts[LayoutIndex].AllowedCamos;
 
 	if (AllowedCamos.Length == 0 )
 	{
-		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
+		for (i=0; i < BW.static.GetParams().default.Camos.length; i++)
 		{
-			if (BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName == "")
+			if (BW.static.GetParams().default.Camos[i].CamoName == "")
 			{
-				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
+				if (BW.static.GetParams().default.Camos.length == 1)
 					CamoComboBox.AddItem("None",, "0");
 				else
-					CamoComboBox.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+					CamoComboBox.AddItem("Layout: "$string(i),, String(BW.static.GetParams().default.Camos[i].Index));
 			}
-			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+			CamoComboBox.AddItem(BW.static.GetParams().default.Camos[i].CamoName,, String(BW.static.GetParams().default.Camos[i].Index));
 		}
-		CamoComboBox.setIndex(class'KillstreakConfig'.default.Camos[GroupIndex]);
+		CamoComboBox.setIndex(WantedCamo);
 	}
 	else
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
-			CamoComboBox.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
-			if (class'KillstreakConfig'.default.Camos[GroupIndex] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+			CamoComboBox.AddItem(BW.static.GetParams().default.Camos[AllowedCamos[i]].CamoName,, String(BW.static.GetParams().default.Camos[AllowedCamos[i]].Index));
+			if (WantedCamo == BW.static.GetParams().default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
 				CamoComboBox.setIndex(i);
 		}
 	}
@@ -297,10 +301,11 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	if (CamoComboBox.ItemCount() > 1 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
 	{
 		CamoComboBox.AddItem("Random",, "255");
-		if (class'KillstreakConfig'.default.Camos[GroupIndex] == 255) //these damn boxes changing sizes
+		if (WantedCamo == 255) //these damn boxes changing sizes
 			CamoComboBox.setIndex(CamoComboBox.ItemCount()-1);
 	}
-	
+
+	bLoadingCamos = false;
 	return true;
 }
 
@@ -377,11 +382,13 @@ function InternalOnChange(GUIComponent Sender)
 	}	
 	else if (Sender == cb_Streak1_CI )
 	{
-		SaveStreaks();
-	}	
+		if (!bLoadingCamos)
+			SaveStreaks();
+	}
 	else if (Sender == cb_Streak2_CI )
 	{
-		SaveStreaks();
+		if (!bLoadingCamos)
+			SaveStreaks();
 	}
 }
 

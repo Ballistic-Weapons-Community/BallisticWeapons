@@ -216,6 +216,9 @@ var   	float						NextCheckScopeTime;				// Used to prevent CheckScope() from ex
 var  	float						LogZoomLevel;					// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
 var   	ESightingState				SightingState;					// State of non anim, sight related gun movement
 var		bool						bStandardCrosshairOff;			// True if ScopeView has hidden the UT2004 crosshair.
+// The two below are only ever used as class'BallisticWeapon'.default.X: one state for the local player, whatever the weapon
+var		bool						bStockCrosshairHidden;			// The UT2004 crosshair is not to be drawn with the weapon that is up
+var		bool						bStockCrosshairApplied;			// HUD.bCrosshairShow is switched off for the frame being drawn
 
 // HACK. Used to deal with sight fire animations with incorrect amplitude by blending them with the Idle.
 // Please don't rely on this - if you see it defined in the default properties, the weapon needs looking at.
@@ -1293,14 +1296,14 @@ simulated function PlayerEnteredVehicle(Vehicle V)
 	if (CrosshairMode == CHM_Unreal)
 		return;
 	if (PlayerController(InstigatorController)!=None && PlayerController(InstigatorController).MyHud != None)
-		PlayerController(InstigatorController).MyHud.bCrosshairShow = PlayerController(InstigatorController).MyHud.default.bCrosshairShow;
+		HideStockCrosshair(false);
 }
 simulated function PlayerLeftVehicle(Vehicle V)
 {
 	if (CrosshairMode == CHM_Unreal)
 		return;
 	if (PlayerController(InstigatorController)!=None && PlayerController(InstigatorController).MyHud != None/* && (CrosshairPic1 != None || CrosshairPic2 != None)*/)
-		PlayerController(InstigatorController).MyHud.bCrosshairShow = false;
+		HideStockCrosshair(true);
 }
 
 simulated event Tick(float DT)
@@ -2315,16 +2318,58 @@ simulated final function ScopeModifyCrosshair()
 	//Take down normal crosshairs if the weapon has none in scope view
 	if (bNoCrosshairInScope)
 	{
-		if (CrosshairMode == CHM_Unreal && PC.myHud.bCrosshairShow)
+		if (CrosshairMode == CHM_Unreal && !StockCrosshairHidden())
 		{
 			bStandardCrosshairOff = True;
-			PC.myHud.bCrosshairShow = False;
+			HideStockCrosshair(true);
 		}
 	}
 
 	// Show standard UT2004 crosshairs for any weapon without one in scope view
-	else if (!PC.myHud.bCrosshairShow)
-		PC.myHud.bCrosshairShow = True;
+	else if (StockCrosshairHidden())
+		HideStockCrosshair(false);
+}
+
+// Hiding the UT2004 crosshair.
+// HUD.bCrosshairShow is the player's saved setting. It used to be left switched off for as long as a Ballistic weapon
+// with its own crosshair was up, and anything that saved the HUD in that time (the HUD size keys, the HUD settings
+// page) wrote it to User.ini as off. Now the wish is kept here and the HUD flag is only off while a frame is drawn:
+// ApplyStockCrosshair before the HUD draws, RestoreStockCrosshair (from BallisticInteraction) after it.
+simulated final function HideStockCrosshair(bool bHide)
+{
+	// only the local player's weapon has a say
+	if (Instigator == None || !Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None)
+		return;
+	class'BallisticWeapon'.default.bStockCrosshairHidden = bHide;
+	if (!bHide)
+		RestoreStockCrosshair(PlayerController(Instigator.Controller).MyHud);
+}
+
+simulated final function bool StockCrosshairHidden()
+{
+	return class'BallisticWeapon'.default.bStockCrosshairHidden;
+}
+
+simulated final function ApplyStockCrosshair()
+{
+	local PlayerController PC;
+
+	if (!class'BallisticWeapon'.default.bStockCrosshairHidden || Instigator == None)
+		return;
+	PC = PlayerController(Instigator.Controller);
+	if (PC == None || PC.MyHud == None || !PC.MyHud.bCrosshairShow || PC.MyHud.PawnOwner != Instigator)
+		return;
+	PC.MyHud.bCrosshairShow = false;
+	class'BallisticWeapon'.default.bStockCrosshairApplied = true;
+}
+
+static final function RestoreStockCrosshair(HUD H)
+{
+	if (!default.bStockCrosshairApplied)
+		return;
+	class'BallisticWeapon'.default.bStockCrosshairApplied = false;
+	if (H != None)
+		H.bCrosshairShow = true;
 }
 
 simulated final function ScopeRestoreCrosshair()
@@ -2335,14 +2380,14 @@ simulated final function ScopeRestoreCrosshair()
 		{
 			bStandardCrosshairOff = False;
 			if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
-				PlayerController(InstigatorController).myHud.bCrosshairShow = True;
+				HideStockCrosshair(false);
 		}
 	}
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
 	else if (CrosshairMode != CHM_Unreal)
 	{
 		if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
-			PlayerController(InstigatorController).myHud.bCrosshairShow = False;
+			HideStockCrosshair(true);
 	}
 }
 
@@ -2528,6 +2573,8 @@ simulated event RenderOverlays (Canvas C)
 	if ( (Instigator == None) || (Instigator.Controller == None))
 		return;
 
+	ApplyStockCrosshair();
+
 	if (SprintControl != None)
 		SprintControl.RenderOverlays(C);
 
@@ -2541,6 +2588,12 @@ simulated event RenderOverlays (Canvas C)
 		DrawScopeMuzzleFlash(C);
 		DrawScopeOverlays(C);
 	}
+
+	// The crosshairs are drawn with the weapon info (NewDrawWeaponInfo). With that switched off, or the whole HUD,
+	// nothing drew them, and the UT2004 one is hidden: no crosshair at all.
+	if (PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None
+		&& (PlayerController(Instigator.Controller).MyHud.bHideHud || !PlayerController(Instigator.Controller).MyHud.bShowWeaponInfo))
+		DrawCrosshairs(C);
 }
 
 simulated function DrawScopeMuzzleFlash(Canvas C)
@@ -3523,9 +3576,9 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 	{
 		if (CrosshairMode == CHM_Unreal)
-			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
+			HideStockCrosshair(false);
 		else
-			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
+			HideStockCrosshair(true);
 	}
 
 	// Old Stuff from weapon.uc
@@ -3612,7 +3665,7 @@ simulated function bool PutDown()
 		bPendingSightUp=false;
 //		if (PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 		if (CrosshairMode != CHM_Unreal && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
-			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
+			HideStockCrosshair(false);
 		if (PutDownSound.Sound != None)
 			class'BUtil'.static.PlayFullSound(self, PutDownSound);
 		SetTimer(PutDownTime, false);
@@ -4253,8 +4306,8 @@ simulated function Destroyed()
 			if (PlayerController(Instigator.Controller).MyHud != None)
 			{
 				if (bStandardCrosshairOff)
-					PlayerController(Instigator.Controller).MyHud.bCrosshairShow = True;
-				else PlayerController(Instigator.Controller).MyHud.bCrosshairShow = PlayerController(Instigator.Controller).MyHud.default.bCrosshairShow;
+					HideStockCrosshair(false);
+				else HideStockCrosshair(false);
 				Instigator.Controller.bRun = 0;
 			}
 		}
@@ -4470,7 +4523,7 @@ simulated event Timer()
         PlayIdle();
         ClientState = WS_ReadyToFire;
 		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
-			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
+			HideStockCrosshair(true);
 		if (bNeedCock)
 		{
 			if (BringUpTime == CockingBringUpTime)
@@ -5275,7 +5328,8 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	local string	Temp;
 
 	Super.NewDrawWeaponInfo (C, YPos);
-	
+
+	ApplyStockCrosshair();
 	DrawCrosshairs(C);
 	
 	if (bSkipDrawWeaponInfo)

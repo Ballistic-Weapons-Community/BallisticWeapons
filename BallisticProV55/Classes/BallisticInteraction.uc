@@ -29,6 +29,10 @@ event Initialized()
 {
 	PC = ViewportOwner.Actor;
 	SplashStartTime=PC.Level.TimeSeconds;
+
+	// a new level: nothing is hidden yet, and the old HUD is gone
+	class'BallisticWeapon'.default.bStockCrosshairHidden = false;
+	class'BallisticWeapon'.default.bStockCrosshairApplied = false;
 }
 
 function DrawSplash( canvas C )
@@ -108,6 +112,10 @@ function Tick(float DT)
 
 function PostRender( canvas C )
 {
+	// The HUD has drawn: give it its crosshair setting back, see BallisticWeapon.HideStockCrosshair
+	if (ViewportOwner.Actor != None)
+		class'BallisticWeapon'.static.RestoreStockCrosshair(ViewportOwner.Actor.MyHud);
+
 	C.Style = 5; //STY_Alpha
 	ScaleFactor = float(C.SizeX) / 1600;
 

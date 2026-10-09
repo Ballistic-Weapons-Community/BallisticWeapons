@@ -418,8 +418,10 @@ function ChangeLoadout (Pawn P, out string Stuff[NUM_GROUPS], optional string Ol
 }
 
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
-function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS], optional int Layouts[NUM_GROUPS], optional int Camos[NUM_GROUPS])
+function OutfitPlayer(Pawn Other, out string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS], optional int Layouts[NUM_GROUPS], optional int Camos[NUM_GROUPS])
 {
+	local string Granted[NUM_GROUPS];
+	local int g;
 	local byte i, j, k, m;
 	local bool bMatch;
 	local class<weapon> W;
@@ -477,6 +479,9 @@ function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldS
 		if (j >= GetGroup(i).length)
 			Stuff[i] = GetGroup(i)[Rand(GetGroup(i).length)];
 	}
+	// What the player gets. The caller wants it back: ChangeLoadout blanks the entries of weapons that stay.
+	for (g=0;g<NUM_GROUPS;g++)
+		Granted[g] = Stuff[g];
 	// Clean out other weapons...
 	ChangeLoadout(Other, Stuff, OldStuff);
 	// Now spawn it all
@@ -504,6 +509,8 @@ function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldS
 		else
 			i--;
 	}
+	for (g=0;g<NUM_GROUPS;g++)
+		Stuff[g] = Granted[g];
 }
 
 static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)

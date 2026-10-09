@@ -49,19 +49,32 @@ function LoadSettings()
 
 function DefaultSettings()
 {
-	// settings are for classic
-	ne_PlayerGroundSpeed.SetValue(360);
-    ne_PlayerAccelRate.SetValue(2048);
-	cb_bPlayerDeceleration.Checked(false);
+	if (BaseMenu.GetGameStyle() == class'GameStyle_Realism')
+	{
+		ne_PlayerGroundSpeed.SetValue(200);
+		ne_PlayerAccelRate.SetValue(1536);
+		cb_bPlayerDeceleration.Checked(true);
+		ch_AllowDoubleJump.Checked(false);
+		ne_StaminaDrainRate.SetValue(10);
+		ne_StaminaChargeRate.SetValue(10);
+		fe_InitSpeedFactor.SetValue(1.4);
+	}
+	else
+	{
+		// Classic
+		ne_PlayerGroundSpeed.SetValue(360);
+		ne_PlayerAccelRate.SetValue(2048);
+		cb_bPlayerDeceleration.Checked(false);
+		ch_AllowDoubleJump.Checked(true);
+		ne_StaminaDrainRate.SetValue(20);
+		ne_StaminaChargeRate.SetValue(20);
+		fe_InitSpeedFactor.SetValue(1.35);
+	}
     fe_PlayerStrafeScale.SetValue(1);
     fe_PlayerBackpedalScale.SetValue(1);
 	ch_AllowDodging.Checked(true);
-	ch_AllowDoubleJump.Checked(true);
     cb_AllowCrouchSliding.Checked(true);
 	cb_bUseSprint.Checked(true);
-    ne_StaminaDrainRate.SetValue(25);
-    ne_StaminaChargeRate.SetValue(25);
-    fe_InitSpeedFactor.SetValue(1.35);
     fe_JumpDrain.SetValue(2);
     fe_StaminaRechargeDelay.SetValue(1.5);
 }

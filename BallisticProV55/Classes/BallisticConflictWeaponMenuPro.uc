@@ -37,7 +37,7 @@ function int WeaponRank(string PackageName, optional string ClassName, optional 
 	if (PackageName ~= "XWeapons" || PackageName ~= "UTClassic")
 		return 101;
 	if (InStr(PackageName, "Onslaught") != -1)
-		return 150;
+		return 101;
 	if (PackageName == "O")
 		return 200;
 	if (El.ExtraData == self)
@@ -156,6 +156,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_UnusedWeapons.List.Add(Headings[3],,"O",true);
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
 		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
@@ -529,6 +530,7 @@ defaultproperties
 
      Begin Object Class=GUIListBox Name=UsedRedWeaponList
          bVisibleWhenEmpty=True
+         bSorted=True
          OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="List of the weapons for red team. Be careful to make sure there are always some available weapons when using evolution mode."
@@ -543,6 +545,7 @@ defaultproperties
 
      Begin Object Class=GUIListBox Name=UsedBlueWeaponList
          bVisibleWhenEmpty=True
+         bSorted=True
          OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="List of the weapons for blue team. Be careful to make sure there are always some available weapons when using evolution mode."
