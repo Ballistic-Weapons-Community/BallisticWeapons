@@ -213,10 +213,29 @@ var() float BackMaxSlideSpeedScale;   // < 1.0 to cap backward slide speed lower
 var() float BackSlideDotThreshold;    // dot threshold vs forward ( negative means backwards :) )
 
 var bool bRagdollSetup;
-var bool bPendingGibFromImpact;
+
+// Gibbable corpses. A body belongs to the machine it is on: the server's is not the clients', and every client has
+// its own. So each machine counts the hits on its copy, decides when it bursts and shows that to nobody else
+var bool	bFallGib;				// Server: the fall that killed him was hard enough to burst the body. Goes out with the death
+var bool	bFallGibSeen;			// bFallGib has been acted on here
+var bool	bCorpseGibPending;		// The body bursts in its next Tick
+var rotator	CorpseGibDir;			// Where the pieces of the pending burst go
+var float	CorpseGibPerterbation;
+var float	CorpseTime;				// When this pawn became a body on this machine
+var int		CorpseDamage;			// Damage taken as a body. Health stays what the killing blow left: the dismemberment code reads it
+var float	GibBurstTime;			// Class default only: when the current run of bursts began
+var int		GibBurstCount;			// Class default only: bursts in the current run
+
+const CorpseGibHealth = -200;		// Health less the damage taken as a body below this: it bursts
+const CorpseGraceTime = 0.2;		// Nothing counts against a body this soon after death. The blow that killed can arrive again
+const TearOffGraceTime = 0.35;		// A listen server's body stays this long, so that its last update reaches the clients
+const GibBurstWindow = 0.5;			// More than MaxGibBursts bodies bursting within this get the small burst
+const MaxGibBursts = 4;
 
 replication
 {
+	reliable if (bNetDirty && Role == ROLE_Authority)
+		bFallGib;
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility,
 		bIsSliding, Sprinter;
@@ -629,8 +648,10 @@ function TakeFallingDamage()
 				if ( EffectiveSpeed < -1 * MaxFallSpeed )
 				{
 					TakeDamage(-100 * (EffectiveSpeed + MaxFallSpeed)/MaxFallSpeed, None, Location, vect(0,0,0), class'Fell');
-					if (Health <= 0 && -EffectiveSpeed >= PhysicsVolume.TerminalVelocity - 50.f && class'BloodManager'.default.bGibbableCorpses && !bDeRes)
-						bPendingGibFromImpact = true;
+					// A fall this hard bursts the body. It has to be a body: Health is also 0 for a player the game type
+					// kept in play (Freon freezes them). Each machine then checks its own gore settings
+					if (IsInState('Dying') && -EffectiveSpeed >= PhysicsVolume.TerminalVelocity - 50.f)
+						bFallGib = true;
 				}
 		    }
 		}
@@ -1419,6 +1440,10 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 
 	super.KImpact(other, pos, impactVel, impactNorm);
 
+	// A body that lands this hard bursts. Not here: a ragdoll must not go while the physics are running
+	if (ImpactNorm.Z > 0.7 && Health <= 0 && VSize(impactVel) >= PhysicsVolume.TerminalVelocity - 50.f)
+		QueueCorpseGib(Rotator(impactNorm), 0.25);
+
 	if (class'BWBloodControl'.default.bUseBloodImpacts && !class'GameInfo'.static.UseLowGore())
 	{
 		if (!(level.TimeSeconds - LastImpactTime > TimeBetweenImpacts || impactNorm Dot LastImpactNormal < 0.7 || VSize(pos - LastImpactLocation) > 100))
@@ -1457,10 +1482,6 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 				D.InitDecal();
 			}
 			class<BallisticDecal>(BloodSet.default.HighImpactDecal).default.bWaitForInit = false;
-			// Destroy body on next tick to prevent karma crashes 
-			if (Role == ROLE_Authority && ImpactNorm.Z > 0.7 && Health <= 0 && VSize(impactVel) >= PhysicsVolume.TerminalVelocity - 50.f 
-				&& class'BloodManager'.default.bGibbableCorpses && !bDeRes && !bSkeletized)
-				bPendingGibFromImpact = true;
 		}
 		else
 		{
@@ -1596,89 +1617,109 @@ function CalcHitLoc( Vector hitLoc, Vector hitRay, out Name boneName, out float 
 
 State Dying
 {
-	//Allows gibbable corpses
+	// Gibbable corpses: a body is pushed about by hits, bleeds, loses limbs and bursts after enough of an explosion
 	simulated function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType)
 	{
 		local Vector shotDir, PushLinVel, PushAngVel;
+		local bool bFresh, bCount;
 
 		if (bFrozenBody || bRubbery)
 			return;
 
-		if (bRagdollSetup)
+		if (bRagdollSetup || bCorpseGibPending)
 			return;
 
-		if (Physics == PHYS_KarmaRagdoll)
-		{
-			if (bDeRes)
-				return;
+		// As for the living pawn. Nothing below takes None
+		if (DamageType == None)
+			DamageType = class'DamageType';
 
-			// Accumulate corpse damage and gib when threshold exceeded
-			Health -= Damage;
-			if (class'BloodManager'.default.bGibbableCorpses && !bSkeletized && (Health < -200 && (DamageType != None && DamageType.default.bCausesBlood && 
-			(DamageType.default.bAlwaysGibs || 
-			ClassIsChildOf(DamageType, class'DT_BWExplode') ||
-			ClassIsChildOf(DamageType, class'Gibbed') ||
-			ClassIsChildOf(DamageType, class'Fell') ||
-			ClassIsChildOf(DamageType, class'DamTypeRocket') ||
-			ClassIsChildOf(DamageType, class'DamTypeFlakShell') ||
-			ClassIsChildOf(DamageType, class'DamTypeSuperShockBeam') ||
-			ClassIsChildOf(DamageType, class'DamTypeRedeemer') ||
-			ClassIsChildOf(DamageType, class'DamTypeTankShell') ||
-			ClassIsChildOf(DamageType, class'DamTypeAttackCraftMissle') ||
-			ClassIsChildOf(DamageType, class'DamTypeShockCombo') ||
-			ClassIsChildOf(DamageType, class'DamTypeMASCannon') ||
-			ClassIsChildOf(DamageType, class'DamTypeTeleFrag') ||
-			ClassIsChildOf(DamageType, class'DamTypeIonBlast') ||
-			ClassIsChildOf(DamageType, class'DamTypeTeleFragged') ||
-			ClassIsChildOf(DamageType, class'DamTypeIonCannonBlast') ))))
+		// What else hits him in the tick he dies in is part of the death, and shown like the blow that killed him:
+		// on the server and, through the hits the server sends along with the death, on the clients
+		if (Level.TimeSeconds == CorpseTime && Level.NetMode != NM_Client)
+			PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum);
+
+		// A body that is no ragdoll: a dedicated server never makes one, elsewhere there was none to spare.
+		// The stock code spins and knocks those about
+		if (Physics != PHYS_KarmaRagdoll)
+		{
+			if (Level.NetMode != NM_DedicatedServer)
+				Super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+			return;
+		}
+
+		if (bDeRes)
+			return;
+
+		// A body's first moments. The blow that killed him can turn up again here: a client plays the shot or the
+		// blast the server killed him with against its own copy of the body. A client lets all of that pass. On a
+		// server the hits are real ones and push the body about, but they do not count towards bursting it
+		bFresh = Level.TimeSeconds - CorpseTime < CorpseGraceTime;
+		if (bFresh && Level.NetMode == NM_Client)
+			return;
+		bCount = class'BloodManager'.default.bGibbableCorpses && !bFresh;
+
+		if (bCount)
+		{
+			CorpseDamage += Damage;
+			if (Health - CorpseDamage < CorpseGibHealth && DamageGibsCorpses(DamageType))
 			{
-				//SpawnGibs(Rotation, DamageType.default.GibPerterbation);
-				ChunkUp(Rotator(Momentum), DamageType.default.GibPerterbation);
-				return;
-			}
-			// Apply ragdoll physics
-			if (DamageType != None && DamageType.Default.bThrowRagdoll)
-			{
-				shotDir = Normal(Momentum);
-				PushLinVel = (RagDeathVel * shotDir) + vect(0, 0, 250);
-				PushAngVel = Normal(shotDir Cross vect(0, 0, 1)) * -18000;
-				KSetSkelVel(PushLinVel, PushAngVel);
-			}
-			else if (DamageType != None && DamageType.Default.bRagdollBullet)
-			{
-				if (Momentum == vect(0,0,0) && InstigatedBy != None)
-					Momentum = HitLocation - InstigatedBy.Location;
-				if (FRand() < 0.65)
-				{
-					if (Velocity.Z <= 0)
-						PushLinVel = vect(0,0,40);
-					PushAngVel = Normal(Normal(Momentum) Cross vect(0, 0, 1)) * -8000;
-					PushAngVel.X *= 0.5;
-					PushAngVel.Y *= 0.5;
-					PushAngVel.Z *= 4;
-					KSetSkelVel(PushLinVel, PushAngVel);
-				}
-				PushLinVel = RagShootStrength * Normal(Momentum);
-				KAddImpulse(PushLinVel, HitLocation);
-				if ((LifeSpan > 0) && (LifeSpan < DeResTime + 2))
-					LifeSpan += 0.2;
-			}
-			else
-			{
-				PushLinVel = RagShootStrength * Normal(Momentum);
-				KAddImpulse(PushLinVel, HitLocation);
+				// A volume that hurts gives no direction
+				if (Momentum == vect(0,0,0))
+					Momentum = vect(0,0,1);
+				QueueCorpseGib(Rotator(Momentum), DamageType.default.GibPerterbation);
+				if (bCorpseGibPending)
+					return;
 			}
 		}
 
-		PlayHit(Damage, InstigatedBy, Hitlocation, damageType, Momentum);
+		// Apply ragdoll physics
+		if (DamageType.Default.bThrowRagdoll)
+		{
+			shotDir = Normal(Momentum);
+			PushLinVel = (RagDeathVel * shotDir) + vect(0, 0, 250);
+			PushAngVel = Normal(shotDir Cross vect(0, 0, 1)) * -18000;
+			KSetSkelVel(PushLinVel, PushAngVel);
+		}
+		else if (DamageType.Default.bRagdollBullet)
+		{
+			if (Momentum == vect(0,0,0) && InstigatedBy != None)
+				Momentum = HitLocation - InstigatedBy.Location;
+			if (FRand() < 0.65)
+			{
+				if (Velocity.Z <= 0)
+					PushLinVel = vect(0,0,40);
+				PushAngVel = Normal(Normal(Momentum) Cross vect(0, 0, 1)) * -8000;
+				PushAngVel.X *= 0.5;
+				PushAngVel.Y *= 0.5;
+				PushAngVel.Z *= 4;
+				KSetSkelVel(PushLinVel, PushAngVel);
+			}
+			PushLinVel = RagShootStrength * Normal(Momentum);
+			KAddImpulse(PushLinVel, HitLocation);
+			if ((LifeSpan > 0) && (LifeSpan < DeResTime + 2))
+				LifeSpan += 0.2;
+		}
+		else
+		{
+			PushLinVel = RagShootStrength * Normal(Momentum);
+			KAddImpulse(PushLinVel, HitLocation);
+		}
 
-		if (DamageType != None && DamageType.default.DamageOverlayMaterial != None && Level.DetailMode != DM_Low && !Level.bDropDetail)
+		if (bCount)
+			PlayCorpseHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum);
+
+		if (DamageType.default.DamageOverlayMaterial != None && Level.DetailMode != DM_Low && !Level.bDropDetail)
 			SetOverlayMaterial(DamageType.default.DamageOverlayMaterial, DamageType.default.DamageOverlayTime, true);
 	}
 
     simulated function Timer()
 	{
 		local KarmaParamsSkel skelParams;
+
+		// A volume that hurts does so on the server. A client's body is its own, so the client sees to it
+		if (Level.NetMode == NM_Client && Physics == PHYS_KarmaRagdoll && PhysicsVolume.bPainCausing && PhysicsVolume.DamagePerSec > 0
+			&& !PhysicsVolume.Region.Zone.bSoftKillZ)
+			TakeDamage(PhysicsVolume.DamagePerSec, None, PhysicsVolume.Location, vect(0,0,0), PhysicsVolume.DamageType);
 
 		// If we are running out of life, bute we still haven't come to rest, force the de-res.
 		// unless pawn is the viewtarget of a player who used to own it
@@ -1714,12 +1755,119 @@ State Dying
 	}
 }
 
+// Is this the kind of damage that blows a body apart?
+simulated function bool DamageGibsCorpses(class<DamageType> DamageType)
+{
+	return DamageType.default.bCausesBlood &&
+		(DamageType.default.bAlwaysGibs ||
+		ClassIsChildOf(DamageType, class'DT_BWExplode') ||
+		ClassIsChildOf(DamageType, class'Gibbed') ||
+		ClassIsChildOf(DamageType, class'Fell') ||
+		ClassIsChildOf(DamageType, class'DamTypeRocket') ||
+		ClassIsChildOf(DamageType, class'DamTypeFlakShell') ||
+		ClassIsChildOf(DamageType, class'DamTypeSuperShockBeam') ||
+		ClassIsChildOf(DamageType, class'DamTypeRedeemer') ||
+		ClassIsChildOf(DamageType, class'DamTypeTankShell') ||
+		ClassIsChildOf(DamageType, class'DamTypeAttackCraftMissle') ||
+		ClassIsChildOf(DamageType, class'DamTypeShockCombo') ||
+		ClassIsChildOf(DamageType, class'DamTypeMASCannon') ||
+		ClassIsChildOf(DamageType, class'DamTypeTeleFrag') ||
+		ClassIsChildOf(DamageType, class'DamTypeIonBlast') ||
+		ClassIsChildOf(DamageType, class'DamTypeTeleFragged') ||
+		ClassIsChildOf(DamageType, class'DamTypeIonCannonBlast'));
+}
+
+// May this body burst on this machine? A dedicated server has nothing to show, and with low gore a gibbed pawn
+// just disappears
+simulated function bool CanGibCorpse()
+{
+	return Level.NetMode != NM_DedicatedServer && class'BloodManager'.default.bGibbableCorpses
+		&& !class'GameInfo'.static.UseLowGore() && !bDeRes && !bSkeletized && !bGibbed;
+}
+
+// Have the body burst in its next Tick. Not there and then: this is called from damage, touch and physics code that
+// goes on using the pawn afterwards, and a ragdoll must not be destroyed while the physics are running
+simulated function QueueCorpseGib(rotator Dir, float Perterbation)
+{
+	if (bCorpseGibPending || !CanGibCorpse())
+		return;
+	bCorpseGibPending = true;
+	CorpseGibDir = Dir;
+	CorpseGibPerterbation = Perterbation;
+}
+
+// Blow the body to pieces. ChunkUp() is for a pawn that dies this way: it has a server keep the pawn for a second,
+// tell the clients and play them the sound. A body that is hit later is this machine's alone and can just go
+simulated function GibCorpse()
+{
+	local vector HitRay;
+	local bool bSmall;
+
+	bCorpseGibPending = false;
+	bGibbed = true;
+
+	// Several bodies in one blast: all but the first few only throw their big pieces
+	if (Level.TimeSeconds - class'BallisticPawn'.default.GibBurstTime > GibBurstWindow || Level.TimeSeconds < class'BallisticPawn'.default.GibBurstTime)
+	{
+		class'BallisticPawn'.default.GibBurstTime = Level.TimeSeconds;
+		class'BallisticPawn'.default.GibBurstCount = 0;
+	}
+	class'BallisticPawn'.default.GibBurstCount++;
+	bSmall = class'BallisticPawn'.default.GibBurstCount > MaxGibBursts || Level.bDropDetail;
+
+	PlaySound(GibGroupClass.static.GibSound(), SLOT_Pain, 3.5*TransientSoundVolume, true, 500);
+
+	HitRay = vector(CorpseGibDir);
+	GibCorpseBone('spine', HitRay);
+	GibCorpseBone('pelvis', HitRay);
+	GibCorpseBone('head', HitRay);
+	if (!bSmall)
+	{
+		GibCorpseBone('lthigh', HitRay);
+		GibCorpseBone('rthigh', HitRay);
+		GibCorpseBone('lfoot', HitRay);
+		GibCorpseBone('rfoot', HitRay);
+		GibCorpseBone('lshoulder', HitRay);
+		GibCorpseBone('rshoulder', HitRay);
+		GibCorpseBone('lfarm', HitRay);
+		GibCorpseBone('rfarm', HitRay);
+		GibCorpseBone('righthand', HitRay);
+	}
+
+	Destroy();
+}
+
+// A limb that came off earlier has had its pieces
+simulated function GibCorpseBone(name Bone, vector HitRay)
+{
+	if (!BoneDismembered(Bone))
+		GetBloodManagerForGore(None).static.DoSeverEffects(self, Bone, HitRay, CorpseGibPerterbation, 100);
+}
+
+// The gore of a hit on a body: blood, limbs coming off. This is PlayHit() less what is there for a living pawn
+// and for other machines. Nothing of a hit on a body is sent anywhere
+simulated function PlayCorpseHit(float Damage, Pawn InstigatedBy, vector HitLocation, class<DamageType> DamageType, vector Momentum)
+{
+	local Vector HitRay;
+	local Name HitBone;
+
+	// A skeleton has nothing left to bleed or to lose
+	if (Damage <= 0 || bSkeletized || Level.NetMode == NM_DedicatedServer)
+		return;
+
+	// The damage type's own effect, the sound of the hit mostly. A server would play that to every client
+	if (Level.NetMode != NM_ListenServer)
+		Super(UnrealPawn).PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum);
+
+	HitRayAndBone(InstigatedBy, DamageType, Damage, Momentum, HitLocation, HitRay, HitBone);
+	DoHit(HitBone, DamageType, HitRay, HitLocation, Damage);
+}
+
 // Line up hits to be fired at DoHit()
 function PlayHit(float Damage, Pawn InstigatedBy, vector HitLocation, class<DamageType> DamageType, vector Momentum)
 {
     local Vector HitRay;
     local Name HitBone;
-    local float HitBoneDist;
     local HitInfo H;
     local int i;
 
@@ -1727,6 +1875,40 @@ function PlayHit(float Damage, Pawn InstigatedBy, vector HitLocation, class<Dama
 		return;
 
 	Super(UnrealPawn).PlayHit(Damage,InstigatedBy,HitLocation,DamageType,Momentum);
+	HitRayAndBone(InstigatedBy, DamageType, Damage, Momentum, HitLocation, HitRay, HitBone);
+
+    if (level.NetMode != NM_DedicatedServer)
+    {
+    	if (Health > 0)	// Record hit for now. It will be sent to DoHit later
+    	{
+	    	H.Bone = HitBone;
+    		H.DamageType = DamageType;
+    		H.HitRay = HitRay;
+	    	H.HitLoc = HitLocation;
+    		H.Damage = Damage;
+    		LocalHits[LocalHits.length] = H;
+    	}
+    	else			// Ok, hes dead now. Play all the recorded hits and this new one here. They'll all be considdered hits to a corpse
+    	{
+			for (i=0;i<LocalHits.length;i++)
+				DoHit(LocalHits[i].Bone, LocalHits[i].DamageType, LocalHits[i].HitRay, LocalHits[i].HitLoc, LocalHits[i].Damage);
+			LocalHits.length = 0;
+			DoHit(HitBone, DamageType, HitRay, HitLocation, Damage);
+		}
+    }
+    // The clients might want to see it as well...
+	if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
+		SendHitInfo(HitBone, DamageType, HitLocation, HitRay, Damage);
+
+	if (DamageType.default.DamageOverlayMaterial != None && Damage > 0 ) // additional check in case shield absorbed
+		SetOverlayMaterial( DamageType.default.DamageOverlayMaterial, DamageType.default.DamageOverlayTime, false );
+}
+
+// The direction and the bone of a hit
+simulated function HitRayAndBone(Pawn InstigatedBy, class<DamageType> DamageType, out float Damage, vector Momentum, out vector HitLocation, out vector HitRay, out name HitBone)
+{
+    local float HitBoneDist;
+
 	// Try figure out the hitray after bExtraMomentumZ fked up the momentum
 	if (DamageType.default.bExtraMomentumZ && HitLocation != Location)
 	{
@@ -1755,32 +1937,6 @@ function PlayHit(float Damage, Pawn InstigatedBy, vector HitLocation, class<Dama
 
 	if (HitBone == 'righthand')
 		HitBone = 'rfarm';
-
-    if (level.NetMode != NM_DedicatedServer)
-    {
-    	if (Health > 0)	// Record hit for now. It will be sent to DoHit later
-    	{
-	    	H.Bone = HitBone;
-    		H.DamageType = DamageType;
-    		H.HitRay = HitRay;
-	    	H.HitLoc = HitLocation;
-    		H.Damage = Damage;
-    		LocalHits[LocalHits.length] = H;
-    	}
-    	else			// Ok, hes dead now. Play all the recorded hits and this new one here. They'll all be considdered hits to a corpse
-    	{
-			for (i=0;i<LocalHits.length;i++)
-				DoHit(LocalHits[i].Bone, LocalHits[i].DamageType, LocalHits[i].HitRay, LocalHits[i].HitLoc, LocalHits[i].Damage);
-			LocalHits.length = 0;
-			DoHit(HitBone, DamageType, HitRay, HitLocation, Damage);
-		}
-    }
-    // The clients might want to see it as well...
-	if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
-		SendHitInfo(HitBone, DamageType, HitLocation, HitRay, Damage);
-
-	if (DamageType.default.DamageOverlayMaterial != None && Damage > 0 ) // additional check in case shield absorbed
-		SetOverlayMaterial( DamageType.default.DamageOverlayMaterial, DamageType.default.DamageOverlayTime, false );
 }
 
 // Compress hit info and get it on its way to the clients
@@ -1868,15 +2024,24 @@ simulated event Tick(float DT)
 	// Gore tick
 	TickGore(DT);
 
-	if (bPendingGibFromImpact && Role == ROLE_Authority)
+	// A body that is due to burst. It has to be a body: until a client has played the death there is none yet
+	if (Role == ROLE_Authority && (bCorpseGibPending || (bFallGib && !bFallGibSeen)) && IsInState('Dying'))
 	{
-		if (bDeRes || bSkeletized)
-			bPendingGibFromImpact = false;
-		else
+		if (bFallGib && !bFallGibSeen)
 		{
-			bPendingGibFromImpact = false;
-			//SpawnGibs(Rotation, 0.25);
-			ChunkUp(Rotator(-Velocity), 0.25);
+			bFallGibSeen = true;
+			QueueCorpseGib(rot(16384,0,0), 0.25);
+		}
+		// A listen server's clients learn of the death through the pawn's last update. That has to be on its way
+		// before the pawn goes, or the player would just vanish for them
+		if (bCorpseGibPending && (Level.NetMode != NM_ListenServer || Level.TimeSeconds - CorpseTime >= TearOffGraceTime))
+		{
+			if (CanGibCorpse())
+			{
+				GibCorpse();
+				return;
+			}
+			bCorpseGibPending = false;
 		}
 	}
 
@@ -2377,6 +2542,7 @@ simulated function SpawnGibs(Rotator HitRotation, float ChunkPerterbation)
 
 function PlayDyingAnimation(class<DamageType> DamageType, vector HitLoc)
 {
+	CorpseTime = Level.TimeSeconds;
 	bRagdollSetup = true;
 	Super.PlayDyingAnimation(DamageType, HitLoc);
 	bRagdollSetup = false;
