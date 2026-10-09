@@ -9,7 +9,7 @@
 //=============================================================================
 class A49SkrithBlaster extends BallisticWeapon;
 
-var	bool		bVariableHeatProps; //Gun heat changes accuracy and RoF
+var	bool		bVariableHeatProps; //Gun heat changes accuracy
 var bool		bCharging; 			//lets draw some cool charging effects
 
 var float		HeatLevel;
