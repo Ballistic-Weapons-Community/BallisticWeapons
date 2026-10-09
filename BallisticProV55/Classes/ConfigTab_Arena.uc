@@ -51,7 +51,7 @@ function int WeaponRank(string PackageName, optional string ClassName, optional 
 	if (PackageName ~= "XWeapons" || PackageName ~= "UTClassic")
 		return 51;
 	if (InStr(PackageName, "Onslaught") != -1)
-		return 55;
+		return 51;
 	if (PackageName == "O")
 		return 100;
 	if (El.ExtraData == self)
@@ -157,8 +157,7 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
-	local array<CacheManager.WeaponRecord> Recs;
-	local int i, j;
+	local int i;
 
 	Super.InitComponent(MyController, MyOwner);
 
@@ -167,12 +166,20 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	cb_Presets.SetText("");
 
 	lb_UnusedWeapons.List.CompareItem = MyCompareItem;
+}
+
+// The lists are filled when the tab is first shown. Going through every weapon of the game is too much for opening the menu.
+function InitializeConfigTab()
+{
+	local array<CacheManager.WeaponRecord> Recs;
+	local int i, j;
 
 	lb_UnusedWeapons.List.Add(Headings[0],,"BW",true);
 	lb_UnusedWeapons.List.Add(Headings[1],,"UT",true);
 	lb_UnusedWeapons.List.Add(Headings[2],,"O",true);
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
 		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
@@ -496,6 +503,7 @@ defaultproperties
 
      Begin Object Class=GUIListBox Name=UsedWeaponList
          bVisibleWhenEmpty=True
+         bSorted=True
          OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Used Weapons. Drag, Double click or use Remove button to take them out the match."

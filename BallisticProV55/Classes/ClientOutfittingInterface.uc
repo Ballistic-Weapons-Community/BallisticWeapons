@@ -333,7 +333,7 @@ simulated function SortList(byte group_index)
                     
                     if (wiGroup == existingGroup)
                     {
-                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
+                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName) <= 0)
                         {	
                             SortedWIs.Insert(j, 1);
                             SortedWIs[j] = WI;
@@ -552,7 +552,11 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 		LastLoadout[i] = Stuff[i];
 		LastLayout[i] = Layout[i];
 		LastCamo[i] = Camo[i];
-		LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		// A slot that was left empty has no class to load
+		if (Stuff[i] != "")
+			LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		else
+			LastLoadoutClasses[i] = None;
 		
 		if (BallisticPlayer(PC) != None)
 			BallisticPlayer(PC).LastLoadoutClasses[i] = LastLoadoutClasses[i];

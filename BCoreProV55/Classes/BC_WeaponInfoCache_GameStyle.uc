@@ -35,6 +35,7 @@ class BC_WeaponInfoCache_GameStyle extends Object
 	config(BWCache);
 
 var() config array<BC_WeaponInfoCache.WeaponInfo>	Weapons;
+var() config array<string>							NotBallistic;	// Classes that were loaded once and are no BallisticWeapons, so that asking again loads nothing
 var   bool											bChanged;
 
 // Invalidation
@@ -48,6 +49,7 @@ static final function CheckRevision()
 		return;
 
 	default.Weapons.Length = 0;
+	default.NotBallistic.Length = 0;
 
 	default.SavedRevision = default.Revision;
 
@@ -92,7 +94,24 @@ static function BC_WeaponInfoCache.WeaponInfo AutoWeaponInfo(string WeapClassNam
 	if (FindWeaponInfo(WeapClassName, WI, i))
 		return WI;
 
+	// Not one of ours, as loading it once has shown: the same answer without loading it again
+	if (IsNotBallistic(WeapClassName))
+	{
+		i = -1;
+		return WI;
+	}
+
 	return AddWeaponInfoName(WeapClassName, i);
+}
+
+static function bool IsNotBallistic(string WeapClassName)
+{
+	local int i;
+
+	for (i = 0; i < default.NotBallistic.length; i++)
+		if (default.NotBallistic[i] ~= WeapClassName)
+			return true;
+	return false;
 }
 
 // Shorcut to AddWeaponInfo() using only classname
@@ -100,18 +119,28 @@ static function BC_WeaponInfoCache.WeaponInfo AddWeaponInfoName(string WeapClass
 {
 	local class<BallisticWeapon> Weap;
 	local BC_WeaponInfoCache.WeaponInfo WI;
+	local Object Loaded;
 	if (WeapClassName == "")
 	{
 		i = -1;
 		return WI;
 	}
 
-	Weap = class<BallisticWeapon>(DynamicLoadObject(WeapClassName, class'Class'));
+	Loaded = DynamicLoadObject(WeapClassName, class'Class');
+	Weap = class<BallisticWeapon>(Loaded);
 
 	if (Weap != None)
 		WI = AddWeaponInfo(Weap, i);
 	else
+	{
 		i = -1;
+		// A class that loads and is no BallisticWeapon stays that. One that does not load may be installed later.
+		if (Loaded != None && !IsNotBallistic(WeapClassName))
+		{
+			default.NotBallistic[default.NotBallistic.length] = WeapClassName;
+			default.bChanged = true;
+		}
+	}
 
 	return WI;
 }

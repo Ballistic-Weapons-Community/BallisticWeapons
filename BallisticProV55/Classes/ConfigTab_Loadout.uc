@@ -73,7 +73,7 @@ function InitializeConfigTab()
 
 function LoadList()
 {
-	local int i, j, k;
+	local int i, j;
 //	local class<Weapon> Weap;
 	local array<CacheManager.WeaponRecord> Recs;
 	local string s;
@@ -99,6 +99,7 @@ function LoadList()
 	WeaponInfo.length = 0;
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
 		j = InStr(Recs[i].ClassName, ".");

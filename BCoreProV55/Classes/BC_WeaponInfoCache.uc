@@ -95,6 +95,35 @@ static function GetBWWeps(out array<WeaponInfo> BWeps)
 	CurrentCache().static.GetBWWeps(BWeps);
 }
 
+// Put weapons in alphabetical order of their names, ignoring case, for the menus that list them.
+static function SortWeaponRecords(out array<CacheManager.WeaponRecord> Recs)
+{
+	local CacheManager.WeaponRecord Rec;
+	local int i, j;
+
+	for (i = 1; i < Recs.Length; i++)
+	{
+		Rec = Recs[i];
+		for (j = i; j > 0 && StrCmp(Recs[j - 1].FriendlyName, Rec.FriendlyName) > 0; j--)
+			Recs[j] = Recs[j - 1];
+		Recs[j] = Rec;
+	}
+}
+
+static function SortWeaponInfos(out array<WeaponInfo> Infos)
+{
+	local WeaponInfo WI;
+	local int i, j;
+
+	for (i = 1; i < Infos.Length; i++)
+	{
+		WI = Infos[i];
+		for (j = i; j > 0 && StrCmp(Infos[j - 1].ItemName, WI.ItemName) > 0; j--)
+			Infos[j] = Infos[j - 1];
+		Infos[j] = WI;
+	}
+}
+
 // If the list was changed, save it.
 static function EndSession()
 {
