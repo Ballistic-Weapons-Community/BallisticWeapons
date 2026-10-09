@@ -294,7 +294,7 @@ exec function PrevWeapon()
 		else if (WGroup < 10)
 			WGroup--;
 		WItem = 0;
-		for(i=0;i<WeaponGroups[WGroup].Items.length-1;i++)
+		for(i=0;i<WeaponGroups[WGroup].Items.length;i++)
 			if (WeaponGroups[WGroup].Items[i] == Pawn.Weapon)
 			{
 				WItem=i;
@@ -342,7 +342,7 @@ exec function NextWeapon()
 		else if (WGroup < 10)
 			WGroup--;
 		WItem = 0;
-		for(i=0;i<WeaponGroups[WGroup].Items.length-1;i++)
+		for(i=0;i<WeaponGroups[WGroup].Items.length;i++)
 			if (WeaponGroups[WGroup].Items[i] == Pawn.Weapon)
 			{
 				WItem=i;
