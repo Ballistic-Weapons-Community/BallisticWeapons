@@ -128,13 +128,16 @@ state SpawnIn
 	
 	function SpawnDeployable()
 	{
+		local Actor A;
 		local WrenchDeployable W;
 
-		W = WrenchDeployable(Spawn(myDeployable, Instigator, , GroundPoint, Rotation));
+		A = Spawn(myDeployable, Instigator, , GroundPoint, Rotation);
+		W = WrenchDeployable(A);
 		if (W == None)
 		{
-			// Deployables reject placement near another one, which happens before they get a Master - free the slot here
-			if (Wrench != None)
+			// Deployables reject placement near another one, which happens before they get a Master - free the slot here.
+			// Sandbags and the barrier are no WrenchDeployable and have no Master: they are only lost if they did not spawn
+			if (A == None && Wrench != None)
 				Wrench.LostDeployable(DeployableIndex);
 			return;
 		}
