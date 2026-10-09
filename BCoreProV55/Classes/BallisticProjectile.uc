@@ -1006,7 +1006,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
             }
             else 
             {
-                damageScale = GetPenetrationDamageScale(dir, dist);
+                damageScale = GetPenetrationDamageScale(dir, dist, Victims);
 
                 if (damageScale < 0.01f)
                     continue;
@@ -1034,9 +1034,11 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 // Trace to find out how far towards the target we can get
 // n.b. this code does not work correctly for grenades on the ground
-function float GetPenetrationDamageScale(Vector dir, float dist)
+// Target is who this is worked out for. Without it the first actor on the way is taken to be him
+function float GetPenetrationDamageScale(Vector dir, float dist, optional Actor Target)
 {
 	local int						WallCount, WallPenForce, WallPenDelta;
+	local float						Skip;
 	local Vector					End, X, HitLocation, HitNormal, Start, LastHitLoc, ExitNormal;
 	local Material					HitMaterial, ExitMaterial;
 	local float						pwr;
@@ -1127,6 +1129,19 @@ function float GetPenetrationDamageScale(Vector dir, float dist)
 		{
 			Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
 			End = Start + X * Dist;
+			bTraceWater=true;
+			continue;
+		}
+
+		// Somebody or something else that stands between the blast and the target. That is no cover, and getting as
+		// far as that is not getting to the target: the walls behind it still count. Go on from its far side
+		if (Target != None && Other != Target)
+		{
+			Skip = FMax(32, Other.CollisionRadius * 2);
+			Start = HitLocation + X * Skip;
+			dist -= Skip;
+			pwr -= Skip;
+			End = Start + X * dist;
 			bTraceWater=true;
 			continue;
 		}
