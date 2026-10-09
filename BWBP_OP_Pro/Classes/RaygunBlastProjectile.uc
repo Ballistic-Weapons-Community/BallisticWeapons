@@ -61,6 +61,7 @@ defaultproperties
 {
     WeaponClass=Class'BWBP_OP_Pro.Raygun'
      ImpactManager=Class'BWBP_OP_Pro.IM_RaygunBlast'
+     FixedImpactSurf=1
      AccelSpeed=80000.000000
      TrailClass=Class'BWBP_OP_Pro.RaygunTrailEmitter'
      MyRadiusDamageType=Class'BWBP_OP_Pro.DTRaygun'
