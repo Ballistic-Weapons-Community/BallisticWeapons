@@ -72,7 +72,6 @@ var   NetHitInfo	ClientHits[8];			// List of hits replicated to clients
 
 var byte			            Latest;					// Serverside. Used to figure out where in the ClientHits array to add new hits
 var byte			            HitCounter, OldHitCounter;// Counter incremented to tell client there are new hits
-var int				            LastIndex;				// Last hit played clientside
 // -------------------------------------------------------
 
 // StandAlone/Listen hit recording -----------------------
@@ -1559,6 +1558,9 @@ simulated function byte GetHitBoneIndex (name BoneName)
 		case 'rthigh':		return 11;
 		case 'lfoot':		return 12;
 		case 'lthigh':		return 13;
+		// CalcHitLoc() comes up with this one. Sent as 0 it was a hit on no bone in particular for the clients,
+		// which is how a blast is told: they tried every limb where the server tried the pelvis
+		case 'pelvis':		return 14;
 		default :			return 0;
 	}
 }
@@ -1580,6 +1582,7 @@ simulated function name GetHitBoneName (byte BoneIndex)
 		case 11 :	return 'rthigh';
 		case 12 :	return 'lfoot';
 		case 13 :	return 'lthigh';
+		case 14 :	return 'pelvis';
 		default :	return 'none';
 	}
 }
@@ -1789,9 +1792,10 @@ function SendHitInfo(name BoneName, class<DamageType> DamageType, vector HitLoc,
 
 	PHI.DamageType	= DamageType;
 	PHI.BoneNum		= GetHitBoneIndex(BoneName);
-	PHI.HitRay.X	= 128 * (HitRay.X+1);
-	PHI.HitRay.Y	= 128 * (HitRay.Y+1);
-	PHI.HitRay.Z	= 128 * (HitRay.Z+1);
+	// 128 * 2 is one more than a byte holds: a ray pointing straight along an axis came out pointing the other way
+	PHI.HitRay.X	= Clamp(128 * (HitRay.X+1), 0, 255);
+	PHI.HitRay.Y	= Clamp(128 * (HitRay.Y+1), 0, 255);
+	PHI.HitRay.Z	= Clamp(128 * (HitRay.Z+1), 0, 255);
 	HitLoc -= Location;
 	PHI.HitLoc.X	= 128 + Clamp(HitLoc.X / 2, -128, 127);
 	PHI.HitLoc.Y	= 128 + Clamp(HitLoc.Y / 2, -128, 127);
@@ -1809,9 +1813,10 @@ simulated function ReceiveHitInfo(NetHitInfo PHI)
 {
 	local vector HitRay, HitLoc;
 
-	HitRay.X = (PHI.HitRay.X / 128) - 1;
-	HitRay.Y = (PHI.HitRay.Y / 128) - 1;
-	HitRay.Z = (PHI.HitRay.Z / 128) - 1;
+	// 128.0: a byte divided by 128 is a whole number, which made every part of the ray -1 or 0
+	HitRay.X = (PHI.HitRay.X / 128.0) - 1;
+	HitRay.Y = (PHI.HitRay.Y / 128.0) - 1;
+	HitRay.Z = (PHI.HitRay.Z / 128.0) - 1;
 
 	HitLoc.X = (PHI.HitLoc.X - 128) * 2;
 	HitLoc.Y = (PHI.HitLoc.Y - 128) * 2;
@@ -1853,13 +1858,10 @@ simulated event Tick(float DT)
 			Diff = HitCounter - OldHitCounter;
 		Diff = Min(8, Diff);
 
-		Index = LastIndex;
-		for (i=0; i < Diff; i++)
-		{
-			Index = class'BUtil'.static.Loop(Index, 1, 7, 0);
-			ReceiveHitInfo(ClientHits[Index]);
-		}
-		LastIndex = Index;
+		// The server puts hit number n in slot n % 8, so the newest is at HitCounter % 8. Counting on from the last
+		// one played here went wrong for the rest of the pawn's life once more than eight came in together
+		for (i = Diff - 1; i >= 0; i--)
+			ReceiveHitInfo(ClientHits[(HitCounter - i) & 7]);
 
 		OldHitCounter = HitCounter;
 	}
