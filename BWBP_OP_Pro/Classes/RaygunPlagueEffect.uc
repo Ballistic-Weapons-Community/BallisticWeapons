@@ -95,8 +95,10 @@ simulated function Destroyed()
 	if (BallisticPawn(Victim) != None)
 		BallisticPawn(Victim).bPreventHealing = False;
 	Super.Destroyed();
-	
-	PlagueTrigger.Destroy();
+
+	// Only the server's copy has one: Initialize is not called for a client's
+	if (PlagueTrigger != None)
+		PlagueTrigger.Destroy();
 }
 
 
