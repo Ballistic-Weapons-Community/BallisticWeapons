@@ -10,10 +10,13 @@ class DragonsToothAttachment extends BallisticMeleeAttachment;
 
 var   bool					bNoGlow;	//The layout's blade does not glow
 var   Shader				BladeShader;	//The camo's skin, blended in for this mesh
+var   FinalBlend			BladeBlend;		//What draws it: blended, and writing depth
 
 // The camos' skins are the first person ones. On that mesh the glass of the blade is a material of its own and the main skin
 // leaves the blade out; this mesh has the one material, and only the cracks were left of the nanoblack and royal blades.
 // So the skin is blended in here, the way the mesh's own DTS-Shine3rd is.
+// Unlike that one it writes depth. A blended skin does not, and whatever stood behind the sword and came to be drawn after
+// it went straight over it, hilt and all. A sword in the hand is not sorted well enough against the rest for that.
 simulated function ApplyCamo()
 {
 	local Shader CamoShader;
@@ -46,11 +49,37 @@ simulated function ApplyCamo()
 	BladeShader.ModulateSpecular2X = CamoShader.ModulateSpecular2X;
 	BladeShader.FallbackMaterial = CamoShader.FallbackMaterial;
 	BladeShader.OutputBlending = OB_Normal;
-	Skins[0] = BladeShader;
+	// The mask lets a third of the blade through, which does for the bright blades. The dark glass of the nanoblack and royal
+	// ones all but vanished at that, leaving the lightning; they take the denser mask
+	if (bNoGlow)
+		BladeShader.Opacity = Texture'BWBP_SKC_Tex.DragonToothSword.DTS-AlphaMaskDim';
+
+	if (BladeBlend == None)
+		BladeBlend = FinalBlend(Level.ObjectPool.AllocateObject(class'DTSBladeBlend'));
+	if (BladeBlend == None)
+	{
+		Skins[0] = BladeShader;
+		return;
+	}
+
+	BladeBlend.Material = BladeShader;
+	BladeBlend.FrameBufferBlending = FB_AlphaBlend;
+	BladeBlend.ZWrite = true;
+	BladeBlend.ZTest = true;
+	BladeBlend.AlphaTest = true;
+	BladeBlend.AlphaRef = 0;
+	BladeBlend.TwoSided = BladeShader.TwoSided;
+	Skins[0] = BladeBlend;
 }
 
 simulated function Destroyed()
 {
+	if (BladeBlend != None)
+	{
+		BladeBlend.Material = None;
+		Level.ObjectPool.FreeObject(BladeBlend);
+		BladeBlend = None;
+	}
 	if (BladeShader != None)
 	{
 		Level.ObjectPool.FreeObject(BladeShader);
