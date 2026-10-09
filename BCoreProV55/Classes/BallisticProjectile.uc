@@ -661,10 +661,20 @@ state NetTrapped
 simulated function BlowUp(vector HitLocation)
 {
 	if (DamageRadius > 0)
-		TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
+		HurtRadiusOrCorpses(HitLocation);
 
 	if (Role == ROLE_Authority)
 		MakeNoise(1.0);
+}
+
+// BlowUp's radius damage. A client's projectile goes for that client's dead bodies from here, and not only from
+// inside TargetedHurtRadius: the subclasses that have their own version of that do not run it on a client
+simulated function HurtRadiusOrCorpses(vector HitLocation)
+{
+	if (Role < ROLE_Authority)
+		HurtCorpses(Damage, DamageRadius, MyRadiusDamageType, HitLocation, HitActor);
+	else
+		TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
 }
 
 //===============================================================
@@ -1080,6 +1090,9 @@ simulated function HurtCorpses(float DamageAmount, float DamageRadius, class<Dam
 	local Pawn P;
 	local float damageScale, dist;
 	local vector dir;
+
+	if (DamageRadius <= 0)
+		return;
 
 	bHurtEntry = true;
 	foreach CollidingActors(class'Pawn', P, DamageRadius, HitLocation)
