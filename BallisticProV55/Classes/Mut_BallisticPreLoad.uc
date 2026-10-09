@@ -11,6 +11,7 @@ var globalconfig bool bEnableCamoLoading;		// Also send every camo skin of every
 var globalconfig bool bEnableTextureLoading;	// Also send the weapons' own skins, effects and pickups to the video card
 
 var BallisticPreloadReplicationInfo MyRI;
+var int NumRewards;		// How many entries at the end of the list are killstreak rewards
 
 event PostBeginPlay()
 {
@@ -50,8 +51,10 @@ function Tick(float DeltaTime)
 	if (PreloadList.Length > ArrayCount(MyRI.CurrentName))
 	{
 		Log("Mut_BallisticPreLoad: List of"@PreloadList.Length@"cut to"@ArrayCount(MyRI.CurrentName), 'Warning');
+		NumRewards = Max(0, NumRewards - (PreloadList.Length - ArrayCount(MyRI.CurrentName)));
 		PreloadList.Length = ArrayCount(MyRI.CurrentName);
 	}
+	MyRI.RewardNum = NumRewards;
 
 	for (i = 0; i < PreloadList.Length; i++)
 		MyRI.CurrentName[i] = PreloadList[i];
@@ -165,6 +168,7 @@ function BuildWeaponList(out array<string> OutList)
 	}
 
 	// Killstreak rewards turn up in any mode
+	NumRewards = OutList.Length;
 	if (StreakMut != None)
 	{
 		for (i = 0; i < StreakMut.Streak1s.Length; i++)
@@ -172,8 +176,9 @@ function BuildWeaponList(out array<string> OutList)
 		for (i = 0; i < StreakMut.Streak2s.Length; i++)
 			AddUniqueString(OutList, StreakMut.Streak2s[i]);
 	}
+	NumRewards = OutList.Length - NumRewards;
 
-	Log("Mut_BallisticPreLoad: Built weapon list from"@Source@"("$OutList.Length@"weapons)");
+	Log("Mut_BallisticPreLoad: Built weapon list from"@Source@"("$(OutList.Length - NumRewards)@"weapons) and"@NumRewards@"killstreak rewards");
 }
 
 function AddUniqueString(out array<string> Arr, string Value)
