@@ -6,51 +6,19 @@ Class Mut_BallisticPreLoad extends Mutator
 
 var config array<string> WeaponClassNames;
 
-var() int WeaponsToLoad;
-var() string WeaponName;
-
 var globalconfig bool bEnablePreloading;
-var globalconfig bool bEnableCamoLoading;
+var globalconfig bool bEnableCamoLoading;		// Also send every camo skin of every weapon to the video card. Costs a lot of memory.
+var globalconfig bool bEnableTextureLoading;	// Also send the weapons' own skins, effects and pickups to the video card
 
-replication
-{
-    reliable if(Role == ROLE_Authority)
-		WeaponsToLoad, WeaponName;
-}
+var BallisticPreloadReplicationInfo MyRI;
 
 event PostBeginPlay()
 {
-	local BallisticPreloadReplicationInfo MyRI;
-	local int i;
-	local class<Weapon> WeaponClass;
-	local int SuccessCount;
-	local array<string> PreloadList;
-
 	if (bEnablePreloading)
 	{
-		BuildWeaponList(PreloadList);
-
 		MyRI = Spawn(class'BallisticProV55.BallisticPreloadReplicationInfo');
 		MyRI.bEnableCamoLoading = bEnableCamoLoading;
-
-		WeaponsToLoad = PreloadList.Length;
-		MyRI.PreloadNum = WeaponsToLoad;
-
-		for (i = 0; i < WeaponsToLoad; i++)
-		{
-			WeaponClass = class<Weapon>(DynamicLoadObject(PreloadList[i], class'Class', True));
-
-			if (WeaponClass != None)
-			{
-				MyRI.CurrentName[i] = PreloadList[i];
-				MyRI.MeshList[i] = string(WeaponClass.default.Mesh);
-				SuccessCount++;
-			}
-			else
-				Log("Mut_BallisticPreLoad: Failed to load"@PreloadList[i], 'Warning');
-		}
-
-		Log("Mut_BallisticPreLoad: Preloaded"@SuccessCount$"/"$WeaponsToLoad@"weapons");
+		MyRI.bEnableTextureLoading = bEnableTextureLoading;
 	}
 
 	SaveConfig();
@@ -58,64 +26,163 @@ event PostBeginPlay()
 	Super.PostBeginPlay();
 }
 
+// This mutator is spawned while the inventory mutator is still starting up, so the lists are read a moment later.
+// Only the names go out: the server gets the classes it needs from the inventory mutator, the clients load them here.
+function Tick(float DeltaTime)
+{
+	local array<string> PreloadList;
+	local int i;
+
+	Disable('Tick');
+
+	if (MyRI == None)
+		return;
+
+	BuildWeaponList(PreloadList);
+
+	// The clients wait for a count. A negative one tells them there is nothing to come.
+	if (PreloadList.Length == 0)
+	{
+		MyRI.PreloadNum = -1;
+		return;
+	}
+
+	if (PreloadList.Length > ArrayCount(MyRI.CurrentName))
+	{
+		Log("Mut_BallisticPreLoad: List of"@PreloadList.Length@"cut to"@ArrayCount(MyRI.CurrentName), 'Warning');
+		PreloadList.Length = ArrayCount(MyRI.CurrentName);
+	}
+
+	for (i = 0; i < PreloadList.Length; i++)
+		MyRI.CurrentName[i] = PreloadList[i];
+	MyRI.PreloadNum = PreloadList.Length;
+}
+
 // Build weapon list dynamically from active BW mutators, falling back to config
 function BuildWeaponList(out array<string> OutList)
 {
+	local Mutator M;
 	local Mut_Outfitting OutfitMut;
+	local Mut_TeamOutfitting TeamOutfitMut;
 	local Mut_Loadout LoadoutMut;
+	local Mut_ConflictLoadout ConflictMut;
+	local Mut_BallisticSwap SwapMut;
+	local Mut_BallisticArena ArenaMut;
+	local Mut_BallisticMelee MeleeMut;
+	local Mut_Killstreak StreakMut;
 	local array<string> GroupWeapons;
-	local int i, j;
+	local string Source;
+	local int i, j, t;
 
-	// Try Outfitting mutator first (loadout groups 0-6)
-	foreach DynamicActors(class'Mut_Outfitting', OutfitMut)
-		break;
+	for (M = Level.Game.BaseMutator; M != None; M = M.NextMutator)
+	{
+		if (Mut_Outfitting(M) != None)
+			OutfitMut = Mut_Outfitting(M);
+		else if (Mut_TeamOutfitting(M) != None)
+			TeamOutfitMut = Mut_TeamOutfitting(M);
+		else if (Mut_Loadout(M) != None)
+			LoadoutMut = Mut_Loadout(M);
+		else if (Mut_ConflictLoadout(M) != None)
+			ConflictMut = Mut_ConflictLoadout(M);
+		else if (Mut_BallisticSwap(M) != None)
+			SwapMut = Mut_BallisticSwap(M);
+		else if (Mut_BallisticArena(M) != None)
+			ArenaMut = Mut_BallisticArena(M);
+		else if (Mut_BallisticMelee(M) != None)
+			MeleeMut = Mut_BallisticMelee(M);
+		else if (Mut_Killstreak(M) != None)
+			StreakMut = Mut_Killstreak(M);
+	}
 
 	if (OutfitMut != None)
 	{
+		// Loadout groups 0-6
+		Source = "Outfitting";
 		for (i = 0; i < 7; i++)
 		{
 			GroupWeapons = OutfitMut.GetGroup(i);
 			for (j = 0; j < GroupWeapons.Length; j++)
+				AddUniqueString(OutList, GroupWeapons[j]);
+		}
+	}
+	else if (TeamOutfitMut != None)
+	{
+		// Each team has its own groups
+		Source = "Team Outfitting";
+		for (i = 0; i < 7; i++)
+			for (t = 0; t < 2; t++)
 			{
-				if (GroupWeapons[j] != "" && !(Right(GroupWeapons[j], 5) ~= "Dummy"))
+				GroupWeapons = TeamOutfitMut.GetGroup(i, t);
+				for (j = 0; j < GroupWeapons.Length; j++)
 					AddUniqueString(OutList, GroupWeapons[j]);
 			}
-		}
-
-		if (OutList.Length > 0)
-		{
-			Log("Mut_BallisticPreLoad: Built weapon list from Outfitting ("$OutList.Length@"weapons)");
-			return;
-		}
 	}
-
-	// Try Loadout mutator (evolution system)
-	foreach DynamicActors(class'Mut_Loadout', LoadoutMut)
-		break;
-
-	if (LoadoutMut != None)
+	else if (LoadoutMut != None)
 	{
+		// Evolution system
+		Source = "Loadout";
 		for (i = 0; i < LoadoutMut.Items.Length; i++)
+			AddUniqueString(OutList, LoadoutMut.Items[i].ItemName);
+	}
+	else if (ConflictMut != None)
+	{
+		Source = "Conflict";
+		for (i = 0; i < ConflictMut.ConflictWeapons.Length; i++)
+			AddUniqueString(OutList, ConflictMut.ConflictWeapons[i].ClassName);
+	}
+	else if (SwapMut != None)
+	{
+		// Whatever a pickup can turn into
+		Source = "Pickups";
+		for (i = 0; i < SwapMut.GetNumWeapons(); i++)
 		{
-			if (LoadoutMut.Items[i].ItemName != "")
-				AddUniqueString(OutList, LoadoutMut.Items[i].ItemName);
-		}
-
-		if (OutList.Length > 0)
-		{
-			Log("Mut_BallisticPreLoad: Built weapon list from Loadout ("$OutList.Length@"weapons)");
-			return;
+			GroupWeapons = SwapMut.GetNewWeapons(i);
+			for (j = 0; j < GroupWeapons.Length; j++)
+				AddUniqueString(OutList, GroupWeapons[j]);
 		}
 	}
+	else if (ArenaMut != None)
+	{
+		Source = "Arena";
+		for (i = 0; i < ArenaMut.WeaponClasses.Length; i++)
+			AddUniqueString(OutList, string(ArenaMut.WeaponClasses[i]));
+	}
+	else if (MeleeMut != None)
+	{
+		Source = "Melee";
+		for (i = 0; i < MeleeMut.Replacements.Length; i++)
+			for (j = 0; j < MeleeMut.Replacements[i].NewItems.Length; j++)
+				if (class<Weapon>(MeleeMut.GetInventoryFor(MeleeMut.Replacements[i].NewItems[j])) != None)
+					AddUniqueString(OutList, string(MeleeMut.GetInventoryFor(MeleeMut.Replacements[i].NewItems[j])));
+	}
 
-	// Fall back to hardcoded config list
-	OutList = WeaponClassNames;
-	Log("Mut_BallisticPreLoad: Using config weapon list ("$OutList.Length@"weapons)");
+	if (OutList.Length == 0)
+	{
+		// Fall back to hardcoded config list
+		Source = "config";
+		for (i = 0; i < WeaponClassNames.Length; i++)
+			AddUniqueString(OutList, WeaponClassNames[i]);
+	}
+
+	// Killstreak rewards turn up in any mode
+	if (StreakMut != None)
+	{
+		for (i = 0; i < StreakMut.Streak1s.Length; i++)
+			AddUniqueString(OutList, StreakMut.Streak1s[i]);
+		for (i = 0; i < StreakMut.Streak2s.Length; i++)
+			AddUniqueString(OutList, StreakMut.Streak2s[i]);
+	}
+
+	Log("Mut_BallisticPreLoad: Built weapon list from"@Source@"("$OutList.Length@"weapons)");
 }
 
 function AddUniqueString(out array<string> Arr, string Value)
 {
 	local int i;
+
+	// Menu headings and placeholders sit among the class names of some lists
+	if (InStr(Value, ".") == -1 || Right(Value, 5) ~= "Dummy")
+		return;
 
 	for (i = 0; i < Arr.Length; i++)
 		if (Arr[i] ~= Value)
@@ -124,37 +191,15 @@ function AddUniqueString(out array<string> Arr, string Value)
 	Arr[Arr.Length] = Value;
 }
 
-simulated function Tick(float DeltaTime)
-{
-	Disable('Tick');
-}
-
-function ModifyPlayer(Pawn Other)
-{
-	local Inventory Inv;
-
-	if (bEnablePreloading && Other != None && Other.Controller != None && Other.Controller.PlayerReplicationInfo != None && Other.Controller.PlayerReplicationInfo.Deaths == 0 && Other.Controller.PlayerReplicationInfo.bBot == false && Other.Controller.PlayerReplicationInfo.Score == 0)
-	{
-		Inv = Spawn(class'BallisticPreloadInv',Other,,);
-		if(Inv != None)
-		{
-			Inv.GiveTo(Other);
-		}
-	}
-
-	super.ModifyPlayer(Other);
-}
-
 defaultproperties
 {
 	bEnablePreloading=True
 	bEnableCamoLoading=False
+	bEnableTextureLoading=False
     bAddToServerPackages=True
     GroupName="BallisticPro: Resource Preload"
     FriendlyName="BallisticPro: Resource Preload"
     Description="Preloads weapon resources, designed for use with BallisticPro. This will improve overall performance on all machines"
-    bAlwaysRelevant=True
-    RemoteRole=ROLE_SimulatedProxy
 	// BallisticProV55
 	WeaponClassNames(0)="BallisticProV55.A42SkrithPistol"
 	WeaponClassNames(1)="BallisticProV55.A500Reptile"
