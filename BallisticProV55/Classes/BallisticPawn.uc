@@ -2089,8 +2089,8 @@ simulated function DoHit (name Bone, class<DamageType> DamageType, vector HitRay
 					{
 						if (CanDismemberBone('lshoulder', DamageType, Damage, HitLocation, HitRay, false))
 							DoDismember('lshoulder', DamageType, HitRay, HitLocation, Damage);
-						else if (!BoneDismembered('lrarm') && CanDismemberBone('lrarm', DamageType, Damage, HitLocation, HitRay, false))
-							DoDismember('lrarm', DamageType, HitRay, HitLocation, Damage);
+						else if (!BoneDismembered('lfarm') && CanDismemberBone('lfarm', DamageType, Damage, HitLocation, HitRay, false))
+							DoDismember('lfarm', DamageType, HitRay, HitLocation, Damage);
 //						else if (CanDismemberBone('lhand', DamageType, Damage, HitLocation, HitRay, false))
 //							DoDismember('lhand', DamageType, HitRay, HitLocation, Damage);
 					}
@@ -2294,7 +2294,7 @@ simulated function DismemberSub (name Bone, vector HitRay, class<DamageType> Dam
 	if (class<BallisticDamageType>(DamageType) != None && class<BallisticDamageType>(DamageType).static.DoSeverEffect(self, Bone, HitRay, Damage))
 		return;
 
-	GetBloodManagerForGore(DamageType).static.DoSeverEffects(self, Bone, HitRay, Damage, DamageType.default.GibPerterbation);
+	GetBloodManagerForGore(DamageType).static.DoSeverEffects(self, Bone, HitRay, DamageType.default.GibPerterbation, Damage);
 //	class'BloodMan_General'.static.DoSeverEffects(self, Bone, HitRay, Damage, DamageType.default.GibPerterbation);
 }
 // Do things for only the root bone of the sever (e.g. Spawn stump, hidebone)
