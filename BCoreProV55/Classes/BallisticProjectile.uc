@@ -37,6 +37,7 @@ var	    Actor					Trail;					// The trail Actor
 var     Actor					HitActor;				// Actor that got hit directly
 var     bool					bCanHitOwner;			// Bounced or turned around or something so it can hit owner
 var     bool					bExploded;				// Already Blown up. Used by troublesome rocekts that keep going off on clients
+var     bool					bTouchDealtWith;		// ProcessTouch has hurt what was touched. See Touch
 var     Vector                  TearOffHitNormal;
 var		bool					bApplyParams;			// Apply params to this projectile (allows separation for projectiles such as flak classes)
 //=============================================================================
@@ -308,9 +309,7 @@ simulated function ApplyParams(ProjectileEffectParams params)
     MaxSpeed = params.MaxSpeed;    
 	default.MaxSpeed = params.MaxSpeed;
 
-    if (Level.NetMode == NM_Client)
-        return;
-
+	// Clients need the damage as well: their projectiles hit their own copies of dead bodies
     Damage = params.Damage;
 	default.Damage = params.Damage;
 	
@@ -661,15 +660,60 @@ state NetTrapped
 }
 
 // Do radius damage;
-function BlowUp(vector HitLocation)
+simulated function BlowUp(vector HitLocation)
+{
+	if (DamageRadius > 0)
+		HurtRadiusOrCorpses(HitLocation);
+
+	if (Role == ROLE_Authority)
+		MakeNoise(1.0);
+}
+
+// BlowUp's radius damage. A client's projectile goes for that client's dead bodies from here, and not only from
+// inside TargetedHurtRadius: the subclasses that have their own version of that do not run it on a client
+simulated function HurtRadiusOrCorpses(vector HitLocation)
 {
 	if (Role < ROLE_Authority)
-		return;
-
-	if (DamageRadius > 0)
+		HurtCorpses(Damage, DamageRadius, MyRadiusDamageType, HitLocation, HitActor);
+	else
 		TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
-        
-	MakeNoise(1.0);
+}
+
+//===============================================================
+// Touch
+//
+// The stock function, but for its last step. A client's projectile
+// that touches that client's copy of a dead body hurts it there
+// with Damage and MyDamageType. ProcessTouch has done that already,
+// with the damage the projectile really does on contact, so the
+// body was hit twice.
+//===============================================================
+simulated singular function Touch(Actor Other)
+{
+	local vector HitLocation, HitNormal;
+
+	if (Other == None) // Other just got destroyed in its touch?
+		return;
+	if (Other.bProjTarget || Other.bBlockActors)
+	{
+		LastTouched = Other;
+		bTouchDealtWith = false;
+		if (Velocity == vect(0,0,0) || Other.IsA('Mover'))
+		{
+			ProcessTouch(Other, Location);
+			LastTouched = None;
+			return;
+		}
+
+		if (Other.TraceThisActor(HitLocation, HitNormal, Location, Location - 2*Velocity, GetCollisionExtent()))
+			HitLocation = Location;
+
+		ProcessTouch(Other, HitLocation);
+		LastTouched = None;
+		// A subclass with a ProcessTouch of its own still gets the stock treatment
+		if (!bTouchDealtWith && Role < ROLE_Authority && Other.Role == ROLE_Authority && Pawn(Other) != None)
+			ClientSideTouch(Other, HitLocation);
+	}
 }
 
 //===============================================================
@@ -691,7 +735,10 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation)
     {
         // Do damage for direct hits
         if (Other.Role == ROLE_Authority)		
+        {
             ApplyImpactEffect(Other, HitLocation);
+            bTouchDealtWith = true;
+        }
 
         HitActor = Other;
 
@@ -825,6 +872,14 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+	// On a client this is that client's copy of a dead body. The functions below that pick the victim and the
+	// damage only run on the server, and where exactly a body is hit makes no difference to it
+	if (Role < ROLE_Authority)
+	{
+		class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), MyDamageType);
+		return;
+	}
 
 	if (xPawn(Other) != None)
 	{
@@ -963,7 +1018,7 @@ final function Actor GetDamageForCollision(UnlaggedPawnCollision Other, vector H
 
 // Special HurtRadius function. This will hurt everyone except the chosen victim.
 // Useful if you want to spare a directly hit enemy from the radius damage
-function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
+simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
 	local float damageScale, dist;
@@ -972,6 +1027,14 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 	if( bHurtEntry )
 		return;
+
+	// A client's projectile. All it can hurt is that client's copies of dead bodies, which the server's blast
+	// knows nothing of
+	if (Role < ROLE_Authority)
+	{
+		HurtCorpses(DamageAmount, DamageRadius, DamageType, HitLocation, Victim);
+		return;
+	}
 
 	bHurtEntry = true;
 	foreach CollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
@@ -1033,6 +1096,50 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				DamageType
 			);
 		 }
+	}
+	bHurtEntry = false;
+}
+
+// The blast of a client's projectile, for that client's copies of dead bodies
+simulated function HurtCorpses(float DamageAmount, float DamageRadius, class<DamageType> DamageType, vector HitLocation, optional Actor Victim)
+{
+	local Pawn P;
+	local float damageScale, dist;
+	local vector dir;
+
+	if (DamageRadius <= 0)
+		return;
+
+	bHurtEntry = true;
+	foreach CollidingActors(class'Pawn', P, DamageRadius, HitLocation)
+	{
+		if (P.Role != ROLE_Authority || !P.bTearOff || P.Health > 0 || P == Victim || !FastTrace(P.Location, Location))
+			continue;
+
+		dir = P.Location;
+		if (P.Location.Z > HitLocation.Z)
+			dir.Z = FMax(HitLocation.Z, dir.Z - P.CollisionHeight);
+		else
+			dir.Z = FMin(HitLocation.Z, dir.Z + P.CollisionHeight);
+		dir -= HitLocation;
+		dist = FMax(1, VSize(dir));
+		dir /= dist;
+
+		damageScale = 1f;
+		if (RadiusFallOffType != RFO_None)
+			damageScale = 1 - FMax(0, (dist - P.CollisionRadius) / DamageRadius);
+		if (RadiusFallOffType == RFO_Quadratic)
+			damageScale = Square(damageScale);
+
+		class'BallisticDamageType'.static.GenericHurt
+		(
+			P,
+			damageScale * DamageAmount,
+			Instigator,
+			P.Location - 0.5 * (P.CollisionHeight + P.CollisionRadius) * dir,
+			GetMomentumVector(damageScale * dir),
+			DamageType
+		);
 	}
 	bHurtEntry = false;
 }
