@@ -8,6 +8,48 @@
 //=============================================================================
 class BlackOpsWristBladeAttachment extends BallisticMeleeAttachment;
 
+var Actor LeftOne;
+
+// The blade on the other arm, unless the layout is the single blade
+simulated function ApplyModel()
+{
+	Super.ApplyModel();
+
+	if (LeftOne != None || Instigator == None || level.NetMode == NM_DedicatedServer
+		|| LayoutIndex >= WeaponClass.static.GetParams().default.Layouts.Length)
+		return;
+
+	if (InStr(WeaponClass.static.GetParams().default.Layouts[LayoutIndex].LayoutTags, "single") == -1)
+	{
+		LeftOne = Spawn(class'BlackOpsWristBladeLeft');
+		Instigator.AttachToBone(LeftOne,'bip01 l hand');
+	}
+}
+
+simulated function Hide(bool NewbHidden)
+{
+	super.Hide(NewbHidden);
+	if (LeftOne != None)
+		LeftOne.bHidden = NewbHidden;
+}
+
+// The left blade is an actor of its own and has to be given the overlays (invisibility, UDamage) this blade gets
+simulated event Tick(float DT)
+{
+	Super.Tick(DT);
+
+	if (LeftOne != None && LeftOne.OverlayMaterial != OverlayMaterial)
+		LeftOne.SetOverlayMaterial(OverlayMaterial, ClientOverlayCounter, true);
+}
+
+simulated function Destroyed()
+{
+	if (LeftOne != None)
+		LeftOne.Destroy();
+
+	super.Destroyed();
+}
+
 defaultproperties
 {
 	WeaponClass=class'BlackOpsWristBlade'

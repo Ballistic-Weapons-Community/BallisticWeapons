@@ -15,10 +15,36 @@ var Vector		SpawnOffset;
 var byte 		LasPower;
 var bool			bDouble, bTopBarrel, bBigLaser;
 
+var byte	NetBarrelSpeed;
+var int		BarrelTurn;
+var float	BarrelSpeed;
+
 replication
 {
 	reliable if (bNetDirty && Role==Role_Authority)
 		LasPower, bDouble;
+	unreliable if (Role == ROLE_Authority)
+		NetBarrelSpeed;
+}
+
+simulated event Tick(float DT)
+{
+	local rotator BT;
+
+	super.Tick(DT);
+
+	if (Role == ROLE_Authority)
+		NetBarrelSpeed = BarrelSpeed * 255;
+	else
+		BarrelSpeed = float(NetBarrelSpeed) / 255.0;
+
+	// Make 3rd person mesh spin barrels
+	if (level.NetMode != NM_DedicatedServer && BarrelSpeed > 0)
+	{
+		BarrelTurn += BarrelSpeed * 655360 * DT;
+		BT.Roll = BarrelTurn;
+		SetBoneRotation('BarrelArray', BT);
+	}
 }
 
 //layout tracers

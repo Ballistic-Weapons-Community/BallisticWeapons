@@ -204,7 +204,8 @@ simulated function StartRampage()
 	if (bOnRampage)
 		return;
 	bOnRampage = true;
-	RSDarkAttachment(ThirdPersonActor).bRampage = true;
+	if (RSDarkAttachment(ThirdPersonActor) != None)
+		RSDarkAttachment(ThirdPersonActor).bRampage = true;
 
 	RSDarkPrimaryFire(BFireMode[0]).ModePowerDrain *= 0.4;
 
@@ -234,15 +235,19 @@ simulated function EndRampage()
 	if (!bOnRampage)
 		return;
 	bOnRampage = false;
-	RSDarkAttachment(ThirdPersonActor).bRampage = false;
+	// As for the Nova Staff: when this runs from Destroyed the attachment is gone, and the holder can be
+	if (RSDarkAttachment(ThirdPersonActor) != None)
+		RSDarkAttachment(ThirdPersonActor).bRampage = false;
 
 	if (Role == ROLE_Authority)
 	{
-		Instigator.GroundSpeed /= 1.25;
+		if (Instigator != None)
+			Instigator.GroundSpeed /= 1.25;
 		PlayerSpeedFactor = 1;
 	}
 
-	Instigator.AmbientSound = None;
+	if (Instigator != None)
+		Instigator.AmbientSound = None;
 
 	if (Horns != None)
 		Horns.Destroy();

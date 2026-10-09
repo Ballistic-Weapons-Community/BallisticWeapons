@@ -45,6 +45,7 @@ var(SRX)	float				NextPawnListUpdateTime;
 //Scripted Ammo Screen Texture
 var() ScriptedTexture 	WeaponScreen; //Scripted texture to write on
 var() Material			WeaponScreenShader; //Scripted Texture with self illum applied
+var FinalBlend			WeaponScreenFinal; //WeaponScreenShader, writing depth
 var() Material			ScreenBase;
 var() Material			ScreenAmmoBlue; //Norm
 var() Material			ScreenAmmoRed; //Low Ammo
@@ -106,6 +107,24 @@ simulated function ScreenStart()
 		WeaponScreen.Client = self;
 	//if (CamoIndex >= 3)
 		Skins[11] = WeaponScreenShader; //Set up scripted texture.
+	// The screen is drawn before most of the rifle and, being translucent, left no depth behind:
+	// any part of the rifle drawn after it went over it, also when that part was behind the screen (reloading)
+	if (Instigator.IsLocallyControlled())
+	{
+		if (WeaponScreenFinal == None)
+			WeaponScreenFinal = FinalBlend(Level.ObjectPool.AllocateObject(class'FinalBlend'));
+		if (WeaponScreenFinal != None)
+		{
+			WeaponScreenFinal.Material = WeaponScreenShader;
+			WeaponScreenFinal.FrameBufferBlending = FB_AlphaBlend;
+			WeaponScreenFinal.ZWrite = true;
+			WeaponScreenFinal.ZTest = true;
+			WeaponScreenFinal.AlphaTest = true;
+			WeaponScreenFinal.AlphaRef = 64;
+			WeaponScreenFinal.TwoSided = false;
+			Skins[11] = WeaponScreenFinal;
+		}
+	}
 	UpdateScreen();//Give it some numbers n shit
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Revision++;
@@ -514,6 +533,14 @@ simulated event Destroyed()
 	{
 		Level.ObjectPool.FreeObject(ColorMod);
 		ColorMod = None;
+	}
+	if (WeaponScreenFinal != None)
+	{
+		WeaponScreenFinal.Material = None;
+		WeaponScreenFinal.AlphaTest = false;
+		WeaponScreenFinal.AlphaRef = 0;
+		Level.ObjectPool.FreeObject(WeaponScreenFinal);
+		WeaponScreenFinal = None;
 	}
 	AdjustThermalView(false);
 

@@ -14,7 +14,7 @@ var() float	ChargeRadiusBonus;
 var()   sound	ChargeSound;
 var()   sound	ChargeLoopSound;
 
-var	bool  	bVariableHeatProps; //Gun heat changes accuracy and RoF
+var	bool  	bVariableHeatProps; //Gun heat changes accuracy
 var float 	StopFireTime;
 
 simulated function bool AllowFire()
@@ -97,13 +97,6 @@ simulated event ModeDoFire()
 {
     if (bChargable && IsInState('Hold')) //Do this otherwise it breaks in MP - yoyobatty
         GotoState('ChargeFire'); 
-	if (level.Netmode == NM_Standalone && bVariableHeatProps)
-	{
-		if (A49SkrithBlaster(BW).HeatLevel >= 5)
-			FireRate = default.FireRate - FRand()/20 - (0.1/A49SkrithBlaster(BW).HeatLevel);
-		else
-			FireRate = default.FireRate - FRand()/8 + (A49SkrithBlaster(BW).HeatLevel/25);
-	}
 	Super.ModeDoFire();
 
 }

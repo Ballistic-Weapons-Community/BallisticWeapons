@@ -30,6 +30,17 @@ simulated function bool CanAlternate(int Mode)
 	return super.CanAlternate(Mode);
 }
 
+simulated function OnWeaponParamsChanged()
+{
+	super.OnWeaponParamsChanged();
+
+	// The light of its fire has the colour of the layout
+	if (LayoutIndex == 1)
+		LightHue = 0;
+	else
+		LightHue = default.LightHue;
+}
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
@@ -89,7 +100,9 @@ simulated event Tick (float DT)
 {
 	super.Tick(DT);
 
-	if (NextAmmoTickTime < level.TimeSeconds)
+	// The charge comes back on the server, which sends it to the owner. A client that counted it up by itself as well
+	// got to the amount an alt shot needs before the server did, and fired a shot the server turned down
+	if (Role == ROLE_Authority && NextAmmoTickTime < level.TimeSeconds)
 	{
 		if (MagAmmo < default.MagAmmo)
 			MagAmmo=Min(default.MagAmmo, MagAmmo+1);

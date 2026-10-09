@@ -454,10 +454,38 @@ exec function SwitchWeapon(byte F)
 		WItem = 0;
 	}
 }
+// One step along the list. Past either end of a group it goes on to the next group that has weapons in it
+function WeapUIStep(int Dir)
+{
+	local int OldGroupNum;
+
+	WItem += Dir;
+	if (WItem >= 0 && WItem < WeaponGroups[WGroup].Items.length)
+		return;
+
+	OldGroupNum = WGroup;
+	WGroup = class'BUtil'.static.Loop(WGroup, Dir, 10, 0);
+	while (WGroup != OldGroupNum && WeaponGroups[WGroup].Items.length < 1)
+		WGroup = class'BUtil'.static.Loop(WGroup, Dir, 10, 0);
+	if (Dir > 0)
+		WItem = 0;
+	else
+		WItem = Max(0, WeaponGroups[WGroup].Items.length-1);
+}
+// The gun in the other hand of a pair comes along with the one in hand. It is nothing to cycle to
+function bool WeapUIOnOtherGun()
+{
+	local BallisticHandgun HG;
+
+	if (Pawn == None)
+		return false;
+	HG = BallisticHandgun(Pawn.Weapon);
+	return HG != None && HG.OtherGun != None && WItem < WeaponGroups[WGroup].Items.length && WeaponGroups[WGroup].Items[WItem] == HG.OtherGun;
+}
 // Cycle back through list
 exec function PrevWeapon()
 {
-	local int OldGroupNum, i;
+	local int i;
 
 	if (UnrealPawn(Pawn) == None || (!class'BallisticPlayer'.default.bUseWeaponUI && !bIsInWeaponUI) || (BallisticWeapon(Pawn.Weapon) != None && BallisticWeapon(Pawn.Weapon).bRedirectSwitchToFiremode))
 	{
@@ -479,7 +507,8 @@ exec function PrevWeapon()
 		else if (WGroup < 10)
 			WGroup--;
 		WItem = 0;
-		for(i=0;i<WeaponGroups[WGroup].Items.length-1;i++)
+		// Up to the last one: second guns of a kind are moved to the end of their group
+		for(i=0;i<WeaponGroups[WGroup].Items.length;i++)
 			if (WeaponGroups[WGroup].Items[i] == Pawn.Weapon)
 			{
 				WItem=i;
@@ -489,15 +518,9 @@ exec function PrevWeapon()
     if (bIsInWeaponUI)
     {
 		ClientPlaySound(WeapUICycle);
-		WItem--;
-		if (WItem < 0)
-		{
-			OldGroupNum = WGroup;
-			WGroup = class'BUtil'.static.Loop(WGroup, -1, 10, 0);
-			while (WGroup != OldGroupNum && WeaponGroups[WGroup].Items.length < 1)
-				WGroup = class'BUtil'.static.Loop(WGroup, -1, 10, 0);
-			WItem = Max(0, WeaponGroups[WGroup].Items.length-1);
-		}
+		WeapUIStep(-1);
+		if (WeapUIOnOtherGun())
+			WeapUIStep(-1);
     }
 	else
 		super.PrevWeapon();
@@ -505,7 +528,7 @@ exec function PrevWeapon()
 // Cycle forward through list
 exec function NextWeapon()
 {
-	local int OldGroupNum, i;
+	local int i;
 
 	if (UnrealPawn(Pawn) == None || (!class'BallisticPlayer'.default.bUseWeaponUI && !bIsInWeaponUI) || (BallisticWeapon(Pawn.Weapon) != None && BallisticWeapon(Pawn.Weapon).bRedirectSwitchToFiremode))
 	{
@@ -527,7 +550,8 @@ exec function NextWeapon()
 		else if (WGroup < 10)
 			WGroup--;
 		WItem = 0;
-		for(i=0;i<WeaponGroups[WGroup].Items.length-1;i++)
+		// Up to the last one: second guns of a kind are moved to the end of their group
+		for(i=0;i<WeaponGroups[WGroup].Items.length;i++)
 			if (WeaponGroups[WGroup].Items[i] == Pawn.Weapon)
 			{
 				WItem=i;
@@ -537,15 +561,9 @@ exec function NextWeapon()
     if (bIsInWeaponUI)
     {
 		ClientPlaySound(WeapUICycle);
-		WItem++;
-		if (WItem >= WeaponGroups[WGroup].Items.length)
-		{
-			WItem = 0;
-			OldGroupNum = WGroup;
-			WGroup = class'BUtil'.static.Loop(WGroup, 1, 10, 0);
-			while (WGroup != OldGroupNum && WeaponGroups[WGroup].Items.length < 1)
-				WGroup = class'BUtil'.static.Loop(WGroup, 1, 10, 0);
-		}
+		WeapUIStep(1);
+		if (WeapUIOnOtherGun())
+			WeapUIStep(1);
     }
 	else
 		super.NextWeapon();

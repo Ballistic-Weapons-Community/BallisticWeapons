@@ -27,6 +27,7 @@ var() name		FlashlightAnim;
 //Blade
 var   bool			bStriking;
 var() bool			bHasKnife;
+var   float			MeleeSlideAlpha;	// How far the slide is pushed forward again during a melee attack
 
 //Sensor
 var() bool			bHasSensor;
@@ -363,6 +364,9 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		SelectAnim = 'Pullout';
 		PutDownAnim = 'Putaway';
 	}
+	// The mesh has no PulloutOpen: with no select anim to play, the empty gun just appears
+	if (!HasAnim(SelectAnim))
+		SelectAnim = 'Pullout';
 	Super.BringUp(PrevWeapon);
 }
 
@@ -401,8 +405,36 @@ simulated event AnimEnd (int Channel)
 			FlashlightAnim = 'FlashLightToggle';
 			SensorLoadAnim = 'ReloadLauncher';
 		}
+		if (!HasAnim(SelectAnim))
+			SelectAnim = 'Pullout';
 	}
 	Super.AnimEnd(Channel);
+}
+
+// The melee animations for the loaded gun were made with the slide locked back, like those for the empty gun (the mesh with
+// the knife has them right). While they play, the slide is pushed forward to where the other animations have it, along with
+// the tween into and out of them
+simulated event WeaponTick(float DT)
+{
+	local name Seq;
+	local float Frame, Rate, Wanted;
+
+	Super.WeaponTick(DT);
+
+	if (bHasKnife || MeleeFireMode == None || Level.NetMode == NM_DedicatedServer)
+		return;
+	GetAnimParams(0, Seq, Frame, Rate);
+	if (Seq == 'MeleePrep' || Seq == 'Melee')
+		Wanted = 1;
+	if (MeleeSlideAlpha == Wanted)
+		return;
+	if (Frame >= 0)
+		MeleeSlideAlpha = Wanted;
+	else if (Wanted > 0)
+		MeleeSlideAlpha = FMin(1, MeleeSlideAlpha + DT / FMax(MeleeFireMode.TweenTime, 0.01));
+	else
+		MeleeSlideAlpha = FMax(0, MeleeSlideAlpha - DT / FMax(IdleTweenTime, 0.01));
+	SetBoneLocation('Slide', vect(2.145,0,0), MeleeSlideAlpha);
 }
 
 simulated function Notify_ClipOutOfSight()

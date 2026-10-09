@@ -8,6 +8,46 @@
 //=============================================================================
 class SRS900Attachment extends BallisticAttachment;
 
+var   bool		bSilenced;		//Suppressor is on the barrel
+var   bool		bOldSilenced;
+
+replication
+{
+	reliable if ( Role==ROLE_Authority )
+		bSilenced;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (SRS900Rifle(I) != None)
+		SetSilenced(SRS900Rifle(I).bSilenced);
+}
+
+function SetSilenced(bool bIsSilenced)
+{
+	bSilenced = bIsSilenced;
+	UpdateSilencer();
+}
+
+// The suppressor is on the model for as long as it is on the gun, not from one shot to the next
+simulated function UpdateSilencer()
+{
+	bOldSilenced = bSilenced;
+	if (bSilenced)
+		SetBoneScale (0, 1.0, 'Silencer');
+	else
+		SetBoneScale (0, 0.0, 'Silencer');
+}
+
+simulated event PostNetReceive()
+{
+	if (bSilenced != bOldSilenced)
+		UpdateSilencer();
+	Super.PostNetReceive();
+}
+
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z;
@@ -27,22 +67,11 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 }
 
 
-simulated event ThirdPersonEffects()
+// After the layout's mesh is set
+simulated function PostNetBeginPlay()
 {
-    if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		if (FiringMode == 1)
-			SetBoneScale (0, 1.0, 'Silencer');
-		else
-			SetBoneScale (0, 0.0, 'Silencer');
-    }
-	super.ThirdPersonEffects();
-}
-
-simulated event PostBeginPlay()
-{
-	super.PostBeginPlay();
-	SetBoneScale (0, 0.0, 'Silencer');
+	Super.PostNetBeginPlay();
+	UpdateSilencer();
 }
 
 simulated function FlashMuzzleFlash(byte Mode)

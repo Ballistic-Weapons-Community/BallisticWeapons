@@ -21,13 +21,48 @@ var   LaserActor	Laser;			//The laser actor
 var   vector		LaserEndLoc;
 var   Emitter		LaserDot;
 
+var   bool			bSilenced;		//Suppressor is on the barrel
+var   bool			bOldSilenced;
+var() actor						SMuzzleFlash;			// Silenced Muzzle flash stuff
+var() class<Actor>				SMuzzleFlashClass;
+var() Name						SFlashBone;
 
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn,PhotonFireCount;
+		bLaserOn,PhotonFireCount,bSilenced;
 	unreliable if ( Role==ROLE_Authority && !bNetOwner )
 		LaserEndLoc;
+}
+
+//Suppressor
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (FC01SmartGun(I) != None)
+		SetSilenced(FC01SmartGun(I).bSilenced);
+}
+
+function SetSilenced(bool bIsSilenced)
+{
+	bSilenced = bIsSilenced;
+	UpdateSilencer();
+}
+
+simulated function UpdateSilencer()
+{
+	bOldSilenced = bSilenced;
+	if (bSilenced)
+		SetBoneScale (0, 1.0, 'Silencer');
+	else
+		SetBoneScale (0, 0.0, 'Silencer');
+}
+
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	UpdateSilencer();
 }
 
 //Laser
@@ -95,6 +130,7 @@ simulated function Destroyed()
 		LaserDot.Destroy();
 	if (Laser != None)
 		Laser.Destroy();
+	class'BUtil'.static.KillEmitterEffect (SMuzzleFlash);
 	Super.Destroyed();
 }
 
@@ -118,6 +154,8 @@ simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
+	if (bSilenced != bOldSilenced)
+		UpdateSilencer();
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
 		DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
@@ -263,6 +301,8 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 
 	if (FiringMode == 2)
 		return GetBoneCoords('tipalt').Origin;
+	if (bSilenced)
+		return GetBoneCoords(SFlashBone).Origin;
 	
 	return GetBoneCoords('tip').Origin;
 }
@@ -288,7 +328,13 @@ simulated function FlashMuzzleFlash(byte Mode)
 		PhotonMuzzleFlash.Trigger(self, Instigator);
 		if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
 	}
-	if (MuzzleFlashClass != None && FiringMode == 0)
+	if (SMuzzleFlashClass != None && FiringMode == 0 && bSilenced)
+	{
+		if (SMuzzleFlash == None)
+			class'BUtil'.static.InitMuzzleFlash (SMuzzleFlash, SMuzzleFlashClass, DrawScale*FlashScale, self, SFlashBone);
+		SMuzzleFlash.Trigger(self, Instigator);
+	}
+	else if (MuzzleFlashClass != None && FiringMode == 0)
 	{
 		if (MuzzleFlash == None)
 			class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
@@ -304,6 +350,8 @@ defaultproperties
     PhotonImpactManager=Class'BWBP_OP_Pro.IM_FC01Photon'
 	PhotonMuzzleFlashClass=Class'BWBP_OP_Pro.FC01PhotonFlashEmitter'
     MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+	SFlashBone="tip2"
 	FlashScale=0.275000
     ImpactManager=Class'BallisticProV55.IM_Bullet'
     AltFlashBone="tipalt"

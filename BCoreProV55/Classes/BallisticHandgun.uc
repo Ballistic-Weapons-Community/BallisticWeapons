@@ -522,6 +522,12 @@ simulated event WeaponTick(float DT)
 
 	else if (IsSlave())
 	{	
+		// The engine keeps Pawn.Weapon at the pawn when it isn't drawn in first person, but not the slave:
+		// its sounds and weapon light stayed where it was last drawn
+		if (!Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None
+			|| PlayerController(Instigator.Controller).ViewTarget != Instigator || PlayerController(Instigator.Controller).bBehindView)
+			SetLocation(Instigator.Location);
+
 		// Timers and ModeDoFire need to be called manually for slave...
 		for (m=0;m<NUM_FIRE_MODES;m++)
 		{
@@ -824,8 +830,11 @@ simulated event Timer()
 	else if (ClientState == WS_PutDown && IsMaster())
 	{
 	    SetDualMode(false);
-	    if (AIController(Instigator.Controller) != None)
-			Super.Timer();
+		// The slave went down with this gun. Its timer may come after this one, so finish it here: the weapon change
+		// used to wait until the engine saw that no timer was running, with the slave gone and this gun still there
+		if (OtherGun.ClientState == WS_PutDown && OtherGun.bSlavePutDown)
+			OtherGun.Timer();
+		Super.Timer();
 //		bIsMaster = false;
 //		OtherGun = None;
 	}
@@ -856,39 +865,11 @@ simulated event Timer()
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	local Inventory Inv;
-	
 	Super.BringUp(PrevWeapon);
 	GotoState('');
 	SetBoneScale(8, 1.0, SupportHandBone);
 	bSlavePutDown=false;
 	bIsPendingHandGun = false;
-	
-	
-	//in arena, we immediately pair matching pistols if the player has two
-	if (Level.TimeSeconds > CreationTime + 1)
-	{
-		if (OtherGun == None && PendingHandgun == None && !bDualBlocked && class'BallisticReplicationInfo'.static.IsArena())
-		{
-			if (LastSlave != None)
-				PendingHandgun = LastSlave;
-			else
-			{
-				for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )
-				{
-				
-					if ( Inv != self && Inv.class == class && !BallisticHandgun(Inv).bDualBlocked )
-					{
-						if (Level.TimeSeconds > BallisticHandgun(Inv).CreationTime + 1)
-						{
-							PendingHandgun = BallisticHandgun(Inv);
-							break;
-						}
-					}
-				}
-			}
-		}
-	}
 	
 	if (PendingHandgun != None && OtherGun == None)
 	{
@@ -1401,7 +1382,9 @@ function AttachToPawn(Pawn P)
 	if (IsSlave())
 	{
 		BoneName = P.GetOffHandBoneFor(self);
-		ThirdPersonActor.SetRelativeRotation(rot(0,32768,0));
+		// a HandgunAttachment has placed itself in InitFor
+		if (HandgunAttachment(ThirdPersonActor) == None)
+			ThirdPersonActor.SetRelativeRotation(rot(0,32768,0));
 	}
 	else
 		BoneName = P.GetWeaponBoneFor(self);
@@ -1651,7 +1634,8 @@ simulated function Destroyed()
 
 	if (!IsSlave())
 	{
-		if(Instigator != None && Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
+		// not while another weapon is in hand, see BallisticWeapon.Destroyed
+		if(Instigator != None && (Instigator.Weapon == self || Instigator.Weapon == None) && Instigator.Controller != None && PlayerController(Instigator.Controller) != None)
 		{
 			PlayerController(Instigator.Controller).bZooming = False;
 			PlayerController(Instigator.Controller).DesiredZoomLevel=0.0;

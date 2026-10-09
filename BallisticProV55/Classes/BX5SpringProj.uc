@@ -88,6 +88,16 @@ simulated event Timer()
 		super.Timer();
 }
 
+// The server tears this off when it springs, not when it explodes: from there the client flies it and blows it up
+// by its own timer, like the server does. Blowing up here made it go off at the base, well before the damage came
+simulated event TornOff()
+{
+	if (!bDetonate)
+		SpringOff();
+	else if (TimerRate == 0)
+		Explode(Location, vector(Rotation));	// the timer ran out before this got here
+}
+
 simulated function bool CanTouch(Actor Other)
 {
     if (BX5SpringMine(Other) != None || BX5VehicleMine(Other) != None)

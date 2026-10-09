@@ -10,12 +10,31 @@ class A42Attachment extends HandgunAttachment;
 
 var Actor GlowFX;
 
-simulated event PostBeginPlay()
+// The glow, muzzle flashes, beam and the beam's impact have the colour of the layout. The layout is known here, not yet
+// in PostBeginPlay
+simulated function ApplyModel()
 {
-	super.PostBeginPlay();
+	local class<Actor> GlowClass;
+
+	super.ApplyModel();
+
+	if (LayoutIndex == 1)
+	{
+		GlowClass = class'A42AmbientFXRed';
+		ModeInfos[0].MuzzleFlashClass = class'A42FlashEmitterBal';
+		ModeInfos[1].MuzzleFlashClass = class'A42FlashEmitterBal';
+		TracerClass = class'TraceEmitter_A42BeamRed';
+		// mode 0 as well: clients do the beam's direct hits with it
+		ModeInfos[0].ImpactManager = class'IM_A42ProjectileBal';
+		ModeInfos[1].ImpactManager = class'IM_A42ProjectileBal';
+	}
+	else if (LayoutIndex == 2)
+		GlowClass = class'A42AmbientFXGreen';
+	else
+		GlowClass = class'A42AmbientFX';
 
     if (level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFX', DrawScale, self, 'tip');
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, GlowClass, DrawScale, self, 'tip');
 }
 
 
@@ -28,7 +47,7 @@ simulated event Destroyed()
 
 simulated function SpawnTracer(byte Mode, Vector V)
 {
-	local TraceEmitter_A42Beam Tracer;
+	local BCTraceEmitter Tracer;
 	local float Dist;
 	if (Level.DetailMode < DM_High)
 		return;
@@ -43,7 +62,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	Dist = VSize(V - GetModeTipLocation(Mode));
 	if (Dist > 25)
 	{
-		Tracer = Spawn(class'TraceEmitter_A42Beam', self, , GetModeTipLocation(Mode), Rotator(V - GetModeTipLocation(Mode)));
+		Tracer = Spawn(TracerClass, self, , GetModeTipLocation(Mode), Rotator(V - GetModeTipLocation(Mode)));
 		Tracer.Initialize(Dist);
 	}
 }

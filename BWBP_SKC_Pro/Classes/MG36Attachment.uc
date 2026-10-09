@@ -29,9 +29,31 @@ replication
 
 simulated Event PostNetBeginPlay()
 {
+	local string Tags;
+
 	super.PostNetBeginPlay();
 	if (BallisticTurret(Instigator) != None)
 		bHidden=true;
+
+	// InitFor takes the parts a layout has from the weapon, which only the server can. A client has the layout to go by
+	if (Role < ROLE_Authority && WeaponClass != None && LayoutIndex < WeaponClass.static.GetParams().default.Layouts.Length)
+	{
+		Tags = WeaponClass.static.GetParams().default.Layouts[LayoutIndex].LayoutTags;
+		if (InStr(Tags, "gauss") == -1)
+			SetBoneScale (1, 0.0, 'Reciever');
+		if (InStr(Tags, "ar") != -1)
+			SetBoneScale (2, 0.0, 'Scope');
+		if (InStr(Tags, "gauss") != -1 || InStr(Tags, "ar") != -1)
+		{
+			SetBoneScale (3, 0.0, 'MagDrum');
+			SetBoneScale (4, 1.0, 'MagSmall');
+		}
+		else
+		{
+			SetBoneScale (3, 1.0, 'MagDrum');
+			SetBoneScale (4, 0.0, 'MagSmall');
+		}
+	}
 }
 
 simulated event PostNetReceive()
@@ -78,6 +100,12 @@ function InitFor(Inventory I)
 		myWeap = BallisticWeapon(I);
 	if (MG36Machinegun(I) != None)
 	{
+		// A new attachment of a gun that has its silencer on: after a weapon switch, or when it comes back from its turret
+		if (MG36Machinegun(I).bSilenced)
+		{
+			bSilenced=True;
+			SetBoneScale (0, 1.0, 'Silencer');
+		}
 		if (MG36Machinegun(I).bHasGauss)
 		{
 			bHasGauss=True;

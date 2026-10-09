@@ -328,6 +328,7 @@ simulated function CommonStartReload (optional byte i)
 	else
 	{
 		ReloadState = RS_StartShovel;
+		SetBoneScale(10, 1.0, 'shell');
 		PlayReload();
 	}
 
@@ -347,6 +348,16 @@ simulated function CommonStartReload (optional byte i)
 simulated function PlayReloadAlt()
 {
 	SafePlayAnim(ReloadAltAnim, 1, , 0, "RELOAD");
+}
+
+// The loose shell is only part of the shell loading animations. Others leave it parked out of view, and the tween
+// to the idle pose, where it sits inside the gun, flew it back across the screen
+simulated function PlayIdle()
+{
+	// not in the middle of a reload, where no idle is played and the shell is in the hand
+	if (ReloadState == RS_None)
+		SetBoneScale(10, 0.0, 'shell');
+	Super.PlayIdle();
 }
 
 simulated event WeaponTick(float DT)
@@ -773,7 +784,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			ServerFlashlight(FRand() > 0.5);
 		}
 		if (bHasSuppressor)
+		{
 			bSilenced = (FRand() > 0.5);
+			if (Mk781Attachment(ThirdPersonActor) != None)
+				Mk781Attachment(ThirdPersonActor).SetSilenced(bSilenced);
+		}
 	}
 
 	if ( ThirdPersonActor != None )

@@ -87,6 +87,28 @@ simulated function OnWeaponParamsChanged()
 	{
 		bHasShield=true;
 	}
+
+	// The sawn off mesh has the long gun's skeleton, muzzle bones included. Bring them back to where its barrels end
+	if (WeaponParams.LayoutMesh == SkeletalMesh'BWBP_SKC_Anim.SawnOff_FPm')
+	{
+		SetBoneLocation('tip', vect(-24,0,0), 1.0);
+		SetBoneLocation('tip2', vect(-24,0,0), 1.0);
+	}
+
+	// The trench gun's mesh has its melee attack under other names. The melee fire mode comes from the object pool, so set it either way
+	if (MeleeFireMode != None)
+	{
+		if (HasAnim(MeleeFireClass.default.FireAnim))
+		{
+			MeleeFireMode.PreFireAnim = MeleeFireClass.default.PreFireAnim;
+			MeleeFireMode.FireAnim = MeleeFireClass.default.FireAnim;
+		}
+		else
+		{
+			MeleeFireMode.PreFireAnim = 'PrepWrench';
+			MeleeFireMode.FireAnim = 'Wrench';
+		}
+	}
 }
 
 simulated function PostNetBeginPlay()
@@ -154,10 +176,21 @@ simulated function PostBeginPlay()
 }
 
 
+// Not while the gun is still coming up or going down. Only the owner's side knows that
+exec simulated function SwitchWeaponMode (optional byte ModeNum)
+{
+	if (ClientState != WS_ReadyToFire)
+		return;
+	Super.SwitchWeaponMode(ModeNum);
+}
+
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (ReloadState != RS_None || ClientState != WS_ReadyToFire || !HasAmmo())
+	if (ReloadState != RS_None || !HasAmmo())
+		return;
+	// ClientState stays WS_None on the server when the owner is a remote client
+	if (ClientState != WS_ReadyToFire && (ClientState != WS_None || Instigator.Weapon != self))
 		return;
 	Super.ServerSwitchWeaponMode(NewMode);
 	ServerStartReload(2);
@@ -308,6 +341,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			PlayIdle();
     }
 	// End stuff from Engine.Weapon
+
+	// animations not played on channel 0 are used for sight fires and blending, and are not permitted to drive the weapon's functions
+	if (Channel > 0)
+		return;
 
 	// Start Shovel ended, move on to Shovel loop
 	if (ReloadState == RS_StartShovel)

@@ -182,6 +182,9 @@ simulated event DrawTargeting (Canvas C)
 {
 	local Vector V, X, Y, Z;//, V2;
 	local float ScaleFactor, XL, XY;
+	local byte OldStyle;
+
+	OldStyle = C.Style;
 
     if (Target != none && Instigator.Controller.LineOfSightTo(Target))
         TargetLoc = C.WorldToScreen(Target.Location);
@@ -230,6 +233,9 @@ simulated event DrawTargeting (Canvas C)
             C.DrawTextJustified("DISTANCE: " $ int(VSize(TargetLoc-(Instigator.Location + Instigator.EyePosition()))/50) $ "m",0, (C.ClipX/2) - XL/2, (C.ClipY/2) + (180*ScaleFactor) - XY/2, C.ClipX/2 + XL/2 ,(C.ClipY/2) + (180*ScaleFactor) + XY/2);
 
             //Center targeting box
+            // The boxes are drawn before the gun. In the canvas' normal style an alpha texture writes depth,
+            // which cut the box out of the gun drawn after it.
+            C.Style = ERenderStyle.STY_Alpha;
             C.SetPos(V.X - 32*ScaleFactor, V.Y - 32*ScaleFactor);
             //C.DrawTile(texture'BallisticUI2.Crosshairs.Misc8', 48 * ScaleFactor, 48 * ScaleFactor, 0, 0, 256, 256);
             //C.DrawTile(Texture'Crosshairs.HUD.Crosshair_Triad1', 64*ScaleFactor, 64*ScaleFactor, 0, 0, 64, 64);
@@ -239,6 +245,8 @@ simulated event DrawTargeting (Canvas C)
 
 	if (Target != none && !bLockedOn)
     {
+        C.Style = ERenderStyle.STY_Alpha;
+
         //Targeting brackets
         //Upper Left
         C.SetPos(V.X - (((140 - (C.ClipX/2 - V.X)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor), V.Y - (((140 - (C.ClipY/2 - V.Y)) * (1-TargetTime/LockonTime) + 36) * ScaleFactor));
@@ -256,6 +264,8 @@ simulated event DrawTargeting (Canvas C)
         C.SetPos(V.X + (((140 - (V.X - C.ClipX/2)) * (1-TargetTime/LockonTime)) * ScaleFactor), V.Y + (((140 - (V.Y - C.ClipY/2)) * (1-TargetTime/LockonTime)) * ScaleFactor));
         C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5LockBox', 36*ScaleFactor, 36*ScaleFactor, 64, 64, 64, 64);
     }
+
+	C.Style = OldStyle;
 }
 
 //============================================================
@@ -402,6 +412,9 @@ simulated function PlayIdle()
 //=====================================================================
 function ServerSwitchSilencer(bool bNewValue)
 {
+	if (FC01Attachment(ThirdPersonActor) != None)
+		FC01Attachment(ThirdPersonActor).SetSilenced(bNewValue);
+
 	if (bSilenced == bNewValue)
 		return;
 
@@ -540,7 +553,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		FC01Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
 	if (AIController(Instigator.Controller) != None)
+	{
 		bSilenced = (FRand() > 0.5);
+		if (FC01Attachment(ThirdPersonActor) != None)
+			FC01Attachment(ThirdPersonActor).SetSilenced(bSilenced);
+	}
 
 	if (bSilenced)
 		SetBoneScale (0, 1.0, SilencerBone);

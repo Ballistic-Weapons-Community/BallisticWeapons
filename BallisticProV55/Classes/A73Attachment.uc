@@ -8,6 +8,19 @@
 //=============================================================================
 class A73Attachment extends BallisticAttachment;
 
+// The muzzle flash has the colour of the layout. Only the A73's own flash, not those of the weapons built on this attachment
+simulated function ApplyModel()
+{
+	super.ApplyModel();
+
+	if (MuzzleFlashClass != class'A73FlashEmitter')
+		return;
+	if (LayoutIndex == 1)
+		ModeInfos[0].MuzzleFlashClass = class'A73FlashEmitterBal';
+	else if (LayoutIndex == 2)
+		ModeInfos[0].MuzzleFlashClass = class'A73FlashEmitterB';
+}
+
 defaultproperties
 {
 	WeaponClass=class'A73SkrithRifle'

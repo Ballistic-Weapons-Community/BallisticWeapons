@@ -105,11 +105,13 @@ simulated event Timer()
 
 simulated event TornOff()
 {
-	if(Proj == None)
-		return;
-		
+	// A torn off base runs TakeDamage on the client as well, where it has gone off already
+	bDetonated = true;
 	PlaySound(Sound'BW_Core_WeaponSound.BX5.BX5-Jump',,1.0,,64,,);
-	Proj.SpringOff();
+	// The projectile may not have reached this client yet, or may have sprung already. It springs by itself then,
+	// and the base still has to go
+	if (Proj != None && !Proj.bDetonate)
+		Proj.SpringOff();
 	GoToState('FadeOut');
 }
 
@@ -130,7 +132,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 	if (Health > 0)
 		return;
 	bDetonated = true;
-	if (!Proj.bAntiLameMode && EventInstigator != None && proj != None)
+	if (Proj != None && !Proj.bAntiLameMode && EventInstigator != None)
 	{
 		Proj.Instigator = EventInstigator;
 		Proj.InstigatorController = EventInstigator.Controller;

@@ -16,6 +16,7 @@ var() rotator			CylinderRotation;	// Rotation aplied to drum
 var	  bool				bRevCocked;			// Is it cocked? (for effect only)
 
 var() bool				bSecLoaded;			// Is shotgun loaded
+var   bool				bSGLoadedLast;		// Dual wield: this gun loaded its shotgun last, the other gun's is next
 var() name				SGLoadAnim;			// Anim to play for reloading shotgun
 
 var   byte				ShellIndex;
@@ -58,13 +59,20 @@ simulated function OnWeaponParamsChanged()
 
 simulated state PendingSGReload extends PendingDualAction
 {
-	simulated function BeginState()	{	OtherGun.LowerHandGun();	}
+	simulated function BeginState()
+	{
+		bSGLoadedLast = true;
+		if (leMatRevolver(OtherGun) != None)
+			leMatRevolver(OtherGun).bSGLoadedLast = false;
+		OtherGun.LowerHandGun();
+	}
 	simulated function HandgunLowered (BallisticHandgun Other)	{ global.HandgunLowered(Other); if (Other == Othergun) LoadShotgun();	}
 	simulated event AnimEnd(int Channel)
 	{
 		Othergun.RaiseHandGun();
 		global.AnimEnd(Channel);
 	}
+	function ServerStartReload (optional byte i){}
 }
 
 simulated event PostNetBeginPlay()
@@ -184,6 +192,16 @@ function ServerStartReload (optional byte i)
 		Loadings[1] = 1;
 	if (Loadings[0] == 0 && Loadings[1] == 0)
 		return;
+
+	// Dual wield: with both shotguns empty both guns are asked to load theirs, and the slave is always asked first.
+	// Only its shotgun was ever loaded, and fired. The gun that loaded last leaves it to the other gun
+	if (bSGLoadedLast && Loadings[1] == 1 && (i != 0 || Loadings[0] == 0) && leMatRevolver(OtherGun) != None
+		&& !leMatRevolver(OtherGun).bSGLoadedLast && !leMatRevolver(OtherGun).bSecLoaded)
+	{
+		OtherGun.ServerStartReload(1);
+		if (OtherGun.IsInState('PendingSGReload'))
+			return;
+	}
 
 	if (i == 0)
 	{

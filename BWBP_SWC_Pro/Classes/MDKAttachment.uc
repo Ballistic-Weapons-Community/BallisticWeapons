@@ -8,6 +8,69 @@
 //=============================================================================
 class MDKAttachment extends BallisticAttachment;
 
+var   bool		bSilenced;		//Suppressor is on the barrel
+var   bool		bOldSilenced;
+var   bool		bScopeOn;		//Scope is on the rail
+var   bool		bOldScopeOn;
+
+replication
+{
+	reliable if ( Role==ROLE_Authority )
+		bSilenced, bScopeOn;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (MDKSubMachinegun(I) != None)
+	{
+		SetSilenced(MDKSubMachinegun(I).bSilenced);
+		SetScope(MDKSubMachinegun(I).bScopeOn);
+	}
+}
+
+function SetScope(bool bIsScopeOn)
+{
+	bScopeOn = bIsScopeOn;
+	UpdateScope();
+}
+
+// As with the suppressor: the scope is not on the Scope bone, but it has its own skin
+simulated function UpdateScope()
+{
+	bOldScopeOn = bScopeOn;
+	if (bScopeOn)
+		Skins[1] = None;
+	else
+		Skins[1] = Texture'BW_Core_WeaponTex.Misc.Invisible';
+}
+
+function SetSilenced(bool bIsSilenced)
+{
+	bSilenced = bIsSilenced;
+	UpdateSilencer();
+}
+
+// The suppressor is not on the Silencer bone in this mesh, but it has its own skin
+simulated function UpdateSilencer()
+{
+	bOldSilenced = bSilenced;
+	if (bSilenced)
+		Skins[2] = None;
+	else
+		Skins[2] = Texture'BW_Core_WeaponTex.Misc.Invisible';
+}
+
+simulated event PostNetReceive()
+{
+	if (bSilenced != bOldSilenced)
+		UpdateSilencer();
+	if (bScopeOn != bOldScopeOn)
+		UpdateScope();
+	Super.PostNetReceive();
+}
+
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z;
@@ -22,27 +85,17 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 		else
 			return Instigator.Weapon.GetEffectStart();
 	}
-	else
+	else if (bSilenced)
 		return GetBoneCoords('tip').Origin;
-}
-
-
-simulated event ThirdPersonEffects()
-{
-    if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		if (FiringMode == 1)
-			SetBoneScale (0, 1.0, 'Silencer');
-		else
-			SetBoneScale (0, 0.0, 'Silencer');
-    }
-	super.ThirdPersonEffects();
+	else
+		return GetBoneCoords('tip2').Origin;
 }
 
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
-	SetBoneScale (0, 0.0, 'Silencer');
+	UpdateSilencer();
+	UpdateScope();
 }
 
 simulated function FlashMuzzleFlash(byte Mode)
@@ -72,7 +125,8 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_SWC_Pro.MDKFlashEmitter'
      AltMuzzleFlashClass=Class'BWBP_SWC_Pro.MDKSilencedFlash'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
-     AltFlashBone="tip2"
+     FlashBone="tip2"
+     AltFlashBone="tip"
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassMode=MU_Both
      InstantMode=MU_Both
@@ -92,4 +146,5 @@ defaultproperties
 	 RelativeLocation=(z=10.000000)
      Mesh=SkeletalMesh'BWBP_SWC_Anims.MDK_TPm'
      DrawScale=0.350000
+     Skins(0)=Texture'BWBP_SWC_Tex.MDK.Main_2D_View'
 }
