@@ -354,7 +354,6 @@ defaultproperties
 	bPenetrate=True
 	FlashScaleFactor=0.800000
 	BrassClass=Class'BallisticProV55.Brass_Minigun'
-	BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
 	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.550.Mini-Fire',Slot=SLOT_Interact,bNoOverride=False)
 	bPawnRapidFireAnim=True
 	TweenTime=0.000000

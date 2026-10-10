@@ -146,7 +146,7 @@ defaultproperties
 	SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 	MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 	BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
-	BrassOffset=(X=-20.000000)
+	BrassBone="Weapon"
 	FireRecoil=128.000000
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
 	bSplashDamage=True

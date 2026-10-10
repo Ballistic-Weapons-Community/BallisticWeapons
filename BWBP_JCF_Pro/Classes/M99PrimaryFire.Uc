@@ -188,7 +188,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
      BrassClass=Class'BWBP_JCF_Pro.Brass_50BMG'
      bBrassOnCock=True
-     BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
      FireRecoil=7000
      BallisticFireSound=(Sound=Sound'BWBP_JCF_Sounds.M99.M99FireNew',Volume=10.00000)
      FireRate=2.000000

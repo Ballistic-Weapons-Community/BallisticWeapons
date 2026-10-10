@@ -151,7 +151,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.T9CNFlashEmitter'
 	FlashScaleFactor=0.600000
 	BrassClass=Class'BallisticProV55.Brass_GRSNine'
-	BrassOffset=(X=-25.000000,Z=-5.000000)
 	FireRecoil=64.000000
 	FireChaos=0.100000
 	XInaccuracy=48.000000

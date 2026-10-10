@@ -331,7 +331,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
 	FlashScaleFactor=0.800000
 	BrassClass=Class'BallisticProV55.Brass_Minigun'
-	BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
 	FireRecoil=72.000000
 	FirePushbackForce=150.000000
 	FireChaos=0.120000

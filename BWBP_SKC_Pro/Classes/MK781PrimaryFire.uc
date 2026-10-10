@@ -118,7 +118,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
 	FlashScaleFactor=1.000000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_ShotgunFlechette'
-	BrassOffset=(X=-1.000000,Z=-1.000000)
 	AimedFireAnim="SightFire"
 	FireRecoil=300.000000
 	FirePushbackForce=50.000000

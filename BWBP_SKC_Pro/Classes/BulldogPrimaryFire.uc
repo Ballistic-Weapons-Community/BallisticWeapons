@@ -62,7 +62,7 @@ function EjectFRAGBrass()
 //	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	Spawn(AltBrassClass2, weapon,, Start, Rotator(C.XAxis));
+	Spawn(AltBrassClass2, weapon,, BW.GetBrassStart(Start), Rotator(C.XAxis));
 }
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
@@ -124,7 +124,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
      FlashScaleFactor=1.100000
      BrassClass=Class'BWBP_SKC_Pro.Brass_BOLT'
-     BrassOffset=(X=-30.000000,Y=1.000000)
      FireRecoil=1280.000000
      FirePushbackForce=3000.000000
      FireChaos=1.000000

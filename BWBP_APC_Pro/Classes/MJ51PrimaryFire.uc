@@ -33,7 +33,6 @@ defaultproperties
 	PenetrateForce=150
 	bPenetrate=True
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
-	BrassOffset=(X=-12.500000,Y=1.000000)
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.G51FlashEmitter'
 	FlashScaleFactor=0.500000

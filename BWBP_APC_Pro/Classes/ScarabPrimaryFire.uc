@@ -14,7 +14,6 @@ defaultproperties
      SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
      BrassClass=Class'BallisticProV55.Brass_GClip'
      BrassBone="tip"
-     BrassOffset=(X=10.000000)
      BallisticFireSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,batten=false)
      PreFireAnim="PrepThrow"
      FireAnim="Throw"

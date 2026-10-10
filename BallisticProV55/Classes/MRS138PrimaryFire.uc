@@ -165,7 +165,7 @@ defaultproperties
 	bPenetrate=False
 	MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
-	BrassOffset=(X=45.000000,Y=-20.000000,Z=35.000000)
+	BrassBone="shell"
 	bBrassOnCock=True
 	bCockAfterFire=True
 	FireRecoil=512.000000

@@ -477,8 +477,7 @@ defaultproperties
      FlashScaleFactor=1.500000
 	 AimedFireAnim="SGCFireAimed"
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
-     BrassBone="tip"
-     BrassOffset=(X=-80.000000,Y=1.000000)
+     BrassBone="ejector"
      FireRecoil=512.000000
      FirePushbackForce=125.000000
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)

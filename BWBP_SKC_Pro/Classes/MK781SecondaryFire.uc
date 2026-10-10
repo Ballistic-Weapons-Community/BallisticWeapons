@@ -346,7 +346,6 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
      FlashScaleFactor=2.000000
      BrassClass=Class'BWBP_SKC_Pro.Brass_ShotgunZap'
-     BrassOffset=(X=-1.000000,Z=-1.000000)
      FireRecoil=768.000000
      FirePushbackForce=180.000000
      XInaccuracy=150.000000

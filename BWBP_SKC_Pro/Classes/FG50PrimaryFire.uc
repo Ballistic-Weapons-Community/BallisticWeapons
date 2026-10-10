@@ -245,8 +245,7 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
      FlashScaleFactor=1.000000
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
-     BrassBone="tip"
-     BrassOffset=(X=-80.000000,Y=1.000000)
+     BrassBone="ejector"
 	 FireAnim="Fire"
      AimedFireAnim="SGCFireAimed"
      FireRecoil=512.000000

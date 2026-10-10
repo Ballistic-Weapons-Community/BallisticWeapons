@@ -18,8 +18,7 @@ defaultproperties
      WallPDamageFactor=0.850000
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
      BrassClass=Class'BWBP_SKC_Pro.Brass_BMGInc'
-     BrassBone="breach"
-     BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
+     BrassBone="ejector"
      FireRecoil=450.000000
      FirePushbackForce=255.000000
      FireChaos=1.000000
