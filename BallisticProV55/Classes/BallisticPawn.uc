@@ -347,6 +347,15 @@ simulated function ApplySizeOverrides()
 	{
 		default.BaseEyeHeight=38.000000; //UT38 (BW30)
 		default.CrouchHeight=29.000000; //UT29 (BW32)
+
+		// The defaults only reach pawns spawned after this. The first pawn on each machine would keep the old values: on the
+		// server its shots would start 8 units below the eyes its owner sees through, who takes the new default in ClientReStart
+		CrouchHeight = default.CrouchHeight;
+		if (!bIsCrouched)
+		{
+			BaseEyeHeight = default.BaseEyeHeight;
+			EyeHeight = BaseEyeHeight;
+		}
 	}
 }
 
