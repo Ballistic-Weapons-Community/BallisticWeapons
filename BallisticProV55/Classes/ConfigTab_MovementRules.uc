@@ -12,6 +12,8 @@ var automated moCheckbox		ch_AllowDodging;			// Enables Dodging
 var automated moCheckbox		ch_AllowDoubleJump;			// Enables Double Jump
 var automated moCheckBox        cb_AllowCrouchSliding;				// Enable Sprint
 var automated moCheckBox        cb_bUseSprint;				// Enable Sprint
+var automated moCheckBox        cb_FireEndsSprint;			// Fire pressed in a sprint ends it
+var automated moCheckBox        cb_SightsEndSprint;			// The sight key ends a sprint
 var automated moNumericEdit     ne_StaminaDrainRate;		// Stamina Drain Rate
 var automated moNumericEdit     ne_StaminaChargeRate;		// Stamina Charge Rate
 var automated moFloatEdit       fe_InitSpeedFactor;			// Speed During Sprint
@@ -44,6 +46,8 @@ function LoadSettings()
     	fe_InitSpeedFactor.SetValue(game_style.default.SprintSpeedFactor);
     	fe_JumpDrain.SetValue(game_style.default.JumpDrain);
     	fe_StaminaRechargeDelay.SetValue(game_style.default.StaminaRechargeDelay);
+		cb_FireEndsSprint.Checked(game_style.default.bFireEndsSprint);
+		cb_SightsEndSprint.Checked(game_style.default.bSightsEndSprint);
 	}
 }
 
@@ -77,6 +81,8 @@ function DefaultSettings()
 	cb_bUseSprint.Checked(true);
     fe_JumpDrain.SetValue(2);
     fe_StaminaRechargeDelay.SetValue(1.5);
+	cb_FireEndsSprint.Checked(false);
+	cb_SightsEndSprint.Checked(false);
 }
 
 function SaveSettings()
@@ -105,6 +111,8 @@ function SaveSettings()
         game_style.default.StaminaRechargeDelay 	= fe_StaminaRechargeDelay.GetValue();
     	game_style.default.SprintSpeedFactor 	= fe_InitSpeedFactor.GetValue();
     	game_style.default.JumpDrain 		= fe_JumpDrain.GetValue();
+		game_style.default.bFireEndsSprint 		= cb_FireEndsSprint.IsChecked();
+		game_style.default.bSightsEndSprint 	= cb_SightsEndSprint.IsChecked();
 
     	game_style.static.StaticSaveConfig();
 	}
@@ -210,7 +218,7 @@ defaultproperties
         Caption="Enable Crouch Sliding"
         OnCreateComponent=cb_AllowCrouchSlidingC.InternalOnCreateComponent
         Hint="Enables crouch sliding."
-        WinTop=0.500000
+        WinTop=0.450000
         WinLeft=0.250000
         WinHeight=0.040000
     End Object
@@ -221,11 +229,33 @@ defaultproperties
          Caption="Enable Sprint"
          OnCreateComponent=cb_bUseSprintC.InternalOnCreateComponent
          Hint="Enables sprint."
-         WinTop=0.550000
+         WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      cb_bUseSprint=moCheckBox'cb_bUseSprintC'
+
+	 Begin Object Class=moCheckBox Name=cb_FireEndsSprintC
+         ComponentWidth=0.175000
+         Caption="Fire Ends Sprint"
+         OnCreateComponent=cb_FireEndsSprintC.InternalOnCreateComponent
+         Hint="Pressing fire in a sprint ends the sprint, and the gun comes back quickly to shoot. Off: the gun fires from where the sprint holds it."
+         WinTop=0.550000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     cb_FireEndsSprint=moCheckBox'cb_FireEndsSprintC'
+
+	 Begin Object Class=moCheckBox Name=cb_SightsEndSprintC
+         ComponentWidth=0.175000
+         Caption="Sights End Sprint"
+         OnCreateComponent=cb_SightsEndSprintC.InternalOnCreateComponent
+         Hint="The sight key ends a sprint and the sights come up at once. Off: the sights do not come up until the sprint is over."
+         WinTop=0.600000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     cb_SightsEndSprint=moCheckBox'cb_SightsEndSprintC'
 
      Begin Object Class=moNumericEdit Name=ne_StaminaDrainRateC
          MinValue=0
@@ -235,7 +265,7 @@ defaultproperties
          Caption="Stamina Drain % Per Second"
          OnCreateComponent=ne_StaminaDrainRateC.InternalOnCreateComponent
          Hint="Percentage of stamina to drain every second when sprinting."
-         WinTop=0.600000
+         WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -249,7 +279,7 @@ defaultproperties
          Caption="Stamina Regen % Per Second"
          OnCreateComponent=ne_StaminaChargeRateC.InternalOnCreateComponent
          Hint="Percentage of stamina to regenerate every second when not sprinting."
-         WinTop=0.650000
+         WinTop=0.700000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -263,7 +293,7 @@ defaultproperties
          Caption="Sprint Speed Multiplier"
          OnCreateComponent=fe_InitSpeedFactorC.InternalOnCreateComponent
          Hint="The speed multiplier during sprint."
-         WinTop=0.700000
+         WinTop=0.750000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -276,7 +306,7 @@ defaultproperties
          Caption="Jump/Slide Drain"
          OnCreateComponent=fe_JumpDrainC.InternalOnCreateComponent
          Hint="The amount of stamina we lose when we jump or slide."
-         WinTop=0.750000
+         WinTop=0.800000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -290,7 +320,7 @@ defaultproperties
          Caption="Stamina Recharge Delay"
          OnCreateComponent=fe_StaminaRechargeDelayC.InternalOnCreateComponent
          Hint="The delay before stamina starts to recharge."
-         WinTop=0.800000
+         WinTop=0.850000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

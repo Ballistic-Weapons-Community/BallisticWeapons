@@ -73,6 +73,7 @@ var private Rotator				AimOffset;			    // Extra Aim offset. Set NewAimOffset an
 var private Rotator				NewAimOffset;		    // This is what AimOffset should be and is adjusted for sprinting and so on
 var private Rotator				OldAimOffset;		    // AimOffset before it started shifting. Used for interpolationg AimOffset
 var	private float				AimOffsetTime;		    // Time when AimOffset should reach NewAimOffset. Used for interpolationg AimOffset
+var	private float				AimOffsetShiftTime;	    // How long the shift to NewAimOffset takes from start to end
 // var private float            VelocityAimAdjustMult;       // Multiplier on AimAdjustTime, set by ADS
 
 var private Rotator				LastViewPivot;			// Aim saved between ApplyAimToView calls, used to find delta aim
@@ -202,6 +203,57 @@ final simulated function SetNewAimOffset(Rotator NewOffset, float ShiftTime)
 	OldAimOffset = AimOffset;
 	NewAimOffset = NewOffset;
 	AimOffsetTime = Level.TimeSeconds + ShiftTime;
+	AimOffsetShiftTime = ShiftTime;
+}
+
+//=============================================================
+// Sprint offset
+//=============================================================
+// A sprint turns the gun away on the machine that draws it, and that machine holds the gun's fire until it is back
+// (BallisticWeapon.SprintHoldsFire). A server adds no offset of its own to a remote player's shots: with that player's
+// ping between the two, its copy would still be turned when the shot gets there.
+// With that rule switched off guns fire from where a sprint holds them, and the server's copy is what aims the shot.
+private final simulated function bool ShowsSprintOffset()
+{
+	return BW.Instigator != None && (BW.Instigator.IsLocallyControlled() || !class'BallisticReplicationInfo'.default.bFireEndsSprint);
+}
+
+// Whether a sprint turns this weapon away at all
+final simulated function bool HasSprintOffset()
+{
+	return Params != None && Params.SprintOffset != rot(0,0,0);
+}
+
+// The sprint offset is on the gun, or still on its way off
+final simulated function bool InSprintOffset()
+{
+	return bSprintOffset || AimOffset != rot(0,0,0) || NewAimOffset != rot(0,0,0);
+}
+
+// The gun is wanted back from its sprint offset, and sooner than it comes back by itself: within MaxTime from all the
+// way out, and in less from part of the way
+final simulated function CancelSprintOffset(float MaxTime)
+{
+	local float Time, Full;
+
+	bSprintOffset = false;
+
+	if (AimOffset == rot(0,0,0))
+	{
+		NewAimOffset = AimOffset;
+		return;
+	}
+
+	// on its way off already, and there soon enough. This is asked again on every tick the gun is waited for
+	if (NewAimOffset == rot(0,0,0) && AimOffsetTime - Level.TimeSeconds <= MaxTime)
+		return;
+
+	Time = MaxTime;
+	Full = Sqrt(Square(Params.SprintOffset.Pitch) + Square(Params.SprintOffset.Yaw));
+	if (Full > 0)
+		Time *= FMin(1.0, Sqrt(Square(AimOffset.Pitch) + Square(AimOffset.Yaw)) / Full);
+
+	SetNewAimOffset(rot(0,0,0), Time);
 }
 
 //=============================================================
@@ -295,7 +347,7 @@ final simulated function OnWeaponSelected()
 {
 	OldLookDir = BW.GetPlayerAim();
 
-	bSprintOffset = (BW.SprintControl != None && BW.SprintControl.IsSprintActive() && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting);
+	bSprintOffset = (BW.SprintControl != None && BW.SprintControl.IsSprintActive() && class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting && ShowsSprintOffset());
 
 	AimOffset = CalcNewAimOffset();
 	NewAimOffset = AimOffset;
@@ -360,9 +412,14 @@ final simulated function OnPlayerJumped()
 
 final simulated function OnPlayerSprint(bool bSprint)
 {
-	bSprintOffset = bSprint;
+	local Rotator NewOffset;
 
-    SetNewAimOffset(CalcNewAimOffset(), Params.OffsetAdjustTime);
+	bSprintOffset = bSprint && ShowsSprintOffset();
+
+	// One that is on its way there already is left to get there, so a quick way out (CancelSprintOffset) stays quick
+	NewOffset = CalcNewAimOffset();
+	if (NewOffset != NewAimOffset)
+		SetNewAimOffset(NewOffset, Params.OffsetAdjustTime);
     Reaim(0.05, AimAdjustTime, Params.SprintChaos);
 }
 
@@ -402,7 +459,7 @@ final simulated function UpdateAim(float DT)
 
 	// Interpolate the AimOffset
 	if (AimOffset != NewAimOffset)
-        AimOffset = class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-Level.TimeSeconds)/Params.OffsetAdjustTime), NewAimOffset, OldAimOffset);
+        AimOffset = class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-Level.TimeSeconds)/FMax(AimOffsetShiftTime, 0.001)), NewAimOffset, OldAimOffset);
         
     // Chaos decline
 	if (Chaos > 0)

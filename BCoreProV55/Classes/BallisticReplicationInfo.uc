@@ -81,6 +81,8 @@ var() config int			StaminaDrainRate;
 var() config float			StaminaRechargeDelay;
 var() config float			SprintSpeedFactor;
 var() config float			JumpDrain;
+var bool					bFireEndsSprint;			// Fire pressed in a sprint ends it, and the gun comes back to shoot
+var bool					bSightsEndSprint;			// The sight key ends a sprint and the sights come up
 
 //=============================================================================
 // CROUCH SLIDING
@@ -164,6 +166,8 @@ var struct SprintRep
 	var() config float 			StaminaRechargeDelay;
 	var() config float			SprintSpeedFactor;
 	var() config float			JumpDrain;
+	var bool					bFireEndsSprint;
+	var bool					bSightsEndSprint;
 } SRep;
 
 replication
@@ -224,6 +228,8 @@ final function BindToReplication()
 	SRep.StaminaRechargeDelay			= StaminaRechargeDelay;
     SRep.SprintSpeedFactor				= SprintSpeedFactor;
 	SRep.JumpDrain						= JumpDrain;
+	SRep.bFireEndsSprint				= bFireEndsSprint;
+	SRep.bSightsEndSprint				= bSightsEndSprint;
 
 }
 
@@ -290,6 +296,8 @@ simulated final function BindFromReplication()
 	StaminaRechargeDelay			= SRep.StaminaRechargeDelay;
     SprintSpeedFactor				= SRep.SprintSpeedFactor;
 	JumpDrain					= SRep.JumpDrain;
+	bFireEndsSprint					= SRep.bFireEndsSprint;
+	bSightsEndSprint				= SRep.bSightsEndSprint;
 }
 
 simulated final function BindDefaults()
@@ -344,6 +352,8 @@ simulated final function BindDefaults()
 	class.default.StaminaRechargeDelay			= StaminaRechargeDelay;
     class.default.SprintSpeedFactor				= SprintSpeedFactor;
 	class.default.JumpDrain				= JumpDrain;
+	class.default.bFireEndsSprint				= bFireEndsSprint;
+	class.default.bSightsEndSprint				= bSightsEndSprint;
 
 	class.default.bHealthRegeneration			= bHealthRegeneration;
 	class.default.bShieldRegeneration			= bShieldRegeneration;
@@ -429,6 +439,8 @@ defaultproperties
 
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
+	bFireEndsSprint=False
+	bSightsEndSprint=False
 	bNoReloading=False
 	bNoRandomCamo=True
 

@@ -559,6 +559,10 @@ simulated event StopFire(int Mode)
 			OtherGun.StopFire(Mode);
 	}
 
+	// a mode that fires when it is let go shoots now
+	if (FireMode[Mode].bFireOnRelease && FireMode[Mode].bIsFiring)
+		EndRemoteSprint(Mode);
+
 	if ( FireMode[Mode].bIsFiring )
 	    FireMode[Mode].bInstantStop = true;
     if (Instigator.IsLocallyControlled() && !FireMode[Mode].bFireOnRelease)
@@ -713,6 +717,11 @@ simulated function bool StartFire(int Mode)
 
     if (!ReadyToFire(Mode))
         return false;
+
+	// not out of a sprint, and not before the gun is back from one
+	if (SprintHoldsFire(Mode))
+		return false;
+	SprintQueuedFire[Mode] = 0;
 
 	if (Mode == 0)
 		alt = 1;
