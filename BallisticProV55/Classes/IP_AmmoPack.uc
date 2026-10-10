@@ -16,37 +16,68 @@ var() float			LowPolyDist;		// How far must player be to use low poly mesh
 
 function float DetourWeight(Pawn Other,float PathWeight)
 {
-	local Inventory inv;
-	local Weapon W;
-	local float Desire;
-
 	if ( Other.Weapon != None && Other.Weapon.AIRating >= 0.5 )
 		return 0;
 
-	for ( Inv=Other.Inventory; Inv!=None; Inv=Inv.Inventory )
-	{
-		W = Weapon(Inv);
-		if ( W != None )
-			Desire +=  FMax(-0.5, W.DesireAmmo(W.GetAmmoClass(0), true));
-	}
-	return Desire/PathWeight;
+	return AmmoDesire(Other, true)/PathWeight;
 }
 
 function float BotDesireability(Pawn Bot)
 {
-	local Inventory inv;
-	local Weapon W;
 	local float Desire;
 
-	for ( Inv=Bot.Inventory; Inv!=None; Inv=Inv.Inventory )
-	{
-		W = Weapon(Inv);
-		if ( W != None )
-			Desire += FMax(-0.5, W.DesireAmmo(W.GetAmmoClass(0), false));
-	}
+	Desire = AmmoDesire(Bot, false);
 	if ( Bot.Controller.bHuntPlayer )
 		return Desire *= 0.25;
 	return Desire * MaxDesireability;
+}
+
+// How much a bot wants this pack: what each of its weapons says about its ammo, as before, but only for what the pack
+// will hand over (see Touch). Bots walked onto a pack and stood on it with nothing to get: the placeholder weapon of a
+// bot with empty hands always asked for ammo, and so did weapons whose ammo packs never refill (mines, the flamer's gas,
+// HVC cells, the MGL...). A weapon that was used up and comes back with the pack counts as an empty one
+function float AmmoDesire(Pawn Other, bool bDetour)
+{
+	local Inventory Inv;
+	local Weapon W;
+	local BCGhostWeapon G;
+	local float Desire;
+	local int Count;
+
+	for ( Inv=Other.Inventory; Inv!=None && Count < 1000; Inv=Inv.Inventory )
+	{
+		Count++;
+		W = Weapon(Inv);
+		G = BCGhostWeapon(Inv);
+		if ( W != None )
+		{
+			if ( GivesAmmo(W.GetAmmoClass(0)) )
+				Desire += FMax(-0.5, W.DesireAmmo(W.GetAmmoClass(0), bDetour));
+		}
+		else if ( G != None && RevivesGhost(G) && Other.FindInventoryType(G.MyWeaponClass) == None && GivesAmmo(GhostAmmoClass(G)) )
+			Desire += 1.0;
+	}
+	return Desire;
+}
+
+// Ammo this pack hands out
+function bool GivesAmmo(class<Ammunition> AC)
+{
+	if (AC == None || class<BallAmmo>(AC) != None)
+		return false;
+	return class<BallisticAmmo>(AC) == None || class<BallisticAmmo>(AC).static.ResuppliesFromPack();
+}
+
+function bool RevivesGhost(BCGhostWeapon G)
+{
+	return G.MyWeaponClass != None;
+}
+
+function class<Ammunition> GhostAmmoClass(BCGhostWeapon G)
+{
+	if (G.MyWeaponClass == None || G.MyWeaponClass.default.FireModeClass[0] == None)
+		return None;
+	return G.MyWeaponClass.default.FireModeClass[0].default.AmmoClass;
 }
 
 auto state Pickup

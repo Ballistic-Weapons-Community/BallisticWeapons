@@ -331,5 +331,4 @@ defaultproperties
 	bRandomStartRotation=False
 	bSkipActorPropertyReplication=True
 	bSwitchToZeroCollision=True
-	bTearOnExplode=False
 }

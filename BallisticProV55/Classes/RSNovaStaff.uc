@@ -94,7 +94,8 @@ simulated function StartRampage()
 	if (bOnRampage)
 		return;
 	bOnRampage = true;
-	RSNovaAttachment(ThirdPersonActor).bRampage = true;
+	if (RSNovaAttachment(ThirdPersonActor) != None)
+		RSNovaAttachment(ThirdPersonActor).bRampage = true;
 	RSNovaPrimaryFire(BFireMode[0]).ModePowerDrain *= 0.4;
 
 	if (Instigator!=None && Instigator.Controller!=None)
@@ -112,19 +113,23 @@ simulated function EndRampage()
 	if (!bOnRampage)
 		return;
 	bOnRampage = false;
-	RSNovaAttachment(ThirdPersonActor).bRampage = false;
+	// This is also called when the staff is destroyed: by then its attachment is gone (the holder died), and
+	// for the copy on a client so can the holder be
+	if (RSNovaAttachment(ThirdPersonActor) != None)
+		RSNovaAttachment(ThirdPersonActor).bRampage = false;
 
-	if (Instigator!=None && Role==Role_Authority)
+	if (Instigator!=None && Role==Role_Authority && PlayerController(Instigator.Controller) != None)
 		PlayerController(Instigator.Controller).Restart();
 
-	Instigator.AirSpeed /= 1.25;
+	if (Instigator != None)
+		Instigator.AirSpeed /= 1.25;
 
 	if (Wings != None)
 		Wings.Kill();
 
 	SoulPower = 0; //fix for slightly negative soul power
 	
-	if (Role == ROLE_Authority && !Instigator.IsLocallyControlled())
+	if (Role == ROLE_Authority && Instigator != None && !Instigator.IsLocallyControlled())
 		ClientWeaponSpecial();
 }
 

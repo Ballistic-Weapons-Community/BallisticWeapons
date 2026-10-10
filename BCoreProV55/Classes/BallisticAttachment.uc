@@ -815,6 +815,35 @@ simulated function SpawnTracer(byte Mode, Vector V)
 			Tracer.Initialize(VSize(WLoc - TipLoc));
 	}
 }
+
+// A shot whose tracer is not the one of its fire mode slot: the pellets of a shotgun layout or of a shotgun alt fire,
+// which have the class and the chance of their fire mode (BallisticShotgunFire), as they do off line. The tracer
+// settings are per mode since ModeInfos; setting TracerClass for the length of the call no longer does anything
+simulated function SpawnTracerOfClass(class<BCTraceEmitter> TC, byte Mode, Vector V, optional float Chance)
+{
+	local class<BCTraceEmitter> OldClass;
+	local bool bOldTracer;
+	local float OldChance;
+
+	Mode = Min(Mode, 1);
+	OldClass = ModeInfos[Mode].TracerClass;
+	bOldTracer = ModeInfos[Mode].bTracer;
+	OldChance = ModeInfos[Mode].TracerChance;
+	ModeInfos[Mode].TracerClass = TC;
+	ModeInfos[Mode].bTracer = TC != None;
+	if (Chance > 0)
+	{
+		// the cut that the fire mode makes for itself
+		if (Chance < 2 && (Level.DetailMode == DM_High || class'BallisticMod'.default.EffectsDetailMode == 1))
+			Chance *= 0.3;
+		ModeInfos[Mode].TracerChance = Chance;
+	}
+	SpawnTracer(Mode, V);
+	ModeInfos[Mode].TracerClass = OldClass;
+	ModeInfos[Mode].bTracer = bOldTracer;
+	ModeInfos[Mode].TracerChance = OldChance;
+}
+
 // This assumes flash actors are triggered to make them work
 // Override this in subclassed for better control
 simulated function FlashMuzzleFlash(byte Mode)

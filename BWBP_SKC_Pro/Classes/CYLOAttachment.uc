@@ -176,8 +176,8 @@ simulated function ShotgunFireEffects(byte Mode)
 			else
 				mHitSurf = int(HitMat.SurfaceType);
 
-			if (AltImpactManagers[CurrentTracerMode] != None)
-				AltImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+			if (AltImpactManagers[CurrentAltTracerMode] != None)
+				AltImpactManagers[CurrentAltTracerMode].static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 		}
 	}
 }
@@ -238,61 +238,25 @@ simulated function SpawnTracer(byte Mode, Vector V)
 simulated function SpawnAltTracer(byte Mode, Vector V)
 {
 	local BCTraceEmitter Tracer;
-	local Vector TipLoc, WLoc, WNorm;
-	local float Dist;
-	local bool bThisShot;
+	local Vector TipLoc;
+	local float Dist, Chance;
 
-
-	if (class'BallisticMod'.default.EffectsDetailMode == 0 && Mode == 0)
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
+		return;
+	// as often as the fire mode shows them off line
+	Chance = FireClass.default.TracerChance;
+	if (Chance < 2 && (Level.DetailMode == DM_High || class'BallisticMod'.default.EffectsDetailMode == 1))
+		Chance *= 0.3;
+	// Which shell the shotgun fires goes by the layout, like its impacts
+	if (AltTracerClasses[CurrentAltTracerMode] == None || FRand() >= Chance)
 		return;
 
-	TipLoc = GetModeTipLocation();
+	TipLoc = GetModeTipLocation(Mode);
 	Dist = VSize(V - TipLoc);
-
-	// Count shots to determine if it's time to spawn a tracer
-	if (TracerMix == 0)
-		bThisShot=true;
-	else
-	{
-		TracerCounter++;
-		if (TracerMix < 0)
-		{
-			if (TracerCounter >= -TracerMix)	{
-				TracerCounter = 0;
-				bThisShot=false;			}
-			else
-				bThisShot=true;
-		}
-		else if (TracerCounter >= TracerMix)	{
-			TracerCounter = 0;
-			bThisShot=true;					}
-	}
-	// Spawn a tracer
-	if (AltTracerClasses[CurrentTracerMode] != None && TracerMode != MU_None && (TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
-		bThisShot && (Mode == 1 || TracerChance >= 1 || FRand() < TracerChance))
-	{
-		if (Mode == 0)
-		{
-			if (Dist > 200)
-				Tracer = Spawn(AltTracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
-
-				if (Tracer != None)
-				Tracer.Initialize(Dist);
-		}
-
-		else
-			Tracer = Spawn(AltTracerClasses[2], self, , TipLoc, Rotator(V - TipLoc));
-	}
-	// Spawn under water bullet effect
-	if ( Mode == 0 && Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
-		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
-	{
-		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
-			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
-		if (Tracer != None)
-			Tracer.Initialize(VSize(WLoc - TipLoc));
-
-	}
+	if (Dist > 200)
+		Tracer = Spawn(AltTracerClasses[CurrentAltTracerMode], self, , TipLoc, Rotator(V - TipLoc));
+	if (Tracer != None)
+		Tracer.Initialize(Dist);
 }
 
 simulated function FlashMuzzleFlash(byte Mode)

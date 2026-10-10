@@ -100,7 +100,9 @@ simulated event Tick (float DT)
 {
 	super.Tick(DT);
 
-	if (NextAmmoTickTime < level.TimeSeconds)
+	// The charge comes back on the server, which sends it to the owner. A client that counted it up by itself as well
+	// got to the amount an alt shot needs before the server did, and fired a shot the server turned down
+	if (Role == ROLE_Authority && NextAmmoTickTime < level.TimeSeconds)
 	{
 		if (MagAmmo < default.MagAmmo)
 			MagAmmo=Min(default.MagAmmo, MagAmmo+1);

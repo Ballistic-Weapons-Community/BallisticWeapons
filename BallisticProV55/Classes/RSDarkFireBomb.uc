@@ -211,7 +211,6 @@ defaultproperties
 	bRandomStartRotation=False
 	TrailClass=Class'BallisticProV55.RSDarkFireBombTrail'
 	MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkFireBomb'
-	bTearOnExplode=False
 	DamageTypeHead=Class'BallisticProV55.DT_RSDarkFireBomb'
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	ShakeRadius=384.000000

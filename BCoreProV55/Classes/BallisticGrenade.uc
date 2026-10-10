@@ -351,6 +351,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		SetCollision(false,false,false);
 		TearOffHitNormal = HitNormal;
 		bTearOff = true;
+		bSkipActorPropertyReplication = false;
 		GotoState('NetTrapped');
 	}
 	
