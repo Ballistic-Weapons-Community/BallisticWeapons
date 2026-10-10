@@ -40,8 +40,9 @@ simulated function Finish()
 	if (PreloadMeshActor != None)
 		PreloadMeshActor.Destroy();
 	PreloadMeshActor = None;
+	// The list is the weapons of the inventory mode and, after them, the killstreak rewards
 	if (NumLoaded > 0)
-		Log("BW Preload: Loaded"@NumLoaded@"of"@MyRI.PreloadNum@"weapons");
+		Log("BW Preload: Loaded"@NumLoaded@"of"@MyRI.PreloadNum@"weapons ("$(MyRI.PreloadNum - MyRI.RewardNum)@"from the game's weapon list,"@MyRI.RewardNum@"killstreak rewards)");
 	MyRI = None;
 	Master.RemoveInteraction(Self);
 }

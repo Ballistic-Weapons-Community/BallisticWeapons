@@ -2,6 +2,7 @@ class BallisticPreloadReplicationInfo extends ReplicationInfo;
 
 var() string CurrentName[255];
 var() int PreloadNum;
+var() int RewardNum;	// How many of them are killstreak rewards (they come last)
 var bool bAddedInteraction;
 var bool bEnableCamoLoading;
 var bool bEnableTextureLoading;
@@ -9,7 +10,7 @@ var bool bEnableTextureLoading;
 replication
 {
     reliable if(Role == ROLE_Authority)
-        CurrentName, PreloadNum, bEnableCamoLoading, bEnableTextureLoading;
+        CurrentName, PreloadNum, RewardNum, bEnableCamoLoading, bEnableTextureLoading;
 }
 
 simulated function PostBeginPlay()
