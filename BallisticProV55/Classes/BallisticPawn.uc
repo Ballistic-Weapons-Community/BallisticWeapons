@@ -2054,8 +2054,8 @@ simulated function DoHit (name Bone, class<DamageType> DamageType, vector HitRay
 	if (BDT != None)
 		BDT.static.LocalHitEffects(self, Bone, HitLocation, HitRay, Damage);
 
-	// Hes dead, we can try dismemberment!
-	if (Health <= 0)
+	// Hes dead, we can try dismemberment! Once the body is a corpse, only allow this if gibbable corpses are enabled.
+	if (Health <= 0 && (!bPlayedDeath || class'BloodManager'.default.bGibbableCorpses))
 	{
         if (!DamageType.default.bNeverSevers && !class'GameInfo'.static.UseLowGore())
 		{
@@ -2403,6 +2403,13 @@ function PlayDyingSound()
 		return;
 		
 	PlaySound(SoundGroupClass.static.GetDeathSound(), SLOT_Pain,2.5*TransientSoundVolume, true,500);
+}
+
+// Called by the HUD right after it has drawn the first person weapon and before it draws itself (bSpecialHUD)
+simulated function DrawHUD(Canvas C)
+{
+	if (BallisticPlayer(Controller) != None)
+		BallisticPlayer(Controller).DrawScreenFlash(C);
 }
 
 simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)

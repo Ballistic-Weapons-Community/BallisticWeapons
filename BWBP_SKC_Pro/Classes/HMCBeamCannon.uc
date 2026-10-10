@@ -93,7 +93,7 @@ simulated function PlayIdle()
 	}
 	else if (bScopeView)
 	{
-		if(SafePlayAnim(ZoomOutAnim, 1.0))
+		if(HasAnim(ZoomOutAnim) && SafePlayAnim(ZoomOutAnim, 1.0))
 			FreezeAnimAt(0.0);
 	}
 	else

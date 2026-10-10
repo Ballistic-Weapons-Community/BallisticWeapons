@@ -5,9 +5,14 @@ var WrenchBoostTrigger 		BT;
 function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	
+
+	// Placement was rejected, don't leave an invisible boost trigger behind
+	if (bDeleteMe)
+		return;
+
 	BT=Spawn(class'WrenchBoostTrigger', self,,Location + vect(0,0,16));
-	BT.Team = Team;
+	if (BT != None)
+		BT.Team = Team;
 }
 
 simulated function Destroyed()

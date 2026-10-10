@@ -398,8 +398,11 @@ simulated function PostNetReceive()
 simulated function UpdateMesh(byte PassedIndex)
 {
 	local WeaponParams WP;
-	
-	WP = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[PassedIndex];
+
+	if (class<BallisticWeapon>(InventoryType) == None || class<BallisticWeapon>(InventoryType).static.GetParams() == None)
+		return;
+	if (PassedIndex < class<BallisticWeapon>(InventoryType).static.GetParams().default.Layouts.Length)
+		WP = class<BallisticWeapon>(InventoryType).static.GetParams().default.Layouts[PassedIndex];
 	if (WP != None)
 	{
 		//Change mesh if layout dictates it
@@ -420,8 +423,11 @@ simulated function UpdateSkins(byte PassedIndex)
 	local WeaponCamo WC;
 	local Material M;
 	local int i;
-	
-	WC = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Camos[PassedIndex];
+
+	if (class<BallisticWeapon>(InventoryType) == None || class<BallisticWeapon>(InventoryType).static.GetParams() == None)
+		return;
+	if (PassedIndex < class<BallisticWeapon>(InventoryType).static.GetParams().default.Camos.Length)
+		WC = class<BallisticWeapon>(InventoryType).static.GetParams().default.Camos[PassedIndex];
 	if (WC != None)
 	{
 		for (i = 0; i < WC.WeaponMaterialSwaps.Length; ++i)

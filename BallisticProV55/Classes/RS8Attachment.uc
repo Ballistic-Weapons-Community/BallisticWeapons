@@ -7,6 +7,8 @@
 class RS8Attachment extends HandgunAttachment;
 
 var   bool					bHasKnife;	//shank?
+var   bool					bSilenced;	//Suppressor on - primary shots use the suppressed flash and no tracers
+var   bool					bOldSilenced;
 var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
@@ -16,7 +18,7 @@ var	  BallisticWeapon		myWeap;
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn, bHasKnife;
+		bLaserOn, bHasKnife, bSilenced;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
 }
@@ -31,6 +33,52 @@ function InitFor(Inventory I)
 	{
 		bHasKnife=true;
 	}
+	if (RS8Pistol(I) != None)
+		SetSilenced(RS8Pistol(I).bSilenced);
+}
+
+function SetSilenced(bool bIsSilenced)
+{
+	bSilenced = bIsSilenced;
+	UpdateSilencer();
+}
+
+// The suppressor is on the model for as long as it is on the gun, not from one shot to the next
+simulated function UpdateSilencer()
+{
+	bOldSilenced = bSilenced;
+	if (bSilenced)
+		SetBoneScale (0, 1.0, 'Silencer');
+	else
+		SetBoneScale (0, 0.0, 'Silencer');
+}
+
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	UpdateSilencer();
+}
+
+simulated event PostNetReceive()
+{
+	if (bSilenced != bOldSilenced)
+		UpdateSilencer();
+	Super.PostNetReceive();
+}
+
+simulated function FlashMuzzleFlash(byte Mode)
+{
+	// Mode 1 holds the suppressed flash
+	if (Mode == 0 && bSilenced)
+		Mode = 1;
+	super.FlashMuzzleFlash(Mode);
+}
+
+simulated function SpawnTracer(byte Mode, Vector V)
+{
+	if (Mode == 0 && bSilenced)
+		return;
+	super.SpawnTracer(Mode, V);
 }
 
 simulated function Tick(float DT)
@@ -133,18 +181,6 @@ simulated function MeleeFireEffects()
 		class'IM_Knife'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, Instigator);
 }
 
-
-simulated event ThirdPersonEffects()
-{
-    if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		if (FiringMode == 1)
-			SetBoneScale (0, 1.0, 'Silencer');
-		else
-			SetBoneScale (0, 0.0, 'Silencer');
-    }
-	super.ThirdPersonEffects();
-}
 
 defaultproperties
 {

@@ -633,7 +633,7 @@ simulated function Destroyed()
 		ClawSpark2.Destroy();
 	if (Spiral != None)
 		Spiral.Destroy();
-	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;

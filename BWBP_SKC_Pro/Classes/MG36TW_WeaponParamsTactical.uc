@@ -130,17 +130,14 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		AimSpread=(Min=32,Max=2872)
-		CrouchMultiplier=0.700000
+		// Deployed: fully stable like the other turrets in this style (was a copy of the handheld aim, which swayed)
+		AimSpread=(Min=0,Max=0)
+		AimAdjustTime=0.800000
 		ADSMultiplier=0.700000
 		ViewBindFactor=1.000000
-		SprintChaos=0.450000
-		SprintOffset=(Pitch=-3000,Yaw=-5000)
-		JumpChaos=0.450000
-		JumpOffset=(Pitch=-4000,Yaw=-3000)
-		FallingChaos=0.450000
-		ChaosDeclineTime=1.500000
-		ChaosSpeedThreshold=400
+		AimDamageThreshold=2000.000000
+		ChaosDeclineTime=0.320000
+		ChaosSpeedThreshold=300
 	End Object
     
 	//=================================================================

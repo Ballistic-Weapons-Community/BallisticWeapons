@@ -32,17 +32,20 @@ simulated function OnWeaponParamsChanged()
     super.OnWeaponParamsChanged();
 		
 	assert(WeaponParams != None);
-	bHasKnife=false;
-	
-	if (InStr(WeaponParams.LayoutTags, "tacknife") != -1)
+	bHasKnife = InStr(WeaponParams.LayoutTags, "tacknife") != -1;
+
+	if (MD24MeleeFire(MeleeFireMode) == None)
+		return;
+
+	if (bHasKnife)
 	{
-		bHasKnife=true;
 		MeleeFireMode.Damage = 70;
 		MD24MeleeFire(MeleeFireMode).SwitchBladeMode(true);
 	}
 	else
 	{
-		MeleeFireMode.Damage = default.MeleeFireMode.Damage;
+		// MeleeFireMode is created at runtime, so default.MeleeFireMode is always None - use the class default
+		MeleeFireMode.Damage = MeleeFireClass.default.Damage;
 		MD24MeleeFire(MeleeFireMode).SwitchBladeMode(false);
 	}
 }

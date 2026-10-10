@@ -36,7 +36,7 @@ simulated function PostNetBeginPlay()
 
 simulated function InitParams()
 {
-    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 5);
+    WeaponClass.static.GetParams().static.OverrideProjectileParams(self, 5);
 }
 
 simulated function Timer()

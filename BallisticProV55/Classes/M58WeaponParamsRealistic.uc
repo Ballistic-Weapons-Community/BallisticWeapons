@@ -1,4 +1,4 @@
-class ScarabWeaponParamsTactical extends BallisticWeaponParams;
+class M58WeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {    
@@ -6,47 +6,48 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-    Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
-        ProjectileClass=Class'BWBP_APC_Pro.ScarabThrown'
+    Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
+        ProjectileClass=Class'BallisticProV55.M58Thrown'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-        Speed=1400.000000
+        Damage=0
+        DamageRadius=200.000000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,batten=false)
+		Speed=1000.000000
         MaxSpeed=1500.000000
-        Damage=50
-        DamageRadius=512.000000
-		HeadMult=1.0
+		HeadMult=1.0f
 		LimbMult=1.0
-        BotRefireRate=0.4
-        WarnTargetPct=0.75	
-        FireSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,batten=false)
-    End Object
+		Recoil=0.0
+		Chaos=-1.0
+		WarnTargetPct=0.500000
+	End Object
 
-    Begin Object Class=FireParams Name=TacticalPrimaryFireParams
+    Begin Object Class=FireParams Name=RealisticPrimaryFireParams
         PreFireAnim="PrepThrow"
         FireAnim="Throw"	
-        FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams'
+        FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
     End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-    Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
-        ProjectileClass=Class'BWBP_APC_Pro.ScarabRolled'
+    Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Volume=0.5,Radius=12.000000,batten=false)
+		ProjectileClass=Class'BallisticProV55.M58Rolled'
 		SpawnOffset=(Z=-14.000000)
-        Speed=1000.000000
-        MaxSpeed=1500.000000
-		Damage=50.000000
-		DamageRadius=512.000000
+        Speed=350.000000
+        MaxSpeed=350.000000
+		Damage=0
+        DamageRadius=200.000000
 		HeadMult=1.0
 		LimbMult=1.0
-		WarnTargetPct=0.500000
-		FireSound=(Sound=Sound'BWBP_APC_Sounds.CruGren.CruGren-Throw',Radius=32.000000,batten=false)
-    End Object
+		WarnTargetPct=0.500000	
+	End Object
     
-    Begin Object Class=FireParams Name=TacticalSecondaryFireParams
+    Begin Object Class=FireParams Name=RealisticSecondaryFireParams
         PreFireAnim="PrepRoll"
         FireAnim="Roll"
-        FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
+        FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
     End Object
 		
 	//=================================================================
@@ -75,19 +76,17 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        ViewOffset=(X=2.000000,Y=10.000000,Z=-12.000000)
-		ViewPivot=(Pitch=1024,Yaw=-1024)
-		PlayerSpeedFactor=1.000000
         MagAmmo=1
         InventorySize=1
-		// Same throw modes as the other Tactical grenades
-		WeaponModes(0)=(ModeName="Fixed Throw",ModeID="WM_None",Value=1.00)
-		WeaponModes(1)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.00)
-		WeaponModes(2)=(bUnavailable=True)
+		//ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
+		ViewPivot=(Pitch=1024,Yaw=-1024)
+
+		// No WeaponModes override: Realistic grenades use the default Charged/Long/Short throws
+
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
-		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
 }

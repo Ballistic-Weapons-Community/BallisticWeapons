@@ -162,7 +162,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Shield System"
-		LayoutTags="Shield"
+		LayoutTags="shield"
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
 		AllowedCamos(2)=2

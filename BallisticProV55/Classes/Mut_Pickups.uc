@@ -25,7 +25,8 @@ simulated function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
     bRes = Super.CheckReplacement(Other, bSuperRelevant);
 
-    if (bRemoveAmmoPacks && Other.IsA('IP_AmmoPack')) // ammo packs
+    // not the pack a player throws with the L8 GI: that is the weapon's shot, not a map pickup
+    if (bRemoveAmmoPacks && Other.IsA('IP_AmmoPack') && !Other.IsA('IP_L8GIAmmoPack')) // ammo packs
         bRes = false;
 
     else if (bRemoveBandages && (Other.IsA('IP_Bandage') || Other.IsA('MiniHealthPack'))) // bandages

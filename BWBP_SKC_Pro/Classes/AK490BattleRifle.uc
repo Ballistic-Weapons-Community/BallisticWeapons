@@ -35,6 +35,9 @@ simulated function OnWeaponParamsChanged()
 	{
 		bLoaded=false;
 		bHasKnife=false;
+		// BringUp and AttachToPawn go by the secondary fire's knife state (default true), which would put the bayonet stab back
+		if (AK490SecondaryFire(FireMode[1]) != None)
+			AK490SecondaryFire(FireMode[1]).bLoaded = false;
 		AK490MeleeFire(MeleeFireMode).SwitchBladeMode(false);
 	}
 }
