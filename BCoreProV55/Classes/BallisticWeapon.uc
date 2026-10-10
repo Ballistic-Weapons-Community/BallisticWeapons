@@ -3092,6 +3092,9 @@ simulated final function bool SprintActive()
 // The machine of the player holding the gun decides all of it. It holds the press back until its gun is there, so
 // what the server hears of is a sprint that ended and, a moment later, fire that starts. The server's own part is
 // to see that the two never run together.
+//
+// Both are rules of the game style, bFireEndsSprint and bSightsEndSprint, and off unless a server switches them on:
+// then a gun fires from where a sprint holds it and the sight key waits for the sprint to be over, as they used to.
 //---------------------------------------------------------------------------
 // Sprinting, by the key or by what the sprint control has made of it
 simulated final function bool HolderSprints()
@@ -3099,9 +3102,12 @@ simulated final function bool HolderSprints()
 	return SprintControl != None && (SprintControl.bSprinting || SprintControl.IsSprintActive());
 }
 
-// Whether a fire mode needs the gun pointed where its holder looks: the ones that shoot something
+// Whether a fire mode needs the gun pointed where its holder looks: the ones that shoot something.
+// With the rule switched off none does, and a gun fires from where the sprint holds it
 simulated function bool FireEndsSprint(int Mode)
 {
+	if (!class'BallisticReplicationInfo'.default.bFireEndsSprint)
+		return false;
 	if (bAimDisabled || FireMode[Mode] == None || !class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting || !AimComponent.HasSprintOffset())
 		return false;
 	if (BallisticMeleeFire(FireMode[Mode]) != None)
@@ -3139,7 +3145,7 @@ simulated final function bool FireKeyDown(int Mode, optional bool bStale)
 simulated function EndSprintPose(float MaxTime)
 {
 	if (SprintControl != None)
-		SprintControl.CancelSprint();
+		SprintControl.CancelSprint(MaxTime);
 	if (!bAimDisabled)
 		AimComponent.CancelSprintOffset(MaxTime);
 }
@@ -3183,6 +3189,14 @@ simulated function bool SprintHoldsRelease(int Mode)
 	if (HolderSprints() || AimComponent.InSprintOffset())
 		EndSprintPose(AimComponent.Params.SprintCancelTime);
 	return AimComponent.InSprintOffset();
+}
+
+// Server: the owner's machine has ended the sprint for a shot or its sights and its gun is coming back within MaxTime.
+// Where this server keeps a copy of the gun's sprint offset, that does the same
+function HurrySprintOffset(float MaxTime)
+{
+	if (!bAimDisabled)
+		AimComponent.CancelSprintOffset(FClamp(MaxTime, 0, AimComponent.Params.SprintCancelTime));
 }
 
 // Server: a remote player's fire mode is about to shoot. That player's machine has held it back until its gun was
@@ -3270,6 +3284,8 @@ simulated function bool SightsEndSprint()
 {
 	local bool bWasSprinting, bCan;
 
+	if (!class'BallisticReplicationInfo'.default.bSightsEndSprint)
+		return CanUseSights();
 	if (!HolderSprints() && (bAimDisabled || !AimComponent.InSprintOffset()))
 		return CanUseSights();
 

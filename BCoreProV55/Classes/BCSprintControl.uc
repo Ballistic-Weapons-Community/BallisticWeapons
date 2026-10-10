@@ -346,9 +346,9 @@ simulated function ClientSprintReply(bool bActive)
 	}
 }
 
-// The holder's weapon ends the sprint, for a shot or for its sights. As with the sprint key, the owner's machine goes
-// ahead with it and the server is told.
-simulated function CancelSprint()
+// The holder's weapon ends the sprint, for a shot or for its sights, and its gun comes back within OffsetTime. As with
+// the sprint key, the owner's machine goes ahead with it and the server is told.
+simulated function CancelSprint(float OffsetTime)
 {
 	local bool bReply;
 
@@ -359,16 +359,19 @@ simulated function CancelSprint()
 		// like the key being let go, where the speed can be told
 		bReply = PredictSprint(false);
 		CancelEndTime = Level.TimeSeconds + PredictionWindow();
-		ServerCancelSprint(bReply);
+		ServerCancelSprint(bReply, OffsetTime);
 	}
 
 	EndSprinting();
 }
 
 // Owning client to server: its weapon has ended the sprint
-function ServerCancelSprint(bool bReply)
+function ServerCancelSprint(bool bReply, float OffsetTime)
 {
 	StopSprint();
+	EndSprinting();
+	if (BallisticWeapon(Instigator.Weapon) != None)
+		BallisticWeapon(Instigator.Weapon).HurrySprintOffset(OffsetTime);
 	if (bReply)
 		ClientSprintReply(bSprintActive);
 }

@@ -212,9 +212,10 @@ final simulated function SetNewAimOffset(Rotator NewOffset, float ShiftTime)
 // A sprint turns the gun away on the machine that draws it, and that machine holds the gun's fire until it is back
 // (BallisticWeapon.SprintHoldsFire). A server adds no offset of its own to a remote player's shots: with that player's
 // ping between the two, its copy would still be turned when the shot gets there.
+// With that rule switched off guns fire from where a sprint holds them, and the server's copy is what aims the shot.
 private final simulated function bool ShowsSprintOffset()
 {
-	return BW.Instigator != None && BW.Instigator.IsLocallyControlled();
+	return BW.Instigator != None && (BW.Instigator.IsLocallyControlled() || !class'BallisticReplicationInfo'.default.bFireEndsSprint);
 }
 
 // Whether a sprint turns this weapon away at all
