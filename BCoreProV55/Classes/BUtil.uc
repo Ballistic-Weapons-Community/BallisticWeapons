@@ -394,6 +394,58 @@ static final function float CalcZoomFOV(float BaseFOV, float ZoomMagnification)
 	return 2.0f * atan(tan((BaseFOV * DEG_TO_RAD)/2) / ZoomMagnification, 1) * RAD_TO_DEG;
 }
 
+//=============================================================================
+// UT2004 3374 has a widescreen correction of its own ("Horizontal+ FOV" in the player settings,
+// PlayerController.HorizPlusFOVScale). With it on, the engine widens every field of view it draws with by the screen's
+// width against 4:3: the player's, and the one handed to Canvas.DrawActor for a first person weapon. Older versions
+// do neither. The setting is read by name, so that this also compiles and runs where it does not exist.
+//=============================================================================
+// How much of that correction the engine applies: 0 none (and every engine before 3374), 1 all of it
+static final function float GetHorizPlusScale(PlayerController PC)
+{
+	if (PC == None)
+		return 0;
+	return FClamp(float(PC.GetPropertyText("HorizPlusFOVScale")), 0, 1);
+}
+
+// The angle the engine really draws with when it is handed FOV. Aspect is the screen's width against 4:3
+// (1.333 for 16:9). In between the engine blends the two angles
+static final function float ApplyHorizPlus(float FOV, float Aspect, float Scale)
+{
+	if (Scale <= 0 || Aspect <= 0 || Aspect == 1)
+		return FOV;
+	return FOV + Scale * (CalcZoomFOV(FOV, 1 / Aspect) - FOV);
+}
+
+// The angle to hand the engine so that what it draws with comes out as WantedFOV
+static final function float UndoHorizPlus(float WantedFOV, float Aspect, float Scale)
+{
+	local float Lo, Hi, Mid;
+	local int i;
+
+	if (Scale <= 0 || Aspect <= 0 || Aspect == 1)
+		return WantedFOV;
+	Lo = CalcZoomFOV(WantedFOV, Aspect);
+	if (Scale >= 1)
+		return Lo;
+	Hi = WantedFOV;
+	if (Lo > Hi)
+	{
+		Mid = Lo;
+		Lo = Hi;
+		Hi = Mid;
+	}
+	for (i = 0; i < 16; i++)
+	{
+		Mid = (Lo + Hi) * 0.5;
+		if (ApplyHorizPlus(Mid, Aspect, Scale) < WantedFOV)
+			Lo = Mid;
+		else
+			Hi = Mid;
+	}
+	return (Lo + Hi) * 0.5;
+}
+
 static final function float CalculateDistanceAtten(float Distance, float AttenStartDist, float AttenDist)
 {
 	return FClamp((distance - AttenStartDist), 0, AttenDist) / AttenDist;
