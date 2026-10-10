@@ -66,6 +66,14 @@ var		int			PendingReplies;			// Client: sprint requests the server hasn't answer
 var		int			JumpEchoes;				// Client: ClientJumped calls on their way for stamina costs already paid here
 var		float		JumpEchoTime;			// Client: they are no longer expected after this time
 var		float		RechargeEchoTime;		// Client: a ClientDelayRecharge is on its way for a sprint stop already predicted here, until this time
+var		float		CancelEndTime;			// Client: the holder's weapon ended the sprint. Until this time it counts as over here, whatever the server last said
+
+//=============================================================================
+// SPRINT AND FIRE
+//=============================================================================
+var		bool		bWasSprintActive;		// The sprint key counted as held on the last tick
+var		bool		bStaleFire;				// Local player: fire has been down since before the sprint began, so it is no press to end the sprint with
+var		bool		bStaleAltFire;			// Local player: the same for alt fire
 
 var byte	SettingsChecksLeft;			// Client: spawned before the BallisticReplicationInfo carrying the server's settings arrived. Times left to look for it
 var float	NextSettingsCheckTime;
@@ -76,6 +84,8 @@ replication
 	reliable if (Role == ROLE_Authority)
 		bSprintActive, BaseGroundSpeed,
 		ClientJumped, ClientDelayRecharge, ClientSprintReply;
+	reliable if (Role < ROLE_Authority)
+		ServerCancelSprint;
 }
 
 simulated function PostBeginPlay()
@@ -216,6 +226,7 @@ simulated event Tick(float DT)
 		JumpEchoes = 0;
 	}
 
+	TrackSprintKey();
 	TickSprint(DT);
 }
 
@@ -227,8 +238,14 @@ simulated event Tick(float DT)
 // own prediction for as long as the server's answer can still be on its way.
 simulated function bool IsSprintActive()
 {
-	if (Role < ROLE_Authority && Level.TimeSeconds < PredictEndTime)
-		return bPredictedSprint;
+	if (Role < ROLE_Authority)
+	{
+		// ended by the holder's weapon, and the server's word of that may still be on its way
+		if (Level.TimeSeconds < CancelEndTime)
+			return false;
+		if (Level.TimeSeconds < PredictEndTime)
+			return bPredictedSprint;
+	}
 	return bSprintActive;
 }
 
@@ -261,10 +278,15 @@ simulated function bool CanPredictSpeed()
 
 // Client: the player pressed or released the sprint key, and the server is being asked
 // to StartSprint or StopSprint. Work out what it will do with that and do it here already.
-simulated function PredictSprint(bool bWantSprint)
+// True if that was done, and the server's answer to the request is now waited for.
+simulated function bool PredictSprint(bool bWantSprint)
 {
+	// a new sprint is asked for: the one the weapon ended is done with
+	if (bWantSprint)
+		CancelEndTime = 0;
+
 	if (!class'BallisticReplicationInfo'.default.bEnableSprint || !CanPredictSpeed())
-		return;
+		return false;
 
 	if (bWantSprint && !IsSprintActive())
 		bWantSprint = Stamina > 0 && Instigator.Physics == PHYS_Walking && !Instigator.bIsCrouched && CheckDirection();
@@ -275,6 +297,7 @@ simulated function PredictSprint(bool bWantSprint)
 	PendingReplies++;
 	PredictEndTime = Level.TimeSeconds + PredictionWindow();
 	ClientUpdateSpeed();
+	return true;
 }
 
 // Client: the server is about to stop the sprint on its own, because a slide started or stamina ran out
@@ -321,6 +344,80 @@ simulated function ClientSprintReply(bool bActive)
 		PredictEndTime = 0;
 		ClientUpdateSpeed();
 	}
+}
+
+// The holder's weapon ends the sprint, for a shot or for its sights. As with the sprint key, the owner's machine goes
+// ahead with it and the server is told.
+simulated function CancelSprint()
+{
+	local bool bReply;
+
+	if (Role == ROLE_Authority)
+		StopSprint();
+	else if (IsSprintActive())
+	{
+		// like the key being let go, where the speed can be told
+		bReply = PredictSprint(false);
+		CancelEndTime = Level.TimeSeconds + PredictionWindow();
+		ServerCancelSprint(bReply);
+	}
+
+	EndSprinting();
+}
+
+// Owning client to server: its weapon has ended the sprint
+function ServerCancelSprint(bool bReply)
+{
+	StopSprint();
+	if (bReply)
+		ClientSprintReply(bSprintActive);
+}
+
+// The holder is no longer seen sprinting: the weapon in hand comes back from where the sprint put it
+simulated function EndSprinting()
+{
+	if (!bSprinting)
+		return;
+
+	bSprinting = false;
+
+	if (BallisticWeapon(Instigator.Weapon) != None)
+		BallisticWeapon(Instigator.Weapon).PlayerSprint(false);
+
+	if (Instigator != None && Instigator.Inventory != None)
+		Instigator.Inventory.OwnerEvent('StopSprint');
+}
+
+// Tells the weapon in hand that a sprint has begun, whoever began it, and keeps track of the fire keys for it: one
+// that is down when the sprint begins is no press to end that sprint with (BallisticWeapon.SprintHoldsFire)
+simulated function TrackSprintKey()
+{
+	local Controller C;
+	local bool bActive;
+
+	C = Instigator.Controller;
+	bActive = IsSprintActive();
+
+	if (PlayerController(C) != None && Instigator.IsLocallyControlled())
+	{
+		if (bActive && !bWasSprintActive)
+		{
+			bStaleFire = C.bFire != 0;
+			bStaleAltFire = C.bAltFire != 0;
+		}
+		else
+		{
+			if (C.bFire == 0)
+				bStaleFire = false;
+			if (C.bAltFire == 0)
+				bStaleAltFire = false;
+		}
+	}
+
+	if (bActive && !bWasSprintActive && BallisticWeapon(Instigator.Weapon) != None)
+		BallisticWeapon(Instigator.Weapon).SprintStarted();
+
+	bWasSprintActive = bActive;
 }
 
 //If Stamina's less than 0 or Sprint's active
@@ -470,16 +567,8 @@ simulated function TickSprint(float DT)
 	// Stamina charges when not sprinting
 	else if (Instigator.Physics != PHYS_Falling) // if (VSize(RV) < class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 0.8)
 	{
-		if (bSprinting)
-		{
-			bSprinting=False;
+		EndSprinting();
 
-			if (BallisticWeapon(Instigator.Weapon) != None)
-				BallisticWeapon(Instigator.Weapon).PlayerSprint(false);
-
-			if (Instigator != None && Instigator.Inventory != None)
-				Instigator.Inventory.OwnerEvent('StopSprint');
-		}
 		if (Stamina < MaxStamina)
 		{
 			if (VSize(Instigator.Velocity) == 0)
