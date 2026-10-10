@@ -14,8 +14,7 @@ defaultproperties
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
 	bDryUncock=True
 	BrassClass=Class'BallisticProV55.Brass_Pistol'
-	BrassBone="tip"
-	BrassOffset=(X=-30.000000,Y=1.000000)
+	BrassBone="ejector"
 	AmmoClass=Class'BallisticProV55.Ammo_50HV'
 
 	ShakeRotMag=(X=48.000000)

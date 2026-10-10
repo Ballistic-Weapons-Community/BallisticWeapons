@@ -185,7 +185,6 @@ defaultproperties
 	bDryUncock=True
 	MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Pistol'
-	BrassOffset=(X=-5.000000,Z=-4.000000)
 	AimedFireAnim="SightFire"
 	FireRecoil=72.000000
 	FireChaos=0.025000

@@ -6042,6 +6042,25 @@ simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, 
 	return OutVec + ViewLoc;
 }
 
+// Brass is a thing in the world and is drawn with the player's field of view. The first person gun it comes out of
+// is drawn with a field of view of its own (DisplayFOV), so the same place is somewhere else on screen for the two,
+// and how far apart depends on both angles. GunLocation is a place on the first person gun; this gives the place in
+// the world that is seen in the same spot. It is always put the same way out along that line of sight (the 28: about
+// 28 units from the eye at a field of view of 90), so that brass is the same size on screen for every gun and every
+// field of view
+simulated function vector GetBrassStart(vector GunLocation)
+{
+	local PlayerController PC;
+
+	if (Instigator == None)
+		return GunLocation;
+	PC = PlayerController(Instigator.Controller);
+	// nobody to see it that way, or the place is not in front of the eye
+	if (PC == None || ((GunLocation - (Instigator.Location + Instigator.EyePosition())) dot vector(Instigator.GetViewRotation())) < 1)
+		return GunLocation;
+	return ConvertFOVs(GunLocation, DisplayFOV, PC.FOVAngle, 28);
+}
+
 simulated function vector GetEffectStart()
 {
     // 1st person

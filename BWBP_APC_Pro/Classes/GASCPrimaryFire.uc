@@ -84,7 +84,6 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_APC_Pro.GASCFlashEmitter'
      FlashScaleFactor=0.10000
      BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassOffset=(X=-10.000000)
      AimedFireAnim="SightFire"
      FireRecoil=64.000000
      FireChaos=0.100000

@@ -107,7 +107,6 @@ defaultproperties
 	BrassClass=Class'BallisticProV55.Brass_MRT6Left'
 	BrassBone="EjectorR"
 	bBrassOnCock=True
-	BrassOffset=(X=15.000000,Y=-13.000000,Z=7.000000)
 	FireRecoil=378.000000
 	FirePushbackForce=600.000000
 	FireChaos=0.200000

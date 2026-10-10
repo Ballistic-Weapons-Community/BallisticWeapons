@@ -42,7 +42,7 @@ function EjectBrass()
 //	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	BrassActor = Spawn(BrassClass, weapon,, Start, Rotator(C.XAxis));
+	BrassActor = Spawn(BrassClass, weapon,, BW.GetBrassStart(Start), Rotator(C.XAxis));
 	if (BrassActor != None)
 	{
 		BrassActor.bHidden=true;
@@ -66,8 +66,7 @@ defaultproperties
 	MuzzleFlashClass=Class'FlashEmitter_AR'
 	FlashScaleFactor=0.900000
 	BrassClass=Class'BallisticProV55.Brass_SAR'
-	BrassBone="tip"
-	BrassOffset=(X=-105.000000,Y=-10.000000,Z=-1.000000)
+	BrassBone="ejector"
 	AimedFireAnim="AimedFire"
 	FireRecoil=180.000000
 	FireChaos=0.022000

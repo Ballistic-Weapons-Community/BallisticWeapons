@@ -92,7 +92,6 @@ defaultproperties
      bUseWeaponMag=False
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      BrassClass=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
-     BrassOffset=(X=-30.000000,Y=1.000000)
      FireRecoil=2048.000000
      FirePushbackForce=100.000000
      FireChaos=1.000000

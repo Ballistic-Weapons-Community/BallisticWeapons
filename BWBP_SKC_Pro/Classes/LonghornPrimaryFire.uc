@@ -215,7 +215,6 @@ defaultproperties
 	//FlashScaleFactor=1.500000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_Longhorn'
 	bBrassOnCock=True
-	BrassOffset=(Z=5.000000)
 	//AimedFireAnim="SightFire"
 	//FireRecoil=1024.000000
 	//FirePushbackForce=300.000000

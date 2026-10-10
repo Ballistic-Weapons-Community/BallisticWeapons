@@ -159,7 +159,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	bBrassOnCock=True
-	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
 	FireRecoil=378.000000
 	FireChaos=0.500000
 	//BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-Fire',Volume=2.000000,Radius=1024.000000)

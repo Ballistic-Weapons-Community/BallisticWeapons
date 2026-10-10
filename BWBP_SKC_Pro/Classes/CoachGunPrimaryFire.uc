@@ -836,7 +836,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 	FlashScaleFactor=1.500000
 	BrassBone="EjectorR"
-	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
 	FireRecoil=768.000000
 	FirePushbackForce=250.000000
 	FireChaos=1.000000
