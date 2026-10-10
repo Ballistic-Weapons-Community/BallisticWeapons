@@ -40,6 +40,8 @@ var     bool					bExploded;				// Already Blown up. Used by troublesome rocekts 
 var     bool					bTouchDealtWith;		// ProcessTouch has hurt what was touched. See Touch
 var     Vector                  TearOffHitNormal;
 var		bool					bApplyParams;			// Apply params to this projectile (allows separation for projectiles such as flak classes)
+var     float					SpawnTime;				// When the server made it. See RelayUnseenImpact
+var     bool					bImpactRelayed;			// The clients have been sent its impact by itself
 //=============================================================================
 // END STATE VARIABLES
 //=============================================================================
@@ -68,6 +70,7 @@ var() byte                      LayoutIndex;            // For parameter indexin
 var() byte                      CurrentWeaponMode;      // For parameter indexing - fire mode index of firing weapon
 var() bool						bOverrideMode;			// Params are coming from a source other than CurrentWeaponMode
 var() bool					    bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
+var() int					    FixedImpactSurf;		// The surface type this class's own Explode always hands the ImpactManager (to pick one of its effects), -1 if it has none. See RelayUnseenImpact
 var() bool					    bPenetrate;				// Will go through enemies
 
 // this property (StartDelay) and its associated handling should be abolished.
@@ -188,6 +191,8 @@ simulated function PostBeginPlay()
 
     if (Level.NetMode == NM_Client)
         return;
+
+    SpawnTime = Level.TimeSeconds;
 
     // bind replicated parameters for indexing on client
     if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
@@ -531,7 +536,83 @@ simulated function Destroyed()
 		else
 			Trail.Destroy();
 	}
+	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
+		RelayUnseenImpact();
 	Super.Destroyed();
+}
+
+// A server moves a new projectile in the same frame it is fired in, and sends it to the clients only at the end of that
+// frame. One that has hit something by then (a wall or a player right in front of the gun) is gone before any client
+// was told of it, and they saw and heard no hit at all. One that stays with the server and is torn off when it blows
+// up fares no better: a torn off actor is never sent to a client that does not have it yet. The clients are sent the
+// impact by itself in both cases.
+// This is done from Destroyed and HideProjectile and not from Explode, because many projectiles have an Explode and a
+// HitWall of their own
+function RelayUnseenImpact()
+{
+	local Actor A;
+	local vector HitLoc, HitNorm, Dir, Start, End, TraceLoc, TraceNorm;
+	local Material HitMat;
+	local int Surf;
+
+	if (bImpactRelayed || ImpactManager == None || SpawnTime != Level.TimeSeconds || (!bNetTemporary && !bTearOff)
+		|| (Level.NetMode != NM_DedicatedServer && Level.NetMode != NM_ListenServer))
+		return;
+
+	HitLoc = Location;
+	if (LastTouched != None)
+		HitNorm = vect(0,0,1);		// against an actor: the same as ProcessTouch tells Explode
+	else
+	{
+		if (bTearOff)
+		{
+			// Explode has stopped it and left the normal of what it hit
+			HitNorm = TearOffHitNormal;
+			if (HitNorm == vect(0,0,0))
+				HitNorm = vect(0,0,1);
+			Dir = -HitNorm;
+		}
+		else
+		{
+			Dir = Normal(Velocity);
+			if (Dir == vect(0,0,0))
+				Dir = vector(Rotation);
+		}
+		Start = Location - Dir * 12;
+		End = Location + Dir * (FMax(CollisionRadius, CollisionHeight) + 12);
+		A = Trace(TraceLoc, TraceNorm, End, Start, false,, HitMat);
+		if (A == None && !bTearOff && (CollisionRadius > 0 || CollisionHeight > 0))
+		{
+			// It has some size and came in at a flat angle: what it hit lies beside its path. The sweep that stopped
+			// it finds that again, and a line straight at it finds the place and the material
+			A = Trace(TraceLoc, TraceNorm, End, Start, false, GetCollisionExtent());
+			if (A != None)
+			{
+				Start = TraceLoc;
+				End = TraceLoc - TraceNorm * (FMax(CollisionRadius, CollisionHeight) + 8);
+				A = Trace(TraceLoc, TraceNorm, End, Start, false,, HitMat);
+			}
+		}
+		if (A != None)
+		{
+			HitLoc = TraceLoc;
+			HitNorm = TraceNorm;
+			if (bCheckHitSurface)
+			{
+				if (HitMat == None)
+					Surf = int(A.SurfaceType);
+				else
+					Surf = int(HitMat.SurfaceType);
+			}
+		}
+		// nothing there: it did not end on a wall
+		else if (!bTearOff)
+			return;
+	}
+	if (FixedImpactSurf >= 0)
+		Surf = FixedImpactSurf;
+	bImpactRelayed = true;
+	class'BallisticImpactRelay'.static.Send(self, ImpactManager, HitLoc, HitNorm, Surf);
 }
 
 simulated function ShakeView(vector HitLocation)
@@ -638,6 +719,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 function HideProjectile()
 {
+	// Torn off in the frame it was fired in: no client has it, and none will be sent it now
+	RelayUnseenImpact();
+
     // Log("HideProjectile");
 
 	SetPhysics(PHYS_None);
@@ -1279,6 +1363,7 @@ defaultproperties
     RadiusFallOffType=RFO_Quadratic
     bRandomStartRotation=True
     bTearOnExplode=True
+    FixedImpactSurf=-1
     NetTrappedDelay=0.150000
 
 	// backup values in case of failure to assign

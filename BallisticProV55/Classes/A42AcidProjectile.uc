@@ -141,6 +141,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_A500Projectile'
+     FixedImpactSurf=1
      bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.A42AcidProjectileTrail'
      MyRadiusDamageType=Class'BallisticProV55.DTA42AcidBlast'
